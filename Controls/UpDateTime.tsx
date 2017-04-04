@@ -2,8 +2,6 @@
 import "eonasdan-bootstrap-datetimepicker"
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { UpFormControl } from "../UpForm/UpFormControl"
-import { TypeDateControl, dateFormat } from "../ControlError/TypeDateControl"
 
 
 interface UpDateTimeProps {
