@@ -1,14 +1,14 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-interface UpSwitchProps {
+export interface UpSwitchProps {
     // hasError: boolean;
     onChange: (value?: boolean) => void;
     isNuallble: boolean;
     default?: boolean;
 }
 
-interface UpSwitchState {
+export interface UpSwitchState {
     value?: boolean;
 }
 
