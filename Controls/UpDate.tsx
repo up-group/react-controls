@@ -14,7 +14,7 @@ export interface UpDateState {
     value?: Date;
 }
 
-export class UpDate extends React.Component<UpDateProps, UpDateState> {
+export default class UpDate extends React.Component<UpDateProps, UpDateState> {
 
     inputElementGroup: HTMLDivElement;
     constructor(p, c) {

@@ -1,11 +1,11 @@
 
-import * as UpDate from "./Controls/UpDate";
-import * as UpDateTime from "./Controls/UpDateTime";
-import * as UpFile from "./Controls/UpFile";
-import * as UpSelect2 from "./Controls/UpSelect2";
-import * as UpStringMultiLine from "./Controls/UpStringMultiLine";
-import  UpSwitch from "./Controls/UpSwitch";
-import * as UpTimePicker from "./Controls/UpTimePicker";
+import UpDate from "./Controls/UpDate";
+import UpDateTime from "./Controls/UpDateTime";
+import UpFile from "./Controls/UpFile";
+import UpSelect2 from "./Controls/UpSelect2";
+import UpStringMultiLine from "./Controls/UpStringMultiLine";
+import UpSwitch from "./Controls/UpSwitch";
+import UpTimePicker from "./Controls/UpTimePicker";
 
 var _export = {
     UpDate: UpDate,

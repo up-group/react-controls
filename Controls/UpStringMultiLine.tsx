@@ -6,7 +6,7 @@ export interface UpStringMultiLineProps {
     onChange: (value: number[]) => void;
 }
 
-export class UpStringMultiLine extends React.Component<UpStringMultiLineProps, {}> {
+export default class UpStringMultiLine extends React.Component<UpStringMultiLineProps, {}> {
     constructor(p, c) {
         super(p, c);
     }

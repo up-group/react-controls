@@ -23,7 +23,7 @@ export interface UpSelect2ExtendProp {
     isRequired: boolean
 }
 
-export class UpSelect2 extends React.Component<UpSelect2ExtendProp, {}> {
+export default class UpSelect2 extends React.Component<UpSelect2ExtendProp, {}> {
     el: JQuery;
     constructor(p, c) {
         super(p, c);

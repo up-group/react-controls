@@ -9,7 +9,7 @@ export interface UpFileProp {
     onError: (value: string) => void;
 }
 
-export class UpFile extends React.Component<UpFileProp, {}> {
+export default class UpFile extends React.Component<UpFileProp, {}> {
     constructor(p, c) {
         super(p, c);
     }

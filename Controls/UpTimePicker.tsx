@@ -11,7 +11,7 @@ export interface UpTimePickerState {
     minute?: number;
 }
 
-export class UpTimePicker extends React.Component<UpTimePickerProps, UpTimePickerState> {
+export default class UpTimePicker extends React.Component<UpTimePickerProps, UpTimePickerState> {
     inputElement: HTMLInputElement;
     constructor(p, c) {
         super(p, c);
