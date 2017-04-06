@@ -45,7 +45,7 @@ export default class UpSelect2 extends React.Component<UpSelect2ExtendProp, {}> 
     }
 
     render() {
-        return <input  className="input-group" type="text" />
+        return <input className="input-group" type="text" />
     }
 
     private get isExtrenal() { return this.props.dataSource !== undefined }
@@ -168,10 +168,10 @@ export default class UpSelect2 extends React.Component<UpSelect2ExtendProp, {}> 
 
     attachEventHandlers(props) {
         if (this.props.getFullData) {
-            $(this.el).on("change", (event) => { this.props.onChange(this.fullData[event.val]) });
+            $(this.el).on("change", (event: Select2JQueryEventObject) => { this.props.onChange(this.fullData[event.val]) });
         }
         else {
-            $(this.el).on("change", (event) => { this.props.onChange(event.val) });
+            $(this.el).on("change", (event: Select2JQueryEventObject) => { this.props.onChange(event.val) });
         }
     }
 
