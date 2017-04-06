@@ -13,7 +13,7 @@ export interface UpSwitchState {
 }
 
 
-export class UpSwitch extends React.Component<UpSwitchProps, UpSwitchState> {
+export default class UpSwitch extends React.Component<UpSwitchProps, UpSwitchState> {
     constructor(p, c) {
         super(p, c);
         this.state = { value: this.props.default };

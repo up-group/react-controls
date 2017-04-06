@@ -56,5 +56,5 @@ var UpSwitch = (function (_super) {
     };
     return UpSwitch;
 }(React.Component));
-exports.UpSwitch = UpSwitch;
+exports.default = UpSwitch;
 //# sourceMappingURL=UpSwitch.js.map

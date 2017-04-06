@@ -8,7 +8,7 @@ export interface UpSwitchProps {
 export interface UpSwitchState {
     value?: boolean;
 }
-export declare class UpSwitch extends React.Component<UpSwitchProps, UpSwitchState> {
+export default class UpSwitch extends React.Component<UpSwitchProps, UpSwitchState> {
     constructor(p: any, c: any);
     componentDidMount(): void;
     render(): JSX.Element;
