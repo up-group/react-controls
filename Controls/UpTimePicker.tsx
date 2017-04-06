@@ -1,23 +1,27 @@
 ﻿import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-interface UpTimePickerProps {
+export interface UpTimePickerProps {
     hasError: boolean;
     onChange: (value: string) => void;
 }
 
-interface UpTimePickerState {
+export interface UpTimePickerState {
     hour?: number;
     minute?: number;
 }
 
-export default class UpTimePicker extends React.Component<UpTimePickerProps, UpTimePickerState> {
-    inputElement: HTMLInputElement;    constructor(p, c) {        super(p, c);
+export class UpTimePicker extends React.Component<UpTimePickerProps, UpTimePickerState> {
+    inputElement: HTMLInputElement;
+    constructor(p, c) {
+        super(p, c);
         this.state = {
             hour: 0,
             minute: 0
         };
-    }    render() {
+    }
+
+    render() {
         return <span className="form-control"
             style={{
                 "borderColor": this.props.hasError === true ? { borderColor: "red" } : null,
@@ -95,4 +99,5 @@ export default class UpTimePicker extends React.Component<UpTimePickerProps, UpT
     sendChange = () => {
         this.props.onChange(this.state.hour + ":" + this.state.minute);
     }
-}
+}
+

@@ -1,5 +1,4 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 
 export interface UpSwitchProps {
     // hasError: boolean;
@@ -8,14 +7,23 @@ export interface UpSwitchProps {
     default?: boolean;
 }
 
+
 export interface UpSwitchState {
     value?: boolean;
 }
 
-export default class UpSwitch extends React.Component<UpSwitchProps, UpSwitchState> {
-    constructor(p, c) {        super(p, c);
+
+export class UpSwitch extends React.Component<UpSwitchProps, UpSwitchState> {
+    constructor(p, c) {
+        super(p, c);
         this.state = { value: this.props.default };
-    }    componentDidMount() {    }    render() {
+    }
+
+    componentDidMount() {
+
+    }
+
+    render() {
         if (this.props.isNuallble === true) {
             return <span className="btnBool">
                 <span className={"btnFalse " + (this.state.value === false ? "selected Null" : "")} value={false.toString()} onClick={this.onBoolClick}>Non</span>
@@ -30,7 +38,10 @@ export default class UpSwitch extends React.Component<UpSwitchProps, UpSwitchSta
         }
     }
 
-    onBoolClick = (a) => {        var data = a.target.getAttribute("value");        var value = null;        switch (data) {
+    onBoolClick = (a) => {
+        var data = a.target.getAttribute("value");
+        var value = null;
+        switch (data) {
             case "true":
                 value = true;
                 break;
@@ -44,6 +55,11 @@ export default class UpSwitch extends React.Component<UpSwitchProps, UpSwitchSta
                 value = null;
         }
         this.setState({ value: value }, this.dispatchOnChange)
-    }    dispatchOnChange = () => {        this.props.onChange(this.state.value);
-    }
+    }
+
+    dispatchOnChange = () => {
+        this.props.onChange(this.state.value);
+    }
 }
+
+

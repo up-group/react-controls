@@ -9,7 +9,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var UpSwitch = (function (_super) {
     __extends(UpSwitch, _super);
@@ -36,7 +36,7 @@ var UpSwitch = (function (_super) {
         _this.dispatchOnChange = function () {
             _this.props.onChange(_this.state.value);
         };
-        _this.state = { value: _this.props["default"] };
+        _this.state = { value: _this.props.default };
         return _this;
     }
     UpSwitch.prototype.componentDidMount = function () {
@@ -56,4 +56,5 @@ var UpSwitch = (function (_super) {
     };
     return UpSwitch;
 }(React.Component));
-exports["default"] = UpSwitch;
+exports.UpSwitch = UpSwitch;
+//# sourceMappingURL=UpSwitch.js.map

@@ -23,13 +23,19 @@ interface UpSelect2ExtendProp {
     isRequired: boolean
 }
 
-export default class UpSelect2 extends React.Component<UpSelect2ExtendProp, {}> {
+export class UpSelect2 extends React.Component<UpSelect2ExtendProp, {}> {
     el: JQuery;
-    constructor(p, c) {        super(p, c);
+    constructor(p, c) {
+        super(p, c);
         this.el = null;
-    }    setInput(data) {    }
-    _componentDidMount() {
-    }
+    }
+
+    setInput(data) {
+    }
+
+    _componentDidMount() {
+    }
+
     handleChangeJsEvent(args: any) {
         return args.target.value;
     }

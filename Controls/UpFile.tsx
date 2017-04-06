@@ -9,9 +9,12 @@ interface UpFileProp {
     onError: (value: string) => void;
 }
 
-export default class UpFile extends React.Component<UpFileProp, {}> {
-    constructor(p, c) {        super(p, c);
-    }    render() {
+export class UpFile extends React.Component<UpFileProp, {}> {
+    constructor(p, c) {
+        super(p, c);
+    }
+
+    render() {
         if (!FileReader) {
             return <span>Non support du navigateur</span>;
         }
@@ -60,5 +63,8 @@ export default class UpFile extends React.Component<UpFileProp, {}> {
         reader.readAsArrayBuffer(event.target.files[0]);
     }
 
-
+
+
+
+
 }

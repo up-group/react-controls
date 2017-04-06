@@ -2,7 +2,8 @@
   "name": "up-react-control",
   "version": "0.0.4",
   "description": "",
-  "main": "index.js",
+  "main": "./up-react-control.js",
+  "types": "./up-react-control.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -27,10 +28,5 @@
     "select2": "^4.0.3",
     "jquery": "^3.2.1",
     "eonasdan-bootstrap-datetimepicker": "^4.17.47"
-  },
-  "main": "lib/index.js",
-  "typings": "lib/index",
-  "files": [
-    "lib/"
-  ]
+  }
 }

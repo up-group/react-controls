@@ -1,11 +1,9 @@
 {
   "compilerOptions": {
+    "target": "ES5",
+    "sourceMap": true,
+    "removeComments": true,
     "module": "commonjs",
-    "declaration": true,
-    "outDir": "lib/",
     "jsx": "react"
-  },
-  "files": [
-    "./index.ts"
-  ]
+  }
 }

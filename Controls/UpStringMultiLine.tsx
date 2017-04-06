@@ -6,9 +6,13 @@ interface UpStringMultiLineProps {
     onChange: (value: number[]) => void;
 }
 
-export default class UpStringMultiLine extends React.Component<UpStringMultiLineProps, {}> {
-    constructor(p, c) {        super(p, c);
-    }    render() {
+export class UpStringMultiLine extends React.Component<UpStringMultiLineProps, {}> {
+    constructor(p, c) {
+        super(p, c);
+    }
+
+
+    render() {
         return <textarea
             style={this.props.hasError === true ? { borderColor: "red" } : null}
             type="text"
@@ -21,5 +25,8 @@ export default class UpStringMultiLine extends React.Component<UpStringMultiLine
         this.props.onChange(event.target.value);
     }
 
-
+
+
+
+
 }

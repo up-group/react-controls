@@ -15,12 +15,23 @@ interface UpDateState {
     value?: Date;
 }
 
-export default class UpDate extends React.Component<UpDateProps, UpDateState> {
-    inputElementGroup: HTMLDivElement;    constructor(p, c) {        super(p, c);
-    }    setInput(data) {        $(this.inputElementGroup).data("DateTimePicker").date(data);    }    componentDidMount() {
+export class UpDate extends React.Component<UpDateProps, UpDateState> {
+
+    inputElementGroup: HTMLDivElement;
+    constructor(p, c) {
+        super(p, c);
+    }
+
+    setInput(data) {
+        $(this.inputElementGroup).data("DateTimePicker").date(data);
+    }
+
+    componentDidMount() {
         $(this.inputElementGroup).datetimepicker({ locale: 'fr', format: "DD/MM/YYYY" });
         $(this.inputElementGroup).on("dp.change", this.handleChangeJsEvent);
-    }    render() {
+    }
+
+    render() {
 
         return <div className='input-group date' style={{ marginBottom: "3px" }} ref={(input) => { this.inputElementGroup = input; } } >
             <input
@@ -42,10 +53,17 @@ export default class UpDate extends React.Component<UpDateProps, UpDateState> {
         }
         this.setState({ value: null }, this.dispatchOnChange)
     }
-    dispatchOnChange = () => {        this.props.onChange(this.state.value);
-    }
+
+
+    dispatchOnChange = () => {
+        this.props.onChange(this.state.value);
+    }
+
+
     isEmpty(value) {
         return value === null || value === undefined || value === "";
     }
-}
+
+
+}
 
