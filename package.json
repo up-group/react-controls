@@ -1,11 +1,11 @@
 {
   "name": "up-react-control",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "",
   "main": "./up-react-control.js",
   "types": "./up-react-control.ts",
   "scripts": {
-    "publishBeta":"npm version patch && npm publish --tag beta",
+    "publishBeta": "npm version patch && npm publish --tag beta",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
