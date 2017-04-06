@@ -6,7 +6,7 @@ var UpSelect2 = require("./Controls/UpSelect2");
 var UpStringMultiLine = require("./Controls/UpStringMultiLine");
 var UpSwitch = require("./Controls/UpSwitch");
 var UpTimePicker = require("./Controls/UpTimePicker");
-module.exports = {
+var _export = {
     UpDate: UpDate,
     UpDateTime: UpDateTime,
     UpFile: UpFile,
@@ -15,4 +15,5 @@ module.exports = {
     UpSwitch: UpSwitch,
     UpTimePicker: UpTimePicker
 };
+module.exports = _export;
 //# sourceMappingURL=up-react-control.js.map

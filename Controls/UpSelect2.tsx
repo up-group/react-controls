@@ -3,7 +3,7 @@ import * as ReactDOM from "react-dom";
 import * as $ from 'jquery';
 import 'select2';
 
-interface UpSelect2ExtendProp {
+export interface UpSelect2ExtendProp {
     default: any;
     getFullData: boolean;
     multiple?: boolean;

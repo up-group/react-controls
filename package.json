@@ -3,7 +3,7 @@
   "version": "0.0.6",
   "description": "",
   "main": "./up-react-control.js",
-  "types": "./up-react-control.ts",
+  "types": "./up-react-control.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

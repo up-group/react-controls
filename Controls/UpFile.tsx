@@ -1,7 +1,7 @@
 ﻿import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-interface UpFileProp {
+export interface UpFileProp {
     maxSize?: number; //in Mo
     hasError: boolean;
     fileExtension?: string;

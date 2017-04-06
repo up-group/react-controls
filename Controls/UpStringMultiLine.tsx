@@ -1,7 +1,7 @@
 ﻿import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-interface UpStringMultiLineProps {
+export interface UpStringMultiLineProps {
     hasError: boolean;
     onChange: (value: number[]) => void;
 }

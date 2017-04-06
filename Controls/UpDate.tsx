@@ -3,15 +3,14 @@ import "eonasdan-bootstrap-datetimepicker"
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-
-interface UpDateProps {
+export interface UpDateProps {
     hasError: boolean;
     onChange: (value?: Date) => void;
     isNuallble: boolean;
     default?: Date;
 }
 
-interface UpDateState {
+export interface UpDateState {
     value?: Date;
 }
 
@@ -66,4 +65,3 @@ export class UpDate extends React.Component<UpDateProps, UpDateState> {
 
 
 }
-
