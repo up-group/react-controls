@@ -5,6 +5,7 @@
   "main": "./up-react-control.js",
   "types": "./up-react-control.ts",
   "scripts": {
+    "publishBeta":"npm version patch && npm publish --tag beta",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
