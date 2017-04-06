@@ -48,5 +48,5 @@ var UpDateTime = (function (_super) {
     };
     return UpDateTime;
 }(React.Component));
-exports.UpDateTime = UpDateTime;
+exports.default = UpDateTime;
 //# sourceMappingURL=UpDateTime.js.map

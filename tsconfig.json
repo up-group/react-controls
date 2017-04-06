@@ -4,7 +4,6 @@
     "sourceMap": true,
     "removeComments": true,
     "module": "commonjs",
-    "jsx": "react",
-    "declaration":true
+    "jsx": "react"
   }
 }

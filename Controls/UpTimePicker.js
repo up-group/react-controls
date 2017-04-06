@@ -88,5 +88,5 @@ var UpTimePicker = (function (_super) {
     };
     return UpTimePicker;
 }(React.Component));
-exports.UpTimePicker = UpTimePicker;
+exports.default = UpTimePicker;
 //# sourceMappingURL=UpTimePicker.js.map

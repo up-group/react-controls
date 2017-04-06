@@ -48,5 +48,5 @@ var UpDate = (function (_super) {
     };
     return UpDate;
 }(React.Component));
-exports.UpDate = UpDate;
+exports.default = UpDate;
 //# sourceMappingURL=UpDate.js.map

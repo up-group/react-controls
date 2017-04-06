@@ -168,5 +168,5 @@ var UpSelect2 = (function (_super) {
     };
     return UpSelect2;
 }(React.Component));
-exports.UpSelect2 = UpSelect2;
+exports.default = UpSelect2;
 //# sourceMappingURL=UpSelect2.js.map

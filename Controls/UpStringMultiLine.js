@@ -25,5 +25,5 @@ var UpStringMultiLine = (function (_super) {
     };
     return UpStringMultiLine;
 }(React.Component));
-exports.UpStringMultiLine = UpStringMultiLine;
+exports.default = UpStringMultiLine;
 //# sourceMappingURL=UpStringMultiLine.js.map

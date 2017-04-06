@@ -63,5 +63,5 @@ var UpFile = (function (_super) {
     });
     return UpFile;
 }(React.Component));
-exports.UpFile = UpFile;
+exports.default = UpFile;
 //# sourceMappingURL=UpFile.js.map
