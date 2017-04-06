@@ -1,6 +1,6 @@
 {
   "name": "up-react-control",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "",
   "main": "./up-react-control.js",
   "types": "./up-react-control.ts",
