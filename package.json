@@ -1,5 +1,5 @@
 {
-  "name": "up-react-control",
+  "name": "@up-group/up-react-control",
   "version": "0.0.13",
   "description": "",
   "main": "./up-react-control.js",
