@@ -23,11 +23,10 @@
     "@types/eonasdan-bootstrap-datetimepicker": "^4.17.22",
     "@types/jquery": "^2.0.41",
     "@types/react": "^15.0.21",
-    "@types/react-dom": "^0.14.23"
+    "@types/react-dom": "^0.14.23",
+    "@types/select2": "^4.0.34"
   },
   "dependencies": {
-    "@types/select2": "^4.0.34",
-    
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "select2": "^4.0.3",
