@@ -1,7 +1,7 @@
 ﻿import * as React from "react";
 import {UpTimeProps, UpTimeState} from './types'
 
-export default class UpTime extends React.Component<UpTimeProps, UpTimeState> {
+export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeState> {
     inputElement: HTMLInputElement;
     constructor(p, c) {
         super(p, c);

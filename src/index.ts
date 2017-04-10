@@ -20,7 +20,7 @@ import UpFile from './File';
 import UpDate from './Date';
 import UpSwitch from './Switch'
 import UpDateTime from './DateTime';
-import UpTime from './Time';
+import UpTimePicker from './TimePicker';
 import UpText from './Text';
 
 export {
@@ -46,6 +46,6 @@ export {
   UpDate,
   UpDateTime,
   UpSwitch,
-  UpTime,
+  UpTimePicker,
   UpText
 };
