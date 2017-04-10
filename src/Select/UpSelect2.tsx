@@ -2,7 +2,7 @@ import * as React from 'react';
 import Component from './styles';
 import * as ReactDOM from "react-dom";
 import * as $ from 'jquery';
-import 'select2';
+import 'selec2/dist/js/select2.full.js'
 
 export interface UpSelect2ExtendProp {
     default: any;
