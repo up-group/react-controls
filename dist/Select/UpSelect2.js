@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
-const styles_1 = require("./styles");
 const ReactDOM = require("react-dom");
 const $ = require("jquery");
-require("select2");
+require("select2/dist/js/select2.full.js");
+require("select2/dist/css/select2.css");
 class UpSelect2 extends React.Component {
     constructor(p, c) {
         super(p, c);
@@ -53,7 +53,7 @@ class UpSelect2 extends React.Component {
         return value === null || value === undefined || value === "";
     }
     render() {
-        return React.createElement(styles_1.default, { type: "text" });
+        return React.createElement("input", { className: "input-group", type: "text" });
     }
     get isExtrenal() { return this.props.dataSource !== undefined; }
     componentDidMount() {

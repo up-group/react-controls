@@ -1,8 +1,9 @@
 import * as React from 'react';
-import Component from './styles';
+//import Component from './styles';
 import * as ReactDOM from "react-dom";
 import * as $ from 'jquery';
-import 'select2';
+import 'select2/dist/js/select2.full.js'
+import 'select2/dist/css/select2.css'
 
 export interface UpSelect2ExtendProp {
     default: any;
@@ -46,7 +47,7 @@ export default class UpSelect2 extends React.Component<UpSelect2ExtendProp, {}> 
     }
 
     render() {
-        return <Component type="text" />
+        return <input className="input-group" type="text" />;
     }
 
     private get isExtrenal() { return this.props.dataSource !== undefined }
