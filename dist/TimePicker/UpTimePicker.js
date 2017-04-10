@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
-class UpTime extends React.Component {
+class UpTimePicker extends React.Component {
     constructor(p, c) {
         super(p, c);
         this.onchangeHourEvent = (e) => { this.onchangeHour(e.target.value); };
@@ -75,5 +75,5 @@ class UpTime extends React.Component {
                 } }));
     }
 }
-exports.default = UpTime;
-//# sourceMappingURL=UpTime.js.map
+exports.default = UpTimePicker;
+//# sourceMappingURL=UpTimePicker.js.map
