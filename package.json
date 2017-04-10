@@ -48,8 +48,6 @@
     "svg-inline-loader": "^0.7.1",
     "ts-loader": "^2.0.3",
     "webpack": "^2.3.3",
-    "select2": "^4.0.3",
-    "eonasdan-bootstrap-datetimepicker": "^4.17.47"
   },
   "dependencies": {
     "github-markdown-css": "^2.4.1",
@@ -58,6 +56,9 @@
     "react-markdown": "^2.4.5",
     "rimraf": "^2.6.1",
     "styled-components": "^1.4.4",
-    "yarn": "^0.21.3"
+    "yarn": "^0.21.3",
+    "select2": "^4.0.3",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47"
+
   }
 }
