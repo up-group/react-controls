@@ -1,6 +1,6 @@
 {
   "name": "@up-group/up-react-controls",
-  "version": "0.0.28",
+  "version": "0.0.29",
   "description": "",
   "main": "dist/index.js",
   "types": "src/index.ts",
@@ -59,6 +59,5 @@
     "yarn": "^0.21.3",
     "select2": "^4.0.3",
     "eonasdan-bootstrap-datetimepicker": "^4.17.47"
-
   }
 }
