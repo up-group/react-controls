@@ -1,6 +1,6 @@
 {
   "name": "@up-group/up-react-controls",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "",
   "main": "dist/index.js",
   "types": "src/index.ts",
@@ -50,7 +50,6 @@
   },
   "dependencies": {
     "@types/select2": "^4.0.34",
-
     "github-markdown-css": "^2.4.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
