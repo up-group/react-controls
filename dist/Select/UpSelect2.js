@@ -4,7 +4,7 @@ const React = require("react");
 const styles_1 = require("./styles");
 const ReactDOM = require("react-dom");
 const $ = require("jquery");
-require("selec2/dist/js/select2.full.js");
+require("select2/dist/js/select2.full.js");
 class UpSelect2 extends React.Component {
     constructor(p, c) {
         super(p, c);
