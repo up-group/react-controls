@@ -1,9 +1,23 @@
 {
   "compilerOptions": {
-    "target": "ES5",
-    "sourceMap": true,
-    "removeComments": true,
     "module": "commonjs",
-    "jsx": "react"
-  }
+    "target": "es6",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "removeComments":true,
+    "outDir": "dist/",
+    "jsx": "react",
+    "allowJs": true,
+    "noUnusedLocals": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.test.*",
+    "**/*.mock.*"
+  ]
 }

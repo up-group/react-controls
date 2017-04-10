@@ -1,0 +1,186 @@
+import * as React from "react" ;
+import { Component } from "react";
+
+import UpTooltip from './UpTooltip.jsx' ;
+
+interface IUpActionProps extends React.Props<UpAction> {
+    role: string,
+    description: string,
+    enable: boolean,
+    iconClass:string,
+    actionClass:string,
+    icon : boolean,
+    onExecute:any,
+    libelle:string,
+    wrapperClass: string,
+    confirmation:boolean,
+    modal:boolean,
+    saveAndNew:boolean,
+    toggle:boolean,
+    visible:boolean
+}
+
+interface IUpActiontate {
+
+}
+
+export default class UpAction extends React.Component<IUpActionProps, IUpActiontate> {
+
+   public static defaultProps : IUpActionProps = {
+      wrapperClass : '',
+      actionClass : 'up-action btn btn-primary',
+      role: '',
+      description: '',
+      libelle: '',
+      confirmation: false,
+      modal: false,
+      saveAndNew: false,
+      icon: false,
+      enable: true,
+      toggle: false,
+      visible:true,
+      iconClass:"",
+      onExecute: (action: string) => {}
+  };
+
+  constructor(props: any) {
+    super(props) ;
+  }
+
+  getClasses(role: string) {
+      var _role = role;
+      var _roleParts = _role.split('-');
+      var _finalRole = _roleParts[_roleParts.length - 1];
+      var _actionClass = "" ;
+      var _iconClass = "glyphicon ";
+      switch (_finalRole) { // -> To be move into a specific configuration map
+          case 'search':
+              _iconClass += "glyphicon-search";
+              break;
+          case 'vueglobale':
+          case 'file':
+              _iconClass += "glyphicon-file";
+              break;
+          case 'filter':
+              _iconClass += "glyphicon-filter";
+              break;
+          case 'add':
+          case 'new':
+              _iconClass += "glyphicon-plus";
+              break;
+          case 'analyse':
+          case 'edit':
+              _iconClass += "glyphicon-edit";
+              break;
+          case 'save':
+              _iconClass += "glyphicon-save";
+              break;
+          case 'read':
+              _iconClass += "glyphicon-eye-open";
+              break;
+          case 'del':
+          case 'delete':
+          case 'remove':
+              _iconClass += "glyphicon-trash";
+              _actionClass = 'up-action btn btn-danger';
+              break;
+          case 'trash':
+              _iconClass += "glyphicon-trash";
+              _actionClass = 'up-action btn btn-danger';
+              break;
+          case 'print':
+              _iconClass += "glyphicon-print";
+              break;
+          case 'open':
+              _iconClass += "glyphicon-open";
+              break;
+          case 'close':
+              _iconClass += "glyphicon-remove";
+              break;
+          case 'list':
+              _iconClass += "glyphicon-list-alt";
+              break;
+          case 'check':
+              _iconClass += "glyphicon-ok";
+              break;
+          case 'info':
+              _iconClass += "glyphicon-signal";
+              break;
+          case 'sign':
+              _iconClass += "glyphicon-pencil";
+              break;
+          case 'correct':
+              _iconClass += "glyphicon-pencil";
+              break;
+          case 'update':
+              _iconClass += "glyphicon-edit";
+              break;
+          case 'valid':
+              _iconClass += "glyphicon-check";
+              break;
+          case 'stop':
+              _actionClass = 'up-action btn btn-danger';
+              _iconClass += "glyphicon-ban-circle";
+              break;
+          case 'cancel':
+              _iconClass += "glyphicon-share-alt";
+              break;
+          case 'renew':
+              _iconClass += "glyphicon-repeat";
+              break;
+          case 'send':
+              _iconClass += "glyphicon-send";
+              break;
+          case 'yes':
+              _iconClass += "glyphicon-chevron-down";
+              break;
+          case 'no':
+              _iconClass += "glyphicon-ban-circle";
+              break;
+          case 'substitute':
+              _iconClass += "glyphicon-retweet";
+              break;
+          case 'activate':
+              _actionClass = 'up-action btn btn-danger';
+              _iconClass += "glyphicon-record";
+              break;
+          case 'invalidate':
+              _actionClass = 'up-action btn btn-success';
+              _iconClass += "glyphicon-record";
+              break;
+          case 'goto':
+              _iconClass += "glyphicon glyphicon-share";
+              break;
+      };
+      return {iconClass : _iconClass, actionClass: _actionClass} ;
+  }
+  renderButton() {
+    const _classes = this.getClasses(this.props.role);
+    const iconClass = this.props.iconClass || _classes.iconClass ;
+    var actionClass = _classes.actionClass || this.props.actionClass ;
+    if(this.props.icon) {
+      actionClass +=  ' icone' ;
+    }
+    return (<button disabled={!this.props.enable} title={this.props.description}
+            className={actionClass}
+            onClick={this.props.onExecute}
+            type="button">
+        <span className={iconClass}></span><span className="text">{this.props.libelle}</span>
+    </button>) ;
+  }
+  render() {
+    const wrapperClass = this.props.wrapperClass ;
+
+    return (
+      <div className={wrapperClass} style={{float:'right'}}>
+          {this.props.description != '' ? (
+            <UpTooltip title={this.props.description} placement="bottom">
+              {this.renderButton()}
+            </UpTooltip>
+          ) : (
+            this.renderButton()
+          )}
+      </div>
+    );
+  }
+}

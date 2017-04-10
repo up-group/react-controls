@@ -1,0 +1,11 @@
+
+export interface UpTimeProps {
+    hasError: boolean;
+    className?:string;
+    onChange: (value: string) => void;
+}
+
+export interface UpTimeState {
+    hour?: number;
+    minute?: number;
+}
