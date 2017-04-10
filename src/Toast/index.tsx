@@ -16,6 +16,12 @@ interface State {
   isUnmounting: boolean;
 }
 
+export interface StyleProps extends BoxProps {
+  status?: Status;
+  isVisible: boolean;
+  isUnmounting: boolean;
+}
+
 export default class Toast extends React.Component<Props, State> {
   public static defaultProps = {
     status: 'none' as Status,

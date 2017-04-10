@@ -14,8 +14,7 @@ const styles_1 = require("./styles");
 const _1 = require("../");
 function Notification(_a) {
     var { message, status } = _a, rest = __rest(_a, ["message", "status"]);
-    const stat = status || 'none';
-    return (React.createElement(styles_1.default, Object.assign({ status: stat, boxSize: { horizontal: 'medium' }, pad: "small", alignItems: "center", selectable: true }, rest),
+    return (React.createElement(styles_1.default, { boxSize: { horizontal: 'medium' }, pad: "small", alignItems: "center", selectable: true },
         React.createElement(_1.Paragraph, { paragraphSize: "large", color: "white" }, message)));
 }
 exports.default = Notification;
