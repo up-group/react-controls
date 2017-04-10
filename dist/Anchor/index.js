@@ -1,23 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
-const react_router_1 = require("react-router");
 const styles_1 = require("./styles");
 const MethodTypePush = 'push';
-const MethodTypeReplace = 'replace';
 class Anchor extends React.Component {
     constructor() {
         super(...arguments);
         this.handleClick = (e) => {
-            const { method, path, router } = this.props;
+            const { path } = this.props;
             if (path) {
                 e.preventDefault();
-                if (method === MethodTypePush) {
-                    router.push(path);
-                }
-                else if (method === MethodTypeReplace) {
-                    router.replace(path);
-                }
             }
         };
     }
@@ -29,5 +21,5 @@ class Anchor extends React.Component {
 Anchor.defaultProps = {
     method: MethodTypePush,
 };
-exports.default = react_router_1.withRouter(Anchor);
+exports.default = Anchor;
 //# sourceMappingURL=index.js.map

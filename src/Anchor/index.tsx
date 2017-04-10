@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { withRouter, InjectedRouter } from 'react-router';
 import Component from './styles';
 
 const MethodTypePush = 'push';
-const MethodTypeReplace = 'replace';
+
 type Method = 'push' | 'replace';
 export interface Props extends React.Props<Anchor> {
   path?: string;
@@ -12,7 +11,6 @@ export interface Props extends React.Props<Anchor> {
   label?: string;
   color?: string;
   method?: Method;
-  router?: InjectedRouter;
 }
 
 class Anchor extends React.Component<Props, undefined> {
@@ -21,14 +19,9 @@ class Anchor extends React.Component<Props, undefined> {
   };
 
   private handleClick = (e: React.MouseEvent<HTMLAnchorElement>): void => {
-    const { method, path, router } = this.props;
+    const {path} = this.props;
     if (path) {
       e.preventDefault();
-      if (method === MethodTypePush) {
-        router.push(path);
-      } else if (method === MethodTypeReplace) {
-        router.replace(path);
-      }
     }
   }
 
@@ -54,4 +47,4 @@ class Anchor extends React.Component<Props, undefined> {
   }
 }
 
-export default withRouter(Anchor);
+export default Anchor;
