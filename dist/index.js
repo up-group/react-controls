@@ -48,4 +48,6 @@ const TimePicker_1 = require("./TimePicker");
 exports.UpTimePicker = TimePicker_1.default;
 const Text_1 = require("./Text");
 exports.UpText = Text_1.default;
+const Draft_1 = require("./Draft");
+exports.UpDraft = Draft_1.default;
 //# sourceMappingURL=index.js.map

@@ -28,6 +28,10 @@
     "prepublish": "rimraf dist && tsc",
     "setup:yarn": "yarn",
     "build": "rimraf dist && webpack",
+    "publishLocalToSchemaForm":"copyfiles dist/*.* dist/**/* package.json src/*.* src/**/* src/theming/icons/* ../react-schemaform/node_modules/@up-group/up-react-controls/",
+    "publishLocalToApp":"copyfiles dist/*.* dist/**/* package.json src/*.* src/**/* src/theming/icons/* ../react-app/node_modules/@up-group/up-react-controls/",
+    "toApp" : "npm run publishLocalToApp",
+    "toForm" : "npm run publishLocalToSchemaForm",
     "publishProd": "npm version patch && npm publish",
     "publishBeta": "npm version patch && npm publish --tag beta",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -50,15 +54,15 @@
   },
   "dependencies": {
     "@types/select2": "^4.0.34",
+    "draft-js": "^0.10.0",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47",
     "github-markdown-css": "^2.4.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-markdown": "^2.4.5",
     "rimraf": "^2.6.1",
-    "styled-components": "^1.4.4",
-    "yarn": "^0.21.3",
     "select2": "^4.0.3",
-    "eonasdan-bootstrap-datetimepicker": "^4.17.47"
-
+    "styled-components": "^1.4.4",
+    "yarn": "^0.21.3"
   }
 }
