@@ -1,3 +1,9 @@
+
+export interface ThemeInterface {
+    colorMap: ThemeColorMap;
+    borederRadius?:string;
+}
+
 export interface ThemeColorMap {
   white : string,
   dark1: string,

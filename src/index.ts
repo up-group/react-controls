@@ -25,6 +25,11 @@ import UpText from './Text'
 import UpDraft from './Draft'
 import Hero from './Hero'
 import UpList from './List'
+import UpPanel from './Panel'
+import {ThemeProvider} from 'styled-components'
+import ColorMap from './theming/index'
+import {ThemeColorMap} from './theming/types'
+import {ThemeInterface} from './theming/types'
 
 export {
   Anchor,
@@ -53,5 +58,10 @@ export {
   UpText,
   UpDraft,
   Hero,
-  UpList
+  UpList,
+  UpPanel,
+  ThemeProvider,
+  ThemeInterface,
+  ThemeColorMap,
+  ColorMap
 };

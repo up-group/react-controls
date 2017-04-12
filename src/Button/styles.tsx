@@ -41,7 +41,7 @@ const base = props => css`
   min-width: ${(props: Props) => props.theme.minButtonSize || '30px'};
   min-height: ${(props: Props) => props.theme.minButtonSize || '30px'};
   line-height: ${(props: Props) => props.theme.minButtonSize || '30px'};
-  > svg {
+  svg {
     margin:4px 4px 4px 0px;
     display:inline-block;
     float:left;
@@ -60,6 +60,12 @@ color: ${(props: Props) => props.color};
 &:hover {
   background: ${props => props.color || 'green' };
   color: ${(props: Props) => props.backgroundColor};
+  svg {
+    fill: ${(props: Props) => props.backgroundColor}
+  }
+}
+svg {
+    fill: ${(props: Props) => props.color}
 }
 `;
 

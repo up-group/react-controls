@@ -13,49 +13,65 @@ const React = require("react");
 const styles_1 = require("./styles");
 const react_sortable_hoc_1 = require("react-sortable-hoc");
 const types_1 = require("../utils/types");
+const defaultPropsStyled = {
+    color: '#000000',
+    textAlign: 'center',
+    fontSize: 'medium',
+    fontWeight: 400,
+    margin: 'medium',
+    type: 'none',
+    border: true,
+    disposition: 'vertical'
+};
+const SortableItem = react_sortable_hoc_1.SortableElement((couple) => {
+    const { text } = couple.item;
+    return React.createElement(styles_1.ListItemStyled, Object.assign({}, couple.props), text);
+});
+const SortableList = react_sortable_hoc_1.SortableContainer((props) => {
+    const { items } = props, rest = __rest(props, ["items"]);
+    const propsStyled = types_1.FilterProps(rest, defaultPropsStyled);
+    return (React.createElement(styles_1.UnorderedListStyled, null, items.map((value, index) => (React.createElement(SortableItem, { key: `item-${index}`, index: index, item: value, props: propsStyled })))));
+});
 class List extends React.Component {
     constructor(props) {
         super(props);
         this.onSortEnd = this.onSortEnd.bind(this);
     }
     render() {
-        const _a = this.props, { children, sortable, items } = _a, rest = __rest(_a, ["children", "sortable", "items"]);
+        const _a = this.props, { items } = _a, rest = __rest(_a, ["items"]);
         const Items = items.map((item, index) => {
-            return React.createElement(ListItem, Object.assign({ key: `item-${index}`, index: index, sortable: sortable }, item));
+            return React.createElement(ListItem, Object.assign({ key: `item-${index}`, index: index }, item));
         });
-        const propsStyled = types_1.FilterProps(rest);
+        {
+        }
+        const propsStyled = types_1.FilterProps(rest, defaultPropsStyled);
         if (this.props.sortable) {
-            return (React.createElement(react_sortable_hoc_1.SortableContainer, { onSortEnd: this.onSortEnd },
-                React.createElement(styles_1.UnorderedListStyled, Object.assign({}, propsStyled), Items)));
+            return (React.createElement(SortableList, Object.assign({ items: items, onSortEnd: this.onSortEnd }, propsStyled)));
         }
         else {
             return (React.createElement(styles_1.UnorderedListStyled, Object.assign({}, propsStyled), Items));
         }
     }
     onSortEnd(e) {
-        this.props.onSortEnd(e);
+        if (typeof this.props.onSortEnd == "function")
+            this.props.onSortEnd(e);
     }
     ;
 }
 List.defaultProps = {
-    color: '#000000',
-    textAlign: 'center',
-    fontSize: 'medium',
-    fontWeight: 400,
-    margin: 'medium',
-    type: 'default',
-    disposition: 'vertical',
+    color: defaultPropsStyled.color,
+    textAlign: defaultPropsStyled.textAlign,
+    fontSize: defaultPropsStyled.fontSize,
+    fontWeight: defaultPropsStyled.fontWeight,
+    margin: defaultPropsStyled.margin,
+    type: defaultPropsStyled.type,
+    disposition: defaultPropsStyled.disposition,
+    border: defaultPropsStyled.border,
     items: []
 };
 class ListItem extends React.Component {
     render() {
-        if (this.props.sortable) {
-            return React.createElement(react_sortable_hoc_1.SortableElement, null,
-                React.createElement(styles_1.ListItemStyled, null, this.props.text));
-        }
-        else {
-            return React.createElement(styles_1.ListItemStyled, null, this.props.text);
-        }
+        return (React.createElement(styles_1.ListItemStyled, null, this.props.text));
     }
 }
 ListItem.defaultProps = {

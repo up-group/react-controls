@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-function FilterProps(object) {
+function FilterProps(refObject, propsObject) {
     let persistableO1 = {};
-    Object.keys(object).forEach(key => {
-        if (Object.keys(persistableO1).indexOf(key) >= 0) {
-            persistableO1[key] = object[key];
+    Object.keys(propsObject).forEach(key => {
+        if (Object.keys(refObject).indexOf(key) >= 0) {
+            persistableO1[key] = refObject[key];
         }
     });
     return persistableO1;
