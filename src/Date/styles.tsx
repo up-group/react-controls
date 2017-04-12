@@ -3,9 +3,9 @@ import styled, {css} from 'styled-components'
 import { UpDateProps } from './'
 
 const BaseDateComponent: React.StatelessComponent<UpDateProps> = (props) => {
-    const {className} = props;
+    const {} = props;
 
-    return <div className={className} style={{ marginBottom: "3px" }}>
+    return <div className='input-group date' style={{ marginBottom: "3px" }}>
         <input
             type='text'
             className="form-control" />
@@ -26,14 +26,14 @@ const error = props => css`
 
 export const BaseDateStyle = styled<UpDateProps>(BaseDateComponent) `
 ${(props: UpDateProps) => base(props) }
-${(props: UpDateProps) => props.hasError? error(props):css``}
 `;
+//${(props: UpDateProps) => props.hasError? error(props):css``}
 
 class UpDateStyle extends React.Component<UpDateProps, undefined> {
   public static defaultProps: UpDateProps = {
-    hasError: false,
-    onChange: (value?:Date) => {},
-    isNuallble: false,
+    //hasError: false,
+   // onChange: (value?:Date) => {},
+    //isNuallble: false,
   };
 
   public render() {
