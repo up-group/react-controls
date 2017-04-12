@@ -47,6 +47,10 @@ export default class Input extends BaseControl<Props> {
                     pattern = /^[0-9]*$/
                     patternErrorMessage = "Doit être un nombre entier";
                     break;
+                case "phone":
+                    pattern = /^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/
+                    patternErrorMessage = "Doit être un téléphone";
+                    break;
                 default:
 
             }
