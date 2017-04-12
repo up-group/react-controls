@@ -19,7 +19,7 @@ const base = props => css`
 `;
 
 const error = props => css`
->input {
+> input {
   border : 1px solid red;
 }
 `;

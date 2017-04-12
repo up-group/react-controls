@@ -21,7 +21,7 @@ const BaseDateComponent = (props) => {
 const base = props => styled_components_1.css `
 `;
 const error = props => styled_components_1.css `
->input {
+> input {
   border : 1px solid red;
 }
 `;

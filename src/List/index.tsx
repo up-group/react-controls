@@ -3,7 +3,7 @@ import { UnorderedListStyled, ListItemStyled } from './styles';
 import { Margin } from '../Paragraph/types';
 import { HeadlineSize, FontWeight, ListType, ListDisposition } from './types';
 import {SortableContainer, SortableElement} from 'react-sortable-hoc';
-import {FilterProps} from '../utils/types'
+import {FilterProps} from '../utils/types';
 
 export interface PropsStyled {
   color?: string;
@@ -17,11 +17,9 @@ export interface PropsStyled {
 }
 
 export interface Item {
-  id?: number;
   text:string;
   icon?:string;
   link?:string;
-  sortable?:boolean;
   index?:number;
 }
 
@@ -37,15 +35,48 @@ export interface PropsComponent extends PropsStyled {
   onSortEnd?:(event:ChangeOrderEvent) => void;
 }
 
-class List extends React.Component<PropsComponent, undefined> {
-  public static defaultProps: PropsComponent = {
+const defaultPropsStyled : PropsStyled = {
     color: '#000000',
     textAlign: 'center',
     fontSize: 'medium',
     fontWeight: 400,
     margin: 'medium',
     type: 'default',
-    disposition:'vertical',
+    disposition:'vertical'
+  };
+interface SortableProps {
+  item:Item;
+  props:PropsStyled;
+}
+
+const SortableItem = SortableElement((couple: SortableProps) => {
+  const {text} = couple.item;
+  return <ListItemStyled {...couple.props}>{text}</ListItemStyled>
+});
+
+const SortableList = SortableContainer((props:PropsComponent) => {
+
+  const {items, ...rest} = props;
+  const propsStyled = FilterProps<PropsStyled>(rest, defaultPropsStyled) ;
+  
+  return (
+    <UnorderedListStyled>
+      {items.map((value, index) => (
+        <SortableItem key={`item-${index}`} index={index} item={value} props={propsStyled} />
+      ))}
+    </UnorderedListStyled>
+  );
+});
+
+class List extends React.Component<PropsComponent, undefined> {
+  public static defaultProps: PropsComponent = {
+    color: defaultPropsStyled.color,
+    textAlign: defaultPropsStyled.textAlign,
+    fontSize: defaultPropsStyled.fontSize,
+    fontWeight: defaultPropsStyled.fontWeight,
+    margin: defaultPropsStyled.margin,
+    type: defaultPropsStyled.type,
+    disposition:defaultPropsStyled.disposition,
     items:[]
   };
 
@@ -55,18 +86,23 @@ class List extends React.Component<PropsComponent, undefined> {
   }
 
   public render() {
-    const { children, sortable, items, ...rest } = this.props;
+    const {items, ...rest} = this.props;
     const Items = items.map( (item:Item, index:number) => {
-      return <ListItem key={`item-${index}`} index={index} sortable={sortable} {...item}  />
-    } )
-    const propsStyled = FilterProps<PropsStyled>(rest) ;
+      return <ListItem key={`item-${index}`} index={index} {...item}  />
+    } ) 
+    
+    // const ItemsSort = items.map( (item:Item, index:number) => {
+    //   return <SortableItem key={`item-${index}`} index={index} value={item.text}  />
+    // } )
+
+    {/*<SortableContainer onSortEnd={this.onSortEnd}>
+          {ItemsSort}
+        </SortableContainer>*/}
+    const propsStyled = FilterProps<PropsStyled>(rest, defaultPropsStyled) ;
+   
     if(this.props.sortable) {
       return (
-        <SortableContainer onSortEnd={this.onSortEnd}>
-          <UnorderedListStyled {...propsStyled}>
-          {Items}
-          </UnorderedListStyled>
-        </SortableContainer>
+        <SortableList items={items} onSortEnd={this.onSortEnd} {...propsStyled}/>
       );
     } else {
         return (
@@ -78,7 +114,8 @@ class List extends React.Component<PropsComponent, undefined> {
   }
 
   onSortEnd(e:ChangeOrderEvent) {
-    this.props.onSortEnd(e) ;
+    if(typeof this.props.onSortEnd == "function")
+      this.props.onSortEnd(e) ;
   };
 }
 
@@ -88,15 +125,11 @@ class ListItem extends React.Component<Item, undefined> {
   };
 
   public render() {
-    if(this.props.sortable) {
-      return <SortableElement><ListItemStyled>
-        {this.props.text}
-    </ListItemStyled></SortableElement>
-    } else {
-      return <ListItemStyled>
-      {this.props.text}
-    </ListItemStyled>
-    }
+      return (
+        <ListItemStyled>
+          {this.props.text}
+        </ListItemStyled>
+      )
   }
 }
 
