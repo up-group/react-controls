@@ -3,6 +3,7 @@ import { UnorderedListStyled, ListItemStyled } from './styles';
 import { Margin } from '../Paragraph/types';
 import { HeadlineSize, FontWeight, ListType, ListDisposition } from './types';
 import {SortableContainer, SortableElement} from 'react-sortable-hoc';
+import {FilterProps} from '../utils/types'
 
 export interface PropsStyled {
   color?: string;
@@ -58,17 +59,18 @@ class List extends React.Component<PropsComponent, undefined> {
     const Items = items.map( (item:Item, index:number) => {
       return <ListItem key={`item-${index}`} index={index} sortable={sortable} {...item}  />
     } )
+    const propsStyled = FilterProps<PropsStyled>(rest) ;
     if(this.props.sortable) {
       return (
         <SortableContainer onSortEnd={this.onSortEnd}>
-          <UnorderedListStyled {...rest}>
+          <UnorderedListStyled {...propsStyled}>
           {Items}
           </UnorderedListStyled>
         </SortableContainer>
       );
     } else {
         return (
-            <UnorderedListStyled {...rest}>
+            <UnorderedListStyled {...propsStyled}>
             {Items}
             </UnorderedListStyled>
       );

@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const styles_1 = require("./styles");
 const react_sortable_hoc_1 = require("react-sortable-hoc");
+const types_1 = require("../utils/types");
 class List extends React.Component {
     constructor(props) {
         super(props);
@@ -22,12 +23,13 @@ class List extends React.Component {
         const Items = items.map((item, index) => {
             return React.createElement(ListItem, Object.assign({ key: `item-${index}`, index: index, sortable: sortable }, item));
         });
+        const propsStyled = types_1.FilterProps(rest);
         if (this.props.sortable) {
             return (React.createElement(react_sortable_hoc_1.SortableContainer, { onSortEnd: this.onSortEnd },
-                React.createElement(styles_1.UnorderedListStyled, Object.assign({}, rest), Items)));
+                React.createElement(styles_1.UnorderedListStyled, Object.assign({}, propsStyled), Items)));
         }
         else {
-            return (React.createElement(styles_1.UnorderedListStyled, Object.assign({}, rest), Items));
+            return (React.createElement(styles_1.UnorderedListStyled, Object.assign({}, propsStyled), Items));
         }
     }
     onSortEnd(e) {
