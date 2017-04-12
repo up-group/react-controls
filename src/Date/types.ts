@@ -1,3 +1,3 @@
-import { UpDateProps, UpDateState } from './';
+import { UpDateProps } from './';
 
-export { UpDateProps, UpDateState };
+export { UpDateProps };

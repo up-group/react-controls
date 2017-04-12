@@ -18,11 +18,11 @@ const BaseDateComponent: React.StatelessComponent<UpDateProps> = (props) => {
 const base = props => css`
 `;
 
-const error = props => css`
->input {
-  border : 1px solid red;
-}
-`;
+// const error = props => css`
+// > input {
+//   border : 1px solid red;
+// }
+// `;
 
 export const BaseDateStyle = styled<UpDateProps>(BaseDateComponent) `
 ${(props: UpDateProps) => base(props) }

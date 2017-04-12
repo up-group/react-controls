@@ -12,22 +12,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const styled_components_1 = require("styled-components");
 const BaseDateComponent = (props) => {
-    const { className } = props;
-    return React.createElement("div", { className: className, style: { marginBottom: "3px" } },
+    const {} = props;
+    return React.createElement("div", { className: 'input-group date', style: { marginBottom: "3px" } },
         React.createElement("input", { type: 'text', className: "form-control" }),
         React.createElement("span", { className: "input-group-addon" },
             React.createElement("span", { className: "glyphicon glyphicon-calendar" })));
 };
 const base = props => styled_components_1.css `
 `;
-const error = props => styled_components_1.css `
->input {
-  border : 1px solid red;
-}
-`;
 exports.BaseDateStyle = styled_components_1.default(BaseDateComponent) `
 ${(props) => base(props)}
-${(props) => props.hasError ? error(props) : styled_components_1.css ``}
 `;
 class UpDateStyle extends React.Component {
     render() {
@@ -35,10 +29,6 @@ class UpDateStyle extends React.Component {
         return (React.createElement(exports.BaseDateStyle, Object.assign({}, rest), children));
     }
 }
-UpDateStyle.defaultProps = {
-    hasError: false,
-    onChange: (value) => { },
-    isNuallble: false,
-};
+UpDateStyle.defaultProps = {};
 exports.default = UpDateStyle;
 //# sourceMappingURL=styles.js.map

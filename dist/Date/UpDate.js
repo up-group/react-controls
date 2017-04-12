@@ -3,33 +3,33 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const $ = require("jquery");
 require("eonasdan-bootstrap-datetimepicker");
 const React = require("react");
-const styles_1 = require("./styles");
-class UpDate extends React.Component {
+const BaseControl_1 = require("../BaseControl/BaseControl");
+class UpDate extends BaseControl_1.BaseControl {
     constructor(p, c) {
         super(p, c);
-        this.dispatchOnChange = () => {
-            this.props.onChange(this.state.value);
+        this.componentDidMount = () => {
+            $(this.inputElementGroup).datetimepicker({ locale: 'fr', format: "DD/MM/YYYY" });
+            $(this.inputElementGroup).on("dp.change", this.handleChangeJsEvent.bind(this));
         };
     }
-    setInput(data) {
-        $(this.inputElementGroup).data("DateTimePicker").date(data);
-    }
-    componentDidMount() {
-        $(this.inputElementGroup).datetimepicker({ locale: 'fr', format: "DD/MM/YYYY" });
-        $(this.inputElementGroup).on("dp.change", this.handleChangeJsEvent);
-    }
-    render() {
-        return React.createElement(styles_1.default, { hasError: this.props.hasError, innerRef: (input) => { this.inputElementGroup = input; }, onChange: this.props.onChange, isNuallble: this.props.isNuallble });
+    renderControl() {
+        return React.createElement("div", { className: "input-group", style: { marginBottom: "3px" }, ref: (input) => { this.inputElementGroup = input; } },
+            React.createElement("input", { type: 'text', className: "form-control" }),
+            React.createElement("span", { className: "input-group-addon" },
+                React.createElement("span", { className: "glyphicon glyphicon-calendar" })));
     }
     handleChangeJsEvent(event) {
+        var data = null;
         if (typeof (event.date) === "object" && event.date && typeof (event.date.toDate) === "function") {
-            this.setState({ value: event.date.toDate() }, this.dispatchOnChange);
-            return;
+            data = event.date.startOf('day').toDate();
         }
-        this.setState({ value: null }, this.dispatchOnChange);
+        this.setState({ value: data }, this.dispatchOnChange);
+        return data;
     }
-    isEmpty(value) {
-        return value === null || value === undefined || value === "";
+    dispatchOnChange() {
+        if (typeof (this.props.onChange) === "function") {
+            this.props.onChange(this.state.value);
+        }
     }
 }
 exports.default = UpDate;
