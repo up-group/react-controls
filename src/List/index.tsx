@@ -32,7 +32,7 @@ interface ChangeOrderEvent {
   newIndex:number;
 }
 export interface PropsComponent extends PropsStyled { 
-  items:Array<Item>,
+  items:Array<Item>;
   onSortEnd?:(event:ChangeOrderEvent) => void;
 }
 
