@@ -15,7 +15,7 @@ export interface Props extends React.HTMLProps<HTMLInputElement> {
 }
 
 
-export default class Input extends BaseControl<Props> {
+export default class Input extends BaseControl<Props,any> {
     public static defaultProps: Props = {
         color: '#fefefe',
         backgroundColor: '#c05b4d',
@@ -87,7 +87,7 @@ export default class Input extends BaseControl<Props> {
         return event.target.value;
     }
 
-    public renderControl() {
+    renderControl() {
         if (this.props.type == "email") {
             return (
                 <EmailInputComponent
