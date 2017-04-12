@@ -2,7 +2,7 @@ import * as React from 'react';
 import { TextInputComponent, EmailInputComponent } from './styles';
 import { Size, InputType } from './types';
 import { BaseControl } from '../BaseControl/BaseControl';
-import  TypeStringControl  from '../BaseControl/errorCentral/TypeStringControl';
+import TypeStringControl from '../BaseControl/errorCentral/TypeStringControl';
 
 
 export interface Props extends React.HTMLProps<HTMLInputElement> {
@@ -28,15 +28,27 @@ export default class Input extends BaseControl<Props> {
         var pattern = null;
         var patternErrorMessage = null;
 
-        if (this.props.pattern != null ) {
-             pattern = new RegExp(this.props.pattern);
-             patternErrorMessage = "test";
+        if (this.props.pattern != null) {
+            pattern = new RegExp(this.props.pattern);
+            patternErrorMessage = "test";
         }
         else {
 
-            if (this.props.type === "email") {
-                pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                patternErrorMessage = "Doit être un mail";
+            switch (this.props.type) {
+                case "email":
+                    pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                    patternErrorMessage = "Doit être un mail";
+                    break;
+                case "number":
+                    pattern = /^[0-9]*(|\.[0-9]*)*$/
+                    patternErrorMessage = "Doit être un nombre";
+                    break;
+                case "integer":
+                    pattern = /^[0-9]*$/
+                    patternErrorMessage = "Doit être un nombre entier";
+                    break;
+                default:
+
             }
         }
 
@@ -59,9 +71,9 @@ export default class Input extends BaseControl<Props> {
                     color={this.props.color}
                     backgroundColor={this.props.backgroundColor}
                     fontSize={this.props.fontSize}
-                    onChange={this.handleChangeJsEventGlobal} 
+                    onChange={this.handleChangeJsEventGlobal}
                 >
-                    
+
                     {this.props.children}
                 </EmailInputComponent>
             );
@@ -73,6 +85,8 @@ export default class Input extends BaseControl<Props> {
                 color={this.props.color}
                 backgroundColor={this.props.backgroundColor}
                 fontSize={this.props.fontSize}
+                onChange={this.handleChangeJsEventGlobal}
+
             >
                 {this.props.children}
             </TextInputComponent>
