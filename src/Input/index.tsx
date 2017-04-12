@@ -3,6 +3,7 @@ import { TextInputComponent, EmailInputComponent } from './styles';
 import { Size, InputType } from './types';
 import { BaseControl } from '../BaseControl/BaseControl';
 import TypeStringControl from '../BaseControl/errorCentral/TypeStringControl';
+import TypeNumberControl from '../BaseControl/errorCentral/TypeNumberControl';
 
 
 export interface Props extends React.HTMLProps<HTMLInputElement> {
@@ -57,6 +58,28 @@ export default class Input extends BaseControl<Props> {
         }
 
         this._ControlErrorCentral.addControl(new TypeStringControl(pattern, patternErrorMessage));
+
+        if (this.props.type == "number" || this.props.type == "integer") {
+
+            var min, max = null;
+            if (this.props.min != null) {
+                if (typeof (this.props.min) === "number") {
+                    min = this.props.min;
+                } else {
+                    min = parseFloat(this.props.min);
+                }
+            }
+
+            if (this.props.max != null) {
+                if (typeof (this.props.max) === "number") {
+                    max = this.props.max;
+                } else {
+                    max = parseFloat(this.props.max);
+                }
+            }
+
+            this._ControlErrorCentral.addControl(new TypeNumberControl(this.props.type == "integer", min, max));
+        }
 
     }
 
