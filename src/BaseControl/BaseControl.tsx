@@ -14,7 +14,7 @@ export abstract class BaseControl<baseType> extends React.Component<baseProp & b
 
     _ControlErrorCentral: ControlErrorCentral;
 
-    constructor(props?, context?) {        super(props, context);        this.state = { error: null };        this._ControlErrorCentral = new ControlErrorCentral();    }    public re    abstract handleChangeJsEvent(args: any): baseType;
+    constructor(props?, context?) {        super(props, context);        this.state = { error: null };        this._ControlErrorCentral = new ControlErrorCentral();    }    abstract handleChangeJsEvent(args: any): baseType;
     abstract renderControl(): JSX.Element;
 
     public handleChangeJsEventGlobal = (event) => {
@@ -24,20 +24,12 @@ export abstract class BaseControl<baseType> extends React.Component<baseProp & b
 
     public handleChangeEventGlobal = (cleandata) => {
         var result = this._ControlErrorCentral.isValidValue(cleandata);
-        console.log(result);
-
         if (result.hasError) {
-            this.setState({
-                error: result.errorMessage
-            });
+            this.setState({ error: result.errorMessage });
         } else {
-            this.setState({
-                error: null
-            });
+            this.setState({ error: null });
         }
     }
-
-
 
     public render() {
         return <ErrorDisplay error={this.state.error}>
