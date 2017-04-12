@@ -4,14 +4,12 @@ const React = require("react");
 const styles_1 = require("./styles");
 const MethodTypePush = 'push';
 class Anchor extends React.Component {
-    constructor() {
-        super(...arguments);
+    constructor(props) {
+        super(props);
         this.handleClick = (e) => {
-            const { path } = this.props;
-            if (path) {
-                e.preventDefault();
-            }
+            this.props.onClick(e);
         };
+        this.handleClick = this.handleClick.bind(this);
     }
     render() {
         const { label, children, color, href, plain, } = this.props;

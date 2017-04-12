@@ -24,6 +24,7 @@ import UpTimePicker from './TimePicker'
 import UpText from './Text'
 import UpDraft from './Draft'
 import Hero from './Hero'
+import UpList from './List'
 
 export {
   Anchor,
@@ -51,5 +52,6 @@ export {
   UpTimePicker,
   UpText,
   UpDraft,
-  Hero
+  Hero,
+  UpList
 };

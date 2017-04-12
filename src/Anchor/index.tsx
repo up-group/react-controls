@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Component from './styles';
+import AnchorStyled from './styles';
 
 const MethodTypePush = 'push';
 
@@ -11,6 +11,7 @@ export interface Props extends React.Props<Anchor> {
   label?: string;
   color?: string;
   method?: Method;
+  onClick?:(e:React.MouseEvent<HTMLAnchorElement>)=>void;
 }
 
 class Anchor extends React.Component<Props, undefined> {
@@ -18,11 +19,13 @@ class Anchor extends React.Component<Props, undefined> {
     method: MethodTypePush,
   };
 
+  public constructor(props:Props) {
+    super(props) ;
+    this.handleClick = this.handleClick.bind(this) ;
+  }
+
   private handleClick = (e: React.MouseEvent<HTMLAnchorElement>): void => {
-    const {path} = this.props;
-    if (path) {
-      e.preventDefault();
-    }
+    this.props.onClick(e) ;
   }
 
   public render() {
@@ -35,14 +38,14 @@ class Anchor extends React.Component<Props, undefined> {
     } = this.props;
 
     return (
-      <Component
+      <AnchorStyled
         plain={plain}
         href={href}
         color={color}
         onClick={this.handleClick}
       >
         {label || children}
-      </Component>
+      </AnchorStyled>
     );
   }
 }
