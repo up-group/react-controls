@@ -18,8 +18,8 @@ class List extends React.Component {
         this.onSortEnd = this.onSortEnd.bind(this);
     }
     render() {
-        const _a = this.props, { children, sortable } = _a, rest = __rest(_a, ["children", "sortable"]);
-        const Items = this.props.items.map((item, index) => {
+        const _a = this.props, { children, sortable, items } = _a, rest = __rest(_a, ["children", "sortable", "items"]);
+        const Items = items.map((item, index) => {
             return React.createElement(ListItem, Object.assign({ key: `item-${index}`, index: index, sortable: sortable }, item));
         });
         if (this.props.sortable) {

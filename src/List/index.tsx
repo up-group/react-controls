@@ -54,8 +54,8 @@ class List extends React.Component<PropsComponent, undefined> {
   }
 
   public render() {
-    const { children, sortable, ...rest } = this.props;
-    const Items = this.props.items.map( (item:Item, index:number) => {
+    const { children, sortable, items, ...rest } = this.props;
+    const Items = items.map( (item:Item, index:number) => {
       return <ListItem key={`item-${index}`} index={index} sortable={sortable} {...item}  />
     } )
     if(this.props.sortable) {
