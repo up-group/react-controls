@@ -19,7 +19,8 @@ const defaultPropsStyled = {
     fontSize: 'medium',
     fontWeight: 400,
     margin: 'medium',
-    type: 'default',
+    type: 'none',
+    border: true,
     disposition: 'vertical'
 };
 const SortableItem = react_sortable_hoc_1.SortableElement((couple) => {
@@ -65,6 +66,7 @@ List.defaultProps = {
     margin: defaultPropsStyled.margin,
     type: defaultPropsStyled.type,
     disposition: defaultPropsStyled.disposition,
+    border: defaultPropsStyled.border,
     items: []
 };
 class ListItem extends React.Component {

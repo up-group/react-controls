@@ -32,7 +32,7 @@ const base = props => styled_components_1.css `
   min-width: ${(props) => props.theme.minButtonSize || '30px'};
   min-height: ${(props) => props.theme.minButtonSize || '30px'};
   line-height: ${(props) => props.theme.minButtonSize || '30px'};
-  > svg {
+  svg {
     margin:4px 4px 4px 0px;
     display:inline-block;
     float:left;
@@ -49,6 +49,12 @@ color: ${(props) => props.color};
 &:hover {
   background: ${props => props.color || 'green'};
   color: ${(props) => props.backgroundColor};
+  svg {
+    fill: ${(props) => props.backgroundColor}
+  }
+}
+svg {
+    fill: ${(props) => props.color}
 }
 `;
 exports.BaseButton = styled_components_1.default(ReactButtonComponent) `

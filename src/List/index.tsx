@@ -1,19 +1,22 @@
 import * as React from 'react';
 import { UnorderedListStyled, ListItemStyled } from './styles';
 import { Margin } from '../Paragraph/types';
-import { HeadlineSize, FontWeight, ListType, ListDisposition } from './types';
-import {SortableContainer, SortableElement} from 'react-sortable-hoc';
-import {FilterProps} from '../utils/types';
+import { HeadlineSize, FontWeight, ListDisposition } from './types';
+import { SortableContainer, SortableElement } from 'react-sortable-hoc';
+import { FilterProps } from '../utils/types';
+import { ThemeInterface } from '../theming/types';
 
-export interface PropsStyled {
+export interface PropsStyled  {
   color?: string;
   textAlign?: string;
   fontSize?: HeadlineSize;
   fontWeight?: FontWeight;
   margin?: Margin;
   sortable?:boolean;
-  type?:ListType;
+  type?:string;
   disposition?:ListDisposition;
+  theme? : ThemeInterface;
+  border?:boolean;
 }
 
 export interface Item {
@@ -23,9 +26,8 @@ export interface Item {
   index?:number;
 }
 
-export interface PropsItem extends PropsStyled { 
-  
-}
+export interface PropsItem extends PropsStyled {}
+
 interface ChangeOrderEvent {
   oldIndex:number;
   newIndex:number;
@@ -41,7 +43,8 @@ const defaultPropsStyled : PropsStyled = {
     fontSize: 'medium',
     fontWeight: 400,
     margin: 'medium',
-    type: 'default',
+    type: 'none',
+    border:true,
     disposition:'vertical'
   };
 interface SortableProps {
@@ -77,6 +80,7 @@ class List extends React.Component<PropsComponent, undefined> {
     margin: defaultPropsStyled.margin,
     type: defaultPropsStyled.type,
     disposition:defaultPropsStyled.disposition,
+    border:defaultPropsStyled.border,
     items:[]
   };
 

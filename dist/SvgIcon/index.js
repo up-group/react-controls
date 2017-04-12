@@ -10,14 +10,25 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
+const themedComponents_1 = require("../theming/themedComponents");
 const _getIcons_1 = require("./_getIcons");
+const SvgIconWrapper = themedComponents_1.default.div `
+    float: left;
+    display: inline;
+    width: ${props => props.width}px ;
+    height:${props => props.height}px ;
+    margin: 4px;
+`;
 function SvgIcon(_a) {
     var { children, viewBox, iconName } = _a, rest = __rest(_a, ["children", "viewBox", "iconName"]);
-    const viewBoxProps = viewBox || '0 0 24 24';
+    const height = rest.height || 24;
+    const width = rest.height || 24;
     if (iconName) {
-        return (React.createElement("svg", { dangerouslySetInnerHTML: { __html: _getIcons_1.default[iconName] }, viewBox: viewBoxProps }));
+        return (React.createElement(SvgIconWrapper, { height: height, width: width, dangerouslySetInnerHTML: { __html: _getIcons_1.default[iconName] } }));
     }
     else {
+        const defaultViewBox = `0 0 ${width} ${height}`;
+        const viewBoxProps = viewBox || defaultViewBox;
         return (React.createElement("svg", { viewBox: viewBoxProps }, children));
     }
 }

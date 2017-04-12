@@ -13,7 +13,7 @@ export interface Props extends React.HTMLProps<HTMLButtonElement & Button> {
   shadow? : boolean;
   theme?: any;
   iconName?:any;
-  iconSize?:string;
+  iconSize?:number;
 }
 
 class Button extends React.Component<Props, undefined> {
@@ -26,7 +26,7 @@ class Button extends React.Component<Props, undefined> {
     disabled:false,
     shadow:false,
     iconName:false,
-    iconSize:"24px",
+    iconSize:12,
     theme: {}
   };
   public render() {
@@ -34,14 +34,14 @@ class Button extends React.Component<Props, undefined> {
     if (isHero) {
       return (
         <HeroButton {...rest}>
-          {children}
+         <span>{children}</span>
         </HeroButton>
       );
     }
 
     return (
       <BaseButton {...rest}>
-        {children}
+        <span>{children}</span>
       </BaseButton>
     );
   }

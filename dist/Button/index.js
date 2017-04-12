@@ -15,9 +15,11 @@ class Button extends React.Component {
     render() {
         const _a = this.props, { children, isHero } = _a, rest = __rest(_a, ["children", "isHero"]);
         if (isHero) {
-            return (React.createElement(styles_1.HeroButton, Object.assign({}, rest), children));
+            return (React.createElement(styles_1.HeroButton, Object.assign({}, rest),
+                React.createElement("span", null, children)));
         }
-        return (React.createElement(styles_1.BaseButton, Object.assign({}, rest), children));
+        return (React.createElement(styles_1.BaseButton, Object.assign({}, rest),
+            React.createElement("span", null, children)));
     }
 }
 Button.defaultProps = {
@@ -29,7 +31,7 @@ Button.defaultProps = {
     disabled: false,
     shadow: false,
     iconName: false,
-    iconSize: "24px",
+    iconSize: 12,
     theme: {}
 };
 exports.default = Button;

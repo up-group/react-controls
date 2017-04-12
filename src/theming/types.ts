@@ -1,3 +1,8 @@
+
+export interface ThemeInterface {
+    colorMap: ThemeColorMap;
+}
+
 export interface ThemeColorMap {
   white : string,
   dark1: string,
