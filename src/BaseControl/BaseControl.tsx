@@ -6,15 +6,16 @@ import ErrorDisplay from "./errorCentral/ErrorDisplay"
 export interface baseProp {
 }
 
-export interface baseState {
-    error: string
+export interface baseState<basetype> {
+    error?: string;
+    value?: basetype;
 }
 
-export abstract class BaseControl<baseType> extends React.Component<baseProp & baseType, baseState> {
+export abstract class BaseControl<prop, basetype> extends React.Component<baseProp & prop, baseState<basetype>> {
 
     _ControlErrorCentral: ControlErrorCentral;
 
-    constructor(props?, context?) {        super(props, context);        this.state = { error: null };        this._ControlErrorCentral = new ControlErrorCentral();    }    abstract handleChangeJsEvent(args: any): baseType;
+    constructor(props?, context?) {        super(props, context);        this.state = { error: null, value: null };        this._ControlErrorCentral = new ControlErrorCentral();    }    abstract handleChangeJsEvent(args: any): basetype;
     abstract renderControl(): JSX.Element;
 
     public handleChangeJsEventGlobal = (event) => {
