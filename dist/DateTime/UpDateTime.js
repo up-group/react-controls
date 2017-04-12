@@ -19,8 +19,7 @@ class UpDateTime extends React.Component {
         $(this.inputElementGroup).on("dp.change", this.handleChangeJsEvent);
     }
     render() {
-        return React.createElement("div", { ref: (input) => { this.inputElementGroup = input; } },
-            React.createElement(styles_1.default, { hasError: this.props.hasError, onChange: this.props.onChange, isNuallble: this.props.isNuallble }));
+        return (React.createElement(styles_1.default, { hasError: this.props.hasError, innerRef: (input) => { this.inputElementGroup = input; }, onChange: this.props.onChange, isNuallble: this.props.isNuallble }));
     }
     handleChangeJsEvent(event) {
         if (typeof (event.date) === "object" && event.date && typeof (event.date.toDate) === "function") {

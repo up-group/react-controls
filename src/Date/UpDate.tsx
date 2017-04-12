@@ -21,10 +21,10 @@ export default class UpDate extends React.Component<UpDateProps, UpDateState> {
     }
 
     render() {
-        return <div ref={(input) => { this.inputElementGroup = input; } }>
-          <UpDateStyle hasError={this.props.hasError}
+        return <UpDateStyle hasError={this.props.hasError}
+                  innerRef={(input) => { this.inputElementGroup = input; }}
                   onChange={this.props.onChange}
-                  isNuallble={this.props.isNuallble}></UpDateStyle></div>
+                  isNuallble={this.props.isNuallble}></UpDateStyle>
     }
 
     handleChangeJsEvent(event: any) {

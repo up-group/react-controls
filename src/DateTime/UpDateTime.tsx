@@ -21,10 +21,12 @@ export default class UpDateTime extends React.Component<UpDateTimeProps, UpDateT
     }
 
     render() {
-        return <div ref={(input) => { this.inputElementGroup = input; } }>
+        return ( 
           <UpDateTimeStyle hasError={this.props.hasError}
+                  innerRef={(input) => { this.inputElementGroup = input; }}
                   onChange={this.props.onChange}
-                  isNuallble={this.props.isNuallble}></UpDateTimeStyle></div>
+                  isNuallble={this.props.isNuallble}></UpDateTimeStyle>
+        ) ;
     }
 
     handleChangeJsEvent(event: any) {

@@ -1,4 +1,7 @@
-export interface UpDateTimeProps {
+
+import {StyledComponentProps} from '../utils/types'
+
+export interface UpDateTimeProps extends StyledComponentProps {
     hasError: boolean;
     onChange: (value?: Date) => void;
     isNuallble: boolean;
