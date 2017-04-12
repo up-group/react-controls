@@ -1,45 +1,47 @@
 ﻿import * as $ from "jquery";
 import "eonasdan-bootstrap-datetimepicker"
 import * as React from "react";
-import UpDateStyle from './styles'
-import {UpDateProps, UpDateState} from './'
+//import UpDateStyle from './styles'
+import { UpDateProps } from './'
+import { BaseControl } from '../BaseControl/BaseControl';
 
-export default class UpDate extends React.Component<UpDateProps, UpDateState> {
+export default class UpDate extends BaseControl<UpDateProps, Date> {
 
-    inputElementGroup: HTMLDivElement;
+    private inputElementGroup: any;
     constructor(p, c) {
         super(p, c);
     }
 
-    setInput(data) {
-        $(this.inputElementGroup).data("DateTimePicker").date(data);
-    }
+    //setInput(data) {
+    //    $(this.inputElementGroup).data("DateTimePicker").date(data);
+    //}
 
-    componentDidMount() {
+    componentDidMount = () => {
         $(this.inputElementGroup).datetimepicker({ locale: 'fr', format: "DD/MM/YYYY" });
-        $(this.inputElementGroup).on("dp.change", this.handleChangeJsEvent);
+        $(this.inputElementGroup).on("dp.change", this.handleChangeJsEvent.bind(this));
     }
 
-    render() {
-        return <UpDateStyle hasError={this.props.hasError}
-                  innerRef={(input) => { this.inputElementGroup = input; }}
-                  onChange={this.props.onChange}
-                  isNuallble={this.props.isNuallble}></UpDateStyle>
+    renderControl() {
+        return <div className="input-group" style={{ marginBottom: "3px" }} ref={(input) => { this.inputElementGroup = input; }}>
+            <input type='text' className="form-control" />
+            <span className="input-group-addon">
+                <span className="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div >
+
     }
 
     handleChangeJsEvent(event: any) {
         if (typeof (event.date) === "object" && event.date && typeof (event.date.toDate) === "function") {
-            this.setState({ value: event.date.toDate() }, this.dispatchOnChange)
-            return
+            this.setState({ value: event.date.startOf('day').toDate() }, this.dispatchOnChange)
+            return;
         }
-        this.setState({ value: null }, this.dispatchOnChange)
+        this.setState({ value: null }, this.dispatchOnChange);
     }
 
-    dispatchOnChange = () => {
-        this.props.onChange(this.state.value);
-    }
-
-    isEmpty(value) {
-        return value === null || value === undefined || value === "";
+    dispatchOnChange() {
+        if (typeof (this.props.onChange) === "function") {
+            this.props.onChange(this.state.value);
+        }
     }
 }
