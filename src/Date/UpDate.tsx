@@ -35,7 +35,6 @@ export default class UpDate extends BaseControl<UpDateProps, Date> {
         var data = null;
         if (typeof (event.date) === "object" && event.date && typeof (event.date.toDate) === "function") {
             data = event.date.startOf('day').toDate()
-            return;
         }
         this.setState({ value: data }, this.dispatchOnChange);
         return data;
