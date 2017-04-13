@@ -1,6 +1,6 @@
 {
   "name": "@up-group/up-react-controls",
-  "version": "0.0.52",
+  "version": "0.0.53",
   "description": "",
   "main": "dist/index.js",
   "types": "src/index.ts",
@@ -24,7 +24,7 @@
     "node": "6.9.5",
     "npm": "3.10.8"
   },
-  "scripts": {   
+  "scripts": {
     "setup:yarn": "yarn",
     "build": "rimraf dist && webpack",
     "publishLocalToSchemaForm": "copyfiles dist/*.* dist/**/* package.json src/*.* src/**/* src/theming/icons/* ../react-schemaform/node_modules/@up-group/up-react-controls/",
