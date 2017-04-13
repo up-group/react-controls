@@ -4,6 +4,7 @@ import remStringFromPX from '../../utils';
 export type Size = 'medium' | 'xx-small' | 'x-small' | 'small' | 'large' | 'x-large' | 'xx-large' | 'smaller' | 'larger'
 
 export interface StyleProps  {
+    hasError?: boolean;
     color?: string;
     backgroundColor?: string;
     fontSize?: Size;
@@ -43,6 +44,7 @@ export const TextInputComponent = styled.input`
   background-color: ${(props: StyleProps) => props.backgroundColor};
   color: ${(props: StyleProps) => props.color};
   font-size: ${(props: StyleProps) => props.fontSize};
+  border: solid 1px ${(props: StyleProps) => props.hasError ? 'red': 'initial'};
 `;
 
 export const EmailInputComponent = styled.input`
