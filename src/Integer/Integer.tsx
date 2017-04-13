@@ -41,6 +41,7 @@ export default class Integer extends BaseControl<Props, number> {
     renderControl() {
         return (
             <TextInputComponent
+                hasError={this.state.error != null}
                 type="text"
                 color={this.props.color}
                 backgroundColor={this.props.backgroundColor}

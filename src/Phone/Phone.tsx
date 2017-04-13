@@ -16,7 +16,8 @@ export default class Phone extends BaseControl<Props, string> {
         color: '#000000',
         backgroundColor: '#ffffff',
         borderColor: '#732419',
-        fontSize: 'medium'
+        fontSize: 'medium',
+        hasError: false
 
     };
 
@@ -36,6 +37,7 @@ export default class Phone extends BaseControl<Props, string> {
     renderControl() {
         return (
             <TextInputComponent
+                hasError={this.state.error != null}
                 type="text"
                 color={this.props.color}
                 backgroundColor={this.props.backgroundColor}
