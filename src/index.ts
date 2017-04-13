@@ -30,10 +30,10 @@ import { ThemeProvider } from 'styled-components'
 import ColorMap from './theming/index'
 import { ThemeColorMap } from './theming/types'
 import { ThemeInterface } from './theming/types'
-import Number from './Number'
-import Integer from './Integer'
-import Phone from './Phone'
-import Email from './Email'
+import Number from './Number/Number'
+import Integer from './Integer/Integer'
+import Phone from './Phone/Phone'
+import Email from './Email/Email'
 
 export {
     Email,
