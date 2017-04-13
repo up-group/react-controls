@@ -1,7 +1,7 @@
 export interface UpSwitchProps {
     // hasError: boolean;
     onChange: (value?: boolean) => void;
-    isNuallble: boolean;
+    isNullable: boolean;
     default?: boolean;
 }
 

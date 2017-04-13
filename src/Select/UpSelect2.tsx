@@ -21,7 +21,7 @@ export interface UpSelect2ExtendProp {
     },
     onChange: (arg) => void,
     onError: () => void,
-    isNuallble: boolean,
+    isNullable: boolean,
     isRequired: boolean
 }
 

@@ -30,7 +30,7 @@ class UpSwitch extends React.Component {
     componentDidMount() {
     }
     render() {
-        if (this.props.isNuallble === true) {
+        if (this.props.isNullable === true) {
             return React.createElement("span", { className: "btnBool" },
                 React.createElement("span", { className: "btnFalse " + (this.state.value === false ? "selected Null" : ""), value: false.toString(), onClick: this.onBoolClick }, "Non"),
                 React.createElement("span", { className: "btnNull " + (this.state.value === null ? "selected Null" : ""), value: null, onClick: this.onBoolClick }, "Null"),

@@ -33,7 +33,7 @@
 //  public static defaultProps: UpDateTimeProps = {
 //    hasError: false,
 //    onChange: (value?:Date) => {},
-//    isNuallble: false,
+//    isNullable: false,
 //  };
 
 //  public render() {

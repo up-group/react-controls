@@ -13,6 +13,7 @@ export interface Props extends React.HTMLProps<HTMLInputElement> {
     fontSize?: Size;
     borderColor?: string;
     type?: InputType;
+    isNullable?:boolean;
 }
 
 

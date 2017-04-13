@@ -25,7 +25,7 @@ export default class UpDate extends BaseControl<UpDateProps, Date> {
         /*return <UpDateStyle hasError={this.props.hasError}
  -                  innerRef={(input) => { this.inputElementGroup = input; }}
  -                  onChange={this.props.onChange}
- -                  isNuallble={this.props.isNuallble}></UpDateStyle>*/
+ -                  isNullable={this.props.isNullable}></UpDateStyle>*/
 
         return <div className="input-group" style={{ marginBottom: "3px" }} ref={(input) => { this.inputElementGroup = input; }}>
             <input type='text' className="form-control" />
@@ -44,7 +44,7 @@ export default class UpDate extends BaseControl<UpDateProps, Date> {
         this.setState({ value: data }, this.dispatchOnChange);
         return data;
     }
-    
+
     dispatchOnChange() {
         if (typeof (this.props.onChange) === "function") {
             this.props.onChange(this.state.value);

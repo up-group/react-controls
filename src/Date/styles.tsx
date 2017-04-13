@@ -33,7 +33,7 @@ class UpDateStyle extends React.Component<UpDateProps, undefined> {
   public static defaultProps: UpDateProps = {
     //hasError: false,
    // onChange: (value?:Date) => {},
-    //isNuallble: false,
+    //isNullable: false,
   };
 
   public render() {

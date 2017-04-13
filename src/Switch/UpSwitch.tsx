@@ -12,7 +12,7 @@ export default class UpSwitch extends React.Component<UpSwitchProps, UpSwitchSta
     }
 
     render() {
-        if (this.props.isNuallble === true) {
+        if (this.props.isNullable === true) {
             return <span className="btnBool">
                 <span className={"btnFalse " + (this.state.value === false ? "selected Null" : "")} value={false.toString()} onClick={this.onBoolClick}>Non</span>
                 <span className={"btnNull " + (this.state.value === null ? "selected Null" : "")} value={null} onClick={this.onBoolClick}>Null</span>
