@@ -32,8 +32,10 @@ import { ThemeColorMap } from './theming/types'
 import { ThemeInterface } from './theming/types'
 import Number from './Number'
 import Integer from './Integer'
+import Phone from './Phone'
 
 export {
+    Phone,
     Integer,
     Number,
     Anchor,
