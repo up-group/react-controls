@@ -3,7 +3,7 @@ import remStringFromPX from '../../utils';
 
 export type Size = 'medium' | 'xx-small' | 'x-small' | 'small' | 'large' | 'x-large' | 'xx-large' | 'smaller' | 'larger'
 
-export interface StyleProps extends React.HTMLProps<HTMLInputElement> {
+export interface StyleProps  {
     color?: string;
     backgroundColor?: string;
     fontSize?: Size;
