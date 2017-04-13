@@ -22,7 +22,7 @@ export default class Input extends BaseControl<Props,any> {
         color: '#fefefe',
         backgroundColor: '#c05b4d',
         borderColor: '#732419',
-        fontSize: 'medium',
+        fontSize: 'medium'
     };
 
     constructor(p, c) {
