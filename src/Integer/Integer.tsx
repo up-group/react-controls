@@ -27,7 +27,7 @@ export default class Integer extends BaseControl<Props, number> {
         super(p, c);
 
         var pattern = /^[0-9]*$/
-        var patternErrorMessage = "Doit être un nombre";
+        var patternErrorMessage = "Doit être un nombre entier";
 
         this._validationManager.addControl(new TypeStringControl(pattern, patternErrorMessage));
         this._validationManager.addControl(new TypeNumberControl(true, this.props.min, this.props.max));
