@@ -8,5 +8,4 @@ export interface UpDateProps extends StyledComponentProps {
   isNullable?: boolean;
   //default?: Date;
   //className? : string;
-  value:any;
 }

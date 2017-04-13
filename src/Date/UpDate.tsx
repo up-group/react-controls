@@ -1,12 +1,12 @@
 ﻿import * as $ from "jquery"
 import "normalize.css/normalize.css"
-import "@blueprintjs/core/dist/blueprint.css"
-import "@blueprintjs/datetime/dist/blueprint-datetime.css"
+//import "@blueprintjs/core/dist/blueprint.css"
+//import "@blueprintjs/datetime/dist/blueprint-datetime.css"
 import * as React from "react"
 //import UpDateStyle from './styles'
 import { UpDateProps } from './'
 import { BaseControl } from '../BaseControl/BaseControl'
-import {DatePicker} from '@blueprintjs/datetime'
+//import {DatePicker} from '@blueprintjs/datetime'
 
 export default class UpDate extends BaseControl<UpDateProps, Date> {
 
@@ -31,7 +31,8 @@ export default class UpDate extends BaseControl<UpDateProps, Date> {
     }
 
     renderControl() {
-        return <DatePicker onChange={this.onChange} />
+        return <span/>
+        //return <DatePicker onChange={this.onChange} />
         //return <UpDateStyle value={this.props.value} hasError={this.props.hasError} innerRef={this.setInput} onChange={this.onChange}></UpDateStyle>;
         /*return <div className="input-group" style={{ marginBottom: "3px" }} ref={(input) => { this.inputElementGroup = input; }}>
             <input type='text' className="form-control" />
@@ -46,7 +47,6 @@ export default class UpDate extends BaseControl<UpDateProps, Date> {
         if (typeof (event.date) === "object" && event.date && typeof (event.date.toDate) === "function") {
             data = event.date.startOf('day').toDate()
         }
-        this.setState({ value: data });
         return data;
     }
 

@@ -3,13 +3,11 @@ const ROOT_PATH = path.resolve(__dirname);
 
 module.exports = {
   devtool: 'cheap-module-source-map',
-  entry: [
-    './src/index.ts'
-  ],
+  entry: {
+      './test/dist/index': './test/index.tsx'
+  },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'app.js',
-    publicPath: '/',
+    filename: '[name].js'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -20,12 +18,16 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.tsx?$/, loaders: ['babel-loader', 'ts-loader'], include: [path.join(__dirname, 'src')] },
+        { test: /\.tsx?|.ts?$/, loader:  'ts-loader' },
       { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel-loader'], include: path.join(__dirname, 'src') },
       { test: /\.css$/, loader: 'style-loader!css-loader' },
       { test: /\.json$/, loader: 'json-loader' },
       { test: /\.md$/, loader: 'html!markdown-loader' },
-      { test: /\.svg$/, loader: 'svg-inline-loader'}
+      { test: /\.svg$/, loader: 'svg-inline-loader' },
+      {
+          test: /\.(eot|ttf|woff|woff2)$/,
+          loader: 'file-loader?name=public/fonts/[name].[ext]'
+      }
     ]
   },
   plugins: [

@@ -1,16 +1,13 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6",
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "noImplicitAny": false,
+    "target": "ES5",
     "sourceMap": true,
-    "removeComments":true,
+    "removeComments": true,
+    "module": "commonjs",
+    "removeComments": true,
     "outDir": "dist/",
     "jsx": "react",
-    "allowJs": true,
-    "noUnusedLocals": true
+    "allowJs": true
   },
   "include": [
     "src/**/*"

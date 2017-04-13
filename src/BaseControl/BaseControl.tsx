@@ -13,7 +13,7 @@ export interface BaseState {
     error?: string;
 }
 
-export abstract class BaseControl<_Props, _BaseType> extends React.Component<BaseProps<_BaseType> & _Props, BaseState> {
+export abstract class BaseControl<_Props, _BaseType> extends React.Component<BaseProp<_BaseType> & _Props, BaseState> {
 
     _validationManager: ValidationManager;
 
@@ -47,7 +47,7 @@ export abstract class BaseControl<_Props, _BaseType> extends React.Component<Bas
         </ErrorDisplay>;
     }
 
-    private dispatchOnChange = (data: basetype, event) => {
+    private dispatchOnChange = (data: _BaseType, event) => {
         if (this.props.onChange !== undefined) {
             this.props.onChange(data, event);
         }
