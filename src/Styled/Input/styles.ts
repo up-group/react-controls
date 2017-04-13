@@ -47,11 +47,3 @@ export const TextInputComponent = styled.input`
   border: solid 1px ${(props: StyleProps) => props.hasError ? 'red': 'initial'};
 `;
 
-export const EmailInputComponent = styled.input`
-  ${inputStyles}
-  background-color: ${(props: StyleProps) => props.backgroundColor};
-  color: ${(props: StyleProps) => props.color};
-  &:active {
-    background-color: ${(props: StyleProps) => props.borderColor};
-  }
-`;
