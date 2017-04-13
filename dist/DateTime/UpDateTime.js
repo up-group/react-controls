@@ -23,12 +23,12 @@ class UpDateTime extends BaseControl_1.BaseControl {
         if (typeof (event.date) === "object" && event.date && typeof (event.date.toDate) === "function") {
             data = event.date.toDate();
         }
-        this.setState({ value: data }, this.dispatchOnChange);
+        this.dispatchOnChange({ value: data });
         return data;
     }
-    dispatchOnChange() {
+    dispatchOnChange(data) {
         if (typeof (this.props.onChange) === "function") {
-            this.props.onChange(this.state.value);
+            this.props.onChange(data.value);
         }
     }
 }

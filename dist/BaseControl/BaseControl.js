@@ -19,7 +19,7 @@ class BaseControl extends React.Component {
                 this.setState({ error: null });
             }
         };
-        this.state = { error: null, value: null };
+        this.state = { error: null };
         this._validationManager = new ValidationManager_1.default();
     }
     render() {

@@ -1,6 +1,6 @@
 {
   "name": "@up-group/up-react-controls",
-  "version": "0.0.44",
+  "version": "0.0.47",
   "description": "",
   "main": "dist/index.js",
   "types": "src/index.ts",
@@ -53,11 +53,16 @@
     "webpack": "^2.3.3"
   },
   "dependencies": {
+    "@blueprintjs/core": "^1.14.0",
+    "@blueprintjs/datetime": "^1.12.0",
+    "@types/moment": "^2.13.0",
+    "@types/pure-render-decorator": "^0.2.27",
     "@types/select2": "^4.0.34",
     "draft-js": "^0.10.0",
     "eonasdan-bootstrap-datetimepicker": "^4.17.47",
     "github-markdown-css": "^2.4.1",
     "react": "^15.4.2",
+    "react-addons-css-transition-group": "^15.5.2",
     "react-dom": "^15.4.2",
     "react-markdown": "^2.4.5",
     "react-sortable-hoc": "^0.6.1",
