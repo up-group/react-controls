@@ -37,7 +37,7 @@ export default class UpDateTime extends BaseControl<UpDateTimeProps, Date> {
         return data;
     }
 
-    dispatchOnChange() {
+    dispatchOnChange = () => {
         if (typeof (this.props.onChange) === "function") {
             this.props.onChange(this.state.value);
         }

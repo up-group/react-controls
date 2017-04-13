@@ -45,7 +45,7 @@ export default class UpDate extends BaseControl<UpDateProps, Date> {
         return data;
     }
 
-    dispatchOnChange() {
+    dispatchOnChange = () => {
         if (typeof (this.props.onChange) === "function") {
             this.props.onChange(this.state.value);
         }
