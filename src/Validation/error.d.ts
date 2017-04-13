@@ -1,9 +1,9 @@
 
 interface ErrorControl<T> {
-    isValidValue(value: T): errorControlType<T>;
+    isValidValue(value: T): ErrorControlType<T>;
 }
 
-interface errorControlType<T> {
+interface ErrorControlType<T> {
     hasError: boolean,
     errorMessage?: string
     correctValue?: T

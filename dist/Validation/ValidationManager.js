@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class ControlErrorCentral {
+class ValidationManager {
     constructor() {
         this.ErrorControl = [];
     }
@@ -21,5 +21,5 @@ class ControlErrorCentral {
         return { hasError: false, errorMessage: null, correctValue: newValue };
     }
 }
-exports.default = ControlErrorCentral;
-//# sourceMappingURL=ControlErrorCentral.js.map
+exports.default = ValidationManager;
+//# sourceMappingURL=ValidationManager.js.map

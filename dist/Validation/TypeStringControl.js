@@ -14,7 +14,7 @@ class TypeStringControl {
             else {
                 return {
                     hasError: true,
-                    errorMessage: this._patternErrorMessage ? this._patternErrorMessage : ("Ne repond pas au patern " + this._pattern)
+                    errorMessage: this._patternErrorMessage ? this._patternErrorMessage : ("Ne répond pas au patern " + this._pattern)
                 };
             }
         }

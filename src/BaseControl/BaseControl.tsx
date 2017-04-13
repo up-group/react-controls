@@ -1,37 +1,36 @@
 import * as React from "react";
-import ControlErrorCentral from "./errorCentral/ControlErrorCentral"
-import ErrorDisplay from "./errorCentral/ErrorDisplay"
+import ValidationManager from "../Validation/ValidationManager"
+import ErrorDisplay from "../Validation/ErrorDisplay"
 
 
-export interface baseProp {
+export interface BaseProp {
 }
 
-export interface baseState<basetype> {
+export interface BaseState<basetype> {
     error?: string;
     value?: basetype;
 }
 
-export abstract class BaseControl<prop, basetype> extends React.Component<baseProp & prop, baseState<basetype>> {
+export abstract class BaseControl<prop, basetype> extends React.Component<BaseProp & prop, BaseState<basetype>> {
 
-    _ControlErrorCentral: ControlErrorCentral;
+    _validationManager: ValidationManager;
 
     constructor(props?, context?) {
         super(props, context);
         this.state = { error: null, value: null };
-
-        this._ControlErrorCentral = new ControlErrorCentral();
+        this._validationManager = new ValidationManager();
     }
 
-    abstract handleChangeJsEvent(args: any): basetype;
+    abstract onChange(args: any): basetype;
     abstract renderControl(): JSX.Element;
 
-    public handleChangeJsEventGlobal = (event) => {
-        var cleandata = this.handleChangeJsEvent(event);
-        this.handleChangeEventGlobal(cleandata);
+    public handleChangeEvent = (event) => {
+        var cleanData = this.onChange(event);
+        this.checkData(cleanData);
     }
 
-    public handleChangeEventGlobal = (cleandata) => {
-        var result = this._ControlErrorCentral.isValidValue(cleandata);
+    public checkData = (cleanData) => {
+        var result = this._validationManager.isValidValue(cleanData);
         if (result.hasError) {
             this.setState({ error: result.errorMessage });
         } else {
@@ -43,11 +42,5 @@ export abstract class BaseControl<prop, basetype> extends React.Component<basePr
         return <ErrorDisplay error={this.state.error}>
             {this.renderControl()}
         </ErrorDisplay>;
-
     }
 }
-
-
-
-
-

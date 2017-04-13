@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const styles_1 = require("./styles");
 const BaseControl_1 = require("../BaseControl/BaseControl");
-const TypeStringControl_1 = require("../BaseControl/errorCentral/TypeStringControl");
-const TypeNumberControl_1 = require("../BaseControl/errorCentral/TypeNumberControl");
+const TypeStringControl_1 = require("../Validation/TypeStringControl");
+const TypeNumberControl_1 = require("../Validation/TypeNumberControl");
 class Input extends BaseControl_1.BaseControl {
     constructor(p, c) {
         super(p, c);
@@ -35,7 +35,7 @@ class Input extends BaseControl_1.BaseControl {
                 default:
             }
         }
-        this._ControlErrorCentral.addControl(new TypeStringControl_1.default(pattern, patternErrorMessage));
+        this._validationManager.addControl(new TypeStringControl_1.default(pattern, patternErrorMessage));
         if (this.props.type == "number" || this.props.type == "integer") {
             var min, max = null;
             if (this.props.min != null) {
@@ -54,17 +54,17 @@ class Input extends BaseControl_1.BaseControl {
                     max = parseFloat(this.props.max);
                 }
             }
-            this._ControlErrorCentral.addControl(new TypeNumberControl_1.default(this.props.type == "integer", min, max));
+            this._validationManager.addControl(new TypeNumberControl_1.default(this.props.type == "integer", min, max));
         }
     }
-    handleChangeJsEvent(event) {
+    onChange(event) {
         return event.target.value;
     }
     renderControl() {
         if (this.props.type == "email") {
-            return (React.createElement(styles_1.EmailInputComponent, { type: "email", style: this.props.style, borderColor: this.props.borderColor, onClick: this.props.onClick, color: this.props.color, backgroundColor: this.props.backgroundColor, fontSize: this.props.fontSize, onChange: this.handleChangeJsEventGlobal }, this.props.children));
+            return (React.createElement(styles_1.EmailInputComponent, { type: "email", style: this.props.style, borderColor: this.props.borderColor, onClick: this.props.onClick, color: this.props.color, backgroundColor: this.props.backgroundColor, fontSize: this.props.fontSize, onChange: this.handleChangeEvent }, this.props.children));
         }
-        return (React.createElement(styles_1.TextInputComponent, { type: "text", onClick: this.props.onClick, color: this.props.color, backgroundColor: this.props.backgroundColor, fontSize: this.props.fontSize, onChange: this.handleChangeJsEventGlobal }, this.props.children));
+        return (React.createElement(styles_1.TextInputComponent, { type: "text", onClick: this.props.onClick, color: this.props.color, backgroundColor: this.props.backgroundColor, fontSize: this.props.fontSize, onChange: this.handleChangeEvent }, this.props.children));
     }
 }
 Input.defaultProps = {

@@ -15,7 +15,7 @@ export default class UpDateTime extends BaseControl<UpDateTimeProps, Date> {
 
     componentDidMount = () => {
         $(this.inputElementGroup).datetimepicker({ locale: 'fr', format: "DD/MM/YYYY HH:mm" });
-        $(this.inputElementGroup).on("dp.change", this.handleChangeJsEvent.bind(this));
+        $(this.inputElementGroup).on("dp.change", this.onChange.bind(this));
     }
 
     renderControl() {
@@ -28,7 +28,7 @@ export default class UpDateTime extends BaseControl<UpDateTimeProps, Date> {
 
     }
 
-    handleChangeJsEvent(event: any) {
+    onChange(event: any) {
         var data = null;
         if (typeof (event.date) === "object" && event.date && typeof (event.date.toDate) === "function") {
             data = event.date.toDate();

@@ -9,7 +9,7 @@ class UpDate extends BaseControl_1.BaseControl {
         super(p, c);
         this.componentDidMount = () => {
             $(this.inputElementGroup).datetimepicker({ locale: 'fr', format: "DD/MM/YYYY" });
-            $(this.inputElementGroup).on("dp.change", this.handleChangeJsEvent.bind(this));
+            $(this.inputElementGroup).on("dp.change", this.onChange.bind(this));
         };
     }
     renderControl() {
@@ -18,7 +18,7 @@ class UpDate extends BaseControl_1.BaseControl {
             React.createElement("span", { className: "input-group-addon" },
                 React.createElement("span", { className: "glyphicon glyphicon-calendar" })));
     }
-    handleChangeJsEvent(event) {
+    onChange(event) {
         var data = null;
         if (typeof (event.date) === "object" && event.date && typeof (event.date.toDate) === "function") {
             data = event.date.startOf('day').toDate();

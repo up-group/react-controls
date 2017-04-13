@@ -1,6 +1,6 @@
 ﻿/// <reference path="./error.d.ts"/>
 
-export default class ControlErrorCentral {
+export default class ValidationManager {
     private ErrorControl: ErrorControl<any>[] = [];
 
     constructor() {
@@ -11,7 +11,7 @@ export default class ControlErrorCentral {
         this.ErrorControl.push(control);
     }
 
-    isValidValue(value: any): errorControlType<any> {
+    isValidValue(value: any): ErrorControlType<any> {
         var newValue = value;
         for (var i = 0; i < this.ErrorControl.length; i++) {
             var result = this.ErrorControl[i].isValidValue(value);

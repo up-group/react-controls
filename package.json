@@ -64,6 +64,7 @@
     "rimraf": "^2.6.1",
     "select2": "^4.0.3",
     "styled-components": "^1.4.4",
+    "validator": "^7.0.0",
     "yarn": "^0.21.3"
   }
 }

@@ -5,10 +5,14 @@ export default class TypeStringControl implements ErrorControl<any> {
     private _pattern: RegExp;
     private _patternErrorMessage: string;
 
-    constructor(patern: RegExp, patternErrorMessage :string) {        this._pattern = patern;
+    constructor(patern: RegExp, patternErrorMessage :string) {
+        this._pattern = patern;
         this._patternErrorMessage = patternErrorMessage;
-    }
-    isValidValue(value: string): errorControlType<string> {
+    }
+
+
+
+    isValidValue(value: string): ErrorControlType<string> {
 
         if (this._pattern && value) {
             var result = this._pattern.test(value);
@@ -17,7 +21,7 @@ export default class TypeStringControl implements ErrorControl<any> {
             } else {
                 return {
                     hasError: true,
-                    errorMessage: this._patternErrorMessage ? this._patternErrorMessage : ("Ne repond pas au patern " + this._pattern)
+                    errorMessage: this._patternErrorMessage ? this._patternErrorMessage : ("Ne répond pas au patern " + this._pattern)
                 }
             }
         }

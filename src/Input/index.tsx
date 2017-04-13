@@ -1,10 +1,11 @@
 ﻿import * as React from 'react';
 import { TextInputComponent, EmailInputComponent } from './styles';
 import { Size, InputType } from './types';
-import { BaseControl } from '../BaseControl/BaseControl';
-import TypeStringControl from '../BaseControl/errorCentral/TypeStringControl';
-import TypeNumberControl from '../BaseControl/errorCentral/TypeNumberControl';
+import {BaseControl} from '../BaseControl/BaseControl';
+import TypeStringControl from '../Validation/TypeStringControl';
+import TypeNumberControl from '../Validation/TypeNumberControl';
 
+//import Validator from 'validator'
 
 export interface Props extends React.HTMLProps<HTMLInputElement> {
     color?: string;
@@ -57,7 +58,7 @@ export default class Input extends BaseControl<Props,any> {
             }
         }
 
-        this._ControlErrorCentral.addControl(new TypeStringControl(pattern, patternErrorMessage));
+        this._validationManager.addControl(new TypeStringControl(pattern, patternErrorMessage));
 
         if (this.props.type == "number" || this.props.type == "integer") {
 
@@ -78,12 +79,11 @@ export default class Input extends BaseControl<Props,any> {
                 }
             }
 
-            this._ControlErrorCentral.addControl(new TypeNumberControl(this.props.type == "integer", min, max));
+            this._validationManager.addControl(new TypeNumberControl(this.props.type == "integer", min, max));
         }
-
     }
 
-    handleChangeJsEvent(event: any) {
+    onChange(event: any) {
         return event.target.value;
     }
 
@@ -98,9 +98,8 @@ export default class Input extends BaseControl<Props,any> {
                     color={this.props.color}
                     backgroundColor={this.props.backgroundColor}
                     fontSize={this.props.fontSize}
-                    onChange={this.handleChangeJsEventGlobal}
+                    onChange={this.handleChangeEvent}
                 >
-
                     {this.props.children}
                 </EmailInputComponent>
             );
@@ -112,8 +111,7 @@ export default class Input extends BaseControl<Props,any> {
                 color={this.props.color}
                 backgroundColor={this.props.backgroundColor}
                 fontSize={this.props.fontSize}
-                onChange={this.handleChangeJsEventGlobal}
-
+                onChange={this.handleChangeEvent}
             >
                 {this.props.children}
             </TextInputComponent>

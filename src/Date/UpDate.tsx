@@ -18,10 +18,15 @@ export default class UpDate extends BaseControl<UpDateProps, Date> {
 
     componentDidMount = () => {
         $(this.inputElementGroup).datetimepicker({ locale: 'fr', format: "DD/MM/YYYY" });
-        $(this.inputElementGroup).on("dp.change", this.handleChangeJsEvent.bind(this));
+        $(this.inputElementGroup).on("dp.change", this.onChange.bind(this));
     }
 
     renderControl() {
+        /*return <UpDateStyle hasError={this.props.hasError}
+ -                  innerRef={(input) => { this.inputElementGroup = input; }}
+ -                  onChange={this.props.onChange}
+ -                  isNuallble={this.props.isNuallble}></UpDateStyle>*/
+
         return <div className="input-group" style={{ marginBottom: "3px" }} ref={(input) => { this.inputElementGroup = input; }}>
             <input type='text' className="form-control" />
             <span className="input-group-addon">
@@ -31,7 +36,7 @@ export default class UpDate extends BaseControl<UpDateProps, Date> {
 
     }
 
-    handleChangeJsEvent(event: any) {
+    onChange(event: any) {
         var data = null;
         if (typeof (event.date) === "object" && event.date && typeof (event.date.toDate) === "function") {
             data = event.date.startOf('day').toDate()
@@ -39,6 +44,7 @@ export default class UpDate extends BaseControl<UpDateProps, Date> {
         this.setState({ value: data }, this.dispatchOnChange);
         return data;
     }
+    
     dispatchOnChange() {
         if (typeof (this.props.onChange) === "function") {
             this.props.onChange(this.state.value);
