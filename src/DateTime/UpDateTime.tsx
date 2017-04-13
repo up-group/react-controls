@@ -33,13 +33,9 @@ export default class UpDateTime extends BaseControl<UpDateTimeProps, Date> {
         if (typeof (event.date) === "object" && event.date && typeof (event.date.toDate) === "function") {
             data = event.date.toDate();
         }
-        this.setState({ value: data }, this.dispatchOnChange);
+        this.setState({ value: data });
         return data;
     }
 
-    dispatchOnChange = () => {
-        if (typeof (this.props.onChange) === "function") {
-            this.props.onChange(this.state.value);
-        }
-    }
+  
 }
