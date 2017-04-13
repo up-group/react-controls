@@ -33,8 +33,10 @@ import { ThemeInterface } from './theming/types'
 import Number from './Number'
 import Integer from './Integer'
 import Phone from './Phone'
+import Email from './Email'
 
 export {
+    Email,
     Phone,
     Integer,
     Number,
