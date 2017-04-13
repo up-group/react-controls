@@ -26,42 +26,44 @@ import UpDraft from './Draft'
 import Hero from './Hero'
 import UpList from './List'
 import UpPanel from './Panel'
-import {ThemeProvider} from 'styled-components'
+import { ThemeProvider } from 'styled-components'
 import ColorMap from './theming/index'
-import {ThemeColorMap} from './theming/types'
-import {ThemeInterface} from './theming/types'
+import { ThemeColorMap } from './theming/types'
+import { ThemeInterface } from './theming/types'
+import Number from './Number'
 
 export {
-  Anchor,
-  Article,
-  Avatar,
-  Box,
-  Button,
-  Notification,
-  Footer,
-  Heading,
-  Headline,
-  Image,
-  LoadingIndicator,
-  Markdown,
-  Paragraph,
-  Section,
-  SvgIcon,
-  Toast,
-  Input,
-  UpSelect2,
-  UpFile,
-  UpDate,
-  UpDateTime,
-  UpSwitch,
-  UpTimePicker,
-  UpText,
-  UpDraft,
-  Hero,
-  UpList,
-  UpPanel,
-  ThemeProvider,
-  ThemeInterface,
-  ThemeColorMap,
-  ColorMap
+    Number,
+    Anchor,
+    Article,
+    Avatar,
+    Box,
+    Button,
+    Notification,
+    Footer,
+    Heading,
+    Headline,
+    Image,
+    LoadingIndicator,
+    Markdown,
+    Paragraph,
+    Section,
+    SvgIcon,
+    Toast,
+    Input,
+    UpSelect2,
+    UpFile,
+    UpDate,
+    UpDateTime,
+    UpSwitch,
+    UpTimePicker,
+    UpText,
+    UpDraft,
+    Hero,
+    UpList,
+    UpPanel,
+    ThemeProvider,
+    ThemeInterface,
+    ThemeColorMap,
+    ColorMap
 };
