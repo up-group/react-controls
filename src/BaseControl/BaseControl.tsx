@@ -3,29 +3,27 @@ import ValidationManager from "../Validation/ValidationManager"
 import ErrorDisplay from "../Validation/ErrorDisplay"
 
 
-export interface BaseProp<basetype> {
-    onChange?: (arg: basetype, event: any) => void;
+export interface BaseProp<_BaseType> {
+    onChange?: (arg: _BaseType, event: any) => void;
     onError?: (hasError: boolean) => void;
+    value?: _BaseType;
 }
 
-export interface BaseState<basetype> {
+export interface BaseState {
     error?: string;
-    value?: basetype;
 }
 
-
-
-export abstract class BaseControl<prop, basetype> extends React.Component<BaseProp<basetype> & prop, BaseState<basetype>> {
+export abstract class BaseControl<_Props, _BaseType> extends React.Component<BaseProps<_BaseType> & _Props, BaseState> {
 
     _validationManager: ValidationManager;
 
     constructor(props?, context?) {
         super(props, context);
-        this.state = { error: null, value: null };
+        this.state = { error: null };
         this._validationManager = new ValidationManager();
     }
 
-    abstract onChange(args: any): basetype;
+    abstract onChange(args: any): _BaseType;
     abstract renderControl(): JSX.Element;
 
     public handleChangeEvent = (event) => {

@@ -1,22 +1,7 @@
 import * as React from 'react'
-import styled, {css} from 'styled-components'
+//import styled, {css} from 'styled-components'
 import { UpDateProps } from './'
-
-const BaseDateComponent: React.StatelessComponent<UpDateProps> = (props) => {
-    const {} = props;
-
-    return <div className='input-group date' style={{ marginBottom: "3px" }}>
-        <input
-            type='text'
-            className="form-control" />
-        <span className="input-group-addon">
-            <span className="glyphicon glyphicon-calendar"></span>
-        </span>
-    </div>;
-}
-
-const base = props => css`
-`;
+import {TextInputComponent} from '../Input/styles'
 
 // const error = props => css`
 // > input {
@@ -24,26 +9,27 @@ const base = props => css`
 // }
 // `;
 
-export const BaseDateStyle = styled<UpDateProps>(BaseDateComponent) `
-${(props: UpDateProps) => base(props) }
-`;
 //${(props: UpDateProps) => props.hasError? error(props):css``}
 
-class UpDateStyle extends React.Component<UpDateProps, undefined> {
+export default class UpDateStyle extends React.Component<UpDateProps, undefined> {
   public static defaultProps: UpDateProps = {
     //hasError: false,
-   // onChange: (value?:Date) => {},
+    //onChange: (value?:Date) => {},
     //isNullable: false,
+    value:null
   };
 
   public render() {
-    const {children, ...rest} = this.props ;
+    const {value, innerRef} = this.props ;
     return (
-      <BaseDateStyle {...rest}>
-        {children}
-      </BaseDateStyle>
+      <div style={{position:"relative", marginBottom: "3px" }}>
+          <TextInputComponent
+              value={value}
+              innerRef={innerRef} />
+          <span className="input-group-addon">
+              <span className="glyphicon glyphicon-calendar"></span>
+          </span>
+      </div>
     );
   }
 }
-
-export default UpDateStyle;
