@@ -14,7 +14,7 @@ export interface Props extends StyleProps {
 }
 
 
-export default class Number extends BaseControl<Props, any> {
+export default class Number extends BaseControl<Props, number> {
     public static defaultProps: Props = {
         color: '#000000',
         backgroundColor: '#ffffff',
