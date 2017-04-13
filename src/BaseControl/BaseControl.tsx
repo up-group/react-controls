@@ -49,10 +49,14 @@ export abstract class BaseControl<prop, basetype> extends React.Component<BasePr
         </ErrorDisplay>;
     }
 
-    dispatchOnChange = (data: basetype, event) => {
-        this.props.onChange(data, event);
+    private dispatchOnChange = (data: basetype, event) => {
+        if (this.props.onChange !== undefined) {
+            this.props.onChange(data, event);
+        }
     }
-    dispatchOnError = () => {
-        this.props.onError(this.state.error != null);
+    private dispatchOnError = () => {
+        if (this.props.onError !== undefined) {
+            this.props.onError(this.state.error != null);
+        }
     }
 }
