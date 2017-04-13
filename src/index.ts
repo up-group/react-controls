@@ -31,8 +31,10 @@ import ColorMap from './theming/index'
 import { ThemeColorMap } from './theming/types'
 import { ThemeInterface } from './theming/types'
 import Number from './Number'
+import Integer from './Integer'
 
 export {
+    Integer,
     Number,
     Anchor,
     Article,
