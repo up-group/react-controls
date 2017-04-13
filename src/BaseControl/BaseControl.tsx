@@ -3,7 +3,9 @@ import ValidationManager from "../Validation/ValidationManager"
 import ErrorDisplay from "../Validation/ErrorDisplay"
 
 
-export interface BaseProp {
+export interface BaseProp<basetype> {
+    onChange?: (arg: basetype, event: any) => void;
+    onError?: (hasError: boolean) => void;
 }
 
 export interface BaseState<basetype> {
@@ -11,7 +13,9 @@ export interface BaseState<basetype> {
     value?: basetype;
 }
 
-export abstract class BaseControl<prop, basetype> extends React.Component<BaseProp & prop, BaseState<basetype>> {
+
+
+export abstract class BaseControl<prop, basetype> extends React.Component<BaseProp<basetype> & prop, BaseState<basetype>> {
 
     _validationManager: ValidationManager;
 
@@ -27,14 +31,15 @@ export abstract class BaseControl<prop, basetype> extends React.Component<BasePr
     public handleChangeEvent = (event) => {
         var cleanData = this.onChange(event);
         this.checkData(cleanData);
+        this.dispatchOnChange(cleanData, event);
     }
 
     public checkData = (cleanData) => {
         var result = this._validationManager.isValidValue(cleanData);
         if (result.hasError) {
-            this.setState({ error: result.errorMessage });
+            this.setState({ error: result.errorMessage }, this.dispatchOnError);
         } else {
-            this.setState({ error: null });
+            this.setState({ error: null }, this.dispatchOnError);
         }
     }
 
@@ -42,5 +47,12 @@ export abstract class BaseControl<prop, basetype> extends React.Component<BasePr
         return <ErrorDisplay error={this.state.error}>
             {this.renderControl()}
         </ErrorDisplay>;
+    }
+
+    dispatchOnChange = (data: basetype, event) => {
+        this.props.onChange(data, event);
+    }
+    dispatchOnError = () => {
+        this.props.onError(this.state.error != null);
     }
 }
