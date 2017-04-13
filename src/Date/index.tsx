@@ -4,7 +4,7 @@ import {StyledComponentProps} from '../utils/types'
 export default UpDate
 
 export interface UpDateProps extends StyledComponentProps {
-  hasError: boolean;
+  hasError?: boolean;
   onChange?: (value?: Date) => void;
   isNuallble?: boolean;
   //default?: Date;
