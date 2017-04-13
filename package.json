@@ -24,16 +24,13 @@
     "node": "6.9.5",
     "npm": "3.10.8"
   },
-  "scripts": {
-    "prepublish": "rimraf dist && tsc",
+  "scripts": {   
     "setup:yarn": "yarn",
     "build": "rimraf dist && webpack",
     "publishLocalToSchemaForm": "copyfiles dist/*.* dist/**/* package.json src/*.* src/**/* src/theming/icons/* ../react-schemaform/node_modules/@up-group/up-react-controls/",
     "publishLocalToApp": "copyfiles dist/*.* dist/**/* package.json src/*.* src/**/* src/theming/icons/* ../react-app/node_modules/@up-group/up-react-controls/",
     "toApp": "npm run publishLocalToApp",
     "toForm": "npm run publishLocalToSchemaForm",
-    "publishProd": "npm version patch && npm publish",
-    "publishBeta": "npm version patch && npm publish --tag beta",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
