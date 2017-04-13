@@ -1,20 +1,27 @@
-﻿import * as $ from "jquery";
-import "eonasdan-bootstrap-datetimepicker"
-import * as React from "react";
-//import UpDateStyle from './styles'
+﻿import * as $ from "jquery"
+import "eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"
+import "eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css"
+import * as React from "react"
+import UpDateStyle from './styles'
 import { UpDateProps } from './'
-import { BaseControl } from '../BaseControl/BaseControl';
+import { BaseControl } from '../BaseControl/BaseControl'
 
 export default class UpDate extends BaseControl<UpDateProps, Date> {
 
     private inputElementGroup: any;
     constructor(p, c) {
         super(p, c);
+        this.onChange = this.onChange.bind(this) ;
+        this.setInput = this.setInput.bind(this) ;
     }
 
-    //setInput(data) {
-    //    $(this.inputElementGroup).data("DateTimePicker").date(data);
-    //}
+    setInput(input) {
+        this.inputElementGroup = input ;
+    }
+
+    setData(data) {
+        $(this.inputElementGroup).data("DateTimePicker").date(data);
+    }
 
     componentDidMount = () => {
         $(this.inputElementGroup).datetimepicker({ locale: 'fr', format: "DD/MM/YYYY" });
@@ -22,18 +29,13 @@ export default class UpDate extends BaseControl<UpDateProps, Date> {
     }
 
     renderControl() {
-        /*return <UpDateStyle hasError={this.props.hasError}
- -                  innerRef={(input) => { this.inputElementGroup = input; }}
- -                  onChange={this.props.onChange}
- -                  isNullable={this.props.isNullable}></UpDateStyle>*/
-
-        return <div className="input-group" style={{ marginBottom: "3px" }} ref={(input) => { this.inputElementGroup = input; }}>
+        return <UpDateStyle value={this.props.value} hasError={this.props.hasError} innerRef={this.setInput} onChange={this.onChange}></UpDateStyle>;
+        /*return <div className="input-group" style={{ marginBottom: "3px" }} ref={(input) => { this.inputElementGroup = input; }}>
             <input type='text' className="form-control" />
             <span className="input-group-addon">
                 <span className="glyphicon glyphicon-calendar"></span>
             </span>
-        </div >
-
+        </div >*/
     }
 
     onChange(event: any) {
@@ -41,13 +43,13 @@ export default class UpDate extends BaseControl<UpDateProps, Date> {
         if (typeof (event.date) === "object" && event.date && typeof (event.date.toDate) === "function") {
             data = event.date.startOf('day').toDate()
         }
-        this.setState({ value: data }, this.dispatchOnChange);
+        this.dispatchOnChange({ value: data });
         return data;
     }
 
-    dispatchOnChange() {
+    dispatchOnChange(data : {value:any}) {
         if (typeof (this.props.onChange) === "function") {
-            this.props.onChange(this.state.value);
+            this.props.onChange(data.value);
         }
     }
 }

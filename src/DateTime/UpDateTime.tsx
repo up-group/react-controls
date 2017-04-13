@@ -12,7 +12,6 @@ export default class UpDateTime extends BaseControl<UpDateTimeProps, Date> {
         super(p, c);
     }
 
-
     componentDidMount = () => {
         $(this.inputElementGroup).datetimepicker({ locale: 'fr', format: "DD/MM/YYYY HH:mm" });
         $(this.inputElementGroup).on("dp.change", this.onChange.bind(this));
@@ -24,8 +23,7 @@ export default class UpDateTime extends BaseControl<UpDateTimeProps, Date> {
             <span className="input-group-addon">
                 <span className="glyphicon glyphicon-calendar"></span>
             </span>
-        </div >
-
+        </div>
     }
 
     onChange(event: any) {
@@ -33,13 +31,13 @@ export default class UpDateTime extends BaseControl<UpDateTimeProps, Date> {
         if (typeof (event.date) === "object" && event.date && typeof (event.date.toDate) === "function") {
             data = event.date.toDate();
         }
-        this.setState({ value: data }, this.dispatchOnChange);
+        this.dispatchOnChange({ value: data });
         return data;
     }
 
-    dispatchOnChange() {
+     dispatchOnChange(data : {value:any}) {
         if (typeof (this.props.onChange) === "function") {
-            this.props.onChange(this.state.value);
+            this.props.onChange(data.value);
         }
     }
 }
