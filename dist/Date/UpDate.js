@@ -1,17 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const $ = require("jquery");
-require("eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js");
-require("eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css");
+require("normalize.css/normalize.css");
+require("@blueprintjs/core/dist/blueprint.css");
+require("@blueprintjs/datetime/dist/blueprint-datetime.css");
 const React = require("react");
-const styles_1 = require("./styles");
 const BaseControl_1 = require("../BaseControl/BaseControl");
+const datetime_1 = require("@blueprintjs/datetime");
 class UpDate extends BaseControl_1.BaseControl {
     constructor(p, c) {
         super(p, c);
         this.componentDidMount = () => {
-            $(this.inputElementGroup).datetimepicker({ locale: 'fr', format: "DD/MM/YYYY" });
-            $(this.inputElementGroup).on("dp.change", this.onChange.bind(this));
         };
         this.onChange = this.onChange.bind(this);
         this.setInput = this.setInput.bind(this);
@@ -23,7 +22,7 @@ class UpDate extends BaseControl_1.BaseControl {
         $(this.inputElementGroup).data("DateTimePicker").date(data);
     }
     renderControl() {
-        return React.createElement(styles_1.default, { value: this.props.value, hasError: this.props.hasError, innerRef: this.setInput, onChange: this.onChange });
+        return React.createElement(datetime_1.DatePicker, { onChange: this.onChange });
     }
     onChange(event) {
         var data = null;

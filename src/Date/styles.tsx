@@ -1,6 +1,7 @@
 import * as React from 'react'
 //import styled, {css} from 'styled-components'
 import { UpDateProps } from './'
+import {TextInputComponent} from '../Input/styles'
 
 // const error = props => css`
 // > input {
@@ -21,12 +22,10 @@ export default class UpDateStyle extends React.Component<UpDateProps, undefined>
   public render() {
     const {value, innerRef} = this.props ;
     return (
-      <div className='input-group date' style={{ marginBottom: "3px" }}>
-          <input
+      <div style={{position:"relative", marginBottom: "3px" }}>
+          <TextInputComponent
               value={value}
-              ref={innerRef}
-              type='text'
-              className="form-control" />
+              innerRef={innerRef} />
           <span className="input-group-addon">
               <span className="glyphicon glyphicon-calendar"></span>
           </span>

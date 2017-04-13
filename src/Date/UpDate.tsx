@@ -1,10 +1,12 @@
 ﻿import * as $ from "jquery"
-import "eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"
-import "eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css"
+import "normalize.css/normalize.css"
+import "@blueprintjs/core/dist/blueprint.css"
+import "@blueprintjs/datetime/dist/blueprint-datetime.css"
 import * as React from "react"
-import UpDateStyle from './styles'
+//import UpDateStyle from './styles'
 import { UpDateProps } from './'
 import { BaseControl } from '../BaseControl/BaseControl'
+import {DatePicker} from '@blueprintjs/datetime'
 
 export default class UpDate extends BaseControl<UpDateProps, Date> {
 
@@ -24,12 +26,13 @@ export default class UpDate extends BaseControl<UpDateProps, Date> {
     }
 
     componentDidMount = () => {
-        $(this.inputElementGroup).datetimepicker({ locale: 'fr', format: "DD/MM/YYYY" });
-        $(this.inputElementGroup).on("dp.change", this.onChange.bind(this));
+        // $(this.inputElementGroup).datetimepicker({ locale: 'fr', format: "DD/MM/YYYY" });
+        // $(this.inputElementGroup).on("dp.change", this.onChange.bind(this));
     }
 
     renderControl() {
-        return <UpDateStyle value={this.props.value} hasError={this.props.hasError} innerRef={this.setInput} onChange={this.onChange}></UpDateStyle>;
+        return <DatePicker onChange={this.onChange} />
+        //return <UpDateStyle value={this.props.value} hasError={this.props.hasError} innerRef={this.setInput} onChange={this.onChange}></UpDateStyle>;
         /*return <div className="input-group" style={{ marginBottom: "3px" }} ref={(input) => { this.inputElementGroup = input; }}>
             <input type='text' className="form-control" />
             <span className="input-group-addon">
