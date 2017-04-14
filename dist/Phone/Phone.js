@@ -27,15 +27,10 @@ var Phone = (function (_super) {
         return event.target.value;
     };
     Phone.prototype.renderControl = function () {
-        return (React.createElement(styles_1.InputStyled, { type: "text", iconName: this.props.iconName, style: this.props.style, borderColor: this.props.borderColor, onClick: this.props.onClick, color: this.props.color, backgroundColor: this.props.backgroundColor, width: this.props.width, hasError: this.hasError(), height: this.props.height, readOnly: this.props.readOnly, disabled: this.props.disabled, onChange: this.handleChangeEvent }, this.props.children));
+        return (React.createElement(styles_1.InputStyled, { hasError: this.hasError(), onChange: this.handleChangeEvent }));
     };
     return Phone;
 }(BaseControl_1.BaseControl));
-Phone.defaultProps = {
-    color: '#000000',
-    backgroundColor: '#ffffff',
-    borderColor: '#732419',
-    hasError: false
-};
+Phone.defaultProps = {};
 exports.default = Phone;
 //# sourceMappingURL=Phone.js.map

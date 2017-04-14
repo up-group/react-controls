@@ -27,15 +27,10 @@ var Email = (function (_super) {
         return event.target.value;
     };
     Email.prototype.renderControl = function () {
-        return (React.createElement(styles_1.InputStyled, { type: "email", iconName: this.props.iconName, style: this.props.style, borderColor: this.props.borderColor, onClick: this.props.onClick, color: this.props.color, backgroundColor: this.props.backgroundColor, width: this.props.width, height: this.props.height, readOnly: this.props.readOnly, hasError: this.hasError(), disabled: this.props.disabled, onChange: this.handleChangeEvent }, this.props.children));
+        return (React.createElement(styles_1.InputStyled, { hasError: this.hasError(), onChange: this.handleChangeEvent }));
     };
     return Email;
 }(BaseControl_1.BaseControl));
-Email.defaultProps = {
-    color: '#000000',
-    backgroundColor: '#ffffff',
-    borderColor: '#732419',
-    hasError: false
-};
+Email.defaultProps = {};
 exports.default = Email;
 //# sourceMappingURL=Email.js.map
