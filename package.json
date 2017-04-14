@@ -25,7 +25,7 @@
     "npm": "3.10.8"
   },
   "scripts": {
-    "prepublish": "rimraf dist && tsc && copyfiles -u 1 src/theming/base.css dist/",
+    "prepublish": "rimraf dist && tsc && copyfiles -u 1 src/Common/theming/base.css dist/",
     "setup:yarn": "yarn",
     "build": "rimraf dist && webpack",
     "publishProd": "npm version patch && npm publish",
@@ -44,6 +44,7 @@
     "@types/react-dom": "^0.14.23",
     "babel-core": "^6.24.1",
     "babel-loader": "^6.4.1",
+    "babel-polyfill": "^6.23.0",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-0": "^6.16.0",

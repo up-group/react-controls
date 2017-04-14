@@ -3,11 +3,11 @@ const ROOT_PATH = path.resolve(__dirname);
 
 module.exports = {
   devtool: 'cheap-module-source-map',
-  entry: {
-      './test/dist/index': './test/index.tsx'
-  },
+  entry: [
+      'babel-polyfill','./test/index.tsx'
+  ],
   output: {
-    filename: '[name].js'
+    filename: './test/dist/[name].js'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -18,7 +18,7 @@ module.exports = {
   },
   module: {
     rules: [
-        { test: /\.tsx?|.ts?$/, loader:  'ts-loader' },
+        { test: /\.tsx?|.ts?$/,  loaders: ['babel-loader','ts-loader']  },
       { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel-loader'], include: path.join(__dirname, 'src') },
       { test: /\.css$/, loader: 'style-loader!css-loader?url=false' },
       { test: /\.json$/, loader: 'json-loader' },

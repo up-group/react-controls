@@ -1,36 +1,50 @@
-import UpAnchor from './Anchor'
-import UpBox from './Box'
-import UpButton from './Button'
-import UpNotification from './Notification'
-import UpHeadline from './Headline'
-import UpImage from './Image'
-import UpLoadingIndicator from './LoadingIndicator'
-import UpParagraph from './Paragraph'
-import UpSection from './Section'
-import UpSvgIcon from './SvgIcon'
-import UpToast from './Toast'
-import UpInput from './Input'
-import UpSelect from './Select'
-import UpFile from './File'
-import UpDate from './Date'
-import UpSwitch from './Switch'
-import UpDateTime from './DateTime'
-import UpTimePicker from './TimePicker'
-import UpText from './Text'
-import UpDraft from './Draft'
-import UpList from './List'
-import UpTooltip from './List'
-import UpPanel from './Panel'
-import UpNumber from './Number/Number'
-import UpInteger from './Integer/Integer'
-import UpPhone from './Phone/Phone'
-import UpEmail from './Email/Email'
-import UpLabel from './Label'
-import UpFormGroup from './FormGroup'
+
+import UpSection from './Components/Containers/Section'
+import UpHeadline from './Components/Containers/Headline'
+import UpList from './Components/Containers/List'
+import UpPanel from './Components/Containers/Panel'
+import UpBox from './Components/Containers/Box'
+import UpFormGroup from './Components/Containers/FormGroup'
+
+
+import UpAnchor from './Components/Display/Anchor/index'
+import UpNotification from './Components/Display/Notification'
+import UpImage from './Components/Display/Image'
+import UpLoadingIndicator from './Components/Display/LoadingIndicator'
+import UpParagraph from './Components/Display/Paragraph'
+import UpSvgIcon from './Components/Display/SvgIcon'
+import UpToast from './Components/Display/Toast'
+import UpTooltip from './Components/Display/Tooltip/UpTooltip'
+import UpLabel from './Components/Display/Label'
+
+
+
+import UpButton from './Components/Inputs/Button'
+import UpInput from './Components/Inputs/Input'
+import UpSelect from './Components/Inputs/Select'
+import UpFile from './Components/Inputs/File'
+import UpDate from './Components/Inputs/Date'
+import UpSwitch from './Components/Inputs/Switch'
+import UpDateTime from './Components/Inputs/DateTime'
+import UpTimePicker from './Components/Inputs/TimePicker'
+import UpText from './Components/Inputs/Text'
+import UpDraft from './Components/Inputs/Draft'
+import UpNumber from './Components/Inputs/Number/Number'
+import UpInteger from './Components/Inputs/Integer/Integer'
+import UpPhone from './Components/Inputs/Phone/Phone'
+import UpEmail from './Components/Inputs/Email/Email'
+
+
+
 import {ThemeProvider as UpThemeProvider} from 'styled-components'
-import UpColorMap from './theming/index'
-import {ThemeColorMap as UpThemeColorMap} from './theming/types'
-import {ThemeInterface as UpThemeInterface} from './theming/types'
+import UpColorMap from './Common/theming/index'
+import {ThemeColorMap as UpThemeColorMap} from './Common/theming/types'
+import {ThemeInterface as UpThemeInterface} from './Common/theming/types'
+
+
+
+
+
 
 export {
   UpAnchor,
