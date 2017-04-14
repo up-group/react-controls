@@ -2,19 +2,20 @@ import * as React from 'react'
 
 import styled, {css} from 'styled-components';
 import { sizeMap } from './maps';
-import { Props } from './';
-import SvgIcon from '../SvgIcon';
+import { StyledProps } from './';
+//import SvgIcon from '../SvgIcon';
 
-const BaseInput: React.StatelessComponent<Props> = (props) => {
+const BaseInput: React.StatelessComponent<StyledProps> = (props) => {
     const { type, iconName, className, placeholder, disabled, readOnly, onChange } = props;
 
     var icon:any = "" ;
     if(iconName) {
       icon = <div className="up-icon">
-              <SvgIcon iconName={iconName}
+              {/*<SvgIcon iconName={iconName}
           width={20}
           height={20}
-          color={props.color} /></div> ;
+          color={props.color} />*/}
+          </div> ;
     }
     
     return (<div className={className}>
@@ -321,12 +322,16 @@ const error = css`
 }
 `
 
-export const InputStyled = styled<Props>(BaseInput)`
+
+
+
+
+export const InputStyled = styled<StyledProps>(BaseInput)`
   ${inputStyles}
   ${(props) => props.hasError ? error:css``}
-  color: ${(props: Props) => props.color};
+  color: ${(props: StyledProps) => props.color};
   .up-input {
-    width: ${(props: Props) => sizeMap[props.width]};
-    ${(props:Props) => (props.height=="large"?HeightLarge:css``)}
+    width: ${(props: StyledProps) => sizeMap[props.width]};
+    ${(props: StyledProps) => (props.height=="large"?HeightLarge:css``)}
   }
 `;
