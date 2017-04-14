@@ -11,6 +11,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 require("normalize.css/normalize.css");
+require("@blueprintjs/core/dist/blueprint.css");
 var React = require("react");
 var BaseControl_1 = require("../BaseControl/BaseControl");
 var styles_1 = require("./styles");
