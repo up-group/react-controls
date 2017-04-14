@@ -27,11 +27,10 @@ export class Demo extends React.Component<{}, {}> {
         return <div className="col-md-6">
             <Email onError={this.onError} onChange={this.test} />
             <Phone onError={this.onError} onChange={this.test} />
-            <Number onError={this.onError} onChange={this.test} max={15} fontSize="xx-large" />
-            <Integer onError={this.onError} onChange={this.test} min={5} fontSize="xx-large" />
-            <Input type="number" />
-            <Date onChange={this.test} />
-            <DateTime onChange={this.test} />
+            <Number onError={this.onError} onChange={this.test} max={15}  />
+            <Integer onError={this.onError} onChange={this.test} min={5}  />
+            <Date value="" onChange={this.test} />
+            <DateTime value="" onChange={this.test} />
         </div>
 
     }
