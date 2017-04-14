@@ -28,7 +28,7 @@ export interface Item {
 
 export interface PropsItem extends PropsStyled {}
 
-interface ChangeOrderEvent {
+export interface ChangeOrderEvent {
   oldIndex:number;
   newIndex:number;
 }
