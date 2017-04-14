@@ -1,21 +1,16 @@
-import Anchor from './Anchor'
-import Article from './Article'
-import Avatar from './Avatar'
-import Box from './Box'
-import Button from './Button'
-import Notification from './Notification'
-import Footer from './Footer'
-import Heading from './Heading'
-import Headline from './Headline'
-import Image from './Image'
-import LoadingIndicator from './LoadingIndicator'
-import Markdown from './Markdown'
-import Paragraph from './Paragraph'
-import Section from './Section'
-import SvgIcon from './SvgIcon'
-import Toast from './Toast'
-import Input from './Input'
-import UpSelect2 from './Select'
+import UpAnchor from './Anchor'
+import UpBox from './Box'
+import UpButton from './Button'
+import UpNotification from './Notification'
+import UpHeadline from './Headline'
+import UpImage from './Image'
+import UpLoadingIndicator from './LoadingIndicator'
+import UpParagraph from './Paragraph'
+import UpSection from './Section'
+import UpSvgIcon from './SvgIcon'
+import UpToast from './Toast'
+import UpInput from './Input'
+import UpSelect from './Select'
 import UpFile from './File'
 import UpDate from './Date'
 import UpSwitch from './Switch'
@@ -23,33 +18,30 @@ import UpDateTime from './DateTime'
 import UpTimePicker from './TimePicker'
 import UpText from './Text'
 import UpDraft from './Draft'
-import Hero from './Hero'
 import UpList from './List'
+import UpTooltip from './List'
 import UpPanel from './Panel'
-import {ThemeProvider} from 'styled-components'
-import ColorMap from './theming/index'
-import {ThemeColorMap} from './theming/types'
-import {ThemeInterface} from './theming/types'
+import UpLabel from './Label'
+import BlueInput from './BlueInput'
+import {ThemeProvider as UpThemeProvider} from 'styled-components'
+import UpColorMap from './theming/index'
+import {ThemeColorMap as UpThemeColorMap} from './theming/types'
+import {ThemeInterface as UpThemeInterface} from './theming/types'
 
 export {
-  Anchor,
-  Article,
-  Avatar,
-  Box,
-  Button,
-  Notification,
-  Footer,
-  Heading,
-  Headline,
-  Image,
-  LoadingIndicator,
-  Markdown,
-  Paragraph,
-  Section,
-  SvgIcon,
-  Toast,
-  Input,
-  UpSelect2,
+  UpAnchor,
+  UpBox,
+  UpButton,
+  UpNotification,
+  UpHeadline,
+  UpImage,
+  UpLoadingIndicator,
+  UpParagraph,
+  UpSection,
+  UpSvgIcon,
+  UpToast,
+  UpInput,
+  UpSelect,
   UpFile,
   UpDate,
   UpDateTime,
@@ -57,11 +49,13 @@ export {
   UpTimePicker,
   UpText,
   UpDraft,
-  Hero,
   UpList,
   UpPanel,
-  ThemeProvider,
-  ThemeInterface,
-  ThemeColorMap,
-  ColorMap
+  UpLabel,
+  UpTooltip,
+  UpThemeProvider,
+  UpThemeInterface,
+  UpThemeColorMap,
+  UpColorMap,
+  BlueInput
 };

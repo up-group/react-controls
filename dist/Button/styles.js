@@ -49,6 +49,7 @@ color: ${(props) => props.color};
 &:hover {
   background: ${props => props.color || 'green'};
   color: ${(props) => props.backgroundColor};
+  border-color:${(props) => props.backgroundColor};
   svg {
     fill: ${(props) => props.backgroundColor}
   }

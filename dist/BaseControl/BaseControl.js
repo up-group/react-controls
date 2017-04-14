@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const ValidationManager_1 = require("../Validation/ValidationManager");
 const ErrorDisplay_1 = require("../Validation/ErrorDisplay");
+require("../theming/base.css");
 class BaseControl extends React.Component {
     constructor(props, context) {
         super(props, context);

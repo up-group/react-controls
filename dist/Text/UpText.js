@@ -8,9 +8,11 @@ class UpText extends React.Component {
         this.onChange = (event) => {
             this.props.onChange(event.target.value);
         };
+        this.onChange = this.onChange.bind(this);
     }
     render() {
-        return (React.createElement(styles_1.default, { hasError: this.props.hasError, className: this.props.className, onChange: this.onChange }));
+        const { hasError, className, value } = this.props;
+        return (React.createElement(styles_1.default, { onChange: this.onChange, hasError: hasError, className: className, value: value }));
     }
 }
 exports.default = UpText;

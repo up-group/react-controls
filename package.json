@@ -25,7 +25,7 @@
     "npm": "3.10.8"
   },
   "scripts": {
-    "prepublish": "rimraf dist && tsc",
+    "prepublish": "rimraf dist && tsc && copyfiles -u 1 src/theming/base.css dist/",
     "setup:yarn": "yarn",
     "build": "rimraf dist && webpack",
     "publishLocalToSchemaForm": "copyfiles dist/*.* dist/**/* package.json src/*.* src/**/* src/theming/icons/* ../react-schemaform/node_modules/@up-group/up-react-controls/",
@@ -61,11 +61,14 @@
     "draft-js": "^0.10.0",
     "eonasdan-bootstrap-datetimepicker": "^4.17.47",
     "github-markdown-css": "^2.4.1",
+    "inputmask-core": "^2.2.0",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.5.2",
     "react-dom": "^15.4.2",
     "react-markdown": "^2.4.5",
+    "react-maskedinput": "^3.3.4",
     "react-sortable-hoc": "^0.6.1",
+    "react-textarea-autosize": "^4.0.5",
     "rimraf": "^2.6.1",
     "select2": "^4.0.3",
     "styled-components": "^1.4.4",

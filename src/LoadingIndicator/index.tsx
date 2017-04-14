@@ -1,6 +1,6 @@
 // Adapted from https://grommet.github.io/docs/spinning
 import * as React from 'react';
-import { Box } from '../';
+import Box from '../Box';
 import SvgIcon, { Circle } from './styles';
 
 export interface Props extends React.Props<typeof LoadingIndicator> {

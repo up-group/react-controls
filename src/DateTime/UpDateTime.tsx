@@ -1,43 +1,45 @@
-import * as $ from "jquery";
-import "eonasdan-bootstrap-datetimepicker"
-import * as React from "react";
-//import UpDateTimeStyle from './styles'
-import { UpDateTimeProps } from './types'
-import { BaseControl } from '../BaseControl/BaseControl';
+import "normalize.css/normalize.css"
 
-export default class UpDateTime extends BaseControl<UpDateTimeProps, Date> {
+import * as React from "react"
+import { UpDateTimeProps } from './'
+import { BaseControl } from '../BaseControl/BaseControl'
+import UpDateStyle from './styles'
 
-    private inputElementGroup: any;
+export default class UpDate extends BaseControl<UpDateTimeProps, Date> {
+
+    public static defaultProps: UpDateTimeProps = {
+        format:"DD/MM/YYYY",
+        value:""
+    };
+
     constructor(p, c) {
         super(p, c);
+        this.onChange = this.onChange.bind(this) ;
     }
 
     componentDidMount = () => {
-        $(this.inputElementGroup).datetimepicker({ locale: 'fr', format: "DD/MM/YYYY HH:mm" });
-        $(this.inputElementGroup).on("dp.change", this.onChange.bind(this));
     }
 
     renderControl() {
-        return <div className="input-group" style={{ marginBottom: "3px" }} ref={(input) => { this.inputElementGroup = input; }}>
-            <input type='text' className="form-control" />
-            <span className="input-group-addon">
-                <span className="glyphicon glyphicon-calendar"></span>
-            </span>
-        </div>
-    }
-
-    onChange(event: any) {
-        var data = null;
-        if (typeof (event.date) === "object" && event.date && typeof (event.date.toDate) === "function") {
-            data = event.date.toDate();
+        var _value = this.props.value ;
+        if (typeof this.props.value === 'string' || this.props.value instanceof String) {
+            _value = this.getDate(_value) ; 
         }
-        this.dispatchOnChange({ value: data });
-        return data;
+        
+        return <UpDateStyle format={this.props.format} value={this.props.value} hasError={this.props.hasError} onChange={this.onChange}></UpDateStyle>;
     }
-
-     dispatchOnChange(data : {value:any}) {
+    onChange(newDate: any) {
+        this.dispatchOnChange({ value: newDate });
+        return newDate;
+    }
+    dispatchOnChange(data : {value:any}) {
         if (typeof (this.props.onChange) === "function") {
             this.props.onChange(data.value);
         }
+    }
+    getDate(date:string) {
+        // check the date with a regexp
+        var dateParts = date.split("/");
+        return new Date(parseInt(dateParts[2]), parseInt(dateParts[1]) - 1, parseInt(dateParts[0])); // month is 0-based
     }
 }

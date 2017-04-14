@@ -3,4 +3,5 @@ export interface UpTextProps {
     className?:string;
     onChange: (event: any) => void;
     defaultValue?:string;
+    value:string;
 }

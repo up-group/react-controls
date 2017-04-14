@@ -11,16 +11,17 @@ var __rest = (this && this.__rest) || function (s, e) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const styled_components_1 = require("styled-components");
-const BaseDateComponent = (props) => {
-    const { className } = props;
-    return React.createElement("textarea", { type: "text", className: className, onChange: this.onChange });
+const react_textarea_autosize_1 = require("react-textarea-autosize");
+const BaseTextArea = (props) => {
+    const { className, value, onChange } = props;
+    return React.createElement(react_textarea_autosize_1.default, { value: value, className: className, onChange: onChange });
 };
 const base = props => styled_components_1.css `
 `;
 const error = props => styled_components_1.css `
   border : 1px solid red;
 `;
-exports.BaseTextStyle = styled_components_1.default(BaseDateComponent) `
+exports.BaseTextStyle = styled_components_1.default(BaseTextArea) `
 ${(props) => base(props)}
 ${(props) => props.hasError ? error(props) : styled_components_1.css ``}
 `;
@@ -34,7 +35,8 @@ class TextStyle extends React.Component {
 }
 TextStyle.defaultProps = {
     hasError: false,
-    onChange: (event) => { }
+    onChange: (event) => { },
+    value: ""
 };
 exports.default = TextStyle;
 //# sourceMappingURL=styles.js.map

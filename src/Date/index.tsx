@@ -8,6 +8,7 @@ export interface UpDateProps extends StyledComponentProps {
   onChange?: (value?: Date) => void;
   isNullable?: boolean;
   //default?: Date;
-  //className? : string;
+  className? : string;
   value:any;
+  format?:string;
 }

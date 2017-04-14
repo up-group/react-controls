@@ -5,13 +5,12 @@ import TextStyle from "./styles"
 export default class UpText extends React.Component<UpTextProps, {}> {
     constructor(p, c) {
         super(p, c);
+        this.onChange = this.onChange.bind(this) ;
     }
 
     render() {
-
-        return (<TextStyle  hasError={this.props.hasError}
-                            className={this.props.className}
-                            onChange={this.onChange}></TextStyle>)
+        const {hasError, className, value} = this.props ;
+        return (<TextStyle onChange={this.onChange} hasError={hasError} className={className} value={value}></TextStyle>)
     }
 
     onChange = (event) => {

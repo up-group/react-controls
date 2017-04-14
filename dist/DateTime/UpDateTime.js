@@ -1,36 +1,40 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const $ = require("jquery");
-require("eonasdan-bootstrap-datetimepicker");
+require("normalize.css/normalize.css");
 const React = require("react");
 const BaseControl_1 = require("../BaseControl/BaseControl");
-class UpDateTime extends BaseControl_1.BaseControl {
+const styles_1 = require("./styles");
+class UpDate extends BaseControl_1.BaseControl {
     constructor(p, c) {
         super(p, c);
         this.componentDidMount = () => {
-            $(this.inputElementGroup).datetimepicker({ locale: 'fr', format: "DD/MM/YYYY HH:mm" });
-            $(this.inputElementGroup).on("dp.change", this.onChange.bind(this));
         };
+        this.onChange = this.onChange.bind(this);
     }
     renderControl() {
-        return React.createElement("div", { className: "input-group", style: { marginBottom: "3px" }, ref: (input) => { this.inputElementGroup = input; } },
-            React.createElement("input", { type: 'text', className: "form-control" }),
-            React.createElement("span", { className: "input-group-addon" },
-                React.createElement("span", { className: "glyphicon glyphicon-calendar" })));
-    }
-    onChange(event) {
-        var data = null;
-        if (typeof (event.date) === "object" && event.date && typeof (event.date.toDate) === "function") {
-            data = event.date.toDate();
+        var _value = this.props.value;
+        if (typeof this.props.value === 'string' || this.props.value instanceof String) {
+            _value = this.getDate(_value);
         }
-        this.dispatchOnChange({ value: data });
-        return data;
+        return React.createElement(styles_1.default, { format: this.props.format, value: this.props.value, hasError: this.props.hasError, onChange: this.onChange });
+    }
+    onChange(newDate) {
+        this.dispatchOnChange({ value: newDate });
+        return newDate;
     }
     dispatchOnChange(data) {
         if (typeof (this.props.onChange) === "function") {
             this.props.onChange(data.value);
         }
     }
+    getDate(date) {
+        var dateParts = date.split("/");
+        return new Date(parseInt(dateParts[2]), parseInt(dateParts[1]) - 1, parseInt(dateParts[0]));
+    }
 }
-exports.default = UpDateTime;
+UpDate.defaultProps = {
+    format: "DD/MM/YYYY",
+    value: ""
+};
+exports.default = UpDate;
 //# sourceMappingURL=UpDateTime.js.map

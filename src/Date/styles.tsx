@@ -1,15 +1,49 @@
 import * as React from 'react'
-//import styled, {css} from 'styled-components'
 import { UpDateProps } from './'
-import {TextInputComponent} from '../Input/styles'
+import styled from 'styled-components'
 
-// const error = props => css`
-// > input {
-//   border : 1px solid red;
-// }
-// `;
+import { DateInput, IDatePickerLocaleUtils } from '@blueprintjs/datetime'
 
-//${(props: UpDateProps) => props.hasError? error(props):css``}
+class UpLocaleUtils implements IDatePickerLocaleUtils {
+    formatDay(day: Date, locale: string) {
+        return "jour" ;
+    }
+    formatMonthTitle(month: Date, locale: string) {
+        return "" ;
+    }
+    formatWeekdayShort(weekday: number, locale: string) {
+        return "" ;
+    }
+    formatWeekdayLong(weekday: number, locale: string) {
+        return "";
+    }
+    getFirstDayOfWeek(locale: string) {
+        return 1;
+    }
+    getMonths() {
+            return ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
+                          "Août", "Septembre", "Octobre", "Novembre", "Décembre"] ;
+    }
+}
+
+const locale = new UpLocaleUtils() ;
+
+const BaseDate : React.StatelessComponent<UpDateProps> = (props) => {
+    
+    const {value, className, format, onChange} = props ;
+    const picker = (<span className="pt-icon pt-icon-calendar"></span>) ;
+
+    return (<DateInput  className={className}
+                        locale="fr" 
+                        invalidDateMessage=""
+                        localeUtils={locale}
+                        rightElement={picker}
+                        value={value}
+                        onChange={onChange} format={format} />) ;
+}
+
+export const NormalDate = styled<UpDateProps>(BaseDate)`
+`; 
 
 export default class UpDateStyle extends React.Component<UpDateProps, undefined> {
   public static defaultProps: UpDateProps = {
@@ -20,16 +54,9 @@ export default class UpDateStyle extends React.Component<UpDateProps, undefined>
   };
 
   public render() {
-    const {value, innerRef} = this.props ;
+    const {value, format, onChange} = this.props ;
     return (
-      <div style={{position:"relative", marginBottom: "3px" }}>
-          <TextInputComponent
-              value={value}
-              innerRef={innerRef} />
-          <span className="input-group-addon">
-              <span className="glyphicon glyphicon-calendar"></span>
-          </span>
-      </div>
+      <NormalDate value={value} format={format} onChange={onChange} />
     );
   }
 }

@@ -1,49 +1,65 @@
-//import * as React from 'react'
-//import styled, {css} from 'styled-components'
-//import { UpDateTimeProps } from './types'
+import * as React from 'react'
+import { UpDateTimeProps } from './'
+import styled from 'styled-components'
 
-//const BaseDateComponent: React.StatelessComponent<UpDateTimeProps> = (props) => {
-//    const {className} = props;
+import { DateInput, TimePicker, IDatePickerLocaleUtils } from '@blueprintjs/datetime'
 
-//    return <div className={className} style={{ marginBottom: "3px" }}>
-//        <input
-//            type='text'
-//            className="form-control" />
-//        <span className="input-group-addon">
-//            <span className="glyphicon glyphicon-calendar"></span>
-//        </span>
-//    </div>;
-//}
+class UpLocaleUtils implements IDatePickerLocaleUtils {
+    formatDay(day: Date, locale: string) {
+        return "jour" ;
+    }
+    formatMonthTitle(month: Date, locale: string) {
+        return "" ;
+    }
+    formatWeekdayShort(weekday: number, locale: string) {
+        return "" ;
+    }
+    formatWeekdayLong(weekday: number, locale: string) {
+        return "";
+    }
+    getFirstDayOfWeek(locale: string) {
+        return 1;
+    }
+    getMonths() {
+            return ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
+                          "Août", "Septembre", "Octobre", "Novembre", "Décembre"] ;
+    }
+}
 
-//const base = props => css`
-//`;
+const locale = new UpLocaleUtils() ;
 
-//const error = props => css`
-//>input {
-//  border : 1px solid red;
-//}
-//`;
+const BaseDate : React.StatelessComponent<UpDateTimeProps> = (props) => {
+    
+    const {value, className, format, onChange} = props ;
+    const picker = (<span className="pt-icon pt-icon-calendar"></span>) ;
 
-//export const BaseDateStyle = styled<UpDateTimeProps>(BaseDateComponent) `
-//${(props: UpDateTimeProps) => base(props) }
-//${(props: UpDateTimeProps) => props.hasError? error(props):css``}
-//`;
+    return (<div>
+                <DateInput  className={className}
+                        locale="fr" 
+                        invalidDateMessage=""
+                        localeUtils={locale}
+                        rightElement={picker}
+                        value={value}
+                        onChange={onChange} format={format} />
+                <TimePicker />
+            </div>) ;
+}
 
-//class UpDateTimeStyle extends React.Component<UpDateTimeProps, undefined> {
-//  public static defaultProps: UpDateTimeProps = {
-//    hasError: false,
-//    onChange: (value?:Date) => {},
-//    isNullable: false,
-//  };
+export const NormalDate = styled<UpDateTimeProps>(BaseDate)`
+`; 
 
-//  public render() {
-//    const {children, ...rest} = this.props ;
-//    return (
-//      <BaseDateStyle {...rest}>
-//        {children}
-//      </BaseDateStyle>
-//    );
-//  }
-//}
+export default class UpDateStyle extends React.Component<UpDateTimeProps, undefined> {
+  public static defaultProps: UpDateTimeProps = {
+    //hasError: false,
+    //onChange: (value?:Date) => {},
+    //isNullable: false,
+    value:null
+  };
 
-//export default UpDateTimeStyle;
+  public render() {
+    const {value, format, onChange} = this.props ;
+    return (
+      <NormalDate value={value} format={format} onChange={onChange} />
+    );
+  }
+}
