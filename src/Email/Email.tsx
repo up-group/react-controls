@@ -6,8 +6,9 @@ import { BaseControl } from '../BaseControl/BaseControl';
 import TypeStringControl from '../Validation/TypeStringControl';
 
 import { WidthSize, HeightSize, InputType } from '../Input/types';
+import { CommonProps } from '../Input/index';
 
-export interface Props  {
+export interface Props extends CommonProps  {
     isNullable?: boolean;
 }
 

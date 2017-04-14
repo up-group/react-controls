@@ -6,8 +6,9 @@ import TypeStringControl from '../Validation/TypeStringControl';
 import TypeNumberControl from '../Validation/TypeNumberControl';
 
 import { WidthSize, HeightSize, InputType } from '../Input/types';
+import { CommonProps } from '../Input/index';
 
-export interface Props {
+export interface Props extends CommonProps {
     max?: number,
     min?: number,
     isNullable?: boolean;
