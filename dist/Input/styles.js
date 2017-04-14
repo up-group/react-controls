@@ -3,11 +3,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var styled_components_1 = require("styled-components");
 var maps_1 = require("./maps");
+var SvgIcon_1 = require("../SvgIcon");
 var BaseInput = function (props) {
     var type = props.type, iconName = props.iconName, className = props.className, placeholder = props.placeholder, disabled = props.disabled, readOnly = props.readOnly, onChange = props.onChange;
     var icon = "";
     if (iconName) {
-        icon = React.createElement("div", { className: "up-icon" });
+        icon = React.createElement("div", { className: "up-icon" },
+            React.createElement(SvgIcon_1.default, { iconName: iconName, width: 20, height: 20, color: props.color }));
     }
     return (React.createElement("div", { className: className },
         React.createElement("div", { className: "up-input-group" },
