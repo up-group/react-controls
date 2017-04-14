@@ -1,204 +1,235 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import Input from "../src/Input/index"
-import Date from "../src/Date/index"
-import DateTime from "../src/DateTime/index"
-import Number from "../src/Number/Number"
-import Integer from "../src/Integer/Integer"
-import Phone from "../src/Phone/Phone"
-import Email from "../src/Email/Email"
 
 
-//interface DemoState {
-//    result: string;
-//    schema: JsonSchema;
-//}
 
-export class Demo extends React.Component<{}, {}> {
+import {
+  UpHeadline,
+  UpBox,
+  UpList,
+  UpPanel,
+  UpButton,
+  UpThemeProvider,
+  UpThemeInterface,
+  UpDate,
+  UpText,
+  UpLabel,
+  UpColorMap,
+  UpPhone,
+  UpNumber,
+  UpEmail,
+  UpInteger,
+  UpInput,
+  UpSelect,
+  UpFormGroup
+} from "../src/index";
 
+//import arrayMove from 'array-move'
 
-    constructor(p, c) {
-        super(p, c);
-        this.state = { result: "", schema: {} }
+// get from react-controls
+interface Item {
+  text:string;
+  icon?:string;
+  link?:string;
+  index?:number;
+}
+
+interface ChangeOrderEvent {
+  oldIndex:number;
+  newIndex:number;
+}
+
+interface DemoState {
+  items : Array<Item>;
+  date : string;
+  description:string;
+  search:string;
+  phone : string;
+  email :string;
+  number :number;
+  integer : number;
+}
+
+var theme:UpThemeInterface = {
+    colorMap : UpColorMap
+}
+theme.colorMap.warning = "orange";
+theme.colorMap.secondary = UpColorMap.lightGray2;
+
+class Demo extends React.Component<undefined, DemoState> {
+  constructor(props) {
+    super(props) ;
+    this.onSortEnd = this.onSortEnd.bind(this) ;
+    this.onDateChange = this.onDateChange.bind(this);
+    this.onTextChange = this.onTextChange.bind(this);
+
+    this.state = {
+      date: "13/04/2017",
+      items : [
+          {
+            text:"Item 1"
+          },
+          {
+            text:"Item 2"
+          },
+          {
+            text:"Item 3"
+          },
+          {
+            text:"Item 4"
+          },
+          {
+            text:"Item 5"
+          }
+      ],
+      description : "",
+      email : "",
+      search : "",
+      phone : "",
+      number : 0,
+      integer : 0
     }
+  }
+  public render() {
 
-    render() {
+    return (
+      <UpThemeProvider theme={theme}>
+        <div>
+          <UpHeadline fontWeight={700}>
+              Démo
+              <hr />
+          </UpHeadline>
+          <UpBox flexDirection="row" alignItems="stretch" justifyContent="center" >
+            <UpBox margin="small" boxSize={{ horizontal: 'small' }}>
+              Component
+              <hr />
+              <UpList fontSize="20" sortable={true} items={this.state.items} onSortEnd={this.onSortEnd}/>
+              <UpButton
+                style={{ margin: 20 }}
+                fontSize="small"
+                iconName="add"
+                iconSize={16}
+                color={theme.colorMap.warning}
+                backgroundColor={theme.colorMap.white1}
+                borderColor={theme.colorMap.warning}
+              >
+                View Example App
+              </UpButton>
+            </UpBox> 
+            <UpBox margin="small" boxSize={{ horizontal: 'xxlarge' }}>
+              Editor
+              <hr />
+              <UpPanel title="Paramètres" type="info">
 
-        return <div className="col-md-6">
-            <Email onError={this.onError} onChange={this.test} />
-            <Phone onError={this.onError} onChange={this.test} />
-            <Number onError={this.onError} onChange={this.test} max={15}  />
-            <Integer onError={this.onError} onChange={this.test} min={5}  />
-            <Date value="" onChange={this.test} />
-            <DateTime value="" onChange={this.test} />
+              <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
+                  <UpLabel text="Date :"></UpLabel>
+                  <UpDate onChange={this.onDateChange} value={this.state.date}/>   
+               </UpBox>
+               <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
+                  <UpLabel text="Description :"></UpLabel>
+                  <UpText hasError={false} onChange={this.onTextChange} value={this.state.description}/>   
+               </UpBox>
+               <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
+                  <UpLabel text="Email :"></UpLabel>
+                  <UpInput disabled={true} type="email" placeholder="Entrez votre couriel" onChange={this.onTextChange} value={this.state.email}/>   
+               </UpBox>
+               <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
+                  <UpLabel text="Commune :"></UpLabel>
+                  <UpInput readOnly={true} width="xlarge" height="large" type="search" placeholder="Chercher votre commune"  onChange={this.onTextChange} value={this.state.search}/>   
+               </UpBox>
+               <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
+                  <UpLabel text="Nom :"></UpLabel>
+                  <UpInput width="xlarge" type="text" iconName="user" placeholder="Entrer votre nom"  onChange={this.onTextChange} value={this.state.search}/>   
+               </UpBox>
+               <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
+                  <UpLabel text="Nombre :"></UpLabel>
+                  <UpNumber width="xlarge"  placeholder="Entrer votre nombre"  onChange={this.onNumberChange} value={this.state.number}/>   
+               </UpBox>
+               <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
+                  <UpLabel text="Montant :"></UpLabel>
+                  <UpInteger width="xlarge" placeholder="Entrer votre montant"  onChange={this.onIntegerChange} value={this.state.integer}/>   
+               </UpBox>
+               <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
+                  <UpLabel text="Email :"></UpLabel>
+                  <UpEmail width="xlarge" iconName="email" placeholder="Entrer votre email"  onChange={this.onPhoneChange} value={this.state.email}/>   
+               </UpBox>
+               <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
+                  <UpLabel text="Tél :"></UpLabel>
+                  <UpPhone width="xlarge" iconName="phone" placeholder="Entrer votre numéro de tel"  onChange={this.onPhoneChange} value={this.state.phone}/>  
+               </UpBox>
+
+                <UpButton
+                style={{ margin: 20 }}
+                fontSize="small"
+                iconName="edit"
+                iconSize={16}
+                color={theme.colorMap.white1}
+                backgroundColor={theme.colorMap.primary}
+                borderColor={theme.colorMap.white1}
+              >
+                Enregistrer
+              </UpButton>
+              </UpPanel>
+
+              <UpPanel title="Paramètres" type="primary">
+                Mon message
+              </UpPanel>
+              <UpPanel title="Paramètres" type="danger">
+                Mon message
+              </UpPanel>
+              <UpPanel title="Paramètres" type="success">
+                Mon message
+              </UpPanel>
+              <UpPanel title="Paramètres" type="warning">
+                Mon message
+              </UpPanel>
+            </UpBox>
+          </UpBox>
         </div>
-
-    }
-
-
-    test = (args) => {
-        console.log("cha",args);
-    }
-
-    onError = (args) => {
-        console.log("err",args)
-    }
-    //render() {
-    //    //var schemas: { id: string, data: JsonSchema }[] = [
-
-    //    //    {
-    //    //        data: {
-
-    //    //            "title": "test",
-    //    //            "type": "object",
-    //    //            "properties": {
-    //    //                "number": { "type": "number" },
-    //    //                "integer": { "type": "integer" },
-    //    //                "boolean": { "type": "boolean" },
-    //    //                "string": { "type": "string" }
-    //    //            }
-    //    //        }
-    //    //        ,
-    //    //        id: "base"
-    //    //    }
-    //    //    ,
-    //    //    {
-    //    //        data: {
-    //    //            "title": "date",
-    //    //            "type": "object",
-    //    //            "properties": {
-    //    //                "date": { "type": "string", "format": "date" },
-    //    //                "time": { "type": "string", "format": "time" },
-    //    //                "datetime": { "type": "string", "format": "date-time" }
-    //    //            }
-    //    //        }
-    //    //        ,
-    //    //        id: "DateTime"
-    //    //    },
-    //    //    {
-    //    //        data: {
-    //    //            "title": "Required",
-    //    //            "type": "object",
-    //    //            "properties": {
-    //    //                "number": { "type": "number" }
-    //    //            },
-    //    //            "required": ["number"]
-    //    //        }
-    //    //        ,
-    //    //        id: "required"
-    //    //    },
-    //    //    {
-    //    //        data: {
-    //    //            "title": "MAX / MIN",
-    //    //            "type": "object",
-    //    //            "properties": {
-    //    //                "size": {
-    //    //                    "type": "number",
-    //    //                    "minimum": 5.0,
-    //    //                    "maximum": 10.5
-    //    //                }
-    //    //            },
-    //    //        }
-    //    //        ,
-    //    //        id: "MAX / MIN"
-    //    //    },
-
-    //    //    {
-    //    //        data: {
-    //    //            "title": "enum",
-    //    //            "type": "object",
-    //    //            "properties": {
-    //    //                "size": {
-    //    //                    "enumNames": ["choix1", "choix2", "choix3"],
-    //    //                    "enumDescriptions": ["Premier choix", "Second choix", "Troisieme choix"],
-    //    //                    "type": "integer",
-    //    //                    "format": "enum",
-    //    //                    "enum": [2, 4, 6]
-    //    //                }
-
-    //    //            },
-    //    //        }
-    //    //        ,
-    //    //        id: "enum"
-    //    //    }
-    //    //    ,
-
-    //    //    {
-    //    //        data: {
-    //    //            "title": "upload",
-    //    //            "type": "object",
-    //    //            "properties": {
-    //    //                "file":
-    //    //                {
-    //    //                    "fileExtension": ".csv",
-    //    //                    "type": ["string", "null"],
-    //    //                    "default": null,
-    //    //                    "format": "upload"
-    //    //                }
-    //    //            },
-    //    //        }
-    //    //        ,
-    //    //        id: "upload"
-    //    //    }
-
-
-
-
-
-
-
-
-
-
-
-
-    //    //];
-
-
-    //    //var onFormEror = (e) => {
-    //    //    console.log("onFormEror", e);
-    //    //}
-
-    //    //return <div>
-
-    //    //    <select className="form-control" defaultValue="" onChange={this.selectChange} required>
-
-    //    //        {
-    //    //            schemas.map((schema) => {
-    //    //                return <option key={schema.id} value={JSON.stringify(schema.data)}>{schema.id}</option>;
-    //    //            })
-    //    //        }
-
-    //    //    </select>
-
-    //    //    <textarea value={JSON.stringify(this.state.schema)} className="form-control" cols={100} rows={10} onChange={this.onSchemaChange}></textarea>
-    //    //    <hr />
-    //    //    <UpSchemaForm schema={this.state.schema} onFormEror={onFormEror} onFormPayload={this.onFormPayload}></UpSchemaForm>
-    //    //    <hr />
-    //    //    {this.state.result}
-    //    //</div>
-
-
-    //}
-
-    onSchemaChange = (e) => {
-        this.setState({ schema: JSON.parse(e.target.value) });
-    }
-
-    onFormPayload = (e) => {
-        this.setState({ result: JSON.stringify(e) });
-    }
-
-
-    selectChange = (e) => {
-        this.setState({ schema: JSON.parse(e.target.value) });
-    }
-
+      </UpThemeProvider>
+    );
+  }
+  onSortEnd(e:ChangeOrderEvent) {
+    /*this.setState({
+      items: arrayMove(this.state.items, e.oldIndex, e.newIndex),
+    });*/
+  }
+  onDateChange(newDate) {
+    this.setState({
+      date: newDate
+    });
+  }
+  onTextChange(data) {
+    this.setState({
+      description: data
+    });
+  }
+  onPhoneChange(data) {
+    this.setState({
+      phone: data
+    });
+  }
+  onEmailChange(data) {
+    this.setState({
+      email: data
+    });
+  }
+  onNumberChange(data) {
+    this.setState({
+      number: data
+    });
+  }
+  onIntegerChange(data) {
+    this.setState({
+      integer: data
+    });
+  }
 }
 
 
 
 
+
+
+
 ReactDOM.render(<Demo />, document.getElementById('root'));
-
-

@@ -7,19 +7,27 @@ import TypeNumberControl from '../Validation/TypeNumberControl';
 
 //import Validator from 'validator'
 
-export interface StyledProps extends React.HTMLProps<HTMLInputElement> {
+export interface StyledProps extends CommonProps {
     color?: string;
     backgroundColor?: string;
-    width?: WidthSize;
-    height?: HeightSize;
     borderColor?: string;
     type?: InputType;
     isNullable?: boolean;
     iconName?: string;
     hasError?: boolean;
+    onChange?: (data: any) => void;
 }
 
-export interface Props {
+export interface CommonProps {
+    disabled?: boolean;
+    placeholder?: string;
+    height?: HeightSize;
+    width?: WidthSize;
+    iconName?: string;
+    readOnly?: boolean;
+}
+
+export interface Props extends CommonProps {
     type?: InputType;
     isNullable?: boolean;
     hasError?: boolean;
@@ -31,7 +39,7 @@ export default class Input extends BaseControl<Props, any> {
     };
 
     constructor(p, c) {
-        super(p, c);        
+        super(p, c);
     }
 
     onChange(event: any) {
@@ -42,6 +50,7 @@ export default class Input extends BaseControl<Props, any> {
         return (
             <InputStyled
                 type="text"
+                onChange={this.handleChangeEvent}
             >
                 {this.props.children}
             </InputStyled>

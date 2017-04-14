@@ -2,22 +2,22 @@ import * as React from 'react'
 import styled, {css} from 'styled-components';
 import { sizeMap } from './maps';
 import { StyledProps } from './';
-//import SvgIcon from '../SvgIcon';
+import SvgIcon from '../SvgIcon';
 
 const BaseInput: React.StatelessComponent<StyledProps> = (props) => {
-    const { type, iconName, className, placeholder, disabled, readOnly, onChange } = props;
+    const { type, iconName, placeholder, disabled, readOnly, onChange } = props;
 
     var icon:any = "" ;
     if(iconName) {
       icon = <div className="up-icon">
-              {/*<SvgIcon iconName={iconName}
+              <SvgIcon iconName={iconName}
           width={20}
           height={20}
-          color={props.color} />*/}
+          color={props.color} />
           </div> ;
     }
     //return (<div className={cn(className, 'input-form-content')}>
-    return (<div className={className}>
+    return (<div /*className={className}*/>
               <div className="up-input-group">
                 <input onChange={onChange} className="up-input" type="text" placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readOnly} />
                 {icon}

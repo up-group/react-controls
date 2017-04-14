@@ -22,7 +22,7 @@ var Input = (function (_super) {
         return event.target.value;
     };
     Input.prototype.renderControl = function () {
-        return (React.createElement(styles_1.InputStyled, { type: "text" }, this.props.children));
+        return (React.createElement(styles_1.InputStyled, { type: "text", onChange: this.handleChangeEvent }, this.props.children));
     };
     return Input;
 }(BaseControl_1.BaseControl));
