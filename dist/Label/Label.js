@@ -9,46 +9,35 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 require("@blueprintjs/core/dist/blueprint.css");
-var styled_components_1 = require("styled-components");
-var WrapperControl = (_a = [""], _a.raw = [""], styled_components_1.default.div(_a));
+var styles_1 = require("./styles");
 var Label = (function (_super) {
     __extends(Label, _super);
     function Label(props) {
-        var _this = _super.call(this, props) || this;
-        _this.setInput = _this.setInput.bind(_this);
-        return _this;
+        return _super.call(this, props) || this;
     }
-    Label.prototype.setInput = function (input) {
-        this.wrappedInput = input;
-    };
     Label.prototype.componentWillUnmount = function () {
     };
     Label.prototype.componentDidMount = function () {
-        console.log(this.wrappedInput);
     };
     Label.prototype.render = function () {
-        var position = this.props.position;
-        if (position === 'right') {
-            return (React.createElement("label", { className: "pt-label" },
-                this.props.children,
-                React.createElement("span", { className: "pt-label" }, this.props.text)));
-        }
-        else {
-            return (React.createElement("label", { className: "pt-label" },
-                React.createElement("span", { className: "pt-label-text" }, this.props.text),
-                React.createElement(WrapperControl, { innerRef: this.setInput }, this.props.children)));
-        }
+        return React.createElement(styles_1.LabelStyled, __assign({}, this.props));
     };
     return Label;
 }(React.Component));
 Label.defaultProps = {
     text: '',
-    position: 'left',
     disabled: false
 };
 exports.default = Label;
-var _a;
 //# sourceMappingURL=Label.js.map

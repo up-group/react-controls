@@ -1,7 +1,8 @@
 
-export interface LabelProps {
+export interface Props {
   text:string;
-  position?:string;
+  disabled?:boolean;
+  className?: string;
 };
 
 export type Position = "left" | "right" ;

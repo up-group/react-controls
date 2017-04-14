@@ -25,11 +25,10 @@ export default class UpDateTime extends BaseControl<UpDateTimeProps, Date> {
         if (typeof this.props.value === 'string' || this.props.value instanceof String) {
             _value = this.getDate(_value) ; 
         }
-        return <UpDateStyle format={this.props.format} value={this.props.value} hasError={this.props.hasError} onChange={this.onChange}></UpDateStyle>;
+        return <UpDateStyle format={this.props.format} value={this.props.value} hasError={this.props.hasError} onChange={this.handleChangeEvent}></UpDateStyle>;
     }
-    
+
     onChange(newDate: any) {
-        this.handleChangeEvent({ value: newDate });
         return newDate;
     }
 

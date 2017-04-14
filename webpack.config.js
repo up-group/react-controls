@@ -26,7 +26,7 @@ module.exports = {
       { test: /\.svg$/, loader: 'svg-inline-loader' },
       {
           test: /\.(eot|ttf|woff|woff2)$/,
-          loader: 'file-loader?name=public/fonts/[name].[ext]'
+          loader: 'file-loader'
       }
     ]
   },

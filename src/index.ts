@@ -26,6 +26,7 @@ import UpInteger from './Integer/Integer'
 import UpPhone from './Phone/Phone'
 import UpEmail from './Email/Email'
 import UpLabel from './Label'
+import UpFormGroup from './FormGroup'
 import {ThemeProvider as UpThemeProvider} from 'styled-components'
 import UpColorMap from './theming/index'
 import {ThemeColorMap as UpThemeColorMap} from './theming/types'
@@ -59,6 +60,7 @@ export {
   UpList,
   UpPanel,
   UpLabel,
+  UpFormGroup,
   UpTooltip,
   UpThemeProvider,
   UpThemeInterface,

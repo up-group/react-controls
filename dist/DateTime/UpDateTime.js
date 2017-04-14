@@ -28,10 +28,9 @@ var UpDateTime = (function (_super) {
         if (typeof this.props.value === 'string' || this.props.value instanceof String) {
             _value = this.getDate(_value);
         }
-        return React.createElement(styles_1.default, { format: this.props.format, value: this.props.value, hasError: this.props.hasError, onChange: this.onChange });
+        return React.createElement(styles_1.default, { format: this.props.format, value: this.props.value, hasError: this.props.hasError, onChange: this.handleChangeEvent });
     };
     UpDateTime.prototype.onChange = function (newDate) {
-        this.handleChangeEvent({ value: newDate });
         return newDate;
     };
     UpDateTime.prototype.getDate = function (date) {

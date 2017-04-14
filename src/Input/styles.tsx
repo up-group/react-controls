@@ -1,5 +1,4 @@
 import * as React from 'react'
-
 import styled, {css} from 'styled-components';
 import { sizeMap } from './maps';
 import { Props } from './';
@@ -16,7 +15,7 @@ const BaseInput: React.StatelessComponent<Props> = (props) => {
           height={20}
           color={props.color} /></div> ;
     }
-    
+    //return (<div className={cn(className, 'input-form-content')}>
     return (<div className={className}>
               <div className="up-input-group">
                 <input onChange={onChange} className="up-input" type={type} placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readOnly} />

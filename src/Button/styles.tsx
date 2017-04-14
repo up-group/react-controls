@@ -57,10 +57,12 @@ cursor: not-allowed;
 const active = props => css`
 background: ${props => props.backgroundColor || 'green' };
 color: ${(props: Props) => props.color};
+border-color:${(props: Props) => props.backgroundColor};
+border-width:1px;
+border-style:solid;
 &:hover {
   background: ${props => props.color || 'green' };
   color: ${(props: Props) => props.backgroundColor};
-  border-color:${(props: Props) => props.backgroundColor};
   svg {
     fill: ${(props: Props) => props.backgroundColor}
   }

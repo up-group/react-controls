@@ -26,11 +26,10 @@ export default class UpDate extends BaseControl<UpDateProps, Date> {
             _value = this.getDate(_value) ; 
         }
         
-        return <UpDateStyle format={this.props.format} value={this.props.value} hasError={this.props.hasError} onChange={this.onChange}></UpDateStyle>;
+        return <UpDateStyle format={this.props.format} value={this.props.value} hasError={this.props.hasError} onChange={this.handleChangeEvent}></UpDateStyle>;
     }
-    
+
     onChange(newDate: any) {
-        this.handleChangeEvent({ value: newDate });
         return newDate;
     }
 
