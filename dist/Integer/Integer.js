@@ -29,14 +29,10 @@ var Integer = (function (_super) {
         return event.target.value;
     };
     Integer.prototype.renderControl = function () {
-        return (React.createElement(styles_1.InputStyled, { type: "number", iconName: this.props.iconName, style: this.props.style, borderColor: this.props.borderColor, onClick: this.props.onClick, color: this.props.color, backgroundColor: this.props.backgroundColor, width: this.props.width, height: this.props.height, hasError: this.hasError(), readOnly: this.props.readOnly, disabled: this.props.disabled, onChange: this.handleChangeEvent }, this.props.children));
+        return (React.createElement(styles_1.InputStyled, { hasError: this.hasError(), onChange: this.handleChangeEvent }));
     };
     return Integer;
 }(BaseControl_1.BaseControl));
-Integer.defaultProps = {
-    color: '#000000',
-    backgroundColor: '#ffffff',
-    borderColor: '#732419'
-};
+Integer.defaultProps = {};
 exports.default = Integer;
 //# sourceMappingURL=Integer.js.map
