@@ -28,6 +28,8 @@
     "prepublish": "rimraf dist && tsc && copyfiles -u 1 src/theming/base.css dist/",
     "setup:yarn": "yarn",
     "build": "rimraf dist && webpack",
+    "publishProd": "npm version patch && npm publish",
+    "publishBeta": "npm version patch && npm publish --tag beta",
     "publishLocalToSchemaForm": "copyfiles dist/*.* dist/**/* package.json src/*.* src/**/* src/theming/icons/* ../react-schemaform/node_modules/@up-group/up-react-controls/",
     "publishLocalToApp": "copyfiles dist/*.* dist/**/* package.json src/*.* src/**/* src/theming/icons/* ../react-app/node_modules/@up-group/up-react-controls/",
     "toApp": "npm run publishLocalToApp",
