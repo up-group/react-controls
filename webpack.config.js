@@ -5,7 +5,7 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   entry: {
     './dist/up-react-controls': ['babel-polyfill', './src/index.ts'],
-    './test/index': ['babel-polyfill', './test/index.tsx']
+    './test/dist/index': ['babel-polyfill', './test/index.tsx']
   },
   output: {
     filename: '[name].js'
