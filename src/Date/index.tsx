@@ -9,5 +9,6 @@ export interface UpDateProps extends StyledComponentProps {
   className? : string;
   value:any;
   format?:string;
+  onChange?:(e:any) => void;
   //default?: Date;
 }

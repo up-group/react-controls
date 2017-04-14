@@ -28,15 +28,12 @@ export default class UpDate extends BaseControl<UpDateProps, Date> {
         
         return <UpDateStyle format={this.props.format} value={this.props.value} hasError={this.props.hasError} onChange={this.onChange}></UpDateStyle>;
     }
+    
     onChange(newDate: any) {
-        this.dispatchOnChange({ value: newDate });
+        this.handleChangeEvent({ value: newDate });
         return newDate;
     }
-    dispatchOnChange(data : {value:any}) {
-        if (typeof (this.props.onChange) === "function") {
-            this.props.onChange(data.value);
-        }
-    }
+
     getDate(date:string) {
         // check the date with a regexp
         var dateParts = date.split("/");

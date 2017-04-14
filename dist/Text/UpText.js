@@ -1,19 +1,32 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = require("react");
-const styles_1 = require("./styles");
-class UpText extends React.Component {
-    constructor(p, c) {
-        super(p, c);
-        this.onChange = (event) => {
-            this.props.onChange(event.target.value);
+var React = require("react");
+var styles_1 = require("./styles");
+var UpText = (function (_super) {
+    __extends(UpText, _super);
+    function UpText(p, c) {
+        var _this = _super.call(this, p, c) || this;
+        _this.onChange = function (event) {
+            _this.props.onChange(event.target.value);
         };
-        this.onChange = this.onChange.bind(this);
+        _this.onChange = _this.onChange.bind(_this);
+        return _this;
     }
-    render() {
-        const { hasError, className, value } = this.props;
+    UpText.prototype.render = function () {
+        var _a = this.props, hasError = _a.hasError, className = _a.className, value = _a.value;
         return (React.createElement(styles_1.default, { onChange: this.onChange, hasError: hasError, className: className, value: value }));
-    }
-}
+    };
+    return UpText;
+}(React.Component));
 exports.default = UpText;
 //# sourceMappingURL=UpText.js.map

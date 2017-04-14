@@ -1,9 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = require("react");
-const Box_1 = require("../Box");
-const styles_1 = require("./styles");
-function LoadingIndicator({ isLoading, }) {
+var React = require("react");
+var Box_1 = require("../Box");
+var styles_1 = require("./styles");
+function LoadingIndicator(_a) {
+    var isLoading = _a.isLoading;
     if (!isLoading) {
         return null;
     }

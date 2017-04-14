@@ -47,10 +47,7 @@ export const NormalDate = styled<UpDateProps>(BaseDate)`
 
 export default class UpDateStyle extends React.Component<UpDateProps, undefined> {
     public static defaultProps: UpDateProps = {
-        //hasError: false,
-        //onChange: (value?:Date) => {},
-        //isNullable: false,
-        //value:null
+        value:"",
     };
   public render() {
     const {value, format, onChange} = this.props ;
