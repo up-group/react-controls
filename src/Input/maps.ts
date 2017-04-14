@@ -1,7 +1,9 @@
 export const sizeMap = {
-  xsmall: 10,
-  small: 12,
-  medium: 16,
-  large: 20,
-  xlarge: 24,
+  xsmall: "40px",
+  small: "100px",
+  medium: "150px",
+  large: "250px",
+  xlarge: "350px",
+  xxlarge: "500px",
+  fill: "100%",
 };

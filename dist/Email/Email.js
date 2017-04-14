@@ -11,7 +11,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var styles_1 = require("../Styled/Input/styles");
+var _1 = require("../Input/");
 var BaseControl_1 = require("../BaseControl/BaseControl");
 var TypeStringControl_1 = require("../Validation/TypeStringControl");
 var Email = (function (_super) {
@@ -27,7 +27,7 @@ var Email = (function (_super) {
         return event.target.value;
     };
     Email.prototype.renderControl = function () {
-        return (React.createElement(styles_1.TextInputComponent, { hasError: this.state.error != null, type: "text", color: this.props.color, backgroundColor: this.props.backgroundColor, fontSize: this.props.fontSize, onChange: this.handleChangeEvent }, this.props.children));
+        return (React.createElement(_1.default, { hasError: this.state.error != null, type: "text", color: this.props.color, value: this.props.value, iconName: this.props.iconName, width: this.props.width, height: this.props.height, backgroundColor: this.props.backgroundColor, onChange: this.handleChangeEvent }, this.props.children));
     };
     return Email;
 }(BaseControl_1.BaseControl));
@@ -35,7 +35,6 @@ Email.defaultProps = {
     color: '#000000',
     backgroundColor: '#ffffff',
     borderColor: '#732419',
-    fontSize: 'medium',
     hasError: false
 };
 exports.default = Email;

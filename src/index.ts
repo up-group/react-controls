@@ -30,7 +30,6 @@ import {ThemeProvider as UpThemeProvider} from 'styled-components'
 import UpColorMap from './theming/index'
 import {ThemeColorMap as UpThemeColorMap} from './theming/types'
 import {ThemeInterface as UpThemeInterface} from './theming/types'
-import BlueInput from './BlueInput'
 
 export {
   UpAnchor,

@@ -74,9 +74,9 @@ var Input = (function (_super) {
     };
     Input.prototype.renderControl = function () {
         if (this.props.type == "email") {
-            return (React.createElement(styles_1.EmailInputComponent, { type: "email", style: this.props.style, borderColor: this.props.borderColor, onClick: this.props.onClick, color: this.props.color, backgroundColor: this.props.backgroundColor, fontSize: this.props.fontSize, onChange: this.handleChangeEvent }, this.props.children));
+            return (React.createElement(styles_1.InputStyled, { type: "email", iconName: "email", style: this.props.style, borderColor: this.props.borderColor, onClick: this.props.onClick, color: this.props.color, backgroundColor: this.props.backgroundColor, width: this.props.width, height: this.props.height, readOnly: this.props.readOnly, disabled: this.props.disabled, onChange: this.handleChangeEvent }, this.props.children));
         }
-        return (React.createElement(styles_1.TextInputComponent, { type: "text", onClick: this.props.onClick, color: this.props.color, backgroundColor: this.props.backgroundColor, fontSize: this.props.fontSize, onChange: this.handleChangeEvent }, this.props.children));
+        return (React.createElement(styles_1.InputStyled, { type: "text", style: this.props.style, iconName: this.props.iconName || this.props.type, onClick: this.props.onClick, color: this.props.color, backgroundColor: this.props.backgroundColor, width: this.props.width, height: this.props.height, readOnly: this.props.readOnly, disabled: this.props.disabled, onChange: this.handleChangeEvent }, this.props.children));
     };
     return Input;
 }(BaseControl_1.BaseControl));
@@ -84,7 +84,8 @@ Input.defaultProps = {
     color: '#fefefe',
     backgroundColor: '#c05b4d',
     borderColor: '#732419',
-    fontSize: 'medium'
+    width: 'medium',
+    height: 'normal'
 };
 exports.default = Input;
 //# sourceMappingURL=index.js.map

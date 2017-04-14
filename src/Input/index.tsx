@@ -1,6 +1,6 @@
 ﻿import * as React from 'react';
-import { TextInputComponent, EmailInputComponent } from './styles';
-import { Size, InputType } from './types';
+import { InputStyled } from './styles';
+import { WidthSize, HeightSize, InputType } from './types';
 import {BaseControl} from '../BaseControl/BaseControl';
 import TypeStringControl from '../Validation/TypeStringControl';
 import TypeNumberControl from '../Validation/TypeNumberControl';
@@ -10,10 +10,13 @@ import TypeNumberControl from '../Validation/TypeNumberControl';
 export interface Props extends React.HTMLProps<HTMLInputElement> {
     color?: string;
     backgroundColor?: string;
-    fontSize?: Size;
+    width?: WidthSize;
+    height?: HeightSize;
     borderColor?: string;
     type?: InputType;
     isNullable?:boolean;
+    iconName?:string;
+    hasError?:boolean;
 }
 
 
@@ -22,7 +25,8 @@ export default class Input extends BaseControl<Props,any> {
         color: '#fefefe',
         backgroundColor: '#c05b4d',
         borderColor: '#732419',
-        fontSize: 'medium'
+        width: 'medium',
+        height: 'normal'
     };
 
     constructor(p, c) {
@@ -91,31 +95,40 @@ export default class Input extends BaseControl<Props,any> {
     renderControl() {
         if (this.props.type == "email") {
             return (
-                <EmailInputComponent
+                <InputStyled
                     type="email"
+                    iconName="email"
                     style={this.props.style}
                     borderColor={this.props.borderColor}
                     onClick={this.props.onClick}
                     color={this.props.color}
                     backgroundColor={this.props.backgroundColor}
-                    fontSize={this.props.fontSize}
+                    width={this.props.width}
+                    height={this.props.height}
+                    readOnly={this.props.readOnly}
+                    disabled={this.props.disabled}
                     onChange={this.handleChangeEvent}
                 >
                     {this.props.children}
-                </EmailInputComponent>
+                </InputStyled>
             );
         }
         return (
-            <TextInputComponent
+            <InputStyled
                 type="text"
+                style={this.props.style}
+                iconName={this.props.iconName || this.props.type}
                 onClick={this.props.onClick}
                 color={this.props.color}
                 backgroundColor={this.props.backgroundColor}
-                fontSize={this.props.fontSize}
+                width={this.props.width}
+                height={this.props.height}
+                readOnly={this.props.readOnly}
+                disabled={this.props.disabled}
                 onChange={this.handleChangeEvent}
             >
                 {this.props.children}
-            </TextInputComponent>
+            </InputStyled>
         );
     }
 }
