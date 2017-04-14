@@ -19,7 +19,7 @@ const BaseInput: React.StatelessComponent<StyledProps> = (props) => {
     //return (<div className={cn(className, 'input-form-content')}>
     return (<div /*className={className}*/>
               <div className="up-input-group">
-                <input onChange={onChange} className="up-input" type={type} placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readOnly} />
+                <input onChange={onChange} className="up-input" type="text" placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readOnly} />
                 {icon}
               </div>
             </div>);
