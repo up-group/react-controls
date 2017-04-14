@@ -5,6 +5,7 @@ var TypeNumberControl = (function () {
         this._isInteger = isInteger;
         this._minValue = minValue == null ? -Infinity : minValue;
         this._maxValue = maxValue == null ? Infinity : maxValue;
+        this.isValidValue = this.isValidValue.bind(this);
     }
     TypeNumberControl.prototype.isValidValue = function (value) {
         if (value === "" || value === null) {

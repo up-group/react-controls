@@ -1,4 +1,3 @@
-
 export default class TypeNumberControl implements ErrorControl<any> {
 
     private _isInteger: boolean;
@@ -9,6 +8,7 @@ export default class TypeNumberControl implements ErrorControl<any> {
         this._isInteger = isInteger;
         this._minValue = minValue == null ? -Infinity : minValue;
         this._maxValue = maxValue == null ? Infinity : maxValue;
+        this.isValidValue = this.isValidValue.bind(this);
     }
 
     isValidValue(value: number | string): ErrorControlType<number> {
@@ -31,6 +31,4 @@ export default class TypeNumberControl implements ErrorControl<any> {
 
         return { hasError: false, correctValue: nbValue }
     }
-
-
 }

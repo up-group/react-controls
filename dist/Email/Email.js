@@ -11,7 +11,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var _1 = require("../Input/");
+var styles_1 = require("../Input/styles");
 var BaseControl_1 = require("../BaseControl/BaseControl");
 var TypeStringControl_1 = require("../Validation/TypeStringControl");
 var Email = (function (_super) {
@@ -19,7 +19,7 @@ var Email = (function (_super) {
     function Email(p, c) {
         var _this = _super.call(this, p, c) || this;
         var pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        var patternErrorMessage = "Doit être un mail";
+        var patternErrorMessage = "Doit être un courriel";
         _this._validationManager.addControl(new TypeStringControl_1.default(pattern, patternErrorMessage));
         return _this;
     }
@@ -27,7 +27,7 @@ var Email = (function (_super) {
         return event.target.value;
     };
     Email.prototype.renderControl = function () {
-        return (React.createElement(_1.default, { hasError: this.state.error != null, type: "text", color: this.props.color, value: this.props.value, iconName: this.props.iconName, width: this.props.width, height: this.props.height, backgroundColor: this.props.backgroundColor, onChange: this.handleChangeEvent }, this.props.children));
+        return (React.createElement(styles_1.InputStyled, { type: "email", iconName: this.props.iconName, style: this.props.style, borderColor: this.props.borderColor, onClick: this.props.onClick, color: this.props.color, backgroundColor: this.props.backgroundColor, width: this.props.width, height: this.props.height, readOnly: this.props.readOnly, hasError: this.hasError(), disabled: this.props.disabled, onChange: this.handleChangeEvent }, this.props.children));
     };
     return Email;
 }(BaseControl_1.BaseControl));

@@ -1,5 +1,4 @@
 ﻿/// <reference path="./error.d.ts"/>
-
 export default class TypeStringControl implements ErrorControl<any> {
 
     private _pattern: RegExp;
@@ -8,9 +7,8 @@ export default class TypeStringControl implements ErrorControl<any> {
     constructor(patern: RegExp, patternErrorMessage :string) {
         this._pattern = patern;
         this._patternErrorMessage = patternErrorMessage;
+        this.isValidValue = this.isValidValue.bind(this);
     }
-
-
 
     isValidValue(value: string): ErrorControlType<string> {
 
@@ -27,5 +25,4 @@ export default class TypeStringControl implements ErrorControl<any> {
         }
         return { hasError: false, correctValue: value }
     }
-
 }

@@ -1,5 +1,6 @@
 ﻿import * as React from 'react';
-import Input, {Props as StyleProps} from '../Input/';
+import {Props as StyleProps} from '../Input/';
+import {InputStyled} from '../Input/styles';
 
 import { BaseControl } from '../BaseControl/BaseControl';
 import TypeStringControl from '../Validation/TypeStringControl';
@@ -29,7 +30,7 @@ export default class Email extends BaseControl<Props, string> {
         super(p, c);
 
         var pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        var patternErrorMessage = "Doit être un mail";
+        var patternErrorMessage = "Doit être un courriel";
 
         this._validationManager.addControl(new TypeStringControl(pattern, patternErrorMessage));
     }
@@ -40,19 +41,22 @@ export default class Email extends BaseControl<Props, string> {
 
     renderControl() {
         return (
-            <Input
-                hasError={this.state.error != null}
-                type="text"
-                color={this.props.color}
-                value={this.props.value}
+            <InputStyled
+                type="email"
                 iconName={this.props.iconName}
+                style={this.props.style}
+                borderColor={this.props.borderColor}
+                onClick={this.props.onClick}
+                color={this.props.color}
+                backgroundColor={this.props.backgroundColor}
                 width={this.props.width}
                 height={this.props.height}
-                backgroundColor={this.props.backgroundColor}
-                onChange={this.handleChangeEvent}
-            >
-                {this.props.children}
-            </Input>
+                readOnly={this.props.readOnly}
+                hasError={this.hasError()}
+                disabled={this.props.disabled}
+                onChange={this.handleChangeEvent}>
+                    {this.props.children}
+            </InputStyled>
         );
     }
 }

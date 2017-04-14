@@ -14,7 +14,6 @@ var React = require("react");
 var styles_1 = require("./styles");
 var BaseControl_1 = require("../BaseControl/BaseControl");
 var TypeStringControl_1 = require("../Validation/TypeStringControl");
-var TypeNumberControl_1 = require("../Validation/TypeNumberControl");
 var Input = (function (_super) {
     __extends(Input, _super);
     function Input(p, c) {
@@ -24,48 +23,7 @@ var Input = (function (_super) {
         if (_this.props.pattern != null) {
             pattern = new RegExp(_this.props.pattern);
             patternErrorMessage = "test";
-        }
-        else {
-            switch (_this.props.type) {
-                case "email":
-                    pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                    patternErrorMessage = "Doit être un mail";
-                    break;
-                case "number":
-                    pattern = /^[0-9]*(|\.[0-9]*)*$/;
-                    patternErrorMessage = "Doit être un nombre";
-                    break;
-                case "integer":
-                    pattern = /^[0-9]*$/;
-                    patternErrorMessage = "Doit être un nombre entier";
-                    break;
-                case "phone":
-                    pattern = /^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/;
-                    patternErrorMessage = "Doit être un téléphone";
-                    break;
-                default:
-            }
-        }
-        _this._validationManager.addControl(new TypeStringControl_1.default(pattern, patternErrorMessage));
-        if (_this.props.type == "number" || _this.props.type == "integer") {
-            var min, max = null;
-            if (_this.props.min != null) {
-                if (typeof (_this.props.min) === "number") {
-                    min = _this.props.min;
-                }
-                else {
-                    min = parseFloat(_this.props.min);
-                }
-            }
-            if (_this.props.max != null) {
-                if (typeof (_this.props.max) === "number") {
-                    max = _this.props.max;
-                }
-                else {
-                    max = parseFloat(_this.props.max);
-                }
-            }
-            _this._validationManager.addControl(new TypeNumberControl_1.default(_this.props.type == "integer", min, max));
+            _this._validationManager.addControl(new TypeStringControl_1.default(pattern, patternErrorMessage));
         }
         return _this;
     }

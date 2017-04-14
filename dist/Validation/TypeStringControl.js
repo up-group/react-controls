@@ -4,6 +4,7 @@ var TypeStringControl = (function () {
     function TypeStringControl(patern, patternErrorMessage) {
         this._pattern = patern;
         this._patternErrorMessage = patternErrorMessage;
+        this.isValidValue = this.isValidValue.bind(this);
     }
     TypeStringControl.prototype.isValidValue = function (value) {
         if (this._pattern && value) {

@@ -17,7 +17,6 @@ export interface BaseState<_BaseType> {
 
 export abstract class BaseControl<_Props, _BaseType> extends React.Component<BaseProp<_BaseType> & _Props, BaseState<_BaseType>> {
 
-
     _validationManager: ValidationManager;
 
     constructor(props?, context?) {
@@ -42,6 +41,10 @@ export abstract class BaseControl<_Props, _BaseType> extends React.Component<Bas
         } else {
             this.setState({ error: null }, this.dispatchOnError);
         }
+    }
+    
+    public hasError() : boolean {
+        return this.state.error != null;
     }
 
     public render() {

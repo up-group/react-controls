@@ -11,7 +11,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var _1 = require("../Input/");
+var styles_1 = require("../Input/styles");
 var BaseControl_1 = require("../BaseControl/BaseControl");
 var TypeStringControl_1 = require("../Validation/TypeStringControl");
 var Phone = (function (_super) {
@@ -19,7 +19,7 @@ var Phone = (function (_super) {
     function Phone(p, c) {
         var _this = _super.call(this, p, c) || this;
         var pattern = /^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/;
-        var patternErrorMessage = "Doit être un téléphone";
+        var patternErrorMessage = "Doit être un numéro de téléphone";
         _this._validationManager.addControl(new TypeStringControl_1.default(pattern, patternErrorMessage));
         return _this;
     }
@@ -27,7 +27,7 @@ var Phone = (function (_super) {
         return event.target.value;
     };
     Phone.prototype.renderControl = function () {
-        return (React.createElement(_1.default, { hasError: this.state.error != null, type: "text", color: this.props.color, value: this.props.value, iconName: this.props.iconName, width: this.props.width, height: this.props.height, backgroundColor: this.props.backgroundColor, onChange: this.handleChangeEvent }, this.props.children));
+        return (React.createElement(styles_1.InputStyled, { type: "text", iconName: this.props.iconName, style: this.props.style, borderColor: this.props.borderColor, onClick: this.props.onClick, color: this.props.color, backgroundColor: this.props.backgroundColor, width: this.props.width, hasError: this.hasError(), height: this.props.height, readOnly: this.props.readOnly, disabled: this.props.disabled, onChange: this.handleChangeEvent }, this.props.children));
     };
     return Phone;
 }(BaseControl_1.BaseControl));

@@ -11,7 +11,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var _1 = require("../Input/");
+var styles_1 = require("../Input/styles");
 var BaseControl_1 = require("../BaseControl/BaseControl");
 var TypeStringControl_1 = require("../Validation/TypeStringControl");
 var TypeNumberControl_1 = require("../Validation/TypeNumberControl");
@@ -29,7 +29,7 @@ var Number = (function (_super) {
         return event.target.value;
     };
     Number.prototype.renderControl = function () {
-        return (React.createElement(_1.default, { hasError: this.state.error != null, type: "number", color: this.props.color, value: this.props.value, iconName: this.props.iconName, width: this.props.width, height: this.props.height, backgroundColor: this.props.backgroundColor, onChange: this.handleChangeEvent }, this.props.children));
+        return (React.createElement(styles_1.InputStyled, { type: "number", iconName: this.props.iconName, style: this.props.style, borderColor: this.props.borderColor, onClick: this.props.onClick, color: this.props.color, backgroundColor: this.props.backgroundColor, width: this.props.width, height: this.props.height, hasError: this.hasError(), readOnly: this.props.readOnly, disabled: this.props.disabled, onChange: this.handleChangeEvent }, this.props.children));
     };
     return Number;
 }(BaseControl_1.BaseControl));

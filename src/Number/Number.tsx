@@ -1,5 +1,6 @@
 ﻿import * as React from 'react';
-import Input, {Props as StyleProps} from '../Input/';
+import {Props as StyleProps} from '../Input/';
+import {InputStyled} from '../Input/styles';
 
 import { BaseControl } from '../BaseControl/BaseControl';
 import TypeStringControl from '../Validation/TypeStringControl';
@@ -45,19 +46,22 @@ onChange(event: any) {
 
 renderControl() {
     return (
-        <Input
-            hasError={this.state.error != null}
+        <InputStyled
             type="number"
-            color={this.props.color}
-            value={this.props.value}
             iconName={this.props.iconName}
+            style={this.props.style}
+            borderColor={this.props.borderColor}
+            onClick={this.props.onClick}
+            color={this.props.color}
+            backgroundColor={this.props.backgroundColor}
             width={this.props.width}
             height={this.props.height}
-            backgroundColor={this.props.backgroundColor}
-            onChange={this.handleChangeEvent}
-        >
-            {this.props.children}
-        </Input>
+            hasError={this.hasError()}
+            readOnly={this.props.readOnly}
+            disabled={this.props.disabled}
+            onChange={this.handleChangeEvent}>
+                {this.props.children}
+        </InputStyled>
     );
 }
 }

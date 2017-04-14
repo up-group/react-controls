@@ -6,7 +6,7 @@ import { Props } from './';
 import SvgIcon from '../SvgIcon';
 
 const BaseInput: React.StatelessComponent<Props> = (props) => {
-    const { type, iconName, className, placeholder, disabled, readOnly } = props;
+    const { type, iconName, className, placeholder, disabled, readOnly, onChange } = props;
 
     var icon:any = "" ;
     if(iconName) {
@@ -19,7 +19,7 @@ const BaseInput: React.StatelessComponent<Props> = (props) => {
     
     return (<div className={className}>
               <div className="up-input-group">
-                <input className="up-input" type={type} placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readOnly} />
+                <input onChange={onChange} className="up-input" type={type} placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readOnly} />
                 {icon}
               </div>
             </div>);
@@ -313,8 +313,17 @@ const HeightLarge = css`
   padding: 0 15px; 
 `
 
+const error = css`
+.up-input {
+  border-color:${(props) => props.theme.error};
+  border-width: 1px;
+  border-style: solid;
+}
+`
+
 export const InputStyled = styled<Props>(BaseInput)`
   ${inputStyles}
+  ${(props) => props.hasError ? error:css``}
   color: ${(props: Props) => props.color};
   .up-input {
     width: ${(props: Props) => sizeMap[props.width]};

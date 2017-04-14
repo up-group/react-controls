@@ -46,6 +46,9 @@ var BaseControl = (function (_super) {
         _this._validationManager = new ValidationManager_1.default();
         return _this;
     }
+    BaseControl.prototype.hasError = function () {
+        return this.state.error != null;
+    };
     BaseControl.prototype.render = function () {
         return React.createElement(ErrorDisplay_1.default, { error: this.state.error }, this.renderControl());
     };
