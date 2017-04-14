@@ -10,10 +10,10 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var $ = require("jquery");
 require("normalize.css/normalize.css");
 var React = require("react");
 var BaseControl_1 = require("../BaseControl/BaseControl");
+var styles_1 = require("./styles");
 var UpDate = (function (_super) {
     __extends(UpDate, _super);
     function UpDate(p, c) {
@@ -21,26 +21,28 @@ var UpDate = (function (_super) {
         _this.componentDidMount = function () {
         };
         _this.onChange = _this.onChange.bind(_this);
-        _this.setInput = _this.setInput.bind(_this);
         return _this;
     }
-    UpDate.prototype.setInput = function (input) {
-        this.inputElementGroup = input;
-    };
-    UpDate.prototype.setData = function (data) {
-        $(this.inputElementGroup).data("DateTimePicker").date(data);
-    };
     UpDate.prototype.renderControl = function () {
-        return React.createElement("span", null);
-    };
-    UpDate.prototype.onChange = function (event) {
-        var data = null;
-        if (typeof (event.date) === "object" && event.date && typeof (event.date.toDate) === "function") {
-            data = event.date.startOf('day').toDate();
+        var _value = this.props.value;
+        if (typeof this.props.value === 'string' || this.props.value instanceof String) {
+            _value = this.getDate(_value);
         }
-        return data;
+        return React.createElement(styles_1.default, { format: this.props.format, value: this.props.value, hasError: this.props.hasError, onChange: this.onChange });
+    };
+    UpDate.prototype.onChange = function (newDate) {
+        this.handleChangeEvent({ value: newDate });
+        return newDate;
+    };
+    UpDate.prototype.getDate = function (date) {
+        var dateParts = date.split("/");
+        return new Date(parseInt(dateParts[2]), parseInt(dateParts[1]) - 1, parseInt(dateParts[0]));
     };
     return UpDate;
 }(BaseControl_1.BaseControl));
+UpDate.defaultProps = {
+    format: "DD/MM/YYYY",
+    value: ""
+};
 exports.default = UpDate;
 //# sourceMappingURL=UpDate.js.map

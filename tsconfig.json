@@ -4,7 +4,6 @@
     "sourceMap": true,
     "removeComments": true,
     "module": "commonjs",
-    "removeComments": true,
     "outDir": "dist/",
     "jsx": "react",
     "allowJs": true

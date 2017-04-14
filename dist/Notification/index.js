@@ -11,11 +11,11 @@ var __rest = (this && this.__rest) || function (s, e) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var styles_1 = require("./styles");
-var _1 = require("../");
+var Paragraph_1 = require("../Paragraph");
 function Notification(_a) {
     var message = _a.message, status = _a.status, rest = __rest(_a, ["message", "status"]);
-    return (React.createElement(styles_1.default, { boxSize: { horizontal: 'medium' }, pad: "small", alignItems: "center", selectable: true },
-        React.createElement(_1.Paragraph, { paragraphSize: "large", color: "white" }, message)));
+    return (React.createElement(styles_1.default, { message: "", boxSize: { horizontal: 'medium' }, pad: "small", alignItems: "center", selectable: true },
+        React.createElement(Paragraph_1.default, { paragraphSize: "large", color: "white" }, message)));
 }
 exports.default = Notification;
 ;

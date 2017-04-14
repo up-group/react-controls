@@ -1,54 +1,42 @@
-﻿import * as $ from "jquery"
 import "normalize.css/normalize.css"
-//import "@blueprintjs/core/dist/blueprint.css"
-//import "@blueprintjs/datetime/dist/blueprint-datetime.css"
+
 import * as React from "react"
-//import UpDateStyle from './styles'
 import { UpDateProps } from './'
 import { BaseControl } from '../BaseControl/BaseControl'
-//import {DatePicker} from '@blueprintjs/datetime'
+import UpDateStyle from './styles'
 
 export default class UpDate extends BaseControl<UpDateProps, Date> {
 
-    private inputElementGroup: any;
+    public static defaultProps: UpDateProps = {
+        format:"DD/MM/YYYY",
+        value:""
+    };
+
     constructor(p, c) {
         super(p, c);
         this.onChange = this.onChange.bind(this) ;
-        this.setInput = this.setInput.bind(this) ;
-    }
-
-    setInput(input) {
-        this.inputElementGroup = input ;
-    }
-
-    setData(data) {
-        $(this.inputElementGroup).data("DateTimePicker").date(data);
     }
 
     componentDidMount = () => {
-        // $(this.inputElementGroup).datetimepicker({ locale: 'fr', format: "DD/MM/YYYY" });
-        // $(this.inputElementGroup).on("dp.change", this.onChange.bind(this));
     }
 
     renderControl() {
-        return <span/>
-        //return <DatePicker onChange={this.onChange} />
-        //return <UpDateStyle value={this.props.value} hasError={this.props.hasError} innerRef={this.setInput} onChange={this.onChange}></UpDateStyle>;
-        /*return <div className="input-group" style={{ marginBottom: "3px" }} ref={(input) => { this.inputElementGroup = input; }}>
-            <input type='text' className="form-control" />
-            <span className="input-group-addon">
-                <span className="glyphicon glyphicon-calendar"></span>
-            </span>
-        </div >*/
-    }
-
-    onChange(event: any) {
-        var data = null;
-        if (typeof (event.date) === "object" && event.date && typeof (event.date.toDate) === "function") {
-            data = event.date.startOf('day').toDate()
+        var _value = this.props.value ;
+        if (typeof this.props.value === 'string' || this.props.value instanceof String) {
+            _value = this.getDate(_value) ; 
         }
-        return data;
+        
+        return <UpDateStyle format={this.props.format} value={this.props.value} hasError={this.props.hasError} onChange={this.onChange}></UpDateStyle>;
+    }
+    
+    onChange(newDate: any) {
+        this.handleChangeEvent({ value: newDate });
+        return newDate;
     }
 
-   
+    getDate(date:string) {
+        // check the date with a regexp
+        var dateParts = date.split("/");
+        return new Date(parseInt(dateParts[2]), parseInt(dateParts[1]) - 1, parseInt(dateParts[0])); // month is 0-based
+    }
 }

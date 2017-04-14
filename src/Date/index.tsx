@@ -6,6 +6,9 @@ export default UpDate
 export interface UpDateProps extends StyledComponentProps {
   hasError?: boolean;
   isNullable?: boolean;
+  className? : string;
+  value:any;
+  format?:string;
+  onChange?:(e:any) => void;
   //default?: Date;
-  //className? : string;
 }

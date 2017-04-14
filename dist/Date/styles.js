@@ -11,21 +11,53 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
-var styles_1 = require("../Input/styles");
+var styled_components_1 = require("styled-components");
+var datetime_1 = require("@blueprintjs/datetime");
+var UpLocaleUtils = (function () {
+    function UpLocaleUtils() {
+    }
+    UpLocaleUtils.prototype.formatDay = function (day, locale) {
+        return "jour";
+    };
+    UpLocaleUtils.prototype.formatMonthTitle = function (month, locale) {
+        return "";
+    };
+    UpLocaleUtils.prototype.formatWeekdayShort = function (weekday, locale) {
+        return "";
+    };
+    UpLocaleUtils.prototype.formatWeekdayLong = function (weekday, locale) {
+        return "";
+    };
+    UpLocaleUtils.prototype.getFirstDayOfWeek = function (locale) {
+        return 1;
+    };
+    UpLocaleUtils.prototype.getMonths = function () {
+        return ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
+            "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+    };
+    return UpLocaleUtils;
+}());
+var locale = new UpLocaleUtils();
+var BaseDate = function (props) {
+    var value = props.value, className = props.className, format = props.format, onChange = props.onChange;
+    var picker = (React.createElement("span", { className: "pt-icon pt-icon-calendar" }));
+    return (React.createElement(datetime_1.DateInput, { className: className, locale: "fr", invalidDateMessage: "", localeUtils: locale, rightElement: picker, value: value, onChange: onChange, format: format }));
+};
+exports.NormalDate = (_a = ["\n"], _a.raw = ["\n"], styled_components_1.default(BaseDate)(_a));
 var UpDateStyle = (function (_super) {
     __extends(UpDateStyle, _super);
     function UpDateStyle() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     UpDateStyle.prototype.render = function () {
-        var innerRef = this.props.innerRef;
-        return (React.createElement("div", { style: { position: "relative", marginBottom: "3px" } },
-            React.createElement(styles_1.TextInputComponent, { innerRef: innerRef }),
-            React.createElement("span", { className: "input-group-addon" },
-                React.createElement("span", { className: "glyphicon glyphicon-calendar" }))));
+        var _a = this.props, value = _a.value, format = _a.format, onChange = _a.onChange;
+        return (React.createElement(exports.NormalDate, { value: value, format: format, onChange: onChange }));
     };
     return UpDateStyle;
 }(React.Component));
-UpDateStyle.defaultProps = {};
+UpDateStyle.defaultProps = {
+    value: "",
+};
 exports.default = UpDateStyle;
+var _a;
 //# sourceMappingURL=styles.js.map

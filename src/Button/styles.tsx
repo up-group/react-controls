@@ -60,6 +60,7 @@ color: ${(props: Props) => props.color};
 &:hover {
   background: ${props => props.color || 'green' };
   color: ${(props: Props) => props.backgroundColor};
+  border-color:${(props: Props) => props.backgroundColor};
   svg {
     fill: ${(props: Props) => props.backgroundColor}
   }

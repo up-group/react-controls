@@ -1,7 +1,7 @@
 import * as React from "react";
 import ValidationManager from "../Validation/ValidationManager"
 import ErrorDisplay from "../Validation/ErrorDisplay"
-
+import "../theming/base.css"
 
 
 export interface BaseProp<_BaseType> {

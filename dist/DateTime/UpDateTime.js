@@ -10,35 +10,39 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var $ = require("jquery");
-require("eonasdan-bootstrap-datetimepicker");
+require("normalize.css/normalize.css");
 var React = require("react");
 var BaseControl_1 = require("../BaseControl/BaseControl");
+var styles_1 = require("./styles");
 var UpDateTime = (function (_super) {
     __extends(UpDateTime, _super);
     function UpDateTime(p, c) {
         var _this = _super.call(this, p, c) || this;
         _this.componentDidMount = function () {
-            $(_this.inputElementGroup).datetimepicker({ locale: 'fr', format: "DD/MM/YYYY HH:mm" });
-            $(_this.inputElementGroup).on("dp.change", _this.onChange.bind(_this));
         };
+        _this.onChange = _this.onChange.bind(_this);
         return _this;
     }
     UpDateTime.prototype.renderControl = function () {
-        var _this = this;
-        return React.createElement("div", { className: "input-group", style: { marginBottom: "3px" }, ref: function (input) { _this.inputElementGroup = input; } },
-            React.createElement("input", { type: 'text', className: "form-control" }),
-            React.createElement("span", { className: "input-group-addon" },
-                React.createElement("span", { className: "glyphicon glyphicon-calendar" })));
-    };
-    UpDateTime.prototype.onChange = function (event) {
-        var data = null;
-        if (typeof (event.date) === "object" && event.date && typeof (event.date.toDate) === "function") {
-            data = event.date.toDate();
+        var _value = this.props.value;
+        if (typeof this.props.value === 'string' || this.props.value instanceof String) {
+            _value = this.getDate(_value);
         }
-        return data;
+        return React.createElement(styles_1.default, { format: this.props.format, value: this.props.value, hasError: this.props.hasError, onChange: this.onChange });
+    };
+    UpDateTime.prototype.onChange = function (newDate) {
+        this.handleChangeEvent({ value: newDate });
+        return newDate;
+    };
+    UpDateTime.prototype.getDate = function (date) {
+        var dateParts = date.split("/");
+        return new Date(parseInt(dateParts[2]), parseInt(dateParts[1]) - 1, parseInt(dateParts[0]));
     };
     return UpDateTime;
 }(BaseControl_1.BaseControl));
+UpDateTime.defaultProps = {
+    format: "DD/MM/YYYY",
+    value: ""
+};
 exports.default = UpDateTime;
 //# sourceMappingURL=UpDateTime.js.map

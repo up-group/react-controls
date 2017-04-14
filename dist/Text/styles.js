@@ -26,13 +26,13 @@ var __rest = (this && this.__rest) || function (s, e) {
             t[p[i]] = s[p[i]];
     return t;
 };
-var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = require("react");
 var styled_components_1 = require("styled-components");
-var BaseDateComponent = function (props) {
-    var className = props.className;
-    return React.createElement("textarea", { type: "text", className: className, onChange: _this.onChange });
+var react_textarea_autosize_1 = require("react-textarea-autosize");
+var BaseTextArea = function (props) {
+    var className = props.className, value = props.value, onChange = props.onChange;
+    return React.createElement(react_textarea_autosize_1.default, { value: value, className: className, onChange: onChange });
 };
 var base = function (props) {
     return (_a = ["\n"], _a.raw = ["\n"], styled_components_1.css(_a));
@@ -42,7 +42,7 @@ var error = function (props) {
     return (_a = ["\n  border : 1px solid red;\n"], _a.raw = ["\n  border : 1px solid red;\n"], styled_components_1.css(_a));
     var _a;
 };
-exports.BaseTextStyle = (_a = ["\n", "\n", "\n"], _a.raw = ["\n", "\n", "\n"], styled_components_1.default(BaseDateComponent)(_a, function (props) { return base(props); }, function (props) {
+exports.BaseTextStyle = (_a = ["\n", "\n", "\n"], _a.raw = ["\n", "\n", "\n"], styled_components_1.default(BaseTextArea)(_a, function (props) { return base(props); }, function (props) {
     return props.hasError ? error(props) : (_a = [""], _a.raw = [""], styled_components_1.css(_a));
     var _a;
 }));
@@ -61,7 +61,8 @@ var TextStyle = (function (_super) {
 }(React.Component));
 TextStyle.defaultProps = {
     hasError: false,
-    onChange: function (event) { }
+    onChange: function (event) { },
+    value: ""
 };
 exports.default = TextStyle;
 var _a;

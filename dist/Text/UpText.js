@@ -19,10 +19,12 @@ var UpText = (function (_super) {
         _this.onChange = function (event) {
             _this.props.onChange(event.target.value);
         };
+        _this.onChange = _this.onChange.bind(_this);
         return _this;
     }
     UpText.prototype.render = function () {
-        return (React.createElement(styles_1.default, { hasError: this.props.hasError, className: this.props.className, onChange: this.onChange }));
+        var _a = this.props, hasError = _a.hasError, className = _a.className, value = _a.value;
+        return (React.createElement(styles_1.default, { onChange: this.onChange, hasError: hasError, className: className, value: value }));
     };
     return UpText;
 }(React.Component));
