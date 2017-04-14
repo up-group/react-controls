@@ -19,7 +19,6 @@ module.exports = {
   module: {
     rules: [
       { test: /\.tsx?|.ts?$/, loader: 'ts-loader' },
-      { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel-loader'], include: path.join(__dirname, 'src') },
       { test: /\.css$/, loader: 'style-loader!css-loader?url=false' },
       { test: /\.json$/, loader: 'json-loader' },
       { test: /\.md$/, loader: 'html!markdown-loader' },
