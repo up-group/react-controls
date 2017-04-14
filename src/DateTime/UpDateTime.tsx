@@ -5,7 +5,7 @@ import { UpDateTimeProps } from './'
 import { BaseControl } from '../BaseControl/BaseControl'
 import UpDateStyle from './styles'
 
-export default class UpDate extends BaseControl<UpDateTimeProps, Date> {
+export default class UpDateTime extends BaseControl<UpDateTimeProps, Date> {
 
     public static defaultProps: UpDateTimeProps = {
         format:"DD/MM/YYYY",
@@ -25,7 +25,6 @@ export default class UpDate extends BaseControl<UpDateTimeProps, Date> {
         if (typeof this.props.value === 'string' || this.props.value instanceof String) {
             _value = this.getDate(_value) ; 
         }
-        
         return <UpDateStyle format={this.props.format} value={this.props.value} hasError={this.props.hasError} onChange={this.onChange}></UpDateStyle>;
     }
     onChange(newDate: any) {

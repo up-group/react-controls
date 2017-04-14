@@ -21,12 +21,16 @@ import UpDraft from './Draft'
 import UpList from './List'
 import UpTooltip from './List'
 import UpPanel from './Panel'
+import UpNumber from './Number/Number'
+import UpInteger from './Integer/Integer'
+import UpPhone from './Phone/Phone'
+import UpEmail from './Email/Email'
 import UpLabel from './Label'
-import BlueInput from './BlueInput'
 import {ThemeProvider as UpThemeProvider} from 'styled-components'
 import UpColorMap from './theming/index'
 import {ThemeColorMap as UpThemeColorMap} from './theming/types'
 import {ThemeInterface as UpThemeInterface} from './theming/types'
+import BlueInput from './BlueInput'
 
 export {
   UpAnchor,
@@ -48,6 +52,10 @@ export {
   UpSwitch,
   UpTimePicker,
   UpText,
+  UpNumber,
+  UpEmail,
+  UpPhone,
+  UpInteger,
   UpDraft,
   UpList,
   UpPanel,
@@ -57,5 +65,4 @@ export {
   UpThemeInterface,
   UpThemeColorMap,
   UpColorMap,
-  BlueInput
 };
