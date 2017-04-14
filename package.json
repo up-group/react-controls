@@ -64,6 +64,7 @@
     "@types/moment": "^2.13.0",
     "@types/pure-render-decorator": "^0.2.27",
     "@types/select2": "^4.0.34",
+    "babel-polyfill": "^6.23.0",
     "classnames": "^2.2.5",
     "draft-js": "^0.10.0",
     "eonasdan-bootstrap-datetimepicker": "^4.17.47",
