@@ -1,10 +1,6 @@
 ﻿import * as React from 'react';
-import { InputStyled } from '../Input/styles';
-
-
-import { WidthSize, HeightSize, InputType } from '../Input/types';
-import { CommonProps } from '../Input/index';
 import { BaseControl } from "../../../Common/BaseControl/BaseControl";
+import { InputStyled, CommonProps } from "./../_Styled/Input/BaseInput"
 import TypeNumberControl from "../../../Common/Validation/TypeNumberControl";
 import TypeStringControl from "../../../Common/Validation/TypeStringControl";
 
@@ -34,12 +30,6 @@ export default class Number extends BaseControl<Props, number> {
     }
 
     renderControl() {
-        return (
-            <InputStyled
-                hasError={this.hasError()}
-                onChange={this.handleChangeEvent}
-            >
-            </InputStyled>
-        );
+        return <InputStyled hasError={this.hasError()} onChange={this.handleChangeEvent} />
     }
 }

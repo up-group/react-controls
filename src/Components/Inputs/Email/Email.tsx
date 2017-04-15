@@ -1,14 +1,10 @@
 ﻿import * as React from 'react';
-import {Props as StyleProps} from '../Input/index';
-import {InputStyled} from '../Input/styles';
-
-
-import { WidthSize, HeightSize, InputType } from '../Input/types';
-import { CommonProps } from '../Input/index';
 import { BaseControl } from "../../../Common/BaseControl/BaseControl";
 import TypeStringControl from "../../../Common/Validation/TypeStringControl";
+import { InputStyled, CommonProps} from "./../_Styled/Input/BaseInput"
 
-export interface Props extends CommonProps  {
+
+export interface Props extends CommonProps {
     isNullable?: boolean;
 }
 
@@ -30,13 +26,6 @@ export default class Email extends BaseControl<Props, string> {
     }
 
     renderControl() {
-        return (
-            <InputStyled            
-                {...this.props}
-                hasError={this.hasError()}
-                onChange={this.handleChangeEvent}
-            >
-            </InputStyled>
-        );
+        return <InputStyled hasError={this.hasError()} onChange={this.handleChangeEvent} iconName="email" />
     }
 }

@@ -1,13 +1,8 @@
 ﻿import * as React from 'react';
-import {Props as StyleProps} from '../Input/';
-import {InputStyled} from '../Input/styles';
-
-
-import { WidthSize, HeightSize, InputType } from '../Input/types';
-import { CommonProps } from '../Input/index';
 import { BaseControl } from "../../../Common/BaseControl/BaseControl";
-import TypeStringControl from "../../../Common/Validation/TypeStringControl";
+import { InputStyled, CommonProps } from "./../_Styled/Input/BaseInput"
 import TypeNumberControl from "../../../Common/Validation/TypeNumberControl";
+import TypeStringControl from "../../../Common/Validation/TypeStringControl";
 
 export interface Props extends CommonProps{
     max?: number,
@@ -35,12 +30,6 @@ export default class Integer extends BaseControl<Props, number> {
     }
 
     renderControl() {
-        return (
-            <InputStyled
-                hasError={this.hasError()}
-                onChange={this.handleChangeEvent}
-            >
-            </InputStyled>
-        );
+        return <InputStyled hasError={this.hasError()} onChange={this.handleChangeEvent} />
     }
 }
