@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {PanelType} from './types' 
-import {PanelStyled} from './styles'
-
+import {PanelStyled} from './styles'  
+import { iconName } from "../../Display/SvgIcon/types";
 
 // This is so that the onClick handler is accepted without type interferance
 export interface Props extends React.HTMLProps<HTMLDivElement & Panel> {
@@ -10,7 +10,7 @@ export interface Props extends React.HTMLProps<HTMLDivElement & Panel> {
   dismissable?:boolean;
   type?:PanelType;
   message?:string;
-  iconName?:string;
+  iconName?: iconName;
   iconSize?:number;
 }
 
