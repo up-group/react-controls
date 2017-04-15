@@ -1,19 +1,29 @@
 import * as React from "react"
-import {UpTextProps} from "./types"
-import TextStyle from "./styles"
+import { BaseControl } from "../../../Common/BaseControl/BaseControl";
+import { InputStyled, CommonProps } from "./../_Styled/Input/BaseInput"
+import { TexAreatStyled } from "../_Styled/Textarea/styles";
 
-export default class UpText extends React.Component<UpTextProps, {}> {
+export interface UpTextProps {
+    multiline?:boolean;
+    defaultValue?: string;
+    value: string;
+}
+
+export default class UpText extends BaseControl<UpTextProps, {}> {
+    
     constructor(p, c) {
         super(p, c);
         this.onChange = this.onChange.bind(this) ;
     }
-
-    render() {
-        const {hasError, className, value} = this.props ;
-        return (<TextStyle onChange={this.onChange} hasError={hasError} className={className} value={value}></TextStyle>)
+    
+    renderControl(): JSX.Element {
+        if(this.props.multiline === true){
+            return (<TexAreatStyled hasError={this.hasError()} onChange={this.handleChangeEvent}  />)
+        }
+        return <InputStyled hasError={this.hasError()} onChange={this.handleChangeEvent}/>
     }
 
-    onChange = (event) => {
-        this.props.onChange(event.target.value);
+    onChange(event: any) {
+        return event.target.value;
     }
 }
