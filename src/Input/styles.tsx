@@ -321,10 +321,6 @@ const error = css`
 }
 `
 
-
-
-
-
 export const InputStyled = styled<StyledProps>(BaseInput)`
   ${inputStyles}
   ${(props) => props.hasError ? error:css``}
