@@ -1,36 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const styled_components_1 = require("styled-components");
-const globalCss = styled_components_1.injectGlobal `
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    overflow: scroll;
-    overflow-x: hidden;
-    padding: 0;
-    margin: 0;
-    font-family: Hind,sans-serif;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #0a0a0a;
-    background: #fff;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  html {
-    font-size: 100%;
-    box-sizing: border-box;
-    overflow-x: hidden;
-  }
-
-  a {
-    text-decoration: none;
-    line-height: inherit;
-    cursor: pointer;
-  }
-`;
+var styled_components_1 = require("styled-components");
+var globalCss = (_a = ["\n  * {\n    box-sizing: border-box;\n  }\n\n  body {\n    overflow: scroll;\n    overflow-x: hidden;\n    padding: 0;\n    margin: 0;\n    font-family: Hind,sans-serif;\n    font-weight: 400;\n    line-height: 1.5;\n    color: #0a0a0a;\n    background: #fff;\n    -webkit-font-smoothing: antialiased;\n    -moz-osx-font-smoothing: grayscale;\n  }\n\n  html {\n    font-size: 100%;\n    box-sizing: border-box;\n    overflow-x: hidden;\n  }\n\n  a {\n    text-decoration: none;\n    line-height: inherit;\n    cursor: pointer;\n  }\n"], _a.raw = ["\n  * {\n    box-sizing: border-box;\n  }\n\n  body {\n    overflow: scroll;\n    overflow-x: hidden;\n    padding: 0;\n    margin: 0;\n    font-family: Hind,sans-serif;\n    font-weight: 400;\n    line-height: 1.5;\n    color: #0a0a0a;\n    background: #fff;\n    -webkit-font-smoothing: antialiased;\n    -moz-osx-font-smoothing: grayscale;\n  }\n\n  html {\n    font-size: 100%;\n    box-sizing: border-box;\n    overflow-x: hidden;\n  }\n\n  a {\n    text-decoration: none;\n    line-height: inherit;\n    cursor: pointer;\n  }\n"], styled_components_1.injectGlobal(_a));
 exports.default = globalCss;
+var _a;
 //# sourceMappingURL=globalCss.js.map

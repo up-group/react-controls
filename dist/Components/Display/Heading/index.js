@@ -1,4 +1,22 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -9,25 +27,30 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = require("react");
-const styles_1 = require("./styles");
-class Heading extends React.Component {
-    render() {
-        const _a = this.props, { children, tag } = _a, rest = __rest(_a, ["children", "tag"]);
+var React = require("react");
+var styles_1 = require("./styles");
+var Heading = (function (_super) {
+    __extends(Heading, _super);
+    function Heading() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Heading.prototype.render = function () {
+        var _a = this.props, children = _a.children, tag = _a.tag, rest = __rest(_a, ["children", "tag"]);
         switch (tag) {
             case 'h2':
-                return (React.createElement(styles_1.H2, Object.assign({ tag: tag }, rest), children));
+                return (React.createElement(styles_1.H2, __assign({ tag: tag }, rest), children));
             case 'h3':
-                return (React.createElement(styles_1.H3, Object.assign({ tag: tag }, rest), children));
+                return (React.createElement(styles_1.H3, __assign({ tag: tag }, rest), children));
             case 'h4':
-                return (React.createElement(styles_1.H4, Object.assign({ tag: tag }, rest), children));
+                return (React.createElement(styles_1.H4, __assign({ tag: tag }, rest), children));
             case 'h5':
-                return (React.createElement(styles_1.H5, Object.assign({ tag: tag }, rest), children));
+                return (React.createElement(styles_1.H5, __assign({ tag: tag }, rest), children));
             default:
-                return (React.createElement(styles_1.H1, Object.assign({ tag: tag }, rest), children));
+                return (React.createElement(styles_1.H1, __assign({ tag: tag }, rest), children));
         }
-    }
-}
+    };
+    return Heading;
+}(React.Component));
 Heading.defaultProps = {
     color: '#007acc',
     textAlign: 'center',

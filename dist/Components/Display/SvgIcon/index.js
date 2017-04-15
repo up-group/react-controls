@@ -9,28 +9,23 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = require("react");
-const themedComponents_1 = require("../../../Common/theming/themedComponents");
-const _getIcons_1 = require("./_getIcons");
-const SvgIconWrapper = themedComponents_1.default.div `
-    float: left;
-    display: inline;
-    width: ${props => props.width}px ;
-    height:${props => props.height}px ;
-    margin: 4px;
-`;
+var React = require("react");
+var themedComponents_1 = require("../../../Common/theming/themedComponents");
+var _getIcons_1 = require("./_getIcons");
+var SvgIconWrapper = (_a = ["\n    float: left;\n    display: inline;\n    width: ", "px ;\n    height:", "px ;\n    margin: 4px;\n"], _a.raw = ["\n    float: left;\n    display: inline;\n    width: ", "px ;\n    height:", "px ;\n    margin: 4px;\n"], themedComponents_1.default.div(_a, function (props) { return props.width; }, function (props) { return props.height; }));
 function SvgIcon(_a) {
-    var { children, viewBox, iconName } = _a, rest = __rest(_a, ["children", "viewBox", "iconName"]);
-    const height = rest.height || 24;
-    const width = rest.height || 24;
+    var children = _a.children, viewBox = _a.viewBox, iconName = _a.iconName, rest = __rest(_a, ["children", "viewBox", "iconName"]);
+    var height = rest.height || 24;
+    var width = rest.height || 24;
     if (iconName) {
         return (React.createElement(SvgIconWrapper, { height: height, width: width, dangerouslySetInnerHTML: { __html: _getIcons_1.default[iconName] } }));
     }
     else {
-        const defaultViewBox = `0 0 ${width} ${height}`;
-        const viewBoxProps = viewBox || defaultViewBox;
+        var defaultViewBox = "0 0 " + width + " " + height;
+        var viewBoxProps = viewBox || defaultViewBox;
         return (React.createElement("svg", { viewBox: viewBoxProps }, children));
     }
 }
 exports.default = SvgIcon;
+var _a;
 //# sourceMappingURL=index.js.map

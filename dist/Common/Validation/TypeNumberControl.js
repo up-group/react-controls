@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class TypeNumberControl {
-    constructor(isInteger, minValue, maxValue) {
+var TypeNumberControl = (function () {
+    function TypeNumberControl(isInteger, minValue, maxValue) {
         this._isInteger = isInteger;
         this._minValue = minValue == null ? -Infinity : minValue;
         this._maxValue = maxValue == null ? Infinity : maxValue;
         this.isValidValue = this.isValidValue.bind(this);
     }
-    isValidValue(value) {
+    TypeNumberControl.prototype.isValidValue = function (value) {
         if (value === "" || value === null) {
             return { hasError: false, correctValue: null };
         }
@@ -25,7 +25,8 @@ class TypeNumberControl {
             return { hasError: true, errorMessage: "Doit �tre plus petit que '" + this._maxValue + "'" };
         }
         return { hasError: false, correctValue: nbValue };
-    }
-}
+    };
+    return TypeNumberControl;
+}());
 exports.default = TypeNumberControl;
 //# sourceMappingURL=TypeNumberControl.js.map

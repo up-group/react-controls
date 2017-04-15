@@ -1,49 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = require("react");
-const styled_components_1 = require("styled-components");
-const BaseLabel = (props) => {
+var React = require("react");
+var styled_components_1 = require("styled-components");
+var BaseLabel = function (props) {
     return (React.createElement("div", { className: props.className },
         React.createElement("label", { className: "up-label" },
             React.createElement("span", { className: "up-label-text" }, props.text))));
 };
-const labelStyles = styled_components_1.css `
-display:inline-block;
-label.pt-label {
-  display: block;
-  margin: 0 0 15px;
-   }
-  label.pt-label .pt-input,
-  label.pt-label .pt-select {
-    display: block;
-    margin-top: 5px;
-    text-transform: none; }
-  label.pt-label .pt-select select {
-    width: 100%;
-    vertical-align: top;
-    font-weight: 400; }
-  label.pt-label.pt-inline {
-    line-height: 30px; }
-    label.pt-label.pt-inline .pt-input,
-    label.pt-label.pt-inline .pt-input-group,
-    label.pt-label.pt-inline .pt-select {
-      display: inline-block;
-      margin: 0 0 0 5px;
-      vertical-align: top; }
-    label.pt-label.pt-inline .pt-input-group .pt-input {
-      margin-left: 0; }
-    label.pt-label.pt-inline.pt-large {
-      line-height: 40px; }
-  label.pt-label.pt-disabled,
-  label.pt-label.pt-disabled .pt-text-muted {
-    color: rgba(92, 112, 128, 0.5); }
-  .pt-dark label.pt-label {
-    color: #f5f8fa; }
-    .pt-dark label.pt-label.pt-disabled,
-    .pt-dark label.pt-label.pt-disabled .pt-text-muted {
-      color: rgba(191, 204, 214, 0.5); }
-`;
-exports.LabelStyled = styled_components_1.default(BaseLabel) `
-  ${labelStyles}
-`;
+var labelStyles = (_a = ["\ndisplay:inline-block;\nlabel.pt-label {\n  display: block;\n  margin: 0 0 15px;\n   }\n  label.pt-label .pt-input,\n  label.pt-label .pt-select {\n    display: block;\n    margin-top: 5px;\n    text-transform: none; }\n  label.pt-label .pt-select select {\n    width: 100%;\n    vertical-align: top;\n    font-weight: 400; }\n  label.pt-label.pt-inline {\n    line-height: 30px; }\n    label.pt-label.pt-inline .pt-input,\n    label.pt-label.pt-inline .pt-input-group,\n    label.pt-label.pt-inline .pt-select {\n      display: inline-block;\n      margin: 0 0 0 5px;\n      vertical-align: top; }\n    label.pt-label.pt-inline .pt-input-group .pt-input {\n      margin-left: 0; }\n    label.pt-label.pt-inline.pt-large {\n      line-height: 40px; }\n  label.pt-label.pt-disabled,\n  label.pt-label.pt-disabled .pt-text-muted {\n    color: rgba(92, 112, 128, 0.5); }\n  .pt-dark label.pt-label {\n    color: #f5f8fa; }\n    .pt-dark label.pt-label.pt-disabled,\n    .pt-dark label.pt-label.pt-disabled .pt-text-muted {\n      color: rgba(191, 204, 214, 0.5); }\n"], _a.raw = ["\ndisplay:inline-block;\nlabel.pt-label {\n  display: block;\n  margin: 0 0 15px;\n   }\n  label.pt-label .pt-input,\n  label.pt-label .pt-select {\n    display: block;\n    margin-top: 5px;\n    text-transform: none; }\n  label.pt-label .pt-select select {\n    width: 100%;\n    vertical-align: top;\n    font-weight: 400; }\n  label.pt-label.pt-inline {\n    line-height: 30px; }\n    label.pt-label.pt-inline .pt-input,\n    label.pt-label.pt-inline .pt-input-group,\n    label.pt-label.pt-inline .pt-select {\n      display: inline-block;\n      margin: 0 0 0 5px;\n      vertical-align: top; }\n    label.pt-label.pt-inline .pt-input-group .pt-input {\n      margin-left: 0; }\n    label.pt-label.pt-inline.pt-large {\n      line-height: 40px; }\n  label.pt-label.pt-disabled,\n  label.pt-label.pt-disabled .pt-text-muted {\n    color: rgba(92, 112, 128, 0.5); }\n  .pt-dark label.pt-label {\n    color: #f5f8fa; }\n    .pt-dark label.pt-label.pt-disabled,\n    .pt-dark label.pt-label.pt-disabled .pt-text-muted {\n      color: rgba(191, 204, 214, 0.5); }\n"], styled_components_1.css(_a));
+exports.LabelStyled = (_b = ["\n  ", "\n"], _b.raw = ["\n  ", "\n"], styled_components_1.default(BaseLabel)(_b, labelStyles));
+var _a, _b;
 //# sourceMappingURL=styles.js.map

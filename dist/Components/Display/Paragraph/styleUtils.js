@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const utils_1 = require("../../../Common/utils");
-const sizeMap = {
+var utils_1 = require("../../../Common/utils");
+var sizeMap = {
     small: 14,
     medium: 16,
     large: 24,
     xlarge: 32,
 };
-const marginSizeMap = {
+var marginSizeMap = {
     none: 0,
     small: 12,
     medium: 24,

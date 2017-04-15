@@ -1,4 +1,22 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -9,19 +27,24 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = require("react");
-const styles_1 = require("./styles");
-class Button extends React.Component {
-    render() {
-        const _a = this.props, { children, isHero } = _a, rest = __rest(_a, ["children", "isHero"]);
+var React = require("react");
+var styles_1 = require("./styles");
+var Button = (function (_super) {
+    __extends(Button, _super);
+    function Button() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Button.prototype.render = function () {
+        var _a = this.props, children = _a.children, isHero = _a.isHero, rest = __rest(_a, ["children", "isHero"]);
         if (isHero) {
-            return (React.createElement(styles_1.HeroButton, Object.assign({}, rest),
+            return (React.createElement(styles_1.HeroButton, __assign({}, rest),
                 React.createElement("span", null, children)));
         }
-        return (React.createElement(styles_1.BaseButton, Object.assign({}, rest),
+        return (React.createElement(styles_1.BaseButton, __assign({}, rest),
             React.createElement("span", null, children)));
-    }
-}
+    };
+    return Button;
+}(React.Component));
 Button.defaultProps = {
     color: '#fefefe',
     backgroundColor: '#c05b4d',

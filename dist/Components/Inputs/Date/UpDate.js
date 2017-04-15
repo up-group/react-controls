@@ -1,32 +1,45 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 require("normalize.css/normalize.css");
 require("@blueprintjs/core/dist/blueprint.css");
-const React = require("react");
-const styles_1 = require("./styles");
-const BaseControl_1 = require("../../../Common/BaseControl/BaseControl");
-class UpDate extends BaseControl_1.BaseControl {
-    constructor(p, c) {
-        super(p, c);
-        this.componentDidMount = () => {
+var React = require("react");
+var styles_1 = require("./styles");
+var BaseControl_1 = require("../../../Common/BaseControl/BaseControl");
+var UpDate = (function (_super) {
+    __extends(UpDate, _super);
+    function UpDate(p, c) {
+        var _this = _super.call(this, p, c) || this;
+        _this.componentDidMount = function () {
         };
-        this.onChange = this.onChange.bind(this);
+        _this.onChange = _this.onChange.bind(_this);
+        return _this;
     }
-    renderControl() {
+    UpDate.prototype.renderControl = function () {
         var _value = this.props.value;
         if (typeof this.props.value === 'string' || this.props.value instanceof String) {
             _value = this.getDate(_value);
         }
         return React.createElement(styles_1.default, { format: this.props.format, value: this.props.value, hasError: this.props.hasError, onChange: this.handleChangeEvent });
-    }
-    onChange(newDate) {
+    };
+    UpDate.prototype.onChange = function (newDate) {
         return newDate;
-    }
-    getDate(date) {
+    };
+    UpDate.prototype.getDate = function (date) {
         var dateParts = date.split("/");
         return new Date(parseInt(dateParts[2]), parseInt(dateParts[1]) - 1, parseInt(dateParts[0]));
-    }
-}
+    };
+    return UpDate;
+}(BaseControl_1.BaseControl));
 UpDate.defaultProps = {
     format: "DD/MM/YYYY",
     value: ""

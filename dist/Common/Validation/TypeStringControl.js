@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class TypeStringControl {
-    constructor(patern, patternErrorMessage) {
+var TypeStringControl = (function () {
+    function TypeStringControl(patern, patternErrorMessage) {
         this._pattern = patern;
         this._patternErrorMessage = patternErrorMessage;
         this.isValidValue = this.isValidValue.bind(this);
     }
-    isValidValue(value) {
+    TypeStringControl.prototype.isValidValue = function (value) {
         if (this._pattern && value) {
             var result = this._pattern.test(value);
             if (result) {
@@ -20,7 +20,8 @@ class TypeStringControl {
             }
         }
         return { hasError: false, correctValue: value };
-    }
-}
+    };
+    return TypeStringControl;
+}());
 exports.default = TypeStringControl;
 //# sourceMappingURL=TypeStringControl.js.map

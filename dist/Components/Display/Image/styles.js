@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const styled_components_1 = require("styled-components");
-const utils_1 = require("../../../Common/utils");
-const imageSizeMap = {
+var styled_components_1 = require("styled-components");
+var utils_1 = require("../../../Common/utils");
+var imageSizeMap = {
     thumb: 50,
     xxsmall: 100,
     xsmall: 200,
@@ -12,33 +12,20 @@ const imageSizeMap = {
     xlarge: 600,
     full: 1200,
 };
-exports.imageStyle = ({ imageSize }) => {
-    const sizeWithDefault = imageSize || 'small';
-    const px = imageSizeMap[sizeWithDefault];
-    const rem = utils_1.default(px);
+exports.imageStyle = function (_a) {
+    var imageSize = _a.imageSize;
+    var sizeWithDefault = imageSize || 'small';
+    var px = imageSizeMap[sizeWithDefault];
+    var rem = utils_1.default(px);
     if (sizeWithDefault === 'full') {
-        return styled_components_1.css `
-      width: 100vw;
-      height: auto;
-    `;
+        return (_b = ["\n      width: 100vw;\n      height: auto;\n    "], _b.raw = ["\n      width: 100vw;\n      height: auto;\n    "], styled_components_1.css(_b));
     }
     if (sizeWithDefault === 'thumb') {
-        return styled_components_1.css `
-      width: ${rem};
-      height: ${rem};
-      flex: 0 0 auto;
-      object-fit: cover;
-    `;
+        return (_c = ["\n      width: ", ";\n      height: ", ";\n      flex: 0 0 auto;\n      object-fit: cover;\n    "], _c.raw = ["\n      width: ", ";\n      height: ", ";\n      flex: 0 0 auto;\n      object-fit: cover;\n    "], styled_components_1.css(_c, rem, rem));
     }
-    return styled_components_1.css `
-    max-width: 100%;
-    height: auto;
-    min-height: ${rem};
-    max-height: ${rem};
-    display: block;
-  `;
+    return (_d = ["\n    max-width: 100%;\n    height: auto;\n    min-height: ", ";\n    max-height: ", ";\n    display: block;\n  "], _d.raw = ["\n    max-width: 100%;\n    height: auto;\n    min-height: ", ";\n    max-height: ", ";\n    display: block;\n  "], styled_components_1.css(_d, rem, rem));
+    var _b, _c, _d;
 };
-exports.Img = styled_components_1.default.img `
-  ${(props) => exports.imageStyle(props)}
-`;
+exports.Img = (_a = ["\n  ", "\n"], _a.raw = ["\n  ", "\n"], styled_components_1.default.img(_a, function (props) { return exports.imageStyle(props); }));
+var _a;
 //# sourceMappingURL=styles.js.map

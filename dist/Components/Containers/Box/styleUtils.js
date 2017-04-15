@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const styled_components_1 = require("styled-components");
-const maps_1 = require("./maps");
-const maps_2 = require("./maps");
-const rootRem = 16;
-const remFromPX = (px) => (px / rootRem);
+var styled_components_1 = require("styled-components");
+var maps_1 = require("./maps");
+var maps_2 = require("./maps");
+var rootRem = 16;
+var remFromPX = function (px) { return (px / rootRem); };
 function calculateFlexWrap(wrap, reverse) {
     if (wrap && reverse) {
         return 'wrap-reverse';
@@ -17,18 +17,19 @@ function calculateFlexWrap(wrap, reverse) {
     }
 }
 exports.calculateFlexWrap = calculateFlexWrap;
-function sizeToString(size, smallSize = false) {
-    let returnVal;
+function sizeToString(size, smallSize) {
+    if (smallSize === void 0) { smallSize = false; }
+    var returnVal;
     if (typeof size === 'string') {
-        returnVal = `${remFromPX(maps_2.SIZE_MAP[size])}rem`;
+        returnVal = remFromPX(maps_2.SIZE_MAP[size]) + "rem";
     }
     else if (typeof size === 'object') {
-        const horizontal = size.horizontal || 'none';
-        const vertical = size.vertical || 'none';
-        returnVal = `${remFromPX(maps_2.SIZE_MAP[vertical])}rem ${remFromPX(maps_2.SIZE_MAP[horizontal])}rem`;
+        var horizontal = size.horizontal || 'none';
+        var vertical = size.vertical || 'none';
+        returnVal = remFromPX(maps_2.SIZE_MAP[vertical]) + "rem " + remFromPX(maps_2.SIZE_MAP[horizontal]) + "rem";
     }
     else {
-        returnVal = `0rem`;
+        returnVal = "0rem";
     }
     return returnVal;
 }
@@ -42,27 +43,27 @@ function stringBoxStyle(size) {
     }
     else {
         return {
-            width: size ? `${remFromPX(maps_2.BOX_SIZE_MAP[size])}rem` : '',
-            height: size ? `${remFromPX(maps_2.BOX_SIZE_MAP[size])}rem` : '',
+            width: size ? remFromPX(maps_2.BOX_SIZE_MAP[size]) + "rem" : '',
+            height: size ? remFromPX(maps_2.BOX_SIZE_MAP[size]) + "rem" : '',
         };
     }
 }
 function objectBoxStyle(size) {
-    let width = 'auto';
-    let height = 'auto';
+    var width = 'auto';
+    var height = 'auto';
     if (size.vertical) {
         height = size.vertical === 'full'
             ? '100vh'
-            : `${remFromPX(maps_2.BOX_SIZE_MAP[size.vertical])}rem`;
+            : remFromPX(maps_2.BOX_SIZE_MAP[size.vertical]) + "rem";
     }
     if (size.horizontal) {
         width = size.horizontal === 'full'
             ? '100vw'
-            : `${remFromPX(maps_2.BOX_SIZE_MAP[size.horizontal])}rem`;
+            : remFromPX(maps_2.BOX_SIZE_MAP[size.horizontal]) + "rem";
     }
     return {
-        width,
-        height,
+        width: width,
+        height: height,
     };
 }
 function boxSizeToStyle(size) {
@@ -80,30 +81,32 @@ exports.boxSizeToStyle = boxSizeToStyle;
 function calculateFullStyle(full, postFix) {
     if (typeof full === 'object') {
         if (postFix === 'vw') {
-            return full.horizontal ? `100${postFix}` : 'auto';
+            return full.horizontal ? "100" + postFix : 'auto';
         }
         else {
-            return full.vertical ? `100${postFix}` : 'auto';
+            return full.vertical ? "100" + postFix : 'auto';
         }
     }
     else if (typeof full === 'boolean') {
-        return full ? `100${postFix}` : 'auto';
+        return full ? "100" + postFix : 'auto';
     }
     return 'auto';
 }
 exports.calculateFullStyle = calculateFullStyle;
-exports.breakPointCss = (breakPoint) => {
-    const selector = breakPoint === 'desktop' ? 'min-width' : 'max-width';
-    return styled_components_1.css `
-    @media screen and (${selector}: ${maps_1.BREAKPOINTS.phone}) {
-      padding: ${({ pad }) => sizeToString(pad)};
-    }
-  `;
+exports.breakPointCss = function (breakPoint) {
+    var selector = breakPoint === 'desktop' ? 'min-width' : 'max-width';
+    return (_a = ["\n    @media screen and (", ": ", ") {\n      padding: ", ";\n    }\n  "], _a.raw = ["\n    @media screen and (", ": ", ") {\n      padding: ", ";\n    }\n  "], styled_components_1.css(_a, selector, maps_1.BREAKPOINTS.phone, function (_a) {
+        var pad = _a.pad;
+        return sizeToString(pad);
+    }));
+    var _a;
 };
-exports.breakPoints = (size) => {
+exports.breakPoints = function (size) {
     if (size.desktop || size.mobile || size.tablet) {
-        const css = Object.keys(size).map((key) => exports.breakPointCss(key)).join('; \n');
-        return css;
+        var css_1 = Object.keys(size).map(function (key) {
+            return exports.breakPointCss(key);
+        }).join('; \n');
+        return css_1;
     }
     return '';
 };

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const colorMap = {
+var colorMap = {
     dark1: '#293953',
     dark2: '#6B4E71',
     dark3: '#829399',

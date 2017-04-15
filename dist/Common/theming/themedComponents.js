@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const styledComponents = require("styled-components");
-const { default: styled, css, injectGlobal, keyframes, ThemeProvider } = styledComponents;
+var styledComponents = require("styled-components");
+var _a = styledComponents, styled = _a.default, css = _a.css, injectGlobal = _a.injectGlobal, keyframes = _a.keyframes, ThemeProvider = _a.ThemeProvider;
 exports.css = css;
 exports.injectGlobal = injectGlobal;
 exports.keyframes = keyframes;

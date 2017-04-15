@@ -1,10 +1,21 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = require("react");
-class UpSwitch extends React.Component {
-    constructor(p, c) {
-        super(p, c);
-        this.onBoolClick = (a) => {
+var React = require("react");
+var UpSwitch = (function (_super) {
+    __extends(UpSwitch, _super);
+    function UpSwitch(p, c) {
+        var _this = _super.call(this, p, c) || this;
+        _this.onBoolClick = function (a) {
             var data = a.target.getAttribute("value");
             var value = null;
             switch (data) {
@@ -20,16 +31,17 @@ class UpSwitch extends React.Component {
                 default:
                     value = null;
             }
-            this.setState({ value: value }, this.dispatchOnChange);
+            _this.setState({ value: value }, _this.dispatchOnChange);
         };
-        this.dispatchOnChange = () => {
-            this.props.onChange(this.state.value);
+        _this.dispatchOnChange = function () {
+            _this.props.onChange(_this.state.value);
         };
-        this.state = { value: this.props.default };
+        _this.state = { value: _this.props.default };
+        return _this;
     }
-    componentDidMount() {
-    }
-    render() {
+    UpSwitch.prototype.componentDidMount = function () {
+    };
+    UpSwitch.prototype.render = function () {
         if (this.props.isNullable === true) {
             return React.createElement("span", { className: "btnBool" },
                 React.createElement("span", { className: "btnFalse " + (this.state.value === false ? "selected Null" : ""), value: false.toString(), onClick: this.onBoolClick }, "Non"),
@@ -41,7 +53,8 @@ class UpSwitch extends React.Component {
                 React.createElement("span", { className: " " + (this.state.value === false ? "btnFalse selected" : "btnFalse"), value: false.toString(), onClick: this.onBoolClick }, "Non"),
                 React.createElement("span", { className: " " + (this.state.value === true ? "btnTrue selected" : "btnTrue"), value: true.toString(), onClick: this.onBoolClick }, "Oui"));
         }
-    }
-}
+    };
+    return UpSwitch;
+}(React.Component));
 exports.default = UpSwitch;
 //# sourceMappingURL=UpSwitch.js.map
