@@ -127,7 +127,7 @@ class Demo extends React.Component<undefined, DemoState> {
                </UpBox>
                <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
                   <UpLabel text="Description :"></UpLabel>
-                  <UpText hasError={false} onChange={this.onTextChange} value={this.state.description}/>   
+                  <UpText onChange={this.onTextChange} value={this.state.description}/>   
                </UpBox>
                <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
                   <UpLabel text="Email :"></UpLabel>
