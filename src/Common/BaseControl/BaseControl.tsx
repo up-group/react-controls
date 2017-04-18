@@ -1,6 +1,7 @@
 import * as React from "react";
 import ValidationManager from "../Validation/ValidationManager"
 import ErrorDisplay from "../Validation/ErrorDisplay"
+// Importation des règles CSS de bases -> à transformer en styled-components
 import "../theming/base.css"
 
 
@@ -13,7 +14,6 @@ export interface BaseProp<_BaseType> {
 export interface BaseState<_BaseType> {
     error?: string;
 }
-
 
 export abstract class BaseControl<_Props, _BaseType> extends React.Component<BaseProp<_BaseType> & _Props, BaseState<_BaseType>> {
 

@@ -42,8 +42,7 @@ class Anchor extends React.Component<Props, undefined> {
         plain={plain}
         href={href}
         color={color}
-        onClick={this.handleClick}
-      >
+        onClick={this.handleClick}>
         {label || children}
       </AnchorStyled>
     );

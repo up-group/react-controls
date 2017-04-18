@@ -4,5 +4,10 @@
 
 .vs/
 node_modules/
+dist/
+
+test/index.js
+test/index.js.map
+
 npm-debug.log
 dist/

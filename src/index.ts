@@ -80,4 +80,7 @@ export {
   UpThemeInterface,
   UpThemeColorMap,
   UpColorMap,
+  UpCheckbox,
+  SimpleDiv,
+  ComplexDiv
 };
