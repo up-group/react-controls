@@ -127,7 +127,7 @@ class Demo extends React.Component<undefined, DemoState> {
                </UpBox>
                <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
                   <UpLabel text="Description :"></UpLabel>
-                  <UpText hasError={false} onChange={this.onTextChange} value={this.state.description}/>   
+                  <UpText onChange={this.onTextChange} value={this.state.description}/>   
                </UpBox>
                <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
                   <UpLabel text="Email :"></UpLabel>
@@ -139,7 +139,7 @@ class Demo extends React.Component<undefined, DemoState> {
                </UpBox>
                <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
                   <UpLabel text="Nom :"></UpLabel>
-                  <UpInput width="xlarge" type="text" iconName="user" placeholder="Entrer votre nom"  onChange={this.onTextChange} value={this.state.search}/>   
+                  <UpInput width="xlarge" type="text"  placeholder="Entrer votre nom"  onChange={this.onTextChange} value={this.state.search}/>   
                </UpBox>
                <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
                   <UpLabel text="Nombre :"></UpLabel>
@@ -151,11 +151,11 @@ class Demo extends React.Component<undefined, DemoState> {
                </UpBox>
                <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
                   <UpLabel text="Email :"></UpLabel>
-                  <UpEmail width="xlarge" iconName="email" placeholder="Entrer votre email"  onChange={this.onPhoneChange} value={this.state.email}/>   
+                  <UpEmail width="xlarge"  placeholder="Entrer votre email"  onChange={this.onPhoneChange} value={this.state.email}/>   
                </UpBox>
                <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
                   <UpLabel text="Tél :"></UpLabel>
-                  <UpPhone width="xlarge" iconName="phone" placeholder="Entrer votre numéro de tel"  onChange={this.onPhoneChange} value={this.state.phone}/>  
+                  <UpPhone width="xlarge"  placeholder="Entrer votre numéro de tel"  onChange={this.onPhoneChange} value={this.state.phone}/>  
                </UpBox>
 
                 <UpButton
