@@ -2,7 +2,6 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 
-
 import {
   UpHeadline,
   UpBox,
@@ -22,9 +21,9 @@ import {
   UpInput,
   UpSelect,
   UpFormGroup
-}
-from "../src/index";
-import {ChangeOrderEvent} from "../src/List/index";
+} from "../src/index";
+
+import { ChangeOrderEvent } from "../src/Components/Containers/List/index";
 
 
 interface Item {
