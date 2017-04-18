@@ -4,15 +4,34 @@ import Paragraph from '../Paragraph';
 import { Status } from './types';
 
 export interface Props extends React.HTMLProps<Notification> {
-  message: JSX.Element | string;
-  status?: Status;
+    message: JSX.Element | string;
+    status?: Status;
 }
-export default function Notification({
-  message,
-  status,
-  ...rest,
-}: Props): JSX.Element {
-  return (<BoxStyled message="" boxSize={{ horizontal: 'medium' }} pad="small" alignItems="center" selectable>
-      <Paragraph paragraphSize="large" color="white">{message}</Paragraph>
-    </BoxStyled>);
+
+//export default function Notification({
+//    message,
+//    status,
+//    ...rest,
+//}: Props): JSX.Element {
+//    return (<BoxStyled message="" boxSize={{ horizontal: 'medium' }} pad="small" alignItems="center" selectable>
+//        <Paragraph paragraphSize="large" color="white">{message}</Paragraph>
+//    </BoxStyled>);
+//};
+
+
+export default class Notification extends React.Component<Props, {}>{
+
+    constructor(p, c) {
+        super(p, c);
+
+    }
+
+    render() {
+        return (<BoxStyled message="" boxSize={{ horizontal: 'medium' }} pad="small" alignItems="center" selectable>
+            <Paragraph paragraphSize="large" color="white">{this.props.message}</Paragraph>
+        </BoxStyled>);
+    }
+
+
+    
 };

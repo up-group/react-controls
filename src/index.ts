@@ -33,6 +33,7 @@ import UpNumber from './Components/Inputs/Number/Number'
 import UpInteger from './Components/Inputs/Integer/Integer'
 import UpPhone from './Components/Inputs/Phone/Phone'
 import UpEmail from './Components/Inputs/Email/Email'
+import UpCheckbox from './Components/Inputs/Checkbox/index'
 
 
 
@@ -40,9 +41,6 @@ import {ThemeProvider as UpThemeProvider} from 'styled-components'
 import UpColorMap from './Common/theming/index'
 import {ThemeColorMap as UpThemeColorMap} from './Common/theming/types'
 import {ThemeInterface as UpThemeInterface} from './Common/theming/types'
-
-
-
 
 
 
@@ -81,6 +79,4 @@ export {
   UpThemeColorMap,
   UpColorMap,
   UpCheckbox,
-  SimpleDiv,
-  ComplexDiv
 };

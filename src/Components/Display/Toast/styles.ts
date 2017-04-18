@@ -1,5 +1,5 @@
 import styled, { keyframes, css } from 'styled-components';
-import { Status, StyleProps } from './types';
+import { Status, StyledProps } from './types';
 import colorMap from '../../../Common/theming/colorMap';
 
 const backgroundColor = (status: Status) => css`

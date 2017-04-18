@@ -8,7 +8,7 @@ module.exports = {
     './test/index': ['babel-polyfill' , './test/index.tsx']
   },
   output: {
-    filename: './test/dist/[name].js'
+    filename: '[name].js'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
