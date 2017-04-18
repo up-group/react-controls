@@ -8,12 +8,38 @@ import TypeStringControl from '../Validation/TypeStringControl';
 import { WidthSize, HeightSize } from '../Input/types';
 import { CommonProps } from '../Input/index';
 
+import {FilterProps} from '../utils/types'
+
+export interface StyledProps extends CommonProps{
+    color?: string;
+    backgroundColor?: string;
+    borderColor?: string;
+    isNullable?: boolean;
+    hasError?: boolean;
+    onChange?: (data: any) => void;
+    className?:string;
+}
+
 export interface Props extends CommonProps {
     isNullable?: boolean;
 }
 
 export default class Phone extends BaseControl<Props, string> {
     public static defaultProps: Props = {
+    };
+
+
+    public static defaultStyledProps: StyledProps = {
+        color: "",
+        backgroundColor: "",
+        borderColor: "",
+        isNullable: false,
+        className:"",
+        disabled: false,
+        placeholder: "",
+        height: "normal",
+        width: "medium",
+        readOnly: false
     };
 
     constructor(p, c) {
@@ -30,9 +56,13 @@ export default class Phone extends BaseControl<Props, string> {
     }
 
     renderControl() {
+        const styledProps= FilterProps(this.props, Phone.defaultStyledProps) ;
+        
         return (
             <InputStyled
                 hasError={this.hasError()}
+                iconName="phone"
+                {...styledProps}
                 onChange={this.handleChangeEvent}
             >
             </InputStyled>

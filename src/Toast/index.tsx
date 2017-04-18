@@ -4,6 +4,12 @@ import Component, { Button } from './styles';
 import BoxProps from '../Box/types';
 import { Status } from './types';
 
+export interface StyledProps extends BoxProps {
+  status?: Status;
+  isVisible: boolean;
+  isUnmounting: boolean;
+}
+
 export interface Props extends BoxProps {
   message?: JSX.Element;
   children?: JSX.Element;
@@ -12,12 +18,6 @@ export interface Props extends BoxProps {
 }
 
 interface State {
-  isVisible: boolean;
-  isUnmounting: boolean;
-}
-
-export interface StyleProps extends BoxProps {
-  status?: Status;
   isVisible: boolean;
   isUnmounting: boolean;
 }
@@ -67,8 +67,7 @@ export default class Toast extends React.Component<Props, State> {
           flexDirection="row"
           boxSize={60}
           pad="medium"
-          style={{ width: '100vw' }}
-        >
+          style={{ width: '100vw' }}>
           <Box style={{ flexGrow: 2 }}>
             {message && message}
             {children && children}

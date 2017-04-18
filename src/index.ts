@@ -21,17 +21,18 @@ import UpDraft from './Draft'
 import UpList from './List'
 import UpTooltip from './List'
 import UpPanel from './Panel'
-import UpNumber from './Number/Number'
-import UpInteger from './Integer/Integer'
-import UpPhone from './Phone/Phone'
-import UpEmail from './Email/Email'
+import UpNumber from './Number'
+import UpInteger from './Integer'
+import UpPhone from './Phone'
+import UpEmail from './Email'
 import UpLabel from './Label'
+import UpCheckbox from './Checkbox'
 import UpFormGroup from './FormGroup'
 import {ThemeProvider as UpThemeProvider} from 'styled-components'
 import UpColorMap from './theming/index'
 import {ThemeColorMap as UpThemeColorMap} from './theming/types'
 import {ThemeInterface as UpThemeInterface} from './theming/types'
-
+import SimpleDiv, {ComplexDiv} from './Samples' 
 export {
   UpAnchor,
   UpBox,
@@ -66,4 +67,7 @@ export {
   UpThemeInterface,
   UpThemeColorMap,
   UpColorMap,
+  UpCheckbox,
+  SimpleDiv,
+  ComplexDiv
 };

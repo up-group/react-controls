@@ -5,7 +5,7 @@ import { StyledProps } from './';
 import SvgIcon from '../SvgIcon';
 
 const BaseInput: React.StatelessComponent<StyledProps> = (props) => {
-    const { type, iconName, placeholder, disabled, readOnly, onChange } = props;
+    const { className, type, iconName, placeholder, disabled, readOnly, onChange } = props;
 
     var icon:any = "" ;
     if(iconName) {
@@ -17,17 +17,15 @@ const BaseInput: React.StatelessComponent<StyledProps> = (props) => {
           </div> ;
     }
     //return (<div className={cn(className, 'input-form-content')}>
-    return (<div /*className={className}*/>
+    return (<div className={className}>
               <div className="up-input-group">
-                <input onChange={onChange} className="up-input" type="text" placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readOnly} />
+                <input onChange={onChange} className="up-input" type={type} placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readOnly} />
                 {icon}
               </div>
             </div>);
 }
 
-// Shared styles for Input
-const inputStyles = css`
-.up-input {
+export const DefaultInputStyle = css`
   outline: none;
   border: none;
   border-radius: 3px;
@@ -43,7 +41,15 @@ const inputStyles = css`
   transition: box-shadow 100ms cubic-bezier(0.4, 1, 0.75, 0.9);
   -webkit-appearance: none;
      -moz-appearance: none;
-          appearance: none; }
+          appearance: none;
+`
+
+
+// Shared styles for Input
+const inputStyles = css`
+.up-input {
+  ${(props) => DefaultInputStyle}
+ }
   .up-input::-webkit-input-placeholder {
     opacity: 1;
     color: rgba(92, 112, 128, 0.5); }
@@ -320,7 +326,6 @@ const error = css`
   border-style: solid;
 }
 `
-
 export const InputStyled = styled<StyledProps>(BaseInput)`
   ${inputStyles}
   ${(props) => props.hasError ? error:css``}

@@ -2,6 +2,7 @@ import * as React from 'react'
 import styled, {css} from 'styled-components'
 import { UpTextProps } from './types'
 import Textarea from 'react-textarea-autosize'
+import {DefaultInputStyle} from '../Input/styles'
 
 const BaseTextArea: React.StatelessComponent<UpTextProps> = (props) => {
     const {className, value, onChange} = props;
@@ -12,6 +13,9 @@ const BaseTextArea: React.StatelessComponent<UpTextProps> = (props) => {
 }
 
 const base = props => css`
+  ${(props) => DefaultInputStyle}
+  min-height:60px;
+  width:100%;
 `;
 
 const error = props => css`
@@ -33,10 +37,7 @@ class TextStyle extends React.Component<UpTextProps, undefined> {
   public render() {
     const {children, ...rest} = this.props ;
     return (
-      <div>
         <BaseTextStyle {...rest} />
-        {children}
-      </div>
     );
   }
 }

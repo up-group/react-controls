@@ -1,5 +1,5 @@
 import styled, { keyframes, css } from 'styled-components';
-import { Status, StyleProps } from './types';
+import { Status, StyledProps } from './types';
 import colorMap from '../theming/colorMap';
 
 const backgroundColor = (status: Status) => css`
@@ -33,6 +33,6 @@ export default styled.div`
   z-index: 100;
   display: flex;
   flex-direction: row;
-  ${({ status }: StyleProps) => backgroundColor(status)}
-  animation:${({ isUnmounting }: StyleProps) => isUnmounting ? unmount : mount}1s;
+  ${({ status }: StyledProps) => backgroundColor(status)}
+  animation:${({ isUnmounting }: StyledProps) => isUnmounting ? unmount : mount}1s;
 `;
