@@ -2,7 +2,7 @@
   "name": "@up-group/react-controls",
   "version": "0.0.66",
   "description": "",
-  "main": "dist/index.js",
+  "main": "src/index.ts",
   "types": "src/index.ts",
   "repository": {
     "type": "git",
