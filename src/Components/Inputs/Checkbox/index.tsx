@@ -1,5 +1,6 @@
 import * as React from 'react'
 import UpLabel from '../../Display/Label/index'
+import {Position} from './types'
 import {StyledCheckBox} from './styles'
 
 export interface Option {
@@ -8,6 +9,7 @@ export interface Option {
     text?:string;
     iconName?:string;
     onChange?:(e:any) => void;
+    checked:boolean;
 }
 
 export interface StyledProps extends Option {
@@ -16,7 +18,7 @@ export interface StyledProps extends Option {
 
 export interface Props {
     options: Array<Option>;
-    position?:Position
+    position?:Position;
 }
 
 export default class UpCheckbox extends React.Component<Props, {}> {
@@ -38,7 +40,12 @@ export default class UpCheckbox extends React.Component<Props, {}> {
     return (
       <div>
       {options.map((option) => (
-        <StyledCheckBox onChange={option.onChange} key={`Key_${option.name}_${option.value}`} text={option.text} name={option.name} value={option.value}>
+        <StyledCheckBox 
+          onChange={option.onChange} 
+          key={`Key_${option.name}_${option.value}`} 
+          text={option.text} name={option.name} 
+          value={option.value}
+          checked={option.checked}>
         </StyledCheckBox>
       ))}
       </div>

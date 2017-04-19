@@ -1,11 +1,9 @@
-
 import UpSection from './Components/Containers/Section'
 import UpHeadline from './Components/Containers/Headline'
 import UpList from './Components/Containers/List'
 import UpPanel from './Components/Containers/Panel'
 import UpBox from './Components/Containers/Box'
 import UpFormGroup from './Components/Containers/FormGroup'
-
 
 import UpAnchor from './Components/Display/Anchor/index'
 import UpNotification from './Components/Display/Notification'
@@ -16,8 +14,6 @@ import UpSvgIcon from './Components/Display/SvgIcon'
 import UpToast from './Components/Display/Toast'
 import UpTooltip from './Components/Display/Tooltip/UpTooltip'
 import UpLabel from './Components/Display/Label'
-
-
 
 import UpButton from './Components/Inputs/Button'
 import UpInput from './Components/Inputs/Input'
@@ -34,15 +30,12 @@ import UpInteger from './Components/Inputs/Integer/Integer'
 import UpPhone from './Components/Inputs/Phone/Phone'
 import UpEmail from './Components/Inputs/Email/Email'
 import UpCheckbox from './Components/Inputs/Checkbox/index'
-
-
+import UpRadio from './Components/Inputs/Radio'
 
 import {ThemeProvider as UpThemeProvider} from 'styled-components'
 import UpColorMap from './Common/theming/index'
 import {ThemeColorMap as UpThemeColorMap} from './Common/theming/types'
 import {ThemeInterface as UpThemeInterface} from './Common/theming/types'
-
-
 
 export {
   UpAnchor,
@@ -79,4 +72,5 @@ export {
   UpThemeColorMap,
   UpColorMap,
   UpCheckbox,
+  UpRadio
 };

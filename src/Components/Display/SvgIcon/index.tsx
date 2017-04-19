@@ -10,13 +10,16 @@ const SvgIconWrapper = styled.div`
     width: ${ props => props.width}px ;
     height:${ props => props.height}px ;
     margin: 4px;
+    svg {
+      fill:${ props => props.color} ;
+    }
 `
-
 export type Props = SvgProps & React.HTMLProps<typeof SvgIcon>;
 export default function SvgIcon({
   children,
   viewBox,
   iconName,
+  color,
   ...rest,
 }: Props): JSX.Element {
 
@@ -25,7 +28,7 @@ export default function SvgIcon({
    
   if(iconName) {
     return (
-      <SvgIconWrapper height={height} width={width}
+      <SvgIconWrapper color={color} height={height} width={width}
         //{...rest}
         dangerouslySetInnerHTML={{__html: Icons[iconName]}}
       ></SvgIconWrapper>
@@ -37,6 +40,7 @@ export default function SvgIcon({
     return (
       <svg
         //{...rest}
+        fill={color}
         viewBox={viewBoxProps}>
         {children}
       </svg>);

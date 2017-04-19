@@ -1,2 +1,3 @@
 import UpSwitch from './UpSwitch'
-export default UpSwitch
+
+export default UpSwitch ;

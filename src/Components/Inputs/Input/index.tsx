@@ -2,7 +2,7 @@
 import { InputStyled } from './styles';
 import { WidthSize, HeightSize, InputType } from './types';
 import { BaseControl } from "../../../Common/BaseControl/BaseControl";
-import { iconName } from "../../Display/SvgIcon/types";
+import { IconName } from "../../../Common/theming/types";
 
 export interface StyledProps extends CommonProps {
     color?: string;
@@ -10,7 +10,7 @@ export interface StyledProps extends CommonProps {
     borderColor?: string;
     type?: InputType;
     isNullable?: boolean;
-    iconName?: iconName;
+    iconName?: IconName;
     hasError?: boolean;
     onChange?: (data: any) => void;
     className?: string;

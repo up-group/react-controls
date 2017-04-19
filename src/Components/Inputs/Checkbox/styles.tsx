@@ -7,18 +7,18 @@ import SvgIcon from '../../Display/SvgIcon'
 import * as classNames from 'classnames'
 
 const BaseCheckBox: React.StatelessComponent<StyledProps> = (props) => {
-    const { children, className, text, name, value, iconName, onChange } = props;
+    const { children, checked, className, text, name, value, iconName, onChange } = props;
 
     return (
       <label className={classNames("up-control", "up-checkbox", className)}>
-        <input onChange={onChange} name={name} type="checkbox" value={value} />
+        <input defaultChecked={checked} onChange={onChange} name={name} type="checkbox" value={value} />
         <span className="up-control-indicator"></span>
         {text}
       </label>
     )
 }
 
-const base = props => css`
+export const CommonSelectionStyle = props => css`
   position:relative;
   display: block;
   cursor: pointer;
@@ -68,6 +68,7 @@ const base = props => css`
     left: 0;
     margin: 0;
     z-index:0;
+    visibility:hidden;
   }
   input:checked ~ .up-control-indicator, 
   input:indeterminate ~ .up-control-indicator {
@@ -124,5 +125,5 @@ const base = props => css`
 `;
 
 export const StyledCheckBox = styled<StyledProps>(BaseCheckBox)`
-${(props: StyledProps) => base(props)}
+${(props: StyledProps) => CommonSelectionStyle(props)}
 `

@@ -1,3 +1,3 @@
-import { UpDateProps } from './';
+import { DatePickerProps } from './';
 
-export { UpDateProps };
+export { DatePickerProps };

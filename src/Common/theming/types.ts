@@ -31,11 +31,23 @@ export interface ThemeColorMap {
   light1: string,
   light2: string,
   light3: string,
+  
   primary: string,
+  primaryFg: string,
+  primaryBg: string,
   secondary: string,
+  secondaryFg: string,
+  secondaryBg: string,
   ok: string,
+  okFg: string,
+  okBg: string,
   warning: string,
+  warningFg: string,
+  warningBg: string,
   error: string,
+  errorFg: string,
+  errorBg: string,
+
   white1: string,
   white2: string,
   white3: string,
@@ -134,3 +146,7 @@ export interface ThemeColorMap {
   sepia4:string,
   sepia5:string
 }
+
+export type IconName = 'add' | 'asterisk' | 'calendar' | 'delete' | 'edit' |
+    'email' | 'error-sign' | 'filter' | 'filter-list' | 'help' | 'info-sign' | 'ok-sign' |
+    'link' | 'mobile-phone' | 'phone' | 'search' | 'user' | 'warning-sign' | 'none' ;
