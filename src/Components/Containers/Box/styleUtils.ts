@@ -67,7 +67,7 @@ function objectBoxStyle(size: BoxSizeObject): SizeStyle {
   }
   if (size.horizontal) {
     width = size.horizontal === 'full'
-      ? '100vw'
+      ? '100%'
       : `${remFromPX(BOX_SIZE_MAP[size.horizontal])}rem`;
   }
   return {
@@ -89,12 +89,12 @@ export function boxSizeToStyle(size: BoxSize | BoxSizeObject): SizeStyle {
 export function calculateFullStyle(full: Full, postFix: 'vw' | 'vh'): string {
   if (typeof full === 'object') {
     if (postFix === 'vw') {
-      return full.horizontal ? `100${postFix}` : 'auto';
+      return full.horizontal ? `100%` : 'auto';
     } else {
-      return full.vertical ? `100${postFix}` : 'auto';
+      return full.vertical ? `100%` : 'auto';
     }
   } else if (typeof full === 'boolean') {
-    return full ? `100${postFix}` : 'auto';
+    return full ? `100%` : 'auto';
   }
   return 'auto';
 }

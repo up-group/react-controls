@@ -1,3 +1,3 @@
 import UpFile from './UpFile'
 
-export default UpFile
+export default UpFile ;

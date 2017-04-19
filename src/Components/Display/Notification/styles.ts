@@ -4,10 +4,19 @@ import { Status } from './types';
 import { Props } from './';
 import colorMap from '../../../Common/theming/colorMap';
 
-const backgroundColor = (status: Status) => css`
-  background-color: ${colorMap[status] || colorMap.offwhite};
+const colors = (status: Status) => css`
+  position:relative;
+  background-color: ${colorMap[`${status}Bg`] || colorMap.offwhite};
+  p {
+    color: ${colorMap[`${status}Fg`] || colorMap.black3};
+  }
 `;
 
 export default styled(Box)`
-  ${(props:Props) => backgroundColor(props.status)}
+  ${(props:Props) => colors(props.status)}
+  border-radius:4px;
+  svg {
+    margin:10px;
+    display:inline-block;
+  }
 `;

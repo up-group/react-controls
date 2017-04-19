@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components';
 import SvgIcon from "../../../Display/SvgIcon/index";
-import { iconName } from "../../../Display/SvgIcon/types";
+import { IconName } from "../../../../Common/theming/types";
 
 import { inputStyles, HeightLarge } from "./sharedStyle"
 
@@ -25,7 +25,7 @@ export interface StyledProps extends CommonProps {
     backgroundColor?: string;
     borderColor?: string;
     type?: InputType;
-    iconName?: iconName;
+    iconName?: IconName;
     hasError?: boolean;
     onChange?: (data: any) => void;
     className?: string;

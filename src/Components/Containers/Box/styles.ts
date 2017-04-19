@@ -12,18 +12,30 @@ export const BoxStyles = css`
   background-color: ${({ backgroundColor }: Props) => backgroundColor || 'transparent'};
   justify-content: ${({ justifyContent }: Props) => justifyContent || 'flex-start'};
   align-items: ${({ alignItems }: Props) => alignItems || 'flex-start'};
-  flex-direction: ${({ flexDirection }: Props) => flexDirection || 'column'};
-  flex-wrap: ${({ flexWrap, reverse }: Props) => calculateFlexWrap(flexWrap, reverse)};
   padding: ${({ pad }: Props) => sizeToString(pad)};
   margin: ${({ margin }: Props) => sizeToString(margin)};
+  cursor: ${({ selectable }: Props) => selectable ? 'pointer' : 'inherit'};
+`;
+
+const Sizes = css`
+  flex-shrink:1;
+  flex-direction: ${({ flexDirection }: Props) => flexDirection || 'column'};
+  flex-wrap: ${({ flexWrap, reverse }: Props) => calculateFlexWrap(flexWrap, reverse)};
   width: ${({ boxSize }: Props) => boxSizeToStyle(boxSize).width};
   height: ${({ boxSize }: Props) => boxSizeToStyle(boxSize).height};
   flex-basis: auto;
   min-height: ${({ full }: Props) => calculateFullStyle(full, 'vh')};
   min-width: ${({ full }: Props) => calculateFullStyle(full, 'vw')};
-  cursor: ${({ selectable }: Props) => selectable ? 'pointer' : 'inherit'};
-`;
+`
+
+const FullSize = css`
+  flex-grow:1;
+  flex-shrink:0;
+  flex-basis:100%;
+  width:auto;
+`
 
 export default styled.div`
   ${BoxStyles}
+  ${( props : Props)  => (props.full) ? FullSize : Sizes}
 `;

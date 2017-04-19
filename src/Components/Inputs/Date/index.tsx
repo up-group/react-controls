@@ -1,9 +1,10 @@
 import UpDate from './UpDate'
+
+export default UpDate ;
+
 import { StyledComponentProps } from "../../../Common/utils/types";
 
-export default UpDate
-
-export interface UpDateProps extends StyledComponentProps {
+export interface DatePickerProps extends StyledComponentProps {
   hasError?: boolean;
   isNullable?: boolean;
   className? : string;

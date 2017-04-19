@@ -5,7 +5,7 @@ import * as $ from 'jquery';
 import 'select2/dist/js/select2.full.js'
 import 'select2/dist/css/select2.css'
 
-export interface UpSelect2ExtendProp {
+export interface UpSelectExtendProp {
     default: any;
     getFullData: boolean;
     multiple?: boolean;
@@ -25,7 +25,7 @@ export interface UpSelect2ExtendProp {
     isRequired: boolean
 }
 
-export default class UpSelect2 extends React.Component<UpSelect2ExtendProp, {}> {
+export default class UpSelect extends React.Component<UpSelectExtendProp, {}> {
     el: JQuery;
     constructor(p, c) {
         super(p, c);

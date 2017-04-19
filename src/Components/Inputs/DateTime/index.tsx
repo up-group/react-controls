@@ -1,9 +1,9 @@
 import UpDateTime from './UpDateTime'
+export default UpDateTime ;
+
 import { StyledComponentProps } from "../../../Common/utils/types";
 
-export default UpDateTime
-
-export interface UpDateTimeProps extends StyledComponentProps {
+export interface DateTimePickerProps extends StyledComponentProps {
   hasError?: boolean;
   onChange?: (value?: Date) => void;
   isNullable?: boolean;

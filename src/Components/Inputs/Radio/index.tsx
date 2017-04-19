@@ -1,14 +1,14 @@
 import * as React from 'react'
-import UpLabel from '../../Display/Label/index'
+import UpLabel from '../../Display/Label/'
 import {Position} from './types'
-import {StyledCheckBox} from './styles'
+import {StyledRadioButton} from './styles'
 
 export interface Option {
-    name:string;
     value:any;
     text?:string;
     iconName?:string;
     onChange?:(e:any) => void;
+    name?:string;
     checked:boolean;
 }
 
@@ -19,6 +19,8 @@ export interface StyledProps extends Option {
 export interface Props {
     options: Array<Option>;
     position?:Position;
+    name:string;
+    value:any;
 }
 
 export default class UpCheckbox extends React.Component<Props, {}> {
@@ -40,13 +42,11 @@ export default class UpCheckbox extends React.Component<Props, {}> {
     return (
       <div>
       {options.map((option) => (
-        <StyledCheckBox 
-          onChange={option.onChange} 
-          key={`Key_${option.name}_${option.value}`} 
-          text={option.text} name={option.name} 
-          value={option.value}
-          checked={option.checked}>
-        </StyledCheckBox>
+        <StyledRadioButton onChange={option.onChange} key={`Key_${this.props.name}_${option.value}`} 
+          name={this.props.name}
+          checked={option.checked}
+          text={option.text} value={option.value}>
+        </StyledRadioButton>
       ))}
       </div>
     );

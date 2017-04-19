@@ -1,3 +1,3 @@
 import UpTimePicker from './UpTimePicker'
 
-export default UpTimePicker
+export default UpTimePicker ;

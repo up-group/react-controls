@@ -1,3 +1,3 @@
-import UpSelect2 from './UpSelect2'
+import UpSelect from './UpSelect'
 
-export default UpSelect2
+export default UpSelect ;
