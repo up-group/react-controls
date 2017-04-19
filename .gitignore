@@ -10,3 +10,4 @@ test/index.js
 test/index.js.map
 
 npm-debug.log
+dist/

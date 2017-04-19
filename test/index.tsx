@@ -2,7 +2,6 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 
-
 import {
   UpHeadline,
   UpBox,
@@ -24,70 +23,62 @@ import {
   UpFormGroup
 } from "../src/index";
 
-//import arrayMove from 'array-move'
+import { ChangeOrderEvent } from "../src/Components/Containers/List/index";
 
-// get from react-controls
+
 interface Item {
-  text:string;
-  icon?:string;
-  link?:string;
-  index?:number;
-}
-
-interface ChangeOrderEvent {
-  oldIndex:number;
-  newIndex:number;
+  text: string;
 }
 
 interface DemoState {
-  items : Array<Item>;
-  date : string;
-  description:string;
-  search:string;
-  phone : string;
-  email :string;
-  number :number;
-  integer : number;
+  items: Array<Item>;
+  date: string;
+  description: string;
+  search: string;
+  phone: string;
+  email: string;
+  number: number;
+  integer: number;
 }
 
-var theme:UpThemeInterface = {
-    colorMap : UpColorMap
+var theme: UpThemeInterface = {
+  colorMap: UpColorMap
 }
 theme.colorMap.warning = "orange";
 theme.colorMap.secondary = UpColorMap.lightGray2;
 
 class Demo extends React.Component<undefined, DemoState> {
   constructor(props) {
-    super(props) ;
-    this.onSortEnd = this.onSortEnd.bind(this) ;
+    super(props);
+    this.onSortEnd = this.onSortEnd.bind(this);
     this.onDateChange = this.onDateChange.bind(this);
     this.onTextChange = this.onTextChange.bind(this);
 
     this.state = {
       date: "13/04/2017",
-      items : [
-          {
-            text:"Item 1"
-          },
-          {
-            text:"Item 2"
-          },
-          {
-            text:"Item 3"
-          },
-          {
-            text:"Item 4"
-          },
-          {
-            text:"Item 5"
-          }
+      items: [
+        {
+          text: "Item 1"
+        },
+        {
+          text: "Item 2"
+        },
+        {
+          text: "Item 3"
+        },
+        {
+          text: "Item 4"
+        },
+        {
+          text: "Item 5"
+        }
       ],
-      description : "",
-      email : "",
-      search : "",
-      phone : "",
-      number : 0,
-      integer : 0
+      description: "",
+      email: "",
+      search: "",
+      phone: "",
+      number: 0,
+      integer: 0
     }
   }
   public render() {
@@ -96,16 +87,15 @@ class Demo extends React.Component<undefined, DemoState> {
       <UpThemeProvider theme={theme}>
         <div>
           <UpHeadline fontWeight={700}>
-              Démo
+            Démo
               <hr />
           </UpHeadline>
           <UpBox flexDirection="row" alignItems="stretch" justifyContent="center" >
             <UpBox margin="small" boxSize={{ horizontal: 'small' }}>
               Component
-              <hr />
-              <UpList fontSize="20" sortable={true} items={this.state.items} onSortEnd={this.onSortEnd}/>
-              <UpButton
-                style={{ margin: 20 }}
+                     <hr />
+              <UpList fontSize="20" sortable={true} items={this.state.items} onSortEnd={this.onSortEnd} />
+              <UpButton style={{ margin: 20 }}
                 fontSize="small"
                 iconName="add"
                 iconSize={16}
@@ -115,59 +105,59 @@ class Demo extends React.Component<undefined, DemoState> {
               >
                 View Example App
               </UpButton>
-            </UpBox> 
+            </UpBox>
             <UpBox margin="small" boxSize={{ horizontal: 'xxlarge' }}>
               Editor
               <hr />
               <UpPanel title="Paramètres" type="info">
 
-              <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
+                <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
                   <UpLabel text="Date :"></UpLabel>
-                  <UpDate onChange={this.onDateChange} value={this.state.date}/>   
-               </UpBox>
-               <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
+                  <UpDate onChange={this.onDateChange} value={this.state.date} />
+                </UpBox>
+                <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
                   <UpLabel text="Description :"></UpLabel>
-                  <UpText hasError={false} onChange={this.onTextChange} value={this.state.description}/>   
+                  <UpText onChange={this.onTextChange} value={this.state.description}/>   
                </UpBox>
                <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
                   <UpLabel text="Email :"></UpLabel>
-                  <UpInput disabled={true} type="email" placeholder="Entrez votre couriel" onChange={this.onTextChange} value={this.state.email}/>   
-               </UpBox>
-               <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
+                  <UpInput disabled={true} type="email" placeholder="Entrez votre couriel" onChange={this.onTextChange} value={this.state.email} />
+                </UpBox>
+                <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
                   <UpLabel text="Commune :"></UpLabel>
-                  <UpInput readOnly={true} width="xlarge" height="large" type="search" placeholder="Chercher votre commune"  onChange={this.onTextChange} value={this.state.search}/>   
-               </UpBox>
-               <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
+                  <UpInput readOnly={true} width="xlarge" height="large" type="search" placeholder="Chercher votre commune" onChange={this.onTextChange} value={this.state.search} />
+                </UpBox>
+                <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
                   <UpLabel text="Nom :"></UpLabel>
-                  <UpInput width="xlarge" type="text" iconName="user" placeholder="Entrer votre nom"  onChange={this.onTextChange} value={this.state.search}/>   
+                  <UpInput width="xlarge" type="text"  placeholder="Entrer votre nom"  onChange={this.onTextChange} value={this.state.search}/>   
                </UpBox>
                <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
                   <UpLabel text="Nombre :"></UpLabel>
-                  <UpNumber width="xlarge"  placeholder="Entrer votre nombre"  onChange={this.onNumberChange} value={this.state.number}/>   
-               </UpBox>
-               <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
+                  <UpNumber width="xlarge" placeholder="Entrer votre nombre" onChange={this.onNumberChange} value={this.state.number} />
+                </UpBox>
+                <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
                   <UpLabel text="Montant :"></UpLabel>
-                  <UpInteger width="xlarge" placeholder="Entrer votre montant"  onChange={this.onIntegerChange} value={this.state.integer}/>   
-               </UpBox>
-               <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
+                  <UpInteger width="xlarge" placeholder="Entrer votre montant" onChange={this.onIntegerChange} value={this.state.integer} />
+                </UpBox>
+                <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
                   <UpLabel text="Email :"></UpLabel>
-                  <UpEmail width="xlarge" iconName="email" placeholder="Entrer votre email"  onChange={this.onPhoneChange} value={this.state.email}/>   
+                  <UpEmail width="xlarge"  placeholder="Entrer votre email"  onChange={this.onPhoneChange} value={this.state.email}/>   
                </UpBox>
                <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
                   <UpLabel text="Tél :"></UpLabel>
-                  <UpPhone width="xlarge" iconName="phone" placeholder="Entrer votre numéro de tel"  onChange={this.onPhoneChange} value={this.state.phone}/>  
+                  <UpPhone width="xlarge"  placeholder="Entrer votre numéro de tel"  onChange={this.onPhoneChange} value={this.state.phone}/>  
                </UpBox>
 
                 <UpButton
-                style={{ margin: 20 }}
-                fontSize="small"
-                iconName="edit"
-                iconSize={16}
-                color={theme.colorMap.white1}
-                backgroundColor={theme.colorMap.primary}
-                borderColor={theme.colorMap.white1}
-              >
-                Enregistrer
+                  style={{ margin: 20 }}
+                  fontSize="small"
+                  iconName="edit"
+                  iconSize={16}
+                  color={theme.colorMap.white1}
+                  backgroundColor={theme.colorMap.primary}
+                  borderColor={theme.colorMap.white1}
+                >
+                  Enregistrer
               </UpButton>
               </UpPanel>
 
@@ -189,7 +179,7 @@ class Demo extends React.Component<undefined, DemoState> {
       </UpThemeProvider>
     );
   }
-  onSortEnd(e:ChangeOrderEvent) {
+  onSortEnd(e : ChangeOrderEvent) {
     /*this.setState({
       items: arrayMove(this.state.items, e.oldIndex, e.newIndex),
     });*/
