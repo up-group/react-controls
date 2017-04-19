@@ -1,5 +1,5 @@
 ﻿import * as React from "react";
-import {UpTimeProps, UpTimeState} from './types'
+import {UpTimeProps, UpTimeState} from './'
 
 export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeState> {
     inputElement: HTMLInputElement;

@@ -20,7 +20,6 @@ export interface TextAreaPropsStyle {
     className?: string;
 }
 
-
 const BaseTextArea: React.StatelessComponent<TextAreaPropsStyle> = (props) => {
     const {className, value, onChange} = props;
 

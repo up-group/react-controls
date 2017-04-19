@@ -1,7 +1,7 @@
 import * as React from "react"
 import { BaseControl } from "../../../Common/BaseControl/BaseControl";
 import { InputStyled, CommonProps } from "./../_Styled/Input/BaseInput"
-import { TexAreatStyled } from "../_Styled/Textarea/styles";
+import { TexAreatStyled } from "./styles";
 
 export interface UpTextProps {
     multiline?:boolean;

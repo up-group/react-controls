@@ -1,5 +1,6 @@
 import * as React from "react"
-import {UpSwitchProps, UpSwitchState} from './types'
+
+import {UpSwitchProps, UpSwitchState} from './'
 
 export default class UpSwitch extends React.Component<UpSwitchProps, UpSwitchState> {
     constructor(p, c) {

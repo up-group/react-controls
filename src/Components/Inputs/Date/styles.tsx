@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { DatePickerProps } from './'
+import { UpDateProps } from './'
 import styled from 'styled-components'
 
 import { DateInput, IDatePickerLocaleUtils } from '@blueprintjs/datetime'
@@ -28,7 +28,7 @@ class UpLocaleUtils implements IDatePickerLocaleUtils {
 
 const locale = new UpLocaleUtils() ;
 
-const BaseDate : React.StatelessComponent<DatePickerProps> = (props) => {
+const BaseDate : React.StatelessComponent<UpDateProps> = (props) => {
     
     const {value, className, format, onChange} = props ;
     const picker = (<span className="pt-icon pt-icon-calendar"></span>) ;
@@ -42,11 +42,11 @@ const BaseDate : React.StatelessComponent<DatePickerProps> = (props) => {
                         onChange={onChange} format={format} />) ;
 }
 
-export const NormalDate = styled<DatePickerProps>(BaseDate)`
+export const NormalDate = styled<UpDateProps>(BaseDate)`
 `; 
 
-export default class UpDateStyle extends React.Component<DatePickerProps, undefined> {
-    public static defaultProps: DatePickerProps = {
+export default class UpDateStyle extends React.Component<UpDateProps, {}> {
+    public static defaultProps: UpDateProps = {
         value:"",
     };
   public render() {

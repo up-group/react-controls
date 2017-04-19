@@ -3,7 +3,7 @@ export default UpDateTime ;
 
 import { StyledComponentProps } from "../../../Common/utils/types";
 
-export interface DateTimePickerProps extends StyledComponentProps {
+export interface UpDateTimeProps extends StyledComponentProps {
   hasError?: boolean;
   onChange?: (value?: Date) => void;
   isNullable?: boolean;

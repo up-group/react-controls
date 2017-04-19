@@ -7,7 +7,7 @@ export interface Props extends CommonProps {
     isNullable?: boolean;
 }
 
-export default class Phone extends BaseControl<Props, string> {
+export default class UpPhone extends BaseControl<Props, string> {
     public static defaultProps: Props = {
     };
 

@@ -2,13 +2,13 @@ import "normalize.css/normalize.css"
 import "@blueprintjs/core/dist/blueprint.css"
 
 import * as React from "react"
-import { DateTimePickerProps } from './'
+import { UpDateTimeProps } from './'
 import { BaseControl } from '../../../Common/BaseControl/BaseControl'
 import UpDateStyle from './styles'
 
-export default class DateTimePicker extends BaseControl<DateTimePickerProps, Date> {
+export default class DateTimePicker extends BaseControl<UpDateTimeProps, Date> {
 
-    public static defaultProps: DateTimePickerProps = {
+    public static defaultProps: UpDateTimeProps = {
         format:"DD/MM/YYYY",
         value:""
     };

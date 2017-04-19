@@ -1,7 +1,8 @@
 import * as React from 'react'
 import styled, {css} from 'styled-components';
-import { sizeMap } from './maps';
-import { StyledProps } from './';
+
+import { StyledProps, sizeMap} from './';
+
 import SvgIcon from "../../Display/SvgIcon/index";
 
 const BaseInput: React.StatelessComponent<StyledProps> = (props) => {

@@ -1,12 +1,13 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 import remStringFromPX from '../../../Common/utils'
-import { sizeMap } from './maps'
-import { Props } from './'
+
+import { UpButtonProps, sizeMap } from './'
+
 import ThemeColorMap from '../../../Common/theming'
 import SvgIcon from "../../Display/SvgIcon/index";
 
-const ReactButtonComponent: React.StatelessComponent<Props> = (props) => {
+const ReactButtonComponent: React.StatelessComponent<UpButtonProps> = (props) => {
     const { children, className } = props;
 
     const icon = <SvgIcon iconName={props.iconName}
@@ -28,19 +29,19 @@ const shadow = props => css`
 
 const base = props => css`
   text-align: center;
-  font-size: ${(props: Props) => remStringFromPX(sizeMap[props.fontSize])};
+  font-size: ${(props: UpButtonProps) => remStringFromPX(sizeMap[props.fontSize])};
   border: none;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
   background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ;
-  border-radius: ${(props: Props) => props.theme.borderRadius || '3px'};
+  border-radius: ${(props: UpButtonProps) => props.theme.borderRadius || '3px'};
   padding: 0 10px;
   vertical-align: middle;
-  min-width: ${(props: Props) => props.theme.minButtonSize || '30px'};
-  min-height: ${(props: Props) => props.theme.minButtonSize || '30px'};
-  line-height: ${(props: Props) => props.theme.minButtonSize || '30px'};
+  min-width: ${(props: UpButtonProps) => props.theme.minButtonSize || '30px'};
+  min-height: ${(props: UpButtonProps) => props.theme.minButtonSize || '30px'};
+  line-height: ${(props: UpButtonProps) => props.theme.minButtonSize || '30px'};
   svg {
     margin:4px 4px 4px 0px;
     display:inline-block;
@@ -49,36 +50,36 @@ const base = props => css`
 `;
 
 const disabled = props => css`
-background: ${(props: Props) => ThemeColorMap.disabledBg };
-color: ${(props: Props) => ThemeColorMap.disabledFg };
+background: ${(props: UpButtonProps) => ThemeColorMap.disabledBg };
+color: ${(props: UpButtonProps) => ThemeColorMap.disabledFg };
 cursor: not-allowed;
 `;
 
 const active = props => css`
 background: ${props => props.backgroundColor || 'green' };
-color: ${(props: Props) => props.color};
-border-color:${(props: Props) => props.backgroundColor};
+color: ${(props: UpButtonProps) => props.color};
+border-color:${(props: UpButtonProps) => props.backgroundColor};
 border-width:1px;
 border-style:solid;
 &:hover {
   background: ${props => props.color || 'green' };
-  color: ${(props: Props) => props.backgroundColor};
+  color: ${(props: UpButtonProps) => props.backgroundColor};
   svg {
-    fill: ${(props: Props) => props.backgroundColor}
+    fill: ${(props: UpButtonProps) => props.backgroundColor}
   }
 }
 svg {
-    fill: ${(props: Props) => props.color}
+    fill: ${(props: UpButtonProps) => props.color}
 }
 `;
 
-export const BaseButton = styled<Props>(ReactButtonComponent) `
-${(props: Props) => base(props) }
-${(props: Props) => props.shadow? shadow(props):css``}
-${(props: Props) => props.disabled ? disabled(props) : active(props) }
+export const BaseButton = styled<UpButtonProps>(ReactButtonComponent) `
+${(props: UpButtonProps) => base(props) }
+${(props: UpButtonProps) => props.shadow? shadow(props):css``}
+${(props: UpButtonProps) => props.disabled ? disabled(props) : active(props) }
 `;
 
-export const HeroButton = styled<Props>(ReactButtonComponent) `
-${(props: Props) => base(props)}
-${(props: Props) => props.disabled ? disabled(props) : active(props) }
+export const HeroButton = styled<UpButtonProps>(ReactButtonComponent) `
+${(props: UpButtonProps) => base(props)}
+${(props: UpButtonProps) => props.disabled ? disabled(props) : active(props) }
 `;

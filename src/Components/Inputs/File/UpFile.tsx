@@ -1,5 +1,5 @@
 ﻿import * as React from "react"
-import {UpFileProps} from "./types"
+import {UpFileProps} from "./"
 import UpFileStyle from "./styles"
 
 export default class UpFile extends React.Component<UpFileProps, {}> {

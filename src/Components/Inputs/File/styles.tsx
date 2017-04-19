@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled, {css} from 'styled-components'
-import { UpFileStyleProps } from './types'
+import { UpFileStyleProps } from './'
 
 const BaseFileComponent: React.StatelessComponent<UpFileStyleProps> = (props) => {
     const {className} = props;

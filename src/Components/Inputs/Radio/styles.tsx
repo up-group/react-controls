@@ -1,12 +1,15 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
-import remStringFromPX from '../../../Common/utils'
-import { StyledProps } from './'
+
+import { UpRadioStyledProps } from './'
 import ThemeColorMap from '../../../Common/theming'
+
 import SvgIcon from '../../Display/SvgIcon'
 import * as classNames from 'classnames'
 
-const BaseRadioButton: React.StatelessComponent<StyledProps> = (props) => {
+import {CommonCheckableStyle} from '../_Styled' 
+
+const BaseRadioButton: React.StatelessComponent<UpRadioStyledProps> = (props) => {
     const { children, checked, className, name, text, value, iconName, onChange } = props;
 
     return (
@@ -18,7 +21,9 @@ const BaseRadioButton: React.StatelessComponent<StyledProps> = (props) => {
     )
 }
 
-export const StyledRadioButton = styled<StyledProps>(BaseRadioButton)`
+export const StyledRadioButton = styled<UpRadioStyledProps>(BaseRadioButton)`
+${(props: UpRadioStyledProps) => CommonCheckableStyle(props)}
+
 .up-control-indicator {
   border-radius: 50%;
   font-size: 6px;

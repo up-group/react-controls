@@ -286,5 +286,3 @@ export const inputStyles = css`
     .up-dark .up-input-group.up-intent-danger .up-icon {
       color: #ff7373; }
 `
-
-

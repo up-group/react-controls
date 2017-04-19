@@ -1,28 +1,23 @@
 ﻿import * as React from 'react';
 import { BaseControl } from "../../../Common/BaseControl/BaseControl";
-import { InputStyled, CommonProps } from "./../_Styled/Input/BaseInput"
-import TypeNumberControl from "../../../Common/Validation/TypeNumberControl";
 import TypeStringControl from "../../../Common/Validation/TypeStringControl";
+import { InputStyled, CommonProps} from "./../_Styled/Input/BaseInput"
 
 export interface Props extends CommonProps {
-    max?: number,
-    min?: number,
     isNullable?: boolean;
 }
 
-export default class Number extends BaseControl<Props, number> {
+export default class Email extends BaseControl<Props, string> {
     public static defaultProps: Props = {
     };
 
     constructor(p, c) {
         super(p, c);
 
-        var pattern = /^[0-9]*(|\.[0-9]*)*$/
-        var patternErrorMessage = "Doit être un nombre";
+        var pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        var patternErrorMessage = "Doit être un courriel";
 
         this._validationManager.addControl(new TypeStringControl(pattern, patternErrorMessage));
-        this._validationManager.addControl(new TypeNumberControl(false, this.props.min, this.props.max));
-
     }
 
     onChange(event: any) {
@@ -30,6 +25,6 @@ export default class Number extends BaseControl<Props, number> {
     }
 
     renderControl() {
-        return <InputStyled hasError={this.hasError()} onChange={this.handleChangeEvent} />
+        return <InputStyled hasError={this.hasError()} onChange={this.handleChangeEvent} iconName="email" />
     }
 }

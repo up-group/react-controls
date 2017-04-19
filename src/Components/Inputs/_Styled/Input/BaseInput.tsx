@@ -5,16 +5,13 @@ import { IconName } from "../../../../Common/theming/types";
 
 import { inputStyles, HeightLarge } from "./sharedStyle"
 
-
 export type WidthSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'fill';
 export type HeightSize = 'normal' | 'large';
 export type InputType = 'text' | 'email' | 'number' | 'integer' | 'phone' | 'search';
 
-
 export interface CommonProps {
     disabled?: boolean;
     readOnly?: boolean;
-
     placeholder?: string;
     height?: HeightSize;
     width?: WidthSize;
@@ -30,7 +27,6 @@ export interface StyledProps extends CommonProps {
     onChange?: (data: any) => void;
     className?: string;
 }
-
 
 const BaseInput: React.StatelessComponent<StyledProps> = (props) => {
     const {className, type, iconName, placeholder, disabled, readOnly, onChange } = props;
@@ -62,7 +58,6 @@ const sizeMap = {
     fill: "100%",
 };
 
-
 const error = css`
 .up-input {
   border-color:${(props) => props.theme.error};
@@ -70,7 +65,6 @@ const error = css`
   border-style: solid;
 }
 `
-
 
 export const InputStyled = styled<StyledProps>(BaseInput) `
   ${inputStyles}

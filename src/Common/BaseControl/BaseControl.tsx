@@ -5,17 +5,19 @@ import ErrorDisplay from "../Validation/ErrorDisplay"
 import "../theming/base.css"
 
 
-export interface BaseProp<_BaseType> {
+export interface BaseProps<_BaseType> {
     onChange?: (arg: _BaseType, event: any) => void;
     onError?: (hasError: boolean) => void;
     value?: _BaseType;
+    disabled?:boolean;
+    readonly?:boolean;
 }
 
 export interface BaseState<_BaseType> {
     error?: string;
 }
 
-export abstract class BaseControl<_Props, _BaseType> extends React.Component<BaseProp<_BaseType> & _Props, BaseState<_BaseType>> {
+export abstract class BaseControl<_Props, _BaseType> extends React.Component<BaseProps<_BaseType> & _Props, BaseState<_BaseType>> {
 
     _validationManager: ValidationManager;
 

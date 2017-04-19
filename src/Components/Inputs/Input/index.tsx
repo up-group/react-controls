@@ -1,8 +1,22 @@
-﻿import * as React from 'react';
-import { InputStyled } from './styles';
-import { WidthSize, HeightSize, InputType } from './types';
-import { BaseControl } from "../../../Common/BaseControl/BaseControl";
+﻿import UpInput from './UpInput'
+
+export default UpInput
+
 import { IconName } from "../../../Common/theming/types";
+
+export type WidthSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'fill' ;
+export type HeightSize = 'normal' | 'large' ;
+export type InputType = 'text' | 'email' | 'number' | 'integer' | 'phone' | 'search' ;
+
+export const sizeMap = {
+  xsmall: "40px",
+  small: "100px",
+  medium: "150px",
+  large: "250px",
+  xlarge: "350px",
+  xxlarge: "500px",
+  fill: "100%",
+};
 
 export interface StyledProps extends CommonProps {
     color?: string;
@@ -28,29 +42,5 @@ export interface Props extends CommonProps {
     type?: InputType;
     isNullable?: boolean;
     hasError?: boolean;
-}
-
-
-export default class Input extends BaseControl<Props, any> {
-    public static defaultProps: Props = {
-    };
-
-    constructor(p, c) {
-        super(p, c);
-    }
-
-    onChange(event: any) {
-        return event.target.value;
-    }
-
-    renderControl() {
-        return (
-            <InputStyled
-                type="text"
-                onChange={this.handleChangeEvent}
-            >
-                {this.props.children}
-            </InputStyled>
-        );
-    }
+    iconName?:IconName;
 }

@@ -4,7 +4,7 @@ export default UpDate ;
 
 import { StyledComponentProps } from "../../../Common/utils/types";
 
-export interface DatePickerProps extends StyledComponentProps {
+export interface UpDateProps extends StyledComponentProps {
   hasError?: boolean;
   isNullable?: boolean;
   className? : string;

@@ -1,7 +1,8 @@
-import * as React from 'react'
-import UpLabel from '../../Display/Label/index'
-import {Position} from './types'
-import {StyledCheckBox} from './styles'
+import UpCheckbox from './UpCheckbox'
+
+export default UpCheckbox ;
+
+export type Position = 'left' | 'right' ;
 
 export interface Option {
     name:string;
@@ -12,43 +13,11 @@ export interface Option {
     checked:boolean;
 }
 
-export interface StyledProps extends Option {
+export interface UpCheckboxStyledProps extends Option {
     className?:string;
 }
 
-export interface Props {
+export interface UpCheckboxProps {
     options: Array<Option>;
     position?:Position;
-}
-
-export default class UpCheckbox extends React.Component<Props, {}> {
-  constructor(props) {
-    super(props) ;
-  }
-  componentWillUnmount() {
-
-  }
-  componentDidMount() {
-
-  }
-  render() {
-    const options = this.props.options ;
-    /*const icon = <SvgIcon iconName={props.iconName}
-          width={props.iconSize}
-          height={props.iconSize}
-          color={props.color} /> ;*/
-    return (
-      <div>
-      {options.map((option) => (
-        <StyledCheckBox 
-          onChange={option.onChange} 
-          key={`Key_${option.name}_${option.value}`} 
-          text={option.text} name={option.name} 
-          value={option.value}
-          checked={option.checked}>
-        </StyledCheckBox>
-      ))}
-      </div>
-    );
-  }
 }
