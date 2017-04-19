@@ -17,6 +17,7 @@ export interface UpSelectProps extends BaseProps<any> {
     multiple?: boolean;
     data?: any;
     placeholder?: string;
+    loadingPlaceholder?:string;
     allowClear?: boolean;
     minimumInputLength?: number;
     dataSource?: {

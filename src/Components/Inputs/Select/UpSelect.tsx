@@ -2,12 +2,12 @@ import * as React from 'react'
 //import Component from './styles';
 import * as ReactDOM from "react-dom"
 import * as Select from "react-select"
-import fetch from 'fetch'
-
-import 'react-select/dist/react-select.css'
+import axios from 'axios'
 
 import {BaseControl} from '../../../Common/BaseControl/BaseControl' 
 import {UpSelectProps} from './'
+
+import WrapperSelect from './styles' ;
 
 export default class UpSelect extends BaseControl<UpSelectProps, any> {
     
@@ -18,6 +18,7 @@ export default class UpSelect extends BaseControl<UpSelectProps, any> {
         addLabelText : "Ajouter",
         searchPromptText : "-- Rechercher",
         placeholder: "-- Sélectionner",
+        loadingPlaceholder: "Chargement en cours",
         default:null,
         getFullData: false,
         isNullable:true,
@@ -78,29 +79,42 @@ export default class UpSelect extends BaseControl<UpSelectProps, any> {
     renderControl() {
         const dataSource = this.props.dataSource ;
         var loadOptions:any = false;
+        
+        const SelectComponent = typeof dataSource !== "undefined"
+			? Select.Async
+			: Select;
+
         if(typeof dataSource !== "undefined") {
             var queryParam = dataSource.queryParameterName || 'search';
-            loadOptions = function(input, callback) {
-                return fetch(`${dataSource.query}?${queryParam}=${input}`)
+            var minmumInputLength = this.props.minimumInputLength ;
+            loadOptions = function(input:string) {
+                return axios.get(`${dataSource.query}?${queryParam}=${input}`)
                     .then((response) => {
-                    return response.json();
-                    }).then((json) => {
-                    return { options: json };
-                });
+                        var data = response.data ;
+                        return {options : data};
+                    });
             };
         }
-
+        var specProps:any = {
+            options : this.props.data
+        }
+        if(loadOptions !== false) {
+            specProps = {
+                "loadOptions": loadOptions,
+                "autoload": this.props.autoload
+            }
+        }
+        
         return (
-            <Select style={{width:"300px"}}
-                name="form-field-name"
+        <WrapperSelect>
+            <SelectComponent 
+                {...specProps}
                 placeholder={this.props.placeholder}
                 value={this.props.value}
-                options={this.props.data}
-                searchable={true}
-                loadOptions={loadOptions}
                 autoBlur={false}
                 valueKey="id"
-                autoload={this.props.autoload}
+                labelKey="title"
+                loadingPlaceholder={this.props.loadingPlaceholder}
                 multi={this.props.multiple}
                 clearable={this.props.allowClear}
                 disabled={this.props.disabled}
@@ -113,10 +127,9 @@ export default class UpSelect extends BaseControl<UpSelectProps, any> {
                 valueRenderer={this.getValueRenderer}
                 onChange={this.handleChangeEvent}
             />
+        </WrapperSelect>
         );
     }
-
-    private get isExternal() { return this.props.dataSource !== undefined }
 
     componentDidMount() {
         
@@ -124,15 +137,5 @@ export default class UpSelect extends BaseControl<UpSelectProps, any> {
 
     componentWillUnmount() {
         
-    }
-
-    private getUrl = () => {
-        return this.props.dataSource.query;
-    }
-
-    private getdataParam = (params) => {
-        var temp = {}
-        temp[this.props.dataSource.queryParameterName] = params;
-        return temp;
     }
 }

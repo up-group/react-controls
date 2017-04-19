@@ -8,16 +8,6 @@ export type WidthSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'fi
 export type HeightSize = 'normal' | 'large' ;
 export type InputType = 'text' | 'email' | 'number' | 'integer' | 'phone' | 'search' ;
 
-export const sizeMap = {
-  xsmall: "40px",
-  small: "100px",
-  medium: "150px",
-  large: "250px",
-  xlarge: "350px",
-  xxlarge: "500px",
-  fill: "100%",
-};
-
 export interface StyledProps extends CommonProps {
     color?: string;
     backgroundColor?: string;

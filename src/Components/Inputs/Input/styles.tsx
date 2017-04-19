@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled, {css} from 'styled-components';
-
-import { StyledProps, sizeMap} from './';
+import {sizeMap} from '../_Styled' 
+import { StyledProps} from './';
 
 import SvgIcon from "../../Display/SvgIcon/index";
 
