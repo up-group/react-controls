@@ -1,6 +1,6 @@
 import {IconName} from './types'
 
-export interface IconMap {
+interface IconMap {
   success:IconName,
   danger:IconName,
   warning:IconName,
