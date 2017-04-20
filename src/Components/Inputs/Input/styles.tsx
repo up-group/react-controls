@@ -6,6 +6,8 @@ import {sizeMap} from '../_Common/Styled'
 import { StyledProps} from './';
 
 import SvgIcon from "../../Display/SvgIcon/index";
+import { InterpolationFunction } from "styled-components/typings/styled-components";
+import { ThemeInterface } from "../../../Common/theming/types";
 
 const BaseInput: React.StatelessComponent<StyledProps> = (props) => {
     const {className, type, iconName, placeholder, disabled, readOnly, onChange } = props;
@@ -329,6 +331,7 @@ const error = css`
   border-style: solid;
 }
 `
+
 export const InputStyled = styled<StyledProps>(BaseInput)`
   ${inputStyles}
   ${(props) => props.hasError ? error:css``}

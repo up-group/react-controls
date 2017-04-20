@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import styled, {css} from '../../../Common/theming/themedComponents';
 import { Props } from './types';
+import { ThemeInterface } from "../../../Common/theming/types";
 
 const BaseLabel : React.StatelessComponent<Props> = (props) => {
     

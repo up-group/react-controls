@@ -1,6 +1,7 @@
 import styled, {keyframes, css} from '../../../Common/theming/themedComponents';
 import { Status, StyledProps } from './types';
 import colorMap from '../../../Common/theming/colorMap';
+import { ThemeInterface } from "../../../Common/theming/types";
 
 const backgroundColor = (status: Status) => css`
   background-color: ${colorMap[status] || colorMap.offwhite};
@@ -23,6 +24,7 @@ export const Button = styled.button`
   cursor: pointer;
   font-size: 2rem;
 `;
+
 
 export default styled.div`
   position: fixed;

@@ -8,6 +8,10 @@ import {
   boxSizeToStyle,
 } from './styleUtils';
 
+import { ThemeInterface } from "../../../Common/theming/types";
+import { InterpolationFunction, ThemeProps } from "styled-components/typings/styled-components";
+
+
 export const BoxStyles = css`
   display: flex;
   background-color: ${({ backgroundColor }: Props) => backgroundColor || 'transparent'};

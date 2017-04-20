@@ -4,6 +4,7 @@ import { UpDateProps } from './'
 import styled from '../../../Common/theming/themedComponents';
 
 import { DateInput, IDatePickerLocaleUtils } from '@blueprintjs/datetime'
+import { ThemeInterface } from "../../../Common/theming/types";
 
 class UpLocaleUtils implements IDatePickerLocaleUtils {
     formatDay(day: Date, locale: string) {

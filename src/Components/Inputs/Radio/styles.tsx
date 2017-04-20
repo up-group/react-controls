@@ -8,7 +8,8 @@ import ThemeColorMap from '../../../Common/theming'
 import SvgIcon from '../../Display/SvgIcon'
 import * as classNames from 'classnames'
 
-import {CommonCheckableStyle} from '../_Common/Styled' 
+import { CommonCheckableStyle } from '../_Common/Styled'
+import { ThemeInterface } from "../../../Common/theming/types";
 
 const BaseRadioButton: React.StatelessComponent<UpRadioStyledProps> = (props) => {
     const { children, checked, className, name, text, value, iconName, onChange } = props;

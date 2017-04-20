@@ -2,6 +2,8 @@ import {css} from '../../../Common/theming/themedComponents';
 
 import { Margin, Props } from './types';
 import calculateSize, { calculateMargin } from './styleUtils';
+import { ThemeInterface } from "../../../Common/theming/types";
+import { ThemeProps, InterpolationFunction } from "styled-components/typings/styled-components";
 
 const defaultProps: Props = {
   color: '#fff',

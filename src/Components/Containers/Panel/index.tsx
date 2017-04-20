@@ -13,7 +13,7 @@ export interface Props extends React.HTMLProps<HTMLDivElement & Panel> {
   iconSize?:number;
 }
 
-class Panel extends React.Component<Props, undefined> {
+export class Panel extends React.Component<Props, undefined> {
   public static defaultProps: Props = {
     footer: "",
     type:"primary"

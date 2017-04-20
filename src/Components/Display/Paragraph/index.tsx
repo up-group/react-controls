@@ -1,5 +1,6 @@
 import styled from '../../../Common/theming/themedComponents';
 import { style } from './styles';
+import { ThemeInterface } from "../../../Common/theming/types";
 
 export type ParagraphSize = 'small' | 'medium' | 'large' | 'xlarge';
 export type Margin = 'none' | 'small' | 'medium' | 'large';

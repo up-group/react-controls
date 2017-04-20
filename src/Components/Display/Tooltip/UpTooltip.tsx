@@ -6,7 +6,7 @@ import * as ReactTooltip from 'react-tooltip'
 import {GenerateId} from '../../../Common/utils'
 import {Placement, Effect} from './' 
 
-interface UpTooltipProps extends React.Props<UpTooltip> {
+export interface UpTooltipProps extends React.Props<UpTooltip> {
   content: string;
   placement?: Placement;
   type?: IntentType;
@@ -19,7 +19,7 @@ interface UpTooltipProps extends React.Props<UpTooltip> {
   id?:string;
 }
 
-interface UpTooltipState {
+export interface UpTooltipState {
 
 }
 

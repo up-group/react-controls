@@ -7,7 +7,8 @@ import ThemeColorMap from '../../../Common/theming/index'
 import SvgIcon from '../../Display/SvgIcon'
 import * as classNames from 'classnames'
 
-import {CommonCheckableStyle} from '../_Common/Styled' 
+import { CommonCheckableStyle } from '../_Common/Styled'
+import { ThemeInterface } from "../../../Common/theming/types";
 
 const BaseCheckBox: React.StatelessComponent<UpCheckboxStyledProps> = (props) => {
     const { children, checked, className, text, name, value, iconName, onChange } = props;

@@ -3,6 +3,7 @@ import * as React from 'react'
 import styled, {css} from '../../../Common/theming/themedComponents';
 
 import { Props } from './';
+import { ThemeInterface } from "../../../Common/theming/types";
 
 const BaseFormGroup : React.StatelessComponent<Props> = (props) => {
     return (

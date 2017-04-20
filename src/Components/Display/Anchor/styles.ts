@@ -1,5 +1,6 @@
 import styled, {css} from '../../../Common/theming/themedComponents';
 import { Props } from './types';
+import { ThemeInterface } from "../../../Common/theming/types";
 
 const plainStyle = (plain: boolean) => {
   if (plain) {

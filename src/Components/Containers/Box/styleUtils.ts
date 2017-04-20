@@ -16,6 +16,8 @@ import {
   Px,
 } from './types';
 import { SIZE_MAP, BOX_SIZE_MAP } from './maps';
+import { InterpolationFunction, ThemeProps } from "styled-components/typings/styled-components";
+import { ThemeInterface } from "../../../Common/theming/types";
 
 const rootRem: number = 16;
 const remFromPX = (px: Px): Rem => (px / rootRem);

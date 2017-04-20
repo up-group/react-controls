@@ -3,7 +3,7 @@ import AnchorStyled from './styles';
 
 const MethodTypePush = 'push';
 
-type Method = 'push' | 'replace';
+export type Method = 'push' | 'replace';
 export interface Props extends React.Props<Anchor> {
   path?: string;
   plain?: boolean;
@@ -14,7 +14,7 @@ export interface Props extends React.Props<Anchor> {
   onClick?:(e:React.MouseEvent<HTMLAnchorElement>)=>void;
 }
 
-class Anchor extends React.Component<Props, undefined> {
+export class Anchor extends React.Component<Props, undefined> {
   public static defaultProps: Props = {
     method: MethodTypePush,
   };

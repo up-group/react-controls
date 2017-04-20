@@ -2,6 +2,7 @@ import styled, {css} from '../../../Common/theming/themedComponents';
 import { marginCss } from '../Paragraph/styles';
 import { calculateSize } from './styleUtils';
 import { Props } from './types';
+import { ThemeInterface } from "../../../Common/theming/types";
 
 const truncateCss = (truncate: boolean) => {
   if (truncate) {
