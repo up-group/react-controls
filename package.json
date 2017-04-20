@@ -1,6 +1,6 @@
 {
   "name": "@up-group/react-controls",
-  "version": "0.0.78",
+  "version": "0.0.79",
   "description": "",
   "main": "dist/index.js",
   "types": "src/index.ts",
