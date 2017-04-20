@@ -3,6 +3,7 @@ import * as React from 'react'
 import styled, {css} from '../../../Common/theming/themedComponents';
 
 import Textarea from 'react-textarea-autosize'
+import { ThemeInterface } from "../../../Common/theming/types";
 
 export interface TextAreaPropsStyle {
     value?:string;

@@ -2,6 +2,7 @@ import styled, {css} from '../../../Common/theming/themedComponents';
 
 import remStringFromPx from '../../../Common/utils';
 import { Props } from './index';
+import { ThemeInterface } from "../../../Common/theming/types";
 
 const imageSizeMap = {
   thumb: 50,

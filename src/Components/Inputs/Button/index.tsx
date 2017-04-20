@@ -22,7 +22,7 @@ export type FontSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 export type ButtonWidth = 'normal' | 'icon' | 'auto' ;
 export type ButtonHeight = 'xsmall' | 'small' | 'normal' | 'large' ;
 
-interface CommonProps extends ThemedProps {
+export interface CommonProps extends ThemedProps {
   color?: string; // Ovverride the defaut intent styling
   backgroundColor?: string; // Ovverride the defaut intent styling
   borderColor?: string; // Ovverride the defaut intent styling

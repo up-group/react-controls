@@ -1,6 +1,6 @@
 {
   "name": "@up-group/react-controls",
-  "version": "0.0.78",
+  "version": "0.0.80",
   "description": "",
   "main": "dist/index.js",
   "types": "src/index.ts",
@@ -28,6 +28,7 @@
     "clean": "rimraf dist && rimraf test/dist",
     "prepublish": "npm run clean && npm run build ",
     "build": "tsc && copyfiles -u 1 src/Common/theming/base.css dist/ && copyfiles -u 1 src/Common/theming/icons/*.* dist/",
+    "build-watch" : "tsc -w",
     "build-test": "npm run clean && webpack",
     "publishProd": "npm version patch && npm publish",
     "publishBeta": "npm version patch && npm publish --tag beta",

@@ -4,6 +4,7 @@ import { Props } from './'
 import styled,{ css } from "../../../Common/theming/themedComponents";
 
 import SvgIcon from "../../Display/SvgIcon/index";
+import { ThemeInterface } from "../../../Common/theming/types";
 
 const BasePanel: React.StatelessComponent<Props> = (props) => {
     const { children } = props;

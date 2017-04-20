@@ -7,6 +7,7 @@ import { UpButtonStyledProps, fontSizeMap, buttonSizeMap} from './'
 
 import ThemeColorMap from '../../../Common/theming'
 import SvgIcon from "../../Display/SvgIcon/index";
+import { ThemeInterface } from "../../../Common/theming/types";
 
 const ReactButtonComponent: React.StatelessComponent<UpButtonStyledProps> = (props) => {
     const { children, className, onClick, dataFor, width } = props;

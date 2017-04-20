@@ -17,7 +17,7 @@ export interface Props extends BoxProps {
   status?: Status;
 }
 
-interface State {
+export interface State {
   isVisible: boolean;
   isUnmounting: boolean;
 }

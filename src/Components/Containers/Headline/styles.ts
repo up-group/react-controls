@@ -4,6 +4,7 @@ import styled from '../../../Common/theming/themedComponents';
 
 import { Props } from './types';
 import { marginCss } from "../../Display/Paragraph/styles";
+import { ThemeInterface } from "../../../Common/theming/types";
 
 export const HeadlineStyled = styled.h1`
   text-align: center;

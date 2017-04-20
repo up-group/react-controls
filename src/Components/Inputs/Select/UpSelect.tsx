@@ -4,12 +4,12 @@ import * as ReactDOM from "react-dom"
 import * as Select from "react-select"
 import axios from 'axios'
 
-import {BaseControl} from '../_Common/BaseControl/BaseControl' 
+import {InputBaseComponent} from '../_Common/BaseControl/BaseControl' 
 import {UpSelectProps} from './'
 
 import WrapperSelect from './styles' ;
 
-export default class UpSelect extends BaseControl<UpSelectProps, any> {
+export default class UpSelect extends InputBaseComponent<UpSelectProps, any> {
     
     public static defaultProps : UpSelectProps = {
         noResultsText : "Aucun résultat trouvé",

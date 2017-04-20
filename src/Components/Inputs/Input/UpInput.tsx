@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { InputStyled } from './styles';
-import { BaseControl } from "../_Common/BaseControl/BaseControl";
+import { InputBaseComponent } from "../_Common/BaseControl/BaseControl";
 
 import { Props } from './';
 
-export default class UpInput extends BaseControl<Props, any> {
+export default class UpInput extends InputBaseComponent<Props, any> {
     public static defaultProps: Props = {
     };
 

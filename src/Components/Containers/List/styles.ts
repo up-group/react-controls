@@ -3,6 +3,7 @@ import styled, {css} from '../../../Common/theming/themedComponents';
 import ThemeColorMap from '../../../Common/theming'
 import { PropsStyled } from './types';
 import { marginCss } from "../../Display/Paragraph/styles";
+import { ThemeInterface } from "../../../Common/theming/types";
 
 const borderWarning = css`
   border-radius:3px;

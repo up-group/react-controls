@@ -1,4 +1,5 @@
-import styled, {keyframes} from '../../../Common/theming/themedComponents';
+import styled, { keyframes } from '../../../Common/theming/themedComponents';
+import { ThemeInterface } from "../../../Common/theming/types";
 
 const draw = keyframes`
   0% {

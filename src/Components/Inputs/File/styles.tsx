@@ -1,8 +1,8 @@
 import * as React from 'react'
-
 import styled, {css} from '../../../Common/theming/themedComponents';
 
 import { UpFileStyleProps } from './'
+import { ThemeInterface } from "../../../Common/theming/types";
 
 const BaseFileComponent: React.StatelessComponent<UpFileStyleProps> = (props) => {
     const {className} = props;
