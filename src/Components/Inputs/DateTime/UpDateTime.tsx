@@ -6,7 +6,7 @@ import { UpDateTimeProps } from './'
 import { BaseControl } from '../_Common/BaseControl/BaseControl'
 import UpDateStyle from './styles'
 
-export default class DateTimePicker extends BaseControl<UpDateTimeProps, Date> {
+export default class UpDateTime extends BaseControl<UpDateTimeProps, Date> {
 
     public static defaultProps: UpDateTimeProps = {
         format:"DD/MM/YYYY",

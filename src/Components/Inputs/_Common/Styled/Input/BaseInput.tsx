@@ -60,7 +60,7 @@ const sizeMap = {
 
 const error = css`
 .up-input {
-  border-color:${(props) => props.theme.colorMap.error};
+  border-color:${(props) => props.theme.colorMap.danger};
   border-width: 1px;
   border-style: solid;
 }

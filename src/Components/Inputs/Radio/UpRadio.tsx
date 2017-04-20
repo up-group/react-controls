@@ -5,7 +5,7 @@ import {StyledRadioButton} from './styles'
 
 import {UpRadioProps, Position} from './'
 
-export default class UpCheckbox extends React.Component<UpRadioProps, {}> {
+export default class UpRadio extends React.Component<UpRadioProps, {}> {
   constructor(props) {
     super(props) ;
   }

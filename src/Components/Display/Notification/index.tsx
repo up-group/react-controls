@@ -1,16 +1,19 @@
+// Imports
 import * as React from 'react';
 import BoxStyled from './styles';
 import Paragraph from '../Paragraph';
 import Box from '../../Containers/Box';
-import { Status } from './types';
+import {IntentType} from '../../../Common/theming/types';
 import iconMap from '../../../Common/theming/iconMap';
 import colorMap from '../../../Common/theming/colorMap';
 import SvgIcon from '../SvgIcon'
 
+// Exports
 export interface Props extends React.HTMLProps<Notification> {
   message: JSX.Element | string;
-  status?: Status;
+  status?: IntentType;
   theme?:any;
+  dismissable?:boolean;
 }
 
 export default function Notification({
@@ -23,7 +26,7 @@ export default function Notification({
    const icon = <SvgIcon iconName={iconMap[status]}
           width={theme ? theme.notificationIconSize  ||  defaultIconSize : defaultIconSize}
           height={theme ? theme.notificationIconSize ||  defaultIconSize : defaultIconSize}
-          color={colorMap[`${status}Fg`] || "black"} /> ;
+          color={colorMap[`${status}Dark`] || "black"} /> ;
 
   return (<BoxStyled status={status} flexDirection="row" message="" boxSize={{ horizontal: 'full' }} pad="small" 
     justifyContent="flex-start"

@@ -3,11 +3,12 @@ import { BaseControl } from "../_Common/BaseControl/BaseControl";
 import TypeStringControl from "../_Common/Validation/TypeStringControl";
 import { InputStyled, CommonProps} from "../_Common/Styled/Input/BaseInput"
 
+import {ThemedProps} from '../../../Common/theming/types' 
 export interface Props extends CommonProps {
     isNullable?: boolean;
 }
 
-export default class Email extends BaseControl<Props, string> {
+export default class UpEmail extends BaseControl<Props, string> {
     public static defaultProps: Props = {
     };
 

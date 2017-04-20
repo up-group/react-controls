@@ -1,23 +1,21 @@
-import * as React from 'react';
-import {PanelType} from './types' 
+import * as React from 'react'
+import {IntentType} from '../../../Common/theming/types' 
 import {PanelStyled} from './styles'  
-import { IconName } from "../../../Common/theming/types";
+import {IconName} from "../../../Common/theming/types"
 
-// This is so that the onClick handler is accepted without type interferance
 export interface Props extends React.HTMLProps<HTMLDivElement & Panel> {
   title?:string;
   footer?: string | React.ReactElement<any>;
   dismissable?:boolean;
-  type?:PanelType;
+  type?:IntentType;
   message?:string;
-  iconName?: IconName;
+  iconName?:IconName;
   iconSize?:number;
 }
 
 class Panel extends React.Component<Props, undefined> {
   public static defaultProps: Props = {
     footer: "",
-    dismissable:false,
     type:"primary"
   };
   public render() {
