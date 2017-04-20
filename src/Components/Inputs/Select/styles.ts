@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from '../../../Common/theming/themedComponents';
 
-import {sizeMap} from '../_Styled' 
+import {sizeMap} from '../_Common/Styled' 
 
 import 'react-select/dist/react-select.css'
  

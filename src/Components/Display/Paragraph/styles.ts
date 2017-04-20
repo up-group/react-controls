@@ -1,4 +1,5 @@
-import { css } from 'styled-components';
+import {css} from '../../../Common/theming/themedComponents';
+
 import { Margin, Props } from './types';
 import calculateSize, { calculateMargin } from './styleUtils';
 

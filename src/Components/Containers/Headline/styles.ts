@@ -1,5 +1,7 @@
 import calculateSize from './styleUtils';
-import styled from 'styled-components';
+
+import styled from '../../../Common/theming/themedComponents';
+
 import { Props } from './types';
 import { marginCss } from "../../Display/Paragraph/styles";
 

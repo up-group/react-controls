@@ -1,4 +1,5 @@
- import styled, { css } from 'styled-components';
+import styled, {css} from '../../../Common/theming/themedComponents';
+
 import remStringFromPx from '../../../Common/utils';
 import { Props } from './index';
 

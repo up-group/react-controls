@@ -1,5 +1,6 @@
 // // these sizes are arbitrary and you can set them to whatever you wish
-// import styled, { css } from 'styled-components'
+// import styled, {css} from './theming/themedComponents';
+
 
 // const sizes = {
 //   giant: 1170,

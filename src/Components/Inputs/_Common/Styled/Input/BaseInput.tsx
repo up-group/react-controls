@@ -1,9 +1,9 @@
 import * as React from 'react'
-import styled, { css } from 'styled-components';
-import SvgIcon from "../../../Display/SvgIcon/index";
-import { IconName } from "../../../../Common/theming/types";
+import styled, {css} from '../../../../../Common/theming/themedComponents';
+import SvgIcon from "../../../../Display/SvgIcon/index";
+import { IconName } from "../../../../../Common/theming/types";
 
-import { inputStyles, HeightLarge } from "./sharedStyle"
+import { inputStyles, HeightLarge } from "./styles"
 
 export type WidthSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'fill';
 export type HeightSize = 'normal' | 'large';
@@ -60,7 +60,7 @@ const sizeMap = {
 
 const error = css`
 .up-input {
-  border-color:${(props) => props.theme.error};
+  border-color:${(props) => props.theme.colorMap.error};
   border-width: 1px;
   border-style: solid;
 }

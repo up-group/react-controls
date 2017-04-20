@@ -2,10 +2,9 @@ import * as React from "react";
 import ValidationManager from "../Validation/ValidationManager"
 import ErrorDisplay from "../Validation/ErrorDisplay"
 // Importation des règles CSS de bases -> à transformer en styled-components
-import "../theming/base.css"
+import "../../../../Common/theming/base.css"
 
-
-export interface BaseProps<_BaseType> {
+export interface InputBaseProps<_BaseType> {
     onChange?: (arg: _BaseType, event: any) => void;
     onError?: (hasError: boolean) => void;
     value?: _BaseType;
@@ -13,11 +12,11 @@ export interface BaseProps<_BaseType> {
     readonly?:boolean;
 }
 
-export interface BaseState<_BaseType> {
+export interface InputBaseState<_BaseType> {
     error?: string;
 }
 
-export abstract class BaseControl<_Props, _BaseType> extends React.Component<BaseProps<_BaseType> & _Props, BaseState<_BaseType>> {
+export abstract class BaseControl<_Props, _BaseType> extends React.Component<InputBaseProps<_BaseType> & _Props, InputBaseState<_BaseType>> {
 
     _validationManager: ValidationManager;
 

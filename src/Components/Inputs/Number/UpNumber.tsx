@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
 import {Props as StyleProps} from '../Input/';
 
-import { BaseControl } from '../../../Common/BaseControl/BaseControl';
+import { BaseControl } from '../_Common/BaseControl/BaseControl';
 import { NumericInput } from '@blueprintjs/core'
 import { CommonProps } from '../Input/';
 

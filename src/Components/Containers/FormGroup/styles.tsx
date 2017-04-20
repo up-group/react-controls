@@ -1,6 +1,7 @@
 import * as React from 'react'
 
-import styled, {css} from 'styled-components';
+import styled, {css} from '../../../Common/theming/themedComponents';
+
 import { Props } from './';
 
 const BaseFormGroup : React.StatelessComponent<Props> = (props) => {

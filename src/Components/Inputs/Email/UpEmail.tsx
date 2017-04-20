@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
-import { BaseControl } from "../../../Common/BaseControl/BaseControl";
-import TypeStringControl from "../../../Common/Validation/TypeStringControl";
-import { InputStyled, CommonProps} from "./../_Styled/Input/BaseInput"
+import { BaseControl } from "../_Common/BaseControl/BaseControl";
+import TypeStringControl from "../_Common/Validation/TypeStringControl";
+import { InputStyled, CommonProps} from "../_Common/Styled/Input/BaseInput"
 
 export interface Props extends CommonProps {
     isNullable?: boolean;

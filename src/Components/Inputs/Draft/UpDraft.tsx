@@ -1,6 +1,7 @@
 import * as React from "react"
 import {Editor, EditorState, RichUtils} from 'draft-js';
-import styled from 'styled-components'
+
+import styled from '../../../Common/theming/themedComponents';
 
 const DraftStyled = styled.div`
  .RichEditor-root {

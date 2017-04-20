@@ -1,4 +1,4 @@
-import styled, { keyframes, css } from 'styled-components';
+import styled, {keyframes, css} from '../../../Common/theming/themedComponents';
 import { Status, StyledProps } from './types';
 import colorMap from '../../../Common/theming/colorMap';
 

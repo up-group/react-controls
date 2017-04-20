@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, {keyframes} from '../../../Common/theming/themedComponents';
 
 const draw = keyframes`
   0% {

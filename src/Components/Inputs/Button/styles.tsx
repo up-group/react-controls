@@ -1,5 +1,6 @@
 import * as React from 'react'
-import styled, { css } from 'styled-components'
+import styled, {css} from '../../../Common/theming/themedComponents';
+
 import remStringFromPX from '../../../Common/utils'
 
 import { UpButtonProps, sizeMap } from './'

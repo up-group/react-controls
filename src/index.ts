@@ -32,7 +32,7 @@ import UpEmail from './Components/Inputs/Email'
 import UpCheckbox from './Components/Inputs/Checkbox/index'
 import UpRadio from './Components/Inputs/Radio'
 
-import {ThemeProvider as UpThemeProvider} from 'styled-components'
+import {ThemeProvider as UpThemeProvider} from './Common/theming/themedComponents'
 import UpColorMap from './Common/theming/index'
 import {ThemeColorMap as UpThemeColorMap} from './Common/theming/types'
 import {ThemeInterface as UpThemeInterface} from './Common/theming/types'

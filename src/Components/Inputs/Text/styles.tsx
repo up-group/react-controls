@@ -1,5 +1,7 @@
 import * as React from 'react'
-import styled, {css} from 'styled-components'
+
+import styled, {css} from '../../../Common/theming/themedComponents';
+
 import Textarea from 'react-textarea-autosize'
 
 export interface TextAreaPropsStyle {

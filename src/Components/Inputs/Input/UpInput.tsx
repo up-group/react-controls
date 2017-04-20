@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { InputStyled } from './styles';
-import { BaseControl } from "../../../Common/BaseControl/BaseControl";
+import { BaseControl } from "../_Common/BaseControl/BaseControl";
 
 import { Props } from './';
 

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '../../../Common/theming/themedComponents';
 import { imageStyle } from './styles';
 
 export type ImageSize = 'thumb' | 'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'full';

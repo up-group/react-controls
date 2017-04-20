@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import styled, {css} from 'styled-components';
+import styled, {css} from '../../../Common/theming/themedComponents';
 import { Props } from './types';
 
 const BaseLabel : React.StatelessComponent<Props> = (props) => {

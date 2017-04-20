@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { UpDateTimeProps } from './'
-import styled from 'styled-components'
+
+import styled from '../../../Common/theming/themedComponents';
 
 import { DateInput, TimePicker, IDatePickerLocaleUtils } from '@blueprintjs/datetime'
 

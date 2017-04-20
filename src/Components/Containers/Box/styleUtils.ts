@@ -1,4 +1,5 @@
-import { css } from 'styled-components';
+import {css} from '../../../Common/theming/themedComponents';
+
 import Props from './types';
 import { BREAKPOINTS } from './maps';
 import {

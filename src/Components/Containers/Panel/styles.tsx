@@ -1,8 +1,8 @@
 import * as React from 'react'
-
 import ThemeColorMap from '../../../Common/theming'
 import { Props } from './'
 import styled,{ css } from "../../../Common/theming/themedComponents";
+
 import SvgIcon from "../../Display/SvgIcon/index";
 
 const DefaultPanel: React.StatelessComponent<Props> = (props) => {

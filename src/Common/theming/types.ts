@@ -1,4 +1,3 @@
-
 export interface ThemeInterface {
     colorMap: ThemeColorMap;
     borederRadius?:string;

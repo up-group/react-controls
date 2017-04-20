@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
 import {Props as StyleProps} from '../Input/';
 
-import { BaseControl } from '../../../Common/BaseControl/BaseControl';
+import { BaseControl } from '../_Common/BaseControl/BaseControl';
 import { NumericInput } from '@blueprintjs/core'
 import { CommonProps } from '../Input/';
 
@@ -42,10 +42,6 @@ export default class UpInteger extends BaseControl<Props, number> {
 
    constructor(p, c) {
        super(p, c);
-       // var pattern = /^[0-9]*$/
-       // var patternErrorMessage = "Doit être un nombre entier";
-       // this._validationManager.addControl(new TypeStringControl(pattern, patternErrorMessage));
-       // this._validationManager.addControl(new TypeNumberControl(true, this.props.min, this.props.max));
    }
 
    onChange(event: any) {

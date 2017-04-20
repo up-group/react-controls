@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from '../../../Common/theming/themedComponents';
 
 export const Dialog = styled.div`
 .pt-dialog {

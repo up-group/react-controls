@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from '../../../Common/theming/themedComponents';
 import { style } from './styles';
 
 export type ParagraphSize = 'small' | 'medium' | 'large' | 'xlarge';

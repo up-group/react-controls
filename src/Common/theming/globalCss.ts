@@ -1,4 +1,4 @@
-import { injectGlobal } from 'styled-components';
+import {injectGlobal} from './themedComponents';
 
 const globalCss = injectGlobal`
   * {

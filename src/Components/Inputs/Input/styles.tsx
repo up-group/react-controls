@@ -1,6 +1,8 @@
 import * as React from 'react'
-import styled, {css} from 'styled-components';
-import {sizeMap} from '../_Styled' 
+
+import styled, {css} from '../../../Common/theming/themedComponents';
+
+import {sizeMap} from '../_Common/Styled' 
 import { StyledProps} from './';
 
 import SvgIcon from "../../Display/SvgIcon/index";
@@ -322,7 +324,7 @@ const HeightLarge = css`
 
 const error = css`
 .up-input {
-  border-color:${(props) => props.theme.error};
+  border-color:${(props) => props.theme.colorMap.error};
   border-width: 1px;
   border-style: solid;
 }

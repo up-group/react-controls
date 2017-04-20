@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {css} from '../../../Common/theming/themedComponents';
 
 import {
   BoxStyles,

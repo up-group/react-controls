@@ -1,4 +1,5 @@
-import styled, {css} from 'styled-components';
+import styled, {css} from '../../../Common/theming/themedComponents';
+
 import Box from '../../Containers/Box';
 import { Status } from './types';
 import { Props } from './';

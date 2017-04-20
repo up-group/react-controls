@@ -4,7 +4,7 @@ import * as ReactDOM from "react-dom"
 import * as Select from "react-select"
 import axios from 'axios'
 
-import {BaseControl} from '../../../Common/BaseControl/BaseControl' 
+import {BaseControl} from '../_Common/BaseControl/BaseControl' 
 import {UpSelectProps} from './'
 
 import WrapperSelect from './styles' ;
