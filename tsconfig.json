@@ -6,7 +6,8 @@
     "module": "commonjs",
     "outDir": "dist/",
     "jsx": "react",
-    "allowJs": true
+    "allowJs": false,
+    "declaration": true
   },
   "include": [
     "src/**/*"
