@@ -3,10 +3,10 @@ import "@blueprintjs/core/dist/blueprint.css"
 
 import * as React from "react"
 import { UpDateProps } from './'
-import { BaseControl } from '../_Common/BaseControl/BaseControl'
+import { InputBaseComponent } from '../_Common/BaseControl/BaseControl'
 import UpDateStyle from './styles'
 
-export default class UpDate extends BaseControl<UpDateProps, Date> {
+export default class UpDate extends InputBaseComponent<UpDateProps, Date> {
 
     public static defaultProps: UpDateProps = {
         format:"DD/MM/YYYY",

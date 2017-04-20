@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
 import {Props as StyleProps} from '../Input/';
 
-import { BaseControl } from '../_Common/BaseControl/BaseControl';
+import { InputBaseComponent } from '../_Common/BaseControl/BaseControl';
 import { NumericInput } from '@blueprintjs/core'
 import { CommonProps } from '../Input/';
 
@@ -23,7 +23,7 @@ export interface Props extends CommonProps{
    isNullable?: boolean;
 }
 
-export default class UpNumber extends BaseControl<Props, number> {
+export default class UpNumber extends InputBaseComponent<Props, number> {
    public static defaultProps: Props = {
    };
     

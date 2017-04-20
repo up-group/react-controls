@@ -1,5 +1,5 @@
 import * as React from "react"
-import { BaseControl } from "../_Common/BaseControl/BaseControl";
+import { InputBaseComponent } from "../_Common/BaseControl/BaseControl";
 import { InputStyled, CommonProps } from "../_Common/Styled/Input/BaseInput"
 import { TexAreatStyled } from "./styles";
 
@@ -9,7 +9,7 @@ export interface UpTextProps {
     value: string;
 }
 
-export default class UpText extends BaseControl<UpTextProps, {}> {
+export default class UpText extends InputBaseComponent<UpTextProps, {}> {
     
     constructor(p, c) {
         super(p, c);
