@@ -1,6 +1,6 @@
 {
   "name": "@up-group/react-controls",
-  "version": "0.0.73",
+  "version": "0.0.74",
   "description": "",
   "main": "dist/index.js",
   "types": "src/index.ts",
@@ -28,10 +28,7 @@
     "clean": "rimraf dist && rimraf test/dist",
     "prepublish": "npm run clean && npm run build ",
     "build": "tsc && copyfiles -u 1 src/Common/theming/base.css dist/ && copyfiles -u 1 src/Common/theming/icons/*.* dist/",
-    
-
     "build-test": "npm run clean && webpack",
-
     "publishProd": "npm version patch && npm publish",
     "publishBeta": "npm version patch && npm publish --tag beta",
     "publishLocalToSchemaForm": "copyfiles dist/*.* dist/**/* package.json src/*.* src/**/* src/theming/icons/* ../react-schemaform/node_modules/@up-group/react-controls/",
