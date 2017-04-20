@@ -4,7 +4,6 @@ const ROOT_PATH = path.resolve(__dirname);
 module.exports = {
   devtool: 'cheap-module-source-map',
   entry: {
-    './dist/up-react-controls': ['babel-polyfill', './src/index.ts'],
     './test/dist/index': ['babel-polyfill', './test/index.tsx']
   },
   output: {
