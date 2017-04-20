@@ -6,7 +6,7 @@ export type Effect = "float" | "solid"
 
 export default UpTooltip
 
-export interface Tootlip {
+export interface Tooltip {
   content: string;
   placement?: Placement;
   type?: IntentType;
@@ -18,6 +18,6 @@ export interface Tootlip {
   disable?:boolean;
 }
 
-export interface UpTooltipProps extends React.Props<UpTooltip>, Tootlip {
+export interface UpTooltipProps extends React.Props<UpTooltip>, Tooltip {
   id?:string;
 }

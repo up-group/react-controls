@@ -2,7 +2,7 @@
 import * as React from "react" ;
 import { Component } from "react";
 import {IntentType} from '../../../Common/theming/types'
-import ReactTooltip from 'react-tooltip'
+import * as ReactTooltip from 'react-tooltip'
 import {GenerateId} from '../../../Common/utils'
 import {Placement, Effect} from './' 
 
@@ -60,11 +60,14 @@ export default class UpTooltip extends Component<UpTooltipProps, UpTooltipState>
           return child
         }
     });
-
+    var _getContent:any = content ;
+    if (typeof content === 'string' || content instanceof String) {
+        _getContent = () => {return content;} ;
+    }
     return (
-      <div>
+      <div style={{display:"inline-block"}}>
         {childrenWithProps}
-        <ReactTooltip id={_id} getContent={content} {...rest} />
+        <ReactTooltip id={_id} getContent={_getContent} {...rest} />
       </div>
     );
   }

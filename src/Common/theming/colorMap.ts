@@ -60,8 +60,8 @@ const colorMap: ThemeColorMap = {
   black2: '#2d2d2d',
   black3: '#555555',
 
-  disabledBg: '#34E4EA',
-  disabledFg: '#D6DBB2',
+  disabledBg: '#EFEFEF',
+  disabledFg: '#111',
 
   white:'#ffffff',
 

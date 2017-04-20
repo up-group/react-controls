@@ -1,10 +1,10 @@
 import UpButton from './UpButton'
 import {ThemedProps, IntentType} from '../../../Common/theming/types' 
-import {Tootlip} from '../../Display/Tooltip' 
+import {Tooltip} from '../../Display/Tooltip' 
 
 export default UpButton ;
 
-export const sizeMap = {
+export const fontSizeMap = {
   xsmall: 10,
   small: 12,
   medium: 16,
@@ -12,8 +12,15 @@ export const sizeMap = {
   xlarge: 24
 };
 
+export const buttonSizeMap = {
+  normal: '150px',
+  icon: '32px',
+  auto: 'auto'
+};
+
 export type FontSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
-export type ButtonSize = 'normal' | 'icon' | 'auto' ;
+export type ButtonWidth = 'normal' | 'icon' | 'auto' ;
+export type ButtonHeight = 'xsmall' | 'small' | 'normal' | 'large' ;
 
 interface CommonProps extends ThemedProps {
   color?: string; // Ovverride the defaut intent styling
@@ -25,8 +32,9 @@ interface CommonProps extends ThemedProps {
   iconName?:any;
   iconSize?:number;
   type?:IntentType;
-  size?:ButtonSize;
-  tooltip?: Tootlip;
+  width?:ButtonWidth;
+  height?:ButtonHeight;
+  tooltip?: string | Tooltip;
 }
 
 // This is so that the onClick handler is accepted without type interferance

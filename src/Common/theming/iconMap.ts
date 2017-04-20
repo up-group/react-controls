@@ -1,16 +1,16 @@
 import {IconName} from './types'
 
 interface IconMap {
-  ok:IconName,
-  error:IconName,
+  success:IconName,
+  danger:IconName,
   warning:IconName,
   info:IconName,
   none:IconName
 }
 
 const iconMap : IconMap = {
-  ok: 'ok-sign',
-  error: 'error-sign',
+  success: 'ok-sign',
+  danger: 'error-sign',
   warning: 'warning-sign',
   info:'info-sign',
   none: 'none'

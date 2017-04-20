@@ -7,9 +7,9 @@ import colorMap from '../../../Common/theming/colorMap';
 
 const colors = (status: IntentType) => css`
   position:relative;
-  background-color: ${colorMap[`${status}Dark`] || colorMap.offwhite};
+  background-color: ${colorMap[`${status}Light`] || colorMap.offwhite};
   p {
-    color: ${colorMap[`${status}Light`] || colorMap.black3};
+    color: ${colorMap[`${status}Dark`] || colorMap.black3};
   }
 `;
 
