@@ -12,12 +12,12 @@ export interface InputBaseProps<_BaseType> {
     readonly?:boolean;
 }
 
-export interface InputBaseState {
+export interface InputBaseState<_BaseType> {
     error?: string;
     innerValue?:_BaseType;
 }
 
-export abstract class InputBaseComponent<_Props, _BaseType> extends React.Component<InputBaseProps<_BaseType> & _Props, InputBaseState> {
+export abstract class InputBaseComponent<_Props, _BaseType> extends React.Component<InputBaseProps<_BaseType> & _Props, InputBaseState<_BaseType>> {
 
     _validationManager: ValidationManager;
 

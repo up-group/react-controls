@@ -5,7 +5,7 @@ import { StyledComponentProps } from '../../../Common/utils/types'
 import {InputBaseProps} from '../_Common/BaseControl/BaseControl'
 
 // Exports
-interface CommonProps extends ThemedProps {
+export interface CommonProps extends ThemedProps {
   hasError?: boolean;
   isNullable?: boolean;
   className? : string;
