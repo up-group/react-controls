@@ -1,15 +1,15 @@
 import styled, {css} from '../../../Common/theming/themedComponents';
-
+import {IntentType} from '../../../Common/theming/types';
 import Box from '../../Containers/Box';
-import { Status } from './types';
+
 import { Props } from './';
 import colorMap from '../../../Common/theming/colorMap';
 
-const colors = (status: Status) => css`
+const colors = (status: IntentType) => css`
   position:relative;
-  background-color: ${colorMap[`${status}Bg`] || colorMap.offwhite};
+  background-color: ${colorMap[`${status}Dark`] || colorMap.offwhite};
   p {
-    color: ${colorMap[`${status}Fg`] || colorMap.black3};
+    color: ${colorMap[`${status}Light`] || colorMap.black3};
   }
 `;
 

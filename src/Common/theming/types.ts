@@ -1,6 +1,7 @@
 export interface ThemeInterface {
     colorMap: ThemeColorMap;
-    borederRadius?:string;
+    borderRadius?:string;
+    minButtonSize?:string;
 }
 
 export interface ThemeColorMap {
@@ -32,20 +33,31 @@ export interface ThemeColorMap {
   light3: string,
   
   primary: string,
-  primaryFg: string,
-  primaryBg: string,
-  secondary: string,
-  secondaryFg: string,
-  secondaryBg: string,
-  ok: string,
-  okFg: string,
-  okBg: string,
+  primaryDark: string,
+  primaryLight: string,
+
+  default: string,
+  defaultDark: string,
+  defaultLight: string,
+
+  success: string,
+  successDark: string,
+  successLight: string,
+
   warning: string,
-  warningFg: string,
-  warningBg: string,
-  error: string,
-  errorFg: string,
-  errorBg: string,
+  warningDark: string,
+  warningLight: string,
+
+  danger: string,
+  dangerDark: string,
+  dangerLight: string,
+
+  info: string,
+  infoDark: string,
+  infoLight: string,
+
+  disabledBg:string,
+  disabledFg:string,
 
   white1: string,
   white2: string,
@@ -54,16 +66,13 @@ export interface ThemeColorMap {
   black1: string,
   black2: string,
   black3: string,
-  disabledBg:string,
-  disabledFg:string,
-
+  
   // Core colors
-
-    blue1:string,
-    blue2:string,
-    blue3:string,
-    blue4:string,
-    blue5:string,
+  blue1:string,
+  blue2:string,
+  blue3:string,
+  blue4:string,
+  blue5:string,
 
   green1:string,
   green2:string,
@@ -84,7 +93,6 @@ export interface ThemeColorMap {
   red5:string,
 
   // Extended colors
-
   vermilion1:string,
   vermilion2:string,
   vermilion3:string,
@@ -149,3 +157,9 @@ export interface ThemeColorMap {
 export type IconName = 'add' | 'asterisk' | 'calendar' | 'delete' | 'edit' |
     'email' | 'error-sign' | 'filter' | 'filter-list' | 'help' | 'info-sign' | 'ok-sign' |
     'link' | 'mobile-phone' | 'phone' | 'search' | 'user' | 'warning-sign' | 'none' ;
+
+export type IntentType = 'primary' | 'danger' | 'warning' | 'success' | 'info' | 'default'  ;
+
+export interface ThemedProps {
+    theme?: ThemeInterface
+}

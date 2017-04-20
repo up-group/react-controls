@@ -28,24 +28,28 @@ const colorMap: ThemeColorMap = {
   light3: '#6D72C3',
 
   primary: '#007acc',
-  primaryFg: '#00033',
-  primaryBg: '#00033',
+  primaryDark: '#007acc',
+  primaryLight: '#CCFFFF',
 
-  secondary: '#c05b4d',
-  secondaryFg: '#270000',
-  secondaryBg: '#270000',
+  default: '#fafafa',
+  defaultDark: '#fafafa',
+  defaultLight: '#fefefe',
 
-  ok: '#8cc800',
-  okFg: '#002F00',
-  okBg:'#CFE699',
+  success: '#8cc800',
+  successDark: '#8cc800',
+  successLight:'#CFE699',
 
   warning: '#ffd602',
-  warningFg: '#330A00',
-  warningBg: '#330A00',
+  warningDark: '#ffd602',
+  warningLight: '#FFFFCE',
 
-  error: '#b30018',
-  errorFg: '#800000',
-  errorBg: '#FF667E',
+  danger: '#b30018',
+  dangerDark: '#b30018',
+  dangerLight: '#FF667E',
+
+  info: '#5bc0de',
+  infoDark: '#5bc0de',
+  infoLight: '#DAFFFF',
 
   white1: '#fff',
   white2: '#f3f3f3',

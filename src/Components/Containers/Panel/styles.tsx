@@ -5,7 +5,7 @@ import styled,{ css } from "../../../Common/theming/themedComponents";
 
 import SvgIcon from "../../Display/SvgIcon/index";
 
-const DefaultPanel: React.StatelessComponent<Props> = (props) => {
+const BasePanel: React.StatelessComponent<Props> = (props) => {
     const { children } = props;
 
     const icon = <SvgIcon iconName={props.iconName}
@@ -41,7 +41,7 @@ const base = props => css`
   text-align: left;
   border: none;
   display: block;
-  border-radius: ${props => props.theme.borederRadius || '4px'};
+  border-radius: ${props => props.theme.borderRadius || '4px'};
   vertical-align: top;   
   border: 1px solid transparent;
   width:100%;
@@ -72,7 +72,16 @@ const base = props => css`
   }
 `;
 
-export const PrimaryDefaultPanel = styled<Props>(DefaultPanel) `
+export const DefaultPanel = styled<Props>(BasePanel) `
+${(props: Props) => base(props) }
+${(props: Props) => shadow(props)}
+border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.default : ThemeColorMap.default};
+ .up-panel-header {
+   background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.default : ThemeColorMap.default};
+ }
+`;
+
+export const PrimaryDefaultPanel = styled<Props>(BasePanel) `
 ${(props: Props) => base(props) }
 ${(props: Props) => shadow(props)}
 border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.primary : ThemeColorMap.primary};
@@ -81,7 +90,7 @@ border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.primary : 
  }
 `;
 
-export const WarningDefaultPanel = styled<Props>(DefaultPanel) `
+export const WarningDefaultPanel = styled<Props>(BasePanel) `
 ${(props: Props) => base(props)}
 ${(props: Props) => shadow(props)}
 border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.warning : ThemeColorMap.warning};
@@ -90,30 +99,30 @@ border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.warning : 
  }
 `;
 
-export const SuccessDefaultPanel = styled<Props>(DefaultPanel) `
+export const SuccessDefaultPanel = styled<Props>(BasePanel) `
 ${(props: Props) => base(props) }
 ${(props: Props) => shadow(props)}
-border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.ok : ThemeColorMap.ok};
+border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.successDark : ThemeColorMap.successDark};
  .up-panel-header {
-   background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.ok : ThemeColorMap.ok};
+   background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.success : ThemeColorMap.success};
  }
 `;
 
-export const InfoDefaultPanel = styled<Props>(DefaultPanel) `
+export const InfoDefaultPanel = styled<Props>(BasePanel) `
 ${(props: Props) => base(props) }
 ${(props: Props) => shadow(props)}
-border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.secondary : ThemeColorMap.secondary};
+border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.infoDark : ThemeColorMap.infoDark};
  .up-panel-header {
-   background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.secondary : ThemeColorMap.secondary};
+   background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.info : ThemeColorMap.info};
  }
 `;
 
-export const DangerDefaultPanel = styled<Props>(DefaultPanel) `
+export const DangerDefaultPanel = styled<Props>(BasePanel) `
 ${(props: Props) => base(props) }
 ${(props: Props) => shadow(props)}
-border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.error : ThemeColorMap.error};
+border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.danger : ThemeColorMap.dangerDark};
 .up-panel-header {
-   background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.error : ThemeColorMap.error};
+   background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.danger : ThemeColorMap.danger};
  }
 `;
 
@@ -132,5 +141,5 @@ export const PanelStyled: React.StatelessComponent<Props> = (props) => {
         return <SuccessDefaultPanel {...rest}>{children}</SuccessDefaultPanel> ;
     }
 
-    return <PrimaryDefaultPanel {...rest}>{children}</PrimaryDefaultPanel> ;
+    return <DefaultPanel {...rest}>{children}</DefaultPanel> ;
 }
