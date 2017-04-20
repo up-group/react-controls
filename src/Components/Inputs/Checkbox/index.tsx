@@ -1,5 +1,5 @@
 import UpCheckbox from './UpCheckbox'
-import {ThemedProps} from '../../../Common/theming/types' 
+import { ThemedProps } from '../../../Common/theming/types' 
 
 export type Position = 'left' | 'right' ;
 
@@ -17,8 +17,8 @@ export interface UpCheckboxStyledProps extends Option, ThemedProps {
 }
 
 export interface UpCheckboxProps {
-    options: Array<Option>;
-    position?:Position;
+    options:Array<Option>;
+    //position?:Position;
 }
 
 export default UpCheckbox ;

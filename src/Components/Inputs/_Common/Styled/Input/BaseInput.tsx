@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled, {css} from '../../../../../Common/theming/themedComponents';
 import SvgIcon from "../../../../Display/SvgIcon/index";
-import { IconName } from "../../../../../Common/theming/types";
+import { IconName, ThemeInterface } from "../../../../../Common/theming/types";
 
 import { inputStyles, HeightLarge } from "./styles"
 

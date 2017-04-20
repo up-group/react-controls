@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { UpDateTimeProps } from './'
+import { UpDateTimeStyledProps } from './'
 
 import styled from '../../../Common/theming/themedComponents';
 
@@ -29,28 +29,29 @@ class UpLocaleUtils implements IDatePickerLocaleUtils {
 
 const locale = new UpLocaleUtils() ;
 
-const BaseDate : React.StatelessComponent<UpDateTimeProps> = (props) => {
+const BaseDate : React.StatelessComponent<UpDateTimeStyledProps> = (props) => {
     
-    const {value, className, format, onChange} = props ;
+    const {value, className, format, onChangeDate, onChangeTime} = props ;
     const picker = (<span className="pt-icon pt-icon-calendar"></span>) ;
 
     return (<div>
-                <DateInput  className={className}
+                <DateInput  
+                        className={className}
                         locale="fr" 
                         invalidDateMessage=""
                         localeUtils={locale}
                         rightElement={picker}
                         value={value}
-                        onChange={onChange} format={format} />
-                <TimePicker />
+                        onChange={onChangeDate} format={format} />
+                <TimePicker value={value} onChange={onChangeTime} />
             </div>) ;
 }
 
-export const NormalDate = styled<UpDateTimeProps>(BaseDate)`
+export const NormalDate = styled<UpDateTimeStyledProps>(BaseDate)`
 `; 
 
-export default class UpDateStyle extends React.Component<UpDateTimeProps, undefined> {
-  public static defaultProps: UpDateTimeProps = {
+export default class UpDateStyle extends React.Component<UpDateTimeStyledProps, undefined> {
+  public static defaultProps: UpDateTimeStyledProps = {
     //hasError: false,
     //onChange: (value?:Date) => {},
     //isNullable: false,
@@ -58,9 +59,9 @@ export default class UpDateStyle extends React.Component<UpDateTimeProps, undefi
   };
 
   public render() {
-    const {value, format, onChange} = this.props ;
+    const {value, format, onChangeDate, onChangeTime} = this.props ;
     return (
-      <NormalDate value={value} format={format} onChange={onChange} />
+      <NormalDate value={value} format={format} onChangeDate={onChangeDate} onChangeTime={onChangeTime} />
     );
   }
 }

@@ -10,7 +10,7 @@ export default class UpDate extends BaseControl<UpDateProps, Date> {
 
     public static defaultProps: UpDateProps = {
         format:"DD/MM/YYYY",
-        value:""
+        value:null
     };
 
     constructor(p, c) {
@@ -22,11 +22,6 @@ export default class UpDate extends BaseControl<UpDateProps, Date> {
     }
 
     renderControl() {
-        var _value = this.props.value ;
-        if (typeof this.props.value === 'string' || this.props.value instanceof String) {
-            _value = this.getDate(_value) ; 
-        }
-        
         return <UpDateStyle format={this.props.format} value={this.props.value} hasError={this.props.hasError} onChange={this.handleChangeEvent}></UpDateStyle>;
     }
 

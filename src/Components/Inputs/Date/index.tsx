@@ -1,16 +1,23 @@
+// Imports
 import UpDate from './UpDate'
 import {ThemedProps} from '../../../Common/theming/types' 
+import { StyledComponentProps } from '../../../Common/utils/types'
+import {InputBaseProps} from '../_Common/BaseControl/BaseControl'
 
-export default UpDate ;
-
-import { StyledComponentProps } from "../../../Common/utils/types";
-
-export interface UpDateProps extends ThemedProps {
+// Exports
+interface CommonProps extends ThemedProps {
   hasError?: boolean;
   isNullable?: boolean;
   className? : string;
-  value:any;
   format?:string;
-  onChange?:(e:any) => void;
-  //default?: Date;
 }
+export interface UpDateProps extends InputBaseProps<Date>, CommonProps {
+  
+}
+
+export interface UpDateStyledProps extends CommonProps {
+  onChange?:(e:any) => void;
+  value:Date;
+}
+
+export default UpDate ;

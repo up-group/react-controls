@@ -1,6 +1,6 @@
+// Imports
 import "normalize.css/normalize.css"
 import "@blueprintjs/core/dist/blueprint.css"
-
 import * as React from "react"
 import { UpDateTimeProps } from './'
 import { BaseControl } from '../_Common/BaseControl/BaseControl'
@@ -10,23 +10,47 @@ export default class UpDateTime extends BaseControl<UpDateTimeProps, Date> {
 
     public static defaultProps: UpDateTimeProps = {
         format:"DD/MM/YYYY",
-        value:""
+        value:null
     };
 
     constructor(p, c) {
         super(p, c);
         this.onChange = this.onChange.bind(this) ;
+        this.state = {
+            innerValue : p.value
+        };
     }
 
     componentDidMount = () => {
     }
 
+    onChangeDate = (date:Date) => {
+        var current = this.state.innerValue ;
+        date.setHours(current.getHours()) ;
+        date.setMinutes(current.getMinutes()) ;
+        
+        this.setState({
+            innerValue:date
+        }) ;
+        this.handleChangeEvent(date) ;
+    }
+
+    onChangeTime = (time:Date) => {
+        var current = this.state.innerValue ;
+        time.setDate(current.getDate()) ;
+        time.setMonth(current.getMonth()) ;
+        time.setFullYear(current.getFullYear()) ;
+
+        this.setState({
+            innerValue:time
+        }) ;
+        this.handleChangeEvent(time) ;
+    }
+
     renderControl() {
-        var _value = this.props.value ;
-        if (typeof this.props.value === 'string' || this.props.value instanceof String) {
-            _value = this.getDate(_value) ; 
-        }
-        return <UpDateStyle format={this.props.format} value={this.props.value} hasError={this.props.hasError} onChange={this.handleChangeEvent}></UpDateStyle>;
+        return <UpDateStyle format={this.props.format} value={this.props.value} hasError={this.props.hasError} 
+            onChangeDate={this.onChangeDate}
+            onChangeTime={this.onChangeTime}></UpDateStyle>;
     }
 
     onChange(newDate: any) {
