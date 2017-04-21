@@ -1,8 +1,19 @@
+// Imports
 import styled, {css} from '../../../Common/theming/themedComponents';
 import { marginCss } from '../Paragraph/styles';
-import { calculateSize } from './styleUtils';
-import { Props } from './types';
+import { UpHeadingProps, Tag } from './';
 import { ThemeInterface } from "../../../Common/theming/types";
+import remStringFromPX from '../../../Common/utils';
+
+const sizeMap = {
+  h1: 36,
+  h2: 30,
+  h3: 24,
+  h4: 18,
+  h5: 16
+};
+
+const calculateSize = (tag: Tag): string => remStringFromPX(sizeMap[tag]);
 
 const truncateCss = (truncate: boolean) => {
   if (truncate) {
@@ -25,12 +36,12 @@ const textTransformCss = (upcase: boolean) => {
 };
 
 const HeadingStyles = css`
-  font-size: ${(props: Props) => calculateSize(props.tag)};
-  text-align: ${(props: Props) => props.textAlign};
-  color: ${(props: Props) => props.color};
-  ${(props: Props) => truncateCss(props.truncate)};
-  ${(props: Props) => textTransformCss(props.upcase)};
-  ${(props: Props) => marginCss(props.margin)};
+  font-size: ${(props: UpHeadingProps) => calculateSize(props.tag)};
+  text-align: ${(props: UpHeadingProps) => props.textAlign};
+  color: ${(props: UpHeadingProps) => props.color};
+  ${(props: UpHeadingProps) => truncateCss(props.truncate)};
+  ${(props: UpHeadingProps) => textTransformCss(props.upcase)};
+  ${(props: UpHeadingProps) => marginCss(props.margin)};
 `;
 
 export const H1 = styled.h1`

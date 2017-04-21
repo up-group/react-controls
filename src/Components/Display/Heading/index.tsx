@@ -1,10 +1,10 @@
-import * as React from 'react';
+// Imports
 import { Margin } from '../Paragraph/types';
-import { H1, H2, H3, H4, H5 } from './styles';
-
+import UpHeading from './UpHeading'
+// Exports
 export type Tag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 
-export interface Props {
+export interface UpHeadingProps {
   color?: string;
   textAlign?: string;
   tag?: Tag;
@@ -13,50 +13,4 @@ export interface Props {
   margin?: Margin;
 }
 
-class Heading extends React.Component<Props, undefined> {
-  public static defaultProps: Props = {
-    color: '#007acc',
-    textAlign: 'center',
-    tag: 'h1',
-    truncate: false,
-    upcase: false,
-    margin: 'medium',
-  };
-  public render() {
-    const { children, tag, ...others } = this.props;
-    switch (tag) {
-    case 'h2':
-      return (
-      <H2 tag={tag} {...others}>
-        {children}
-      </H2>
-      );
-    case 'h3':
-      return (
-      <H3 tag={tag} {...others}>
-        {children}
-      </H3>
-      );
-    case 'h4':
-      return (
-      <H4 tag={tag} {...others}>
-        {children}
-      </H4>
-      );
-    case 'h5':
-      return (
-      <H5 tag={tag} {...others}>
-        {children}
-      </H5>
-      );
-    default:
-      return (
-        <H1 tag={tag} {...others}>
-          {children}
-        </H1>
-      );
-    }
-  }
-}
-
-export default Heading;
+export default UpHeading
