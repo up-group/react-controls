@@ -13,7 +13,6 @@ export interface UpSelectOption {
 
 export interface UpSelectProps extends InputBaseProps<any> {
     default: any;
-    getFullData: boolean;
     multiple?: boolean;
     data?: any;
     placeholder?: string;

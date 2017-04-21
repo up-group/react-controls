@@ -20,7 +20,6 @@ export default class UpSelect extends InputBaseComponent<UpSelectProps, any> {
         placeholder: "-- Sélectionner",
         loadingPlaceholder: "Chargement en cours",
         default:null,
-        getFullData: false,
         isNullable:true,
         isRequired:false,
         autoload:false
@@ -35,10 +34,6 @@ export default class UpSelect extends InputBaseComponent<UpSelectProps, any> {
     _componentDidMount() {
     }
 
-    handleChangeJsEvent(args: any) {
-        return args.target.value;
-    }
-
     isEmpty(value) {
         return value === null || value === undefined || value === "";
     }
@@ -46,6 +41,7 @@ export default class UpSelect extends InputBaseComponent<UpSelectProps, any> {
     onChange(data: any) {
         return data;
     }
+
     getOptionRenderer(option) {
         if(this.props.optionRenderer) {
             const OptionRenderer = this.props.optionRenderer ;
