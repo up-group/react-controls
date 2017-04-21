@@ -1,12 +1,11 @@
 {
   "name": "@up-group/react-controls",
-  "version": "0.0.82",
   "description": "",
   "main": "dist/index.js",
   "types": "src/index.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Up-Group/react-controls.git"
+    "url": "https://github.com/Up-Group/react-controls.git"
   },
   "keywords": [
     "UI",
@@ -34,7 +33,8 @@
     "publishBeta": "npm version patch && npm publish --tag beta",
     "publishLocalToSchemaForm": "copyfiles dist/*.* dist/**/* package.json src/*.* src/**/* src/theming/icons/* ../react-schemaform/node_modules/@up-group/react-controls/",
     "publishLocalToApp": "copyfiles dist/*.* dist/**/* dist/**/*.* package.json src/*.* src/**/* src/**/*.* src/theming/icons/* ../react-app/node_modules/@up-group/react-controls/",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "devDependencies": {
     "@types/eonasdan-bootstrap-datetimepicker": "^4.17.22",
@@ -63,7 +63,8 @@
     "typescript": "^2.2.2",
     "url-loader": "^0.5.8",
     "webpack": "^2.3.3",
-    "yarn": "^0.21.3"
+    "yarn": "^0.21.3",
+    "semantic-release": "^6.3.2"
   },
   "dependencies": {
     "@blueprintjs/core": "^1.14.0",
