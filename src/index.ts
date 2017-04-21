@@ -1,6 +1,3 @@
-import UpSection from './Components/Containers/Section'
-import UpHeadline from './Components/Containers/Headline'
-import UpList from './Components/Containers/List'
 import UpPanel from './Components/Containers/Panel'
 import UpBox from './Components/Containers/Box'
 import UpFormGroup from './Components/Containers/FormGroup'
@@ -24,7 +21,6 @@ import UpSwitch from './Components/Inputs/Switch'
 import UpDateTime from './Components/Inputs/DateTime'
 import UpTimePicker from './Components/Inputs/TimePicker'
 import UpText from './Components/Inputs/Text'
-import UpDraft from './Components/Inputs/Draft'
 import UpNumber from './Components/Inputs/Number'
 import UpInteger from './Components/Inputs/Integer'
 import UpPhone from './Components/Inputs/Phone'
@@ -42,11 +38,9 @@ export {
   UpBox,
   UpButton,
   UpNotification,
-  UpHeadline,
   UpImage,
   UpLoadingIndicator,
   UpParagraph,
-  UpSection,
   UpSvgIcon,
   UpToast,
   UpInput,
@@ -61,8 +55,6 @@ export {
   UpEmail,
   UpPhone,
   UpInteger,
-  UpDraft,
-  UpList,
   UpPanel,
   UpLabel,
   UpFormGroup,
