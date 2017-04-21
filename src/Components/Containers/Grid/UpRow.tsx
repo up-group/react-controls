@@ -1,0 +1,53 @@
+import * as React from 'react';
+import { Children, cloneElement } from 'react';
+import * as classNames from 'classnames';
+import * as assign from 'object-assign';
+
+export interface RowProps {
+  className?: string;
+  gutter?: number;
+  type?: 'flex';
+  align?: 'top' | 'middle' | 'bottom';
+  justify?: 'start' | 'end' | 'center' | 'space-around' | 'space-between';
+  style?: React.CSSProperties;
+  prefixCls?: string;
+}
+
+export default class UpRow extends React.Component<RowProps, any> {
+  static defaultProps = {
+    gutter: 0,
+  };
+
+  render() {
+    const { type, justify, align, className, gutter, style, children,
+      prefixCls = 'up-row', ...others } = this.props;
+
+    const classes = classNames({
+      [prefixCls]: !type,
+      [`${prefixCls}-${type}`]: type,
+      [`${prefixCls}-${type}-${justify}`]: type && justify,
+      [`${prefixCls}-${type}-${align}`]: type && align,
+    }, className);
+    
+    const rowStyle = (gutter as number) > 0 ? assign({}, {
+      marginLeft: (gutter as number) / -2,
+      marginRight: (gutter as number) / -2,
+    }, style) : style;
+
+    const cols = Children.map(children, (col: React.ReactElement<any>) => {
+      if (!col) {
+        return null;
+      }
+      if (col.props && (gutter as number) > 0) {
+        return cloneElement(col, {
+          style: assign({}, {
+            paddingLeft: (gutter as number) / 2,
+            paddingRight: (gutter as number) / 2,
+          }, col.props.style),
+        });
+      }
+      return col;
+    });
+    return <div {...others} className={classes} style={rowStyle}>{cols}</div>;
+  }
+}
