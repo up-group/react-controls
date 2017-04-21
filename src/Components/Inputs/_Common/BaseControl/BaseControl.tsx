@@ -20,7 +20,7 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
 
     _validationManager: ValidationManager;
 
-    constructor(props?, context?) {
+    constructor(props? : InputBaseProps<_BaseType> & _Props, context?) {
         super(props, context);
         this.state = { error: null };
         this._validationManager = new ValidationManager();
@@ -44,7 +44,7 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
         }
     }
     
-    public hasError() : boolean {
+    public hasError = () : boolean => {
         return this.state.error != null;
     }
 
