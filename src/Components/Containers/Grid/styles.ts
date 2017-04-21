@@ -1,10 +1,6 @@
 // Imports 
 import styled, {css} from 'styled-components' 
 
-// Grid system
-var gridColumns   = 24 ;
-var gridGutterWidth = 0 ;
-
 export const Grid = styled.div`
 .up-row {
   position: relative;

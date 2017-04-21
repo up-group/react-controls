@@ -1,14 +1,15 @@
 import * as React from 'react';
-import { Children, cloneElement } from 'react';
 import * as classNames from 'classnames';
 import * as assign from 'object-assign';
+
+import { Alignment, Justification, LayoutMode } from './'
 
 export interface RowProps {
   className?: string;
   gutter?: number;
-  type?: 'flex';
-  align?: 'top' | 'middle' | 'bottom';
-  justify?: 'start' | 'end' | 'center' | 'space-around' | 'space-between';
+  type?: LayoutMode;
+  align?: Alignment,
+  justify?: Justification;
   style?: React.CSSProperties;
   prefixCls?: string;
 }
@@ -16,17 +17,18 @@ export interface RowProps {
 export default class UpRow extends React.Component<RowProps, any> {
   static defaultProps = {
     gutter: 0,
+    type:'float'
   };
 
   render() {
     const { type, justify, align, className, gutter, style, children,
       prefixCls = 'up-row', ...others } = this.props;
-
+    
     const classes = classNames({
-      [prefixCls]: !type,
-      [`${prefixCls}-${type}`]: type,
-      [`${prefixCls}-${type}-${justify}`]: type && justify,
-      [`${prefixCls}-${type}-${align}`]: type && align,
+      [prefixCls]: type=='float',
+      [`${prefixCls}-flex`]: type=='flex',
+      [`${prefixCls}-flex-${justify}`]: type=='flex' && justify,
+      [`${prefixCls}-flex-${align}`]: type=='flex' && align,
     }, className);
     
     const rowStyle = (gutter as number) > 0 ? assign({}, {
@@ -34,12 +36,12 @@ export default class UpRow extends React.Component<RowProps, any> {
       marginRight: (gutter as number) / -2,
     }, style) : style;
 
-    const cols = Children.map(children, (col: React.ReactElement<any>) => {
+    const cols = React.Children.map(children, (col: React.ReactElement<any>) => {
       if (!col) {
         return null;
       }
       if (col.props && (gutter as number) > 0) {
-        return cloneElement(col, {
+        return React.cloneElement(col, {
           style: assign({}, {
             paddingLeft: (gutter as number) / 2,
             paddingRight: (gutter as number) / 2,
