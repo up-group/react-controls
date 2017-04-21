@@ -1,57 +1,58 @@
 import * as React from 'react'
 
 import styled, {css} from '../../../Common/theming/themedComponents';
-import { Props } from './types';
+import { UpLabelStyledProps } from './';
 import { ThemeInterface } from "../../../Common/theming/types";
 
-const BaseLabel : React.StatelessComponent<Props> = (props) => {
-    
-    return (
-      <div className={props.className}>
-        <label className="up-label">
-          <span className="up-label-text">{props.text}</span>
-        </label>  
-      </div>);
-}
+export const sizeMap = {
+  auto: "40px",
+  small: "100px",
+  medium: "150px",
+  large: "250px",
+  xlarge: "350px"
+};
 
-// Shared styles for Input
-const labelStyles = css`
-display:inline-block;
-label.pt-label {
-  display: block;
-  margin: 0 0 15px;
-   }
-  label.pt-label .pt-input,
-  label.pt-label .pt-select {
-    display: block;
-    margin-top: 5px;
-    text-transform: none; }
-  label.pt-label .pt-select select {
-    width: 100%;
-    vertical-align: top;
-    font-weight: 400; }
-  label.pt-label.pt-inline {
-    line-height: 30px; }
-    label.pt-label.pt-inline .pt-input,
-    label.pt-label.pt-inline .pt-input-group,
-    label.pt-label.pt-inline .pt-select {
+const inline = css`
+  line-height: 30px;
+  >div,
+  .up-input,
+  .up-input-group,
+  .up-select  {
       display: inline-block;
-      margin: 0 0 0 5px;
-      vertical-align: top; }
-    label.pt-label.pt-inline .pt-input-group .pt-input {
-      margin-left: 0; }
-    label.pt-label.pt-inline.pt-large {
-      line-height: 40px; }
-  label.pt-label.pt-disabled,
-  label.pt-label.pt-disabled .pt-text-muted {
-    color: rgba(92, 112, 128, 0.5); }
-  .pt-dark label.pt-label {
-    color: #f5f8fa; }
-    .pt-dark label.pt-label.pt-disabled,
-    .pt-dark label.pt-label.pt-disabled .pt-text-muted {
-      color: rgba(191, 204, 214, 0.5); }
+      vertical-align: top; 
+  }
+  .up-input,
+  .up-input-group,
+  .up-select {
+      margin: 0 0 0 5px; 
+  }
+  .up-input-group .up-input {
+    margin-left: 0; 
+  }
 `
 
-export const LabelStyled = styled<Props>(BaseLabel)`
-  ${labelStyles}
+const base = (props: UpLabelStyledProps) => css`
+  display: block;
+  margin: 0 0 8px;
+  .up-label-text {
+    text-align: ${props.textAlign};
+    width: ${sizeMap[props.width]};
+    display: inline-block;
+  }
+  .up-input,
+  .up-select {
+    display: block;
+    margin-top: 5px;
+    text-transform: none; 
+  }
+  .up-select select {
+    width: 100%;
+    vertical-align: top;
+    font-weight: 400; 
+  }
+`
+
+export const LabelStyled = styled.label`
+  ${(props: UpLabelStyledProps) => base(props)}
+  ${(props: UpLabelStyledProps) => props.inline ? inline:css`` }
 `;
