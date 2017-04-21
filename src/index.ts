@@ -1,5 +1,6 @@
 import UpPanel from './Components/Containers/Panel'
 import UpBox from './Components/Containers/Box'
+import {UpGrid, UpRow, UpCol} from './Components/Containers/Grid'
 import UpFormGroup from './Components/Containers/FormGroup'
 
 import UpAnchor from './Components/Display/Anchor/index'
@@ -56,6 +57,9 @@ export {
   UpPhone,
   UpInteger,
   UpPanel,
+  UpGrid,
+  UpRow,
+  UpCol,
   UpLabel,
   UpFormGroup,
   UpTooltip,
