@@ -10,7 +10,10 @@ export interface UpTextProps {
 }
 
 export default class UpText extends InputBaseComponent<UpTextProps, {}> {
-    
+    public static defaultProps: UpTextProps = {
+        value:"",
+        multiline:true
+    }
     constructor(p, c) {
         super(p, c);
         this.onChange = this.onChange.bind(this) ;
