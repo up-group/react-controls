@@ -27,9 +27,9 @@ const colorMap: ThemeColorMap = {
   light2: '#D6DBB2',
   light3: '#6D72C3',
 
-  primary: '#007acc',
+  primary: '#108ee9',
   primaryDark: '#007acc',
-  primaryLight: '#CCFFFF',
+  primaryLight: '#49a9ee',
 
   default: '#fafafa',
   defaultDark: '#fafafa',
@@ -37,19 +37,19 @@ const colorMap: ThemeColorMap = {
 
   success: '#8cc800',
   successDark: '#8cc800',
-  successLight:'#CFE699',
+  successLight:'#A6E21A',
 
-  warning: '#ffd602',
+  warning: '#FFA500',
   warningDark: '#ffd602',
-  warningLight: '#FFFFCE',
+  warningLight: '#FFBF1A',
 
-  danger: '#b30018',
+  danger: '#f04134',
   dangerDark: '#b30018',
-  dangerLight: '#FF667E',
+  dangerLight: '#f46e65',
 
   info: '#5bc0de',
   infoDark: '#5bc0de',
-  infoLight: '#DAFFFF',
+  infoLight: '#75DAF8',
 
   white1: '#fff',
   white2: '#f3f3f3',

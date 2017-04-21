@@ -4,10 +4,10 @@ import Props from './types';
 
 export default function Box({
   children,
-  ...rest,
+  ...others,
 }: Props): JSX.Element {
   return (
-    <Component {...rest}>
+    <Component {...others}>
       {children || null}
     </Component>
   );

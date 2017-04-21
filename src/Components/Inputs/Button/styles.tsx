@@ -1,13 +1,12 @@
+// Imports
 import * as React from 'react'
 import styled, {css} from '../../../Common/theming/themedComponents';
-
 import remStringFromPX from '../../../Common/utils'
-
 import { UpButtonStyledProps, fontSizeMap, buttonSizeMap} from './'
-
 import ThemeColorMap from '../../../Common/theming'
 import SvgIcon from "../../Display/SvgIcon/index";
 import { ThemeInterface } from "../../../Common/theming/types";
+import * as classnames from 'classnames' 
 
 const ReactButtonComponent: React.StatelessComponent<UpButtonStyledProps> = (props) => {
     const { children, className, onClick, dataFor, width } = props;
@@ -25,7 +24,7 @@ const ReactButtonComponent: React.StatelessComponent<UpButtonStyledProps> = (pro
       }
     }
 
-    return <button onClick={onClick} className={className} {...tooltipProps} >
+    return <button onClick={onClick} className={classnames('up-btn', className)} {...tooltipProps} >
       {props.iconName &&
         icon
       }
@@ -43,6 +42,7 @@ const base = props => css`
   text-align: center;
   font-size: ${(props: UpButtonStyledProps) => remStringFromPX(fontSizeMap[props.fontSize])};
   border: none;
+  opacity:0.8;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -73,7 +73,6 @@ border-width:1px;
 border-style:solid;
 &:hover {
   background-color: ${props => props.color || props.theme.colorMap[`${props.type}Light`] || 'white' };
-  color: ${(props: UpButtonStyledProps) => props.backgroundColor || props.theme.colorMap[`${props.type}Dark`]};
   svg {
     fill: ${(props: UpButtonStyledProps) => props.backgroundColor || props.theme.colorMap[`${props.type}Dark`]}
   }
