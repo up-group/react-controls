@@ -2,6 +2,7 @@
 import styled from '../../../Common/theming/themedComponents';
 import { ThemeInterface } from "../../../Common/theming/types";
 
+
 export const DraftStyled = styled.div`
  .RichEditor-root {
   background: #fff;
