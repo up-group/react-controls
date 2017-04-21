@@ -20,16 +20,16 @@ export default function SvgIcon({
   viewBox,
   iconName,
   color,
-  ...rest,
+  ...others,
 }: Props): JSX.Element {
 
-  const height = rest.height || 24 ;
-  const width = rest.height || 24 ;
+  const height = others.height || 24 ;
+  const width = others.height || 24 ;
    
   if(iconName) {
     return (
       <SvgIconWrapper color={color} height={height} width={width}
-        //{...rest}
+        //{...others}
         dangerouslySetInnerHTML={{__html: Icons[iconName]}}
       ></SvgIconWrapper>
     );
@@ -39,7 +39,7 @@ export default function SvgIcon({
 
     return (
       <svg
-        //{...rest}
+        //{...others}
         fill={color}
         viewBox={viewBoxProps}>
         {children}

@@ -1,8 +1,7 @@
+// Imports
 import UpButton from './UpButton'
 import {ThemedProps, IntentType} from '../../../Common/theming/types' 
 import {Tooltip} from '../../Display/Tooltip' 
-
-export default UpButton ;
 
 export const fontSizeMap = {
   xsmall: 10,
@@ -46,3 +45,5 @@ export interface UpButtonStyledProps extends UpButtonProps {
   className?:string; // Needed by styled components to set the created className to a complex element
   dataFor? : string; // Use for tooltip
 }
+
+export default UpButton 

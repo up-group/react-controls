@@ -11,8 +11,8 @@ export default class UpFile extends React.Component<UpFileProps, {}> {
         if (!FileReader) {
             return <span>Non support du navigateur</span>;
         }
-        const {onChange, onError, ...rest} = this.props ;
-        return <UpFileStyle {...rest} onChange={this.onChange}/>
+        const {onChange, onError, ...others} = this.props ;
+        return <UpFileStyle {...others} onChange={this.onChange}/>
     }
 
     get maxSizeb() {

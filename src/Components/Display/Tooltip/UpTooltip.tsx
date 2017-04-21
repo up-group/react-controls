@@ -47,7 +47,7 @@ export default class UpTooltip extends Component<UpTooltipProps, UpTooltipState>
    
   }
   render() {
-    const {id, children, content, ...rest} = this.props ;
+    const {id, children, content, ...others} = this.props ;
     var _id = id ;
     if(!_id) {
       _id = GenerateId() ;
@@ -67,7 +67,7 @@ export default class UpTooltip extends Component<UpTooltipProps, UpTooltipState>
     return (
       <div style={{display:"inline-block"}}>
         {childrenWithProps}
-        <ReactTooltip id={_id} getContent={_getContent} {...rest} />
+        <ReactTooltip id={_id} getContent={_getContent} {...others} />
       </div>
     );
   }

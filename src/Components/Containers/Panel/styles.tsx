@@ -128,19 +128,19 @@ border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.danger : T
 `;
 
 export const PanelStyled: React.StatelessComponent<Props> = (props) => {
-    const { children, ...rest } = props;
+    const { children, ...others } = props;
     switch(props.type) {
       case "primary":
-        return <PrimaryDefaultPanel {...rest}>{children}</PrimaryDefaultPanel> ;
+        return <PrimaryDefaultPanel {...others}>{children}</PrimaryDefaultPanel> ;
       case "info":
-        return <InfoDefaultPanel {...rest}>{children}</InfoDefaultPanel> ;
+        return <InfoDefaultPanel {...others}>{children}</InfoDefaultPanel> ;
       case "warning":
-        return <WarningDefaultPanel {...rest}>{children}</WarningDefaultPanel> ;
+        return <WarningDefaultPanel {...others}>{children}</WarningDefaultPanel> ;
       case "danger":
-        return <DangerDefaultPanel {...rest}>{children}</DangerDefaultPanel> ;
+        return <DangerDefaultPanel {...others}>{children}</DangerDefaultPanel> ;
       case "success":
-        return <SuccessDefaultPanel {...rest}>{children}</SuccessDefaultPanel> ;
+        return <SuccessDefaultPanel {...others}>{children}</SuccessDefaultPanel> ;
     }
 
-    return <DefaultPanel {...rest}>{children}</DefaultPanel> ;
+    return <DefaultPanel {...others}>{children}</DefaultPanel> ;
 }

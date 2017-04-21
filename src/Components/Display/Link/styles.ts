@@ -1,6 +1,8 @@
+// Imports
 import styled, {css} from '../../../Common/theming/themedComponents';
-import { Props } from './types';
+import { LinkProps } from './';
 import { ThemeInterface } from "../../../Common/theming/types";
+
 
 const plainStyle = (plain: boolean) => {
   if (plain) {
@@ -30,6 +32,6 @@ export default styled.a`
   font-size: 1.1875rem;
   line-height: 24px;
   font-weight: 400;
-  ${(props: Props) => colorStyle(props.color)}
-  ${(props: Props) => plainStyle(props.plain || false)}
+  ${(props: LinkProps) => colorStyle(props.color)}
+  ${(props: LinkProps) => plainStyle(props.plain || false)}
 `;

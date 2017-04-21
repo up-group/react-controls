@@ -23,35 +23,35 @@ class Heading extends React.Component<Props, undefined> {
     margin: 'medium',
   };
   public render() {
-    const { children, tag, ...rest } = this.props;
+    const { children, tag, ...others } = this.props;
     switch (tag) {
     case 'h2':
       return (
-      <H2 tag={tag} {...rest}>
+      <H2 tag={tag} {...others}>
         {children}
       </H2>
       );
     case 'h3':
       return (
-      <H3 tag={tag} {...rest}>
+      <H3 tag={tag} {...others}>
         {children}
       </H3>
       );
     case 'h4':
       return (
-      <H4 tag={tag} {...rest}>
+      <H4 tag={tag} {...others}>
         {children}
       </H4>
       );
     case 'h5':
       return (
-      <H5 tag={tag} {...rest}>
+      <H5 tag={tag} {...others}>
         {children}
       </H5>
       );
     default:
       return (
-        <H1 tag={tag} {...rest}>
+        <H1 tag={tag} {...others}>
           {children}
         </H1>
       );

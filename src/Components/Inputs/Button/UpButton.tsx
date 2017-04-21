@@ -31,7 +31,7 @@ export default class UpButton extends React.Component<UpButtonProps, undefined> 
   }
 
   public render() {
-    const {children, tooltip, onClick, ...rest} = this.props ;
+    const {children, tooltip, onClick, ...others} = this.props ;
     
     if(tooltip) {
       var _tooltip:Tooltip ;
@@ -44,14 +44,14 @@ export default class UpButton extends React.Component<UpButtonProps, undefined> 
       }
       return (
         <UpTooltip {..._tooltip}>
-          <BaseButton onClick={this.handleClick} {...rest}>
+          <BaseButton onClick={this.handleClick} {...others}>
             <span>{children}</span>
           </BaseButton>
         </UpTooltip>
       );
     } else {
       return (
-        <BaseButton onClick={this.handleClick} {...rest}>
+        <BaseButton onClick={this.handleClick} {...others}>
           <span>{children}</span>
         </BaseButton>
       );

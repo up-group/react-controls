@@ -20,7 +20,7 @@ export default function Notification({
   message,
   status,
   theme,
-  ...rest,
+  ...others,
 }: Props): JSX.Element {
    const defaultIconSize = 40 ;
    const icon = <SvgIcon iconName={iconMap[status]}

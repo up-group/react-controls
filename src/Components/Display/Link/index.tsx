@@ -1,10 +1,12 @@
+// Imports
 import * as React from 'react';
-import AnchorStyled from './styles';
+import LinkStyled from './styles';
 
 const MethodTypePush = 'push';
 
+// Exports
 export type Method = 'push' | 'replace';
-export interface Props extends React.Props<Anchor> {
+export interface LinkProps extends React.Props<Link> {
   path?: string;
   plain?: boolean;
   href?: string;
@@ -14,17 +16,16 @@ export interface Props extends React.Props<Anchor> {
   onClick?:(e:React.MouseEvent<HTMLAnchorElement>)=>void;
 }
 
-export class Anchor extends React.Component<Props, undefined> {
-  public static defaultProps: Props = {
+export class Link extends React.Component<LinkProps, undefined> {
+  public static defaultProps: LinkProps = {
     method: MethodTypePush,
   };
 
-  public constructor(props:Props) {
+  public constructor(props:LinkProps) {
     super(props) ;
-    this.handleClick = this.handleClick.bind(this) ;
   }
 
-  private handleClick = (e: React.MouseEvent<HTMLAnchorElement>): void => {
+  private handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     this.props.onClick(e) ;
   }
 
@@ -38,15 +39,15 @@ export class Anchor extends React.Component<Props, undefined> {
     } = this.props;
 
     return (
-      <AnchorStyled
+      <LinkStyled
         plain={plain}
         href={href}
         color={color}
         onClick={this.handleClick}>
         {label || children}
-      </AnchorStyled>
+      </LinkStyled>
     );
   }
 }
 
-export default Anchor;
+export default Link;

@@ -34,9 +34,9 @@ class UpFileStyle extends React.Component<UpFileStyleProps, undefined> {
   };
 
   public render() {
-    const {children, ...rest} = this.props ;
+    const {children, ...others} = this.props ;
     return (
-      <BaseFileStyle {...rest}>
+      <BaseFileStyle {...others}>
         {children}
       </BaseFileStyle>
     );

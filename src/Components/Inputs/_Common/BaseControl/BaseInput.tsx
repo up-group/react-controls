@@ -29,7 +29,7 @@ export class InputTextComponent extends InputBaseComponent<CommonInputTextProps,
     }
 
     renderControl() {
-        const {onChange, ...rest} = this.props ;
-        return <InputStyled hasError={this.hasError()} onChange={this.handleChangeEvent} {...rest} />
+        const {onChange, ...others} = this.props ;
+        return <InputStyled hasError={this.hasError()} onChange={this.handleChangeEvent} {...others} />
     }
 }

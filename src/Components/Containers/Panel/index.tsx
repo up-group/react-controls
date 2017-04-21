@@ -19,10 +19,10 @@ export class Panel extends React.Component<Props, undefined> {
     type:"primary"
   };
   public render() {
-    const {children, ...rest} = this.props ;
+    const {children, ...others} = this.props ;
    
     return (
-      <PanelStyled {...rest}>
+      <PanelStyled {...others}>
         {children}
       </PanelStyled>
     );
