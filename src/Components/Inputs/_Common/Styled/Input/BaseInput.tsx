@@ -1,23 +1,14 @@
 import * as React from 'react'
+// Imports
 import styled, {css} from '../../../../../Common/theming/themedComponents';
 import SvgIcon from "../../../../Display/SvgIcon/index";
 import { IconName, ThemeInterface } from "../../../../../Common/theming/types";
-
 import { inputStyles, HeightLarge } from "./styles"
-
-export type WidthSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'fill';
-export type HeightSize = 'normal' | 'large';
+import { CommonInputTextProps } from '../../BaseControl/BaseInput' 
+// Exports
 export type InputType = 'text' | 'email' | 'number' | 'integer' | 'phone' | 'search';
 
-export interface CommonProps {
-    disabled?: boolean;
-    readOnly?: boolean;
-    placeholder?: string;
-    height?: HeightSize;
-    width?: WidthSize;
-}
-
-export interface StyledProps extends CommonProps {
+export interface StyledProps extends CommonInputTextProps {
     color?: string;
     backgroundColor?: string;
     borderColor?: string;
@@ -25,11 +16,11 @@ export interface StyledProps extends CommonProps {
     iconName?: IconName;
     hasError?: boolean;
     onChange?: (data: any) => void;
-    className?: string;
+    className?: string; // Used for styled components
 }
 
 const BaseInput: React.StatelessComponent<StyledProps> = (props) => {
-    const {className, type, iconName, placeholder, disabled, readOnly, onChange } = props;
+    const {className, type, iconName, placeholder, disabled, readonly, onChange } = props;
 
     var icon: any = null;
     if (iconName) {
@@ -42,7 +33,7 @@ const BaseInput: React.StatelessComponent<StyledProps> = (props) => {
     }
     return (<div className={className}>
         <div className="up-input-group">
-            <input onChange={onChange} className="up-input" type="text" placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readOnly} />
+            <input onChange={onChange} className="up-input" type="text" placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readonly} />
             {icon}
         </div>
     </div>);

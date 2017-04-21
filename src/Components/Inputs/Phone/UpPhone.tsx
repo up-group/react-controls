@@ -1,14 +1,13 @@
-﻿import * as React from 'react';
-import { InputBaseComponent } from "../_Common/BaseControl/BaseControl";
-import TypeStringControl from "../_Common/Validation/TypeStringControl";
-import { InputStyled, CommonProps } from "../_Common/Styled/Input/BaseInput"
+﻿// Imports
+import * as React from 'react'
+import { InputTextComponent } from "../_Common/BaseControl/BaseInput"
+import TypeStringControl from "../_Common/Validation/TypeStringControl"
+import { CommonInputTextProps} from "../_Common/BaseControl/BaseInput"
+import {ThemedProps} from '../../../Common/theming/types'
 
-export interface Props extends CommonProps {
-    isNullable?: boolean;
-}
-
-export default class UpPhone extends InputBaseComponent<Props, string> {
-    public static defaultProps: Props = {
+export default class UpPhone extends InputTextComponent {
+    public static defaultProps: CommonInputTextProps = {
+        iconName:"phone"
     };
 
     constructor(p, c) {
@@ -18,13 +17,5 @@ export default class UpPhone extends InputBaseComponent<Props, string> {
         var patternErrorMessage = "Doit être un numéro de téléphone";
 
         this._validationManager.addControl(new TypeStringControl(pattern, patternErrorMessage));
-    }
-
-    onChange(event: any) {
-        return event.target.value;
-    }
-
-    renderControl() {
-        return <InputStyled hasError={this.hasError()} onChange={this.handleChangeEvent} iconName="phone" />
     }
 }

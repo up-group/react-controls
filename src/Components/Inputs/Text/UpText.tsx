@@ -1,8 +1,11 @@
+// Imports
 import * as React from "react"
-import { InputBaseComponent } from "../_Common/BaseControl/BaseControl";
-import { InputStyled, CommonProps } from "../_Common/Styled/Input/BaseInput"
+import { InputBaseComponent } from "../_Common/BaseControl/BaseControl"
+import { InputStyled } from "../_Common/Styled/Input/BaseInput"
+import { CommonInputTextProps } from "../_Common/BaseControl/BaseInput"
 import { TexAreatStyled } from "./styles";
 
+// Exports
 export interface UpTextProps {
     multiline?:boolean;
     defaultValue?: string;
