@@ -4,6 +4,12 @@ import { UpButtonProps } from './';
 import  UpTooltip, {Tooltip} from '../../Display/Tooltip' ;
 
 export default class UpButton extends React.Component<UpButtonProps, undefined> {
+
+  constructor(props) {
+    super(props) ;
+    this.handleClick = this.handleClick.bind(this) ;
+  }
+
   public static defaultProps: UpButtonProps = {
     color: '',
     backgroundColor: '',
@@ -19,8 +25,14 @@ export default class UpButton extends React.Component<UpButtonProps, undefined> 
     tooltip:null,
     onClick:(e:React.MouseEvent<HTMLButtonElement>) => {}
   };
+
+  private handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    this.props.onClick(e) ;
+  }
+
   public render() {
-    const {children, tooltip, ...rest} = this.props ;
+    const {children, tooltip, onClick, ...rest} = this.props ;
+    
     if(tooltip) {
       var _tooltip:Tooltip ;
       if(typeof tooltip === 'string' ||  tooltip instanceof String) {
@@ -32,14 +44,14 @@ export default class UpButton extends React.Component<UpButtonProps, undefined> 
       }
       return (
         <UpTooltip {..._tooltip}>
-          <BaseButton {...rest}>
+          <BaseButton onClick={this.handleClick} {...rest}>
             <span>{children}</span>
           </BaseButton>
         </UpTooltip>
       );
     } else {
       return (
-        <BaseButton {...rest}>
+        <BaseButton onClick={this.handleClick} {...rest}>
           <span>{children}</span>
         </BaseButton>
       );

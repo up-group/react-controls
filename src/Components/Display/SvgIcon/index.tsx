@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SvgProps } from './types';
 import styled from '../../../Common/theming/themedComponents';
 
-import Icons from './_getIcons';
+import Icons from './icons';
 
 const SvgIconWrapper = styled.div`
     float: left;

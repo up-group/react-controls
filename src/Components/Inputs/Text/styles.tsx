@@ -1,9 +1,9 @@
+// Imports
 import * as React from 'react'
-
 import styled, {css} from '../../../Common/theming/themedComponents';
-
 import Textarea from 'react-textarea-autosize'
 import { ThemeInterface } from "../../../Common/theming/types";
+import { defaultStyles } from '../_Common/Styled/Input/styles'
 
 export interface TextAreaPropsStyle {
     value?:string;
@@ -32,33 +32,17 @@ const BaseTextArea: React.StatelessComponent<TextAreaPropsStyle> = (props) => {
 }
 
 const base = props => css`
+  min-height:80px;
 `;
 
 const error = props => css`
-  border : 1px solid red;
+  border : 1px solid ${props.theme.danger};
 `;
 
 export const TexAreatStyled = styled<TextAreaPropsStyle>(BaseTextArea) `
 ${(props: TextAreaPropsStyle) => base(props) }
+${(props) => defaultStyles}
 ${(props: TextAreaPropsStyle) => props.hasError? error(props):css``}
 `;
-
-/*class TextStyle extends React.Component<UpTextProps, undefined> {
-  public static defaultProps: UpTextProps = {
-    hasError: false,
-    onChange: (event:any) => {},
-    value:""
-  };
-
-  public render() {
-    const {children, ...rest} = this.props ;
-    return (
-      <div>
-        <BaseTextStyle {...rest} />
-        {children}
-      </div>
-    );
-  }
-}*/
 
 export default TexAreatStyled;

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { UpDateProps } from './'
+import { UpDateStyledProps } from './'
 
 import styled from '../../../Common/theming/themedComponents';
 
@@ -30,7 +30,7 @@ class UpLocaleUtils implements IDatePickerLocaleUtils {
 
 const locale = new UpLocaleUtils() ;
 
-const BaseDate : React.StatelessComponent<UpDateProps> = (props) => {
+const BaseDate : React.StatelessComponent<UpDateStyledProps> = (props) => {
     
     const {value, className, format, onChange} = props ;
     const picker = (<span className="pt-icon pt-icon-calendar"></span>) ;
@@ -44,12 +44,12 @@ const BaseDate : React.StatelessComponent<UpDateProps> = (props) => {
                         onChange={onChange} format={format} />) ;
 }
 
-export const NormalDate = styled<UpDateProps>(BaseDate)`
+export const NormalDate = styled<UpDateStyledProps>(BaseDate)`
 `; 
 
-export default class UpDateStyle extends React.Component<UpDateProps, {}> {
-    public static defaultProps: UpDateProps = {
-        value:"",
+export default class UpDateStyle extends React.Component<UpDateStyledProps, {}> {
+    public static defaultProps: UpDateStyledProps = {
+        value:null,
     };
   public render() {
     const {value, format, onChange} = this.props ;

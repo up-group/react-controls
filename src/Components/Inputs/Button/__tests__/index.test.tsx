@@ -2,7 +2,7 @@ import { shallow, mount } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
 import * as React from 'react';
 import Button from '../';
-import { buttonProps, heroButtonProps } from './__mocks__/buttonMocks.mock';
+import { buttonProps} from './__mocks__/buttonMocks.mock';
 
 describe('<Button /> default', () => {
   it('should render a plain button with default props', () => {
@@ -26,15 +26,7 @@ describe('<Button /> default', () => {
 describe('<Button /> when a hero button', () => {
   it('should render a hero button with boolean true', () => {
     const wrapper = shallow(
-      <Button isHero={true}>
-        Button Text
-      </Button>,
-    );
-    expect(shallowToJson(wrapper)).toMatchSnapshot();
-  });
-  it('should render a hero button with other props', () => {
-    const wrapper = shallow(
-      <Button {...heroButtonProps}>
+      <Button>
         Button Text
       </Button>,
     );
