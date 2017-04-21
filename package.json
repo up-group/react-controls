@@ -29,7 +29,10 @@
     "prepublish": "npm run clean && npm run build ",
     "build": "tsc && copyfiles -u 1 src/Common/theming/base.css dist/ && copyfiles -u 1 src/Common/theming/icons/*.* dist/",
     "build-watch": "tsc -w",
+
     "build-test": "npm run clean && webpack",
+    "build-test-watch": "npm run clean && webpack --watch",
+    
     "publishProd": "npm version patch && npm publish",
     "publishBeta": "npm version patch && npm publish --tag beta",
     "publishLocalToSchemaForm": "copyfiles dist/*.* dist/**/* package.json src/*.* src/**/* src/theming/icons/* ../react-schemaform/node_modules/@up-group/react-controls/",
