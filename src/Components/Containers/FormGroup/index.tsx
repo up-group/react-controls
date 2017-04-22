@@ -1,28 +1,10 @@
-import * as React from 'react';
-import { FormGroupStyled } from './styles';
+import UpFormGroup  from './UpFormGroup'
+import {ThemedProps} from '../../../Common/theming/types' 
 
-export interface Props {
-    className?:string;
+export interface UpFormGroupProps  {
+    title:string;
 }
 
-export default class FormGroup extends React.Component<Props, {}> {
-  
-  public static defaultProps = {
-  }
+export interface UpFormGroupStyledProps extends ThemedProps {}
 
-  constructor(props) {
-    super(props) ;
-  }
-  componentWillUnmount() {
-  }
-
-  componentDidMount() {
-  }
-  render() {
-      return (
-        <FormGroupStyled>
-        {this.props.children}
-        </FormGroupStyled>
-      );
-  }
-}
+export default UpFormGroup
