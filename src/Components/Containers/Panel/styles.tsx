@@ -1,22 +1,21 @@
+// Imports
 import * as React from 'react'
 import ThemeColorMap from '../../../Common/theming'
-import { Props } from './'
+import { UpPanelStyledProps } from './'
 import styled,{ css } from "../../../Common/theming/themedComponents";
-
 import SvgIcon from "../../Display/SvgIcon/index";
 import { ThemeInterface } from "../../../Common/theming/types";
+import * as classnames from 'classnames'
 
-const BasePanel: React.StatelessComponent<Props> = (props) => {
+const BasePanel: React.StatelessComponent<UpPanelStyledProps> = (props) => {
     const { children } = props;
 
     const icon = <SvgIcon iconName={props.iconName}
           width={props.iconSize}
-          height={props.iconSize}
-          color={props.color} /> ;
+          height={props.iconSize} /> ;
 
     return (
-        <div className={props.className}>
-          <div className="up-panel">
+        <div className={classnames(props.className, "up-panel")}>
             {props.title &&
               <div className="up-panel-header">{props.title}</div>
             }
@@ -29,7 +28,6 @@ const BasePanel: React.StatelessComponent<Props> = (props) => {
             {props.footer &&
               <div className="up-panel-footer">{props.footer}</div>
             }
-          </div>
         </div>
     );
 }
@@ -73,61 +71,61 @@ const base = props => css`
   }
 `;
 
-export const DefaultPanel = styled<Props>(BasePanel) `
-${(props: Props) => base(props) }
-${(props: Props) => shadow(props)}
+export const DefaultPanel = styled<UpPanelStyledProps>(BasePanel) `
+${(props: UpPanelStyledProps) => base(props) }
+${(props: UpPanelStyledProps) => shadow(props)}
 border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.default : ThemeColorMap.default};
  .up-panel-header {
    background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.default : ThemeColorMap.default};
  }
 `;
 
-export const PrimaryDefaultPanel = styled<Props>(BasePanel) `
-${(props: Props) => base(props) }
-${(props: Props) => shadow(props)}
+export const PrimaryDefaultPanel = styled<UpPanelStyledProps>(BasePanel) `
+${(props: UpPanelStyledProps) => base(props) }
+${(props: UpPanelStyledProps) => shadow(props)}
 border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.primary : ThemeColorMap.primary};
  .up-panel-header {
    background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.primary : ThemeColorMap.primary};
  }
 `;
 
-export const WarningDefaultPanel = styled<Props>(BasePanel) `
-${(props: Props) => base(props)}
-${(props: Props) => shadow(props)}
+export const WarningDefaultPanel = styled<UpPanelStyledProps>(BasePanel) `
+${(props: UpPanelStyledProps) => base(props)}
+${(props: UpPanelStyledProps) => shadow(props)}
 border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.warning : ThemeColorMap.warning};
  .up-panel-header {
    background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.warning : ThemeColorMap.warning};
  }
 `;
 
-export const SuccessDefaultPanel = styled<Props>(BasePanel) `
-${(props: Props) => base(props) }
-${(props: Props) => shadow(props)}
+export const SuccessDefaultPanel = styled<UpPanelStyledProps>(BasePanel) `
+${(props: UpPanelStyledProps) => base(props) }
+${(props: UpPanelStyledProps) => shadow(props)}
 border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.successDark : ThemeColorMap.successDark};
  .up-panel-header {
    background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.success : ThemeColorMap.success};
  }
 `;
 
-export const InfoDefaultPanel = styled<Props>(BasePanel) `
-${(props: Props) => base(props) }
-${(props: Props) => shadow(props)}
+export const InfoDefaultPanel = styled<UpPanelStyledProps>(BasePanel) `
+${(props: UpPanelStyledProps) => base(props) }
+${(props: UpPanelStyledProps) => shadow(props)}
 border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.infoDark : ThemeColorMap.infoDark};
  .up-panel-header {
    background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.info : ThemeColorMap.info};
  }
 `;
 
-export const DangerDefaultPanel = styled<Props>(BasePanel) `
-${(props: Props) => base(props) }
-${(props: Props) => shadow(props)}
+export const DangerDefaultPanel = styled<UpPanelStyledProps>(BasePanel) `
+${(props: UpPanelStyledProps) => base(props) }
+${(props: UpPanelStyledProps) => shadow(props)}
 border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.danger : ThemeColorMap.dangerDark};
 .up-panel-header {
    background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.danger : ThemeColorMap.danger};
  }
 `;
 
-export const PanelStyled: React.StatelessComponent<Props> = (props) => {
+export const PanelStyled: React.StatelessComponent<UpPanelStyledProps> = (props) => {
     const { children, ...others } = props;
     switch(props.type) {
       case "primary":

@@ -1,32 +1,19 @@
-import * as React from 'react'
-import {IntentType} from '../../../Common/theming/types' 
-import {PanelStyled} from './styles'  
-import {IconName} from "../../../Common/theming/types"
+// Imports
+import UpPanel from './UpPanel'
+import {IntentType, IconName, ThemedProps} from "../../../Common/theming/types"
 
-export interface Props extends React.HTMLProps<HTMLDivElement & Panel> {
+// Exports
+export interface UpPanelProps {
   title?:string;
   footer?: string | React.ReactElement<any>;
-  dismissable?:boolean;
   type?:IntentType;
   message?:string;
   iconName?:IconName;
   iconSize?:number;
 }
 
-export class Panel extends React.Component<Props, undefined> {
-  public static defaultProps: Props = {
-    footer: "",
-    type:"primary"
-  };
-  public render() {
-    const {children, ...others} = this.props ;
-   
-    return (
-      <PanelStyled {...others}>
-        {children}
-      </PanelStyled>
-    );
-  }
+export interface UpPanelStyledProps extends UpPanelProps, ThemedProps {
+  className?: string; // For styled components
 }
 
-export default Panel;
+export default UpPanel
