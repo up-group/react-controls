@@ -1,9 +1,10 @@
-import styled from '../../../Common/theming/themedComponents';
-import { style } from './styles';
-import { ThemeInterface } from "../../../Common/theming/types";
+// Imports
+import UpParagraph from './UpParagraph' ;
 
+// Exports
 export type ParagraphSize = 'small' | 'medium' | 'large' | 'xlarge';
 export type Margin = 'none' | 'small' | 'medium' | 'large';
+
 
 export interface SizeMap {
   small: number;
@@ -19,15 +20,13 @@ export interface MarginSizeMap {
   large: number;
 }
 
-export interface Props {
+export interface UpParagraphProps {
   color?: string;
   textAlign?: string;
   paragraphSize?: ParagraphSize;
   margin?: Margin;
 }
 
-const Paragraph = styled.p`
-  ${style}
-`;
+export interface UpParagraphStyledProps extends UpParagraphProps {}
 
-export default Paragraph;
+export default UpParagraph
