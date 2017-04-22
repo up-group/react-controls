@@ -2,31 +2,9 @@ import * as React from 'react';
 import * as classNames from 'classnames';
 import * as assign from 'object-assign';
 
-export interface ColSize {
-  span?: number;
-  order?: number;
-  offset?: number;
-  push?: number;
-  pull?: number;
-}
+import {UpColProps, ColSize} from './'
 
-export interface ColProps {
-  className?: string;
-  span?: number;
-  order?: number;
-  offset?: number;
-  push?: number;
-  pull?: number;
-  xs?: number | ColSize;
-  sm?: number | ColSize;
-  md?: number | ColSize;
-  lg?: number | ColSize;
-  xl?: number | ColSize;
-  prefixCls?: string;
-  style?: React.CSSProperties;
-}
-
-export default class UpCol extends React.Component<ColProps, any> {
+export default class UpCol extends React.Component<UpColProps, any> {
   
   render() {
     const props = this.props;

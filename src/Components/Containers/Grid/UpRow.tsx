@@ -2,19 +2,9 @@ import * as React from 'react';
 import * as classNames from 'classnames';
 import * as assign from 'object-assign';
 
-import { Alignment, Justification, LayoutMode } from './'
+import { Alignment, Justification, LayoutMode, UpRowProps} from './'
 
-export interface RowProps {
-  className?: string;
-  gutter?: number;
-  type?: LayoutMode;
-  align?: Alignment,
-  justify?: Justification;
-  style?: React.CSSProperties;
-  prefixCls?: string;
-}
-
-export default class UpRow extends React.Component<RowProps, any> {
+export default class UpRow extends React.Component<UpRowProps, any> {
   static defaultProps = {
     gutter: 0,
     type:'float'

@@ -2,6 +2,8 @@ export interface ThemeInterface {
     colorMap: ThemeColorMap;
     borderRadius?:string;
     minButtonSize?:string;
+    notificationIconSize?:number;
+    gridGutter?:number;
 }
 
 export interface ThemeColorMap {
