@@ -4,26 +4,19 @@ import styled, {css} from '../../../Common/theming/themedComponents';
 import Textarea from 'react-textarea-autosize'
 import { ThemeInterface } from "../../../Common/theming/types";
 import { defaultStyles } from '../_Common/Styled/Input/styles'
+import { UpTextStyledProps } from './'
 
-export interface TextAreaPropsStyle {
-    value?:string;
-    disabled?: boolean;
-    readOnly?: boolean;
-    placeholder?: string;
-    // height?: HeightSize;
-    // width?: WidthSize;
+const sizeMap = {
+    xsmall: "100px",
+    small: "150px",
+    medium: "350px",
+    large: "450px",
+    xlarge: "600px",
+    xxlarge: "700px",
+    fill: "100%",
+};
 
-     color?: string;
-    backgroundColor?: string;
-    borderColor?: string;
-    // type?: InputType;
-    // iconName?: iconName;
-    hasError?: boolean;
-    onChange?: (data: any) => void;
-    className?: string;
-}
-
-const BaseTextArea: React.StatelessComponent<TextAreaPropsStyle> = (props) => {
+const BaseTextArea: React.StatelessComponent<UpTextStyledProps> = (props) => {
     const {className, value, onChange} = props;
 
     return <Textarea value={value}
@@ -33,16 +26,17 @@ const BaseTextArea: React.StatelessComponent<TextAreaPropsStyle> = (props) => {
 
 const base = props => css`
   min-height:80px;
+  width: ${(props: UpTextStyledProps) => sizeMap[props.width]};
 `;
 
 const error = props => css`
   border : 1px solid ${props.theme.danger};
 `;
 
-export const TexAreatStyled = styled<TextAreaPropsStyle>(BaseTextArea) `
-${(props: TextAreaPropsStyle) => base(props) }
+export const TexAreatStyled = styled<UpTextStyledProps>(BaseTextArea) `
+${(props: UpTextStyledProps) => base(props) }
 ${(props) => defaultStyles}
-${(props: TextAreaPropsStyle) => props.hasError? error(props):css``}
+${(props: UpTextStyledProps) => props.hasError? error(props):css``}
 `;
 
 export default TexAreatStyled;

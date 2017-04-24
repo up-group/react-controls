@@ -1,11 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-
 import {
-  UpHeadline,
   UpBox,
-  UpList,
   UpPanel,
   UpButton,
   UpThemeProvider,
@@ -22,9 +19,6 @@ import {
   UpSelect,
   UpFormGroup
 } from "../src/index";
-
-import { ChangeOrderEvent } from "../src/Components/Containers/List/index";
-
 
 interface Item {
   text: string;
@@ -45,12 +39,10 @@ var theme: UpThemeInterface = {
   colorMap: UpColorMap
 }
 theme.colorMap.warning = "orange";
-theme.colorMap.secondary = UpColorMap.lightGray2;
 
 class Demo extends React.Component<undefined, DemoState> {
   constructor(props) {
     super(props);
-    this.onSortEnd = this.onSortEnd.bind(this);
     this.onDateChange = this.onDateChange.bind(this);
     this.onTextChange = this.onTextChange.bind(this);
 
@@ -86,25 +78,10 @@ class Demo extends React.Component<undefined, DemoState> {
     return (
       <UpThemeProvider theme={theme}>
         <div>
-          <UpHeadline fontWeight={700}>
-            Démo
-              <hr />
-          </UpHeadline>
           <UpBox flexDirection="row" alignItems="stretch" justifyContent="center" >
             <UpBox margin="small" boxSize={{ horizontal: 'small' }}>
               Component
-                     <hr />
-              <UpList fontSize="20" sortable={true} items={this.state.items} onSortEnd={this.onSortEnd} />
-              <UpButton style={{ margin: 20 }}
-                fontSize="small"
-                iconName="add"
-                iconSize={16}
-                color={theme.colorMap.warning}
-                backgroundColor={theme.colorMap.white1}
-                borderColor={theme.colorMap.warning}
-              >
-                View Example App
-              </UpButton>
+              <hr />
             </UpBox>
             <UpBox margin="small" boxSize={{ horizontal: 'xxlarge' }}>
               Editor
@@ -113,7 +90,7 @@ class Demo extends React.Component<undefined, DemoState> {
 
                 <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
                   <UpLabel text="Date :"></UpLabel>
-                  <UpDate onChange={this.onDateChange} value={this.state.date} />
+                  <UpDate onChange={this.onDateChange} />
                 </UpBox>
                 <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
                   <UpLabel text="Description :"></UpLabel>
@@ -147,18 +124,6 @@ class Demo extends React.Component<undefined, DemoState> {
                   <UpLabel text="Tél :"></UpLabel>
                   <UpPhone width="xlarge"  placeholder="Entrer votre numéro de tel"  onChange={this.onPhoneChange} value={this.state.phone}/>  
                </UpBox>
-
-                <UpButton
-                  style={{ margin: 20 }}
-                  fontSize="small"
-                  iconName="edit"
-                  iconSize={16}
-                  color={theme.colorMap.white1}
-                  backgroundColor={theme.colorMap.primary}
-                  borderColor={theme.colorMap.white1}
-                >
-                  Enregistrer
-              </UpButton>
               </UpPanel>
 
               <UpPanel title="Paramètres" type="primary">
@@ -178,11 +143,6 @@ class Demo extends React.Component<undefined, DemoState> {
         </div>
       </UpThemeProvider>
     );
-  }
-  onSortEnd(e : ChangeOrderEvent) {
-    /*this.setState({
-      items: arrayMove(this.state.items, e.oldIndex, e.newIndex),
-    });*/
   }
   onDateChange(newDate) {
     this.setState({
@@ -215,11 +175,5 @@ class Demo extends React.Component<undefined, DemoState> {
     });
   }
 }
-
-
-
-
-
-
 
 ReactDOM.render(<Demo />, document.getElementById('root'));

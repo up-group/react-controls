@@ -22,14 +22,25 @@ export class InputTextComponent extends InputBaseComponent<CommonInputTextProps,
 
     constructor(p, c) {
         super(p, c);
+        this.state = {
+            value : p.value
+        };
     }
 
     onChange(event: any) {
         return event.target.value;
     }
 
+    public componentWillReceiveProps(nextProps: CommonInputTextProps) {
+        if (nextProps.value !== this.props.value) {
+            this.setState({value: nextProps.value });
+        }
+    }
+
     renderControl() {
-        const {onChange, ...others} = this.props ;
-        return <InputStyled hasError={this.hasError()} onChange={this.handleChangeEvent} {...others} />
+        const {onChange, value, ...others} = this.props ;
+        return <InputStyled 
+            value={this.state.value}
+            hasError={this.hasError()} onChange={this.handleChangeEvent} {...others} />
     }
 }

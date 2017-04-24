@@ -14,7 +14,7 @@ export interface InputBaseProps<_BaseType> {
 
 export interface InputBaseState<_BaseType> {
     error?: string;
-    innerValue?:_BaseType;
+    value?:_BaseType;
 }
 
 export abstract class InputBaseComponent<_Props, _BaseType> extends React.Component<InputBaseProps<_BaseType> & _Props, InputBaseState<_BaseType>> {
@@ -23,7 +23,7 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
 
     constructor(props? : InputBaseProps<_BaseType> & _Props, context?) {
         super(props, context);
-        this.state = { error: null, innerValue:null };
+        this.state = { error: null, value:null };
         this._validationManager = new ValidationManager();
     }
 

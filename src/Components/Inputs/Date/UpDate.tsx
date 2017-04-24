@@ -6,6 +6,9 @@ import { UpDateProps } from './'
 import { InputBaseComponent } from '../_Common/BaseControl/BaseControl'
 import UpDateStyle from './styles'
 
+const MIN_DATE = new Date(-8640000000000) ;
+const MAX_DATE = new Date(+8640000000000) ;
+
 export default class UpDate extends InputBaseComponent<UpDateProps, Date> {
 
     public static defaultProps: UpDateProps = {
@@ -16,22 +19,26 @@ export default class UpDate extends InputBaseComponent<UpDateProps, Date> {
     constructor(p, c) {
         super(p, c);
         this.onChange = this.onChange.bind(this) ;
+        this.state = {value: this.props.value };
     }
 
     componentDidMount = () => {
     }
 
+    public componentWillReceiveProps(nextProps: UpDateProps) {
+        if (nextProps.value !== this.props.value) {
+            this.setState({value: nextProps.value });
+        }
+    }
+
     renderControl() {
-        return <UpDateStyle format={this.props.format} value={this.props.value} hasError={this.props.hasError} onChange={this.handleChangeEvent}></UpDateStyle>;
+        return <UpDateStyle format={this.props.format} value={this.state.value} hasError={this.props.hasError} onChange={this.handleChangeEvent}
+            disabled={this.props.disabled}
+            minDate={this.props.minDate? this.props.minDate : MIN_DATE}
+            maxDate={this.props.maxDate? this.props.maxDate : MAX_DATE}></UpDateStyle>;
     }
 
     onChange(newDate: any) {
         return newDate;
-    }
-
-    getDate(date:string) {
-        // check the date with a regexp
-        var dateParts = date.split("/");
-        return new Date(parseInt(dateParts[2]), parseInt(dateParts[1]) - 1, parseInt(dateParts[0])); // month is 0-based
     }
 }

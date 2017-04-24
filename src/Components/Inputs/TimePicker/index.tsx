@@ -2,7 +2,6 @@ import UpTimePicker from './UpTimePicker'
 
 export default UpTimePicker ;
 
-
 export interface UpTimeProps {
     hasError: boolean;
     className?:string;

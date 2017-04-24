@@ -8,7 +8,7 @@ export type WidthSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'fi
 export type HeightSize = 'normal' | 'large' ;
 export type InputType = 'text' | 'email' | 'number' | 'integer' | 'phone' | 'search' ;
 
-export interface StyledProps extends CommonProps {
+export interface UpInputStyledProps extends CommonProps {
     color?: string;
     backgroundColor?: string;
     borderColor?: string;
@@ -18,6 +18,7 @@ export interface StyledProps extends CommonProps {
     hasError?: boolean;
     onChange?: (data: any) => void;
     className?: string;
+    value:string;
 }
 
 export interface CommonProps {
@@ -25,12 +26,13 @@ export interface CommonProps {
     placeholder?: string;
     height?: HeightSize;
     width?: WidthSize;
-    readOnly?: boolean;
+    readonly?: boolean;
 }
 
-export interface Props extends CommonProps {
+export interface UpInputProps extends CommonProps {
     type?: InputType;
     isNullable?: boolean;
     hasError?: boolean;
     iconName?:IconName;
+    value?:string;
 }

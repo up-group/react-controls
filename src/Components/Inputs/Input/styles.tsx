@@ -3,14 +3,14 @@ import * as React from 'react'
 import styled, {css} from '../../../Common/theming/themedComponents';
 
 import {sizeMap} from '../_Common/Styled' 
-import { StyledProps} from './';
+import { UpInputStyledProps} from './';
 
 import SvgIcon from "../../Display/SvgIcon/index";
 import { InterpolationFunction } from "styled-components/typings/styled-components";
 import { ThemeInterface } from "../../../Common/theming/types";
 
-const BaseInput: React.StatelessComponent<StyledProps> = (props) => {
-    const {className, type, iconName, placeholder, disabled, readOnly, onChange } = props;
+const BaseInput: React.StatelessComponent<UpInputStyledProps> = (props) => {
+    const {className, type, iconName, placeholder, disabled, readonly, onChange } = props;
 
     var icon:any = "" ;
     if(iconName) {
@@ -24,7 +24,7 @@ const BaseInput: React.StatelessComponent<StyledProps> = (props) => {
     //return (<div className={cn(className, 'input-form-content')}>
     return (<div className={className}>
               <div className="up-input-group">
-                <input onChange={onChange} className="up-input" type={type} placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readOnly} />
+                <input onChange={onChange} className="up-input" type={type} placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readonly} />
                 {icon}
               </div>
             </div>);
@@ -332,12 +332,12 @@ const error = css`
 }
 `
 
-export const InputStyled = styled<StyledProps>(BaseInput)`
+export const InputStyled = styled<UpInputStyledProps>(BaseInput)`
   ${inputStyles}
   ${(props) => props.hasError ? error:css``}
-  color: ${(props: StyledProps) => props.color};
+  color: ${(props: UpInputStyledProps) => props.color};
   .up-input {
-    width: ${(props: StyledProps) => sizeMap[props.width]};
-    ${(props: StyledProps) => (props.height=="large"?HeightLarge:css``)}
+    width: ${(props: UpInputStyledProps) => sizeMap[props.width]};
+    ${(props: UpInputStyledProps) => (props.height=="large"?HeightLarge:css``)}
   }
 `;

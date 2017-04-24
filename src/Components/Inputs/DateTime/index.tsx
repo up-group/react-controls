@@ -10,6 +10,10 @@ export interface CommonProps extends ThemedProps {
   isNullable?: boolean;
   className? : string;
   format?:string;
+  disabled?:boolean;
+  readonly?:boolean;
+  minDate?:Date;
+  maxDate?:Date;
 }
 export interface UpDateTimeProps extends InputBaseProps<Date>, CommonProps {
   

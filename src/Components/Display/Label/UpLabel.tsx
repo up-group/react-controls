@@ -22,10 +22,22 @@ export default class UpLabel extends React.Component<UpLabelProps, {}> {
 
   componentDidMount() {
   }
+
+  // Fix double focus with the blueprint datepicker.
+  onFocus = (e) => {
+    e.stopPropagation() ;
+    e.preventDefault() ;
+  }
+  onClick = (e) => {
+    e.stopPropagation() ;
+    e.preventDefault() ;
+  }
+  // End Fix 
+
   render() {
       const {children, text, required, ...others} = this.props ; 
       return (
-        <LabelStyled {...others}>
+        <LabelStyled onFocus={this.onFocus} onClick={this.onClick} {...others}>
           <span className="up-label-text">{text}</span>
           {required && 
             <span className="up-label-required"></span>

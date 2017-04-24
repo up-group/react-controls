@@ -1,5 +1,5 @@
 ﻿import * as React from 'react';
-import {Props as StyleProps} from '../Input/';
+import {UpInputProps} from '../Input/';
 
 import { InputBaseComponent } from '../_Common/BaseControl/BaseControl';
 import { NumericInput } from '@blueprintjs/core'
@@ -7,7 +7,7 @@ import { CommonProps } from '../Input/';
 
 import {FilterProps} from '../../../Common/utils/types'
 
-export interface StyledProps extends CommonProps{
+export interface UpNumberStyledProps extends CommonProps{
    color?: string;
    backgroundColor?: string;
    borderColor?: string;
@@ -17,17 +17,17 @@ export interface StyledProps extends CommonProps{
    className?:string;
 }
 
-export interface Props extends CommonProps{
+export interface UpNumberProps extends CommonProps{
    max?: number,
    min?: number,
    isNullable?: boolean;
 }
 
-export default class UpNumber extends InputBaseComponent<Props, number> {
-   public static defaultProps: Props = {
+export default class UpNumber extends InputBaseComponent<UpNumberProps, number> {
+   public static defaultProps: UpNumberProps = {
    };
     
-   public static defaultStyledProps: StyledProps = {
+   public static defaultStyledProps: UpNumberStyledProps = {
        color: "",
        backgroundColor: "",
        borderColor: "",
@@ -37,7 +37,7 @@ export default class UpNumber extends InputBaseComponent<Props, number> {
        placeholder: "",
        height: "normal",
        width: "medium",
-       readOnly: false
+       readonly: false
    };
 
    constructor(p, c) {

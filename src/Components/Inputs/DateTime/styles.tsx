@@ -32,7 +32,7 @@ const locale = new UpLocaleUtils() ;
 
 const BaseDate : React.StatelessComponent<UpDateTimeStyledProps> = (props) => {
     
-    const {value, className, format, onChangeDate, onChangeTime} = props ;
+    const {value, className, format, onChangeDate, disabled, minDate, maxDate, onChangeTime} = props ;
     const picker = (<span className="pt-icon pt-icon-calendar"></span>) ;
 
     return (<div>
@@ -42,6 +42,11 @@ const BaseDate : React.StatelessComponent<UpDateTimeStyledProps> = (props) => {
                         invalidDateMessage=""
                         localeUtils={locale}
                         rightElement={picker}
+                        canClearSelection={true}
+                        closeOnSelection={true}
+                        disabled={disabled}
+                        minDate={minDate}
+                        maxDate={maxDate}
                         value={value}
                         onChange={onChangeDate} format={format} />
                 <TimePicker value={value} onChange={onChangeTime} />
@@ -60,9 +65,8 @@ export default class UpDateStyle extends React.Component<UpDateTimeStyledProps, 
   };
 
   public render() {
-    const {value, format, onChangeDate, onChangeTime} = this.props ;
     return (
-      <NormalDate value={value} format={format} onChangeDate={onChangeDate} onChangeTime={onChangeTime} />
+      <NormalDate {...this.props} />
     );
   }
 }

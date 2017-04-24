@@ -21,11 +21,6 @@ const inline = css`
       display: inline-block;
       vertical-align: top; 
   }
-  .up-input,
-  .up-input-group,
-  .up-select {
-      margin: 0 0 0 5px; 
-  }
   .up-input-group .up-input {
     margin-left: 0; 
   }
@@ -37,18 +32,21 @@ const base = (props: UpLabelStyledProps) => css`
   .up-label-text {
     text-align: ${props.textAlign};
     width: ${sizeMap[props.width]};
+    margin-right:8px;
     display: inline-block;
   }
   .up-input,
   .up-select {
     display: block;
-    margin-top: 5px;
     text-transform: none; 
   }
   .up-select select {
     width: 100%;
     vertical-align: top;
     font-weight: 400; 
+  }
+  .pt-button-group.pt-vertical {
+    margin-top:1px;
   }
 `
 

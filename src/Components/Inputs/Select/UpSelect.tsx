@@ -27,8 +27,9 @@ export default class UpSelect extends InputBaseComponent<UpSelectProps, any> {
 
     constructor(p, c) {
         super(p, c);
-        this.getValueRenderer = this.getValueRenderer.bind(this) ;
-        this.getOptionRenderer = this.getOptionRenderer.bind(this) ;
+        this.state = {
+            value : p.value
+        };
     }
 
     _componentDidMount() {
@@ -42,7 +43,7 @@ export default class UpSelect extends InputBaseComponent<UpSelectProps, any> {
         return data;
     }
 
-    getOptionRenderer(option) {
+    getOptionRenderer = (option) => {
         if(this.props.optionRenderer) {
             const OptionRenderer = this.props.optionRenderer ;
             return (<OptionRenderer {...option}></OptionRenderer>)
@@ -57,7 +58,7 @@ export default class UpSelect extends InputBaseComponent<UpSelectProps, any> {
             return (<span key={`option_{value[_idKey]}`} >{option[_textKey]}</span>)
         }
     }
-    getValueRenderer(value) {
+    getValueRenderer = (value)  => {
         if(this.props.valueRenderer) {
             const ValueRenderer = this.props.valueRenderer ;
             return (<ValueRenderer {...value}></ValueRenderer>)
@@ -72,6 +73,13 @@ export default class UpSelect extends InputBaseComponent<UpSelectProps, any> {
             return (<span key={`option_{value[_idKey]}`} >{value[_textKey]}</span>)
         }
     }
+    
+    public componentWillReceiveProps(nextProps: UpSelectProps) {
+        if (nextProps.value !== this.props.value) {
+            this.setState({value: nextProps.value });
+        }
+    }
+
     renderControl() {
         const dataSource = this.props.dataSource ;
         var loadOptions:any = false;
@@ -106,7 +114,7 @@ export default class UpSelect extends InputBaseComponent<UpSelectProps, any> {
             <SelectComponent 
                 {...specProps}
                 placeholder={this.props.placeholder}
-                value={this.props.value}
+                value={this.state.value}
                 autoBlur={false}
                 valueKey="id"
                 labelKey="title"

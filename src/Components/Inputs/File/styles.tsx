@@ -5,10 +5,11 @@ import { UpFileStyleProps } from './'
 import { ThemeInterface } from "../../../Common/theming/types";
 
 const BaseFileComponent: React.StatelessComponent<UpFileStyleProps> = (props) => {
-    const {className} = props;
+    const {className, value} = props;
     return <input
         className={className}
         type="file"
+        value={value}
         accept={props.fileExtension}
         onChange={props.onChange}
     />;
@@ -30,7 +31,8 @@ class UpFileStyle extends React.Component<UpFileStyleProps, undefined> {
   public static defaultProps: UpFileStyleProps = {
     hasError: false,
     fileExtension : "*",
-    onChange: (value:any) => {}
+    onChange: (value:any) => {},
+    value:null
   };
 
   public render() {

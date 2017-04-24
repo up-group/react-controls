@@ -2,17 +2,26 @@
 import {UpFileProps} from "./"
 import UpFileStyle from "./styles"
 
-export default class UpFile extends React.Component<UpFileProps, {}> {
+export default class UpFile extends React.Component<UpFileProps, any> {
     constructor(p, c) {
         super(p, c);
+        this.state = {
+            value:p.value
+        }
+    }
+
+    public componentWillReceiveProps(nextProps: UpFileProps) {
+        if (nextProps.value !== this.props.value) {
+            this.setState({value: nextProps.value });
+        }
     }
 
     render() {
         if (!FileReader) {
             return <span>Non support du navigateur</span>;
         }
-        const {onChange, onError, ...others} = this.props ;
-        return <UpFileStyle {...others} onChange={this.onChange}/>
+        const {onChange, onError, value, ...others} = this.props ;
+        return <UpFileStyle value={this.state.value} {...others} onChange={this.onChange}/>
     }
 
     get maxSizeb() {
