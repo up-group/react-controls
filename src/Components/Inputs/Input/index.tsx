@@ -1,12 +1,16 @@
-﻿import UpInput from './UpInput'
-
-export default UpInput
-
+﻿// Imports
+import UpInput from './UpInput'
 import { IconName } from "../../../Common/theming/types";
 
+// Exports
 export type WidthSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'fill' ;
 export type HeightSize = 'normal' | 'large' ;
 export type InputType = 'text' | 'email' | 'number' | 'integer' | 'phone' | 'search' ;
+
+export interface Validation {
+    pattern : RegExp;
+    errorMessage: string;
+}
 
 export interface UpInputStyledProps extends CommonProps {
     color?: string;
@@ -19,6 +23,7 @@ export interface UpInputStyledProps extends CommonProps {
     onChange?: (data: any) => void;
     className?: string;
     value:string;
+    maxLength?:number;
 }
 
 export interface CommonProps {
@@ -35,4 +40,8 @@ export interface UpInputProps extends CommonProps {
     hasError?: boolean;
     iconName?:IconName;
     value?:string;
+    validation?:Array<Validation>;
+    maxLength?:number;
 }
+
+export default UpInput

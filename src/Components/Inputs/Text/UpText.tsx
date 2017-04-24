@@ -18,7 +18,7 @@ export default class UpText extends InputBaseComponent<UpTextProps, string> {
         }
     }
     
-    public componentWillReceiveProps(nextProps: UpTextProps) {
+    componentWillReceiveProps(nextProps: UpTextProps) {
         if (nextProps.value !== this.props.value) {
             this.setState({value: nextProps.value });
         }

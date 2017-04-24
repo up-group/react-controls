@@ -25,10 +25,25 @@ export default class UpDate extends InputBaseComponent<UpDateProps, Date> {
     componentDidMount = () => {
     }
 
-    public componentWillReceiveProps(nextProps: UpDateProps) {
+    componentWillReceiveProps(nextProps: UpDateProps) {
         if (nextProps.value !== this.props.value) {
             this.setState({value: nextProps.value });
         }
+    }
+    
+    shouldComponentUpdate(nextProps, nextState) {
+        var shouldUpdate:boolean = nextState.value != this.state.value;
+        if(shouldUpdate===false) {
+            shouldUpdate = this.props.disabled != nextProps.disabled
+                        || this.props.children !== nextProps.children
+                        || this.props.className != nextProps.className
+                        || this.props.format != nextProps.format
+                        || this.props.maxDate != nextProps.maxDate
+                        || this.props.minDate != nextProps.minDate
+                        || this.props.readonly != nextProps.readonly
+                        || this.props.theme !== nextProps.theme
+        }
+       return shouldUpdate;
     }
 
     renderControl() {

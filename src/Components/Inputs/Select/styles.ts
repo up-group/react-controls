@@ -8,7 +8,7 @@ import { ThemeInterface } from "../../../Common/theming/types";
 const WrapperSelect = styled.div`
   width:100%;
   .Select {
-      width:24em;
+      width:25em;
   }
 `;
 export default WrapperSelect ;

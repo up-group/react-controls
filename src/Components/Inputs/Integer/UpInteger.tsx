@@ -1,61 +1,36 @@
-﻿import * as React from 'react';
-import { UpInputProps } from '../Input/';
-
-import { InputBaseComponent } from '../_Common/BaseControl/BaseControl';
+﻿// Imports
+import * as React from 'react'
+import { InputBaseComponent } from '../_Common/BaseControl/BaseControl'
 import { NumericInput } from '@blueprintjs/core'
-import { CommonProps } from '../Input/';
+import { UpIntegerProps } from './'
+import UpNumber from '../Number'
 
-import {FilterProps} from '../../../Common/utils/types'
-
-export interface UpIntegerStyledProps extends CommonProps{
-   color?: string;
-   backgroundColor?: string;
-   borderColor?: string;
-   isNullable?: boolean;
-   hasError?: boolean;
-   onChange?: (data: any) => void;
-   className?:string;
-}
-
-export interface UpIntegerProps extends CommonProps{
-   max?: number,
-   min?: number,
-   isNullable?: boolean;
-}
+// Exports
+const MIN_VALUE_GREATER_THAN_0 = "La valeur minimal définit par la propriété 'min' doit être suppérieure à 0";
 
 export default class UpInteger extends InputBaseComponent<UpIntegerProps, number> {
-   public static defaultProps: UpIntegerProps = {
-   };
-    
-   public static defaultStyledProps: UpIntegerStyledProps = {
-       color: "",
-       backgroundColor: "",
-       borderColor: "",
-       isNullable: false,
-       className:"",
-       disabled: false,
-       placeholder: "",
-       height: "normal",
-       width: "medium",
-       readonly: false
-   };
+    public static defaultProps: UpIntegerProps = {
+        min: 0
+    };
 
-   constructor(p, c) {
-       super(p, c);
-   }
+    constructor(p, c) {
+        super(p, c);
+    }
 
-   onChange(event: any) {
-       return event.target.value;
-   }
+    onChange(value: any) {
+        return value;
+    }
 
-   renderControl() {
-       const styledProps= FilterProps(this.props, UpInteger.defaultStyledProps) ;
-        
-       return (
-           <NumericInput
-               {...styledProps}
-               onChange={this.handleChangeEvent}>
-           </NumericInput>
-       );
-   }
+    validateProps(nextProps) {
+        if (nextProps.min < 0) {
+            throw new Error(MIN_VALUE_GREATER_THAN_0);
+        }
+    }
+
+    renderControl() {
+        const {onChange, ...others } = this.props ;
+        return (
+            <UpNumber onChange={this.handleChangeEvent} {...others}></UpNumber>
+        );
+    }
 }

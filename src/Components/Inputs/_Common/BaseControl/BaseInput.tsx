@@ -31,7 +31,7 @@ export class InputTextComponent extends InputBaseComponent<CommonInputTextProps,
         return event.target.value;
     }
 
-    public componentWillReceiveProps(nextProps: CommonInputTextProps) {
+    componentWillReceiveProps(nextProps: CommonInputTextProps) {
         if (nextProps.value !== this.props.value) {
             this.setState({value: nextProps.value });
         }

@@ -10,7 +10,7 @@ import { InterpolationFunction } from "styled-components/typings/styled-componen
 import { ThemeInterface } from "../../../Common/theming/types";
 
 const BaseInput: React.StatelessComponent<UpInputStyledProps> = (props) => {
-    const {className, type, iconName, placeholder, disabled, readonly, onChange } = props;
+    const {className, type, iconName, placeholder, disabled, readonly, maxLength, onChange } = props;
 
     var icon:any = "" ;
     if(iconName) {
@@ -24,7 +24,7 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps> = (props) => {
     //return (<div className={cn(className, 'input-form-content')}>
     return (<div className={className}>
               <div className="up-input-group">
-                <input onChange={onChange} className="up-input" type={type} placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readonly} />
+                <input onChange={onChange} className="up-input" type={type} placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readonly} maxLength={maxLength}/>
                 {icon}
               </div>
             </div>);

@@ -15,6 +15,7 @@ export interface CommonProps extends ThemedProps {
   minDate?:Date;
   maxDate?:Date;
 }
+
 export interface UpDateProps extends InputBaseProps<Date>, CommonProps {
   
 }

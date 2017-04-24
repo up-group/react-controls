@@ -18,7 +18,7 @@ export default class UpRadio extends React.Component<UpRadioProps, any> {
 
   }
 
-  public componentWillReceiveProps(nextProps: UpRadioProps) {
+  componentWillReceiveProps(nextProps: UpRadioProps) {
       if (nextProps.options !== this.props.options) {
           this.setState({options: nextProps.options });
       }

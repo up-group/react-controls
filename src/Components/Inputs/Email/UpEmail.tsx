@@ -19,4 +19,5 @@ export default class UpEmail extends InputTextComponent {
 
         this._validationManager.addControl(new TypeStringControl(pattern, patternErrorMessage));
     }
+    
 }

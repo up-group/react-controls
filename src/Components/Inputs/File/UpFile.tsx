@@ -10,7 +10,7 @@ export default class UpFile extends React.Component<UpFileProps, any> {
         }
     }
 
-    public componentWillReceiveProps(nextProps: UpFileProps) {
+    componentWillReceiveProps(nextProps: UpFileProps) {
         if (nextProps.value !== this.props.value) {
             this.setState({value: nextProps.value });
         }

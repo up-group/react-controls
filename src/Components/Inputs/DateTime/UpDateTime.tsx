@@ -53,7 +53,7 @@ export default class UpDateTime extends InputBaseComponent<UpDateTimeProps, Date
         this.handleChangeEvent(time) ;
     }
     
-    public componentWillReceiveProps(nextProps: UpDateTimeProps) {
+    componentWillReceiveProps(nextProps: UpDateTimeProps) {
         if (nextProps.value !== this.props.value) {
             this.setState({value: nextProps.value });
         }
