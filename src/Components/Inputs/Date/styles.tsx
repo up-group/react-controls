@@ -32,11 +32,12 @@ const locale = new UpLocaleUtils() ;
 
 const BaseDate : React.StatelessComponent<UpDateStyledProps> = (props) => {
     
-    const {value, className, format, disabled, minDate, maxDate,onChange} = props ;
+    const {value, className, format, disabled, minDate, maxDate, innerRef, onChange} = props ;
     const picker = (<span className="pt-icon pt-icon-calendar"></span>) ;
 
     return (<DateInput  className={className}
                         locale="fr" 
+                        ref={innerRef}
                         invalidDateMessage=""
                         localeUtils={locale}
                         rightElement={picker}
@@ -53,13 +54,37 @@ const BaseDate : React.StatelessComponent<UpDateStyledProps> = (props) => {
 export const NormalDate = styled<UpDateStyledProps>(BaseDate)`
 `; 
 
-export default class UpDateStyle extends React.Component<UpDateStyledProps, {}> {
+export default class UpDateStyle extends React.Component<UpDateStyledProps, undefined> {
     public static defaultProps: UpDateStyledProps = {
-        value:null,
+        value:null
     };
-  public render() {
-    return (
-      <NormalDate {...this.props} />
-    );
-  }
+
+    dateInput : any ;
+
+    constructor(p, c) {
+        super(p, c);
+    }
+
+    setInput = (input) => {
+        // The ref function is called twice, 
+        // the first one with the component instance (as React) 
+        // and the second one with the DOM node instance
+        if(this.dateInput == undefined) {
+            this.dateInput = input;
+        }
+    }
+    
+    componentDidMount = () => {
+        var _props = this.props as UpDateStyledProps ;
+        if(_props.dataFor && this.dateInput) {
+            this.dateInput.inputRef.setAttribute('data-tip', 'tooltip') ;
+            this.dateInput.inputRef.setAttribute('data-for', _props.dataFor) ;
+        }
+    }
+
+    public render() {
+        return (
+            <NormalDate innerRef={this.setInput} {...this.props} />
+        );
+    }
 }

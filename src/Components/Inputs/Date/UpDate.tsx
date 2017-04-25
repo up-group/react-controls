@@ -2,7 +2,7 @@ import "normalize.css/normalize.css"
 import "@blueprintjs/core/dist/blueprint.css"
 
 import * as React from "react"
-import { UpDateProps } from './'
+import { UpDateProps, UpDateStyledProps } from './'
 import { InputBaseComponent } from '../_Common/BaseControl/BaseControl'
 import UpDateStyle from './styles'
 
@@ -21,8 +21,8 @@ export default class UpDate extends InputBaseComponent<UpDateProps, Date> {
         this.onChange = this.onChange.bind(this) ;
         this.state = {value: this.props.value };
     }
-
-    componentDidMount = () => {
+    
+    componentWillMount = () => {
     }
 
     componentWillReceiveProps(nextProps: UpDateProps) {
@@ -35,19 +35,18 @@ export default class UpDate extends InputBaseComponent<UpDateProps, Date> {
         var shouldUpdate:boolean = nextState.value != this.state.value;
         if(shouldUpdate===false) {
             shouldUpdate = this.props.disabled != nextProps.disabled
-                        || this.props.children !== nextProps.children
-                        || this.props.className != nextProps.className
                         || this.props.format != nextProps.format
                         || this.props.maxDate != nextProps.maxDate
                         || this.props.minDate != nextProps.minDate
                         || this.props.readonly != nextProps.readonly
                         || this.props.theme !== nextProps.theme
-        }
+       }
        return shouldUpdate;
     }
 
     renderControl() {
-        return <UpDateStyle format={this.props.format} value={this.state.value} hasError={this.props.hasError} onChange={this.handleChangeEvent}
+        return <UpDateStyle 
+            format={this.props.format} value={this.state.value} hasError={this.props.hasError} onChange={this.handleChangeEvent}
             disabled={this.props.disabled}
             minDate={this.props.minDate? this.props.minDate : MIN_DATE}
             maxDate={this.props.maxDate? this.props.maxDate : MAX_DATE}></UpDateStyle>;

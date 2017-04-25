@@ -13,11 +13,16 @@ export interface CommonInputTextProps extends InputBaseProps<string> {
     placeholder?: string;
     height?: HeightSize;
     width?: WidthSize;
+    hasError?:boolean;
+    maxLength?:number;
+}
+
+export interface CommonInputTextWithIconProps extends CommonInputTextProps {
     iconName?:IconName;
 }
 
-export class InputTextComponent extends InputBaseComponent<CommonInputTextProps, string> {
-    public static defaultProps: CommonInputTextProps = {
+export class InputTextComponent extends InputBaseComponent<CommonInputTextWithIconProps, string> {
+    public static defaultProps: CommonInputTextWithIconProps = {
     };
 
     constructor(p, c) {
@@ -31,7 +36,7 @@ export class InputTextComponent extends InputBaseComponent<CommonInputTextProps,
         return event.target.value;
     }
 
-    componentWillReceiveProps(nextProps: CommonInputTextProps) {
+    componentWillReceiveProps(nextProps: CommonInputTextWithIconProps) {
         if (nextProps.value !== this.props.value) {
             this.setState({value: nextProps.value });
         }
@@ -39,6 +44,7 @@ export class InputTextComponent extends InputBaseComponent<CommonInputTextProps,
 
     renderControl() {
         const {onChange, value, ...others} = this.props ;
+        
         return <InputStyled 
             value={this.state.value}
             hasError={this.hasError()} onChange={this.handleChangeEvent} {...others} />

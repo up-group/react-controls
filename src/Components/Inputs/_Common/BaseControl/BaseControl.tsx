@@ -1,15 +1,19 @@
+// Imports 
 import * as React from "react";
 import ValidationManager from "../Validation/ValidationManager"
 import ErrorDisplay from "../Validation/ErrorDisplay"
 // Importation des règles CSS de bases -> à transformer en styled-components
 import "../../../../Common/theming/base.css"
+import  UpTooltip, {Tooltip} from '../../../Display/Tooltip' ;
 
+// Exports
 export interface InputBaseProps<_BaseType> {
     onChange?: (arg: _BaseType, event: any) => void;
     onError?: (hasError: boolean) => void;
     value?: _BaseType;
     disabled?:boolean;
     readonly?:boolean;
+    tooltip?:string | Tooltip ;
 }
 
 export interface InputBaseState<_BaseType> {
@@ -49,10 +53,34 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
         return this.state.error != null;
     }
 
+    public setTooltip =(element) => {
+        console.log(element);
+    }
+
     public render() {
-        return <ErrorDisplay error={this.state.error}>
-            {this.renderControl()}
-        </ErrorDisplay>;
+        if(this.props.tooltip) {
+            var _tooltip:Tooltip ;
+            if(typeof this.props.tooltip === 'string' ||  this.props.tooltip instanceof String) {
+                _tooltip = {
+                    content : this.props.tooltip as string
+                }
+            } else {
+                _tooltip = this.props.tooltip as Tooltip ;
+            }
+            return (
+                <ErrorDisplay error={this.state.error}>
+                    <UpTooltip {..._tooltip}>
+                        {this.renderControl()}
+                    </UpTooltip>
+                </ErrorDisplay>
+            );
+        } else {
+            return (
+                <ErrorDisplay error={this.state.error}>
+                    {this.renderControl()}
+                </ErrorDisplay>
+            );
+        }
     }
 
     private dispatchOnChange = (data: _BaseType, event) => {

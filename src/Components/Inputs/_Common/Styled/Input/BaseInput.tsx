@@ -4,11 +4,11 @@ import styled, {css} from '../../../../../Common/theming/themedComponents';
 import SvgIcon from "../../../../Display/SvgIcon/index";
 import { IconName, ThemeInterface } from "../../../../../Common/theming/types";
 import { inputStyles, HeightLarge } from "./styles"
-import { CommonInputTextProps } from '../../BaseControl/BaseInput' 
+import { CommonInputTextWithIconProps } from '../../BaseControl/BaseInput' 
 // Exports
 export type InputType = 'text' | 'email' | 'number' | 'integer' | 'phone' | 'search';
 
-export interface StyledProps extends CommonInputTextProps {
+export interface StyledProps extends CommonInputTextWithIconProps {
     color?: string;
     backgroundColor?: string;
     borderColor?: string;

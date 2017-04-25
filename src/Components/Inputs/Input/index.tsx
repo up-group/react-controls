@@ -1,6 +1,7 @@
 ﻿// Imports
 import UpInput from './UpInput'
-import { IconName } from "../../../Common/theming/types";
+import { IconName } from '../../../Common/theming/types'
+import { Tooltip } from '../../Display/Tooltip'
 
 // Exports
 export type WidthSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'fill' ;
@@ -24,6 +25,7 @@ export interface UpInputStyledProps extends CommonProps {
     className?: string;
     value:string;
     maxLength?:number;
+    dataFor?:string; // Use for tooltip
 }
 
 export interface CommonProps {
@@ -32,6 +34,7 @@ export interface CommonProps {
     height?: HeightSize;
     width?: WidthSize;
     readonly?: boolean;
+    tooltip?: string | Tooltip;
 }
 
 export interface UpInputProps extends CommonProps {

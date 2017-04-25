@@ -6,7 +6,7 @@ import { UpIntegerProps } from './'
 import UpNumber from '../Number'
 
 // Exports
-const MIN_VALUE_GREATER_THAN_0 = "La valeur minimal définit par la propriété 'min' doit être suppérieure à 0";
+const MIN_VALUE_GREATER_THAN_0 = "La valeur minimale définit par la propriété 'min' doit être suppérieure à 0";
 
 export default class UpInteger extends InputBaseComponent<UpIntegerProps, number> {
     public static defaultProps: UpIntegerProps = {
@@ -28,7 +28,7 @@ export default class UpInteger extends InputBaseComponent<UpIntegerProps, number
     }
 
     renderControl() {
-        const {onChange, ...others } = this.props ;
+        const { onChange, ...others } = this.props ;
         return (
             <UpNumber onChange={this.handleChangeEvent} {...others}></UpNumber>
         );

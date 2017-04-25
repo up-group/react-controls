@@ -19,9 +19,7 @@ export interface UpTooltipProps extends React.Props<UpTooltip> {
   id?:string;
 }
 
-export interface UpTooltipState {
-
-}
+export interface UpTooltipState {}
 
 export default class UpTooltip extends Component<UpTooltipProps, UpTooltipState> {
 
@@ -46,6 +44,7 @@ export default class UpTooltip extends Component<UpTooltipProps, UpTooltipState>
   componentDidMount() {
    
   }
+
   render() {
     const {id, children, content, ...others} = this.props ;
     var _id = id ;

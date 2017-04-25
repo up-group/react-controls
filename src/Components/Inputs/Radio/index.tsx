@@ -1,7 +1,7 @@
+// Imports
 import UpRadio from './UpRadio'
 
-export default UpRadio ;
-
+// Exports
 export type Position = 'left' | 'right' ;
 
 export interface Option {
@@ -23,3 +23,5 @@ export interface UpRadioProps {
     name:string;
     value:any;
 }
+
+export default UpRadio ;

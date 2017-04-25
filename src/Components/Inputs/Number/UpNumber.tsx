@@ -1,10 +1,10 @@
 ﻿// Imports
-import * as React from 'react';
-import { UpInputProps } from '../Input/';
-import { InputBaseComponent } from '../_Common/BaseControl/BaseControl';
-import { NumericInput } from '@blueprintjs/core'
+import * as React from 'react'
+import { UpInputProps } from '../Input/'
+import { InputBaseComponent } from '../_Common/BaseControl/BaseControl'
 import { FilterProps } from '../../../Common/utils/types'
-import { UpNumberProps } from './'
+import { UpNumberProps, UpNumberStyledProps } from './'
+import UpNumberStyled from './styles'
 
 // Exports
 export default class UpNumber extends InputBaseComponent<UpNumberProps, number|string> {
@@ -54,15 +54,15 @@ export default class UpNumber extends InputBaseComponent<UpNumberProps, number|s
     }
 
     renderControl() {
-        const { onChange, onError, readonly, decimalPlace, isNullable, stepSize, value, ...others } = this.props;
+        const { onChange, onError, readonly, decimalPlace, isNullable, stepSize, value, tooltip, ...others } = this.props ;
+        
         return (
-            <NumericInput
+            <UpNumberStyled
                 {...others}
                 value={this.state.value}
                 stepSize={stepSize}
-                majorStepSize={stepSize ? stepSize + 10 : 10}
-                onValueChange={this.handleNumericChange}>
-            </NumericInput>
+                handleNumericChange={this.handleNumericChange}>
+            </UpNumberStyled>
         );
     }
 }

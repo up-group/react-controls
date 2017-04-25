@@ -1,10 +1,11 @@
 // Imports
-import * as React from 'react';
-import { InputStyled } from './styles';
-import { InputBaseComponent } from "../_Common/BaseControl/BaseControl";
-import { UpInputProps, Validation } from './';
-import TypeStringControl from "../_Common/Validation/TypeStringControl"
+import * as React from 'react'
+import { InputStyled } from './styles'
+import { InputBaseComponent } from '../_Common/BaseControl/BaseControl'
+import { UpInputProps, Validation } from './'
+import TypeStringControl from '../_Common/Validation/TypeStringControl'
 
+// EXports
 export default class UpInput extends InputBaseComponent<UpInputProps, any> {
     public static defaultProps: UpInputProps = {
     };

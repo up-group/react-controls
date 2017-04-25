@@ -34,15 +34,15 @@ export default class UpCheckbox extends React.Component<UpCheckboxProps, any> {
           color={props.color} /> ;*/
     return (
       <div>
-      {options.map((option) => (
-        <StyledCheckBox 
-          onChange={option.onChange} 
-          key={`Key_${option.name}_${option.value}`} 
-          text={option.text} name={option.name} 
-          value={option.value}
-          checked={option.checked}>
-        </StyledCheckBox>
-      ))}
+        {options.map((option) => (
+          <StyledCheckBox 
+            onChange={option.onChange} 
+            key={`Key_${option.name}_${option.value}`} 
+            text={option.text} name={option.name} 
+            value={option.value}
+            checked={option.checked}>
+          </StyledCheckBox>
+        ))}
       </div>
     );
   }

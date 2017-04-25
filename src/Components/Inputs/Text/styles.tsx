@@ -16,12 +16,38 @@ const sizeMap = {
     fill: "100%",
 };
 
-const BaseTextArea: React.StatelessComponent<UpTextStyledProps> = (props) => {
-    const {className, value, onChange} = props;
+export class BaseTextArea extends React.Component<UpTextStyledProps, undefined> {
+  
+    textArea: any;
+    constructor(p, c) {
+        super(p, c);
+    }
+    
+    setInput = (input) => {
+        // The ref function is called twice, 
+        // the first one with the component instance (as React) 
+        // and the second one with the DOM node instance
+        if (this.textArea == undefined) {
+            this.textArea = input;
+        }
+    }
 
-    return <Textarea value={value}
-        className={className}
-        onChange={onChange}></Textarea>;
+    componentDidMount = () => {
+        var _props = this.props as UpTextStyledProps;
+        if (_props.dataFor && this.textArea) {
+            this.textArea._rootDOMNode.setAttribute('data-tip', 'tooltip');
+            this.textArea._rootDOMNode.setAttribute('data-for', _props.dataFor);
+        }
+    }
+
+    render() {
+      const {className, value, onChange} = this.props;
+
+      return <Textarea value={value}
+          ref={this.setInput}
+          className={className}
+          onChange={onChange}></Textarea>;
+    }
 }
 
 const base = props => css`

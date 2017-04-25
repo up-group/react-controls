@@ -10,7 +10,7 @@ export default class UpLabel extends React.Component<UpLabelProps, {}> {
     text:'',
     disabled:false,
     required:false,
-    textAlign:'left'
+    textAlign:'right'
   }
 
   constructor(props) {

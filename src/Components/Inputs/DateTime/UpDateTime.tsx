@@ -37,6 +37,7 @@ export default class UpDateTime extends InputBaseComponent<UpDateTimeProps, Date
         this.setState({
             value:date
         }) ;
+        
         this.handleChangeEvent(date) ;
     }
 

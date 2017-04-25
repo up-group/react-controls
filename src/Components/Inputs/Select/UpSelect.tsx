@@ -1,14 +1,14 @@
+// Imports
 import * as React from 'react'
 //import Component from './styles';
 import * as ReactDOM from "react-dom"
 import * as Select from "react-select"
 import axios from 'axios'
-
-import {InputBaseComponent} from '../_Common/BaseControl/BaseControl' 
-import {UpSelectProps} from './'
-
+import { InputBaseComponent } from '../_Common/BaseControl/BaseControl' 
+import { UpSelectProps, UpSelectStyledProps } from './'
 import WrapperSelect from './styles' ;
 
+// Exports
 export default class UpSelect extends InputBaseComponent<UpSelectProps, any> {
     
     public static defaultProps : UpSelectProps = {
@@ -31,8 +31,28 @@ export default class UpSelect extends InputBaseComponent<UpSelectProps, any> {
             value : p.value
         };
     }
+    
+    selectElement: any;
 
-    _componentDidMount() {
+    setSelect = (input) => {
+        // The ref function is called twice, 
+        // the first one with the component instance (as React) 
+        // and the second one with the DOM node instance
+        if (this.selectElement == undefined) {
+            this.selectElement = input;
+        }
+    }
+
+    componentDidMount = () => {
+        var _props = this.props as UpSelectStyledProps;
+        if (_props.dataFor && this.selectElement) {
+            this.selectElement.inputElement.setAttribute('data-tip', 'tooltip');
+            this.selectElement.inputElement.setAttribute('data-for', _props.dataFor);
+        }
+    }
+
+    componentWillUnmount() {
+        
     }
 
     isEmpty(value) {
@@ -79,6 +99,7 @@ export default class UpSelect extends InputBaseComponent<UpSelectProps, any> {
             this.setState({value: nextProps.value });
         }
     }
+
 
     renderControl() {
         const dataSource = this.props.dataSource ;
@@ -133,13 +154,5 @@ export default class UpSelect extends InputBaseComponent<UpSelectProps, any> {
             />
         </WrapperSelect>
         );
-    }
-
-    componentDidMount() {
-        
-    }
-
-    componentWillUnmount() {
-        
     }
 }

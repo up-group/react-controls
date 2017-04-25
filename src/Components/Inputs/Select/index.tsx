@@ -34,5 +34,9 @@ export interface UpSelectProps extends InputBaseProps<any> {
     addLabelText? : string,
     searchPromptText? : string,
     optionRenderer?: React.StatelessComponent<UpSelectOption>,
-    valueRenderer?: React.StatelessComponent<UpSelectOption>
+    valueRenderer?: React.StatelessComponent<UpSelectOption>,
+    dataFor?:string; //For tooltip
+}
+
+export interface UpSelectStyledProps extends UpSelectProps {
 }
