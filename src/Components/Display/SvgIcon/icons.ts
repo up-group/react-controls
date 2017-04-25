@@ -25,4 +25,19 @@ dictionary['search'] = require(`../../../Common/theming/icons/search.svg`);
 dictionary['tick'] = require(`../../../Common/theming/icons/tick.svg`);
 dictionary['user'] = require(`../../../Common/theming/icons/user.svg`);
 dictionary['warning-sign'] = require(`../../../Common/theming/icons/warning-sign.svg`);
+
+dictionary['close'] = require(`../../../Common/theming/icons/close.svg`);
+dictionary['comment'] = require(`../../../Common/theming/icons/comment.svg`);
+dictionary['confirm'] = require(`../../../Common/theming/icons/confirm.svg`);
+dictionary['download'] = require(`../../../Common/theming/icons/download.svg`);
+dictionary['export'] = require(`../../../Common/theming/icons/export.svg`);
+dictionary['import'] = require(`../../../Common/theming/icons/import.svg`);
+dictionary['refresh'] = require(`../../../Common/theming/icons/refresh.svg`);
+dictionary['save'] = require(`../../../Common/theming/icons/save.svg`);
+dictionary['stop'] = require(`../../../Common/theming/icons/stop.svg`);
+dictionary['unlock'] = require(`../../../Common/theming/icons/unlock.svg`);
+dictionary['upload'] = require(`../../../Common/theming/icons/upload.svg`);
+dictionary['zoom-in'] = require(`../../../Common/theming/icons/zoom-in.svg`);
+dictionary['zoom-out'] = require(`../../../Common/theming/icons/zoom-out.svg`);
+
 export default dictionary

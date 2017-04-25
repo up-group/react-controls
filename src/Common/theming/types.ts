@@ -158,7 +158,9 @@ export interface ThemeColorMap {
 
 export type IconName = 'add' | 'asterisk' | 'calendar' | 'delete' | 'edit' |
     'email' | 'error-sign' | 'filter' | 'filter-list' | 'help' | 'info-sign' | 'ok-sign' |
-    'link' | 'mobile-phone' | 'phone' | 'search' | 'user' | 'warning-sign' | 'none' ;
+    'link' | 'mobile-phone' | 'phone' | 'search' | 'user' | 'warning-sign' | 'blank' |
+    'save' | 'stop' | 'cancel' | 'close' | 'print' | 'renew' | 'refresh' | 'sync' | 'expand' |
+    'collapse' | 'info' | 'zoom-in' | 'zoom-out' | 'import' | 'export' | 'download' | 'upload' | 'unlock' ;
 
 export type IntentType = 'primary' | 'danger' | 'warning' | 'success' | 'info' | 'default'  ;
 

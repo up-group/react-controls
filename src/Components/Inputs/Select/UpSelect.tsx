@@ -78,6 +78,7 @@ export default class UpSelect extends InputBaseComponent<UpSelectProps, any> {
             return (<span key={`option_{value[_idKey]}`} >{option[_textKey]}</span>)
         }
     }
+    
     getValueRenderer = (value)  => {
         if(this.props.valueRenderer) {
             const ValueRenderer = this.props.valueRenderer ;

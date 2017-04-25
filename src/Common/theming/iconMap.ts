@@ -13,7 +13,7 @@ const iconMap : IconMap = {
   danger: 'error-sign',
   warning: 'warning-sign',
   info:'info-sign',
-  none: 'none'
+  none: 'blank'
 };
 
 export default iconMap;

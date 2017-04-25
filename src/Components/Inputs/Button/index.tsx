@@ -20,6 +20,7 @@ export const buttonSizeMap = {
 export type FontSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 export type ButtonWidth = 'normal' | 'icon' | 'auto' ;
 export type ButtonHeight = 'xsmall' | 'small' | 'normal' | 'large' ;
+export type ActionType = 'add' | 'delete' | 'edit' | 'save' | 'stop' | 'cancel' | 'close' | 'print' | 'renew' | 'refresh' | 'sync' | 'expand' | 'collapse' | 'help' | 'info' | 'zoom-in' | 'zoom-out' | 'search' | 'import' | 'export' | 'download' | 'upload' | 'unlock'
 
 export interface CommonProps extends ThemedProps {
   color?: string; // Ovverride the defaut intent styling
@@ -28,6 +29,7 @@ export interface CommonProps extends ThemedProps {
   fontSize?: FontSize;
   disabled? : boolean;
   shadow? : boolean;
+  actionType?:ActionType;
   iconName?:any;
   iconSize?:number;
   type?:IntentType;

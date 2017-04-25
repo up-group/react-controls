@@ -2,16 +2,50 @@
 import * as React from 'react'
 import styled, {css} from '../../../Common/theming/themedComponents';
 import remStringFromPX from '../../../Common/utils'
+import { Dictionary } from '../../../Common/utils/types'
 import { UpButtonStyledProps, fontSizeMap, buttonSizeMap} from './'
 import ThemeColorMap from '../../../Common/theming'
 import SvgIcon from "../../Display/SvgIcon/index";
 import { ThemeInterface } from "../../../Common/theming/types";
+import { IconName } from '../../../Common/theming/types'
 import * as classnames from 'classnames' 
+import { ActionType } from './'
+
+export var ActionIconMap = new Dictionary<ActionType, IconName>([]) ;
+ActionIconMap.set('add', 'add') ;
+ActionIconMap.set('delete', 'delete') ;
+ActionIconMap.set('edit', 'edit') ;
+ActionIconMap.set('stop', 'stop') ;
+ActionIconMap.set('cancel', 'cancel') ;
+ActionIconMap.set('save', 'save') ;
+ActionIconMap.set('close', 'close') ;
+ActionIconMap.set('print', 'print') ;
+ActionIconMap.set('renew', 'renew') ;
+ActionIconMap.set('refresh', 'refresh') ;
+ActionIconMap.set('sync', 'sync') ;
+ActionIconMap.set('expand', 'expand') ;
+ActionIconMap.set('collapse', 'collapse') ;
+ActionIconMap.set('help', 'help') ;
+ActionIconMap.set('zoom-in', 'zoom-in') ;
+ActionIconMap.set('zoom-out', 'zoom-out') ;
+ActionIconMap.set('search', 'search') ;
+ActionIconMap.set('info', 'info') ; 
+ActionIconMap.set('import', 'import') ; 
+ActionIconMap.set('export', 'export') ; 
+ActionIconMap.set('download', 'download') ; 
+ActionIconMap.set('upload', 'upload') ; 
+ActionIconMap.set('unlock', 'unlock') ; 
 
 const ReactButtonComponent: React.StatelessComponent<UpButtonStyledProps> = (props) => {
     const { children, className, onClick, dataFor, width } = props;
 
-    const icon = <SvgIcon iconName={props.iconName}
+    const actionType = props.actionType ;
+    var iconName : IconName = 'blank' ;
+    if(ActionIconMap.containsKey(actionType)) {
+        iconName = ActionIconMap.get(actionType) ;
+    }
+
+    const icon = <SvgIcon iconName={iconName}
           width={props.iconSize}
           height={props.iconSize}
           color={props.color} /> ;
@@ -25,7 +59,7 @@ const ReactButtonComponent: React.StatelessComponent<UpButtonStyledProps> = (pro
     }
 
     return <button onClick={onClick} className={classnames('up-btn', className)} {...tooltipProps} >
-      {props.iconName &&
+      {iconName != 'blank' &&
         icon
       }
       {(width == 'normal' ||  width == 'auto') &&

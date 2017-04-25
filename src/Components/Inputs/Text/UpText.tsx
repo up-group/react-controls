@@ -10,6 +10,7 @@ export default class UpText extends InputBaseComponent<UpTextProps, string> {
         value:"",
         width:'medium'
     }
+    
     constructor(p, c) {
         super(p, c);
         this.onChange = this.onChange.bind(this) ;
