@@ -5,6 +5,7 @@ import {ThemeInterface} from "./types";
 
 // Création d'un nouveau module 'styled-components' caster comme utilisant notre interface de theme 
 // afin que tsc l'applique à props.theme lors de l'utilisation des fonctionnalités du module 
+// La notation {default : styled} nomme par 'styled' la propriété 'default' extraite de 'styledComponents'
 const { default: styled, css, injectGlobal, keyframes, ThemeProvider} = styledComponents as ThemedStyledComponentsModule<ThemeInterface>;
 
 export default styled;

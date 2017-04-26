@@ -24,3 +24,7 @@ const BaseCheckBox: React.StatelessComponent<UpCheckboxStyledProps> = (props) =>
 export const StyledCheckBox = styled<UpCheckboxStyledProps>(BaseCheckBox)`
 ${(props: UpCheckboxStyledProps) => CommonCheckableStyle(props)}
 `
+
+export const CheckboxGroup = styled.div`
+  margin-top:8px;
+`

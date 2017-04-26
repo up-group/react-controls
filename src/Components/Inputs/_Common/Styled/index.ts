@@ -18,6 +18,7 @@ export const CommonCheckableStyle = props => css`
   padding-left: 26px;
   text-transform: none;
   line-height: 16px;  
+  
   svg {
     margin:4px 4px 4px 0px;
     display:inline-block;

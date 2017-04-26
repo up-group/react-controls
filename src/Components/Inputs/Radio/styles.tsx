@@ -45,3 +45,6 @@ input:indeterminate ~ .up-control-indicator::before {
     content: ""; 
 }
 `
+export const RadioGroup = styled.div`
+  margin-top:8px;
+`

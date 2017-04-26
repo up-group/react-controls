@@ -1,7 +1,7 @@
 // Imports
 import * as React from 'react'
-import {PanelStyled} from './styles'  
-import {UpPanelProps} from './'
+import { PanelStyled } from './styles'  
+import { UpPanelProps } from './'
 import { withTheme } from 'styled-components'
 
 // Exports

@@ -25,12 +25,12 @@ export default class UpLabel extends React.Component<UpLabelProps, {}> {
 
   // Fix double focus with the blueprint datepicker.
   onFocus = (e) => {
-    e.stopPropagation() ;
     e.preventDefault() ;
+    return false; 
   }
   onClick = (e) => {
-    e.stopPropagation() ;
     e.preventDefault() ;
+    return false; 
   }
   // End Fix 
 
