@@ -102,7 +102,7 @@ class Demo extends React.Component<undefined, DemoState> {
                 </UpBox>
                 <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
                   <UpLabel text="Commune :"></UpLabel>
-                  <UpInput readOnly={true} width="xlarge" height="large" type="search" placeholder="Chercher votre commune" onChange={this.onTextChange} value={this.state.search} />
+                  <UpInput width="xlarge" height="large" type="search" placeholder="Chercher votre commune" onChange={this.onTextChange} value={this.state.search} />
                 </UpBox>
                 <UpBox margin="small" boxSize={{ horizontal: 'full' }}>
                   <UpLabel text="Nom :"></UpLabel>
