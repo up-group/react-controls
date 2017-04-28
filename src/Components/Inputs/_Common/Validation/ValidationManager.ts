@@ -1,4 +1,4 @@
-﻿/// <reference path="./error.d.ts"/>
+﻿import { ErrorControl, ErrorControlType } from "./error"
 
 export default class ValidationManager {
     private ErrorControl: ErrorControl<any>[] = [];

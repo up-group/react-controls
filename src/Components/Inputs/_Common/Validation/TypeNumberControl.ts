@@ -1,3 +1,5 @@
+import { ErrorControl, ErrorControlType } from "./error"
+
 export default class TypeNumberControl implements ErrorControl<any> {
 
     private _isInteger: boolean;

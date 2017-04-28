@@ -36,6 +36,9 @@ ActionIconMap.set('download', 'download') ;
 ActionIconMap.set('upload', 'upload') ; 
 ActionIconMap.set('unlock', 'unlock') ; 
 
+const DEFAULT_MIN_SIZE = "30px" 
+const DEFAULT_BORDER_RADIUS = "4px" 
+
 const ReactButtonComponent: React.StatelessComponent<UpButtonStyledProps> = (props) => {
     const { children, className, onClick, dataFor, width } = props;
 
@@ -44,7 +47,8 @@ const ReactButtonComponent: React.StatelessComponent<UpButtonStyledProps> = (pro
     if(ActionIconMap.containsKey(actionType)) {
         iconName = ActionIconMap.get(actionType) ;
     }
-
+    
+    // Our SVG Icon viewbox is 20*20 units
     const icon = <SvgIcon iconName={iconName}
           width={props.iconSize}
           height={props.iconSize}
@@ -77,19 +81,25 @@ const base = props => css`
   font-size: ${(props: UpButtonStyledProps) => remStringFromPX(fontSizeMap[props.fontSize])};
   border: none;
   opacity:0.8;
-  text-align: center;
+  text-align: left;
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
   vertical-align: middle;
   width: ${(props: UpButtonStyledProps) => buttonSizeMap[props.width] || 'auto'};
-  min-width: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || '30px'};
-  min-height: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || '30px'};
-  line-height: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || '30px'};
+  min-width: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || DEFAULT_MIN_SIZE};
+  min-height: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || DEFAULT_MIN_SIZE};
+  line-height: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || DEFAULT_MIN_SIZE};
   svg {
     margin:4px 4px 4px 0px;
     display:inline-block;
     float:left;
+  }
+  span {
+    line-height: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || DEFAULT_MIN_SIZE};
+  }
+  &:active {
+     box-shadow: inset 5px 5px 5px rgba(16, 22, 26, 0.2) ;
   }
 `;
 
@@ -120,25 +130,44 @@ const large = props => css`
   padding: 10px 16px;
   font-size: 18px;
   line-height: 1.3;
-  border-radius: ${(props) => props.theme.borderRadius || '4px'};
+  border-radius: ${(props) => props.theme.borderRadius || DEFAULT_BORDER_RADIUS};
+  svg {
+    width:32px;
+    heigth:32px;
+  }
 `;
 const normal = props => css`
-  padding: 4px 10px;
+  padding: 0px 2px;
   font-size: 16px;
   line-height: 1.3;
-  border-radius: ${(props) => props.theme.borderRadius || '4px'};
+  border-radius: ${(props) => props.theme.borderRadius || DEFAULT_BORDER_RADIUS};
+
+  svg {
+    width:20px;
+    heigth:20px;
+  }
 `;
 const small = props => css`
     padding: 3px 8px;
     font-size: 12px;
     line-height: 1.5;
     border-radius: 3px;
+
+    svg {
+      width:16px;
+      heigth:16px;
+    }
 `;
 const xsmall = props => css`
   padding: 1px 4px;
   font-size: 12px;
   line-height: 1.5;
   border-radius: 3px;
+
+    svg {
+      width:12px;
+      heigth:12px;
+    }
 `;
 const icon = props => css`
   padding: 4px 5px;
@@ -151,25 +180,43 @@ const iconXSmall = props => css`
   border-radius: 3px;
   font-size: 10px;
   line-height: 1;
+
+  svg {
+    width:12px;
+    heigth:12px;
+  }
 `;
 const iconSmall = props => css`
   padding: 3px 4px;
   border-radius: 3px;
   font-size: 12px;
   line-height: 1.5;
+  svg {
+      width:16px;
+      heigth:16px;
+  }
 `;
 const iconNormal = props => css`
   padding: 4px 5px;
   border-radius: 3px;
   font-size: 12px;
   line-height: 1.5;
+  svg {
+    width:20px;
+    heigth:20px;
+  }
 `;
 const iconLarge = props => css`
   padding: 6px 8px;
   border-radius: 3px;
   font-size: 14px;
   line-height: 1.5;
+  svg {
+    width:32px;
+    heigth:32px;
+  }
 `;
+
 var getWidth = function(props) {
   return props.width!="icon" ? normal(props) : css`` ;
 }

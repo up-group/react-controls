@@ -1,4 +1,5 @@
-﻿/// <reference path="./error.d.ts"/>
+﻿import { ErrorControl, ErrorControlType } from "./error"
+
 export default class TypeStringControl implements ErrorControl<any> {
 
     private _pattern: RegExp;

@@ -18,7 +18,7 @@ export default class UpButton extends React.Component<UpButtonProps, undefined> 
     disabled:false,
     shadow:false,
     iconName:false,
-    iconSize:40,
+    iconSize:20,
     type:'default',
     width: 'normal',
     height: 'normal',

@@ -1,6 +1,6 @@
 import UpPanel from './Components/Containers/Panel'
 import UpBox from './Components/Containers/Box'
-import {UpGrid, UpRow, UpCol} from './Components/Containers/Grid'
+import { UpGrid, UpRow, UpCol } from './Components/Containers/Grid'
 import UpFormGroup from './Components/Containers/FormGroup'
 import UpButtonGroup from './Components/Containers/ButtonGroup'
 
@@ -31,46 +31,46 @@ import UpEmail from './Components/Inputs/Email'
 import UpCheckbox from './Components/Inputs/Checkbox'
 import UpRadio from './Components/Inputs/Radio'
 
-import {ThemeProvider as UpThemeProvider} from './Common/theming/themedComponents'
+import { ThemeProvider as UpThemeProvider } from './Common/theming/themedComponents'
 import UpColorMap from './Common/theming'
-import {ThemeColorMap as UpThemeColorMap} from './Common/theming/types'
-import {ThemeInterface as UpThemeInterface} from './Common/theming/types'
+import { ThemeColorMap as UpThemeColorMap } from './Common/theming/types'
+import { ThemeInterface as UpThemeInterface } from './Common/theming/types'
 
 export {
-  UpHeading,
-  UpLink,
-  UpBox,
-  UpButton,
-  UpButtonGroup,
-  UpNotification,
-  UpImage,
-  UpLoadingIndicator,
-  UpParagraph,
-  UpSvgIcon,
-  UpToast,
-  UpInput,
-  UpSelect,
-  UpFile,
-  UpDate,
-  UpDateTime,
-  UpSwitch,
-  UpTimePicker,
-  UpText,
-  UpNumber,
-  UpEmail,
-  UpPhone,
-  UpInteger,
-  UpPanel,
-  UpGrid,
-  UpRow,
-  UpCol,
-  UpLabel,
-  UpFormGroup,
-  UpTooltip,
-  UpThemeProvider,
-  UpThemeInterface,
-  UpThemeColorMap,
-  UpColorMap,
-  UpCheckbox,
-  UpRadio
+    UpHeading,
+    UpLink,
+    UpBox,
+    UpButton,
+    UpButtonGroup,
+    UpNotification,
+    UpImage,
+    UpLoadingIndicator,
+    UpParagraph,
+    UpSvgIcon,
+    UpToast,
+    UpInput,
+    UpSelect,
+    UpFile,
+    UpDate,
+    UpDateTime,
+    UpSwitch,
+    UpTimePicker,
+    UpText,
+    UpNumber,
+    UpEmail,
+    UpPhone,
+    UpInteger,
+    UpPanel,
+    UpGrid,
+    UpRow,
+    UpCol,
+    UpLabel,
+    UpFormGroup,
+    UpTooltip,
+    UpThemeProvider,
+    UpThemeInterface,
+    UpThemeColorMap,
+    UpColorMap,
+    UpCheckbox,
+    UpRadio
 };
