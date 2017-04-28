@@ -30,7 +30,6 @@ import UpPhone from './Components/Inputs/Phone'
 import UpEmail from './Components/Inputs/Email'
 import UpCheckbox from './Components/Inputs/Checkbox'
 import UpRadio from './Components/Inputs/Radio'
-import { InputBaseComponent } from './Components/Inputs/_Common/BaseControl/BaseControl'
 
 import { ThemeProvider as UpThemeProvider } from './Common/theming/themedComponents'
 import UpColorMap from './Common/theming'
@@ -38,7 +37,6 @@ import { ThemeColorMap as UpThemeColorMap } from './Common/theming/types'
 import { ThemeInterface as UpThemeInterface } from './Common/theming/types'
 
 export {
-    InputBaseComponent,
     UpHeading,
     UpLink,
     UpBox,
