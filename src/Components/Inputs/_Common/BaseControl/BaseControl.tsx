@@ -14,6 +14,7 @@ export interface InputBaseProps<_BaseType> {
     disabled?: boolean;
     readonly?: boolean;
     tooltip?: string | Tooltip;
+    isNullable?: boolean;
 }
 
 export interface InputBaseState<_BaseType> {
