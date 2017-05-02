@@ -30,7 +30,7 @@ export default class UpInput extends InputBaseComponent<UpInputProps, any> {
     }
 
     renderControl() {
-        const {type, onChange, onError, value, validation, hasError, ...others } = this.props;
+        const {type, onChange, value, validation, hasError, ...others } = this.props;
         return (
             <InputStyled
                 value={this.state.value}

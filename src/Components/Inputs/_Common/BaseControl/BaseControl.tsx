@@ -8,8 +8,7 @@ import UpTooltip, { Tooltip } from '../../../Display/Tooltip';
 
 // Exports
 export interface InputBaseProps<_BaseType> {
-    onChange?: (arg: _BaseType, event: any) => void;
-    onError?: (hasError: boolean) => void;
+    onChange?: (arg: _BaseType, event: any, error: boolean) => void;
     value?: _BaseType;
     defaultValue?: _BaseType;
     disabled?: boolean;
@@ -39,18 +38,21 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
         var cleanData = this.onChange(event);
         this.setState({
             value: cleanData
+        }, () => {
+            var hasError = this.checkData();
+            this.dispatchOnChange(cleanData, event, hasError);
         });
-        this.checkData(cleanData);
-        this.dispatchOnChange(cleanData, event);
+
     }
 
-    public checkData = (cleanData) => {
-        var result = this._validationManager.isValidValue(cleanData);
+    public checkData = () => {
+        var result = this._validationManager.isValidValue(this.state.value);
         if (result.hasError) {
-            this.setState({ error: result.errorMessage }, this.dispatchOnError);
+            this.setState({ error: result.errorMessage });
         } else {
-            this.setState({ error: null }, this.dispatchOnError);
+            this.setState({ error: null });
         }
+        return result.hasError;
     }
 
     public hasError = (): boolean => {
@@ -93,14 +95,14 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
         var stateValue = this.state.value;
         if (propsValue !== undefined && this.equal(propsValue, stateValue) === false) {
             this.setState({ value: propsValue }, () => {
-                this.dispatchOnChange(propsValue,null);
+                this.dispatchOnChange(propsValue, null, this.checkData());
             });
 
         }
     }
 
     private equal = (v1, v2) => {
-        if (v1 === v2) { 
+        if (v1 === v2) {
             return v1 !== 0 || 1 / v1 === 1 / v2;
         } else {
             return v1 !== v1 && v2 !== v2;
@@ -117,15 +119,10 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
     //    }
     //}
 
-    private dispatchOnChange = (data: _BaseType, event) => {
+    private dispatchOnChange = (data: _BaseType, event, error: boolean) => {
         if (this.props.onChange !== undefined) {
-            this.props.onChange(data, event);
+            this.props.onChange(data, event, error);
         }
     }
 
-    private dispatchOnError = () => {
-        if (this.props.onError !== undefined) {
-            this.props.onError(this.state.error != null);
-        }
-    }
 }
