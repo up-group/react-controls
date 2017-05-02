@@ -24,9 +24,6 @@ export default class UpDateTime extends InputBaseComponent<UpDateTimeProps, Date
         };
     }
 
-    componentDidMount = () => {
-    }
-
     onChangeDate = (date:Date) => {
         var current = this.state.value ;
         if(current!=null) {
