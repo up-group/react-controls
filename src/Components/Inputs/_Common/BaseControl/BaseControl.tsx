@@ -5,6 +5,7 @@ import ErrorDisplay from "../Validation/ErrorDisplay"
 // Importation des règles CSS de bases -> à transformer en styled-components
 import "../../../../Common/theming/base.css"
 import UpTooltip, { Tooltip } from '../../../Display/Tooltip';
+import TypeNullControl from "../Validation/TypeNullControl"
 
 // Exports
 export interface InputBaseProps<_BaseType> {
@@ -30,6 +31,9 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
         super(props, context);
         this.state = { error: null, value: null };
         this._validationManager = new ValidationManager();
+        if (this.props.isNullable) {
+            this._validationManager.addControl(new TypeNullControl());
+        }
     }
 
     abstract onChange(args: any): _BaseType;
