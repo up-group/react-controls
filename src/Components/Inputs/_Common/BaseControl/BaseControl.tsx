@@ -11,6 +11,7 @@ export interface InputBaseProps<_BaseType> {
     onChange?: (arg: _BaseType, event: any) => void;
     onError?: (hasError: boolean) => void;
     value?: _BaseType;
+    defaultValue?: _BaseType;
     disabled?: boolean;
     readonly?: boolean;
     tooltip?: string | Tooltip;
@@ -87,16 +88,25 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
     }
 
 
-    private componentWillReceiveProps(nextProps: (InputBaseProps<_BaseType> & _Props)) {
-        var newValue = nextProps.value;
-        var oldValue = this.state.value;
-
-        if (newValue !== oldValue) {
-            this.setState({ value: nextProps.value });
+    private componentDidUpdate = (prevProps, prevState) => {
+        var propsValue = (this.props as InputBaseProps<_BaseType>).value;
+        var stateValue = this.state.value;
+        if (propsValue != undefined && stateValue !== propsValue) {
+            this.setState({ value: propsValue }, () => {
+                this.dispatchOnChange(this.state.value);
+            });
+          
         }
     }
+    //private componentWillReceiveProps(nextProps: (InputBaseProps<_BaseType> & _Props)) {
+    //    var newValue = nextProps.value;
+    //    var oldValue = this.state.value;
+    //    if (newValue !== oldValue) {
+    //        this.setState({ value: nextProps.value });
+    //    }
+    //}
 
-    private dispatchOnChange = (data: _BaseType, event) => {
+    private dispatchOnChange = (data: _BaseType, event,errei) => {
         if (this.props.onChange !== undefined) {
             this.props.onChange(data, event);
         }
