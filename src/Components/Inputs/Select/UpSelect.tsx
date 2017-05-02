@@ -43,14 +43,6 @@ export default class UpSelect extends InputBaseComponent<UpSelectProps, any> {
         }
     }
 
-    componentDidMount = () => {
-        var _props = this.props as UpSelectStyledProps;
-        if (_props.dataFor && this.selectElement) {
-            this.selectElement.inputElement.setAttribute('data-tip', 'tooltip');
-            this.selectElement.inputElement.setAttribute('data-for', _props.dataFor);
-        }
-    }
-
     componentWillUnmount() {
         
     }
