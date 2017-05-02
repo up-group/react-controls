@@ -16,6 +16,7 @@ export interface InputBaseProps<_BaseType> {
     readonly?: boolean;
     tooltip?: string | Tooltip;
     isRequierd?: boolean;
+    showError?: boolean;
 }
 
 export interface InputBaseState<_BaseType> {
@@ -41,16 +42,11 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
 
     public handleChangeEvent = (event) => {
         var cleanData = this.onChange(event);
-        this.setState({
-            value: cleanData
-        }, () => {
-            var hasError = this.checkData();
-            this.dispatchOnChange(cleanData, event, hasError);
-        });
+        this.setState({ value: cleanData }, this.checkAndDispatch);
 
     }
 
-    public checkData = () => {
+    private checkData = () => {
         var result = this._validationManager.isValidValue(this.state.value);
         if (result.hasError) {
             this.setState({ error: result.errorMessage });
@@ -69,8 +65,8 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
     }
 
     public render() {
+        var _tooltip: Tooltip = null;
         if (this.props.tooltip) {
-            var _tooltip: Tooltip;
             if (typeof this.props.tooltip === 'string' || this.props.tooltip instanceof String) {
                 _tooltip = {
                     content: this.props.tooltip as string
@@ -78,32 +74,35 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
             } else {
                 _tooltip = this.props.tooltip as Tooltip;
             }
-            return (
-                <ErrorDisplay error={this.state.error}>
-                    <UpTooltip {..._tooltip}>
-                        {this.renderControl()}
-                    </UpTooltip>
-                </ErrorDisplay>
-            );
-        } else {
-            return (
-                <ErrorDisplay error={this.state.error}>
-                    {this.renderControl()}
-                </ErrorDisplay>
-            );
         }
+        return (<ErrorDisplay showError={this.props.showError} error={this.state.error}>
+            {_tooltip === null ?
+                this.renderControl()
+                :
+                <UpTooltip {..._tooltip}>
+                    {this.renderControl()}
+                </UpTooltip>}
+        </ErrorDisplay>
+        );
+
     }
 
+    //public componentDidMount() {
+    //    this.checkAndDispatch();
+    //}
 
     private componentDidUpdate = (prevProps, prevState) => {
         var propsValue = (this.props as InputBaseProps<_BaseType>).value;
         var stateValue = this.state.value;
         if (propsValue !== undefined && this.equal(propsValue, stateValue) === false) {
-            this.setState({ value: propsValue }, () => {
-                this.dispatchOnChange(propsValue, null, this.checkData());
-            });
+            this.setState({ value: propsValue }, this.checkAndDispatch);
 
         }
+    }
+
+    private checkAndDispatch = () => {
+        var hasError = this.checkData();
+        this.dispatchOnChange(this.state.value, event, hasError);
     }
 
     private equal = (v1, v2) => {
