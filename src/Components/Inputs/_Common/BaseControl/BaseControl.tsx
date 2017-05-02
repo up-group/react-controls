@@ -91,13 +91,24 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
     private componentDidUpdate = (prevProps, prevState) => {
         var propsValue = (this.props as InputBaseProps<_BaseType>).value;
         var stateValue = this.state.value;
-        if (propsValue != undefined && stateValue !== propsValue) {
+        if (propsValue !== undefined && this.equal(propsValue, stateValue) === false) {
             this.setState({ value: propsValue }, () => {
-                this.dispatchOnChange(this.state.value);
+                this.dispatchOnChange(propsValue,null);
             });
-          
+
         }
     }
+
+    private equal = (v1, v2) => {
+        if (v1 === v2) { 
+            return v1 !== 0 || 1 / v1 === 1 / v2;
+        } else {
+            return v1 !== v1 && v2 !== v2;
+        }
+    }
+
+
+
     //private componentWillReceiveProps(nextProps: (InputBaseProps<_BaseType> & _Props)) {
     //    var newValue = nextProps.value;
     //    var oldValue = this.state.value;
@@ -106,11 +117,12 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
     //    }
     //}
 
-    private dispatchOnChange = (data: _BaseType, event,errei) => {
+    private dispatchOnChange = (data: _BaseType, event) => {
         if (this.props.onChange !== undefined) {
             this.props.onChange(data, event);
         }
     }
+
     private dispatchOnError = () => {
         if (this.props.onError !== undefined) {
             this.props.onError(this.state.error != null);
