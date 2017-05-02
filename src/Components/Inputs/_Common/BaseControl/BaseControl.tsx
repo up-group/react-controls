@@ -15,7 +15,7 @@ export interface InputBaseProps<_BaseType> {
     disabled?: boolean;
     readonly?: boolean;
     tooltip?: string | Tooltip;
-    isNullable?: boolean;
+    isRequierd?: boolean;
 }
 
 export interface InputBaseState<_BaseType> {
@@ -31,7 +31,7 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
         super(props, context);
         this.state = { error: null, value: null };
         this._validationManager = new ValidationManager();
-        if (this.props.isNullable) {
+        if (this.props.isRequierd) {
             this._validationManager.addControl(new TypeNullControl());
         }
     }
