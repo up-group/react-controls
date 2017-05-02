@@ -4,30 +4,30 @@ import ValidationManager from "../Validation/ValidationManager"
 import ErrorDisplay from "../Validation/ErrorDisplay"
 // Importation des règles CSS de bases -> à transformer en styled-components
 import "../../../../Common/theming/base.css"
-import  UpTooltip, {Tooltip} from '../../../Display/Tooltip' ;
+import UpTooltip, { Tooltip } from '../../../Display/Tooltip';
 
 // Exports
 export interface InputBaseProps<_BaseType> {
     onChange?: (arg: _BaseType, event: any) => void;
     onError?: (hasError: boolean) => void;
     value?: _BaseType;
-    disabled?:boolean;
-    readonly?:boolean;
-    tooltip?:string | Tooltip ;
+    disabled?: boolean;
+    readonly?: boolean;
+    tooltip?: string | Tooltip;
 }
 
 export interface InputBaseState<_BaseType> {
     error?: string;
-    value?:_BaseType;
+    value?: _BaseType;
 }
 
 export abstract class InputBaseComponent<_Props, _BaseType> extends React.Component<InputBaseProps<_BaseType> & _Props, InputBaseState<_BaseType>> {
 
     _validationManager: ValidationManager;
 
-    constructor(props? : InputBaseProps<_BaseType> & _Props, context?) {
+    constructor(props?: InputBaseProps<_BaseType> & _Props, context?) {
         super(props, context);
-        this.state = { error: null, value:null };
+        this.state = { error: null, value: null };
         this._validationManager = new ValidationManager();
     }
 
@@ -36,6 +36,9 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
 
     public handleChangeEvent = (event) => {
         var cleanData = this.onChange(event);
+        this.setState({
+            value: cleanData
+        });
         this.checkData(cleanData);
         this.dispatchOnChange(cleanData, event);
     }
@@ -48,24 +51,24 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
             this.setState({ error: null }, this.dispatchOnError);
         }
     }
-    
-    public hasError = () : boolean => {
+
+    public hasError = (): boolean => {
         return this.state.error != null;
     }
 
-    public setTooltip =(element) => {
+    public setTooltip = (element) => {
         console.log(element);
     }
 
     public render() {
-        if(this.props.tooltip) {
-            var _tooltip:Tooltip ;
-            if(typeof this.props.tooltip === 'string' ||  this.props.tooltip instanceof String) {
+        if (this.props.tooltip) {
+            var _tooltip: Tooltip;
+            if (typeof this.props.tooltip === 'string' || this.props.tooltip instanceof String) {
                 _tooltip = {
-                    content : this.props.tooltip as string
+                    content: this.props.tooltip as string
                 }
             } else {
-                _tooltip = this.props.tooltip as Tooltip ;
+                _tooltip = this.props.tooltip as Tooltip;
             }
             return (
                 <ErrorDisplay error={this.state.error}>
@@ -80,6 +83,16 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
                     {this.renderControl()}
                 </ErrorDisplay>
             );
+        }
+    }
+
+
+    private componentWillReceiveProps(nextProps: (InputBaseProps<_BaseType> & _Props)) {
+        var newValue = nextProps.value;
+        var oldValue = this.state.value;
+
+        if (newValue !== oldValue) {
+            this.setState({ value: nextProps.value });
         }
     }
 

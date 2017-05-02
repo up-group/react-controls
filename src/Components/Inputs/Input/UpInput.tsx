@@ -29,12 +29,6 @@ export default class UpInput extends InputBaseComponent<UpInputProps, any> {
         return event.target.value;
     }
 
-    componentWillReceiveProps(nextProps: UpInputProps) {
-        if (nextProps.value !== this.props.value) {
-            this.setState({value: nextProps.value });
-        }
-    }
-
     renderControl() {
         const {type, onChange, onError, value, validation, hasError, ...others } = this.props;
         return (

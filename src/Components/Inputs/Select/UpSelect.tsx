@@ -95,12 +95,6 @@ export default class UpSelect extends InputBaseComponent<UpSelectProps, any> {
         }
     }
     
-    componentWillReceiveProps(nextProps: UpSelectProps) {
-        if (nextProps.value !== this.props.value) {
-            this.setState({value: nextProps.value });
-        }
-    }
-
 
     renderControl() {
         const dataSource = this.props.dataSource ;
