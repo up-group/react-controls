@@ -20,27 +20,3 @@ export interface CommonInputTextProps extends InputBaseProps<string> {
 export interface CommonInputTextWithIconProps extends CommonInputTextProps {
     iconName?:IconName;
 }
-
-export class InputTextComponent extends InputBaseComponent<CommonInputTextWithIconProps, string> {
-    public static defaultProps: CommonInputTextWithIconProps = {
-    };
-
-    constructor(p, c) {
-        super(p, c);
-        this.state = {
-            value : p.value
-        };
-    }
-
-    onChange(event: any) {
-        return event.target.value;
-    }
-
-    renderControl() {
-        const {onChange, value, ...others} = this.props ;
-        
-        return <InputStyled 
-            value={this.state.value}
-            hasError={this.hasError()} onChange={this.handleChangeEvent} {...others} />
-    }
-}

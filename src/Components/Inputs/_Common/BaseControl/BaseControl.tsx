@@ -65,10 +65,6 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
         return this.state.error != null;
     }
 
-    public setTooltip = (element) => {
-        console.log(element);
-    }
-
     public render() {
         var _tooltip: Tooltip = null;
         if (this.props.tooltip) {
@@ -121,8 +117,6 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
             return v1 !== v1 && v2 !== v2;
         }
     }
-
-
 
     //private componentWillReceiveProps(nextProps: (InputBaseProps<_BaseType> & _Props)) {
     //    var newValue = nextProps.value;

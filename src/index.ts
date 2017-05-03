@@ -25,7 +25,6 @@ import UpDateTime from './Components/Inputs/DateTime'
 import UpTimePicker from './Components/Inputs/TimePicker'
 import UpText from './Components/Inputs/Text'
 import UpNumber from './Components/Inputs/Number'
-import UpInteger from './Components/Inputs/Integer'
 import UpPhone from './Components/Inputs/Phone'
 import UpEmail from './Components/Inputs/Email'
 import UpCheckbox from './Components/Inputs/Checkbox'
@@ -59,7 +58,6 @@ export {
     UpNumber,
     UpEmail,
     UpPhone,
-    UpInteger,
     UpPanel,
     UpGrid,
     UpRow,
