@@ -32,6 +32,12 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
         super(props, context);
         this.state = { error: null, value: null };
         this._validationManager = new ValidationManager();
+
+        this.initWithProps();
+    }
+
+
+    protected initWithProps() {
         if (this.props.isRequired) {
             this._validationManager.addControl(new TypeNullControl());
         }
@@ -75,7 +81,7 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
                 _tooltip = this.props.tooltip as Tooltip;
             }
         }
-        return (<ErrorDisplay showError={this.props.showError} hasError={this.hasError()}  error={this.state.error}>
+        return (<ErrorDisplay showError={this.props.showError} hasError={this.hasError()} error={this.state.error}>
             {_tooltip === null ?
                 this.renderControl()
                 :
