@@ -6,9 +6,9 @@ import { UpTextProps } from './'
  
 // Exports
 export default class UpText extends InputBaseComponent<UpTextProps, string> {
-    public static defaultProps: UpTextProps = {
-        value:"",
-        width:'medium'
+    public static defaultProps = {
+        width: 'medium',
+        showError: true
     }
     
     constructor(p, c) {

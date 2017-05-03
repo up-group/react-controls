@@ -3,6 +3,7 @@ import * as React from "react";
 export interface ErrorDisplayProps {
     error: string;
     showError: boolean;
+    hasError: boolean;
 }
 
 export default class ErrorDisplay extends React.Component<ErrorDisplayProps, {}> {
@@ -13,7 +14,8 @@ export default class ErrorDisplay extends React.Component<ErrorDisplayProps, {}>
     render() {
         return <div>
             {this.props.children}
-            <span style={{ color: "red", display: this.props.showError ? "none" : null }}>{this.props.error}</span>
+            {this.props.showError === true && this.props.hasError === true ? (<span style={{ color: "red" }}>{this.props.error}</span>) : null}
+
         </div>
     }
 }

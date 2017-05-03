@@ -15,7 +15,7 @@ export interface InputBaseProps<_BaseType> {
     disabled?: boolean;
     readonly?: boolean;
     tooltip?: string | Tooltip;
-    isRequierd?: boolean;
+    isRequired?: boolean;
     showError?: boolean;
 }
 
@@ -31,8 +31,14 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
     constructor(props?: InputBaseProps<_BaseType> & _Props, context?) {
         super(props, context);
         this.state = { error: null, value: null };
+
+        this.initWithProps();
+    }
+
+
+    protected initWithProps() {
         this._validationManager = new ValidationManager();
-        if (this.props.isRequierd) {
+        if (this.props.isRequired) {
             this._validationManager.addControl(new TypeNullControl());
         }
     }
@@ -43,7 +49,6 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
     public handleChangeEvent = (event) => {
         var cleanData = this.onChange(event);
         this.setState({ value: cleanData }, this.checkAndDispatch);
-
     }
 
     private checkData = () => {
@@ -60,10 +65,6 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
         return this.state.error != null;
     }
 
-    public setTooltip = (element) => {
-        console.log(element);
-    }
-
     public render() {
         var _tooltip: Tooltip = null;
         if (this.props.tooltip) {
@@ -75,7 +76,7 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
                 _tooltip = this.props.tooltip as Tooltip;
             }
         }
-        return (<ErrorDisplay showError={this.props.showError} error={this.state.error}>
+        return (<ErrorDisplay showError={this.props.showError} hasError={this.hasError()} error={this.state.error}>
             {_tooltip === null ?
                 this.renderControl()
                 :
@@ -87,9 +88,9 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
 
     }
 
-    //public componentDidMount() {
-    //    this.checkAndDispatch();
-    //}
+    public componentDidMount() {
+        this.checkAndDispatch();
+    }
 
     private componentDidUpdate = (prevProps, prevState) => {
         var propsValue = (this.props as InputBaseProps<_BaseType>).value;
@@ -101,8 +102,12 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
     }
 
     private checkAndDispatch = () => {
-        var hasError = this.checkData();
-        this.dispatchOnChange(this.state.value, event, hasError);
+        if (this._validationManager !== undefined) {
+            var hasError = this.checkData();
+            this.dispatchOnChange(this.state.value, event, hasError);
+        } else {
+            this.dispatchOnChange(this.state.value, event, null);
+        }
     }
 
     private equal = (v1, v2) => {
@@ -113,8 +118,6 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
         }
     }
 
-
-
     //private componentWillReceiveProps(nextProps: (InputBaseProps<_BaseType> & _Props)) {
     //    var newValue = nextProps.value;
     //    var oldValue = this.state.value;
@@ -123,7 +126,7 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
     //    }
     //}
 
-    private dispatchOnChange = (data: _BaseType, event, error: boolean) => {
+    public dispatchOnChange = (data: _BaseType, event, error: boolean) => {
         if (this.props.onChange !== undefined) {
             this.props.onChange(data, event, error);
         }

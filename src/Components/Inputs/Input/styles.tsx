@@ -32,7 +32,7 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps> = (props) => {
     //return (<div className={cn(className, 'input-form-content')}>
     return (<div className={className}>
               <div className="up-input-group">
-                <input onChange={onChange} className="up-input" type={type} placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readonly} maxLength={maxLength} {...tooltipProps}/>
+            <input value={props.value} onChange={onChange} className="up-input" type={type} placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readonly} maxLength={maxLength} {...tooltipProps}/>
                 {icon}
               </div>
             </div>);
@@ -342,7 +342,7 @@ const error = css`
 
 export const InputStyled = styled<UpInputStyledProps>(BaseInput)`
   ${inputStyles}
-  ${(props) => props.hasError ? error:css``}
+  ${(props) => props.hasError && props.showError ? error:css``}
   color: ${(props: UpInputStyledProps) => props.color};
   .up-input {
     width: ${(props: UpInputStyledProps) => sizeMap[props.width]};

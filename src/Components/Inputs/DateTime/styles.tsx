@@ -61,7 +61,6 @@ export default class UpDateStyle extends React.Component<UpDateTimeStyledProps, 
     public static defaultProps: UpDateTimeStyledProps = {
         //hasError: false,
         //onChange: (value?:Date) => {},
-        //isNullable: false,
         value: null
     };
 

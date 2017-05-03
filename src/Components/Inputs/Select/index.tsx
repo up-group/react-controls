@@ -26,8 +26,6 @@ export interface UpSelectProps extends InputBaseProps<any> {
         queryParameterName?: string
     },
     autoload?:boolean
-    isNullable: boolean,
-    isRequired: boolean,
     noResultsText? : string,
     clearAllText? : string,
     clearValueText? : string,

@@ -20,9 +20,8 @@ export default class UpSelect extends InputBaseComponent<UpSelectProps, any> {
         placeholder: "-- Sélectionner",
         loadingPlaceholder: "Chargement en cours",
         default:null,
-        isNullable:true,
-        isRequired:false,
-        autoload:false
+        autoload: false,
+        showError: true
     }
 
     constructor(p, c) {

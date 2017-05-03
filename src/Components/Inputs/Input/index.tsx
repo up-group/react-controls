@@ -18,9 +18,9 @@ export interface UpInputStyledProps extends CommonProps {
     backgroundColor?: string;
     borderColor?: string;
     type?: InputType;
-    isNullable?: boolean;
     iconName?: IconName;
     hasError?: boolean;
+    showError?:boolean;
     onChange?: (data: any) => void;
     className?: string;
     value:string;
@@ -39,7 +39,6 @@ export interface CommonProps {
 
 export interface UpInputProps extends CommonProps {
     type?: InputType;
-    isNullable?: boolean;
     hasError?: boolean;
     iconName?:IconName;
     value?:string;
