@@ -48,7 +48,7 @@ export default class UpNumber extends InputBaseComponent<UpNumberProps, number|s
     }
   
     renderControl() {
-        const { onChange, readonly, decimalPlace, stepSize, value, tooltip, ...others } = this.props ;
+        const {isRequired, onChange, readonly, decimalPlace, stepSize, value, tooltip, ...others } = this.props ;
         
         return (
             <UpNumberStyled
