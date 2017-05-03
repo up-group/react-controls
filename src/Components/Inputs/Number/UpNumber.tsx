@@ -8,8 +8,9 @@ import UpNumberStyled from './styles'
 
 // Exports
 export default class UpNumber extends InputBaseComponent<UpNumberProps, number|string> {
-    public static defaultProps: UpNumberProps = {
-        decimalPlace:2
+    public static defaultProps = {
+        decimalPlace: 2,
+        showError: true
     };
 
     constructor(p, c) {

@@ -9,8 +9,9 @@ import UpNumber from '../Number'
 const MIN_VALUE_GREATER_THAN_0 = "La valeur minimale définit par la propriété 'min' doit être suppérieure à 0";
 
 export default class UpInteger extends InputBaseComponent<UpIntegerProps, number> {
-    public static defaultProps: UpIntegerProps = {
-        min: 0
+    public static defaultProps = {
+        min: 0,
+        showError: true
     };
 
     constructor(p, c) {

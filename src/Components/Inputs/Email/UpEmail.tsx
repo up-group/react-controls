@@ -7,6 +7,7 @@ import UpInput from '../Input'
 // Exports
 export default class UpEmail extends InputBaseComponent<UpEmailProps, string> {
     public static defaultProps: UpEmailProps = {
+        showError: true
     };
 
     constructor(p, c) {

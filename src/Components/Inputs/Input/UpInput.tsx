@@ -7,7 +7,8 @@ import TypeStringControl from '../_Common/Validation/TypeStringControl'
 
 // EXports
 export default class UpInput extends InputBaseComponent<UpInputProps, any> {
-    public static defaultProps: UpInputProps = {
+    public static defaultProps = {
+        showError: true
     };
 
     constructor(p, c) {

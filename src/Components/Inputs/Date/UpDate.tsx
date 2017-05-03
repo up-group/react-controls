@@ -6,47 +6,48 @@ import { UpDateProps, UpDateStyledProps } from './'
 import { InputBaseComponent } from '../_Common/BaseControl/BaseControl'
 import UpDateStyle from './styles'
 
-const MIN_DATE = new Date(-8640000000000) ;
-const MAX_DATE = new Date(+8640000000000) ;
+const MIN_DATE = new Date(-8640000000000);
+const MAX_DATE = new Date(+8640000000000);
 
 export default class UpDate extends InputBaseComponent<UpDateProps, Date> {
 
     public static defaultProps: UpDateProps = {
-        format:"DD/MM/YYYY"
+        format: "DD/MM/YYYY",
+        showError: true
     };
 
     constructor(p, c) {
         super(p, c);
-        this.onChange = this.onChange.bind(this) ;
-        this.state = {value: this.props.value };
+        this.onChange = this.onChange.bind(this);
+        this.state = { value: this.props.value };
     }
-    
+
     componentWillMount = () => {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        var shouldUpdate:boolean = nextState.value != this.state.value;
-        if(shouldUpdate===false) {
+        var shouldUpdate: boolean = nextState.value != this.state.value;
+        if (shouldUpdate === false) {
             shouldUpdate = this.props.disabled != nextProps.disabled
-                        || this.props.format != nextProps.format
-                        || this.props.maxDate != nextProps.maxDate
-                        || this.props.minDate != nextProps.minDate
-                        || this.props.readonly != nextProps.readonly
-                        || this.props.theme !== nextProps.theme
-       }
-       return shouldUpdate;
+                || this.props.format != nextProps.format
+                || this.props.maxDate != nextProps.maxDate
+                || this.props.minDate != nextProps.minDate
+                || this.props.readonly != nextProps.readonly
+                || this.props.theme !== nextProps.theme
+        }
+        return shouldUpdate;
     }
 
     renderControl() {
-        return <UpDateStyle 
+        return <UpDateStyle
             format={this.props.format} value={this.state.value}
 
             hasError={this.props.hasError || this.hasError()}
 
             onChange={this.handleChangeEvent}
             disabled={this.props.disabled}
-            minDate={this.props.minDate? this.props.minDate : MIN_DATE}
-            maxDate={this.props.maxDate? this.props.maxDate : MAX_DATE}></UpDateStyle>;
+            minDate={this.props.minDate ? this.props.minDate : MIN_DATE}
+            maxDate={this.props.maxDate ? this.props.maxDate : MAX_DATE}></UpDateStyle>;
     }
 
     onChange(newDate: any) {
