@@ -42,7 +42,6 @@ export default class UpDate extends InputBaseComponent<UpDateProps, Date> {
             format={this.props.format} value={this.state.value}
 
             hasError={this.props.hasError || this.hasError()}
-            showError={this.props.showError}
 
             onChange={this.handleChangeEvent}
             disabled={this.props.disabled}

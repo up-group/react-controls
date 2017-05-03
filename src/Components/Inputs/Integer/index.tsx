@@ -7,7 +7,6 @@ export interface UpIntegerProps extends CommonProps{
    max?: number;
    min?: number;
    stepSize?:number;
-   isNullable?: boolean;
    value?:number;
 }
 
