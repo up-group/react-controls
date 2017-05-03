@@ -25,8 +25,8 @@ export default class UpEmail extends InputBaseComponent<UpEmailProps, string> {
             <UpInput iconName="email" validation={[{
                 pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                 errorMessage: "Le champ doit être un courriel"
-            }]}
-                onChange={this.handleChangeEvent} isRequired={this.props.isRequired} hasError={this.hasError()} showError={this.props.showError} />
+            }]} value={this.props.value}
+            onChange={this.dispatchOnChange} isRequired={this.props.isRequired} hasError={this.hasError()} showError={this.props.showError} />
         );
     }
 }

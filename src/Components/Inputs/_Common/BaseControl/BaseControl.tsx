@@ -31,13 +31,13 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
     constructor(props?: InputBaseProps<_BaseType> & _Props, context?) {
         super(props, context);
         this.state = { error: null, value: null };
-        this._validationManager = new ValidationManager();
 
         this.initWithProps();
     }
 
 
     protected initWithProps() {
+        this._validationManager = new ValidationManager();
         if (this.props.isRequired) {
             this._validationManager.addControl(new TypeNullControl());
         }
@@ -49,7 +49,6 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
     public handleChangeEvent = (event) => {
         var cleanData = this.onChange(event);
         this.setState({ value: cleanData }, this.checkAndDispatch);
-
     }
 
     private checkData = () => {
@@ -107,8 +106,12 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
     }
 
     private checkAndDispatch = () => {
-        var hasError = this.checkData();
-        this.dispatchOnChange(this.state.value, event, hasError);
+        if (this._validationManager !== undefined) {
+            var hasError = this.checkData();
+            this.dispatchOnChange(this.state.value, event, hasError);
+        } else {
+            this.dispatchOnChange(this.state.value, event, null);
+        }
     }
 
     private equal = (v1, v2) => {
@@ -129,7 +132,7 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
     //    }
     //}
 
-    private dispatchOnChange = (data: _BaseType, event, error: boolean) => {
+    public dispatchOnChange = (data: _BaseType, event, error: boolean) => {
         if (this.props.onChange !== undefined) {
             this.props.onChange(data, event, error);
         }
