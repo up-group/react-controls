@@ -17,7 +17,7 @@ export default class UpEmail extends InputBaseComponent<UpEmailProps, string> {
     initWithProps() { }
 
     onChange(event: any) {
-        return event.target.value;
+        return event;
     }
 
     renderControl() {
