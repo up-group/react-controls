@@ -38,6 +38,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+   
+    
+    "react-input-autosize": "1.1.0",
+
+
     "@types/eonasdan-bootstrap-datetimepicker": "^4.17.22",
     "@types/jquery": "^2.0.41",
     "@types/moment": "^2.13.0",
