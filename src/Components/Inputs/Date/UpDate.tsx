@@ -12,8 +12,7 @@ const MAX_DATE = new Date(+8640000000000) ;
 export default class UpDate extends InputBaseComponent<UpDateProps, Date> {
 
     public static defaultProps: UpDateProps = {
-        format:"DD/MM/YYYY",
-        value:null
+        format:"DD/MM/YYYY"
     };
 
     constructor(p, c) {
@@ -40,7 +39,12 @@ export default class UpDate extends InputBaseComponent<UpDateProps, Date> {
 
     renderControl() {
         return <UpDateStyle 
-            format={this.props.format} value={this.state.value} hasError={this.props.hasError} onChange={this.handleChangeEvent}
+            format={this.props.format} value={this.state.value}
+
+            hasError={this.props.hasError || this.hasError()}
+            showError={this.props.showError}
+
+            onChange={this.handleChangeEvent}
             disabled={this.props.disabled}
             minDate={this.props.minDate? this.props.minDate : MIN_DATE}
             maxDate={this.props.maxDate? this.props.maxDate : MAX_DATE}></UpDateStyle>;

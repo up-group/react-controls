@@ -12,8 +12,7 @@ const MAX_DATE = new Date(+8640000000000) ;
 export default class UpDateTime extends InputBaseComponent<UpDateTimeProps, Date> {
 
     public static defaultProps: UpDateTimeProps = {
-        format:"DD/MM/YYYY",
-        value:null
+        format:"DD/MM/YYYY"
     };
 
     constructor(p, c) {
