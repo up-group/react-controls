@@ -9,7 +9,7 @@ import UpNumberStyled from './styles'
 // Exports
 export default class UpNumber extends InputBaseComponent<UpNumberProps, number|string> {
     public static defaultProps: UpNumberProps = {
-        decimalPlace:0
+        decimalPlace:2
     };
 
     constructor(p, c) {
@@ -46,15 +46,9 @@ export default class UpNumber extends InputBaseComponent<UpNumberProps, number|s
     onChange(value) {
         return value;
     }
-
-    componentWillReceiveProps(nextProps: UpNumberProps) {
-        if (nextProps.value !== this.props.value) {
-            this.setState({ value: nextProps.value });
-        }
-    }
-
+  
     renderControl() {
-        const { onChange, onError, readonly, decimalPlace, isNullable, stepSize, value, tooltip, ...others } = this.props ;
+        const { onChange, readonly, decimalPlace, stepSize, value, tooltip, ...others } = this.props ;
         
         return (
             <UpNumberStyled

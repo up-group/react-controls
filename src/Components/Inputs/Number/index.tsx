@@ -9,7 +9,6 @@ export interface UpNumberProps extends CommonProps{
    min?: number;
    stepSize?:number;
    decimalPlace?:number;
-   isNullable?: boolean;
    value?:number|string;
 }
 

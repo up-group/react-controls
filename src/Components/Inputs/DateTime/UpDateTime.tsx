@@ -24,9 +24,6 @@ export default class UpDateTime extends InputBaseComponent<UpDateTimeProps, Date
         };
     }
 
-    componentDidMount = () => {
-    }
-
     onChangeDate = (date:Date) => {
         var current = this.state.value ;
         if(current!=null) {
@@ -54,11 +51,6 @@ export default class UpDateTime extends InputBaseComponent<UpDateTimeProps, Date
         this.handleChangeEvent(time) ;
     }
     
-    componentWillReceiveProps(nextProps: UpDateTimeProps) {
-        if (nextProps.value !== this.props.value) {
-            this.setState({value: nextProps.value });
-        }
-    }
 
     renderControl() {
         return <UpDateStyle format={this.props.format} value={this.state.value} hasError={this.props.hasError} 

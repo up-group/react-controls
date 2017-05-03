@@ -29,7 +29,7 @@ export default class UpNumberStyled extends React.Component<UpNumberStyledProps,
     }
 
     public render() {
-        const { readonly, decimalPlace, handleNumericChange, dataFor, isNullable, stepSize, value, tooltip, ...others } = this.props ;
+        const { readonly, decimalPlace, handleNumericChange, dataFor, stepSize, value, tooltip, ...others } = this.props ;
         
         return (
             <NumericInput

@@ -25,12 +25,6 @@ export default class UpDate extends InputBaseComponent<UpDateProps, Date> {
     componentWillMount = () => {
     }
 
-    componentWillReceiveProps(nextProps: UpDateProps) {
-        if (nextProps.value !== this.props.value) {
-            this.setState({value: nextProps.value });
-        }
-    }
-    
     shouldComponentUpdate(nextProps, nextState) {
         var shouldUpdate:boolean = nextState.value != this.state.value;
         if(shouldUpdate===false) {

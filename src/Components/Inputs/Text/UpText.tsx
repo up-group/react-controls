@@ -19,14 +19,8 @@ export default class UpText extends InputBaseComponent<UpTextProps, string> {
         }
     }
     
-    componentWillReceiveProps(nextProps: UpTextProps) {
-        if (nextProps.value !== this.props.value) {
-            this.setState({value: nextProps.value });
-        }
-    }
-
     renderControl(): JSX.Element {
-        const {value, onChange, onError, readonly, tooltip, ...others} = this.props ;
+        const {value, onChange, readonly, tooltip, ...others} = this.props ;
         return (<TexAreatStyled value={this.state.value} hasError={this.hasError()} onChange={this.handleChangeEvent} {...others} />)
     }
 
