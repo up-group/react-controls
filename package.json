@@ -1,6 +1,6 @@
 {
   "name": "@up-group/react-controls",
-  "version": "0.0.94",
+  "version": "0.0.95",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -38,11 +38,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-   
-    
     "react-input-autosize": "1.1.0",
-
-
     "@types/eonasdan-bootstrap-datetimepicker": "^4.17.22",
     "@types/jquery": "^2.0.41",
     "@types/moment": "^2.13.0",
