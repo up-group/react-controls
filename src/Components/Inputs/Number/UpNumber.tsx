@@ -53,7 +53,6 @@ export default class UpNumber extends InputBaseComponent<UpNumberProps, number|s
         
         return (
             <UpNumberStyled
-                {...others}
                 value={this.state.value}
                 stepSize={stepSize}
                 handleNumericChange={this.handleNumericChange}>
