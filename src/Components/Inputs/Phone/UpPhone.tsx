@@ -20,9 +20,10 @@ export default class UpPhone extends InputBaseComponent<UpPhoneProps, string> {
     renderControl() {
         return (
             <UpInput iconName="phone" validation={[{
-                pattern :/^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/,
-                errorMessage : "Le champ doit être un numéro de téléphone"
-           }]} {...this.props} />
+                pattern: /^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/,
+                errorMessage: "Le champ doit être un numéro de téléphone"
+            }]}
+                hasError={this.hasError()} showError={this.props.showError} />
         );
     }
 }

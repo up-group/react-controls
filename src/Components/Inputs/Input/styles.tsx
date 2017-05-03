@@ -342,7 +342,7 @@ const error = css`
 
 export const InputStyled = styled<UpInputStyledProps>(BaseInput)`
   ${inputStyles}
-  ${(props) => props.hasError ? error:css``}
+  ${(props) => props.hasError && props.showError ? error:css``}
   color: ${(props: UpInputStyledProps) => props.color};
   .up-input {
     width: ${(props: UpInputStyledProps) => sizeMap[props.width]};

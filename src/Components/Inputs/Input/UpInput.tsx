@@ -13,15 +13,15 @@ export default class UpInput extends InputBaseComponent<UpInputProps, any> {
     constructor(p, c) {
         super(p, c);
         this.state = {
-            value:p.value
+            value: p.value
         }
-        var _self = this ;
-        if(this.props.validation && this.props.validation.length>0) {
-            this.props.validation.map(function(value:Validation, index:number) {
-                if(value && value.pattern) {
+        var _self = this;
+        if (this.props.validation && this.props.validation.length > 0) {
+            this.props.validation.map(function (value: Validation, index: number) {
+                if (value && value.pattern) {
                     _self._validationManager.addControl(new TypeStringControl(value.pattern, value.errorMessage));
                 }
-            }) ;
+            });
         }
     }
 
@@ -35,8 +35,8 @@ export default class UpInput extends InputBaseComponent<UpInputProps, any> {
             <InputStyled
                 value={this.state.value}
                 type={type || "text"}
-                hasError={this.hasError()}
-                {...others}
+                hasError={this.props.hasError || this.hasError()}
+                showError={this.props.showError}
                 onChange={this.handleChangeEvent}>
                 {this.props.children}
             </InputStyled>

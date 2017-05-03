@@ -21,6 +21,7 @@ export interface UpInputStyledProps extends CommonProps {
     isNullable?: boolean;
     iconName?: IconName;
     hasError?: boolean;
+    showError?:boolean;
     onChange?: (data: any) => void;
     className?: string;
     value:string;
