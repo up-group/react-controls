@@ -2,21 +2,12 @@ import * as React from "react"
 
 import { UpSwitchProps, UpSwitchState } from './'
 
-import styled, { css } from '../../../Common/theming/themedComponents';
-
-
 
 export default class UpSwitch extends React.Component<UpSwitchProps, UpSwitchState> {
     constructor(p, c) {
         super(p, c);
         this.state = { value: false };
     }
-
-    componentDidMount() {
-
-    }
-
-
 
     render() {
 
@@ -70,7 +61,7 @@ export default class UpSwitch extends React.Component<UpSwitchProps, UpSwitchSta
             return <span style={btnBool} >
                 <span style={{ ...btnBoolSpan, ...btnFalse }} value={false.toString()} onClick={this.onBoolClick}>Non</span>
                 <span style={{ ...btnBoolSpan, ...btnTrue }} value={true.toString()} onClick={this.onBoolClick}>Oui</span>
-            </span >
+            </span>
         }
     }
 
