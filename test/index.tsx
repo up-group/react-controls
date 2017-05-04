@@ -86,8 +86,9 @@ class Demo extends React.Component<undefined, DemoState> {
                             Editor
               <hr />
                             <UpPanel title="Paramètres" type="info">
-                                <UpNumber onChange={this.onNumberChange}/>
-                             
+                                <UpNumber max={5} min={2} onChange={this.onNumberChange}/>
+
+
                                 {this.state.number}
                             </UpPanel>
 
