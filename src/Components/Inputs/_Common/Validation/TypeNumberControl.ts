@@ -15,7 +15,7 @@ export default class TypeNumberControl implements ErrorControl<any> {
 
     isValidValue(value: number | string): ErrorControlType<number> {
 
-        if (value === "" || value === null) {
+        if (value === "" || value === null || value === undefined) {
             return { hasError: false, correctValue: null }
         }
 
