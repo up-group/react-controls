@@ -2,6 +2,9 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import {
+    UpGrid,
+    UpCol,
+    UpRow,
     UpBox,
     UpPanel,
     UpButton,
@@ -87,8 +90,30 @@ class Demo extends React.Component<undefined, DemoState> {
                             Editor
               <hr />
                             <UpPanel title="Paramètres" type="info">
-                                <UpNumber max={5} min={2} onChange={this.onNumberChange}/>
-                                <UpSwitch isNullable={true} onChange={this.onNumberChange}/>
+                                <UpNumber max={5} min={2} onChange={this.onNumberChange} />
+
+                                <UpGrid>
+                                    <UpRow gutter={10} >
+                                        <UpCol span={12}>
+                                            <UpSwitch isNullable={true} onChange={this.onNumberChange} />
+
+                                        </UpCol>
+                                        <UpCol span={12}>
+
+                                            <UpSwitch isNullable={true} onChange={this.onNumberChange} />
+                                        </UpCol>
+                                    </UpRow>
+                                <UpRow gutter={10} >
+                                        <UpCol  span={12}>
+                                            <UpSwitch isNullable={true} onChange={this.onNumberChange} />
+
+                                        </UpCol>
+                                        <UpCol span={12}>
+
+                                            <UpSwitch isNullable={true} onChange={this.onNumberChange} />
+                                        </UpCol>
+                                    </UpRow>
+                                </UpGrid>
 
 
                                 {this.state.number}
