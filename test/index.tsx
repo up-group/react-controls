@@ -16,7 +16,8 @@ import {
     UpEmail,
     UpInput,
     UpSelect,
-    UpFormGroup
+    UpFormGroup,
+    UpSwitch
 } from "../src/index";
 
 interface Item {
@@ -87,6 +88,7 @@ class Demo extends React.Component<undefined, DemoState> {
               <hr />
                             <UpPanel title="Paramètres" type="info">
                                 <UpNumber max={5} min={2} onChange={this.onNumberChange}/>
+                                <UpSwitch isNullable={true} onChange={this.onNumberChange}/>
 
 
                                 {this.state.number}
