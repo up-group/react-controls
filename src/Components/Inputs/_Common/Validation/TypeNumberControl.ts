@@ -22,13 +22,13 @@ export default class TypeNumberControl implements ErrorControl<any> {
         var nbValue = Number(value);
 
         if (isNaN(nbValue)) {
-            return { hasError: true, errorMessage: "Doit �tre un nombre" }
+            return { hasError: true, errorMessage: "Doit être un nombre" }
         } else if (this._isInteger && nbValue % 1 !== 0) {
-            return { hasError: true, errorMessage: "Doit �tre un entier" }
+            return { hasError: true, errorMessage: "Doit être un entier" }
         } else if (this._minValue > nbValue) {
-            return { hasError: true, errorMessage: "Doit �tre plus grand que '" + this._minValue + "'" }
+            return { hasError: true, errorMessage: "Doit être plus grand que '" + this._minValue + "'" }
         } else if (this._maxValue < nbValue) {
-            return { hasError: true, errorMessage: "Doit �tre plus petit que '" + this._maxValue + "'" }
+            return { hasError: true, errorMessage: "Doit être plus petit que '" + this._maxValue + "'" }
         }
 
         return { hasError: false, correctValue: nbValue }
