@@ -14,7 +14,6 @@ export default class UpPhone extends InputBaseComponent<UpPhoneProps, string> {
         super(p, c);
     }
 
-
     initWithProps() { }
 
     onChange(event: any) {

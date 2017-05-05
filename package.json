@@ -38,7 +38,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "react-input-autosize": "1.1.0",
     "@types/eonasdan-bootstrap-datetimepicker": "^4.17.22",
     "@types/jquery": "^2.0.41",
     "@types/moment": "^2.13.0",
@@ -87,6 +86,7 @@
     "react-select": "^1.0.0-rc.3",
     "react-sortable-hoc": "^0.6.1",
     "react-textarea-autosize": "^4.0.5",
+    "react-input-autosize": "1.1.0",
     "react-tooltip": "^3.3.0",
     "select2": "^4.0.3",
     "styled-components": "^1.4.4",

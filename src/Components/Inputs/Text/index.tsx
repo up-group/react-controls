@@ -17,6 +17,8 @@ export interface UpTextProps extends CommonPros {
 export interface UpTextStyledProps extends CommonPros {
     value: string;
     hasError?: boolean;
+    isRequired?: boolean;
+    showError?: boolean;
     className?: string;
     dataFor?:string; // For tooltip
 }
