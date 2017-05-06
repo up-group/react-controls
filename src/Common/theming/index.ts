@@ -1,3 +1,9 @@
 import colorMap from './colorMap';
+import { ThemeInterface } from "./types";
 
-export default colorMap;
+const defaultTheme: ThemeInterface = {
+  colorMap: colorMap,
+  gridGutter: 30
+}
+
+export default defaultTheme ;

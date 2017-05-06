@@ -1,7 +1,7 @@
 import UpFormGroup  from './UpFormGroup'
 import {ThemedProps} from '../../../Common/theming/types' 
 
-export interface UpFormGroupProps  {
+export interface UpFormGroupProps extends ThemedProps {
     title:string;
 }
 

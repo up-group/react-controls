@@ -1,11 +1,11 @@
 ﻿// Imports
 import * as React from 'react'
-import { InputBaseComponent } from '../_Common/BaseControl/BaseControl'
+import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import { UpEmailProps } from './'
 import UpInput from '../Input'
 
 // Exports
-export default class UpEmail extends InputBaseComponent<UpEmailProps, string> {
+export default class UpEmail extends BaseControlComponent<UpEmailProps, string> {
     public static defaultProps: UpEmailProps = {
         showError: true
     };
@@ -26,7 +26,13 @@ export default class UpEmail extends InputBaseComponent<UpEmailProps, string> {
                 pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                 errorMessage: "Le champ doit être un courriel"
             }]} value={this.props.value}
-            onChange={this.dispatchOnChange} isRequired={this.props.isRequired} hasError={this.hasError()} showError={this.props.showError} />
+            onChange={this.dispatchOnChange} 
+            isRequired={this.props.isRequired} 
+            maxLength={this.props.maxLength} 
+            placeholder={this.props.placeholder} 
+            width={this.props.width} 
+            hasError={this.hasError()} 
+            showError={this.props.showError} />
         );
     }
 }

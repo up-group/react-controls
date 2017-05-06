@@ -3,13 +3,15 @@ import * as React from 'react';
 import {withTheme} from 'styled-components'
 import {Grid} from './styles'
 import {UpGridProps, LayoutMode} from './'
-import * as classNames from 'classnames';
-import * as assign from 'object-assign';
+import * as classNames from 'classnames'
+import * as assign from 'object-assign'
+import defaultTheme from '../../../Common/theming'
 
 class UpGrid extends React.Component<UpGridProps, any> {
   
   public static defaultProps : UpGridProps = {
-      gutter:0
+      gutter:0,
+      theme:defaultTheme
   }
 
   render() {

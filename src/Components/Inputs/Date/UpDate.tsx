@@ -1,19 +1,22 @@
+// Imports
 import "normalize.css/normalize.css"
 import "@blueprintjs/core/dist/blueprint.css"
-
 import * as React from "react"
 import { UpDateProps, UpDateStyledProps } from './'
-import { InputBaseComponent } from '../_Common/BaseControl/BaseControl'
+import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import UpDateStyle from './styles'
+import defaultTheme from '../../../Common/theming'
 
+// Exports
 const MIN_DATE = new Date(-8640000000000);
 const MAX_DATE = new Date(+8640000000000);
 
-export default class UpDate extends InputBaseComponent<UpDateProps, Date> {
+export default class UpDate extends BaseControlComponent<UpDateProps, Date> {
 
     public static defaultProps: UpDateProps = {
         format: "DD/MM/YYYY",
-        showError: true
+        showError: true,
+        theme:defaultTheme
     };
 
     constructor(p, c) {

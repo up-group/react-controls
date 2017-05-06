@@ -1,14 +1,16 @@
 // Imports
 import * as React from 'react'
 import { InputStyled } from './styles'
-import { InputBaseComponent } from '../_Common/BaseControl/BaseControl'
+import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import { UpInputProps, Validation } from './'
 import TypeStringControl from '../_Common/Validation/TypeStringControl'
+import defaultTheme from '../../../Common/theming'
 
 // EXports
-export default class UpInput extends InputBaseComponent<UpInputProps, any> {
-    public static defaultProps = {
-        showError: true
+export default class UpInput extends BaseControlComponent<UpInputProps, any> {
+    public static defaultProps: UpInputProps = {
+        showError: true,
+        theme:defaultTheme
     };
 
     constructor(p, c) {
@@ -31,10 +33,18 @@ export default class UpInput extends InputBaseComponent<UpInputProps, any> {
     }
 
     renderControl() {
-        const {type, onChange, value, validation, hasError, ...others } = this.props;
+        const {type, onChange, value, validation, hasError, iconName, width, disabled, readonly, tooltip, theme, maxLength, placeholder, ...others } = this.props;
         return (
             <InputStyled
                 value={this.state.value}
+                iconName={iconName}
+                width={width}
+                disabled={disabled}
+                readonly={readonly}
+                tooltip={tooltip}
+                theme={theme}
+                maxLength={maxLength}
+                placeholder={placeholder}
                 type={type || "text"}
                 hasError={this.props.hasError || this.hasError()}
                 showError={this.props.showError}

@@ -15,7 +15,7 @@ export interface UpGridProps extends ThemedProps {
     style?: React.CSSProperties; // In order to set margin for example
 }
 
-export interface UpGridStyledProps {
+export interface UpGridStyledProps extends ThemedProps {
     style?: React.CSSProperties; // In order to set margin for example
 }
 

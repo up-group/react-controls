@@ -4,7 +4,7 @@ import {ThemedProps, IntentType} from '../../../Common/theming/types'
 
 export type Alignement = 'h' | 'v'
 
-export interface UpButtonGroupProps {
+export interface UpButtonGroupProps extends ThemedProps {
   gutter?:number;
   align?:Alignement;
 }

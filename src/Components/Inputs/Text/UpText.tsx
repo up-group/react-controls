@@ -1,14 +1,16 @@
 // Imports
 import * as React from "react"
-import { InputBaseComponent } from "../_Common/BaseControl/BaseControl"
+import { BaseControlComponent } from "../_Common/BaseControl/BaseControl"
 import { TexAreatStyled } from "./styles";
 import { UpTextProps } from './'
+import defaultTheme from '../../../Common/theming'
  
 // Exports
-export default class UpText extends InputBaseComponent<UpTextProps, string> {
-    public static defaultProps = {
+export default class UpText extends BaseControlComponent<UpTextProps, string> {
+    public static defaultProps:UpTextProps = {
         width: 'medium',
-        showError: true
+        showError: true,
+        theme:defaultTheme
     }
     
     constructor(p, c) {

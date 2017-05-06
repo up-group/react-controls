@@ -4,7 +4,7 @@ import styled, {css} from '../../../Common/theming/themedComponents';
 import remStringFromPX from '../../../Common/utils'
 import { Dictionary } from '../../../Common/utils/types'
 import { UpButtonStyledProps, fontSizeMap, buttonSizeMap} from './'
-import ThemeColorMap from '../../../Common/theming'
+import defaultTheme from '../../../Common/theming'
 import SvgIcon from "../../Display/SvgIcon/index";
 import { ThemeInterface } from "../../../Common/theming/types";
 import { IconName } from '../../../Common/theming/types'

@@ -1,8 +1,11 @@
+// Imports
 import * as React from 'react';
 import { BaseButton} from './styles';
 import { UpButtonProps } from './';
 import  UpTooltip, {Tooltip} from '../../Display/Tooltip' ;
+import defaultTheme from '../../../Common/theming'
 
+// Exports
 export default class UpButton extends React.Component<UpButtonProps, undefined> {
 
   constructor(props) {
@@ -23,7 +26,8 @@ export default class UpButton extends React.Component<UpButtonProps, undefined> 
     width: 'normal',
     height: 'normal',
     tooltip:null,
-    onClick:(e:React.MouseEvent<HTMLButtonElement>) => {}
+    onClick:(e:React.MouseEvent<HTMLButtonElement>) => {},
+    theme:defaultTheme
   };
 
   private handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {

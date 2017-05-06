@@ -1,6 +1,6 @@
 // Imports
 import * as React from 'react'
-import ThemeColorMap from '../../../Common/theming'
+import defaultTheme from '../../../Common/theming'
 import { UpPanelStyledProps } from './'
 import styled,{ css } from "../../../Common/theming/themedComponents";
 import SvgIcon from "../../Display/SvgIcon/index";
@@ -48,7 +48,7 @@ const base = props => css`
   .up-panel-header {
     width:100%;
     padding: 8px;
-    color: ${props => (props.theme.colorMap)? props.theme.colorMap.white1 : ThemeColorMap.white1};
+    color: ${props => (props.theme.colorMap)? props.theme.colorMap.white1 : defaultTheme.colorMap.white1};
     font-weight:"700"
   }
   .up-panel-body {
@@ -58,8 +58,8 @@ const base = props => css`
   }
   .up-panel-footer {
     background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ; 
-    background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.lightGray5 : ThemeColorMap.lightGray5};
-    border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.lightGray1 : ThemeColorMap.lightGray1};
+    background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.lightGray5 : defaultTheme.colorMap.lightGray5};
+    border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.lightGray1 : defaultTheme.colorMap.lightGray1};
     border-top-width:1px;
     border-top-style:solid;
     padding: 6px;
@@ -74,54 +74,54 @@ const base = props => css`
 export const DefaultPanel = styled<UpPanelStyledProps>(BasePanel) `
 ${(props: UpPanelStyledProps) => base(props) }
 ${(props: UpPanelStyledProps) => shadow(props)}
-border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.default : ThemeColorMap.default};
+border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.default : defaultTheme.colorMap.default};
  .up-panel-header {
-   background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.default : ThemeColorMap.default};
+   background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.default : defaultTheme.colorMap.default};
  }
 `;
 
 export const PrimaryDefaultPanel = styled<UpPanelStyledProps>(BasePanel) `
 ${(props: UpPanelStyledProps) => base(props) }
 ${(props: UpPanelStyledProps) => shadow(props)}
-border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.primary : ThemeColorMap.primary};
+border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.primary : defaultTheme.colorMap.primary};
  .up-panel-header {
-   background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.primary : ThemeColorMap.primary};
+   background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.primary : defaultTheme.colorMap.primary};
  }
 `;
 
 export const WarningDefaultPanel = styled<UpPanelStyledProps>(BasePanel) `
 ${(props: UpPanelStyledProps) => base(props)}
 ${(props: UpPanelStyledProps) => shadow(props)}
-border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.warning : ThemeColorMap.warning};
+border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.warning : defaultTheme.colorMap.warning};
  .up-panel-header {
-   background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.warning : ThemeColorMap.warning};
+   background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.warning : defaultTheme.colorMap.warning};
  }
 `;
 
 export const SuccessDefaultPanel = styled<UpPanelStyledProps>(BasePanel) `
 ${(props: UpPanelStyledProps) => base(props) }
 ${(props: UpPanelStyledProps) => shadow(props)}
-border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.successDark : ThemeColorMap.successDark};
+border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.successDark : defaultTheme.colorMap.successDark};
  .up-panel-header {
-   background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.success : ThemeColorMap.success};
+   background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.success : defaultTheme.colorMap.success};
  }
 `;
 
 export const InfoDefaultPanel = styled<UpPanelStyledProps>(BasePanel) `
 ${(props: UpPanelStyledProps) => base(props) }
 ${(props: UpPanelStyledProps) => shadow(props)}
-border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.infoDark : ThemeColorMap.infoDark};
+border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.infoDark : defaultTheme.colorMap.infoDark};
  .up-panel-header {
-   background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.info : ThemeColorMap.info};
+   background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.info : defaultTheme.colorMap.info};
  }
 `;
 
 export const DangerDefaultPanel = styled<UpPanelStyledProps>(BasePanel) `
 ${(props: UpPanelStyledProps) => base(props) }
 ${(props: UpPanelStyledProps) => shadow(props)}
-border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.danger : ThemeColorMap.dangerDark};
+border-color: ${props => (props.theme.colorMap)? props.theme.colorMap.danger : defaultTheme.colorMap.dangerDark};
 .up-panel-header {
-   background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.danger : ThemeColorMap.danger};
+   background-color: ${props => (props.theme.colorMap)? props.theme.colorMap.danger : defaultTheme.colorMap.danger};
  }
 `;
 

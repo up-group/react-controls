@@ -3,7 +3,7 @@ import * as React from 'react'
 import styled, {css} from '../../../Common/theming/themedComponents';
 
 import { UpRadioStyledProps } from './'
-import ThemeColorMap from '../../../Common/theming'
+import defaultTheme from '../../../Common/theming'
 
 import SvgIcon from '../../Display/SvgIcon'
 import * as classNames from 'classnames'

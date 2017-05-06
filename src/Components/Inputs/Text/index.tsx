@@ -1,12 +1,16 @@
+// Impprts
 import UpText from './UpText'
+import { ThemedProps } from '../../../Common/theming/types'
 
+// Exports
 export type WidthSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'fill';
 
-export interface CommonPros {
+export interface CommonPros extends ThemedProps {
     width?: WidthSize;
     defaultValue?: string;
     placeholder?: string;
     disabled?: boolean;
+    showError?: boolean;
     onChange?: (data: any) => void; 
 }
 

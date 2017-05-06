@@ -3,7 +3,7 @@ import UpPanel from './UpPanel'
 import {IntentType, IconName, ThemedProps} from "../../../Common/theming/types"
 
 // Exports
-export interface UpPanelProps {
+export interface UpPanelProps extends ThemedProps  {
   title?:string;
   footer?: string | React.ReactElement<any>;
   type?:IntentType;
@@ -12,7 +12,7 @@ export interface UpPanelProps {
   iconSize?:number;
 }
 
-export interface UpPanelStyledProps extends UpPanelProps, ThemedProps {
+export interface UpPanelStyledProps extends UpPanelProps {
   className?: string; // For styled components
 }
 

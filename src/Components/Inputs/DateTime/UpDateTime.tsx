@@ -3,13 +3,13 @@ import "normalize.css/normalize.css"
 import "@blueprintjs/core/dist/blueprint.css"
 import * as React from "react"
 import { UpDateTimeProps } from './'
-import { InputBaseComponent } from '../_Common/BaseControl/BaseControl'
+import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import UpDateStyle from './styles'
 
 const MIN_DATE = new Date(-8640000000000) ;
 const MAX_DATE = new Date(+8640000000000) ;
 
-export default class UpDateTime extends InputBaseComponent<UpDateTimeProps, Date> {
+export default class UpDateTime extends BaseControlComponent<UpDateTimeProps, Date> {
 
     public static defaultProps: UpDateTimeProps = {
         format: "DD/MM/YYYY",

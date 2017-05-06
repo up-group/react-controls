@@ -1,7 +1,7 @@
 // Imports
 import * as React from 'react'
-import { InputBaseComponent } from './BaseControl'
-import { InputBaseProps } from './BaseControl'
+import { BaseControlComponent } from './BaseControl'
+import { BaseControlProps } from './BaseControl'
 import { InputStyled} from '../Styled/Input/BaseInput'
 import { IconName } from '../../../../Common/theming/types'
 
@@ -9,7 +9,7 @@ import { IconName } from '../../../../Common/theming/types'
 export type WidthSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'fill';
 export type HeightSize = 'normal' | 'large';
 
-export interface CommonInputTextProps extends InputBaseProps<string> {
+export interface CommonInputTextProps extends BaseControlProps<string> {
     placeholder?: string;
     height?: HeightSize;
     width?: WidthSize;

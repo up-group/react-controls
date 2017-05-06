@@ -2,12 +2,14 @@
 import * as React from 'react'
 import { FormGroupStyled, FormGroupTitle} from './styles'
 import { UpFormGroupProps } from './'
-
+import defaultTheme from '../../../Common/theming'
+ 
 // Exports
 export default class UpFormGroup extends React.Component<UpFormGroupProps, {}> {
   
-  public static defaultProps = {
-     title:""
+  public static defaultProps:UpFormGroupProps = {
+     title:"",
+     theme:defaultTheme
   }
 
   constructor(props) {

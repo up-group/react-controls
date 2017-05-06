@@ -1,10 +1,12 @@
-import * as React from 'react'
 // Imports
-import styled, {css} from '../../../../../Common/theming/themedComponents';
-import SvgIcon from "../../../../Display/SvgIcon/index";
-import { IconName, ThemeInterface } from "../../../../../Common/theming/types";
+import * as React from 'react'
+import styled, {css} from '../../../../../Common/theming/themedComponents'
+import SvgIcon from "../../../../Display/SvgIcon/index"
+import { IconName, ThemeInterface } from "../../../../../Common/theming/types"
 import { inputStyles, HeightLarge } from "./styles"
-import { CommonInputTextWithIconProps } from '../../BaseControl/BaseInput' 
+import { CommonInputTextWithIconProps } from '../../BaseControl/BaseInput'
+import defaultTheme from '../../../../../Common/theming'
+
 // Exports
 export type InputType = 'text' | 'email' | 'number' | 'integer' | 'phone' | 'search';
 
@@ -51,7 +53,7 @@ const sizeMap = {
 
 const error = css`
 .up-input {
-  border-color:${(props) => props.theme.colorMap.danger};
+  border-color:${(props) => (props.theme) ? props.theme.colorMap.danger : defaultTheme.colorMap.danger};
   border-width: 1px;
   border-style: solid;
 }

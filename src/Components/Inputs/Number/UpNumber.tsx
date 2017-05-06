@@ -1,7 +1,7 @@
 ﻿// Imports
 import * as React from 'react'
 import { UpInputProps } from '../Input/'
-import { InputBaseComponent } from '../_Common/BaseControl/BaseControl'
+import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import { FilterProps } from '../../../Common/utils/types'
 import { UpNumberProps, UpNumberStyledProps } from './'
 import TypeNumberControl from '../_Common/Validation/TypeNumberControl'
@@ -9,7 +9,7 @@ import TypeNumberControl from '../_Common/Validation/TypeNumberControl'
 import { NumericInput } from '@blueprintjs/core'
 
 // Exports
-export default class UpNumber extends InputBaseComponent<UpNumberProps, number | string> {
+export default class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
     public static defaultProps = {
         decimalPlace: 2,
         showError: true,

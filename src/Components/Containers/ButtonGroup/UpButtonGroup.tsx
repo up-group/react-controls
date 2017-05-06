@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { UpButtonGroupProps } from './'
+import defaultTheme from '../../../Common/theming'
 import  UpTooltip, {Tooltip} from '../../Display/Tooltip'
 import { ButtonGroupStyled } from './styles'
 
@@ -11,7 +12,8 @@ export default class UpButtonGroup extends React.Component<UpButtonGroupProps, u
 
   public static defaultProps: UpButtonGroupProps = {
     gutter:10,
-    align:'h'
+    align:'h',
+    theme:defaultTheme
   };
 
   public render() {

@@ -4,11 +4,12 @@ import ValidationManager from "../Validation/ValidationManager"
 import ErrorDisplay from "../Validation/ErrorDisplay"
 // Importation des règles CSS de bases -> à transformer en styled-components
 import "../../../../Common/theming/base.css"
-import UpTooltip, { Tooltip } from '../../../Display/Tooltip';
+import UpTooltip, { Tooltip } from '../../../Display/Tooltip'
 import TypeNullControl from "../Validation/TypeNullControl"
+import {ThemedProps} from '../../../../Common/theming/types'
 
 // Exports
-export interface InputBaseProps<_BaseType> {
+export interface BaseControlProps<_BaseType> extends ThemedProps {
     onChange?: (arg: _BaseType, event: any, error: boolean) => void;
     value?: _BaseType;
     defaultValue?: _BaseType;
@@ -19,22 +20,21 @@ export interface InputBaseProps<_BaseType> {
     showError?: boolean;
 }
 
-export interface InputBaseState<_BaseType> {
+export interface BaseControlState<_BaseType> {
     error?: string;
     value?: _BaseType;
 }
 
-export abstract class InputBaseComponent<_Props, _BaseType> extends React.Component<InputBaseProps<_BaseType> & _Props, InputBaseState<_BaseType>> {
+export abstract class BaseControlComponent<_Props, _BaseType> extends React.Component<BaseControlProps<_BaseType> & _Props, BaseControlState<_BaseType>> {
 
     _validationManager: ValidationManager;
 
-    constructor(props?: InputBaseProps<_BaseType> & _Props, context?) {
+    constructor(props?: BaseControlProps<_BaseType> & _Props, context?) {
         super(props, context);
         this.state = { error: null, value: null };
 
         this.initWithProps();
     }
-
 
     protected initWithProps() {
         this._validationManager = new ValidationManager();
@@ -46,9 +46,40 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
     abstract onChange(args: any): _BaseType;
     abstract renderControl(): JSX.Element;
 
+    private checkAndDispatch = (value?:_BaseType) => {
+        var _value = (value!==undefined)?value:this.state.value;
+        if (this._validationManager !== undefined) {
+            var hasError = this.checkData();
+            this.dispatchOnChange(_value, null, hasError);
+        } else {
+            this.dispatchOnChange(_value, null, null);
+        }
+    }
+
+    private equal = (v1, v2) => {
+        if (v1 === v2) {
+            return v1 !== 0 || 1 / v1 === 1 / v2;
+        } else {
+            return v1 !== v1 && v2 !== v2;
+        }
+    }
+
+    private componentWillReceiveProps(nextProps: (BaseControlProps<_BaseType> & _Props)) {
+       var newValue = nextProps.value;
+       var oldValue = this.state.value;
+       if (!this.equal(newValue, oldValue)) {
+           this.setState({ value: nextProps.value });
+       }
+    }
+
     public handleChangeEvent = (event) => {
         var cleanData = this.onChange(event);
-        this.setState({ value: cleanData }, this.checkAndDispatch);
+        var propsValue = (this.props as BaseControlProps<_BaseType>).value;
+        if(propsValue !== undefined) {
+            this.checkAndDispatch(cleanData)
+        } else {
+            this.setState({ value: cleanData }, this.checkAndDispatch);
+        }
     }
 
     private checkData = () => {
@@ -85,51 +116,15 @@ export abstract class InputBaseComponent<_Props, _BaseType> extends React.Compon
                 </UpTooltip>}
         </ErrorDisplay>
         );
-
     }
 
     public componentDidMount() {
         this.checkAndDispatch();
     }
 
-    private componentDidUpdate = (prevProps, prevState) => {
-        var propsValue = (this.props as InputBaseProps<_BaseType>).value;
-        var stateValue = this.state.value;
-        if (propsValue !== undefined && this.equal(propsValue, stateValue) === false) {
-            this.setState({ value: propsValue }, this.checkAndDispatch);
-
-        }
-    }
-
-    private checkAndDispatch = () => {
-        if (this._validationManager !== undefined) {
-            var hasError = this.checkData();
-            this.dispatchOnChange(this.state.value, event, hasError);
-        } else {
-            this.dispatchOnChange(this.state.value, event, null);
-        }
-    }
-
-    private equal = (v1, v2) => {
-        if (v1 === v2) {
-            return v1 !== 0 || 1 / v1 === 1 / v2;
-        } else {
-            return v1 !== v1 && v2 !== v2;
-        }
-    }
-
-    //private componentWillReceiveProps(nextProps: (InputBaseProps<_BaseType> & _Props)) {
-    //    var newValue = nextProps.value;
-    //    var oldValue = this.state.value;
-    //    if (newValue !== oldValue) {
-    //        this.setState({ value: nextProps.value });
-    //    }
-    //}
-
     public dispatchOnChange = (data: _BaseType, event, error: boolean) => {
         if (this.props.onChange !== undefined) {
             this.props.onChange(data, event, error);
         }
     }
-
 }

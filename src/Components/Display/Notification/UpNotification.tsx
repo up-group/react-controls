@@ -1,18 +1,18 @@
 // Imports
-import * as React from 'react';
-import Paragraph from '../Paragraph';
-import {UpGrid, UpRow, UpCol} from '../../Containers/Grid';
-import iconMap from '../../../Common/theming/iconMap';
-import colorMap from '../../../Common/theming/colorMap';
+import * as React from 'react'
+import Paragraph from '../Paragraph'
+import {UpGrid, UpRow, UpCol} from '../../Containers/Grid'
+import iconMap from '../../../Common/theming/iconMap'
 import SvgIcon from '../SvgIcon'
 import {UpNotificationProps} from './'
-import NotificationStyled from './styles';
-
+import NotificationStyled from './styles'
+import defaultTheme from '../../../Common/theming'
 
 export default class UpNotification extends React.Component<UpNotificationProps, {}> {
   
   public static defaultProps : UpNotificationProps = {
-    message:""
+    message:"",
+    theme:defaultTheme
   }
 
   constructor(props) {

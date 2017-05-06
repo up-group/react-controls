@@ -3,7 +3,7 @@ import * as React from 'react'
 
 export default UpSelect ;
 
-import {InputBaseProps} from '../_Common/BaseControl/BaseControl' 
+import {BaseControlProps} from '../_Common/BaseControl/BaseControl' 
 
 export interface UpSelectOption {
     id:number,
@@ -11,7 +11,7 @@ export interface UpSelectOption {
     icon:string
 }
 
-export interface UpSelectProps extends InputBaseProps<any> {
+export interface UpSelectProps extends BaseControlProps<any> {
     default: any;
     multiple?: boolean;
     data?: any;
