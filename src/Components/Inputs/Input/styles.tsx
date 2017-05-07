@@ -344,8 +344,9 @@ export const InputStyled = styled<UpInputStyledProps>(BaseInput)`
   ${inputStyles}
   ${(props) => props.hasError && props.showError ? error:css``}
   color: ${(props: UpInputStyledProps) => props.color};
+  width: ${(props: UpInputStyledProps) => sizeMap[props.width]};
   .up-input {
-    width: ${(props: UpInputStyledProps) => sizeMap[props.width]};
+    width:100%;
     ${(props: UpInputStyledProps) => (props.height=="large"?HeightLarge:css``)}
   }
 `;

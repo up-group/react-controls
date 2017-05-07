@@ -1,11 +1,12 @@
 import {css} from '../../../../Common/theming/themedComponents';
 
 export const sizeMap = {
-  xsmall: "40px",
-  small: "100px",
-  medium: "150px",
-  large: "250px",
-  xlarge: "350px",
+  xxsmall: "30px",
+  xsmall: "60px",
+  small: "150px",
+  medium: "250px",
+  large: "350px",
+  xlarge: "400px",
   xxlarge: "500px",
   fill: "100%",
 };
