@@ -7,7 +7,8 @@ import UpInput from '../Input'
 // Exports
 export default class UpPhone extends BaseControlComponent<UpPhoneProps, string> {
     public static defaultProps: UpPhoneProps = {
-        showError: true
+        showError: true,
+        width:"medium"
     };
 
     constructor(p, c) {

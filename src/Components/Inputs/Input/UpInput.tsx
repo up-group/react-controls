@@ -10,7 +10,8 @@ import defaultTheme from '../../../Common/theming'
 export default class UpInput extends BaseControlComponent<UpInputProps, any> {
     public static defaultProps: UpInputProps = {
         showError: true,
-        theme:defaultTheme
+        theme:defaultTheme,
+        width:"medium"
     };
 
     constructor(p, c) {
