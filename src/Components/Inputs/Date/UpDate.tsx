@@ -21,7 +21,7 @@ export default class UpDate extends BaseControlComponent<UpDateProps, Date> {
 
     constructor(p, c) {
         super(p, c);
-        this.onChange = this.onChange.bind(this);
+        this.getValue = this.getValue.bind(this);
         this.state = { value: this.props.value };
     }
 
@@ -53,7 +53,7 @@ export default class UpDate extends BaseControlComponent<UpDateProps, Date> {
             maxDate={this.props.maxDate ? this.props.maxDate : MAX_DATE}></UpDateStyle>;
     }
 
-    onChange(newDate: any) {
+    getValue(newDate: any) {
         return newDate;
     }
 }

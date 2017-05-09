@@ -15,7 +15,7 @@ export default class UpText extends BaseControlComponent<UpTextProps, string> {
     
     constructor(p, c) {
         super(p, c);
-        this.onChange = this.onChange.bind(this) ;
+        this.getValue = this.getValue.bind(this) ;
         this.state = {
             value:p.value
         }
@@ -26,7 +26,7 @@ export default class UpText extends BaseControlComponent<UpTextProps, string> {
         return (<TexAreatStyled value={this.state.value} hasError={this.hasError()} onChange={this.handleChangeEvent} {...others} />)
     }
 
-    onChange(event: any) {
+    getValue(event: any) {
         return event.target.value;
     }
 }

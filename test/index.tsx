@@ -13,7 +13,7 @@ import {
     UpDate,
     UpText,
     UpLabel,
-    UpColorMap,
+    UpDefaultTheme,
     UpPhone,
     UpNumber,
     UpEmail,
@@ -38,9 +38,7 @@ interface DemoState {
     integer: number;
 }
 
-var theme: UpThemeInterface = {
-    colorMap: UpColorMap
-}
+var theme: UpThemeInterface = UpDefaultTheme
 theme.colorMap.warning = "orange";
 
 class Demo extends React.Component<undefined, DemoState> {
@@ -79,7 +77,6 @@ class Demo extends React.Component<undefined, DemoState> {
     public render() {
 
         return (
-            <UpThemeProvider theme={theme}>
                 <div>
                     <UpBox flexDirection="row" alignItems="stretch" justifyContent="center" >
                         <UpBox margin="small" boxSize={{ horizontal: 'small' }}>
@@ -134,7 +131,6 @@ class Demo extends React.Component<undefined, DemoState> {
                         </UpBox>
                     </UpBox>
                 </div>
-            </UpThemeProvider>
         );
     }
     onDateChange = (newDate) => {

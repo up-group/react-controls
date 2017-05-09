@@ -50,7 +50,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         return value === null || value === undefined || value === "";
     }
 
-    onChange(data: any) {
+    getValue(data: any) {
         return data;
     }
 

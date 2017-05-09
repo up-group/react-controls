@@ -18,7 +18,7 @@ export default class UpDateTime extends BaseControlComponent<UpDateTimeProps, Da
 
     constructor(p, c) {
         super(p, c);
-        this.onChange = this.onChange.bind(this) ;
+        this.getValue = this.getValue.bind(this) ;
         this.state = {
             value : p.value
         };
@@ -61,7 +61,7 @@ export default class UpDateTime extends BaseControlComponent<UpDateTimeProps, Da
             onChangeTime={this.onChangeTime}></UpDateStyle>;
     }
 
-    onChange(newDate: any) {
+    getValue(newDate: any) {
         return newDate;
     }
 }

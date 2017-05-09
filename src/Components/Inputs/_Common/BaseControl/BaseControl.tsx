@@ -9,6 +9,8 @@ import TypeNullControl from "../Validation/TypeNullControl"
 import {ThemedProps} from '../../../../Common/theming/types'
 
 // Exports
+const ONCHANGE_MUST_BE_SPECIFIED = "La méthode onChange doit être spécifié dans le cas où la valeur du composant est défini dans les props";
+
 export interface BaseControlProps<_BaseType> extends ThemedProps {
     onChange?: (arg: _BaseType, event: any, error: boolean) => void;
     value?: _BaseType;
@@ -34,16 +36,23 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
         this.state = { error: null, value: null };
 
         this.initWithProps();
+        this.registerValidations();
     }
 
-    protected initWithProps() {
+    private initWithProps() 
+    {
+         if(this.props.value !== undefined)
+            this.state = {value:this.props.value };
+    }
+
+    protected registerValidations() {
         this._validationManager = new ValidationManager();
         if (this.props.isRequired) {
             this._validationManager.addControl(new TypeNullControl());
         }
     }
 
-    abstract onChange(args: any): _BaseType;
+    abstract getValue(args: any): _BaseType;
     abstract renderControl(): JSX.Element;
 
     private checkAndDispatch = (value?:_BaseType) => {
@@ -63,18 +72,24 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
             return v1 !== v1 && v2 !== v2;
         }
     }
+    
+    validateProps(nextProps) {
+        if (nextProps.value!==undefined && nextProps.onChange===undefined) {
+            throw new Error(ONCHANGE_MUST_BE_SPECIFIED);
+        }
+    }
 
-    private componentWillReceiveProps(nextProps: (BaseControlProps<_BaseType> & _Props)) {
+    public componentWillReceiveProps(nextProps: (BaseControlProps<_BaseType> & _Props)) {
        var newValue = nextProps.value;
        var oldValue = this.state.value;
-       if (!this.equal(newValue, oldValue)) {
+       if (newValue!==undefined && !this.equal(newValue, oldValue)) {
            this.setState({ value: nextProps.value });
        }
     }
 
     public handleChangeEvent = (event) => {
-        var cleanData = this.onChange(event);
-        var propsValue = (this.props as BaseControlProps<_BaseType>).value;
+        var cleanData = this.getValue(event);
+        var propsValue = this.props.value;
         if(propsValue !== undefined) {
             this.checkAndDispatch(cleanData)
         } else {
@@ -116,10 +131,6 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
                 </UpTooltip>}
         </ErrorDisplay>
         );
-    }
-
-    public componentDidMount() {
-        this.checkAndDispatch();
     }
 
     public dispatchOnChange = (data: _BaseType, event, error: boolean) => {

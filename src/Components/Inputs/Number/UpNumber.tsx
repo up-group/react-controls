@@ -50,7 +50,7 @@ export default class UpNumber extends BaseControlComponent<UpNumberProps, number
         this.handleChangeEvent(valueAsString);
     }
 
-    onChange(value) {
+    getValue(value) {
         return value;
     }
 

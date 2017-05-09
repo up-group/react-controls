@@ -32,7 +32,7 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps> = (props) => {
     //return (<div className={cn(className, 'input-form-content')}>
     return (<div className={className}>
               <div className="up-input-group">
-            <input value={props.value} onChange={onChange} className="up-input" type={type} placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readonly} maxLength={maxLength} {...tooltipProps}/>
+                <input value={props.value} onChange={onChange} className="up-input" type={type} placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readonly} maxLength={maxLength} {...tooltipProps}/>
                 {icon}
               </div>
             </div>);

@@ -15,9 +15,9 @@ export default class UpEmail extends BaseControlComponent<UpEmailProps, string> 
         super(p, c);
     }
 
-    initWithProps() { }
+    registerValidations() { }
 
-    onChange(event: any) {
+    getValue(event: any) {
         return event;
     }
 

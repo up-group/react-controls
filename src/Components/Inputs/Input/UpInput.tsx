@@ -29,7 +29,7 @@ export default class UpInput extends BaseControlComponent<UpInputProps, any> {
         }
     }
 
-    onChange(event: any) {
+    getValue(event: any) {
         return event.target.value;
     }
 
