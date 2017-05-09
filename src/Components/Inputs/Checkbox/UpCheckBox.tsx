@@ -2,7 +2,7 @@
 import * as React from 'react'
 import UpLabel from '../../Display/Label/index'
 import {StyledCheckBox, CheckboxGroup} from './styles'
-import {UpCheckboxProps, Position} from './'
+import {UpCheckboxProps, Option, Position} from './'
 
 // Exports
 export default class UpCheckbox extends React.Component<UpCheckboxProps, any> {
@@ -30,6 +30,14 @@ export default class UpCheckbox extends React.Component<UpCheckboxProps, any> {
     event.stopPropagation() ;
   }
 
+  handleChangeEvent = (event) => {
+    for (var i in this.props.options) {
+        var option:Option = this.props.options[i] ;
+        if(option.name == event.target.name && option.onChange!=undefined)
+          option.onChange(event.target.checked);
+    }
+  }
+
   render() {
     const options = this.state.options ;
     /*const icon = <SvgIcon iconName={props.iconName}
@@ -42,7 +50,7 @@ export default class UpCheckbox extends React.Component<UpCheckboxProps, any> {
         <label style={{display:"none"}}><input type="checkbox" /></label>
         {options.map((option) => (
           <StyledCheckBox 
-            onChange={option.onChange} 
+            onChange={this.handleChangeEvent} 
             key={`Key_${option.name}_${option.value}`} 
             text={option.text} name={option.name} 
             value={option.value}

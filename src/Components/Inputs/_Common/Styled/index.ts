@@ -100,8 +100,7 @@ export const CommonCheckableStyle = props => css`
     background: rgba(206, 217, 224, 0.5);
     cursor: not-allowed; 
   }
-  input:disabled:checked ~ .up-control-indicator, 
-  input:disabled:indeterminate ~ .up-control-indicator {
+  input:disabled:checked ~ .up-control-indicator {
     box-shadow: none;
     background: rgba(19, 124, 189, 0.5); 
   }
@@ -109,8 +108,7 @@ export const CommonCheckableStyle = props => css`
     border-radius: 3px;
     font-size: 16px; 
   }
-  input:checked ~ .up-control-indicator::before, 
-  input:indeterminate ~ .up-control-indicator::before {
+  input:checked ~ .up-control-indicator::before {
     content: ""; 
   }
   input:indeterminate ~ .up-control-indicator::before {
