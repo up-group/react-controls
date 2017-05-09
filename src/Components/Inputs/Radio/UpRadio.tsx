@@ -31,8 +31,8 @@ export default class UpRadio extends React.Component<UpRadioProps, UpRadioState>
     event.stopPropagation() ;
   }
 
-  getValue(event: any) {
-      return event;
+  getValue = (event: any) => {
+      return event.target.value ;
   }
 
   public handleChangeEvent = (event) => {
