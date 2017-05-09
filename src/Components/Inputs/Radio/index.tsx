@@ -8,20 +8,26 @@ export interface Option {
     value:any;
     text?:string;
     iconName?:string;
-    onChange?:(e:any) => void;
     name?:string;
-    checked:boolean;
+    checked?:boolean;
 }
 
 export interface UpRadioStyledProps extends Option {
     className?:string;
+    onChange?:(e:any) => void;
+}
+
+export interface UpRadioState {
+    options?: Array<Option>;
+    value?:any;
 }
 
 export interface UpRadioProps {
     options: Array<Option>;
     position?:Position;
     name:string;
-    value:any;
+    value?:any;
+    onChange?: (arg: any, event: any, error: boolean) => void;
 }
 
 export default UpRadio ;
