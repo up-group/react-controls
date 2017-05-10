@@ -13,7 +13,6 @@ import { ThemeInterface } from "../../../Common/theming/types";
 
 const BaseRadioButton: React.StatelessComponent<UpRadioStyledProps> = (props) => {
     const { children, checked, className, name, text, value, iconName, onChange } = props;
-
     return (
       <label className={classNames("up-control", "up-radio", className)}>
         <input defaultChecked={checked} onChange={onChange} name={name} type="radio" value={value} />
@@ -30,19 +29,27 @@ ${(props: UpRadioStyledProps) => CommonCheckableStyle(props)}
   border-radius: 50%;
   font-size: 6px;
 }
-input:checked ~ .up-control-indicator::before, 
+input:checked ~ .up-control-indicator::before {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #ffffff;
+  width: 1em;
+  height: 1em;
+  content: ""; 
+} 
 input:indeterminate ~ .up-control-indicator::before {
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-    border-radius: 50%;
-    background: #ffffff;
-    width: 1em;
-    height: 1em;
-    content: ""; 
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-radius: 50%;
 }
 `
 export const RadioGroup = styled.div`

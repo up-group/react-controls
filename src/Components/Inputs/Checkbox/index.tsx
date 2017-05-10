@@ -9,7 +9,7 @@ export interface Option {
     text?:string;
     iconName?:string;
     onChange?:(e:any) => void;
-    checked:boolean;
+    checked?:boolean;
 }
 
 export interface UpCheckboxStyledProps extends Option, ThemedProps {
