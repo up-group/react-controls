@@ -42,7 +42,7 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
     private initWithProps() 
     {
          if(this.props.value !== undefined)
-            this.state = {value:this.props.value };
+            this.state = {value:this.props.value as any};
     }
 
     protected registerValidations() {
