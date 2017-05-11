@@ -21,11 +21,7 @@ export default class UpDate extends BaseControlComponent<UpDateProps, Date> {
 
     constructor(p, c) {
         super(p, c);
-        this.getValue = this.getValue.bind(this);
         this.state = { value: this.props.value };
-    }
-
-    componentWillMount = () => {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -42,15 +38,15 @@ export default class UpDate extends BaseControlComponent<UpDateProps, Date> {
     }
 
     renderControl() {
+        const {format, hasError, disabled, minDate, maxDate, readonly, ...others} = this.props ;    
         return <UpDateStyle
-            format={this.props.format} value={this.state.value}
-
-            hasError={this.props.hasError || this.hasError()}
-
+            format={format} 
+            value={this.state.value}
+            hasError={hasError || this.hasError()}
             onChange={this.handleChangeEvent}
-            disabled={this.props.disabled}
-            minDate={this.props.minDate ? this.props.minDate : MIN_DATE}
-            maxDate={this.props.maxDate ? this.props.maxDate : MAX_DATE}></UpDateStyle>;
+            disabled={disabled}
+            minDate={minDate ? minDate : MIN_DATE}
+            maxDate={maxDate ? maxDate : MAX_DATE}></UpDateStyle>;
     }
 
     getValue(newDate: any) {

@@ -32,7 +32,7 @@ const locale = new UpLocaleUtils() ;
 
 const BaseDate : React.StatelessComponent<UpDateStyledProps> = (props) => {
     
-    const {value, className, format, disabled, minDate, maxDate, innerRef, onChange} = props ;
+    const {value, className, format, disabled, minDate, maxDate, innerRef, onChange,...others} = props ;
     const picker = (<span className="pt-icon pt-icon-calendar"></span>) ;
 
     return (<DateInput  className={className}

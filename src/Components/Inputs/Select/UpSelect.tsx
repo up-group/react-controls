@@ -42,10 +42,6 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         }
     }
 
-    componentWillUnmount() {
-
-    }
-
     isEmpty(value) {
         return value === null || value === undefined || value === "";
     }
@@ -67,7 +63,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                 _idKey = this.props.dataSource.id || _idKey;
                 _textKey = this.props.dataSource.text || _textKey;
             }
-            return (<span key={`option_{value[_idKey]}`} >{this.format(option, _textKey)}</span>)
+            return (<span key={`option_{option[_idKey]}`} >{this.format(option, _textKey)}</span>)
         }
     }
 
@@ -112,6 +108,34 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         }
     }
 
+    filterOptions = (options, filter, currentValues) => {
+        var _options = [] ;
+        var _textKey = "text";
+        var _idKey = "id";
+        if (this.props.dataSource) {
+            _idKey = this.props.dataSource.id || _idKey;
+            _textKey = this.props.dataSource.text || _textKey;
+        }
+        var _self = this ;
+        options.map(function(value) {
+            if(_self.format(value, _textKey).toLowerCase().indexOf(filter.toLowerCase())>=0) {
+                // check if the option is selected
+                var isInValues:boolean = false;
+                for(var i in currentValues) {
+                    var curentValue = currentValues[i] ;
+                    if(value[_idKey] === curentValue[_idKey]) {
+                        isInValues = true ;
+                        break;
+                    }
+                };
+                // Return the option onlly if it is not in the current values
+                if(isInValues === false)
+                    _options.push(value) ;
+            } ;
+        });
+        return _options ;
+    }
+
     renderControl() {
         const dataSource = this.props.dataSource;
         var loadOptions: any = false;
@@ -145,11 +169,12 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             <WrapperSelect>
                 <SelectComponent
                     {...specProps}
-                    filterOption={dataSource !== undefined ? (a, b) => { return a; } : undefined}
-                    filterOptions={dataSource !== undefined ? (a, b, c) => { return a; } : undefined}
                     placeholder={this.props.placeholder}
+                    filterOptions={dataSource !== undefined ? this.filterOptions : undefined}
                     value={this.state.value}
                     autoBlur={false}
+                    valueKey={this.props.valueKey || "id"}
+                    labelKey={this.props.labelKey || "text"}
                     loadingPlaceholder={this.props.loadingPlaceholder}
                     multi={this.props.multiple}
                     clearable={this.props.allowClear}

@@ -25,6 +25,8 @@ export interface UpSelectProps extends BaseControlProps<any> {
         query: string,
         queryParameterName?: string
     },
+    valueKey? : string,
+    labelKey? : string,
     autoload?:boolean
     noResultsText? : string,
     clearAllText? : string,

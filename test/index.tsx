@@ -19,11 +19,9 @@ import {
     UpEmail,
     UpInput,
     UpFormGroup,
-    UpSwitch
+    UpSwitch,
+    UpSelect
 } from "../src/index";
-
-
-import UpSelect from "../src/Components/Inputs/Select/index";
 
 interface Item {
     text: string;
@@ -99,19 +97,44 @@ class Demo extends React.Component<undefined, DemoState> {
         return (
             <UpThemeProvider theme={theme}>
                 <UpBox flexDirection="row" alignItems="stretch" justifyContent="center" >
-
-             
                      <UpSelect
                         showError={true}
                         default={null}
-                        //isNullable={this.isNullable}
                         isRequired={false}
-                        //getFullData={false}
                         multiple={true}
                         placeholder="Recherche"
                         allowClear={false}
-                        //onChange={}
                         dataSource={enti}
+                    />
+                    <UpSelect
+                        showError={true}
+                        default={null}
+                        isRequired={false}
+                        multiple={true}
+                        placeholder="Recherche"
+                        allowClear={false}
+                        data={[
+                            {
+                                id:1,
+                                text: "Item 1"
+                            },
+                            {
+                                id:2,
+                                text: "Item 2"
+                            },
+                            {
+                                id:3,
+                                text: "Item 3"
+                            },
+                            {
+                                id:4,
+                                text: "Item 4"
+                            },
+                            {
+                                id:5,
+                                text: "Item 5"
+                            }
+                        ]}
                     />
                     <UpBox margin="small" boxSize={{ horizontal: 'small' }}>
                         Component
