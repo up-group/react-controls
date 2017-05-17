@@ -61,13 +61,7 @@ export default class Toast extends React.Component<Props, State> {
     }
     return (
       <Component status={status} {...this.state}>
-        <Box
-          alignItems="center"
-          justifyContent="center"
-          flexDirection="row"
-          boxSize={60}
-          pad="medium"
-          style={{ width: '100vw' }}>
+        <Box alignItems="center" justifyContent="center" flexDirection="row" pad="medium" style={{ width: '100vw' }}>
           <Box style={{ flexGrow: 2 }}>
             {message && message}
             {children && children}

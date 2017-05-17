@@ -24,10 +24,13 @@ import {
 } from "../src/index";
 
 interface Item {
+    id?:number;
     text: string;
 }
 
 interface DemoState {
+    item:Item;
+    user:any;
     items: Array<Item>;
     date: string;
     description: string;
@@ -49,6 +52,14 @@ class Demo extends React.Component<undefined, DemoState> {
 
         this.state = {
             date: "13/04/2017",
+            item: {
+                id:1,
+                text:"Item 1"
+            },
+            user : {
+                id:1,
+                name:"User 1"
+            },
             items: [
                 {
                     text: "Item 1"
@@ -102,6 +113,8 @@ class Demo extends React.Component<undefined, DemoState> {
                         default={null}
                         isRequired={false}
                         multiple={true}
+                        value={this.state.user}
+                        onChange={this.onChangeUser}
                         placeholder="Recherche"
                         allowClear={false}
                         dataSource={enti}
@@ -113,6 +126,8 @@ class Demo extends React.Component<undefined, DemoState> {
                         multiple={true}
                         placeholder="Recherche"
                         allowClear={false}
+                        value={this.state.item}
+                        onChange={this.onChangeItem}
                         data={[
                             {
                                 id:1,
@@ -189,6 +204,16 @@ class Demo extends React.Component<undefined, DemoState> {
                 </UpBox>
             </UpThemeProvider>
         );
+    }
+    onChangeItem = (newValue) => {
+        this.setState({
+            item: newValue
+        });
+    }
+    onChangeUser = (newValue) => {
+        this.setState({
+            user: newValue
+        });
     }
     onDateChange = (newDate) => {
         this.setState({

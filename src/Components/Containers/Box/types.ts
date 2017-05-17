@@ -27,7 +27,7 @@ export interface Props {
   reverse?: boolean;
   boxSize?: BoxSize | BoxSizeObject;
   pad?: Size | SizeObject;
-  children?: JSX.Element;
+  children?: any;
   margin?: Size | SizeObject;
   backgroundColor?: string;
   backgroundImage?: string;

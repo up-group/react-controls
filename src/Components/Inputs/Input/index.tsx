@@ -36,6 +36,7 @@ export interface CommonProps extends ThemedProps{
     readonly?: boolean;
     tooltip?: string | Tooltip;
     showError?: boolean;
+    
 }
 
 export interface UpInputProps extends CommonProps {

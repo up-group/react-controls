@@ -5,7 +5,7 @@ import * as chai from 'chai';
 import * as chaiEnzyme from 'chai-enzyme';
 import { shallow, mount, render } from 'enzyme';
 import * as renderer from 'react-test-renderer'
-import 'jest-styled-components'
+//import 'jest-styled-components'
 
 chai.use(chaiEnzyme());
 

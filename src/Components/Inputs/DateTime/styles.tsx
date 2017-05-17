@@ -22,9 +22,9 @@ class UpLocaleUtils implements IDatePickerLocaleUtils {
     getFirstDayOfWeek(locale: string) {
         return 1;
     }
-    getMonths() {
-        return ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
-            "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+    getMonths(locale: string):[string, string, string, string, string, string, string, string, string, string, string, string] {
+            return ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
+                          "Août", "Septembre", "Octobre", "Novembre", "Décembre"] ;
     }
 }
 

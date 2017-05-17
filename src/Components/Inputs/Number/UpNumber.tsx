@@ -25,7 +25,6 @@ export default class UpNumber extends BaseControlComponent<UpNumberProps, number
         this._validationManager.addControl(new TypeNumberControl(this.props.decimalPlace === 0, this.props.min, this.props.max));
     }
 
-
     round = (value, decimals) => {
         decimals = Math.abs(parseInt(decimals)) || 0;
         var multiplier = Math.pow(10, decimals);
@@ -63,10 +62,8 @@ export default class UpNumber extends BaseControlComponent<UpNumberProps, number
                 stepSize={stepSize}
                 majorStepSize={stepSize ? stepSize + 10 : 10}
                 onValueChange={this.handleNumericChange}
-                minorStepSize={1 / (Math.pow(10, this.props.decimalPlace))}
-            >
+                minorStepSize={1 / (Math.pow(10, this.props.decimalPlace))}>
             </NumericInput>
-
         );
     }
 }
