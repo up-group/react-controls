@@ -11,7 +11,7 @@ export interface StyledProps extends BoxProps {
 }
 
 export interface Props extends BoxProps {
-  message?: JSX.Element;
+  message?: JSX.Element | string ;
   children?: JSX.Element;
   onClose?: () => void;
   status?: Status;
@@ -61,12 +61,12 @@ export default class Toast extends React.Component<Props, State> {
     }
     return (
       <Component status={status} {...this.state}>
-        <Box alignItems="center" justifyContent="center" flexDirection="row" pad="medium" style={{ width: '100vw' }}>
+        <Box alignItems="center" justifyContent="center" flexDirection="row" pad="medium" style={{ width: 'auto' }}>
           <Box style={{ flexGrow: 2 }}>
-            {message && message}
-            {children && children}
+            {message != null  && message}
+            {children != null  && children}
           </Box>
-          <Box alignItems="center" justifyContent="center">
+          <Box alignItems="flex-end" justifyContent="flex-end">
             <Button onClick={this.handleClose}>
               ✕
             </Button>
