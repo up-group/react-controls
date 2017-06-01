@@ -22,9 +22,9 @@ class UpLocaleUtils implements IDatePickerLocaleUtils {
     getFirstDayOfWeek(locale: string) {
         return 1;
     }
-    getMonths(locale: string):[string, string, string, string, string, string, string, string, string, string, string, string] {
-            return ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
-                          "Août", "Septembre", "Octobre", "Novembre", "Décembre"] ;
+    getMonths(locale: string): [string, string, string, string, string, string, string, string, string, string, string, string] {
+        return ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
+            "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
     }
 }
 
@@ -75,7 +75,7 @@ export default class UpDateStyle extends React.Component<UpDateTimeStyledProps, 
         }
     }
 
-    componentDidMount = () => {
+    componentDidMount() {
         var _props = this.props as UpDateTimeStyledProps;
         if (_props.dataFor && this.dateInput) {
             this.dateInput.inputRef.setAttribute('data-tip', 'tooltip');

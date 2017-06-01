@@ -8,13 +8,13 @@ import { ThemeInterface } from "../../../Common/theming/types";
 
 class UpLocaleUtils implements IDatePickerLocaleUtils {
     formatDay(day: Date, locale: string) {
-        return "jour" ;
+        return "jour";
     }
     formatMonthTitle(month: Date, locale: string) {
-        return "" ;
+        return "";
     }
     formatWeekdayShort(weekday: number, locale: string) {
-        return "" ;
+        return "";
     }
     formatWeekdayLong(weekday: number, locale: string) {
         return "";
@@ -22,44 +22,44 @@ class UpLocaleUtils implements IDatePickerLocaleUtils {
     getFirstDayOfWeek(locale: string) {
         return 1;
     }
-    getMonths(locale: string):[string, string, string, string, string, string, string, string, string, string, string, string] {
-            return ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
-                          "Août", "Septembre", "Octobre", "Novembre", "Décembre"] ;
+    getMonths(locale: string): [string, string, string, string, string, string, string, string, string, string, string, string] {
+        return ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
+            "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
     }
 }
 
-const locale = new UpLocaleUtils() ;
+const locale = new UpLocaleUtils();
 
-const BaseDate : React.StatelessComponent<UpDateStyledProps> = (props) => {
-    
-    const {value, className, format, disabled, minDate, maxDate, innerRef, onChange,...others} = props ;
-    const picker = (<span className="pt-icon pt-icon-calendar"></span>) ;
+const BaseDate: React.StatelessComponent<UpDateStyledProps> = (props) => {
 
-    return (<DateInput  className={className}
-                        locale="fr" 
-                        ref={innerRef}
-                        invalidDateMessage=""
-                        localeUtils={locale}
-                        rightElement={picker}
-                        value={value}
-                        disabled={disabled}
-                        minDate={minDate}
-                        maxDate={maxDate}
-                        canClearSelection={true}
-                        closeOnSelection={true}
-                        onChange={onChange} 
-                        format={format} />) ;
+    const {value, className, format, disabled, minDate, maxDate, innerRef, onChange, ...others} = props;
+    const picker = (<span className="pt-icon pt-icon-calendar"></span>);
+
+    return (<DateInput className={className}
+        locale="fr"
+        ref={innerRef}
+        invalidDateMessage=""
+        localeUtils={locale}
+        rightElement={picker}
+        value={value}
+        disabled={disabled}
+        minDate={minDate}
+        maxDate={maxDate}
+        canClearSelection={true}
+        closeOnSelection={true}
+        onChange={onChange}
+        format={format} />);
 }
 
-export const NormalDate = styled<UpDateStyledProps>(BaseDate)`
-`; 
+export const NormalDate = styled<UpDateStyledProps>(BaseDate) `
+`;
 
-export default class UpDateStyle extends React.Component<UpDateStyledProps, undefined> {
+export default class UpDateStyle extends React.Component<UpDateStyledProps, {}> {
     public static defaultProps: UpDateStyledProps = {
-        value:null
+        value: null
     };
 
-    dateInput : any ;
+    dateInput: any;
 
     constructor(p, c) {
         super(p, c);
@@ -69,16 +69,16 @@ export default class UpDateStyle extends React.Component<UpDateStyledProps, unde
         // The ref function is called twice, 
         // the first one with the component instance (as React) 
         // and the second one with the DOM node instance
-        if(this.dateInput == undefined) {
+        if (this.dateInput == undefined) {
             this.dateInput = input;
         }
     }
-    
-    componentDidMount = () => {
-        var _props = this.props as UpDateStyledProps ;
-        if(_props.dataFor && this.dateInput) {
-            this.dateInput.inputRef.setAttribute('data-tip', 'tooltip') ;
-            this.dateInput.inputRef.setAttribute('data-for', _props.dataFor) ;
+
+    componentDidMount() {
+        var _props = this.props as UpDateStyledProps;
+        if (_props.dataFor && this.dateInput) {
+            this.dateInput.inputRef.setAttribute('data-tip', 'tooltip');
+            this.dateInput.inputRef.setAttribute('data-for', _props.dataFor);
         }
     }
 

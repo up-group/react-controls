@@ -79,7 +79,7 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
         }
     }
 
-    public componentWillReceiveProps(nextProps: (BaseControlProps<_BaseType> & _Props)) {
+    public componentWillReceiveProps(nextProps) {
        var newValue = nextProps.value;
        var oldValue = this.state.value;
        if (newValue!==undefined && !this.equal(newValue, oldValue)) {
