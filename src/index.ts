@@ -66,6 +66,7 @@ export {
     UpLabel,
     UpFormGroup,
     UpTooltip,
+    UpVisibilitySensor,
     UpThemeProvider,
     UpThemeInterface,
     UpThemeColorMap,
