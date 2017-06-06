@@ -106,6 +106,7 @@
     "draft-js": "^0.10.0",
     "github-markdown-css": "^2.4.1",
     "inputmask-core": "^2.2.0",
+    "normalize.css": "^4.1.1",
     "object-assign": "^4.1.1",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.5.2",
