@@ -1,6 +1,6 @@
 // Imports
 import * as React from 'react'
-import styled, {css} from '../../../Common/theming/themedComponents';
+import styled, { css } from '../../../Common/theming/themedComponents';
 import Textarea from 'react-textarea-autosize'
 import { ThemeInterface } from "../../../Common/theming/types";
 import { defaultStyles } from '../_Common/Styled/Input/styles'
@@ -17,12 +17,12 @@ const sizeMap = {
 };
 
 export class BaseTextArea extends React.Component<UpTextStyledProps, undefined> {
-  
+
     textArea: any;
     constructor(p, c) {
         super(p, c);
     }
-    
+
     setInput = (input) => {
         // The ref function is called twice, 
         // the first one with the component instance (as React) 
@@ -32,7 +32,7 @@ export class BaseTextArea extends React.Component<UpTextStyledProps, undefined> 
         }
     }
 
-    componentDidMount = () => {
+    componentDidMount() {
         var _props = this.props as UpTextStyledProps;
         if (_props.dataFor && this.textArea) {
             this.textArea._rootDOMNode.setAttribute('data-tip', 'tooltip');
@@ -41,12 +41,12 @@ export class BaseTextArea extends React.Component<UpTextStyledProps, undefined> 
     }
 
     render() {
-      const {className, value, onChange} = this.props;
+        const {className, value, onChange} = this.props;
 
-      return <Textarea value={value}
-          ref={this.setInput}
-          className={className}
-          onChange={onChange}></Textarea>;
+        return <Textarea value={value}
+            ref={this.setInput}
+            className={className}
+            onChange={onChange}></Textarea>;
     }
 }
 
@@ -60,9 +60,9 @@ const error = props => css`
 `;
 
 export const TexAreatStyled = styled<UpTextStyledProps>(BaseTextArea) `
-${(props: UpTextStyledProps) => base(props) }
+${(props: UpTextStyledProps) => base(props)}
 ${(props) => defaultStyles}
-${(props: UpTextStyledProps) => props.hasError? error(props):css``}
+${(props: UpTextStyledProps) => props.hasError ? error(props) : css``}
 `;
 
 export default TexAreatStyled;
