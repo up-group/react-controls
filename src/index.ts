@@ -14,6 +14,7 @@ import UpSvgIcon from './Components/Display/SvgIcon'
 import UpToast from './Components/Display/Toast'
 import UpTooltip from './Components/Display/Tooltip'
 import UpLabel from './Components/Display/Label'
+import UpVisibilitySensor from './Components/Display/VisibilitySensor'
 
 import UpButton from './Components/Inputs/Button'
 import UpInput from './Components/Inputs/Input'
