@@ -78,6 +78,10 @@ export default class UpVisibilitySensor extends React.Component<UpVisibilitySens
     } else {
       this.stopWatching();
     }
+    
+    if(nextProps.forceCheck) {
+      this.check() ;
+    }
   }
 
   getContainer = () => {
