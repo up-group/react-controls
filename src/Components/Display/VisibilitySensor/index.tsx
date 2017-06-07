@@ -33,7 +33,7 @@ export interface UpVisibilitySensorProps {
     containment?: any;
     children?: JSX.Element;
     minTopValue?: number;
-    forceCheck:boolean;
+    forceCheck?:boolean;
 }
 
 export interface UpVisibilitySensorState {
