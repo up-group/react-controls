@@ -1,6 +1,6 @@
 // Imports
 import * as React from 'react'
-import styled, {css} from '../../../Common/theming/themedComponents';
+import styled, {css, keyframes} from '../../../Common/theming/themedComponents';
 import remStringFromPX from '../../../Common/utils'
 import { Dictionary } from '../../../Common/utils/types'
 import { UpButtonStyledProps, fontSizeMap, buttonSizeMap} from './'
@@ -267,20 +267,7 @@ const rounded = props => css`
   }
 `;
 
-const rotate = props => css`
-  @-webkit-keyframes rotating /* Safari and Chrome */ {
-    from {
-      -webkit-transform: rotate(0deg);
-      -o-transform: rotate(0deg);
-      transform: rotate(0deg);
-    }
-    to {
-      -webkit-transform: rotate(360deg);
-      -o-transform: rotate(360deg);
-      transform: rotate(360deg);
-    }
-  }
-  @keyframes rotating {
+const rotatingAnimation = keyframes`
     from {
       -ms-transform: rotate(0deg);
       -moz-transform: rotate(0deg);
@@ -295,13 +282,15 @@ const rotate = props => css`
       -o-transform: rotate(360deg);
       transform: rotate(360deg);
     }
-  }
+`;
+
+const rotate = props => css`
   .rotating {
-    -webkit-animation: rotating 2s linear infinite;
-    -moz-animation: rotating 2s linear infinite;
-    -ms-animation: rotating 2s linear infinite;
-    -o-animation: rotating 2s linear infinite;
-    animation: rotating 2s linear infinite;
+    -webkit-animation: ${rotatingAnimation} 2s linear infinite;
+    -moz-animation: ${rotatingAnimation} 2s linear infinite;
+    -ms-animation: ${rotatingAnimation} 2s linear infinite;
+    -o-animation: ${rotatingAnimation} 2s linear infinite;
+    animation: ${rotatingAnimation} 2s linear infinite;
   }
 `;
 
