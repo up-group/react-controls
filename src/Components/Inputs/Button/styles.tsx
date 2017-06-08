@@ -52,6 +52,7 @@ const ReactButtonComponent: React.StatelessComponent<UpButtonStyledProps> = (pro
     const icon = <SvgIcon iconName={iconName}
           width={props.iconSize}
           height={props.iconSize}
+          className={props.rotate?'rotating':''}
           color={props.color} /> ;
 
     var tooltipProps = {} ;
@@ -62,7 +63,7 @@ const ReactButtonComponent: React.StatelessComponent<UpButtonStyledProps> = (pro
       }
     }
 
-    return <button onClick={onClick} className={classnames('up-btn', className, (props.rotate?'rotating':''))} {...tooltipProps} >
+    return <button onClick={onClick} className={classnames('up-btn', className)} {...tooltipProps} >
       {iconName != 'blank' &&
         icon
       }
@@ -295,7 +296,7 @@ const rotate = props => css`
       transform: rotate(360deg);
     }
   }
-  .rotating div svg {
+  .rotating {
     -webkit-animation: rotating 2s linear infinite;
     -moz-animation: rotating 2s linear infinite;
     -ms-animation: rotating 2s linear infinite;
