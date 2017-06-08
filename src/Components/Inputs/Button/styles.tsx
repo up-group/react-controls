@@ -62,7 +62,7 @@ const ReactButtonComponent: React.StatelessComponent<UpButtonStyledProps> = (pro
       }
     }
 
-    return <button onClick={onClick} className={classnames('up-btn', className)} {...tooltipProps} >
+    return <button onClick={onClick} className={classnames('up-btn', className, (props.rotate?'rotating':''))} {...tooltipProps} >
       {iconName != 'blank' &&
         icon
       }
@@ -267,25 +267,40 @@ const rounded = props => css`
 `;
 
 const rotate = props => css`
-  @keyframes rotate {
-      100% {
-        -webkit-transform: rotateZ(360deg);
-        -ms-transform: rotateZ(360deg);
-        -o-transform: rotateZ(360deg);
-        transform: rotateZ(360deg);
+  @-webkit-keyframes rotating /* Safari and Chrome */ {
+    from {
+      -webkit-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
     }
   }
-
-  svg {
-    -webkit-animation-name: rotate;
-    -o-animation-name: rotate;
-    animation-name: rotate;
-    -webkit-animation-duration: 3s;
-    -o-animation-duration: 3s;
-    animation-duration: 3s;
-    -webkit-animation-iteration-count: infinite;
-    -o-animation-iteration-count: infinite;
-    animation-iteration-count: infinite;
+  @keyframes rotating {
+    from {
+      -ms-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -ms-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -webkit-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  .rotating div svg {
+    -webkit-animation: rotating 2s linear infinite;
+    -moz-animation: rotating 2s linear infinite;
+    -ms-animation: rotating 2s linear infinite;
+    -o-animation: rotating 2s linear infinite;
+    animation: rotating 2s linear infinite;
   }
 `;
 
