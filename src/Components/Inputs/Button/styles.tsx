@@ -266,6 +266,29 @@ const rounded = props => css`
   }
 `;
 
+const rotate = props => css`
+  @keyframes rotate {
+      100% {
+        -webkit-transform: rotateZ(360deg);
+        -ms-transform: rotateZ(360deg);
+        -o-transform: rotateZ(360deg);
+        transform: rotateZ(360deg);
+    }
+  }
+
+  svg {
+    -webkit-animation-name: rotate;
+    -o-animation-name: rotate;
+    animation-name: rotate;
+    -webkit-animation-duration: 3s;
+    -o-animation-duration: 3s;
+    animation-duration: 3s;
+    -webkit-animation-iteration-count: infinite;
+    -o-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+  }
+`;
+
 export const BaseButton = styled<UpButtonStyledProps>(ReactButtonComponent) `
 ${(props: UpButtonStyledProps) => base(props) }
 ${(props: UpButtonStyledProps) => getWidth(props)}
@@ -273,4 +296,5 @@ ${(props: UpButtonStyledProps) => getHeight(props)}
 ${(props: UpButtonStyledProps) => props.shadow? shadow(props):css``}
 ${(props: UpButtonStyledProps) => props.rounded? rounded(props):css``}
 ${(props: UpButtonStyledProps) => props.disabled ? disabled(props) : active(props) }
+${(props: UpButtonStyledProps) => props.rotate ? rotate(props) : css`` }
 `;

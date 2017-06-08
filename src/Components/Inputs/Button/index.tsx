@@ -30,6 +30,7 @@ export interface CommonProps extends ThemedProps {
   disabled? : boolean;
   shadow? : boolean;
   rounded?:boolean;
+  rotate?:boolean;
   actionType?:ActionType;
   iconName?:any;
   iconSize?:number;
