@@ -29,6 +29,7 @@ export interface CommonProps extends ThemedProps {
   fontSize?: FontSize;
   disabled? : boolean;
   shadow? : boolean;
+  rounded?:boolean;
   actionType?:ActionType;
   iconName?:any;
   iconSize?:number;
