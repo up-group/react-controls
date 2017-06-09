@@ -73,5 +73,6 @@ export {
     UpThemeColorMap,
     UpDefaultTheme,
     UpCheckbox,
-    UpRadio
+    UpRadio,
+    TimeLine
 };
