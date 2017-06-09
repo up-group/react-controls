@@ -1,6 +1,6 @@
 {
   "name": "@up-group/react-controls",
-  "version": "0.0.124",
+  "version": "0.0.125",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -79,7 +79,7 @@
     "chai": "^3.5.0",
     "chai-enzyme": "^0.6.1",
     "copyfiles": "^1.2.0",
-    "css-loader": "^0.28.0",
+    "css-loader": "^0.28.4",
     "enzyme": "^2.8.2",
     "enzyme-to-json": "^1.5.1",
     "file-loader": "0.11.1",
@@ -95,10 +95,7 @@
     "typescript": "2.3.4",
     "url-loader": "^0.5.8",
     "webpack": "^2.3.3",
-    "yarn": "^0.21.3",
-    "css-loader": "^0.28.4",
-    "style-loader": "^0.16.1"
-
+    "yarn": "^0.21.3"
   },
   "dependencies": {
     "@blueprintjs/core": "^1.14.0",
