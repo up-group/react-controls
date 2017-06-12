@@ -3,12 +3,10 @@ import { ThemeInterface } from "../../../Common/theming/types";
 
 const draw = keyframes`
   0% {
-    transform: rotate(-90deg);
-    stroke-dashoffset: 151px;
+    transform: rotate(0deg);
   }
-
   100% {
-    stroke-dashoffset: -131px
+    transform: rotate(360deg);
   }
 `;
 
@@ -16,14 +14,16 @@ const color = keyframes`
   0% {
     stroke: #007acc;
   }
-
   100% {
     stroke: #293953;
   }
 `;
 
 export const Circle = styled.circle`
-  animation: ${color} 1s alternate infinite ease-in-out;
+  stroke-dasharray: 89,200;
+  stroke-dashoffset: -10;
+  stroke-linecap: round;
+  animation: ${color} 2s ease-in-out infinite ;
 `;
 
 export default styled.svg`
@@ -31,6 +31,5 @@ export default styled.svg`
   height: 48px;
   stroke-dasharray: 151px 151px;
   stroke-dashoffset: 0;
-  transform: rotate(270deg);
-  animation: ${draw} 4s alternate infinite ease-in-out;
+  animation: ${draw} 2s infinite ease-in-out;
 `;
