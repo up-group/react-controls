@@ -1,3 +1,3 @@
-import Timeline from './lib/Timeline'
+import UpCalendarTimeline from './lib/Timeline'
 
-export default Timeline
+export default UpCalendarTimeline

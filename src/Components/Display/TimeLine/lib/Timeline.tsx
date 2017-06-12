@@ -33,7 +33,7 @@ const defaultTimeSteps = {
 }
 var style = css;
 
-export default class ReactCalendarTimeline extends React.Component<any, any> {
+export default class UpCalendarTimeline extends React.Component<any, any> {
     //static propTypes = {
     //    groups: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
     //    items: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
