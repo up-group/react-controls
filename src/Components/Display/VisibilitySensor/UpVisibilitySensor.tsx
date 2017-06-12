@@ -78,6 +78,10 @@ export default class UpVisibilitySensor extends React.Component<UpVisibilitySens
     } else {
       this.stopWatching();
     }
+
+    if(nextProps.forceCheck) {
+      this.check() ;
+    }
   }
 
   getContainer = () => {
@@ -279,7 +283,7 @@ export default class UpVisibilitySensor extends React.Component<UpVisibilitySens
 
     var state = this.state;
     // notify the parent when the value changes
-    if (this.state.isVisible !== isVisible) {
+    if (this.state.isVisible !== isVisible || (isVisible && this.props.forceCheck)) {
       state = {
         isVisible: isVisible,
         visibilityRect: visibilityRect

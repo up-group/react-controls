@@ -1,6 +1,6 @@
 // Imports
 import * as React from 'react'
-import styled, {css} from '../../../Common/theming/themedComponents';
+import styled, {css, keyframes} from '../../../Common/theming/themedComponents';
 import remStringFromPX from '../../../Common/utils'
 import { Dictionary } from '../../../Common/utils/types'
 import { UpButtonStyledProps, fontSizeMap, buttonSizeMap} from './'
@@ -44,7 +44,7 @@ const ReactButtonComponent: React.StatelessComponent<UpButtonStyledProps> = (pro
 
     const actionType = props.actionType ;
     var iconName : IconName = 'blank' ;
-    if(ActionIconMap.containsKey(actionType)) {
+    if(actionType && ActionIconMap.containsKey(actionType)) {
         iconName = ActionIconMap.get(actionType) ;
     }
     
@@ -52,6 +52,7 @@ const ReactButtonComponent: React.StatelessComponent<UpButtonStyledProps> = (pro
     const icon = <SvgIcon iconName={iconName}
           width={props.iconSize}
           height={props.iconSize}
+          className={props.rotate?'rotating':''}
           color={props.color} /> ;
 
     var tooltipProps = {} ;
@@ -147,6 +148,7 @@ const normal = props => css`
     heigth:20px;
   }
 `;
+
 const small = props => css`
     padding: 3px 8px;
     font-size: 12px;
@@ -158,6 +160,7 @@ const small = props => css`
       heigth:16px;
     }
 `;
+
 const xsmall = props => css`
   padding: 1px 4px;
   font-size: 12px;
@@ -169,12 +172,14 @@ const xsmall = props => css`
       heigth:12px;
     }
 `;
+
 const icon = props => css`
   padding: 4px 5px;
   border-radius: 3px;
   font-size: 12px;
   line-height: 1.5;
 `;
+
 const iconXSmall = props => css`
   padding: 1px 2px;
   border-radius: 3px;
@@ -186,6 +191,7 @@ const iconXSmall = props => css`
     heigth:12px;
   }
 `;
+
 const iconSmall = props => css`
   padding: 3px 4px;
   border-radius: 3px;
@@ -196,6 +202,7 @@ const iconSmall = props => css`
       heigth:16px;
   }
 `;
+
 const iconNormal = props => css`
   padding: 4px 5px;
   border-radius: 3px;
@@ -206,6 +213,7 @@ const iconNormal = props => css`
     heigth:20px;
   }
 `;
+
 const iconLarge = props => css`
   padding: 6px 8px;
   border-radius: 3px;
@@ -247,10 +255,51 @@ var getHeight = function(props) {
   }
 }
 
+const rounded = props => css`
+  height:32px;
+  width:32px;
+  border-radius:16px;
+  div {
+    margin:0px;
+  }
+  svg {
+    margin:0px;
+  }
+`;
+
+const rotatingAnimation = keyframes`
+    from {
+      -ms-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -ms-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -webkit-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+`;
+
+const rotate = props => css`
+  .rotating {
+    -webkit-animation: ${rotatingAnimation} 2s linear infinite;
+    -moz-animation: ${rotatingAnimation} 2s linear infinite;
+    -ms-animation: ${rotatingAnimation} 2s linear infinite;
+    -o-animation: ${rotatingAnimation} 2s linear infinite;
+    animation: ${rotatingAnimation} 2s linear infinite;
+  }
+`;
+
 export const BaseButton = styled<UpButtonStyledProps>(ReactButtonComponent) `
 ${(props: UpButtonStyledProps) => base(props) }
 ${(props: UpButtonStyledProps) => getWidth(props)}
 ${(props: UpButtonStyledProps) => getHeight(props)}
 ${(props: UpButtonStyledProps) => props.shadow? shadow(props):css``}
+${(props: UpButtonStyledProps) => props.rounded? rounded(props):css``}
 ${(props: UpButtonStyledProps) => props.disabled ? disabled(props) : active(props) }
+${(props: UpButtonStyledProps) => props.rotate ? rotate(props) : css`` }
 `;
