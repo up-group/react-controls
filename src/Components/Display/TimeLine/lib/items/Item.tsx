@@ -464,15 +464,7 @@ export default class Item extends React.Component<any, any> {
                 style={style}>
                 {this.props.useResizeHandle ? <div ref='dragLeft' className='rct-drag-left'></div> : ''}
                 <div className='rct-item-overflow'>
-                    <div className='rct-item-content' style={{
-                        whiteSpace: "nowrap",
-                        position: "relative",
-                        display: "inline-block",
-                        borderRadius: "2px",
-                        left: "0",
-                        padding: "0 6px",
-                        height: "100%",
-                    }}>
+                    <div className='rct-item-content'>
                         {this.itemTitle}
                     </div>
                 </div>

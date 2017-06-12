@@ -48,10 +48,7 @@ export default class VerticalLines extends React.Component<any, any> {
                         top: `${headerHeight}px`,
                         left: `${left + leftPush}px`,
                         width: `${labelWidth}px`,
-                        height: `${height - headerHeight}px`,
-                        position: "absolute",
-                        borderLeft: "1px solid #bbb",
-                        background: "#fff"
+                        height: `${height - headerHeight}px`
                     }} />)
         })
 

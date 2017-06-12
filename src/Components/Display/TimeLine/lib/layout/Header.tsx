@@ -188,15 +188,7 @@ export default class Header extends React.Component<any, any> {
                         height: `${(minUnit === 'year' ? headerLabelGroupHeight + headerLabelHeight : headerLabelHeight)}px`,
                         lineHeight: `${(minUnit === 'year' ? headerLabelGroupHeight + headerLabelHeight : headerLabelHeight)}px`,
                         fontSize: `${(labelWidth > 30 ? '14' : labelWidth > 20 ? '12' : '10')}px`,
-                        cursor: 'pointer',
-
-                        position: "absolute",
-                        overflow: "hidden",
-                        textAlign: "center",
-                        borderleft: "1px solid #bbb",
-                        color: "$lower - header - color",
-                        background: "#f0f0f0",
-                        borderBottom: "1px solid #f0f0f0",
+                        cursor: 'pointer'
                     }}>
                     {this.subHeaderLabel(time, minUnit, labelWidth)}
                 </div>

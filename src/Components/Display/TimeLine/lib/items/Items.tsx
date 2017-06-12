@@ -69,24 +69,9 @@ export default class Items extends React.Component<any,any>{
         const groupOrders = this.getGroupOrders()
         const visibleItems = this.getVisibleItems(canvasTimeStart, canvasTimeEnd, groupOrders)
         const sortedDimensionItems = keyBy(dimensionItems, 'id')
-
-
-        var s: React.CSSProperties = {
-            overflow: "hidden",
-            position: "absolute",
-            boxSizing: "border-box",
-            fontSize: "12px",
-            color: "white",
-            textAlign: "center",
-            cursor: "pointer",
-
-            background: "#2196F3",
-            border: "1px solid #1A6FB3",
-            zIndex: 1,
-        }
-
+               
         return (
-            <div style={s} className={'rct-items'} >
+            <div className={'rct-items'} >
                 {
                     visibleItems.filter(item => sortedDimensionItems[_get(item, itemIdKey)])
                         .map(item => <Item key={_get(item, itemIdKey)}
