@@ -25,12 +25,13 @@
     position: absolute;
     box-sizing: border-box;
     font-size: 12px;
-    color: #fff;
+    color: black;
     text-align: center;
     cursor: pointer;
-    background: #2196f3;
-    border: 1px solid #1a6fb3;
-    z-index: 1
+    background: #E5E5E5;
+    border: 1px solid #898989;
+    z-index: 1;
+    border-radius: 5px;
 }
 
     .react-calendar-timeline .rct-items .rct-item.clipped-left {
@@ -42,8 +43,8 @@
     }
 
     .react-calendar-timeline .rct-items .rct-item.selected {
-        background: #ffc107;
-        border: 1px solid #ff9800;
+        background: #a0a0a0;
+        border: 1px solid #a0a0a0;
         z-index: 2
     }
 
@@ -137,9 +138,9 @@
         font-size: 14px;
         overflow: hidden;
         text-align: center;
-        border-left: 2px solid #bbb;
-        color: #fff;
-        background: #c52020;
+        border-left: 1px solid #bbb;
+        color: black;
+        background: #e5e5e5;
         border-bottom: 1px solid #bbb;
         cursor: pointer
     }
@@ -162,7 +163,7 @@
 
         .react-calendar-timeline .rct-header .rct-label.rct-label-only {
             color: #fff;
-            background: #c52020
+            background: #e5e5e5
         }
 
         .react-calendar-timeline .rct-header .rct-label.rct-first-of-type {
@@ -185,11 +186,12 @@
 
     .react-calendar-timeline .rct-sidebar .rct-sidebar-header {
         margin: 0;
-        color: #fff;
-        background: #c52020;
+        color: black;
+        background: #e5e5e5;
         border-right: 1px solid #bbb;
-        box-sizing: "border-box";
         border-bottom: 1px solid #bbb;
+        border-top-left-radius: 5px;
+        box-sizing: "border-box";
         overflow: "hidden"
     }
 
