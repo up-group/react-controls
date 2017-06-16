@@ -1,9 +1,12 @@
+import {IconMap} from './iconMap'
+
 export interface ThemeInterface {
     colorMap: ThemeColorMap;
     borderRadius?:string;
     minButtonSize?:string;
     notificationIconSize?:number;
     gridGutter?:number;
+    intentTypeIcons?:IconMap;
 }
 
 export interface ThemeColorMap {

@@ -91,10 +91,7 @@ class Demo extends React.Component<undefined, DemoState> {
         }
     }
     public render() {
-        var theme: any = {
-            colorMap: {}
-        }
-
+        
         var enti = {
             id: "id",
             name: "Inventaire",
@@ -109,11 +106,6 @@ class Demo extends React.Component<undefined, DemoState> {
         //      "enum": [2, 4, 6]
 
         var aaa = [{ id: 1, text: "test" }, { id: 2, text: "test2" }];
-
-
-
-
-
 
         const groups = [
             { id: 2, title: 'group 2' },
@@ -132,9 +124,6 @@ class Demo extends React.Component<undefined, DemoState> {
             defaultTimeStart={moment('1995-12-25').add(-12, 'hour')}
             defaultTimeEnd={moment('1995-12-25').add(12, 'hour')}
         />;
-
-
-
 
         return (
             <UpThemeProvider theme={theme}>
@@ -189,7 +178,7 @@ class Demo extends React.Component<undefined, DemoState> {
                     <UpBox margin="small" boxSize={{ horizontal: 'xxlarge' }}>
                         Editor
               <hr />
-                        <UpPanel title="Paramètres" type="info">
+                        <UpPanel title="Paramètres" type="info" disableAutoIntentIcon={true}>
                             <UpNumber max={5} min={2} onChange={this.onNumberChange} />
                             {time}
                             <UpGrid>

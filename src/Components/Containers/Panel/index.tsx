@@ -10,6 +10,7 @@ export interface UpPanelProps extends ThemedProps  {
   message?:string;
   iconName?:IconName;
   iconSize?:number;
+  disableAutoIntentIcon?:boolean;
 }
 
 export interface UpPanelStyledProps extends UpPanelProps {

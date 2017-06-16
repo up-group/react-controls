@@ -10,7 +10,8 @@ export class UpPanel extends React.Component<UpPanelProps, undefined> {
   public static defaultProps: UpPanelProps = {
     footer: "",
     type:"primary",
-    theme:defaultTheme
+    theme:defaultTheme,
+    disableAutoIntentIcon:true
   };
   public render() {
     return (

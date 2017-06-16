@@ -9,8 +9,13 @@ import * as classnames from 'classnames'
 
 const BasePanel: React.StatelessComponent<UpPanelStyledProps> = (props) => {
     const { children } = props;
+    var iconName = props.iconName ;
+    if(!iconName && props.disableAutoIntentIcon===false && props.theme.intentTypeIcons && props.type) {
+      iconName = props.theme.intentTypeIcons[props.type] ;
+    }
 
-    const icon = <SvgIcon iconName={props.iconName}
+    const icon = <SvgIcon iconName={iconName}
+          color={(props.theme && props.theme.colorMap) ? props.theme.colorMap[props.type]:props.theme.colorMap.defaultDark}
           width={props.iconSize}
           height={props.iconSize} /> ;
 
@@ -20,7 +25,7 @@ const BasePanel: React.StatelessComponent<UpPanelStyledProps> = (props) => {
               <div className="up-panel-header">{props.title}</div>
             }
             <div className="up-panel-body">
-              {props.iconName &&
+              {iconName &&
               icon
             }
             {children}
