@@ -26,9 +26,12 @@ const BasePanel: React.StatelessComponent<UpPanelStyledProps> = (props) => {
             }
             <div className="up-panel-body">
               {iconName &&
-              icon
-            }
-            {children}
+                icon
+              }
+              {props.message &&
+                <span className="up-panel-message">{props.message}</span>
+              }
+              {children}
             </div>
             {props.footer &&
               <div className="up-panel-footer">{props.footer}</div>
@@ -60,6 +63,10 @@ const base = props => css`
     background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ; 
     background-color: #fff;
     padding: 10px;
+  }
+  .up-panel-message {
+    margin:10px;
+    display:inline-block
   }
   .up-panel-footer {
     background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ; 
