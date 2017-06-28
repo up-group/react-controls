@@ -198,8 +198,12 @@ class Demo extends React.Component<undefined, DemoState> {
 
                                     </UpCol>
                                     <UpCol span={12}>
-
-                                        <UpSwitch isNullable={true} onChange={this.onNumberChange} />
+                                        <UpSwitch value={true} isNullable={true} onChange={this.onNumberChange} />
+                                        <UpSwitch value={false} isNullable={true} onChange={this.onNumberChange} />
+                                        <UpSwitch value={null} isNullable={true} onChange={this.onNumberChange} />
+                                        <UpSwitch value={true} isNullable={false} onChange={this.onNumberChange} />
+                                        <UpSwitch value={false} isNullable={false} onChange={this.onNumberChange} />
+                                        <UpSwitch value={null} isNullable={false} onChange={this.onNumberChange} />
                                     </UpCol>
                                 </UpRow>
                             </UpGrid>
