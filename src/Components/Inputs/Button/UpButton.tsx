@@ -34,7 +34,6 @@ export default class UpButton extends React.Component<UpButtonProps, undefined> 
       this.props.onClick(e);
       e.preventDefault();
       e.stopPropagation();
-      return false;
   }
 
   public render() {
