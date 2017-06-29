@@ -33,7 +33,7 @@ export default class UpSwitch extends BaseControlComponent<UpSwitchProps, boolea
             borderTopLeftRadius: "4px",
             borderBottomLeftRadius: "4px",
             float: "left",
-            backgroundColor: "#eba8a6",
+            backgroundColor: this.state.value === false ? "#FF1A1A" : "#eba8a6",
             width: this.state.value === false ? maxWidth : "25%"
         }
 
@@ -41,7 +41,7 @@ export default class UpSwitch extends BaseControlComponent<UpSwitchProps, boolea
             borderTopRightRadius: "4px",
             borderBottomRightRadius: "4px",
             float: "right",
-            backgroundColor: "#afd5af",
+            backgroundColor: this.state.value === true ? "#009b00" : "#afd5af",
             width: this.state.value === true ? maxWidth : "25%"
         }
 
