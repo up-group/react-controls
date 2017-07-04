@@ -45,15 +45,20 @@
   },
   "scripts": {
     "clean": "rimraf dist && rimraf test/dist",
-    "prepublish": "npm run clean && npm run build ",
+
     "build": "tsc && copyfiles -u 1 src/Common/theming/base.css dist/ && copyfiles -u 1 src/Common/theming/icons/*.* dist/ && copyfiles -u 1 src/Components/Display/TimeLine/lib/Timeline.css dist/",
     "build-watch": "tsc -w",
-    "build-test": "npm run clean && webpack",
-    "build-test-watch": "npm run clean && webpack --watch",
+
+    "prepublish": "npm run clean && npm run build ",
     "publishProd": "npm version patch && npm publish",
     "publishBeta": "npm version patch && npm publish --tag beta",
+    
+    "build-test": "npm run clean && webpack",
+    "build-test-watch": "npm run clean && webpack --watch",
+
     "publishLocalToSchemaForm": "copyfiles dist/*.* dist/**/* package.json src/*.* src/**/* src/theming/icons/* ../react-schemaform/node_modules/@up-group/react-controls/",
     "publishLocalToApp": "copyfiles dist/*.* dist/**/* dist/**/*.* package.json src/*.* src/**/* src/**/*.* src/theming/icons/* ../react-app/node_modules/@up-group/react-controls/",
+    
     "test": "jest"
   },
   "devDependencies": {
