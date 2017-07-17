@@ -131,6 +131,103 @@ class Demo extends React.Component<undefined, DemoState> {
                  <UpPanel title="Paramètres" type="warning">
                     Mon message
                 </UpPanel>
+                    <UpSelect
+                        showError={true}
+                        default={null}
+                        isRequired={false}
+                        multiple={true}
+                        value={this.state.user}
+                        onChange={this.onChangeUser}
+                        placeholder="Recherche"
+                        allowClear={false}
+                        dataSource={enti}
+                    />
+                    <UpSelect
+                        showError={true}
+                        default={null}
+                        isRequired={false}
+                        multiple={true}
+                        placeholder="Recherche"
+                        allowClear={false}
+                        value={this.state.item}
+                        onChange={this.onChangeItem}
+                        data={[
+                            {
+                                id: 1,
+                                text: "Item 1"
+                            },
+                            {
+                                id: 2,
+                                text: "Item 2"
+                            },
+                            {
+                                id: 3,
+                                text: "Item 3"
+                            },
+                            {
+                                id: 4,
+                                text: "Item 4"
+                            },
+                            {
+                                id: 5,
+                                text: "Item 5"
+                            }
+                        ]}
+                    />
+                    <UpBox margin="small" boxSize={{ horizontal: 'small' }}>
+                        Component
+              <hr />
+                    </UpBox>
+                    <UpBox margin="small" boxSize={{ horizontal: 'xxlarge' }}>
+                        Editor
+              <hr />
+                        <UpPanel title="Paramètres" type="info" disableAutoIntentIcon={true}>
+                            <UpNumber max={5} min={2} onChange={this.onNumberChange} />
+                            {time}
+                            <UpGrid>
+                                <UpRow gutter={10} >
+                                    <UpCol span={12}>
+                                        <UpSwitch isNullable={true} onChange={this.onNumberChange} />
+
+                                    </UpCol>
+                                    <UpCol span={12}>
+
+                                        <UpSwitch isNullable={true} onChange={this.onNumberChange} />
+                                    </UpCol>
+                                </UpRow>
+                                <UpRow gutter={10} >
+                                    <UpCol span={12}>
+                                        <UpSwitch isNullable={true} onChange={this.onNumberChange} />
+
+                                    </UpCol>
+                                    <UpCol span={12}>
+                                        <UpSwitch value={true} isNullable={true} onChange={this.onNumberChange} />
+                                        <UpSwitch value={false} isNullable={true} onChange={this.onNumberChange} />
+                                        <UpSwitch value={null} isNullable={true} onChange={this.onNumberChange} />
+                                        <UpSwitch value={true} isNullable={false} onChange={this.onNumberChange} />
+                                        <UpSwitch value={false} isNullable={false} onChange={this.onNumberChange} />
+                                        <UpSwitch value={null} isNullable={false} onChange={this.onNumberChange} />
+                                    </UpCol>
+                                </UpRow>
+                            </UpGrid>
+
+
+                            {this.state.number}
+                        </UpPanel>
+
+                        <UpPanel title="Paramètres" type="primary">
+                            Mon message
+              </UpPanel>
+                        <UpPanel title="Paramètres" type="danger">
+                            Mon message
+              </UpPanel>
+                        <UpPanel title="Paramètres" type="success">
+                            Mon message
+              </UpPanel>
+                        <UpPanel title="Paramètres" type="warning">
+                            Mon message
+              </UpPanel>
+                    </UpBox>
                 </UpBox>
             </UpThemeProvider>
         );

@@ -11,7 +11,7 @@ export default class UpButton extends React.Component<UpButtonProps, undefined> 
 
   constructor(props) {
     super(props) ;
-    this.handleClick = this.handleClick.bind(this) ;
+    this.handleClick = this.handleClick.bind(this);
   }
 
   public static defaultProps: UpButtonProps = {
@@ -32,7 +32,9 @@ export default class UpButton extends React.Component<UpButtonProps, undefined> 
   };
 
   private handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
-    this.props.onClick(e) ;
+      this.props.onClick(e);
+      e.preventDefault();
+      e.stopPropagation();
   }
 
   public render() {

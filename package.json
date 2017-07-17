@@ -1,6 +1,10 @@
 {
   "name": "@up-group/react-controls",
+<<<<<<< HEAD
   "version": "0.0.151",
+=======
+  "version": "0.0.162",
+>>>>>>> fdc2840a0a2bde21746a3e70eb3b483380208949
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -45,13 +49,13 @@
   },
   "scripts": {
     "clean": "rimraf dist && rimraf test/dist",
-    "prepublish": "npm run clean && npm run build ",
     "build": "tsc && copyfiles -u 1 src/Common/theming/base.css dist/ && copyfiles -u 1 src/Common/theming/icons/*.* dist/ && copyfiles -u 1 src/Components/Display/TimeLine/lib/Timeline.css dist/",
     "build-watch": "tsc -w",
-    "build-test": "npm run clean && webpack",
-    "build-test-watch": "npm run clean && webpack --watch",
+    "prepublish": "npm run clean && npm run build ",
     "publishProd": "npm version patch && npm publish",
     "publishBeta": "npm version patch && npm publish --tag beta",
+    "build-test": "npm run clean && webpack",
+    "build-test-watch": "npm run clean && webpack --watch",
     "publishLocalToSchemaForm": "copyfiles dist/*.* dist/**/* package.json src/*.* src/**/* src/theming/icons/* ../react-schemaform/node_modules/@up-group/react-controls/",
     "publishLocalToApp": "copyfiles dist/*.* dist/**/* dist/**/*.* package.json src/*.* src/**/* src/**/*.* src/theming/icons/* ../react-app/node_modules/@up-group/react-controls/",
     "test": "jest"

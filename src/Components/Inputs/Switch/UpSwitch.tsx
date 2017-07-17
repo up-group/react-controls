@@ -2,14 +2,15 @@ import * as React from "react"
 
 import { UpSwitchProps, UpSwitchState } from './'
 
+import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 
-export default class UpSwitch extends React.Component<UpSwitchProps, UpSwitchState> {
+export default class UpSwitch extends BaseControlComponent<UpSwitchProps, boolean> {
     constructor(p, c) {
         super(p, c);
-        this.state = { value: false };
+        //this.state = { value: false };
     }
 
-    render() {
+    renderControl() {
 
         var maxWidth = this.props.isNullable ? "50%" : "75%";
 
@@ -81,10 +82,15 @@ export default class UpSwitch extends React.Component<UpSwitchProps, UpSwitchSta
             default:
                 value = null;
         }
-        this.setState({ value: value }, this.dispatchOnChange)
+        this.handleChangeEvent(value);
+        //this.setState({ value: value }, this.dispatchOnChange)
     }
 
-    dispatchOnChange = () => {
-        this.props.onChange(this.state.value);
+    //dispatchOnChange = () => {
+    //    this.props.onChange(this.state.value);
+    //}
+
+    getValue(event: any) {
+        return event;
     }
 }

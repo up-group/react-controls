@@ -11,7 +11,7 @@ export default class UpInput extends BaseControlComponent<UpInputProps, any> {
     public static defaultProps: UpInputProps = {
         showError: true,
         theme:defaultTheme,
-        width:"medium"
+        width:"fill"
     };
 
     constructor(p, c) {
