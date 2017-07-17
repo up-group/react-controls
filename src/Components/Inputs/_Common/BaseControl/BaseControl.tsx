@@ -7,6 +7,7 @@ import "../../../../Common/theming/base.css"
 import UpTooltip, { Tooltip } from '../../../Display/Tooltip'
 import TypeNullControl from "../Validation/TypeNullControl"
 import {ThemedProps} from '../../../../Common/theming/types'
+import {isString} from '../../../../Common/utils'
 
 // Exports
 const ONCHANGE_MUST_BE_SPECIFIED = "La méthode onChange doit être spécifié dans le cas où la valeur du composant est défini dans les props";
@@ -114,7 +115,7 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
     public render() {
         var _tooltip: Tooltip = null;
         if (this.props.tooltip) {
-            if (typeof this.props.tooltip === 'string' || this.props.tooltip instanceof String) {
+            if (isString(this.props.tooltip)) {
                 _tooltip = {
                     content: this.props.tooltip as string
                 }
