@@ -39,5 +39,7 @@ dictionary['unlock'] = require(`../../../Common/theming/icons/unlock.svg`);
 dictionary['upload'] = require(`../../../Common/theming/icons/upload.svg`);
 dictionary['zoom-in'] = require(`../../../Common/theming/icons/zoom-in.svg`);
 dictionary['zoom-out'] = require(`../../../Common/theming/icons/zoom-out.svg`);
+dictionary['sort-asc'] = require(`../../../Common/theming/icons/sort-asc.svg`);
+dictionary['sort-desc'] = require(`../../../Common/theming/icons/sort-desc.svg`);
 
 export default dictionary
