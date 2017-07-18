@@ -14,7 +14,7 @@ const BaseCheckBox: React.StatelessComponent<UpCheckboxStyledProps> = (props) =>
 
     return (
       <label className={classNames("up-control", "up-checkbox", className)}>
-        <input defaultChecked={checked} onChange={onChange} name={name} type="checkbox" value={value} />
+        <input checked={checked} onChange={onChange} name={name} type="checkbox" value={value} />
         <span className="up-control-indicator"></span>
         {text}
       </label>
