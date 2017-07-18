@@ -5,4 +5,5 @@ import {IconName} from '../../../Common/theming/types'
 export interface SvgProps extends React.SVGProps<{}> {
     viewBox?: string;
     iconName?: IconName;
+    position?: string;
 }

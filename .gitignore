@@ -1,4 +1,4 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
@@ -11,3 +11,22 @@ test/index.js.map
 
 npm-debug.log
 dist/
+fonts/icons-16.eot
+
+fonts/icons-16.ttf
+
+fonts/icons-16.woff
+
+fonts/icons-20.eot
+
+test/fonts/icons-16.eot
+
+test/fonts/icons-16.ttf
+
+test/fonts/icons-16.woff
+
+test/fonts/icons-20.eot
+
+test/fonts/icons-20.ttf
+
+test/fonts/icons-20.woff
