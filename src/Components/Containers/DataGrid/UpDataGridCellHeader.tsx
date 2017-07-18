@@ -1,0 +1,70 @@
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
+
+import UpSvgIcon from '../../Display/SvgIcon'
+
+import { SortDirection, Column } from './UpDataGrid'
+
+import * as classnames from 'classnames'
+
+export interface UpDataGridCellHeaderState {
+    isSorted:boolean;
+    sortDirection: SortDirection
+}
+
+export interface UpDataGridCellHeaderProps {
+    isSortable?:boolean;
+    defaultSort?:SortDirection;
+    onSortChange?: (c:Column, d:SortDirection) => void;
+    column?:Column;
+    width?: string;
+}
+
+export default class UpDataGridCellHeader extends React.Component<UpDataGridCellHeaderProps, UpDataGridCellHeaderState> {
+
+    static defaultProps : UpDataGridCellHeaderProps = {
+        isSortable:true
+    }
+
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+            isSorted:false,
+            sortDirection:null
+        }
+    }
+
+    onCellClick = () => {
+        if(this.props.isSortable) {
+            this.setState({isSorted: true, sortDirection : this.state.sortDirection == "DESC" ?  "ASC" : "DESC" }) ;
+            this.props.onSortChange(this.props.column, this.state.sortDirection) ;  
+        }  
+    }
+
+    componentWillReceiveProps(newProps: UpDataGridCellHeaderProps) {
+        if(newProps.column.isSorted != this.state.isSorted) {
+            this.setState({isSorted: newProps.column.isSorted, sortDirection : (newProps.column.isSorted) ? (this.state.sortDirection==null)?"DESC":"ASC" : null }) ;         
+        }
+    }
+
+    render() {
+        let sortIcon = null;
+        if(this.state.sortDirection=="DESC") {
+            sortIcon = "sort-desc" ;
+        } else if(this.state.sortDirection=="ASC") {
+            sortIcon = "sort-asc" ;
+        }
+        var width = "auto" ;
+        if(this.props.width) {
+            width = this.props.width ;
+        }
+        return (
+            <div style={{width: width}} className={classnames("up-data-grid-header-cell", (this.props.isSortable)?'up-data-grid-sortable':'')}  onClick={this.onCellClick}>
+                {this.props.column.label}
+                {this.state.isSorted &&  sortIcon != null &&
+                    <UpSvgIcon width={10} iconName={sortIcon} />
+                }
+            </div>
+        )
+    }
+}
