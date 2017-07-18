@@ -5,10 +5,12 @@ export default UpSelect ;
 
 import {BaseControlProps} from '../_Common/BaseControl/BaseControl' 
 
+export type SelectWidth = 'xsmall' | 'small' | 'normal' | 'large' | 'full' | 'auto' ;
+
 export interface UpSelectOption {
     id:number,
     text:string,
-    icon:string
+    icon?:string
 }
 
 export interface UpSelectProps extends BaseControlProps<any> {
@@ -35,8 +37,10 @@ export interface UpSelectProps extends BaseControlProps<any> {
     searchPromptText? : string,
     optionRenderer?: React.StatelessComponent<UpSelectOption>,
     valueRenderer?: React.StatelessComponent<UpSelectOption>,
-    dataFor?:string; //For tooltip
+    dataFor?:string; //For tooltip,
+    width?:SelectWidth;
 }
 
-export interface UpSelectStyledProps extends UpSelectProps {
+export interface UpSelectStyledProps {
+    width?:SelectWidth;
 }

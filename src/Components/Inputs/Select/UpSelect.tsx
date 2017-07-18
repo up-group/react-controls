@@ -21,13 +21,14 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         loadingPlaceholder: "Chargement en cours",
         default: null,
         autoload: false,
-        showError: true
+        showError: true,
+        width:'normal'
     }
 
     constructor(p, c) {
         super(p, c);
         this.state = {
-            value: p.value
+            value: (p.value)?p.value:p.default
         };
     }
 
@@ -166,7 +167,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         }
 
         return (
-            <WrapperSelect>
+            <WrapperSelect width={this.props.width}>
                 <SelectComponent
                     {...specProps}
                     placeholder={this.props.placeholder}
