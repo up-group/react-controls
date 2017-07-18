@@ -1,10 +1,6 @@
 {
   "name": "@up-group/react-controls",
-<<<<<<< HEAD
-  "version": "0.0.151",
-=======
   "version": "0.0.162",
->>>>>>> fdc2840a0a2bde21746a3e70eb3b483380208949
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -58,9 +54,13 @@
     "build-test-watch": "npm run clean && webpack --watch",
     "publishLocalToSchemaForm": "copyfiles dist/*.* dist/**/* package.json src/*.* src/**/* src/theming/icons/* ../react-schemaform/node_modules/@up-group/react-controls/",
     "publishLocalToApp": "copyfiles dist/*.* dist/**/* dist/**/*.* package.json src/*.* src/**/* src/**/*.* src/theming/icons/* ../react-app/node_modules/@up-group/react-controls/",
-    "test": "jest"
+    "test": "jest",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "devDependencies": {
+    "@storybook/addon-info": "^3.1.9",
+    "@storybook/react": "^3.1.9",
     "@types/chai": "^3.5.2",
     "@types/chai-enzyme": "^0.6.1",
     "@types/enzyme": "*",
@@ -91,6 +91,7 @@
     "json-loader": "^0.5.4",
     "markdown-loader": "^2.0.0",
     "react-addons-test-utils": "^15.5.1",
+    "react-storybook-addon-info": "^3.5.0",
     "react-test-renderer": "^15.5.4",
     "rimraf": "^2.6.1",
     "style-loader": "^0.16.1",
@@ -114,9 +115,9 @@
     "node-sass": "^4.5.3",
     "normalize.css": "^4.1.1",
     "object-assign": "^4.1.1",
-    "react": "^15.4.2",
+    "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.5.2",
-    "react-dom": "^15.4.2",
+    "react-dom": "^15.6.1",
     "react-input-autosize": "1.1.0",
     "react-markdown": "^2.4.5",
     "react-maskedinput": "^3.3.4",
@@ -127,6 +128,7 @@
     "react-tooltip": "^3.3.0",
     "select2": "^4.0.3",
     "styled-components": "^1.4.4",
+    "typestyle": "^1.3.7",
     "validator": "^7.0.0"
   }
 }
