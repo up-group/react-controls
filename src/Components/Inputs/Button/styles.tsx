@@ -46,6 +46,8 @@ const ReactButtonComponent: React.StatelessComponent<UpButtonStyledProps> = (pro
     var iconName : IconName = 'blank' ;
     if(actionType && ActionIconMap.containsKey(actionType)) {
         iconName = ActionIconMap.get(actionType) ;
+    } else if(props.iconName) {
+        iconName = props.iconName ;
     }
     
     // Our SVG Icon viewbox is 20*20 units
@@ -111,14 +113,14 @@ cursor: not-allowed;
 
 const active = props => css`
 color: ${(props: UpButtonStyledProps) => props.color || 'white' };
-background-color: ${props => props.backgroundColor|| props.theme.colorMap[props.type]};
-border-color: ${props => props.borderColor || props.theme.colorMap[`${props.type}Dark`]};
+background-color: ${props => props.backgroundColor|| props.theme.colorMap[props.intent]};
+border-color: ${props => props.borderColor || props.theme.colorMap[`${props.intent}Dark`]};
 border-width:1px;
 border-style:solid;
 &:hover {
-  background-color: ${props => props.color || props.theme.colorMap[`${props.type}Light`] || 'white' };
+  background-color: ${props => props.color || props.theme.colorMap[`${props.intent}Light`] || 'white' };
   svg {
-    fill: ${(props: UpButtonStyledProps) => props.backgroundColor || props.theme.colorMap[`${props.type}Dark`]}
+    fill: ${(props: UpButtonStyledProps) => props.backgroundColor || props.theme.colorMap[`${props.intent}Dark`]}
   }
 }
 svg {
@@ -173,7 +175,7 @@ const xsmall = props => css`
 `;
 
 const icon = props => css`
-  padding: 4px 5px;
+  padding: 0px 4px;
   border-radius: 3px;
   font-size: 12px;
   line-height: 1.5;
