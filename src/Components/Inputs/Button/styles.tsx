@@ -93,7 +93,7 @@ const base = props => css`
   min-height: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || DEFAULT_MIN_SIZE};
   line-height: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || DEFAULT_MIN_SIZE};
   svg {
-    margin:4px 4px 4px 0px;
+    margin:1px;
     display:inline-block;
     float:left;
   }

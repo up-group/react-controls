@@ -59,7 +59,7 @@ const DataGridStyle = style({
         ".up-data-grid-cell" : {
             display: "table-cell",
             verticalAlign: "top",
-            padding: "4px"
+            padding: "8px"
         },
         ".up-data-grid-row-bordered" : {
             $nest : {
@@ -116,15 +116,20 @@ export interface Row {
 
 export interface UpDataGridProps {
     columns: Array<Column>;
-    actions: Array<Action>;
-    isSelectionEnabled: boolean;
+    actions?: Array<Action>;
+    isSelectionEnabled?: boolean;
+    isPaginationEnabled?: boolean;
+    isOddEvenEnabled?: boolean;
+    isSortEnabled?:boolean;
     rowTemplate?: any;
     data: string | Array<any>;
     total?:number;
+
     // Event Handler
     onPageChange?: (page: number,take:number, skip:number) => void;
     onSortChange?: (c: Column, dir:SortDirection) => void;
-    onSelectionChange?: (selection: any) => void;
+    onSelectionChange?: (row: Row) => void;
+    handleAction?: (item:any, role:string) => void;
 }
 
 export interface UpDataGridState {
@@ -143,7 +148,10 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
         columns:[],
         actions:[],
         data:[],
-        isSelectionEnabled:true
+        isSelectionEnabled:false,
+        isPaginationEnabled:false,
+        isOddEvenEnabled:true,
+        isSortEnabled:true
     }
 
     constructor(props, context) {
@@ -189,8 +197,9 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
             this.props.onPageChange(page, take, skip) ;
     }
 
-    onSelectionChange = (r:Row, isSelected:boolean) => {
-
+    onSelectionChange = (r:Row) => {
+        if(this.props.onSelectionChange)
+            this.props.onSelectionChange(r) ;
     }
 
     onSelectionAllChange = (isSelected:boolean) => {
@@ -202,31 +211,77 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
                 value:row.value
             });
         });
-        
+
         this.setState({data:rows}) ;
     }
 
     onSortChange = (c:Column, dir:SortDirection) => {
+        if(this.props.onSortChange) {
+            this.props.onSortChange(c, dir) ;
+        }
+    }
 
+    handleAction = (item:any, role:string) => {
+        if(this.props.handleAction)
+            this.props.handleAction(item, role) ;
     }
 
     render() {
         const pagination = <UpPagination count={50} onPageChange={this.onPageChange} /> ;
         const toolbar    = <UpUpDataGridToolbar /> ;
+        const RowTemplate = this.props.rowTemplate ;
+
+        var OddEvenStyle = null ;
+        if(this.props.isOddEvenEnabled) {
+            OddEvenStyle = style({
+                $nest : {
+                    '.up-data-grid-row:nth-child(even)' : {
+                        background: "#EFEFEF"
+                    },
+                    '.up-data-grid-row:nth-child(odd)' : {
+                        background: "#FFF"
+                    }
+                }
+            }) ;
+        }
+        var columns = this.props.columns ;
+        if(this.props.isSortEnabled == false) {
+            var newUnsortableColumns : Array<Column> = [] ;
+            columns.map((value, index) => {
+                value.isSortable = false ;
+                newUnsortableColumns.push(value) ;
+            });
+            columns = newUnsortableColumns ;
+        }
+        
         return (
             <div className={classnames("up-data-grid-container", WrapperDataGridStyle)} >
-                {pagination}
+                {this.props.isPaginationEnabled &&
+                    pagination
+                }
                 <div className={classnames("up-data-grid-main", DataGridStyle)}>
                     <UpDataGridRowHeader isSelectionEnabled={this.props.isSelectionEnabled} 
                                          onSelectionChange={this.onSelectionAllChange}
                                          onSortChange={this.onSortChange}
                                          actions={this.props.actions}
-                                         columns={this.props.columns} />
-                    <div className={classnames("up-data-grid-body")}>
+                                         columns={columns} />
+                    <div className={classnames("up-data-grid-body", OddEvenStyle)}>
                         {this.state.data.map( (value, index) => {
-                            return <UpDataGridRow ref={`row-${index}`} isSelectionEnabled={this.props.isSelectionEnabled} 
-                                                  actions={this.props.actions}
-                                                  columns={this.props.columns} item={value} />
+                            if(RowTemplate) {
+                                return <RowTemplate ref={`row-${index}`} 
+                                                    isSelectionEnabled={this.props.isSelectionEnabled} 
+                                                    actions={this.props.actions}
+                                                    handleAction={this.handleAction}
+                                                    columns={columns} 
+                                                    item={value} />
+                            } else {
+                                return <UpDataGridRow   ref={`row-${index}`} 
+                                                        isSelectionEnabled={this.props.isSelectionEnabled} 
+                                                        actions={this.props.actions}
+                                                        handleAction={this.handleAction}
+                                                        columns={columns} 
+                                                        item={value} />
+                            }
                         })}
                     </div>
                 </div>

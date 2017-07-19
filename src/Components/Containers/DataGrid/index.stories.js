@@ -7,6 +7,30 @@ import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themed
 
 import UpPagination from './UpPagination'
 import UpDataGrid from './UpDataGrid'
+import RowTemplate from './templates/UpDataGridRowWithStatus'
+
+var data = [
+          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}}
+      ];
 
 storiesOf('UpPagination', module)
   .addWithInfo('Simple usage', 'Utilisation du composant en lui passant le nombre d\'élément à afficher',
@@ -19,10 +43,14 @@ storiesOf('UpPagination', module)
   )) ;
 
 storiesOf('UpDataGrid', module)
-  .addWithInfo('Simple usage', 'Utilisation du composant de grid sans pagination',
+  .addWithInfo('Simple usage', 'Utilisation du composant de grid sans pagination et sans sélection',
    () => (
     <UpThemeProvider theme={UpDefaultTheme}>
-      <UpDataGrid columns={
+      <UpDataGrid 
+      isPaginationEnabled={false}
+      isSelectionEnabled={false}
+      isSortEnabled={false}
+      columns={
           [{
               label:'Col 1',
               field:'c1',
@@ -40,9 +68,33 @@ storiesOf('UpDataGrid', module)
               field:'c4',
               isSortable:true
           }]
-      }  data={[
-          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : 'Value 4'}
-      ]} />
+      }  data={data} />
+    </UpThemeProvider>
+  )).addWithInfo('Avec sélection', 'Utilisation du composant de grid avec sélection',
+   () => (
+    <UpThemeProvider theme={UpDefaultTheme}>
+      <UpDataGrid 
+      isPaginationEnabled={false}
+      isSelectionEnabled={true}
+      columns={
+          [{
+              label:'Col 1',
+              field:'c1',
+              isSortable:true
+          },{
+              label:'Col 2',
+              field:'c2',
+              isSortable:true
+          },{
+              label:'Col 3',
+              field:'c3',
+              isSortable:true
+          },{
+              label:'Col 4',
+              field:'c4',
+              isSortable:true
+          }]
+      }  data={data} />
     </UpThemeProvider>
   )).addWithInfo('Avec actions', 'Utilisation d\'un jeux d\'action commun à toutes les lignes',
    () => (
@@ -84,8 +136,49 @@ storiesOf('UpDataGrid', module)
               field:'c4',
               isSortable:true
           }]
-      }  data={[
-          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : 'Value 4'}
-      ]} />
+      }  data={data} />
+    </UpThemeProvider>
+  )).addWithInfo('Avec template', 'Utilisation d\'un template spécifique pour les lignes',
+   () => (
+    <UpThemeProvider theme={UpDefaultTheme}>
+      <UpDataGrid 
+      rowTemplate={RowTemplate}
+      actions={
+          [{
+              role:'add',
+              intent: 'primary',
+              type:'add',
+              description:'Ajouter un lien'
+          },{
+              role:'edit',
+              intent: 'primary',
+              type:'edit',
+              description:'Modifier'
+          },{
+              role:'delete',
+              intent: 'danger',
+              type:'delete',
+              description:'Supprimer'
+          }]
+      }
+      columns={
+          [{
+              label:'Col 1',
+              field:'c1',
+              isSortable:true
+          },{
+              label:'Col 2',
+              field:'c2',
+              isSortable:true
+          },{
+              label:'Col 3',
+              field:'c3',
+              isSortable:true
+          },{
+              label:'Col 4',
+              field:'c4',
+              isSortable:true
+          }]
+      }  data={data} />
     </UpThemeProvider>
   )) ;

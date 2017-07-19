@@ -13,7 +13,6 @@ export interface UpDataGridCellHeaderState {
 }
 
 export interface UpDataGridCellHeaderProps {
-    isSortable?:boolean;
     defaultSort?:SortDirection;
     onSortChange?: (c:Column, d:SortDirection) => void;
     column?:Column;
@@ -23,7 +22,7 @@ export interface UpDataGridCellHeaderProps {
 export default class UpDataGridCellHeader extends React.Component<UpDataGridCellHeaderProps, UpDataGridCellHeaderState> {
 
     static defaultProps : UpDataGridCellHeaderProps = {
-        isSortable:true
+        
     }
 
     constructor(props, context) {
@@ -35,14 +34,14 @@ export default class UpDataGridCellHeader extends React.Component<UpDataGridCell
     }
 
     onCellClick = () => {
-        if(this.props.isSortable) {
+        if(this.props.column.isSortable===true) {
             this.setState({isSorted: true, sortDirection : this.state.sortDirection == "DESC" ?  "ASC" : "DESC" }) ;
             this.props.onSortChange(this.props.column, this.state.sortDirection) ;  
         }  
     }
 
     componentWillReceiveProps(newProps: UpDataGridCellHeaderProps) {
-        if(newProps.column.isSorted != this.state.isSorted) {
+        if(newProps.column.isSorted !== this.state.isSorted) {
             this.setState({isSorted: newProps.column.isSorted, sortDirection : (newProps.column.isSorted) ? (this.state.sortDirection==null)?"DESC":"ASC" : null }) ;         
         }
     }
@@ -59,7 +58,7 @@ export default class UpDataGridCellHeader extends React.Component<UpDataGridCell
             width = this.props.width ;
         }
         return (
-            <div style={{width: width}} className={classnames("up-data-grid-header-cell", (this.props.isSortable)?'up-data-grid-sortable':'')}  onClick={this.onCellClick}>
+            <div style={{width: width}} className={classnames("up-data-grid-header-cell", (this.props.column.isSortable)?'up-data-grid-sortable':'')}  onClick={this.onCellClick}>
                 {this.props.column.label}
                 {this.state.isSorted &&  sortIcon != null &&
                     <UpSvgIcon width={10} iconName={sortIcon} />

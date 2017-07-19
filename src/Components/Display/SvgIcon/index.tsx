@@ -18,7 +18,7 @@ const SvgIconWrapper = styled.div`
     display: inline;
     width: ${ (props:SvgIconWrapperProps) => props.width}px ;
     height:${ (props:SvgIconWrapperProps) => props.height}px ;
-    margin: 4px;
+    margin: 2px;
     svg {
       fill:${ (props:SvgIconWrapperProps) => props.color} ;
     }

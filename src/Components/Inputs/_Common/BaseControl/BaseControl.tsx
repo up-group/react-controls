@@ -26,6 +26,7 @@ export interface BaseControlProps<_BaseType> extends ThemedProps {
 export interface BaseControlState<_BaseType> {
     error?: string;
     value?: _BaseType;
+    extra?:any;
 }
 
 export abstract class BaseControlComponent<_Props, _BaseType> extends React.Component<BaseControlProps<_BaseType> & _Props, BaseControlState<_BaseType>> {

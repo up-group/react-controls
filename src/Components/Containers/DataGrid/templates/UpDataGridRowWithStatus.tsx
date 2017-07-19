@@ -1,19 +1,19 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
-import UpCheckbox from '../../Inputs/Checkbox'
-import UpButton from '../../Inputs/Button'
-import {IntentType} from '../../../Common/theming/types'
+import UpCheckbox from '../../../Inputs/Checkbox'
+import UpButton from '../../../Inputs/Button'
+import {IntentType} from '../../../../Common/theming/types'
 
-import UpDataGridCell from './UpDataGridCell'
-import {Column, Row, Action} from './UpDataGrid'
-import UpDefaultCellFormatter from './UpDefaultCellFormatter'
+import UpDataGridCell from '../UpDataGridCell'
+import {Column, Row, Action} from '../UpDataGrid'
+import UpDefaultCellFormatter from '../UpDefaultCellFormatter'
 
-export interface UpDataGridRowState {
+export interface UpDataGridRowWithStatusState {
     isSelected:boolean;
 }
 
-export interface UpDataGridRowProps {
+export interface UpDataGridRowWithStatusProps {
     item: any;
     columns:Array<Column>;
     actions:Array<Action>;
@@ -22,9 +22,9 @@ export interface UpDataGridRowProps {
     handleAction?: (item:any, role:string) => void;
 }
 
-export default class UpDataGridRow extends React.Component<UpDataGridRowProps, UpDataGridRowState> {
+export default class UpDataGridRowWithStatus extends React.Component<UpDataGridRowWithStatusProps, UpDataGridRowWithStatusState> {
 
-    static defaultProps : UpDataGridRowProps = {
+    static defaultProps : UpDataGridRowWithStatusProps = {
         isSelectionEnabled:true,
         item:{},
         columns:[],
@@ -54,7 +54,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
         const selection = <UpCheckbox options={[{name:"up-selection", checked:this.props.item.isSelected===true, value:true, onChange: this.onSelectionChange}]} /> ;
         
         return (
-            <div className="up-data-grid-row">
+            <div className="up-data-grid-row" style={{background:"#234556"}}>
                 {this.props.isSelectionEnabled && 
                     <UpDataGridCell item={{value : selection}} formatter={formatter} />
                 }
