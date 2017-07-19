@@ -7,7 +7,7 @@ import {UpSelectStyledProps} from './'
 
 var getWidth = function(props) {
     switch(props.width) {
-      case 'normal':
+      case 'auto':
       return `.Select { width: auto }` ;
       case 'full':
       return `.Select { width: 100% }` ;
