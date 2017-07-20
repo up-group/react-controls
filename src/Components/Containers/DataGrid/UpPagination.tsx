@@ -14,7 +14,7 @@ export interface UpPaginationState {
 }
 
 export interface UpPaginationProps {
-    count:number;
+    total:number;
     defaultSkip?:number;
     defaultTake?:number;
     defaultPage?:number;
@@ -117,7 +117,7 @@ const paginationCounterStyle = style({
 export default class UpPagination extends React.Component<UpPaginationProps, UpPaginationState> {
 
     static defaultProps:UpPaginationProps = {
-        noResultMessage: "Aucun r&eacute;sultat",
+        noResultMessage: "Aucun résultat",
         nbByPageMessage: "Nbre par page",
         isTakeChangeEnable:true,
         isExtraInfoDisplay:true,
@@ -125,7 +125,7 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
                 {id:50, text: "50"}, 
                 {id:100, text: "100"}, 
                 {id:200, text: "200"}],
-        count:0,
+        total:0,
         defaultPage:1,
         defaultSkip:0,
         defaultTake:50,
@@ -143,32 +143,45 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
 
     goToPreviousPage = () => {
         if(this.state.page > 1 ) {
-            this.setState({page:this.state.page-1}); 
-            this.props.onPageChange(this.state.page, this.state.take, this.state.page * this.state.take-1 ) ;
+            var previousPage = this.state.page-1 ;
+            var newState = {page:previousPage, skip: (previousPage-1)*this.state.take} ;
+            this.setState(newState); 
+            this.props.onPageChange(newState.page, this.state.take, newState.skip ) ;
         }
     }
 
     getMaxPage = () => {
-        let maxPage = Math.ceil(this.props.count / this.state.take) ;
+        let maxPage = Math.ceil(this.props.total / this.state.take) ;
         return maxPage ;
     }
 
     goToNextPage = () => {
         if(this.state.page < this.getMaxPage() ) {
-            this.setState({page:this.state.page+1}); 
-            this.props.onPageChange(this.state.page, this.state.take, this.state.page * this.state.take-1 ) ;
+            var nextPage = this.state.page+1 ;
+            var newState = {page:nextPage, skip: (nextPage-1)*this.state.take} ;
+            this.setState(newState); 
+            this.props.onPageChange(newState.page, this.state.take, newState.skip ) ;
         }
     }
 
     goTo = (page:number) => {
-        this.setState({page:page, skip: (page-1)*this.state.take});    
-        this.props.onPageChange(page, this.state.take, page * this.state.take-1) ;
+        var newState = {page:page, skip: (page-1)*this.state.take} ;
+        this.setState(newState);    
+        this.props.onPageChange(newState.page, this.state.take, newState.skip) ;
     }
 
     onTakeChange = (data: any) => {
-        if(data) {
-            this.setState({take: data.id}); 
-            this.props.onPageChange(this.state.page, this.state.take, this.state.skip ) ;
+        if(data && data.id != this.state.take) {
+            var newTake =  data.id ;
+            var newSkip = (this.state.page-1) * newTake;
+            var newPage = (newSkip/newTake) + 1 ;
+            if(newPage > Math.ceil(this.props.total / newTake)) {
+                newPage = Math.ceil(this.props.total / newTake) ;
+                newSkip = (newPage-1) * newTake;
+            }
+            var newState = {take: data.id, skip:newSkip, page: newPage } ;
+            this.setState(newState) ;
+            this.props.onPageChange(newState.page, newState.take, newState.skip ) ;
         }
     }
 
@@ -181,8 +194,8 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
         }
         let from = this.state.skip + 1 ;
         let to = from + this.state.take - 1 ;
-        if(to > this.props.count) 
-            to = this.props.count ;
+        if(to > this.props.total) 
+            to = this.props.total ;
 
         return (
             <UpGrid>
@@ -223,7 +236,7 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
                                     <span> &agrave; </span>
                                     <span>{to}</span>
                                     <span> sur </span>
-                                    <span>{this.props.count}</span>
+                                    <span>{this.props.total}</span>
                                 </span>
                             }
                         </span>

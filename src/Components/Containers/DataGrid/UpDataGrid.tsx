@@ -107,12 +107,15 @@ export interface Column {
     type?:any;
     isSortable?:boolean;
     isSorted?:boolean;
+    sortDir?:SortDirection;
 }
 
 export interface Row {
     isSelected? : boolean;
     value?:any;
 }
+
+export type Method = 'GET' | 'POST' ;
 
 export interface UpDataGridProps {
     columns: Array<Column>;
@@ -122,8 +125,19 @@ export interface UpDataGridProps {
     isOddEvenEnabled?: boolean;
     isSortEnabled?:boolean;
     rowTemplate?: any;
-    data: string | Array<any>;
+    data?: Array<any>;
+    dataKey?:string;
+    // For pagination
+    defaultSkip?:number;
+    defaultTake?:number;
+    defaultPage?:number;
     total?:number;
+
+    dataSource?: {
+        query: string;
+        method?:Method;
+        entityKey?:string;
+    },
 
     // Event Handler
     onPageChange?: (page: number,take:number, skip:number) => void;
@@ -134,6 +148,7 @@ export interface UpDataGridProps {
 
 export interface UpDataGridState {
     data: Array<Row>;
+    columns:Array<Column>,
     page:number;
     skip:number;
     take:number;
@@ -147,7 +162,10 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
     static defaultProps : UpDataGridProps = {
         columns:[],
         actions:[],
-        data:[],
+        dataKey:'Entity',
+        defaultSkip:0,
+        defaultTake:50,
+        defaultPage:1,
         isSelectionEnabled:false,
         isPaginationEnabled:false,
         isOddEvenEnabled:true,
@@ -156,28 +174,107 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
 
     constructor(props, context) {
         super(props, context) ;
-        const data = this.props.data as Array<any>;
-        let rows : Array<Row> = [] ;
-        
-        data.map((value, index) => {
-            rows.push({
-                isSelected:false,
-                value:value
-            });
-        });
-
-        // On vérifie si on nous a passé tout le tableau
-        if(rows.length == this.props.total) {
+        this.fetchData = this.fetchData.bind(this) ;
+        if(props.data != null) {
+            const data = props.data as Array<any>;
+            let rows : Array<Row> = [] ;
             
-        }
+            data.map((value, index) => {
+                rows.push({
+                    isSelected:false,
+                    value:value
+                });
+            });
 
-        this.state = {
-            data : rows,
-            page:1,
-            skip:0,
-            take:50,
-            total: this.props.total
-        };
+            this.state = {
+                data : rows,
+                columns: props.columns,
+                page:1,
+                skip:0,
+                take: props.defaultTake,
+                total: props.total
+            };
+        } else if (props.dataSource != undefined) {
+            this.state = {
+                data : [],
+                columns: props.columns,
+                page:1,
+                skip:0,
+                take: props.defaultTake,
+                total: props.total
+            };
+            this.fetchData() ;
+        }
+    }
+
+    fetchData = () => {
+        var sortedColumn:Column = null ;
+        this.state.columns.map((value, index) => {
+            if(value.isSorted) {
+                sortedColumn = value ;
+            }
+        });
+        var dataKey = this.props.dataKey ;
+
+        if(this.props.dataSource.method === 'POST') {
+            
+            var params = {  Take : this.state.take,
+                            Skip : this.state.skip} ;
+
+            if(sortedColumn != null) {
+                params['Order'] = sortedColumn.field ;
+                params['Dir']   = sortedColumn.sortDir;
+            }
+
+            axios.post(`${this.props.dataSource.query}`,
+                    )
+                    .then((response) => {
+                        var data = response.data;
+                        console.log(data) ;
+                    });
+        } else {
+            var query = `${this.props.dataSource.query}?Take=${this.state.take}&Skip=${this.state.skip}` ;
+            if(sortedColumn != null) {
+                query = `${query}&Order=${sortedColumn.field}&Dir=${sortedColumn.sortDir}` ;
+            }
+            var self = this ;
+            axios.get(query)
+                    .then((response) => {
+                        var data = response.data;
+                        var rows : Array<Row> = [] ;
+                        var total = 0 ;
+                        if(data.Count != null) {
+                            total = data.Count ;
+                            if(dataKey != null) {
+                                data = data[dataKey] ;
+                            }
+                        } else {
+                            total = data.length ;
+                        }
+                        if(data != null) {
+                            data.map((value, index)  => {
+                                rows.push({value: value, isSelected: false}) ;
+                            });
+                            if(rows.length == total && self.state.take < total) {
+                                // Internal sort
+                                if(sortedColumn) {
+                                    rows.sort(
+                                        function(x, y)
+                                        {
+                                            if(sortedColumn.sortDir=="ASC")
+                                                return x.value[sortedColumn.field] === y.value[sortedColumn.field] ? 0 : x.value[sortedColumn.field] > y.value[sortedColumn.field] ? 1 : -1 ;
+                                            else 
+                                                return x.value[sortedColumn.field] === y.value[sortedColumn.field] ? 0 : x.value[sortedColumn.field] > y.value[sortedColumn.field] ? -1 : 1 ;
+                                        }
+                                        );
+                                }
+                                // Internal pagination
+                                rows = rows.slice(self.state.skip, self.state.skip + self.state.take) ;
+                            }
+                        }
+                        self.setState({data: rows, total: total}) ;
+                    });
+        }
     }
 
     getSelectedRows = () => {
@@ -188,13 +285,15 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
         return this.state.data.filter(r => r.isSelected === true);
     }
 
-    checkAll = () => {
-
-    }
-
     onPageChange = (page:number, take:number, skip:number) => {
         if(this.props.onPageChange)
             this.props.onPageChange(page, take, skip) ;
+
+        this.setState({page:page, take:take, skip:skip}, () => {
+            if (this.props.dataSource != undefined) {
+                this.fetchData() ;
+            }
+        }) ;
     }
 
     onSelectionChange = (r:Row) => {
@@ -219,6 +318,22 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
         if(this.props.onSortChange) {
             this.props.onSortChange(c, dir) ;
         }
+        // Update the column state
+        var columns:Array<Column> = [] ;
+        this.state.columns.map((value, index) => {
+            if (c.field == value.field) {
+               columns.push(c) ;
+            } else {
+                value.isSorted = false ;
+                value.sortDir=null;
+                columns.push(value)  ;
+            }
+        });
+        this.setState({columns:columns}, () => {
+            if (this.props.dataSource != undefined) {
+                this.fetchData() ;
+            }
+        }) ;
     }
 
     handleAction = (item:any, role:string) => {
@@ -227,7 +342,7 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
     }
 
     render() {
-        const pagination = <UpPagination count={50} onPageChange={this.onPageChange} /> ;
+        const pagination = <UpPagination total={this.state.total} onPageChange={this.onPageChange.bind(this)} /> ;
         const toolbar    = <UpUpDataGridToolbar /> ;
         const RowTemplate = this.props.rowTemplate ;
 
@@ -261,8 +376,8 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
                 }
                 <div className={classnames("up-data-grid-main", DataGridStyle)}>
                     <UpDataGridRowHeader isSelectionEnabled={this.props.isSelectionEnabled} 
-                                         onSelectionChange={this.onSelectionAllChange}
-                                         onSortChange={this.onSortChange}
+                                         onSelectionChange={this.onSelectionAllChange.bind(this)}
+                                         onSortChange={this.onSortChange.bind(this)}
                                          actions={this.props.actions}
                                          columns={columns} />
                     <div className={classnames("up-data-grid-body", OddEvenStyle)}>

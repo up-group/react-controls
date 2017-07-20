@@ -56,16 +56,16 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
         return (
             <div className="up-data-grid-row">
                 {this.props.isSelectionEnabled && 
-                    <UpDataGridCell item={{value : selection}} formatter={formatter} />
+                    <UpDataGridCell ref={"cell-selection"} item={{value : selection}} formatter={formatter} />
                 }
 
                 {this.props.columns.map((value, index)  => {
-                    return <UpDataGridCell item={this.props.item} column={value} formatter={formatter} />
+                    return <UpDataGridCell ref={`cell-${index}`} item={this.props.item} column={value} formatter={formatter} />
                 })}
 
                 {this.props.actions && this.props.actions.length > 0 &&
                     this.props.actions.map((value, index)  => {
-                        return <UpButton tooltip={value.description} ref={`btn-${index}`} actionType={value.type} width="icon" intent={value.intent} onClick={this.handleAction.bind(this, value.role, this.props.item)} />
+                        return <UpButton ref={`action-${index}`} tooltip={value.description} actionType={value.type} width="icon" intent={value.intent} onClick={this.handleAction.bind(this, value.role, this.props.item)} />
                     }) 
                 }
             </div>

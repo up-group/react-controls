@@ -36,7 +36,7 @@ storiesOf('UpPagination', module)
   .addWithInfo('Simple usage', 'Utilisation du composant en lui passant le nombre d\'élément à afficher',
    () => (
     <UpThemeProvider theme={UpDefaultTheme}>
-      <UpPagination count={100} onPageChange={(page, take, skip) => {
+      <UpPagination total={100} onPageChange={(page, take, skip) => {
         console.log(page, take, skip) ;
     }} />
     </UpThemeProvider>
@@ -180,5 +180,60 @@ storiesOf('UpDataGrid', module)
               isSortable:true
           }]
       }  data={data} />
+    </UpThemeProvider>
+  )).addWithInfo('Avec source externe', 'Utilisation d\'une source externe spécifique pour les lignes',
+   () => (
+    <UpThemeProvider theme={UpDefaultTheme}>
+      <UpDataGrid 
+        dataSource = {{
+            query:"https://jsonplaceholder.typicode.com/posts"
+        }}
+        columns={
+          [{
+              label:'Id',
+              field:'id',
+              isSortable:true
+          },{
+              label:'Titre',
+              field:'title',
+              isSortable:true
+          },{
+              label:'Texte',
+              field:'body',
+              isSortable:true
+          },{
+              label:'Auteur',
+              field:'userId',
+              isSortable:true
+          }]
+      } />
+    </UpThemeProvider>
+  )).addWithInfo('Avec source externe et pagination', 'Utilisation d\'une source externe spécifique pour les lignes avec activation de la pagination',
+   () => (
+    <UpThemeProvider theme={UpDefaultTheme}>
+      <UpDataGrid 
+        dataSource = {{
+            query:"https://jsonplaceholder.typicode.com/posts"
+        }}
+        isPaginationEnabled={true}
+        columns={
+          [{
+              label:'Id',
+              field:'id',
+              isSortable:true
+          },{
+              label:'Titre',
+              field:'title',
+              isSortable:true
+          },{
+              label:'Texte',
+              field:'body',
+              isSortable:true
+          },{
+              label:'Auteur',
+              field:'userId',
+              isSortable:true
+          }]
+      } />
     </UpThemeProvider>
   )) ;

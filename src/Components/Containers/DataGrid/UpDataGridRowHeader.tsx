@@ -44,13 +44,23 @@ export default class UpDataGridRowHeader extends React.Component<UpDataGridRowHe
     onSortChange = (c:Column, dir:SortDirection) => {
         // Update the column state
         var columns:Array<Column> = [] ;
+        var sortedColumn = c ;
+        sortedColumn.sortDir = dir ;
+
         this.state.columns.map((value, index) => {
             value.isSorted = (c.field == value.field) ;
+            if(value.isSorted)
+                value.sortDir = dir ;
+            else 
+                value.sortDir = null ;
+
             columns.push(value)  ;
         });
-        this.setState({columns:columns}) ;
-        if(this.props.onSortChange)
-            this.props.onSortChange(c, dir) ;
+
+        this.setState({columns:columns}, () => {
+            if(this.props.onSortChange)
+                this.props.onSortChange(sortedColumn, dir) ;
+        }) ;
     }
 
     componentWillReceiveProps(nextProps:UpDataGridRowHeaderProps) {
@@ -67,7 +77,7 @@ export default class UpDataGridRowHeader extends React.Component<UpDataGridRowHe
                     <UpDataGridCellHeader column={{label:selection, isSortable:false}} />
                 }
                 {this.props.columns.map((value, index)  => {
-                    return <UpDataGridCellHeader onSortChange={this.onSortChange} column={value} />
+                    return <UpDataGridCellHeader onSortChange={this.onSortChange.bind(this)} column={value} />
                 })}
                 {isActionEnabled && 
                     <UpDataGridCellHeader width={`${this.props.actions.length*40}px`} column={{label:"", isSortable:false}} />

@@ -52,22 +52,26 @@ export default class UpDefaultCellFormatter implements ICellFormatter{
                     // }
                     break;
                 default:
-                    // On regarde s'il est défini une couleur
-                    var _couleur = undefined;
-                    if(typeof(valueExtracted['Couleur']) != 'undefined')
-                         _couleur = valueExtracted['Couleur'];
-                        
-                    if (_couleur==undefined) {
-                        result = valueExtracted ;
-                    } else {
-                        var _libelle = '';
-                        if(typeof(valueExtracted['Libelle']) != 'undefined')
-                         _libelle = valueExtracted['Libelle'];
+                    if(valueExtracted != undefined) {
+                        // On regarde s'il est défini une couleur
+                        var _couleur = undefined;
+                        if(typeof(valueExtracted['Couleur']) != 'undefined')
+                            _couleur = valueExtracted['Couleur'];
+                            
+                        if (_couleur==undefined) {
+                            result = valueExtracted ;
+                        } else {
+                            var _libelle = '';
+                            if(typeof(valueExtracted['Libelle']) != 'undefined')
+                            _libelle = valueExtracted['Libelle'];
 
-                        if (_libelle == undefined) {
-                            _libelle = '';
+                            if (_libelle == undefined) {
+                                _libelle = '';
+                            }
+                            result = <UpBadge text={_libelle} color={_couleur} /> ;
                         }
-                        result = <UpBadge text={_libelle} color={_couleur} /> ;
+                    } else {
+                        result = "" ;
                     }
                     break ;
             }

@@ -35,8 +35,9 @@ export default class UpDataGridCellHeader extends React.Component<UpDataGridCell
 
     onCellClick = () => {
         if(this.props.column.isSortable===true) {
-            this.setState({isSorted: true, sortDirection : this.state.sortDirection == "DESC" ?  "ASC" : "DESC" }) ;
-            this.props.onSortChange(this.props.column, this.state.sortDirection) ;  
+            this.setState({isSorted: true, sortDirection : this.state.sortDirection == "DESC" ?  "ASC" : "DESC" }, () => {
+                this.props.onSortChange(this.props.column, this.state.sortDirection);
+            }) ;
         }  
     }
 
