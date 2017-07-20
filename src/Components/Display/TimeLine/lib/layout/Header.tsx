@@ -150,7 +150,7 @@ export default class Header extends React.Component<any, any> {
 
                 timeLabels.push(
                     <div key={`top-label-${time.valueOf()}`}
-                        href='#'
+                       
                         className='rct-label-group'
                         data-time={time}
                         data-unit={nextUnit}
@@ -177,7 +177,6 @@ export default class Header extends React.Component<any, any> {
 
             timeLabels.push(
                 <div key={`label-${time.valueOf()}`}
-                    href='#'
                     className={`rct-label ${twoHeaders ? '' : 'rct-label-only'} ${firstOfType ? 'rct-first-of-type' : ''} `}
                     data-time={time}
                     data-unit={minUnit}
