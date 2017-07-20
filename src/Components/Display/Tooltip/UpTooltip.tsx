@@ -3,7 +3,7 @@ import * as React from "react" ;
 import { Component } from "react";
 import {IntentType} from '../../../Common/theming/types'
 import * as ReactTooltip from 'react-tooltip'
-import {GenerateId} from '../../../Common/utils'
+import {GenerateId, isString} from '../../../Common/utils'
 import {Placement, Effect} from './' 
 
 export interface UpTooltipProps extends React.Props<UpTooltip> {
@@ -60,7 +60,7 @@ export default class UpTooltip extends Component<UpTooltipProps, UpTooltipState>
         }
     });
     var _getContent:any = content ;
-    if (typeof content === 'string' || content instanceof String) {
+    if (isString(content)) {
         _getContent = () => {return content;} ;
     }
     return (

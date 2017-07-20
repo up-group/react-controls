@@ -4,23 +4,34 @@ import styled from '../../../Common/theming/themedComponents';
 
 import Icons from './icons';
 
+export interface SvgIconWrapperProps {
+  className:string,
+  color:string,
+  height:any,
+  width:any,
+  position:string,
+  dangerouslySetInnerHTML:any
+}
+
 const SvgIconWrapper = styled.div`
-    float: left;
+    float: ${(props:SvgIconWrapperProps) => props.position ? props.position : "left"};
     display: inline;
-    width: ${ props => props.width}px ;
-    height:${ props => props.height}px ;
-    margin: 4px;
+    width: ${ (props:SvgIconWrapperProps) => props.width}px ;
+    height:${ (props:SvgIconWrapperProps) => props.height}px ;
+    margin: 2px;
     svg {
-      fill:${ props => props.color} ;
+      fill:${ (props:SvgIconWrapperProps) => props.color} ;
     }
 `
 export type Props = SvgProps & React.HTMLProps<typeof SvgIcon>;
+
 export default function SvgIcon({
   children,
   viewBox,
   iconName,
   className,
   color,
+  position,
   ...others,
 }: Props): JSX.Element {
 
@@ -29,7 +40,7 @@ export default function SvgIcon({
    
   if(iconName) {
     return (
-      <SvgIconWrapper className={className} color={color} height={height} width={width}
+      <SvgIconWrapper position={position} className={className} color={color} height={height} width={width}
         //{...others}
         dangerouslySetInnerHTML={{__html: Icons[iconName]}}
       ></SvgIconWrapper>

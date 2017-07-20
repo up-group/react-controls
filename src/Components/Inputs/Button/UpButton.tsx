@@ -4,6 +4,7 @@ import { BaseButton} from './styles';
 import { UpButtonProps } from './';
 import  UpTooltip, {Tooltip} from '../../Display/Tooltip' ;
 import defaultTheme from '../../../Common/theming'
+import {isString} from '../../../Common/utils'
 
 // Exports
 export default class UpButton extends React.Component<UpButtonProps, undefined> {
@@ -22,7 +23,7 @@ export default class UpButton extends React.Component<UpButtonProps, undefined> 
     shadow:false,
     iconName:false,
     iconSize:20,
-    type:'default',
+    intent:'default',
     width: 'normal',
     height: 'normal',
     tooltip:null,
@@ -41,7 +42,7 @@ export default class UpButton extends React.Component<UpButtonProps, undefined> 
     
     if(tooltip) {
       var _tooltip:Tooltip ;
-      if(typeof tooltip === 'string' ||  tooltip instanceof String) {
+      if(isString(tooltip)) {
         _tooltip = {
           content : tooltip as string
         }

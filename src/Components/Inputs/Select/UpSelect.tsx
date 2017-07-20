@@ -21,13 +21,17 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         loadingPlaceholder: "Chargement en cours",
         default: null,
         autoload: false,
-        showError: true
+        showError: true,
+        width:'normal'
     }
 
     constructor(p, c) {
         super(p, c);
         this.state = {
-            value: p.value
+            value: (p.value)?p.value:p.default,
+            extra : {
+                loadingPlaceholder : p.loadingPlaceholder
+            }
         };
     }
 
@@ -146,14 +150,23 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
 
         if (typeof dataSource !== "undefined") {
             var queryParam = dataSource.queryParameterName || 'search';
-            var minmumInputLength = this.props.minimumInputLength;
+            var minimumInputLength = this.props.minimumInputLength;
             loadOptions = function (input: string) {
+                if(minimumInputLength && input.length < minimumInputLength ) {
+                    if(input.length!==0)
+                        this.setState({extra : { loadingPlaceholder : `Veuillez renseigner au minimum ${minimumInputLength} caractères`}}) ;
+                    else 
+                        this.setState({extra : { loadingPlaceholder : this.props.placeholder}}) ;
+                        
+                    return false ;
+                }
                 return axios.get(`${dataSource.query}?${queryParam}=${input}`)
                     .then((response) => {
                         var data = response.data;
                         return { options: data };
                     });
             };
+            loadOptions = loadOptions.bind(this) ;
         }
         var specProps: any = {
             options: this.props.data
@@ -166,7 +179,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         }
 
         return (
-            <WrapperSelect>
+            <WrapperSelect width={this.props.width}>
                 <SelectComponent
                     {...specProps}
                     placeholder={this.props.placeholder}
@@ -175,7 +188,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                     autoBlur={false}
                     valueKey={this.props.valueKey || "id"}
                     labelKey={this.props.labelKey || "text"}
-                    loadingPlaceholder={this.props.loadingPlaceholder}
+                    loadingPlaceholder={this.state.extra.loadingPlaceholder}
                     multi={this.props.multiple}
                     clearable={this.props.allowClear}
                     disabled={this.props.disabled}

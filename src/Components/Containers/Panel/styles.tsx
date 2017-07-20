@@ -1,6 +1,7 @@
 // Imports
 import * as React from 'react'
 import defaultTheme from '../../../Common/theming'
+import { isString } from '../../../Common/utils'
 import { UpPanelStyledProps } from './'
 import styled,{ css } from "../../../Common/theming/themedComponents";
 import SvgIcon from "../../Display/SvgIcon/index";
@@ -8,11 +9,20 @@ import { ThemeInterface } from "../../../Common/theming/types";
 import * as classnames from 'classnames'
 
 const BasePanel: React.StatelessComponent<UpPanelStyledProps> = (props) => {
-    const { children } = props;
+    var { children } = props;
     var iconName = props.iconName ;
     if(!iconName && props.disableAutoIntentIcon===false && props.theme.intentTypeIcons && props.type) {
       iconName = props.theme.intentTypeIcons[props.type] ;
     }
+
+    var message = props.message;
+     
+    React.Children.map(children, (child, i) => {
+      if(isString(child) && children['length']==1) {
+        message = child as string;
+        children = null;
+      }
+    });
 
     const icon = <SvgIcon iconName={iconName}
           color={(props.theme && props.theme.colorMap) ? props.theme.colorMap[props.type]:props.theme.colorMap.defaultDark}
@@ -28,8 +38,8 @@ const BasePanel: React.StatelessComponent<UpPanelStyledProps> = (props) => {
               {iconName &&
                 icon
               }
-              {props.message &&
-                <span className="up-panel-message">{props.message}</span>
+              {message &&
+                <span className="up-panel-message">{message}</span>
               }
               {children}
             </div>

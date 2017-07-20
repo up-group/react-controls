@@ -10,3 +10,7 @@ export function GenerateId()
         id += characters.charAt(Math.floor(Math.random() * characters.length));
     return id;
 }
+
+export function isString(object:any) {
+    return typeof object === 'string' ||  object instanceof String ;
+}

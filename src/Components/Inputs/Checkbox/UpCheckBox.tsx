@@ -31,11 +31,16 @@ export default class UpCheckbox extends React.Component<UpCheckboxProps, any> {
   }
 
   handleChangeEvent = (event) => {
-    for (var i in this.props.options) {
-        var option:Option = this.props.options[i] ;
-        if(option.name == event.target.name && option.onChange!=undefined)
+    var options = this.state.options ;
+    for (var i in options) {
+        var option:Option = options[i] ;
+        if(option.name == event.target.name && option.onChange!=undefined) {
           option.onChange(event.target.checked);
+          options[i].checked = event.target.checked;
+        }
     }
+
+    this.setState({options: options}) ;
   }
 
   render() {

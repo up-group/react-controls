@@ -34,7 +34,7 @@ export interface CommonProps extends ThemedProps {
   actionType?:ActionType;
   iconName?:any;
   iconSize?:number;
-  type?:IntentType;
+  intent?:IntentType;
   width?:ButtonWidth;
   height?:ButtonHeight;
   tooltip?: string | Tooltip;

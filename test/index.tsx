@@ -128,6 +128,9 @@ class Demo extends React.Component<undefined, DemoState> {
         return (
             <UpThemeProvider theme={theme}>
                 <UpBox flexDirection="row" alignItems="stretch" justifyContent="center" >
+                 <UpPanel title="Paramètres" type="warning">
+                    Mon message
+                </UpPanel>
                     <UpSelect
                         showError={true}
                         default={null}
