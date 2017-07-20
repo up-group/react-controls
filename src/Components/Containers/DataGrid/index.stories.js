@@ -236,4 +236,62 @@ storiesOf('UpDataGrid', module)
           }]
       } />
     </UpThemeProvider>
-  )) ;
+  )).addWithInfo('Avec source externe et pagination en bas', 'Utilisation d\'une source externe spécifique pour les lignes avec activation de la pagination',
+   () => (
+    <UpThemeProvider theme={UpDefaultTheme}>
+      <UpDataGrid 
+        dataSource = {{
+            query:"https://jsonplaceholder.typicode.com/posts"
+        }}
+        paginationPosition = "bottom"
+        isPaginationEnabled={true}
+        columns={
+          [{
+              label:'Id',
+              field:'id',
+              isSortable:true
+          },{
+              label:'Titre',
+              field:'title',
+              isSortable:true
+          },{
+              label:'Texte',
+              field:'body',
+              isSortable:true
+          },{
+              label:'Auteur',
+              field:'userId',
+              isSortable:true
+          }]
+      } />
+    </UpThemeProvider>
+  )).addWithInfo('Avec source externe et pagination haut et bas', 'Utilisation d\'une source externe spécifique pour les lignes avec activation de la pagination',
+   () => (
+    <UpThemeProvider theme={UpDefaultTheme}>
+      <UpDataGrid 
+        paginationPosition = "both"
+        dataSource = {{
+            query:"https://jsonplaceholder.typicode.com/posts"
+        }}
+        isPaginationEnabled={true}
+        columns={
+          [{
+              label:'Id',
+              field:'id',
+              isSortable:true
+          },{
+              label:'Titre',
+              field:'title',
+              isSortable:true
+          },{
+              label:'Texte',
+              field:'body',
+              isSortable:true
+          },{
+              label:'Auteur',
+              field:'userId',
+              isSortable:true
+          }]
+      } />
+    </UpThemeProvider>
+  ))   ;

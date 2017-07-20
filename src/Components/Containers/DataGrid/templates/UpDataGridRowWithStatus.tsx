@@ -56,11 +56,11 @@ export default class UpDataGridRowWithStatus extends React.Component<UpDataGridR
         return (
             <div className="up-data-grid-row" style={{background:"#234556"}}>
                 {this.props.isSelectionEnabled && 
-                    <UpDataGridCell item={{value : selection}} formatter={formatter} />
+                    <UpDataGridCell item={{value : selection}} column={{label:"", formatter:formatter}} />
                 }
 
                 {this.props.columns.map((value, index)  => {
-                    return <UpDataGridCell item={this.props.item} column={value} formatter={formatter} />
+                    return <UpDataGridCell item={this.props.item} column={value} />
                 })}
 
                 {this.props.actions && this.props.actions.length > 0 &&

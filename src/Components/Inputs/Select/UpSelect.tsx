@@ -168,9 +168,11 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             };
             loadOptions = loadOptions.bind(this) ;
         }
+        var data = this.props.data ;
         var specProps: any = {
-            options: this.props.data
+            options: data
         }
+
         if (loadOptions !== false) {
             specProps = {
                 "loadOptions": loadOptions,
