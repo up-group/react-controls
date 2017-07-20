@@ -15,6 +15,7 @@ storiesOf('UpSelect', module)
    () => (
     <UpThemeProvider theme={UpDefaultTheme}>
       <UpSelect width="normal" tooltip="Civilité" data={[
+        {id:null,text:'Filtré'},
         {id:1,text:'M.'},
         {id:2,text:'Mme'},
         {id:3,text:'Mlle'},

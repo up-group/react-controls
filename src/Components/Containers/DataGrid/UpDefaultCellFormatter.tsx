@@ -81,7 +81,7 @@ export default class UpDefaultCellFormatter implements ICellFormatter{
 
     format = (item:any, column: Column) => {
         let result = item ;
-        if(column) {
+        if(column && column.field) {
             result = this.getValue(item, column) ;
         }
         return (

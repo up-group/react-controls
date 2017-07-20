@@ -9,7 +9,6 @@ export interface UpDataGridCellState {
 }
 
 export interface UpDataGridCellProps {
-    formatter?: ICellFormatter;
     item?:any;
     column?:Column;
 }
@@ -26,7 +25,7 @@ export default class UpDataGridCell extends React.Component<UpDataGridCellProps,
     render() {
         return (
             <div className="up-data-grid-cell">
-                {this.props.formatter.format(this.props.item.value, this.props.column)}
+                {this.props.column.formatter.format(this.props.item.value, this.props.column)}
             </div>
         )
     }

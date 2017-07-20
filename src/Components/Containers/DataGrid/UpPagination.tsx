@@ -145,8 +145,9 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
         if(this.state.page > 1 ) {
             var previousPage = this.state.page-1 ;
             var newState = {page:previousPage, skip: (previousPage-1)*this.state.take} ;
-            this.setState(newState); 
-            this.props.onPageChange(newState.page, this.state.take, newState.skip ) ;
+            this.setState(newState, () => {
+                this.props.onPageChange(this.state.page, this.state.take, this.state.skip ) 
+            });
         }
     }
 
@@ -159,15 +160,17 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
         if(this.state.page < this.getMaxPage() ) {
             var nextPage = this.state.page+1 ;
             var newState = {page:nextPage, skip: (nextPage-1)*this.state.take} ;
-            this.setState(newState); 
-            this.props.onPageChange(newState.page, this.state.take, newState.skip ) ;
+            this.setState(newState,() => {
+                this.props.onPageChange(this.state.page, this.state.take, this.state.skip ) 
+            }); 
         }
     }
 
     goTo = (page:number) => {
         var newState = {page:page, skip: (page-1)*this.state.take} ;
-        this.setState(newState);    
-        this.props.onPageChange(newState.page, this.state.take, newState.skip) ;
+        this.setState(newState, () => {
+            this.props.onPageChange(this.state.page, this.state.take, this.state.skip ) 
+        });
     }
 
     onTakeChange = (data: any) => {
@@ -180,9 +183,15 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
                 newSkip = (newPage-1) * newTake;
             }
             var newState = {take: data.id, skip:newSkip, page: newPage } ;
-            this.setState(newState) ;
-            this.props.onPageChange(newState.page, newState.take, newState.skip ) ;
+            this.setState(newState,() => {
+                this.props.onPageChange(this.state.page, this.state.take, this.state.skip ) 
+            }) ;
         }
+    }
+
+    componentWillReceiveProps(nextProps:UpPaginationProps) {
+        var newState = {take: nextProps.defaultTake, skip:nextProps.defaultSkip, page: nextProps.defaultPage } ;
+        this.setState(newState) ;
     }
 
     render() {
@@ -197,6 +206,7 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
         if(to > this.props.total) 
             to = this.props.total ;
 
+        const takes = this.props.takes ;
         return (
             <UpGrid>
                 <UpRow>
@@ -222,7 +232,7 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
                         </nav>
                     </UpCol>
                     <UpCol span={4}>
-                        <UpSelect placeholder={this.props.nbByPageMessage} width={"small"} default={{id : this.props.defaultTake, text:this.props.defaultTake}} data={this.props.takes} onChange={this.onTakeChange} />  
+                        <UpSelect placeholder={this.props.nbByPageMessage} width={"small"} default={{id : this.props.defaultTake, text:this.props.defaultTake}} data={takes} onChange={this.onTakeChange} />  
                     </UpCol>
                     <UpCol span={6}>
                         <span className={paginationCounterStyle}>

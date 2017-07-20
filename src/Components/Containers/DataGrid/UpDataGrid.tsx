@@ -7,7 +7,7 @@ import UpPagination from './UpPagination'
 import UpUpDataGridToolbar from './UpDataGridToolbar'
 import UpDataGridRowHeader from './UpDataGridRowHeader'
 import UpDataGridRow from './UpDataGridRow'
-
+import UpDefaultCellFormatter, {ICellFormatter} from './UpDefaultCellFormatter'
 import * as classnames from 'classnames' 
 
 import {style} from 'typestyle'
@@ -103,7 +103,7 @@ export interface Action {
 export interface Column {
     label:string | JSX.Element;
     field?:string;
-    formatter?:any;
+    formatter?:ICellFormatter;
     type?:any;
     isSortable?:boolean;
     isSorted?:boolean;
@@ -116,12 +116,14 @@ export interface Row {
 }
 
 export type Method = 'GET' | 'POST' ;
+export type PaginationPosition = "top" | "bottom" | "both" ;
 
 export interface UpDataGridProps {
     columns: Array<Column>;
     actions?: Array<Action>;
     isSelectionEnabled?: boolean;
     isPaginationEnabled?: boolean;
+    paginationPosition?: PaginationPosition;
     isOddEvenEnabled?: boolean;
     isSortEnabled?:boolean;
     rowTemplate?: any;
@@ -163,6 +165,7 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
         columns:[],
         actions:[],
         dataKey:'Entity',
+        paginationPosition: 'top',
         defaultSkip:0,
         defaultTake:50,
         defaultPage:1,
@@ -175,6 +178,17 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
     constructor(props, context) {
         super(props, context) ;
         this.fetchData = this.fetchData.bind(this) ;
+        const formatter = new UpDefaultCellFormatter() ;
+        const data = props.data as Array<any>;
+        let newColumns : Array<Column> = [] ;
+        
+        props.columns.map((value, index) => {
+            if(value.formater == null) 
+                value.formatter = formatter ;
+
+            newColumns.push(value);
+        });
+
         if(props.data != null) {
             const data = props.data as Array<any>;
             let rows : Array<Row> = [] ;
@@ -188,7 +202,7 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
 
             this.state = {
                 data : rows,
-                columns: props.columns,
+                columns: newColumns,
                 page:1,
                 skip:0,
                 take: props.defaultTake,
@@ -197,7 +211,7 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
         } else if (props.dataSource != undefined) {
             this.state = {
                 data : [],
-                columns: props.columns,
+                columns: newColumns,
                 page:1,
                 skip:0,
                 take: props.defaultTake,
@@ -342,7 +356,13 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
     }
 
     render() {
-        const pagination = <UpPagination total={this.state.total} onPageChange={this.onPageChange.bind(this)} /> ;
+        const takes =  [ {id:20, text: "20"},
+                {id:50, text: "50"}, 
+                {id:100, text: "100"}, 
+                {id:200, text: "200"}] ;
+
+        const pagination = <UpPagination defaultPage={this.state.page} defaultSkip={this.state.skip} defaultTake={this.state.take} 
+                                         total={this.state.total} onPageChange={this.onPageChange.bind(this)} takes={takes} /> ;
         const toolbar    = <UpUpDataGridToolbar /> ;
         const RowTemplate = this.props.rowTemplate ;
 
@@ -359,7 +379,7 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
                 }
             }) ;
         }
-        var columns = this.props.columns ;
+        var columns = this.state.columns ;
         if(this.props.isSortEnabled == false) {
             var newUnsortableColumns : Array<Column> = [] ;
             columns.map((value, index) => {
@@ -371,7 +391,7 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
         
         return (
             <div className={classnames("up-data-grid-container", WrapperDataGridStyle)} >
-                {this.props.isPaginationEnabled &&
+                {this.props.isPaginationEnabled && this.props.paginationPosition != 'bottom' &&
                     pagination
                 }
                 <div className={classnames("up-data-grid-main", DataGridStyle)}>
@@ -401,6 +421,9 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
                     </div>
                 </div>
                 {toolbar}
+                {this.props.isPaginationEnabled && this.props.paginationPosition != 'top' &&
+                    <div style={{marginTop:"10px"}}>{pagination}</div>
+                }
             </div>
         );
     }   
