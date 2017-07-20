@@ -54,7 +54,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
         const selection = <UpCheckbox options={[{name:"up-selection", checked:this.props.item.isSelected===true, value:true, onChange: this.onSelectionChange}]} /> ;
         
         return (
-            <div className="up-data-grid-row">
+            <div className="up-data-grid-row up-data-grid-row-bordered">
                 {this.props.isSelectionEnabled && 
                     <UpDataGridCell ref={"cell-selection"} item={{value : selection}} column={{label:"", formatter:formatter}} />
                 }

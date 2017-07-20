@@ -356,10 +356,10 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
     }
 
     render() {
-        const takes =  [ {id:20, text: "20"},
-                {id:50, text: "50"}, 
-                {id:100, text: "100"}, 
-                {id:200, text: "200"}] ;
+        const takes = [ {id:20, text: "20"},
+                        {id:50, text: "50"}, 
+                        {id:100, text: "100"}, 
+                        {id:200, text: "200"}] ;
 
         const pagination = <UpPagination defaultPage={this.state.page} defaultSkip={this.state.skip} defaultTake={this.state.take} 
                                          total={this.state.total} onPageChange={this.onPageChange.bind(this)} takes={takes} /> ;
