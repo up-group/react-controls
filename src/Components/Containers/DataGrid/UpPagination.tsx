@@ -186,7 +186,7 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
                 newPage = Math.ceil(this.props.total / newTake);
                 newSkip = (newPage - 1) * newTake;
             }
-            var newState = { take: data.id, skip: newSkip, page: newPage };
+            var newState = { take: data.id, skip: newSkip };
             this.setState(newState, () => {
                 this.props.onPageChange(this.GetCurrentPage(), this.state.take, this.state.skip)
             });
@@ -194,8 +194,8 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
     }
 
     componentWillReceiveProps(nextProps: UpPaginationProps) {
-        var newState = { take: nextProps.defaultTake, skip: nextProps.defaultSkip, page: nextProps.defaultSkip == 0 ? 0 : Math.ceil(nextProps.defaultTake / nextProps.defaultSkip) };
-        this.setState(newState);
+        //var newState = { take: nextProps.defaultTake, skip: nextProps.defaultSkip, page: nextProps.defaultSkip == 0 ? 0 : Math.ceil(nextProps.defaultTake / nextProps.defaultSkip) };
+        //this.setState(newState);
     }
 
     render() {
