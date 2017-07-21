@@ -3,6 +3,7 @@ import UpBox from './Components/Containers/Box'
 import { UpGrid, UpRow, UpCol } from './Components/Containers/Grid'
 import UpFormGroup from './Components/Containers/FormGroup'
 import UpButtonGroup from './Components/Containers/ButtonGroup'
+import UpDataGrid from './Components/Containers/DataGrid/UpDataGrid'
 
 import UpHeading from './Components/Display/Heading'
 import UpLink from './Components/Display/Link'
@@ -78,5 +79,6 @@ export {
     UpRadio,
     UpCalendarTimeline,
     UpIconName,
-    UpIntentType
+    UpIntentType,
+    UpDataGrid
 };
