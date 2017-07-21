@@ -5,9 +5,11 @@ import SvgIcon, { Circle } from './styles';
 
 export interface Props extends React.Props<typeof LoadingIndicator> {
   isLoading: boolean;
+  message?:string;
 }
 export default function LoadingIndicator({
   isLoading,
+  message
 }: Props): JSX.Element {
   if (!isLoading) {
     return null;
@@ -29,6 +31,9 @@ export default function LoadingIndicator({
           fill="none"
         />
       </SvgIcon>
+      {message && 
+        <p>{message}</p>
+      }
     </Box>
   );
 };

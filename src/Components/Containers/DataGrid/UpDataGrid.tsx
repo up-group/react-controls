@@ -1,5 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
+import * as classnames from 'classnames' 
+import {style} from 'typestyle'
 
 import axios from 'axios'
 
@@ -8,9 +10,9 @@ import UpUpDataGridToolbar from './UpDataGridToolbar'
 import UpDataGridRowHeader from './UpDataGridRowHeader'
 import UpDataGridRow from './UpDataGridRow'
 import UpDefaultCellFormatter, {ICellFormatter} from './UpDefaultCellFormatter'
-import * as classnames from 'classnames' 
 
-import {style} from 'typestyle'
+import UpLoadingIndicator from '../../Display/LoadingIndicator'
+
 import {ActionType} from '../../Inputs/Button'
 import {IconName, IntentType} from '../../../Common/theming/types'
 
@@ -139,6 +141,10 @@ export interface UpDataGridProps {
         query: string;
         method?:Method;
         entityKey?:string;
+        orderParamName?:string;
+        dirParamName?:string;
+        skipParamName?:string;
+        takeParamName?:string;
     },
 
     // Event Handler
@@ -155,6 +161,7 @@ export interface UpDataGridState {
     skip:number;
     take:number;
     total: number;
+    isDataFetching:boolean;
 }
 
 export type SortDirection = 'ASC' | 'DESC'
@@ -178,12 +185,14 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
     constructor(props, context) {
         super(props, context) ;
         this.fetchData = this.fetchData.bind(this) ;
+        this.handleData = this.handleData.bind(this) ;
+
         const formatter = new UpDefaultCellFormatter() ;
         const data = props.data as Array<any>;
         let newColumns : Array<Column> = [] ;
         
-        props.columns.map((value, index) => {
-            if(value.formater == null) 
+        props.columns.map((value:Column, index) => {
+            if(value.formatter == null) 
                 value.formatter = formatter ;
 
             newColumns.push(value);
@@ -202,6 +211,7 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
 
             this.state = {
                 data : rows,
+                isDataFetching:false,
                 columns: newColumns,
                 page:1,
                 skip:0,
@@ -211,17 +221,23 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
         } else if (props.dataSource != undefined) {
             this.state = {
                 data : [],
+                isDataFetching:false,
                 columns: newColumns,
                 page:1,
                 skip:0,
                 take: props.defaultTake,
                 total: props.total
             };
+        }
+    }
+
+    componentDidMount() {
+        if (this.props.dataSource != undefined) {
             this.fetchData() ;
         }
     }
 
-    fetchData = () => {
+    handleData = (data) => {
         var sortedColumn:Column = null ;
         this.state.columns.map((value, index) => {
             if(value.isSorted) {
@@ -230,63 +246,84 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
         });
         var dataKey = this.props.dataKey ;
 
+        var rows : Array<Row> = [] ;
+        var total = 0 ;
+        if(data.Count != null) {
+            total = data.Count ;
+            if(dataKey != null) {
+                data = data[dataKey] ;
+            }
+        } else {
+            total = data.length ;
+        }
+        if(data != null) {
+            data.map((value, index)  => {
+                rows.push({value: value, isSelected: false}) ;
+            });
+            if(rows.length == total && this.state.take < total) {
+                // Internal sort
+                if(sortedColumn) {
+                    rows.sort(
+                        function(x, y)
+                        {
+                            if(sortedColumn.sortDir=="ASC")
+                                return x.value[sortedColumn.field] === y.value[sortedColumn.field] ? 0 : x.value[sortedColumn.field] > y.value[sortedColumn.field] ? 1 : -1 ;
+                            else 
+                                return x.value[sortedColumn.field] === y.value[sortedColumn.field] ? 0 : x.value[sortedColumn.field] > y.value[sortedColumn.field] ? -1 : 1 ;
+                        }
+                        );
+                }
+                // Internal pagination
+                rows = rows.slice(this.state.skip, this.state.skip + this.state.take) ;
+            }
+        }
+        this.setState({data: rows, total: total, isDataFetching: false}) ;
+    } 
+    fetchData = () => {
+        this.setState({isDataFetching:true}) ;
+        var sortedColumn:Column = null ;
+        this.state.columns.map((value, index) => {
+            if(value.isSorted) {
+                sortedColumn = value ;
+            }
+        });
+        var dataKey = this.props.dataKey ;
+        
+        var orderParamName = this.props.dataSource.orderParamName || 'Order' ;
+        var dirParamName = this.props.dataSource.dirParamName || 'Dir';
+        var skipParamName = this.props.dataSource.skipParamName || 'Skip';
+        var takeParamName = this.props.dataSource.takeParamName || 'Take';
+        var self = this ;
         if(this.props.dataSource.method === 'POST') {
-            
-            var params = {  Take : this.state.take,
-                            Skip : this.state.skip} ;
+            var params = {  takeParamName : this.state.take,
+                            skipParamName : this.state.skip} ;
 
             if(sortedColumn != null) {
-                params['Order'] = sortedColumn.field ;
-                params['Dir']   = sortedColumn.sortDir;
+                params[orderParamName] = sortedColumn.field ;
+                params[dirParamName]   = sortedColumn.sortDir;
             }
 
             axios.post(`${this.props.dataSource.query}`,
                     )
                     .then((response) => {
                         var data = response.data;
-                        console.log(data) ;
+                        self.handleData(data) ;
+                    }).catch((reason)  => {
+                        //TODO : handle error message
+                        this.setState({isDataFetching:false}) ;
                     });
         } else {
-            var query = `${this.props.dataSource.query}?Take=${this.state.take}&Skip=${this.state.skip}` ;
+            var query = `${this.props.dataSource.query}?${takeParamName}=${this.state.take}&${skipParamName}=${this.state.skip}` ;
             if(sortedColumn != null) {
-                query = `${query}&Order=${sortedColumn.field}&Dir=${sortedColumn.sortDir}` ;
+                query = `${query}&${orderParamName}=${sortedColumn.field}&${dirParamName}=${sortedColumn.sortDir}` ;
             }
-            var self = this ;
             axios.get(query)
                     .then((response) => {
                         var data = response.data;
-                        var rows : Array<Row> = [] ;
-                        var total = 0 ;
-                        if(data.Count != null) {
-                            total = data.Count ;
-                            if(dataKey != null) {
-                                data = data[dataKey] ;
-                            }
-                        } else {
-                            total = data.length ;
-                        }
-                        if(data != null) {
-                            data.map((value, index)  => {
-                                rows.push({value: value, isSelected: false}) ;
-                            });
-                            if(rows.length == total && self.state.take < total) {
-                                // Internal sort
-                                if(sortedColumn) {
-                                    rows.sort(
-                                        function(x, y)
-                                        {
-                                            if(sortedColumn.sortDir=="ASC")
-                                                return x.value[sortedColumn.field] === y.value[sortedColumn.field] ? 0 : x.value[sortedColumn.field] > y.value[sortedColumn.field] ? 1 : -1 ;
-                                            else 
-                                                return x.value[sortedColumn.field] === y.value[sortedColumn.field] ? 0 : x.value[sortedColumn.field] > y.value[sortedColumn.field] ? -1 : 1 ;
-                                        }
-                                        );
-                                }
-                                // Internal pagination
-                                rows = rows.slice(self.state.skip, self.state.skip + self.state.take) ;
-                            }
-                        }
-                        self.setState({data: rows, total: total}) ;
+                        self.handleData(data) ;
+                    }).catch((reason)  => {
+                        //TODO : handle error message
+                        this.setState({isDataFetching:false}) ;
                     });
         }
     }
@@ -392,36 +429,38 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
         return (
             <div className={classnames("up-data-grid-container", WrapperDataGridStyle)} >
                 {this.props.isPaginationEnabled && this.props.paginationPosition != 'bottom' &&
-                    pagination
+                        pagination
                 }
-                <div className={classnames("up-data-grid-main", DataGridStyle)}>
-                    <UpDataGridRowHeader isSelectionEnabled={this.props.isSelectionEnabled} 
-                                         onSelectionChange={this.onSelectionAllChange.bind(this)}
-                                         onSortChange={this.onSortChange.bind(this)}
-                                         actions={this.props.actions}
-                                         columns={columns} />
-                    <div className={classnames("up-data-grid-body", OddEvenStyle)}>
-                        {this.state.data.map( (value, index) => {
-                            if(RowTemplate) {
-                                return <RowTemplate ref={`row-${index}`} 
-                                                    isSelectionEnabled={this.props.isSelectionEnabled} 
-                                                    actions={this.props.actions}
-                                                    handleAction={this.handleAction}
-                                                    columns={columns} 
-                                                    item={value} />
-                            } else {
-                                return <UpDataGridRow   ref={`row-${index}`} 
+                <UpLoadingIndicator message={"Chargement en cours"} isLoading={this.state.isDataFetching} />
+                {!this.state.isDataFetching && 
+                    <div className={classnames("up-data-grid-main", DataGridStyle)}>
+                        <UpDataGridRowHeader isSelectionEnabled={this.props.isSelectionEnabled} 
+                                            onSelectionChange={this.onSelectionAllChange.bind(this)}
+                                            onSortChange={this.onSortChange.bind(this)}
+                                            actions={this.props.actions}
+                                            columns={columns} />
+                        <div className={classnames("up-data-grid-body", OddEvenStyle)}>
+                            {this.state.data.map( (value, index) => {
+                                if(RowTemplate) {
+                                    return <RowTemplate ref={`row-${index}`} 
                                                         isSelectionEnabled={this.props.isSelectionEnabled} 
                                                         actions={this.props.actions}
                                                         handleAction={this.handleAction}
                                                         columns={columns} 
                                                         item={value} />
-                            }
-                        })}
+                                } else {
+                                    return <UpDataGridRow   ref={`row-${index}`} 
+                                                            isSelectionEnabled={this.props.isSelectionEnabled} 
+                                                            actions={this.props.actions}
+                                                            handleAction={this.handleAction}
+                                                            columns={columns} 
+                                                            item={value} />
+                                }
+                            })}
+                        </div>
                     </div>
-                </div>
-                {toolbar}
-                {this.props.isPaginationEnabled && this.props.paginationPosition != 'top' &&
+                }
+                {!this.state.isDataFetching && this.props.isPaginationEnabled && this.props.paginationPosition != 'top' &&
                     <div style={{marginTop:"10px"}}>{pagination}</div>
                 }
             </div>

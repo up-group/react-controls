@@ -6,7 +6,8 @@ import {IntentType} from '../../../Common/theming/types'
 import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themedComponents'
 
 import UpPagination from './UpPagination'
-import UpDataGrid from './UpDataGrid'
+import UpDataGrid, {ICellFormatter} from './UpDataGrid'
+
 import RowTemplate from './templates/UpDataGridRowWithStatus'
 
 var data = [
@@ -31,6 +32,14 @@ var data = [
           {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
           {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}}
       ];
+
+class SpecifiqueCellFormatter {
+    format(item, column) {
+        return (
+            <p style={{color:"red"}}>{item[column.field]}</p>
+        );
+    }
+}
 
 storiesOf('UpPagination', module)
   .addWithInfo('Simple usage', 'Utilisation du composant en lui passant le nombre d\'élément à afficher',
@@ -294,4 +303,34 @@ storiesOf('UpDataGrid', module)
           }]
       } />
     </UpThemeProvider>
-  ))   ;
+  )).addWithInfo('Avec cell formatter', 'Utilisation d\'une source externe spécifique pour les lignes avec formattage spécifique des cellules',
+   () => (
+    <UpThemeProvider theme={UpDefaultTheme}>
+      <UpDataGrid 
+        paginationPosition = "both"
+        dataSource = {{
+            query:"https://jsonplaceholder.typicode.com/posts"
+        }}
+        isPaginationEnabled={true}
+        columns={
+          [{
+              label:'Id',
+              field:'id',
+              isSortable:true,
+              formatter : new SpecifiqueCellFormatter()
+          },{
+              label:'Titre',
+              field:'title',
+              isSortable:true
+          },{
+              label:'Texte',
+              field:'body',
+              isSortable:true
+          },{
+              label:'Auteur',
+              field:'userId',
+              isSortable:true
+          }]
+      } />
+    </UpThemeProvider>
+  ))    ;
