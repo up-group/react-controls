@@ -3,6 +3,12 @@ import * as React from 'react'
 import {Column} from './UpDataGrid'
 import UpBadge from '../../Display/Badge'
 
+import {isEmpty} from '../../../Common/utils'
+import {IconName} from '../../../Common/theming/types'
+
+import UpLink from '../../Display/Link'
+import UpSvgIcon from '../../Display/SvgIcon'
+
 export interface ICellFormatter {   
     format : (item:any, column: Column) => React.ReactElement<any>
 }
@@ -25,14 +31,20 @@ export default class UpDefaultCellFormatter implements ICellFormatter{
         if(field) {
             switch (type) {
                 case 'link':
-                    try {
-                        if (    valueExtracted != undefined 
-                            &&  valueExtracted != 0 
-                            &&  valueExtracted != "00000000-0000-0000-0000-000000000000") {
-                            result = "" ; // TODO
+                    if (!isEmpty(valueExtracted)) {
+                        var href = valueExtracted ;
+                        if(valueExtracted.href !== undefined) {
+                            valueExtracted = valueExtracted.href ;
                         }
-                    } catch (exception) {
-
+                        var icon : IconName = "link" ;
+                        if(valueExtracted.icon !== undefined) {
+                            icon = valueExtracted.icon ;
+                        }
+                        result = <UpLink href={valueExtracted} onClick={(e) => {
+                                window.open(valueExtracted) ;
+                            }}>
+                                <UpSvgIcon iconName={icon} />
+                            </UpLink>
                     }
                     break;
                 case 'file' :
