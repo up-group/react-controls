@@ -156,12 +156,12 @@ export interface UpDataGridProps {
 
 export interface UpDataGridState {
     data: Array<Row>;
-    columns:Array<Column>,
+    columns?:Array<Column>,
     page:number;
     skip:number;
     take:number;
     total: number;
-    isDataFetching:boolean;
+    isDataFetching?:boolean;
 }
 
 export type SortDirection = 'ASC' | 'DESC'
@@ -187,32 +187,15 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
         this.fetchData = this.fetchData.bind(this) ;
         this.handleData = this.handleData.bind(this) ;
 
-        const formatter = new UpDefaultCellFormatter() ;
         const data = props.data as Array<any>;
-        let newColumns : Array<Column> = [] ;
-        
-        props.columns.map((value:Column, index) => {
-            if(value.formatter == null) 
-                value.formatter = formatter ;
-
-            newColumns.push(value);
-        });
+        const columns : Array<Column> = this.props.columns ;
 
         if(props.data != null) {
-            const data = props.data as Array<any>;
-            let rows : Array<Row> = [] ;
             
-            data.map((value, index) => {
-                rows.push({
-                    isSelected:false,
-                    value:value
-                });
-            });
-
             this.state = {
-                data : rows,
+                data : this.mapDataToRow(data),
                 isDataFetching:false,
-                columns: newColumns,
+                columns: this.prepareColumns(columns),
                 page:1,
                 skip:0,
                 take: props.defaultTake,
@@ -222,7 +205,7 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
             this.state = {
                 data : [],
                 isDataFetching:false,
-                columns: newColumns,
+                columns: this.prepareColumns(columns),
                 page:1,
                 skip:0,
                 take: props.defaultTake,
@@ -235,6 +218,32 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
         if (this.props.dataSource != undefined) {
             this.fetchData() ;
         }
+    }
+
+    prepareColumns = (columns : Array<Column>) : Array<Column> => {
+        let newColumns : Array<Column> = [] ;
+        const formatter = new UpDefaultCellFormatter() ;
+        
+        columns.map((value:Column, index) => {
+            if(value.formatter == null) 
+                value.formatter = formatter ;
+
+            newColumns.push(value);
+        });
+        return newColumns ;
+    }
+
+    mapDataToRow = (data: Array<any>) : Array<Row> => {
+        let rows : Array<Row> = [] ;
+        
+        data.map((value, index) => {
+            rows.push({
+                isSelected:false,
+                value:value
+            });
+        });
+
+        return rows ;
     }
 
     handleData = (data) => {
@@ -257,9 +266,8 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
             total = data.length ;
         }
         if(data != null) {
-            data.map((value, index)  => {
-                rows.push({value: value, isSelected: false}) ;
-            });
+            rows = this.mapDataToRow(data) ;
+
             if(rows.length == total && this.state.take < total) {
                 // Internal sort
                 if(sortedColumn) {
@@ -390,6 +398,18 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
     handleAction = (item:any, role:string) => {
         if(this.props.handleAction)
             this.props.handleAction(item, role) ;
+    }
+
+    componentWillReceiveProps(nextProps:UpDataGridProps) {
+        var newState:UpDataGridState
+            = { data: (nextProps.data != null)? this.mapDataToRow(nextProps.data): nextProps.data, 
+                columns: (nextProps.columns != null)? this.prepareColumns(nextProps.columns): nextProps.columns, 
+                total:nextProps.total, 
+                skip: nextProps.defaultSkip,
+                take: nextProps.defaultTake,
+                page: nextProps.defaultPage } ;
+
+        this.setState(newState) ;
     }
 
     render() {
