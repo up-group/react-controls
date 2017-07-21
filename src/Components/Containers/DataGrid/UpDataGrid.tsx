@@ -131,6 +131,7 @@ export interface UpDataGridProps {
     rowTemplate?: any;
     data?: Array<any>;
     dataKey?:string;
+    isDataFetching?:boolean;
     // For pagination
     defaultSkip?:number;
     defaultTake?:number;
@@ -405,6 +406,7 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
             = { data: (nextProps.data != null)? this.mapDataToRow(nextProps.data): nextProps.data, 
                 columns: (nextProps.columns != null)? this.prepareColumns(nextProps.columns): nextProps.columns, 
                 total:nextProps.total, 
+                isDataFetching: nextProps.isDataFetching,
                 skip: nextProps.defaultSkip,
                 take: nextProps.defaultTake,
                 page: nextProps.defaultPage } ;
