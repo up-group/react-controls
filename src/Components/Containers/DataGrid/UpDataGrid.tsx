@@ -442,14 +442,14 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
                         <div className={classnames("up-data-grid-body", OddEvenStyle)}>
                             {this.state.data.map( (value, index) => {
                                 if(RowTemplate) {
-                                    return <RowTemplate ref={`row-${index}`} 
+                                    return <RowTemplate key={`row-${index}`} 
                                                         isSelectionEnabled={this.props.isSelectionEnabled} 
                                                         actions={this.props.actions}
                                                         handleAction={this.handleAction}
                                                         columns={columns} 
                                                         item={value} />
                                 } else {
-                                    return <UpDataGridRow   ref={`row-${index}`} 
+                                    return <UpDataGridRow   key={`row-${index}`} 
                                                             isSelectionEnabled={this.props.isSelectionEnabled} 
                                                             actions={this.props.actions}
                                                             handleAction={this.handleAction}
