@@ -80,7 +80,7 @@ export default class UpDataGridRowHeader extends React.Component<UpDataGridRowHe
                     return <UpDataGridCellHeader onSortChange={this.onSortChange.bind(this)} column={value} />
                 })}
                 {isActionEnabled && 
-                    <UpDataGridCellHeader width={`${this.props.actions.length*40}px`} column={{label:"", isSortable:false}} />
+                    <UpDataGridCellHeader width={`${this.props.actions.length*46}px`} column={{label:"", isSortable:false}} />
                 }
             </div>
         )

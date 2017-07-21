@@ -56,17 +56,21 @@ export default class UpDataGridRowWithStatus extends React.Component<UpDataGridR
         return (
             <div className="up-data-grid-row" style={{background:"#234556"}}>
                 {this.props.isSelectionEnabled && 
-                    <UpDataGridCell item={{value : selection}} column={{label:"", formatter:formatter}} />
+                    <UpDataGridCell key={"cell-selection"} item={{value : selection}} column={{label:"", formatter:formatter}} />
                 }
 
                 {this.props.columns.map((value, index)  => {
-                    return <UpDataGridCell item={this.props.item} column={value} />
+                    return <UpDataGridCell key={`cell-${index}`} item={this.props.item} column={value} />
                 })}
 
                 {this.props.actions && this.props.actions.length > 0 &&
-                    this.props.actions.map((value, index)  => {
-                        return <UpButton tooltip={value.description} ref={`btn-${index}`} actionType={value.type} width="icon" intent={value.intent} onClick={this.handleAction.bind(this, value.role, this.props.item)} />
-                    }) 
+                    <UpDataGridCell key={"cell-actions"} item={this.props.item} column={{label:"", isSortable:false}}>
+                    {
+                        this.props.actions.map((value, index)  => {
+                            return <UpButton tooltip={value.description} key={`btn-${index}`} actionType={value.type} width="icon" intent={value.intent} onClick={this.handleAction.bind(this, value.role, this.props.item)} />
+                        })
+                    }
+                    </UpDataGridCell>
                 }
             </div>
         )
