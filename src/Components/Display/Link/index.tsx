@@ -13,12 +13,13 @@ export interface LinkProps extends React.Props<Link> {
   label?: string;
   color?: string;
   method?: Method;
-  onClick?:(e:React.MouseEvent<HTMLAnchorElement>)=>void;
+  onClick:(e:React.MouseEvent<HTMLAnchorElement>)=>void;
 }
 
 export class Link extends React.Component<LinkProps, undefined> {
   public static defaultProps: LinkProps = {
     method: MethodTypePush,
+    onClick:(e:React.MouseEvent<HTMLAnchorElement>)=>{}
   };
 
   public constructor(props:LinkProps) {
