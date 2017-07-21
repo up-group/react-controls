@@ -214,17 +214,17 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
                         <nav>
                             <ul className={paginationStyle}>
                                 <li key={`page-prev`} className={classname(this.state.page==1?"disabled":"", paginationItemStyle)} onClick={this.goToPreviousPage}>
-                                    <a onClick={(e) => e.preventDefault} href="#" aria-label="Previous">
+                                    <a onClick={(e) => e.preventDefault()} href="#" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
                                 {pages.map((value,index) => {
                                     return <li key={`page-${value}`} className={classname(this.state.page==value?"active":"", paginationItemStyle)} onClick={this.goTo.bind(this, value)}>
-                                        <a onClick={(e) => e.preventDefault} href="#">{value}</a>
+                                        <a onClick={(e) => e.preventDefault()} href="#">{value}</a>
                                     </li>
                                 })}
                                 <li  key={`page-next`} className={classname(this.state.page==maxPage?"disabled":"", paginationItemStyle)} onClick={this.goToNextPage}>
-                                    <a href="#" aria-label="Next" onClick={(e) => e.preventDefault}>
+                                    <a href="#" aria-label="Next" onClick={(e) => e.preventDefault()}>
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>
