@@ -135,7 +135,7 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
     constructor(props, context) {
         super(props);
         this.state = {
-            page: Math.ceil(this.props.total / this.props.defaultTake),
+            page: Math.ceil(this.props.defaultTake / this.props.defaultSkip),
             skip:this.props.defaultSkip,
             take:this.props.defaultTake
         }
@@ -190,7 +190,7 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
     }
 
     componentWillReceiveProps(nextProps:UpPaginationProps) {
-        var newState = {take: nextProps.defaultTake, skip:nextProps.defaultSkip, page: nextProps.defaultPage } ;
+        var newState = { take: nextProps.defaultTake, skip: nextProps.defaultSkip, page: Math.ceil(nextProps.defaultTake / nextProps.defaultSkip) } ;
         this.setState(newState) ;
     }
 
