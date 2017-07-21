@@ -420,7 +420,7 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
                         {id:100, text: "100"}, 
                         {id:200, text: "200"}] ;
 
-        const pagination = <UpPagination defaultPage={this.state.page} defaultSkip={this.state.skip} defaultTake={this.state.take} 
+        const pagination = <UpPagination defaultSkip={this.state.skip} defaultTake={this.state.take} 
                                          total={this.state.total} onPageChange={this.onPageChange.bind(this)} takes={takes} /> ;
         const toolbar    = <UpUpDataGridToolbar /> ;
         const RowTemplate = this.props.rowTemplate ;
