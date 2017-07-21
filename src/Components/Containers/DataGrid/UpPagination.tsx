@@ -8,7 +8,7 @@ import UpSelect, { UpSelectOption } from '../../Inputs/Select'
 import { style } from "typestyle"
 
 export interface UpPaginationState {
-    page: number; // Donnée calculée à partir de Skip et Take mais conservé dans l'état
+    // page: number; // Donnée calculée à partir de Skip et Take mais conservé dans l'état
     skip: number; // Nombre d'élément à retirer
     take: number; // Nombre d'élément à prendre
 }
@@ -17,7 +17,7 @@ export interface UpPaginationProps {
     total: number;
     defaultSkip?: number;
     defaultTake?: number;
-    defaultPage?: number;
+    //  defaultPage?: number;
     noResultMessage?: string;
     nbByPageMessage?: string;
     takes?: Array<UpSelectOption>; // Les valeurs possibles de take
@@ -126,7 +126,7 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
         { id: 100, text: "100" },
         { id: 200, text: "200" }],
         total: 0,
-        defaultPage: 1,
+        //  defaultPage: 1,
         defaultSkip: 0,
         defaultTake: 50,
         onPageChange: (page: number, take: number, skip: number) => { }
@@ -135,18 +135,22 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
     constructor(props, context) {
         super(props);
         this.state = {
-            page: this.props.defaultSkip == 0 ? 0 : Math.ceil(this.props.defaultTake / this.props.defaultSkip),
+            // page: this.props.defaultSkip == 0 ? 0 : Math.ceil(this.props.defaultTake / this.props.defaultSkip),
             skip: this.props.defaultSkip,
             take: this.props.defaultTake
         }
     }
 
+    GetCurrentPage = () => {
+        return this.state.skip == 0 || this.state.skip < this.state.take ? 1 : Math.ceil(this.state.take / this.state.skip);
+    }
+
     goToPreviousPage = () => {
-        if (this.state.page > 1) {
-            var previousPage = this.state.page - 1;
-            var newState = { page: previousPage, skip: (previousPage - 1) * this.state.take };
+        if (this.GetCurrentPage() > 1) {
+            var previousPage = this.GetCurrentPage() - 1;
+            var newState = { skip: (previousPage - 1) * this.state.take };
             this.setState(newState, () => {
-                this.props.onPageChange(this.state.page, this.state.take, this.state.skip)
+                this.props.onPageChange(this.GetCurrentPage(), this.state.take, this.state.skip)
             });
         }
     }
@@ -157,26 +161,26 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
     }
 
     goToNextPage = () => {
-        if (this.state.page < this.getMaxPage()) {
-            var nextPage = this.state.page + 1;
-            var newState = { page: nextPage, skip: (nextPage - 1) * this.state.take };
+        if (this.GetCurrentPage() < this.getMaxPage()) {
+            var nextPage = this.GetCurrentPage() + 1;
+            var newState = { skip: (nextPage - 1) * this.state.take };
             this.setState(newState, () => {
-                this.props.onPageChange(this.state.page, this.state.take, this.state.skip)
+                this.props.onPageChange(this.GetCurrentPage(), this.state.take, this.state.skip)
             });
         }
     }
 
     goTo = (page: number) => {
-        var newState = { page: page, skip: (page - 1) * this.state.take };
+        var newState = { skip: (page - 1) * this.state.take };
         this.setState(newState, () => {
-            this.props.onPageChange(this.state.page, this.state.take, this.state.skip)
+            this.props.onPageChange(this.GetCurrentPage(), this.state.take, this.state.skip)
         });
     }
 
     onTakeChange = (data: any) => {
         if (data && data.id != this.state.take) {
             var newTake = data.id;
-            var newSkip = (this.state.page - 1) * newTake;
+            var newSkip = (this.GetCurrentPage() - 1) * newTake;
             var newPage = (newSkip / newTake) + 1;
             if (newPage > Math.ceil(this.props.total / newTake)) {
                 newPage = Math.ceil(this.props.total / newTake);
@@ -184,7 +188,7 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
             }
             var newState = { take: data.id, skip: newSkip, page: newPage };
             this.setState(newState, () => {
-                this.props.onPageChange(this.state.page, this.state.take, this.state.skip)
+                this.props.onPageChange(this.GetCurrentPage(), this.state.take, this.state.skip)
             });
         }
     }
@@ -213,17 +217,17 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
                     <UpCol span={12}>
                         <nav>
                             <ul className={paginationStyle}>
-                                <li key={`page-prev`} className={classname(this.state.page == 1 ? "disabled" : "", paginationItemStyle)} onClick={this.goToPreviousPage}>
+                                <li key={`page-prev`} className={classname(this.GetCurrentPage() == 1 ? "disabled" : "", paginationItemStyle)} onClick={this.goToPreviousPage}>
                                     <a onClick={(e) => e.preventDefault()} href="#" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
                                 </li>
                                 {pages.map((value, index) => {
-                                    return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemStyle)} onClick={this.goTo.bind(this, value)}>
+                                    return <li key={`page-${value}`} className={classname(this.GetCurrentPage() == value ? "active" : "", paginationItemStyle)} onClick={this.goTo.bind(this, value)}>
                                         <a onClick={(e) => e.preventDefault()} href="#">{value}</a>
                                     </li>
                                 })}
-                                <li key={`page-next`} className={classname(this.state.page == maxPage ? "disabled" : "", paginationItemStyle)} onClick={this.goToNextPage}>
+                                <li key={`page-next`} className={classname(this.GetCurrentPage() == maxPage ? "disabled" : "", paginationItemStyle)} onClick={this.goToNextPage}>
                                     <a href="#" aria-label="Next" onClick={(e) => e.preventDefault()}>
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
