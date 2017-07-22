@@ -118,7 +118,7 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
 
     static defaultProps:UpPaginationProps = {
         noResultMessage: "Aucun résultat",
-        nbByPageMessage: "Nbre par page",
+        nbByPageMessage: "Par page",
         isTakeChangeEnable:true,
         isExtraInfoDisplay:true,
         takes:[ {id:20, text: "20"},
@@ -214,7 +214,7 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
         return (
             <UpGrid>
                 <UpRow>
-                    <UpCol span={12}>
+                    <UpCol span={16}>
                         <nav>
                             <ul className={paginationStyle}>
                                 <li key={`page-prev`} className={classname(this.state.page==1?"disabled":"", paginationItemStyle)} onClick={this.goToPreviousPage}>
@@ -235,10 +235,10 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
                             </ul>
                         </nav>
                     </UpCol>
-                    <UpCol span={4}>
+                    <UpCol span={3}>
                         <UpSelect placeholder={this.props.nbByPageMessage} width={"small"} default={{id : this.props.defaultTake, text:this.props.defaultTake}} data={takes} onChange={this.onTakeChange} />  
                     </UpCol>
-                    <UpCol span={6}>
+                    <UpCol span={5}>
                         <span className={paginationCounterStyle}>
                             {maxPage == 0 && 
                                 <span>{this.props.noResultMessage}</span>
