@@ -402,14 +402,20 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
     }
 
     componentWillReceiveProps(nextProps:UpDataGridProps) {
+        var data = this.state.data ;
+        if(this.props.dataSource == null) {
+            data = (nextProps.data != null)? this.mapDataToRow(nextProps.data): nextProps.data ;
+        }
         var newState:UpDataGridState
-            = { data: (nextProps.data != null)? this.mapDataToRow(nextProps.data): nextProps.data, 
+            = { data : data,
                 columns: (nextProps.columns != null)? this.prepareColumns(nextProps.columns): nextProps.columns, 
                 total:nextProps.total, 
                 isDataFetching: nextProps.isDataFetching,
                 skip: nextProps.defaultSkip,
                 take: nextProps.defaultTake,
                 page: nextProps.defaultPage } ;
+        
+                
 
         this.setState(newState) ;
     }
