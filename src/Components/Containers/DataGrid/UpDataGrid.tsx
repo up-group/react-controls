@@ -190,29 +190,19 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
 
         const data = props.data as Array<any>;
         const columns : Array<Column> = this.props.columns ;
-
+        var _state = {
+            data:[],
+            isDataFetching:false,
+            columns: this.prepareColumns(columns),
+            page:1,
+            skip:0,
+            take: props.defaultTake,
+            total: props.total
+        };
         if(props.data != null) {
-            
-            this.state = {
-                data : this.mapDataToRow(data),
-                isDataFetching:false,
-                columns: this.prepareColumns(columns),
-                page:1,
-                skip:0,
-                take: props.defaultTake,
-                total: props.total
-            };
-        } else if (props.dataSource != undefined) {
-            this.state = {
-                data : [],
-                isDataFetching:false,
-                columns: this.prepareColumns(columns),
-                page:1,
-                skip:0,
-                take: props.defaultTake,
-                total: props.total
-            };
+            _state.data = this.mapDataToRow(data) ;
         }
+        this.state = _state ;
     }
 
     componentDidMount() {
@@ -231,6 +221,7 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
 
             newColumns.push(value);
         });
+
         return newColumns ;
     }
 
@@ -402,14 +393,20 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
     }
 
     componentWillReceiveProps(nextProps:UpDataGridProps) {
+        var data = this.state.data ;
+        if(this.props.dataSource == null) {
+            data = (nextProps.data != null)? this.mapDataToRow(nextProps.data): nextProps.data ;
+        }
         var newState:UpDataGridState
-            = { data: (nextProps.data != null)? this.mapDataToRow(nextProps.data): nextProps.data, 
+            = { data : data,
                 columns: (nextProps.columns != null)? this.prepareColumns(nextProps.columns): nextProps.columns, 
                 total:nextProps.total, 
                 isDataFetching: nextProps.isDataFetching,
                 skip: nextProps.defaultSkip,
                 take: nextProps.defaultTake,
                 page: nextProps.defaultPage } ;
+        
+                
 
         this.setState(newState) ;
     }
