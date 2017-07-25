@@ -20,7 +20,8 @@ import {
     UpInput,
     UpFormGroup,
     UpSwitch,
-    UpSelect
+    UpSelect,
+    UpDataGrid
 } from "../src/index";
 
 import Timeline from "../src/Components/Display/TimeLine/index"
@@ -91,7 +92,7 @@ class Demo extends React.Component<undefined, DemoState> {
         }
     }
     public render() {
-        
+
         var enti = {
             id: "id",
             name: "Inventaire",
@@ -125,12 +126,58 @@ class Demo extends React.Component<undefined, DemoState> {
             defaultTimeEnd={moment('1995-12-25').add(12, 'hour')}
         />;
 
+
+        var data = [
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
+        ];
+
+
         return (
             <UpThemeProvider theme={theme}>
                 <UpBox flexDirection="row" alignItems="stretch" justifyContent="center" >
-                 <UpPanel title="Paramètres" type="warning">
-                    Mon message
-                </UpPanel>
+                    <UpPanel title="Paramètres" type="warning">
+                        Mon message
+                        <UpDataGrid
+                            columns={
+                                [{
+                                    label: 'Col 1',
+                                    field: 'c1',
+                                    isSortable: true,
+                                    type: 'time'
+                                }, {
+                                    label: 'Col 2',
+                                    field: 'c2',
+                                    isSortable: true
+                                }, {
+                                    label: 'Col 3',
+                                    field: 'c3',
+                                    isSortable: true
+                                }]
+                            }
+                            data={data} />
+
+
+                    </UpPanel>
                     <UpSelect
                         showError={true}
                         default={null}

@@ -1,13 +1,11 @@
 import * as React from 'react'
-
-import {Column} from './UpDataGrid'
-import UpBadge from '../../Display/Badge'
-
-import {isEmpty} from '../../../Common/utils'
-import {IconName} from '../../../Common/theming/types'
-
-import UpLink from '../../Display/Link'
-import UpSvgIcon from '../../Display/SvgIcon'
+import { Column, Row } from './UpDataGrid'
+import UpBadge from '../../Display/Badge/index'
+import { isEmpty } from '../../../Common/utils/index'
+import { IconName } from '../../../Common/theming/types'
+import UpLink from '../../Display/Link/index'
+import UpSvgIcon from '../../Display/SvgIcon/index'
+import * as moment from "moment"
 
 export interface ICellFormatter {   
     format : (item:any, column: Column) => React.ReactElement<any>
@@ -99,5 +97,99 @@ export default class UpDefaultCellFormatter implements ICellFormatter{
         return (
             <div>{result}</div>
         );
+    }
+}
+
+
+
+
+export interface UpCellFormatterProps {
+    collum: Column;
+    item: Row;
+}
+
+interface UpCellFormatterState {
+}
+
+export class UpCellFormatter extends React.Component<UpCellFormatterProps, {}>{
+
+    constructor(p, c) {
+        super(p, c);
+        this.state = {};
+    }
+
+    render() {
+        var valueExtracted = this.props.item.value[this.props.collum.field];
+        if (this.props.collum.formatter != null) {
+            return this.props.collum.formatter.format(this.props.item.value, this.props.collum);
+        }
+
+        switch (this.props.collum.type) {
+            case 'link':
+                if (!isEmpty(valueExtracted)) {
+                    var href = valueExtracted;
+                    if (valueExtracted.href !== undefined) {
+                        valueExtracted = valueExtracted.href;
+                    }
+                    var icon: IconName = "link";
+                    if (valueExtracted.icon !== undefined) {
+                        icon = valueExtracted.icon;
+                    }
+                    return <UpLink href={valueExtracted} onClick={(e) => {
+                        window.open(valueExtracted);
+                    }}>
+                        <UpSvgIcon iconName={icon} />
+                    </UpLink>
+                }
+                break;
+            case 'file':
+                // TODO
+                break;
+            case 'date':
+                return <span>{moment(valueExtracted).format("DD/MM/YYYY")}</span>
+            case 'date-time':
+                return <span>{moment(valueExtracted).format("DD/MM/YYYY HH:mm")}</span>
+            case 'time':
+                return <span>{moment(valueExtracted).format("HH:mm")}</span>
+
+            // var _format = c.format;
+            // if (_format) {
+            //     try {
+            //         var _data = eval("self.item." + field);
+            //         result = new moment(_data).format(_format);
+            //     } catch (exception) {
+            //         console.log(exception)
+            //     }
+            // } else {
+            //     result = eval("self.item." + field);
+            // }
+            default:
+
+
+                return <span>{valueExtracted == null ? "" : valueExtracted}</span>
+            //if (valueExtracted != undefined) {
+            //    // On regarde s'il est défini une couleur
+            //    var _couleur = undefined;
+            //    if (typeof (valueExtracted['Couleur']) != 'undefined')
+            //        _couleur = valueExtracted['Couleur'];
+
+            //    if (_couleur == undefined) {
+            //        return valueExtracted;
+            //    } else {
+            //        var _libelle = '';
+            //        if (typeof (valueExtracted['Libelle']) != 'undefined')
+            //            _libelle = valueExtracted['Libelle'];
+
+            //        if (_libelle == undefined) {
+            //            _libelle = '';
+            //        }
+            //        return <UpBadge text={_libelle} color={_couleur} />;
+            //    }
+            //} else {
+            //    return "";
+            //}
+        }
+
+        return <div></div>
     }
 }
