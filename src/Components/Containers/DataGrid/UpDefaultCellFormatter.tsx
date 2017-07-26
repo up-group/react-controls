@@ -7,45 +7,45 @@ import UpLink from '../../Display/Link/index'
 import UpSvgIcon from '../../Display/SvgIcon/index'
 import * as moment from "moment"
 
-export interface ICellFormatter {   
-    format : (item:any, column: Column) => React.ReactElement<any>
+export interface ICellFormatter {
+    format: (item: any, column: Column) => React.ReactElement<any>
 }
 
-export default class UpDefaultCellFormatter implements ICellFormatter{
-    
+export default class UpDefaultCellFormatter implements ICellFormatter {
+
     getValue = (value, column) => {
-        var field = column.field ;
-        var pathParts = field.split('.') ;
-        var valueExtracted ; 
-        if(pathParts.length==1) {
-            valueExtracted = value[field] ;
+        var field = column.field;
+        var pathParts = field.split('.');
+        var valueExtracted;
+        if (pathParts.length == 1) {
+            valueExtracted = value[field];
         } else {
-            var nextValue = value[pathParts[0]] ;
-            var nextPath = pathParts.slice(1).join('.') ;
+            var nextValue = value[pathParts[0]];
+            var nextPath = pathParts.slice(1).join('.');
             valueExtracted = this.getValue(nextValue, nextPath)
         }
-        var result:any = "" ;
+        var result: any = "";
         var type = column.type;
-        if(field) {
+        if (field) {
             switch (type) {
                 case 'link':
                     if (!isEmpty(valueExtracted)) {
-                        var href = valueExtracted ;
-                        if(valueExtracted.href !== undefined) {
-                            valueExtracted = valueExtracted.href ;
+                        var href = valueExtracted;
+                        if (valueExtracted.href !== undefined) {
+                            valueExtracted = valueExtracted.href;
                         }
-                        var icon : IconName = "link" ;
-                        if(valueExtracted.icon !== undefined) {
-                            icon = valueExtracted.icon ;
+                        var icon: IconName = "link";
+                        if (valueExtracted.icon !== undefined) {
+                            icon = valueExtracted.icon;
                         }
                         result = <UpLink href={valueExtracted} onClick={(e) => {
-                                window.open(valueExtracted) ;
-                            }}>
-                                <UpSvgIcon iconName={icon} />
-                            </UpLink>
+                            window.open(valueExtracted);
+                        }}>
+                            <UpSvgIcon iconName={icon} />
+                        </UpLink>
                     }
                     break;
-                case 'file' :
+                case 'file':
                     // TODO
                     break;
                 case 'date':
@@ -62,37 +62,37 @@ export default class UpDefaultCellFormatter implements ICellFormatter{
                     // }
                     break;
                 default:
-                    if(valueExtracted != undefined) {
+                    if (valueExtracted != undefined) {
                         // On regarde s'il est défini une couleur
                         var _couleur = undefined;
-                        if(typeof(valueExtracted['Couleur']) != 'undefined')
+                        if (typeof (valueExtracted['Couleur']) != 'undefined')
                             _couleur = valueExtracted['Couleur'];
-                            
-                        if (_couleur==undefined) {
-                            result = valueExtracted ;
+
+                        if (_couleur == undefined) {
+                            result = valueExtracted;
                         } else {
                             var _libelle = '';
-                            if(typeof(valueExtracted['Libelle']) != 'undefined')
-                            _libelle = valueExtracted['Libelle'];
+                            if (typeof (valueExtracted['Libelle']) != 'undefined')
+                                _libelle = valueExtracted['Libelle'];
 
                             if (_libelle == undefined) {
                                 _libelle = '';
                             }
-                            result = <UpBadge text={_libelle} color={_couleur} /> ;
+                            result = <UpBadge text={_libelle} color={_couleur} />;
                         }
                     } else {
-                        result = "" ;
+                        result = "";
                     }
-                    break ;
+                    break;
             }
         }
-        return result ;
+        return result;
     };
 
-    format = (item:any, column: Column) => {
-        let result = item ;
-        if(column && column.field) {
-            result = this.getValue(item, column) ;
+    format = (item: any, column: Column) => {
+        let result = item;
+        if (column && column.field) {
+            result = this.getValue(item, column);
         }
         return (
             <div>{result}</div>
@@ -122,6 +122,10 @@ export class UpCellFormatter extends React.Component<UpCellFormatterProps, {}>{
         var valueExtracted = this.props.item.value[this.props.collum.field];
         if (this.props.collum.formatter != null) {
             return this.props.collum.formatter.format(this.props.item.value, this.props.collum);
+        }
+
+        if (valueExtracted == null) {
+            return <span />
         }
 
         switch (this.props.collum.type) {
