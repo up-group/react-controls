@@ -155,6 +155,18 @@ export class UpCellFormatter extends React.Component<UpCellFormatterProps, {}>{
                 return <span>{moment(valueExtracted).format("DD/MM/YYYY HH:mm")}</span>
             case 'time':
                 return <span>{moment(valueExtracted).format("HH:mm")}</span>
+            case "multilineText":
+                return <span style={{ "whiteSpace": "pre" }}>{valueExtracted}</span>
+            case "boolean":
+                //return <span>{valueExtracted == null ? "" : valueExtracted == true ? "Oui" : "Non"}</span>;
+                switch (valueExtracted) {
+                    case true:
+                        return <span style={{ color: "green" }}>Oui</span>
+                    case false:
+                        return <span style={{ color: "red" }}>Non</span>
+                    default:
+                        return <span />
+                }
 
             // var _format = c.format;
             // if (_format) {

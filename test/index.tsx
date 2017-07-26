@@ -126,29 +126,18 @@ class Demo extends React.Component<undefined, DemoState> {
             defaultTimeEnd={moment('1995-12-25').add(12, 'hour')}
         />;
 
-
+        var aa = `testy
+tesdddddddddddddddddddddt
+test
+test
+testfvsdfv
+fvesvfesf
+sfd`;
         var data = [
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3' },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
         ];
 
 
@@ -172,63 +161,71 @@ class Demo extends React.Component<undefined, DemoState> {
                                     label: 'Col 3',
                                     field: 'c3',
                                     isSortable: true
+                                }, {
+                                    label: 'Col 4',
+                                    field: 'c4',
+                                    isSortable: true,
+                                    type: 'multilineText'
+
                                 }]
                             }
                             data={data} />
 
 
                     </UpPanel>
-                    <UpSelect
-                        showError={true}
-                        default={null}
-                        isRequired={false}
-                        multiple={true}
-                        value={this.state.user}
-                        onChange={this.onChangeUser}
-                        placeholder="Recherche"
-                        allowClear={false}
-                        dataSource={enti}
-                    />
-                    <UpSelect
-                        showError={true}
-                        default={null}
-                        isRequired={false}
-                        multiple={true}
-                        placeholder="Recherche"
-                        allowClear={false}
-                        value={this.state.item}
-                        onChange={this.onChangeItem}
-                        data={[
-                            {
-                                id: 1,
-                                text: "Item 1"
-                            },
-                            {
-                                id: 2,
-                                text: "Item 2"
-                            },
-                            {
-                                id: 3,
-                                text: "Item 3"
-                            },
-                            {
-                                id: 4,
-                                text: "Item 4"
-                            },
-                            {
-                                id: 5,
-                                text: "Item 5"
-                            }
-                        ]}
-                    />
-                    <UpBox margin="small" boxSize={{ horizontal: 'small' }}>
-                        Component
-              <hr />
-                    </UpBox>
+
                     <UpBox margin="small" boxSize={{ horizontal: 'xxlarge' }}>
                         Editor
               <hr />
                         <UpPanel title="Paramètres" type="info" disableAutoIntentIcon={true}>
+                            <UpSelect
+                                showError={true}
+                                default={null}
+                                isRequired={false}
+                                multiple={true}
+                                value={this.state.user}
+                                onChange={this.onChangeUser}
+                                placeholder="Recherche"
+                                allowClear={false}
+                                dataSource={enti}
+                            />
+                            <UpSelect
+                                showError={true}
+                                default={null}
+                                isRequired={false}
+                                multiple={true}
+                                placeholder="Recherche"
+                                allowClear={false}
+                                value={this.state.item}
+                                onChange={this.onChangeItem}
+                                data={[
+                                    {
+                                        id: 1,
+                                        text: "Item 1"
+                                    },
+                                    {
+                                        id: 2,
+                                        text: "Item 2"
+                                    },
+                                    {
+                                        id: 3,
+                                        text: "Item 3"
+                                    },
+                                    {
+                                        id: 4,
+                                        text: "Item 4"
+                                    },
+                                    {
+                                        id: 5,
+                                        text: "Item 5"
+                                    }
+                                ]}
+                            />
+                            <UpBox margin="small" boxSize={{ horizontal: 'small' }}>
+                                Component
+              <hr />
+                            </UpBox>
+
                             <UpNumber max={5} min={2} onChange={this.onNumberChange} />
                             {time}
                             <UpGrid>
