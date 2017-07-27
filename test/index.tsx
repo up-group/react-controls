@@ -128,12 +128,14 @@ class Demo extends React.Component<undefined, DemoState> {
 
         var aa = `testy
 tesdddddddddddddddddddddt
-test
-test
-testfvsdfv
-fvesvfesf
 sfd`;
         var data = [
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
             { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
             { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
             { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
@@ -147,6 +149,9 @@ sfd`;
                     <UpPanel title="Paramètres" type="warning">
                         Mon message
                         <UpDataGrid
+                            isPaginationEnabled={true}
+                            total={1600}
+                            defaultTake={100}
                             columns={
                                 [{
                                     label: 'Col 1',
