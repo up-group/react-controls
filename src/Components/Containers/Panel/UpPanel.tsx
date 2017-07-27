@@ -9,7 +9,7 @@ import defaultTheme from '../../../Common/theming'
 export class UpPanel extends React.Component<UpPanelProps, undefined> {
   public static defaultProps: UpPanelProps = {
     footer: "",
-    type:"primary",
+    type:"default",
     theme:defaultTheme,
     disableAutoIntentIcon:true
   };
