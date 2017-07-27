@@ -71,7 +71,7 @@ const paginationItemStyle = style({
             textAlign: "center",
             position: "relative",
             float: "left",
-            padding: "6px 12px",
+            padding: "6px 3px",
             marginLeft: "-1px",
             lineHeight: "1.43",
             color: "#337ab7",
