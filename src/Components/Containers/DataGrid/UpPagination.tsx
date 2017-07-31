@@ -178,15 +178,10 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
     onTakeChange = (data: any) => {
         if (data && data.id != this.state.take) {
             var newTake = data.id;
-            var newSkip = (this.state.page - 1) * newTake;
-            var newPage = (newSkip / newTake) + 1;
-            if (newPage > Math.ceil(this.props.total / newTake)) {
-                newPage = Math.ceil(this.props.total / newTake);
-                newSkip = (newPage - 1) * newTake;
-            }
-            var newState = { take: data.id, skip: newSkip, page: newPage };
-            this.setState(newState, () => {
-                this.props.onPageChange(this.state.page, this.state.take, this.state.skip)
+            var page = this.getPage(newTake, this.state.skip);
+            var newState = { take: newTake, page: page };
+            this.setState(newState, function () {
+                this.props.onPageChange(this.state.page, this.state.take, this.state.skip);
             });
         }
     }
