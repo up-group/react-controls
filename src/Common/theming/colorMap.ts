@@ -32,8 +32,8 @@ const colorMap: ThemeColorMap = {
   primaryLight: '#49a9ee',
 
   default: '#fafafa',
-  defaultDark: '#fafafa',
-  defaultLight: '#fefefe',
+  defaultDark: '#969696',
+  defaultLight: '#CBCBCB',
 
   success: '#8cc800',
   successDark: '#8cc800',

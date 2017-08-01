@@ -124,7 +124,7 @@ border-style:solid;
   }
 }
 svg {
-    fill: ${(props: UpButtonStyledProps) => props.color || 'white'}
+    fill: ${(props: UpButtonStyledProps) => props.color || props.theme.colorMap[`${props.intent}Light`]  || 'white'}
 }
 `;
 
