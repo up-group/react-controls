@@ -174,6 +174,14 @@ sfd`;
 
                                 }]
                             }
+
+                            actions={[{
+                                type: "add",
+                                intent: "default",
+                                description: "TEStMF",
+                                action: (a) => { console.log(1, a); }
+                            }]}
+
                             data={data} />
 
 

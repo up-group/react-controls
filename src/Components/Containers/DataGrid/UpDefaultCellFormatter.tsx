@@ -118,6 +118,7 @@ export class UpCellFormatter extends React.Component<UpCellFormatterProps, {}>{
         this.state = {};
     }
 
+
     render() {
         var valueExtracted = this.props.item.value[this.props.collum.field];
         if (this.props.collum.formatter != null) {
@@ -125,7 +126,7 @@ export class UpCellFormatter extends React.Component<UpCellFormatterProps, {}>{
         }
 
         if (valueExtracted == null) {
-            return <span />
+            return <span>{this.props.children}</span>
         }
 
         switch (this.props.collum.type) {

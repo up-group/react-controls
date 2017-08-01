@@ -97,9 +97,9 @@ const DataGridStyle = style({
 
 export interface Action {
     type: ActionType,
-    role: string,
     intent: IntentType,
-    description: string
+    description: string,
+    action: (row: Row) => void
 }
 
 export interface Column {
@@ -152,7 +152,6 @@ export interface UpDataGridProps {
     onPageChange?: (page: number, take: number, skip: number) => void;
     onSortChange?: (c: Column, dir: SortDirection) => void;
     onSelectionChange?: (row: Row) => void;
-    handleAction?: (item: any, role: string) => void;
 }
 
 export interface UpDataGridState {
@@ -388,11 +387,6 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
         });
     }
 
-    handleAction = (item: any, role: string) => {
-        if (this.props.handleAction)
-            this.props.handleAction(item, role);
-    }
-
     componentWillReceiveProps(nextProps: UpDataGridProps) {
         var data = this.state.data;
         if (this.props.dataSource == null) {
@@ -467,14 +461,12 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
                                     return <RowTemplate key={`row-${index}`}
                                         isSelectionEnabled={this.props.isSelectionEnabled}
                                         actions={this.props.actions}
-                                        handleAction={this.handleAction}
                                         columns={columns}
                                         item={value} />
                                 } else {
                                     return <UpDataGridRow key={`row-${index}`}
                                         isSelectionEnabled={this.props.isSelectionEnabled}
                                         actions={this.props.actions}
-                                        handleAction={this.handleAction}
                                         columns={columns}
                                         item={value} />
                                 }

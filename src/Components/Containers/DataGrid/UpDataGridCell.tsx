@@ -23,15 +23,11 @@ export default class UpDataGridCell extends React.Component<UpDataGridCellProps,
     }
 
     render() {
-        //{
-        //    this.props.column.formatter &&
-        //    this.props.column.formatter.format(this.props.item.value, this.props.column)
-        //}
-        //{ this.props.children }
         return (
             <div className="up-data-grid-cell">
-                <UpCellFormatter item={this.props.item} collum={this.props.column} />
-
+                <UpCellFormatter item={this.props.item} collum={this.props.column}>
+                    {this.props.children}
+                </UpCellFormatter>
             </div>
         )
     }
