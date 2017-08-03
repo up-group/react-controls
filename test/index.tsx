@@ -25,6 +25,7 @@ import {
 } from "../src/index";
 
 import Timeline from "../src/Components/Display/TimeLine/index"
+import UpModal from "../src/Components/Containers/Modal/UpModal"
 
 import * as moment from 'moment'
 
@@ -147,6 +148,7 @@ sfd`;
             <UpThemeProvider theme={theme}>
                 <UpBox flexDirection="row" alignItems="stretch" justifyContent="center" >
                     <UpPanel title="Paramètres" type="warning">
+                        <UpModal />
                         Mon message
                         <UpDataGrid
                             isPaginationEnabled={true}
