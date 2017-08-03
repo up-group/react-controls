@@ -81,5 +81,6 @@ export {
     UpCalendarTimeline,
     UpIconName,
     UpIntentType,
-    UpDataGrid
+    UpDataGrid,
+    UpModal
 };
