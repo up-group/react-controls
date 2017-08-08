@@ -26,6 +26,8 @@ import {
 
 import Timeline from "../src/Components/Display/TimeLine/index"
 import UpModal from "../src/Components/Containers/Modal/UpModal"
+import UpDashboard from "../src/Components/Containers/Dashboard/UpDashboard"
+import UpTile from "../src/Components/Containers/Dashboard/UpTile"
 
 import * as moment from 'moment'
 
@@ -93,6 +95,130 @@ class Demo extends React.Component<undefined, DemoState> {
         }
     }
     public render() {
+
+
+        if (1 == 1) {
+            return <UpThemeProvider theme={theme}>
+                <UpDashboard>
+                    <UpTile Title="Test1">
+
+                        <ul className="products-list product-list-in-box">
+                            <li className="item">
+                                <div className="product-img">
+                                    <i className="pe pe-7s-attention text-red"></i>
+                                </div>
+                                <div className="product-info">
+                                    <a href="javascript:void(0)" className="product-title">Berthe Medinette
+                                <span className="label label-danger pull-right">Aujourd'hui</span></a>
+                                    <span className="product-description">
+                                        Décédée le 06/08/2017.
+                            </span>
+                                </div>
+                            </li>
+                            <li className="item">
+                                <div className="product-img">
+                                    <i className="pe pe-7s-info text-yellow"></i>
+                                </div>
+                                <div className="product-info">
+                                    <a href="javascript:void(0)" className="product-title">Jean Dupont
+                                <span className="label label-warning pull-right">hier</span></a>
+                                    <span className="product-description">
+                                        Hospitalisation.
+                            </span>
+                                </div>
+                            </li>
+                            <li className="item">
+                                <div className="product-img">
+                                    <i className="pe pe-7s-info text-success"></i>
+                                </div>
+                                <div className="product-info">
+                                    <a href="javascript:void(0)" className="product-title">Jean-Pierre MARTIN
+                                <span className="label label-success pull-right">05/08/2017</span></a>
+                                    <span className="product-description">
+                                        Retour d'hospitalisation.
+                            </span>
+                                </div>
+                            </li>
+                            <li className="item">
+                                <div className="product-img">
+                                    <i className="pe pe-7s-info text-yellow"></i>
+                                </div>
+                                <div className="product-info">
+                                    <a href="javascript:void(0)" className="product-title">Louise LE GAL
+                                <span className="label label-warning pull-right">04/08/2017</span></a>
+                                    <span className="product-description">
+                                        Hospitalisation.
+                            </span>
+                                </div>
+                            </li>
+                            <li className="item">
+                                <div className="product-img">
+                                    <i className="pe pe-7s-attention text-red"></i>
+                                </div>
+                                <div className="product-info">
+                                    <a href="javascript:void(0)" className="product-title">Berthe Medinette
+                                <span className="label label-danger pull-right">04/08/2017</span></a>
+                                    <span className="product-description">
+                                        Décédée le 03/08/2017.
+                            </span>
+                                </div>
+                            </li>
+                            <li className="item">
+                                <div className="product-img">
+                                    <i className="pe pe-7s-info text-yellow"></i>
+                                </div>
+                                <div className="product-info">
+                                    <a href="javascript:void(0)" className="product-title">Jean Dupont
+                                <span className="label label-warning pull-right">03/08/2017</span></a>
+                                    <span className="product-description">
+                                        Hospitalisation.
+                            </span>
+                                </div>
+                            </li>
+                            <li className="item">
+                                <div className="product-img">
+                                    <i className="pe pe-7s-info text-success"></i>
+                                </div>
+                                <div className="product-info">
+                                    <a href="javascript:void(0)" className="product-title">Jean-Pierre MARTIN
+                                <span className="label label-success pull-right">02/08/2017</span></a>
+                                    <span className="product-description">
+                                        Retour d'hospitalisation.
+                            </span>
+                                </div>
+                            </li>
+                            <li className="item">
+                                <div className="product-img">
+                                    <i className="pe pe-7s-info text-yellow"></i>
+                                </div>
+                                <div className="product-info">
+                                    <a href="javascript:void(0)" className="product-title">Louise LE GAL
+                                <span className="label label-warning pull-right">01/08/2017</span></a>
+                                    <span className="product-description">
+                                        Hospitalisation.
+                            </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </UpTile>
+                    <UpTile Title="test 2.1 ">
+                        <UpNumber value={5}/>
+                    </UpTile>
+                    <UpTile Title="test 2.2 ">
+                        <UpNumber value={5} />
+                    </UpTile>
+                    <UpTile Title="test 2.3 ">
+                        <UpNumber value={5} />
+                    </UpTile>
+                    <UpTile Title="test 2.4 ">
+                        <UpNumber value={5} />
+                    </UpTile>
+                    <UpTile Title="test 2.5 ">
+                        <UpNumber value={5} />
+                    </UpTile>
+                </UpDashboard>
+            </UpThemeProvider>
+        }
 
         var enti = {
             id: "id",

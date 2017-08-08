@@ -5,6 +5,8 @@ import UpFormGroup from './Components/Containers/FormGroup'
 import UpButtonGroup from './Components/Containers/ButtonGroup'
 import UpDataGrid from './Components/Containers/DataGrid/UpDataGrid'
 import UpModal from './Components/Containers/Modal/UpModal'
+import UpDashboard from './Components/Containers/Dashboard/UpDashboard'
+import UpTile from './Components/Containers/Dashboard/UpTile'
 
 import UpHeading from './Components/Display/Heading'
 import UpLink from './Components/Display/Link'
@@ -82,5 +84,7 @@ export {
     UpIconName,
     UpIntentType,
     UpDataGrid,
-    UpModal
+    UpModal,
+    UpDashboard,
+    UpTile
 };

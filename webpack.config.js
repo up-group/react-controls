@@ -1,5 +1,6 @@
 const path = require('path');
 const ROOT_PATH = path.resolve(__dirname);
+var webpack = require('webpack');
 
 module.exports = {
     devtool: 'cheap-module-source-map',
@@ -38,6 +39,10 @@ module.exports = {
         ]
     },
     plugins: [
-
+        new webpack.ProvidePlugin({
+            jQuery: 'jquery',
+            $: 'jquery',
+            jquery: 'jquery'
+        })
     ]
 };
