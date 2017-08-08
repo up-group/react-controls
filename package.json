@@ -45,7 +45,7 @@
   },
   "scripts": {
     "clean": "rimraf dist && rimraf test/dist",
-    "build": "tsc && copyfiles -u 1 src/Common/theming/icons/*.* dist/ && copyCSS",
+    "build": "tsc && copyfiles -u 1 src/Common/theming/icons/*.* dist/ && npm run copyCSS",
     "copyCSS": "copyfiles -u 1 src/**/*.css dist/",
     "build-watch": "tsc -w",
     "prepublish": "npm run clean && npm run build ",
