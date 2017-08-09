@@ -51,7 +51,7 @@ export default class UpLogoAlerte extends React.Component<UpLogoAlerteProps, UpL
                 borderColor = "#addaf1";
                 break;
             case 'danger':
-                backgroundColor = "#fff";
+                backgroundColor = "#dd4b39";
                 borderColor = "#eea59c";
                 break;
             case 'warning':
