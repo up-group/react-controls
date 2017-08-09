@@ -1,11 +1,13 @@
 import * as React from "react"
 import SvgIcon from "../SvgIcon/index"
+import { IconName } from "../SvgIcon/icons"
 import { ThemedProps, IntentType } from '../../../Common/theming/types'
 import UpTooltip, { Tooltip } from '../../Display/Tooltip/index'
 import UpBut from "../../Inputs/Button/index"
 
 
 export interface UpLogoAlerteProps {
+    icon: IconName;
     title?: string;
     alerteNumber?: number;
     intenet?: IntentType
@@ -19,7 +21,8 @@ export default class UpLogoAlerte extends React.Component<UpLogoAlerteProps, UpL
     public static defaultProps: UpLogoAlerteProps = {
         intenet: "default",
         alerteNumber: 0,
-        title: ""
+        title: "",
+        icon : "none"
     };
 
     constructor(p, c) {
@@ -61,7 +64,7 @@ export default class UpLogoAlerte extends React.Component<UpLogoAlerteProps, UpL
         return <UpTooltip content={this.props.title}>
             <div style={styleLogoAlerte}>
                 <div style={StyleLogoAlerteIcon} className="logoAlerte bg-green">
-                    <SvgIcon height={24} iconName="user" />
+                    <SvgIcon height={24} iconName={this.props.icon} />
                 </div>
                 <div style={styleTexteLogo} className="texteLogo">
                     <span className="nombre text-success">{this.props.alerteNumber}</span>
