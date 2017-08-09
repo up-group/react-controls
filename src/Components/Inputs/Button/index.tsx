@@ -2,6 +2,7 @@
 import UpButton from './UpButton'
 import { ThemedProps, IntentType } from '../../../Common/theming/types'
 import { Tooltip } from '../../Display/Tooltip'
+import { IconName } from '../../../Components/Display/SvgIcon/icons'
 
 export const fontSizeMap = {
     xsmall: 10,
@@ -20,7 +21,7 @@ export const buttonSizeMap = {
 export type FontSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 export type ButtonWidth = 'normal' | 'icon' | 'auto';
 export type ButtonHeight = 'xsmall' | 'small' | 'normal' | 'large';
-export type ActionType = 'add' | 'asterisk' | 'calendar' | 'caret-down' | 'caret-right' | 'caret-up' | 'close' | 'comment' | 'confirm' | 'cross' | 'delete' | 'download' | 'edit' | 'email' | 'error-sign' | 'export' | 'filter' | 'filter-list' | 'help' | 'import' | 'info-sign' | 'link' | 'minus' | 'mobile-phone' | 'none' | 'ok-sign' | 'phone' | 'plus' | 'refresh' | 'save' | 'search' | 'sort-asc' | 'sort-desc' | 'stop' | 'tick' | 'unlock' | 'upload' | 'user' | 'warning-sign' | 'zoom-in' | 'zoom-out';
+export type ActionType = IconName;
 
 
 
