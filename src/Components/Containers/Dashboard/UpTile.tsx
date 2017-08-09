@@ -10,6 +10,7 @@ import UpPanel from "../Panel/index"
 export interface UpTileProps {
     Title?: string
     size?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+    footer?: JSX.Element;
 }
 
 export interface UpTileState {
@@ -40,6 +41,13 @@ export default class UpTile extends React.Component<UpTileProps, UpTileState>{
         }
         // < span data-toggle="tooltip" title= "" className= "badge bg-red" data- original - title="4 messages non lus" > 4</span >
 
+        var footer = null;
+        if (this.props.footer != null) {
+            footer = <div className="box-footer text-center">
+                {this.props.footer}
+            </div>
+        }
+
         return <div style={null} className={"col-md-" + this.props.size}>
             <div className={"box box-up box-home" + (!this.state.isCollapse ? "" : " collapsed-box")}>
                 <div className="box-header with-border">
@@ -54,14 +62,10 @@ export default class UpTile extends React.Component<UpTileProps, UpTileState>{
                         </button>
                     </div>
                 </div>
-
                 <div className="box-body" style={{}}>
                     {this.props.children}
                 </div>
-                <div className="box-footer text-center">
-                    <a href="#" className="col-md-10">Voir tous les messages</a>
-                    <div className="btnAjoutMessage col-md-2"><a href="#"><i className="pe pe-7s-plus fa-2x"></i></a></div>
-                </div>
+                {footer}
             </div>
         </div>
     }
