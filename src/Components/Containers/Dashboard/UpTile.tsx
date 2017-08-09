@@ -9,6 +9,7 @@ import UpPanel from "../Panel/index"
 
 export interface UpTileProps {
     Title?: string
+    size?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 }
 
 export interface UpTileState {
@@ -17,6 +18,7 @@ export interface UpTileState {
 
 export default class UpTile extends React.Component<UpTileProps, UpTileState>{
     public static defaultProps: UpTileProps = {
+        size: 4
     };
 
     constructor(p, c) {
@@ -37,7 +39,8 @@ export default class UpTile extends React.Component<UpTileProps, UpTileState>{
             display: "block"
         }
         // < span data-toggle="tooltip" title= "" className= "badge bg-red" data- original - title="4 messages non lus" > 4</span >
-        return <div style={null} className="col-md-4">
+
+        return <div style={null} className={"col-md-" + this.props.size}>
             <div className={"box box-up box-home" + (!this.state.isCollapse ? "" : " collapsed-box")}>
                 <div className="box-header with-border">
                     <h3 className="box-title">
