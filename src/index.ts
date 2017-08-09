@@ -20,6 +20,8 @@ import UpTooltip from './Components/Display/Tooltip'
 import UpLabel from './Components/Display/Label'
 import UpVisibilitySensor from './Components/Display/VisibilitySensor'
 import UpCalendarTimeline from './Components/Display/TimeLine'
+import UpLogoAlerte from './Components/Display/LogoAlerte/UpLogoAlerte'
+
 
 import UpButton from './Components/Inputs/Button'
 import UpInput from './Components/Inputs/Input'
@@ -86,5 +88,6 @@ export {
     UpDataGrid,
     UpModal,
     UpDashboard,
-    UpTile
+    UpTile,
+    UpLogoAlerte
 };

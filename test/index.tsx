@@ -28,6 +28,7 @@ import Timeline from "../src/Components/Display/TimeLine/index"
 import UpModal from "../src/Components/Containers/Modal/UpModal"
 import UpDashboard from "../src/Components/Containers/Dashboard/UpDashboard"
 import UpTile from "../src/Components/Containers/Dashboard/UpTile"
+import UpLogoAlerte from "../src/Components/Display/LogoAlerte/UpLogoAlerte"
 
 import * as moment from 'moment'
 
@@ -100,6 +101,14 @@ class Demo extends React.Component<undefined, DemoState> {
         if (1 == 1) {
             return <UpThemeProvider theme={theme}>
                 <UpDashboard>
+                    <UpLogoAlerte />
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br />
+
                     <UpTile Title="Test1">
 
                         <ul className="products-list product-list-in-box">
