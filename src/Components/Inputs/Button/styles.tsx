@@ -25,7 +25,6 @@ const ReactButtonComponent: React.StatelessComponent<UpButtonStyledProps> = (pro
     const { children, className, onClick, dataFor, width } = props;
 
     const actionType = props.actionType;
-    debugger
     var iconName: IconName = 'none';
     if (actionType && ActionIconMap.containsKey(actionType)) {
         iconName = ActionIconMap.get(actionType);
