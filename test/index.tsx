@@ -29,6 +29,7 @@ import UpModal from "../src/Components/Containers/Modal/UpModal"
 import UpDashboard from "../src/Components/Containers/Dashboard/UpDashboard"
 import UpTile from "../src/Components/Containers/Dashboard/UpTile"
 import UpLogoAlerte from "../src/Components/Display/LogoAlerte/UpLogoAlerte"
+import UpCalendarWeekDay from "../src/Components/Display/CalendarWeekDay/UpCalendarWeekDay"
 
 import * as moment from 'moment'
 
@@ -101,7 +102,13 @@ class Demo extends React.Component<undefined, DemoState> {
         if (1 == 1) {
             return <UpThemeProvider theme={theme}>
                 <UpDashboard>
-                    <UpLogoAlerte />
+                    <UpCalendarWeekDay />
+
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <UpLogoAlerte intenet="danger" icon="add" />
                     <br/>
                     <br/>
                     <br/>
