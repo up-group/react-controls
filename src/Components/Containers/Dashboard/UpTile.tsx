@@ -3,7 +3,7 @@ import * as React from "react"
 import './UpTile.css'
 import './bootstrap-grid.css'
 import * as $ from 'jquery'
-
+import SvgIcon from "../../Display/SvgIcon/index";
 
 import UpPanel from "../Panel/index"
 
@@ -12,7 +12,7 @@ export interface UpTileProps {
 }
 
 export interface UpTileState {
-
+    isCollapse: boolean;
 }
 
 export default class UpTile extends React.Component<UpTileProps, UpTileState>{
@@ -21,7 +21,9 @@ export default class UpTile extends React.Component<UpTileProps, UpTileState>{
 
     constructor(p, c) {
         super(p, c);
-        this.state = {};
+        this.state = {
+            isCollapse: false
+        };
     }
 
     render() {
@@ -34,14 +36,20 @@ export default class UpTile extends React.Component<UpTileProps, UpTileState>{
             paddingLeft: 15,
             display: "block"
         }
-
+        // < span data-toggle="tooltip" title= "" className= "badge bg-red" data- original - title="4 messages non lus" > 4</span >
         return <div style={null} className="col-md-4">
-            <div className="box box-up box-home">
+            <div className={"box box-up box-home" + (!this.state.isCollapse ? "" : " collapsed-box")}>
                 <div className="box-header with-border">
                     <h3 className="box-title">
                         {this.props.Title}
                     </h3>
-                    <div className="box-tools pull-right"><span data-toggle="tooltip" title="" className="badge bg-red" data-original-title="4 messages non lus">4</span><button data-widget="collapse" type="button" className="btn btn-box-tool"><i className="pe pe-7s-less"></i></button></div>
+
+
+                    <div className="box-tools pull-right">
+                        <button data-widget="collapse" type="button" className="btn btn-box-tool" onClick={this.collapse}>
+                            <SvgIcon height={20} iconName={this.state.isCollapse ? "plus" : "minus"} />
+                        </button>
+                    </div>
                 </div>
 
                 <div className="box-body" style={{}}>
@@ -53,5 +61,9 @@ export default class UpTile extends React.Component<UpTileProps, UpTileState>{
                 </div>
             </div>
         </div>
+    }
+
+    collapse = () => {
+        this.setState({ isCollapse: !this.state.isCollapse });
     }
 }
