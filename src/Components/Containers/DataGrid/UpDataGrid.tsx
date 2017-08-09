@@ -14,7 +14,8 @@ import UpDefaultCellFormatter, { ICellFormatter } from './UpDefaultCellFormatter
 import UpLoadingIndicator from '../../Display/LoadingIndicator'
 
 import { ActionType } from '../../Inputs/Button'
-import { IconName, IntentType } from '../../../Common/theming/types'
+import { IntentType } from '../../../Common/theming/types'
+import { IconName } from '../../../Components/Display/SvgIcon/icons'
 
 const WrapperDataGridStyle = style({
     position: "relative"

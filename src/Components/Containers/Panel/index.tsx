@@ -1,6 +1,7 @@
 // Imports
 import UpPanel from './UpPanel'
-import {IntentType, IconName, ThemedProps} from "../../../Common/theming/types"
+import {IntentType, ThemedProps} from "../../../Common/theming/types"
+import { IconName } from '../../../Components/Display/SvgIcon/icons'
 
 // Exports
 export interface UpPanelProps extends ThemedProps  {

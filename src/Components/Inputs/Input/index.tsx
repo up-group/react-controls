@@ -1,6 +1,7 @@
 ﻿// Imports
 import UpInput from './UpInput'
-import { IconName, ThemedProps } from '../../../Common/theming/types'
+import { IconName } from '../../../Components/Display/SvgIcon/icons'
+import {  ThemedProps } from '../../../Common/theming/types'
 import { Tooltip } from '../../Display/Tooltip'
 
 // Exports

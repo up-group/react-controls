@@ -2,7 +2,8 @@ import * as React from 'react'
 import { Column, Row } from './UpDataGrid'
 import UpBadge from '../../Display/Badge/index'
 import { isEmpty } from '../../../Common/utils/index'
-import { IconName } from '../../../Common/theming/types'
+import { IconName } from '../../../Components/Display/SvgIcon/icons'
+
 import UpLink from '../../Display/Link/index'
 import UpSvgIcon from '../../Display/SvgIcon/index'
 import * as moment from "moment"

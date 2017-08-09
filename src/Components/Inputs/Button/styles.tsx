@@ -1,78 +1,61 @@
 // Imports
 import * as React from 'react'
-import styled, {css, keyframes} from '../../../Common/theming/themedComponents';
+import styled, { css, keyframes } from '../../../Common/theming/themedComponents';
 import remStringFromPX from '../../../Common/utils'
 import { Dictionary } from '../../../Common/utils/types'
-import { UpButtonStyledProps, fontSizeMap, buttonSizeMap} from './'
+import { UpButtonStyledProps, fontSizeMap, buttonSizeMap } from './'
 import defaultTheme from '../../../Common/theming'
 import SvgIcon from "../../Display/SvgIcon/index";
+import { IconNames, IconName } from "../../Display/SvgIcon/icons";
 import { ThemeInterface } from "../../../Common/theming/types";
-import { IconName } from '../../../Common/theming/types'
-import * as classnames from 'classnames' 
+import * as classnames from 'classnames'
 import { ActionType } from './'
 
-export var ActionIconMap = new Dictionary<ActionType, IconName>([]) ;
-ActionIconMap.set('add', 'add') ;
-ActionIconMap.set('delete', 'delete') ;
-ActionIconMap.set('edit', 'edit') ;
-ActionIconMap.set('stop', 'stop') ;
-ActionIconMap.set('cancel', 'cancel') ;
-ActionIconMap.set('save', 'save') ;
-ActionIconMap.set('close', 'close') ;
-ActionIconMap.set('print', 'print') ;
-ActionIconMap.set('renew', 'renew') ;
-ActionIconMap.set('refresh', 'refresh') ;
-ActionIconMap.set('sync', 'sync') ;
-ActionIconMap.set('expand', 'expand') ;
-ActionIconMap.set('collapse', 'collapse') ;
-ActionIconMap.set('help', 'help') ;
-ActionIconMap.set('zoom-in', 'zoom-in') ;
-ActionIconMap.set('zoom-out', 'zoom-out') ;
-ActionIconMap.set('search', 'search') ;
-ActionIconMap.set('info', 'info') ; 
-ActionIconMap.set('import', 'import') ; 
-ActionIconMap.set('export', 'export') ; 
-ActionIconMap.set('download', 'download') ; 
-ActionIconMap.set('upload', 'upload') ; 
-ActionIconMap.set('unlock', 'unlock') ; 
+export var ActionIconMap = new Dictionary<ActionType, IconName>([]);
+for (var i = 0; i < IconNames.length; i++) {
+    var iconName = IconNames[i];
+    ActionIconMap.set(iconName, iconName);
+}
 
-const DEFAULT_MIN_SIZE = "30px" 
-const DEFAULT_BORDER_RADIUS = "4px" 
+
+const DEFAULT_MIN_SIZE = "30px"
+const DEFAULT_BORDER_RADIUS = "4px"
 
 const ReactButtonComponent: React.StatelessComponent<UpButtonStyledProps> = (props) => {
     const { children, className, onClick, dataFor, width } = props;
 
-    const actionType = props.actionType ;
-    var iconName : IconName = 'blank' ;
-    if(actionType && ActionIconMap.containsKey(actionType)) {
-        iconName = ActionIconMap.get(actionType) ;
-    } else if(props.iconName) {
-        iconName = props.iconName ;
+    const actionType = props.actionType;
+    debugger
+    var iconName: IconName = 'none';
+    if (actionType && ActionIconMap.containsKey(actionType)) {
+        iconName = ActionIconMap.get(actionType);
+    } else if (props.iconName) {
+        iconName = props.iconName;
     }
-    
+
     // Our SVG Icon viewbox is 20*20 units
     const icon = <SvgIcon iconName={iconName}
-          width={props.iconSize}
-          height={props.iconSize}
-          className={props.rotate?'rotating':''}
-          color={props.color} /> ;
+        width={props.iconSize}
+        height={props.iconSize}
+        className={props.rotate ? 'rotating' : ''}
+        color={props.color} />;
 
-    var tooltipProps = {} ;
-    if(dataFor) {
-      tooltipProps = {
-        "data-tip" : "tooltip",
-        "data-for" :  dataFor
-      }
+    var tooltipProps = {};
+    if (dataFor) {
+        tooltipProps = {
+            "data-tip": "tooltip",
+            "data-for": dataFor
+        }
     }
 
     return <button onClick={onClick} className={classnames('up-btn', className)} {...tooltipProps} >
-      {iconName != 'blank' &&
-        icon
-      }
-      {(width == 'normal' ||  width == 'auto') &&
-        children
-      }
-      </button>;
+        {iconName != 'none' &&
+            icon
+        }
+        {(width == 'normal' || width == 'auto') &&
+            children
+        }
+    </button>;
 }
 
 const shadow = props => css`
@@ -106,25 +89,25 @@ const base = props => css`
 `;
 
 const disabled = props => css`
-background: ${props => props.theme.colorMap.disabledBg };
-color: ${props => props.theme.colorMap.disabledFg };
+background: ${props => props.theme.colorMap.disabledBg};
+color: ${props => props.theme.colorMap.disabledFg};
 cursor: not-allowed;
 `;
 
 const active = props => css`
-color: ${(props: UpButtonStyledProps) => props.color || 'white' };
-background-color: ${props => props.backgroundColor|| props.theme.colorMap[props.intent]};
+color: ${(props: UpButtonStyledProps) => props.color || 'white'};
+background-color: ${props => props.backgroundColor || props.theme.colorMap[props.intent]};
 border-color: ${props => props.borderColor || props.theme.colorMap[`${props.intent}Dark`]};
 border-width:1px;
 border-style:solid;
 &:hover {
-  background-color: ${props => props.color || props.theme.colorMap[`${props.intent}Light`] || 'white' };
+  background-color: ${props => props.color || props.theme.colorMap[`${props.intent}Light`] || 'white'};
   svg {
     fill: ${(props: UpButtonStyledProps) => props.backgroundColor || props.theme.colorMap[`${props.intent}Dark`]}
   }
 }
 svg {
-    fill: ${(props: UpButtonStyledProps) => props.color || props.theme.colorMap[`${props.intent}Light`]  || 'white'}
+    fill: ${(props: UpButtonStyledProps) => props.color || props.theme.colorMap[`${props.intent}Light`] || 'white'}
 }
 `;
 
@@ -226,34 +209,34 @@ const iconLarge = props => css`
   }
 `;
 
-var getWidth = function(props) {
-  return props.width!="icon" ? normal(props) : css`` ;
+var getWidth = function (props) {
+    return props.width != "icon" ? normal(props) : css``;
 }
 
-var getHeight = function(props) {
-  if(props.width=="icon") {
-    switch(props.height) {
-      case 'xsmall' :
-      return iconXSmall(props) ;
-      case 'small':
-      return iconSmall(props) ;
-      case 'large':
-      return iconLarge(props) ;
-      default:
-      return icon(props) ;
+var getHeight = function (props) {
+    if (props.width == "icon") {
+        switch (props.height) {
+            case 'xsmall':
+                return iconXSmall(props);
+            case 'small':
+                return iconSmall(props);
+            case 'large':
+                return iconLarge(props);
+            default:
+                return icon(props);
+        }
+    } else {
+        switch (props.height) {
+            case 'xsmall':
+                return xsmall(props);
+            case 'small':
+                return small(props);
+            case 'large':
+                return large(props);
+            default:
+                return normal(props);
+        }
     }
-  } else {
-    switch(props.height) {
-      case 'xsmall' :
-      return xsmall(props) ;
-      case 'small':
-      return small(props) ;
-      case 'large':
-      return large(props) ;
-      default:
-      return normal(props) ;
-    }
-  }
 }
 
 const rounded = props => css`
@@ -296,11 +279,11 @@ const rotate = props => css`
 `;
 
 export const BaseButton = styled<UpButtonStyledProps>(ReactButtonComponent) `
-${(props: UpButtonStyledProps) => base(props) }
+${(props: UpButtonStyledProps) => base(props)}
 ${(props: UpButtonStyledProps) => getWidth(props)}
 ${(props: UpButtonStyledProps) => getHeight(props)}
-${(props: UpButtonStyledProps) => props.shadow? shadow(props):css``}
-${(props: UpButtonStyledProps) => props.rounded? rounded(props):css``}
-${(props: UpButtonStyledProps) => props.disabled ? disabled(props) : active(props) }
-${(props: UpButtonStyledProps) => props.rotate ? rotate(props) : css`` }
+${(props: UpButtonStyledProps) => props.shadow ? shadow(props) : css``}
+${(props: UpButtonStyledProps) => props.rounded ? rounded(props) : css``}
+${(props: UpButtonStyledProps) => props.disabled ? disabled(props) : active(props)}
+${(props: UpButtonStyledProps) => props.rotate ? rotate(props) : css``}
 `;

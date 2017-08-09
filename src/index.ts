@@ -41,7 +41,7 @@ import UpDefaultTheme from './Common/theming'
 import { ThemeColorMap as UpThemeColorMap } from './Common/theming/types'
 import { ThemeInterface as UpThemeInterface } from './Common/theming/types'
 import { IntentType as UpIntentType } from './Common/theming/types'
-import { IconName as UpIconName } from './Common/theming/types'
+import { IconName as UpIconName } from './Components/Display/SvgIcon/icons'
 
 export {
     UpHeading,
