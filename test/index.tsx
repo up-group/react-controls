@@ -102,18 +102,21 @@ class Demo extends React.Component<undefined, DemoState> {
         if (1 == 1) {
             return <UpThemeProvider theme={theme}>
                 <UpDashboard>
-                    <UpCalendarWeekDay />
+                    <UpTile>
+                        <UpCalendarWeekDay />
+                    </UpTile>
 
                     <br />
                     <br />
                     <br />
                     <br />
                     <UpLogoAlerte intenet="danger" icon="add" />
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
+                    <UpButton  tooltip="test" onClick={() => { }} />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
                     <br />
 
                     <UpTile Title="Test1">
@@ -218,7 +221,7 @@ class Demo extends React.Component<undefined, DemoState> {
                         </ul>
                     </UpTile>
                     <UpTile Title="test 2.1 ">
-                        <UpNumber value={5}/>
+                        <UpNumber value={5} />
                     </UpTile>
                     <UpTile Title="test 2.2 ">
                         <UpNumber value={5} />
