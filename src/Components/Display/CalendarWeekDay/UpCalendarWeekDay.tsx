@@ -132,9 +132,11 @@ class CalendarDay extends React.Component<CalendarDayProps, CalendarDayState>{
             lineHeight: "60px",
             listStyleType: "none",
             textAlign: "center",
+
+
             width: "100 %",
 
-            adding: "0",
+            padding: "0",
             backgroundColor: "#fafafa",
             fontSize: "20px",
             fontWeight: 300,
@@ -213,9 +215,10 @@ export class DayDetail extends React.Component<DayDetailProps, DayDetailState>{
                         position: "absolute",
                         top: "0",
                         bottom: "0",
+                        right: 0,
                         backgroundColor: "rgb(243, 156, 18)",
                         height: "21px",
-                        width: "100%",
+                        width: "80%",
                         paddingLeft: 10
                     }}>
                         {eventData[0].title}
@@ -226,9 +229,10 @@ export class DayDetail extends React.Component<DayDetailProps, DayDetailState>{
                         position: "absolute",
                         top: "0",
                         bottom: "0",
+                        right: 0,
                         backgroundColor: "rgb(243, 156, 18)",
                         height: "21px",
-                        width: "100%",
+                        width: "80%",
                     }}>
                     </div>
                 }
