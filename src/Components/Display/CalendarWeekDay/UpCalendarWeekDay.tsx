@@ -246,6 +246,7 @@ export class DayDetail extends React.Component<DayDetailProps, DayDetailState>{
 
             var line = <tr style={
                 {
+                    height: 20,
                     borderBottom: "1px dotted"
                 }
             }
@@ -256,7 +257,6 @@ export class DayDetail extends React.Component<DayDetailProps, DayDetailState>{
                 <td style={
                     {
                         padding: 0,
-                        minHeight: 20,
                         borderRight: "1px dotted"
                     }
                 }
