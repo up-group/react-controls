@@ -8,9 +8,9 @@
 
 
 
-export type IconName = 'add' | 'asterisk' | 'calendar' | 'caret-down' | 'caret-right' | 'caret-up' | 'close' | 'comment' | 'confirm' | 'cross' | 'delete' | 'download' | 'edit' | 'email' | 'error-sign' | 'export' | 'filter' | 'filter-list' | 'help' | 'import' | 'info-sign' | 'link' | 'minus' | 'mobile-phone' | 'none' | 'ok-sign' | 'phone' | 'plus' | 'refresh' | 'save' | 'search' | 'sort-asc' | 'sort-desc' | 'stop' | 'tick' | 'unlock' | 'upload' | 'user' | 'user-with-cross-sign' | 'warning-sign' | 'zoom-in' | 'zoom-out';
+export type IconName = 'previous' | 'list' | 'gift' | 'attachment' | 'add' | 'asterisk' | 'calendar' | 'caret-down' | 'caret-right' | 'caret-up' | 'close' | 'comment' | 'confirm' | 'cross' | 'delete' | 'download' | 'edit' | 'email' | 'error-sign' | 'export' | 'filter' | 'filter-list' | 'help' | 'import' | 'info-sign' | 'link' | 'minus' | 'mobile-phone' | 'none' | 'ok-sign' | 'phone' | 'plus' | 'refresh' | 'save' | 'search' | 'sort-asc' | 'sort-desc' | 'stop' | 'tick' | 'unlock' | 'upload' | 'user' | 'user-with-cross-sign' | 'warning-sign' | 'zoom-in' | 'zoom-out';
 
-export var IconNames: IconName[] = ['add', 'asterisk', 'calendar', 'caret-down', 'caret-right', 'caret-up', 'close', 'comment', 'confirm', 'cross', 'delete', 'download', 'edit', 'email', 'error-sign', 'export', 'filter', 'filter-list', 'help', 'import', 'info-sign', 'link', 'minus', 'mobile-phone', 'none', 'ok-sign', 'phone', 'plus', 'refresh', 'save', 'search', 'sort-asc', 'sort-desc', 'stop', 'tick', 'unlock', 'upload', 'user' , 'user-with-cross-sign', 'warning-sign', 'zoom-in', 'zoom-out'];
+export var IconNames: IconName[] = ['previous' , 'list' , 'gift' , 'attachment' ,'add', 'asterisk', 'calendar', 'caret-down', 'caret-right', 'caret-up', 'close', 'comment', 'confirm', 'cross', 'delete', 'download', 'edit', 'email', 'error-sign', 'export', 'filter', 'filter-list', 'help', 'import', 'info-sign', 'link', 'minus', 'mobile-phone', 'none', 'ok-sign', 'phone', 'plus', 'refresh', 'save', 'search', 'sort-asc', 'sort-desc', 'stop', 'tick', 'unlock', 'upload', 'user', 'user-with-cross-sign', 'warning-sign', 'zoom-in', 'zoom-out'];
 
 
 let dictionary = {};
