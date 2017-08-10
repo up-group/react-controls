@@ -59,25 +59,26 @@ export default class UpTile extends React.Component<UpTileProps, UpTileState>{
         }
 
         return <div style={null} className={"col-md-" + this.props.size}>
-            <div style={styleOverFlow} >
-                <div className={"box box-up box-home" + (!this.state.isCollapse ? "" : " collapsed-box")}>
-                    <div className="box-header with-border">
-                        <h3 className="box-title">
-                            {this.props.Title}
-                        </h3>
+
+            <div className={"box box-up box-home" + (!this.state.isCollapse ? "" : " collapsed-box")}>
+                <div className="box-header with-border">
+                    <h3 className="box-title">
+                        {this.props.Title}
+                    </h3>
 
 
-                        <div className="box-tools pull-right">
-                            <button data-widget="collapse" type="button" className="btn btn-box-tool" onClick={this.collapse}>
-                                <SvgIcon height={20} iconName={this.state.isCollapse ? "plus" : "minus"} />
-                            </button>
-                        </div>
+                    <div className="box-tools pull-right">
+                        <button data-widget="collapse" type="button" className="btn btn-box-tool" onClick={this.collapse}>
+                            <SvgIcon height={20} iconName={this.state.isCollapse ? "plus" : "minus"} />
+                        </button>
                     </div>
-                    <div className="box-body" style={{}}>
+                </div>
+                <div className="box-body" style={{}}>
+                    <div style={styleOverFlow} >
                         {this.props.children}
                     </div>
-                    {footer}
                 </div>
+                {footer}
             </div>
         </div>
     }
