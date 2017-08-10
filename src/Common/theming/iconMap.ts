@@ -1,4 +1,4 @@
-import {IconName} from './types'
+import { IconName } from '../../Components/Display/SvgIcon/icons'
 
 export interface IconMap {
   success:IconName,
@@ -13,7 +13,7 @@ const iconMap : IconMap = {
   danger: 'error-sign',
   warning: 'warning-sign',
   info:'info-sign',
-  none: 'blank'
+  none: 'none'
 };
 
 export default iconMap;

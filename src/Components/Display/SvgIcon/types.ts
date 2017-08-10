@@ -1,6 +1,6 @@
 export { Props } from './';
 
-import {IconName} from '../../../Common/theming/types'
+import { IconName } from './icons'
 
 export interface SvgProps extends React.SVGProps<{}> {
     viewBox?: string;

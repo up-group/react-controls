@@ -3,7 +3,7 @@ import * as React from 'react'
 import { BaseControlComponent } from './BaseControl'
 import { BaseControlProps } from './BaseControl'
 import { InputStyled} from '../Styled/Input/BaseInput'
-import { IconName } from '../../../../Common/theming/types'
+import { IconName } from '../../../../Components/Display/SvgIcon/icons'
 
 // Exports
 export type WidthSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'fill';

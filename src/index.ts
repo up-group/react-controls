@@ -4,6 +4,9 @@ import { UpGrid, UpRow, UpCol } from './Components/Containers/Grid'
 import UpFormGroup from './Components/Containers/FormGroup'
 import UpButtonGroup from './Components/Containers/ButtonGroup'
 import UpDataGrid from './Components/Containers/DataGrid/UpDataGrid'
+import UpModal from './Components/Containers/Modal/UpModal'
+import UpDashboard from './Components/Containers/Dashboard/UpDashboard'
+import UpTile from './Components/Containers/Dashboard/UpTile'
 
 import UpHeading from './Components/Display/Heading'
 import UpLink from './Components/Display/Link'
@@ -17,6 +20,8 @@ import UpTooltip from './Components/Display/Tooltip'
 import UpLabel from './Components/Display/Label'
 import UpVisibilitySensor from './Components/Display/VisibilitySensor'
 import UpCalendarTimeline from './Components/Display/TimeLine'
+import UpLogoAlerte from './Components/Display/LogoAlerte/UpLogoAlerte'
+
 
 import UpButton from './Components/Inputs/Button'
 import UpInput from './Components/Inputs/Input'
@@ -38,7 +43,7 @@ import UpDefaultTheme from './Common/theming'
 import { ThemeColorMap as UpThemeColorMap } from './Common/theming/types'
 import { ThemeInterface as UpThemeInterface } from './Common/theming/types'
 import { IntentType as UpIntentType } from './Common/theming/types'
-import { IconName as UpIconName } from './Common/theming/types'
+import { IconName as UpIconName } from './Components/Display/SvgIcon/icons'
 
 export {
     UpHeading,
@@ -80,5 +85,9 @@ export {
     UpCalendarTimeline,
     UpIconName,
     UpIntentType,
-    UpDataGrid
+    UpDataGrid,
+    UpModal,
+    UpDashboard,
+    UpTile,
+    UpLogoAlerte
 };

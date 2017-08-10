@@ -1,8 +1,10 @@
 // Imports
 import * as React from 'react'
-import styled, {css} from '../../../../../Common/theming/themedComponents'
+import styled, { css } from '../../../../../Common/theming/themedComponents'
 import SvgIcon from "../../../../Display/SvgIcon/index"
-import { IconName, ThemeInterface } from "../../../../../Common/theming/types"
+import { ThemeInterface } from "../../../../../Common/theming/types"
+import { IconName } from '../../../../../Components/Display/SvgIcon/icons'
+
 import { inputStyles, HeightLarge } from "./styles"
 import { CommonInputTextWithIconProps } from '../../BaseControl/BaseInput'
 import defaultTheme from '../../../../../Common/theming'

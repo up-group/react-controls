@@ -20,10 +20,16 @@ import {
     UpInput,
     UpFormGroup,
     UpSwitch,
-    UpSelect
+    UpSelect,
+    UpDataGrid
 } from "../src/index";
 
 import Timeline from "../src/Components/Display/TimeLine/index"
+import UpModal from "../src/Components/Containers/Modal/UpModal"
+import UpDashboard from "../src/Components/Containers/Dashboard/UpDashboard"
+import UpTile from "../src/Components/Containers/Dashboard/UpTile"
+import UpLogoAlerte from "../src/Components/Display/LogoAlerte/UpLogoAlerte"
+import UpCalendarWeekDay from "../src/Components/Display/CalendarWeekDay/UpCalendarWeekDay"
 
 import * as moment from 'moment'
 
@@ -91,7 +97,145 @@ class Demo extends React.Component<undefined, DemoState> {
         }
     }
     public render() {
-        
+
+
+        if (1 == 1) {
+            return <UpThemeProvider theme={theme}>
+                <UpDashboard>
+                    <UpCalendarWeekDay />
+
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <UpLogoAlerte intenet="danger" icon="add" />
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br />
+
+                    <UpTile Title="Test1">
+
+                        <ul className="products-list product-list-in-box">
+                            <li className="item">
+                                <div className="product-img">
+                                    <i className="pe pe-7s-attention text-red"></i>
+                                </div>
+                                <div className="product-info">
+                                    <a href="javascript:void(0)" className="product-title">Berthe Medinette
+                                <span className="label label-danger pull-right">Aujourd'hui</span></a>
+                                    <span className="product-description">
+                                        Décédée le 06/08/2017.
+                            </span>
+                                </div>
+                            </li>
+                            <li className="item">
+                                <div className="product-img">
+                                    <i className="pe pe-7s-info text-yellow"></i>
+                                </div>
+                                <div className="product-info">
+                                    <a href="javascript:void(0)" className="product-title">Jean Dupont
+                                <span className="label label-warning pull-right">hier</span></a>
+                                    <span className="product-description">
+                                        Hospitalisation.
+                            </span>
+                                </div>
+                            </li>
+                            <li className="item">
+                                <div className="product-img">
+                                    <i className="pe pe-7s-info text-success"></i>
+                                </div>
+                                <div className="product-info">
+                                    <a href="javascript:void(0)" className="product-title">Jean-Pierre MARTIN
+                                <span className="label label-success pull-right">05/08/2017</span></a>
+                                    <span className="product-description">
+                                        Retour d'hospitalisation.
+                            </span>
+                                </div>
+                            </li>
+                            <li className="item">
+                                <div className="product-img">
+                                    <i className="pe pe-7s-info text-yellow"></i>
+                                </div>
+                                <div className="product-info">
+                                    <a href="javascript:void(0)" className="product-title">Louise LE GAL
+                                <span className="label label-warning pull-right">04/08/2017</span></a>
+                                    <span className="product-description">
+                                        Hospitalisation.
+                            </span>
+                                </div>
+                            </li>
+                            <li className="item">
+                                <div className="product-img">
+                                    <i className="pe pe-7s-attention text-red"></i>
+                                </div>
+                                <div className="product-info">
+                                    <a href="javascript:void(0)" className="product-title">Berthe Medinette
+                                <span className="label label-danger pull-right">04/08/2017</span></a>
+                                    <span className="product-description">
+                                        Décédée le 03/08/2017.
+                            </span>
+                                </div>
+                            </li>
+                            <li className="item">
+                                <div className="product-img">
+                                    <i className="pe pe-7s-info text-yellow"></i>
+                                </div>
+                                <div className="product-info">
+                                    <a href="javascript:void(0)" className="product-title">Jean Dupont
+                                <span className="label label-warning pull-right">03/08/2017</span></a>
+                                    <span className="product-description">
+                                        Hospitalisation.
+                            </span>
+                                </div>
+                            </li>
+                            <li className="item">
+                                <div className="product-img">
+                                    <i className="pe pe-7s-info text-success"></i>
+                                </div>
+                                <div className="product-info">
+                                    <a href="javascript:void(0)" className="product-title">Jean-Pierre MARTIN
+                                <span className="label label-success pull-right">02/08/2017</span></a>
+                                    <span className="product-description">
+                                        Retour d'hospitalisation.
+                            </span>
+                                </div>
+                            </li>
+                            <li className="item">
+                                <div className="product-img">
+                                    <i className="pe pe-7s-info text-yellow"></i>
+                                </div>
+                                <div className="product-info">
+                                    <a href="javascript:void(0)" className="product-title">Louise LE GAL
+                                <span className="label label-warning pull-right">01/08/2017</span></a>
+                                    <span className="product-description">
+                                        Hospitalisation.
+                            </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </UpTile>
+                    <UpTile Title="test 2.1 ">
+                        <UpNumber value={5}/>
+                    </UpTile>
+                    <UpTile Title="test 2.2 ">
+                        <UpNumber value={5} />
+                    </UpTile>
+                    <UpTile Title="test 2.3 ">
+                        <UpNumber value={5} />
+                    </UpTile>
+                    <UpTile Title="test 2.4 ">
+                        <UpNumber value={5} />
+                    </UpTile>
+                    <UpTile Title="test 2.5 ">
+                        <UpNumber value={5} />
+                    </UpTile>
+                </UpDashboard>
+            </UpThemeProvider>
+        }
+
         var enti = {
             id: "id",
             name: "Inventaire",
@@ -125,63 +269,120 @@ class Demo extends React.Component<undefined, DemoState> {
             defaultTimeEnd={moment('1995-12-25').add(12, 'hour')}
         />;
 
+        var aa = `testy
+tesdddddddddddddddddddddt
+sfd`;
+        var data = [
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+        ];
+
+
         return (
             <UpThemeProvider theme={theme}>
                 <UpBox flexDirection="row" alignItems="stretch" justifyContent="center" >
-                 <UpPanel title="Paramètres" type="warning">
-                    Mon message
-                </UpPanel>
-                    <UpSelect
-                        showError={true}
-                        default={null}
-                        isRequired={false}
-                        multiple={true}
-                        value={this.state.user}
-                        onChange={this.onChangeUser}
-                        placeholder="Recherche"
-                        allowClear={false}
-                        dataSource={enti}
-                    />
-                    <UpSelect
-                        showError={true}
-                        default={null}
-                        isRequired={false}
-                        multiple={true}
-                        placeholder="Recherche"
-                        allowClear={false}
-                        value={this.state.item}
-                        onChange={this.onChangeItem}
-                        data={[
-                            {
-                                id: 1,
-                                text: "Item 1"
-                            },
-                            {
-                                id: 2,
-                                text: "Item 2"
-                            },
-                            {
-                                id: 3,
-                                text: "Item 3"
-                            },
-                            {
-                                id: 4,
-                                text: "Item 4"
-                            },
-                            {
-                                id: 5,
-                                text: "Item 5"
+                    <UpPanel title="Paramètres" type="warning">
+                        <UpModal />
+                        Mon message
+                        <UpDataGrid
+                            isPaginationEnabled={true}
+                            total={1600}
+                            defaultTake={100}
+                            columns={
+                                [{
+                                    label: 'Col 1',
+                                    field: 'c1',
+                                    isSortable: true,
+                                    type: 'time'
+                                }, {
+                                    label: 'Col 2',
+                                    field: 'c2',
+                                    isSortable: true
+                                }, {
+                                    label: 'Col 3',
+                                    field: 'c3',
+                                    isSortable: true
+                                }, {
+                                    label: 'Col 4',
+                                    field: 'c4',
+                                    isSortable: true,
+                                    type: 'multilineText'
+
+                                }]
                             }
-                        ]}
-                    />
-                    <UpBox margin="small" boxSize={{ horizontal: 'small' }}>
-                        Component
-              <hr />
-                    </UpBox>
+
+                            actions={[{
+                                type: "add",
+                                intent: "default",
+                                description: "TEStMF",
+                                action: (a) => { console.log(1, a); }
+                            }]}
+
+                            data={data} />
+
+
+                    </UpPanel>
+
                     <UpBox margin="small" boxSize={{ horizontal: 'xxlarge' }}>
                         Editor
               <hr />
                         <UpPanel title="Paramètres" type="info" disableAutoIntentIcon={true}>
+                            <UpSelect
+                                showError={true}
+                                default={null}
+                                isRequired={false}
+                                multiple={true}
+                                value={this.state.user}
+                                onChange={this.onChangeUser}
+                                placeholder="Recherche"
+                                allowClear={false}
+                                dataSource={enti}
+                            />
+                            <UpSelect
+                                showError={true}
+                                default={null}
+                                isRequired={false}
+                                multiple={true}
+                                placeholder="Recherche"
+                                allowClear={false}
+                                value={this.state.item}
+                                onChange={this.onChangeItem}
+                                data={[
+                                    {
+                                        id: 1,
+                                        text: "Item 1"
+                                    },
+                                    {
+                                        id: 2,
+                                        text: "Item 2"
+                                    },
+                                    {
+                                        id: 3,
+                                        text: "Item 3"
+                                    },
+                                    {
+                                        id: 4,
+                                        text: "Item 4"
+                                    },
+                                    {
+                                        id: 5,
+                                        text: "Item 5"
+                                    }
+                                ]}
+                            />
+                            <UpBox margin="small" boxSize={{ horizontal: 'small' }}>
+                                Component
+              <hr />
+                            </UpBox>
+
                             <UpNumber max={5} min={2} onChange={this.onNumberChange} />
                             {time}
                             <UpGrid>

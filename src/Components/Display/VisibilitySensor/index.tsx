@@ -31,7 +31,6 @@ export interface UpVisibilitySensorProps {
     intervalCheck?: boolean;
     intervalDelay?: number;
     containment?: any;
-    children?: JSX.Element;
     minTopValue?: number;
     forceCheck?:boolean;
 }

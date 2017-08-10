@@ -19,7 +19,6 @@ export interface UpDataGridRowWithStatusProps {
     actions:Array<Action>;
     isSelectionEnabled:boolean;
     onSelectionChange?: (row: Row) => void;
-    handleAction?: (item:any, role:string) => void;
 }
 
 export default class UpDataGridRowWithStatus extends React.Component<UpDataGridRowWithStatusProps, UpDataGridRowWithStatusState> {
@@ -44,10 +43,6 @@ export default class UpDataGridRowWithStatus extends React.Component<UpDataGridR
             this.props.onSelectionChange({isSelected : isSelected, value: this.props.item}) ;
     }
 
-    handleAction = (item:any, role:string) => {
-        if(this.props.handleAction)
-            this.props.handleAction(item, role) ;
-    }
 
     render() {
         const formatter = new UpDefaultCellFormatter() ;
@@ -67,7 +62,13 @@ export default class UpDataGridRowWithStatus extends React.Component<UpDataGridR
                     <UpDataGridCell key={"cell-actions"} item={this.props.item} column={{label:"", isSortable:false}}>
                     {
                         this.props.actions.map((value, index)  => {
-                            return <UpButton tooltip={value.description} key={`btn-${index}`} actionType={value.type} width="icon" intent={value.intent} onClick={this.handleAction.bind(this, value.role, this.props.item)} />
+                            return <UpButton tooltip={value.description} key={`btn-${index}`} actionType={value.type} width="icon" intent={value.intent} onClick={
+                                () => {
+                                    if (value.action != null) {
+                                        value.action(this.props.item)
+                                    }
+                                }
+                            } />
                         })
                     }
                     </UpDataGridCell>
