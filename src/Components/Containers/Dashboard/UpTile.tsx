@@ -11,6 +11,7 @@ export interface UpTileProps {
     Title?: string
     size?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
     footer?: JSX.Element;
+    maxHeight?: React.CSSWideKeyword | any;
 }
 
 export interface UpTileState {
@@ -48,24 +49,35 @@ export default class UpTile extends React.Component<UpTileProps, UpTileState>{
             </div>
         }
 
-        return <div style={null} className={"col-md-" + this.props.size}>
-            <div className={"box box-up box-home" + (!this.state.isCollapse ? "" : " collapsed-box")}>
-                <div className="box-header with-border">
-                    <h3 className="box-title">
-                        {this.props.Title}
-                    </h3>
+        var styleOverFlow: React.CSSProperties = null;
+
+        if (this.props.maxHeight != null) {
+            styleOverFlow = {
+                maxHeight: this.props.maxHeight,
+                overflowY: "auto"
+            }
+        }
+
+        return <div style={styleOverFlow} >
+            <div style={null} className={"col-md-" + this.props.size}>
+                <div className={"box box-up box-home" + (!this.state.isCollapse ? "" : " collapsed-box")}>
+                    <div className="box-header with-border">
+                        <h3 className="box-title">
+                            {this.props.Title}
+                        </h3>
 
 
-                    <div className="box-tools pull-right">
-                        <button data-widget="collapse" type="button" className="btn btn-box-tool" onClick={this.collapse}>
-                            <SvgIcon height={20} iconName={this.state.isCollapse ? "plus" : "minus"} />
-                        </button>
+                        <div className="box-tools pull-right">
+                            <button data-widget="collapse" type="button" className="btn btn-box-tool" onClick={this.collapse}>
+                                <SvgIcon height={20} iconName={this.state.isCollapse ? "plus" : "minus"} />
+                            </button>
+                        </div>
                     </div>
+                    <div className="box-body" style={{}}>
+                        {this.props.children}
+                    </div>
+                    {footer}
                 </div>
-                <div className="box-body" style={{}}>
-                    {this.props.children}
-                </div>
-                {footer}
             </div>
         </div>
     }
