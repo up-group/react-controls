@@ -68,7 +68,6 @@
     "@types/chai": "^3.5.2",
     "@types/chai-enzyme": "^0.6.1",
     "@types/enzyme": "*",
-    "@types/jest": "*",
     "@types/jquery": "^2.0.41",
     "@types/moment": "^2.13.0",
     "@types/node": "^7.0.12",
@@ -107,7 +106,7 @@
     "yarn": "^0.21.3"
   },
   "dependencies": {
-    "@blueprintjs/core": "^1.14.0",
+    "@blueprintjs/core": "^1.24.0",
     "@blueprintjs/datetime": "^1.13.0",
     "axios": "^0.16.1",
     "bootstrap": "^3.3.7",
