@@ -25,6 +25,7 @@ import UpVisibilitySensor from './Components/Display/VisibilitySensor'
 import UpCalendarTimeline from './Components/Display/TimeLine'
 import UpLogoAlerte from './Components/Display/LogoAlerte/UpLogoAlerte'
 import UpCalendarWeekDay from './Components/Display/CalendarWeekDay/UpCalendarWeekDay'
+import UpMenu from './Components/Display/Menu/UpMenu'
 
 
 import UpButton from './Components/Inputs/Button'
@@ -94,5 +95,6 @@ export {
     UpDashboard,
     UpTile,
     UpLogoAlerte,
-    UpCalendarWeekDay
+    UpCalendarWeekDay,
+    UpMenu
 };
