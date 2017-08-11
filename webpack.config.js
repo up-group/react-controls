@@ -40,8 +40,9 @@ module.exports = {
                 loader: 'file-loader',
                 options: {
                     name: '[hash].[ext]',
-                    context: './test/'
-                }  
+                    context: './test/',
+                    useRelativePath:true
+                }
             }
         ]
     },
