@@ -45,8 +45,10 @@
   },
   "scripts": {
     "clean": "rimraf dist && rimraf test/dist",
-    "build": "tsc && copyfiles -u 1 src/Common/theming/icons/*.* dist/ && npm run copyCSS",
+    "build": "tsc && copyfiles -u 1 src/Common/theming/icons/*.* dist/ && npm run copyCSS && npm run copyFont && npm run copyImg",
     "copyCSS": "copyfiles -u 1 src/**/*.css dist/",
+    "copyFont": "copyfiles -u 1 src/**/*.ttf dist/ && copyfiles -u 1 src/**/*.woff dist/ && copyfiles -u 1 src/**/*.eot dist/",
+    "copyImg": " copyfiles -u 1 src/**/*.png dist/",
     "build-watch": "tsc -w",
     "prepublish": "npm run clean && npm run build ",
     "publishProd": "npm version patch && npm publish",

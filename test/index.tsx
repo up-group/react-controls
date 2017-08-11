@@ -30,6 +30,9 @@ import UpDashboard from "../src/Components/Containers/Dashboard/UpDashboard"
 import UpTile from "../src/Components/Containers/Dashboard/UpTile"
 import UpLogoAlerte from "../src/Components/Display/LogoAlerte/UpLogoAlerte"
 import UpCalendarWeekDay from "../src/Components/Display/CalendarWeekDay/UpCalendarWeekDay"
+import UpMenu from "../src/Components/Display/Menu/UpMenu"
+
+
 
 import * as moment from 'moment'
 
@@ -98,6 +101,11 @@ class Demo extends React.Component<undefined, DemoState> {
     }
     public render() {
 
+
+        if (11 == 11) {
+
+            return <UpMenu></UpMenu>
+        }
 
         if (1 == 1) {
             return <UpThemeProvider theme={theme}>

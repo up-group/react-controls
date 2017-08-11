@@ -1,3 +1,6 @@
+import "./Common/theming/style.css"
+
+
 import UpPanel from './Components/Containers/Panel'
 import UpBox from './Components/Containers/Box'
 import { UpGrid, UpRow, UpCol } from './Components/Containers/Grid'
