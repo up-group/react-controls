@@ -13,6 +13,6 @@ npm-debug.log
 dist/
 
 
-test/
+test/*
 !test/index.html
 !test/index.tsx

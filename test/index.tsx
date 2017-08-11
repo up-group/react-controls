@@ -104,7 +104,7 @@ class Demo extends React.Component<undefined, DemoState> {
 
         if (11 == 11) {
 
-            return <UpMenu></UpMenu>
+            return <UpMenu menuItems={["test1", "test 2", "daze 2"]}></UpMenu>
         }
 
         if (1 == 1) {

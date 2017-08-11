@@ -5,8 +5,7 @@ import SvgIcon from "../SvgIcon/index"
 import { IconName } from "../SvgIcon/icons"
 
 export interface UpMenuProps {
-
-
+    menuItems: string[]
 }
 
 export interface UpMenuState {
@@ -14,7 +13,7 @@ export interface UpMenuState {
 }
 
 export default class UpMenu extends React.Component<UpMenuProps, UpMenuState>{
-    public static defaultProps: UpMenuProps = {};
+
 
     constructor(p, c) {
         super(p, c);
@@ -29,10 +28,10 @@ export default class UpMenu extends React.Component<UpMenuProps, UpMenuState>{
 
     render() {
 
-        var menu = [];
-        for (var i = 0; i < 5; i++) {
-            menu.push(<MenuItem title={"test" + i} key={i} icon="add" />);
-        }
+        var menu = this.props.menuItems.map((v, i) => {
+            return <MenuItem title={v} key={i} classIcon="up up-dossier" />
+        });
+
 
         return <div className={"sidebar-mini skin-up" + (this.state.col ? " sidebar-collapse" : "")}>
             <aside className="main-sidebar">
@@ -80,7 +79,7 @@ export default class UpMenu extends React.Component<UpMenuProps, UpMenuState>{
 
 export interface MenuItemProps {
     title: string;
-    icon: IconName
+    classIcon: string
 }
 
 export interface MenuItemState {
@@ -97,7 +96,7 @@ export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
     render() {
         return <li className="treeview">
             <a href="/etudes/cakeOneHome/Home/homeusager">
-                <i className="up up-dossier"></i>
+                <i className={this.props.classIcon}></i>
                 <span>{this.props.title}</span>
             </a>
         </li>
