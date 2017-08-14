@@ -99,52 +99,60 @@ class Demo extends React.Component<undefined, DemoState> {
             integer: 0
         }
     }
+
+    tttt = (a) => {
+        console.log(a);
+        return false;
+    }
+
+
     public render() {
 
 
         if (11 == 11) {
 
-            return <UpMenu menuItems={[
-                {
-                    title: "test", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [
+            return <UpMenu onMenuClick={this.tttt} menuItems={
+                [
+                    {
+                        title: "test", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "/test/test", childMenuItems: [
 
-                        {
-                            title: "aaaaa", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [
-
-
-                                {
-                                    title: "aaaaa", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [
+                            {
+                                title: "aaaaa", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [
 
 
-                                        { title: "aaaaa", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
-                                        { title: "bbbbb", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] },
-                                        { title: "ccccc", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] },
-                                        { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] }
+                                    {
+                                        title: "aaaaa", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [
 
 
-
-                                    ]
-                                },
-                                { title: "bbbbb", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] },
-                                { title: "ccccc", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
-                                { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] }
+                                            { title: "aaaaa", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
+                                            { title: "bbbbb", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] },
+                                            { title: "ccccc", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] },
+                                            { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] }
 
 
 
-                            ]
-                        },
-                        { title: "bbbbb", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
-                        { title: "ccccc", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
-                        { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] }
+                                        ]
+                                    },
+                                    { title: "bbbbb", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] },
+                                    { title: "ccccc", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
+                                    { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] }
 
-                    ]
-                },
-                { title: "tehtztst", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] },
-                { title: "t", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
-                { title: "teshtztht", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
-                { title: "tethzrhst", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
-                { title: "tehtzrst", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] }
-            ]}></UpMenu>
+
+
+                                ]
+                            },
+                            { title: "bbbbb", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
+                            { title: "ccccc", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
+                            { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] }
+
+                        ]
+                    },
+                    { title: "tehtztst", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] },
+                    { title: "t", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
+                    { title: "teshtztht", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
+                    { title: "tethzrhst", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
+                    { title: "tehtzrst", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] }
+                ]}></UpMenu>
         }
 
         if (1 == 1) {
