@@ -105,7 +105,7 @@ export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
 
     render() {
 
-        var hide = this.props.isVisible === false ? " hide" : "";
+        var hide = this.props.isVisible === false ? "hide " : "";
 
         return <li className={hide + "treeview" + (this.state.active ? " active" : "")}>
             <a href={this.props.uri}>
