@@ -104,7 +104,47 @@ class Demo extends React.Component<undefined, DemoState> {
 
         if (11 == 11) {
 
-            return <UpMenu menuItems={["test1", "test 2", "daze 2"]}></UpMenu>
+            return <UpMenu menuItems={[
+                {
+                    title: "test", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [
+
+                        {
+                            title: "aaaaa", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [
+
+
+                                {
+                                    title: "aaaaa", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [
+
+
+                                        { title: "aaaaa", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
+                                        { title: "bbbbb", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
+                                        { title: "ccccc", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
+                                        { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] }
+
+
+
+                                    ]
+                                },
+                                { title: "bbbbb", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
+                                { title: "ccccc", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
+                                { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] }
+
+
+
+                            ]
+                        },
+                        { title: "bbbbb", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
+                        { title: "ccccc", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
+                        { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] }
+
+                    ]
+                },
+                { title: "tehtztst", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
+                { title: "t", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
+                { title: "teshtztht", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
+                { title: "tethzrhst", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
+                { title: "tehtzrst", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] }
+            ]}></UpMenu>
         }
 
         if (1 == 1) {
@@ -119,7 +159,7 @@ class Demo extends React.Component<undefined, DemoState> {
                     <br />
                     <br />
                     <UpLogoAlerte intenet="danger" icon="add" />
-                    <UpButton  tooltip="test" onClick={() => { }} />
+                    <UpButton tooltip="test" onClick={() => { }} />
                     <br />
                     <br />
                     <br />

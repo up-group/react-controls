@@ -4,8 +4,11 @@ import * as React from "react"
 import SvgIcon from "../SvgIcon/index"
 import { IconName } from "../SvgIcon/icons"
 
+
+
+
 export interface UpMenuProps {
-    menuItems: string[]
+    menuItems: MenuItemProps[]
 }
 
 export interface UpMenuState {
@@ -18,7 +21,7 @@ export default class UpMenu extends React.Component<UpMenuProps, UpMenuState>{
     constructor(p, c) {
         super(p, c);
         this.state = {
-            col: true
+            col: true,
         };
     }
 
@@ -29,7 +32,7 @@ export default class UpMenu extends React.Component<UpMenuProps, UpMenuState>{
     render() {
 
         var menu = this.props.menuItems.map((v, i) => {
-            return <MenuItem title={v} key={i} classIcon="up up-dossier" />
+            return <MenuItem key={i} title={v.title} icon={v.icon} uri={v.uri} isSelected={v.isSelected} isVisible={v.isVisible} childMenuItems={v.childMenuItems} />
         });
 
 
@@ -54,6 +57,7 @@ export default class UpMenu extends React.Component<UpMenuProps, UpMenuState>{
             </aside>
         </div>
     }
+
 }
 
 
@@ -79,14 +83,57 @@ export default class UpMenu extends React.Component<UpMenuProps, UpMenuState>{
 
 export interface MenuItemProps {
     title: string;
-    classIcon: string
+    uri: string;
+    icon: string;
+    isSelected: boolean;
+    isVisible: boolean;
+    childMenuItems?: MenuItemProps[];
+
+
 }
 
 export interface MenuItemState {
-
+    active: boolean;
 }
 
 export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
+
+    constructor(p, c) {
+        super(p, c);
+        this.state = { active: false };
+    }
+
+    render() {
+
+        return <li className={"treeview" + (this.state.active ? " active" : "")}>
+            <a href={this.props.uri}>
+                <i className={this.props.icon} onClick={this.iconClick}></i>
+                <span>{this.props.title}</span>
+            </a>
+            <SubMenu childMenuItems={this.props.childMenuItems} />
+        </li>
+    }
+
+    iconClick = () => {
+        this.setState({ active: !this.state.active });
+    }
+}
+
+
+
+
+export interface SubMenuProps {
+    childMenuItems?: MenuItemProps[];
+
+
+
+}
+
+export interface SubMenuState {
+}
+
+export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
+    public static defaultProps: SubMenuProps = {};
 
     constructor(p, c) {
         super(p, c);
@@ -94,14 +141,59 @@ export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
     }
 
     render() {
-        return <li className="treeview">
-            <a href="/etudes/cakeOneHome/Home/homeusager">
-                <i className={this.props.classIcon}></i>
-                <span>{this.props.title}</span>
-            </a>
-        </li>
+        if (this.props.childMenuItems == null || this.props.childMenuItems.length == 0) {
+            return null;
+        }
+
+        var lis = this.props.childMenuItems.map((v, i) => {
+            return <SubItems {...v} />
+        })
+
+        return <ul className="treeview-menu menu-open">
+            {lis}
+
+        </ul>
     }
 }
 
+
+
+
+export interface SubItemsProps extends MenuItemProps {
+
+}
+
+export interface SubItemsState {
+    active: boolean;
+}
+
+export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
+
+    constructor(p, c) {
+        super(p, c);
+        this.state = { active: false };
+    }
+
+    render() {
+        return <li className={(this.state.active ? "active" : "")}>
+            <a href={this.props.uri}>
+                {this.anyChild ?
+                    <i onClick={this.onClick} className={(this.state.active ? "pe-7s-angle-down" : "pe-7s-angle-right")} ></i>
+                    :
+                    <i></i>
+                }
+                {this.props.title}
+            </a>
+            {this.anyChild ? <SubMenu childMenuItems={this.props.childMenuItems} /> : null}
+        </li>
+    }
+    get anyChild() {
+        return this.props.childMenuItems != null && this.props.childMenuItems.length != 0;
+    }
+
+    onClick = () => {
+        this.setState({ active: !this.state.active });
+    }
+}
 
 

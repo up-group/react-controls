@@ -1,0 +1,546 @@
+
+.up {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'upfont' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.up-enfant:before {
+    content: "\e928";
+}
+
+.up-enfantFille:before {
+    content: "\e96d";
+}
+
+.up-coffreFort:before {
+    content: "\e983";
+}
+
+.up-interventionAjout:before {
+    content: "\e984";
+}
+
+.up-sortir:before {
+    content: "\e953";
+}
+
+.up-organismeAideFi:before {
+    content: "\e927";
+}
+
+.up-organisme:before {
+    content: "\e952";
+}
+
+.up-mentionParticuliere:before {
+    content: "\e926";
+}
+
+.up-clientCheque:before {
+    content: "\e925";
+}
+
+.up-accueil:before {
+    content: "\e900";
+}
+
+.up-accueilCreer:before {
+    content: "\e901";
+}
+
+.up-agrandir:before {
+    content: "\e902";
+}
+
+.up-aideDomicile:before {
+    content: "\e903";
+}
+
+.up-aideFinanciere:before {
+    content: "\e904";
+}
+
+.up-ajouterDrapeau:before {
+    content: "\e905";
+}
+
+.up-alerteDossier:before {
+    content: "\e906";
+}
+
+.up-arreter:before {
+    content: "\e907";
+}
+
+.up-arrivee:before {
+    content: "\e908";
+}
+
+.up-BEM:before {
+    content: "\e909";
+}
+
+.up-berceau:before {
+    content: "\e90a";
+}
+
+.up-borneInteractive:before {
+    content: "\e90b";
+}
+
+.up-budget:before {
+    content: "\e90c";
+}
+
+.up-calendrier:before {
+    content: "\e90d";
+}
+
+.up-camion:before {
+    content: "\e90e";
+}
+
+.up-carteActivee:before {
+    content: "\e90f";
+}
+
+.up-carteDeCredit:before {
+    content: "\e910";
+}
+
+.up-carteDesactivee:before {
+    content: "\e911";
+}
+
+.up-carteOpposition:before {
+    content: "\e912";
+}
+
+.up-certificatSante:before {
+    content: "\e913";
+}
+
+.up-changementIndividu:before {
+    content: "\e914";
+}
+
+.up-check:before {
+    content: "\e915";
+}
+
+.up-checkTous:before {
+    content: "\e916";
+}
+
+.up-chequier:before {
+    content: "\e917";
+}
+
+.up-commande:before {
+    content: "\e918";
+}
+
+.up-complementDossier:before {
+    content: "\e919";
+}
+
+.up-contact:before {
+    content: "\e91a";
+}
+
+.up-contraception:before {
+    content: "\e91b";
+}
+
+.up-courrier:before {
+    content: "\e91c";
+}
+
+.up-creerAlerte:before {
+    content: "\e91d";
+}
+
+.up-devis:before {
+    content: "\e91e";
+}
+
+.up-dossier:before {
+    content: "\e91f";
+}
+
+.up-dossierClient:before {
+    content: "\e920";
+}
+
+.up-dossierCommercant:before {
+    content: "\e921";
+}
+
+.up-dossierTransporteur:before {
+    content: "\e922";
+}
+
+.up-drapeau:before {
+    content: "\e923";
+}
+
+.up-echelleBraden:before {
+    content: "\e924";
+}
+
+.up-entretien:before {
+    content: "\e929";
+}
+
+.up-environnementMedicoSocial:before {
+    content: "\e92a";
+}
+
+.up-evaluation:before {
+    content: "\e92b";
+}
+
+.up-evaluationAlgoPlus:before {
+    content: "\e92c";
+}
+
+.up-evenement:before {
+    content: "\e92d";
+}
+
+.up-executer:before {
+    content: "\e92e";
+}
+
+.up-famille:before {
+    content: "\e92f";
+}
+
+.up-femme:before {
+    content: "\e930";
+}
+
+.up-fichierXLS:before {
+    content: "\e931";
+}
+
+.up-fileActive:before {
+    content: "\e932";
+}
+
+.up-foetus:before {
+    content: "\e933";
+}
+
+.up-fraisKilometrique:before {
+    content: "\e934";
+}
+
+.up-ged:before {
+    content: "\e935";
+}
+
+.up-gedAjouter:before {
+    content: "\e936";
+}
+
+.up-grilleAGGIR:before {
+    content: "\e937";
+}
+
+.up-heure:before {
+    content: "\e938";
+}
+
+.up-historiqueConnexion:before {
+    content: "\e939";
+}
+
+.up-historiqueDossier:before {
+    content: "\e93a";
+}
+
+.up-historiqueDossierRMI:before {
+    content: "\e93b";
+}
+
+.up-historiqueModification:before {
+    content: "\e93c";
+}
+
+.up-homme:before {
+    content: "\e93d";
+}
+
+.up-incident:before {
+    content: "\e93e";
+}
+
+.up-information:before {
+    content: "\e93f";
+}
+
+.up-interventionRDV:before {
+    content: "\e940";
+}
+
+.up-IP:before {
+    content: "\e941";
+}
+
+.up-legislation:before {
+    content: "\e942";
+}
+
+.up-liste:before {
+    content: "\e943";
+}
+
+.up-listeAppel:before {
+    content: "\e944";
+}
+
+.up-masp:before {
+    content: "\e945";
+}
+
+.up-menage:before {
+    content: "\e946";
+}
+
+.up-menu:before {
+    content: "\e947";
+}
+
+.up-modifier:before {
+    content: "\e948";
+}
+
+.up-mouvement:before {
+    content: "\e949";
+}
+
+.up-mouvementAutoDepense:before {
+    content: "\e94a";
+}
+
+.up-mouvementAutoRecette:before {
+    content: "\e94b";
+}
+
+.up-mouvementManuDepense:before {
+    content: "\e94c";
+}
+
+.up-mouvementManuRecette:before {
+    content: "\e94d";
+}
+
+.up-neonatologie:before {
+    content: "\e94e";
+}
+
+.up-notice:before {
+    content: "\e94f";
+}
+
+.up-nouveauContact:before {
+    content: "\e950";
+}
+
+.up-nouvelAppel:before {
+    content: "\e951";
+}
+
+.up-papier:before {
+    content: "\e954";
+}
+
+.up-parcours:before {
+    content: "\e955";
+}
+
+.up-parcoursEmploi:before {
+    content: "\e956";
+}
+
+.up-patient:before {
+    content: "\e957";
+}
+
+.up-PDF:before {
+    content: "\e958";
+}
+
+.up-pieceJointe:before {
+    content: "\e959";
+}
+
+.up-pointDeLivraison:before {
+    content: "\e95a";
+}
+
+.up-presence:before {
+    content: "\e95b";
+}
+
+.up-presenceRSA:before {
+    content: "\e95c";
+}
+
+.up-processus:before {
+    content: "\e95d";
+}
+
+.up-processusInvalide:before {
+    content: "\e95e";
+}
+
+.up-processusValide:before {
+    content: "\e95f";
+}
+
+.up-proches:before {
+    content: "\e960";
+}
+
+.up-projetAideFi:before {
+    content: "\e961";
+}
+
+.up-projetBudget:before {
+    content: "\e962";
+}
+
+.up-projetIntervention:before {
+    content: "\e963";
+}
+
+.up-protectionSociale:before {
+    content: "\e964";
+}
+
+.up-referentielMMC:before {
+    content: "\e965";
+}
+
+.up-releveBancaire:before {
+    content: "\e966";
+}
+
+.up-remiseCle:before {
+    content: "\e967";
+}
+
+.up-rendezVous:before {
+    content: "\e982";
+}
+
+.up-rendezVousEtat:before {
+    content: "\e968";
+}
+
+.up-reporting:before {
+    content: "\e969";
+}
+
+.up-reportingDocument:before {
+    content: "\e96a";
+}
+
+.up-rotative:before {
+    content: "\e96b";
+}
+
+.up-sablier:before {
+    content: "\e96c";
+}
+
+.up-statistique:before {
+    content: "\e96e";
+}
+
+.up-stetoscope:before {
+    content: "\e96f";
+}
+
+.up-suivant:before {
+    content: "\e970";
+}
+
+.up-suiviAVK:before {
+    content: "\e971";
+}
+
+.up-suiviGrossesse:before {
+    content: "\e972";
+}
+
+.up-suiviPMI:before {
+    content: "\e973";
+}
+
+.up-tableauDeBord:before {
+    content: "\e974";
+}
+
+.up-telephone:before {
+    content: "\e975";
+}
+
+.up-timbre:before {
+    content: "\e976";
+}
+
+.up-transaction:before {
+    content: "\e977";
+}
+
+.up-transfertIndividu:before {
+    content: "\e978";
+}
+
+.up-transmissionCiblee:before {
+    content: "\e979";
+}
+
+.up-travail:before {
+    content: "\e97a";
+}
+
+.up-utilisateur:before {
+    content: "\e97b";
+}
+
+.up-vaccin:before {
+    content: "\e97c";
+}
+
+.up-ville:before {
+    content: "\e97d";
+}
+
+.up-voir:before {
+    content: "\e97e";
+}
+
+.up-workflow:before {
+    content: "\e97f";
+}
+
+.up-XLS:before {
+    content: "\e980";
+}
+
+.up-XML:before {
+    content: "\e981";
+}
