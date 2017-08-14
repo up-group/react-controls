@@ -106,26 +106,26 @@ class Demo extends React.Component<undefined, DemoState> {
 
             return <UpMenu menuItems={[
                 {
-                    title: "test", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [
+                    title: "test", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [
 
                         {
-                            title: "aaaaa", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [
+                            title: "aaaaa", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [
 
 
                                 {
-                                    title: "aaaaa", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [
+                                    title: "aaaaa", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [
 
 
                                         { title: "aaaaa", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
-                                        { title: "bbbbb", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
-                                        { title: "ccccc", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
-                                        { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] }
+                                        { title: "bbbbb", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] },
+                                        { title: "ccccc", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] },
+                                        { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] }
 
 
 
                                     ]
                                 },
-                                { title: "bbbbb", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
+                                { title: "bbbbb", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] },
                                 { title: "ccccc", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
                                 { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] }
 
@@ -139,7 +139,7 @@ class Demo extends React.Component<undefined, DemoState> {
 
                     ]
                 },
-                { title: "tehtztst", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
+                { title: "tehtztst", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] },
                 { title: "t", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
                 { title: "teshtztht", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
                 { title: "tethzrhst", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
