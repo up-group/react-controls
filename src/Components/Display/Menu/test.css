@@ -182,10 +182,16 @@
 
 
 
+.navbar .input-group-addon {
+    font-size: 20px;
+    padding: 5px 10px;
+    cursor: default;
+}
 
 
-
-
+.navbar .input-group {
+    margin-top: 8px;
+}
 
 
 
