@@ -65,6 +65,11 @@ export default class UpMenu extends React.Component<UpMenuProps, UpMenuState>{
                     </ul>
                 </section>
             </aside>
+            <div className="content-wrapper" style={{ minHeight: 415 }}>
+                <section className="content">
+                    {this.props.children}
+                </section>
+            </div>
         </div>
     }
 
