@@ -198,8 +198,9 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
         return this.props.childMenuItems != null && this.props.childMenuItems.length != 0;
     }
 
-    onClick = () => {
+    onClick = (e) => {
         this.setState({ active: !this.state.active });
+        e.preventDefault();
     }
 
     onClickA = (e) => {

@@ -102,7 +102,6 @@ class Demo extends React.Component<undefined, DemoState> {
 
     tttt = (a) => {
         console.log(a);
-        return false;
     }
 
 
@@ -117,7 +116,7 @@ class Demo extends React.Component<undefined, DemoState> {
                         title: "test", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "/test/test", childMenuItems: [
 
                             {
-                                title: "aaaaaaa  aaaaaaaa  aaaaaaaaaaaaaaaa aa", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [
+                                title: "aaaaaa", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#/homeeee", childMenuItems: [
 
 
                                     {
@@ -141,7 +140,7 @@ class Demo extends React.Component<undefined, DemoState> {
 
                                 ]
                             },
-                            { title: "bbbbb bbbbbb bbbbbfsc", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] },
+                            { title: "ffffff sc", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#/dddd", childMenuItems: [] },
                             { title: "bbbbb bbbbbb bbbbbsc", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] },
                             { title: "bbbbb bbbbbb bbbbbc", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] },
                             { title: "bbbbb bbbbbb bbbbb", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] },
