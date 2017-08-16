@@ -742,8 +742,19 @@ a {
             .sidebar-menu .treeview-menu > li > a {
                 padding: 5px 5px 5px 15px;
                 display: block;
-                font-size: 14px
+                font-size: 14px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                padding: 10px;
+                overflow: hidden;
             }
+
+                .sidebar-menu .treeview-menu > li > a:hover {
+                    text-overflow: initial;
+                    background-color: rgb(44, 59, 65);
+                    overflow: visible;
+                    display: inline-block;
+                }
 
                 .sidebar-menu .treeview-menu > li > a > .fa, .sidebar-menu .treeview-menu > li > a > .glyphicon, .sidebar-menu .treeview-menu > li > a > .ion {
                     width: 20px

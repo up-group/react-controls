@@ -117,7 +117,7 @@ class Demo extends React.Component<undefined, DemoState> {
                         title: "test", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "/test/test", childMenuItems: [
 
                             {
-                                title: "aaaaa", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [
+                                title: "aaaaaaa  aaaaaaaa  aaaaaaaaaaaaaaaa aa", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [
 
 
                                     {
@@ -141,7 +141,13 @@ class Demo extends React.Component<undefined, DemoState> {
 
                                 ]
                             },
-                            { title: "bbbbb", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
+                            { title: "bbbbb bbbbbb bbbbbfsc", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] },
+                            { title: "bbbbb bbbbbb bbbbbsc", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] },
+                            { title: "bbbbb bbbbbb bbbbbc", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] },
+                            { title: "bbbbb bbbbbb bbbbb", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] },
+                            { title: "b bb bbbbb bbbbbb", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] },
+                            { title: "bbbb bbbbb bbbb", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] },
+                            { title: " bbbbb bbbbb", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "#", childMenuItems: [] },
                             { title: "ccccc", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] },
                             { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: false, uri: "#", childMenuItems: [] }
 
