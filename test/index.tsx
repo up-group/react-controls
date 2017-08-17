@@ -110,7 +110,19 @@ class Demo extends React.Component<undefined, DemoState> {
 
         if (11 == 11) {
 
-            return <UpMenu onMenuClick={this.tttt} menuItems={
+            return <UpMenu onMenuClick={this.tttt}
+
+                topMenuItems={[
+                    { title: "tehtztst", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
+                    { title: "t", icon: "pe pe-7s-edit", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
+                    { title: "teshtztht", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] }
+                ]}
+
+
+
+
+
+                menuItems={
                 [
                     {
                         title: "test", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [

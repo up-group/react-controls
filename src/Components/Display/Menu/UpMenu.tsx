@@ -9,6 +9,7 @@ import "./up.png"
 
 export interface UpMenuProps {
     menuItems: MenuItemData[];
+    topMenuItems?: MenuItemData[];
     onMenuClick?: (uri: string) => boolean | void;
 
 
@@ -45,7 +46,7 @@ export default class UpMenu extends React.Component<UpMenuProps, UpMenuState>{
 
         return <div className={"sidebar-mini skin-up" + (this.state.col ? " sidebar-collapse" : "")}>
 
-            <TopMenu onUpClick={this.props.onUpClick} onHomeClick={this.props.onHomeClick} onReglagesClick={this.props.onReglagesClick} onDeconnexionClick={this.props.onDeconnexionClick} />
+            <TopMenu childMenuItems={this.props.topMenuItems}  onUpClick={this.props.onUpClick} onHomeClick={this.props.onHomeClick} onReglagesClick={this.props.onReglagesClick} onDeconnexionClick={this.props.onDeconnexionClick} />
 
             <aside className="main-sidebar">
 
@@ -223,6 +224,7 @@ export interface TopMenuProps {
     onReglagesClick: () => void;
     onUpClick: () => void;
     onHomeClick: () => void;
+    childMenuItems: MenuItemData[];
 }
 
 export interface TopMenuState {
@@ -237,6 +239,14 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
     }
 
     render() {
+
+        var topMenuItem = [];
+        if (this.props.childMenuItems && this.props.childMenuItems.length) {
+            topMenuItem = this.props.childMenuItems.map((v, i) => {
+                return <TopMenuItem key={i} title={v.title} icon={v.icon} uri={v.uri} />
+            });
+        }
+
         return <header className="main-header">
 
             <a onClick={this.props.onUpClick} className="logo">
@@ -259,16 +269,21 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
 
                 <div className="navbar-custom-menu">
                     <ul className="nav navbar-nav">
+                        {topMenuItem}
                         <li className="dropdown user user-menu open">
                             <a id="imageProfil" className="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                 <span className="hidden-xs">Stéphane ROMANO</span>
                             </a>
                         </li>
                         <li title="Réglages" data-toggle="tooltip" data-placement="bottom" data-original-title="Réglages">
-                            <a onClick={this.props.onReglagesClick} data-toggle="control-sidebar"><i className="pe pe-7s-edit"></i></a>
+                            <a onClick={this.props.onReglagesClick} data-toggle="control-sidebar">
+                                <i className="pe pe-7s-edit"></i>
+                            </a>
                         </li>
                         <li title="Déconnexion" data-toggle="tooltip" data-placement="bottom">
-                            <a onClick={this.props.onDeconnexionClick}><i className="pe pe-7s-power"></i></a>
+                            <a onClick={this.props.onDeconnexionClick}>
+                                <i className="pe pe-7s-power"></i>
+                            </a>
                         </li>
 
                     </ul>
@@ -276,5 +291,33 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
 
             </nav>
         </header>
+    }
+}
+
+
+export interface TopMenuItemProps {
+    title: string;
+    uri: string;
+    icon: string;
+}
+
+interface TopMenuItemState {
+
+}
+
+export class TopMenuItem extends React.Component<TopMenuItemProps, TopMenuItemState>{
+    //public static defaultProps: TopMenuItemProps = {};
+
+    constructor(p, c) {
+        super(p, c);
+        this.state = {};
+    }
+
+    render() {
+        return <li title={this.props.title} data-toggle="tooltip" data-placement="bottom">
+            <a href={this.props.uri}>
+                <i className={this.props.icon}></i>
+            </a>
+        </li>
     }
 }
