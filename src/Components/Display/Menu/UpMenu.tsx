@@ -104,8 +104,9 @@ export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
     render() {
 
         var hide = this.props.isVisible === false ? "hide " : "";
+        var active = this.state.active || this.props.isSelected ? " active" : "";
 
-        return <li className={hide + "treeview" + (this.state.active ? " active" : "")}>
+        return <li className={hide + "treeview" + active}>
             <a onClick={this.onClickA} href={this.props.uri}>
                 <i className={this.props.icon} onClick={this.iconClick}></i>
                 <span>{this.props.title}</span>
@@ -180,9 +181,9 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
 
     render() {
         var hide = this.props.isVisible === false ? " hide" : "";
+        var active = this.state.active || this.props.isSelected ? "active" : "";
 
-
-        return <li className={(this.state.active ? "active" : "") + hide}>
+        return <li className={active + hide}>
             <a onClick={this.onClickA} href={this.props.uri}>
                 {this.anyChild ?
                     <i onClick={this.onClick} className={(this.state.active ? "pe-7s-angle-down" : "pe-7s-angle-right")} ></i>
