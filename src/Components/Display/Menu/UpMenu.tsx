@@ -46,7 +46,7 @@ export default class UpMenu extends React.Component<UpMenuProps, UpMenuState>{
 
         return <div className={"sidebar-mini skin-up" + (this.state.col ? " sidebar-collapse" : "")}>
 
-            <TopMenu childMenuItems={this.props.topMenuItems}  onUpClick={this.props.onUpClick} onHomeClick={this.props.onHomeClick} onReglagesClick={this.props.onReglagesClick} onDeconnexionClick={this.props.onDeconnexionClick} />
+            <TopMenu childMenuItems={this.props.topMenuItems} onUpClick={this.props.onUpClick} onHomeClick={this.props.onHomeClick} onReglagesClick={this.props.onReglagesClick} onDeconnexionClick={this.props.onDeconnexionClick} />
 
             <aside className="main-sidebar">
 
@@ -301,7 +301,7 @@ export interface TopMenuItemProps {
     icon: string;
 }
 
-interface TopMenuItemState {
+export interface TopMenuItemState {
 
 }
 
