@@ -113,9 +113,8 @@ class Demo extends React.Component<undefined, DemoState> {
             return <UpMenu onMenuClick={this.tttt}
 
                 topMenuItems={[
-                    { title: "tehtztst", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                    { title: "t", icon: "pe pe-7s-edit", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                    { title: "teshtztht", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] }
+                    { title: "tehtztst", icon: "up up-dossier",  action: "https://www.google.fr"},
+                    { title: "tehtztst", icon: "up up-dossier", action: () => { alert(5);}}
                 ]}
 
 

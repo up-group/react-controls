@@ -9,7 +9,7 @@ import "./up.png"
 
 export interface UpMenuProps {
     menuItems: MenuItemData[];
-    topMenuItems?: MenuItemData[];
+    topMenuItems?: TopMenuItemProps[];
     onMenuClick?: (uri: string) => boolean | void;
 
 
@@ -224,7 +224,7 @@ export interface TopMenuProps {
     onReglagesClick: () => void;
     onUpClick: () => void;
     onHomeClick: () => void;
-    childMenuItems: MenuItemData[];
+    childMenuItems: TopMenuItemProps[];
 }
 
 export interface TopMenuState {
@@ -243,7 +243,7 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
         var topMenuItem = [];
         if (this.props.childMenuItems && this.props.childMenuItems.length) {
             topMenuItem = this.props.childMenuItems.map((v, i) => {
-                return <TopMenuItem key={i} title={v.title} icon={v.icon} uri={v.uri} />
+                return <TopMenuItem key={i} title={v.title} icon={v.icon} action={v.action} />
             });
         }
 
@@ -297,7 +297,7 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
 
 export interface TopMenuItemProps {
     title: string;
-    uri: string;
+    action: string | (() => void);
     icon: string;
 }
 
@@ -314,10 +314,20 @@ export class TopMenuItem extends React.Component<TopMenuItemProps, TopMenuItemSt
     }
 
     render() {
-        return <li title={this.props.title} data-toggle="tooltip" data-placement="bottom">
-            <a href={this.props.uri}>
-                <i className={this.props.icon}></i>
-            </a>
-        </li>
+        if (typeof(this.props.action) === "string") {
+            return <li title={this.props.title} data-toggle="tooltip" data-placement="bottom">
+                <a href={this.props.action}>
+                    <i className={this.props.icon}></i>
+                </a>
+            </li>
+        } else {
+            return <li title={this.props.title} data-toggle="tooltip" data-placement="bottom">
+                <a onClick={this.props.action}>
+                    <i className={this.props.icon}></i>
+                </a>
+            </li>
+        }
+
+      
     }
 }
