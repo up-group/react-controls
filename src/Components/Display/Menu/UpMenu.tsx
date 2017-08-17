@@ -202,6 +202,8 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
     onClick = (e) => {
         this.setState({ active: !this.state.active });
         e.preventDefault();
+        e.stopPropagation();
+        return false;
     }
 
     onClickA = (e) => {
