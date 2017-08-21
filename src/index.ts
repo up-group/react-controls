@@ -26,6 +26,7 @@ import UpCalendarTimeline from './Components/Display/TimeLine'
 import UpLogoAlerte from './Components/Display/LogoAlerte/UpLogoAlerte'
 import UpCalendarWeekDay from './Components/Display/CalendarWeekDay/UpCalendarWeekDay'
 import UpMenu from './Components/Display/Menu/UpMenu'
+import UpTreeView from './Components/Display/TreeView/UpTreeView'
 
 
 import UpButton from './Components/Inputs/Button'
@@ -96,5 +97,6 @@ export {
     UpTile,
     UpLogoAlerte,
     UpCalendarWeekDay,
-    UpMenu
+    UpMenu,
+    UpTreeView
 };

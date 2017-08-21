@@ -21,7 +21,8 @@ import {
     UpFormGroup,
     UpSwitch,
     UpSelect,
-    UpDataGrid
+    UpDataGrid,
+    UpTreeView
 } from "../src/index";
 
 import Timeline from "../src/Components/Display/TimeLine/index"
@@ -106,15 +107,38 @@ class Demo extends React.Component<undefined, DemoState> {
 
 
     public render() {
+        if (1 == 1) {
+            return <UpTreeView childMenuItems={
 
+                [
+                    {
+                        title: "test", id: "5", isSelected: false, isVisible: true, childMenuItems: [
+                            {
+                                id: "1", title: "aaaaaa", isSelected: false, isVisible: true, childMenuItems: [
+
+                                    { id: "1", title: "bbbbb", isSelected: false, isVisible: false, childMenuItems: [] },
+                                    { id: "12", title: "ccccc", isSelected: false, isVisible: true, childMenuItems: [] },
+                                    { id: "1", title: "ddddd", isSelected: false, isVisible: true, childMenuItems: [] }
+                                ]
+                            },
+                            { id: "1", title: "ffffff sc", isSelected: false, isVisible: true, childMenuItems: [] },
+                            { id: "1", title: "ddddd", isSelected: false, isVisible: true, childMenuItems: [] }
+                        ]
+                    },
+                    { id: "1", title: "tehtztst", isSelected: false, isVisible: true, childMenuItems: [] },
+                    { id: "1", title: "t", isSelected: false, isVisible: true, childMenuItems: [] },
+                    { id: "1", title: "teshtztht", isSelected: false, isVisible: true, childMenuItems: [] },
+                ]
+            } />
+        }
 
         if (11 == 11) {
 
             return <UpMenu onMenuClick={this.tttt}
 
                 topMenuItems={[
-                    { title: "tehtztst", icon: "up up-dossier",  action: "https://www.google.fr"},
-                    { title: "tehtztst", icon: "up up-dossier", action: () => { alert(5);}}
+                    { title: "tehtztst", icon: "up up-dossier", action: "https://www.google.fr" },
+                    { title: "tehtztst", icon: "up up-dossier", action: () => { alert(5); } }
                 ]}
 
 
@@ -122,25 +146,25 @@ class Demo extends React.Component<undefined, DemoState> {
 
 
                 menuItems={
-                [
-                    {
-                        title: "test", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [
-                            {
-                                title: "aaaaaa", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [
+                    [
+                        {
+                            title: "test", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [
+                                {
+                                    title: "aaaaaa", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [
 
-                                    { title: "bbbbb", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                                    { title: "ccccc", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                                    { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] }
-                                ]
-                            },
-                            { title: "ffffff sc", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                            { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] }
-                        ]
-                    },
-                    { title: "tehtztst", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                    { title: "t", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                    { title: "teshtztht", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                ]}></UpMenu>
+                                        { title: "bbbbb", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
+                                        { title: "ccccc", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
+                                        { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] }
+                                    ]
+                                },
+                                { title: "ffffff sc", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
+                                { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] }
+                            ]
+                        },
+                        { title: "tehtztst", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
+                        { title: "t", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
+                        { title: "teshtztht", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
+                    ]}></UpMenu>
         }
 
         if (1 == 1) {
