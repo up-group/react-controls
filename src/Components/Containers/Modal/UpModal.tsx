@@ -25,8 +25,8 @@ export default class UpModal extends React.Component<UpModalProps, UpModalState>
 
         var header = null;
 
-        if (header) {
-            if (typeof (header) === "string") {
+        if (this.props.header != null) {
+            if (typeof (this.props.header) === "string") {
                 header = <div className="modal-header">
                     <h4 className="modal-title">{this.props.header}</h4>
                 </div>
