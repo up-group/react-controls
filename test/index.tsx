@@ -108,8 +108,9 @@ class Demo extends React.Component<undefined, DemoState> {
 
     public render() {
         if (1 == 1) {
-            return <UpTreeView childMenuItems={
-
+            return <UpTreeView
+                onBranchClick={(a) => { console.log(a);}}
+                childMenuItems={
                 [
                     {
                         title: "test", id: "5", isSelected: false, isVisible: true, childMenuItems: [

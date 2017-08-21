@@ -1,6 +1,7 @@
 import * as React from "react"
 
 export interface UpTreeViewProps {
+    onBranchClick: (data: MenuItemData) => void;
     childMenuItems?: MenuItemData[];
 }
 
@@ -9,21 +10,16 @@ export interface UpTreeViewState {
 }
 
 export default class UpTreeView extends React.Component<UpTreeViewProps, UpTreeViewState>{
-    public static defaultProps: UpTreeViewProps = {};
-
     constructor(p, c) {
         super(p, c);
         this.state = {};
     }
 
     render() {
-        return <SubMenu childMenuItems={this.props.childMenuItems} onMenuClick={this.onMenuClick} />
+        return <SubMenu childMenuItems={this.props.childMenuItems} onBranchClick={this.props.onBranchClick} />
     }
 
-    onMenuClick = (uri: string) => {
-        console.log(uri);
-
-    }
+    
 
 }
 
@@ -41,7 +37,7 @@ export interface MenuItemData {
 
 export interface SubMenuProps {
     childMenuItems?: MenuItemData[];
-    onMenuClick: (uri: string) => void;
+    onBranchClick: (data: MenuItemData) => void;
 }
 
 export interface SubMenuState {
@@ -63,7 +59,7 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
             return <SubItems
                 key={i}
                 id={v.id}
-                onMenuClick={this.props.onMenuClick}
+                onBranchClick={this.props.onBranchClick}
                 title={v.title}
                 isVisible={v.isVisible}
                 isSelected={v.isSelected}
@@ -86,7 +82,7 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
 
 
 export interface SubItemsProps extends MenuItemData {
-    onMenuClick: (uri: string) => boolean | void;
+    onBranchClick: (uri: MenuItemData) => void;
 }
 
 export interface SubItemsState {
@@ -119,7 +115,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
                 }
                 {this.props.title}
             </a>
-            {this.anyChild && active ? <SubMenu onMenuClick={this.props.onMenuClick} childMenuItems={this.props.childMenuItems} /> : null}
+            {this.anyChild && active ? <SubMenu onBranchClick={this.props.onBranchClick} childMenuItems={this.props.childMenuItems} /> : null}
         </li>
     }
     get anyChild() {
@@ -134,9 +130,16 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
     }
 
     onClickA = (e) => {
-        var value = this.props.onMenuClick(this.props.id);
-        if (value === false) {
-            e.preventDefault();
+
+        var data: MenuItemData = {
+            id: this.props.id,
+            title: this.props.title,
+            isSelected: this.props.isSelected,
+            isVisible: this.props.isVisible,
+            childMenuItems: this.props.childMenuItems
         }
+
+        var value = this.props.onBranchClick(data);
+
     }
 }
