@@ -17,7 +17,7 @@ const BaseRadioButton: React.StatelessComponent<UpRadioStyledProps> = (props) =>
       <label className={classNames("up-control", "up-radio", className)}>
         <input defaultChecked={checked} onChange={onChange} name={name} type="radio" value={value} />
         <span className="up-control-indicator"></span>
-        {text}
+        <span className="up-control-text">{text}</span>
       </label>
     )
 }
@@ -28,6 +28,9 @@ ${(props: UpRadioStyledProps) => CommonCheckableStyle(props)}
 .up-control-indicator {
   border-radius: 50%;
   font-size: 6px;
+}
+.up-control-text {
+  z-index:100;
 }
 input:checked ~ .up-control-indicator::before {
   display: inline-block;
@@ -67,7 +70,6 @@ export const RadioGroup = styled.div`
   &.upContainer__groupradio-button label.up-radio {
     position:relative;
   }
-
   &.upContainer__groupradio-button label.up-radio:nth-child(2) {
     border-top-left-radius:6px;
     border-bottom-left-radius:6px;
@@ -80,6 +82,11 @@ export const RadioGroup = styled.div`
   &.upContainer__groupradio-button label.up-radio input ~ .up-control-indicator::before {
     display:none;
   }
+
+  &.upContainer__groupradio-button label.up-radio  input ~ .up-control-text {
+    position:relative;
+  }
+
   &.upContainer__groupradio-button label.up-radio input ~ .up-control-indicator {
     position:absolute;
     width:100%;
@@ -88,11 +95,14 @@ export const RadioGroup = styled.div`
     top:0;
     left:0;
     border-radius:0;
-    opacity:0.3;
     display:inline-block;
     box-shadow:unset;
   }
   &.upContainer__groupradio-button label.up-radio input:indeterminate ~ .up-control-indicator {
-    background: #EFE;
+    background: #EFEFEF;
+  }
+  &.upContainer__groupradio-button label.up-radio input:checked ~ .up-control-indicator ~ * {
+    color:white;
+    font-weight:700;
   }
 `
