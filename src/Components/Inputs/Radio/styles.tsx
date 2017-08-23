@@ -54,4 +54,45 @@ input:indeterminate ~ .up-control-indicator::before {
 `
 export const RadioGroup = styled.div`
   margin-top:8px;
+  &.upContainer__groupradio-horizontal label.up-radio {
+    float : left ;
+    margin-right: 10px;
+  }
+  &.upContainer__groupradio-button label.up-radio {
+    float : left ;
+    padding:8px;
+    background-color:#EEE;
+    border:0.01em solid #CCC;
+  }
+  &.upContainer__groupradio-button label.up-radio {
+    position:relative;
+  }
+
+  &.upContainer__groupradio-button label.up-radio:nth-child(2) {
+    border-top-left-radius:6px;
+    border-bottom-left-radius:6px;
+  }
+  &.upContainer__groupradio-button label.up-radio:last-child {
+    border-top-right-radius:6px;
+    border-bottom-right-radius:6px;
+  }
+
+  &.upContainer__groupradio-button label.up-radio input ~ .up-control-indicator::before {
+    display:none;
+  }
+  &.upContainer__groupradio-button label.up-radio input ~ .up-control-indicator {
+    position:absolute;
+    width:100%;
+    height: 100%;
+    border:0;
+    top:0;
+    left:0;
+    border-radius:0;
+    opacity:0.3;
+    display:inline-block;
+    box-shadow:unset;
+  }
+  &.upContainer__groupradio-button label.up-radio input:indeterminate ~ .up-control-indicator {
+    background: #EFE;
+  }
 `

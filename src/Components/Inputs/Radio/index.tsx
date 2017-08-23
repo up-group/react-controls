@@ -3,6 +3,7 @@ import UpRadio from './UpRadio'
 
 // Exports
 export type Position = 'left' | 'right' ;
+export type DisplayMode = 'horizontal' | 'vertical' | 'button' ; 
 
 export interface Option {
     value:any;
@@ -27,6 +28,7 @@ export interface UpRadioProps {
     position?:Position;
     name:string;
     value?:any;
+    displayMode: DisplayMode,
     onChange?: (arg: any, event: any, error: boolean) => void;
 }
 

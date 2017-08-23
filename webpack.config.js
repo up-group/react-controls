@@ -5,9 +5,10 @@ var webpack = require('webpack');
 module.exports = {
     devtool: 'cheap-module-source-map',
     entry: {
-        './test/dist/index': ['babel-polyfill', './test/index.tsx']
+        './dist/index': ['babel-polyfill', './test/index.tsx']
     },
     output: {
+        path: path.resolve(ROOT_PATH, 'test/'),
         filename: '[name].js'
     },
     resolve: {
@@ -39,8 +40,7 @@ module.exports = {
                 test: /\.(eot|ttf|woff|woff2|png)$/,
                 loader: 'file-loader',
                 options: {
-                    name: '[hash].[ext]',
-                    context: './test/'
+                    name: 'fonts/[name].[ext]'
                 }
             }
         ]
