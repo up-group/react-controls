@@ -6,13 +6,20 @@ import {UpRadioProps, UpRadioState, Position} from './'
 
 // Exports
 export default class UpRadio extends React.Component<UpRadioProps, UpRadioState> {
-  constructor(props) {
-    super(props) ;
-    this.state = {
-        value : (props.value!==undefined)?props.value:null,
-        options : props.options
-    };
-  }
+  
+    public static defaultProps: UpRadioProps = {
+        displayMode:"vertical",
+        options:[],
+        name:"option"
+    }
+
+    constructor(props) {
+        super(props) ;
+        this.state = {
+            value : (props.value!==undefined)?props.value:null,
+            options : props.options
+        };
+    }
 
   componentWillReceiveProps(nextProps: UpRadioProps) {
       var _state: UpRadioState = {} ;
@@ -61,9 +68,10 @@ export default class UpRadio extends React.Component<UpRadioProps, UpRadioState>
           width={props.iconSize}
           height={props.iconSize}
           color={props.color} /> ;*/
+    var radioGroupClass = "upContainer__groupradio-" + this.props.displayMode ;
 
     return (
-      <RadioGroup onClick={this.stopPropagation}>
+      <RadioGroup onClick={this.stopPropagation} className={radioGroupClass} >
         {/* Avoid set active element when using the component inside a label */}
         <label style={{display:"none"}}><input type="radio" /></label>
         {options.map((option) => (
