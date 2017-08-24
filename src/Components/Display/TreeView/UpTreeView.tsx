@@ -28,7 +28,7 @@ export default class UpTreeView extends React.Component<UpTreeViewProps, UpTreeV
 
 export interface MenuItemData {
     id: string;
-    title: string;
+    text: string;
     isSelected: boolean;
     isVisible: boolean;
     childMenuItems?: MenuItemData[];
@@ -60,7 +60,7 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
                 key={i}
                 id={v.id}
                 onBranchClick={this.props.onBranchClick}
-                title={v.title}
+                text={v.text}
                 isVisible={v.isVisible}
                 isSelected={v.isSelected}
                 childMenuItems={v.childMenuItems}
@@ -113,7 +113,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
                     :
                     <i></i>
                 }
-                {this.props.title}
+                {this.props.text}
             </a>
             {this.anyChild && active ? <SubMenu onBranchClick={this.props.onBranchClick} childMenuItems={this.props.childMenuItems} /> : null}
         </li>
@@ -133,7 +133,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
 
         var data: MenuItemData = {
             id: this.props.id,
-            title: this.props.title,
+            text: this.props.text,
             isSelected: this.props.isSelected,
             isVisible: this.props.isVisible,
             childMenuItems: this.props.childMenuItems
