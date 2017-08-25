@@ -71,16 +71,18 @@ const base = props => css`
   cursor: pointer;
   vertical-align: middle;
   width: ${(props: UpButtonStyledProps) => buttonSizeMap[props.width] || 'auto'};
-  min-width: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || DEFAULT_MIN_SIZE};
+ min-width: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || DEFAULT_MIN_SIZE};
   min-height: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || DEFAULT_MIN_SIZE};
   line-height: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || DEFAULT_MIN_SIZE};
   svg {
-    margin:1px;
+    margin:3px;
     display:inline-block;
     float:left;
   }
   span {
     line-height: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || DEFAULT_MIN_SIZE};
+    padding-left: ${(props: UpButtonStyledProps) => (props.width=="auto")?"8px":"inherit"};
+    padding-right: ${(props: UpButtonStyledProps) => (props.width=="auto")?"8px":"inherit"};
   }
   &:active {
      box-shadow: inset 5px 5px 5px rgba(16, 22, 26, 0.2) ;
@@ -101,6 +103,7 @@ border-width:1px;
 border-style:solid;
 &:hover {
   background-color: ${props => props.color || props.theme.colorMap[`${props.intent}Light`] || 'white'};
+  color :${(props: UpButtonStyledProps) => props.backgroundColor || props.theme.colorMap[`${props.intent}Dark`]};
   svg {
     fill: ${(props: UpButtonStyledProps) => props.backgroundColor || props.theme.colorMap[`${props.intent}Dark`]}
   }
