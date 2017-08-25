@@ -25,11 +25,11 @@ export const defaultStyles = css`
 `;
 
 export const inputStyles = css`
-.up-input {
-  height: 30px;
-  line-height: 30px;
-  ${defaultStyles}
-}
+  .up-input {
+    height: 36px;
+    line-height: 30px;
+    ${defaultStyles}
+  }
   .up-input::-webkit-input-placeholder {
     opacity: 1;
     color: rgba(92, 112, 128, 0.5); }

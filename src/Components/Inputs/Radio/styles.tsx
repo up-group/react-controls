@@ -56,7 +56,6 @@ input:indeterminate ~ .up-control-indicator::before {
 }
 `
 export const RadioGroup = styled.div`
-  margin-top:8px;
   &.upContainer__groupradio-horizontal label.up-radio {
     float : left ;
     margin-right: 10px;
@@ -69,6 +68,7 @@ export const RadioGroup = styled.div`
   }
   &.upContainer__groupradio-button label.up-radio {
     position:relative;
+    margin-top:0;
   }
   &.upContainer__groupradio-button label.up-radio:nth-child(2) {
     border-top-left-radius:6px;
