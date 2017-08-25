@@ -113,22 +113,22 @@ class Demo extends React.Component<undefined, DemoState> {
                 childMenuItems={
                 [
                     {
-                        title: "test", id: "5", isSelected: false, isVisible: true, childMenuItems: [
+                            text: "Lorem", id: "5", isSelected: false, isVisible: true, childMenuItems: [
                             {
-                                id: "1", title: "aaaaaa", isSelected: false, isVisible: true, childMenuItems: [
+                                    id: "1", text: "Lorem", isSelected: false, isVisible: true, childMenuItems: [
 
-                                    { id: "1", title: "bbbbb", isSelected: false, isVisible: false, childMenuItems: [] },
-                                    { id: "12", title: "ccccc", isSelected: false, isVisible: true, childMenuItems: [] },
-                                    { id: "1", title: "ddddd", isSelected: false, isVisible: true, childMenuItems: [] }
+                                        { id: "1", text: "Lorem", isSelected: false, isVisible: false, childMenuItems: [] },
+                                        { id: "12", text: "Lorem", isSelected: false, isVisible: true, childMenuItems: [] },
+                                        { id: "1", text: "Lorem", isSelected: false, isVisible: true, childMenuItems: [] }
                                 ]
                             },
-                            { id: "1", title: "ffffff sc", isSelected: false, isVisible: true, childMenuItems: [] },
-                            { id: "1", title: "ddddd", isSelected: false, isVisible: true, childMenuItems: [] }
+                            { id: "1", text: "Lorem sc", isSelected: false, isVisible: true, childMenuItems: [] },
+                            { id: "1", text: "Lorem", isSelected: false, isVisible: true, childMenuItems: [] }
                         ]
                     },
-                    { id: "1", title: "tehtztst", isSelected: false, isVisible: true, childMenuItems: [] },
-                    { id: "1", title: "t", isSelected: false, isVisible: true, childMenuItems: [] },
-                    { id: "1", title: "teshtztht", isSelected: false, isVisible: true, childMenuItems: [] },
+                    { id: "1", text: "Lorem", isSelected: false, isVisible: true, childMenuItems: [] },
+                    { id: "1", text: "t", isSelected: false, isVisible: true, childMenuItems: [] },
+                    { id: "1", text: "teshtztht", isSelected: false, isVisible: true, childMenuItems: [] },
                 ]
             } />
         }
