@@ -25,7 +25,7 @@ export default class UpDate extends BaseControlComponent<UpDateProps, Date> {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        var shouldUpdate: boolean = nextState.value != this.state.value;
+        var shouldUpdate: boolean = nextState.value != this.state.value || nextState.error != this.state.error ;
         if (shouldUpdate === false) {
             shouldUpdate = this.props.disabled != nextProps.disabled
                 || this.props.format != nextProps.format
