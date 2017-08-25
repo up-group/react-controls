@@ -1,5 +1,14 @@
 import { configure, setAddon } from '@storybook/react';
-import infoAddon from '@storybook/addon-info';
+import infoAddon, {setDefaults} from '@storybook/addon-info';
+
+// addon-info
+setDefaults({
+  inline: false,
+  maxPropsIntoLine: 1,
+  maxPropObjectKeys: 10,
+  maxPropArrayLength: 10,
+  maxPropStringLength: 100,
+});
 
 setAddon(infoAddon);
 

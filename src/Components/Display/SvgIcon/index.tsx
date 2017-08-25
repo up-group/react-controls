@@ -41,13 +41,22 @@ export default function SvgIcon({
   const width = others.height || 24 ;
    
   if(iconName) {
-    return (
-      <div style={{display:"inline-block"}} data-for={dataFor} data-tip={"tooltip"}>
-      <SvgIconWrapper position={position} className={className} color={color} height={height} width={width}
-        //{...others}
-        dangerouslySetInnerHTML={{__html: Icons[iconName]}}
-      ></SvgIconWrapper></div>
-    );
+    const SvgIconElement = () => <SvgIconWrapper position={position} className={className} color={color} height={height} width={width}
+      //{...others}
+      dangerouslySetInnerHTML={{__html: Icons[iconName]}}
+    ></SvgIconWrapper> ;
+
+    if(dataFor != null) {
+      return (
+        <div style={{display:"inline-block"}} data-for={dataFor} data-tip={"tooltip"}>
+          <SvgIconElement />
+        </div>
+        );
+    } else {
+      return (
+          <SvgIconElement />
+      );
+    }
   } else {
     const defaultViewBox = `0 0 ${width} ${height}` ;
     const viewBoxProps = viewBox || defaultViewBox;
