@@ -85,8 +85,8 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
        var newValue = nextProps.value;
        var oldValue = this.state.value;
        if (newValue!==undefined && !this.equal(newValue, oldValue)) {
-            // Reset the error : if one it will be set in the checkAndDispatch
-            this.setState({ value: nextProps.value, error: null }, this.checkAndDispatch);
+            // Reset the error : if one it will be set in the checkData
+            this.setState({ value: nextProps.value, error: null }, this.checkData);
        }
     }
 
