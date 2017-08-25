@@ -46,7 +46,7 @@ const base = (props: UpLabelStyledProps) => css`
     font-weight: 400; 
   }
   .pt-button-group.pt-vertical {
-    margin-top:1px;
+    margin-top:0px;
   }
 `
 
