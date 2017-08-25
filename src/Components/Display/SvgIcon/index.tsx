@@ -5,12 +5,13 @@ import styled from '../../../Common/theming/themedComponents';
 import Icons from './icons';
 
 export interface SvgIconWrapperProps {
-  className:string,
-  color:string,
-  height:any,
-  width:any,
-  position:string,
-  dangerouslySetInnerHTML:any
+  className:string;
+  color:string;
+  height:any;
+  width:any;
+  position:string;
+  dangerouslySetInnerHTML:any;
+  dataFor?:string;
 }
 
 const SvgIconWrapper = styled.div`
@@ -32,6 +33,7 @@ export default function SvgIcon({
   className,
   color,
   position,
+  dataFor,
   ...others,
 }: Props): JSX.Element {
 
@@ -40,10 +42,11 @@ export default function SvgIcon({
    
   if(iconName) {
     return (
+      <div data-for={dataFor} data-tip={"tooltip"}>
       <SvgIconWrapper position={position} className={className} color={color} height={height} width={width}
         //{...others}
         dangerouslySetInnerHTML={{__html: Icons[iconName]}}
-      ></SvgIconWrapper>
+      ></SvgIconWrapper></div>
     );
   } else {
     const defaultViewBox = `0 0 ${width} ${height}` ;

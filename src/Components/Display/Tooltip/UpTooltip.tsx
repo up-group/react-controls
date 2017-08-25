@@ -38,6 +38,7 @@ export default class UpTooltip extends Component<UpTooltipProps, UpTooltipState>
   constructor(props: UpTooltipProps) {
     super(props) ;
   }
+  
   componentWillUnmount() {
   
   }

@@ -132,7 +132,7 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
                 <UpTooltip {..._tooltip}>
                     {this.renderControl()}
                 </UpTooltip>}
-        </ErrorDisplay>
+            </ErrorDisplay>
         );
     }
 
