@@ -1,5 +1,5 @@
 ﻿
-import "./test.css"
+import "./UpMenu.scss"
 import * as React from "react"
 import SvgIcon from "../SvgIcon/index"
 import { IconName } from "../SvgIcon/icons"
@@ -44,32 +44,33 @@ export default class UpMenu extends React.Component<UpMenuProps, UpMenuState>{
         });
 
 
-        return <div className={"sidebar-mini skin-up" + (this.state.col ? " sidebar-collapse" : "")}>
+        return <div className="UpMenu">
+            <div className={"sidebar-mini skin-up" + (this.state.col ? " sidebar-collapse" : "")}>
+                <TopMenu childMenuItems={this.props.topMenuItems} onUpClick={this.props.onUpClick} onHomeClick={this.props.onHomeClick} onReglagesClick={this.props.onReglagesClick} onDeconnexionClick={this.props.onDeconnexionClick} />
 
-            <TopMenu childMenuItems={this.props.topMenuItems} onUpClick={this.props.onUpClick} onHomeClick={this.props.onHomeClick} onReglagesClick={this.props.onReglagesClick} onDeconnexionClick={this.props.onDeconnexionClick} />
+                <aside className="main-sidebar">
 
-            <aside className="main-sidebar">
+                    <section className="sidebar" >
 
-                <section className="sidebar" >
+                        <div className="user-panel">
+                            <a className="sidebar-toggle" onClick={this.clickCollapse}>
+                                <i className="pe p7 pe-7s-menu"></i>
 
-                    <div className="user-panel">
-                        <a className="sidebar-toggle" onClick={this.clickCollapse}>
-                            <i className="pe p7 pe-7s-menu"></i>
-
-                            <span className="sr-only">Bouton Menu</span>
-                        </a>
+                                <span className="sr-only">Bouton Menu</span>
+                            </a>
 
 
-                    </div>
-                    <ul className="sidebar-menu">
-                        {menu}
-                    </ul>
-                </section>
-            </aside>
-            <div className="content-wrapper" style={{ minHeight: 415 }}>
-                <section className="content">
-                    {this.props.children}
-                </section>
+                        </div>
+                        <ul className="sidebar-menu">
+                            {menu}
+                        </ul>
+                    </section>
+                </aside>
+                <div className="content-wrapper" style={{ minHeight: 415 }}>
+                    <section className="content">
+                        {this.props.children}
+                    </section>
+                </div>
             </div>
         </div>
     }
@@ -314,7 +315,7 @@ export class TopMenuItem extends React.Component<TopMenuItemProps, TopMenuItemSt
     }
 
     render() {
-        if (typeof(this.props.action) === "string") {
+        if (typeof (this.props.action) === "string") {
             return <li title={this.props.title} data-toggle="tooltip" data-placement="bottom">
                 <a href={this.props.action}>
                     <i className={this.props.icon}></i>
@@ -328,6 +329,6 @@ export class TopMenuItem extends React.Component<TopMenuItemProps, TopMenuItemSt
             </li>
         }
 
-      
+
     }
 }
