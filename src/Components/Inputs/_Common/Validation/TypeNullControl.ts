@@ -12,7 +12,7 @@ export default class TypeNullControl implements ErrorControl<any> {
 
     isValidValue(value: any) {
         if (this._isRequierd && this.isNullOrWhiteSpace(value) === true) {
-            return { hasError: true, errorMessage: "Doit avoir une valeur" }
+            return { hasError: true, errorMessage: "La valeur de ce champ est requise" }
         }
 
         //if (this._isNullable == false) {
@@ -33,5 +33,4 @@ export default class TypeNullControl implements ErrorControl<any> {
 
         return false;
     }
-
 }

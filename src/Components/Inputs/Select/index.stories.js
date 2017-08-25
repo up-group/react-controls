@@ -26,6 +26,24 @@ storiesOf('UpSelect', module)
    () => (
     <UpThemeProvider theme={UpDefaultTheme}>
         <UpSelect autoload={false}
+                    isRequired={false}
+                    allowClear={true}
+                    default={null}
+                    multiple={false}
+                    tooltip="Votre ville de naissance"
+                    minimumInputLength={3}
+                    dataSource={{
+                        query: "https://jsonplaceholder.typicode.com/todos",
+                        text: "title"
+                    }}
+                    onChange={onSelectionChange} />
+    </UpThemeProvider>
+  ))
+  .addWithInfo('Required', 'Utilisation du composant avec valeur requise',
+   () => (
+    <UpThemeProvider theme={UpDefaultTheme}>
+        <div style={{margin:"30px"}}>
+          <UpSelect autoload={false}
                     isRequired={true}
                     allowClear={true}
                     default={null}
@@ -37,6 +55,7 @@ storiesOf('UpSelect', module)
                         text: "title"
                     }}
                     onChange={onSelectionChange} />
+        </div>
     </UpThemeProvider>
   )) ;
 

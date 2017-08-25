@@ -42,7 +42,7 @@ export default function SvgIcon({
    
   if(iconName) {
     return (
-      <div data-for={dataFor} data-tip={"tooltip"}>
+      <div style={{display:"inline-block"}} data-for={dataFor} data-tip={"tooltip"}>
       <SvgIconWrapper position={position} className={className} color={color} height={height} width={width}
         //{...others}
         dangerouslySetInnerHTML={{__html: Icons[iconName]}}

@@ -404,8 +404,6 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
                 page: nextProps.defaultPage
             };
 
-
-
         this.setState(newState);
     }
 
