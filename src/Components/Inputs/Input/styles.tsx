@@ -44,7 +44,7 @@ export const DefaultInputStyle = css`
   border-radius: 3px;
   box-shadow: 0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2);
   background: #ffffff;
-  height: 30px;
+  height: 36px;
   padding: 0 10px;
   vertical-align: middle;
   line-height: 30px;
