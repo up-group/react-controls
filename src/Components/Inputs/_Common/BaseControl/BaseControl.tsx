@@ -95,7 +95,8 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
         if(propsValue !== undefined) {
             this.checkAndDispatch(cleanData)
         } else {
-            this.setState({ value: cleanData }, this.checkAndDispatch);
+            // Reset the error : if one it will be set in the checkAndDispatch
+            this.setState({ value: cleanData, error: null }, this.checkAndDispatch);
         }
     }
 
