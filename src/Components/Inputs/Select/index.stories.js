@@ -43,17 +43,17 @@ storiesOf('UpSelect', module)
    () => (
     <UpThemeProvider theme={UpDefaultTheme}>
         <div style={{margin:"30px"}}>
-          <UpSelect autoload={false}
-                    isRequired={true}
+          <UpSelect isRequired={true}
                     allowClear={true}
                     default={null}
                     multiple={false}
-                    tooltip="Votre ville de naissance"
-                    minimumInputLength={3}
-                    dataSource={{
-                        query: "https://jsonplaceholder.typicode.com/todos",
-                        text: "title"
-                    }}
+                    tooltip="Votre ville de naissance" 
+                    data={[
+                      {id:1,text:'M.'},
+                      {id:2,text:'Mme'},
+                      {id:3,text:'Mlle'},
+                      {id:4,text:'Dr'},
+                    ]}
                     onChange={onSelectionChange} />
         </div>
     </UpThemeProvider>
