@@ -2,56 +2,34 @@
 import * as React from 'react'
 import UpLabel from '../../Display/Label/'
 import {StyledRadioButton, RadioGroup} from './styles'
-import {UpRadioProps, UpRadioState, Position} from './'
+import {UpRadioProps, Position} from './'
+import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 
 // Exports
-export default class UpRadio extends React.Component<UpRadioProps, UpRadioState> {
+export default class UpRadio extends BaseControlComponent<UpRadioProps, any> {
   
     public static defaultProps: UpRadioProps = {
         displayMode:"vertical",
         options:[],
-        name:"option"
+        name:"option",
+        showError: true
     }
 
     constructor(props) {
         super(props) ;
         this.state = {
-            value : (props.value!==undefined)?props.value:null,
-            options : props.options
+            value : (props.value!==undefined)?props.value:null
         };
     }
-
-  componentWillReceiveProps(nextProps: UpRadioProps) {
-      var _state: UpRadioState = {} ;
-      if (nextProps.options !== this.props.options) {
-          _state.options = nextProps.options ;
-      }
-      if (nextProps.value !== undefined && nextProps.value!==this.props.value) {
-          _state.value = nextProps.value ;
-      }
-      if(_state !== {}) {
-        this.setState(_state);
-      }
-  }
   
   stopPropagation = (event) => {
     event.stopPropagation() ;
   }
 
-  getValue = (event: any) => {
-      return event.target.value ;
+  getValue(data: any) {
+      return data.target.value ;
   }
 
-  public handleChangeEvent = (event) => {
-      var cleanData = this.getValue(event);
-      var propsValue = this.props.value;
-      if(propsValue !== undefined) {
-          this.dispatchOnChange(cleanData, event, null)
-      } else {
-          this.setState({ value: cleanData }, this.afterSetState);
-      }
-  }
-  
   private afterSetState = () => {
       this.dispatchOnChange(this.state.value) ;
   }
@@ -62,8 +40,8 @@ export default class UpRadio extends React.Component<UpRadioProps, UpRadioState>
       }
   }
   
-  render() {
-    const options = this.state.options ;
+  renderControl() {
+    const options = this.props.options ;
     /*const icon = <SvgIcon iconName={props.iconName}
           width={props.iconSize}
           height={props.iconSize}
