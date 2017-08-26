@@ -17,7 +17,6 @@ export default class UpInput extends BaseControlComponent<UpInputProps, any> {
 
     constructor(p, c) {
         super(p, c);
-
         var _self = this;
         if (this.props.validation && this.props.validation.length > 0) {
             this.props.validation.map(function (value: Validation, index: number) {
@@ -31,6 +30,12 @@ export default class UpInput extends BaseControlComponent<UpInputProps, any> {
     getValue(event: any) {
         return event.target.value;
     }
+
+    inputHandleChangeEvent = (event) => {
+        console.log('Input change event') ;
+        console.log(event) ;
+        this.handleChangeEvent(event) ;
+    }   
 
     renderControl() {
         const {type, onChange, value, validation, hasError, iconName, width, disabled, readonly, tooltip, theme, maxLength, placeholder, ...others } = this.props;
@@ -53,7 +58,7 @@ export default class UpInput extends BaseControlComponent<UpInputProps, any> {
                 type={type || "text"}
                 hasError={this.props.hasError || this.hasError()}
                 showError={this.props.showError}
-                onChange={this.handleChangeEvent}>
+                onChange={this.inputHandleChangeEvent}>
                 {this.props.children}
             </InputStyled>
         );

@@ -13,14 +13,17 @@ export default class UpPhone extends BaseControlComponent<UpPhoneProps, string> 
 
     constructor(p, c) {
         super(p, c);
-        this.state = {
-            value: p.value
-        }
     }
 
     getValue(event: any) {
         return event;
     }
+
+    phoneHandleChangeEvent = (event) => {
+        console.log('Phone change event') ;
+        console.log(event) ;
+        this.handleChangeEvent(event) ;
+    }   
 
     renderControl() {
         return (
@@ -29,7 +32,7 @@ export default class UpPhone extends BaseControlComponent<UpPhoneProps, string> 
                     pattern: /^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/,
                     errorMessage: "Le champ doit être un numéro de téléphone "
                 }]} 
-                value={this.state.value} onChange={this.dispatchOnChange} 
+                value={this.state.value} onChange={this.phoneHandleChangeEvent} 
                 isRequired={this.props.isRequired}
                 showError={this.props.showError} />
         );
