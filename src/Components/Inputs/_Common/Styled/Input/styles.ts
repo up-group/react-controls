@@ -183,7 +183,7 @@ export const inputStyles = css`
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     z-index: 1;
-    margin: 0 7px;
+    margin: 7px;
     line-height: 30px;
     color: #5c7080; }
   .up-input-group .up-spinner {
