@@ -2,6 +2,10 @@
 import * as React from 'react'
 import Paragraph from '../Paragraph'
 import {UpGrid, UpRow, UpCol} from '../../Containers/Grid'
+import UpModal from '../../Containers/Modal/UpModal'
+import UpPanel from '../../Containers/Panel'
+import UpHeading from '../../Display/Heading'
+
 import iconMap from '../../../Common/theming/iconMap'
 import SvgIcon from '../SvgIcon'
 import {UpNotificationProps} from './'
@@ -12,21 +16,16 @@ export default class UpNotification extends React.Component<UpNotificationProps,
   
   public static defaultProps : UpNotificationProps = {
     message:"",
-    theme:defaultTheme
+    theme:defaultTheme,
+    displayMode:"inline"
   }
 
   constructor(props) {
     super(props) ;
   }
   
-  componentWillUnmount() {
-  }
-
-  componentDidMount() {
-  }
-
   render() {
-    const {children, message, status, theme, ...others} = this.props ;
+    const {children, message, status, theme, title, ...others} = this.props ;
 
     const defaultIconSize = 60 ;
 
@@ -34,10 +33,17 @@ export default class UpNotification extends React.Component<UpNotificationProps,
             width={theme && theme.notificationIconSize > 0 ?  theme.notificationIconSize : defaultIconSize}
             height={theme && theme.notificationIconSize > 0  ? theme.notificationIconSize : defaultIconSize}
             color={theme ? theme.colorMap[`${status}Dark`] : "black"} /> ;
-
-    return (
-        <NotificationStyled status={status} {...others}>
+    var NotificationRender ;
+    if(this.props.displayMode=="inline") {
+        NotificationRender =  () => (<NotificationStyled status={status} {...others}>
             <UpGrid>
+                {title && 
+                    <UpRow>
+                    <UpCol span={24}>
+                        <UpHeading tag={'h2'} textAlign={'left'}>{title}</UpHeading>
+                    </UpCol>
+                    </UpRow>
+                }
                 <UpRow>
                 <UpCol span={2}>
                     {icon}
@@ -50,12 +56,18 @@ export default class UpNotification extends React.Component<UpNotificationProps,
                     }
                     {children}
                 </UpCol>
-                <UpCol span={1}>
-                
-                </UpCol>
                 </UpRow>
             </UpGrid>
-        </NotificationStyled>
+        </NotificationStyled>);
+    } else if(this.props.displayMode=="modal") {
+        NotificationRender = () => (<UpModal header={title} showModal={true}>
+            <UpPanel disableAutoIntentIcon={false} type={status}>
+                {message}
+            </UpPanel>
+        </UpModal>);
+    }
+    return (
+        <NotificationRender />
     );
   }
 };
