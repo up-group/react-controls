@@ -20,7 +20,7 @@ export default class UpNavTab extends React.Component<UpNavTabProps, UpNavTabSta
     constructor(p, c) {
         super(p, c);
         this.state = {
-            selectedTabKey: -1
+            selectedTabKey: this.props.tabs.length != 0 ? 0 : -1
         };
     }
 
