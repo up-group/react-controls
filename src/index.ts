@@ -10,6 +10,8 @@ import UpDataGrid from './Components/Containers/DataGrid/UpDataGrid'
 import UpModal from './Components/Containers/Modal/UpModal'
 import UpDashboard from './Components/Containers/Dashboard/UpDashboard'
 import UpTile from './Components/Containers/Dashboard/UpTile'
+import UpNavTab from './Components/Containers/NavTab/UpNavTap'
+
 
 import UpHeading from './Components/Display/Heading'
 import UpLink from './Components/Display/Link'
@@ -97,5 +99,6 @@ export {
     UpLogoAlerte,
     UpCalendarWeekDay,
     UpMenu,
-    UpTreeView
+    UpTreeView,
+    UpNavTab
 };

@@ -22,7 +22,8 @@ import {
     UpSwitch,
     UpSelect,
     UpDataGrid,
-    UpTreeView
+    UpTreeView,
+    UpNavTab
 } from "../src/index";
 
 import Timeline from "../src/Components/Display/TimeLine/index"
@@ -107,6 +108,25 @@ class Demo extends React.Component<undefined, DemoState> {
 
 
     public render() {
+
+
+        if (1 == 1) {
+            var a = [
+                {
+                    head : "test",
+                    content: <div> "dazzdazd fez ffgreg re"</div>,
+                },
+                {
+                    head: "test 2",
+                    content: <div>"dazzdezdef ghhhhhhhhhhhhhhhhhh fez ffgreg re"</div>,
+                }
+            ]
+
+            return <UpNavTab tabs={a}/>
+        }
+
+
+
         if (1 == 1) {
             return <UpTreeView
                 onBranchClick={(a) => { console.log(a);}}

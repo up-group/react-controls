@@ -1,6 +1,6 @@
 
 import * as React from "react"
-import './UpTile.css'
+import './UpTile.scss'
 import './bootstrap-grid.css'
 import * as $ from 'jquery'
 import SvgIcon from "../../Display/SvgIcon/index";
@@ -58,27 +58,29 @@ export default class UpTile extends React.Component<UpTileProps, UpTileState>{
             }
         }
 
-        return <div style={null} className={"col-md-" + this.props.size}>
+        return <div className="UpTile">
+            <div style={null} className={"col-md-" + this.props.size}>
 
-            <div className={"box box-up box-home" + (!this.state.isCollapse ? "" : " collapsed-box")}>
-                <div className="box-header with-border">
-                    <h3 className="box-title">
-                        {this.props.Title}
-                    </h3>
+                <div className={"box box-up box-home" + (!this.state.isCollapse ? "" : " collapsed-box")}>
+                    <div className="box-header with-border">
+                        <h3 className="box-title">
+                            {this.props.Title}
+                        </h3>
 
 
-                    <div className="box-tools pull-right">
-                        <button data-widget="collapse" type="button" className="btn btn-box-tool" onClick={this.collapse}>
-                            <SvgIcon height={20} iconName={this.state.isCollapse ? "plus" : "minus"} />
-                        </button>
+                        <div className="box-tools pull-right">
+                            <button data-widget="collapse" type="button" className="btn btn-box-tool" onClick={this.collapse}>
+                                <SvgIcon height={20} iconName={this.state.isCollapse ? "plus" : "minus"} />
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div className="box-body" style={{}}>
-                    <div style={styleOverFlow} >
-                        {this.props.children}
+                    <div className="box-body" style={{}}>
+                        <div style={styleOverFlow} >
+                            {this.props.children}
+                        </div>
                     </div>
+                    {footer}
                 </div>
-                {footer}
             </div>
         </div>
     }
