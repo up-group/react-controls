@@ -16,13 +16,17 @@ const BasePanel: React.StatelessComponent<UpPanelStyledProps> = (props) => {
     }
 
     var message = props.message;
-
-    React.Children.map(children, (child, i) => {
-        if (isString(child) && children['length'] == 1) {
-            message = child as string;
-            children = null;
-        }
-    });
+    if (isString(children)) {
+        message = children as string ;
+        children = null;
+    } else {
+        React.Children.map(children, (child, i) => {
+            if (isString(child) && children['length'] == 1) {
+                message = child as string;
+                children = null;
+            }
+        });
+    }
 
     const icon = <SvgIcon iconName={iconName}
         color={(props.theme && props.theme.colorMap) ? props.theme.colorMap[props.type] : props.theme.colorMap.defaultDark}
@@ -71,7 +75,7 @@ const base = props => css`
   .up-panel-body {
     background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ; 
     background-color: #fff;
-    padding: 10px;
+    padding: 20px;
   }
   .up-panel-message {
     margin:10px;

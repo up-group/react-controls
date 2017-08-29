@@ -43,7 +43,7 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
 
     private initWithProps() 
     {
-         if(this.props.value !== undefined)
+        if(this.props.value !== undefined)
             this.state = {value:this.props.value as any};
     }
 
@@ -60,7 +60,7 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
     private checkAndDispatch = (value?:_BaseType) => {
         var _value = (value!==undefined)?value:this.state.value;
         if (this._validationManager !== undefined) {
-            var hasError = this.checkData();
+            var hasError = this.checkData(_value);
             this.dispatchOnChange(_value, null, hasError);
         } else {
             this.dispatchOnChange(_value, null, null);
@@ -85,7 +85,8 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
        var newValue = nextProps.value;
        var oldValue = this.state.value;
        if (newValue!==undefined && !this.equal(newValue, oldValue)) {
-           this.setState({ value: nextProps.value });
+            // Reset the error : if one it will be set in the checkData
+            this.setState({ value: nextProps.value, error: null }, this.checkData);
        }
     }
 
@@ -100,8 +101,8 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
         }
     }
 
-    private checkData = () => {
-        var result = this._validationManager.isValidValue(this.state.value);
+    private checkData = (value?:any) => {
+        var result = this._validationManager.isValidValue(value || this.state.value);
         if (result.hasError) {
             this.setState({ error: result.errorMessage });
         } else {

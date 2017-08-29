@@ -32,7 +32,6 @@ export default class UpNumber extends BaseControlComponent<UpNumberProps, number
     }
 
     handleNumericChange = (valueAsNumber: number, valueAsString: string) => {
-        var _value = valueAsNumber;
         //var _newState:any = {
         //    value : (this.props.decimalPlace===0)?valueAsNumber:valueAsString
         //}

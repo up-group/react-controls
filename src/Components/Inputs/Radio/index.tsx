@@ -1,5 +1,6 @@
 // Imports
 import UpRadio from './UpRadio'
+import {BaseControlProps} from '../_Common/BaseControl/BaseControl' 
 
 // Exports
 export type Position = 'left' | 'right' ;
@@ -23,7 +24,7 @@ export interface UpRadioState {
     value?:any;
 }
 
-export interface UpRadioProps {
+export interface UpRadioProps extends BaseControlProps<any> {
     options: Array<Option>;
     position?:Position;
     name:string;

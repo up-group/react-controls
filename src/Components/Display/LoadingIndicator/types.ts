@@ -1,1 +1,1 @@
-export { Props } from './';
+export { LoadingIndicatorProps } from './';

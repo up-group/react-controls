@@ -13,7 +13,9 @@ export const sizeMap = {
 };
 
 const inline = css`
-  line-height: 30px;
+  .up-label-text{
+    line-height: 30px;
+  }
   >div,
   .up-input,
   .up-input-group,

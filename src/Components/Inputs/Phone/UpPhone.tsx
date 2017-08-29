@@ -15,18 +15,26 @@ export default class UpPhone extends BaseControlComponent<UpPhoneProps, string> 
         super(p, c);
     }
 
-    registerValidations() { }
-
     getValue(event: any) {
         return event;
     }
 
+    phoneHandleChangeEvent = (event) => {
+        console.log('Phone change event') ;
+        console.log(event) ;
+        this.handleChangeEvent(event) ;
+    }   
+
     renderControl() {
         return (
-            <UpInput iconName="phone" validation={[{
-                pattern: /^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/,
-                errorMessage: "Le champ doit être un numéro de téléphone"
-            }]} value={this.props.value} onChange={this.dispatchOnChange} isRequired={this.props.isRequired} hasError={this.hasError()} showError={this.props.showError} />
+            <UpInput iconName="phone" 
+                validation={[{
+                    pattern: /^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/,
+                    errorMessage: "Le champ doit être un numéro de téléphone "
+                }]} 
+                value={this.state.value} onChange={this.phoneHandleChangeEvent} 
+                isRequired={this.props.isRequired}
+                showError={this.props.showError} />
         );
     }
 }
