@@ -60,6 +60,48 @@ interface DemoState {
 var theme: UpThemeInterface = UpDefaultTheme
 theme.colorMap.warning = "orange";
 
+
+
+export interface TestProps {
+    t:string
+}
+
+export interface TestState {
+
+}
+
+export class Test extends React.Component<TestProps, TestState>{
+
+    constructor(p, c) {
+        super(p, c);
+        this.state = {};
+        console.log("ctor",this.props.t);
+    }
+
+    render() {
+        console.log("render",this.props.t);
+        return <div>{this.props.t}</div>
+    }
+}
+
+
+
+
+export class Test2 extends React.Component<TestProps, TestState>{
+
+    constructor(p, c) {
+        super(p, c);
+        this.state = {};
+        console.log("ctor", this.props.t);
+    }
+
+    render() {
+        console.log("render", this.props.t);
+        return <div>{this.props.t}</div>
+    }
+}
+
+
 class Demo extends React.Component<undefined, DemoState> {
     constructor(props) {
         super(props);
@@ -114,15 +156,15 @@ class Demo extends React.Component<undefined, DemoState> {
             var a = [
                 {
                     head : "test",
-                    content: <div> "dazzdazd fez ffgreg re"</div>,
+                    content: <Test t="eeee"/>,
                 },
                 {
                     head: "test 2",
-                    content: <div>"dazzdezdef ghhhhhhhhhhhhhhhhhh fez ffgreg re"</div>,
+                    content: <Test2 t="aaaa" />,
                 }
             ]
 
-            return <UpNavTab tabs={a}/>
+            return <UpNavTab loadType="onLoad" tabs={a}/>
         }
 
 
