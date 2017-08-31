@@ -176,7 +176,7 @@ const ModalStyle = style({
             clear: "both"
         },
         "& .up-modal-disabler" : {
-            position:"absolute",
+            position:"fixed",
             top:0,
             left:0,
             background:"#0d0e0e",
