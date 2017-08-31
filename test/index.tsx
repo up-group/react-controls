@@ -63,7 +63,7 @@ theme.colorMap.warning = "orange";
 
 
 export interface TestProps {
-    t:string
+    t: string
 }
 
 export interface TestState {
@@ -75,11 +75,11 @@ export class Test extends React.Component<TestProps, TestState>{
     constructor(p, c) {
         super(p, c);
         this.state = {};
-        console.log("ctor",this.props.t);
+        console.log("ctor", this.props.t);
     }
 
     render() {
-        console.log("render",this.props.t);
+        console.log("render", this.props.t);
         return <div>{this.props.t}</div>
     }
 }
@@ -151,12 +151,66 @@ class Demo extends React.Component<undefined, DemoState> {
 
     public render() {
 
+        if (1 == 1) {
+            let data = [
+                { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+                { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+                { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+                { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+                { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+                { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+                { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+                { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+                { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+                { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+            ];
+            return <UpThemeProvider theme={theme}>
+                <div style={{padding:50}}>
+                    <UpDataGrid
+                    isPaginationEnabled={true}
+                    total={100}
+                    defaultTake={100}
+                    columns={
+                        [{
+                            label: 'Col 1',
+                            field: 'c1',
+                            isSortable: true,
+                            type: 'time'
+                        }, {
+                            label: 'Col 2',
+                            field: 'c2',
+                            isSortable: true
+                        }, {
+                            label: 'Col 3',
+                            field: 'c3',
+                            isSortable: true
+                        }, {
+                            label: 'Col 4',
+                            field: 'c4',
+                            isSortable: true,
+                            type: 'multilineText'
+
+                        }]
+                    }
+
+                    actions={[{
+                        type: "add",
+                        intent: "default",
+                        description: "TEStMF",
+                        action: (a) => { console.log(1, a); }
+                    }]}
+
+                    data={data} />
+                </div>
+            </UpThemeProvider>
+        }
+
 
         if (1 == 1) {
             var a = [
                 {
-                    head : "test",
-                    content: <Test t="eeee"/>,
+                    head: "test",
+                    content: <Test t="eeee" />,
                 },
                 {
                     head: "test 2",
@@ -164,35 +218,35 @@ class Demo extends React.Component<undefined, DemoState> {
                 }
             ]
 
-            return <UpNavTab loadType="onLoad" tabs={a}/>
+            return <UpNavTab loadType="onLoad" tabs={a} />
         }
 
 
 
         if (1 == 1) {
             return <UpTreeView
-                onBranchClick={(a) => { console.log(a);}}
+                onBranchClick={(a) => { console.log(a); }}
                 childMenuItems={
-                [
-                    {
+                    [
+                        {
                             text: "Lorem", id: "5", isSelected: false, isVisible: true, childMenuItems: [
-                            {
+                                {
                                     id: "1", text: "Lorem", isSelected: false, isVisible: true, childMenuItems: [
 
                                         { id: "1", text: "Lorem", isSelected: false, isVisible: false, childMenuItems: [] },
                                         { id: "12", text: "Lorem", isSelected: false, isVisible: true, childMenuItems: [] },
                                         { id: "1", text: "Lorem", isSelected: false, isVisible: true, childMenuItems: [] }
-                                ]
-                            },
-                            { id: "1", text: "Lorem sc", isSelected: false, isVisible: true, childMenuItems: [] },
-                            { id: "1", text: "Lorem", isSelected: false, isVisible: true, childMenuItems: [] }
-                        ]
-                    },
-                    { id: "1", text: "Lorem", isSelected: false, isVisible: true, childMenuItems: [] },
-                    { id: "1", text: "t", isSelected: false, isVisible: true, childMenuItems: [] },
-                    { id: "1", text: "teshtztht", isSelected: false, isVisible: true, childMenuItems: [] },
-                ]
-            } />
+                                    ]
+                                },
+                                { id: "1", text: "Lorem sc", isSelected: false, isVisible: true, childMenuItems: [] },
+                                { id: "1", text: "Lorem", isSelected: false, isVisible: true, childMenuItems: [] }
+                            ]
+                        },
+                        { id: "1", text: "Lorem", isSelected: false, isVisible: true, childMenuItems: [] },
+                        { id: "1", text: "t", isSelected: false, isVisible: true, childMenuItems: [] },
+                        { id: "1", text: "teshtztht", isSelected: false, isVisible: true, childMenuItems: [] },
+                    ]
+                } />
         }
 
         if (11 == 11) {
@@ -406,18 +460,6 @@ class Demo extends React.Component<undefined, DemoState> {
         var aa = `testy
 tesdddddddddddddddddddddt
 sfd`;
-        var data = [
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
-            { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
-        ];
 
 
         return (
@@ -426,41 +468,7 @@ sfd`;
                     <UpPanel title="Paramètres" type="warning">
                         <UpModal />
                         Mon message
-                        <UpDataGrid
-                            isPaginationEnabled={true}
-                            total={1600}
-                            defaultTake={100}
-                            columns={
-                                [{
-                                    label: 'Col 1',
-                                    field: 'c1',
-                                    isSortable: true,
-                                    type: 'time'
-                                }, {
-                                    label: 'Col 2',
-                                    field: 'c2',
-                                    isSortable: true
-                                }, {
-                                    label: 'Col 3',
-                                    field: 'c3',
-                                    isSortable: true
-                                }, {
-                                    label: 'Col 4',
-                                    field: 'c4',
-                                    isSortable: true,
-                                    type: 'multilineText'
 
-                                }]
-                            }
-
-                            actions={[{
-                                type: "add",
-                                intent: "default",
-                                description: "TEStMF",
-                                action: (a) => { console.log(1, a); }
-                            }]}
-
-                            data={data} />
 
 
                     </UpPanel>
