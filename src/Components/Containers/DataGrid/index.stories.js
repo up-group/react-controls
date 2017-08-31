@@ -11,27 +11,29 @@ import UpDataGrid, {ICellFormatter} from './UpDataGrid'
 import RowTemplate from './templates/UpDataGridRowWithStatus'
 
 var data = [
-          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
-          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
-          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
-          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
-          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
-          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
-          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
-          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
-          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
-          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
-          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
-          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
-          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
-          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
-          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
-          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
-          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
-          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
-          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
-          {'c1' : 'Value 1', 'c2' : 'Value 2', 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}}
-      ];
+          {'c1' : 'Value 1', 'c2' : false, 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : false, 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : false, 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : true, 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : true, 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : false, 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : false, 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : true, 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : true, 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : true, 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : true, 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : true, 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : true, 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : true, 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : true, 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : true, 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : true, 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : true, 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : true, 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : true, 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : true, 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+          {'c1' : 'Value 1', 'c2' : true, 'c3' : 'Value 3', 'c4' : {Libelle : 'Suivi', Couleur :'#369'}},
+    ];
 
 class SpecifiqueCellFormatter {
     format(item, column) {
@@ -67,6 +69,7 @@ storiesOf('UpDataGrid', module)
           },{
               label:'Col 2',
               field:'c2',
+              type:'boolean',
               isSortable:true
           },{
               label:'Col 3',

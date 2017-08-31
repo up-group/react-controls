@@ -101,11 +101,8 @@ export default class UpDefaultCellFormatter implements ICellFormatter {
     }
 }
 
-
-
-
 export interface UpCellFormatterProps {
-    collum: Column;
+    column: Column;
     item: Row;
 }
 
@@ -119,18 +116,17 @@ export class UpCellFormatter extends React.Component<UpCellFormatterProps, {}>{
         this.state = {};
     }
 
-
     render() {
-        var valueExtracted = this.props.item.value[this.props.collum.field];
-        if (this.props.collum.formatter != null) {
-            return this.props.collum.formatter.format(this.props.item.value, this.props.collum);
+        var valueExtracted = this.props.item.value[this.props.column.field];
+        if (this.props.column.formatter != null) {
+            return this.props.column.formatter.format(this.props.item.value, this.props.column);
         }
 
         if (valueExtracted == null) {
             return <span>{this.props.children}</span>
         }
 
-        switch (this.props.collum.type) {
+        switch (this.props.column.type) {
             case 'link':
                 if (!isEmpty(valueExtracted)) {
                     var href = valueExtracted;
@@ -160,52 +156,33 @@ export class UpCellFormatter extends React.Component<UpCellFormatterProps, {}>{
             case "multilineText":
                 return <span style={{ "whiteSpace": "pre" }}>{valueExtracted}</span>
             case "boolean":
-                //return <span>{valueExtracted == null ? "" : valueExtracted == true ? "Oui" : "Non"}</span>;
                 switch (valueExtracted) {
                     case true:
-                        return <span style={{ color: "green" }}>Oui</span>
+                        return <UpBadge text={"Oui"} color={"green"} />
                     case false:
-                        return <span style={{ color: "red" }}>Non</span>
+                        return <UpBadge text={"Non"} color={"red"} />
                     default:
                         return <span />
                 }
-
-            // var _format = c.format;
-            // if (_format) {
-            //     try {
-            //         var _data = eval("self.item." + field);
-            //         result = new moment(_data).format(_format);
-            //     } catch (exception) {
-            //         console.log(exception)
-            //     }
-            // } else {
-            //     result = eval("self.item." + field);
-            // }
             default:
-
-
+                if (valueExtracted != undefined) {
+                   // On regarde s'il est défini une couleur
+                   var _couleur = undefined;
+                   if (typeof (valueExtracted['Couleur']) != 'undefined')
+                       _couleur = valueExtracted['Couleur'];
+    
+                   if (_couleur != null) {
+                       var _libelle = '';
+                       if (typeof (valueExtracted['Libelle']) != 'undefined')
+                           _libelle = valueExtracted['Libelle'];
+    
+                       if (_libelle == undefined) {
+                           _libelle = '';
+                       }
+                       return <UpBadge text={_libelle} color={_couleur} />;
+                   }
+                }
                 return <span>{valueExtracted == null ? "" : valueExtracted}</span>
-            //if (valueExtracted != undefined) {
-            //    // On regarde s'il est défini une couleur
-            //    var _couleur = undefined;
-            //    if (typeof (valueExtracted['Couleur']) != 'undefined')
-            //        _couleur = valueExtracted['Couleur'];
-
-            //    if (_couleur == undefined) {
-            //        return valueExtracted;
-            //    } else {
-            //        var _libelle = '';
-            //        if (typeof (valueExtracted['Libelle']) != 'undefined')
-            //            _libelle = valueExtracted['Libelle'];
-
-            //        if (_libelle == undefined) {
-            //            _libelle = '';
-            //        }
-            //        return <UpBadge text={_libelle} color={_couleur} />;
-            //    }
-            //} else {
-            //    return "";
-            //}
         }
 
         return <div></div>

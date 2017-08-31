@@ -23,7 +23,8 @@ import {
     UpSelect,
     UpDataGrid,
     UpTreeView,
-    UpNavTab
+    UpNavTab,
+    UpLoadingIndicatorZone
 } from "../src/index";
 
 import Timeline from "../src/Components/Display/TimeLine/index"
@@ -165,42 +166,46 @@ class Demo extends React.Component<undefined, DemoState> {
                 { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
             ];
             return <UpThemeProvider theme={theme}>
-                <div style={{padding:50}}>
-                    <UpDataGrid
-                    isPaginationEnabled={true}
-                    total={100}
-                    defaultTake={100}
-                    columns={
-                        [{
-                            label: 'Col 1',
-                            field: 'c1',
-                            isSortable: true,
-                            type: 'time'
-                        }, {
-                            label: 'Col 2',
-                            field: 'c2',
-                            isSortable: true
-                        }, {
-                            label: 'Col 3',
-                            field: 'c3',
-                            isSortable: true
-                        }, {
-                            label: 'Col 4',
-                            field: 'c4',
-                            isSortable: true,
-                            type: 'multilineText'
+                <div style={{ padding: 50 }}>
 
-                        }]
-                    }
+                    <UpLoadingIndicatorZone isLoading={true}>
 
-                    actions={[{
-                        type: "add",
-                        intent: "default",
-                        description: "TEStMF",
-                        action: (a) => { console.log(1, a); }
-                    }]}
+                        <UpDataGrid
+                            isPaginationEnabled={true}
+                            total={100}
+                            defaultTake={100}
+                            columns={
+                                [{
+                                    label: 'Col 1',
+                                    field: 'c1',
+                                    isSortable: true,
+                                    type: 'time'
+                                }, {
+                                    label: 'Col 2',
+                                    field: 'c2',
+                                    isSortable: true
+                                }, {
+                                    label: 'Col 3',
+                                    field: 'c3',
+                                    isSortable: true
+                                }, {
+                                    label: 'Col 4',
+                                    field: 'c4',
+                                    isSortable: true,
+                                    type: 'multilineText'
 
-                    data={data} />
+                                }]
+                            }
+
+                            actions={[{
+                                type: "add",
+                                intent: "default",
+                                description: "TEStMF",
+                                action: (a) => { console.log(1, a); }
+                            }]}
+
+                            data={data} />
+                    </UpLoadingIndicatorZone>
                 </div>
             </UpThemeProvider>
         }
