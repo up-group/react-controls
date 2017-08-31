@@ -205,7 +205,7 @@ class Demo extends React.Component<undefined, DemoState> {
                             }]}
 
                             data={data} />
-                    </LoadingIndicatorZone>
+                    </UpLoadingIndicatorZone>
                 </div>
             </UpThemeProvider>
         }

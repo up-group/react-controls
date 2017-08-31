@@ -11,7 +11,7 @@ export interface UpLoadingIndicatorZoneState {
 }
 
 export default class UpLoadingIndicatorZone extends React.Component<UpLoadingIndicatorZoneProps, UpLoadingIndicatorZoneState>{
-    public static defaultProps: LoadingIndicatorZoneProps = {
+    public static defaultProps: UpLoadingIndicatorZoneProps = {
         isLoading: false
     };
     constructor(p, c) {
