@@ -217,61 +217,76 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
 
         const takes = this.props.takes;
 
-        if (pages.length <= 15) {
-            var PageNumber = pages.map((value, index) => {
-                return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemStyle)} onClick={this.goTo.bind(this, value)}>
-                    <a onClick={(e) => e.preventDefault()} href="#">{value}</a>
-                </li>
-            })
-        } else {
-            var PageNumber = pages.map((value, index, array) => {
-                if (value < 4 || array.length - 3 < value) {
+      
+
+
+
+        var pageNumberNavigation = <span />
+
+        if (pages.length >= 2) {
+
+
+            var PageNumber: any = <span />
+
+            if (pages.length <= 15) {
+                PageNumber = pages.map((value, index) => {
                     return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemStyle)} onClick={this.goTo.bind(this, value)}>
                         <a onClick={(e) => e.preventDefault()} href="#">{value}</a>
                     </li>
-                } else if (this.inRange(this.state.page, value, 4)) {
-                    return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemStyle)} onClick={this.goTo.bind(this, value)}>
-                        <a onClick={(e) => e.preventDefault()} href="#">{value}</a>
+                })
+            } else {
+                PageNumber = pages.map((value, index, array) => {
+                    if (value < 4 || array.length - 3 < value) {
+                        return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemStyle)} onClick={this.goTo.bind(this, value)}>
+                            <a onClick={(e) => e.preventDefault()} href="#">{value}</a>
+                        </li>
+                    } else if (this.inRange(this.state.page, value, 4)) {
+                        return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemStyle)} onClick={this.goTo.bind(this, value)}>
+                            <a onClick={(e) => e.preventDefault()} href="#">{value}</a>
+                        </li>
+                    } else if (this.state.page < 8 && this.inRange(7, value, 5)) {
+                        return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemStyle)} onClick={this.goTo.bind(this, value)}>
+                            <a onClick={(e) => e.preventDefault()} href="#">{value}</a>
+                        </li>
+                    } else if (array.length - this.state.page < 8 && this.inRange(array.length - 6, value, 5)) {
+                        return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemStyle)} onClick={this.goTo.bind(this, value)}>
+                            <a onClick={(e) => e.preventDefault()} href="#">{value}</a>
+                        </li>
+                    } else if (value === 4 || array.length - 3 === value) {
+                        return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemStyle)} >
+                            <a onClick={(e) => e.preventDefault()} href="#">..</a>
+                        </li>
+                    } else {
+                        return null;
+                    }
+                }).filter((value) => {
+                    return value !== null;
+                });
+            }
+
+            var pageNumberNavigation = <nav>
+                <ul className={paginationStyle}>
+                    <li key={`page-prev`} className={classname(this.state.page == 1 ? "disabled" : "", paginationItemStyle)} onClick={this.goToPreviousPage}>
+                        <a onClick={(e) => e.preventDefault()} href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
                     </li>
-                } else if (this.state.page < 8 && this.inRange(7, value, 5)) {
-                    return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemStyle)} onClick={this.goTo.bind(this, value)}>
-                        <a onClick={(e) => e.preventDefault()} href="#">{value}</a>
+                    {PageNumber}
+                    <li key={`page-next`} className={classname(this.state.page == maxPage ? "disabled" : "", paginationItemStyle)} onClick={this.goToNextPage}>
+                        <a href="#" aria-label="Next" onClick={(e) => e.preventDefault()}>
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
                     </li>
-                } else if (array.length - this.state.page < 8 && this.inRange(array.length - 6, value, 5)) {
-                    return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemStyle)} onClick={this.goTo.bind(this, value)}>
-                        <a onClick={(e) => e.preventDefault()} href="#">{value}</a>
-                    </li>
-                } else if (value === 4 || array.length - 3 === value) {
-                    return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemStyle)} >
-                        <a onClick={(e) => e.preventDefault()} href="#">..</a>
-                    </li>
-                } else {
-                    return null;
-                }
-            }).filter((value) => {
-                return value !== null;
-            });
+                </ul>
+            </nav>
+
         }
 
         return (
             <UpGrid>
                 <UpRow>
                     <UpCol span={16}>
-                        <nav>
-                            <ul className={paginationStyle}>
-                                <li key={`page-prev`} className={classname(this.state.page == 1 ? "disabled" : "", paginationItemStyle)} onClick={this.goToPreviousPage}>
-                                    <a onClick={(e) => e.preventDefault()} href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                {PageNumber}
-                                <li key={`page-next`} className={classname(this.state.page == maxPage ? "disabled" : "", paginationItemStyle)} onClick={this.goToNextPage}>
-                                    <a href="#" aria-label="Next" onClick={(e) => e.preventDefault()}>
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+                        {pageNumberNavigation}
                     </UpCol>
                     <UpCol span={3}>
                         <UpSelect placeholder={this.props.nbByPageMessage} width={"small"} default={{ id: this.props.defaultTake, text: this.props.defaultTake }} data={takes} onChange={this.onTakeChange} />

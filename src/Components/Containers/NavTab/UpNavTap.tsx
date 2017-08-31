@@ -5,8 +5,12 @@ export interface Tab {
     content: JSX.Element;
 }
 
+
+export type LoadType = "onShow" | "onLoad";
+
 export interface UpNavTabProps {
-    tabs: Tab[]
+    tabs: Tab[],
+    loadType?: LoadType
 }
 
 export interface UpNavTabState {
@@ -14,6 +18,10 @@ export interface UpNavTabState {
 }
 
 export default class UpNavTab extends React.Component<UpNavTabProps, UpNavTabState>{
+    public static defaultProps: UpNavTabProps = {
+        loadType: "onLoad",
+        tabs: []
+    };
 
     constructor(p, c) {
         super(p, c);
@@ -23,12 +31,28 @@ export default class UpNavTab extends React.Component<UpNavTabProps, UpNavTabSta
     }
 
     render() {
-        var contents = this.props.tabs.filter((v, i) => { return i === this.state.selectedTabKey })
-        var content = contents.length != 0 ? contents[0].content : null;
-        return <div>
-            <TabHeads selectTabKey={this.selectTabKey} heads={this.props.tabs} selectedTabKey={this.state.selectedTabKey} />
-            {content}
-        </div>
+
+        if (this.props.loadType === "onShow") {
+            var contents = this.props.tabs.filter((v, i) => { return i === this.state.selectedTabKey })
+            var content = contents.length != 0 ? contents[0].content : null;
+            return <div>
+                <TabHeads selectTabKey={this.selectTabKey} heads={this.props.tabs} selectedTabKey={this.state.selectedTabKey} />
+                {content}
+            </div>
+
+        }
+        else if (this.props.loadType === "onLoad") {
+            var a = this.props.tabs.map((v, i) => {
+                <div key={i} style={{ display: i === this.state.selectedTabKey ? "" : "none" }}>{v}</div>
+            })
+            return <div>
+                <TabHeads selectTabKey={this.selectTabKey} heads={this.props.tabs} selectedTabKey={this.state.selectedTabKey} />
+                <TabContents loadType={this.props.loadType} selectedTabKey={this.state.selectedTabKey} contents={this.props.tabs} />
+            </div>
+
+        }
+
+
     }
 
     selectTabKey = (tabKey: number) => {
@@ -36,11 +60,69 @@ export default class UpNavTab extends React.Component<UpNavTabProps, UpNavTabSta
     }
 }
 
+export interface TabContentsProps {
+    contents: Tab[];
+    selectedTabKey: number;
+    loadType: LoadType
+
+}
+
+export interface TabContentsState {
+
+}
+
+export class TabContents extends React.Component<TabContentsProps, TabContentsState>{
+
+    constructor(p, c) {
+        super(p, c);
+        this.state = {};
+    }
+
+    render() {
+        var contents = this.props.contents.map((v, i) => { return <TAbContent loadType={this.props.loadType} selectedTabKey={this.props.selectedTabKey} tab={v} key={i} tabKey={i} /> });
+
+        return <div>
+            {contents}
+        </div>
+    }
+}
+
+export interface TabContentProps {
+    tab: Tab;
+    tabKey: number;
+    selectedTabKey: number;
+    loadType: LoadType
+}
+
+export interface TabContentState {
+
+}
+
+export class TAbContent extends React.Component<TabContentProps, TabContentState>{
+
+    constructor(p, c) {
+        super(p, c);
+        this.state = {};
+    }
+
+    render() {
+        var style: any = {};
+
+        if (this.props.selectedTabKey != this.props.tabKey) {
+            style.display = "none"
+        }
+
+        return <div style={style}>{this.props.tab.content}</div>
+    }
+}
+
+
+
+
 export interface TabHeadsProps {
     heads: Tab[];
     selectedTabKey: number;
     selectTabKey: (tabkey: number) => void;
-
 }
 
 export interface TabHeadsState {
