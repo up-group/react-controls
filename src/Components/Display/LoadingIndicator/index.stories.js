@@ -50,7 +50,7 @@ storiesOf('UpLoadingIndicator', module)
  () => (
   <UpThemeProvider theme={UpDefaultTheme}>
     <div style={styles.main}>
-      <UpLoadingIndicator isLoading={true} displayMode={"modal"} message="Chargement en cours"></UpLoadingIndicator>
+        <UpLoadingIndicator isLoading={true} displayMode={"modal"} message="Chargement en cours"></UpLoadingIndicator>
         <h1>Welcome to STORYBOOK</h1>
         <p>
           This is a UI component dev environment for your app.

@@ -1,14 +1,12 @@
 import * as React from "react"
 
-
-export interface tab {
+export interface Tab {
     head: string | JSX.Element;
     content: JSX.Element;
 }
 
-
 export interface UpNavTabProps {
-    tabs: tab[]
+    tabs: Tab[]
 }
 
 export interface UpNavTabState {
@@ -38,11 +36,8 @@ export default class UpNavTab extends React.Component<UpNavTabProps, UpNavTabSta
     }
 }
 
-
-
-
 export interface TabHeadsProps {
-    heads: tab[];
+    heads: Tab[];
     selectedTabKey: number;
     selectTabKey: (tabkey: number) => void;
 
@@ -68,11 +63,8 @@ export class TabHeads extends React.Component<TabHeadsProps, TabHeadsState>{
     }
 }
 
-
-
-
 export interface TabHeadProps {
-    tab: tab;
+    tab: Tab;
     tabKey: number;
     selectedTabKey: number;
     selectTabKey: (tabkey: number) => void;
