@@ -2,15 +2,15 @@
 import * as React from "react"
 import LoadingIndicator from "../LoadingIndicator/index"
 
-export interface LoadingIndicatorZoneProps {
+export interface UpLoadingIndicatorZoneProps {
     isLoading: boolean;
 }
 
-export interface LoadingIndicatorZoneState {
+export interface UpLoadingIndicatorZoneState {
 
 }
 
-export default class LoadingIndicatorZone extends React.Component<LoadingIndicatorZoneProps, LoadingIndicatorZoneState>{
+export default class UpLoadingIndicatorZone extends React.Component<UpLoadingIndicatorZoneProps, UpLoadingIndicatorZoneState>{
     public static defaultProps: LoadingIndicatorZoneProps = {
         isLoading: false
     };

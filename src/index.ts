@@ -29,7 +29,7 @@ import UpLogoAlerte from './Components/Display/LogoAlerte/UpLogoAlerte'
 import UpCalendarWeekDay from './Components/Display/CalendarWeekDay/UpCalendarWeekDay'
 import UpMenu from './Components/Display/Menu/UpMenu'
 import UpTreeView from './Components/Display/TreeView/UpTreeView'
-import LoadingIndicatorZone from './Components/Display/LoadingIndicatorZone/index'
+import UpLoadingIndicatorZone from './Components/Display/UpLoadingIndicatorZone/index'
 
 
 
@@ -104,5 +104,5 @@ export {
     UpMenu,
     UpTreeView,
     UpNavTab,
-    LoadingIndicatorZone
+    UpLoadingIndicatorZone
 };

@@ -1,5 +1,5 @@
 
-import LoadingIndicatorZone from "./LoadingIndicatorZone"
-export default LoadingIndicatorZone
+import UpLoadingIndicatorZone from "./UpLoadingIndicatorZone"
+export default UpLoadingIndicatorZone
 
 
