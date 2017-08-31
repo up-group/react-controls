@@ -24,7 +24,7 @@ import {
     UpDataGrid,
     UpTreeView,
     UpNavTab,
-    UpLoadingIndicatorZone
+    UpLoadingIndicator
 } from "../src/index";
 
 import Timeline from "../src/Components/Display/TimeLine/index"
@@ -168,7 +168,7 @@ class Demo extends React.Component<undefined, DemoState> {
             return <UpThemeProvider theme={theme}>
                 <div style={{ padding: 50 }}>
 
-                    <UpLoadingIndicatorZone isLoading={true}>
+                    <UpLoadingIndicator displayMode="zone" isLoading={true}>
 
                         <UpDataGrid
                             isPaginationEnabled={true}
@@ -205,7 +205,7 @@ class Demo extends React.Component<undefined, DemoState> {
                             }]}
 
                             data={data} />
-                    </UpLoadingIndicatorZone>
+                    </UpLoadingIndicator>
                 </div>
             </UpThemeProvider>
         }
