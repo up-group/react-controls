@@ -139,7 +139,9 @@ export class TabHeads extends React.Component<TabHeadsProps, TabHeadsState>{
     render() {
         var heads = this.props.heads.map((v, i) => { return <TabHead selectTabKey={this.props.selectTabKey} tab={v} key={i} tabKey={i} selectedTabKey={this.props.selectedTabKey} /> });
 
-        return <div style={{ display: "flex", borderBottom: "1px solid #ddd" }}>
+        var headsStyle: React.CSSProperties = { marginBotom: 10, display: "flex", borderBottom: "1px solid #ddd" }
+
+        return <div style={headsStyle}>
             {heads}
         </div>
     }
