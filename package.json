@@ -119,7 +119,6 @@
     "inputmask-core": "^2.2.0",
     "interact.js": "^1.2.8",
     "jquery": "^3.2.1",
-    "node-sass": "^4.5.3",
     "normalize.css": "^4.1.1",
     "object-assign": "^4.1.1",
     "react": "^15.6.1",
