@@ -70,7 +70,8 @@ const base = props => css`
   .up-panel-header {
     width:100%;
     padding: 8px;
-    font-weight:"700"
+    font-weight:700;
+    color:white;
   }
   .up-panel-body {
     background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ; 

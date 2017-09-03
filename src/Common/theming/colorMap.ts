@@ -27,7 +27,7 @@ const colorMap: ThemeColorMap = {
   light2: '#D6DBB2',
   light3: '#6D72C3',
 
-  primary: '#108ee9',
+  primary: '#337ab7',
   primaryDark: '#007acc',
   primaryLight: '#49a9ee',
 
