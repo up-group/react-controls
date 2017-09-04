@@ -58,12 +58,13 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
     abstract renderControl(): JSX.Element;
 
     private checkAndDispatch = (value?:_BaseType) => {
-        var _value = (value!==undefined)?value:this.state.value;
+        var _value = (value !== undefined) ? value : this.state.value;
+        var cleanData = this.getValue(_value);
         if (this._validationManager !== undefined) {
-            var hasError = this.checkData(_value);
-            this.dispatchOnChange(_value, null, hasError);
+            var hasError = this.checkData(cleanData);
+            this.dispatchOnChange(cleanData, null, hasError);
         } else {
-            this.dispatchOnChange(_value, null, null);
+            this.dispatchOnChange(cleanData, null, null);
         }
     }
 
