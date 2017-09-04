@@ -153,106 +153,145 @@ class Demo extends React.Component<undefined, DemoState> {
     public render() {
 
         if (1 == 1) {
-            let data = [
-                { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
-                { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
-                { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
-                { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
-                { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
-                { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
-                { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
-                { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
-                { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
-                { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
-            ];
-            return <UpThemeProvider theme={theme}>
-                <div style={{ padding: 50 }}>
 
-                    <UpLoadingIndicator displayMode="zone" isLoading={true}>
+            var enti = {
+                id: "id",
+                name: "Inventaire",
+                text: "{name}",
+                query: "https://jsonplaceholder.typicode.com/users",//"http://localhost:9510/api/domain/Inventaire/IInventaireSearchQuery",
+                queryParameterName: "args"
+            };
 
-                        <UpDataGrid
-                            isPaginationEnabled={true}
-                            total={100}
-                            defaultTake={100}
-                            columns={
-                                [{
-                                    label: 'Col 1',
-                                    field: 'c1',
-                                    isSortable: true,
-                                    type: 'time'
-                                }, {
-                                    label: 'Col 2',
-                                    field: 'c2',
-                                    isSortable: true
-                                }, {
-                                    label: 'Col 3',
-                                    field: 'c3',
-                                    isSortable: true
-                                }, {
-                                    label: 'Col 4',
-                                    field: 'c4',
-                                    isSortable: true,
-                                    type: 'multilineText'
+            return <div> <UpSelect
+                default={null}
+                isRequired={false}
+                multiple={false}
+                value={this.state.user}
+                onChange={this.onChangeUser}
+                placeholder="Recherche"
+                allowClear={false}
+                dataSource={enti}
+                // disabled={true},
+                returnType="keyId"
+            />
 
-                                }]
-                            }
 
-                            actions={[{
-                                type: "add",
-                                intent: "default",
-                                description: "TEStMF",
-                                action: (a) => { console.log(1, a); }
-                            }]}
-
-                            data={data} />
-                    </UpLoadingIndicator>
-                </div>
-            </UpThemeProvider>
+                 <UpSelect
+                    default={null}
+                    isRequired={false}
+                    multiple={false}
+                    value={this.state.user}
+                    onChange={this.onChangeUser}
+                    placeholder="Recherche"
+                    allowClear={false}
+                    dataSource={enti}
+                    // disabled={true},
+                    returnType="full"
+                />
+            </div>
         }
 
+        //if (1 == 1) {
+        //    let data = [
+        //        { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+        //        { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+        //        { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+        //        { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+        //        { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+        //        { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+        //        { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+        //        { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+        //        { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+        //        { 'c1': new Date(), 'c2': 'Value 2', 'c3': 'Value 3', c4: aa },
+        //    ];
+        //    return <UpThemeProvider theme={theme}>
+        //        <div style={{ padding: 50 }}>
 
-        if (1 == 1) {
-            var a = [
-                {
-                    head: "test",
-                    content: <Test t="eeee" />,
-                },
-                {
-                    head: "test 2",
-                    content: <Test2 t="aaaa" />,
-                }
-            ]
+        //            <UpLoadingIndicator displayMode="zone" isLoading={true}>
 
-            return <UpNavTab loadType="onLoad" tabs={a} />
-        }
+        //                <UpDataGrid
+        //                    isPaginationEnabled={true}
+        //                    total={100}
+        //                    defaultTake={100}
+        //                    columns={
+        //                        [{
+        //                            label: 'Col 1',
+        //                            field: 'c1',
+        //                            isSortable: true,
+        //                            type: 'time'
+        //                        }, {
+        //                            label: 'Col 2',
+        //                            field: 'c2',
+        //                            isSortable: true
+        //                        }, {
+        //                            label: 'Col 3',
+        //                            field: 'c3',
+        //                            isSortable: true
+        //                        }, {
+        //                            label: 'Col 4',
+        //                            field: 'c4',
+        //                            isSortable: true,
+        //                            type: 'multilineText'
+
+        //                        }]
+        //                    }
+
+        //                    actions={[{
+        //                        type: "add",
+        //                        intent: "default",
+        //                        description: "TEStMF",
+        //                        action: (a) => { console.log(1, a); }
+        //                    }]}
+
+        //                    data={data} />
+        //            </UpLoadingIndicator>
+        //        </div>
+        //    </UpThemeProvider>
+        //}
+
+
+        //if (1 == 1) {
+        //    var a = [
+        //        {
+        //            head: "test",
+        //            content: <Test t="eeee" />,
+        //        },
+        //        {
+        //            head: "test 2",
+        //            content: <Test2 t="aaaa" />,
+        //        }
+        //    ]
+
+        //    return <UpNavTab loadType="onLoad" tabs={a} />
+        //}
 
 
 
-        if (1 == 1) {
-            return <UpTreeView
-                onBranchClick={(a) => { console.log(a); }}
-                childMenuItems={
-                    [
-                        {
-                            text: "Lorem", id: "5", isSelected: false, isVisible: true, childMenuItems: [
-                                {
-                                    id: "1", text: "Lorem", isSelected: false, isVisible: true, childMenuItems: [
+        //if (1 == 1) {
+        //    return <UpTreeView
+        //        onBranchClick={(a) => { console.log(a); }}
+        //        childMenuItems={
+        //            [
+        //                {
+        //                    text: "Lorem", id: "5", isSelected: false, isVisible: true, childMenuItems: [
+        //                        {
+        //                            id: "1", text: "Lorem", isSelected: false, isVisible: true, childMenuItems: [
 
-                                        { id: "1", text: "Lorem", isSelected: false, isVisible: false, childMenuItems: [] },
-                                        { id: "12", text: "Lorem", isSelected: false, isVisible: true, childMenuItems: [] },
-                                        { id: "1", text: "Lorem", isSelected: false, isVisible: true, childMenuItems: [] }
-                                    ]
-                                },
-                                { id: "1", text: "Lorem sc", isSelected: false, isVisible: true, childMenuItems: [] },
-                                { id: "1", text: "Lorem", isSelected: false, isVisible: true, childMenuItems: [] }
-                            ]
-                        },
-                        { id: "1", text: "Lorem", isSelected: false, isVisible: true, childMenuItems: [] },
-                        { id: "1", text: "t", isSelected: false, isVisible: true, childMenuItems: [] },
-                        { id: "1", text: "teshtztht", isSelected: false, isVisible: true, childMenuItems: [] },
-                    ]
-                } />
-        }
+        //                                { id: "1", text: "Lorem", isSelected: false, isVisible: false, childMenuItems: [] },
+        //                                { id: "12", text: "Lorem", isSelected: false, isVisible: true, childMenuItems: [] },
+        //                                { id: "1", text: "Lorem", isSelected: false, isVisible: true, childMenuItems: [] }
+        //                            ]
+        //                        },
+        //                        { id: "1", text: "Lorem sc", isSelected: false, isVisible: true, childMenuItems: [] },
+        //                        { id: "1", text: "Lorem", isSelected: false, isVisible: true, childMenuItems: [] }
+        //                    ]
+        //                },
+        //                { id: "1", text: "Lorem", isSelected: false, isVisible: true, childMenuItems: [] },
+        //                { id: "1", text: "t", isSelected: false, isVisible: true, childMenuItems: [] },
+        //                { id: "1", text: "teshtztht", isSelected: false, isVisible: true, childMenuItems: [] },
+        //            ]
+        //        } />
+        //}
 
         if (11 == 11) {
 
@@ -429,13 +468,6 @@ class Demo extends React.Component<undefined, DemoState> {
             </UpThemeProvider>
         }
 
-        var enti = {
-            id: "id",
-            name: "Inventaire",
-            text: "{name}",
-            query: "https://jsonplaceholder.typicode.com/users",//"http://localhost:9510/api/domain/Inventaire/IInventaireSearchQuery",
-            queryParameterName: "args"
-        };
         //"enumNames": ["choix1", "choix2", "choix3"],
         //      "enumDescriptions": ["Premier choix", "Second choix", "Troisieme choix"],
         //      "type": "integer",
@@ -586,6 +618,7 @@ sfd`;
         });
     }
     onChangeUser = (newValue) => {
+        console.log(newValue);
         this.setState({
             user: newValue
         });
