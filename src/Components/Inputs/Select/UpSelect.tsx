@@ -70,7 +70,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             if (this.props.multiple) {
                 return data;// return data.map((v) => { return v[this.keyId] != null ? v[this.keyId] : v });
             } else {
-                return data[this.keyId];
+                return data[this.keyId] != null ? data[this.keyId] : null;
             }
         } else {
             return data;
@@ -124,7 +124,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     filterOptions = (options, filter, currentValues) => {
         var _options = [];
         var _self = this;
-        options.map((value)=> {
+        options.map((value) => {
             if (_self.format(value, this.keyText).toLowerCase().indexOf(filter.toLowerCase()) >= 0) {
                 // check if the option is selected
                 var isInValues: boolean = false;
