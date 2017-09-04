@@ -1,5 +1,5 @@
-import { configure, setAddon } from '@storybook/react';
-import infoAddon, {setDefaults} from '@storybook/addon-info';
+import { configure, setAddon } from '@storybook/react'
+import infoAddon, {setDefaults} from '@storybook/addon-info'
 
 // addon-info
 setDefaults({

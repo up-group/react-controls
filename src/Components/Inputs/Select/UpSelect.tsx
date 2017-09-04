@@ -66,6 +66,9 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     }
 
     getValue(data: any) {
+        if (data == null) {
+            return null;
+        }
         if (this.props.returnType == "keyId") {
             if (this.props.multiple) {
                 return data;// return data.map((v) => { return v[this.keyId] != null ? v[this.keyId] : v });
