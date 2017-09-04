@@ -6,8 +6,8 @@ import ErrorDisplay from "../Validation/ErrorDisplay"
 import "../../../../Common/theming/base.css"
 import UpTooltip, { Tooltip } from '../../../Display/Tooltip'
 import TypeNullControl from "../Validation/TypeNullControl"
-import {ThemedProps} from '../../../../Common/theming/types'
-import {isString} from '../../../../Common/utils'
+import { ThemedProps } from '../../../../Common/theming/types'
+import { isString } from '../../../../Common/utils'
 
 // Exports
 const ONCHANGE_MUST_BE_SPECIFIED = "La méthode onChange doit être spécifié dans le cas où la valeur du composant est défini dans les props";
@@ -26,7 +26,7 @@ export interface BaseControlProps<_BaseType> extends ThemedProps {
 export interface BaseControlState<_BaseType> {
     error?: string;
     value?: _BaseType;
-    extra?:any;
+    extra?: any;
 }
 
 export abstract class BaseControlComponent<_Props, _BaseType> extends React.Component<BaseControlProps<_BaseType> & _Props, BaseControlState<_BaseType>> {
@@ -41,10 +41,9 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
         this.registerValidations();
     }
 
-    private initWithProps() 
-    {
-        if(this.props.value !== undefined)
-            this.state = {value:this.props.value as any};
+    private initWithProps() {
+        if (this.props.value !== undefined)
+            this.state = { value: this.props.value as any };
     }
 
     protected registerValidations() {
@@ -57,14 +56,14 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
     abstract getValue(args: any): _BaseType;
     abstract renderControl(): JSX.Element;
 
-    private checkAndDispatch = (value?:_BaseType) => {
+    private checkAndDispatch = (value?: any) => {
         var _value = (value !== undefined) ? value : this.state.value;
-        var cleanData = this.getValue(_value);
+        var cleanData: _BaseType = this.getValue(_value);
         if (this._validationManager !== undefined) {
             var hasError = this.checkData(cleanData);
-            this.dispatchOnChange(cleanData, null, hasError);
+            this.setState({ value: cleanData }, () => { this.dispatchOnChange(cleanData, null, hasError) });
         } else {
-            this.dispatchOnChange(cleanData, null, null);
+            this.setState({ value: cleanData }, () => { this.dispatchOnChange(cleanData, null, null); });
         }
     }
 
@@ -75,34 +74,29 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
             return v1 !== v1 && v2 !== v2;
         }
     }
-    
+
     validateProps(nextProps) {
-        if (nextProps.value!==undefined && nextProps.onChange===undefined) {
+        if (nextProps.value !== undefined && nextProps.onChange === undefined) {
             throw new Error(ONCHANGE_MUST_BE_SPECIFIED);
         }
     }
 
     public componentWillReceiveProps(nextProps) {
-       var newValue = nextProps.value;
-       var oldValue = this.state.value;
-       if (newValue!==undefined && !this.equal(newValue, oldValue)) {
+        var newValue = nextProps.value;
+        var oldValue = this.state.value;
+        if (newValue !== undefined && !this.equal(newValue, oldValue)) {
             // Reset the error : if one it will be set in the checkData
             this.setState({ value: nextProps.value, error: null }, this.checkData);
-       }
-    }
-
-    public handleChangeEvent = (event) => {
-        var cleanData = this.getValue(event);
-        var propsValue = this.props.value;
-        if(propsValue !== undefined) {
-            this.checkAndDispatch(cleanData)
-        } else {
-            // Reset the error : if one it will be set in the checkAndDispatch
-            this.setState({ value: cleanData, error: null }, this.checkAndDispatch);
         }
     }
 
-    private checkData = (value?:any) => {
+    public handleChangeEvent = (event) => {
+
+        this.checkAndDispatch(event)
+
+    }
+
+    private checkData = (value?: any) => {
         var result = this._validationManager.isValidValue(value || this.state.value);
         if (result.hasError) {
             this.setState({ error: result.errorMessage });
@@ -134,7 +128,7 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
                 <UpTooltip {..._tooltip}>
                     {this.renderControl()}
                 </UpTooltip>}
-            </ErrorDisplay>
+        </ErrorDisplay>
         );
     }
 
