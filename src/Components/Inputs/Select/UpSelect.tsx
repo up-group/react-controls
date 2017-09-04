@@ -31,7 +31,8 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         this.state = {
             value: (p.value) ? p.value : p.default,
             extra: {
-                loadingPlaceholder: p.loadingPlaceholder
+                loadingPlaceholder: p.loadingPlaceholder,
+                fullObject: (p.value) ? p.value : p.default,
             }
         };
     }
@@ -66,12 +67,17 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     }
 
     getValue(data: any) {
+        var extra = this.state.extra;
+        extra.fullObject = data;
+        this.setState({ extra: extra });
+
         if (data == null) {
             return null;
         }
+
         if (this.props.returnType == "keyId") {
             if (this.props.multiple) {
-                return data;// return data.map((v) => { return v[this.keyId] != null ? v[this.keyId] : v });
+                return data.map((v) => { return v[this.keyId] != null ? v[this.keyId] : v });
             } else {
                 return data[this.keyId] != null ? data[this.keyId] : null;
             }
@@ -192,7 +198,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                     {...specProps}
                     placeholder={this.props.placeholder}
                     filterOptions={dataSource !== undefined ? this.filterOptions : undefined}
-                    value={this.state.value}
+                    value={this.state.extra.fullObject}
                     autoBlur={false}
                     valueKey={this.props.valueKey || "id"}
                     labelKey={this.props.labelKey || "text"}
