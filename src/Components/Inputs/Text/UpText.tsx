@@ -27,6 +27,6 @@ export default class UpText extends BaseControlComponent<UpTextProps, string> {
     }
 
     getValue(event: any) {
-        return event.target.value;
+        return (event != null) ? event.target.value : null ;
     }
 }
