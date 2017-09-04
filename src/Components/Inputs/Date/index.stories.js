@@ -17,11 +17,15 @@ storiesOf('UpDate', module)
   .addWithInfo('Simple usage', 'Utilisation simple',
    () => (
     <UpThemeProvider theme={UpDefaultTheme}>
-        <UpDate onChange={(value, event) => {console.log(event);console.log(value)}} />
+        <div style={{margin:"30px"}}>
+            <UpDate onChange={(value, event) => {console.log(event);console.log(value)}} />
+        </div>
     </UpThemeProvider>
   )).addWithInfo('Date requise', 'La date est requise',
   () => (
    <UpThemeProvider theme={UpDefaultTheme}>
-       <UpDate isRequired={true} onChange={(value, event) => {console.log(event);console.log(value)}} />
+        <div style={{margin:"30px"}}>
+            <UpDate isRequired={true} onChange={(value, event) => {console.log(event);console.log(value)}} />
+        </div>
    </UpThemeProvider>
  )) ;
