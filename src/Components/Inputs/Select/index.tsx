@@ -1,16 +1,17 @@
 import UpSelect from './UpSelect'
 import * as React from 'react'
 
-export default UpSelect ;
+export default UpSelect;
 
-import {BaseControlProps} from '../_Common/BaseControl/BaseControl' 
+import { BaseControlProps } from '../_Common/BaseControl/BaseControl'
 
-export type SelectWidth = 'xsmall' | 'small' | 'normal' | 'large' | 'full' | 'auto' ;
+export type SelectWidth = 'xsmall' | 'small' | 'normal' | 'large' | 'full' | 'auto';
+export type ReturnType = 'keyId' | 'full';
 
 export interface UpSelectOption {
-    id:number,
-    text:string,
-    icon?:string
+    id: number,
+    text: string,
+    icon?: string
 }
 
 export interface UpSelectProps extends BaseControlProps<any> {
@@ -18,7 +19,7 @@ export interface UpSelectProps extends BaseControlProps<any> {
     multiple?: boolean;
     data?: any;
     placeholder?: string;
-    loadingPlaceholder?:string;
+    loadingPlaceholder?: string;
     allowClear?: boolean;
     minimumInputLength?: number;
     dataSource?: {
@@ -27,20 +28,21 @@ export interface UpSelectProps extends BaseControlProps<any> {
         query: string,
         queryParameterName?: string
     },
-    valueKey? : string,
-    labelKey? : string,
-    autoload?:boolean
-    noResultsText? : string,
-    clearAllText? : string,
-    clearValueText? : string,
-    addLabelText? : string,
-    searchPromptText? : string,
+    valueKey?: string,
+    labelKey?: string,
+    autoload?: boolean
+    noResultsText?: string,
+    clearAllText?: string,
+    clearValueText?: string,
+    addLabelText?: string,
+    searchPromptText?: string,
     optionRenderer?: React.StatelessComponent<UpSelectOption>,
     valueRenderer?: React.StatelessComponent<UpSelectOption>,
-    dataFor?:string; //For tooltip,
-    width?:SelectWidth;
+    dataFor?: string; //For tooltip,
+    width?: SelectWidth;
+    returnType?: ReturnType;
 }
 
 export interface UpSelectStyledProps {
-    width?:SelectWidth;
+    width?: SelectWidth;
 }

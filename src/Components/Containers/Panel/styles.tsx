@@ -102,7 +102,8 @@ ${(props: UpPanelStyledProps) => base(props)}
 ${(props: UpPanelStyledProps) => shadow(props)}
 border-color: ${props => (props.theme.colorMap) ? props.theme.colorMap.default : defaultTheme.colorMap.default};
  .up-panel-header {
-   background-color: ${props => (props.theme.colorMap) ? props.theme.colorMap.default : defaultTheme.colorMap.default};
+    color:#111;
+    background-color: ${props => (props.theme.colorMap) ? props.theme.colorMap.default : defaultTheme.colorMap.default};
  }
 `;
 

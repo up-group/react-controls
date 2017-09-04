@@ -22,17 +22,32 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         default: null,
         autoload: false,
         showError: true,
-        width:'normal'
+        width: 'normal',
+        returnType: "full"
     }
 
     constructor(p, c) {
         super(p, c);
         this.state = {
-            value: (p.value)?p.value:p.default,
-            extra : {
-                loadingPlaceholder : p.loadingPlaceholder
+            value: (p.value) ? p.value : p.default,
+            extra: {
+                loadingPlaceholder: p.loadingPlaceholder
             }
         };
+    }
+
+    get keyId() {
+        if (this.props.dataSource) {
+            return this.props.dataSource.id || "id";
+        }
+        return "id";
+    }
+
+    get keyText() {
+        if (this.props.dataSource) {
+            return this.props.dataSource.text || "text";
+        }
+        return "text";
     }
 
     selectElement: any;
@@ -51,7 +66,15 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     }
 
     getValue(data: any) {
-        return data;
+        if (this.props.returnType == "keyId") {
+            if (this.props.multiple) {
+                return data;// return data.map((v) => { return v[this.keyId] != null ? v[this.keyId] : v });
+            } else {
+                return data[this.keyId];
+            }
+        } else {
+            return data;
+        }
     }
 
     getOptionRenderer = (option) => {
@@ -60,14 +83,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             const OptionRenderer = this.props.optionRenderer;
             return (<OptionRenderer {...option}></OptionRenderer>)
         } else {
-            var _idKey = "id";
-            var _textKey = "text";
-
-            if (this.props.dataSource) {
-                _idKey = this.props.dataSource.id || _idKey;
-                _textKey = this.props.dataSource.text || _textKey;
-            }
-            return (<span key={`option_{option[_idKey]}`} >{this.format(option, _textKey)}</span>)
+            return (<span key={`option_{option[this.keyId]}`} >{this.format(option, this.keyText)}</span>)
         }
     }
 
@@ -76,14 +92,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             const ValueRenderer = this.props.valueRenderer;
             return (<ValueRenderer {...value}></ValueRenderer>)
         } else {
-            var _idKey = "id";
-            var _textKey = "text";
-
-            if (this.props.dataSource) {
-                _idKey = this.props.dataSource.id || _idKey;
-                _textKey = this.props.dataSource.text || _textKey;
-            }
-            return (<span key={`option_{value[_idKey]}`} >{this.format(value, _textKey)}</span>)
+            return (<span key={`option_{value[this.keyId]}`} >{this.format(value, this.keyText)}</span>)
         }
     }
 
@@ -113,31 +122,25 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     }
 
     filterOptions = (options, filter, currentValues) => {
-        var _options = [] ;
-        var _textKey = "text";
-        var _idKey = "id";
-        if (this.props.dataSource) {
-            _idKey = this.props.dataSource.id || _idKey;
-            _textKey = this.props.dataSource.text || _textKey;
-        }
-        var _self = this ;
-        options.map(function(value) {
-            if(_self.format(value, _textKey).toLowerCase().indexOf(filter.toLowerCase())>=0) {
+        var _options = [];
+        var _self = this;
+        options.map((value)=> {
+            if (_self.format(value, this.keyText).toLowerCase().indexOf(filter.toLowerCase()) >= 0) {
                 // check if the option is selected
-                var isInValues:boolean = false;
-                for(var i in currentValues) {
-                    var curentValue = currentValues[i] ;
-                    if(value[_idKey] === curentValue[_idKey]) {
-                        isInValues = true ;
+                var isInValues: boolean = false;
+                for (var i in currentValues) {
+                    var curentValue = currentValues[i];
+                    if (value[this.keyId] === curentValue[this.keyId]) {
+                        isInValues = true;
                         break;
                     }
                 };
                 // Return the option onlly if it is not in the current values
-                if(isInValues === false)
-                    _options.push(value) ;
-            } ;
+                if (isInValues === false)
+                    _options.push(value);
+            };
         });
-        return _options ;
+        return _options;
     }
 
     renderControl() {
@@ -152,13 +155,13 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             var queryParam = dataSource.queryParameterName || 'search';
             var minimumInputLength = this.props.minimumInputLength;
             loadOptions = function (input: string) {
-                if(minimumInputLength && input.length < minimumInputLength ) {
-                    if(input.length!==0)
-                        this.setState({extra : { loadingPlaceholder : `Veuillez renseigner au minimum ${minimumInputLength} caractères`}}) ;
-                    else 
-                        this.setState({extra : { loadingPlaceholder : this.props.placeholder}}) ;
-                        
-                    return false ;
+                if (minimumInputLength && input.length < minimumInputLength) {
+                    if (input.length !== 0)
+                        this.setState({ extra: { loadingPlaceholder: `Veuillez renseigner au minimum ${minimumInputLength} caractères` } });
+                    else
+                        this.setState({ extra: { loadingPlaceholder: this.props.placeholder } });
+
+                    return false;
                 }
                 return axios.get(`${dataSource.query}?${queryParam}=${input}`)
                     .then((response) => {
@@ -166,9 +169,9 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                         return { options: data };
                     });
             };
-            loadOptions = loadOptions.bind(this) ;
+            loadOptions = loadOptions.bind(this);
         }
-        var data = this.props.data ;
+        var data = this.props.data;
         var specProps: any = {
             options: data
         }
