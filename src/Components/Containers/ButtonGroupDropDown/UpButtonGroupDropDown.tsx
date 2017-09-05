@@ -12,7 +12,6 @@ export interface buttonGroupDropDownElement {
 export interface UpButtonGroupDropDownProps extends UpButtonProps {
     buttons: buttonGroupDropDownElement[];
     text: string;
-    onClick?;
 }
 
 export interface UpButtonGroupDropDownState {
@@ -63,6 +62,7 @@ export default class UpButtonGroupDropDown extends React.Component<UpButtonGroup
         const {
             text,
             buttons,
+            onClick,
             ...other
         } = this.props;
 
