@@ -68,7 +68,7 @@ export default class UpButtonGroupDropDown extends React.Component<UpButtonGroup
 
         return <div style={main} tabIndex={0} onBlur={this.collapse} >
             <UpButton { ...other } onClick={this.change}>
-                {this.props.text}<span className="caret" />
+                {this.props.text}<span className="caret" style={{ padding: 0 }} />
             </UpButton>
             <ul className={BtnList} >
                 {
