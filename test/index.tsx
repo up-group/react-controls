@@ -164,7 +164,7 @@ class Demo extends React.Component<undefined, DemoState> {
                     name: "bbbb"
                 }
             ];
-            return <UpButtonGroupDropDown text="aaaaa" buttons={t} />
+            return <UpButtonGroupDropDown  text="aaaaa" buttons={t} />
         }
 
 
