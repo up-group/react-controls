@@ -1,5 +1,5 @@
 import * as React from "react"
-import UpButton from "../../Inputs/Button/index"
+import UpButton, { UpButtonProps } from "../../Inputs/Button/index"
 import { style } from "typestyle"
 
 
@@ -9,9 +9,10 @@ export interface buttonGroupDropDownElement {
 }
 
 
-export interface UpButtonGroupDropDownProps {
+export interface UpButtonGroupDropDownProps extends UpButtonProps {
     buttons: buttonGroupDropDownElement[];
     text: string;
+    onClick?;
 }
 
 export interface UpButtonGroupDropDownState {
@@ -59,8 +60,14 @@ export default class UpButtonGroupDropDown extends React.Component<UpButtonGroup
         });
 
 
+        const {
+            text,
+            buttons,
+            ...other
+        } = this.props;
+
         return <div style={main} tabIndex={0} onBlur={this.collapse} >
-            <UpButton onClick={this.change}>
+            <UpButton { ...other } onClick={this.change}>
                 {this.props.text}<span className="caret" />
             </UpButton>
             <ul className={BtnList} >

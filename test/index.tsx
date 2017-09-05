@@ -24,7 +24,8 @@ import {
     UpDataGrid,
     UpTreeView,
     UpNavTab,
-    UpLoadingIndicator
+    UpLoadingIndicator,
+    UpButtonGroupDropDown
 } from "../src/index";
 
 import Timeline from "../src/Components/Display/TimeLine/index"
@@ -153,6 +154,21 @@ class Demo extends React.Component<undefined, DemoState> {
     public render() {
 
         if (1 == 1) {
+            let t = [
+                {
+                    onClick: () => { console.log("test"); },
+                    name: "aaaa"
+                },
+                {
+                    onClick: () => { console.log("bbb"); },
+                    name: "bbbb"
+                }
+            ];
+            return <UpButtonGroupDropDown text="aaaaa" buttons={t} />
+        }
+
+
+        if (1 == 1) {
 
             var enti = {
                 id: "id",
@@ -176,7 +192,7 @@ class Demo extends React.Component<undefined, DemoState> {
             />
 
 
-                 <UpSelect
+                <UpSelect
                     default={null}
                     isRequired={false}
                     multiple={false}
