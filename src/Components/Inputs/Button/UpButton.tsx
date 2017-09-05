@@ -23,7 +23,7 @@ export default class UpButton extends React.Component<UpButtonProps, undefined> 
     iconName:false,
     iconSize:20,
     intent:'default',
-    width: 'normal',
+    width: 'auto',
     height: 'normal',
     tooltip:null,
     onClick:(e:React.MouseEvent<HTMLButtonElement>) => {},
