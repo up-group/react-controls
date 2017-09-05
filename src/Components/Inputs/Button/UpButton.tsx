@@ -23,7 +23,7 @@ export default class UpButton extends React.Component<UpButtonProps, undefined> 
     iconName:false,
     iconSize:20,
     intent:'default',
-    width: 'auto',
+    width: 'normal',
     height: 'normal',
     tooltip:null,
     onClick:(e:React.MouseEvent<HTMLButtonElement>) => {},
@@ -34,6 +34,13 @@ export default class UpButton extends React.Component<UpButtonProps, undefined> 
       this.props.onClick(e);
       e.preventDefault();
       e.stopPropagation();
+  }
+
+  public renderButton = () => {
+      const {children, tooltip, onClick, ...others} = this.props ;
+      return <BaseButton onClick={this.handleClick} {...others}>
+              <span>{children}</span>
+        </BaseButton> ;
   }
 
   public render() {
@@ -50,17 +57,11 @@ export default class UpButton extends React.Component<UpButtonProps, undefined> 
       }
       return (
         <UpTooltip {..._tooltip}>
-          <BaseButton onClick={this.handleClick} {...others}>
-            <span>{children}</span>
-          </BaseButton>
+         {this.renderButton()}
         </UpTooltip>
       );
     } else {
-      return (
-        <BaseButton onClick={this.handleClick} {...others}>
-          <span>{children}</span>
-        </BaseButton>
-      );
+      return this.renderButton() ;
     }
   }
 }

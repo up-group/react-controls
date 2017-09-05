@@ -71,7 +71,7 @@ const base = props => css`
   cursor: pointer;
   vertical-align: middle;
   width: ${(props: UpButtonStyledProps) => buttonSizeMap[props.width] || 'auto'};
- min-width: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || DEFAULT_MIN_SIZE};
+  min-width: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || DEFAULT_MIN_SIZE};
   min-height: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || DEFAULT_MIN_SIZE};
   line-height: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || DEFAULT_MIN_SIZE};
   svg {
@@ -96,19 +96,34 @@ cursor: not-allowed;
 `;
 
 const active = props => css`
-color: ${(props: UpButtonStyledProps) => props.color || 'black'};
+color : ${props => props.color || props.theme.colorMap[`${props.intent}Fg`] || 'black'};
 background-color: ${props => props.backgroundColor || props.theme.colorMap[props.intent]};
 border-color: ${props => props.borderColor || props.theme.colorMap[`${props.intent}Dark`]};
 border-width:1px;
 border-style:solid;
 &:hover {
-  background-color: ${props => props.color || props.theme.colorMap[`${props.intent}Light`] || 'white'};
+  color : ${props => props.color || props.theme.colorMap[`${props.intent}HoverFg`] || 'black'};
+  background-color: ${props => props.color || props.theme.colorMap[`${props.intent}Hover`] || 'white'};
   svg {
-    fill: ${(props: UpButtonStyledProps) => props.backgroundColor || props.theme.colorMap[`${props.intent}Dark`]}
+    fill: ${(props: UpButtonStyledProps) => props.backgroundColor || props.theme.colorMap[`${props.intent}Fg`]}
+  }
+}
+&:hover:active {
+  color : ${props => props.color || props.theme.colorMap[`${props.intent}HoverFg`] || 'black'};
+  background-color: ${props => props.color || props.theme.colorMap[`${props.intent}HoverActive`] || 'white'};
+  svg {
+    fill: ${(props: UpButtonStyledProps) => props.backgroundColor || props.theme.colorMap[`${props.intent}HoverFg`]}
+  }
+}
+&:active {
+  color : ${props => props.color || props.theme.colorMap[`${props.intent}HoverFg`] || 'black'};
+  background-color: ${props => props.color || props.theme.colorMap[`${props.intent}Active`] || 'white'};
+  svg {
+    fill: ${(props: UpButtonStyledProps) => props.backgroundColor || props.theme.colorMap[`${props.intent}HoverFg`]}
   }
 }
 svg {
-    fill: ${(props: UpButtonStyledProps) => props.color || props.theme.colorMap[`${props.intent}Light`] || 'white'}
+    fill: ${(props: UpButtonStyledProps) => props.color || props.theme.colorMap[`${props.intent}Fg`] || 'white'}
 }
 `;
 
