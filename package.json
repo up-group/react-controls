@@ -63,9 +63,9 @@
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^3.1.9",
-    "@storybook/addon-info": "^3.1.9",
-    "@storybook/react": "^3.1.9",
+    "@storybook/addon-actions": "3.2.6",
+    "@storybook/addon-info": "3.2.6",
+    "@storybook/react": "3.2.6",
     "@types/chai": "^3.5.2",
     "@types/chai-enzyme": "^0.6.1",
     "@types/enzyme": "*",
@@ -73,7 +73,7 @@
     "@types/moment": "^2.13.0",
     "@types/node": "^7.0.12",
     "@types/pure-render-decorator": "^0.2.27",
-    "@types/react": "^15.6.1",
+    "@types/react": "15.6.1",
     "@types/react-dom": "^0.14.23",
     "@types/select2": "^4.0.34",
     "@types/webpack-env": "^1.13.0",
@@ -108,8 +108,8 @@
     "sass-loader": "^6.0.6"
   },
   "dependencies": {
-    "@blueprintjs/core": "^1.14.0",
-    "@blueprintjs/datetime": "^1.13.0",
+    "@blueprintjs/core": "1.27.0",
+    "@blueprintjs/datetime": "1.22.0",
     "axios": "^0.16.1",
     "bootstrap": "^3.3.7",
     "classnames": "^2.2.5",
