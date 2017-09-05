@@ -6,6 +6,7 @@ import UpBox from './Components/Containers/Box'
 import { UpGrid, UpRow, UpCol } from './Components/Containers/Grid'
 import UpFormGroup from './Components/Containers/FormGroup'
 import UpButtonGroup from './Components/Containers/ButtonGroup'
+import UpButtonGroupDropDown from './Components/Containers/ButtonGroupDropDown/UpButtonGroupDropDown'
 import UpDataGrid from './Components/Containers/DataGrid/UpDataGrid'
 import UpModal from './Components/Containers/Modal/UpModal'
 import UpDashboard from './Components/Containers/Dashboard/UpDashboard'
@@ -100,5 +101,8 @@ export {
     UpCalendarWeekDay,
     UpMenu,
     UpTreeView,
-    UpNavTab
+    UpNavTab,
+
+    UpButtonGroupDropDown
+
 };
