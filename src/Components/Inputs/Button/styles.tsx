@@ -96,7 +96,7 @@ cursor: not-allowed;
 `;
 
 const active = props => css`
-color: ${(props: UpButtonStyledProps) => props.color || 'white'};
+color: ${(props: UpButtonStyledProps) => props.color || 'black'};
 background-color: ${props => props.backgroundColor || props.theme.colorMap[props.intent]};
 border-color: ${props => props.borderColor || props.theme.colorMap[`${props.intent}Dark`]};
 border-width:1px;

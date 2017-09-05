@@ -15,7 +15,6 @@ export default class UpButton extends React.Component<UpButtonProps, undefined> 
   }
 
   public static defaultProps: UpButtonProps = {
-    color: 'white',
     backgroundColor: '',
     borderColor: '',
     fontSize: 'large',
@@ -23,7 +22,7 @@ export default class UpButton extends React.Component<UpButtonProps, undefined> 
     shadow:false,
     iconName:false,
     iconSize:20,
-    intent:'primary',
+    intent:'default',
     width: 'normal',
     height: 'normal',
     tooltip:null,
