@@ -103,7 +103,6 @@ border-width:1px;
 border-style:solid;
 &:hover {
   background-color: ${props => props.color || props.theme.colorMap[`${props.intent}Light`] || 'white'};
-  color :${(props: UpButtonStyledProps) => props.backgroundColor || props.theme.colorMap[`${props.intent}Dark`]};
   svg {
     fill: ${(props: UpButtonStyledProps) => props.backgroundColor || props.theme.colorMap[`${props.intent}Dark`]}
   }
