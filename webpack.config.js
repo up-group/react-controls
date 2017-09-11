@@ -9,7 +9,8 @@ module.exports = {
     },
     output: {
         path: path.resolve(ROOT_PATH, 'test/'),
-        filename: '[name].js'
+        filename: '[name].js',
+        publicPath: '/assets'
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -37,11 +38,20 @@ module.exports = {
             { test: /\.md$/, loader: 'html!markdown-loader' },
             { test: /\.svg$/, loader: 'svg-inline-loader' },
             {
-                test: /\.(eot|ttf|woff|woff2|png)$/,
-                loader: 'file-loader',
-                options: {
-                    name: 'fonts/[name].[ext]'
-                }
+                test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "url-loader?name=fonts/[hash].[ext]&limit=10000&mimetype=application/font-woff"
+            }, 
+            {
+                test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "url-loader?name=fonts/[hash].[ext]&limit=10000&mimetype=application/font-woff"
+            }, 
+            {
+                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "url-loader?name=fonts/[hash].[ext]&limit=10000&mimetype=application/octet-stream"
+            },
+            {
+                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "file-loader?name=fonts/[hash].[ext]"
             },
             {
                 test: /\.scss$/,
@@ -49,6 +59,10 @@ module.exports = {
                      "css-loader", // translates CSS into CommonJS
                      "sass-loader" // compiles Sass to CSS
                 ]
+            },
+            {
+                test: /\.(jpe?g|gif|png)$/,
+                loader: 'file-loader?name=img/[hash].[ext]'
             }
         ]
     },

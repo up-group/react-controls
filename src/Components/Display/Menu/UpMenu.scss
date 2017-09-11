@@ -2,8 +2,8 @@
 
     @import "./up-pe-font.css";
     @import "./pe-font.css";
-
-
+    @import "../../../Common/theming/fonts.css";
+    
     .skin-up .main-header .navbar {
         background-color: rgb(0, 158, 197);
     }
@@ -173,26 +173,27 @@
         background-color: rgb(0, 158, 197);
     }
 
-
-
     .navbar .input-group-addon {
         font-size: 20px;
         padding: 5px 10px;
         cursor: default;
     }
 
-
     .navbar .input-group {
         margin-top: 8px;
     }
 
-
-
-
-
     .main-sidebar {
         background: #333 url("./fondMenu.png") no-repeat;
         font-weight: 400;
+    }
+    .up-logo {
+        background: transparent url("./up.png") center center no-repeat;
+        font-weight: 400;
+        display: block;
+        width:52px;
+        height:52px;
+        padding: 10px;
     }
 
     .sidebar-menu > li .label, .sidebar-menu > li .badge {
@@ -375,7 +376,7 @@
         font-size: 20px;
         padding: 0 15px 0 15px;
         line-height: 50px;
-        font-family: Pe-icon-7-stroke
+        font-family: './fonts/Pe-icon-7-stroke.woff'
     }
 
     .main-header .sidebar-toggle:before {

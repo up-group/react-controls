@@ -4,15 +4,10 @@ import * as React from "react"
 import SvgIcon from "../SvgIcon/index"
 import { IconName } from "../SvgIcon/icons"
 
-import "./up.png"
-
-
 export interface UpMenuProps {
     menuItems: MenuItemData[];
     topMenuItems?: TopMenuItemProps[];
     onMenuClick?: (uri: string) => boolean | void;
-
-
     onDeconnexionClick?: () => void;
     onReglagesClick?: () => void;
     onUpClick?: () => void;
@@ -24,7 +19,6 @@ export interface UpMenuState {
 }
 
 export default class UpMenu extends React.Component<UpMenuProps, UpMenuState>{
-
 
     constructor(p, c) {
         super(p, c);
@@ -47,19 +41,13 @@ export default class UpMenu extends React.Component<UpMenuProps, UpMenuState>{
         return <div className="UpMenu">
             <div className={"sidebar-mini skin-up" + (this.state.col ? " sidebar-collapse" : "")}>
                 <TopMenu childMenuItems={this.props.topMenuItems} onUpClick={this.props.onUpClick} onHomeClick={this.props.onHomeClick} onReglagesClick={this.props.onReglagesClick} onDeconnexionClick={this.props.onDeconnexionClick} />
-
                 <aside className="main-sidebar">
-
                     <section className="sidebar" >
-
                         <div className="user-panel">
                             <a className="sidebar-toggle" onClick={this.clickCollapse}>
                                 <i className="pe p7 pe-7s-menu"></i>
-
                                 <span className="sr-only">Bouton Menu</span>
                             </a>
-
-
                         </div>
                         <ul className="sidebar-menu">
                             {menu}
@@ -74,9 +62,7 @@ export default class UpMenu extends React.Component<UpMenuProps, UpMenuState>{
             </div>
         </div>
     }
-
 }
-
 
 export interface MenuItemData {
     title: string;
@@ -85,7 +71,6 @@ export interface MenuItemData {
     isSelected: boolean;
     isVisible: boolean;
     childMenuItems?: MenuItemData[];
-
 }
 
 export interface MenuItemProps extends MenuItemData {
@@ -129,9 +114,6 @@ export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
     }
 }
 
-
-
-
 export interface SubMenuProps {
     childMenuItems?: MenuItemData[];
     onMenuClick: (uri: string) => void;
@@ -160,11 +142,7 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
             {lis}
         </ul>
     }
-
 }
-
-
-
 
 export interface SubItemsProps extends MenuItemData {
     onMenuClick: (uri: string) => boolean | void;
@@ -216,10 +194,6 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
     }
 }
 
-
-
-
-
 export interface TopMenuProps {
     onDeconnexionClick: () => void;
     onReglagesClick: () => void;
@@ -251,8 +225,8 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
         return <header className="main-header">
 
             <a onClick={this.props.onUpClick} className="logo">
-                <span className="logo-mini"><img src="./up.png" alt="" /></span>
-                <span className="logo-lg"><img src="./up.png" alt="" />OneHome</span>
+                <span className="logo-mini"><span className="up-logo" /></span>
+                <span className="logo-lg"><span className="up-logo" />OneHome</span>
             </a>
 
             <nav className="navbar navbar-static-top" role="navigation">
@@ -266,8 +240,6 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
                         </span>
                     </div>
                 </div>
-
-
                 <div className="navbar-custom-menu">
                     <ul className="nav navbar-nav">
                         {topMenuItem}
@@ -289,7 +261,6 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
 
                     </ul>
                 </div>
-
             </nav>
         </header>
     }
@@ -328,7 +299,5 @@ export class TopMenuItem extends React.Component<TopMenuItemProps, TopMenuItemSt
                 </a>
             </li>
         }
-
-
     }
 }

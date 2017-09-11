@@ -9,6 +9,9 @@ module.exports = {
             icons: path.resolve(ROOT_PATH, 'src/theming/icons')
         },
     },
+    output : {
+        publicPath: '/assets'
+    },
     module: {
         rules: [
             {
@@ -27,7 +30,33 @@ module.exports = {
             { test: /\.json$/, loader: 'json-loader' },
             { test: /\.md$/, loader: 'html!markdown-loader' },
             { test: /\.svg$/, loader: 'svg-inline-loader' },
-            { test: /\.(eot|ttf|woff|woff2)$/, loader: 'file-loader?name=fonts/[name].[ext]' }
+            {
+                test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "url-loader?name=fonts/[hash].[ext]&limit=10000&mimetype=application/font-woff"
+            }, 
+            {
+                test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "url-loader?name=fonts/[hash].[ext]&limit=10000&mimetype=application/font-woff"
+            }, 
+            {
+                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "url-loader?name=fonts/[hash].[ext]&limit=10000&mimetype=application/octet-stream"
+            },
+            {
+                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "file-loader?name=fonts/[hash].[ext]"
+            },
+            {
+                test: /\.scss$/,
+                use: ["style-loader", // creates style nodes from JS strings
+                     "css-loader", // translates CSS into CommonJS
+                     "sass-loader" // compiles Sass to CSS
+                ]
+            },
+            {
+                test: /\.(jpe?g|gif|png)$/,
+                loader: 'file-loader?name=img/[hash].[ext]'
+            }
         ]
     },
     plugins: [
