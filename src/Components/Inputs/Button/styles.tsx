@@ -174,7 +174,11 @@ const xsmall = props => css`
 `;
 
 const icon = props => css`
-  padding: 0px 4px;
+  padding: 0px;
+  height: 24px;
+  width: 24px;
+  min-width:initial;
+  min-height:initial;
   border-radius: 3px;
   font-size: 12px;
   line-height: 1.5;

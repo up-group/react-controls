@@ -6,10 +6,6 @@ import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themed
 
 import UpButton from './'
 
-var onSelectionChange = (data) => {
-    console.log(data) ;
-}
-
 storiesOf('UpButton', module)
   .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
    () => (
@@ -18,6 +14,13 @@ storiesOf('UpButton', module)
         Add
       </UpButton>
     </UpThemeProvider>
-  ))
+  )).addWithInfo('Icon', 'Utilisation du composant en lui passant les données à afficher',
+  () => (
+   <UpThemeProvider theme={UpDefaultTheme}>
+     <UpButton actionType="add" width={"icon"} intent="primary" onClick={(event) => {console.log(event)}}>
+       Add
+     </UpButton>
+   </UpThemeProvider>
+ ))
 
 
