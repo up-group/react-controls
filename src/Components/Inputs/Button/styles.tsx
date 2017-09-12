@@ -31,7 +31,7 @@ const ReactButtonComponent: React.StatelessComponent<UpButtonStyledProps> = (pro
         iconName = props.iconName;
     }
 
-    // Our SVG Icon viewbox is 20*20 units
+    // Our SVG Icon viewbox is 24*24 units
     const icon = <SvgIcon iconName={iconName}
         width={props.iconSize}
         height={props.iconSize}
@@ -136,8 +136,9 @@ const large = props => css`
 `;
 const normal = props => css`
   padding: 0px 2px;
-  font-size: 16px;
-  line-height: 1.3;
+  font-size: 14px;
+  line-height: 1.2;
+  height: 30px;
   border-radius: ${(props) => props.theme.borderRadius || DEFAULT_BORDER_RADIUS};
   
   svg {
@@ -179,6 +180,13 @@ const icon = props => css`
   border-radius: 3px;
   font-size: 12px;
   line-height: 1.5;
+  svg {
+    margin:3px;
+    width:15px;
+    height:15px;
+    border:0px;
+    padding:0px;
+  }
 `;
 
 const iconXSmall = props => css`
