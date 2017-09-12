@@ -17,7 +17,6 @@ for (var i = 0; i < IconNames.length; i++) {
     ActionIconMap.set(iconName, iconName);
 }
 
-
 const DEFAULT_MIN_SIZE = "30px"
 const DEFAULT_BORDER_RADIUS = "4px"
 
@@ -71,8 +70,6 @@ const base = props => css`
   cursor: pointer;
   vertical-align: middle;
   width: ${(props: UpButtonStyledProps) => buttonSizeMap[props.width] || 'auto'};
-  min-width: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || DEFAULT_MIN_SIZE};
-  min-height: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || DEFAULT_MIN_SIZE};
   line-height: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || DEFAULT_MIN_SIZE};
   svg {
     margin:3px;
@@ -142,7 +139,7 @@ const normal = props => css`
   font-size: 16px;
   line-height: 1.3;
   border-radius: ${(props) => props.theme.borderRadius || DEFAULT_BORDER_RADIUS};
-
+  
   svg {
     width:20px;
     heigth:20px;
@@ -186,6 +183,8 @@ const icon = props => css`
 
 const iconXSmall = props => css`
   padding: 1px 2px;
+  min-width:initial;
+  min-height:initial;
   border-radius: 3px;
   font-size: 10px;
   line-height: 1;
@@ -198,6 +197,8 @@ const iconXSmall = props => css`
 
 const iconSmall = props => css`
   padding: 3px 4px;
+  min-width:initial;
+  min-height:initial;
   border-radius: 3px;
   font-size: 12px;
   line-height: 1.5;
@@ -210,6 +211,8 @@ const iconSmall = props => css`
 const iconNormal = props => css`
   padding: 4px 5px;
   border-radius: 3px;
+  min-width:initial;
+  min-height:initial;
   font-size: 12px;
   line-height: 1.5;
   svg {
@@ -221,6 +224,8 @@ const iconNormal = props => css`
 const iconLarge = props => css`
   padding: 6px 8px;
   border-radius: 3px;
+  min-width:initial;
+  min-height:initial;
   font-size: 14px;
   line-height: 1.5;
   svg {
