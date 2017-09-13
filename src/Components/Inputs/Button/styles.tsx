@@ -21,7 +21,7 @@ const DEFAULT_MIN_SIZE = "30px"
 const DEFAULT_BORDER_RADIUS = "4px"
 
 const ReactButtonComponent: React.StatelessComponent<UpButtonStyledProps> = (props) => {
-    const { children, className, onClick, dataFor, width } = props;
+    const { children, className, onClick, dataFor, width, iconPosition } = props;
 
     const actionType = props.actionType;
     var iconName: IconName = 'none';
@@ -46,14 +46,19 @@ const ReactButtonComponent: React.StatelessComponent<UpButtonStyledProps> = (pro
         }
     }
 
-    return <button onClick={onClick} className={classnames('up-btn', className)} {...tooltipProps} >
-        {iconName != 'none' &&
+    const MainButton = (<button onClick={onClick} className={classnames('up-btn', className)} {...tooltipProps} >
+        {iconName != 'none' && iconPosition == 'left' &&
             icon
         }
         {(width == 'normal' || width == 'auto') &&
             children
         }
-    </button>;
+        {iconName != 'none' && iconPosition == 'right' &&
+            icon
+        }
+    </button>) ;
+
+    return MainButton ;
 }
 
 const shadow = props => css`
@@ -72,17 +77,25 @@ const base = props => css`
   width: ${(props: UpButtonStyledProps) => buttonSizeMap[props.width] || 'auto'};
   line-height: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || DEFAULT_MIN_SIZE};
   svg {
-    margin:3px;
+    margin:0px;
     display:inline-block;
     float:left;
   }
   span {
-    line-height: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || DEFAULT_MIN_SIZE};
+    display: inline-block;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    float:left;
+    height: ${(props: UpButtonStyledProps) => props.theme.minButtonSize || DEFAULT_MIN_SIZE};
     padding-left: ${(props: UpButtonStyledProps) => (props.width=="auto")?"8px":"inherit"};
     padding-right: ${(props: UpButtonStyledProps) => (props.width=="auto")?"8px":"inherit"};
   }
   &:active {
      box-shadow: inset 5px 5px 5px rgba(16, 22, 26, 0.2) ;
+  }
+  &:focus {
+      outline: transparent auto 0px ;
+      outline-offset:'0px';
   }
 `;
 
@@ -91,6 +104,14 @@ background: ${props => props.theme.colorMap.disabledBg};
 color: ${props => props.theme.colorMap.disabledFg};
 cursor: not-allowed;
 `;
+
+const toggle = props => css`
+  color : ${props => props.color || props.theme.colorMap[`${props.intent}HoverFg`] || 'black'};
+  background-color: ${props => props.color || props.theme.colorMap[`${props.intent}Active`] || 'white'};
+  box-shadow: inset 5px 5px 5px rgba(16, 22, 26, 0.2) ;
+  svg {
+    fill: ${(props: UpButtonStyledProps) => props.backgroundColor || props.theme.colorMap[`${props.intent}HoverFg`]}
+  }`;
 
 const active = props => css`
 color : ${props => props.color || props.theme.colorMap[`${props.intent}Fg`] || 'black'};
@@ -125,7 +146,7 @@ svg {
 `;
 
 const large = props => css`
-  padding: 10px 16px;
+  padding: 10px;
   font-size: 18px;
   line-height: 1.3;
   border-radius: ${(props) => props.theme.borderRadius || DEFAULT_BORDER_RADIUS};
@@ -135,11 +156,12 @@ const large = props => css`
   }
 `;
 const normal = props => css`
-  padding: 0px 2px;
+  padding: 6px;
   font-size: 14px;
   line-height: 1.2;
-  height: 30px;
-  border-radius: ${(props) => props.theme.borderRadius || DEFAULT_BORDER_RADIUS};
+  height: 34px;
+  width : ${(props: UpButtonStyledProps) => (props.dropDown != 'none') ? "auto" : "inherit"};
+  border-radius: ${(props: UpButtonStyledProps) => props.theme.borderRadius || DEFAULT_BORDER_RADIUS};
   
   svg {
     width:20px;
@@ -319,4 +341,5 @@ ${(props: UpButtonStyledProps) => props.shadow ? shadow(props) : css``}
 ${(props: UpButtonStyledProps) => props.rounded ? rounded(props) : css``}
 ${(props: UpButtonStyledProps) => props.disabled ? disabled(props) : active(props)}
 ${(props: UpButtonStyledProps) => props.rotate ? rotate(props) : css``}
+${(props: UpButtonStyledProps) => props.isToggled ? toggle(props) : css``}
 `;

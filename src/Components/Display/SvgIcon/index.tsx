@@ -37,8 +37,8 @@ export default function SvgIcon({
   ...others,
 }: Props): JSX.Element {
 
-  const height = others.height || 24 ;
-  const width = others.height || 24 ;
+  const height = others.height || 20 ;
+  const width = others.height || 20 ;
    
   if(iconName) {
     const SvgIconElement = () => <SvgIconWrapper position={position} className={className} color={color} height={height} width={width}

@@ -2,12 +2,10 @@ import * as React from "react"
 import UpButton, { UpButtonProps } from "../../Inputs/Button/index"
 import { style } from "typestyle"
 
-
 export interface buttonGroupDropDownElement {
     onClick: () => void;
     name: string | JSX.Element;
 }
-
 
 export interface UpButtonGroupDropDownProps extends UpButtonProps {
     buttons: buttonGroupDropDownElement[];
@@ -19,7 +17,6 @@ export interface UpButtonGroupDropDownState {
 }
 
 export default class UpButtonGroupDropDown extends React.Component<UpButtonGroupDropDownProps, UpButtonGroupDropDownState>{
-
 
     constructor(p, c) {
         super(p, c);
@@ -33,7 +30,6 @@ export default class UpButtonGroupDropDown extends React.Component<UpButtonGroup
             position: "relative",
             display: "inline-block"
         }
-
 
         const BtnList = style({
             display: this.state.open ? "block" : "none",
@@ -57,7 +53,6 @@ export default class UpButtonGroupDropDown extends React.Component<UpButtonGroup
                 '&:hover': { backgroundColor: "#f5f5f5" },
             },
         });
-
 
         const {
             text,
@@ -97,4 +92,3 @@ export default class UpButtonGroupDropDown extends React.Component<UpButtonGroup
         this.setState({ open: !this.state.open });
     }
 }
-

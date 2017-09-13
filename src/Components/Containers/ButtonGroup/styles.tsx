@@ -4,18 +4,31 @@ import styled, {css} from '../../../Common/theming/themedComponents';
 import { UpButtonGroupStyledProps} from './'
 import { ThemeInterface } from "../../../Common/theming/types";
 
+const NoGutterStyle = css`
+  .up-btn-wrapper:first-child:not(:last-child):not(.up-dropdown-toggle) .up-btn {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .up-btn-wrapper:last-child:not(:first-child):not(.up-dropdown-toggle) .up-btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+`;
+
 var setGutter = (props:UpButtonGroupStyledProps) => {
   if(props.align==='v') {
     return css`
       button.up-btn {
         margin-bottom: ${props.gutter}px;
       }
+      ()
     ` ;
   } else {
     return css`
       button.up-btn {
         margin-right: ${props.gutter}px;
       }
+      
     ` ;
   }
 }
@@ -42,4 +55,5 @@ var setAlignment = (props:UpButtonGroupStyledProps) => {
 export const ButtonGroupStyled = styled.div`
   ${(props: UpButtonGroupStyledProps) => setGutter(props)}
   ${(props: UpButtonGroupStyledProps) => setAlignment(props)}
+  ${(props: UpButtonGroupStyledProps) => (props.gutter==0)?NoGutterStyle:css``}
 `;
