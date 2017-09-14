@@ -12,7 +12,9 @@ export default class UpInput extends BaseControlComponent<UpInputProps, any> {
     public static defaultProps: UpInputProps = {
         showError: true,
         theme:defaultTheme,
-        width:"fill"
+        width: "fill"
+
+
     };
 
     constructor(p, c) {
@@ -28,7 +30,9 @@ export default class UpInput extends BaseControlComponent<UpInputProps, any> {
     }
 
     getValue(event: any) {
-        return (event != null) ? event.target.value : null ;
+        return (event == null) ? null :
+            event.target != null ? event.target.value
+                : event
     }
 
     inputHandleChangeEvent = (event) => {
