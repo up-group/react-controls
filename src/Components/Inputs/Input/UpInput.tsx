@@ -48,7 +48,7 @@ export default class UpInput extends BaseControlComponent<UpInputProps, any> {
 
         return (
             <InputStyled
-                value={this.state.value}
+                value={this.state.value == null ? "" : this.state.value}
                 iconName={realIconName}
                 width={width}
                 disabled={disabled}
