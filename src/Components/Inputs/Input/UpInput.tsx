@@ -28,7 +28,7 @@ export default class UpInput extends BaseControlComponent<UpInputProps, any> {
     }
 
     getValue(event: any) {
-        return (event != null) ? event.target.value : null ;
+        return (event != null && event.target!= null) ? event.target.value : event ;
     }
 
     inputHandleChangeEvent = (event) => {

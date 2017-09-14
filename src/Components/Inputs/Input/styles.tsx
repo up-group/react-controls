@@ -338,6 +338,9 @@ const error = css`
   border-width: 1px;
   border-style: solid;
 }
+svg {
+  fill:${(props) => props.theme.colorMap.danger};
+}
 `
 
 export const InputStyled = styled<UpInputStyledProps>(BaseInput)`
