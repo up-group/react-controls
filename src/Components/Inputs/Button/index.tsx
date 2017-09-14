@@ -55,6 +55,7 @@ export interface CommonProps extends ThemedProps {
     tooltip?: string | Tooltip;
     extraActions?:Array<Action | Separator>;
     dropDown?: DropDownType;
+    isProcessing?:boolean;
 }
 
 // This is so that the onClick handler is accepted without type interferance

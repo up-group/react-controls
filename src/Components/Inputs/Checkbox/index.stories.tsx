@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 
 import UpDefaultTheme from '../../../Common/theming'
@@ -9,8 +9,8 @@ import UpCheckbox from './UpCheckbox'
 import UpLabel from '../../Display/Label'
 
 var onOptionChange = () => {}
-
 var state = {
+    activation:false,
     majeur: false,
     homme: true,
     grand: false,
@@ -18,7 +18,25 @@ var state = {
     selection: null //{id: 3, text : ""}
 }
 
+var onActivationChange = () => {
+    state.activation = !state.activation ;
+}
+
 storiesOf('UpCheckbox', module)
+    .addWithInfo('Simple usage', 'Utilisation avec plusieurs options',
+    () => (
+    <UpThemeProvider theme={UpDefaultTheme}>
+        <UpLabel textAlign={"left"} inline={true} width="medium" text="Activation de ... :">
+            <UpCheckbox options={[{
+                    text: "",
+                    name: "Option1",
+                    onChange: onActivationChange,
+                    value: true,
+                    checked: state.activation === true
+                }]} />
+            </UpLabel>
+    </UpThemeProvider>
+    ))
   .addWithInfo('Multiple usage', 'Utilisation avec plusieurs options',
    () => (
     <UpThemeProvider theme={UpDefaultTheme}>

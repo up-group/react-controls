@@ -98,6 +98,11 @@ storiesOf('UpButton', module)
      ]}>Options
    </UpButton>
  </UpThemeProvider>
+)).addWithInfo('Avec indication d\'opération', 'Utilisation du composant avec activation de l\'indication dd\'un processus en cours',
+() => (
+ <UpThemeProvider theme={UpDefaultTheme}>
+   <UpButton width={"normal"} isProcessing={true}>Save</UpButton>
+ </UpThemeProvider>
 ));
 
 

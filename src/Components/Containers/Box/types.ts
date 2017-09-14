@@ -6,7 +6,7 @@ export interface ResponsiveSize {
   tablet?: Size | SizeObject,
   desktop?: Size | SizeObject,
 }
-export type BoxSize =  'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | 'full' ;
+export type BoxSize =  'auto' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge' | 'full' ;
 export interface BoxSizeObject { horizontal?: BoxSize; vertical?: BoxSize; };
 export interface FullObject { horizontal?: boolean; vertical?: boolean; };
 export type Full = boolean | FullObject;

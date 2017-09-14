@@ -10,6 +10,7 @@ import { IconNames, IconName } from "../../Display/SvgIcon/icons";
 import { ThemeInterface } from "../../../Common/theming/types";
 import * as classnames from 'classnames'
 import { ActionType } from './'
+import UpLoadingIndicator from '../../Display/LoadingIndicator'
 
 export var ActionIconMap = new Dictionary<ActionType, IconName>([]);
 for (var i = 0; i < IconNames.length; i++) {
@@ -21,7 +22,7 @@ const DEFAULT_MIN_SIZE = "30px"
 const DEFAULT_BORDER_RADIUS = "4px"
 
 const ReactButtonComponent: React.StatelessComponent<UpButtonStyledProps> = (props) => {
-    const { children, className, onClick, dataFor, width, iconPosition } = props;
+    const { children, className, onClick, dataFor, width, iconPosition, isProcessing } = props;
 
     const actionType = props.actionType;
     var iconName: IconName = 'none';
@@ -35,6 +36,7 @@ const ReactButtonComponent: React.StatelessComponent<UpButtonStyledProps> = (pro
     const icon = <SvgIcon iconName={iconName}
         width={props.iconSize}
         height={props.iconSize}
+        position={iconPosition}
         className={props.rotate ? 'rotating' : ''}
         color={props.color} />;
 
@@ -50,8 +52,11 @@ const ReactButtonComponent: React.StatelessComponent<UpButtonStyledProps> = (pro
         {iconName != 'none' && iconPosition == 'left' &&
             icon
         }
-        {(width == 'normal' || width == 'auto') &&
+        {width !== 'icon' && isProcessing !== true &&
             children
+        }
+        {width !== 'icon' && isProcessing === true &&
+           <UpLoadingIndicator displayMode={"inline"} isLoading={true} /> 
         }
         {iconName != 'none' && iconPosition == 'right' &&
             icon
@@ -79,7 +84,7 @@ const base = props => css`
   svg {
     margin:0px;
     display:inline-block;
-    float:left;
+    float: ${(props: UpButtonStyledProps) => props.iconPosition};
   }
   span {
     display: inline-block;
@@ -152,7 +157,7 @@ const large = props => css`
   border-radius: ${(props) => props.theme.borderRadius || DEFAULT_BORDER_RADIUS};
   svg {
     width:32px;
-    heigth:32px;
+    height:32px;
   }
 `;
 const normal = props => css`
@@ -160,12 +165,12 @@ const normal = props => css`
   font-size: 14px;
   line-height: 1.2;
   height: 34px;
-  width : ${(props: UpButtonStyledProps) => (props.dropDown != 'none') ? "auto" : "inherit"};
+  width : ${(props: UpButtonStyledProps) => (props.dropDown != 'none') ? "auto" : buttonSizeMap[props.width] || 'inherit'};
   border-radius: ${(props: UpButtonStyledProps) => props.theme.borderRadius || DEFAULT_BORDER_RADIUS};
   
   svg {
     width:20px;
-    heigth:20px;
+    height:20px;
   }
 `;
 
@@ -177,7 +182,7 @@ const small = props => css`
 
     svg {
       width:16px;
-      heigth:16px;
+      height:16px;
     }
 `;
 
@@ -189,7 +194,7 @@ const xsmall = props => css`
 
     svg {
       width:12px;
-      heigth:12px;
+      height:12px;
     }
 `;
 
@@ -221,7 +226,7 @@ const iconXSmall = props => css`
 
   svg {
     width:12px;
-    heigth:12px;
+    height:12px;
   }
 `;
 
@@ -234,7 +239,7 @@ const iconSmall = props => css`
   line-height: 1.5;
   svg {
       width:16px;
-      heigth:16px;
+      height:16px;
   }
 `;
 
@@ -247,7 +252,7 @@ const iconNormal = props => css`
   line-height: 1.5;
   svg {
     width:20px;
-    heigth:20px;
+    height:20px;
   }
 `;
 
@@ -260,7 +265,7 @@ const iconLarge = props => css`
   line-height: 1.5;
   svg {
     width:32px;
-    heigth:32px;
+    height:32px;
   }
 `;
 

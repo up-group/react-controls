@@ -52,6 +52,11 @@ function stringBoxStyle(size: BoxSize): SizeStyle {
       width: '100vw',
       height: '100vh',
     };
+  } else if (size === 'auto') {
+    return {
+      width: 'auto',
+      height: 'auto',
+    };
   } else {
     return {
       width: size ? `${remFromPX(BOX_SIZE_MAP[size])}rem` : '',

@@ -24,7 +24,6 @@ export default class LoadingIndicator extends React.Component<LoadingIndicatorPr
     }
 
     render() {
-
         var _displayMode = this.props.displayMode;
         if (_displayMode == null) {
             _displayMode = "inline";
@@ -39,9 +38,7 @@ export default class LoadingIndicator extends React.Component<LoadingIndicatorPr
             return null;
         }
 
-
         if (_displayMode == "zone") {
-
 
             var container: React.CSSProperties = {
                 position: "relative",
@@ -75,7 +72,7 @@ export default class LoadingIndicator extends React.Component<LoadingIndicatorPr
 
         } else if (_displayMode == "inline") {
 
-            return < Box boxSize={{ horizontal: 'small' }} pad="medium" alignItems="center" justifyContent="center"            >
+            return <Box boxSize={"auto"} pad={"none"} margin={'none'} alignItems="center" justifyContent="center">
                 <SvgIcon viewBox="0 0 48 48">
                     <Circle cx="24" cy="24" r="21" stroke="#007acc" strokeWidth="6" fill="none" />
                 </SvgIcon>
@@ -84,9 +81,7 @@ export default class LoadingIndicator extends React.Component<LoadingIndicatorPr
                     <p>{this.props.message}</p>
                 }
             </Box >;
-
         } else {
-
             return <aside
                 className="loading-screen" style={{ "position": "fixed", "top": 0, "right": 0, "bottom": 0, "left": 0, "zIndex": 9999, backgroundColor: "white", "opacity": 0.8 }}>
                 <div style={{ "position": "absolute", "top": "50%", "left": "40%", "marginTop": "-7em" }}>
