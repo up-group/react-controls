@@ -8,7 +8,8 @@ import UpInput from '../Input'
 export default class UpPhone extends BaseControlComponent<UpPhoneProps, string> {
     public static defaultProps: UpPhoneProps = {
         showError: true,
-        width:"medium"
+        width: "medium",
+        defaultValue: ""
     };
 
     constructor(p, c) {
