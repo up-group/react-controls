@@ -75,4 +75,105 @@ storiesOf('UpSelect', module)
                     onChange={action('Sélection') } />
         </div>
     </UpThemeProvider>
+  ))
+  .addWithInfo('Size', 'Utilisation du composant en retournant la valeur de l\'identifiant et non plus l\'objet sélectionné',
+   () => (
+    <UpThemeProvider theme={UpDefaultTheme}>
+        <div style={{margin:"30px"}}>
+          <UpSelect isRequired={true}
+                    allowClear={true}
+                    width={'auto'}
+                    default={null}
+                    multiple={false}
+                    returnType={"keyId"}
+                    valueKey= {"id"}
+                    tooltip="Votre ville de naissance" 
+                    data={[
+                      {id:1,text:'M.'},
+                      {id:2,text:'Mme'},
+                      {id:3,text:'Mlle'},
+                      {id:4,text:'Dr'},
+                    ]}
+                    onChange={action('Sélection') } />
+          <UpSelect isRequired={true}
+                    allowClear={true}
+                    width={'full'}
+                    default={null}
+                    multiple={false}
+                    returnType={"keyId"}
+                    valueKey= {"id"}
+                    tooltip="Votre ville de naissance" 
+                    data={[
+                      {id:1,text:'M.'},
+                      {id:2,text:'Mme'},
+                      {id:3,text:'Mlle'},
+                      {id:4,text:'Dr'},
+                    ]}
+                    onChange={action('Sélection') } />
+
+          <UpSelect isRequired={true}
+                    allowClear={true}
+                    width={'xsmall'}
+                    default={null}
+                    multiple={false}
+                    returnType={"keyId"}
+                    valueKey= {"id"}
+                    tooltip="Votre ville de naissance" 
+                    data={[
+                      {id:1,text:'M.'},
+                      {id:2,text:'Mme'},
+                      {id:3,text:'Mlle'},
+                      {id:4,text:'Dr'},
+                    ]}
+                    onChange={action('Sélection') } />
+
+          <UpSelect isRequired={true}
+                    allowClear={true}
+                    width={'small'}
+                    default={null}
+                    multiple={false}
+                    returnType={"keyId"}
+                    valueKey= {"id"}
+                    tooltip="Votre ville de naissance" 
+                    data={[
+                      {id:1,text:'M.'},
+                      {id:2,text:'Mme'},
+                      {id:3,text:'Mlle'},
+                      {id:4,text:'Dr'},
+                    ]}
+                    onChange={action('Sélection') } />
+
+          <UpSelect isRequired={true}
+                    allowClear={true}
+                    width={'normal'}
+                    default={null}
+                    multiple={false}
+                    returnType={"keyId"}
+                    valueKey= {"id"}
+                    tooltip="Votre ville de naissance" 
+                    data={[
+                      {id:1,text:'M.'},
+                      {id:2,text:'Mme'},
+                      {id:3,text:'Mlle'},
+                      {id:4,text:'Dr'},
+                    ]}
+                    onChange={action('Sélection') } />
+
+          <UpSelect isRequired={true}
+                    allowClear={true}
+                    width={'large'}
+                    default={null}
+                    multiple={false}
+                    returnType={"keyId"}
+                    valueKey= {"id"}
+                    tooltip="Votre ville de naissance" 
+                    data={[
+                      {id:1,text:'M.'},
+                      {id:2,text:'Mme'},
+                      {id:3,text:'Mlle'},
+                      {id:4,text:'Dr'},
+                    ]}
+                    onChange={action('Sélection') } />
+        </div>
+    </UpThemeProvider>
   )) ;
