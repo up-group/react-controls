@@ -13,6 +13,9 @@ const NoGutterStyle = css`
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
+  .up-btn-wrapper:not(:last-child):not(:first-child) .up-btn {
+    border-radius: 0;
+  }
 `;
 
 var setGutter = (props:UpButtonGroupStyledProps) => {

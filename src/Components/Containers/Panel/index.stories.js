@@ -9,7 +9,7 @@ import UpPanel from './UpPanel'
 storiesOf('UpPanel', module)
   .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
    () =>  (<UpThemeProvider theme={UpDefaultTheme}>
-        <div>
+        <div style={{"margin": "30px"}}>
         <UpPanel type={"primary"} title={"Mon Panel"} />
         <UpPanel type={"default"} title={"Mon Panel"} />
         <UpPanel type={"info"} title={"Mon Panel"} />
