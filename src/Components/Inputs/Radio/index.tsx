@@ -29,7 +29,7 @@ export interface UpRadioProps extends BaseControlProps<any> {
     position?:Position;
     name:string;
     value?:any;
-    displayMode: DisplayMode,
+    displayMode?: DisplayMode,
     onChange?: (arg: any, event: any, error: boolean) => void;
 }
 

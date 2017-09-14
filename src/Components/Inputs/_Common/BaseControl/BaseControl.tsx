@@ -35,7 +35,12 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
 
     constructor(props?: BaseControlProps<_BaseType> & _Props, context?) {
         super(props, context);
-        this.state = { error: null, value: null };
+        this.state = {
+            error: null,
+            value: this.props.value !== undefined ? this.props.value as any  :
+                this.props.defaultValue !== undefined ? this.props.defaultValue as any
+                    : null
+        };
 
         this.initWithProps();
         this.registerValidations();
