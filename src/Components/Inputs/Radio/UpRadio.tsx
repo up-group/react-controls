@@ -27,7 +27,7 @@ export default class UpRadio extends BaseControlComponent<UpRadioProps, any> {
   }
 
   getValue(data: any) {
-      return (data != null) ? data.target.value : null ;
+      return (data != null && data.target != null) ? data.target.value : data ;
   }
 
   private afterSetState = () => {
