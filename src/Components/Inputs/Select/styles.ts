@@ -5,6 +5,7 @@ import 'react-select/dist/react-select.css'
 import { ThemeInterface } from "../../../Common/theming/types";
 import {UpSelectStyledProps} from './'
 
+
 var getWidth = function(props) {
     switch(props.width) {
       case 'auto':
@@ -12,15 +13,15 @@ var getWidth = function(props) {
       case 'full':
       return `.Select { width: 100% }` ;
       case 'xsmall' :
-      return `.Select { width: 5em }` ;
+      return `.Select { width: ${sizeMap[props.width]? sizeMap[props.width] : "5em" }` ;
       case 'small':
-      return `.Select { width: 8em }` ;
+      return `.Select { width: ${sizeMap[props.width]? sizeMap[props.width] : "8em" }` ;
       case 'normal':
-      return `.Select { width: 23em }` ;
+      return `.Select { width: ${sizeMap[props.width]? sizeMap[props.width] : "23em" }` ;
       case 'large':
-      return `.Select { width: 30em }` ;
+      return `.Select { width: ${sizeMap[props.width]? sizeMap[props.width] : "30em" }` ;
       default:
-      return `.Select { width: 23em }` ;
+      return `.Select { width: ${sizeMap[props.width]? sizeMap[props.width] : "250px" }` ;
     }
 }
 
