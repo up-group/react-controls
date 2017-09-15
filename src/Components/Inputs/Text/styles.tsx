@@ -53,6 +53,7 @@ export class BaseTextArea extends React.Component<UpTextStyledProps, undefined> 
 const base = props => css`
   min-height:80px;
   width: ${(props: UpTextStyledProps) => sizeMap[props.width]};
+  padding:10px;
 `;
 
 const error = props => css`
@@ -60,8 +61,8 @@ const error = props => css`
 `;
 
 export const TexAreatStyled = styled<UpTextStyledProps>(BaseTextArea) `
-${(props: UpTextStyledProps) => base(props)}
 ${(props) => defaultStyles}
+${(props: UpTextStyledProps) => base(props)}
 ${(props: UpTextStyledProps) => props.hasError ? error(props) : css``}
 `;
 

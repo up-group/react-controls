@@ -124,6 +124,7 @@
     "object-assign": "^4.1.1",
     "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.5.2",
+    "react-ckeditor-component": "^1.0.4",
     "react-dom": "^15.6.1",
     "react-input-autosize": "1.1.0",
     "react-markdown": "^2.4.5",

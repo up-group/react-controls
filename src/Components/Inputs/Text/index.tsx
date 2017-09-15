@@ -11,6 +11,8 @@ export interface CommonPros extends ThemedProps {
     placeholder?: string;
     disabled?: boolean;
     showError?: boolean;
+    enableRTE?:boolean;
+    configRTE?:any;
     onChange?: (data: any) => void; 
 }
 
