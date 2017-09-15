@@ -105,9 +105,9 @@ const base = props => css`
 `;
 
 const disabled = props => css`
-background: ${props => props.theme.colorMap.disabledBg};
-color: ${props => props.theme.colorMap.disabledFg};
-cursor: not-allowed;
+  background: ${props => props.theme.colorMap.disabledBg};
+  color: ${props => props.theme.colorMap.disabledFg};
+  cursor: not-allowed;
 `;
 
 const toggle = props => css`
@@ -116,38 +116,39 @@ const toggle = props => css`
   box-shadow: inset 5px 5px 5px rgba(16, 22, 26, 0.2) ;
   svg {
     fill: ${(props: UpButtonStyledProps) => props.backgroundColor || props.theme.colorMap[`${props.intent}HoverFg`]}
-  }`;
+  }
+`;
 
 const active = props => css`
-color : ${props => props.color || props.theme.colorMap[`${props.intent}Fg`] || 'black'};
-background-color: ${props => props.backgroundColor || props.theme.colorMap[props.intent]};
-border-color: ${props => props.borderColor || props.theme.colorMap[`${props.intent}Dark`]};
-border-width:1px;
-border-style:solid;
-&:hover {
-  color : ${props => props.color || props.theme.colorMap[`${props.intent}HoverFg`] || 'black'};
-  background-color: ${props => props.color || props.theme.colorMap[`${props.intent}Hover`] || 'white'};
-  svg {
-    fill: ${(props: UpButtonStyledProps) => props.backgroundColor || props.theme.colorMap[`${props.intent}Fg`]}
+  color : ${props => props.color || props.theme.colorMap[`${props.intent}Fg`] || 'black'};
+  background-color: ${props => props.backgroundColor || props.theme.colorMap[props.intent]};
+  border-color: ${props => props.borderColor || props.theme.colorMap[`${props.intent}Dark`]};
+  border-width:1px;
+  border-style:solid;
+  &:hover {
+    color : ${props => props.color || props.theme.colorMap[`${props.intent}HoverFg`] || 'black'};
+    background-color: ${props => props.color || props.theme.colorMap[`${props.intent}Hover`] || 'white'};
+    svg {
+      fill: ${(props: UpButtonStyledProps) => props.backgroundColor || props.theme.colorMap[`${props.intent}Fg`]}
+    }
   }
-}
-&:hover:active {
-  color : ${props => props.color || props.theme.colorMap[`${props.intent}HoverFg`] || 'black'};
-  background-color: ${props => props.color || props.theme.colorMap[`${props.intent}HoverActive`] || 'white'};
-  svg {
-    fill: ${(props: UpButtonStyledProps) => props.backgroundColor || props.theme.colorMap[`${props.intent}HoverFg`]}
+  &:hover:active {
+    color : ${props => props.color || props.theme.colorMap[`${props.intent}HoverFg`] || 'black'};
+    background-color: ${props => props.color || props.theme.colorMap[`${props.intent}HoverActive`] || 'white'};
+    svg {
+      fill: ${(props: UpButtonStyledProps) => props.backgroundColor || props.theme.colorMap[`${props.intent}HoverFg`]}
+    }
   }
-}
-&:active {
-  color : ${props => props.color || props.theme.colorMap[`${props.intent}HoverFg`] || 'black'};
-  background-color: ${props => props.color || props.theme.colorMap[`${props.intent}Active`] || 'white'};
-  svg {
-    fill: ${(props: UpButtonStyledProps) => props.backgroundColor || props.theme.colorMap[`${props.intent}HoverFg`]}
+  &:active {
+    color : ${props => props.color || props.theme.colorMap[`${props.intent}HoverFg`] || 'black'};
+    background-color: ${props => props.color || props.theme.colorMap[`${props.intent}Active`] || 'white'};
+    svg {
+      fill: ${(props: UpButtonStyledProps) => props.backgroundColor || props.theme.colorMap[`${props.intent}HoverFg`]}
+    }
   }
-}
-svg {
-    fill: ${(props: UpButtonStyledProps) => props.color || props.theme.colorMap[`${props.intent}Fg`] || 'white'}
-}
+  svg {
+      fill: ${(props: UpButtonStyledProps) => props.color || props.theme.colorMap[`${props.intent}Fg`] || 'white'}
+  }
 `;
 
 const large = props => css`
@@ -166,8 +167,7 @@ const normal = props => css`
   line-height: 1.2;
   height: 34px;
   width : ${(props: UpButtonStyledProps) => (props.dropDown != 'none') ? "auto" : buttonSizeMap[props.width] || 'inherit'};
-  border-radius: ${(props: UpButtonStyledProps) => props.theme.borderRadius || DEFAULT_BORDER_RADIUS};
-  
+  border-radius: ${(props: UpButtonStyledProps) => props.theme.borderRadius || DEFAULT_BORDER_RADIUS}; 
   svg {
     width:20px;
     height:20px;
@@ -179,7 +179,6 @@ const small = props => css`
     font-size: 12px;
     line-height: 1.5;
     border-radius: 3px;
-
     svg {
       width:16px;
       height:16px;
@@ -191,11 +190,10 @@ const xsmall = props => css`
   font-size: 12px;
   line-height: 1.5;
   border-radius: 3px;
-
-    svg {
-      width:12px;
-      height:12px;
-    }
+  svg {
+    width:12px;
+    height:12px;
+  }
 `;
 
 const icon = props => css`
@@ -305,9 +303,13 @@ const rounded = props => css`
   border-radius:16px;
   div {
     margin:0px;
+    height:32px;
+    width:32px;
   }
   svg {
-    margin:0px;
+    margin:7px;
+    width: 16px;
+    height: 16px;
   }
 `;
 

@@ -103,6 +103,11 @@ storiesOf('UpButton', module)
  <UpThemeProvider theme={UpDefaultTheme}>
    <UpButton width={"normal"} isProcessing={true}>Save</UpButton>
  </UpThemeProvider>
+)).addWithInfo('Arrondi', 'Utilisation du composant avec activation de l\'indication dd\'un processus en cours',
+() => (
+ <UpThemeProvider theme={UpDefaultTheme}>
+   <UpButton intent="primary" rounded={true} width="icon" onClick={this.refresh} actionType="refresh"></UpButton>
+ </UpThemeProvider>
 ));
 
 
