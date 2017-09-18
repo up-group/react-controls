@@ -135,17 +135,17 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         var _options = [];
         var _self = this;
         options.map((value) => {
-            if (_self.format(value, this.keyText).toLowerCase().indexOf(filter.toLowerCase()) >= 0) {
+            if (_self.format(value, _self.keyText).toLowerCase().indexOf(filter.toLowerCase()) >= 0) {
                 // check if the option is selected
                 var isInValues: boolean = false;
                 for (var i in currentValues) {
                     var curentValue = currentValues[i];
-                    if (value[this.keyId] === curentValue[this.keyId]) {
+                    if (value[_self.keyId] === curentValue[_self.keyId]) {
                         isInValues = true;
                         break;
                     }
                 };
-                // Return the option onlly if it is not in the current values
+                // Return the option only if it is not in the current values
                 if (isInValues === false)
                     _options.push(value);
             };
@@ -184,10 +184,13 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                 if(dataSource.endPoint) {
                     query =`${dataSource.endPoint}/${query}`
                 }
-                
+
                 return axios.get(query)
                     .then((response) => {
                         var data = response.data;
+                        if(dataSource.handleResponse) {
+                            data = dataSource.handleResponse(data) ;
+                        }
                         return { options: data };
                     });
             };

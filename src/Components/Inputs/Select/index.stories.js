@@ -36,6 +36,26 @@ storiesOf('UpSelect', module)
                     onChange={action('Sélection')} />
     </UpThemeProvider>
   ))
+  .addWithInfo('Ajax avec modification des réponses', 'Utilisation du composant lié à une source de donnée',
+   () => (
+    <UpThemeProvider theme={UpDefaultTheme}>
+        <UpSelect autoload={false}
+                    isRequired={false}
+                    allowClear={true}
+                    default={null}
+                    multiple={false}
+                    tooltip="Votre ville de naissance"
+                    minimumInputLength={3}
+                    dataSource={{
+                        query: "https://jsonplaceholder.typicode.com/todos",
+                        text: "title",
+                        handleResponse: (response) => {
+                          return [{id:100, title: 'Data proxied'}] ;
+                        }
+                    }}
+                    onChange={action('Sélection')} />
+    </UpThemeProvider>
+  ))
   .addWithInfo('Required', 'Utilisation du composant avec valeur requise',
    () => (
     <UpThemeProvider theme={UpDefaultTheme}>
