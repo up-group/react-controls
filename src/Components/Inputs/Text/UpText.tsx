@@ -9,7 +9,7 @@ import CKEditor from "react-ckeditor-component"
 // Exports
 export default class UpText extends BaseControlComponent<UpTextProps, string> {
     public static defaultProps:UpTextProps = {
-        width: 'medium',
+        width: 'xlarge',
         showError: true,
         enableRTE:false,
         configRTE: {

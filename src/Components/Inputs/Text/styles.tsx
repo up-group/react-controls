@@ -52,7 +52,7 @@ export class BaseTextArea extends React.Component<UpTextStyledProps, undefined> 
 
 const base = props => css`
   min-height:80px;
-  width: ${(props: UpTextStyledProps) => sizeMap[props.width]};
+  width: ${(props: UpTextStyledProps) => sizeMap[props.width] || "500px"};
   padding:10px;
 `;
 
