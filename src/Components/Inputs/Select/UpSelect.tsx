@@ -11,6 +11,7 @@ import * as queryString from 'query-string';
 
 // Exports
 export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
+    timeOutLoadOptions:any;
 
     public static defaultProps: UpSelectProps = {
         noResultsText: "Aucun résultat trouvé",
@@ -164,7 +165,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         if (typeof dataSource !== "undefined") {
             var queryParam = dataSource.queryParameterName || 'search';
             var minimumInputLength = this.props.minimumInputLength;
-            loadOptions = function (input: string) {
+            loadOptions = function (input: string, callback) {
                 if (minimumInputLength && input.length < minimumInputLength) {
                     if (input.length !== 0)
                         this.setState({ extra: { loadingPlaceholder: `Veuillez renseigner au minimum ${minimumInputLength} caractères` } });
@@ -172,27 +173,40 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                         this.setState({ extra: { loadingPlaceholder: this.props.placeholder } });
 
                     return false;
+                } else {
+                    this.setState({ extra: { loadingPlaceholder: this.props.placeholder } });
                 }
-                var qs = `${queryParam}=${input}` ;
-                if(dataSource.getExtraParams) {
-                    var params = dataSource.getExtraParams() ;
-                    if(params) {
-                        qs += `&${queryString.stringify(params)}`;
-                    }
-                }
-                var query = `${dataSource.query}?${qs}` ;
-                if(dataSource.endPoint) {
-                    query =`${dataSource.endPoint}/${query}`
-                }
-
-                return axios.get(query)
-                    .then((response) => {
-                        var data = response.data;
-                        if(dataSource.handleResponse) {
-                            data = dataSource.handleResponse(data) ;
+                if(this.timeOutLoadOptions) {
+                    clearTimeout(this.timeOutLoadOptions) ;
+                } 
+                var _loadOptionsAfterDealy = () => {
+                    var qs = `${queryParam}=${input}` ;
+                    if(dataSource.getExtraParams) {
+                        var params = dataSource.getExtraParams() ;
+                        if(params) {
+                            qs += `&${queryString.stringify(params)}`;
                         }
-                        return { options: data };
+                    }
+                    var query = `${dataSource.query}?${qs}` ;
+                    if(dataSource.endPoint) {
+                        query =`${dataSource.endPoint}/${query}`
+                    }
+
+                    axios.get(query)
+                        .then((response) => {
+                            var data = response.data;
+                            if(dataSource.handleResponse) {
+                                data = dataSource.handleResponse(data) ;
+                            }
+                    
+                            callback(null, {
+                                options: data,
+                                complete: false
+                            });
                     });
+                }
+                // Load options after a delay
+                this.timeOutLoadOptions = setTimeout(_loadOptionsAfterDealy, dataSource.delay | 1000) ;
             };
             loadOptions = loadOptions.bind(this);
         }

@@ -29,6 +29,7 @@ export interface UpSelectProps extends BaseControlProps<any> {
         query: string;
         queryParameterName?: string;
         getExtraParams?:() => any;
+        delay?:number;
         handleResponse?:(response:any) => Array<any>
     },
     valueKey?: string,
