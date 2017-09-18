@@ -17,7 +17,7 @@ class UpGrid extends React.Component<UpGridProps, any> {
   render() {
     const { children, type, gutter } = this.props;
     var rows = children ;
-    const _gutter = gutter ? gutter : (this.props.theme.gridGutter ? this.props.theme.gridGutter : 0) ;
+    const _gutter = gutter != null ? gutter : (this.props.theme.gridGutter != null ? this.props.theme.gridGutter : 0) ;
     if(_gutter > 0 || type != 'float') {
         rows = React.Children.map(children, (row: React.ReactElement<any>) => {
         if (!row) {

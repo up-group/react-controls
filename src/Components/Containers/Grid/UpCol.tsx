@@ -26,6 +26,7 @@ export default class UpCol extends React.Component<UpColProps, any> {
         [`${prefixCls}-${size}-pull-${sizeProps.pull}`]: sizeProps.pull || sizeProps.pull === 0,
       });
     });
+    
     const classes = classNames({
       [`${prefixCls}-${span}`]: span !== undefined,
       [`${prefixCls}-order-${order}`]: order,
