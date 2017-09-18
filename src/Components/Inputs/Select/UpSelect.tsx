@@ -7,6 +7,7 @@ import axios from 'axios'
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import { UpSelectProps, UpSelectStyledProps } from './'
 import WrapperSelect from './styles';
+import * as queryString from 'query-string';
 
 // Exports
 export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
@@ -172,7 +173,19 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
 
                     return false;
                 }
-                return axios.get(`${dataSource.query}?${queryParam}=${input}`)
+                var qs = `${queryParam}=${input}` ;
+                if(dataSource.getExtraParams) {
+                    var params = dataSource.getExtraParams() ;
+                    if(params) {
+                        qs += `&${queryString.stringify(params)}`;
+                    }
+                }
+                var query = `${dataSource.query}?${qs}` ;
+                if(dataSource.endPoint) {
+                    query =`${dataSource.endPoint}/${query}`
+                }
+                
+                return axios.get(query)
                     .then((response) => {
                         var data = response.data;
                         return { options: data };

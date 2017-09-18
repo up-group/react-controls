@@ -5,7 +5,6 @@ import 'react-select/dist/react-select.css'
 import { ThemeInterface } from "../../../Common/theming/types";
 import {UpSelectStyledProps} from './'
 
-
 var getWidth = function(props) {
     switch(props.width) {
       case 'auto':
@@ -25,10 +24,16 @@ var getWidth = function(props) {
     }
 }
 
+var getHeight = function(props) {
+    return `.Select-input { height: 32px }
+            .Select-control  { height: 32px }` ;
+}
+
 // Exports
 const WrapperSelect = styled.div`
   width:100%;
   ${(props: UpSelectStyledProps) => getWidth(props)}
+  ${(props: UpSelectStyledProps) => getHeight(props)}
 `;
 
 export default WrapperSelect ;

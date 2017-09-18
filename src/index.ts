@@ -1,5 +1,6 @@
 import "./Common/theming/style.css"
 
+import {BaseControlComponent as UpBaseControlComponent} from './Components/Inputs/_Common/BaseControl/BaseControl'
 
 import UpPanel from './Components/Containers/Panel'
 import UpBox from './Components/Containers/Box'
@@ -12,7 +13,6 @@ import UpModal from './Components/Containers/Modal/UpModal'
 import UpDashboard from './Components/Containers/Dashboard/UpDashboard'
 import UpTile from './Components/Containers/Dashboard/UpTile'
 import UpNavTab from './Components/Containers/NavTab/UpNavTap'
-
 
 import UpHeading from './Components/Display/Heading'
 import UpLink from './Components/Display/Link'
@@ -54,6 +54,7 @@ import { IntentType as UpIntentType } from './Common/theming/types'
 import { IconName as UpIconName } from './Components/Display/SvgIcon/icons'
 
 export {
+    UpBaseControlComponent,
     UpHeading,
     UpLink,
     UpBox,

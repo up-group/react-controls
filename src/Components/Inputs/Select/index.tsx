@@ -23,10 +23,12 @@ export interface UpSelectProps extends BaseControlProps<any> {
     allowClear?: boolean;
     minimumInputLength?: number;
     dataSource?: {
-        id?: string,
-        text?: string,
-        query: string,
-        queryParameterName?: string
+        id?: string;
+        text?: string;
+        endPoint?:string;
+        query: string;
+        queryParameterName?: string;
+        getExtraParams?:() => any;
     },
     valueKey?: string,
     labelKey?: string,
