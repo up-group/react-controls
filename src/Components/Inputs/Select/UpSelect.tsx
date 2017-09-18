@@ -9,9 +9,12 @@ import { UpSelectProps, UpSelectStyledProps } from './'
 import WrapperSelect from './styles';
 import * as queryString from 'query-string';
 
+var CancelToken = axios.CancelToken;
+
 // Exports
 export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     timeOutLoadOptions:any;
+    axiosSource:any;
 
     public static defaultProps: UpSelectProps = {
         noResultsText: "Aucun résultat trouvé",
@@ -165,6 +168,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         if (typeof dataSource !== "undefined") {
             var queryParam = dataSource.queryParameterName || 'search';
             var minimumInputLength = this.props.minimumInputLength;
+            var self = this ;
             loadOptions = function (input: string, callback) {
                 if (minimumInputLength && input.length < minimumInputLength) {
                     if (input.length !== 0)
@@ -180,6 +184,9 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                     clearTimeout(this.timeOutLoadOptions) ;
                 } 
                 var _loadOptionsAfterDealy = () => {
+                    if(self.axiosSource) {
+                        self.axiosSource.cancel('Next request in progress');
+                    }
                     var qs = `${queryParam}=${input}` ;
                     if(dataSource.getExtraParams) {
                         var params = dataSource.getExtraParams() ;
@@ -191,9 +198,10 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                     if(dataSource.endPoint) {
                         query =`${dataSource.endPoint}/${query}`
                     }
-
-                    axios.get(query)
-                        .then((response) => {
+                    self.axiosSource = CancelToken.source() ;
+                    axios.get(query, {
+                        cancelToken: self.axiosSource.token
+                    }).then((response) => {
                             var data = response.data;
                             if(dataSource.handleResponse) {
                                 data = dataSource.handleResponse(data) ;
@@ -203,6 +211,14 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                                 options: data,
                                 complete: false
                             });
+                            self.axiosSource = null ;
+                    }).catch(function(thrown) {
+                        if (axios.isCancel(thrown)) {
+                            console.log('Request canceled', thrown.message);
+                        } else {
+                            // handle error
+                        }
+                        self.axiosSource = null;
                     });
                 }
                 // Load options after a delay
