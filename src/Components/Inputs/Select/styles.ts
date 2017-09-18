@@ -4,10 +4,8 @@ import {sizeMap} from '../_Common/Styled'
 import 'react-select/dist/react-select.css'
 import { ThemeInterface } from "../../../Common/theming/types";
 import {UpSelectStyledProps} from './'
-console.log(sizeMap) ;
+
 var getWidth = function(props) {
-    console.log(props.width) ;
-    console.log(sizeMap[props.width]) ;
     switch(props.width) {
       case 'auto':
       return `.Select { width: auto }` ;
