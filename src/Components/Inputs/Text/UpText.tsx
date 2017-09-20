@@ -4,7 +4,7 @@ import { BaseControlComponent } from "../_Common/BaseControl/BaseControl"
 import { TexAreatStyled } from "./styles";
 import { UpTextProps } from './'
 import defaultTheme from '../../../Common/theming'
-import CKEditor from "react-ckeditor-component"
+import CKEditor from "./CKEditor"
 
 // Exports
 export default class UpText extends BaseControlComponent<UpTextProps, string> {
