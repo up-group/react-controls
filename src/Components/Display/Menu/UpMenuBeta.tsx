@@ -127,7 +127,11 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
             }
         })
 
-        var lis = this.props.childMenuItems.map((v, i) => {
+        var lis = this.props.childMenuItems
+            .filter((v) => {
+                return v.isVisible !== false
+            })
+            .map((v, i) => {
             var localId = (this.props.branchId != null ? this.props.branchId + "-" : "") + i;
 
             return <SubItems
@@ -487,7 +491,7 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState>{
             width: this.props.open ? 230 : 50,
             zIndex: 810,
             //  transition: transform .3s ease-in-out, width .3s ease-in-out,
-            background: "#333 url(fondMenu.png) no-repeat",
+            background: "rgb(0,74,92) url(fondMenu.png) no-repeat",
             fontWeight: 400,
             $nest: {
                 '& a': {
@@ -548,7 +552,11 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState>{
         //    {menu}
         //</ul>
 
-        var menu = this.props.menuItems.map((v, i) => {
+        var menu = this.props.menuItems
+            .filter((v) => {
+                return v.isVisible !== false
+            })
+            .map((v, i) => {           
             return <MenuItem
                 onBranchClick={this.onBranchClick}
                 branchId={i.toString()}
