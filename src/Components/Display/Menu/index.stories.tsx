@@ -42,7 +42,7 @@ storiesOf('UpMenu', module)
     .addWithInfo('Simple usage 2', 'Utilisation du composant en lui passant les données à afficher',
     () => (
         <UpThemeProvider theme={UpDefaultTheme}>
-            <UpMenuBeta onMenuClick={action("Menu clicked")}
+            <UpMenuBeta onDeconnexionClick={() => { }} username="Rose" onMenuClick={action("Menu clicked")}
                 topMenuItems={[
                     { title: "Recherche", icon: "up up-dossier", action: "https://www.google.fr" },
                     { title: "Alertes", icon: "up up-dossier", action: () => { alert(5); } }

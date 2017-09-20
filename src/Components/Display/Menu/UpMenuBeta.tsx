@@ -1,4 +1,4 @@
-
+ï»¿
 import * as React from "react"
 import SvgIcon from "../SvgIcon/index"
 import { IconName } from "../SvgIcon/icons"
@@ -11,6 +11,7 @@ import "./up.png"
 
 
 export interface UpMenuProps {
+    username?: string;
     menuItems: MenuItemData[];
     topMenuItems?: TopMenuItemProps[];
     onMenuClick?: (uri: string) => boolean | void;
@@ -64,7 +65,7 @@ export default class UpMenuBeta extends React.Component<UpMenuProps, UpMenuState
 
         return <div className="">
             <div >
-                <TopMenu open={this.state.open} childMenuItems={this.props.topMenuItems} onUpClick={this.props.onUpClick} onHomeClick={this.props.onHomeClick} onReglagesClick={this.props.onReglagesClick} onDeconnexionClick={this.props.onDeconnexionClick} />
+                <TopMenu username={this.props.username} open={this.state.open} childMenuItems={this.props.topMenuItems} onUpClick={this.props.onUpClick} onHomeClick={this.props.onHomeClick} onReglagesClick={this.props.onReglagesClick} onDeconnexionClick={this.props.onDeconnexionClick} />
 
                 <LeftMenu clickCollapse={this.clickCollapse} open={this.state.open} menuItems={this.props.menuItems} onMenuClick={this.props.onMenuClick} />
 
@@ -295,6 +296,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
 
 
 export interface TopMenuProps {
+    username: string;
     onDeconnexionClick: () => void;
     onReglagesClick: () => void;
     onUpClick: () => void;
@@ -396,7 +398,7 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
         //       </div>
 
 
-        //<input type="text" placeholder="Nom usager, n° téléphone,..." />
+        //<input type="text" placeholder="Nom usager, nÂ° tÃ©lÃ©phone,..." />
 
         //className = "main-header"
         return <div className={main}>
@@ -412,28 +414,34 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
                     <i className="pe-7s-home" />
                 </div>
                 <div className={inputDiv} >
-                    <Text value={this.state.strSearch} onChange={this.onSearchChange} placeholder="Nom usager, n° téléphone,..." iconName="search" />
+                    <Text value={this.state.strSearch} onChange={this.onSearchChange} placeholder="Nom usager, nÂ° tÃ©lÃ©phone,..." iconName="search" />
                 </div>
             </div>
 
 
 
             <div className={floatRight}>
-                <div className={iconBtn} >
-                    <a id="imageProfil" data-toggle="dropdown" aria-expanded="true">
-                        <span >Stéphane ROMANO</span>
-                    </a>
-                </div>
-                <div className={iconBtn} onClick={this.props.onReglagesClick} >
-                    <i className="pe pe-7s-edit" />
-                </div>
-                <div className={iconBtn} onClick={this.props.onDeconnexionClick} >
-                    <i className="pe pe-7s-power" />
-                </div>
+                {
+                    this.props.username == null ? null :
+                        <div className={iconBtn} >
+                            <a id="imageProfil" data-toggle="dropdown" aria-expanded="true">
+                                <span >{this.props.username}</span>
+                            </a>
+                        </div>
+                }
+                {
+                    this.props.onReglagesClick == null ? null :
+                        <div className={iconBtn} onClick={this.props.onReglagesClick} >
+                            <i className="pe pe-7s-edit" />
+                        </div>
+                }
+                {
+                    this.props.onDeconnexionClick == null ? null :
+                        <div className={iconBtn} onClick={this.props.onDeconnexionClick} >
+                            <i className="pe pe-7s-power" />
+                        </div>
+                }
             </div>
-
-
-
         </div>
     }
 }
