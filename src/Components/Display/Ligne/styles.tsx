@@ -20,7 +20,7 @@ export const SpanStyled = styled.span`
 `;
 
 const LigneStyled: React.StatelessComponent<UpLigneProps> = (props) => {
-  const {dataFor, ...others} = props ;
+  const {dataFor, className, ...others} = props ;
   var tooltipProps = {} ;
   if (dataFor) {
       tooltipProps = {
@@ -29,7 +29,7 @@ const LigneStyled: React.StatelessComponent<UpLigneProps> = (props) => {
       }
   }
   
-  return <SpanStyled {...tooltipProps} {...others}></SpanStyled>
+  return <SpanStyled className={className} {...tooltipProps} {...others}></SpanStyled>
 };
 
 export default LigneStyled
