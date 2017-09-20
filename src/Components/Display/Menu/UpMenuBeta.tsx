@@ -59,7 +59,7 @@ export default class UpMenuBeta extends React.Component<UpMenuProps, UpMenuState
         var styleContent = style({
             padding: 15,
             paddingRight: 0,
-            margin:  "auto",
+            margin: "auto",
         });
 
         return <div className="">
@@ -217,7 +217,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
 
             display: "inline",
             position: "absolute",
-            top: -5,
+            top: 0,
             left: 0,
             fontSize: 25,
             fontWeight: 900,
@@ -225,6 +225,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
         });
 
         var liLine = style({
+            padding: 5,
             color: "#8aa4af",
             $nest: {
                 ["&:hover"]: {
@@ -683,7 +684,7 @@ export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
                     : null,
                 ['&:hover > .' + subMenu + " > div"]: this.props.open === false ?
                     {
-                        paddingTop: 10,
+                        paddingTop: 0,
                         paddingBottom: 10
                     }
                     : null
