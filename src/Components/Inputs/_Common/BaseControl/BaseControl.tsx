@@ -59,6 +59,11 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
     }
 
     abstract getValue(args: any): _BaseType;
+
+    protected setValue = (receiveValue: any): _BaseType => {
+        return receiveValue ;
+    }
+
     abstract renderControl(): JSX.Element;
 
     private checkAndDispatch = (value?: any) => {
@@ -90,15 +95,15 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
         var newValue = nextProps.value;
         var oldValue = this.state.value;
         if (newValue !== undefined && !this.equal(newValue, oldValue)) {
+            // Handle specific conversion between the value receive from props and the inner state
+            var value = this.setValue(nextProps.value);
             // Reset the error : if one it will be set in the checkData
             this.setState({ value: nextProps.value, error: null }, this.checkData);
         }
     }
 
     public handleChangeEvent = (event) => {
-
-        this.checkAndDispatch(event)
-
+        this.checkAndDispatch(event);
     }
 
     private checkData = (value?: any) => {

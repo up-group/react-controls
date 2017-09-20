@@ -3,6 +3,7 @@ import * as React from 'react'
 //import Component from './styles';
 import * as ReactDOM from "react-dom"
 import * as Select from "react-select"
+
 import axios from 'axios'
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import { UpSelectProps, UpSelectStyledProps } from './'
@@ -34,10 +35,9 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     constructor(p, c) {
         super(p, c);
         this.state = {
-            value: (p.value) ? p.value : p.default,
+            value: (p.value) ? this.setValue(p.value) : p.default,
             extra: {
-                loadingPlaceholder: p.loadingPlaceholder,
-                fullObject: (p.value) ? p.value : p.default,
+                loadingPlaceholder: p.loadingPlaceholder
             }
         };
     }
@@ -46,14 +46,14 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         if (this.props.dataSource) {
             return this.props.dataSource.id || "id";
         }
-        return "id";
+        return this.props.valueKey || "id" ;
     }
 
     get keyText() {
         if (this.props.dataSource) {
             return this.props.dataSource.text || "text";
         }
-        return "text";
+        return this.props.labelKey || "text";
     }
 
     selectElement: any;
@@ -71,6 +71,21 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         return value === null || value === undefined || value === "";
     }
 
+    setValue = (receiveValue:any) => {
+        if (this.props.returnType === "id") {
+            var realValue = null ;
+            var _self = this ;
+            this.props.data.map(function(value, index) {
+                if(value[_self.keyId] == receiveValue) {
+                    realValue = value ; 
+                }
+            }) ;
+            return realValue ;
+        } else {
+            return receiveValue ;
+        }
+    }
+
     getValue(data: any) {
         var extra = this.state.extra;
         extra.fullObject = data;
@@ -80,7 +95,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             return null;
         }
 
-        if (this.props.returnType == "keyId") {
+        if (this.props.returnType === "id") {
             if (this.props.multiple) {
                 return data.map((v) => { return v[this.keyId] != null ? v[this.keyId] : v });
             } else {
@@ -244,7 +259,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                     {...specProps}
                     placeholder={this.props.placeholder}
                     filterOptions={dataSource !== undefined ? this.filterOptions : undefined}
-                    value={this.state.extra.fullObject}
+                    value={this.state.value}
                     autoBlur={false}
                     valueKey={this.props.valueKey || "id"}
                     labelKey={this.props.labelKey || "text"}

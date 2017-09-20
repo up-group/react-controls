@@ -6,7 +6,7 @@ export default UpSelect;
 import { BaseControlProps } from '../_Common/BaseControl/BaseControl'
 
 export type SelectWidth = 'xsmall' | 'small' | 'normal' | 'large' | 'full' | 'auto';
-export type ReturnType = 'keyId' | 'full';
+export type ReturnType = 'id' | 'full';
 
 export interface UpSelectOption {
     id: number,

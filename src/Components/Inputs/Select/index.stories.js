@@ -82,8 +82,9 @@ storiesOf('UpSelect', module)
           <UpSelect isRequired={true}
                     allowClear={true}
                     default={null}
+                    value={2}
                     multiple={false}
-                    returnType={"keyId"}
+                    returnType={"id"}
                     valueKey= {"id"}
                     tooltip="Votre ville de naissance" 
                     data={[
