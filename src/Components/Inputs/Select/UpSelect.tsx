@@ -1,6 +1,6 @@
 // Imports
 import * as React from 'react'
-import update from 'react-addons-update'
+import * as update from 'react-addons-update'
 //import Component from './styles';
 import * as ReactDOM from "react-dom"
 import * as Select from "react-select"
