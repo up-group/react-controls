@@ -80,7 +80,10 @@ storiesOf('UpMenu', module)
                         },
                         { title: "t", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
                         { title: "teshtztht", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                    ]}></UpMenuBeta>
+                    ]}>
+                    123456789 Content Content Content Content Content Content Content Content Content Content Content Content Content Content
+
+            </UpMenuBeta>
         </UpThemeProvider>
     ))
     ;

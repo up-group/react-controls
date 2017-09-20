@@ -51,14 +51,24 @@ export default class UpMenuBeta extends React.Component<UpMenuProps, UpMenuState
         //return <LeftMenu clickCollapse={this.clickCollapse} open={this.state.open} menuItems={this.props.menuItems} onMenuClick={this.props.onMenuClick} />
 
         //className = { "sidebar-mini skin-up" + (this.state.open ? " sidebar-collapse" : "") }
+        var styleContentWrapper = style({
+            marginLeft: this.state.open ? 230 : 50,
+            minHeight: 250
+        });
+
+        var styleContent = style({
+            padding: 15,
+            margin:  "auto",
+        });
+
         return <div className="">
             <div >
                 <TopMenu open={this.state.open} childMenuItems={this.props.topMenuItems} onUpClick={this.props.onUpClick} onHomeClick={this.props.onHomeClick} onReglagesClick={this.props.onReglagesClick} onDeconnexionClick={this.props.onDeconnexionClick} />
 
                 <LeftMenu clickCollapse={this.clickCollapse} open={this.state.open} menuItems={this.props.menuItems} onMenuClick={this.props.onMenuClick} />
 
-                <div style={{ minHeight: 415 }}>
-                    <section >
+                <div className={styleContentWrapper} >
+                    <section className={styleContent} >
                         {this.props.children}
                     </section>
                 </div>
@@ -132,21 +142,21 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
                 return v.isVisible !== false
             })
             .map((v, i) => {
-            var localId = (this.props.branchId != null ? this.props.branchId + "-" : "") + i;
+                var localId = (this.props.branchId != null ? this.props.branchId + "-" : "") + i;
 
-            return <SubItems
-                selectedBranchId={this.props.selectedBranchId}
-                branchId={localId}
-                onBranchClick={this.props.onBranchClick}
-                key={i}
-                open={this.props.open}
-                onMenuClick={this.props.onMenuClick}
-                uri={v.uri} title={v.title}
-                isVisible={v.isVisible}
-                isSelected={v.isSelected}
-                icon={v.icon}
-                childMenuItems={v.childMenuItems} />
-        })
+                return <SubItems
+                    selectedBranchId={this.props.selectedBranchId}
+                    branchId={localId}
+                    onBranchClick={this.props.onBranchClick}
+                    key={i}
+                    open={this.props.open}
+                    onMenuClick={this.props.onMenuClick}
+                    uri={v.uri} title={v.title}
+                    isVisible={v.isVisible}
+                    isSelected={v.isSelected}
+                    icon={v.icon}
+                    childMenuItems={v.childMenuItems} />
+            })
 
         return <div className={list}>
             {lis}
@@ -556,21 +566,21 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState>{
             .filter((v) => {
                 return v.isVisible !== false
             })
-            .map((v, i) => {           
-            return <MenuItem
-                onBranchClick={this.onBranchClick}
-                branchId={i.toString()}
-                selectedBranchId={this.state.selectedBranchId}
-                open={this.props.open}
-                key={i}
-                onMenuClick={this.props.onMenuClick}
-                title={v.title}
-                icon={v.icon}
-                uri={v.uri}
-                isSelected={v.isSelected}
-                isVisible={v.isVisible}
-                childMenuItems={v.childMenuItems} />
-        });
+            .map((v, i) => {
+                return <MenuItem
+                    onBranchClick={this.onBranchClick}
+                    branchId={i.toString()}
+                    selectedBranchId={this.state.selectedBranchId}
+                    open={this.props.open}
+                    key={i}
+                    onMenuClick={this.props.onMenuClick}
+                    title={v.title}
+                    icon={v.icon}
+                    uri={v.uri}
+                    isSelected={v.isSelected}
+                    isVisible={v.isVisible}
+                    childMenuItems={v.childMenuItems} />
+            });
 
         return <aside className={mainSideBar}>
 
