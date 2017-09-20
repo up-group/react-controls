@@ -49,7 +49,7 @@ const ReactButtonComponent: React.StatelessComponent<UpButtonStyledProps> = (pro
     }
 
     const MainButton = (<button onClick={onClick} className={classnames('up-btn', className)} {...tooltipProps} >
-        {iconName != 'none' && iconPosition == 'left' &&
+        {iconName != 'none' && iconPosition == 'left' && isProcessing !== true &&
             icon
         }
         {width !== 'icon' && isProcessing !== true &&
@@ -58,7 +58,7 @@ const ReactButtonComponent: React.StatelessComponent<UpButtonStyledProps> = (pro
         {width !== 'icon' && isProcessing === true &&
            <UpLoadingIndicator displayMode={"inline"} isLoading={true} /> 
         }
-        {iconName != 'none' && iconPosition == 'right' &&
+        {iconName != 'none' && iconPosition == 'right' && isProcessing !== true &&
             icon
         }
     </button>) ;
