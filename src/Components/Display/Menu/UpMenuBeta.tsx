@@ -58,6 +58,7 @@ export default class UpMenuBeta extends React.Component<UpMenuProps, UpMenuState
 
         var styleContent = style({
             padding: 15,
+            paddingRight: 0,
             margin:  "auto",
         });
 
