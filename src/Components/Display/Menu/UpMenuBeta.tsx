@@ -214,7 +214,6 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
 
         var inliei = style({
 
-
             display: "inline",
             position: "absolute",
             top: 0,
@@ -237,6 +236,13 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
                 },
                 ["&:hover > i"]: {
                     color: "white",
+                },
+
+                ["& > a"]: {
+                    color: (this.state.active || this.isMenuSelected) ? "white" : "#8aa4af",
+                },
+                ["& > i"]: {
+                    color: (this.state.active || this.isMenuSelected) ? "white" : "#8aa4af",
                 }
             }
         })
@@ -247,7 +253,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
         return <div className={liElment} >
             <div className={liLine}>
                 {this.anyChild ?
-                    <i onClick={this.onClick} className={inliei + " " + (this.state.active ? "pe-7s-angle-down" : "pe-7s-angle-right")} ></i>
+                    <i onClick={this.onClick} className={inliei + " " + ((this.state.active || this.isMenuSelected) ? "pe-7s-angle-down" : "pe-7s-angle-right")} ></i>
                     :
                     null
                 }
@@ -255,7 +261,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
                     {this.props.title}
                 </a>
             </div>
-            {this.anyChild && this.state.active ? <SubMenu onBranchClick={this.props.onBranchClick} branchId={this.props.branchId} selectedBranchId={this.props.selectedBranchId} open={this.props.open} onMenuClick={this.props.onMenuClick} childMenuItems={this.props.childMenuItems} /> : null}
+            {this.anyChild && (this.state.active || this.isMenuSelected) ? <SubMenu onBranchClick={this.props.onBranchClick} branchId={this.props.branchId} selectedBranchId={this.props.selectedBranchId} open={this.props.open} onMenuClick={this.props.onMenuClick} childMenuItems={this.props.childMenuItems} /> : null}
         </div>
     }
     get anyChild() {
@@ -263,7 +269,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
     }
 
     get isMenuSelected() {
-        return this.props.selectedBranchId.substr(0, this.props.branchId.length) === this.props.branchId;
+        return this.props.isSelected || this.props.selectedBranchId.substr(0, this.props.branchId.length) === this.props.branchId;
     }
 
     onClick = (e) => {
@@ -776,7 +782,7 @@ export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
     }
 
     get isMenuSelected() {
-        return this.props.selectedBranchId.substr(0, this.props.branchId.length) === this.props.branchId;
+        return this.props.isSelected || this.props.selectedBranchId.substr(0, this.props.branchId.length) === this.props.branchId;
     }
 
     iconClick = (e) => {

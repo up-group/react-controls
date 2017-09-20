@@ -78,6 +78,19 @@ storiesOf('UpMenu', module)
                                 { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] }
                             ]
                         },
+                        {
+                            title: "selected", icon: "up up-dossier", isSelected: true, isVisible: true, uri: "https://www.google.fr", childMenuItems: [
+                                { title: "bbbbb", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
+                                {
+                                    title: "selected", icon: "up up-dossier", isSelected: true, isVisible: true, uri: "https://www.google.fr", childMenuItems: [
+                                        { title: "bbbbb", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
+                                        { title: "selected", icon: "up up-dossier", isSelected: true, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
+                                        { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] }
+                                    ]
+                                },
+                                { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] }
+                            ]
+                        },
                         { title: "t", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
                         { title: "teshtztht", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
                     ]}>
