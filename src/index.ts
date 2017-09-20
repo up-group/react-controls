@@ -19,6 +19,7 @@ import UpLink from './Components/Display/Link'
 import UpNotification from './Components/Display/Notification'
 import UpImage from './Components/Display/Image'
 import UpLoadingIndicator from './Components/Display/LoadingIndicator'
+import UpLigne from './Components/Display/Ligne'
 import UpParagraph from './Components/Display/Paragraph'
 import UpSvgIcon from './Components/Display/SvgIcon'
 import UpToast from './Components/Display/Toast'
@@ -64,6 +65,7 @@ export {
     UpNotification,
     UpImage,
     UpLoadingIndicator,
+    UpLigne,
     UpParagraph,
     UpSvgIcon,
     UpToast,
