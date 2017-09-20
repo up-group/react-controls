@@ -281,6 +281,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
     }
 
     onClickA = (e) => {
+        this.props.onBranchClick(this.props.branchId);
         var value = this.props.onMenuClick(this.props.uri);
 
         if (value === false) {
