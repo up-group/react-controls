@@ -188,9 +188,8 @@ class Demo extends React.Component<undefined, DemoState> {
                 allowClear={false}
                 dataSource={enti}
                 // disabled={true},
-                returnType="keyId"
+                returnType="id"
             />
-
 
                 <UpSelect
                     default={null}

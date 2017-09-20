@@ -1,5 +1,6 @@
 // Imports
 import * as React from 'react'
+import update from 'react-addons-update'
 //import Component from './styles';
 import * as ReactDOM from "react-dom"
 import * as Select from "react-select"
@@ -28,6 +29,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         default: null,
         autoload: false,
         showError: true,
+        isLoading:false,
         width: 'normal',
         returnType: "full"
     }
@@ -75,11 +77,13 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         if (this.props.returnType === "id") {
             var realValue = null ;
             var _self = this ;
-            this.props.data.map(function(value, index) {
-                if(value[_self.keyId] == receiveValue) {
-                    realValue = value ; 
-                }
-            }) ;
+            if(this.props.data) {
+                this.props.data.map(function(value, index) {
+                    if(value[_self.keyId] == receiveValue) {
+                        realValue = value ; 
+                    }
+                }) ;
+            }
             return realValue ;
         } else {
             return receiveValue ;
@@ -87,10 +91,6 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     }
 
     getValue(data: any) {
-        var extra = this.state.extra;
-        extra.fullObject = data;
-        this.setState({ extra: extra });
-
         if (data == null) {
             return null;
         }
@@ -186,13 +186,16 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             var self = this ;
             loadOptions = function (input: string, callback) {
                 if (minimumInputLength && input.length < minimumInputLength) {
-                    if (input.length !== 0)
-                        this.setState({ extra: { loadingPlaceholder: `Veuillez renseigner au minimum ${minimumInputLength} caractères` } });
-                    else
+                    if (input.length !== 0) {
+                        const newState = update(this.state,{ extra: { loadingPlaceholder: {$set : `Veuillez renseigner au minimum ${minimumInputLength} caractères`}}});
+                        this.setState(newState);
+                    } else {
+                        const newState = update(this.state,{ extra: { loadingPlaceholder: {$set : this.props.placeholder}}});
                         this.setState({ extra: { loadingPlaceholder: this.props.placeholder } });
-
+                    }
                     return false;
                 } else {
+                    const newState = update(this.state,{ extra: { loadingPlaceholder: {$set : this.props.placeholder}}});
                     this.setState({ extra: { loadingPlaceholder: this.props.placeholder } });
                 }
                 if(this.timeOutLoadOptions) {
@@ -261,6 +264,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                     filterOptions={dataSource !== undefined ? this.filterOptions : undefined}
                     value={this.state.value}
                     autoBlur={false}
+                    isLoading={this.props.isLoading}
                     valueKey={this.props.valueKey || "id"}
                     labelKey={this.props.labelKey || "text"}
                     loadingPlaceholder={this.state.extra.loadingPlaceholder}

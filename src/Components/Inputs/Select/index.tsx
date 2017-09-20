@@ -18,6 +18,7 @@ export interface UpSelectProps extends BaseControlProps<any> {
     default: any;
     multiple?: boolean;
     data?: any;
+    isLoading?:boolean;
     placeholder?: string;
     loadingPlaceholder?: string;
     allowClear?: boolean;
