@@ -8,7 +8,7 @@ import UpPanel from './UpPanel'
 
 const Title = (
   <div style={{borderBottom:"1px dotted white"}}>Mon JSX Panel</div>
-)
+);
 
 storiesOf('UpPanel', module)
   .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',

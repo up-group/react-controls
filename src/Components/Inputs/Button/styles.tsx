@@ -74,7 +74,6 @@ const base = props => css`
   text-align: center;
   font-size: ${(props: UpButtonStyledProps) => remStringFromPX(fontSizeMap[props.fontSize])};
   border: none;
-  opacity:0.8;
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
