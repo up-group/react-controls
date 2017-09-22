@@ -14,6 +14,7 @@ import UpDashboard from './Components/Containers/Dashboard/UpDashboard'
 import UpTile from './Components/Containers/Dashboard/UpTile'
 import UpNavTab from './Components/Containers/NavTab/UpNavTap'
 
+import UpBadge from './Components/Display/Badge'
 import UpHeading from './Components/Display/Heading'
 import UpLink from './Components/Display/Link'
 import UpNotification from './Components/Display/Notification'
@@ -57,6 +58,7 @@ import { IconName as UpIconName } from './Components/Display/SvgIcon/icons'
 
 export {
     UpBaseControlComponent,
+    UpBadge,
     UpHeading,
     UpLink,
     UpBox,
