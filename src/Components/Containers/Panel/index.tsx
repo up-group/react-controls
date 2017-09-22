@@ -5,7 +5,7 @@ import { IconName } from '../../../Components/Display/SvgIcon/icons'
 
 // Exports
 export interface UpPanelProps extends ThemedProps  {
-  title?:string;
+  title?:string | JSX.Element;
   footer?: string | React.ReactElement<any>;
   type?:IntentType;
   message?:string;
