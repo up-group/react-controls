@@ -140,6 +140,27 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         return strFormat;
     }
 
+    filterOptions = (options, filter, currentValues) => {
+        var _options = [];
+        var _self = this;
+        options.map((value) => {
+            // check if the option is selected
+            var isInValues: boolean = false;
+            for (var i in currentValues) {
+                var curentValue = currentValues[i];
+                if (value[_self.keyId] === curentValue[_self.keyId]) {
+                    isInValues = true;
+                    break;
+                }
+            };
+            // Return the option only if it is not in the current values
+            if (isInValues === false)
+                _options.push(value);
+        });
+
+        return _options;
+    }
+
     private findInObject = (object, path: string[]) => {
         var local = path.shift();
 
@@ -240,7 +261,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                 <SelectComponent
                     {...specProps}
                     placeholder={this.props.placeholder}
-                    filterOptions={this.props.filterOptions}
+                    filterOptions={this.props.filterOptions || this.filterOptions}
                     value={this.state.value}
                     autoBlur={false}
                     isLoading={this.props.isLoading}
