@@ -218,4 +218,45 @@ storiesOf('UpSelect', module)
                     onChange={action('Sélection') } />
         </div>
     </UpThemeProvider>
+  ))
+  .addWithInfo('Creatable', 'Utilisation du composant avec autorisation de création de nouvelle option',
+   () => (
+    <UpThemeProvider theme={UpDefaultTheme}>
+        <div style={{margin:"30px"}}>
+          <UpSelect autoload={false}
+                    isRequired={false}
+                    allowClear={true}
+                    allowCreate={true}
+                    default={null}
+                    multiple={false}
+                    tooltip="Votre ville de naissance"
+                    minimumInputLength={3}
+                    dataSource={{
+                        query: "https://jsonplaceholder.typicode.com/todos",
+                        text: "title"
+                    }}
+                    filterOptions={(options, filter, currentValues) => {
+                          var _options = [];
+                          var _self = this;
+                          options.map((value) => {
+                              if (value['title'].toLowerCase().indexOf(filter.toLowerCase()) >= 0) {
+                                  // check if the option is selected
+                                  var isInValues: boolean = false;
+                                  for (var i in currentValues) {
+                                      var curentValue = currentValues[i];
+                                      if (value[_self.keyId] === curentValue[_self.keyId]) {
+                                          isInValues = true;
+                                          break;
+                                      }
+                                  };
+                                  // Return the option only if it is not in the current values
+                                  if (isInValues === false)
+                                    _options.push(value);
+                              };
+                          });
+                          return _options;
+                    }}
+                    onChange={action('Sélection')} />
+        </div>
+    </UpThemeProvider>
   )) ;

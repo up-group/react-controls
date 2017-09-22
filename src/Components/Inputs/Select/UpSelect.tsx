@@ -3,7 +3,7 @@ import * as React from 'react'
 import * as update from 'react-addons-update'
 //import Component from './styles';
 import * as ReactDOM from "react-dom"
-import * as Select from "react-select"
+import * as Select from 'react-select'
 
 import axios from 'axios'
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
@@ -22,7 +22,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         noResultsText: "Aucun résultat trouvé",
         clearAllText: "Effacer",
         clearValueText: "Déselectionner",
-        addLabelText: "Ajouter",
+        addLabelText: 'Ajouter "{label}" ?',
         searchPromptText: "-- Rechercher",
         placeholder: "-- Sélectionner",
         loadingPlaceholder: "Chargement en cours",
@@ -30,6 +30,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         autoload: false,
         showError: true,
         isLoading:false,
+        allowCreate:false,
         width: 'normal',
         returnType: "full"
     }
@@ -176,8 +177,8 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         var loadOptions: any = false;
 
         const SelectComponent = typeof dataSource !== "undefined"
-            ? Select.Async
-            : Select;
+            ? (this.props.allowCreate === true) ? Select.AsyncCreatable : Select.Async
+            : (this.props.allowCreate === true) ? Select.Creatable : Select ; 
 
         if (typeof dataSource !== "undefined") {
             var queryParam = dataSource.queryParameterName || 'search';
@@ -255,31 +256,32 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                 "autoload": this.props.autoload
             }
         }
-
+               
         return (
             <WrapperSelect width={this.props.width}>
-                <SelectComponent
-                    {...specProps}
-                    placeholder={this.props.placeholder}
-                    filterOptions={this.props.filterOptions || this.filterOptions}
-                    value={this.state.value}
-                    autoBlur={false}
-                    isLoading={this.props.isLoading}
-                    valueKey={this.props.valueKey || "id"}
-                    labelKey={this.props.labelKey || "text"}
-                    loadingPlaceholder={this.state.extra.loadingPlaceholder}
-                    multi={this.props.multiple}
-                    clearable={this.props.allowClear}
-                    disabled={this.props.disabled}
-                    noResultsText={this.props.noResultsText}
-                    clearAllText={this.props.clearAllText}
-                    clearValueText={this.props.clearValueText}
-                    addLabelText={this.props.addLabelText}
-                    searchPromptText={this.props.searchPromptText}
-                    optionRenderer={this.getOptionRenderer}
-                    valueRenderer={this.getValueRenderer}
-                    onChange={this.handleChangeEvent}
-                />
+               <SelectComponent
+                            {...specProps}
+                            placeholder={this.props.placeholder}
+                            filterOptions={this.props.filterOptions || this.filterOptions}
+                            allowCreate={this.props.allowCreate}
+                            promptTextCreator={this.props.promptTextCreator}
+                            value={this.state.value}
+                            autoBlur={false}
+                            isLoading={this.props.isLoading}
+                            valueKey={this.props.valueKey || "id"}
+                            labelKey={this.props.labelKey || "text"}
+                            loadingPlaceholder={this.state.extra.loadingPlaceholder}
+                            multi={this.props.multiple}
+                            clearable={this.props.allowClear}
+                            disabled={this.props.disabled}
+                            noResultsText={this.props.noResultsText}
+                            clearAllText={this.props.clearAllText}
+                            clearValueText={this.props.clearValueText}
+                            addLabelText={this.props.addLabelText}
+                            searchPromptText={this.props.searchPromptText}
+                            optionRenderer={this.getOptionRenderer}
+                            valueRenderer={this.getValueRenderer}
+                            onChange={this.handleChangeEvent} />
             </WrapperSelect>
         );
     }

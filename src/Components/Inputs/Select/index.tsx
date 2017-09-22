@@ -22,6 +22,7 @@ export interface UpSelectProps extends BaseControlProps<any> {
     placeholder?: string;
     loadingPlaceholder?: string;
     allowClear?: boolean;
+    allowCreate?:boolean;
     minimumInputLength?: number;
     dataSource?: {
         id?: string;
@@ -42,6 +43,10 @@ export interface UpSelectProps extends BaseControlProps<any> {
     clearValueText?: string;
     addLabelText?: string;
     searchPromptText?: string;
+    promptTextCreator?:(label:string) => string;
+    isOptionUnique?:(option: object, options: Array<object>, labelKey: string, valueKey: string) => boolean;
+    isValidNewOption?:(label:string) => boolean;
+    onNewOptionClick?: (option) => void;
     optionRenderer?: React.StatelessComponent<UpSelectOption>;
     valueRenderer?: React.StatelessComponent<UpSelectOption>;
     dataFor?: string; //For tooltip,
