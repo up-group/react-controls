@@ -193,6 +193,7 @@ const ModalStyle = style({
     }},
     media({minWidth:768}, {$nest : {
             "& .up-modal-dialog" : {
+                width:"auto",
                 minWidth: "600px",
                 maxWidth: "70%",
                 margin: "30px auto"
@@ -207,6 +208,7 @@ const ModalStyle = style({
     }),
     media({minWidth:992}, {$nest : {
         "& .up-modal-lg": {
+            width:"auto",
             minWidth: "900px",
             maxWidth: "80%"
         }
