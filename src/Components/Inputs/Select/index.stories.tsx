@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions';
 
@@ -11,7 +11,7 @@ storiesOf('UpSelect', module)
   .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
    () => (
     <UpThemeProvider theme={UpDefaultTheme}>
-      <UpSelect width="normal" tooltip="Civilité" data={[
+      <UpSelect width="normal" tooltip="Civilité" default={null} data={[
         {id:1,text:'M.'},
         {id:2,text:'Mme'},
         {id:3,text:'Mlle'},
@@ -106,7 +106,7 @@ storiesOf('UpSelect', module)
                     width={'auto'}
                     default={null}
                     multiple={false}
-                    returnType={"keyId"}
+                    returnType={"id"}
                     valueKey= {"id"}
                     tooltip="Votre ville de naissance" 
                     data={[
@@ -121,7 +121,7 @@ storiesOf('UpSelect', module)
                     width={'full'}
                     default={null}
                     multiple={false}
-                    returnType={"keyId"}
+                    returnType={"id"}
                     valueKey= {"id"}
                     tooltip="Votre ville de naissance" 
                     data={[
@@ -137,7 +137,7 @@ storiesOf('UpSelect', module)
                     width={'xsmall'}
                     default={null}
                     multiple={false}
-                    returnType={"keyId"}
+                    returnType={"id"}
                     valueKey= {"id"}
                     tooltip="Votre ville de naissance" 
                     data={[
@@ -153,7 +153,7 @@ storiesOf('UpSelect', module)
                     width={'small'}
                     default={null}
                     multiple={false}
-                    returnType={"keyId"}
+                    returnType={"id"}
                     valueKey= {"id"}
                     tooltip="Votre ville de naissance" 
                     data={[
@@ -169,7 +169,7 @@ storiesOf('UpSelect', module)
                     width={'normal'}
                     default={null}
                     multiple={false}
-                    returnType={"keyId"}
+                    returnType={"id"}
                     valueKey= {"id"}
                     tooltip="Votre ville de naissance" 
                     data={[
@@ -185,7 +185,7 @@ storiesOf('UpSelect', module)
                     width={'large'}
                     default={null}
                     multiple={false}
-                    returnType={"keyId"}
+                    returnType={"id"}
                     valueKey= {"id"}
                     tooltip="Votre ville de naissance" 
                     data={[

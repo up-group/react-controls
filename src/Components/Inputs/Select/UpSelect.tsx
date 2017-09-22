@@ -153,6 +153,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     filterOptions = (options, filter, currentValues) => {
         var _options = [];
         var _self = this;
+        
         options.map((value) => {
             if (_self.format(value, _self.keyText).toLowerCase().indexOf(filter.toLowerCase()) >= 0) {
                 // check if the option is selected
@@ -169,6 +170,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                     _options.push(value);
             };
         });
+
         return _options;
     }
 
