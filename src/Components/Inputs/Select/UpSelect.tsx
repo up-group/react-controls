@@ -150,30 +150,6 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         }
     }
 
-    filterOptions = (options, filter, currentValues) => {
-        var _options = [];
-        var _self = this;
-        
-        options.map((value) => {
-            if (_self.format(value, _self.keyText).toLowerCase().indexOf(filter.toLowerCase()) >= 0) {
-                // check if the option is selected
-                var isInValues: boolean = false;
-                for (var i in currentValues) {
-                    var curentValue = currentValues[i];
-                    if (value[_self.keyId] === curentValue[_self.keyId]) {
-                        isInValues = true;
-                        break;
-                    }
-                };
-                // Return the option only if it is not in the current values
-                if (isInValues === false)
-                    _options.push(value);
-            };
-        });
-
-        return _options;
-    }
-
     renderControl() {
         const dataSource = this.props.dataSource;
         var loadOptions: any = false;
@@ -223,6 +199,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                         cancelToken: self.axiosSource.token
                     }).then((response) => {
                             var data = response.data;
+
                             if(dataSource.handleResponse) {
                                 data = dataSource.handleResponse(data) ;
                             }
@@ -263,7 +240,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                 <SelectComponent
                     {...specProps}
                     placeholder={this.props.placeholder}
-                    filterOptions={dataSource !== undefined ? this.filterOptions : undefined}
+                    filterOptions={this.props.filterOptions}
                     value={this.state.value}
                     autoBlur={false}
                     isLoading={this.props.isLoading}

@@ -31,18 +31,19 @@ export interface UpSelectProps extends BaseControlProps<any> {
         queryParameterName?: string;
         getExtraParams?:() => any;
         delay?:number;
-        handleResponse?:(response:any) => Array<any>
+        handleResponse?:(response:any) => Array<any>;
     },
-    valueKey?: string,
-    labelKey?: string,
-    autoload?: boolean
-    noResultsText?: string,
-    clearAllText?: string,
-    clearValueText?: string,
-    addLabelText?: string,
-    searchPromptText?: string,
-    optionRenderer?: React.StatelessComponent<UpSelectOption>,
-    valueRenderer?: React.StatelessComponent<UpSelectOption>,
+    filterOptions?:(options:any, filter:string, currentValues:Array<any>) => Array<any>;
+    valueKey?: string;
+    labelKey?: string;
+    autoload?: boolean;
+    noResultsText?: string;
+    clearAllText?: string;
+    clearValueText?: string;
+    addLabelText?: string;
+    searchPromptText?: string;
+    optionRenderer?: React.StatelessComponent<UpSelectOption>;
+    valueRenderer?: React.StatelessComponent<UpSelectOption>;
     dataFor?: string; //For tooltip,
     width?: SelectWidth;
     returnType?: ReturnType;
