@@ -37,7 +37,7 @@ const ModalStyle = style({
             bottom: 0,
             left: 0,
             zIndex: 1050,
-            overflow: "hidden",
+            overflowY: "auto",
             //-webkit-overflow-scrolling: touch,
             outline: 0,
             opacity:0
@@ -122,6 +122,8 @@ const ModalStyle = style({
         "& .up-modal-body" : {
             position: "relative",
             padding: "15px",
+            width:"100%",
+            height:"100%"
         },
         "& .up-modal-footer": {
             padding: "15px",
@@ -191,7 +193,8 @@ const ModalStyle = style({
     }},
     media({minWidth:768}, {$nest : {
             "& .up-modal-dialog" : {
-                width: "600px",
+                minWidth: "600px",
+                maxWidth: "70%",
                 margin: "30px auto"
             },
             "& .up-modal-content" : {
@@ -204,7 +207,8 @@ const ModalStyle = style({
     }),
     media({minWidth:992}, {$nest : {
         "& .up-modal-lg": {
-            width: "900px"
+            minWidth: "900px",
+            maxWidth: "80%"
         }
     }
 })
@@ -278,7 +282,7 @@ export default class UpModal extends React.Component<UpModalProps, UpModalState>
                             <div className="up-modal-body">
                                 {this.props.children}
                                 {this.props.html != null &&
-                                    <iframe ref={this.setHtml} style={{width:"100%", border:"0px"}} />
+                                    <iframe ref={this.setHtml} style={{width:"100%", minHeight:"800px", minWidth:"600px", border:"0px"}} />
                                 }
                             </div>
                             {footer}
