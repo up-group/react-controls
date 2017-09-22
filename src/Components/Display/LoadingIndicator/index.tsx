@@ -64,7 +64,7 @@ export default class LoadingIndicator extends React.Component<LoadingIndicatorPr
                 <div style={overlay} >
                     <div style={circle}>
                         <SvgIcon viewBox="0 0 48 48">
-                            <Circle cx="24" cy="24" r="21" stroke="#007acc" strokeWidth="6" fill="none" />
+                        <Circle cx="24" cy="24" r="21" stroke="#007acc" strokeWidth="6" fill="none" />
                         </SvgIcon>
                     </div>
                 </div>
@@ -104,7 +104,7 @@ export default class LoadingIndicator extends React.Component<LoadingIndicatorPr
                                     <UpRow>
                                         <UpCol span={24}>
                                             <hgroup style={{ "textShadow": "0px 0px 0.1ex" }} className="">
-                                                <h3 style={{ "font-size": "22px" }}>
+                                                <h3 style={{ "fontSize": "22px" }}>
                                                     <span>{_title}</span>
                                                 </h3>
                                             </hgroup>
@@ -113,7 +113,7 @@ export default class LoadingIndicator extends React.Component<LoadingIndicatorPr
                                     <UpRow>
                                         <UpCol span={24}>
                                             <p className="loading-status text-info"
-                                                style={{ "text-align": "left" }}>{this.props.message}</p>
+                                                style={{ "textAlign": "left" }}>{this.props.message}</p>
                                         </UpCol>
                                     </UpRow>
                                 </UpGrid>
