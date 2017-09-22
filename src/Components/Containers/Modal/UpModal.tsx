@@ -1,4 +1,5 @@
 import * as React from "react"
+import * as ReactDOM from "react-dom"
 import * as classnames from 'classnames'
 import {style, media} from 'typestyle' 
 
@@ -6,6 +7,7 @@ export interface UpModalProps {
     showModal?: boolean;
     header?: string | JSX.Element;
     footer?: JSX.Element;
+    html?:string;
     onClose?: () => void
 }
 
@@ -234,6 +236,13 @@ export default class UpModal extends React.Component<UpModalProps, UpModalState>
         this.setState({showModal:nextProps.showModal}) ;
     }
 
+    setHtml = (iframe) => {
+        // Set the innerHTML of the iframe
+        if(iframe) {
+            iframe.contentDocument.write(this.props.html) ;
+        }
+    }
+
     render() {
         var header = null;
         var headerContent:any = "" 
@@ -268,6 +277,9 @@ export default class UpModal extends React.Component<UpModalProps, UpModalState>
                             {header}
                             <div className="up-modal-body">
                                 {this.props.children}
+                                {this.props.html != null &&
+                                    <iframe ref={this.setHtml} style={{width:"100%", border:"0px"}} />
+                                }
                             </div>
                             {footer}
                         </div>

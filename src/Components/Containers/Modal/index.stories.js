@@ -32,15 +32,28 @@ class ModalWrapper extends React.Component {
      const Info =  () => <UpPanel type={"warning"} disableAutoIntentIcon={false}>
        <p>Bienvenue !!</p>
      </UpPanel> ;
+
      return (<div><UpModal onClose={this.onClose} footer={<CloseAction />} 
-              header={'Header'} showModal={this.state.showModal}><Info /></UpModal>
+              header={'Header'} showModal={this.state.showModal} html={this.props.html}>
+                {this.props.html == null && 
+                  <Info />
+                }
+              </UpModal>
             <UpButton actionType={"confirm"} onClick={this.openModal}>Open</UpButton></div>) ;
   }
 }
+
+const HTML  = `<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> <html> <head> <title>Mon titre</title> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="UTF-8"> </head> <body text="#000000" vlink="#990000" alink="#990000" link="#990000" bgcolor="#ffffff"><p>Mon message</p></body></html>`;
 
 storiesOf('UpModal', module)
   .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
    () =>  (<UpThemeProvider theme={UpDefaultTheme}>
         <ModalWrapper />
       </UpThemeProvider>)
+).addWithInfo('Html', 'Set the content using HTML',
+  () => (
+    <UpThemeProvider theme={UpDefaultTheme}>
+      <ModalWrapper html={HTML} />
+    </UpThemeProvider>
+  )
 ) ;
