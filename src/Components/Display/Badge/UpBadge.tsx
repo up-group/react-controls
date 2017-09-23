@@ -4,7 +4,6 @@ import {style} from 'typestyle';
 const BadgeStyle = style({
   borderRadius:'4px',
   padding:'6px;',
-  color: 'white',
   fontWeight : 700
 }) ;
 
@@ -14,13 +13,15 @@ export type Align = 'left' | 'right'  ;
 export interface UpBadgeProps {
   text:string;
   color:string;
+  background:string;
 };
 
 export default class UpBadge extends React.Component<UpBadgeProps, {}> {
   
   public static defaultProps: UpBadgeProps = {
     text:'',
-    color:'#FFF'
+    color:'#FFF',
+    background:"black"
   }
 
   constructor(props) {
@@ -34,9 +35,9 @@ export default class UpBadge extends React.Component<UpBadgeProps, {}> {
   }
 
   render() {
-      const {children, text, color, ...others} = this.props ; 
+      const {children, text, color, background, ...others} = this.props ; 
       return (
-        <span className={BadgeStyle} style={{background:color}}>
+        <span className={BadgeStyle} style={{background:background, color:color}}>
           {text}
           {children}
         </span>
