@@ -12,8 +12,8 @@ export type Align = 'left' | 'right'  ;
 
 export interface UpBadgeProps {
   text:string;
-  color:string;
-  background:string;
+  color?:string;
+  background?:string;
 };
 
 export default class UpBadge extends React.Component<UpBadgeProps, {}> {

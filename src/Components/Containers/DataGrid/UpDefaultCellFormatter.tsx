@@ -79,7 +79,7 @@ export default class UpDefaultCellFormatter implements ICellFormatter {
                             if (_libelle == undefined) {
                                 _libelle = '';
                             }
-                            result = <UpBadge text={_libelle} color={_couleur} />;
+                            result = <UpBadge text={_libelle} background={_couleur} />;
                         }
                     } else {
                         result = "";
@@ -158,9 +158,9 @@ export class UpCellFormatter extends React.Component<UpCellFormatterProps, {}>{
             case "boolean":
                 switch (valueExtracted) {
                     case true:
-                        return <UpBadge text={"Oui"} color={"green"} />
+                        return <UpBadge text={"Oui"} background={"green"} />
                     case false:
-                        return <UpBadge text={"Non"} color={"red"} />
+                        return <UpBadge text={"Non"} background={"red"} />
                     default:
                         return <span />
                 }
@@ -179,7 +179,7 @@ export class UpCellFormatter extends React.Component<UpCellFormatterProps, {}>{
                        if (_libelle == undefined) {
                            _libelle = '';
                        }
-                       return <UpBadge text={_libelle} color={_couleur} />;
+                       return <UpBadge text={_libelle} background={_couleur} />;
                    }
                 }
                 return <span>{valueExtracted == null ? "" : valueExtracted}</span>
