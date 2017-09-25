@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions';
 
@@ -12,7 +12,7 @@ storiesOf('UpButtonGroupDropDown', module)
    () => (
     <UpThemeProvider theme={UpDefaultTheme}>
       <div style={{"margin": "30px"}}>
-        <UpButtonGroupDropDown buttons={[{name:"Option 1", onClick: action("Option 1")}]} text={"Add"} />
+               <UpButtonGroupDropDown onClick={null} buttons={[{name:"Option 1", onClick: action("Option 1")}]} text={"Add"} />
       </div>
     </UpThemeProvider>
   )) ;

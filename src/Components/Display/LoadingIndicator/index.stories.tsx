@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 
 import UpDefaultTheme from '../../../Common/theming'
@@ -6,7 +6,7 @@ import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themed
 
 import UpLoadingIndicator from './'
 
-const styles = {
+const styles : React.CSSProperties = {
   main: {
     margin: 15,
     maxWidth: 600,
