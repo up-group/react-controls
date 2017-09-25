@@ -36,7 +36,7 @@ const FullSize = css`
   flex-grow:1;
   flex-shrink:0;
   flex-basis:100%;
-  width:auto;
+  width:100%;
 `
 
 export default styled.div`

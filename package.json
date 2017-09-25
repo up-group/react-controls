@@ -60,7 +60,7 @@
     "publishLocalToApp": "copyfiles dist/*.* dist/**/* dist/**/*.* package.json src/*.* src/**/* src/**/*.* src/theming/icons/* ../react-app/node_modules/@up-group/react-controls/",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook -o ./docs"
   },
   "devDependencies": {
     "@storybook/addon-actions": "3.2.6",
