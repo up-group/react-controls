@@ -10,30 +10,11 @@ import UpDataGrid from './UpDataGrid'
 import { ICellFormatter } from "./UpDefaultCellFormatter"
 import RowTemplate from './templates/UpDataGridRowWithStatus'
 
-var data = [
-    { 'c1': 'Value 1', 'c2': false, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } },
-    { 'c1': 'Value 1', 'c2': false, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } },
-    { 'c1': 'Value 1', 'c2': false, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } },
-    { 'c1': 'Value 1', 'c2': true, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } },
-    { 'c1': 'Value 1', 'c2': true, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } },
-    { 'c1': 'Value 1', 'c2': false, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } },
-    { 'c1': 'Value 1', 'c2': false, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } },
-    { 'c1': 'Value 1', 'c2': true, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } },
-    { 'c1': 'Value 1', 'c2': true, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } },
-    { 'c1': 'Value 1', 'c2': true, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } },
-    { 'c1': 'Value 1', 'c2': true, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } },
-    { 'c1': 'Value 1', 'c2': true, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } },
-    { 'c1': 'Value 1', 'c2': true, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } },
-    { 'c1': 'Value 1', 'c2': true, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } },
-    { 'c1': 'Value 1', 'c2': true, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } },
-    { 'c1': 'Value 1', 'c2': true, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } },
-    { 'c1': 'Value 1', 'c2': true, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } },
-    { 'c1': 'Value 1', 'c2': true, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } },
-    { 'c1': 'Value 1', 'c2': true, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } },
-    { 'c1': 'Value 1', 'c2': true, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } },
-    { 'c1': 'Value 1', 'c2': true, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } },
-    { 'c1': 'Value 1', 'c2': true, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } },
-];
+var data = [];
+
+for (var i = 0; i < 15; i++) {
+    data.push({ 'c1': 'Value ' + i, 'c2': false, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } })
+}
 
 class SpecifiqueCellFormatter {
     format(item, column) {
@@ -336,4 +317,40 @@ storiesOf('UpDataGrid', module)
                     }]
                 } />
         </UpThemeProvider>
-    ));
+    ))
+    .addWithInfo('Injection de ligne', '',
+    () => (
+        <UpThemeProvider theme={UpDefaultTheme}>
+            <UpDataGrid
+                injectRow={(previous, next, col) => {
+                    if (next == null || previous && previous.value && previous.value.c1 && previous.value.c1.indexOf("2") != -1) {
+                        return <div style={{ color: "red" }}>Injected row</div>;
+                    }
+                    return null;
+                }}
+                isPaginationEnabled={false}
+                isSelectionEnabled={false}
+                isSortEnabled={false}
+                columns={
+                    [{
+                        label: 'Col 1',
+                        field: 'c1',
+                        isSortable: true
+                    }, {
+                        label: 'Col 2',
+                        field: 'c2',
+                        type: 'boolean',
+                        isSortable: true
+                    }, {
+                        label: 'Col 3',
+                        field: 'c3',
+                        isSortable: true
+                    }, {
+                        label: 'Col 4',
+                        field: 'c4',
+                        isSortable: true
+                    }]
+                } data={data} />
+        </UpThemeProvider>
+    ))
+    ;
