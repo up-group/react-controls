@@ -1,18 +1,17 @@
-import React from 'react'
+import * as React from 'react'
 import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions';
 
 import UpDefaultTheme from '../../../Common/theming'
 import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themedComponents'
 
-import UpButtonGroupDropDown from './UpButtonGroupDropDown'
+import UpLigne from './'
 
-storiesOf('UpButtonGroupDropDown', module)
+storiesOf('UpLigne', module)
   .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
    () => (
     <UpThemeProvider theme={UpDefaultTheme}>
-      <div style={{"margin": "30px"}}>
-        <UpButtonGroupDropDown buttons={[{name:"Option 1", onClick: action("Option 1")}]} text={"Add"} />
-      </div>
+      <UpLigne className={"up-indication"} color={"red"}>
+        Mon message
+      </UpLigne>
     </UpThemeProvider>
-  )) ;
+  ));

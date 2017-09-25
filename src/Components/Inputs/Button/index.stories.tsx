@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions';
 
@@ -101,7 +101,7 @@ storiesOf('UpButton', module)
 )).addWithInfo('Avec indication d\'opération', 'Utilisation du composant avec activation de l\'indication dd\'un processus en cours',
 () => (
  <UpThemeProvider theme={UpDefaultTheme}>
-   <UpButton width={"normal"} isProcessing={true}>Save</UpButton>
+        <UpButton onClick={null} width={"normal"} isProcessing={true}>Save</UpButton>
  </UpThemeProvider>
 )).addWithInfo('Arrondi', 'Utilisation du composant avec activation de l\'indication dd\'un processus en cours',
 () => (

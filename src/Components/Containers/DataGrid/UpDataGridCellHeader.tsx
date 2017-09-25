@@ -59,12 +59,12 @@ export default class UpDataGridCellHeader extends React.Component<UpDataGridCell
             width = this.props.width ;
         }
         return (
-            <div style={{width: width}} className={classnames("up-data-grid-header-cell", (this.props.column.isSortable)?'up-data-grid-sortable':'')}  onClick={this.onCellClick}>
+            <th style={{width: width}} className={classnames("up-data-grid-header-cell", (this.props.column.isSortable)?'up-data-grid-sortable':'')}  onClick={this.onCellClick}>
                 {this.props.column.label}
                 {this.state.isSorted &&  sortIcon != null &&
                     <UpSvgIcon width={10} iconName={sortIcon} />
                 }
-            </div>
+            </th>
         )
     }
 }

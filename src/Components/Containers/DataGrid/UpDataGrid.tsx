@@ -29,7 +29,8 @@ const DataGridStyle = style({
     width: "100%",
     border: "1px solid #737373",
     borderRadius: "4px",
-    display: "table",
+    //display: "table",
+    borderCollapse: "collapse",
     $nest: {
         ".up-data-grid-header": {
             backgroundColor: "#fafafa",
@@ -40,11 +41,11 @@ const DataGridStyle = style({
             boxShadow: "0 1px 4px rgba(0, 0, 0, 0.067)",
             color: "#428bca",
             fontWeight: 700,
-            display: "table-header-group"
+            //display: "table-header-group"
         },
         ".up-data-grid-body": {
             background: "white",
-            display: "table-row-group"
+            //display: "table-row-group"
         },
         ".up-selection": {
             width: "0.2em"
@@ -52,24 +53,27 @@ const DataGridStyle = style({
         ".up-display-label": CellInnerElementStyle,
         ".up-display-value": CellInnerElementStyle,
         ".up-data-grid-row": {
-            display: "table-row"
+            //display: "table-row"
         },
         ".up-data-grid-header-cell": {
-            display: "table-cell",
+            //display: "table-cell",
+            textAlign: "left",
             verticalAlign: "top",
             padding: "4px"
         },
         ".up-data-grid-cell": {
-            display: "table-cell",
+            //   display: "table-cell",
             verticalAlign: "top",
             padding: "8px"
         },
         ".up-data-grid-row-bordered": {
-            $nest: {
-                ".up-data-grid-cell": {
-                    borderTop: "0.1em solid #428bca"
-                }
-            }
+            borderTop: "0.1em solid #428bca"
+
+            //$nest: {
+            //    "& > div": {
+            //        borderTop: "0.1em solid #428bca"
+            //    }
+            //}
         },
         ".up-data-grid-row-borderless": {
             $nest: {
@@ -122,6 +126,7 @@ export type Method = 'GET' | 'POST';
 export type PaginationPosition = "top" | "bottom" | "both";
 
 export interface UpDataGridProps {
+    injectRow?: (previous: any, next: any, colum: Column[]) => JSX.Element;
     columns: Array<Column>;
     actions?: Array<Action>;
     isSelectionEnabled?: boolean;
@@ -441,6 +446,43 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
             columns = newUnsortableColumns;
         }
 
+
+        var rows = [];
+
+        for (var index = 0; index < this.state.data.length; index++) {
+            let value = this.state.data[index];
+
+            if (RowTemplate) {
+                rows.push(<RowTemplate key={`row-${index}`}
+                    isSelectionEnabled={this.props.isSelectionEnabled}
+                    actions={this.props.actions}
+                    columns={columns}
+                    item={value} />)
+            } else {
+                rows.push(<UpDataGridRow key={`row-${index}`}
+                    isSelectionEnabled={this.props.isSelectionEnabled}
+                    actions={this.props.actions}
+                    columns={columns}
+                    item={value} />)
+            }
+
+            if (this.props.injectRow != null) {
+                let previous = value;
+                let next = this.state.data[index + 1];
+                let rowToInject = this.props.injectRow(previous, next, columns);
+                if (rowToInject != null) {
+                    rows.push(
+                        <tr className="up-data-grid-row up-data-grid-row-bordered" key={`row-custom-${index}`} >
+                            <td className="up-data-grid-cell" colSpan={columns.length}>
+                                {rowToInject}
+                            </td>
+                        </tr>
+                    )
+                }
+            }
+
+        }
+
         return (
             <div className={classnames("up-data-grid-container", WrapperDataGridStyle)} >
                 {this.props.isPaginationEnabled && this.props.paginationPosition != 'bottom' &&
@@ -448,30 +490,16 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
                 }
                 <UpLoadingIndicator message={"Chargement en cours"} isLoading={this.state.isDataFetching} />
                 {!this.state.isDataFetching &&
-                    <div className={classnames("up-data-grid-main", DataGridStyle)}>
+                    <table className={classnames("up-data-grid-main", DataGridStyle)}>
                         <UpDataGridRowHeader isSelectionEnabled={this.props.isSelectionEnabled}
                             onSelectionChange={this.onSelectionAllChange.bind(this)}
                             onSortChange={this.onSortChange.bind(this)}
                             actions={this.props.actions}
                             columns={columns} />
-                        <div className={classnames("up-data-grid-body", OddEvenStyle)}>
-                            {this.state.data.map((value, index) => {
-                                if (RowTemplate) {
-                                    return <RowTemplate key={`row-${index}`}
-                                        isSelectionEnabled={this.props.isSelectionEnabled}
-                                        actions={this.props.actions}
-                                        columns={columns}
-                                        item={value} />
-                                } else {
-                                    return <UpDataGridRow key={`row-${index}`}
-                                        isSelectionEnabled={this.props.isSelectionEnabled}
-                                        actions={this.props.actions}
-                                        columns={columns}
-                                        item={value} />
-                                }
-                            })}
-                        </div>
-                    </div>
+                        <tbody className={classnames("up-data-grid-body", OddEvenStyle)}>
+                            {rows}
+                        </tbody>
+                    </table>
                 }
                 {!this.state.isDataFetching && this.props.isPaginationEnabled && this.props.paginationPosition != 'top' &&
                     <div style={{ marginTop: "10px" }}>{pagination}</div>
