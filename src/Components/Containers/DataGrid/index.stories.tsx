@@ -67,6 +67,7 @@ storiesOf('UpDataGrid', module)
     () => (
         <UpThemeProvider theme={UpDefaultTheme}>
             <UpDataGrid
+                onSelectionChange={console.log}
                 isPaginationEnabled={false}
                 isSelectionEnabled={true}
                 columns={

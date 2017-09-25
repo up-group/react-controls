@@ -10,20 +10,21 @@ import { Column, Row, Action } from './UpDataGrid'
 import UpDefaultCellFormatter from './UpDefaultCellFormatter'
 
 export interface UpDataGridRowState {
-    isSelected: boolean;
 }
 
 export interface UpDataGridRowProps {
-    item: any;
+    rowIndex: number;
+    item: Row;
     columns: Array<Column>;
     actions: Array<Action>;
     isSelectionEnabled: boolean;
-    onSelectionChange?: (row: Row) => void;
+    onSelectionChange?: (rowIndex: number, row: Row) => void;
 }
 
 export default class UpDataGridRow extends React.Component<UpDataGridRowProps, UpDataGridRowState> {
 
     static defaultProps: UpDataGridRowProps = {
+        rowIndex: -1,
         isSelectionEnabled: true,
         item: {},
         columns: [],
@@ -33,14 +34,12 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
     constructor(props, context) {
         super(props, context);
 
-        this.state = {
-            isSelected: false
-        }
     }
 
     onSelectionChange = (isSelected) => {
-        if (this.props.onSelectionChange)
-            this.props.onSelectionChange({ isSelected: isSelected, value: this.props.item });
+        if (this.props.onSelectionChange) {
+            this.props.onSelectionChange(this.props.rowIndex, { isSelected: isSelected, value: this.props.item.value });
+        }
     }
 
     render() {

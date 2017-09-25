@@ -157,7 +157,7 @@ export interface UpDataGridProps {
     // Event Handler
     onPageChange?: (page: number, take: number, skip: number) => void;
     onSortChange?: (c: Column, dir: SortDirection) => void;
-    onSelectionChange?: (row: Row) => void;
+    onSelectionChange?: (lastChangeRow: Row, seletectedRow: Row[]) => void;
 }
 
 export interface UpDataGridState {
@@ -353,22 +353,49 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
         });
     }
 
-    onSelectionChange = (r: Row) => {
-        if (this.props.onSelectionChange)
-            this.props.onSelectionChange(r);
+
+    get seletectedRow() {
+        if (this.state.data == null) {
+            return [];
+        }
+        return this.state.data
+            .filter((value) => {
+                if (value.isSelected === true) {
+                    return true
+                }
+                return false;
+            })
+            .map((value) => {
+                return value.value;
+            });
+    }
+
+
+    onRowSelectionChange = (rowKey: number, r: Row) => {
+        var rows = this.state.data;
+        rows[rowKey] = r;
+
+        this.setState({ data: rows }, () => {
+            if (this.props.onSelectionChange) {
+                this.props.onSelectionChange(r, this.seletectedRow);
+            }
+        });
     }
 
     onSelectionAllChange = (isSelected: boolean) => {
-        let rows: Array<Row> = [];
-
-        this.state.data.map((row, index) => {
-            rows.push({
+        let rows: Array<Row> = this.state.data.map((row, index) => {
+            return {
                 isSelected: isSelected,
                 value: row.value
-            });
+            };
         });
 
-        this.setState({ data: rows });
+        this.setState({ data: rows },
+            () => {
+                if (this.props.onSelectionChange) {
+                    this.props.onSelectionChange(null, this.seletectedRow);
+                }
+            });
     }
 
     onSortChange = (c: Column, dir: SortDirection) => {
@@ -460,10 +487,13 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
                     item={value} />)
             } else {
                 rows.push(<UpDataGridRow key={`row-${index}`}
+                    rowIndex={index}
                     isSelectionEnabled={this.props.isSelectionEnabled}
                     actions={this.props.actions}
                     columns={columns}
-                    item={value} />)
+                    item={value}
+                    onSelectionChange={this.onRowSelectionChange}
+                />)
             }
 
             if (this.props.injectRow != null) {
