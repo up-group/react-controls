@@ -56,8 +56,6 @@ export default class UpRadio extends BaseControlComponent<UpRadioProps, any> {
                 {/* Avoid set active element when using the component inside a label */}
                 <label style={{ display: "none" }}><input type="radio" /></label>
                 {options.map((option, i) => {
-                    console.log(option.text,option.value,this.state.value)
-
                     return (
                         <StyledRadioButton onChange={this.handleChangeEvent} key={`Key_${this.props.name}_${option.value}`}
                             name={this.props.name}
