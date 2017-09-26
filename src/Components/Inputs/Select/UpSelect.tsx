@@ -3,7 +3,7 @@ import * as React from 'react'
 import * as update from 'react-addons-update'
 //import Component from './styles';
 import * as ReactDOM from "react-dom"
-import * as Select from 'react-select'
+import Select, {AsyncCreatable, Async, Creatable} from 'react-select'
 
 import axios from 'axios'
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
@@ -176,9 +176,9 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         const dataSource = this.props.dataSource;
         var loadOptions: any = false;
 
-        const SelectComponent = typeof dataSource !== "undefined"
-            ? (this.props.allowCreate === true) ? Select.AsyncCreatable : Select.Async
-            : (this.props.allowCreate === true) ? Select.Creatable : Select ; 
+        const SelectComponent = dataSource != null
+            ? ((this.props.allowCreate === true) ? AsyncCreatable : Async)
+            : ((this.props.allowCreate === true) ? Creatable : Select) ;
 
         if (typeof dataSource !== "undefined") {
             var queryParam = dataSource.queryParameterName || 'search';
