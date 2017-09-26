@@ -15,7 +15,7 @@ const BaseRadioButton: React.StatelessComponent<UpRadioStyledProps> = (props) =>
     const { children, checked, className, name, text, value, iconName, onChange } = props;
     return (
       <label className={classNames("up-control", "up-radio", className)}>
-        <input defaultChecked={checked} onChange={onChange} name={name} type="radio" value={value} />
+            <input checked={checked} onChange={onChange} name={name} type="radio" value={value} />
         <span className="up-control-indicator"></span>
         <span className="up-control-text">{text}</span>
       </label>

@@ -18,7 +18,7 @@ storiesOf('UpRadio', module)
     () => (
         <UpThemeProvider theme={UpDefaultTheme}>
             <div style={{ padding: "30px" }}>
-                <UpRadio defaultValue={"option1"} name={"modeAdresse"} options={[{ text: "Option 1", value: "option1" }, { text: "Option 2", value: "option2" }, { text: "Option 3", value: "option3" }]} />
+                <UpRadio onChange={console.log} defaultValue={"option1"} name={"modeAdresse"} options={[{ text: "Option 1", value: "option1" }, { text: "Option 2", value: "option2" }, { text: "Option 3", value: "option3" }]} />
             </div>
         </UpThemeProvider>
     )).addWithInfo('Display horizontally', 'Affichage des radio en ligne',
