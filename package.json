@@ -75,7 +75,7 @@
     "@types/pure-render-decorator": "^0.2.27",
     "@types/react": "15.6.1",
     "@types/react-dom": "^0.14.23",
-    "@types/react-select": "^1.0.55",
+    "@types/react-select": "1.0.55",
     "@types/select2": "^4.0.34",
     "@types/webpack-env": "^1.13.0",
     "babel-core": "^6.24.1",
