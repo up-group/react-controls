@@ -1,8 +1,22 @@
 ﻿import * as React from "react"
-
-import { UpSwitchProps, UpSwitchState } from './'
-
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
+
+
+export interface UpSwitchProps {
+    onChange: (value?: boolean) => void;
+    isNullable: boolean;
+    default?: boolean;
+
+    displayFalse?: string;
+    displayTrue?: string;
+    displayNull?: string;
+}
+
+export interface UpSwitchState {
+    value?: boolean;
+}
+
+
 
 export default class UpSwitch extends BaseControlComponent<UpSwitchProps, boolean> {
     constructor(p, c) {
