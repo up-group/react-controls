@@ -15,8 +15,8 @@ var CancelToken = axios.CancelToken;
 
 // Exports
 export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
-    timeOutLoadOptions:any;
-    axiosSource:any;
+    timeOutLoadOptions: any;
+    axiosSource: any;
 
     public static defaultProps: UpSelectProps = {
         noResultsText: "Aucun résultat trouvé",
@@ -29,8 +29,8 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         default: null,
         autoload: false,
         showError: true,
-        isLoading:false,
-        allowCreate:false,
+        isLoading: false,
+        allowCreate: false,
         width: 'normal',
         returnType: "full"
     }
@@ -40,7 +40,8 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         this.state = {
             value: (p.value) ? this.setValue(p.value) : p.default,
             extra: {
-                loadingPlaceholder: p.loadingPlaceholder
+                loadingPlaceholder: p.loadingPlaceholder,
+                fullObject: (p.value) ? p.value : p.default,
             }
         };
     }
@@ -49,7 +50,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         if (this.props.dataSource) {
             return this.props.dataSource.id || "id";
         }
-        return this.props.valueKey || "id" ;
+        return this.props.valueKey || "id";
     }
 
     get keyText() {
@@ -74,33 +75,49 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         return value === null || value === undefined || value === "";
     }
 
-    setValue = (receiveValue:any) => {
-        if (this.props.returnType === "id") {
-            var realValue = null ;
-            var _self = this ;
-            if(this.props.data) {
-                this.props.data.map(function(value, index) {
-                    if(value[_self.keyId] == receiveValue) {
-                        realValue = value ; 
-                    }
-                }) ;
-            }
-            return realValue ;
-        } else {
-            return receiveValue ;
+    setValue = (receiveValue: any) => {
+        debugger
+        if (typeof (receiveValue) === "object") {
+            var extra = this.state.extra;
+            extra.fullObject = receiveValue;
+            this.setState({ extra: extra });
         }
+
+        if (this.props.returnType === "id" && typeof (receiveValue) === "object") {
+            return receiveValue[this.keyId]
+        }
+        //var realValue = null;
+        //var _self = this;
+        //if (this.props.data) {
+        //    this.props.data.map(function (value, index) {
+        //        if (value[_self.keyId] == receiveValue) {
+        //            realValue = value;
+        //        }
+        //    });
+        //}
+        //return realValue;
+
+        return receiveValue;
     }
 
     getValue(data: any) {
+        if (typeof (data) === "object") {
+            var extra = this.state.extra;
+            extra.fullObject = data;
+            this.setState({ extra: extra });
+        }
+
+
         if (data == null) {
             return null;
         }
 
         if (this.props.returnType === "id") {
+            var fullobject = this.state.extra.fullObject;
             if (this.props.multiple) {
-                return data.map((v) => { return v[this.keyId] != null ? v[this.keyId] : v });
+                return fullobject.map((v) => { return v[this.keyId] != null ? v[this.keyId] : v });
             } else {
-                return data[this.keyId] != null ? data[this.keyId] : null;
+                return fullobject[this.keyId] != null ? fullobject[this.keyId] : null;
             }
         } else {
             return data;
@@ -178,60 +195,60 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
 
         const SelectComponent = dataSource != null
             ? ((this.props.allowCreate === true) ? Select.AsyncCreatable : Select.Async)
-            : ((this.props.allowCreate === true) ? Select.Creatable : Select) ;
+            : ((this.props.allowCreate === true) ? Select.Creatable : Select);
 
         if (typeof dataSource !== "undefined") {
             var queryParam = dataSource.queryParameterName || 'search';
             var minimumInputLength = this.props.minimumInputLength;
-            var self = this ;
+            var self = this;
             loadOptions = function (input: string, callback) {
                 if (minimumInputLength && input.length < minimumInputLength) {
                     if (input.length !== 0) {
-                        const newState = update(this.state,{ extra: { loadingPlaceholder: {$set : `Veuillez renseigner au minimum ${minimumInputLength} caractères`}}});
+                        const newState = update(this.state, { extra: { loadingPlaceholder: { $set: `Veuillez renseigner au minimum ${minimumInputLength} caractères` } } });
                         this.setState(newState);
                     } else {
-                        const newState = update(this.state,{ extra: { loadingPlaceholder: {$set : this.props.placeholder}}});
+                        const newState = update(this.state, { extra: { loadingPlaceholder: { $set: this.props.placeholder } } });
                         this.setState({ extra: { loadingPlaceholder: this.props.placeholder } });
                     }
                     return false;
                 } else {
-                    const newState = update(this.state,{ extra: { loadingPlaceholder: {$set : this.props.placeholder}}});
+                    const newState = update(this.state, { extra: { loadingPlaceholder: { $set: this.props.placeholder } } });
                     this.setState({ extra: { loadingPlaceholder: this.props.placeholder } });
                 }
-                if(this.timeOutLoadOptions) {
-                    clearTimeout(this.timeOutLoadOptions) ;
-                } 
+                if (this.timeOutLoadOptions) {
+                    clearTimeout(this.timeOutLoadOptions);
+                }
                 var _loadOptionsAfterDealy = () => {
-                    if(self.axiosSource) {
+                    if (self.axiosSource) {
                         self.axiosSource.cancel('Next request in progress');
                     }
-                    var qs = `${queryParam}=${input}` ;
-                    if(dataSource.getExtraParams) {
-                        var params = dataSource.getExtraParams() ;
-                        if(params) {
+                    var qs = `${queryParam}=${input}`;
+                    if (dataSource.getExtraParams) {
+                        var params = dataSource.getExtraParams();
+                        if (params) {
                             qs += `&${queryString.stringify(params)}`;
                         }
                     }
-                    var query = `${dataSource.query}?${qs}` ;
-                    if(dataSource.endPoint) {
-                        query =`${dataSource.endPoint}/${query}`
+                    var query = `${dataSource.query}?${qs}`;
+                    if (dataSource.endPoint) {
+                        query = `${dataSource.endPoint}/${query}`
                     }
-                    self.axiosSource = CancelToken.source() ;
+                    self.axiosSource = CancelToken.source();
                     axios.get(query, {
                         cancelToken: self.axiosSource.token
                     }).then((response) => {
-                            var data = response.data;
+                        var data = response.data;
 
-                            if(dataSource.handleResponse) {
-                                data = dataSource.handleResponse(data) ;
-                            }
-                    
-                            callback(null, {
-                                options: data,
-                                complete: false
-                            });
-                            self.axiosSource = null ;
-                    }).catch(function(thrown) {
+                        if (dataSource.handleResponse) {
+                            data = dataSource.handleResponse(data);
+                        }
+
+                        callback(null, {
+                            options: data,
+                            complete: false
+                        });
+                        self.axiosSource = null;
+                    }).catch(function (thrown) {
                         if (axios.isCancel(thrown)) {
                             console.log('Request canceled', thrown.message);
                         } else {
@@ -241,7 +258,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                     });
                 }
                 // Load options after a delay
-                this.timeOutLoadOptions = setTimeout(_loadOptionsAfterDealy, dataSource.delay | 1000) ;
+                this.timeOutLoadOptions = setTimeout(_loadOptionsAfterDealy, dataSource.delay | 1000);
             };
             loadOptions = loadOptions.bind(this);
         }
@@ -256,32 +273,32 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                 "autoload": this.props.autoload
             }
         }
-               
+
         return (
             <WrapperSelect width={this.props.width}>
-               <SelectComponent
-                            {...specProps}
-                            placeholder={this.props.placeholder}
-                            filterOptions={this.props.filterOptions || this.filterOptions}
-                            allowCreate={this.props.allowCreate}
-                            promptTextCreator={this.props.promptTextCreator}
-                            value={this.state.value}
-                            autoBlur={false}
-                            isLoading={this.props.isLoading}
-                            valueKey={this.props.valueKey || "id"}
-                            labelKey={this.props.labelKey || "text"}
-                            loadingPlaceholder={this.state.extra.loadingPlaceholder}
-                            multi={this.props.multiple}
-                            clearable={this.props.allowClear}
-                            disabled={this.props.disabled}
-                            noResultsText={this.props.noResultsText}
-                            clearAllText={this.props.clearAllText}
-                            clearValueText={this.props.clearValueText}
-                            addLabelText={this.props.addLabelText}
-                            searchPromptText={this.props.searchPromptText}
-                            optionRenderer={this.getOptionRenderer}
-                            valueRenderer={this.getValueRenderer}
-                            onChange={this.handleChangeEvent} />
+                <SelectComponent
+                    {...specProps}
+                    placeholder={this.props.placeholder}
+                    filterOptions={this.props.filterOptions || this.filterOptions}
+                    allowCreate={this.props.allowCreate}
+                    promptTextCreator={this.props.promptTextCreator}
+                    value={this.state.extra.fullObject}
+                    autoBlur={false}
+                    isLoading={this.props.isLoading}
+                    valueKey={this.props.valueKey || "id"}
+                    labelKey={this.props.labelKey || "text"}
+                    loadingPlaceholder={this.state.extra.loadingPlaceholder}
+                    multi={this.props.multiple}
+                    clearable={this.props.allowClear}
+                    disabled={this.props.disabled}
+                    noResultsText={this.props.noResultsText}
+                    clearAllText={this.props.clearAllText}
+                    clearValueText={this.props.clearValueText}
+                    addLabelText={this.props.addLabelText}
+                    searchPromptText={this.props.searchPromptText}
+                    optionRenderer={this.getOptionRenderer}
+                    valueRenderer={this.getValueRenderer}
+                    onChange={this.handleChangeEvent} />
             </WrapperSelect>
         );
     }
