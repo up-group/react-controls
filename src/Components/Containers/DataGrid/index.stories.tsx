@@ -11,9 +11,11 @@ import { ICellFormatter } from "./UpDefaultCellFormatter"
 import RowTemplate from './templates/UpDataGridRowWithStatus'
 
 var data = [];
+var data2 = [];
 
 for (var i = 0; i < 15; i++) {
     data.push({ 'c1': 'Value ' + i, 'c2': false, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } })
+    data2.push({ 'c1': 'Value 2 ' + i, 'c2': false, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } })
 }
 
 class SpecifiqueCellFormatter {
@@ -67,7 +69,7 @@ storiesOf('UpDataGrid', module)
     () => (
         <UpThemeProvider theme={UpDefaultTheme}>
             <UpDataGrid
-                onSelectionChange={console.log}
+                onSelectionChange={() => { this }}
                 isPaginationEnabled={false}
                 isSelectionEnabled={true}
                 columns={
@@ -354,4 +356,64 @@ storiesOf('UpDataGrid', module)
                 } data={data} />
         </UpThemeProvider>
     ))
+    .addWithInfo('Test props modification', '',
+    () => (
+        <Test />
+    ))
     ;
+
+
+
+export interface testProps {
+
+}
+
+export interface testState {
+    val: any,
+    lastChange?: any,
+}
+
+export class Test extends React.Component<testProps, testState>{
+    public static defaultProps: testProps = {};
+
+    constructor(p, c) {
+        super(p, c);
+        this.state = {
+            val: data
+        };
+    }
+
+    render() {
+
+        return <UpThemeProvider theme={UpDefaultTheme}>
+            <div>
+                <button onClick={() => { this.setState({ val: data }); }}>set data</button>
+                <button onClick={() => { this.setState({ val: data2 }); }}>set data2</button>
+                <UpDataGrid
+                    onSelectionChange={console.log}
+                    isPaginationEnabled={false}
+                    isSelectionEnabled={true}
+                    columns={
+                        [{
+                            label: 'Col 1',
+                            field: 'c1',
+                            isSortable: true
+                        }, {
+                            label: 'Col 2',
+                            field: 'c2',
+                            isSortable: true
+                        }, {
+                            label: 'Col 3',
+                            field: 'c3',
+                            isSortable: true
+                        }, {
+                            label: 'Col 4',
+                            field: 'c4',
+                            isSortable: true
+                        }]
+                    } data={this.state.val}
+                />
+            </div>
+        </UpThemeProvider>
+    }
+}
