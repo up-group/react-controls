@@ -76,7 +76,6 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     }
 
     setValue = (receiveValue: any) => {
-        debugger
         if (typeof (receiveValue) === "object") {
             var extra = this.state.extra;
             extra.fullObject = receiveValue;
@@ -86,16 +85,6 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         if (this.props.returnType === "id" && typeof (receiveValue) === "object") {
             return receiveValue[this.keyId]
         }
-        //var realValue = null;
-        //var _self = this;
-        //if (this.props.data) {
-        //    this.props.data.map(function (value, index) {
-        //        if (value[_self.keyId] == receiveValue) {
-        //            realValue = value;
-        //        }
-        //    });
-        //}
-        //return realValue;
 
         return receiveValue;
     }
@@ -106,7 +95,6 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             extra.fullObject = data;
             this.setState({ extra: extra });
         }
-
 
         if (data == null) {
             return null;
