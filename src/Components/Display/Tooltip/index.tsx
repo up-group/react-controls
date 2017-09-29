@@ -7,12 +7,13 @@ export type Effect = "float" | "solid"
 export default UpTooltip
 
 export interface Tooltip {
-  content: string;
-  placement?: Placement;
+  content: JSX.Element | string ;
+  place?: Placement;
   type?: IntentType;
   effect?: Effect;
   multiline?:boolean;
   html?: boolean; 
+  title?: JSX.Element | string;
   delayHide?:number;
   delayShow?:number;
   disable?:boolean;

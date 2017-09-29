@@ -192,7 +192,7 @@ export interface ThemeColorMap {
 
 //export type IconName = 'add' | 'asterisk' | 'calendar' | 'caret-down' | 'caret-right' | 'caret-up' | 'close' | 'comment' | 'confirm' | 'cross' | 'delete' | 'download' | 'edit' | 'email' | 'error-sign' | 'export' | 'filter' | 'filter-list' | 'help' | 'import' | 'info-sign' | 'link' | 'minus' | 'mobile-phone' | 'none' | 'ok-sign' | 'phone' | 'plus' | 'refresh' | 'save' | 'search' | 'sort-asc' | 'sort-desc' | 'stop' | 'tick' | 'unlock' | 'upload' | 'user' | 'warning-sign' | 'zoom-in' | 'zoom-out';
 
-export type IntentType = 'primary' | 'danger' | 'warning' | 'success' | 'info' | 'default' | 'error' ;
+export type IntentType = 'primary' | 'danger' | 'warning' | 'success' | 'info' | 'default' | 'error' | 'light' ;
 
 export interface ThemedProps {
     theme?: ThemeInterface

@@ -6,13 +6,14 @@ import { ThemeProps, InterpolationFunction } from "styled-components/typings/sty
 import {UpLigneProps} from './'
 
 const defaultProps: UpLigneProps = {
-  color: '#fff',
-  textAlign: 'center'
+  color: '#000',
+  textAlign: 'center',
 };
 
 export const style = css`
   text-align: ${(props: UpLigneProps) => props.textAlign || defaultProps.textAlign};
   color: ${(props: UpLigneProps) => props.color || defaultProps.color};
+  display:'inline-block';
 `;
 
 export const SpanStyled = styled.span`
@@ -20,7 +21,7 @@ export const SpanStyled = styled.span`
 `;
 
 const LigneStyled: React.StatelessComponent<UpLigneProps> = (props) => {
-  const {dataFor, className, ...others} = props ;
+  const {dataFor, className, children, ...others} = props ;
   var tooltipProps = {} ;
   if (dataFor) {
       tooltipProps = {
@@ -29,7 +30,9 @@ const LigneStyled: React.StatelessComponent<UpLigneProps> = (props) => {
       }
   }
   
-  return <SpanStyled className={className} {...tooltipProps} {...others}></SpanStyled>
+  return (<SpanStyled className={className} {...tooltipProps} {...others}>
+      {children}
+      </SpanStyled>)
 };
 
 export default LigneStyled
