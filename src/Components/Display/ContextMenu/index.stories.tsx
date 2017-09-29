@@ -6,6 +6,7 @@ import { storiesOf } from '@storybook/react'
 import UpContextMenuTrigger from './UpContextMenuTrigger'
 import UpContextMenu from './UpContextMenu'
 import UpContextMenuItem from './UpContextMenuItem'
+import UpContextMenuItemDivider from './UpContextMenuItemDivider'
 
 const MENU_TYPE = 'SIMPLE';
 
@@ -40,13 +41,15 @@ export default class SimpleMenu extends React.PureComponent<any, SimpleMenuState
                 <UpContextMenu id={MENU_TYPE}>
                     <UpContextMenuItem onClick={this.handleClick} data={{item: 'item 1'}}>Menu Item 1</UpContextMenuItem>
                     <UpContextMenuItem onClick={this.handleClick} data={{item: 'item 2'}}>Menu Item 2</UpContextMenuItem>
+                    <UpContextMenuItemDivider size= {2} />
+                    <UpContextMenuItem onClick={this.handleClick} data={{item: 'item 2'}}>Menu Item 3</UpContextMenuItem>
                 </UpContextMenu>
             </div>
         );
     }
 }
 
-storiesOf('UpContextMenuItem', module)
+storiesOf('UpContextMenu', module)
 .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
  () => (
   <SimpleMenu />
