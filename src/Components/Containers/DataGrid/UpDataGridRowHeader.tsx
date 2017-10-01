@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
-import UpCheckbox from '../../Inputs/Checkbox'
+import UpCheckbox from '../../Inputs/Checkbox/UpCheckBox'
 
 import UpDataGridCellHeader from './UpDataGridCellHeader'
 import { Column, Action, SortDirection } from './UpDataGrid'

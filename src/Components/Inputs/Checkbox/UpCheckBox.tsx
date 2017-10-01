@@ -2,7 +2,28 @@
 import * as React from 'react'
 import UpLabel from '../../Display/Label/index'
 import {StyledCheckBox, CheckboxGroup} from './styles'
-import {UpCheckboxProps, Option, Position} from './'
+
+import { ThemedProps } from '../../../Common/theming/types'
+
+export type Position = 'left' | 'right';
+
+export interface Option {
+    name: string;
+    value: any;
+    text?: string;
+    iconName?: string;
+    onChange?: (e: any) => void;
+    checked?: boolean;
+}
+
+export interface UpCheckboxStyledProps extends Option, ThemedProps {
+    className?: string;
+}
+
+export interface UpCheckboxProps {
+    options: Array<Option>;
+    //position?:Position;
+}
 
 // Exports
 export default class UpCheckbox extends React.Component<UpCheckboxProps, any> {

@@ -5,7 +5,7 @@ import UpDefaultTheme from '../../../Common/theming'
 import {IntentType} from '../../../Common/theming/types'
 import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themedComponents'
 
-import UpCheckbox from './UpCheckbox'
+import UpCheckbox from './UpCheckBox'
 import UpLabel from '../../Display/Label'
 
 var onOptionChange = () => {}

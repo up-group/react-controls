@@ -48,7 +48,7 @@ import UpText from './Components/Inputs/Text'
 import UpNumber from './Components/Inputs/Number'
 import UpPhone from './Components/Inputs/Phone'
 import UpEmail from './Components/Inputs/Email'
-import UpCheckbox from './Components/Inputs/Checkbox'
+import UpCheckbox from './Components/Inputs/Checkbox/UpCheckBox'
 import UpToggle from './Components/Inputs/Toggle'
 import UpRadio from './Components/Inputs/Radio'
 

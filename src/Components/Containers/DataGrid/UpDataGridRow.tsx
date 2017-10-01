@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
-import UpCheckbox from '../../Inputs/Checkbox'
+import UpCheckbox from '../../Inputs/Checkbox/UpCheckBox'
 import UpButton from '../../Inputs/Button'
 import { IntentType } from '../../../Common/theming/types'
 
