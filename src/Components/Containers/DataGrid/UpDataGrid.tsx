@@ -91,9 +91,9 @@ const DataGridStyle = style({
                 }
             }
         },
-        "button": {
-            margin: "4px 4px"
-        },
+        //"button": {
+        //    margin: "4px 4px"
+        //},
         ".up-data-grid-sortable": {
             cursor: "pointer"
         }
