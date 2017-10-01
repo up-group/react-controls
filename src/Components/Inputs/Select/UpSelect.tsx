@@ -188,27 +188,28 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         if (typeof dataSource !== "undefined") {
             var queryParam = dataSource.queryParameterName || 'search';
             var minimumInputLength = this.props.minimumInputLength;
-            var self = this;
-            loadOptions = function (input: string, callback) {
+            loadOptions = (input: string, callback) => {
                 if (minimumInputLength && input.length < minimumInputLength) {
                     if (input.length !== 0) {
                         const newState = update(this.state, { extra: { loadingPlaceholder: { $set: `Veuillez renseigner au minimum ${minimumInputLength} caractères` } } });
                         this.setState(newState);
                     } else {
                         const newState = update(this.state, { extra: { loadingPlaceholder: { $set: this.props.placeholder } } });
-                        this.setState({ extra: { loadingPlaceholder: this.props.placeholder } });
+                        //this.setState({ extra: { loadingPlaceholder: this.props.placeholder } });
+                        this.setState(newState);
                     }
                     return false;
                 } else {
                     const newState = update(this.state, { extra: { loadingPlaceholder: { $set: this.props.placeholder } } });
-                    this.setState({ extra: { loadingPlaceholder: this.props.placeholder } });
+                    //this.setState({ extra: { loadingPlaceholder: this.props.placeholder } });
+                    this.setState(newState);
                 }
                 if (this.timeOutLoadOptions) {
                     clearTimeout(this.timeOutLoadOptions);
                 }
                 var _loadOptionsAfterDealy = () => {
-                    if (self.axiosSource) {
-                        self.axiosSource.cancel('Next request in progress');
+                    if (this.axiosSource) {
+                        this.axiosSource.cancel('Next request in progress');
                     }
                     var qs = `${queryParam}=${input}`;
                     if (dataSource.getExtraParams) {
@@ -221,9 +222,9 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                     if (dataSource.endPoint) {
                         query = `${dataSource.endPoint}/${query}`
                     }
-                    self.axiosSource = CancelToken.source();
+                    this.axiosSource = CancelToken.source();
                     axios.get(query, {
-                        cancelToken: self.axiosSource.token
+                        cancelToken: this.axiosSource.token
                     }).then((response) => {
                         var data = response.data;
 
@@ -235,14 +236,14 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                             options: data,
                             complete: false
                         });
-                        self.axiosSource = null;
+                        this.axiosSource = null;
                     }).catch(function (thrown) {
                         if (axios.isCancel(thrown)) {
                             console.log('Request canceled', thrown.message);
                         } else {
                             // handle error
                         }
-                        self.axiosSource = null;
+                        this.axiosSource = null;
                     });
                 }
                 // Load options after a delay

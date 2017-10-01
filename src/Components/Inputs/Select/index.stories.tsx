@@ -15,6 +15,7 @@ export interface testProps {
 }
 
 export interface testState {
+    valM: any,
     val: any,
     lastChange?: any,
 }
@@ -25,7 +26,8 @@ export class Test extends React.Component<testProps, testState>{
     constructor(p, c) {
         super(p, c);
         this.state = {
-            val: null
+            val: null,
+            valM: null
         };
     }
 
@@ -45,15 +47,35 @@ export class Test extends React.Component<testProps, testState>{
                         returnType="id"
 
                         dataSource={{
-                            query: "https://jsonplaceholder.typicode.com/todos",
-                            text: "title"
+                            query: "https://jsonplaceholder.typicode.com/users",
+                            text: "name"
                         }}
                         onChange={(a) => { this.setState({ val: a, lastChange: a }); }} />
+                    <UpSelect autoload={false}
+                        isRequired={false}
+                        allowClear={true}
+                        default={null}
+                        multiple={true}
+                        tooltip="Votre ville de naissance"
+                        minimumInputLength={3}
+                        value={this.state.valM}
+                        returnType="id"
+                        dataSource={{
+                            query: "https://jsonplaceholder.typicode.com/users",
+                            text: "name"
+                        }}
+                        onChange={(a) => { this.setState({ valM: a, lastChange: a }); }} />
                 </div>
                 <div>
                     val
                <br />
                     {JSON.stringify(this.state.val)}
+                </div>
+
+                <div>
+                    valM
+               <br />
+                    {JSON.stringify(this.state.valM)}
                 </div>
                 <div>
                     lastChange
@@ -65,12 +87,20 @@ export class Test extends React.Component<testProps, testState>{
                     <UpSelect width="normal"
                         returnType="id"
                         tooltip="Civilité" default={null} data={[
-                        { id: 1, text: 'M.' },
-                        { id: 2, text: 'Mme' },
-                        { id: 3, text: 'Mlle' },
-                        { id: 4, text: 'Dr' },
-                    ]} onChange={console.log} />
-
+                            { id: 1, text: 'M.' },
+                            { id: 2, text: 'Mme' },
+                            { id: 3, text: 'Mlle' },
+                            { id: 4, text: 'Dr' },
+                        ]} onChange={console.log} />
+                    <UpSelect width="normal"
+                        returnType="id"
+                        multiple={true}
+                        tooltip="Civilité" default={null} data={[
+                            { id: 1, text: 'M.' },
+                            { id: 2, text: 'Mme' },
+                            { id: 3, text: 'Mlle' },
+                            { id: 4, text: 'Dr' },
+                        ]} onChange={console.log} />
                 </div>
 
             </div>
