@@ -450,7 +450,8 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
 
     componentWillReceiveProps(nextProps: UpDataGridProps) {
         var data = this.state.data;
-        if (this.props.dataSource == null && this.arraysEqual(data.map((v => { return v.value; })), nextProps.data) == false) {
+        var arrayEqualResult = this.arraysEqual(data.map((v => { return v.value; })), nextProps.data);
+        if (this.props.dataSource == null && arrayEqualResult === false) {
             data = (nextProps.data != null) ? this.mapDataToRow(nextProps.data) : nextProps.data;
         }
         var newState: UpDataGridState
@@ -464,7 +465,11 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
                 page: nextProps.defaultPage
             };
 
-        this.setState(newState);
+        this.setState(newState, () => {
+            if (arrayEqualResult === false) {
+                this.props.onSelectionChange(null, []);
+            }
+        });
     }
 
     render() {
