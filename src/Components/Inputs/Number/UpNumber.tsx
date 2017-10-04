@@ -32,20 +32,19 @@ export default class UpNumber extends BaseControlComponent<UpNumberProps, number
     }
 
     handleNumericChange = (valueAsNumber: number, valueAsString: string) => {
-        //var _newState:any = {
-        //    value : (this.props.decimalPlace===0)?valueAsNumber:valueAsString
-        //}
-        //if (this.props.decimalPlace) {
-        //    var _newValue = this.round(_value, this.props.decimalPlace);
-        //    if (_newValue !== _value) {
-        //        _newState = { 
-        //            value: _newValue
-        //        };
-        //        _value = _newValue;
-        //    }
-        //}
-        //this.setState(_newState);
-        this.handleChangeEvent(valueAsString);
+        if (this.props.decimalPlace) {
+            var _newValue = this.round(valueAsNumber, this.props.decimalPlace);
+            if (isNaN(valueAsNumber)) {
+                this.handleChangeEvent(this.state.value);
+            } else if (_newValue === valueAsNumber && _newValue.toString() !== valueAsString) {
+                this.handleChangeEvent(valueAsString);
+            } else {
+                this.handleChangeEvent(valueAsNumber);
+            }
+        } else {
+            this.handleChangeEvent(valueAsNumber);
+
+        }
     }
 
     getValue(value) {
@@ -57,6 +56,7 @@ export default class UpNumber extends BaseControlComponent<UpNumberProps, number
 
         return (
             <NumericInput
+
                 value={this.state.value}
                 stepSize={stepSize}
                 majorStepSize={stepSize ? stepSize + 10 : 10}
