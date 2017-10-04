@@ -467,7 +467,9 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
 
         this.setState(newState, () => {
             if (arrayEqualResult === false) {
-                this.props.onSelectionChange(null, []);
+                if (this.props.onSelectionChange) {
+                    this.props.onSelectionChange(null, []);
+                }
             }
         });
     }
