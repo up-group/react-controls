@@ -71,9 +71,9 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
         var cleanData: _BaseType = this.getValue(_value);
         if (this._validationManager !== undefined) {
             var hasError = this.checkData(cleanData);
-            this.setState({ value: cleanData }, () => { this.dispatchOnChange(cleanData, null, hasError) });
+            this.setState({ value: cleanData }, () => { this.dispatchOnChange(this.state.value, null, hasError) });
         } else {
-            this.setState({ value: cleanData }, () => { this.dispatchOnChange(cleanData, null, null); });
+            this.setState({ value: cleanData }, () => { this.dispatchOnChange(this.state.value, null, null); });
         }
     }
 
