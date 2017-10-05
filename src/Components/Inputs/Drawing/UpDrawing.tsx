@@ -1,104 +1,61 @@
 import * as React from "react"
 import {UpDrawingProps} from "./"
 import {style} from 'typestyle'
+import CanvasState from "./CanvasState"
 
-import UpButton  from '../../Inputs/Button' 
-import UpLigne from '../../Display/Ligne'
+import UpButton  from '../../Inputs/Button'
+import UpButtonGroup  from '../../Containers/ButtonGroup'
 
-export default class UpDrawing extends React.Component<UpDrawingProps, any> {
+import UpLigne from '../../Display/Ligne' 
+import UpToggle from '../../Inputs/Toggle'
+import UpLabel from '../../Display/Label'
+
+import {UpContextMenu, UpContextMenuTrigger, UpContextMenuItem, UpContextMenuItemDivider} from '../../Display/ContextMenu'
+
+const DRAWING_MENU_TYPE = 'DRAWING_MENU_TYPE' ;
+
+export interface UpDrawingState {
+    activationShape : boolean;
+    src:string;
+    zones?:Array<any>; 
+    selection?:any;
+    scale:number;
+}
+
+export default class UpDrawing extends React.Component<UpDrawingProps, UpDrawingState> {
     canvas:any;
-    public static defaultProps = {
+    canvasState: CanvasState;
+
+    public static defaultProps:UpDrawingProps = {
+        src:"",
         activationShape:true
     }
+
     constructor(p, c) {
         super(p, c);
         this.state = {
-            value:p.value
+            src: p.src,
+            zones: p.zones || [] ,
+            activationShape: true,
+            scale:1
         }
     }
 
-    private setCanvas = (canvas) => {
+    setCanvas = (canvas) => {
         this.canvas = canvas;
         var ctx = this.canvas.getContext('2d');
-        if(this.props.activationShape) {
-            // $(element).on("contextmenu", function (e) {
-            //     $element.next().css({
-            //         display: "block",
-            //         position: 'fixed',
-            //         left: e.clientX,
-            //         top: e.clientY
-            //     }).fadeIn();
-            //     return false;
-            // });
-
-            // $(element).click(function (event) {
-            //     if (event.which == 1) {
-            //         $element.next().fadeOut();
-            //     }
-            // });
-
-            // $element.next().find('a').each(function (index) {
-            //     $(this).unbind('click').click(function (event) {
-            //         event.stopPropagation();
-            //         event.preventDefault();
-            //         $element.next().fadeOut();
-            //         var _action = $(this).attr('href');
-            //         var _canvasState = $element.data('up-canvasState');
-            //         switch (_action) {
-            //             case 'up-del':
-            //                 if (_canvasState.selection) {
-            //                     ko.postbox.publish('up-drawing.deleteZone', _canvasState.selection);
-            //                 }
-            //                 break;
-            //             case 'up-crop-all':
-            //                 // Check all chapes 
-            //                 var _shapesChecked = true;
-            //                 for (var i in _canvasState.shapes) {
-            //                     var _shape = _canvasState.shapes[i];
-            //                     var _imageCropped = _canvasState.cropShape(_shape);
-            //                     if (_imageCropped == null) {
-            //                         _shapesChecked = false;
-            //                     }
-            //                 }
-            //                 if (_shapesChecked) {
-            //                     for (var i in _canvasState.shapes) {
-            //                         var _shape = _canvasState.shapes[i];
-            //                         var _imageCropped = _canvasState.cropShape(_shape);
-            //                         if (_imageCropped != null) {
-            //                             var _data = { dataURL: _imageCropped, shape: _shape };
-            //                             ko.postbox.publish("up-drawing.addZone", _data);
-            //                         }
-            //                     }
-            //                 }
-            //                 break;
-            //             case 'up-crop':
-            //                 if (_canvasState.selection) {
-            //                     var _imageCropped = _canvasState.cropShape(_canvasState.selection);
-            //                     if (_imageCropped != null) {
-            //                         var _data = { dataURL: _imageCropped, shape: _canvasState.selection };
-            //                         ko.postbox.publish("up-drawing.addZone", _data);
-            //                     }
-            //                 }
-            //                 break;
-            //             case 'up-add-ref':
-            //                 if (_canvasState.selection) {
-            //                     $element.next().next().find('input').val(_canvasState.selection.ref);
-            //                     // Display the input
-            //                     $element.next().next().css({
-            //                         display: "block",
-            //                         left: event.pageX,
-            //                         top: event.pageY
-            //                     }).fadeIn();
-            //                 }
-            //                 break;
-            //             case 'up-del-all':
-            //                 ko.postbox.publish('up-drawing.deleteAllZones', _canvasState.shapes);
-            //                 break;
-
-            //         }
-            //         _canvasState.selection = false;
-            //     });
-            // });
+        this.canvasState = new CanvasState(canvas);
+        if (this.state.src) {
+            this.canvasState.scale = this.state.scale ;
+            this.canvasState.imageObj = new Image();
+            this.canvasState.imageObj.crossOrigin = '';
+            var self = this ;
+            this.canvasState.imageObj.onload = function() {
+                self.canvasState.valid = false ;
+                self.canvasState.draw() ;
+            } ;
+            this.canvasState.imageObj.src = this.state.src;
+            this.canvasState.registerListeners() ;
         }
     }
 
@@ -107,21 +64,33 @@ export default class UpDrawing extends React.Component<UpDrawingProps, any> {
     }
 
     componentWillReceiveProps(nextProps: UpDrawingProps) {
-        if (nextProps.value !== this.props.value) {
-            this.setState({value: nextProps.value });
+        if (nextProps.src !== this.props.src) {
+            this.setState({src: nextProps.src });
         }
     }
 
     zoomIn = (event:any) => {
-
+        var self = this ;
+        this.setState({scale : this.state.scale + 0.2}, () => {
+            self.canvasState.scale = this.state.scale;
+            self.canvasState.valid = false;
+        }) ;
     }
 
     zoomOut = (event:any) => {
-        
+        var self = this ;
+        this.setState({scale : this.state.scale - 0.2}, () => {
+            self.canvasState.scale = this.state.scale;
+            self.canvasState.valid = false;
+        }) ;
     }
 
     zoomNormal = (event:any) => {
-        
+        var self = this ;
+        this.setState({scale : 1}, () => {
+            self.canvasState.scale = this.state.scale;
+            self.canvasState.valid = false;
+        }) ;
     }
     rotate = (event:any) => {
 
@@ -131,39 +100,99 @@ export default class UpDrawing extends React.Component<UpDrawingProps, any> {
         
     }
 
+    crop = (event:any) => {
+        if (this.canvasState.selection) {
+            var _imageCropped = this.canvasState.cropShape(this.canvasState.selection);
+            if (_imageCropped != null) {
+                var _data = { dataURL: _imageCropped, shape: this.canvasState.selection };
+                if(this.props.onCrop) {
+                    this.props.onCrop(_data) ;
+                }
+            }
+        }
+    }
+
+    cropAll = (event:any) => {
+        // Check all chapes 
+        var _shapesChecked = true;
+        for (var i in this.canvasState.shapes) {
+            var _shape = this.canvasState.shapes[i];
+            var _imageCropped = this.canvasState.cropShape(_shape);
+            if (_imageCropped == null) {
+                _shapesChecked = false;
+            }
+        }
+        if (_shapesChecked) {
+            for (var i in this.canvasState.shapes) {
+                var _shape = this.canvasState.shapes[i];
+                var _imageCropped = this.canvasState.cropShape(_shape);
+                if (_imageCropped != null) {
+                    var _data = { dataURL: _imageCropped, shape: _shape };
+                    this.props.onCrop(_data) ;
+                }
+            }
+        }
+    }
+
+    del = (event:any) => {
+        if (this.canvasState.selection && this.props.onDel) {
+            this.props.onDel(this.canvasState.selection) ;
+        }
+    }
+
+    delAll = () => {
+        if (this.canvasState.selection && this.props.onDelAll) {
+            this.props.onDelAll(this.canvasState.shapes) ;
+        }            
+    }
+
+    toggleActivationShape = (value) => {
+
+        this.setState({activationShape: value}, () => {
+            this.canvasState.shapes.map(function(shape) {
+                shape.hide = !value ;
+            });
+            this.canvasState.valid = false ;
+        });
+    }
+
     render() {
         const WrapperStyle = style({}) ;
+        const CanvasStyle = style({
+            border:"1px solid #111",
+            borderRadius:"4px"
+        });
 
-        /*data-bind="upDrawing: $component.src, 
-                        upShapes : shapes, 
-                        upScale: scale,
-                        upResetSelection: resetSelection,
-                        upBorder: border,
-                        upActivationShape : activationShape"*/
-
-        const {onChange, value, ...others} = this.props ;
+        const {onChange, src, zones, ...others} = this.props ;
+        
         return (
             <div className={WrapperStyle}>
                 <div className="up-canvas-actions">
-                    <span>Zones : </span>
-                    <UpButton onClick={this.zoomIn} width={'icon'} actionType={"zoom-in"} tooltip={"Zoom avant"} />
-                    <UpButton onClick={this.zoomOut} width={'icon'} actionType={"zoom-out"} tooltip={"Zoom arrière"} />
-                    <UpButton onClick={this.zoomNormal} width={'icon'} actionType={"zoom-normal"} tooltip={"Zoom normal"} />
-                    <UpButton onClick={this.rotate} width={'icon'} actionType={"image-rotate-right"} tooltip={"Appliquer une rotation de  l\'image de 90° vers la droite"} />
-                    <UpButton onClick={this.open} width={'icon'} actionType={"open"} tooltip={"Ouvrir l\'image dans une nouvelle fenêtre"} />
+                    <UpLabel text="Zones : ">
+                        <UpToggle value={true} onChange={this.toggleActivationShape} checked={this.state.activationShape === true} />
+                    </UpLabel>
+                    <UpButtonGroup> 
+                        <UpButton onClick={this.zoomIn} width={'icon'} actionType={"zoom-in"} tooltip={"Zoom avant"} />
+                        <UpButton onClick={this.zoomOut} width={'icon'} actionType={"zoom-out"} tooltip={"Zoom arrière"} />
+                        <UpButton onClick={this.zoomNormal} width={'icon'} actionType={"zoom-normal"} tooltip={"Zoom normal"} />
+                        <UpButton onClick={this.rotate} width={'icon'} actionType={"image-rotate-right"} tooltip={"Appliquer une rotation de  l\'image de 90° vers la droite"} />
+                        <UpButton onClick={this.open} width={'icon'} actionType={"open"} tooltip={"Ouvrir l\'image dans une nouvelle fenêtre"} />
+                    </UpButtonGroup>
                 </div>
-        
-                <canvas ref={this.setCanvas}>
-                    Votre navigateur ne supporte pas les fonctions d'édition d'image.
-                </canvas>
-        
-                <ul className="up-contextmenu dropdown-menu" role="menu" style={{"display":"none"}}>
-                    <li><a tabIndex={-1} href="up-crop">Ajouter la sélection</a></li>
-                    <li><a tabIndex={-1} href="up-crop-all">Ajouter tous</a></li>
-                    <li className="divider"></li>
-                    <li><a tabIndex={-1} href="up-del">Supprimer</a></li>
-                    <li><a tabIndex={-1} href="up-del-all">Tout supprimer</a></li>
-                </ul>
+
+                <UpContextMenuTrigger id={DRAWING_MENU_TYPE} holdToDisplay={1000}>
+                    <canvas width={"100%"} height={"500px"} className={CanvasStyle} ref={this.setCanvas}>
+                        Votre navigateur ne supporte pas les fonctions d'édition d'image.
+                    </canvas>
+                </UpContextMenuTrigger>
+
+                <UpContextMenu id={DRAWING_MENU_TYPE}>
+                    <UpContextMenuItem onClick={this.crop} data={{action: 'up-crop'}}>Ajouter la sélection</UpContextMenuItem>
+                    <UpContextMenuItem onClick={this.cropAll} data={{action: 'up-crop-all'}}>Ajouter tous</UpContextMenuItem>
+                    <UpContextMenuItemDivider size= {2} />
+                    <UpContextMenuItem onClick={this.del} data={{action: 'up-del'}}>Supprimer</UpContextMenuItem>
+                    <UpContextMenuItem onClick={this.delAll} data={{action: 'up-del-all'}}>Tout supprimer</UpContextMenuItem>
+                </UpContextMenu>
         </div>
         )
     }

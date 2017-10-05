@@ -1,5 +1,6 @@
     import Shape from './Shape'
-    
+    import * as $ from 'jquery'
+
     export default class CanvasState {
         canvas:any;
         width:number;
@@ -43,6 +44,7 @@
                 this.styleBorderLeft = parseInt(document.defaultView.getComputedStyle(canvas, null)['borderLeftWidth'], 10) || 0;
                 this.styleBorderTop = parseInt(document.defaultView.getComputedStyle(canvas, null)['borderTopWidth'], 10) || 0;
             }
+            this.border = 1 ;
             // Some pages have fixed-position bars (like the stumbleupon bar) at the top or left of the page
             // They will mess up mouse coordinates and this fixes that
             var html = document.body.parentElement;
@@ -250,14 +252,23 @@
     clear = () => {
         this.ctx.clearRect(0, 0, this.width, this.height);
     }
-
+    drawImage = () => {
+        var WIDTH = this.imageObj.width + 2 * this.border;
+        var HEIGHT = this.imageObj.height + 2 * this.border;
+        this.canvas.width = WIDTH * this.scale;
+        this.canvas.height = HEIGHT * this.scale;
+        this.canvas.getContext('2d').scale(this.scale, this.scale);
+        this.width = this.canvas.width;
+        this.height = this.canvas.height;
+    }
+    
     // While draw is called as often as the INTERVAL variable demands,
     // It only ever does something if the canvas gets invalidated by our code
     draw = () => {
         // if our state is invalid, redraw and validate!
         if (!this.valid) {
             var ctx = this.ctx;
-
+            this.drawImage() ;
             var shapes = this.shapes;
             this.clear();
             if (this.imageObj !== false && this.imageObj != undefined) {
