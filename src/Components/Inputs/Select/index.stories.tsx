@@ -26,7 +26,7 @@ export class Test extends React.Component<testProps, testState>{
     constructor(p, c) {
         super(p, c);
         this.state = {
-            val: null,
+            val: { id: 555, name: "tesdzadzt" },
             valM: null
         };
     }
@@ -35,7 +35,7 @@ export class Test extends React.Component<testProps, testState>{
         return <UpThemeProvider theme={UpDefaultTheme}>
             <div>
                 <div>
-                    <button onClick={() => { this.setState({ val: { id: 5, title: "test" } }); }}>set test</button>
+                    <button onClick={() => { this.setState({ val: { id: 5, name: "test" }, valM: [{ id: 1111, name: "test 1" }, { id: 11122, name: "test 2" }] }); }}>set test</button>
                     <UpSelect autoload={false}
                         isRequired={false}
                         allowClear={true}

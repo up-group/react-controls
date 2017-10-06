@@ -82,20 +82,18 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             this.setState({ extra: extra });
         }
 
-        if (this.props.returnType === "id" && typeof (receiveValue) === "object") {
-            return receiveValue[this.keyId]
+        if (this.props.returnType === "id" && typeof (receiveValue) === "object" && receiveValue != null) {
+            if (this.props.multiple === true) {
+                return receiveValue.map(((v) => { return v[this.keyId]; }));
+            } else {
+                return receiveValue[this.keyId]
+            }
         }
 
         return receiveValue;
     }
 
     getValue(data: any) {
-        if (typeof (data) === "object") {
-            var extra = this.state.extra;
-            extra.fullObject = data;
-            this.setState({ extra: extra });
-        }
-
         if (data == null) {
             return null;
         }
