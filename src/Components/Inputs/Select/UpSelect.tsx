@@ -285,8 +285,13 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                     searchPromptText={this.props.searchPromptText}
                     optionRenderer={this.getOptionRenderer}
                     valueRenderer={this.getValueRenderer}
-                    onChange={this.handleChangeEvent} />
+                    onChange={this.onChange} />
             </WrapperSelect>
         );
+    }
+
+    onChange = (event) => {
+        this.setValue(event);
+        this.handleChangeEvent(event);
     }
 }
