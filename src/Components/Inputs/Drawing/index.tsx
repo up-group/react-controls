@@ -6,6 +6,7 @@ import { StyledComponentProps } from "../../../Common/utils/types"
 //Exports
 export interface UpDrawingProps {
   value?:any; 
+  activationShape?:boolean;
   onChange?:(value:any, e:any) => void;
 }
 
