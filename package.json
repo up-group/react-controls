@@ -63,9 +63,9 @@
     "build-storybook": "build-storybook -o ./docs"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "3.2.6",
-    "@storybook/addon-info": "3.2.6",
-    "@storybook/react": "3.2.6",
+    "@storybook/addon-actions": "3.2.11",
+    "@storybook/addon-info": "3.2.11",
+    "@storybook/react": "3.2.11",
     "@types/chai": "^3.5.2",
     "@types/chai-enzyme": "^0.6.1",
     "@types/enzyme": "*",
