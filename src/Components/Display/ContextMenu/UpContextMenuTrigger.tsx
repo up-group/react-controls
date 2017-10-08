@@ -1,6 +1,10 @@
 import * as React from 'react';
-import classNames from 'classnames';
-import assign from 'object-assign';
+import * as classNames from 'classnames';
+import * as assign from 'object-assign';
+
+import { callIfExists } from '../../../Common/utils/helpers'
+
+import {MENU_HIDE, MENU_SHOW, hideMenu, showMenu} from './actions'
 
 export interface UpContextMenuTriggerProps {
     id: string;
@@ -13,7 +17,7 @@ export interface UpContextMenuTriggerState {
 
 }
 
-class UpContextMenuTrigger extends React.PureComponent<UpContextMenuTriggerProps,UpContextMenuTriggerState> {
+export class UpContextMenuTrigger extends React.PureComponent<UpContextMenuTriggerProps,UpContextMenuTriggerState> {
     
     element : HTMLElement;
     mouseDown : boolean = false ;
@@ -44,15 +48,15 @@ class UpContextMenuTrigger extends React.PureComponent<UpContextMenuTriggerProps
 
         const x = event.clientX;
         const y = event.clientY;
+        
+        hideMenu() ;
 
-        //hideMenu();
-
-        // showMenu({
-        //     position: {x, y},
-        //     target: this.elem,
-        //     id: this.props.id,
-        //     data: callIfExists(this.props.collect, this.props)
-        // });
+        showMenu({
+            position: {x, y},
+            target: this.element,
+            id: this.props.id,
+            data: callIfExists(this.props.collect, this.props)
+        });
     }
 
     setElement = (element) => {
@@ -73,7 +77,7 @@ class UpContextMenuTrigger extends React.PureComponent<UpContextMenuTriggerProps
     }
 }
 
-class UpTouchContextMenuTrigger extends React.PureComponent<UpContextMenuTriggerProps, UpContextMenuTriggerState> {
+export class UpTouchContextMenuTrigger extends React.PureComponent<UpContextMenuTriggerProps, UpContextMenuTriggerState> {
     element : HTMLElement;
     mouseDown : boolean = false ;
 
@@ -123,14 +127,14 @@ class UpTouchContextMenuTrigger extends React.PureComponent<UpContextMenuTrigger
         const x = event.clientX || (event.touches && event.touches[0].pageX);
         const y = event.clientY || (event.touches && event.touches[0].pageY);
 
-        // hideMenu();
+        hideMenu();
 
-        // showMenu({
-        //     position: {x, y},
-        //     target: this.elem,
-        //     id: this.props.id,
-        //     data: callIfExists(this.props.collect, this.props)
-        // });
+        showMenu({
+            position: {x, y},
+            target: this.element,
+            id: this.props.id,
+            data: callIfExists(this.props.collect, this.props)
+        });
     }
 
     setElement = (element) => {
@@ -161,4 +165,4 @@ try {
 }
 catch (e) {}
 
-//export default !hasTouch ? UpContextMenuTrigger : UpTouchContextMenuTrigger;
+export default !hasTouch ? UpContextMenuTrigger : UpTouchContextMenuTrigger;

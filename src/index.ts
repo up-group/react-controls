@@ -30,6 +30,8 @@ import UpVisibilitySensor from './Components/Display/VisibilitySensor'
 import UpCalendarTimeline from './Components/Display/TimeLine'
 import UpLogoAlerte from './Components/Display/LogoAlerte/UpLogoAlerte'
 import UpCalendarWeekDay from './Components/Display/CalendarWeekDay/UpCalendarWeekDay'
+import { UpContextMenu, UpContextMenuItem, UpContextMenuTrigger } from './Components/Display/ContextMenu'
+
 import UpMenu from './Components/Display/Menu/UpMenu'
 import UpMenuBeta from './Components/Display/Menu/UpMenuBeta'
 import UpTreeView from './Components/Display/TreeView/UpTreeView'
@@ -107,6 +109,9 @@ export {
     UpTile,
     UpLogoAlerte,
     UpCalendarWeekDay,
+    UpContextMenu, 
+    UpContextMenuItem, 
+    UpContextMenuTrigger,
     UpMenu,
     UpMenuBeta,
     UpTreeView,

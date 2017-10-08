@@ -1,7 +1,11 @@
 import * as React  from 'react'
-// import listener from './globalEventListener';
-// import { hideMenu } from './actions';
-// import { cssClasses, callIfExists } from './helpers';
+import { callIfExists } from '../../../Common/utils/helpers'
+import GlobalEventListener from '../../../Common/utils/eventListener'
+import {cssRaw} from 'typestyle'
+import * as assign from 'object-assign'
+import * as classNames from 'classnames'
+
+import {MENU_HIDE, MENU_SHOW} from './actions'
 
 export interface UpContextMenuProps {
     id:string;
@@ -17,9 +21,65 @@ export interface UpContextMenuState {
     isVisible:boolean;
 }
 
+cssRaw(`
+.up-contextmenu {
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 16px;
+    color: #373a3c;
+    text-align: left;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+    outline: none;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.up-contextmenu.up-contextmenu--visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.up-contextmenu-link {
+    display: inline-block;
+    width: 100%;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #373a3c;
+    text-align: inherit;
+    white-space: nowrap;
+    background: 0 0;
+    border: 0;
+}
+
+.up-contextmenu-link.active,
+.up-contextmenu-link:hover {
+    color: #fff;
+    background-color: #0275d8;
+    border-color: #0275d8;
+    text-decoration: none;
+}
+.up-contextmenu-item.submenu > a {
+    padding-right: 27px;
+}
+
+.up-contextmenu-item.submenu > a:after {
+    content: "▶";
+    display: inline-block;
+    position: absolute;
+    right: 7px;
+}
+`)
+
 export default class UpContextMenu extends React.PureComponent<UpContextMenuProps, UpContextMenuState> {
 
     menu:HTMLElement;
+    listenerId : string;
 
     public static defaultProps = {
 
@@ -69,7 +129,11 @@ export default class UpContextMenu extends React.PureComponent<UpContextMenuProp
     }
 
     componentDidMount() {
-        //this.listenId = listener.register(this.handleShow, this.handleHide);
+        var callbacks = {} ;
+        callbacks[MENU_SHOW] = this.handleShow ;
+        callbacks[MENU_HIDE] = this.handleHide ;
+        
+        this.listenerId = GlobalEventListener.register(callbacks);
     }
 
     componentDidUpdate() {
@@ -84,21 +148,23 @@ export default class UpContextMenu extends React.PureComponent<UpContextMenuProp
                 wrapper(() => {
                     this.menu.style.top = `${top}px`;
                     this.menu.style.left = `${left}px`;
-                    //this.menu.classList.add(cssClasses.menuVisible);
+                    
                 });
             });
         } else {
-            //this.menu.classList.remove(cssClasses.menuVisible);
+
         }
     }
 
     componentWillUnmount() {
-        // if (this.listenId) {
-        //     listener.unregister(this.listenId);
-        // }
+        if (this.listenerId) {
+            GlobalEventListener.unregister(this.listenerId);
+        }
     }
 
     handleShow = (e) => {
+        console.log('handleShow') ;
+        console.log(e) ;
         if (e.detail.id !== this.props.id) return;
 
         const { x, y } = e.detail.position;
@@ -109,10 +175,12 @@ export default class UpContextMenu extends React.PureComponent<UpContextMenuProp
         document.addEventListener('scroll', this.handleHide);
         document.addEventListener('contextmenu', this.handleHide);
         window.addEventListener('resize', this.handleHide);
-        //callIfExists(this.props.onShow, e);
+        callIfExists(this.props.onShow, e);
     }
 
     handleHide = (e) => {
+        console.log('handleHide') ;
+        console.log(e) ;
         document.removeEventListener('mousedown', this.handleOutsideClick);
         document.removeEventListener('ontouchstart', this.handleOutsideClick);
         document.removeEventListener('scroll', this.handleHide);
@@ -120,11 +188,15 @@ export default class UpContextMenu extends React.PureComponent<UpContextMenuProp
         window.removeEventListener('resize', this.handleHide);
 
         this.setState({isVisible: false});
-        //callIfExists(this.props.onHide, e);
+        callIfExists(this.props.onHide, e);
     }
 
     handleOutsideClick = (e) => {
-        //if (!this.menu.contains(e.target)) hideMenu();
+        if (!this.menu.contains(e.target)) this.hideMenu({}, e.target);
+    }
+
+    hideMenu = (opts = {}, target) => {
+        GlobalEventListener.dispatchGlobalEvent(MENU_HIDE, assign({}, opts, {type: MENU_HIDE}), target);
     }
 
     render() {
@@ -132,8 +204,12 @@ export default class UpContextMenu extends React.PureComponent<UpContextMenuProp
         const { top, left } = this.state;
         const style = {position: "fixed" as "fixed", top: top, left: left};
 
+        var MenuStyle = 'up-contextmenu'
+        if(this.state.isVisible) 
+            MenuStyle = classNames(MenuStyle , 'up-contextmenu--visible') ;
+
         return (
-            <nav ref={this.setMenu} style={style} onContextMenu={this.handleHide} /*className={cssClasses.menu}*/>
+            <nav ref={this.setMenu} style={style} onContextMenu={this.handleHide} className={MenuStyle}>
                 {children}
             </nav>
         );

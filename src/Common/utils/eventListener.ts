@@ -1,19 +1,50 @@
 
 import assign from 'object-assign';
+import {hasOwnProp, generateUniqueId} from './helpers'
 
-export default class GlobalEventListener {
+export class GlobalEventListener {
     callbacks: object;
+    listeners:object;
 
     constructor() {
         this.callbacks = {};
+        this.listeners = {};
     }
 
-    register = (action, handler) => {
-        window.addEventListener(action, handler);
+    handleEvent = (name, event) => {
+        for (var id in this.callbacks) {
+            if (hasOwnProp(this.callbacks, id)) this.callbacks[id][name](event);
+        }
     }
 
-    unregister = (action) => {
-        window.removeEventListener(action);
+    register = (callbacks) => {
+        const id = generateUniqueId();
+
+        for(var i in callbacks) {
+            if(hasOwnProp(callbacks, i)) {
+                if(hasOwnProp(this.listeners, i))
+                    window.removeEventListener(i, this.listeners[id]);
+
+                this.listeners[i] = this.handleEvent.bind(this, i);
+                window.addEventListener(i, this.listeners[i]);
+            }
+        }
+        
+        this.callbacks[id] = callbacks ;
+
+        return id;
+    }
+
+    unregister = (id) => {
+        if (id && this.callbacks[id]) {
+            for(var i in this.callbacks[id]) {
+                if(hasOwnProp(this.callbacks[id], i) && hasOwnProp(this.listeners, i)) {
+                    window.removeEventListener(i, this.listeners[i]);
+                }
+            }
+            
+            delete this.callbacks[id];
+        }
     }
 
     dispatchGlobalEvent(eventName, opts, target = window) {
@@ -33,3 +64,5 @@ export default class GlobalEventListener {
         }
     }
 }
+
+export default new GlobalEventListener()
