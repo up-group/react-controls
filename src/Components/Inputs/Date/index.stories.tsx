@@ -8,11 +8,6 @@ import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themed
 import UpDate from './UpDate'
 import UpLabel from '../../Display/Label'
 
-var onOptionChange = () => {}
-
-var state = {
-}
-
 storiesOf('UpDate', module)
   .addWithInfo('Simple usage', 'Utilisation simple',
    () => (
