@@ -98,7 +98,7 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
             // Handle specific conversion between the value receive from props and the inner state
             var value = this.setValue(nextProps.value);
             // Reset the error : if one it will be set in the checkData
-            this.setState({ value: nextProps.value, error: null }, this.checkData);
+            this.setState({ value: value, error: null }, this.checkAndDispatch);
         }
     }
 

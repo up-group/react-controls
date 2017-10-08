@@ -420,9 +420,37 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
         });
     }
 
+    arraysEqual(arr1: any[], arr2: any[]) {
+        if (arr1.length !== arr2.length) {
+            return false;
+        }
+        for (var i = arr1.length; i--;) {
+            if (this.objectEqual(arr1[i], arr2[i]) === false) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    objectEqual(obj1, obj2) {
+        var aProps = Object.getOwnPropertyNames(obj1);
+        var bProps = Object.getOwnPropertyNames(obj2);
+        if (aProps.length != bProps.length) {
+            return false;
+        }
+        for (var i = 0; i < aProps.length; i++) {
+            var propName = aProps[i];
+            if (obj1[propName] !== obj2[propName]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
     componentWillReceiveProps(nextProps: UpDataGridProps) {
         var data = this.state.data;
-        if (this.props.dataSource == null) {
+        if (this.props.dataSource == null && this.arraysEqual(data.map((v => { return v.value; })), nextProps.data) == false) {
             data = (nextProps.data != null) ? this.mapDataToRow(nextProps.data) : nextProps.data;
         }
         var newState: UpDataGridState
