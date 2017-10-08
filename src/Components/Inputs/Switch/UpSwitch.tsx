@@ -1,8 +1,22 @@
-import * as React from "react"
-
-import { UpSwitchProps, UpSwitchState } from './'
-
+﻿import * as React from "react"
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
+
+
+export interface UpSwitchProps {
+    onChange: (value?: boolean) => void;
+    isNullable: boolean;
+    default?: boolean;
+
+    displayFalse?: string;
+    displayTrue?: string;
+    displayNull?: string;
+}
+
+export interface UpSwitchState {
+    value?: boolean;
+}
+
+
 
 export default class UpSwitch extends BaseControlComponent<UpSwitchProps, boolean> {
     constructor(p, c) {
@@ -20,24 +34,24 @@ export default class UpSwitch extends BaseControlComponent<UpSwitchProps, boolea
             width: "100%"
         }
 
-       
+
         if (this.props.isNullable === true) {
             return <span style={btnBool} >
-                <UpSwitchBtn SelectedValue={this.state.value} value={false} isNullable={this.props.isNullable} onclick={this.onBoolClick} />
-                <UpSwitchBtn SelectedValue={this.state.value} value={null} isNullable={this.props.isNullable} onclick={this.onBoolClick} />
-                <UpSwitchBtn SelectedValue={this.state.value} value={true} isNullable={this.props.isNullable} onclick={this.onBoolClick} />
+                <UpSwitchBtn displayFalse={this.props.displayFalse} displayNull={this.props.displayNull} displayTrue={this.props.displayTrue} SelectedValue={this.state.value} value={false} isNullable={this.props.isNullable} onclick={this.onBoolClick} />
+                <UpSwitchBtn displayFalse={this.props.displayFalse} displayNull={this.props.displayNull} displayTrue={this.props.displayTrue} SelectedValue={this.state.value} value={null} isNullable={this.props.isNullable} onclick={this.onBoolClick} />
+                <UpSwitchBtn displayFalse={this.props.displayFalse} displayNull={this.props.displayNull} displayTrue={this.props.displayTrue} SelectedValue={this.state.value} value={true} isNullable={this.props.isNullable} onclick={this.onBoolClick} />
 
             </span>
         } else {
             return <span style={btnBool} >
-                <UpSwitchBtn SelectedValue={this.state.value} value={false} isNullable={this.props.isNullable} onclick={this.onBoolClick} />
-                <UpSwitchBtn SelectedValue={this.state.value} value={true} isNullable={this.props.isNullable} onclick={this.onBoolClick} />
+                <UpSwitchBtn displayFalse={this.props.displayFalse} displayNull={this.props.displayNull} displayTrue={this.props.displayTrue} SelectedValue={this.state.value} value={false} isNullable={this.props.isNullable} onclick={this.onBoolClick} />
+                <UpSwitchBtn displayFalse={this.props.displayFalse} displayNull={this.props.displayNull} displayTrue={this.props.displayTrue} SelectedValue={this.state.value} value={true} isNullable={this.props.isNullable} onclick={this.onBoolClick} />
             </span>
         }
     }
 
-    onBoolClick = (a?: boolean) => {       
-        this.handleChangeEvent(a);      
+    onBoolClick = (a?: boolean) => {
+        this.handleChangeEvent(a);
     }
 
     getValue(event: any) {
@@ -52,6 +66,10 @@ export interface UpSwitchBtnProps {
     value?: boolean;
     SelectedValue?: boolean;
     onclick: (data?: boolean) => void;
+
+    displayFalse: string;
+    displayTrue: string;
+    displayNull: string;
 }
 
 
@@ -104,7 +122,21 @@ export class UpSwitchBtn extends React.Component<UpSwitchBtnProps, {}>{
         }
 
         var btnStyle = this.props.value == null ? btnNull : this.props.value === true ? btnTrue : btnFalse;
-        var btnStr = this.props.value == null ? "Null" : this.props.value === true ? "Oui" : "Non";
+
+        var btnStr = "";
+        switch (this.props.value) {
+            case null:
+                btnStr = this.props.displayNull != null ? this.props.displayNull : "Indiférent";
+                break;
+            case true:
+                btnStr = this.props.displayTrue != null ? this.props.displayTrue : "Oui";
+                break;
+            case false:
+                btnStr = this.props.displayFalse != null ? this.props.displayFalse : "Non";
+                break;
+            default:
+                btnStr = "err";
+        }
 
         return <span style={{ ...btnBoolSpan, ...btnStyle }} onClick={this.onClick} >{btnStr}</span>
     }
