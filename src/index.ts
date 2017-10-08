@@ -47,6 +47,7 @@ import UpNumber from './Components/Inputs/Number'
 import UpPhone from './Components/Inputs/Phone'
 import UpEmail from './Components/Inputs/Email'
 import UpCheckbox from './Components/Inputs/Checkbox'
+import UpToggle from './Components/Inputs/Toggle'
 import UpRadio from './Components/Inputs/Radio'
 
 import { ThemeProvider as UpThemeProvider } from './Common/theming/themedComponents'
@@ -94,6 +95,7 @@ export {
     UpThemeInterface,
     UpThemeColorMap,
     UpDefaultTheme,
+    UpToggle,
     UpCheckbox,
     UpRadio,
     UpCalendarTimeline,
