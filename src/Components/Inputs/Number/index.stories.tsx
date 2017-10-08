@@ -8,16 +8,6 @@ import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themed
 import UpNumber from './UpNumber'
 import UpLabel from '../../Display/Label'
 
-var onOptionChange = () => {}
-
-var state = {
-    majeur: false,
-    homme: true,
-    grand: false,
-    couleur: "red",
-    selection: null //{id: 3, text : ""}
-}
-
 storiesOf('UpNumber', module)
   .addWithInfo('Simple usage', 'Utilisation avec plusieurs options',
    () => (

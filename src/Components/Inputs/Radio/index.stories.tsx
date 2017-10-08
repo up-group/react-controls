@@ -8,11 +8,6 @@ import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themed
 import UpRadio from './UpRadio'
 import UpLabel from '../../Display/Label'
 
-var onOptionChange = () => { }
-
-var state = {
-}
-
 storiesOf('UpRadio', module)
     .addWithInfo('Multiple usage', 'Utilisation avec plusieurs options',
     () => (

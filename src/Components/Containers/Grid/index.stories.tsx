@@ -8,7 +8,6 @@ import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themed
 import {UpGrid, UpRow, UpCol} from './'
 import UpPanel from '../../Containers/Panel'
 
-
 storiesOf('UpGrid', module)
   .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
    () => (

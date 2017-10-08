@@ -9,11 +9,6 @@ import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themed
 import UpText from './'
 import UpLabel from '../../Display/Label'
 
-var onOptionChange = () => { }
-
-var state = {
-}
-
 storiesOf('UpText', module)
     .addWithInfo('Simple usage', 'Utilisation avec plusieurs options',
     () => (

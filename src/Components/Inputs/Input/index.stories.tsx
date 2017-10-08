@@ -8,11 +8,6 @@ import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themed
 import UpInput from './UpInput'
 import UpLabel from '../../Display/Label'
 
-var onOptionChange = () => {}
-
-var state = {
-}
-
 storiesOf('UpInput', module)
   .addWithInfo('Text input', 'Utilisation simple',
    () => (

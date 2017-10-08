@@ -8,9 +8,6 @@ import UpModal from './UpModal'
 import UpButton from '../../Inputs/Button'
 import UpPanel from '../../Containers/Panel'
 
-
-
-
 export interface ModalWrapperProps {
     html?: string;
 }
@@ -19,7 +16,6 @@ interface ModalWrapperState {
     showModal: boolean;
 
 }
-
 
 class ModalWrapper extends React.Component<ModalWrapperProps, ModalWrapperState>{
     constructor(props, context) {
