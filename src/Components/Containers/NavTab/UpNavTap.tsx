@@ -172,11 +172,14 @@ export class TabHead extends React.Component<TabHeadProps, TabHeadState>{
             display: "block",
             padding: "10px 15px",
             float: "left",
-            cursor: "pointer"
+            cursor: "pointer",
+            borderRadius : "4px 4px 0 0",
+            backgroudColor: "white"
+
         }
 
         if (this.props.selectedTabKey == this.props.tabKey) {
-            style.borderRadius = "4px 4px 0 0";
+
             style.borderTop = "1px solid #ddd";
             style.borderLeft = "1px solid #ddd";
             style.borderRight = "1px solid #ddd";
