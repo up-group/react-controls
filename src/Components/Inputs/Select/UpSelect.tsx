@@ -77,25 +77,23 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
 
     setValue = (receiveValue: any) => {
         if (typeof (receiveValue) === "object") {
-            var extra = this.state.extra;
+            var extra = this.state.extra === undefined || this.state.extra === null ? {} : this.state.extra;
             extra.fullObject = receiveValue;
             this.setState({ extra: extra });
         }
 
-        if (this.props.returnType === "id" && typeof (receiveValue) === "object") {
-            return receiveValue[this.keyId]
+        if (this.props.returnType === "id" && typeof (receiveValue) === "object" && receiveValue != null) {
+            if (this.props.multiple === true) {
+                return receiveValue.map(((v) => { return v[this.keyId]; }));
+            } else {
+                return receiveValue[this.keyId]
+            }
         }
 
         return receiveValue;
     }
 
     getValue(data: any) {
-        if (typeof (data) === "object") {
-            var extra = this.state.extra;
-            extra.fullObject = data;
-            this.setState({ extra: extra });
-        }
-
         if (data == null) {
             return null;
         }
@@ -287,8 +285,13 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                     searchPromptText={this.props.searchPromptText}
                     optionRenderer={this.getOptionRenderer}
                     valueRenderer={this.getValueRenderer}
-                    onChange={this.handleChangeEvent} />
+                    onChange={this.onChange} />
             </WrapperSelect>
         );
+    }
+
+    onChange = (event) => {
+        this.setValue(event);
+        this.handleChangeEvent(event);
     }
 }
