@@ -174,7 +174,7 @@ export class TabHead extends React.Component<TabHeadProps, TabHeadState>{
             float: "left",
             cursor: "pointer",
             borderRadius : "4px 4px 0 0",
-            backgroudColor: "white"
+            backgroundColor: "white"
 
         }
 
