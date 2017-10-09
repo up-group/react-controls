@@ -27,29 +27,32 @@
         interval:number;
         imageObj:any;
         border:number;
-        scale:number; 
+        scale:number;
+        handleParentScroll:boolean;
+        onAddShape: (shape:Shape) => void;
 
-        constructor(canvas) {
-            // **** First some setup! ****
-            this.canvas = canvas;
-            this.width = canvas.width;
-            this.height = canvas.height;
-            this.ctx = canvas.getContext('2d');
-            // This complicates things a little but but fixes mouse co-ordinate problems
-            // when there's a border or padding. See getMouse for more detail
-            var stylePaddingLeft, stylePaddingTop, styleBorderLeft, styleBorderTop;
-            if (document.defaultView && document.defaultView.getComputedStyle) {
-                this.stylePaddingLeft = parseInt(document.defaultView.getComputedStyle(canvas, null)['paddingLeft'], 10) || 0;
-                this.stylePaddingTop = parseInt(document.defaultView.getComputedStyle(canvas, null)['paddingTop'], 10) || 0;
-                this.styleBorderLeft = parseInt(document.defaultView.getComputedStyle(canvas, null)['borderLeftWidth'], 10) || 0;
-                this.styleBorderTop = parseInt(document.defaultView.getComputedStyle(canvas, null)['borderTopWidth'], 10) || 0;
-            }
-            this.border = 1 ;
-            // Some pages have fixed-position bars (like the stumbleupon bar) at the top or left of the page
-            // They will mess up mouse coordinates and this fixes that
-            var html = document.body.parentElement;
-            this.htmlTop = html.offsetTop;
-            this.htmlLeft = html.offsetLeft;
+    constructor(canvas) {
+        // **** First some setup! ****
+        this.canvas = canvas;
+        this.width = canvas.width;
+        this.height = canvas.height;
+        this.ctx = canvas.getContext('2d');
+        // This complicates things a little but but fixes mouse co-ordinate problems
+        // when there's a border or padding. See getMouse for more detail
+        var stylePaddingLeft, stylePaddingTop, styleBorderLeft, styleBorderTop;
+        if (document.defaultView && document.defaultView.getComputedStyle) {
+            this.stylePaddingLeft = parseInt(document.defaultView.getComputedStyle(canvas, null)['paddingLeft'], 10) || 0;
+            this.stylePaddingTop = parseInt(document.defaultView.getComputedStyle(canvas, null)['paddingTop'], 10) || 0;
+            this.styleBorderLeft = parseInt(document.defaultView.getComputedStyle(canvas, null)['borderLeftWidth'], 10) || 0;
+            this.styleBorderTop = parseInt(document.defaultView.getComputedStyle(canvas, null)['borderTopWidth'], 10) || 0;
+        }
+        this.border = 1 ;
+        // Some pages have fixed-position bars (like the stumbleupon bar) at the top or left of the page
+        // They will mess up mouse coordinates and this fixes that
+        var html = document.body.parentElement;
+        this.htmlTop = html.offsetTop;
+        this.htmlLeft = html.offsetLeft;
+        this.handleParentScroll = false ;
 
         // **** Keep track of state! ****
 
@@ -107,6 +110,8 @@
                         myState.dragoffy = my - mySel.y;
                         myState.dragging = true;
                         myState.selection = mySel;
+                        console.log('Selection  : ') ;
+                        console.log(myState.selection) ;
                         myState.valid = false;
                         return;
                     }
@@ -115,6 +120,8 @@
                 // If there was an object selected, we deselect it
                 if (myState.selection) {
                     myState.selection = null;
+                    console.log('Selection  : ') ;
+                    console.log(myState.selection) ;
                     myState.valid = false; // Need to clear the old selection border
                 }
                 myState.drawing = true;
@@ -122,6 +129,7 @@
                 myState.drawingoffy = my;
             }
         }, true);
+
         canvas.addEventListener('mousemove', function (e) {
             if (myState.dragging) {
                 var mouse = myState.getMouse(e);
@@ -140,6 +148,7 @@
                 myState.addShape(_shape);
             }
         }, true);
+        
         canvas.addEventListener('mouseup', function (e) {
             if (myState.drawing === true) {
                 var mouse = myState.getMouse(e);
@@ -202,11 +211,17 @@
         }
         this.shapes = _shapes;
         shape.ref = _nextRef;
+        if(this.onAddShape && shape.temp === false) {
+            this.onAddShape(shape) ;
+        }
+
         this.shapes.push(shape);
         if (shape.temp !== true) {
             // -> binded shapes
         }
         this.selection = null;
+        console.log('On AddShape -> Selection  : ') ;
+        console.log(this.selection) ;
         this.valid = false;
     }
 
@@ -246,12 +261,15 @@
         this.shapes = _shapes;
         // -> binde shapes
         this.selection = null;
+        console.log('On RemoveShape -> Selection  : ') ;
+        console.log(this.selection) ;
         this.valid = false;
     }
 
     clear = () => {
         this.ctx.clearRect(0, 0, this.width, this.height);
     }
+
     drawImage = () => {
         var WIDTH = this.imageObj.width + 2 * this.border;
         var HEIGHT = this.imageObj.height + 2 * this.border;
@@ -331,11 +349,12 @@
         offsetY += this.stylePaddingTop + this.styleBorderTop + this.htmlTop;
 
         var scrollY = 0 ;
-        element = this.canvas
-        do {
-            scrollY =   $(element).scrollTop() ;
-        } while (scrollY == 0 && (element = element.parentNode));
-       
+        if(this.handleParentScroll === true) {
+            element = this.canvas
+            do {
+                scrollY =   $(element).scrollTop() ;
+            } while (scrollY == 0 && (element = element.parentNode));
+        }
         mx = e.pageX - offsetX;
         my = e.pageY + scrollY - offsetY;
 

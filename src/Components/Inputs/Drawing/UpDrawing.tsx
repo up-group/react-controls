@@ -12,6 +12,8 @@ import UpLabel from '../../Display/Label'
 
 import {UpContextMenu, UpContextMenuTrigger, UpContextMenuItem, UpContextMenuItemDivider} from '../../Display/ContextMenu'
 
+import {generateUniqueId} from '../../../Common/utils/helpers' 
+
 const DRAWING_MENU_TYPE = 'DRAWING_MENU_TYPE' ;
 
 export interface UpDrawingState {
@@ -25,10 +27,13 @@ export interface UpDrawingState {
 export default class UpDrawing extends React.Component<UpDrawingProps, UpDrawingState> {
     canvas:any;
     canvasState: CanvasState;
+    contextKey:string;
 
     public static defaultProps:UpDrawingProps = {
         src:"",
-        activationShape:true
+        activationShape:true,
+        displayActions:true,
+        disabled:false
     }
 
     constructor(p, c) {
@@ -39,34 +44,40 @@ export default class UpDrawing extends React.Component<UpDrawingProps, UpDrawing
             activationShape: true,
             scale:1
         }
+
+        this.contextKey = `${DRAWING_MENU_TYPE}_${generateUniqueId()}` ;
     }
 
     setCanvas = (canvas) => {
-        this.canvas = canvas;
-        var ctx = this.canvas.getContext('2d');
-        this.canvasState = new CanvasState(canvas);
-        if (this.state.src) {
-            this.canvasState.scale = this.state.scale ;
-            this.canvasState.imageObj = new Image();
-            this.canvasState.imageObj.crossOrigin = '';
-            var self = this ;
-            this.canvasState.imageObj.onload = function() {
-                self.canvasState.valid = false ;
-                self.canvasState.draw() ;
-            } ;
-            this.canvasState.imageObj.src = this.state.src;
-            this.canvasState.registerListeners() ;
+        if(this.canvas == null) {
+            this.canvas = canvas;
+            var ctx = this.canvas.getContext('2d');
+            this.canvasState = new CanvasState(canvas);
+            if (this.state.src) {
+                this.canvasState.scale = this.state.scale ;
+                this.canvasState.imageObj = new Image();
+                this.canvasState.imageObj.crossOrigin = '';
+                var self = this ;
+                this.canvasState.imageObj.onload = function() {
+                    self.canvasState.valid = false ;
+                    self.canvasState.draw() ;
+                } ;
+                this.canvasState.imageObj.src = this.state.src;
+                this.canvasState.registerListeners() ;
+            }
         }
-    }
-
-    componentDidMount() {
-    
     }
 
     componentWillReceiveProps(nextProps: UpDrawingProps) {
+        var _newState : any  = {} ;
         if (nextProps.src !== this.props.src) {
-            this.setState({src: nextProps.src });
+            _newState.src == nextProps.src ;
         }
+        // if (nextProps.shapes !== this.canvasState.shapes) {
+        //     this.canvasState.shapes = nextProps.shapes ;
+        //     this.canvasState.valid = false;
+        // }
+        // this.setState(_newState);
     }
 
     zoomIn = (event:any) => {
@@ -93,14 +104,33 @@ export default class UpDrawing extends React.Component<UpDrawingProps, UpDrawing
         }) ;
     }
     rotate = (event:any) => {
-
+        var self = this ;
+        if (typeof (this.props.onRotate) == "function") {
+            var callback = function (result) {
+                //self.canvasState.src = ;
+            }
+            this.props.onRotate(callback);
+        }
     }
 
     open = () => {
-        
+        var _windowWidth = this.canvas.width;
+        var _windowHeight = this.canvas.height;
+        var _windowArgs = 'scrollbars=yes,resizable=yes, width=' + _windowWidth + ', height=' + _windowHeight;
+
+        var _html = "<p>"+
+            "<img style='height: auto;' class='img-rounded  thumb' src='" + this.state.src + "' />"+
+            "</p>" ;
+
+        var _window = window.open('', '', _windowArgs);
+        var _document = _window.document.open("text/html", "replace");
+        _document.write("<!DOCTYPE html><html><body>" + _html + "</body></html>");
+        _document.close();
     }
 
     crop = (event:any) => {
+        console.log(this.canvasState) ;
+        console.log(this.canvasState.selection) ;
         if (this.canvasState.selection) {
             var _imageCropped = this.canvasState.cropShape(this.canvasState.selection);
             if (_imageCropped != null) {
@@ -147,13 +177,24 @@ export default class UpDrawing extends React.Component<UpDrawingProps, UpDrawing
     }
 
     toggleActivationShape = (value) => {
-
         this.setState({activationShape: value}, () => {
             this.canvasState.shapes.map(function(shape) {
                 shape.hide = !value ;
             });
             this.canvasState.valid = false ;
         });
+    }
+
+    componentDidUpdate() {
+        console.log("Update") ;
+    }
+
+    componentDidMount() {
+        console.log("Mount") ;
+    }
+
+    componentWillUnmount() {
+        console.log("Unmount") ;
     }
 
     render() {
@@ -163,30 +204,34 @@ export default class UpDrawing extends React.Component<UpDrawingProps, UpDrawing
             borderRadius:"4px"
         });
 
-        const {onChange, src, zones, ...others} = this.props ;
+        const {onChange, src, shapes, ...others} = this.props ;
         
         return (
             <div className={WrapperStyle}>
-                <div className="up-canvas-actions">
-                    <UpLabel text="Zones : ">
-                        <UpToggle value={true} onChange={this.toggleActivationShape} checked={this.state.activationShape === true} />
-                    </UpLabel>
-                    <UpButtonGroup> 
-                        <UpButton onClick={this.zoomIn} width={'icon'} actionType={"zoom-in"} tooltip={"Zoom avant"} />
-                        <UpButton onClick={this.zoomOut} width={'icon'} actionType={"zoom-out"} tooltip={"Zoom arrière"} />
-                        <UpButton onClick={this.zoomNormal} width={'icon'} actionType={"zoom-normal"} tooltip={"Zoom normal"} />
-                        <UpButton onClick={this.rotate} width={'icon'} actionType={"image-rotate-right"} tooltip={"Appliquer une rotation de  l\'image de 90° vers la droite"} />
-                        <UpButton onClick={this.open} width={'icon'} actionType={"open"} tooltip={"Ouvrir l\'image dans une nouvelle fenêtre"} />
-                    </UpButtonGroup>
-                </div>
+                {this.props.displayActions &&
+                    <div className="up-canvas-actions">
+                        <UpLabel text="Zones : ">
+                            <UpToggle value={true} onChange={this.toggleActivationShape} checked={this.state.activationShape === true} />
+                        </UpLabel>
+                        <UpButtonGroup> 
+                            <UpButton onClick={this.zoomIn} width={'icon'} actionType={"zoom-in"} tooltip={"Zoom avant"} />
+                            <UpButton onClick={this.zoomOut} width={'icon'} actionType={"zoom-out"} tooltip={"Zoom arrière"} />
+                            <UpButton onClick={this.zoomNormal} width={'icon'} actionType={"zoom-normal"} tooltip={"Zoom normal"} />
+                            {this.props.onRotate && 
+                                <UpButton onClick={this.rotate} width={'icon'} actionType={"image-rotate-right"} tooltip={"Appliquer une rotation de  l\'image de 90° vers la droite"} />
+                            }
+                            <UpButton onClick={this.open} width={'icon'} actionType={"open"} tooltip={"Ouvrir l\'image dans une nouvelle fenêtre"} />
+                        </UpButtonGroup>
+                    </div>
+                }
 
-                <UpContextMenuTrigger id={DRAWING_MENU_TYPE} holdToDisplay={1000}>
+                <UpContextMenuTrigger key={this.contextKey} id={this.contextKey} holdToDisplay={1000}>
                     <canvas width={"100%"} height={"500px"} className={CanvasStyle} ref={this.setCanvas}>
                         Votre navigateur ne supporte pas les fonctions d'édition d'image.
                     </canvas>
                 </UpContextMenuTrigger>
 
-                <UpContextMenu id={DRAWING_MENU_TYPE}>
+                <UpContextMenu key={`ContextMenu_${this.contextKey}`} id={this.contextKey}>
                     <UpContextMenuItem onClick={this.crop} data={{action: 'up-crop'}}>Ajouter la sélection</UpContextMenuItem>
                     <UpContextMenuItem onClick={this.cropAll} data={{action: 'up-crop-all'}}>Ajouter tous</UpContextMenuItem>
                     <UpContextMenuItemDivider size= {2} />
