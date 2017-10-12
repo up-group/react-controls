@@ -103,7 +103,7 @@ export default class UpDefaultCellFormatter implements ICellFormatter {
 
 export interface UpCellFormatterProps {
     column: Column;
-    item: Row;
+    value: any;
 }
 
 interface UpCellFormatterState {
@@ -117,9 +117,9 @@ export class UpCellFormatter extends React.Component<UpCellFormatterProps, {}>{
     }
 
     render() {
-        var valueExtracted = this.props.item.value[this.props.column.field];
+        var valueExtracted = this.props.value[this.props.column.field];
         if (this.props.column.formatter != null) {
-            return this.props.column.formatter.format(this.props.item.value, this.props.column);
+            return this.props.column.formatter.format(this.props.value, this.props.column);
         }
 
         if (valueExtracted == null) {

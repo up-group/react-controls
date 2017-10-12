@@ -16,6 +16,7 @@ import UpLoadingIndicator from '../../Display/LoadingIndicator'
 import { ActionType } from '../../Inputs/Button'
 import { IntentType } from '../../../Common/theming/types'
 import { IconName } from '../../../Components/Display/SvgIcon/icons'
+import * as  shallowEqual from 'fbjs/lib/shallowEqual'
 
 const WrapperDataGridStyle = style({
     position: "relative"
@@ -425,32 +426,33 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
             return false;
         }
         for (var i = arr1.length; i--;) {
-            if (this.objectEqual(arr1[i], arr2[i]) === false) {
+            if (shallowEqual(arr1[i], arr2[i]) === false) {
                 return false;
             }
         }
         return true;
     }
 
-    objectEqual(obj1, obj2) {
-        var aProps = Object.getOwnPropertyNames(obj1);
-        var bProps = Object.getOwnPropertyNames(obj2);
-        if (aProps.length != bProps.length) {
-            return false;
-        }
-        for (var i = 0; i < aProps.length; i++) {
-            var propName = aProps[i];
-            if (obj1[propName] !== obj2[propName]) {
-                return false;
-            }
-        }
-        return true;
-    }
+    //objectEqual(obj1, obj2) {
+    //    var aProps = Object.getOwnPropertyNames(obj1);
+    //    var bProps = Object.getOwnPropertyNames(obj2);
+    //    if (aProps.length != bProps.length) {
+    //        return false;
+    //    }
+    //    for (var i = 0; i < aProps.length; i++) {
+    //        var propName = aProps[i];
+    //        if (obj1[propName] !== obj2[propName]) {
+    //            return false;
+    //        }
+    //    }
+    //    return true;
+    //}
 
 
     componentWillReceiveProps(nextProps: UpDataGridProps) {
         var data = this.state.data;
-        var arrayEqualResult = this.arraysEqual(data.map((v => { return v.value; })), nextProps.data);
+        var curentState = data.map((v => { return v.value; }));
+        var arrayEqualResult = this.arraysEqual(curentState, nextProps.data) ;
         if (this.props.dataSource == null && arrayEqualResult === false) {
             data = (nextProps.data != null) ? this.mapDataToRow(nextProps.data) : nextProps.data;
         }
@@ -526,7 +528,8 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
                     isSelectionEnabled={this.props.isSelectionEnabled}
                     actions={this.props.actions}
                     columns={columns}
-                    item={value}
+                    value={value.value}
+                    isSelected={value.isSelected}
                     onSelectionChange={this.onRowSelectionChange}
                 />)
             }

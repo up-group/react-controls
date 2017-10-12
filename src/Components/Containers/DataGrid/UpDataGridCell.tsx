@@ -9,7 +9,7 @@ export interface UpDataGridCellState {
 }
 
 export interface UpDataGridCellProps {
-    item?: any;
+    value?: any;
     column?: Column;
 }
 
@@ -25,7 +25,7 @@ export default class UpDataGridCell extends React.Component<UpDataGridCellProps,
     render() {
         return (
             <td className="up-data-grid-cell">
-                <UpCellFormatter item={this.props.item} column={this.props.column}>
+                <UpCellFormatter value={this.props.value} column={this.props.column}>
                     {this.props.children}
                 </UpCellFormatter>
             </td>

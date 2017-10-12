@@ -13,7 +13,7 @@ import RowTemplate from './templates/UpDataGridRowWithStatus'
 var data = [];
 var data2 = [];
 
-for (var i = 0; i < 15; i++) {
+for (var i = 0; i < 250; i++) {
     data.push({ 'c1': 'Value ' + i, 'c2': false, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } })
     data2.push({ 'c1': 'Value 2 ' + i, 'c2': false, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } })
 }
@@ -69,7 +69,7 @@ storiesOf('UpDataGrid', module)
     () => (
         <UpThemeProvider theme={UpDefaultTheme}>
             <UpDataGrid
-                onSelectionChange={() => { this }}
+                onSelectionChange={(a, b) => { console.log(a, b); }}
                 isPaginationEnabled={false}
                 isSelectionEnabled={true}
                 columns={

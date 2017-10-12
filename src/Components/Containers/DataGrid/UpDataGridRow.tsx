@@ -9,12 +9,15 @@ import UpDataGridCell from './UpDataGridCell'
 import { Column, Row, Action } from './UpDataGrid'
 import UpDefaultCellFormatter from './UpDefaultCellFormatter'
 
+import * as  shallowEqual from 'fbjs/lib/shallowEqual'
+
 export interface UpDataGridRowState {
 }
 
 export interface UpDataGridRowProps {
     rowIndex: number;
-    item: Row;
+    isSelected: boolean;
+    value: any;
     columns: Array<Column>;
     actions: Array<Action>;
     isSelectionEnabled: boolean;
@@ -26,7 +29,8 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
     static defaultProps: UpDataGridRowProps = {
         rowIndex: -1,
         isSelectionEnabled: true,
-        item: {},
+        value: {},
+        isSelected: false,
         columns: [],
         actions: []
     }
@@ -38,32 +42,36 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
 
     onSelectionChange = (isSelected) => {
         if (this.props.onSelectionChange) {
-            this.props.onSelectionChange(this.props.rowIndex, { isSelected: isSelected, value: this.props.item.value });
+            this.props.onSelectionChange(this.props.rowIndex, { isSelected: isSelected, value: this.props.value });
         }
+    }
+
+    shouldComponentUpdate(nextProps: UpDataGridRowProps, nextState) {
+        return !shallowEqual(this.props, nextProps) || !shallowEqual(this.state, nextState);
     }
 
     render() {
         const formatter = new UpDefaultCellFormatter();
-        const selection = <UpCheckbox options={[{ name: "up-selection", checked: this.props.item.isSelected === true, value: true, onChange: this.onSelectionChange }]} />;
+        const selection = <UpCheckbox options={[{ name: "up-selection", checked: this.props.isSelected === true, value: true, onChange: this.onSelectionChange }]} />;
 
         return (
             <tr className="up-data-grid-row up-data-grid-row-bordered">
                 {this.props.isSelectionEnabled &&
-                    <UpDataGridCell key={"cell-selection"} item={{ value: selection }} column={{ label: "", formatter: formatter }} />
+                    <UpDataGridCell key={"cell-selection"} value={selection} column={{ label: "", formatter: formatter }} />
                 }
 
                 {this.props.columns.map((value, index) => {
-                    return <UpDataGridCell key={`cell-${index}`} item={this.props.item} column={value} />
+                    return <UpDataGridCell key={`cell-${index}`} value={this.props.value} column={value} />
                 })}
 
                 {this.props.actions && this.props.actions.length > 0 &&
-                    <UpDataGridCell key={"cell-actions"} item={this.props.item} column={{ label: "", isSortable: false }}>
+                    <UpDataGridCell key={"cell-actions"} value={this.props.value} column={{ label: "", isSortable: false }}>
                         {
                             this.props.actions.map((value, index) => {
                                 return <UpButton key={`action-${index}`} tooltip={value.description} actionType={value.type} width="icon" intent={value.intent} onClick={
                                     () => {
                                         if (value.action != null) {
-                                            value.action(this.props.item)
+                                            value.action({ isSelected: this.props.isSelected, value: this.props.value });
                                         }
                                     }
                                 } />
