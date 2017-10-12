@@ -9,7 +9,7 @@ import UpDataGridCell from './UpDataGridCell'
 import { Column, Row, Action } from './UpDataGrid'
 import UpDefaultCellFormatter from './UpDefaultCellFormatter'
 
-import * as  shallowEqual from 'fbjs/lib/shallowEqual'
+import shallowEqual from '../../../Common/utils/shallowEqual'
 
 export interface UpDataGridRowState {
 }
