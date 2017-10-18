@@ -38,7 +38,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     constructor(p, c) {
         super(p, c);
         this.state = {
-            value: (p.value) ? this.setValue(p.value) : p.default,
+            value: (p.value) ? this.parseValue(p.value) : p.default,
             extra: {
                 loadingPlaceholder: p.loadingPlaceholder,
                 fullObject: (p.value) ? p.value : p.default,
@@ -82,6 +82,10 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             this.setState({ extra: extra });
         }
 
+        return this.parseValue(receiveValue);
+    }
+
+    parseValue = (receiveValue: any) => {
         if (this.props.returnType === "id" && typeof (receiveValue) === "object" && receiveValue != null) {
             if (this.props.multiple === true) {
                 return receiveValue.map(((v) => { return v != null ? v[this.keyId] : null; }));
@@ -92,6 +96,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
 
         return receiveValue;
     }
+
 
     getValue(data: any) {
         if (data == null) {
