@@ -67,7 +67,6 @@ export default class SimpleDrawing extends React.PureComponent<any, SimpleDrawin
                     onDelAll={this.onDelAll}
                     onRotate={this.onRotate}
                     onChange={(value, event) => {console.log(event);console.log(value)}} />
-
                 <p>
                     {this.state.images && this.state.images.map(function(value, index) {
                         return <UpDrawing displayActions={false} src={value} key={`Drawing_${index}`} />

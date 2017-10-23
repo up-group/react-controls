@@ -119,6 +119,7 @@
     "color": "^1.0.3",
     "draft-js": "^0.10.0",
     "github-markdown-css": "^2.4.1",
+    "fbjs" : "0.8.12",
     "inputmask-core": "^2.2.0",
     "interact.js": "^1.2.8",
     "jquery": "^3.2.1",
