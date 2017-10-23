@@ -1,6 +1,6 @@
 {
   "name": "@up-group/react-controls",
-  "version": "0.0.363",
+  "version": "0.0.364",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -119,7 +119,7 @@
     "color": "^1.0.3",
     "draft-js": "^0.10.0",
     "github-markdown-css": "^2.4.1",
-    "fbjs" : "0.8.12",
+    "fbjs": "0.8.12",
     "inputmask-core": "^2.2.0",
     "interact.js": "^1.2.8",
     "jquery": "^3.2.1",
