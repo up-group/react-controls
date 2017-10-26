@@ -44,13 +44,11 @@ const lastChild = {
     borderBottomRightRadius: "4px"
 };
 const itemHover = {
-    zIndex: 3,
     color: "#23527C",
     backgroundColor: "#eee",
     borderColor: "#ddd"
 };
 const itemActive = {
-    zIndex: 2,
     color: "#fff",
     backgroundColor: "#337ab7",
     borderColor: "#337ab7",
