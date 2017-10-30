@@ -106,7 +106,9 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         if (this.props.returnType === "id") {
             var fullobject = this.state.extra.fullObject;
             if (this.props.multiple) {
-                return fullobject.map((v) => { return v != null && v.hasOwnProperty(this.keyId) && v[this.keyId] != null ? v[this.keyId] : null });
+                return fullobject
+                    .map((v) => { return v != null && v.hasOwnProperty(this.keyId) && v[this.keyId] != null ? v[this.keyId] : null })
+                    .filter((v) => { return v !== null; });
             } else {
                 return fullobject != null && fullobject.hasOwnProperty(this.keyId) ? fullobject[this.keyId] : null;
             }
