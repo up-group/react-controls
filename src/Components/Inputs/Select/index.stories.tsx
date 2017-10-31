@@ -15,9 +15,11 @@ export interface testProps {
 }
 
 export interface testState {
-    valM: any,
+    valM: any[],
     val: any,
     lastChange?: any,
+    valE: any;
+    valEM: any[];
 }
 
 export class Test extends React.Component<testProps, testState>{
@@ -27,7 +29,10 @@ export class Test extends React.Component<testProps, testState>{
         super(p, c);
         this.state = {
             val: { id: 555, name: "tesdzadzt" },
-            valM: null
+            valM: null,
+            valE: 1,
+            valEM: [1, 2],
+
         };
     }
 
@@ -35,7 +40,14 @@ export class Test extends React.Component<testProps, testState>{
         return <UpThemeProvider theme={UpDefaultTheme}>
             <div>
                 <div>
-                    <button onClick={() => { this.setState({ val: { id: 5, name: "test" }, valM: [{ id: 1111, name: "test 1" }, { id: 11122, name: "test 2" }] }); }}>set test</button>
+                    <button onClick={() => {
+                        this.setState({
+                            val: { id: 5, name: "test" },
+                            valM: [{ id: 1111, name: "test 1" }, { id: 11122, name: "test 2" }],
+                            valE: 3,
+                            valEM: [3, 4],
+                        });
+                    }}>set test</button>
                     <UpSelect autoload={false}
                         isRequired={false}
                         allowClear={true}
@@ -51,6 +63,10 @@ export class Test extends React.Component<testProps, testState>{
                             text: "name"
                         }}
                         onChange={(a) => { this.setState({ val: a, lastChange: a }); }} />
+                    <div>
+                        {JSON.stringify(this.state.val)}
+                    </div>
+
                     <UpSelect autoload={false}
                         isRequired={false}
                         allowClear={true}
@@ -67,32 +83,28 @@ export class Test extends React.Component<testProps, testState>{
                         onChange={(a) => { this.setState({ valM: a, lastChange: a }); }} />
                 </div>
                 <div>
-                    val
-               <br />
-                    {JSON.stringify(this.state.val)}
-                </div>
-
-                <div>
-                    valM
-               <br />
                     {JSON.stringify(this.state.valM)}
                 </div>
-                <div>
-                    lastChange
-               <br />
-                    {JSON.stringify(this.state.lastChange)}
-                </div>
+
                 <div >
 
                     <UpSelect width="normal"
+                        value={this.state.valE}
                         returnType="id"
-                        tooltip="Civilité" default={null} data={[
+                        tooltip="Civilité" default={null}
+                        data={[
                             { id: 1, text: 'M.' },
                             { id: 2, text: 'Mme' },
                             { id: 3, text: 'Mlle' },
                             { id: 4, text: 'Dr' },
-                        ]} onChange={console.log} />
-                    <UpSelect width="normal"
+                        ]}
+                        onChange={(a) => { this.setState({ valE: a, lastChange: a }); }} />
+                    <div>
+                        {JSON.stringify(this.state.valE)}
+                    </div>
+                    <UpSelect
+                        value={this.state.valEM}
+                        width="normal"
                         returnType="id"
                         multiple={true}
                         tooltip="Civilité" default={null} data={[
@@ -100,11 +112,19 @@ export class Test extends React.Component<testProps, testState>{
                             { id: 2, text: 'Mme' },
                             { id: 3, text: 'Mlle' },
                             { id: 4, text: 'Dr' },
-                        ]} onChange={console.log} />
+                        ]}
+                        onChange={(a) => { this.setState({ valEM: a, lastChange: a }); }} />
                 </div>
 
+            <div>
+                {JSON.stringify(this.state.valEM)}
             </div>
-
+            <div>
+                lastChange
+               <br />
+                {JSON.stringify(this.state.lastChange)}
+            </div>
+            </div>
         </UpThemeProvider>
     }
 }

@@ -76,14 +76,67 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     }
 
     setValue = (receiveValue: any) => {
-        if (typeof (receiveValue) === "object") {
-            var extra = this.state.extra === undefined || this.state.extra === null ? {} : this.state.extra;
-            extra.fullObject = receiveValue;
-            this.setState({ extra: extra });
+        if (this.props.multiple === true) {
+            let isPairArray = this.isPairArray(receiveValue)
+            if (isPairArray === true) {
+                var extra = this.state.extra === undefined || this.state.extra === null ? {} : this.state.extra;
+                extra.fullObject = receiveValue;
+                this.setState({ extra: extra });
+            } else if (isPairArray == false && Array.isArray(receiveValue) === true && this.props.data != null) {
+                var extra = this.state.extra === undefined || this.state.extra === null ? {} : this.state.extra;
+                let data = this.makePairFromIds(receiveValue);
+                extra.fullObject = data;
+                this.setState({ extra: extra });
+                return this.parseValue(data)
+            }
+        } else {
+            let isPair = this.isPair(receiveValue);
+            if (isPair === true) {
+                var extra = this.state.extra === undefined || this.state.extra === null ? {} : this.state.extra;
+                extra.fullObject = receiveValue;
+                this.setState({ extra: extra });
+            } else if (isPair === false && this.props.data != null) {
+                let data = this.makePairFromId(receiveValue);
+                var extra = this.state.extra === undefined || this.state.extra === null ? {} : this.state.extra;
+                extra.fullObject = data;
+                this.setState({ extra: extra });
+                return this.parseValue(data)
+            }
         }
-
         return this.parseValue(receiveValue);
     }
+
+    private makePairFromIds = (ids: any[]) => {
+        return ids.map(this.makePairFromId).filter(v => { return v !== null; });
+    }
+
+    private makePairFromId = (id) => {
+        for (var i = 0; i < this.props.data.length; i++) {
+            if (this.props.data[i][this.keyId] === id) {
+                return {
+                    [this.keyId]: this.props.data[i][this.keyId],
+                    [this.keyText]: this.props.data[i][this.keyText]
+                };
+            }
+        }
+        return null;
+    }
+
+    private isPairArray = (obj: any[]) => {
+        if (obj == null || Array.isArray(obj) == false) {
+            return false;
+        }
+        return obj.every(this.isPair)
+    }
+
+    private isPair = (obj) => {
+        if (obj == null) {
+            return false;
+        }
+        return obj.hasOwnProperty(this.keyId) && obj.hasOwnProperty(this.keyText);
+    }
+
+
 
     parseValue = (receiveValue: any) => {
         if (this.props.returnType === "id" && typeof (receiveValue) === "object" && receiveValue != null) {
@@ -298,7 +351,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     }
 
     onChange = (event) => {
-        this.setValue(event);
-        this.handleChangeEvent(event);
+        var data = this.setValue(event);
+        this.handleChangeEvent(data);
     }
 }
