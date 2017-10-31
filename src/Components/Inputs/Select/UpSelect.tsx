@@ -133,7 +133,24 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         if (obj == null) {
             return false;
         }
-        return obj.hasOwnProperty(this.keyId) && obj.hasOwnProperty(this.keyText);
+
+        if (obj.hasOwnProperty(this.keyId) && obj.hasOwnProperty(this.keyText)) {
+            return true;
+        }
+
+        var regexp = /{-?[\w]+}/gi;
+        var arr = this.keyText.match(regexp);
+        if (arr === null) {
+            return obj.hasOwnProperty(this.keyId) && obj.hasOwnProperty(this.keyText);
+        } else {
+            for (var i = 0; i < arr.length; i++) {
+                var sourceText = arr[i].replace("{", "").replace("}", "");
+                if (obj.hasOwnProperty(sourceText) == false) {
+                    return false
+                }
+            }
+            return obj.hasOwnProperty(this.keyId);
+        }
     }
 
 
