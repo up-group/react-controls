@@ -44,9 +44,11 @@ export default class UpButton extends React.Component<UpButtonProps, UpButtonSta
     };
 
     private handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
-        this.props.onClick(e);
-        if (this.props.dropDown != 'none') {
-            this.setState({ isToggled: !this.state.isToggled });
+        if (this.props.disabled !== true) {
+            this.props.onClick(e);
+            if (this.props.dropDown != 'none') {
+                this.setState({ isToggled: !this.state.isToggled });
+            }
         }
         e.preventDefault();
         e.stopPropagation();
@@ -68,7 +70,7 @@ export default class UpButton extends React.Component<UpButtonProps, UpButtonSta
     }
 
     public render() {
-        const {children, tooltip, onClick, iconName, iconPosition, ...others} = this.props;
+        const { children, tooltip, onClick, iconName, iconPosition, ...others } = this.props;
 
         const BtnList = style({
             display: this.state.isToggled ? "block" : "none",

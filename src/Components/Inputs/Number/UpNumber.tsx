@@ -32,7 +32,7 @@ export default class UpNumber extends BaseControlComponent<UpNumberProps, number
     }
 
     handleNumericChange = (valueAsNumber: number, valueAsString: string) => {
-        if (this.props.decimalPlace) {
+        if (this.props.decimalPlace != null) {
             var _newValue = this.round(valueAsNumber, this.props.decimalPlace);
             if (isNaN(valueAsNumber)) {
                 this.handleChangeEvent(this.state.value);
@@ -56,7 +56,7 @@ export default class UpNumber extends BaseControlComponent<UpNumberProps, number
 
         return (
             <NumericInput
-
+                
                 value={this.state.value}
                 stepSize={stepSize}
                 majorStepSize={stepSize ? stepSize + 10 : 10}
