@@ -1,6 +1,6 @@
 {
   "name": "@up-group/react-controls",
-  "version": "0.0.374",
+  "version": "0.0.375",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -52,7 +52,6 @@
     "copyImg": " copyfiles -u 1 src/**/*.png dist/",
     "build-watch": "tsc -w",
     "prepublish": "npm run clean && npm run build ",
-    
     "publishProd": "npm version patch && npm publish",
     "publishBeta": "npm version patch && npm publish --tag beta",
     "build-test": "npm run clean && webpack",
@@ -122,7 +121,7 @@
     "github-markdown-css": "^2.4.1",
     "inputmask-core": "^2.2.0",
     "interact.js": "^1.2.8",
-    "jquery": "^3.2.1", 
+    "jquery": "^3.2.1",
     "moment": "^2.19.1",
     "normalize.css": "^4.1.1",
     "object-assign": "^4.1.1",
