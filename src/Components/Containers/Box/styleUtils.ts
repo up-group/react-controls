@@ -1,7 +1,3 @@
-import {css} from '../../../Common/theming/themedComponents';
-
-import Props from './types';
-import { BREAKPOINTS } from './maps';
 import {
   Size,
   SizeObject,
@@ -14,10 +10,9 @@ import {
   SizeStyle,
   Rem,
   Px,
+  SIZE_MAP, 
+  BOX_SIZE_MAP
 } from './types';
-import { SIZE_MAP, BOX_SIZE_MAP } from './maps';
-import { InterpolationFunction, ThemeProps } from "styled-components/typings/styled-components";
-import { ThemeInterface } from "../../../Common/theming/types";
 
 const rootRem: number = 16;
 const remFromPX = (px: Px): Rem => (px / rootRem);
@@ -106,22 +101,3 @@ export function calculateFullStyle(full: Full, postFix: 'vw' | 'vh'): string {
   }
   return 'auto';
 }
-
-export const breakPointCss = (breakPoint: Breakpoint) => {
-  const selector = breakPoint === 'desktop' ? 'min-width' : 'max-width';
-  return css`
-    @media screen and (${selector}: ${BREAKPOINTS.phone}) {
-      padding: ${({ pad }: Props) => sizeToString(pad)};
-    }
-  `;
-};
-
-export const breakPoints = (size: ResponsiveSize) => {
-  if (size.desktop || size.mobile || size.tablet) {
-    const css = Object.keys(size).map((key) =>
-      breakPointCss(key as Breakpoint),
-    ).join('; \n');
-    return css;
-  }
-  return '';
-};

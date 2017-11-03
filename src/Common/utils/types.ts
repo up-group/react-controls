@@ -27,7 +27,6 @@ export class Dictionary<_KeyType, _ValueType> implements IDictionary<_KeyType, _
     _values: _ValueType[] = new Array<_ValueType>() ;
     _dictionary : any = {} ;
     constructor(init: { key: _KeyType; value: _ValueType; }[]) {
-
         for (var x = 0; x < init.length; x++) {
             this._dictionary[init[x].key.toString()] = init[x].value;
             this._keys.push(init[x].key);

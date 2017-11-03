@@ -1,6 +1,5 @@
 import * as React from "react"
 
-
 export interface UpDashboardProps {
 
 }
@@ -23,5 +22,3 @@ export default class UpDashboard extends React.Component<UpDashboardProps, UpDas
         </div>
     }
 }
-
-

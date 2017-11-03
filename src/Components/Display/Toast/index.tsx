@@ -1,16 +1,16 @@
 import * as React from 'react';
 import Box from '../../Containers/Box';
 import Component, { Button } from './styles';
-import BoxProps from '../../Containers/Box/types';
+import {UpBoxProps} from '../../Containers/Box/UpBox';
 import { Status } from './types';
 
-export interface StyledProps extends BoxProps {
+export interface StyledProps extends UpBoxProps {
   status?: Status;
   isVisible: boolean;
   isUnmounting: boolean;
 }
 
-export interface Props extends BoxProps {
+export interface Props extends UpBoxProps {
   message?: JSX.Element | string ;
   children?: JSX.Element;
   onClose?: () => void;

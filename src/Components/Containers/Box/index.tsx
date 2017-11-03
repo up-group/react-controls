@@ -1,14 +1,3 @@
-import * as React from 'react';
-import Component from './styles';
-import Props from './types';
+import UpBox from './UpBox'
 
-export default function Box({
-  children,
-  ...others,
-}: Props): JSX.Element {
-  return (
-    <Component {...others}>
-      {children || null}
-    </Component>
-  );
-};
+export default UpBox

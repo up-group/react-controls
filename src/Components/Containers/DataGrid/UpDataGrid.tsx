@@ -16,7 +16,8 @@ import UpLoadingIndicator from '../../Display/LoadingIndicator'
 import { ActionType } from '../../Inputs/Button'
 import { IntentType } from '../../../Common/theming/types'
 import { IconName } from '../../../Components/Display/SvgIcon/icons'
-import * as shallowEqual from 'fbjs/lib/shallowEqual'
+import shallowEqual from '../../../Common/utils/shallowEqual'
+
 
 const WrapperDataGridStyle = style({
     position: "relative"

@@ -1,7 +1,7 @@
 // Imports
 import * as React from 'react'
 import styled, {css} from '../../../Common/theming/themedComponents';
-import { UpButtonGroupStyledProps} from './'
+import { UpButtonGroupStyledProps} from './UpButtonGroup'
 import { ThemeInterface } from "../../../Common/theming/types";
 
 const NoGutterStyle = (props:UpButtonGroupStyledProps) => {
