@@ -75,10 +75,10 @@ import {
     }
 
     render() {
-        var {children, ...others} = this.props ;
+        var {children, style, ...others} = this.props ;
         
         return (
-            <div className={cn(this.getBoxStyles(), this.getSize())}>
+            <div style={style || ""} className={cn(this.getBoxStyles(), this.getSize())}>
               {children || null}
             </div>
           );
