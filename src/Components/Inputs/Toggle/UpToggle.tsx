@@ -1,9 +1,30 @@
 // Imports
 import * as React from 'react'
 import UpLabel from '../../Display/Label/index'
-import {UpToggleProps} from './'
 import * as classNames from 'classnames'
+
 import {style} from 'typestyle'
+import { ThemedProps } from '../../../Common/theming/types' 
+
+export type Size = 'small' | 'normal' | 'large'
+
+export interface UpToggleStyledProps extends ThemedProps {
+    className?:string;
+}
+
+export interface UpToggleProps {
+    //position?:Position;
+    value: any;
+    checked?:boolean;
+    defaultChecked?:boolean;
+    disabled?:boolean;
+    onChange?:(event) =>void;
+    onFocus?:(event) =>void;
+    onBlur?:(event) =>void;
+    icons?:any;
+    size?:Size;
+    className?:string;
+}
 
 const WrapperStyle = style({
   display:"inline-block",
