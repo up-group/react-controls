@@ -29,6 +29,9 @@ export interface UpToggleProps {
 const WrapperStyle = style({
   display:"inline-block",
   $nest : {
+    "svg" : {
+       margin:"0px"
+    },
     ".up-toggle" : {
       touchAction: "pan-x",
       display: "inline-block",
