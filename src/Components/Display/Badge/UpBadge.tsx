@@ -39,9 +39,10 @@ class UpBadge extends React.Component<UpBadgeProps, {}> {
 
       const BadgeStyle = style({
         borderRadius: (this.props.rounded===true)? '18px':'6px',
-        padding:(this.props.rounded===true)? "7px 12px" : '6px;',
+        padding:(this.props.rounded===true)? "7px 11px" : '6px;',
         fontWeight : 700,
         color: fontColor,
+        display:'inline-block',
         width:(this.props.rounded===true)? '32px':'auto',
         backgroundColor:backgroundColor
       }) ;
