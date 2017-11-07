@@ -5,7 +5,8 @@ import UpDefaultTheme from '../../../Common/theming'
 import {IntentType} from '../../../Common/theming/types'
 import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themedComponents'
 
-import UpToggle, {Size} from './'
+import UpToggle from './'
+import {Size} from './UpToggle'
 import UpLabel from '../../Display/Label'
 
 interface ToggleWrapperProps {
