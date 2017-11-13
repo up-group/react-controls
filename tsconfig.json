@@ -7,7 +7,8 @@
     "outDir": "dist/",
     "jsx": "react",
     "allowJs": false,
-    "declaration": true
+    "declaration": true,
+    "skipLibCheck": true
   },
   "include": [
     "src/**/*"
