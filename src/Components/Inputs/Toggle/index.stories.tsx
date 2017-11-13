@@ -44,7 +44,7 @@ storiesOf('UpToggle', module)
     .addWithInfo('Simple usage', 'Utilisation avec plusieurs options',
     () => (
     <UpThemeProvider theme={UpDefaultTheme}>
-        <UpBox style={{margin:"30px"}}>
+        <UpBox style={{margin:"40px 30px"}}>
             <UpNotification status={"info"}>
                 Le composant <code>UpToggle</code> a un comportement similaire à <code>UpCheckBox</code> mais avec une UX centrée sur l'idée d'activation/désactivation. 
                 Il existe 3 tailles selon le cas d'utilisation : <code>small</code>, <code>normal</code> et <code>large</code>.
