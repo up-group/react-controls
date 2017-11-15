@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UpInput should have a width 1`] = `
-
-
-<div>
+<div
+  className="fx9mkvh"
+>
   <div
-    className="hemHHH"
+    className="krogLN"
   >
     <div
       className="up-input-group"
@@ -19,11 +19,10 @@ exports[`UpInput should have a width 1`] = `
         placeholder={undefined}
         readOnly={undefined}
         type="text"
-        value={undefined}
+        value=""
       />
       
     </div>
   </div>
-   
 </div>
 `;
