@@ -88,6 +88,8 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                 extra.fullObject = data;
                 this.setState({ extra: extra });
                 return this.parseValue(data)
+            } else if(receiveValue == null) {
+                this.setState(update(this.state, { extra: {fullObject : {$set: null}}})) ;
             }
         } else {
             let isPair = this.isPair(receiveValue);
@@ -101,6 +103,8 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                 extra.fullObject = data;
                 this.setState({ extra: extra });
                 return this.parseValue(data)
+            } else if(receiveValue == null) {
+                this.setState(update(this.state, { extra: {fullObject : {$set: null}}})) ;
             }
         }
         return this.parseValue(receiveValue);
@@ -153,8 +157,6 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         }
     }
 
-
-
     parseValue = (receiveValue: any) => {
         if (this.props.returnType === "id" && typeof (receiveValue) === "object" && receiveValue != null) {
             if (this.props.multiple === true) {
@@ -166,7 +168,6 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
 
         return receiveValue;
     }
-
 
     getValue(data: any) {
         if (data == null) {
