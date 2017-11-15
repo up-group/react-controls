@@ -13,8 +13,10 @@ import RowTemplate from './templates/UpDataGridRowWithStatus'
 var data = [];
 var data2 = [];
 
-for (var i = 0; i < 250; i++) {
+for (var i = 0; i < 50; i++) {
     data.push({ 'c1': 'Value ' + i, 'c2': false, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } })
+}
+for (var i = 0; i < 20; i++) {
     data2.push({ 'c1': 'Value 2 ' + i, 'c2': false, 'c3': 'Value 3', 'c4': { Libelle: 'Suivi', Couleur: '#369' } })
 }
 
@@ -370,6 +372,9 @@ export interface testProps {
 
 export interface testState {
     val: any,
+    page:number,
+    skip:number,
+    total:number,
     lastChange?: any,
 }
 
@@ -379,7 +384,10 @@ export class Test extends React.Component<testProps, testState>{
     constructor(p, c) {
         super(p, c);
         this.state = {
-            val: data
+            val: data,
+            page:2,
+            skip:50,
+            total:250
         };
     }
 
@@ -387,12 +395,16 @@ export class Test extends React.Component<testProps, testState>{
 
         return <UpThemeProvider theme={UpDefaultTheme}>
             <div>
-                <button onClick={() => { this.setState({ val: data }); }}>set data</button>
-                <button onClick={() => { this.setState({ val: data2 }); }}>set data2</button>
+                <button onClick={() => { this.setState({ val: data, total:250}); }}>set data</button>
+                <button onClick={() => { this.setState({ val: data2, total:20 }); }}>set data2</button>
                 <UpDataGrid
                     onSelectionChange={console.log}
-                    isPaginationEnabled={false}
+                    isPaginationEnabled={true}
                     isSelectionEnabled={true}
+                    defaultPage={this.state.page}
+                    defaultSkip={this.state.skip}
+                    defaultTake={50}
+                    total={this.state.total}
                     columns={
                         [{
                             label: 'Col 1',

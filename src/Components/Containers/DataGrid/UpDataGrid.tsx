@@ -355,7 +355,6 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
         });
     }
 
-
     get seletectedRow() {
         if (this.state.data == null) {
             return [];
@@ -371,7 +370,6 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
                 return value.value;
             });
     }
-
 
     onRowSelectionChange = (rowKey: number, r: Row) => {
         var rows = this.state.data;
@@ -449,7 +447,6 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
     //    return true;
     //}
 
-
     componentWillReceiveProps(nextProps: UpDataGridProps) {
         var data = this.state.data;
         var curentState = data.map((v => { return v.value; }));
@@ -463,9 +460,9 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
                 columns: nextProps.columns,//(nextProps.columns != null) ? this.prepareColumns(nextProps.columns) : nextProps.columns,
                 total: nextProps.total,
                 isDataFetching: nextProps.isDataFetching,
-                skip: nextProps.defaultSkip,
+                skip: nextProps.defaultSkip > nextProps.total ? 0 : nextProps.defaultSkip,
                 take: nextProps.defaultTake,
-                page: nextProps.defaultPage
+                page: (nextProps.defaultPage-1)*nextProps.defaultSkip > nextProps.total ? 1 : nextProps.defaultPage
             };
 
         this.setState(newState, () => {
