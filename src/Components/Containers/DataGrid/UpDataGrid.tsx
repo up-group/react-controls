@@ -1,3 +1,4 @@
+import * as $ from 'jquery'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import * as classnames from 'classnames'
@@ -12,6 +13,7 @@ import UpDataGridRow from './UpDataGridRow'
 import UpDefaultCellFormatter, { ICellFormatter } from './UpDefaultCellFormatter'
 
 import UpLoadingIndicator from '../../Display/LoadingIndicator'
+import UpButton from '../../Inputs/Button/index'
 
 import { ActionType } from '../../Inputs/Button'
 import { IntentType } from '../../../Common/theming/types'
@@ -127,6 +129,11 @@ export interface Row {
 export type Method = 'GET' | 'POST';
 export type PaginationPosition = "top" | "bottom" | "both";
 
+export interface exportCsv {
+    fileName: string;
+    textButton?: string;
+}
+
 export interface UpDataGridProps {
     injectRow?: (previous: any, next: any, colum: Column[]) => JSX.Element;
     columns: Array<Column>;
@@ -145,6 +152,8 @@ export interface UpDataGridProps {
     defaultTake?: number;
     defaultPage?: number;
     total?: number;
+
+    exportCsv?: exportCsv;
 
     dataSource?: {
         query: string;
@@ -450,7 +459,7 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
     componentWillReceiveProps(nextProps: UpDataGridProps) {
         var data = this.state.data;
         var curentState = data.map((v => { return v.value; }));
-        var arrayEqualResult = this.arraysEqual(curentState, nextProps.data) ;
+        var arrayEqualResult = this.arraysEqual(curentState, nextProps.data);
         if (this.props.dataSource == null && arrayEqualResult === false) {
             data = (nextProps.data != null) ? this.mapDataToRow(nextProps.data) : nextProps.data;
         }
@@ -462,7 +471,7 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
                 isDataFetching: nextProps.isDataFetching,
                 skip: nextProps.defaultSkip > nextProps.total ? 0 : nextProps.defaultSkip,
                 take: nextProps.defaultTake,
-                page: (nextProps.defaultPage-1)*nextProps.defaultSkip > nextProps.total ? 1 : nextProps.defaultPage
+                page: (nextProps.defaultPage - 1) * nextProps.defaultSkip > nextProps.total ? 1 : nextProps.defaultPage
             };
 
         this.setState(newState, () => {
@@ -555,8 +564,9 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
                     pagination
                 }
                 <UpLoadingIndicator message={"Chargement en cours"} isLoading={this.state.isDataFetching} />
+                {this.btnExportCsv}
                 {!this.state.isDataFetching &&
-                    <table className={classnames("up-data-grid-main", DataGridStyle)}>
+                    <table ref={(r) => { this.refTable = r; }} className={classnames("up-data-grid-main", DataGridStyle)}>
                         <UpDataGridRowHeader isSelectionEnabled={this.props.isSelectionEnabled}
                             onSelectionChange={this.onSelectionAllChange.bind(this)}
                             onSortChange={this.onSortChange.bind(this)}
@@ -573,4 +583,122 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
             </div>
         );
     }
+
+    refTable: HTMLTableElement = null;
+
+    componentDidUpdate(prevProps, prevState) {
+
+        //if (this.refTable != null) {
+        //    var a = new exporterTable(this.refTable, {});
+        //    debugger
+        //}
+
+    }
+
+    get isExportCsvEnable() {
+        if (this.props.data == null || this.props.data.length === 0 ) {
+            return false;
+        }
+        return this.props.exportCsv != null;
+    }
+
+    get btnExportCsv() {
+        if (this.isExportCsvEnable === false) {
+            return null;
+        }
+
+        if (this.props.exportCsv.textButton == null) {
+           return <UpButton onClick={this.onExport} actionType={"download"} />
+        }
+
+        return <UpButton onClick={this.onExport} > {this.props.exportCsv.textButton}</UpButton >
+    }
+
+    onExport = (a) => {
+        this.exportTableToCSV(this.refTable, this.props.exportCsv.fileName, true)
+    }
+
+
+    private exportTableToCSV(table: HTMLTableElement, filename, header) {
+        var csv = this.getCsvFromTable(table, header);
+
+        var ieVersion = function () {
+            var rv = -1;
+            if (navigator.appName == 'Microsoft Internet Explorer') {
+                var ua = navigator.userAgent;
+                var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+                if (re.exec(ua) != null)
+                    rv = parseFloat(RegExp.$1);
+            } else if (navigator.appName == 'Netscape') {
+                var ua = navigator.userAgent;
+                var re = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
+                if (re.exec(ua) != null)
+                    rv = parseFloat(RegExp.$1);
+            }
+            return rv;
+        }();
+
+        if (ieVersion != -1) {
+            if (ieVersion > 9) {
+                var bytes = new Array(csv.length);
+                for (var i = 0; i < csv.length; i++) {
+                    bytes[i] = csv.charCodeAt(i);
+                }
+                var blob = new Blob([new Uint8Array(bytes)], { type: 'text/csv' });
+                window.navigator.msSaveBlob(blob, filename);
+            }
+        } else {
+
+            var a = document.createElement('A') as HTMLAnchorElement;
+            a.href = 'data:text/csv;base64,' + window.btoa(csv);
+            a.download = filename;
+            a.target = '_blank';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            //$(a).attr({
+            //    'download': filename,
+            //    'href': ,
+            //    'target': '_blank'
+            //});
+
+        }
+    }
+
+    private getCsvFromTable(table: HTMLTableElement, header: boolean) {
+        var tmpColDelim = String.fromCharCode(11),
+            tmpRowDelim = String.fromCharCode(0),
+            colDelim = '";"',
+            rowDelim = '"\r\n"',
+            csv = "",
+            getRows = function (typeOfRow) {
+                var $rows = $(table).find('tr:has(' + typeOfRow + ')');
+                return csv = '"' + $rows.map(function (i, row) {
+                    var $row = $(row),
+                        $cols = $row.find(typeOfRow);
+
+                    return $cols.map(function (j, col) {
+                        var $col = $(col),
+                            text = $col.text().trim();
+                        return text.replace('"', '""') + Array(($col[0] as any).colSpan).join(tmpColDelim);
+
+                    }).get().join(tmpColDelim);
+
+                }).get().join(tmpRowDelim)
+                    .split(tmpRowDelim).join(rowDelim)
+                    .split(tmpColDelim).join(colDelim) + '"';
+            };
+
+        if (header) {
+            csv += getRows('th') + '\r\n';
+        };
+        csv += getRows('td');
+        return csv;
+    }
+
+
 }
+
+
+
+

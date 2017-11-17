@@ -67,7 +67,22 @@ storiesOf('UpDataGrid', module)
                     }]
                 } data={data} />
         </UpThemeProvider>
-    )).addWithInfo('Avec sélection', 'Utilisation du composant de grid avec sélection',
+    ))
+    .addWithInfo('Export csv', 'Utilisation du composant de grid sans pagination et sans sélection',
+    () => (
+        <UpThemeProvider theme={UpDefaultTheme}>
+            <UpDataGrid
+                exportCsv={{ fileName: "export.csv",textButton:"Exporter" }}
+                columns={
+                    [{ label: 'Col 1', field: 'c1', isSortable: true },
+                    { label: 'Col 2', field: 'c2', type: 'boolean', isSortable: true },
+                    { label: 'Col 3', field: 'c3', isSortable: true },
+                    { label: 'Col 4', field: 'c4', isSortable: true }]
+                }
+                data={data} />
+        </UpThemeProvider>
+    ))
+    .addWithInfo('Avec sélection', 'Utilisation du composant de grid avec sélection',
     () => (
         <UpThemeProvider theme={UpDefaultTheme}>
             <UpDataGrid
@@ -372,9 +387,9 @@ export interface testProps {
 
 export interface testState {
     val: any,
-    page:number,
-    skip:number,
-    total:number,
+    page: number,
+    skip: number,
+    total: number,
     lastChange?: any,
 }
 
@@ -385,9 +400,9 @@ export class Test extends React.Component<testProps, testState>{
         super(p, c);
         this.state = {
             val: data,
-            page:2,
-            skip:50,
-            total:250
+            page: 2,
+            skip: 50,
+            total: 250
         };
     }
 
@@ -395,8 +410,8 @@ export class Test extends React.Component<testProps, testState>{
 
         return <UpThemeProvider theme={UpDefaultTheme}>
             <div>
-                <button onClick={() => { this.setState({ val: data, total:250}); }}>set data</button>
-                <button onClick={() => { this.setState({ val: data2, total:20 }); }}>set data2</button>
+                <button onClick={() => { this.setState({ val: data, total: 250 }); }}>set data</button>
+                <button onClick={() => { this.setState({ val: data2, total: 20 }); }}>set data2</button>
                 <UpDataGrid
                     onSelectionChange={console.log}
                     isPaginationEnabled={true}
