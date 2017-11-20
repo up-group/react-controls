@@ -36,10 +36,9 @@ export default class UpTreeView extends React.Component<UpTreeViewProps, UpTreeV
 export interface MenuItemData {
     id: string;
     text: string;
-    isSelected: boolean;
-    isVisible: boolean;
+    isSelected?: boolean;
+    isVisible?: boolean;
     childMenuItems?: MenuItemData[];
-
 }
 
 export interface SubMenuProps {
@@ -126,11 +125,10 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
 
         return <li style={s} className={active}>
             <a className={"aaaaa"} onClick={this.onClickA}>
-                {this.anyChild ?
-                    <i onClick={this.onClick} className={(this.state.active ? "pe-7s-angle-down" : "pe-7s-angle-right")} ></i>
-                    :
-                    <i></i>
-                }
+                <i  className={(this.state.active ? "pe-7s-angle-down" : "pe-7s-angle-right")}
+                    style={{visibility : this.anyChild ? "visible" : "hidden"}} 
+                    onClick={this.onClick}
+                      />
                 <span style={this.props.branchId == this.props.selectedBranchId ? styleSelected : {}}>
                     {this.props.text}
                 </span>
