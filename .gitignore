@@ -21,3 +21,4 @@ coverage/*
 *.snap
 *.snap
 *.snap
+package-lock.json

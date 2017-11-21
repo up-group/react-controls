@@ -1,8 +1,12 @@
 import * as React from "react"
 
+import { style } from 'typestyle'
+
+
 export interface UpTreeViewProps {
     onBranchClick?: (data: MenuItemData) => void;
     childMenuItems?: MenuItemData[];
+    showInvisible?: boolean;
 }
 
 export interface UpTreeViewState {
@@ -18,7 +22,7 @@ export default class UpTreeView extends React.Component<UpTreeViewProps, UpTreeV
     }
 
     render() {
-        return <SubMenu selectedBranchId={this.state.selectedBranchId} childMenuItems={this.props.childMenuItems} onBranchClick={this.onBranchClick} />
+        return <SubMenu showInvisible={this.props.showInvisible} selectedBranchId={this.state.selectedBranchId} childMenuItems={this.props.childMenuItems} onBranchClick={this.onBranchClick} />
     }
 
     onBranchClick = (data: MenuItemData, branchId: string) => {
@@ -36,10 +40,9 @@ export default class UpTreeView extends React.Component<UpTreeViewProps, UpTreeV
 export interface MenuItemData {
     id: string;
     text: string;
-    isSelected: boolean;
-    isVisible: boolean;
+    isSelected?: boolean;
+    isVisible?: boolean;
     childMenuItems?: MenuItemData[];
-
 }
 
 export interface SubMenuProps {
@@ -47,6 +50,7 @@ export interface SubMenuProps {
     onBranchClick: (data: MenuItemData, branchId: string) => void;
     branchId?: string;
     selectedBranchId?: string;
+    showInvisible: boolean;
 }
 
 export interface SubMenuState {
@@ -66,6 +70,7 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
         var localId = this.props.branchId != null ? this.props.branchId + "-" : "";
         var lis = this.props.childMenuItems.map((v, i) => {
             return <SubItems
+                showInvisible={this.props.showInvisible}
                 branchId={localId + i.toString()}
                 selectedBranchId={this.props.selectedBranchId}
                 key={i}
@@ -96,10 +101,11 @@ export interface SubItemsProps extends MenuItemData {
     onBranchClick: (data: MenuItemData, branchId: string) => void;
     branchId: string;
     selectedBranchId: string;
+    showInvisible: boolean;
 }
 
 export interface SubItemsState {
-    active: boolean;
+    expand: boolean;
 }
 
 export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
@@ -107,43 +113,44 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
     constructor(p, c) {
         super(p, c);
         this.state = {
-            active: false
+            expand: false
         };
     }
 
     render() {
-        var hide = this.props.isVisible === false ? " hide" : "";
-        var active = this.state.active || this.props.isSelected ? "active" : "";
 
-        var s = {
-            display: hide ? "none" : "",
-        };
-
-        var styleSelected: React.CSSProperties = {
-            border: "1px solid #137cbd",
-            borderRadius: 5
-        }
-
-        return <li style={s} className={active}>
-            <a className={"aaaaa"} onClick={this.onClickA}>
-                {this.anyChild ?
-                    <i onClick={this.onClick} className={(this.state.active ? "pe-7s-angle-down" : "pe-7s-angle-right")} ></i>
-                    :
-                    <i></i>
+        var styleBranch = style({
+            display: this.props.isVisible === false && this.props.showInvisible !== true ? "none" : "inherit",
+            $nest: {
+                "span": {
+                    color: this.props.isVisible === false ? "#7F7F7F" : "inherit",
+                    border: this.props.branchId == this.props.selectedBranchId ? "1px solid #116FAA" : "",
+                    borderRadius: 5
+                },
+                "span:hover": {
+                    border: "1px solid #116FAA",
                 }
-                <span style={this.props.branchId == this.props.selectedBranchId ? styleSelected : {}}>
-                    {this.props.text}
-                </span>
-            </a>
-            {this.anyChild && active ? <SubMenu selectedBranchId={this.props.selectedBranchId} branchId={this.props.branchId} onBranchClick={this.props.onBranchClick} childMenuItems={this.props.childMenuItems} /> : null}
+            }
+        });
+
+        return <li className={styleBranch}>
+            <i className={(this.state.expand ? "pe-7s-angle-down" : "pe-7s-angle-right")}
+                style={{ visibility: this.anyChild ? "visible" : "hidden" }}
+                onClick={this.onExpandClick}
+            />
+            <span onClick={this.onClickA} >
+                {this.props.text}
+            </span>
+            {this.anyChild === true && this.state.expand === true ? <SubMenu showInvisible={this.props.showInvisible} selectedBranchId={this.props.selectedBranchId} branchId={this.props.branchId} onBranchClick={this.props.onBranchClick} childMenuItems={this.props.childMenuItems} /> : null}
         </li>
     }
+
     get anyChild() {
         return this.props.childMenuItems != null && this.props.childMenuItems.length != 0;
     }
 
-    onClick = (e) => {
-        this.setState({ active: !this.state.active });
+    onExpandClick = (e) => {
+        this.setState({ expand: !this.state.expand });
         e.preventDefault();
         e.stopPropagation();
         return false;
