@@ -122,12 +122,12 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
         var styleBranch = style({
             display: this.props.isVisible === false && this.props.showInvisible !== true ? "none" : "inherit",
             $nest: {
-                "span": {
+                "&>span": {
                     color: this.props.isVisible === false ? "#7F7F7F" : "inherit",
                     border: this.props.branchId == this.props.selectedBranchId ? "1px solid #116FAA" : "",
                     borderRadius: 5
                 },
-                "span:hover": {
+                "&>span:hover": {
                     border: "1px solid #116FAA",
                 }
             }
