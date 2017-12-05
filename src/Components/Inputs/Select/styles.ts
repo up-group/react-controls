@@ -20,7 +20,7 @@ var getWidth = function(props) {
       case 'large':
       return `.Select { width: ${sizeMap[props.width]? sizeMap[props.width] : "30em" };` ;
       default:
-      return `.Select { width: ${sizeMap[props.width]? sizeMap[props.width] : "250px" };` ;
+      return `.Select { width: ${sizeMap[props.width]? sizeMap[props.width] : "100%" };` ;
     }
 }
 

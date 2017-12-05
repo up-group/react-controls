@@ -31,7 +31,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         showError: true,
         isLoading: false,
         allowCreate: false,
-        width: 'normal',
+        width: 'full',
         returnType: "full"
     }
 
@@ -88,8 +88,8 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                 extra.fullObject = data;
                 this.setState({ extra: extra });
                 return this.parseValue(data)
-            } else if(receiveValue == null) {
-                this.setState(update(this.state, { extra: {fullObject : {$set: null}}})) ;
+            } else if (receiveValue == null) {
+                this.setState(update(this.state, { extra: { fullObject: { $set: null } } }));
             }
         } else {
             let isPair = this.isPair(receiveValue);
@@ -103,8 +103,8 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                 extra.fullObject = data;
                 this.setState({ extra: extra });
                 return this.parseValue(data)
-            } else if(receiveValue == null) {
-                this.setState(update(this.state, { extra: {fullObject : {$set: null}}})) ;
+            } else if (receiveValue == null) {
+                this.setState(update(this.state, { extra: { fullObject: { $set: null } } }));
             }
         }
         return this.parseValue(receiveValue);
@@ -138,7 +138,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             return false;
         }
 
-        if (obj.hasOwnProperty(this.keyId) && obj.hasOwnProperty(this.keyText)) {
+        if ((obj.hasOwnProperty(this.keyId) && obj.hasOwnProperty(this.keyText)) || (obj.hasOwnProperty("id") && obj.hasOwnProperty("text"))) {
             return true;
         }
 
@@ -160,9 +160,9 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     parseValue = (receiveValue: any) => {
         if (this.props.returnType === "id" && typeof (receiveValue) === "object" && receiveValue != null) {
             if (this.props.multiple === true) {
-                return receiveValue.map(((v) => { return v != null ? v[this.keyId] : null; }));
+                return receiveValue.map(((v) => { return v != null ? (v[this.keyId] || v["id"]) : null; }));
             } else {
-                return receiveValue[this.keyId]
+                return receiveValue[this.keyId] || receiveValue["id"];
             }
         }
 
@@ -178,10 +178,20 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             var fullobject = this.state.extra.fullObject;
             if (this.props.multiple && fullobject != null) {
                 return fullobject
-                    .map((v) => { return v != null && v.hasOwnProperty(this.keyId) && v[this.keyId] != null ? v[this.keyId] : null })
+                    .map((v) => {
+                        if (v != null && (v.hasOwnProperty(this.keyId)))
+                            return v[this.keyId] != null ? v[this.keyId] : null;
+                        else if (v != null && (v.hasOwnProperty("id")))
+                            return v["id"] != null ? v["id"] : null;
+                        else
+                            return null;
+                    })
                     .filter((v) => { return v !== null; });
             } else {
-                return fullobject != null && fullobject.hasOwnProperty(this.keyId) ? fullobject[this.keyId] : null;
+                if (fullobject != null && fullobject.hasOwnProperty(this.keyId))
+                    return fullobject[this.keyId];
+                else if (fullobject != null && fullobject.hasOwnProperty("id"))
+                    return fullobject["id"];
             }
         } else {
             return data;
@@ -194,7 +204,10 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             const OptionRenderer = this.props.optionRenderer;
             return (<OptionRenderer {...option}></OptionRenderer>)
         } else {
-            return (<span key={`option_{option[this.keyId]}`} >{this.format(option, this.keyText)}</span>)
+            if (option[this.keyId])
+                return (<span key={`option_{option[this.keyId]}`} >{this.format(option, this.keyText)}</span>)
+            else
+                return (<span key={`option_{option["id"]}`} >{this.format(option, option["text"])}</span>)
         }
     }
 
@@ -203,7 +216,10 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             const ValueRenderer = this.props.valueRenderer;
             return (<ValueRenderer {...value}></ValueRenderer>)
         } else {
-            return (<span key={`option_{value[this.keyId]}`} >{this.format(value, this.keyText)}</span>)
+            if (value[this.keyId])
+                return (<span key={`option_{value[this.keyId]}`} >{this.format(value, this.keyText)}</span>)
+            else
+                return (<span key={`option_{option["id"]}`} >{this.format(value, value["text"])}</span>)
         }
     }
 
@@ -211,7 +227,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         var regexp = /{-?[\w]+}/gi;
         var arr = strFormat.match(regexp);
         if (arr === null) {
-            return object[strFormat];
+            return object[strFormat] || object["text"];
         }
 
         for (var i = 0; i < arr.length; i++) {
@@ -338,7 +354,6 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                 "autoload": this.props.autoload
             }
         }
-
         return (
             <WrapperSelect width={this.props.width}>
                 <SelectComponent

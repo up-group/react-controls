@@ -36,7 +36,7 @@ const BaseDate: React.StatelessComponent<UpDateTimeStyledProps> = (props) => {
     const picker = (<span className="pt-icon pt-icon-calendar"></span>);
 
     return (<div>
-        <DateInput
+        <DateInput 
             className={className}
             locale="fr"
             ref={innerRef}
@@ -85,7 +85,7 @@ export default class UpDateStyle extends React.Component<UpDateTimeStyledProps, 
 
     public render() {
         return (
-            <NormalDate innerRef={this.setInput} {...this.props} />
+            <NormalDate  innerRef={this.setInput} {...this.props} />
         );
     }
 }
