@@ -34,13 +34,6 @@ export default class UpCheckbox extends React.Component<UpCheckboxProps, any> {
     };
   }
   
-  componentWillUnmount() {
-
-  }
-  componentDidMount() {
-
-  }
-
   componentWillReceiveProps(nextProps: UpCheckboxProps) {
       if (nextProps.options !== this.props.options) {
           this.setState({options: nextProps.options });

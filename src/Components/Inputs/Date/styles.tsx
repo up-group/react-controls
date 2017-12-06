@@ -48,6 +48,7 @@ const BaseDate: React.StatelessComponent<UpDateStyledProps> = (props) => {
         canClearSelection={true}
         closeOnSelection={true}
         onChange={onChange}
+        outOfRangeMessage={""}
         format={format} />);
 }
 
