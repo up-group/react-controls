@@ -3406,8 +3406,8 @@ a.pt-button {
   
    }
   .pt-control-group > * {
-    -webkit-flex: 0 0 auto;
-            flex: 0 0 auto; }
+    -webkit-flex: 1 1 auto;
+            flex: 1 1 auto; }
   .pt-control-group .pt-button,
   .pt-control-group .pt-input,
   .pt-control-group .pt-select {
