@@ -44,6 +44,8 @@
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$"
   },
   "scripts": {
+    "tsc": "./node_modules/typescript/bin/tsc",
+    "version": "tsc -v",
     "clean": "rimraf dist && rimraf test/dist",
     "build": "tsc && copyfiles -u 1 src/Common/theming/icons/*.* dist/ && npm run copyCSS && npm run copyFont && npm run copyImg && npm run copySCSS",
     "copyCSS": "copyfiles -u 1 src/**/*.css dist/",
@@ -69,6 +71,7 @@
     "@types/chai": "^3.5.2",
     "@types/chai-enzyme": "^0.6.1",
     "@types/enzyme": "*",
+    "@types/es6-promise": "0.0.33",
     "@types/jest": "^21.1.5",
     "@types/jquery": "^2.0.41",
     "@types/moment": "^2.13.0",
@@ -105,7 +108,7 @@
     "style-loader": "^0.16.1",
     "svg-inline-loader": "^0.7.1",
     "ts-loader": "2.0.3",
-    "typescript": "2.3.4",
+    "typescript": "2.4.0",
     "url-loader": "^0.5.8",
     "webpack": "^2.3.3",
     "yarn": "^0.21.3"
