@@ -4004,6 +4004,7 @@ a.pt-button {
     color: rgba(191, 204, 214, 0.5) !important; }
 
 .pt-input-group {
+  width: 100%;
   display: block;
   position: relative; }
   .pt-input-group .pt-input {
@@ -5353,6 +5354,7 @@ body.pt-overlay-open {
     pointer-events: none; }
 
 .pt-popover-target {
+  width: 100%;
   display: inline-block;
   position: relative;
   vertical-align: top; }
