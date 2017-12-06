@@ -7,6 +7,7 @@ import { UpNumberProps, UpNumberStyledProps } from './'
 import TypeNumberControl from '../_Common/Validation/TypeNumberControl'
 
 import { NumericInput } from '@blueprintjs/core'
+import { style } from 'typestyle'
 
 // Exports
 export default class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
@@ -52,12 +53,16 @@ export default class UpNumber extends BaseControlComponent<UpNumberProps, number
     }
 
     renderControl() {
-        const {isRequired, onChange, readonly, decimalPlace, stepSize, value, tooltip} = this.props;
-
+        const { isRequired, onChange, readonly, decimalPlace, stepSize, value, tooltip } = this.props;
+        var s = style({
+            $nest: {
+                "& .pt-input-group": { flex: "1 1 auto" }
+            }
+        })
         return (
             <NumericInput
-                
-                value={this.state.value}
+                className={s}
+                value = { this.state.value }
                 stepSize={stepSize}
                 majorStepSize={stepSize ? stepSize + 10 : 10}
                 onValueChange={this.handleNumericChange}
