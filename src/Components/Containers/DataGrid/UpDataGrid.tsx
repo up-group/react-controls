@@ -21,6 +21,11 @@ import { IconName } from '../../../Components/Display/SvgIcon/icons'
 import shallowEqual from '../../../Common/utils/shallowEqual'
 
 
+const DEFAULT_TAKES = [{ id: 20, text: "20" },
+{ id: 50, text: "50" },
+{ id: 100, text: "100" },
+{ id: 200, text: "200" }];
+
 const WrapperDataGridStyle = style({
     position: "relative"
 })
@@ -124,21 +129,24 @@ export interface Column {
 export interface Row {
     isSelected?: boolean;
     value?: any;
+    isSelectionEnabled?: boolean;
 }
 
 export type Method = 'GET' | 'POST';
 export type PaginationPosition = "top" | "bottom" | "both";
 
-export interface exportCsv {
+export interface ExportCsv {
     fileName: string;
     textButton?: string;
 }
+export type SelectionResolver = (row:Row) => boolean ;
 
 export interface UpDataGridProps {
     injectRow?: (previous: any, next: any, colum: Column[]) => JSX.Element;
     columns: Array<Column>;
     actions?: Array<Action>;
-    isSelectionEnabled?: boolean;
+    isSelectionEnabled?: boolean | SelectionResolver ;
+    isSelectionDisplayed?: boolean | SelectionResolver ;
     isPaginationEnabled?: boolean;
     paginationPosition?: PaginationPosition;
     isOddEvenEnabled?: boolean;
@@ -153,7 +161,7 @@ export interface UpDataGridProps {
     defaultPage?: number;
     total?: number;
 
-    exportCsv?: exportCsv;
+    exportCsv?: ExportCsv;
 
     dataSource?: {
         query: string;
@@ -194,6 +202,7 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
         defaultTake: 50,
         defaultPage: 1,
         isSelectionEnabled: false,
+        isSelectionDisplayed:false,
         isPaginationEnabled: false,
         isOddEvenEnabled: true,
         isSortEnabled: true
@@ -484,13 +493,8 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
     }
 
     render() {
-        const takes = [{ id: 20, text: "20" },
-        { id: 50, text: "50" },
-        { id: 100, text: "100" },
-        { id: 200, text: "200" }];
-
         const pagination = <UpPagination defaultSkip={this.state.skip} defaultTake={this.state.take}
-            total={this.state.total} onPageChange={this.onPageChange.bind(this)} takes={takes} />;
+            total={this.state.total} onPageChange={this.onPageChange.bind(this)} takes={DEFAULT_TAKES} />;
         const toolbar = <UpUpDataGridToolbar />;
         const RowTemplate = this.props.rowTemplate;
 
@@ -520,19 +524,19 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
 
         var rows = [];
 
-        for (var index = 0; index < this.state.data.length; index++) {
-            let value = this.state.data[index];
-
+        this.state.data.map((value, index) => {
             if (RowTemplate) {
                 rows.push(<RowTemplate key={`row-${index}`}
-                    isSelectionEnabled={this.props.isSelectionEnabled}
+                    isSelectionEnabled={ (typeof(this.props.isSelectionEnabled) == "function") ? this.props.isSelectionEnabled(value) :  this.props.isSelectionEnabled }
+                    isSelectionDisplayed={(typeof(this.props.isSelectionDisplayed) == "function") ? this.props.isSelectionDisplayed(value) :  this.props.isSelectionDisplayed}
                     actions={this.props.actions}
                     columns={columns}
                     item={value} />)
             } else {
                 rows.push(<UpDataGridRow key={`row-${index}`}
                     rowIndex={index}
-                    isSelectionEnabled={this.props.isSelectionEnabled}
+                    isSelectionEnabled={(typeof(this.props.isSelectionEnabled) == "function") ? this.props.isSelectionEnabled(value) :  this.props.isSelectionEnabled}
+                    isSelectionDisplayed={(typeof(this.props.isSelectionDisplayed) == "function") ? this.props.isSelectionDisplayed(value) :  this.props.isSelectionDisplayed}
                     actions={this.props.actions}
                     columns={columns}
                     value={value.value}
@@ -555,8 +559,7 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
                     )
                 }
             }
-
-        }
+        });
 
         return (
             <div className={classnames("up-data-grid-container", WrapperDataGridStyle)} >
@@ -585,15 +588,6 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
     }
 
     refTable: HTMLTableElement = null;
-
-    componentDidUpdate(prevProps, prevState) {
-
-        //if (this.refTable != null) {
-        //    var a = new exporterTable(this.refTable, {});
-        //    debugger
-        //}
-
-    }
 
     get isExportCsvEnable() {
         if (this.props.data == null || this.props.data.length === 0 ) {
@@ -695,10 +689,4 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
         csv += getRows('td');
         return csv;
     }
-
-
 }
-
-
-
-

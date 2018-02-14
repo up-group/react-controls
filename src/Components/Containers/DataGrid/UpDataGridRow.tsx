@@ -21,6 +21,7 @@ export interface UpDataGridRowProps {
     columns: Array<Column>;
     actions: Array<Action>;
     isSelectionEnabled: boolean;
+    isSelectionDisplayed: boolean;
     onSelectionChange?: (rowIndex: number, row: any) => void;
 }
 
@@ -29,6 +30,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
     static defaultProps: UpDataGridRowProps = {
         rowIndex: -1,
         isSelectionEnabled: true,
+        isSelectionDisplayed: true,
         value: {},
         isSelected: false,
         columns: [],
@@ -57,7 +59,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
         return (
             <tr className="up-data-grid-row up-data-grid-row-bordered">
                 {this.props.isSelectionEnabled &&
-                    <UpDataGridCell key={"cell-selection"} value={selection} column={{ label: "", formatter: formatter }} />
+                    <UpDataGridCell key={"cell-selection"} value={(this.props.isSelectionDisplayed===true)?selection:null} column={{ label: "", formatter: formatter }} />
                 }
 
                 {this.props.columns.map((value, index) => {

@@ -19,6 +19,7 @@ export interface UpDataGridRowWithStatusProps {
     columns: Array<Column>;
     actions: Array<Action>;
     isSelectionEnabled: boolean;
+    isSelectionDisplayed: boolean;
     onSelectionChange?: (row: Row) => void;
 }
 
@@ -26,6 +27,7 @@ export default class UpDataGridRowWithStatus extends React.Component<UpDataGridR
 
     static defaultProps: UpDataGridRowWithStatusProps = {
         isSelectionEnabled: true,
+        isSelectionDisplayed:true,
         value: {},
         isSelected: false,
         columns: [],
@@ -53,7 +55,7 @@ export default class UpDataGridRowWithStatus extends React.Component<UpDataGridR
         return (
             <div className="up-data-grid-row" style={{ background: "#234556" }}>
                 {this.props.isSelectionEnabled &&
-                    <UpDataGridCell key={"cell-selection"} value={selection} column={{ label: "", formatter: formatter }} />
+                    <UpDataGridCell key={"cell-selection"} value={(this.props.isSelectionDisplayed===true)?selection:null} column={{ label: "", formatter: formatter }} />
                 }
 
                 {this.props.columns.map((value, index) => {

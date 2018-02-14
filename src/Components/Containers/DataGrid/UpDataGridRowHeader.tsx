@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom'
 import UpCheckbox from '../../Inputs/Checkbox/UpCheckBox'
 
 import UpDataGridCellHeader from './UpDataGridCellHeader'
-import { Column, Action, SortDirection } from './UpDataGrid'
+import { Column, Action, SortDirection, SelectionResolver } from './UpDataGrid'
 
 export interface UpDataGridRowHeaderState {
     isSelected: boolean;
@@ -13,7 +13,7 @@ export interface UpDataGridRowHeaderState {
 
 export interface UpDataGridRowHeaderProps {
     columns: Array<Column>;
-    isSelectionEnabled: boolean;
+    isSelectionEnabled: boolean | SelectionResolver;
     actions: Array<Action>;
     onSortChange?: (c: Column, d: SortDirection) => void;
     onSelectionChange?: (isSelected: boolean) => void;
@@ -74,7 +74,7 @@ export default class UpDataGridRowHeader extends React.Component<UpDataGridRowHe
         return (
             <thead className="up-data-grid-header">
                 <tr>
-                    {this.props.isSelectionEnabled &&
+                    {typeof(this.props.isSelectionEnabled) != "function"? this.props.isSelectionEnabled : true &&
                         <UpDataGridCellHeader key={`header-selection`} column={{ label: selection, isSortable: false }} />
                     }
                     {this.props.columns.map((value, index) => {
