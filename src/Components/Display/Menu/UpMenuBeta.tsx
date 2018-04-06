@@ -3,7 +3,6 @@ import * as React from "react"
 import SvgIcon from "../SvgIcon/index"
 import { IconName } from "../SvgIcon/icons"
 import { style } from "typestyle"
-//import UpTreeView from "../TreeView/UpTreeView"
 import Text from "../../Inputs/Input/index"
 
 import "./up.png"
@@ -43,23 +42,13 @@ export default class UpMenuBeta extends React.Component<UpMenuProps, UpMenuState
 
     render() {
 
-
-
-        //var menu = this.props.menuItems.map((v, i) => {
-        //    return <MenuItem  onMenuClick={this.props.onMenuClick} key={i} title={v.title} icon={v.icon} uri={v.uri} isSelected={v.isSelected} isVisible={v.isVisible} childMenuItems={v.childMenuItems} />
-        //});
-
-        //return <LeftMenu clickCollapse={this.clickCollapse} open={this.state.open} menuItems={this.props.menuItems} onMenuClick={this.props.onMenuClick} />
-
-        //className = { "sidebar-mini skin-up" + (this.state.open ? " sidebar-collapse" : "") }
         var styleContentWrapper = style({
-            marginLeft: this.state.open ? 230 : 50,
+        
             minHeight: 250
         });
 
         var styleContent = style({
-            padding: 15,
-            paddingRight: 0,
+
             margin: "auto",
         });
 
@@ -108,19 +97,6 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
         if (this.props.childMenuItems == null || this.props.childMenuItems.length == 0) {
             return null;
         }
-
-        //if (1 == 1) {
-        //    return <UpTreeView childMenuItems={this.props.childMenuItems.map((v) => {
-        //        return {
-        //            id: v.uri,
-        //            text: v.title,
-        //            isSelected: false,
-        //            isVisible: true,
-        //            childMenuItems: []
-        //        }
-        //    })} />
-        //}
-
         var list = style({
             backgroundColor: "#003845",
             listStyle: "none",
@@ -166,9 +142,6 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
     }
 
 }
-
-
-
 
 export interface SubItemsProps extends MenuItemData {
     onMenuClick: (uri: string) => boolean | void;
@@ -291,10 +264,6 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
     }
 }
 
-
-
-
-
 export interface TopMenuProps {
     username: string;
     onDeconnexionClick: () => void;
@@ -372,53 +341,21 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
         });
 
         var main = style({
-            backgroundColor: "#009EC5",
-            position: "relative",
+            backgroundColor: "#00BBD3",
             display: "block",
             zIndex: 1000,
-            height: 50,
-
-            //$nest: {
-            //    ["& > div"]: {
-            //        padding : "0 10px",
-            //        minWidth: 50
-            //    }
-            //}
+            height: 75
         });
-
-        //<div >
-        //           {
-        //           //    <ul >
-        //           //    {topMenuItem}
-
-
-        //           //</ul>
-
-        //           }
-        //       </div>
-
-
-        //<input type="text" placeholder="Nom usager, n° téléphone,..." />
-
-        //className = "main-header"
         return <div className={main}>
             <div className={floatLeft}>
                 <div className={iconBtn} onClick={this.props.onUpClick} >
-                    <img src="./up.png" alt="" />
-                    {
-                        this.props.open ? "OneHome" : null
-                    }
-                </div>
-
-                <div className={iconBtn} onClick={this.props.onHomeClick} >
-                    <i className="pe-7s-home" />
+                    <img src="./up.png" alt="" /> 
+                    ONE HOME
                 </div>
                 <div className={inputDiv} >
-                    <Text value={this.state.strSearch} onChange={this.onSearchChange} placeholder="Nom usager, n° téléphone,..." iconName="search" />
+                    <Text value={this.state.strSearch} onChange={this.onSearchChange}  iconName="search" />
                 </div>
             </div>
-
-
 
             <div className={floatRight}>
                 {
@@ -458,7 +395,6 @@ export interface TopMenuItemState {
 }
 
 export class TopMenuItem extends React.Component<TopMenuItemProps, TopMenuItemState>{
-    //public static defaultProps: TopMenuItemProps = {};
 
     constructor(p, c) {
         super(p, c);
@@ -508,21 +444,13 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState>{
     }
 
     render() {
-
         var mainSideBar = style({
-            position: "absolute",
-            top: 0,
-            left: 0,
-            paddingTop: 50,
-            minHeight: "100%",
-            width: this.props.open ? 230 : 50,
-            zIndex: 810,
-            //  transition: transform .3s ease-in-out, width .3s ease-in-out,
-            background: "rgb(0,74,92) url(fondMenu.png) no-repeat",
-            fontWeight: 400,
+            backgroundColor:"#FAFAFA",
+            width:"15%",           
+            height: "10%",
             $nest: {
                 '& a': {
-                    color: "#8aa4af",
+                    color: "black",
                     textDecoration: "none",
                     $nest: {
                         '&:hover': {
@@ -532,9 +460,8 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState>{
                     }
                 },
                 '& i': {
-                    color: "#8aa4af",
+                    color: "black",
                     cursor: "pointer",
-                    //textDecoration: "none",
                     $nest: {
                         '&:hover': {
                             color: "white",
@@ -549,35 +476,6 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState>{
             fontSize: 25,
             padding: 10
         });
-
-        //    var mainSideBar =  {
-        //   
-        //}
-        //<div className="sidebar-mini skin-up">
-        //    <aside className="main-sidebar">
-
-        //        <section className="sidebar" >
-
-        //            <div className="user-panel">
-        //                <a className="sidebar-toggle" onClick={this.props.clickCollapse}>
-        //                    <i className="pe p7 pe-7s-menu"></i>
-
-        //                    <span className="sr-only">Bouton Menu</span>
-        //                </a>
-
-
-        //            </div>
-        //            <ul className="sidebar-menu">
-        //                {menu}
-        //            </ul>
-        //        </section>
-        //    </aside>
-        //</div>
-
-
-        //<ul className="sidebar-menu">
-        //    {menu}
-        //</ul>
 
         var menu = this.props.menuItems
             .filter((v) => {
@@ -618,9 +516,6 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState>{
 
     onBranchClick = (branchId: string) => {
         this.setState({ selectedBranchId: branchId })
-        //if (this.props.onBranchClick) {
-        //    this.props.onBranchClick();
-        //}
     }
 
 }
@@ -661,17 +556,7 @@ export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
     render() {
 
         var subMenu = style({
-            // display: "none"
         })
-
-        //var meunuTitle = style(
-        //    {
-        //        minWidth: 200,
-        //        position: "absolute",
-        //        padding: 10,
-        //        left: 45,
-        //    });
-
         var menuItem = style({
             borderTopRightRadius: 5,
             position: "relative",
@@ -704,19 +589,6 @@ export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
                     }
                     : null
             },
-            //$nest: {
-            //    //["& ." + meunuTitle]: {
-            //    //    //display: this.props.open === false ? "none" : "inline"
-            //    //},
-
-            //    //["&:hover > ." + meunuTitle]:
-            //    //{
-            //    //    display: "block",
-            //    //    width: 180,
-            //    //    left: 50
-            //    //}
-            //}
-
         })
 
         var meunuIcon = style({
@@ -764,7 +636,6 @@ export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
 
         var hide = this.props.isVisible === false ? "hide " : "";
         var active = this.state.active || this.props.isSelected ? " active" : "";
-        //  var localId = this.props.branchId != null ? this.props.branchId + "-" : "";
 
         return <div className={menuItem} >
             <div className={menuItemHover}>
@@ -775,16 +646,9 @@ export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
                     {this.props.title}
                 </a>
             </div >
-            {
-                //    this.props.open === true && this.state.active ?
-                //        <SubMenu selectedBranchId={this.props.selectedBranchId} onBranchClick={this.props.onBranchClick} branchId={this.props.branchId} open={this.props.open} onMenuClick={this.props.onMenuClick} childMenuItems={this.props.childMenuItems} /> : null
-            }
-            {
-
                 <div className={subMenu}>
                     <SubMenu selectedBranchId={this.props.selectedBranchId} onBranchClick={this.props.onBranchClick} branchId={this.props.branchId} open={this.props.open} onMenuClick={this.props.onMenuClick} childMenuItems={this.props.childMenuItems} />
                 </div>
-            }
         </div >
 
 
