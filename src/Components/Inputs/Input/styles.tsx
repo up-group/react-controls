@@ -40,15 +40,16 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps> = (props) => {
 
 export const DefaultInputStyle = css`
   outline: none;
-  border: none;
+  border: 1px;
   border-radius: 3px;
+  border-style: ridge
   box-shadow: 0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2);
-  background: #ffffff;
+  background: #FFFF;
   height: 36px;
   padding: 0 10px;
   vertical-align: middle;
   line-height: 30px;
-  color: #182026;
+  Color :white;
   font-size: 14px;
   font-weight: 400;
   transition: box-shadow 100ms cubic-bezier(0.4, 1, 0.75, 0.9);
@@ -56,8 +57,6 @@ export const DefaultInputStyle = css`
      -moz-appearance: none;
           appearance: none;
 `
-
-
 // Shared styles for Input
 const inputStyles = css`
 .up-input {
@@ -74,11 +73,12 @@ const inputStyles = css`
     color: rgba(92, 112, 128, 0.5); }
   .up-input::placeholder {
     opacity: 1;
-    color: rgba(92, 112, 128, 0.5); }
+    color: white; }
   .up-input:focus {
     box-shadow: 0 0 0 1px #137cbd, 0 0 0 3px rgba(19, 124, 189, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2); }
   .up-input[type="search"], .up-input.up-round {
-    border-radius: 30px;
+    border-radius: 5px;
+    Color :white;
     -moz-box-sizing: border-box;
          box-sizing: border-box;
     padding-left: 10px; }
@@ -186,7 +186,12 @@ const inputStyles = css`
     .up-input-group .up-input:not(:first-child) {
       padding-left: 30px; }
     .up-input-group .up-input:not(:last-child) {
-      padding-right: 30px; }
+        padding-right: 30px;
+        background-color: transparent;
+        border-color: white;
+        color: white;
+        padding-left: 12%;
+}
   .up-input-group .up-input-action,
   .up-input-group > .up-button,
   .up-input-group > .up-icon {
@@ -196,9 +201,10 @@ const inputStyles = css`
     .up-input-group > .up-button:first-child,
     .up-input-group > .up-icon:first-child {
       left: 0; }
+        .up-input-group > .up-icon:last-child {
+        Left: 0; }
     .up-input-group .up-input-action:last-child,
-    .up-input-group > .up-button:last-child,
-    .up-input-group > .up-icon:last-child {
+    .up-input-group > .up-button:last-child {
       right: 0; }
   .up-input-group .up-button {
     min-width: 24px;

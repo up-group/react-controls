@@ -6,7 +6,7 @@ import UpDefaultTheme from '../../../Common/theming'
 import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themedComponents'
 
 import UpMenu from './UpMenu'
-import UpMenuBeta from './UpMenuBeta'
+import UpMenuOH from './UpMenuOH'
 
 storiesOf('UpMenu', module)
     .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
@@ -42,7 +42,7 @@ storiesOf('UpMenu', module)
     .addWithInfo('Simple usage 2', 'Utilisation du composant en lui passant les données à afficher',
     () => (
         <UpThemeProvider theme={UpDefaultTheme}>
-            <UpMenuBeta onDeconnexionClick={() => { }} username="Rose" onMenuClick={action("Menu clicked")}
+            <UpMenuOH onDeconnexionClick={() => { }} region="Rennes" username="Rose"  onMenuClick={action("Menu clicked")}
                 topMenuItems={[
                     { title: "Recherche", icon: "up up-dossier", action: "https://www.google.fr" },
                     { title: "Alertes", icon: "up up-dossier", action: () => { alert(5); } }
@@ -94,9 +94,7 @@ storiesOf('UpMenu', module)
                         { title: "t", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
                         { title: "teshtztht", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
                     ]}>
-                    123456789 Content Content Content Content Content Content Content Content Content Content Content Content Content Content
-
-            </UpMenuBeta>
+            </UpMenuOH>
         </UpThemeProvider>
     ))
     ;

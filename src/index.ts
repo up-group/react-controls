@@ -34,7 +34,8 @@ import { UpContextMenu, UpContextMenuItem, UpContextMenuTrigger, UpContextMenuIt
 
 import UpMehdi from './Components/Display/Mehdi/UpMehdi'
 import UpMenu from './Components/Display/Menu/UpMenu'
-import UpMenuBeta from './Components/Display/Menu/UpMenuBeta'
+import MultiPass from './Components/Display/MultiPass/MultiPass'
+import UpMenuOH from './Components/Display/Menu/UpMenuOH'
 import UpTreeView from './Components/Display/TreeView/UpTreeView'
 
 import UpButton from './Components/Inputs/Button'
@@ -116,7 +117,7 @@ export {
     UpContextMenuItemDivider,
     UpContextMenuTrigger,
     UpMenu,
-    UpMenuBeta,
+    UpMenuOH,
     UpTreeView,
     UpNavTab,
 
