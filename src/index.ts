@@ -32,9 +32,9 @@ import UpLogoAlerte from './Components/Display/LogoAlerte/UpLogoAlerte'
 import UpCalendarWeekDay from './Components/Display/CalendarWeekDay/UpCalendarWeekDay'
 import { UpContextMenu, UpContextMenuItem, UpContextMenuTrigger, UpContextMenuItemDivider } from './Components/Display/ContextMenu'
 
-import UpMehdi from './Components/Display/Mehdi/UpMehdi'
+
 import UpMenu from './Components/Display/Menu/UpMenu'
-import MultiPass from './Components/Display/MultiPass/MultiPass'
+
 import UpMenuOH from './Components/Display/Menu/UpMenuOH'
 import UpTreeView from './Components/Display/TreeView/UpTreeView'
 
@@ -62,7 +62,6 @@ import { IntentType as UpIntentType } from './Common/theming/types'
 import { IconName as UpIconName } from './Components/Display/SvgIcon/icons'
 
 export {
-    UpMehdi,
     UpBaseControlComponent,
     UpBadge,
     UpHeading,

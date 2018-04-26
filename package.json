@@ -1,6 +1,6 @@
 {
   "name": "@up-group/react-controls",
-  "version": "0.0.391",
+  "version": "0.0.392",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -128,6 +128,7 @@
     "jquery": "^3.2.1",
     "moment": "^2.19.1",
     "normalize.css": "^4.1.1",
+    "npm": "^6.0.0",
     "object-assign": "^4.1.1",
     "query-string": "^5.0.0",
     "react": "^15.6.1",

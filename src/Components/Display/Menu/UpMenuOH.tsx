@@ -7,7 +7,7 @@ import Text from "../../Inputs/Input/index"
 import "./up.png"
 import { TypeStyle } from "typestyle/lib/internal/typestyle";
 import colorMap from "../../../Common/theming/colorMap";
-import MultiPass from "../MultiPass/MultiPass";
+/*import MultiPass from "../MultiPass/MultiPass";*/
 import { InputStyled } from "../../Inputs/Input/styles";
 var UP = require("./UP_OneHome.png")
 
@@ -527,8 +527,7 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState>{
                     </div>
                     <br />
                     <div className="">
-                        <MultiPass>
-                        </MultiPass>
+                
                     </div>
                 </div>
             </section>
