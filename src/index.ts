@@ -31,13 +31,10 @@ import UpCalendarTimeline from './Components/Display/TimeLine'
 import UpLogoAlerte from './Components/Display/LogoAlerte/UpLogoAlerte'
 import UpCalendarWeekDay from './Components/Display/CalendarWeekDay/UpCalendarWeekDay'
 import { UpContextMenu, UpContextMenuItem, UpContextMenuTrigger, UpContextMenuItemDivider } from './Components/Display/ContextMenu'
-
-
 import UpMenu from './Components/Display/Menu/UpMenu'
-
 import UpMenuOH from './Components/Display/Menu/UpMenuOH'
+import UpBulle from './Components/Display/UpBulle/UpBulle'
 import UpTreeView from './Components/Display/TreeView/UpTreeView'
-
 import UpButton from './Components/Inputs/Button'
 import UpInput from './Components/Inputs/Input'
 import UpSelect from './Components/Inputs/Select'
@@ -119,6 +116,6 @@ export {
     UpMenuOH,
     UpTreeView,
     UpNavTab,
-
+    UpBulle,
     UpButtonGroupDropDown
 };
