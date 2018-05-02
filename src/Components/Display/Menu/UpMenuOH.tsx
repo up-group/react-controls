@@ -7,7 +7,6 @@ import Text from "../../Inputs/Input/index"
 import "./up.png"
 import { TypeStyle } from "typestyle/lib/internal/typestyle";
 import colorMap from "../../../Common/theming/colorMap";
-import MultiPass from "../MultiPass/MultiPass";
 import { InputStyled } from "../../Inputs/Input/styles";
 var UP = require("./UP_OneHome.png")
 
@@ -60,7 +59,7 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState>{
                 <div className={styleContentWrapper} >
                     <section className={styleContent} > 
                         {this.props.children}
-                        <MultiPass clientId={this.props.clientId}></MultiPass>
+                        
                     </section>
                   
                 </div>
