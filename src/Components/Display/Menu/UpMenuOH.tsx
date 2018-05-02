@@ -7,7 +7,7 @@ import Text from "../../Inputs/Input/index"
 import "./up.png"
 import { TypeStyle } from "typestyle/lib/internal/typestyle";
 import colorMap from "../../../Common/theming/colorMap";
-/*import MultiPass from "../MultiPass/MultiPass";*/
+import MultiPass from "../MultiPass/MultiPass";
 import { InputStyled } from "../../Inputs/Input/styles";
 var UP = require("./UP_OneHome.png")
 
@@ -20,6 +20,7 @@ export interface UpMenuProps {
     onMenuClick?: (uri: string) => boolean | void;
     onDeconnexionClick?: () => void;
     onHomeClick?: () => void
+    clientId?: string;
 }
 
 export interface UpMenuState {
@@ -55,16 +56,17 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState>{
                     childMenuItems={this.props.topMenuItems}
                     onDeconnexionClick={this.props.onDeconnexionClick}
                 />
-
-                <LeftMenu onHomeClick={this.props.onHomeClick}  menuItems={this.props.menuItems} onMenuClick={this.props.onMenuClick} />
-
+                <LeftMenu onHomeClick={this.props.onHomeClick} menuItems={this.props.menuItems} onMenuClick={this.props.onMenuClick} />
                 <div className={styleContentWrapper} >
-                    <section className={styleContent} >
+                    <section className={styleContent} > 
                         {this.props.children}
+                        <MultiPass clientId={this.props.clientId}></MultiPass>
                     </section>
+                  
                 </div>
             </div>
-        </div>
+           
+        </div>  
     }
 
 }
@@ -73,8 +75,6 @@ export interface SubMenuProps {
     childMenuItems?: MenuItemData[];
     onMenuClick: (uri: string) => void;
     open: boolean;
-
-
     onBranchClick: (branchId: string) => void;
     branchId: string;
     selectedBranchId: string;
@@ -346,7 +346,8 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
             display: "block",
             zIndex: 1000,
             height: 72,
-            marginLeft: "15%"
+            marginLeft: "15%",
+            paddingLeft:"5%"
         });
         return <div className={main}>
             <div className={floatLeft}>
@@ -527,7 +528,7 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState>{
                     </div>
                     <br />
                     <div className="">
-                
+                        
                     </div>
                 </div>
             </section>

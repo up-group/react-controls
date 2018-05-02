@@ -34,7 +34,7 @@ export default class UpTile extends React.Component<UpTileProps, UpTileState>{
         var style = {
             margin: 0,
             float: "left",
-            width: "33%",
+            width: "100%",
             minHeight: 1,
             paddingRight: 15,
             paddingLeft: 15,
