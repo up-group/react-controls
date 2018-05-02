@@ -59,8 +59,7 @@ export default class UpTile extends React.Component<UpTileProps, UpTileState>{
         }
 
         return <div className="UpTile">
-            <div style={null} className={"col-md-" + this.props.size}>
-
+            <div style={null}>
                 <div className={"box box-up box-home" + (!this.state.isCollapse ? "" : " collapsed-box")}>
                     <div className="box-header with-border">
                         <h3 className="box-title">
