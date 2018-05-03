@@ -65,7 +65,16 @@ storiesOf('UpMenu', module)
 
 
                                         { title: "bbbbb2", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                                        { title: "ccccc2", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
+                                        {
+                                            title: "ccccc2", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [
+
+                                                { title: "c1", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
+                                                { title: "ccccc2 22222222", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
+                                                { title: "c3", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] }
+
+
+                                            ]
+                                        },
                                         { title: "ddddd2", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] }
                                     ]
                                 }

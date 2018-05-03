@@ -96,8 +96,8 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
         var list = style({
             backgroundColor: "#00BBD3",
             listStyle: "none",
-            display:"block",
-            marginLeft: "25%",
+            display: "block",
+            marginLeft: "8%",
             zIndex: 1,
             position: "relative",
             $nest: {
@@ -144,10 +144,6 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
 export interface SubItemsProps extends MenuItemData {
     onMenuClick: (uri: string) => boolean | void;
     open: boolean;
-
-
-
-
     onBranchClick: (branchId: string) => void;
     branchId: string;
     selectedBranchId: string;
@@ -221,7 +217,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
         var hide = this.props.isVisible === false ? " hide" : "";
         var active = this.state.active || this.props.isSelected ? "active" : "";
 
-        return <div className={liElment} >
+        return <div className={liElment} data-branch={this.props.branchId} >
             <div className={liLine}>
                 {this.anyChild ?
                     <i onClick={this.onClick} className={inliei + " " + ((this.state.active || this.isMenuSelected) ? "pe-7s-angle-down" : "pe-7s-angle-right")} ></i>
@@ -244,11 +240,16 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
     }
 
     onClick = (e) => {
-        this.props.onBranchClick(this.props.branchId);
-        this.setState({ active: !this.state.active });
+        if (this.props.selectedBranchId.substr(0, this.props.branchId.length) === this.props.branchId) {
+            var idParent = this.props.branchId.substr(0, this.props.branchId.lastIndexOf("-"));
+            this.props.onBranchClick(idParent);
+        } else {
+            this.props.onBranchClick(this.props.branchId);
+        }
+
+        this.setState({ active: false });
         e.preventDefault();
         e.stopPropagation();
-        this.setState({ active: false });
         return false;
     }
 
@@ -591,16 +592,15 @@ export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
                 ['&:hover']: this.state.active === false ?
                     {
                         backgroundColor: "rgb(0, 74, 92)",
-                        minWidth: 250,
+                        minWidth: 300,
                         overflow: "visible",
                     }
                     : null,
                 ['&:hover > .' + subMenu]: this.state.active === false ?
                     {
                         display: "block",
-                        paddingLeft: 50,
                         position: "absolute",
-                        minWidth: 250
+                        minWidth: 300
                     }
                     : null,
                 ['&:hover > .' + subMenu + " > div"]: this.state.active === false ?
