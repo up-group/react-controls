@@ -97,7 +97,9 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
             backgroundColor: "#00BBD3",
             listStyle: "none",
             display:"block",
-            marginLeft:"25%",
+            marginLeft: "25%",
+            zIndex: 1,
+            position: "relative",
             $nest: {
                 '& ul': {
                     paddingLeft: 40,
@@ -165,7 +167,8 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
     render() {
         var liElment = style({
             paddingLeft: 20,
-            position: "relative"
+            position: "relative",
+            zIndex: 1,
         })
 
         var inlie = style({
@@ -199,7 +202,6 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
             $nest: {
                 ["&:hover"]: {
                     color: "white",
-                    backgroundColor: "#194B57"
                 },
                 ["&:hover > a"]: {
                     color: "white",
@@ -207,12 +209,11 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
                 ["&:hover > i"]: {
                     color: "white",
                 },
-
                 ["& > a"]: {
-                    color: (this.state.active || this.isMenuSelected) ? "white" : "#8aa4af",
+                    color: (this.state.active || this.isMenuSelected) ? "white" : "black",
                 },
                 ["& > i"]: {
-                    color: (this.state.active || this.isMenuSelected) ? "white" : "#8aa4af",
+                    color: (this.state.active || this.isMenuSelected) ? "white" : "balck" ,
                 }
             }
         })
@@ -247,6 +248,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
         this.setState({ active: !this.state.active });
         e.preventDefault();
         e.stopPropagation();
+        this.setState({ active: false });
         return false;
     }
 
@@ -450,11 +452,11 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState>{
             float: "left",
             alignItems:"center",
             position: "absolute",
-            width:"15%",
+            width:"14%",
             minHeight: "100%",
             $nest: {
                 '& a': {
-                    color: "Black",
+                    color: "black",
                     textDecoration: "none",
                     $nest: {
                         '&:hover': {
@@ -464,7 +466,7 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState>{
                     }
                 },
                 '& i': {
-                    color: "#8aa4af",
+                    color: "black",
                     cursor: "pointer",
                     $nest: {
                         '&:hover': {
