@@ -316,7 +316,7 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
 
         var floatLeft = style({
             float: "left",
-            width:"25%",
+            width:"27%",
             $nest: {
                 ["& > div"]: {
                     float: "left"
@@ -348,7 +348,7 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
             display: "block",
             zIndex: 1000,
             height: 72,
-            marginLeft: "15%",
+            marginLeft: "14%",
             paddingLeft:"5%"
         });
         return <div className={main}>
