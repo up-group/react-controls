@@ -188,9 +188,10 @@ const inputStyles = css`
     .up-input-group .up-input:not(:last-child) {
         padding-right: 30px;
         background-color: transparent;
-        border-color: white;
+        border: 1px solid #585858;
         color: white;
         padding-left: 12%;
+
 }
   .up-input-group .up-input-action,
   .up-input-group > .up-button,

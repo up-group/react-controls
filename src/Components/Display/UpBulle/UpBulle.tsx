@@ -23,16 +23,15 @@ export default class UpBulle extends React.Component<UpBulleProps, UpBulleState>
     }
     render() { 
         var BulleStyle = style({
-            fontSize: "12px",
-            fontFamily: "Roboto",
+            fontSize: "14px",
             cursor: "pointer",
             color:"white",
             width: "228px",
-            height: "48px",
+            height: "50px",
             borderRadius: "4px",
             boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
-            padding: "10px 10px 20px 10px",
-            margin: "10px 15px 20px 15px",
+            padding: "2px 10px 5px 5px",
+            margin: "0px 25px 25px 0px",
             float: "left",
         });
         var IconStyle = style({

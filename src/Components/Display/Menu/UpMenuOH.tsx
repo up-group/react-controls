@@ -298,7 +298,6 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
 
         var iconBtn = style({
             height: "16px",
-            fontFamily: "Roboto",
             fontSize: "18px",
             cursor: "pointer",
             margin:5,
@@ -311,7 +310,6 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
             height: "40px",
             left: "20%",
             width: "100%",
-
         });
 
         var floatLeft = style({
