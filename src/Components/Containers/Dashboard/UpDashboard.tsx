@@ -17,7 +17,7 @@ export default class UpDashboard extends React.Component<UpDashboardProps, UpDas
     }
 
     render() {
-        return <div>
+       return <div>
             {this.props.children}
         </div>
     }

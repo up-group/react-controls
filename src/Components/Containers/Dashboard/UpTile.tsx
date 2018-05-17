@@ -40,8 +40,6 @@ export default class UpTile extends React.Component<UpTileProps, UpTileState>{
             paddingLeft: 15,
             display: "block"
         }
-        // < span data-toggle="tooltip" title= "" className= "badge bg-red" data- original - title="4 messages non lus" > 4</span >
-
         var footer = null;
         if (this.props.footer != null) {
             footer = <div className="box-footer text-center">
@@ -60,13 +58,11 @@ export default class UpTile extends React.Component<UpTileProps, UpTileState>{
 
         return <div className="UpTile">
             <div style={null}>
-                <div className={"box box-up box-home" + (!this.state.isCollapse ? "" : " collapsed-box")}>
+                <div className={"box box-home" + (!this.state.isCollapse ? "" : " collapsed-box")}>
                     <div className="box-header with-border">
                         <h3 className="box-title">
                             {this.props.Title}
                         </h3>
-
-
                         <div className="box-tools pull-right">
                             <button data-widget="collapse" type="button" className="btn btn-box-tool" onClick={this.collapse}>
                                 <SvgIcon height={20} iconName={this.state.isCollapse ? "plus" : "minus"} />
