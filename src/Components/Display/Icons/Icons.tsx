@@ -1,6 +1,6 @@
 import * as React from "react"
 import { style } from "typestyle";
-import { getFontStyle } from "../../../Common/utils/helpers";
+import { getFontClassName } from "../../../Common/utils/helpers";
 
 
 export interface IconProps {
@@ -45,7 +45,7 @@ export class MaterialinearIcon extends React.Component<MaterialIconProps, Materi
     }
     render() {
         var className = "icon-" + this.props.IconName + " " 
-            + getFontStyle({ fontSize: this.props.IconSize.toString(), color: this.props.Color, fontWeight: this.props.fontWeight, 
+            + getFontClassName({ fontSize: this.props.IconSize.toString(), color: this.props.Color, fontWeight: this.props.fontWeight, 
                 fontStyle: this.props.fontStyle, fontStrech: this.props.fontStrech, lineHeight: this.props.lineHeight, letterSpacing: this.props.letterSpacing, }) + " " 
             + style({
                 backgroundColor: this.props.BackgroundColor,

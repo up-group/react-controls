@@ -5,7 +5,7 @@ import { style } from "typestyle"
 import Text from "../../Inputs/Input/index"
 import "./up.png"
 import { IconDeconnexion, IconCarteContour, IconUserContour, IconChevron, DirectionEnum } from "../Icons/Icons";
-import { getFontStyle, stringIsNullOrEmpty, arrayIsNullOrEmpty } from "../../../Common/utils/helpers";
+import { getFontClassName, stringIsNullOrEmpty, arrayIsNullOrEmpty } from "../../../Common/utils/helpers";
 // import { TypeStyle } from "typestyle/lib/internal/typestyle";
 // import colorMap from "../../../Common/theming/colorMap";
 // import { InputStyled } from "../../Inputs/Input/styles";
@@ -301,7 +301,7 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
                 },
             },
         });
-        var styleDroite = getFontStyle({ fontSize: "14px", color: "#ffffff", }) + " " + style({
+        var styleDroite = getFontClassName({ fontSize: "14px", color: "#ffffff", }) + " " + style({
             marginTop: "8px",
             display: "inline-block",
         });

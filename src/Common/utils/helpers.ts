@@ -1,5 +1,6 @@
 import { style } from "typestyle"
 
+
 export function callIfExists(func, ...args) {
     return (typeof func === 'function') && func(...args);
 }
@@ -21,7 +22,7 @@ export interface AttributPolice {
     lineHeight?: any;
     letterSpacing?: any;
 }
-export function getFontStyle(fontAttribut: AttributPolice): string {
+export function getFontClassName(fontAttribut: AttributPolice): string {
     return style({
         fontSize: fontAttribut.fontSize,
         color: fontAttribut.color ? fontAttribut.color : "#3f3b37",
@@ -33,10 +34,14 @@ export function getFontStyle(fontAttribut: AttributPolice): string {
     });
 }
 
+export function isNullOrUndef(objet: any): boolean {
+    return objet == null || objet == undefined;
+}
+
 export function stringIsNullOrEmpty(chaine: string): boolean {
-    return chaine == null || chaine == undefined || chaine.trim().length === 0;
+    return isNullOrUndef(chaine) || chaine.trim().length === 0;
 }
 
 export function arrayIsNullOrEmpty(array: any[]): boolean {
-    return array == null || array == undefined || array.length == 0;
+    return isNullOrUndef(array) || array.length == 0;
 }

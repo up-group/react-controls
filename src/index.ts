@@ -13,6 +13,7 @@ import UpModal from './Components/Containers/Modal/UpModal'
 import UpDashboard from './Components/Containers/Dashboard/UpDashboard'
 import UpTile from './Components/Containers/Dashboard/UpTile'
 import UpNavTab from './Components/Containers/NavTab/UpNavTap'
+import * as Helper from "./Common/utils/helpers"
 
 import UpBadge from './Components/Display/Badge'
 import UpHeading from './Components/Display/Heading'
@@ -33,6 +34,7 @@ import UpCalendarWeekDay from './Components/Display/CalendarWeekDay/UpCalendarWe
 import { UpContextMenu, UpContextMenuItem, UpContextMenuTrigger, UpContextMenuItemDivider } from './Components/Display/ContextMenu'
 import UpMenu from './Components/Display/Menu/UpMenu'
 import UpMenuOH from './Components/Display/Menu/UpMenuOH'
+import { AntennesUtilisateur } from './Components/Display/Menu/UpMenuOH'
 import UpBulle from './Components/Display/UpBulle/UpBulle'
 import UpTreeView from './Components/Display/TreeView/UpTreeView'
 import UpButton from './Components/Inputs/Button'
@@ -117,5 +119,7 @@ export {
     UpTreeView,
     UpNavTab,
     UpBulle,
-    UpButtonGroupDropDown
+    UpButtonGroupDropDown,
+    AntennesUtilisateur,
+    Helper,
 };
