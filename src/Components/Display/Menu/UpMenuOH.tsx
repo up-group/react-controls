@@ -1,21 +1,29 @@
-﻿
-import * as React from "react"
-import SvgIcon from "../SvgIcon/index"
-import { IconName } from "../SvgIcon/icons"
+﻿import * as React from "react"
+// import SvgIcon from "../SvgIcon/index"
+// import { IconName } from "../SvgIcon/icons"
 import { style } from "typestyle"
 import Text from "../../Inputs/Input/index"
 import "./up.png"
-import { TypeStyle } from "typestyle/lib/internal/typestyle";
-import colorMap from "../../../Common/theming/colorMap";
-import { InputStyled } from "../../Inputs/Input/styles";
-var UP = require("./UP_OneHome.png")
+import { IconDeconnexion, IconCarteContour, IconUserContour, IconChevron, DirectionEnum } from "../Icons/Icons";
+import { getFontStyle, stringIsNullOrEmpty, arrayIsNullOrEmpty } from "../../../Common/utils/helpers";
+// import { TypeStyle } from "typestyle/lib/internal/typestyle";
+// import colorMap from "../../../Common/theming/colorMap";
+// import { InputStyled } from "../../Inputs/Input/styles";
+
+
+var UP = require("./UP_OneHome.png");
+
+export interface AntennesUtilisateur {
+    Antennes: string[];
+    IdxAntennesActives: number[];
+    Utilisateur: string;
+}
 
 
 export interface UpMenuProps {
-    username?: string;
-    region?: string;
+    antennesUser: AntennesUtilisateur;
     menuItems: MenuItemData[];
-    topMenuItems?: TopMenuItemProps[];
+    // topMenuItems?: TopMenuItemProps[];
     onMenuClick?: (uri: string) => boolean | void;
     onDeconnexionClick?: () => void;
     onHomeClick?: () => void
@@ -23,51 +31,31 @@ export interface UpMenuProps {
 }
 
 export interface UpMenuState {
-
 }
 
-export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState>{
-
-
+export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> {
     constructor(p, c) {
         super(p, c);
-        this.state = {
-
-        };
     }
+
     render() {
-
         var styleContentWrapper = style({
-        
-            minHeight: 250
+            minHeight: 250,
         });
-
         var styleContent = style({
-
             margin: "auto",
         });
 
-        return <div className="">
-            <div >
-                <TopMenu
-                    username={this.props.username}
-                    region={this.props.region}
-                    childMenuItems={this.props.topMenuItems}
-                    onDeconnexionClick={this.props.onDeconnexionClick}
-                />
-                <LeftMenu onHomeClick={this.props.onHomeClick} menuItems={this.props.menuItems} onMenuClick={this.props.onMenuClick} />
-                <div className={styleContentWrapper} >
-                    <section className={styleContent} > 
-                        {this.props.children}
-                        
-                    </section>
-                  
-                </div>
+        return <div>
+            <TopMenu antennesUser={this.props.antennesUser} onDeconnexionClick={this.props.onDeconnexionClick} />
+            <LeftMenu onHomeClick={this.props.onHomeClick} menuItems={this.props.menuItems} onMenuClick={this.props.onMenuClick} />
+            <div className={styleContentWrapper} >
+                <section className={styleContent} > 
+                    {this.props.children}
+                </section>                
             </div>
-           
-        </div>  
+        </div>;
     }
-
 }
 
 export interface SubMenuProps {
@@ -82,17 +70,16 @@ export interface SubMenuProps {
 export interface SubMenuState {
 }
 
-export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
-
+export class SubMenu extends React.Component<SubMenuProps, SubMenuState> {
     constructor(p, c) {
         super(p, c);
-        this.state = {};
     }
 
     render() {
         if (this.props.childMenuItems == null || this.props.childMenuItems.length == 0) {
             return null;
         }
+
         var list = style({
             backgroundColor: "#00BBD3",
             listStyle: "none",
@@ -107,11 +94,10 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
                 '& a': {
                     $nest: {
                         '&:hover': {},
-                    }
+                    },
                 },
-
-            }
-        })
+            },
+        });
 
         var lis = this.props.childMenuItems
             .filter((v) => {
@@ -131,14 +117,13 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
                     isVisible={v.isVisible}
                     isSelected={v.isSelected}
                     icon={v.icon}
-                    childMenuItems={v.childMenuItems} />
-            })
+                    childMenuItems={v.childMenuItems} />;
+            });
 
-        return <div className={list}>
+        return <div className={list} >
             {lis}
-        </div>
+        </div>;
     }
-
 }
 
 export interface SubItemsProps extends MenuItemData {
@@ -153,11 +138,12 @@ export interface SubItemsState {
     active: boolean;
 }
 
-export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
-
+export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
     constructor(p, c) {
         super(p, c);
-        this.state = { active: false };
+        this.state = {
+            active: false 
+        };
     }
 
     render() {
@@ -165,8 +151,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
             paddingLeft: 20,
             position: "relative",
             zIndex: 1,
-        })
-
+        });
         var inlie = style({
             display: "inline-block",
             $nest: {
@@ -175,23 +160,19 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
                     position: "absolute",
                     fontSize: 25,
                     fontWeight: 900,
-                    cursor: "pointer"
-                }
-            }
-        })
-
-
+                    cursor: "pointer",
+                },
+            },
+        });
         var inliei = style({
-
             display: "inline",
             position: "absolute",
             top: 0,
             left: 0,
             fontSize: 25,
             fontWeight: 900,
-            cursor: "pointer"
+            cursor: "pointer",
         });
-
         var liLine = style({
             padding: 5,
             color: "#8aa4af",
@@ -210,27 +191,31 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
                 },
                 ["& > i"]: {
                     color: (this.state.active || this.isMenuSelected) ? "white" : "balck" ,
-                }
-            }
-        })
+                },
+            },
+        });
 
-        var hide = this.props.isVisible === false ? " hide" : "";
-        var active = this.state.active || this.props.isSelected ? "active" : "";
+        // var hide = this.props.isVisible === false ? " hide" : "";
+        // var active = this.state.active || this.props.isSelected ? "active" : "";
 
         return <div className={liElment} data-branch={this.props.branchId} >
-            <div className={liLine}>
-                {this.anyChild ?
+            <div className={liLine} >
+                { this.anyChild ?
                     <i onClick={this.onClick} className={inliei + " " + ((this.state.active || this.isMenuSelected) ? "pe-7s-angle-down" : "pe-7s-angle-right")} ></i>
-                    :
-                    null
+                    : null
                 }
-                <a className={inlie} onClick={this.onClickA} href={this.props.uri}>
+                <a className={inlie} onClick={this.onClickA} href={this.props.uri} >
                     {this.props.title}
                 </a>
             </div>
-            {this.anyChild && (this.state.active || this.isMenuSelected) ? <SubMenu onBranchClick={this.props.onBranchClick} branchId={this.props.branchId} selectedBranchId={this.props.selectedBranchId} open={this.props.open} onMenuClick={this.props.onMenuClick} childMenuItems={this.props.childMenuItems} /> : null}
+            { this.anyChild && (this.state.active || this.isMenuSelected) ? 
+                <SubMenu onBranchClick={this.props.onBranchClick} branchId={this.props.branchId} selectedBranchId={this.props.selectedBranchId} 
+                    open={this.props.open} onMenuClick={this.props.onMenuClick} childMenuItems={this.props.childMenuItems} /> 
+                : null
+            }
         </div>
     }
+
     get anyChild() {
         return this.props.childMenuItems != null && this.props.childMenuItems.length != 0;
     }
@@ -264,124 +249,95 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
 }
 
 export interface TopMenuProps {
-    username: string;
-    region: string;
+    antennesUser: AntennesUtilisateur;
     onDeconnexionClick: () => void;
-    childMenuItems: TopMenuItemProps[];
 }
 
 export interface TopMenuState {
-    strSearch: string
+    strSearch: string;
 }
 
-export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
-
+export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
     constructor(p, c) {
         super(p, c);
         this.state = {
-            strSearch: ""
+            strSearch: "",
         };
     }
 
     onSearchChange = (str: string) => {
-        this.setState({ strSearch: str })
+        this.setState({ strSearch: str });
     }
 
     render() {
+        // var topMenuItem = [];
+        // if (this.props.childMenuItems && this.props.childMenuItems.length) {
+        //     topMenuItem = this.props.childMenuItems.map((v, i) => {
+        //         return <TopMenuItem key={i} title={v.title} icon={v.icon} action={v.action} />
+        //     });
+        // }
 
-        var topMenuItem = [];
-        if (this.props.childMenuItems && this.props.childMenuItems.length) {
-            topMenuItem = this.props.childMenuItems.map((v, i) => {
-                return <TopMenuItem key={i} title={v.title} icon={v.icon} action={v.action} />
-            });
-        }
-
-        var iconBtn = style({
-            height: "16px",
-            fontSize: "18px",
-            cursor: "pointer",
-            margin:5,
-            minWidth: 50,
-            color: "white",
-            lineHeight: "50px"
-        });
-        var inputDiv = style({
-            margin: 15,
-            height: "40px",
-            left: "20%",
-            width: "100%",
-        });
-
-        var floatLeft = style({
-            float: "left",
-            width:"27%",
-            $nest: {
-                ["& > div"]: {
-                    float: "left"
-                }
-            }
-        });
-        var Deconnexion = style({
-            float: "right",
-            margin:5,
-            padding: "5px 5px 0px 10px",
-                $nest: {
-                    ["&:hover"]: {
-                        backgroundColor: "#00AAD4",
-                        color:"black"
-                    }
-                }
-            });
-        var floatRight = style({
-            float: "right",
-            $nest: {
-                ["& > div"]: {
-                    float: "left"
-                }
-            }
-        });
-
-        var main = style({
+        var styleG = style({
             backgroundColor: "#3f3b37",
-            display: "block",
-            zIndex: 1000,
-            height: 72,
-            marginLeft: "14%",
-            paddingLeft:"5%"
+            height: "72px",
+            position: "relative",
+            left: "14%",
+            top: 0,
+            width: "86%",
+            textAlign: "right",
+            padding: "16px 32px 16px 40px",
         });
-        return <div className={main}>
-            <div className={floatLeft}>
-                <div className={inputDiv} >
-                        <Text
-                        value={this.state.strSearch}
-                        onChange={this.onSearchChange}
-                        placeholder="Recherche"
-                        iconName="search"
-                            type="search" />
-                </div>
+        var styleRecherche = style({
+            width: "25%",
+            height: "40px",
+            float: "left",
+        });
+        var styleInfosTexte = style({
+            marginRight: "48px",
+            $nest: {
+                "& > i": {
+                    fontStyle: "normal",
+                    margin: "0 8px",
+                },
+            },
+        });
+        var styleDroite = getFontStyle({ fontSize: "14px", color: "#ffffff", }) + " " + style({
+            marginTop: "8px",
+            display: "inline-block",
+        });
+
+        return <div className={styleG} >
+            <div className={styleRecherche} >
+                <Text value={this.state.strSearch} onChange={this.onSearchChange} placeholder="Recherche" iconName="search" type="search" />
             </div>
 
-            <div className={floatRight}>
-                {
-                    this.props.username == null ? null :
-                        <div className={iconBtn} >
-                            <p id="imageProfil" data-toggle="dropdown" aria-expanded="true" > 
-                                <i className="pe-7s-map-marker" style={{ padding: "18px 10px 0px 10px" }} />
-                                <span >{this.props.region}</span>
-                                <i className="pe-7s-user" style={{ padding:"18px 5px 0px 20px" }} />  
-                                <span >{this.props.username}</span>
-                            </p>
-                        </div>
+            <span className={styleDroite} >
+                { arrayIsNullOrEmpty(this.props.antennesUser.Antennes) ? null : 
+                    <IconCarteContour>
+                        <span className={styleInfosTexte} >
+                            <i>
+                                { this.props.antennesUser.IdxAntennesActives.map((idx: number, cpt: number): JSX.Element => {
+                                    return <span key={cpt} >{(cpt > 0 ? ", " : "") + this.props.antennesUser.Antennes[idx]}</span>;
+                                }) }
+                            </i>
+                            <IconChevron Direction={DirectionEnum.Bas} Color="#ffffff" BackgroundColor="#3f3b37" IconSize="14px" />
+                        </span>
+                    </IconCarteContour>
                 }
-                {
-                    this.props.onDeconnexionClick == null ? null :
-                        <div className={iconBtn} onClick={this.props.onDeconnexionClick}  >
-                            <div className={Deconnexion}>
-                                <i className="pe pe-7s-power" />  
-                            </div>                        
-                        </div>
+
+                { stringIsNullOrEmpty(this.props.antennesUser.Utilisateur) ? null : 
+                    <IconUserContour>
+                        <span className={styleInfosTexte} >
+                            <i>{this.props.antennesUser.Utilisateur}</i>
+                            <IconChevron Direction={DirectionEnum.Bas} Color="#ffffff" BackgroundColor="#3f3b37" IconSize="14px" />
+                        </span>
+                    </IconUserContour>
                 }
-            </div>
+
+                { this.props.onDeconnexionClick == null ? null :
+                    <IconDeconnexion onClick={this.props.onDeconnexionClick} />
+                }
+            </span>
         </div>
     }
 }
@@ -396,33 +352,27 @@ export interface TopMenuItemState {
 
 }
 
-export class TopMenuItem extends React.Component<TopMenuItemProps, TopMenuItemState>{
-
+export class TopMenuItem extends React.Component<TopMenuItemProps, TopMenuItemState> {
     constructor(p, c) {
         super(p, c);
-        this.state = {};
     }
 
     render() {
         if (typeof (this.props.action) === "string") {
-            return <li title={this.props.title} data-toggle="tooltip" data-placement="bottom">
-                <a href={this.props.action}>
-                    <i className={this.props.icon}></i>
+            return <li title={this.props.title} data-toggle="tooltip" data-placement="bottom" >
+                <a href={this.props.action} >
+                    <i className={this.props.icon} ></i>
                 </a>
             </li>
         } else {
-            return <li title={this.props.title} data-toggle="tooltip" data-placement="bottom">
-                <a onClick={this.props.action}>
-                    <i className={this.props.icon}></i>
+            return <li title={this.props.title} data-toggle="tooltip" data-placement="bottom" >
+                <a onClick={this.props.action} >
+                    <i className={this.props.icon} ></i>
                 </a>
             </li>
         }
-
-
     }
 }
-
-
 
 
 export interface LeftMenuProps {
@@ -435,23 +385,33 @@ export interface LeftMenuState {
     selectedBranchId: string;
 }
 
-export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState>{
-
+export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
     constructor(p, c) {
         super(p, c);
         this.state = {
-            selectedBranchId: ""
+            selectedBranchId: "",
         };
     }
 
     render() {
+        // var expandIcon = style({
+        //     fontSize: 25,
+        //     padding: 10
+        // });
+        // var Homeimage = style({
+        //     cursor:"pointer",
+        //     float:"left",
+        //     width:"100%",
+        //     height:30,
+        //     position:"absolute"
+        // });
         var mainSideBar = style({
             top:0,
             backgroundColor:"#FAFAFA",
             float: "left",
-            alignItems:"center",
+            alignItems: "center",
             position: "absolute",
-            width:"14%",
+            width: "14%",
             minHeight: "100%",
             $nest: {
                 '& a': {
@@ -462,7 +422,7 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState>{
                             color: "white",
                             textDecoration: "none",
                         },
-                    }
+                    },
                 },
                 '& i': {
                     color: "black",
@@ -470,27 +430,23 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState>{
                     $nest: {
                         '&:hover': {
                             color: "white",
-                        }
-                    }
-                }
-
-            }
+                        },
+                    },
+                },
+            },
+        });
+        var img_style = style({
+            width: "75%",
+            height: "70%"
+        });
+        var div_style = style({
+            borderBottom: "solid 1px #eaeae9",
+            marginTop:"10%",
         });
 
-        var expandIcon = style({
-            fontSize: 25,
-            padding: 10
-        });
-        var Homeimage = style({
-            cursor:"pointer",
-            float:"left",
-            width:"100%",
-            height:30,
-            position:"absolute"
-        });
         var menu = this.props.menuItems
             .filter((v) => {
-                return v.isVisible !== false
+                return v.isVisible !== false;
             })
             .map((v, i) => {
                 return <MenuItem
@@ -504,20 +460,13 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState>{
                     uri={v.uri}
                     isSelected={v.isSelected}
                     isVisible={v.isVisible}
-                    childMenuItems={v.childMenuItems} />
+                    childMenuItems={v.childMenuItems} />;
             });
-        var img_style = style({
-            width: "75%",
-            height: "70%"
-        });
-        var div_style = style({
-            borderBottom: "solid 1px #eaeae9",
-            marginTop:"10%",
-        });
+
         return <aside className={mainSideBar}>
             <section className="" >
                 <div className="">
-                  <a onClick={this.props.onHomeClick}>
+                    <a onClick={this.props.onHomeClick} >
                         <img className={img_style} src={UP}></img>
                     </a>
                     <div className={div_style}>
@@ -526,22 +475,19 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState>{
                     <div className="">
                         {menu}
                     </div>
-                    <br />
+                    {/* <br />
                     <div className="">
                         
-                    </div>
+                    </div> */}
                 </div>
             </section>
-        </aside>
-
+        </aside>;
     }
 
     onBranchClick = (branchId: string) => {
         this.setState({ selectedBranchId: branchId })
     }
-
 }
-
 
 
 export interface MenuItemData {
