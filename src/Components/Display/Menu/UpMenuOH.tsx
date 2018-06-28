@@ -41,22 +41,18 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
     }
 
     render() {
-        var styleContentWrapper = style({
-            minHeight: 250,
-        });
         var styleContent = style({
-            margin: "auto",
+            minHeight: 250,
+            marginLeft: "14%",
         });
 
         return <div>
             <TopMenu antennesUser={this.props.antennesUser} onDeconnexionClick={this.props.onDeconnexionClick} 
                 rechercheEnCours={this.props.rechercheEnCours} onSearchChange={this.props.onSearchChange} />
             <LeftMenu onHomeClick={this.props.onHomeClick} menuItems={this.props.menuItems} onMenuClick={this.props.onMenuClick} />
-            <div className={styleContentWrapper} >
-                <section className={styleContent} > 
-                    {this.props.children}
-                </section>                
-            </div>
+            <section className={styleContent} >
+                {this.props.children}
+            </section>
         </div>;
     }
 }
