@@ -28,6 +28,8 @@ export interface UpMenuProps {
     onDeconnexionClick?: () => void;
     onHomeClick?: () => void
     clientId?: string;
+    rechercheEnCours: string;
+    onSearchChange: (search: string) => void;
 }
 
 export interface UpMenuState {
@@ -47,7 +49,8 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
         });
 
         return <div>
-            <TopMenu antennesUser={this.props.antennesUser} onDeconnexionClick={this.props.onDeconnexionClick} />
+            <TopMenu antennesUser={this.props.antennesUser} onDeconnexionClick={this.props.onDeconnexionClick} 
+                rechercheEnCours={this.props.rechercheEnCours} onSearchChange={this.props.onSearchChange} />
             <LeftMenu onHomeClick={this.props.onHomeClick} menuItems={this.props.menuItems} onMenuClick={this.props.onMenuClick} />
             <div className={styleContentWrapper} >
                 <section className={styleContent} > 
@@ -251,10 +254,11 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
 export interface TopMenuProps {
     antennesUser: AntennesUtilisateur;
     onDeconnexionClick: () => void;
+    rechercheEnCours: string;
+    onSearchChange: (search: string) => void;
 }
 
 export interface TopMenuState {
-    strSearch: string;
 }
 
 export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
@@ -266,7 +270,7 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
     }
 
     onSearchChange = (str: string) => {
-        this.setState({ strSearch: str });
+        this.props.onSearchChange(str);
     }
 
     render() {
@@ -285,7 +289,7 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
             top: 0,
             width: "86%",
             textAlign: "right",
-            padding: "16px 32px 16px 40px",
+            padding: "16px 32px 16px 60px",
         });
         var styleRecherche = style({
             width: "25%",
@@ -308,7 +312,7 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
 
         return <div className={styleG} >
             <div className={styleRecherche} >
-                <Text value={this.state.strSearch} onChange={this.onSearchChange} placeholder="Recherche" iconName="search" type="search" />
+                <Text value={this.props.rechercheEnCours} onChange={this.onSearchChange} placeholder="Recherche" iconName="search" type="search" />
             </div>
 
             <span className={styleDroite} >
