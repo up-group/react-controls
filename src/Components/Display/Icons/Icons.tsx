@@ -346,6 +346,21 @@ export class IconCarteContour extends React.Component<IconProps, IconState> {
         return <MaterialinearIcon {...this.props} IconName="Lmap-marker" />;
     }
 }
+export class IconRecherche extends React.Component<IconProps, IconState> {
+    static defaultProps = {
+        Color: "#7a756f",
+        BackgroundColor: "#3f3b37",
+        IconSize: "24px",
+        AvecCercle: false,
+        lineHeight: 1.33,
+    }
+    constructor(p, c) {
+        super(p, c);
+    }
+    render() {
+        return <MaterialinearIcon {...this.props} IconName="search" />;
+    }
+}
 
 
 export class IconLswaLink extends React.Component<IconProps, IconState> {

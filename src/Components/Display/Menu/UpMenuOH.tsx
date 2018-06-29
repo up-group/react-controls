@@ -4,6 +4,7 @@ import Text from "../../Inputs/Input/index"
 import "./up.png"
 import { IconDeconnexion, IconCarteContour, IconUtilisateur, IconChevron, DirectionEnum } from "../Icons/Icons";
 import { getFontClassName, stringIsNullOrEmpty, arrayIsNullOrEmpty } from "../../../Common/utils/helpers";
+import Search from "../../Inputs/Input/Search";
 
 
 var UP = require("./UP_OneHome.png");
@@ -24,7 +25,8 @@ export interface UpMenuProps {
     onHomeClick?: () => void
     clientId?: string;
     rechercheEnCours: string;
-    onSearchChange: (search: string) => void;
+    onSearchTexteChange: (search: string) => void;
+    onSearchFocusChange: (focus: boolean) => void;
 }
 
 export interface UpMenuState {
@@ -42,9 +44,14 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
         });
 
         return <div>
-            <TopMenu antennesUser={this.props.antennesUser} onDeconnexionClick={this.props.onDeconnexionClick} 
-                rechercheEnCours={this.props.rechercheEnCours} onSearchChange={this.props.onSearchChange} />
+            <TopMenu antennesUser={this.props.antennesUser} 
+                onDeconnexionClick={this.props.onDeconnexionClick} 
+                rechercheEnCours={this.props.rechercheEnCours} 
+                onSearchTexteChange={this.props.onSearchTexteChange} 
+                onSearchFocusChange={this.props.onSearchFocusChange} />
+
             <LeftMenu onHomeClick={this.props.onHomeClick} menuItems={this.props.menuItems} onMenuClick={this.props.onMenuClick} />
+
             <section className={styleContent} >
                 {this.props.children}
             </section>
@@ -246,7 +253,8 @@ export interface TopMenuProps {
     antennesUser: AntennesUtilisateur;
     onDeconnexionClick: () => void;
     rechercheEnCours: string;
-    onSearchChange: (search: string) => void;
+    onSearchTexteChange: (search: string) => void;
+    onSearchFocusChange: (focus: boolean) => void;
 }
 
 export interface TopMenuState {
@@ -260,18 +268,14 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
         };
     }
 
-    onSearchChange = (str: string) => {
-        this.props.onSearchChange(str);
+    onSearchTexteChange = (str: string) => {
+        this.props.onSearchTexteChange(str);
+    }
+    onSearchFocusChange = (focus: boolean) => {
+        this.props.onSearchFocusChange(focus);
     }
 
     render() {
-        // var topMenuItem = [];
-        // if (this.props.childMenuItems && this.props.childMenuItems.length) {
-        //     topMenuItem = this.props.childMenuItems.map((v, i) => {
-        //         return <TopMenuItem key={i} title={v.title} icon={v.icon} action={v.action} />
-        //     });
-        // }
-
         var styleG = style({
             backgroundColor: "#3f3b37",
             height: "72px",
@@ -303,7 +307,9 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
 
         return <div className={styleG} >
             <div className={styleRecherche} >
-                <Text value={this.props.rechercheEnCours} onChange={this.onSearchChange} placeholder="Recherche" iconName="search" type="search" />
+                {/* <Text value={this.props.rechercheEnCours} onChange={this.onSearchTexteChange} 
+                    placeholder="Recherche" iconName="search" type="search"  /> */}
+                <Search Value={this.props.rechercheEnCours} PlaceHolder="Recherche" onChange={this.onSearchTexteChange} onFocus={this.onSearchFocusChange} />
             </div>
 
             <span className={styleDroite} >
