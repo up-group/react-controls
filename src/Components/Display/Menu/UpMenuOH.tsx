@@ -1,14 +1,9 @@
 ﻿import * as React from "react"
-// import SvgIcon from "../SvgIcon/index"
-// import { IconName } from "../SvgIcon/icons"
 import { style } from "typestyle"
 import Text from "../../Inputs/Input/index"
 import "./up.png"
 import { IconDeconnexion, IconCarteContour, IconUtilisateur, IconChevron, DirectionEnum } from "../Icons/Icons";
 import { getFontClassName, stringIsNullOrEmpty, arrayIsNullOrEmpty } from "../../../Common/utils/helpers";
-// import { TypeStyle } from "typestyle/lib/internal/typestyle";
-// import colorMap from "../../../Common/theming/colorMap";
-// import { InputStyled } from "../../Inputs/Input/styles";
 
 
 var UP = require("./UP_OneHome.png");

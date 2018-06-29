@@ -1,6 +1,6 @@
 // Imports
 import "normalize.css/normalize.css"
-import "@blueprintjs/core/dist/blueprint.css"
+// import "@blueprintjs/core/dist/blueprint.css"
 import * as React from "react"
 import { UpDateTimeProps } from './'
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'

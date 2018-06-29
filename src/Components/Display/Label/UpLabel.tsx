@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {UpLabelProps} from './'
-import "@blueprintjs/core/dist/blueprint.css"
+// import "@blueprintjs/core/dist/blueprint.css"
 
 import { LabelStyled } from './styles';
 

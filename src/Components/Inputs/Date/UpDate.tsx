@@ -1,8 +1,8 @@
 // Imports
 import "normalize.css/normalize.css"
-import "@blueprintjs/core/dist/blueprint.css"
+// import "@blueprintjs/core/dist/blueprint.css"
 import * as React from "react"
-import { UpDateProps, UpDateStyledProps } from './'
+import { UpDateProps } from './'
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import UpDateStyle from './styles'
 import defaultTheme from '../../../Common/theming'
