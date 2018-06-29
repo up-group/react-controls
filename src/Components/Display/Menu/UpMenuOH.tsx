@@ -4,7 +4,7 @@
 import { style } from "typestyle"
 import Text from "../../Inputs/Input/index"
 import "./up.png"
-import { IconDeconnexion, IconCarteContour, IconUserContour, IconChevron, DirectionEnum } from "../Icons/Icons";
+import { IconDeconnexion, IconCarteContour, IconUtilisateur, IconChevron, DirectionEnum } from "../Icons/Icons";
 import { getFontClassName, stringIsNullOrEmpty, arrayIsNullOrEmpty } from "../../../Common/utils/helpers";
 // import { TypeStyle } from "typestyle/lib/internal/typestyle";
 // import colorMap from "../../../Common/theming/colorMap";
@@ -326,12 +326,12 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
                 }
 
                 { stringIsNullOrEmpty(this.props.antennesUser.Utilisateur) ? null : 
-                    <IconUserContour>
+                    <IconUtilisateur IconSize="14px" lineHeight={1.14} AvecCercle={false} BackgroundColor="#3f3b37" >
                         <span className={styleInfosTexte} >
                             <i>{this.props.antennesUser.Utilisateur}</i>
                             <IconChevron Direction={DirectionEnum.Bas} Color="#ffffff" BackgroundColor="#3f3b37" IconSize="14px" />
                         </span>
-                    </IconUserContour>
+                    </IconUtilisateur>
                 }
 
                 { this.props.onDeconnexionClick == null ? null :

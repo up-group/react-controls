@@ -13,7 +13,7 @@ import UpModal from './Components/Containers/Modal/UpModal'
 import UpDashboard from './Components/Containers/Dashboard/UpDashboard'
 import UpTile from './Components/Containers/Dashboard/UpTile'
 import UpNavTab from './Components/Containers/NavTab/UpNavTap'
-import * as Helper from "./Common/utils/helpers"
+import * as UpHelper from "./Common/utils/helpers"
 
 import UpBadge from './Components/Display/Badge'
 import UpHeading from './Components/Display/Heading'
@@ -52,6 +52,7 @@ import UpEmail from './Components/Inputs/Email'
 import UpCheckbox from './Components/Inputs/Checkbox/UpCheckBox'
 import UpToggle from './Components/Inputs/Toggle'
 import UpRadio from './Components/Inputs/Radio'
+import * as UpIcons from "./Components/Display/Icons/Icons"
 
 import { ThemeProvider as UpThemeProvider } from './Common/theming/themedComponents'
 import UpDefaultTheme from './Common/theming'
@@ -121,5 +122,6 @@ export {
     UpBulle,
     UpButtonGroupDropDown,
     AntennesUtilisateur,
-    Helper,
+    UpHelper,
+    UpIcons,
 };

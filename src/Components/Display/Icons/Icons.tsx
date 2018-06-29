@@ -137,6 +137,36 @@ export class IconCorrespondant extends React.Component<IconProps, IconState> {
         return <MaterialinearIcon {...this.props} IconName="Lfirst-aid" />; 
     }
 }
+export class IconPatient extends React.Component<IconProps, IconState> {
+    static defaultProps = {
+        Color: "#ffffff",
+        BackgroundColor: "#4a90e2",
+        IconSize: "10px",
+        AvecCercle: true,
+        lineHeight: 1.2,
+    }
+    constructor(p, c) {
+        super(p, c);
+    }
+    render() {
+        return <MaterialinearIcon {...this.props} IconName="Luser" />; 
+    }
+}
+export class IconUtilisateur extends React.Component<IconProps, IconState> {
+    static defaultProps = {
+        Color: "#ffffff",
+        BackgroundColor: "#7ad032",
+        IconSize: "10px",
+        AvecCercle: true,
+        lineHeight: 1.2,
+    }
+    constructor(p, c) {
+        super(p, c);
+    }
+    render() {
+        return <MaterialinearIcon {...this.props} IconName="Luser" />; 
+    }
+}
 export class IconAjout extends React.Component<IconProps, IconState> {
     static defaultProps = {
         Color: "#f39100",
@@ -314,21 +344,6 @@ export class IconCarteContour extends React.Component<IconProps, IconState> {
     }
     render() {
         return <MaterialinearIcon {...this.props} IconName="Lmap-marker" />;
-    }
-}
-export class IconUserContour extends React.Component<IconProps, IconState> {
-    static defaultProps = {
-        Color: "#ffffff",
-        BackgroundColor: "#3f3b37",
-        IconSize: "14px",
-        AvecCercle: false,
-        lineHeight: 1.14,
-    }
-    constructor(p, c) {
-        super(p, c);
-    }
-    render() {
-        return <MaterialinearIcon {...this.props} IconName="Luser" />;
     }
 }
 
