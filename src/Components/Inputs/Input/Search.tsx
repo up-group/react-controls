@@ -28,6 +28,14 @@ export default class Search extends React.Component<SearchProps, SearchState> {
         this.props.onFocus(focus);
     }
 
+    onKeyDown = (event) => {
+        if (event.keyCode == 27) {
+            event.target.blur();
+        } else if (event.keyCode == 13 || event.keyCode == 10) {
+            event.preventDefault();
+        }
+    }
+
     render() {
         var couleurBords: string = this.state.Focus ? "#ffffff" : "#7a756f";
         var placeholder: string = isNullOrUndef(this.props.PlaceHolder) ? "" : this.props.PlaceHolder;
@@ -53,13 +61,20 @@ export default class Search extends React.Component<SearchProps, SearchState> {
             paddingLeft: "12%",
             backgroundColor: "#3f3b37",
             outline: "none",
+            $nest: {
+                "&::placeholder": {
+                    color: "#ffffff",
+                    opacity: 1,
+                }
+            }
         });
       
         return <div className={styleG} >
             <IconRecherche className={styleIcone} Color={couleurBords} IconSize="166.67%" />
             <input className={styleInput} placeholder={placeholder} value={value} 
                 onChange={(event) => this.props.onChange(event.target.value)}
-                onFocus={() => this.onFocus(true)} onBlur={() => this.onFocus(false)} />
+                onFocus={() => this.onFocus(true)} onBlur={() => this.onFocus(false)}
+                onKeyDown={this.onKeyDown} />
         </div>
     }
 }
