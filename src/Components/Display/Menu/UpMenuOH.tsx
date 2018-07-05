@@ -8,6 +8,7 @@ import Search from "../../Inputs/Input/Search";
 
 
 var UP = require("./UP_OneHome.png");
+var widthLeftMenu = 300;
 
 export interface AntennesUtilisateur {
     Antennes: string[];
@@ -30,32 +31,144 @@ export interface UpMenuProps {
 }
 
 export interface UpMenuState {
+    selectedBranchId?: string;
 }
 
 export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> {
     constructor(p, c) {
         super(p, c);
+        this.state = {
+            selectedBranchId: ""
+        };
     }
 
     render() {
-        var styleContent = style({
-            minHeight: 250,
-            marginLeft: "14%",
+
+        var mainSideBar = style({
+            position: "absolute",
+            top: 0,
+            width: widthLeftMenu,
+            backgroundColor: "#4e5b59",
+            height: "100%",
+            float: "left",
+            alignItems: "center",
+            $nest: {
+                '& i': {
+                    cursor: "pointer",
+                    $nest: {
+                        '&:hover': {
+                            //color: "white",
+                        }
+                    }
+                },
+                '& a': {
+                    textDecoration: "none",
+                }
+
+            }
         });
 
-        return <div>
-            <TopMenu antennesUser={this.props.antennesUser} 
-                onDeconnexionClick={this.props.onDeconnexionClick} 
-                rechercheEnCours={this.props.rechercheEnCours} 
-                onSearchTexteChange={this.props.onSearchTexteChange} 
-                onSearchFocusChange={this.props.onSearchFocusChange} />
+        var headerBar = style({
+            boxSizing: "content-box",
+            position: "fixed",
+            top: 0,
+            right: 0,
+            left: widthLeftMenu,
+            backgroundColor: "#FFF",
+            color: "#4e5b59",
+            height: 40,
+            paddingTop: 16,
+            paddingBottom: 16,
+        });
 
-            <LeftMenu onHomeClick={this.props.onHomeClick} menuItems={this.props.menuItems} onMenuClick={this.props.onMenuClick} />
 
-            <section className={styleContent} >
-                {this.props.children}
-            </section>
+        var styleSpaceContent = style({
+            backgroundColor: "#f5f5f5",
+            paddingLeft: 21,
+            paddingRight: 21,
+            paddingBottom: 21,
+            paddingTop: 93
+        });
+
+
+
+        var rightSide = style({
+            marginLeft: widthLeftMenu,
+            backgroundColor: "#f5f5f5",
+            overflow: "hidden",
+        });
+
+        var styleContent = style({
+            minHeight: 250,
+            paddingLeft: 21,
+            paddingRight: 21,
+            paddingBottom: 21,
+            paddingTop: 93,
+            position: "relative"
+        });
+
+        return <div >
+            <div className={mainSideBar} id="sidebar">
+                <LeftMenu
+                    selectedBranchId={this.state.selectedBranchId}
+                    onBranchClick={this.onBranchClick}
+                    onHomeClick={this.props.onHomeClick}
+                    menuItems={this.props.menuItems}
+                    onMenuClick={this.props.onMenuClick}
+                />
+            </div>
+            <div className={rightSide} >
+                <div className={headerBar} >
+                    <TopMenu
+                        antennesUser={this.props.antennesUser}
+                        onDeconnexionClick={this.props.onDeconnexionClick}
+                        rechercheEnCours={this.props.rechercheEnCours}
+                        onSearchTexteChange={this.props.onSearchTexteChange}
+                        onSearchFocusChange={this.props.onSearchFocusChange}
+                        selectedBranchId={this.state.selectedBranchId}
+                        onBranchClick={this.onBranchClick}
+                        extendMenu={this.props.menuItems}
+                        onMenuClick={this.props.onMenuClick}
+                    />
+                </div>
+
+                <div className={styleContent} >
+                    {this.props.children}
+                </div>
+            </div>
         </div>;
+    }
+
+    //nav;
+
+    //componentDidMount() {
+    //    window.addEventListener('scroll', this.handleScroll);
+    //}
+
+    //componentWillUnmount() {
+    //    window.removeEventListener('scroll', this.handleScroll);
+    //}
+
+    //handleScroll = () => {
+    //    lastScrollY = window.scrollY;
+    //    console.log(lastScrollY);
+
+    //    if (!ticking) {
+    //        window.requestAnimationFrame(() => {
+    //            this.nav.current.style.top = `${lastScrollY}px`;
+    //            ticking = false;
+    //        });
+
+    //        ticking = true;
+    //    }
+    //};
+
+    private onBranchClick = (branchId: string) => {
+
+        this.setState({
+            selectedBranchId: branchId,
+        });
+
     }
 }
 
@@ -66,48 +179,94 @@ export interface SubMenuProps {
     onBranchClick: (branchId: string) => void;
     branchId: string;
     selectedBranchId: string;
+    top: boolean;
 }
 
 export interface SubMenuState {
 }
+export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
 
-export class SubMenu extends React.Component<SubMenuProps, SubMenuState> {
     constructor(p, c) {
         super(p, c);
+        this.state = {};
+    }
+
+
+
+    startsWith(str: string, search: string) {
+        return str.substr(0, search.length) === search;
     }
 
     render() {
         if (this.props.childMenuItems == null || this.props.childMenuItems.length == 0) {
             return null;
         }
+        //var list = style({
+        //    //border: "1px solid",
+        //    //backgroundColor: "#00BBD3",
+        //    //listStyle: "none",
+        //    //display: "block",
+        //    //marginLeft: "8%",
+        //    //zIndex: 1,
+        //    //position: "relative",
+        //    $nest: {
+        //        '& ul': {
+        //            paddingLeft: 40,
+        //        },
+        //        '& a': {
+        //            $nest: {
+        //                '&:hover': {},
+        //            }
+        //        },
 
-        var list = style({
-            backgroundColor: "#00BBD3",
-            listStyle: "none",
-            display: "block",
-            marginLeft: "8%",
-            zIndex: 1,
-            position: "relative",
-            $nest: {
-                '& ul': {
-                    paddingLeft: 40,
-                },
-                '& a': {
-                    $nest: {
-                        '&:hover': {},
-                    },
-                },
-            },
-        });
+        //    }
+        //})
+        var srcMenu = this.props.childMenuItems;
+        //console.log(this.levelselectedBranchId)
 
-        var lis = this.props.childMenuItems
+        //if (this.props.top == true && this.levelselectedBranchId < 2) {
+        //    return null;
+        //}
+
+        //if (this.props.top == true) {
+        //    if (this.levelselectedBranchId == 2) {
+        //        if (this.selectedBranchIdHasChild == true) {
+        //            srcMenu = this.getMenuItemfromId(this.props.selectedBranchId, this.props.childMenuItems);
+        //        } else {
+        //            return null;
+        //        }
+
+        //    } else if (this.levelselectedBranchId == 3) {
+        //        srcMenu = this.getMenuItemfromId(this.props.selectedBranchId, this.props.childMenuItems);
+        //    } else {
+        //        return null;
+        //    }
+
+
+        //}
+
+
+
+        var lis = srcMenu
             .filter((v) => {
-                return v.isVisible !== false
+                return v.isVisible === true && v.title != null && v.title.length != 0
             })
-            .map((v, i) => {
-                var localId = (this.props.branchId != null ? this.props.branchId + "-" : "") + i;
+            .map((v, i, arr) => {
+                //var localId = (this.props.branchId != null ? this.props.branchId + "-" : "") + i;
+                var localId = this.props.branchId + i + (v.childMenuItems != null && v.childMenuItems.length != 0 ? "*" : "-");
+
+                //if (this.props.top == true) {
+                //    localId = this.props.selectedBranchId.substr(0, 4) + i + (v.childMenuItems != null && v.childMenuItems.length != 0 ? "*" : "-");
+                //}
+
+                if (localId.length === this.props.selectedBranchId.length && this.startsWith(this.props.selectedBranchId, this.props.branchId)) {
+
+                }
 
                 return <SubItems
+                    sibling={arr}
+                    top={this.props.top}
+                    icon={v.icon}
                     selectedBranchId={this.props.selectedBranchId}
                     branchId={localId}
                     onBranchClick={this.props.onBranchClick}
@@ -117,14 +276,58 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState> {
                     uri={v.uri} title={v.title}
                     isVisible={v.isVisible}
                     isSelected={v.isSelected}
-                    icon={v.icon}
-                    childMenuItems={v.childMenuItems} />;
-            });
+                    childMenuItems={v.childMenuItems} />
+            })
 
-        return <div className={list} >
+        //if (this.props.top) {
+
+        //    var styleHeader = style({
+        //        position: "relative",
+        //        border: "1px solid #eaeae9",
+        //        padding: 5,
+        //        backgroundColor: "#4e5b59"
+
+        //    });
+
+
+        //    return <div className={styleHeader} >
+        //        {lis}
+        //    </div>
+
+        //}
+
+        return <div>
             {lis}
-        </div>;
+        </div>
     }
+
+
+    private getMenuItemfromId(branchid: string, menu: MenuItemData[]) {
+
+        var first = branchid.substr(0, 2);
+        var rest = branchid.substr(2, branchid.length);
+
+        var find = menu.filter((x) => { return x.isVisible === true })[first.substr(0, 1)].childMenuItems;
+
+        if (find.length == 0) {
+            return menu;
+        }
+
+        if (rest == "") {
+            return find
+        }
+        return this.getMenuItemfromId(rest, find);
+
+    }
+
+    get levelselectedBranchId() {
+        return this.props.selectedBranchId.length / 2;
+    }
+
+    get selectedBranchIdHasChild() {
+        return this.props.selectedBranchId.substr(this.props.selectedBranchId.length - 1, 1) === "*";
+    }
+
 }
 
 export interface SubItemsProps extends MenuItemData {
@@ -133,104 +336,249 @@ export interface SubItemsProps extends MenuItemData {
     onBranchClick: (branchId: string) => void;
     branchId: string;
     selectedBranchId: string;
+    top: boolean;
+    sibling: MenuItemData[];
 }
 
 export interface SubItemsState {
     active: boolean;
 }
 
-export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
+export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
+
     constructor(p, c) {
         super(p, c);
-        this.state = {
-            active: false 
-        };
+        this.state = { active: false };
     }
 
+    startsWith(str: string, search: string) {
+        return str.substr(0, search.length) === search;
+
+    }
     render() {
-        var liElment = style({
-            paddingLeft: 20,
+
+
+
+
+        var branch = style({
+            //borderTop: this.props.branchId.length == 2 ? 1 : 0,
+            //borderBottom: this.props.branchId.length == 2 ? 1 : 0,
+            //borderLeft: 0,
+            //borderRight: 0,
+            //borderColor: "#eaeae9",
+            //borderStyle: "solid",
+            //minWidth: 200,
+
+            marginLeft: 15,
+            paddingLeft: 15 * this.level,
+            marginTop: 13,
+            marginBottom: 13,
+            color: "#FFF",
+            display: this.props.isVisible === false ? "none" : "inherit",
+            //backgroundColor: this.startsWith(this.props.selectedBranchId, this.props.branchId) ? this.LightenDarkenColor("#eaeae9", -(this.props.branchId.length * 9)) : "#FFF",
             position: "relative",
-            zIndex: 1,
-        });
-        var inlie = style({
-            display: "inline-block",
+            //minHeight: 30,
             $nest: {
-                "i": {
-                    display: "inline",
-                    position: "absolute",
-                    fontSize: 25,
-                    fontWeight: 900,
-                    cursor: "pointer",
+            }
+        })
+
+        var branchName = style({
+            paddingLeft: 10
+        })
+
+        var branchItem = style({
+            minHeight: 30,
+            fontSize: 14,
+            $nest: {
+                ["& > a"]: {
+                    color: this.isMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF"
+                    //fontWeight: this.props.selectedBranchId == this.props.branchId ? "bold" : "initial"
                 },
-            },
-        });
-        var inliei = style({
-            display: "inline",
+                //["&:hover"]: {
+                //    backgroundColor: "#fff"
+                //}
+            }
+        })
+
+        var branchIcon = style({
             position: "absolute",
-            top: 0,
-            left: 0,
+            top: 7,
+            right: 0,
             fontSize: 25,
             fontWeight: 900,
+            cursor: "pointer"
+        });
+
+
+
+        var meunuIcon = style({
+            height: 40,
+            width: 40,
+            fontSize: 25,
+            display: this.props.icon === "" || this.props.icon == null ? "none" : "initial",
+
+        });
+
+        var styleHeader = style({
+            padding: "0 60px",
+            //boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+            backgroundColor: "#ffffff",
+            border: "1px solid #eaeae9",
+        });
+        var styleOnglet = style({
+            paddingTop: 5,
+            paddingBottom: 5,
+            display: "inline-block",
             cursor: "pointer",
-        });
-        var liLine = style({
-            padding: 5,
-            color: "#8aa4af",
+            width: 100 / this.props.sibling.length + "%",
+            minWidth: "120px",
+            textAlign: "center",
+            //borderBottom: this.isMenuSelected ? "4px solid #f39100" : ""
             $nest: {
-                ["&:hover"]: {
-                    color: "white",
+                ["&  a"]: {
+                    color: this.isMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
+                    fontSize: 14
                 },
-                ["&:hover > a"]: {
-                    color: "white",
-                },
-                ["&:hover > i"]: {
-                    color: "white",
-                },
-                ["& > a"]: {
-                    color: (this.state.active || this.isMenuSelected) ? "white" : "black",
-                },
-                ["& > i"]: {
-                    color: (this.state.active || this.isMenuSelected) ? "white" : "balck" ,
-                },
-            },
+            }
+
+
+        });
+        //var styleFont = Helper.getFont({ fontSize: "16px", lineHeight: 1.5 });
+        var styleActif = style({
+            borderBottom: "4px solid #f39100",
+        });
+        //var styleFontActif = Helper.getFont({ fontSize: "16px", color: "#f39100", lineHeight: 1.5 });
+        var styleContenu = style({
+            margin: "40px 0px",
         });
 
-        // var hide = this.props.isVisible === false ? " hide" : "";
-        // var active = this.state.active || this.props.isSelected ? "active" : "";
 
-        return <div className={liElment} data-branch={this.props.branchId} >
-            <div className={liLine} >
-                { this.anyChild ?
-                    <i onClick={this.onClick} className={inliei + " " + ((this.state.active || this.isMenuSelected) ? "pe-7s-angle-down" : "pe-7s-angle-right")} ></i>
-                    : null
-                }
-                <a className={inlie} onClick={this.onClickA} href={this.props.uri} >
+        //if (this.props.top == true && this.level < 3) {
+        //    return this.anyChild && (this.state.active || this.isMenuSelected) ?
+        //        <SubMenu
+        //            top={this.props.top}
+        //            onBranchClick={this.props.onBranchClick}
+        //            branchId={this.props.branchId}
+        //            selectedBranchId={this.props.selectedBranchId}
+        //            open={this.props.open}
+        //            onMenuClick={this.props.onMenuClick}
+        //            childMenuItems={this.props.childMenuItems} /> : null;
+        //}
+
+
+        //if (this.props.top == true && this.level >= 3) {
+        //    return <span className={styleOnglet} onClick={this.onClick} >
+        //        <a onClick={this.onClickA} href={this.props.uri}>
+        //            {this.props.title}
+        //        </a>
+        //    </span >
+
+        //}
+
+        //if (this.props.top == true) {
+        //    return null;
+        //}
+
+        //if (this.level >= 3 && this.props.top == false) {
+        //    return null;
+        //}
+
+
+        return <div className={branch} data-branch={this.props.branchId} >
+            <div className={branchItem} onClick={this.onClick}>
+                <span className={meunuIcon}>
+                    <i className={this.props.icon} onClick={this.onClick} />
+                </span>
+                <a className={branchName} onClick={this.onClickA} href={this.props.uri}>
                     {this.props.title}
                 </a>
+                {
+                    //this.anyChild /*&& this.level < 2*/ ?
+                    //<i
+                    //    onClick={this.onClick}
+                    //    className={branchIcon + " " + ((this.state.active || this.isMenuSelected) ? "pe-7s-angle-down" : "pe-7s-angle-right")}
+                    //></i>
+                    //:
+                    //null
+                }
             </div>
-            { this.anyChild && (this.state.active || this.isMenuSelected) ? 
-                <SubMenu onBranchClick={this.props.onBranchClick} branchId={this.props.branchId} selectedBranchId={this.props.selectedBranchId} 
-                    open={this.props.open} onMenuClick={this.props.onMenuClick} childMenuItems={this.props.childMenuItems} /> 
-                : null
-            }
+
+            {this.anyChild && (this.state.active || this.isMenuSelected) ?
+                <SubMenu
+                    top={this.props.top}
+                    onBranchClick={this.props.onBranchClick}
+                    branchId={this.props.branchId}
+                    selectedBranchId={this.props.selectedBranchId}
+                    open={this.props.open}
+                    onMenuClick={this.props.onMenuClick}
+                    childMenuItems={this.props.childMenuItems} /> : null}
+
+
+
         </div>
     }
 
+    get level() {
+        return this.props.branchId.length / 2;
+    }
+
+    LightenDarkenColor = (col: string, amt: number) => {
+
+        var usePound = false;
+
+        if (col[0] == "#") {
+            col = col.slice(1);
+            usePound = true;
+        }
+
+        var num = parseInt(col, 16);
+
+        var r = (num >> 16) + amt;
+
+        if (r > 255) r = 255;
+        else if (r < 0) r = 0;
+
+        var b = ((num >> 8) & 0x00FF) + amt;
+
+        if (b > 255) b = 255;
+        else if (b < 0) b = 0;
+
+        var g = (num & 0x0000FF) + amt;
+
+        if (g > 255) g = 255;
+        else if (g < 0) g = 0;
+
+        return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16);
+
+    }
+
     get anyChild() {
-        return this.props.childMenuItems != null && this.props.childMenuItems.length != 0;
+
+        var child = this.props.childMenuItems == null ? [] : this.props.childMenuItems.filter(x => x.isVisible == true && x.title != null && x.title.length != 0);
+        return child.length != 0;
+
     }
 
     get isMenuSelected() {
-        return this.props.isSelected || this.props.selectedBranchId.substr(0, this.props.branchId.length) === this.props.branchId;
+        if (this.props.top === false) {
+            return /*this.props.isSelected ||*/ this.props.selectedBranchId.substr(0, this.props.branchId.length) === this.props.branchId;
+        }
+
+        return /*this.props.isSelected ||*/this.props.selectedBranchId === this.props.branchId;
+
+        //this.props.selectedBranchId.substr(this.props.selectedBranchId.length - 2, this.props.selectedBranchId.length - 1)
+        //===
+        //this.props.branchId.substr(this.props.branchId.length - 2, this.props.branchId.length - 1)
+
     }
+
+
 
     onClick = (e) => {
         if (this.props.selectedBranchId.substr(0, this.props.branchId.length) === this.props.branchId) {
-            var idParent = this.props.branchId.substr(0, this.props.branchId.lastIndexOf("-"));
-            this.props.onBranchClick(idParent);
+            this.SendBranchClick();
         } else {
-            this.props.onBranchClick(this.props.branchId);
+            this.SendBranchClick();
         }
 
         this.setState({ active: false });
@@ -240,14 +588,26 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
     }
 
     onClickA = (e) => {
-        this.props.onBranchClick(this.props.branchId);
+
+        this.SendBranchClick();
         var value = this.props.onMenuClick(this.props.uri);
 
-        if (value === false) {
-            e.preventDefault();
-        }
+        //if (value === false) {
+        e.preventDefault();
+        //}
+    }
+
+    private SendBranchClick = () => {
+        this.props.onBranchClick(this.props.branchId);
+
+    }
+
+    private SendBranchParentClick = () => {
+        var idParent = this.props.branchId.substr(0, this.props.branchId.length - 2);//this.props.branchId.substr(0, this.props.branchId.lastIndexOf("-"));
+        this.props.onBranchClick(idParent);
     }
 }
+
 
 export interface TopMenuProps {
     antennesUser: AntennesUtilisateur;
@@ -255,6 +615,12 @@ export interface TopMenuProps {
     rechercheEnCours: string;
     onSearchTexteChange: (search: string) => void;
     onSearchFocusChange: (focus: boolean) => void;
+
+
+    selectedBranchId: string;
+    onBranchClick: (branchId: string) => void;
+    extendMenu: MenuItemData[];
+    onMenuClick?: (uri: string) => boolean | void;
 }
 
 export interface TopMenuState {
@@ -276,20 +642,27 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
     }
 
     render() {
+        //var topMenuSpace = style({
+        //    position: "relative",
+        //    width: "100%",
+        //    $nest: {
+        //        "& > div": {
+        //            paddingLeft: widthLeftMenu,
+        //        },
+        //    }
+        //});
+
         var styleG = style({
-            backgroundColor: "#3f3b37",
-            height: "72px",
-            position: "relative",
-            left: "14%",
-            top: 0,
-            width: "86%",
-            textAlign: "right",
-            padding: "16px 32px 16px 60px",
+            textAlign: "right"
+            //padding: "16px 32px 16px 60px",
+            //marginLeft: 60
         });
+
         var styleRecherche = style({
             width: "25%",
             height: "40px",
             float: "left",
+            marginLeft: 60
         });
         var styleInfosTexte = style({
             marginRight: "48px",
@@ -300,12 +673,13 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
                 },
             },
         });
-        var styleDroite = getFontClassName({ fontSize: "14px", color: "#ffffff", }) + " " + style({
+        var styleDroite = getFontClassName({ fontSize: "14px", color: "#4e5b59", }) + " " + style({
             marginTop: "8px",
             display: "inline-block",
         });
 
         return <div className={styleG} >
+
             <div className={styleRecherche} >
                 {/* <Text value={this.props.rechercheEnCours} onChange={this.onSearchTexteChange} 
                     placeholder="Recherche" iconName="search" type="search"  /> */}
@@ -313,30 +687,30 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
             </div>
 
             <span className={styleDroite} >
-                { arrayIsNullOrEmpty(this.props.antennesUser.Antennes) ? null : 
-                    <IconCarteContour>
+                {arrayIsNullOrEmpty(this.props.antennesUser.Antennes) ? null :
+                    <IconCarteContour BackgroundColor="#FFF" Color="#3f3b37">
                         <span className={styleInfosTexte} >
                             <i>
-                                { this.props.antennesUser.IdxAntennesActives.map((idx: number, cpt: number): JSX.Element => {
+                                {this.props.antennesUser.IdxAntennesActives.map((idx: number, cpt: number): JSX.Element => {
                                     return <span key={cpt} >{(cpt > 0 ? ", " : "") + this.props.antennesUser.Antennes[idx]}</span>;
-                                }) }
+                                })}
                             </i>
-                            <IconChevron Direction={DirectionEnum.Bas} Color="#ffffff" BackgroundColor="#3f3b37" IconSize="14px" />
+                            <IconChevron Direction={DirectionEnum.Bas} Color="#4e5b59" BackgroundColor="#FFF" IconSize="14px" />
                         </span>
                     </IconCarteContour>
                 }
 
-                { stringIsNullOrEmpty(this.props.antennesUser.Utilisateur) ? null : 
-                    <IconUtilisateur IconSize="14px" lineHeight={1.14} AvecCercle={false} BackgroundColor="#3f3b37" >
+                {stringIsNullOrEmpty(this.props.antennesUser.Utilisateur) ? null :
+                    <IconUtilisateur IconSize="14px" lineHeight={1.14} AvecCercle={false} BackgroundColor="#FFF" >
                         <span className={styleInfosTexte} >
                             <i>{this.props.antennesUser.Utilisateur}</i>
-                            <IconChevron Direction={DirectionEnum.Bas} Color="#ffffff" BackgroundColor="#3f3b37" IconSize="14px" />
+                            <IconChevron Direction={DirectionEnum.Bas} Color="#4e5b59" BackgroundColor="#FFF" IconSize="14px" />
                         </span>
                     </IconUtilisateur>
                 }
 
-                { this.props.onDeconnexionClick == null ? null :
-                    <IconDeconnexion onClick={this.props.onDeconnexionClick} />
+                {this.props.onDeconnexionClick == null ? null :
+                    <IconDeconnexion BackgroundColor="#FFF" Color="#3f3b37" onClick={this.props.onDeconnexionClick} />
                 }
             </span>
         </div>
@@ -376,265 +750,95 @@ export class TopMenuItem extends React.Component<TopMenuItemProps, TopMenuItemSt
 }
 
 
+
 export interface LeftMenuProps {
+    onBranchClick: (branchId: string) => void;
     menuItems: MenuItemData[];
     onHomeClick?: () => void;
     onMenuClick?: (uri: string) => boolean | void;
+    selectedBranchId?: string;
+
 }
 
 export interface LeftMenuState {
-    selectedBranchId: string;
 }
 
-export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
+export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState>{
+
     constructor(p, c) {
         super(p, c);
         this.state = {
-            selectedBranchId: "",
+            selectedBranchId: ""
         };
     }
 
     render() {
-        // var expandIcon = style({
-        //     fontSize: 25,
-        //     padding: 10
-        // });
-        // var Homeimage = style({
-        //     cursor:"pointer",
-        //     float:"left",
-        //     width:"100%",
-        //     height:30,
-        //     position:"absolute"
-        // });
-        var mainSideBar = style({
-            top:0,
-            backgroundColor:"#FAFAFA",
-            float: "left",
-            alignItems: "center",
-            position: "absolute",
-            width: "14%",
-            minHeight: "100%",
-            $nest: {
-                '& a': {
-                    color: "black",
-                    textDecoration: "none",
-                    $nest: {
-                        '&:hover': {
-                            color: "white",
-                            textDecoration: "none",
-                        },
-                    },
-                },
-                '& i': {
-                    color: "black",
-                    cursor: "pointer",
-                    $nest: {
-                        '&:hover': {
-                            color: "white",
-                        },
-                    },
-                },
-            },
+
+
+        var expandIcon = style({
+            fontSize: 25,
+            padding: 10
         });
+        var Homeimage = style({
+            cursor: "pointer",
+            float: "left",
+            width: "100%",
+            height: 30,
+            position: "absolute"
+        });
+
+        var menu = <SubMenu
+            open={false}
+            onBranchClick={this.props.onBranchClick}
+            branchId={""}
+            selectedBranchId={this.props.selectedBranchId}
+            onMenuClick={this.props.onMenuClick}
+            childMenuItems={this.props.menuItems}
+            top={false}
+        />
+        var aside = style({
+            backgroundColor: "#4e5b59",
+
+        });
+
         var img_style = style({
             width: "75%",
             height: "70%"
         });
         var div_style = style({
-            borderBottom: "solid 1px #eaeae9",
-            marginTop:"10%",
+            marginTop: "15%",
         });
 
-        var menu = this.props.menuItems
-            .filter((v) => {
-                return v.isVisible !== false;
-            })
-            .map((v, i) => {
-                return <MenuItem
-                    onBranchClick={this.onBranchClick}
-                    branchId={i.toString()}
-                    selectedBranchId={this.state.selectedBranchId}
-                    key={i}
-                    onMenuClick={this.props.onMenuClick}
-                    title={v.title}
-                    icon={v.icon}
-                    uri={v.uri}
-                    isSelected={v.isSelected}
-                    isVisible={v.isVisible}
-                    childMenuItems={v.childMenuItems} />;
-            });
+        return <aside className={aside}>
+            <a onClick={this.props.onHomeClick}>
+                <img className={img_style} src={UP}></img>
+            </a>
+            <div className={div_style}>
+            </div>
+            <br />
+            <div className="">
+                {menu}
+            </div>
+            <br />
+            <div className="">
 
-        return <aside className={mainSideBar}>
-            <section className="" >
-                <div className="">
-                    <a onClick={this.props.onHomeClick} >
-                        <img className={img_style} src={UP}></img>
-                    </a>
-                    <div className={div_style}>
-                    </div>
-                    <br />
-                    <div className="">
-                        {menu}
-                    </div>
-                    {/* <br />
-                    <div className="">
-                        
-                    </div> */}
-                </div>
-            </section>
-        </aside>;
+            </div>
+        </aside>
+
     }
 
-    onBranchClick = (branchId: string) => {
-        this.setState({ selectedBranchId: branchId })
-    }
+
+
 }
 
 
+
 export interface MenuItemData {
+    icon?: string;
     title: string;
     uri: string;
-    icon: string;
     isSelected: boolean;
     isVisible: boolean;
     childMenuItems?: MenuItemData[];
 
-}
-
-export interface MenuItemProps extends MenuItemData {
-    onMenuClick?: (uri: string) => boolean | void;
-    onBranchClick: (branchId: string) => void;
-    branchId: string;
-    selectedBranchId: string;
-}
-
-export interface MenuItemState {
-    active: boolean;
-}
-
-export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
-
-    constructor(p, c) {
-        super(p, c);
-        this.state = { active: false };
-    }
-
-
-    render() {
-
-        var subMenu = style({
-        })
-        var menuItem = style({
-            borderTopRightRadius: 5,
-            position: "relative",
-            display: "list-item",
-            overflow: "hidden",
-            minHeight: 37,
-            $nest: {
-                ["." + subMenu]: {
-                    display: this.state.active === true ? "block" : "none",
-                },
-                ['&:hover']: this.state.active === false ?
-                    {
-                        backgroundColor: "rgb(0, 74, 92)",
-                        minWidth: 300,
-                        overflow: "visible",
-                    }
-                    : null,
-                ['&:hover > .' + subMenu]: this.state.active === false ?
-                    {
-                        display: "block",
-                        position: "absolute",
-                        minWidth: 300
-                    }
-                    : null,
-                ['&:hover > .' + subMenu + " > div"]: this.state.active === false ?
-                    {
-                        paddingTop: 0,
-                        paddingBottom: 10
-                    }
-                    : null
-            },
-        })
-
-        var meunuIcon = style({
-            fontSize: 25,
-            paddingBottom: 5,
-            paddingRight: 10,
-            //display: "inline-block"
-        });
-
-        var slectedMenu = {
-            background: "rgba(0, 74, 92, 1) none repeat scroll 0 0",
-            borderLeft: "3px solid #F39C12"
-        }
-
-        var menuItemHover = style(
-            {
-                borderLeft: this.isMenuSelected ? "3px solid #F39C12" : "",
-                paddingLeft: 10,
-                borderTopRightRadius: 5,
-
-
-                $nest: {
-                    ["&:hover"]: slectedMenu,
-                    ['&:hover > .' + meunuIcon + " > i"]:
-                    {
-                        color: "white"
-                    },
-                    ["&:hover >  a"]:
-                    {
-                        color: "white"
-                    }
-                }
-            });
-
-        var menuLink = style(
-            {
-                minWidth: 200,
-                position: "absolute",
-                padding: 10,
-                left: 45,
-
-            }
-        )
-
-
-        var hide = this.props.isVisible === false ? "hide " : "";
-        var active = this.state.active || this.props.isSelected ? " active" : "";
-
-        return <div className={menuItem} >
-            <div className={menuItemHover}>
-                <span className={meunuIcon}>
-                    <i className={this.props.icon} onClick={this.iconClick} />
-                </span>
-                <a className={menuLink} onClick={this.onClickA} href={this.props.uri}>
-                    {this.props.title}
-                </a>
-            </div >
-                <div className={subMenu}>
-                <SubMenu selectedBranchId={this.props.selectedBranchId} onBranchClick={this.props.onBranchClick} branchId={this.props.branchId} onMenuClick={this.props.onMenuClick} childMenuItems={this.props.childMenuItems} open={this.state.active} />
-                </div>
-        </div >
-
-
-    }
-
-    get isMenuSelected() {
-        return this.props.isSelected || this.props.selectedBranchId.substr(0, this.props.branchId.length) === this.props.branchId;
-    }
-
-    iconClick = (e) => {
-        this.props.onBranchClick(this.props.branchId);
-        this.setState({ active: !this.state.active });
-        e.stopPropagation();
-    }
-
-    onClickA = (e) => {
-        var value = this.props.onMenuClick(this.props.uri);
-        e.preventDefault();
-        if (value === false) {
-
-        }
-    }
 }
