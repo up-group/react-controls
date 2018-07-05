@@ -45,6 +45,7 @@ storiesOf('UpMenu', module)
             <UpMenuOH onDeconnexionClick={() => { }} onMenuClick={action("Menu clicked")}
                 antennesUser={{Antennes:["Antennes"],IdxAntennesActives:[0],Utilisateur:"User"}} 
                 rechercheEnCours="" onSearchTexteChange={(str) => {}} onSearchFocusChange={(focus) => {}}
+                onAntennesChange={(idxAntenne) => {}}
                 // topMenuItems={[
                 //     { title: "Recherche", icon: "up up-dossier", action: "https://www.google.fr" },
                 //     { title: "Alertes", icon: "up up-dossier", action: () => { alert(5); } }

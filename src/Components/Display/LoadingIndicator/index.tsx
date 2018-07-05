@@ -64,7 +64,7 @@ export default class LoadingIndicator extends React.Component<LoadingIndicatorPr
                 <div style={overlay} >
                     <div style={circle}>
                         <SvgIcon viewBox="0 0 48 48">
-                        <Circle cx="24" cy="24" r="21" stroke="#007acc" strokeWidth="6" fill="none" />
+                            <Circle cx="24" cy="24" r="21" stroke="#007acc" strokeWidth="6" fill="none" />
                         </SvgIcon>
                     </div>
                 </div>
