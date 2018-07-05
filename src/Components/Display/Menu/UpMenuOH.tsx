@@ -20,7 +20,6 @@ export interface AntennesUtilisateur {
 export interface UpMenuProps {
     antennesUser: AntennesUtilisateur;
     menuItems: MenuItemData[];
-    // topMenuItems?: TopMenuItemProps[];
     onMenuClick?: (uri: string) => boolean | void;
     onDeconnexionClick?: () => void;
     onHomeClick?: () => void
@@ -139,29 +138,7 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
         </div>;
     }
 
-    //nav;
 
-    //componentDidMount() {
-    //    window.addEventListener('scroll', this.handleScroll);
-    //}
-
-    //componentWillUnmount() {
-    //    window.removeEventListener('scroll', this.handleScroll);
-    //}
-
-    //handleScroll = () => {
-    //    lastScrollY = window.scrollY;
-    //    console.log(lastScrollY);
-
-    //    if (!ticking) {
-    //        window.requestAnimationFrame(() => {
-    //            this.nav.current.style.top = `${lastScrollY}px`;
-    //            ticking = false;
-    //        });
-
-    //        ticking = true;
-    //    }
-    //};
 
     private onBranchClick = (branchId: string) => {
 
@@ -201,49 +178,9 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
         if (this.props.childMenuItems == null || this.props.childMenuItems.length == 0) {
             return null;
         }
-        //var list = style({
-        //    //border: "1px solid",
-        //    //backgroundColor: "#00BBD3",
-        //    //listStyle: "none",
-        //    //display: "block",
-        //    //marginLeft: "8%",
-        //    //zIndex: 1,
-        //    //position: "relative",
-        //    $nest: {
-        //        '& ul': {
-        //            paddingLeft: 40,
-        //        },
-        //        '& a': {
-        //            $nest: {
-        //                '&:hover': {},
-        //            }
-        //        },
 
-        //    }
-        //})
         var srcMenu = this.props.childMenuItems;
-        //console.log(this.levelselectedBranchId)
 
-        //if (this.props.top == true && this.levelselectedBranchId < 2) {
-        //    return null;
-        //}
-
-        //if (this.props.top == true) {
-        //    if (this.levelselectedBranchId == 2) {
-        //        if (this.selectedBranchIdHasChild == true) {
-        //            srcMenu = this.getMenuItemfromId(this.props.selectedBranchId, this.props.childMenuItems);
-        //        } else {
-        //            return null;
-        //        }
-
-        //    } else if (this.levelselectedBranchId == 3) {
-        //        srcMenu = this.getMenuItemfromId(this.props.selectedBranchId, this.props.childMenuItems);
-        //    } else {
-        //        return null;
-        //    }
-
-
-        //}
 
 
 
@@ -252,16 +189,8 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
                 return v.isVisible === true && v.title != null && v.title.length != 0
             })
             .map((v, i, arr) => {
-                //var localId = (this.props.branchId != null ? this.props.branchId + "-" : "") + i;
                 var localId = this.props.branchId + i + (v.childMenuItems != null && v.childMenuItems.length != 0 ? "*" : "-");
 
-                //if (this.props.top == true) {
-                //    localId = this.props.selectedBranchId.substr(0, 4) + i + (v.childMenuItems != null && v.childMenuItems.length != 0 ? "*" : "-");
-                //}
-
-                if (localId.length === this.props.selectedBranchId.length && this.startsWith(this.props.selectedBranchId, this.props.branchId)) {
-
-                }
 
                 return <SubItems
                     sibling={arr}
@@ -279,22 +208,6 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
                     childMenuItems={v.childMenuItems} />
             })
 
-        //if (this.props.top) {
-
-        //    var styleHeader = style({
-        //        position: "relative",
-        //        border: "1px solid #eaeae9",
-        //        padding: 5,
-        //        backgroundColor: "#4e5b59"
-
-        //    });
-
-
-        //    return <div className={styleHeader} >
-        //        {lis}
-        //    </div>
-
-        //}
 
         return <div>
             {lis}
@@ -356,28 +269,14 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
 
     }
     render() {
-
-
-
-
         var branch = style({
-            //borderTop: this.props.branchId.length == 2 ? 1 : 0,
-            //borderBottom: this.props.branchId.length == 2 ? 1 : 0,
-            //borderLeft: 0,
-            //borderRight: 0,
-            //borderColor: "#eaeae9",
-            //borderStyle: "solid",
-            //minWidth: 200,
-
             marginLeft: 15,
             paddingLeft: 15 * this.level,
             marginTop: 13,
             marginBottom: 13,
             color: "#FFF",
             display: this.props.isVisible === false ? "none" : "inherit",
-            //backgroundColor: this.startsWith(this.props.selectedBranchId, this.props.branchId) ? this.LightenDarkenColor("#eaeae9", -(this.props.branchId.length * 9)) : "#FFF",
             position: "relative",
-            //minHeight: 30,
             $nest: {
             }
         })
@@ -392,11 +291,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
             $nest: {
                 ["& > a"]: {
                     color: this.isMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF"
-                    //fontWeight: this.props.selectedBranchId == this.props.branchId ? "bold" : "initial"
                 },
-                //["&:hover"]: {
-                //    backgroundColor: "#fff"
-                //}
             }
         })
 
@@ -421,7 +316,6 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
 
         var styleHeader = style({
             padding: "0 60px",
-            //boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
             backgroundColor: "#ffffff",
             border: "1px solid #eaeae9",
         });
@@ -433,7 +327,6 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
             width: 100 / this.props.sibling.length + "%",
             minWidth: "120px",
             textAlign: "center",
-            //borderBottom: this.isMenuSelected ? "4px solid #f39100" : ""
             $nest: {
                 ["&  a"]: {
                     color: this.isMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
@@ -443,45 +336,12 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
 
 
         });
-        //var styleFont = Helper.getFont({ fontSize: "16px", lineHeight: 1.5 });
         var styleActif = style({
             borderBottom: "4px solid #f39100",
         });
-        //var styleFontActif = Helper.getFont({ fontSize: "16px", color: "#f39100", lineHeight: 1.5 });
         var styleContenu = style({
             margin: "40px 0px",
         });
-
-
-        //if (this.props.top == true && this.level < 3) {
-        //    return this.anyChild && (this.state.active || this.isMenuSelected) ?
-        //        <SubMenu
-        //            top={this.props.top}
-        //            onBranchClick={this.props.onBranchClick}
-        //            branchId={this.props.branchId}
-        //            selectedBranchId={this.props.selectedBranchId}
-        //            open={this.props.open}
-        //            onMenuClick={this.props.onMenuClick}
-        //            childMenuItems={this.props.childMenuItems} /> : null;
-        //}
-
-
-        //if (this.props.top == true && this.level >= 3) {
-        //    return <span className={styleOnglet} onClick={this.onClick} >
-        //        <a onClick={this.onClickA} href={this.props.uri}>
-        //            {this.props.title}
-        //        </a>
-        //    </span >
-
-        //}
-
-        //if (this.props.top == true) {
-        //    return null;
-        //}
-
-        //if (this.level >= 3 && this.props.top == false) {
-        //    return null;
-        //}
 
 
         return <div className={branch} data-branch={this.props.branchId} >
@@ -492,15 +352,6 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
                 <a className={branchName} onClick={this.onClickA} href={this.props.uri}>
                     {this.props.title}
                 </a>
-                {
-                    //this.anyChild /*&& this.level < 2*/ ?
-                    //<i
-                    //    onClick={this.onClick}
-                    //    className={branchIcon + " " + ((this.state.active || this.isMenuSelected) ? "pe-7s-angle-down" : "pe-7s-angle-right")}
-                    //></i>
-                    //:
-                    //null
-                }
             </div>
 
             {this.anyChild && (this.state.active || this.isMenuSelected) ?
@@ -512,8 +363,6 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
                     open={this.props.open}
                     onMenuClick={this.props.onMenuClick}
                     childMenuItems={this.props.childMenuItems} /> : null}
-
-
 
         </div>
     }
@@ -561,15 +410,10 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
 
     get isMenuSelected() {
         if (this.props.top === false) {
-            return /*this.props.isSelected ||*/ this.props.selectedBranchId.substr(0, this.props.branchId.length) === this.props.branchId;
+            return this.props.selectedBranchId.substr(0, this.props.branchId.length) === this.props.branchId;
         }
 
-        return /*this.props.isSelected ||*/this.props.selectedBranchId === this.props.branchId;
-
-        //this.props.selectedBranchId.substr(this.props.selectedBranchId.length - 2, this.props.selectedBranchId.length - 1)
-        //===
-        //this.props.branchId.substr(this.props.branchId.length - 2, this.props.branchId.length - 1)
-
+        return this.props.selectedBranchId === this.props.branchId;
     }
 
 
@@ -591,15 +435,11 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
 
         this.SendBranchClick();
         var value = this.props.onMenuClick(this.props.uri);
-
-        //if (value === false) {
         e.preventDefault();
-        //}
     }
 
     private SendBranchClick = () => {
         this.props.onBranchClick(this.props.branchId);
-
     }
 
     private SendBranchParentClick = () => {
@@ -615,8 +455,6 @@ export interface TopMenuProps {
     rechercheEnCours: string;
     onSearchTexteChange: (search: string) => void;
     onSearchFocusChange: (focus: boolean) => void;
-
-
     selectedBranchId: string;
     onBranchClick: (branchId: string) => void;
     extendMenu: MenuItemData[];
@@ -642,20 +480,9 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
     }
 
     render() {
-        //var topMenuSpace = style({
-        //    position: "relative",
-        //    width: "100%",
-        //    $nest: {
-        //        "& > div": {
-        //            paddingLeft: widthLeftMenu,
-        //        },
-        //    }
-        //});
 
         var styleG = style({
             textAlign: "right"
-            //padding: "16px 32px 16px 60px",
-            //marginLeft: 60
         });
 
         var styleRecherche = style({
@@ -681,8 +508,6 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
         return <div className={styleG} >
 
             <div className={styleRecherche} >
-                {/* <Text value={this.props.rechercheEnCours} onChange={this.onSearchTexteChange} 
-                    placeholder="Recherche" iconName="search" type="search"  /> */}
                 <Search Value={this.props.rechercheEnCours} PlaceHolder="Recherche" onChange={this.onSearchTexteChange} onFocus={this.onSearchFocusChange} />
             </div>
 
@@ -826,12 +651,7 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState>{
         </aside>
 
     }
-
-
-
 }
-
-
 
 export interface MenuItemData {
     icon?: string;
