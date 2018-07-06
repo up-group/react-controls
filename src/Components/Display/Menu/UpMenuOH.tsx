@@ -1,11 +1,11 @@
 ﻿import * as React from "react"
 import { style } from "typestyle"
-import Text from "../../Inputs/Input/index"
+// import Text from "../../Inputs/Input/index"
 import "./up.png"
-import { IconDeconnexion, IconCarteContour, IconUtilisateur, IconChevron, DirectionEnum, IconCheckBox_Check, IconCheckBox_Empty } from "../Icons/Icons";
-import { getFontClassName, stringIsNullOrEmpty, arrayIsNullOrEmpty } from "../../../Common/utils/helpers";
-import Search from "../../Inputs/Input/Search";
-import { UpLoadingIndicator } from "../../..";
+// import { IconDeconnexion, IconCarteContour, IconUtilisateur, IconChevron, DirectionEnum, IconCheckBox_Check, IconCheckBox_Empty } from "../Icons/Icons";
+// import { getFontClassName, stringIsNullOrEmpty, arrayIsNullOrEmpty } from "../../../Common/utils/helpers";
+// import Search from "../../Inputs/Input/Search";
+// import { UpLoadingIndicator } from "../../..";
 
 
 var UP = require("./UP_OneHome.png");
@@ -18,17 +18,11 @@ export interface AntennesUtilisateur {
 
 
 export interface UpMenuProps {
-    antennesUser: AntennesUtilisateur;
     menuItems: MenuItemData[];
     // topMenuItems?: TopMenuItemProps[];
     onMenuClick?: (uri: string) => boolean | void;
-    onDeconnexionClick?: () => void;
     onHomeClick?: () => void
-    clientId?: string;
-    rechercheEnCours: string;
-    onSearchTexteChange: (search: string) => void;
-    onSearchFocusChange: (focus: boolean) => void;
-    onAntennesChange: (idxAntenne: number) => void;
+    // clientId?: string;
 }
 
 export interface UpMenuState {
@@ -40,25 +34,7 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
     }
 
     render() {
-        var styleContent = style({
-            minHeight: 250,
-            marginLeft: "14%",
-        });
-
-        return <div>
-            <TopMenu antennesUser={this.props.antennesUser} 
-                onDeconnexionClick={this.props.onDeconnexionClick} 
-                rechercheEnCours={this.props.rechercheEnCours} 
-                onSearchTexteChange={this.props.onSearchTexteChange} 
-                onSearchFocusChange={this.props.onSearchFocusChange}
-                onAntennesChange={this.props.onAntennesChange} />
-
-            <LeftMenu onHomeClick={this.props.onHomeClick} menuItems={this.props.menuItems} onMenuClick={this.props.onMenuClick} />
-
-            <section className={styleContent} >
-                {this.props.children}
-            </section>
-        </div>;
+        return <LeftMenu onHomeClick={this.props.onHomeClick} menuItems={this.props.menuItems} onMenuClick={this.props.onMenuClick} />;
     }
 }
 
@@ -249,172 +225,6 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
         if (value === false) {
             e.preventDefault();
         }
-    }
-}
-
-export interface TopMenuProps {
-    antennesUser: AntennesUtilisateur;
-    onDeconnexionClick: () => void;
-    rechercheEnCours: string;
-    onSearchTexteChange: (search: string) => void;
-    onSearchFocusChange: (focus: boolean) => void;
-    onAntennesChange: (idxAntenne: number) => void;
-}
-
-export interface TopMenuState {
-    AffChoixAntenne: boolean;
-    AffInfosUser: boolean;
-    posClick: number;
-}
-
-export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
-    constructor(p, c) {
-        super(p, c);
-        this.state = {
-            AffChoixAntenne: false,
-            AffInfosUser: false,
-            posClick: 0,
-        };
-    }
-
-    onSearchTexteChange = (str: string) => {
-        this.props.onSearchTexteChange(str);
-    }
-    onSearchFocusChange = (focus: boolean) => {
-        this.props.onSearchFocusChange(focus);
-    }
-
-    onChoixAntenneClick = (event) => {
-        this.setState({ AffChoixAntenne: ! this.state.AffChoixAntenne, AffInfosUser: false, posClick: event.clientX, });
-    }
-
-    onInfosUserClick = (event) => {
-        this.setState({ AffChoixAntenne: false, AffInfosUser: ! this.state.AffInfosUser, posClick: event.clientX, });
-    }
-
-    render() {
-        var styleG = style({
-            backgroundColor: "#3f3b37",
-            height: "72px",
-            position: "relative",
-            left: "14%",
-            top: 0,
-            width: "86%",
-            textAlign: "right",
-            padding: "16px 32px 16px 60px",
-        });
-        var styleRecherche = style({
-            width: "25%",
-            height: "40px",
-            float: "left",
-        });
-        var styleInfosTexte = style({
-            marginRight: "48px",
-            $nest: {
-                "& > i": {
-                    fontStyle: "normal",
-                    margin: "0 8px",
-                },
-            },
-        });
-        var styleDroite = getFontClassName({ fontSize: "14px", color: "#ffffff", }) + " " + style({
-            marginTop: "8px",
-            display: "inline-block",
-        });
-
-        return <div className={styleG} >
-            <div className={styleRecherche} >
-                {/* <Text value={this.props.rechercheEnCours} onChange={this.onSearchTexteChange} 
-                    placeholder="Recherche" iconName="search" type="search"  /> */}
-                <Search Value={this.props.rechercheEnCours} PlaceHolder="Recherche" onChange={this.onSearchTexteChange} onFocus={this.onSearchFocusChange} />
-                {/* <UpLoadingIndicator /> */}
-            </div>
-
-            <span className={styleDroite} >
-                { arrayIsNullOrEmpty(this.props.antennesUser.Antennes) ? null : 
-                    <IconCarteContour>
-                        <span className={styleInfosTexte} >
-                            <i>
-                                { this.props.antennesUser.IdxAntennesActives.map((idx: number, cpt: number): JSX.Element => {
-                                    return <span key={cpt} >{(cpt > 0 ? ", " : "") + this.props.antennesUser.Antennes[idx]}</span>;
-                                }) }
-                            </i>
-                            <IconChevron Direction={DirectionEnum.Bas} Color="#ffffff" BackgroundColor="#3f3b37" IconSize="14px" onClick={this.onChoixAntenneClick} />
-                        </span>
-                    </IconCarteContour>
-                }
-
-                { stringIsNullOrEmpty(this.props.antennesUser.Utilisateur) ? null : 
-                    <IconUtilisateur IconSize="14px" lineHeight={1.14} AvecCercle={false} BackgroundColor="#3f3b37" >
-                        <span className={styleInfosTexte} >
-                            <i>{this.props.antennesUser.Utilisateur}</i>
-                            <IconChevron Direction={DirectionEnum.Bas} Color="#ffffff" BackgroundColor="#3f3b37" IconSize="14px" onClick={this.onInfosUserClick} />
-                        </span>
-                    </IconUtilisateur>
-                }
-
-                { this.props.onDeconnexionClick == null ? null :
-                    <IconDeconnexion onClick={this.props.onDeconnexionClick} />
-                }
-
-                { this.state.AffChoixAntenne ? 
-                    <PopUpSousMenuTop PosRight={$("body").innerWidth() - this.state.posClick} Items={this.props.antennesUser.Antennes} 
-                        WithCheckBox={true} IdxItemsActifs={this.props.antennesUser.IdxAntennesActives} onItemClick={this.props.onAntennesChange} />
-                    : null
-                }
-
-                {/* { this.state.AffInfosUser ? 
-                    :
-                } */}
-            </span>
-        </div>
-    }
-}
-
-
-export interface PopUpSousMenuTopProps {
-    PosRight: number;
-    Items: string[];
-    WithCheckBox: boolean;
-    IdxItemsActifs?: number[];
-    onItemClick: (idxItem: number) => void;
-}
-
-export interface PopUpSousMenuTopState {
-}
-
-export class PopUpSousMenuTop extends React.Component<PopUpSousMenuTopProps, PopUpSousMenuTopState> {
-    constructor(p, c) {
-        super(p, c);
-    }
-
-    render() {
-        var styleG = style({
-            position: "absolute",
-            top: "72px",
-            right: this.props.PosRight.toString() + "px",
-            backgroundColor: "#ffffff",
-            borderRadius: "4px",
-            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
-            border: "1px solid #eaeae9",
-        });
-        var styleItem = getFontClassName({ fontSize: "14px", }) + " " + style({
-            cursor: "pointer",
-        });
-
-        return <div className={styleG} >
-            { this.props.Items.map((item: string, idx: number): JSX.Element => {
-                var interne: JSX.Element | string = item;                
-                if (this.props.WithCheckBox) {
-                    if (this.props.IdxItemsActifs.indexOf(idx) >= 0) {
-                        interne = <IconCheckBox_Check IconSize="14px" >{interne}</IconCheckBox_Check>;
-                    } else {
-                        interne = <IconCheckBox_Empty IconSize="14px" >{interne}</IconCheckBox_Empty>;
-                    }
-                }
-                return <p className={styleItem} onClick={() => this.props.onItemClick(idx)} key={idx} >{interne}</p>
-            }) }
-        </div>
     }
 }
 

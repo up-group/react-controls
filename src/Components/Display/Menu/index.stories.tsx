@@ -42,10 +42,7 @@ storiesOf('UpMenu', module)
     .addWithInfo('Simple usage 2', 'Utilisation du composant en lui passant les données à afficher',
     () => (
         <UpThemeProvider theme={UpDefaultTheme}>
-            <UpMenuOH onDeconnexionClick={() => { }} onMenuClick={action("Menu clicked")}
-                antennesUser={{Antennes:["Antennes"],IdxAntennesActives:[0],Utilisateur:"User"}} 
-                rechercheEnCours="" onSearchTexteChange={(str) => {}} onSearchFocusChange={(focus) => {}}
-                onAntennesChange={(idxAntenne) => {}}
+            <UpMenuOH onMenuClick={action("Menu clicked")}
                 // topMenuItems={[
                 //     { title: "Recherche", icon: "up up-dossier", action: "https://www.google.fr" },
                 //     { title: "Alertes", icon: "up up-dossier", action: () => { alert(5); } }
