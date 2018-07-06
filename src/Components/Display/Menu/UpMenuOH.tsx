@@ -237,9 +237,6 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
             }
         })
 
-        var branchName = style({
-            paddingLeft: 10
-        })
 
         var branchItem = style({
             minHeight: 30,
@@ -263,6 +260,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
 
 
         var meunuIcon = style({
+            paddingRight: 5,
             height: 40,
             width: 40,
             fontSize: 25,
@@ -305,7 +303,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
                 <span className={meunuIcon}>
                     <i className={this.props.icon} onClick={this.onClick} />
                 </span>
-                <a className={branchName} onClick={this.onClickA} href={this.props.uri}>
+                <a onClick={this.onClickA} href={this.props.uri}>
                     {this.props.title}
                 </a>
             </div>
