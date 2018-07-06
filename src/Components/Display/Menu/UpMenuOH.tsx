@@ -27,6 +27,7 @@ export interface UpMenuProps {
     rechercheEnCours: string;
     onSearchTexteChange: (search: string) => void;
     onSearchFocusChange: (focus: boolean) => void;
+    selectMenu?: (menu: MenuItemData) => boolean
 }
 
 export interface UpMenuState {
@@ -138,6 +139,34 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
         </div>;
     }
 
+    componentDidUpdate() {
+        if (this.props.selectMenu != null) {
+            var idSelected = this.findSelected(this.props.menuItems);
+            if (this.state.selectedBranchId !== idSelected && idSelected != null) {
+                this.setState({ selectedBranchId: idSelected });
+            }
+        }
+
+    }
+
+    private findSelected(MenuItemData: MenuItemData[]): string {
+
+        for (var i = 0; i < MenuItemData.length; i++) {
+            var localId = i + (MenuItemData[i].childMenuItems != null && MenuItemData[i].childMenuItems.length != 0 ? "*" : "-")
+            if (this.props.selectMenu(MenuItemData[i]) == true) {
+                return localId;
+            } else {
+                if (MenuItemData[i].childMenuItems != null && MenuItemData[i].childMenuItems.length != 0) {
+                    var child = this.findSelected(MenuItemData[i].childMenuItems)
+                    if (child != null) {
+                        return localId + child.toString();
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
 
 
     private onBranchClick = (branchId: string) => {
@@ -185,10 +214,7 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
 
 
         var lis = srcMenu
-            .filter((v) => {
-                return v.isVisible === true && v.title != null && v.title.length != 0
-            })
-            .map((v, i, arr) => {
+           .map((v, i, arr) => {
                 var localId = this.props.branchId + i + (v.childMenuItems != null && v.childMenuItems.length != 0 ? "*" : "-");
 
 
@@ -204,7 +230,6 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
                     onMenuClick={this.props.onMenuClick}
                     uri={v.uri} title={v.title}
                     isVisible={v.isVisible}
-                    isSelected={v.isSelected}
                     childMenuItems={v.childMenuItems} />
             })
 
@@ -655,7 +680,6 @@ export interface MenuItemData {
     icon?: string;
     title: string;
     uri: string;
-    isSelected: boolean;
     isVisible: boolean;
     childMenuItems?: MenuItemData[];
 
