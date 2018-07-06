@@ -12,7 +12,7 @@ var widthLeftMenu: number | string = 300;
 var heightTopBar: number | string = "72px";
 
 function getWidthDroite(): string {
-    var tailleBody: number = $("body").width();
+    var tailleBody: number = $("#app").width();
 
     if (typeof widthLeftMenu === "number") {
         return (tailleBody - widthLeftMenu).toString() + "px";
@@ -33,7 +33,7 @@ function getWidthDroite(): string {
     }
 }
 function getHeightContent(): string {
-    var tailleBody: number = $("body").height();
+    var tailleBody: number = $("#app").height();
 
     if (typeof heightTopBar === "number") {
         return (tailleBody - heightTopBar).toString() + "px";
@@ -78,29 +78,20 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
     }
 
     render() {
-        // var styleG = style({
-        //     width: $("body").width(),
-        //     height: $("body").height(),
-        //     position: "absolute",
-        //     top: 0,
-        //     left: 0,
-        // });
         var styleContenu = style({
             minHeight: 250,
-            marginLeft: widthLeftMenu,
-            
-            // position: "relative",
-            // left: widthLeftMenu,
-            // right: 0,
-            // width: getWidthDroite(),
-            // top: 0,//heightTopBar
-            // bottom: 0,
-            // height: "100%",//getHeightContent(),
+            position: "relative",
+            left: widthLeftMenu,
+            right: 0,
+            width: getWidthDroite(),
+            top: 0,
+            height: getHeightContent(),
             backgroundColor: "#f5f5f5",
-            // overflow: "hidden",
+            // padding: "30px 60px",
+            // overflow: "auto",
         });
 
-        return <div /*className={styleG}*/ >
+        return <div>
             <LeftMenu selectedBranchId={this.state.selectedBranchId} onBranchClick={this.onBranchClick}
                     onHomeClick={this.props.onHomeClick} menuItems={this.props.menuItems} onMenuClick={this.props.onMenuClick} />
             
@@ -551,9 +542,8 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
 
     render() {
         var styleAside = style({
-            position: "absolute",
+            position: "fixed",
             left: 0,
-            float: "left",
             width: widthLeftMenu,
             top: 0,
             height: "100%",
