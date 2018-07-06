@@ -43,8 +43,7 @@ storiesOf('UpMenu', module)
         () => (
             <UpThemeProvider theme={UpDefaultTheme}>
                 <UpMenuOH onDeconnexionClick={() => { }} onMenuClick={action("Menu clicked")}
-                    antennesUser={{ Antennes: ["Antennes"], IdxAntennesActives: [0], Utilisateur: "User" }}
-                    rechercheEnCours="" onSearchTexteChange={(str) => { }} onSearchFocusChange={(focus) => { }}
+                    Antennes={null} Recherche={null} Utilisateur="Master WEB"
                     // topMenuItems={[
                     //     { title: "Recherche", icon: "up up-dossier", action: "https://www.google.fr" },
                     //     { title: "Alertes", icon: "up up-dossier", action: () => { alert(5); } }
@@ -120,10 +119,7 @@ storiesOf('UpMenu', module)
         () => (
             <UpThemeProvider theme={UpDefaultTheme}>
                 <UpMenuOH
-                    antennesUser={{ Antennes: ["Antennes"], IdxAntennesActives: [0], Utilisateur: "User" }}
-                    rechercheEnCours=""
-                    onSearchTexteChange={(str) => { }}
-                    onSearchFocusChange={(focus) => { }}
+                    Antennes={null} Recherche={null} Utilisateur="Master WEB"
 
                     onDeconnexionClick={() => { }} onMenuClick={action("Menu clicked")}
                     //topMenuItems={[

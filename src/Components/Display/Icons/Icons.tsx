@@ -10,7 +10,7 @@ export interface IconProps {
     AvecCercle?: boolean;
 
     className?: string;
-    onClick?: () => void;
+    onClick?: (event) => void;
 
     fontWeight?: any;
     fontStyle?: any;

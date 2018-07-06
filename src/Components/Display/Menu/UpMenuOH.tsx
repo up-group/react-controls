@@ -1,33 +1,69 @@
 ﻿import * as React from "react"
 import { style } from "typestyle"
-import Text from "../../Inputs/Input/index"
+
 import "./up.png"
-import { IconDeconnexion, IconCarteContour, IconUtilisateur, IconChevron, DirectionEnum } from "../Icons/Icons";
-import { getFontClassName, stringIsNullOrEmpty, arrayIsNullOrEmpty } from "../../../Common/utils/helpers";
-import Search from "../../Inputs/Input/Search";
+
+import { getFontClassName, stringIsNullOrEmpty } from "../../../Common/utils/helpers";
+import { IconChevron, IconUtilisateur, IconDeconnexion, DirectionEnum } from "../Icons/Icons";
 
 
 var UP = require("./UP_OneHome.png");
-var widthLeftMenu = 300;
+var widthLeftMenu: number | string = 300;
+var heightTopBar: number | string = "72px";
 
-export interface AntennesUtilisateur {
-    Antennes: string[];
-    IdxAntennesActives: number[];
-    Utilisateur: string;
+function getWidthDroite(): string {
+    var tailleBody: number = $("#app").width();
+
+    if (typeof widthLeftMenu === "number") {
+        return (tailleBody - widthLeftMenu).toString() + "px";
+    }
+
+    var taille: number = parseInt(widthLeftMenu);
+    var unite: string = widthLeftMenu.substring(taille.toString().length);
+
+    switch (unite) {
+        case "%": 
+            return (100 - taille).toString() + "%";
+
+        case "px":
+            return (tailleBody - taille).toString() + "px";
+
+        default: 
+            return (tailleBody - taille).toString() + "px";
+    }
+}
+function getHeightContent(): string {
+    var tailleBody: number = $("#app").height();
+
+    if (typeof heightTopBar === "number") {
+        return (tailleBody - heightTopBar).toString() + "px";
+    }
+
+    var taille: number = parseInt(heightTopBar);
+    var unite: string = heightTopBar.substring(taille.toString().length);
+
+    switch (unite) {
+        case "%": 
+            return (100 - taille).toString() + "%";
+
+        case "px":
+            return (tailleBody - taille).toString() + "px";
+
+        default: 
+            return (tailleBody - taille).toString() + "px";
+    }
 }
 
 
 export interface UpMenuProps {
-    antennesUser: AntennesUtilisateur;
     menuItems: MenuItemData[];
     onMenuClick?: (uri: string) => boolean | void;
-    onDeconnexionClick?: () => void;
     onHomeClick?: () => void
-    clientId?: string;
-    rechercheEnCours: string;
-    onSearchTexteChange: (search: string) => void;
-    onSearchFocusChange: (focus: boolean) => void;
-    selectMenu?: (menu: MenuItemData) => boolean
+    Recherche: JSX.Element;
+    Antennes: JSX.Element;
+    Utilisateur: string;
+    onDeconnexionClick: () => void;
+    selectMenu?: (menu: MenuItemData) => boolean;
 }
 
 export interface UpMenuState {
@@ -38,103 +74,33 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
     constructor(p, c) {
         super(p, c);
         this.state = {
-            selectedBranchId: ""
+            selectedBranchId: "",
         };
     }
 
     render() {
-
-        var mainSideBar = style({
-            position: "absolute",
-            top: 0,
-            width: widthLeftMenu,
-            backgroundColor: "#4e5b59",
-            height: "100%",
-            float: "left",
-            alignItems: "center",
-            $nest: {
-                '& i': {
-                    cursor: "pointer",
-                    $nest: {
-                        '&:hover': {
-                            //color: "white",
-                        }
-                    }
-                },
-                '& a': {
-                    textDecoration: "none",
-                }
-
-            }
-        });
-
-        var headerBar = style({
-            boxSizing: "content-box",
-            position: "fixed",
-            top: 0,
-            right: 0,
-            left: widthLeftMenu,
-            backgroundColor: "#FFF",
-            color: "#4e5b59",
-            height: 40,
-            paddingTop: 16,
-            paddingBottom: 16,
-        });
-
-
-        var styleSpaceContent = style({
-            backgroundColor: "#f5f5f5",
-            paddingLeft: 21,
-            paddingRight: 21,
-            paddingBottom: 0,
-            paddingTop: 93
-        });
-
-
-
-        var rightSide = style({
-            marginLeft: widthLeftMenu,
-            backgroundColor: "#f5f5f5",
-            overflow: "hidden",
-        });
-
-        var styleContent = style({
+        var styleContenu = style({
             minHeight: 250,
-            paddingLeft: 21,
-            paddingRight: 21,
-            paddingBottom: 21,
-            paddingTop: 93,
-            position: "relative"
+            position: "relative",
+            left: widthLeftMenu,
+            right: 0,
+            width: getWidthDroite(),
+            top: 0,
+            height: getHeightContent(),
+            backgroundColor: "#f5f5f5",
+            // padding: "30px 60px",
+            // overflow: "auto",
         });
 
-        return <div >
-            <div className={mainSideBar} id="sidebar">
-                <LeftMenu
-                    selectedBranchId={this.state.selectedBranchId}
-                    onBranchClick={this.onBranchClick}
-                    onHomeClick={this.props.onHomeClick}
-                    menuItems={this.props.menuItems}
-                    onMenuClick={this.props.onMenuClick}
-                />
-            </div>
-            <div className={rightSide} >
-                <div className={headerBar} >
-                    <TopMenu
-                        antennesUser={this.props.antennesUser}
-                        onDeconnexionClick={this.props.onDeconnexionClick}
-                        rechercheEnCours={this.props.rechercheEnCours}
-                        onSearchTexteChange={this.props.onSearchTexteChange}
-                        onSearchFocusChange={this.props.onSearchFocusChange}
-                        selectedBranchId={this.state.selectedBranchId}
-                        onBranchClick={this.onBranchClick}
-                        extendMenu={this.props.menuItems}
-                        onMenuClick={this.props.onMenuClick}
-                    />
-                </div>
-
-                <div className={styleContent} >
-                    {this.props.children}
-                </div>
+        return <div>
+            <LeftMenu selectedBranchId={this.state.selectedBranchId} onBranchClick={this.onBranchClick}
+                    onHomeClick={this.props.onHomeClick} menuItems={this.props.menuItems} onMenuClick={this.props.onMenuClick} />
+            
+            <TopMenu Recherche={this.props.Recherche} Antennes={this.props.Antennes} 
+                    Utilisateur={this.props.Utilisateur} onDeconnexionClick={this.props.onDeconnexionClick} />
+            
+            <div className={styleContenu} >
+                {this.props.children}
             </div>
         </div>;
     }
@@ -167,16 +133,11 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
         return null;
     }
 
-
-
     private onBranchClick = (branchId: string) => {
-
-        this.setState({
-            selectedBranchId: branchId,
-        });
-
+        this.setState({ selectedBranchId: branchId, });
     }
 }
+
 
 export interface SubMenuProps {
     childMenuItems?: MenuItemData[];
@@ -190,14 +151,13 @@ export interface SubMenuProps {
 
 export interface SubMenuState {
 }
+
 export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
 
     constructor(p, c) {
         super(p, c);
         this.state = {};
     }
-
-
 
     startsWith(str: string, search: string) {
         return str.substr(0, search.length) === search;
@@ -209,9 +169,6 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
         }
 
         var srcMenu = this.props.childMenuItems;
-
-
-
 
         var lis = srcMenu
            .map((v, i, arr) => {
@@ -239,7 +196,6 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
         </div>
     }
 
-
     private getMenuItemfromId(branchid: string, menu: MenuItemData[]) {
 
         var first = branchid.substr(0, 2);
@@ -265,8 +221,8 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
     get selectedBranchIdHasChild() {
         return this.props.selectedBranchId.substr(this.props.selectedBranchId.length - 1, 1) === "*";
     }
-
 }
+
 
 export interface SubItemsProps extends MenuItemData {
     onMenuClick: (uri: string) => boolean | void;
@@ -473,15 +429,10 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
 
 
 export interface TopMenuProps {
-    antennesUser: AntennesUtilisateur;
+    Recherche: JSX.Element;
+    Antennes: JSX.Element;
+    Utilisateur: string;
     onDeconnexionClick: () => void;
-    rechercheEnCours: string;
-    onSearchTexteChange: (search: string) => void;
-    onSearchFocusChange: (focus: boolean) => void;
-    selectedBranchId: string;
-    onBranchClick: (branchId: string) => void;
-    extendMenu: MenuItemData[];
-    onMenuClick?: (uri: string) => boolean | void;
 }
 
 export interface TopMenuState {
@@ -491,28 +442,32 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
     constructor(p, c) {
         super(p, c);
         this.state = {
-            strSearch: "",
         };
     }
 
-    onSearchTexteChange = (str: string) => {
-        this.props.onSearchTexteChange(str);
-    }
-    onSearchFocusChange = (focus: boolean) => {
-        this.props.onSearchFocusChange(focus);
+    onUserClick = () => {
     }
 
     render() {
-
         var styleG = style({
-            textAlign: "right"
+            position: "relative",
+            left: widthLeftMenu,
+            right: 0,
+            top: 0,
+            width: getWidthDroite(),
+            height: heightTopBar,
+            padding: "16px 32px 16px 60px",
+            backgroundColor: "#3f3b37",
+            textAlign: "right",
         });
-
         var styleRecherche = style({
             width: "25%",
             height: "40px",
             float: "left",
-            marginLeft: 60
+        });
+        var styleDroite = getFontClassName({ fontSize: "14px", color: "#ffffff", }) + " " + style({
+            marginTop: "8px",
+            display: "inline-block",
         });
         var styleInfosTexte = style({
             marginRight: "48px",
@@ -523,47 +478,30 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
                 },
             },
         });
-        var styleDroite = getFontClassName({ fontSize: "14px", color: "#4e5b59", }) + " " + style({
-            marginTop: "8px",
-            display: "inline-block",
-        });
 
         return <div className={styleG} >
-
             <div className={styleRecherche} >
-                <Search Value={this.props.rechercheEnCours} PlaceHolder="Recherche" onChange={this.onSearchTexteChange} onFocus={this.onSearchFocusChange} />
+                {this.props.Recherche}
             </div>
 
             <span className={styleDroite} >
-                {arrayIsNullOrEmpty(this.props.antennesUser.Antennes) ? null :
-                    <IconCarteContour BackgroundColor="#FFF" Color="#3f3b37">
-                        <span className={styleInfosTexte} >
-                            <i>
-                                {this.props.antennesUser.IdxAntennesActives.map((idx: number, cpt: number): JSX.Element => {
-                                    return <span key={cpt} >{(cpt > 0 ? ", " : "") + this.props.antennesUser.Antennes[idx]}</span>;
-                                })}
-                            </i>
-                            <IconChevron Direction={DirectionEnum.Bas} Color="#4e5b59" BackgroundColor="#FFF" IconSize="14px" />
-                        </span>
-                    </IconCarteContour>
-                }
+                {this.props.Antennes}
 
-                {stringIsNullOrEmpty(this.props.antennesUser.Utilisateur) ? null :
-                    <IconUtilisateur IconSize="14px" lineHeight={1.14} AvecCercle={false} BackgroundColor="#FFF" >
+                { stringIsNullOrEmpty(this.props.Utilisateur) ? null : 
+                    <IconUtilisateur IconSize="14px" lineHeight={1.14} AvecCercle={false} BackgroundColor="#3f3b37" >
                         <span className={styleInfosTexte} >
-                            <i>{this.props.antennesUser.Utilisateur}</i>
-                            <IconChevron Direction={DirectionEnum.Bas} Color="#4e5b59" BackgroundColor="#FFF" IconSize="14px" />
+                            <i>{this.props.Utilisateur}</i>
+                            <IconChevron Direction={DirectionEnum.Bas} Color="#ffffff" BackgroundColor="#3f3b37" IconSize="14px" onClick={this.onUserClick} />
                         </span>
                     </IconUtilisateur>
                 }
 
-                {this.props.onDeconnexionClick == null ? null :
-                    <IconDeconnexion BackgroundColor="#FFF" Color="#3f3b37" onClick={this.props.onDeconnexionClick} />
-                }
+                <IconDeconnexion onClick={this.props.onDeconnexionClick} />
             </span>
         </div>
     }
 }
+
 
 export interface TopMenuItemProps {
     title: string;
@@ -572,7 +510,6 @@ export interface TopMenuItemProps {
 }
 
 export interface TopMenuItemState {
-
 }
 
 export class TopMenuItem extends React.Component<TopMenuItemProps, TopMenuItemState> {
@@ -598,6 +535,14 @@ export class TopMenuItem extends React.Component<TopMenuItemProps, TopMenuItemSt
 }
 
 
+export interface MenuItemData {
+    icon?: string;
+    title: string;
+    uri: string;
+    isSelected: boolean;
+    isVisible: boolean;
+    childMenuItems?: MenuItemData[];
+}
 
 export interface LeftMenuProps {
     onBranchClick: (branchId: string) => void;
@@ -605,34 +550,43 @@ export interface LeftMenuProps {
     onHomeClick?: () => void;
     onMenuClick?: (uri: string) => boolean | void;
     selectedBranchId?: string;
-
 }
 
 export interface LeftMenuState {
 }
 
-export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState>{
-
+export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
     constructor(p, c) {
         super(p, c);
         this.state = {
-            selectedBranchId: ""
+            selectedBranchId: "",
         };
     }
 
     render() {
-
-
-        var expandIcon = style({
-            fontSize: 25,
-            padding: 10
+        var styleAside = style({
+            position: "fixed",
+            left: 0,
+            width: widthLeftMenu,
+            top: 0,
+            height: "100%",
+            backgroundColor: "#4e5b59",
+            alignItems: "center",
+            $nest: {
+                '& i': {
+                    cursor: "pointer",
+                },
+                '& a': {
+                    textDecoration: "none",
+                },
+            },
         });
-        var Homeimage = style({
-            cursor: "pointer",
-            float: "left",
-            width: "100%",
-            height: 30,
-            position: "absolute"
+        var img_style = style({
+            width: "75%",
+            height: heightTopBar,
+        });
+        var div_style = style({
+            marginTop: "15%",
         });
 
         var menu = <SubMenu
@@ -644,43 +598,17 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState>{
             childMenuItems={this.props.menuItems}
             top={false}
         />
-        var aside = style({
-            backgroundColor: "#4e5b59",
 
-        });
-
-        var img_style = style({
-            width: "75%",
-            height: "70%"
-        });
-        var div_style = style({
-            marginTop: "15%",
-        });
-
-        return <aside className={aside}>
-            <a onClick={this.props.onHomeClick}>
-                <img className={img_style} src={UP}></img>
+        return <aside className={styleAside} >
+            <a onClick={this.props.onHomeClick} >
+                <img className={img_style} src={UP} ></img>
             </a>
-            <div className={div_style}>
+            <div className={div_style} >
             </div>
             <br />
-            <div className="">
+            <div className="" >
                 {menu}
             </div>
-            <br />
-            <div className="">
-
-            </div>
         </aside>
-
     }
-}
-
-export interface MenuItemData {
-    icon?: string;
-    title: string;
-    uri: string;
-    isVisible: boolean;
-    childMenuItems?: MenuItemData[];
-
 }
