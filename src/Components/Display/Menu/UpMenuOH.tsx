@@ -5,7 +5,7 @@ import "./up.png"
 
 import { getFontClassName, stringIsNullOrEmpty } from "../../../Common/utils/helpers";
 import { IconChevron, IconUtilisateur, IconDeconnexion, DirectionEnum } from "../Icons/Icons";
-
+import { Scrollbars } from 'react-custom-scrollbars';
 
 var UP = require("./UP_OneHome.png");
 var widthLeftMenu: number | string = 300;
@@ -68,6 +68,7 @@ export interface UpMenuProps {
 
 export interface UpMenuState {
     selectedBranchId?: string;
+    collapse: boolean;
 }
 
 export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> {
@@ -75,6 +76,7 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
         super(p, c);
         this.state = {
             selectedBranchId: "",
+            collapse: false
         };
     }
 
@@ -91,7 +93,7 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
         });
 
         return <div>
-            <LeftMenu selectedBranchId={this.state.selectedBranchId} onBranchClick={this.onBranchClick}
+            <LeftMenu onCollapseChange={this.onCollapseChange} collapse={this.state.collapse} selectedBranchId={this.state.selectedBranchId} onBranchClick={this.onBranchClick}
                 onHomeClick={this.props.onHomeClick} menuItems={this.props.menuItems} onMenuClick={this.props.onMenuClick} />
 
             <TopMenu Recherche={this.props.Recherche} Antennes={this.props.Antennes}
@@ -102,6 +104,12 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
             </div>
         </div>;
     }
+
+    onCollapseChange = () => {
+        widthLeftMenu = this.state.collapse ? 300 : 50;
+        this.setState({ collapse: !this.state.collapse });
+    }
+
 
     componentDidUpdate() {
         if (this.props.selectMenu != null) {
@@ -145,6 +153,7 @@ export interface SubMenuProps {
     branchId: string;
     selectedBranchId: string;
     top: boolean;
+    collapse: boolean;
 }
 
 export interface SubMenuState {
@@ -183,9 +192,13 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
                     key={i}
                     open={this.props.open}
                     onMenuClick={this.props.onMenuClick}
-                    uri={v.uri} title={v.title}
+                    uri={v.uri}
+                    title={v.title}
                     isVisible={v.isVisible}
-                    childMenuItems={v.childMenuItems} />
+                    childMenuItems={v.childMenuItems}
+                    collapse={this.props.collapse}
+
+                />
             })
 
 
@@ -196,9 +209,9 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
                 height: window.innerHeight - 150
             })
 
-            return <div className={scroll}>
-                {lis}
-            </div>
+            return <Scrollbars style={{ width: widthLeftMenu, height: window.innerHeight - 150 }}>
+                { lis }
+            </Scrollbars>
 
 
         } else {
@@ -266,6 +279,7 @@ export interface SubItemsProps extends MenuItemData {
     selectedBranchId: string;
     top: boolean;
     sibling: MenuItemData[];
+    collapse: boolean;
 }
 
 export interface SubItemsState {
@@ -299,11 +313,14 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
             fontWeight: 500,
             fontStyle: "normal",
             fontStretch: "normal",
-            lineHeight: 2.29,
+            //lineHeight: 2.29,
+            height: 32,
             letterSpacing: "normal",
             $nest: {
                 ["& > a"]: {
-                    color: this.isMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF"
+                    color: this.isMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
+                    display: this.props.collapse ? "none" : "initial",
+                    paddingLeft: 8,
                 },
             }
         })
@@ -312,14 +329,19 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
         var meunuIcon = style({
             color: "#FFF",
             marginLeft: -30,
-            marginTop: -10,
-            position: "absolute",
+            marginTop: 3,
+            //position: this.props.collapse ? "relative" : "absolute",
+            position: "relative",
 
-            height: 40,
-            width: 40,
+            //height: 40,
+            //width: 40,
             fontSize: 25,
             display: this.hasIcon ? "initial" : "none",
 
+        });
+
+        var innnerSubmenu = style({
+            display: this.props.collapse ? "none" : "initial",
         });
 
 
@@ -333,17 +355,21 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
                     {this.props.title}
                 </a>
             </div>
+            <div className={innnerSubmenu}>
 
-            {this.anyChild && (this.state.active || this.isMenuSelected) ?
-                <SubMenu
-                    top={this.props.top}
-                    onBranchClick={this.props.onBranchClick}
-                    branchId={this.props.branchId}
-                    selectedBranchId={this.props.selectedBranchId}
-                    open={this.props.open}
-                    onMenuClick={this.props.onMenuClick}
-                    childMenuItems={this.props.childMenuItems} /> : null}
+                {this.anyChild && (this.state.active || this.isMenuSelected) ?
+                    <SubMenu
+                        top={this.props.top}
+                        onBranchClick={this.props.onBranchClick}
+                        branchId={this.props.branchId}
+                        selectedBranchId={this.props.selectedBranchId}
+                        open={this.props.open}
+                        onMenuClick={this.props.onMenuClick}
+                        childMenuItems={this.props.childMenuItems}
+                        collapse={this.props.collapse}
+                    /> : null}
 
+            </div>
         </div>
     }
 
@@ -553,6 +579,8 @@ export interface LeftMenuProps {
     onHomeClick?: () => void;
     onMenuClick?: (uri: string) => boolean | void;
     selectedBranchId?: string;
+    onCollapseChange: () => void;
+    collapse: boolean;
 }
 
 export interface LeftMenuState {
@@ -585,11 +613,14 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
             },
         });
         var img_style = style({
-            width: "75%",
+            width: "100%",
             height: heightTopBar,
         });
         var div_style = style({
-            marginTop: "15%",
+            marginTop: 0,
+            height: 30,
+            width: 30,
+            marginLeft: 5
         });
 
         var menu = <SubMenu
@@ -600,13 +631,21 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
             onMenuClick={this.props.onMenuClick}
             childMenuItems={this.props.menuItems}
             top={false}
+            collapse={this.props.collapse}
         />
+                        //<SvgIcon
+                //    position="initial"
+                //    color="#FFF"
 
+                //    iconName="menu"
+                //    onClick={this.props.onCollapseChange}
+                ///>
         return <aside className={styleAside} >
             <a onClick={this.props.onHomeClick} >
                 <img className={img_style} src={UP} ></img>
             </a>
             <div className={div_style} >
+                <input type="button" value="TTT" onClick={this.props.onCollapseChange} />
             </div>
             <br />
             <div className="" >
