@@ -12,7 +12,7 @@ var widthLeftMenu: number | string = 300;
 var heightTopBar: number | string = "72px";
 
 function getWidthDroite(): string {
-    var tailleBody: number = $("#app").width();
+    var tailleBody: number = window.innerWidth;
 
     if (typeof widthLeftMenu === "number") {
         return (tailleBody - widthLeftMenu).toString() + "px";
@@ -22,18 +22,18 @@ function getWidthDroite(): string {
     var unite: string = widthLeftMenu.substring(taille.toString().length);
 
     switch (unite) {
-        case "%": 
+        case "%":
             return (100 - taille).toString() + "%";
 
         case "px":
             return (tailleBody - taille).toString() + "px";
 
-        default: 
+        default:
             return (tailleBody - taille).toString() + "px";
     }
 }
 function getHeightContent(): string {
-    var tailleBody: number = $("#app").height();
+    var tailleBody: number = window.innerHeight;
 
     if (typeof heightTopBar === "number") {
         return (tailleBody - heightTopBar).toString() + "px";
@@ -43,13 +43,13 @@ function getHeightContent(): string {
     var unite: string = heightTopBar.substring(taille.toString().length);
 
     switch (unite) {
-        case "%": 
+        case "%":
             return (100 - taille).toString() + "%";
 
         case "px":
             return (tailleBody - taille).toString() + "px";
 
-        default: 
+        default:
             return (tailleBody - taille).toString() + "px";
     }
 }
@@ -94,11 +94,11 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
 
         return <div>
             <LeftMenu selectedBranchId={this.state.selectedBranchId} onBranchClick={this.onBranchClick}
-                    onHomeClick={this.props.onHomeClick} menuItems={this.props.menuItems} onMenuClick={this.props.onMenuClick} />
-            
-            <TopMenu Recherche={this.props.Recherche} Antennes={this.props.Antennes} 
-                    Utilisateur={this.props.Utilisateur} onDeconnexionClick={this.props.onDeconnexionClick} />
-            
+                onHomeClick={this.props.onHomeClick} menuItems={this.props.menuItems} onMenuClick={this.props.onMenuClick} />
+
+            <TopMenu Recherche={this.props.Recherche} Antennes={this.props.Antennes}
+                Utilisateur={this.props.Utilisateur} onDeconnexionClick={this.props.onDeconnexionClick} />
+
             <div className={styleContenu} >
                 {this.props.children}
             </div>
@@ -171,7 +171,7 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
         var srcMenu = this.props.childMenuItems;
 
         var lis = srcMenu
-           .map((v, i, arr) => {
+            .map((v, i, arr) => {
                 var localId = this.props.branchId + i + (v.childMenuItems != null && v.childMenuItems.length != 0 ? "*" : "-");
 
 
@@ -191,10 +191,25 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
             })
 
 
-        return <div>
-            {lis}
-        </div>
+        if (this.props.branchId === "") {
+
+            var scroll = style({
+                overflow: "auto",
+                height:window.innerHeight - 150
+            })
+
+            return <div className={scroll}>
+                {lis}
+            </div>
+
+
+        } else {
+            return <div>
+                {lis}
+            </div>
+        }
     }
+
 
     private getMenuItemfromId(branchid: string, menu: MenuItemData[]) {
 
@@ -487,7 +502,7 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
             <span className={styleDroite} >
                 {this.props.Antennes}
 
-                { stringIsNullOrEmpty(this.props.Utilisateur) ? null : 
+                {stringIsNullOrEmpty(this.props.Utilisateur) ? null :
                     <IconUtilisateur IconSize="14px" lineHeight={1.14} AvecCercle={false} BackgroundColor="#3f3b37" >
                         <span className={styleInfosTexte} >
                             <i>{this.props.Utilisateur}</i>
@@ -539,7 +554,6 @@ export interface MenuItemData {
     icon?: string;
     title: string;
     uri: string;
-    isSelected: boolean;
     isVisible: boolean;
     childMenuItems?: MenuItemData[];
 }
