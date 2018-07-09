@@ -2,3 +2,10 @@
 test/
 .vs/
 .vscode/
+.storybook/
+config/
+docs/
+etc/
+src/
+stories/
+test/
