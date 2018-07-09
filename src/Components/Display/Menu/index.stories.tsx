@@ -126,14 +126,52 @@ storiesOf('UpMenu', module)
                     //    { title: "Recherche", icon: "up up-dossier", action: "https://www.google.fr" },
                     //    { title: "Alertes", icon: "up up-dossier", action: () => { alert(5); } }
                     //]}
-                    selectMenu={((menu) => {
-                        if (menu.title == "bbbbb") {
-                            return true;
-                        }
-                        return false
-                    })}
+                    //selectMenu={((menu) => {
+                    //    if (menu.title == "Cadhoc") {
+                    //        return true;
+                    //    }
+                    //    return false
+                    //})}
+                    selectMenu={null}
                     menuItems={
                         [
+
+                            {
+                                "title": "Tableau de bord",
+                                "uri": "",
+                                "icon": "up up-certificatSante",
+                                "isVisible": true,
+                                "childMenuItems": [
+                                    {
+                                        "title": "Chèques déjeuner",
+                                        "uri": "/Patient/Administratif?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                        "icon": "",
+
+                                        "isVisible": true,
+                                        "childMenuItems": []
+                                    },
+                                    {
+                                        "title": "Cadhoc",
+                                        "uri": "/Patient/Administratif?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                        "icon": "",
+
+                                        "isVisible": true,
+                                        "childMenuItems": []
+                                    },
+                                    {
+                                        "title": "Découvrez nos autres produits",
+                                        "uri": "/Patient/Administratif?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                        "icon": "",
+
+                                        "isVisible": true,
+                                        "childMenuItems": []
+                                    }
+                                ]
+
+                            },
+
+
+
                             {
                                 "title": "SPONGE BOB",
                                 "uri": "/Patient?SejourId=39593&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",

@@ -88,8 +88,6 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
             top: 0,
             height: getHeightContent(),
             backgroundColor: "#f5f5f5",
-            // padding: "30px 60px",
-            // overflow: "auto",
         });
 
         return <div>
@@ -195,7 +193,7 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
 
             var scroll = style({
                 overflow: "auto",
-                height:window.innerHeight - 150
+                height: window.innerHeight - 150
             })
 
             return <div className={scroll}>
@@ -230,12 +228,33 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
     }
 
     get levelselectedBranchId() {
-        return this.props.selectedBranchId.length / 2;
+        return branchIdHelper.getLevel(this.props.selectedBranchId);
     }
 
     get selectedBranchIdHasChild() {
-        return this.props.selectedBranchId.substr(this.props.selectedBranchId.length - 1, 1) === "*";
+        return branchIdHelper.hasChild(this.props.selectedBranchId);
     }
+}
+
+
+class branchIdHelper {
+
+    static toArray(id: string) {
+        var split = id.split(/(\d{1,})/);
+
+        split.filter(x => x !== "");
+
+        return split;
+    }
+
+    static getLevel(id: string) {
+        return this.toArray(id).length / 2;
+    }
+
+    static hasChild(id: string) {
+        return id.substr(id.length - 1, 1) === "*"
+    }
+
 }
 
 
@@ -266,11 +285,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
     }
     render() {
         var branch = style({
-            marginLeft: 15,
-            paddingLeft: 15 * this.level,
-            marginTop: 13,
-            marginBottom: 13,
-            color: "#FFF",
+            paddingLeft: 20 + (this.hasIcon ? 20 : 0),/*+ (this.level * 10),*/
             display: this.props.isVisible === false ? "none" : "inherit",
             position: "relative",
             $nest: {
@@ -279,8 +294,13 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
 
 
         var branchItem = style({
-            minHeight: 30,
+
             fontSize: 14,
+            fontWeight: 500,
+            fontStyle: "normal",
+            fontStretch: "normal",
+            lineHeight: 2.29,
+            letterSpacing: "normal",
             $nest: {
                 ["& > a"]: {
                     color: this.isMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF"
@@ -288,54 +308,20 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
             }
         })
 
-        var branchIcon = style({
-            position: "absolute",
-            top: 7,
-            right: 0,
-            fontSize: 25,
-            fontWeight: 900,
-            cursor: "pointer"
-        });
-
-
 
         var meunuIcon = style({
-            paddingRight: 5,
+            color: "#FFF",
+            marginLeft: -30,
+            marginTop: -10,
+            position: "absolute",
+
             height: 40,
             width: 40,
             fontSize: 25,
-            display: this.props.icon === "" || this.props.icon == null ? "none" : "initial",
+            display: this.hasIcon ? "initial" : "none",
 
         });
 
-        var styleHeader = style({
-            padding: "0 60px",
-            backgroundColor: "#ffffff",
-            border: "1px solid #eaeae9",
-        });
-        var styleOnglet = style({
-            paddingTop: 5,
-            paddingBottom: 5,
-            display: "inline-block",
-            cursor: "pointer",
-            width: 100 / this.props.sibling.length + "%",
-            minWidth: "120px",
-            textAlign: "center",
-            $nest: {
-                ["&  a"]: {
-                    color: this.isMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
-                    fontSize: 14
-                },
-            }
-
-
-        });
-        var styleActif = style({
-            borderBottom: "4px solid #f39100",
-        });
-        var styleContenu = style({
-            margin: "40px 0px",
-        });
 
 
         return <div className={branch} data-branch={this.props.branchId} >
@@ -361,8 +347,11 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
         </div>
     }
 
+    get hasIcon() {
+        return this.props.icon != null && this.props.icon != "";
+    }
     get level() {
-        return this.props.branchId.length / 2;
+        return branchIdHelper.getLevel(this.props.branchId);
     }
 
     LightenDarkenColor = (col: string, amt: number) => {
