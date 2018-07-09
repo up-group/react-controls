@@ -633,19 +633,13 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
             top={false}
             collapse={this.props.collapse}
         />
-                        //<SvgIcon
-                //    position="initial"
-                //    color="#FFF"
-
-                //    iconName="menu"
-                //    onClick={this.props.onCollapseChange}
-                ///>
+             // <input type="button" value="TTT" onClick={this.props.onCollapseChange} />
         return <aside className={styleAside} >
             <a onClick={this.props.onHomeClick} >
                 <img className={img_style} src={UP} ></img>
             </a>
             <div className={div_style} >
-                <input type="button" value="TTT" onClick={this.props.onCollapseChange} />
+               
             </div>
             <br />
             <div className="" >
