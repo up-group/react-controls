@@ -315,6 +315,13 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
             //lineHeight: 2.29,
             height: this.level === 1 ? 42 : 32,
             letterSpacing: "normal",
+            color: this.isMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
+            $nest: {
+                ["& a"]: {
+                    color: this.isMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
+                    //display: this.props.collapse ? "none" : "initial",
+                },
+            }
         })
 
 
@@ -337,7 +344,16 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
 
         if (this.props.styleType === "button") {
             content = <span
-                style={{ paddingRight: 53, paddingBottom: 12, paddingLeft: 53, paddingTop: 12, borderRadius: 30, border: 'solid 1px #d7d7d7' }}
+                style={{
+                    paddingRight: 53,
+                    paddingBottom: 12,
+                    paddingLeft: 53,
+                    paddingTop: 12,
+                    borderRadius: 30,
+                    borderColor: this.isMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
+                    borderWidth: 1,
+                    borderStyle:"solid"
+                }}
             >
                 {this.props.title}
             </span>
