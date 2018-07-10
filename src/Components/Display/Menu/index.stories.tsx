@@ -173,9 +173,10 @@ storiesOf('UpMenu', module)
 
 
                             {
+                                styleType: "button",
                                 "title": "SPONGE BOB",
                                 "uri": "/Patient?SejourId=39593&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                "icon": "up up-certificatSante",
+                                "icon": null,
 
                                 "isVisible": true,
                                 "childMenuItems": [
@@ -209,7 +210,7 @@ storiesOf('UpMenu', module)
                             {
                                 "title": "39610 SUIVI",
                                 "uri": "",
-                                "icon": "up up-dossier",
+                                "icon": null,
 
                                 "isVisible": true,
                                 "childMenuItems": [

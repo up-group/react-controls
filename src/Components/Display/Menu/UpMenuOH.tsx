@@ -1,13 +1,12 @@
 ﻿import * as React from "react"
 import { style } from "typestyle"
 
-import "./up.png"
 
 import { getFontClassName, stringIsNullOrEmpty } from "../../../Common/utils/helpers";
 import { IconChevron, IconUtilisateur, IconDeconnexion, DirectionEnum } from "../Icons/Icons";
 import { Scrollbars } from 'react-custom-scrollbars';
 
-var UP = require("./UP_OneHome.png");
+var UP = require("./up.png");
 var widthLeftMenu: number | string = 300;
 var heightTopBar: number | string = "72px";
 
@@ -197,6 +196,7 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
                     isVisible={v.isVisible}
                     childMenuItems={v.childMenuItems}
                     collapse={this.props.collapse}
+                    styleType={v.styleType}
 
                 />
             })
@@ -210,7 +210,7 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
             })
 
             return <Scrollbars style={{ width: widthLeftMenu, height: window.innerHeight - 150 }}>
-                { lis }
+                {lis}
             </Scrollbars>
 
 
@@ -253,11 +253,7 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
 class branchIdHelper {
 
     static toArray(id: string) {
-        var split = id.split(/(\d{1,})/);
-
-        split.filter(x => x !== "");
-
-        return split;
+        return id.split(/(\d{1,})/).filter(x => { return x !== "" });
     }
 
     static getLevel(id: string) {
@@ -299,14 +295,17 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
     }
     render() {
         var branch = style({
-            paddingLeft: 20 + (this.hasIcon ? 20 : 0),/*+ (this.level * 10),*/
+            paddingLeft: this.level == 1 ? 0 : this.level == 2 ? 60 : 20,// 20 + (this.hasIcon ? 0 : 0),/*+ (this.level * 10),*/
             display: this.props.isVisible === false ? "none" : "inherit",
             position: "relative",
             $nest: {
             }
         })
-
-
+        var link = style({
+            color: this.isMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
+            display: this.props.collapse ? "none" : "initial",
+            paddingLeft: this.level == 1 ? 15 : 0,
+        });
         var branchItem = style({
 
             fontSize: 14,
@@ -314,27 +313,17 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
             fontStyle: "normal",
             fontStretch: "normal",
             //lineHeight: 2.29,
-            height: 32,
+            height: this.level === 1 ? 42 : 32,
             letterSpacing: "normal",
-            $nest: {
-                ["& > a"]: {
-                    color: this.isMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
-                    display: this.props.collapse ? "none" : "initial",
-                    paddingLeft: 8,
-                },
-            }
         })
 
 
         var meunuIcon = style({
             color: "#FFF",
-            marginLeft: -30,
             marginTop: 3,
             //position: this.props.collapse ? "relative" : "absolute",
             position: "relative",
 
-            //height: 40,
-            //width: 40,
             fontSize: 25,
             display: this.hasIcon ? "initial" : "none",
 
@@ -344,6 +333,16 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
             display: this.props.collapse ? "none" : "initial",
         });
 
+        var content = this.props.title 
+
+        if (this.props.styleType === "button") {
+            content = <span
+                style={{ paddingRight: 53, paddingBottom: 12, paddingLeft: 53, paddingTop: 12, borderRadius: 30, border: 'solid 1px #d7d7d7' }}
+            >
+                {this.props.title}
+            </span>
+        } 
+       
 
 
         return <div className={branch} data-branch={this.props.branchId} >
@@ -351,8 +350,8 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
                 <span className={meunuIcon}>
                     <i className={this.props.icon} onClick={this.onClick} />
                 </span>
-                <a onClick={this.onClickA} href={this.props.uri}>
-                    {this.props.title}
+                <a className={link} onClick={this.onClickA} href={this.props.uri}>
+                    {content}
                 </a>
             </div>
             <div className={innnerSubmenu}>
@@ -412,7 +411,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
 
     get anyChild() {
 
-        var child = this.props.childMenuItems == null ? [] : this.props.childMenuItems.filter(x => x.isVisible == true && x.title != null && x.title.length != 0);
+        var child = this.props.childMenuItems == null ? [] : this.props.childMenuItems.filter(x => x.isVisible == true && x.title != null);
         return child.length != 0;
 
     }
@@ -487,7 +486,7 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
             width: getWidthDroite(),
             height: heightTopBar,
             padding: "16px 32px 16px 60px",
-            backgroundColor: "#3f3b37",
+            backgroundColor: "#FFF",
             textAlign: "right",
         });
         var styleRecherche = style({
@@ -567,10 +566,11 @@ export class TopMenuItem extends React.Component<TopMenuItemProps, TopMenuItemSt
 
 export interface MenuItemData {
     icon?: string;
-    title: string;
+    title: JSX.Element | string;
     uri: string;
     isVisible: boolean;
     childMenuItems?: MenuItemData[];
+    styleType?: "button"
 }
 
 export interface LeftMenuProps {
@@ -613,14 +613,16 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
             },
         });
         var img_style = style({
-            width: "100%",
-            height: heightTopBar,
+            //width: "100%",
+            height: 60,
+            margin: 24
         });
         var div_style = style({
-            marginTop: 0,
-            height: 30,
-            width: 30,
-            marginLeft: 5
+            height: 45,
+        });
+
+        var firstSub = style({
+            marginLeft: 24
         });
 
         var menu = <SubMenu
@@ -633,16 +635,14 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
             top={false}
             collapse={this.props.collapse}
         />
-             // <input type="button" value="TTT" onClick={this.props.onCollapseChange} />
+        // <input type="button" value="TTT" onClick={this.props.onCollapseChange} />
         return <aside className={styleAside} >
             <a onClick={this.props.onHomeClick} >
                 <img className={img_style} src={UP} ></img>
             </a>
             <div className={div_style} >
-               
             </div>
-            <br />
-            <div className="" >
+            <div className={firstSub} >
                 {menu}
             </div>
         </aside>
