@@ -5,6 +5,7 @@ import { style } from "typestyle"
 import { getFontClassName, stringIsNullOrEmpty } from "../../../Common/utils/helpers";
 import { IconChevron, IconUtilisateur, IconDeconnexion, DirectionEnum } from "../Icons/Icons";
 import { Scrollbars } from 'react-custom-scrollbars';
+import UpHover from '../../Containers/Hover/UpHover';
 
 var UP = require("./up.png");
 var widthLeftMenu: number | string = 300;
@@ -67,7 +68,9 @@ export interface UpMenuProps {
 
 export interface UpMenuState {
     selectedBranchId?: string;
+    collapseActive: boolean;
     collapse: boolean;
+    hoverMenu: boolean;
 }
 
 export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> {
@@ -75,7 +78,9 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
         super(p, c);
         this.state = {
             selectedBranchId: "",
-            collapse: false
+            collapse: false,
+            hoverMenu: false,
+            collapseActive: false
         };
     }
 
@@ -92,7 +97,9 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
         });
 
         return <div>
-            <LeftMenu onCollapseChange={this.onCollapseChange} collapse={this.state.collapse} selectedBranchId={this.state.selectedBranchId} onBranchClick={this.onBranchClick}
+            <LeftMenu
+                onHover={this.onHover}
+                onCollapseChange={this.onCollapseChange} collapse={this.state.collapse} selectedBranchId={this.state.selectedBranchId} onBranchClick={this.onBranchClick}
                 onHomeClick={this.props.onHomeClick} menuItems={this.props.menuItems} onMenuClick={this.props.onMenuClick} />
 
             <TopMenu Recherche={this.props.Recherche} Antennes={this.props.Antennes}
@@ -105,10 +112,24 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
     }
 
     onCollapseChange = () => {
-        widthLeftMenu = this.state.collapse ? 300 : 50;
-        this.setState({ collapse: !this.state.collapse });
+        if (this.state.collapseActive) {
+            widthLeftMenu = 300;
+            this.setState({ collapseActive: false, collapse: false });
+        } else {
+            widthLeftMenu = 70;
+            this.setState({ collapseActive: true, collapse: true });
+        }
     }
 
+    onHover = (hover: boolean) => {
+        if (this.state.collapseActive) {
+            widthLeftMenu = hover ? 300 : 70;
+            console.log(hover)
+            this.setState({ collapse: !hover });
+        }
+
+
+    }
 
     componentDidUpdate() {
         if (this.props.selectMenu != null) {
@@ -340,6 +361,19 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
             display: this.props.collapse ? "none" : "initial",
         });
 
+        if (this.props.collapse) {
+
+
+            return <div className={branch} data-branch={this.props.branchId} >
+                <div className={branchItem} onClick={this.onClick}>
+                    <span className={meunuIcon}>
+                        <i className={this.props.icon} onClick={this.onClick} />
+                    </span>
+                    {this.textContentColapse}
+                </div>
+            </div>
+        }
+
         var content = this.props.title
 
         if (this.props.styleType === "button") {
@@ -358,7 +392,6 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
                 {this.props.title}
             </span>
         }
-
 
 
         return <div className={branch} data-branch={this.props.branchId} >
@@ -386,6 +419,33 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
 
             </div>
         </div>
+    }
+
+    get textContentColapse() {
+        if (this.props.icon != null && this.props.icon != "") {
+            return null;
+        }
+        if (this.props.title != null && typeof (this.props.title) === "string") {
+            return <span
+                style={{
+                    paddingRight: 10,
+                    paddingBottom: 5,
+                    paddingLeft: 10,
+                    paddingTop: 5,
+                    borderRadius: 30,
+                    borderColor: this.isMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
+                    borderWidth: 1,
+                    borderStyle: "solid"
+                }}
+            >
+                {
+                    this.props.title.substr(0, 2)
+                }
+            </span>
+        }
+
+        return null;
+
     }
 
     get hasIcon() {
@@ -596,6 +656,7 @@ export interface LeftMenuProps {
     onMenuClick?: (uri: string) => boolean | void;
     selectedBranchId?: string;
     onCollapseChange: () => void;
+    onHover: (hover: boolean) => void;
     collapse: boolean;
 }
 
@@ -628,18 +689,30 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
                 },
             },
         });
-        var img_style = style({
+        var img_space = style({
             //width: "100%",
             height: 60,
             margin: 24
         });
+        var img_style = style({
+            //width: "100%",
+            maxHeight : "100%",
+            maxWidth: "100%"
+            //width: this.props.collapse ? 30 : 60
+        });
         var div_style = style({
             height: 45,
+            paddingLeft: 25,
+            color: "#FFF",
+            fontSize: 25
         });
 
         var firstSub = style({
             marginLeft: 24
         });
+
+
+        //                <input type="button" value="TTT" onClick={this.props.onCollapseChange} />
 
         var menu = <SubMenu
             open={false}
@@ -651,16 +724,20 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
             top={false}
             collapse={this.props.collapse}
         />
-        // <input type="button" value="TTT" onClick={this.props.onCollapseChange} />
         return <aside className={styleAside} >
-            <a onClick={this.props.onHomeClick} >
-                <img className={img_style} src={UP} ></img>
-            </a>
+            <div className={img_space}>
+                <a onClick={this.props.onHomeClick} >
+                    <img className={img_style} src={UP} ></img>
+                </a>
+            </div>
             <div className={div_style} >
+                <span className={"icon-Lmenu"} onClick={this.props.onCollapseChange} />
             </div>
-            <div className={firstSub} >
-                {menu}
-            </div>
+            <UpHover onHoverChange={this.props.onHover}>
+                <div className={firstSub} >
+                    {menu}
+                </div>
+            </UpHover>
         </aside>
     }
 }
