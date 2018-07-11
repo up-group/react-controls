@@ -137,9 +137,10 @@ storiesOf('UpMenu', module)
                         [
 
                             {
+                                styleType: "button",
                                 "title": "Tableau de bord",
                                 "uri": "",
-                                "icon": "up up-certificatSante",
+                                //"icon": "up up-certificatSante",
                                 "isVisible": true,
                                 "childMenuItems": [
                                     {
@@ -173,7 +174,6 @@ storiesOf('UpMenu', module)
 
 
                             {
-                                styleType: "button",
                                 "title": "SPONGE BOB",
                                 "uri": "/Patient?SejourId=39593&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
                                 "icon": null,

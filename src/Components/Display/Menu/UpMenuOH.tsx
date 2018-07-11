@@ -209,7 +209,7 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
                 height: window.innerHeight - 150
             })
 
-            return <Scrollbars style={{ width: widthLeftMenu, height: window.innerHeight - 150 }}>
+            return <Scrollbars style={{ height: window.innerHeight - 150 }}>
                 {lis}
             </Scrollbars>
 
@@ -307,7 +307,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
             paddingLeft: this.level == 1 ? 15 : 0,
         });
         var branchItem = style({
-
+            marginTop: this.props.styleType === "button" ? 15 : 0,
             fontSize: 14,
             fontWeight: 500,
             fontStyle: "normal",
@@ -340,7 +340,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
             display: this.props.collapse ? "none" : "initial",
         });
 
-        var content = this.props.title 
+        var content = this.props.title
 
         if (this.props.styleType === "button") {
             content = <span
@@ -352,13 +352,13 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
                     borderRadius: 30,
                     borderColor: this.isMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
                     borderWidth: 1,
-                    borderStyle:"solid"
+                    borderStyle: "solid"
                 }}
             >
                 {this.props.title}
             </span>
-        } 
-       
+        }
+
 
 
         return <div className={branch} data-branch={this.props.branchId} >
