@@ -550,7 +550,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
             }
         })
         var link = style({
-            color: this.isMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
+            color: this.isThisMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
             display: this.props.collapse ? "none" : "initial",
             paddingLeft: this.level == 1 ? 15 : 0,
         });
@@ -563,10 +563,10 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
             //lineHeight: 2.29,
             height: this.level === 1 ? 42 : 32,
             letterSpacing: "normal",
-            color: this.isMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
+            color: this.isThisMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
             $nest: {
                 ["& a"]: {
-                    color: this.isMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
+                    color: this.isThisMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
                     //display: this.props.collapse ? "none" : "initial",
                 },
             }
@@ -611,7 +611,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
                     paddingLeft: 53,
                     paddingTop: 12,
                     borderRadius: 30,
-                    borderColor: this.isMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
+                    borderColor: this.isThisMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
                     borderWidth: 1,
                     borderStyle: "solid"
                 }}
@@ -660,7 +660,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
                     paddingLeft: 10,
                     paddingTop: 5,
                     borderRadius: 30,
-                    borderColor: this.isMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
+                    borderColor: this.isThisMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
                     borderWidth: 1,
                     borderStyle: "solid"
                 }}
@@ -723,10 +723,12 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
         if (this.props.top === false) {
             return this.props.selectedBranchId.substr(0, this.props.branchId.length) === this.props.branchId;
         }
-
-        return this.props.selectedBranchId === this.props.branchId;
+        return this.isThisMenuSelected;
     }
 
+    get isThisMenuSelected() {
+        return this.props.selectedBranchId === this.props.branchId;
+    }
 
 
     onClick = (e) => {
