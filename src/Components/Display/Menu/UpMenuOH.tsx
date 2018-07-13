@@ -9,7 +9,7 @@ import UpHover from '../../Containers/Hover/UpHover';
 
 var UP = require("./up.png");
 var widthLeftMenu: number | string = 300;
-var heightTopBar: number | string = "72px";
+var heightTopBar: number | string = 60;
 
 function getWidthDroite(): string {
     var tailleBody: number = window.innerWidth;
@@ -54,6 +54,107 @@ function getHeightContent(): string {
     }
 }
 
+class branchIdHelper {
+
+    static toArray(id: string) {
+        return id.split(/(\d{1,})/).filter(x => { return x !== "" });
+    }
+
+    static getLevel(id: string) {
+        return this.toArray(id).length / 2;
+    }
+
+    static hasChild(id: string) {
+        return id.substr(id.length - 1, 1) === "*"
+    }
+
+}
+
+
+
+var menuOh = style({
+    backgroundColor: "#f5f5f5",
+    overflow: "hidden",
+    height:/*"100%"*/window.innerHeight,
+    width: /*"100%"*/window.innerWidth,
+
+});
+
+var rightSpace = style({
+    position: "fixed",
+    top: 0,
+    right: 0,
+    left: widthLeftMenu,
+    height: "100%",
+    transition: "left 0.5s",
+});
+
+var rightSpaceCollapse = style({
+    left: 60,
+    transition: "left 0.5s",
+});
+
+
+var leftSpace = style({
+    zIndex: 1,
+    position: "fixed",
+    left: 0,
+    top: 0,
+    height: "100%",
+    backgroundColor: "#4e5b59",
+    alignItems: "center",
+    $nest: {
+        '& i': {
+            cursor: "pointer",
+        },
+        '& a': {
+            textDecoration: "none",
+        },
+    },
+    width: widthLeftMenu,
+    transition: "width 0.5s",
+
+});
+
+
+var leftSpaceCollapse = style({
+    width: 60,
+    transition: "width 0.5s",
+});
+
+
+var styleG = style({
+    width: "100%",
+    right: 0,
+    top: 0,
+    position: "relative",
+
+    //width: getWidthDroite(),
+    height: heightTopBar,
+    //padding: "16px 32px 16px 60px",
+    backgroundColor: "#FFF",
+    textAlign: "right",
+});
+
+var styleContenu = style({
+    minHeight: 250,
+    //position: "relative",
+    left: widthLeftMenu,
+    right: 0,
+    //width: getWidthDroite(),
+    top: 0,
+    height: getHeightContent(),
+});
+
+export interface MenuItemData {
+    icon?: string;
+    title: JSX.Element | string;
+    uri: string;
+    isVisible: boolean;
+    childMenuItems?: MenuItemData[];
+    styleType?: "button"
+}
+
 
 export interface UpMenuProps {
     menuItems: MenuItemData[];
@@ -85,28 +186,24 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
     }
 
     render() {
-        var styleContenu = style({
-            minHeight: 250,
-            position: "relative",
-            left: widthLeftMenu,
-            right: 0,
-            width: getWidthDroite(),
-            top: 0,
-            height: getHeightContent(),
-            backgroundColor: "#f5f5f5",
-        });
 
-        return <div>
+        var right = rightSpace + (this.state.collapseActive ? " " + rightSpaceCollapse : "")
+
+        return <div className={menuOh} >
             <LeftMenu
                 onHover={this.onHover}
                 onCollapseChange={this.onCollapseChange} collapse={this.state.collapse} selectedBranchId={this.state.selectedBranchId} onBranchClick={this.onBranchClick}
                 onHomeClick={this.props.onHomeClick} menuItems={this.props.menuItems} onMenuClick={this.props.onMenuClick} />
+            <div className={right}>
+                <TopMenu Recherche={this.props.Recherche} Antennes={this.props.Antennes}
+                    Utilisateur={this.props.Utilisateur} onDeconnexionClick={this.props.onDeconnexionClick} />
 
-            <TopMenu Recherche={this.props.Recherche} Antennes={this.props.Antennes}
-                Utilisateur={this.props.Utilisateur} onDeconnexionClick={this.props.onDeconnexionClick} />
+                <div className={styleContenu} >
 
-            <div className={styleContenu} >
-                {this.props.children}
+                    {this.props.children}
+
+                </div>
+
             </div>
         </div>;
     }
@@ -161,6 +258,153 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
 
     private onBranchClick = (branchId: string) => {
         this.setState({ selectedBranchId: branchId, });
+    }
+}
+
+
+export interface LeftMenuProps {
+    onBranchClick: (branchId: string) => void;
+    menuItems: MenuItemData[];
+    onHomeClick?: () => void;
+    onMenuClick?: (uri: string) => boolean | void;
+    selectedBranchId?: string;
+    onCollapseChange: () => void;
+    onHover: (hover: boolean) => void;
+    collapse: boolean;
+}
+
+export interface LeftMenuState {
+}
+
+export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
+    constructor(p, c) {
+        super(p, c);
+        this.state = {
+            selectedBranchId: "",
+        };
+    }
+
+    render() {
+
+        var img_space = style({
+            //width: "100%",
+            height: 60,
+            margin: 24
+        });
+        var img_style = style({
+            //width: "100%",
+            maxHeight: "100%",
+            maxWidth: "100%"
+            //width: this.props.collapse ? 30 : 60
+        });
+        var div_style = style({
+            height: 45,
+            paddingLeft: 25,
+            color: "#FFF",
+            fontSize: 25
+        });
+
+        var firstSub = style({
+            marginLeft: 24
+        });
+
+        var left = leftSpace + (this.props.collapse ? " " + leftSpaceCollapse : "")
+
+
+
+        //                <input type="button" value="TTT" onClick={this.props.onCollapseChange} />
+
+        return <aside className={left} >
+            <div className={img_space}>
+                <a onClick={this.props.onHomeClick} >
+                    <img className={img_style} src={UP} ></img>
+                </a>
+            </div>
+            <div className={div_style} >
+                <span className={"icon-Lmenu"} onClick={this.props.onCollapseChange} />
+            </div>
+            <UpHover onHoverChange={this.props.onHover}>
+                <div className={firstSub} >
+                    {<SubMenu
+                        open={false}
+                        onBranchClick={this.props.onBranchClick}
+                        branchId={""}
+                        selectedBranchId={this.props.selectedBranchId}
+                        onMenuClick={this.props.onMenuClick}
+                        childMenuItems={this.props.menuItems}
+                        top={false}
+                        collapse={this.props.collapse}
+                    />}
+                </div>
+            </UpHover>
+        </aside>
+    }
+}
+
+
+export interface TopMenuProps {
+    Recherche: JSX.Element;
+    Antennes: JSX.Element;
+    Utilisateur: string;
+    onDeconnexionClick: () => void;
+}
+
+export interface TopMenuState {
+}
+
+export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
+    constructor(p, c) {
+        super(p, c);
+        this.state = {
+        };
+    }
+
+    onUserClick = () => {
+    }
+
+    render() {
+
+        var styleRecherche = style({
+            width: "25%",
+            height: "40px",
+            float: "left",
+            marginTop: 7,
+            marginLeft: 25,
+        });
+        var styleDroite = getFontClassName({ fontSize: "14px", color: "#ffffff", }) + " " + style({
+            marginTop: "8px",
+            display: "inline-block",
+        });
+        var styleInfosTexte = style({
+            marginRight: "48px",
+            $nest: {
+                "& > i": {
+                    fontStyle: "normal",
+                    margin: "0 8px",
+                },
+            },
+        });
+
+        return <div className={styleG} >
+            <div className={styleRecherche} >
+                {this.props.Recherche}
+            </div>
+
+            <span className={styleDroite} >
+                {this.props.Antennes}
+
+                {stringIsNullOrEmpty(this.props.Utilisateur) ? null :
+                    <IconUtilisateur IconSize="14px" lineHeight={1.14} AvecCercle={false} BackgroundColor="#3f3b37" >
+                        <span className={styleInfosTexte} >
+                            <i>{this.props.Utilisateur}</i>
+                            <IconChevron Direction={DirectionEnum.Bas} Color="#ffffff" BackgroundColor="#3f3b37" IconSize="14px" onClick={this.onUserClick} />
+                        </span>
+                    </IconUtilisateur>
+                }
+
+                <IconDeconnexion onClick={this.props.onDeconnexionClick} />
+            </span>
+        </div>
     }
 }
 
@@ -268,23 +512,6 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
     get selectedBranchIdHasChild() {
         return branchIdHelper.hasChild(this.props.selectedBranchId);
     }
-}
-
-
-class branchIdHelper {
-
-    static toArray(id: string) {
-        return id.split(/(\d{1,})/).filter(x => { return x !== "" });
-    }
-
-    static getLevel(id: string) {
-        return this.toArray(id).length / 2;
-    }
-
-    static hasChild(id: string) {
-        return id.substr(id.length - 1, 1) === "*"
-    }
-
 }
 
 
@@ -533,81 +760,6 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
 }
 
 
-export interface TopMenuProps {
-    Recherche: JSX.Element;
-    Antennes: JSX.Element;
-    Utilisateur: string;
-    onDeconnexionClick: () => void;
-}
-
-export interface TopMenuState {
-}
-
-export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
-    constructor(p, c) {
-        super(p, c);
-        this.state = {
-        };
-    }
-
-    onUserClick = () => {
-    }
-
-    render() {
-        var styleG = style({
-            position: "relative",
-            left: widthLeftMenu,
-            right: 0,
-            top: 0,
-            width: getWidthDroite(),
-            height: heightTopBar,
-            padding: "16px 32px 16px 60px",
-            backgroundColor: "#FFF",
-            textAlign: "right",
-        });
-        var styleRecherche = style({
-            width: "25%",
-            height: "40px",
-            float: "left",
-        });
-        var styleDroite = getFontClassName({ fontSize: "14px", color: "#ffffff", }) + " " + style({
-            marginTop: "8px",
-            display: "inline-block",
-        });
-        var styleInfosTexte = style({
-            marginRight: "48px",
-            $nest: {
-                "& > i": {
-                    fontStyle: "normal",
-                    margin: "0 8px",
-                },
-            },
-        });
-
-        return <div className={styleG} >
-            <div className={styleRecherche} >
-                {this.props.Recherche}
-            </div>
-
-            <span className={styleDroite} >
-                {this.props.Antennes}
-
-                {stringIsNullOrEmpty(this.props.Utilisateur) ? null :
-                    <IconUtilisateur IconSize="14px" lineHeight={1.14} AvecCercle={false} BackgroundColor="#3f3b37" >
-                        <span className={styleInfosTexte} >
-                            <i>{this.props.Utilisateur}</i>
-                            <IconChevron Direction={DirectionEnum.Bas} Color="#ffffff" BackgroundColor="#3f3b37" IconSize="14px" onClick={this.onUserClick} />
-                        </span>
-                    </IconUtilisateur>
-                }
-
-                <IconDeconnexion onClick={this.props.onDeconnexionClick} />
-            </span>
-        </div>
-    }
-}
-
-
 export interface TopMenuItemProps {
     title: string;
     action: string | (() => void);
@@ -636,108 +788,5 @@ export class TopMenuItem extends React.Component<TopMenuItemProps, TopMenuItemSt
                 </a>
             </li>
         }
-    }
-}
-
-
-export interface MenuItemData {
-    icon?: string;
-    title: JSX.Element | string;
-    uri: string;
-    isVisible: boolean;
-    childMenuItems?: MenuItemData[];
-    styleType?: "button"
-}
-
-export interface LeftMenuProps {
-    onBranchClick: (branchId: string) => void;
-    menuItems: MenuItemData[];
-    onHomeClick?: () => void;
-    onMenuClick?: (uri: string) => boolean | void;
-    selectedBranchId?: string;
-    onCollapseChange: () => void;
-    onHover: (hover: boolean) => void;
-    collapse: boolean;
-}
-
-export interface LeftMenuState {
-}
-
-export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
-    constructor(p, c) {
-        super(p, c);
-        this.state = {
-            selectedBranchId: "",
-        };
-    }
-
-    render() {
-        var styleAside = style({
-            position: "fixed",
-            left: 0,
-            width: widthLeftMenu,
-            top: 0,
-            height: "100%",
-            backgroundColor: "#4e5b59",
-            alignItems: "center",
-            $nest: {
-                '& i': {
-                    cursor: "pointer",
-                },
-                '& a': {
-                    textDecoration: "none",
-                },
-            },
-        });
-        var img_space = style({
-            //width: "100%",
-            height: 60,
-            margin: 24
-        });
-        var img_style = style({
-            //width: "100%",
-            maxHeight : "100%",
-            maxWidth: "100%"
-            //width: this.props.collapse ? 30 : 60
-        });
-        var div_style = style({
-            height: 45,
-            paddingLeft: 25,
-            color: "#FFF",
-            fontSize: 25
-        });
-
-        var firstSub = style({
-            marginLeft: 24
-        });
-
-
-        //                <input type="button" value="TTT" onClick={this.props.onCollapseChange} />
-
-        var menu = <SubMenu
-            open={false}
-            onBranchClick={this.props.onBranchClick}
-            branchId={""}
-            selectedBranchId={this.props.selectedBranchId}
-            onMenuClick={this.props.onMenuClick}
-            childMenuItems={this.props.menuItems}
-            top={false}
-            collapse={this.props.collapse}
-        />
-        return <aside className={styleAside} >
-            <div className={img_space}>
-                <a onClick={this.props.onHomeClick} >
-                    <img className={img_style} src={UP} ></img>
-                </a>
-            </div>
-            <div className={div_style} >
-                <span className={"icon-Lmenu"} onClick={this.props.onCollapseChange} />
-            </div>
-            <UpHover onHoverChange={this.props.onHover}>
-                <div className={firstSub} >
-                    {menu}
-                </div>
-            </UpHover>
-        </aside>
     }
 }
