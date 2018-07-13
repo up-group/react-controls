@@ -561,7 +561,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
             fontStyle: "normal",
             fontStretch: "normal",
             //lineHeight: 2.29,
-            height: this.level === 1 ? 42 : 32,
+            height: this.hasIcon || this.props.styleType === "button" ? 42 : 32,
             letterSpacing: "normal",
             color: this.isThisMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
             $nest: {
