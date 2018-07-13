@@ -758,35 +758,3 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
         this.props.onBranchClick(idParent);
     }
 }
-
-
-export interface TopMenuItemProps {
-    title: string;
-    action: string | (() => void);
-    icon: string;
-}
-
-export interface TopMenuItemState {
-}
-
-export class TopMenuItem extends React.Component<TopMenuItemProps, TopMenuItemState> {
-    constructor(p, c) {
-        super(p, c);
-    }
-
-    render() {
-        if (typeof (this.props.action) === "string") {
-            return <li title={this.props.title} data-toggle="tooltip" data-placement="bottom" >
-                <a href={this.props.action} >
-                    <i className={this.props.icon} ></i>
-                </a>
-            </li>
-        } else {
-            return <li title={this.props.title} data-toggle="tooltip" data-placement="bottom" >
-                <a onClick={this.props.action} >
-                    <i className={this.props.icon} ></i>
-                </a>
-            </li>
-        }
-    }
-}
