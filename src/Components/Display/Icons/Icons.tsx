@@ -396,7 +396,10 @@ export class IconPercevalLink extends React.Component<IconProps, IconState> {
 }
 
 
-export class IconLoading extends React.Component<IconProps, IconState> {
+export interface IconLoadingState extends IconState {
+    NewSize: number;
+}
+export class IconLoading extends React.Component<IconProps, IconLoadingState> {
     static defaultProps = {
         Color: "#000000",
         BackgroundColor: "#ffffff",
@@ -404,16 +407,35 @@ export class IconLoading extends React.Component<IconProps, IconState> {
         AvecCercle: false,
     }
 
+    private _relativeIconSize: boolean;
+
     constructor(p, c) {
         super(p, c);
+        this._relativeIconSize = false;
+        this.state = {
+            NewSize: null,
+        }
+    }
+
+    componentDidMount() {
+        if (this._relativeIconSize) {
+            var ref: any = this.refs.iconLoad;
+            var hauteur: number | string = ref.parentNode.clientHeight;
+            this.setState({ NewSize: this.getFontSizeNumber(hauteur) * this.getFontSizeNumber(this.props.IconSize) / 100 });
+        }
     }
 
     getFontSizeNumber = (size: number | string): number => {
         if (typeof(size) === "number") {
             return size;
         }
-        var regex = / *([0-9]*)(.*)/i.exec(size);
-        var taille: number = parseInt(regex[1], 10);
+        var regex = /([0-9]*\.?[0-9]*)(.*)/i.exec(size);
+
+        if (isNullOrUndef(regex) || isNullOrUndef(regex[1])) {
+            return 0;
+        }
+
+        var taille: number = parseFloat(regex[1]);
         var unite: string = regex[2];
 
         if (isNullOrUndef(taille)) {
@@ -450,6 +472,7 @@ export class IconLoading extends React.Component<IconProps, IconState> {
             case "vmax":
             case "%":
                 // pas encore géré
+                this._relativeIconSize = true;
                 break;
         }
 
@@ -457,7 +480,7 @@ export class IconLoading extends React.Component<IconProps, IconState> {
     }
 
     render() {
-        var tailleIcon: number = this.getFontSizeNumber(this.props.IconSize);
+        var tailleIcon: number = this.getFontSizeNumber(this.state.NewSize === null ? this.props.IconSize : this.state.NewSize);
         var largeurCercle: number = tailleIcon / 5.75;
 
         var ratioTaille: number = tailleIcon / 7;
@@ -484,13 +507,18 @@ export class IconLoading extends React.Component<IconProps, IconState> {
             animation: animation + " " + temps.toString() + "s linear infinite",
             "-webkit-animation": animation + " " + temps.toString() + "s linear infinite",
             display: "inline-block",
+            boxSizing: "initial",
             margin: this.props.AvecCercle ? "5px" : "0",
             cursor: this.props.onClick ? "pointer" : "auto",
         });
 
-        return <span onClick={this.props.onClick} > 
+        if (this.props.className) {
+            styleG += " " + this.props.className;
+        }
+
+        return <span ref="iconLoad" onClick={this.props.onClick} > 
             <span className={styleG} />
-            <span className={this.props.className} >{this.props.children}</span>
+            {this.props.children}
         </span>
     }
 }
