@@ -1,6 +1,7 @@
 import * as React from "react"
 import { style } from "typestyle";
-import { getFontClassName } from "../../../Common/utils/helpers";
+import { getFontClassName, isNullOrUndef, stringIsNullOrEmpty } from "../../../Common/utils/helpers";
+import { keyframes } from "../../../Common/theming/themedComponents";
 
 
 export interface IconProps {
@@ -391,5 +392,105 @@ export class IconPercevalLink extends React.Component<IconProps, IconState> {
             <img src={imgPerceval} />
             {this.props.children}
         </span>;
+    }
+}
+
+
+export class IconLoading extends React.Component<IconProps, IconState> {
+    static defaultProps = {
+        Color: "#000000",
+        BackgroundColor: "#ffffff",
+        IconSize: "14px",
+        AvecCercle: false,
+    }
+
+    constructor(p, c) {
+        super(p, c);
+    }
+
+    getFontSizeNumber = (size: number | string): number => {
+        if (typeof(size) === "number") {
+            return size;
+        }
+        var regex = / *([0-9]*)(.*)/i.exec(size);
+        var taille: number = parseInt(regex[1], 10);
+        var unite: string = regex[2];
+
+        if (isNullOrUndef(taille)) {
+            return 0;
+        }
+        if (stringIsNullOrEmpty(unite)) {
+            return taille;
+        }
+
+        switch (unite) {
+            // static units
+            // 1in = 96px = 2.54cm = 72pt = 6pc
+            case "px":
+                return taille;
+            case "in": 
+                return taille * 96;
+            case "cm": 
+                return taille * 96 / 2.54;
+            case "mm":
+                return taille * 96 / 0.254;
+            case "pt":
+                return taille * 96 / 72;
+            case "pc": 
+                return taille * 96 / 6;
+
+            // relative units
+            case "em":
+            case "ex":
+            case "ch":
+            case "rem":
+            case "vw":
+            case "vh":
+            case "vmin":
+            case "vmax":
+            case "%":
+                // pas encore géré
+                break;
+        }
+
+        return taille;
+    }
+
+    render() {
+        var tailleIcon: number = this.getFontSizeNumber(this.props.IconSize);
+        var largeurCercle: number = tailleIcon / 5.75;
+
+        var ratioTaille: number = tailleIcon / 7;
+        var temps: number = ratioTaille / Math.sqrt(ratioTaille); // Parce que pourquoi pas, ça fait jolie comme ça
+
+        tailleIcon -= largeurCercle * 2;
+
+        const animation = keyframes`
+            0% {
+            transform: rotate(0deg);
+            }
+            100% {
+            transform: rotate(360deg);
+            }
+        `;
+
+        var styleG = style({
+            borderRadius: "50%",
+            height: tailleIcon,
+            width: tailleIcon,
+            border: largeurCercle + "px solid " + this.props.Color,
+            borderRight: largeurCercle + "px solid " + this.props.BackgroundColor,
+            backgroundColor: this.props.BackgroundColor,
+            animation: animation + " " + temps.toString() + "s linear infinite",
+            "-webkit-animation": animation + " " + temps.toString() + "s linear infinite",
+            display: "inline-block",
+            margin: this.props.AvecCercle ? "5px" : "0",
+            cursor: this.props.onClick ? "pointer" : "auto",
+        });
+
+        return <span onClick={this.props.onClick} > 
+            <span className={styleG} />
+            <span className={this.props.className} >{this.props.children}</span>
+        </span>
     }
 }
