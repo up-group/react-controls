@@ -43,7 +43,9 @@ storiesOf('UpMenu', module)
         () => (
             <UpThemeProvider theme={UpDefaultTheme}>
                 <UpMenuOH onDeconnexionClick={() => { }} onMenuClick={action("Menu clicked")}
-                    Antennes={null} Recherche={null} Utilisateur="Master WEB"
+                    Antennes={null} Recherche={null} 
+                    Utilisateur={{Nom: "Master Web", DerniereConnexion: new Date(), NomBinome: "Bînomot Hop", onChangeMdpClick: () => {}, 
+                        Alertes: { NonLues: 36, onClick: () => {}, }, }}
                     // topMenuItems={[
                     //     { title: "Recherche", icon: "up up-dossier", action: "https://www.google.fr" },
                     //     { title: "Alertes", icon: "up up-dossier", action: () => { alert(5); } }
@@ -119,7 +121,8 @@ storiesOf('UpMenu', module)
         () => (
             <UpThemeProvider theme={UpDefaultTheme}>
                 <UpMenuOH
-                    Antennes={null} Recherche={null} Utilisateur="Master WEB"
+                    Antennes={null} Recherche={null} Utilisateur={{Nom: "Master Web", DerniereConnexion: new Date(), NomBinome: "Bînomot Hop", onChangeMdpClick: () => {}, 
+                        Alertes: { NonLues: 36, onClick: () => {}, }, }}
 
                     onDeconnexionClick={() => { }} onMenuClick={action("Menu clicked")}
                     //topMenuItems={[

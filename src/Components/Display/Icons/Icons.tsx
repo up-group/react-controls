@@ -1,23 +1,85 @@
 import * as React from "react"
 import { style } from "typestyle";
-import { getFontClassName, isNullOrUndef, stringIsNullOrEmpty } from "../../../Common/utils/helpers";
+import { getFontClassName, isNullOrUndef, stringIsNullOrEmpty, AttributPolice, getFontSizeNumber } from "../../../Common/utils/helpers";
 import { keyframes } from "../../../Common/theming/themedComponents";
+
+
+export interface AlertIconProps {
+    IconSize: string | number;
+    className?: string;
+
+    AlertNumber: number;
+    AlertFont?: AttributPolice;
+    AlertCircle?: {
+        Active: boolean;
+        Color?: string;
+    }
+}
+export interface AlertIconState {
+}
+export class AlertIcon extends React.Component<AlertIconProps, AlertIconState> {
+    constructor(p, c) {
+        super(p, c);
+    }
+
+    render() {
+        var fontSize: string = (getFontSizeNumber(this.props.IconSize) * 0.6).toString() + "px";
+
+        var styleAlerteG = style({
+            position: "relative",
+        });
+        var styleAlerteNumber =  style({
+            position: "absolute",
+            top: "-0.5em",
+            right: "-0.3em",
+            fontSize: fontSize,
+        });
+
+        if (isNullOrUndef(this.props.AlertFont) === false) {
+            this.props.AlertFont.fontSize = fontSize;
+            styleAlerteNumber += " " + getFontClassName(this.props.AlertFont);
+        }
+
+        if (isNullOrUndef(this.props.AlertCircle) === false && this.props.AlertCircle.Active) {
+            styleAlerteNumber += " " + style({
+                padding: "0.1em",
+                borderRadius: "50%",
+                backgroundColor: this.props.AlertCircle.Color,
+            });
+        }
+
+        return <span className={this.props.className + " " + styleAlerteG} >
+            {this.props.children}
+            <span className={styleAlerteNumber} >{this.props.AlertNumber}</span>
+        </span>
+    }
+}
 
 
 export interface IconProps {
     Color?: string;
     BackgroundColor?: string;
-    IconSize?: string | number;
     AvecCercle?: boolean;
+    IconSize?: string | number;
 
     className?: string;
+    tabIndex?: number;
     onClick?: (event) => void;
+    onMouseDown?: (event) => void;
+    onBlur?: (event) => void;
 
     fontWeight?: any;
     fontStyle?: any;
     fontStrech?: any;
     lineHeight?: any;
     letterSpacing?: any;
+    
+    AlertNumber?: number;
+    AlertFont?: AttributPolice;
+    AlertCircle?: {
+        Active: boolean;
+        Color?: string;
+    }
 }
 export interface IconState {
 }
@@ -45,21 +107,26 @@ export class MaterialinearIcon extends React.Component<MaterialIconProps, Materi
         super(p, c);
     }
     render() {
-        var className = "icon-" + this.props.IconName + " " 
-            + getFontClassName({ fontSize: this.props.IconSize.toString(), color: this.props.Color, fontWeight: this.props.fontWeight, 
-                fontStyle: this.props.fontStyle, fontStrech: this.props.fontStrech, lineHeight: this.props.lineHeight, letterSpacing: this.props.letterSpacing, }) + " " 
-            + style({
-                backgroundColor: this.props.BackgroundColor,
-                padding: this.props.AvecCercle ? "5px" : "0",
-                borderRadius: this.props.AvecCercle ? "50%" : "0",
-                cursor: this.props.onClick ? "pointer" : "auto",
-            });
+        var styleIcone = style({
+            backgroundColor: this.props.BackgroundColor ? this.props.BackgroundColor : "",
+            padding: this.props.AvecCercle ? "5px" : "0",
+            borderRadius: this.props.AvecCercle ? "50%" : "0",
+            cursor: this.props.onClick || this.props.onMouseDown ? "pointer" : "auto",
+        }) + (this.props.className ? " " + this.props.className : "") + " " 
+            + getFontClassName({ fontSize: this.props.IconSize.toString(), color: this.props.Color,
+                fontWeight: this.props.fontWeight, fontStyle: this.props.fontStyle, fontStrech: this.props.fontStrech,
+                lineHeight: this.props.lineHeight, letterSpacing: this.props.letterSpacing, });
 
-        if (this.props.className) {
-            className += " " + this.props.className;
-        }
-        return <span onClick={this.props.onClick} >
-            <span className={className} />
+        var iconeName: string = "icon-" + this.props.IconName;
+
+        return <span onClick={this.props.onClick} tabIndex={this.props.tabIndex} onBlur={this.props.onBlur} onMouseDown={this.props.onMouseDown} >
+            { isNullOrUndef(this.props.AlertNumber) ?
+                <span className={iconeName + " " + styleIcone} /> :
+                <AlertIcon IconSize={this.props.IconSize} className={styleIcone}
+                        AlertNumber={this.props.AlertNumber} AlertCircle={this.props.AlertCircle} AlertFont={this.props.AlertFont} >
+                    <span className={iconeName} />
+                </AlertIcon>
+            }
             {this.props.children}
         </span>;
     }
@@ -319,8 +386,7 @@ export class IconCommentaire extends React.Component<IconProps, IconState> {
 }
 export class IconDeconnexion extends React.Component<IconProps, IconState> {
     static defaultProps = {
-        Color: "#ffffff",
-        BackgroundColor: "#3f3b37",
+        Color: "#4a4a4a",
         IconSize: "20px",
         AvecCercle: false,
         lineHeight: 1.14,
@@ -362,6 +428,30 @@ export class IconRecherche extends React.Component<IconProps, IconState> {
         return <MaterialinearIcon {...this.props} IconName="search" />;
     }
 }
+export class IconVerrou extends React.Component<IconProps, IconState> {
+    static defaultProps = {
+        IconSize: "14px",
+        AvecCercle: false,
+    }
+    constructor(p, c) {
+        super(p, c);
+    }
+    render() {
+        return <MaterialinearIcon {...this.props} IconName="Llock" />;
+    }
+}
+export class IconAlertes extends React.Component<IconProps, IconState> {
+    static defaultProps = {
+        IconSize: "14px",
+        AvecCercle: false,
+    }
+    constructor(p, c) {
+        super(p, c);
+    }
+    render() {
+        return <MaterialinearIcon {...this.props} IconName="Lbell" />;
+    }
+}
 
 
 export class IconLswaLink extends React.Component<IconProps, IconState> {
@@ -373,8 +463,15 @@ export class IconLswaLink extends React.Component<IconProps, IconState> {
         var styleCurseur = style({
             cursor: this.props.onClick ? "pointer" : "auto",
         });
-        return <span className={styleCurseur} onClick={this.props.onClick} >
-            <img src={imgLswa} />
+        return <span className={styleCurseur} onClick={this.props.onClick} tabIndex={this.props.tabIndex} onBlur={this.props.onBlur} onMouseDown={this.props.onMouseDown} >
+            {/* <img src={imgLswa} /> */}            
+            { isNullOrUndef(this.props.AlertNumber) ?
+                <img src={imgLswa} /> :
+                <AlertIcon IconSize={this.props.IconSize} AlertNumber={this.props.AlertNumber}
+                        AlertCircle={this.props.AlertCircle} AlertFont={this.props.AlertFont} >
+                    <img src={imgLswa} />
+                </AlertIcon>
+            }
             {this.props.children}
         </span>;
     }
@@ -388,21 +485,30 @@ export class IconPercevalLink extends React.Component<IconProps, IconState> {
         var styleCurseur = style({
             cursor: this.props.onClick ? "pointer" : "auto",
         });
-        return <span className={styleCurseur} onClick={this.props.onClick} >
-            <img src={imgPerceval} />
+        return <span className={styleCurseur} onClick={this.props.onClick} tabIndex={this.props.tabIndex} onBlur={this.props.onBlur} onMouseDown={this.props.onMouseDown} >
+            {/* <img src={imgPerceval} /> */}
+            { isNullOrUndef(this.props.AlertNumber) ?
+                <img src={imgPerceval} /> :
+                <AlertIcon IconSize={this.props.IconSize} AlertNumber={this.props.AlertNumber}
+                        AlertCircle={this.props.AlertCircle} AlertFont={this.props.AlertFont} >
+                    <img src={imgPerceval} />
+                </AlertIcon>
+            }
             {this.props.children}
         </span>;
     }
 }
 
 
+export interface IconLoadingProps extends IconProps {    
+}
 export interface IconLoadingState extends IconState {
     NewSize: number;
 }
-export class IconLoading extends React.Component<IconProps, IconLoadingState> {
+export class IconLoading extends React.Component<IconLoadingProps, IconLoadingState> {
     static defaultProps = {
-        Color: "#000000",
-        BackgroundColor: "#ffffff",
+        Color: "#3f3b37",
+        backgroundColor: "#ffffff",
         IconSize: "14px",
         AvecCercle: false,
     }
@@ -421,66 +527,12 @@ export class IconLoading extends React.Component<IconProps, IconLoadingState> {
         if (this._relativeIconSize) {
             var ref: any = this.refs.iconLoad;
             var hauteur: number | string = ref.parentNode.clientHeight;
-            this.setState({ NewSize: this.getFontSizeNumber(hauteur) * this.getFontSizeNumber(this.props.IconSize) / 100 });
+            this.setState({ NewSize: getFontSizeNumber(hauteur) * getFontSizeNumber(this.props.IconSize) / 100 });
         }
-    }
-
-    getFontSizeNumber = (size: number | string): number => {
-        if (typeof(size) === "number") {
-            return size;
-        }
-        var regex = /([0-9]*\.?[0-9]*)(.*)/i.exec(size);
-
-        if (isNullOrUndef(regex) || isNullOrUndef(regex[1])) {
-            return 0;
-        }
-
-        var taille: number = parseFloat(regex[1]);
-        var unite: string = regex[2];
-
-        if (isNullOrUndef(taille)) {
-            return 0;
-        }
-        if (stringIsNullOrEmpty(unite)) {
-            return taille;
-        }
-
-        switch (unite) {
-            // static units
-            // 1in = 96px = 2.54cm = 72pt = 6pc
-            case "px":
-                return taille;
-            case "in": 
-                return taille * 96;
-            case "cm": 
-                return taille * 96 / 2.54;
-            case "mm":
-                return taille * 96 / 0.254;
-            case "pt":
-                return taille * 96 / 72;
-            case "pc": 
-                return taille * 96 / 6;
-
-            // relative units
-            case "em":
-            case "ex":
-            case "ch":
-            case "rem":
-            case "vw":
-            case "vh":
-            case "vmin":
-            case "vmax":
-            case "%":
-                // pas encore géré
-                this._relativeIconSize = true;
-                break;
-        }
-
-        return taille;
     }
 
     render() {
-        var tailleIcon: number = this.getFontSizeNumber(this.state.NewSize === null ? this.props.IconSize : this.state.NewSize);
+        var tailleIcon: number = getFontSizeNumber(this.state.NewSize === null ? this.props.IconSize : this.state.NewSize);
         var largeurCercle: number = tailleIcon / 5.75;
 
         var ratioTaille: number = tailleIcon / 7;
@@ -516,8 +568,17 @@ export class IconLoading extends React.Component<IconProps, IconLoadingState> {
             styleG += " " + this.props.className;
         }
 
-        return <span ref="iconLoad" onClick={this.props.onClick} > 
-            <span className={styleG} />
+        return <span ref="iconLoad" onClick={this.props.onClick} tabIndex={this.props.tabIndex} onBlur={this.props.onBlur} onMouseDown={this.props.onMouseDown} > 
+            {/* <span className={styleG} /> */}
+            
+            { isNullOrUndef(this.props.AlertNumber) ?
+                <span className={styleG} /> :
+                <AlertIcon IconSize={this.props.IconSize} AlertNumber={this.props.AlertNumber} 
+                        AlertCircle={this.props.AlertCircle} AlertFont={this.props.AlertFont} >
+                    <span className={styleG} />
+                </AlertIcon>
+            } 
+           
             {this.props.children}
         </span>
     }
