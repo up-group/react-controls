@@ -458,12 +458,19 @@ export class UserExpand extends React.Component<UserExpandProps, UserExpandState
         });
         var styleChangeMdp = style({
             cursor: "pointer",
+            marginLeft: "8px",
         });
         var styleAlertes = style({
             cursor: isNullOrUndef(this.props.Utilisateur.Alertes) || isNullOrUndef(this.props.Utilisateur.Alertes.onClick) ? "auto" : "pointer",
+            marginLeft: "8px",
         });
 
         var derniereCo: string = this.writeDateTime(this.props.Utilisateur.DerniereConnexion);
+        var nbAlerte: string = isNullOrUndef(this.props.Utilisateur.Alertes.NonLues) ? null :
+            isNaN(this.props.Utilisateur.Alertes.NonLues) ? null :
+                this.props.Utilisateur.Alertes.NonLues <= 0 ? null : 
+                    this.props.Utilisateur.Alertes.NonLues > 99 ? "99+" : 
+                        this.props.Utilisateur.Alertes.NonLues.toString();
 
         return <div className={styleUserExpand + " " + styleG} >
             { derniereCo === null ? null :
@@ -474,14 +481,15 @@ export class UserExpand extends React.Component<UserExpandProps, UserExpandState
             }
             { isNullOrUndef(this.props.Utilisateur.onChangeMdpClick) ? null :
                 <p >
-                    <IconVerrou onMouseDown={this.props.Utilisateur.onChangeMdpClick} className={styleChangeMdp} >
+                    <IconVerrou onMouseDown={this.props.Utilisateur.onChangeMdpClick} >
                         <span className={styleChangeMdp} > Changer votre mot de passe</span>
                     </IconVerrou>
                 </p>
             }
             { isNullOrUndef(this.props.Utilisateur.Alertes) ? null :
                 <p>
-                    <IconAlertes AlertNumber={this.props.Utilisateur.Alertes.NonLues} className={styleAlertes} 
+                    <IconAlertes AlertNumber={nbAlerte} AlertCircle={{Active: true, Color: "#f44336"}} 
+                            AlertFont={{fontSize: "8px", color: "#ffffff"}} // la taille de la police va ici être écrasée par l'alerte
                             onMouseDown={this.props.Utilisateur.Alertes.onClick} >
                         <span className={styleAlertes} > Alertes utilisateur</span>
                     </IconAlertes>
