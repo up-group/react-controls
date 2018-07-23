@@ -43,9 +43,11 @@ storiesOf('UpMenu', module)
         () => (
             <UpThemeProvider theme={UpDefaultTheme}>
                 <UpMenuOH onDeconnexionClick={() => { }} onMenuClick={action("Menu clicked")}
-                    Antennes={null} Recherche={null} 
-                    Utilisateur={{Nom: "Master Web", DerniereConnexion: new Date(), NomBinome: "Bînomot Hop", onChangeMdpClick: () => {}, 
-                        Alertes: { NonLues: 36, onClick: () => {}, }, }}
+                    Antennes={null} Recherche={null}
+                    Utilisateur={{
+                        Nom: "Master Web", DerniereConnexion: new Date(), NomBinome: "Bînomot Hop", onChangeMdpClick: () => { },
+                        Alertes: { NonLues: 36, onClick: () => { }, },
+                    }}
                     // topMenuItems={[
                     //     { title: "Recherche", icon: "up up-dossier", action: "https://www.google.fr" },
                     //     { title: "Alertes", icon: "up up-dossier", action: () => { alert(5); } }
@@ -121,20 +123,12 @@ storiesOf('UpMenu', module)
         () => (
             <UpThemeProvider theme={UpDefaultTheme}>
                 <UpMenuOH
-                    Antennes={null} Recherche={null} Utilisateur={{Nom: "Master Web", DerniereConnexion: new Date(), NomBinome: "Bînomot Hop", onChangeMdpClick: () => {}, 
-                        Alertes: { NonLues: 36, onClick: () => {}, }, }}
+                    Antennes={null} Recherche={null} Utilisateur={{
+                        Nom: "Master Web", DerniereConnexion: new Date(), NomBinome: "Bînomot Hop", onChangeMdpClick: () => { },
+                        Alertes: { NonLues: 36, onClick: () => { }, },
+                    }}
 
                     onDeconnexionClick={() => { }} onMenuClick={action("Menu clicked")}
-                    //topMenuItems={[
-                    //    { title: "Recherche", icon: "up up-dossier", action: "https://www.google.fr" },
-                    //    { title: "Alertes", icon: "up up-dossier", action: () => { alert(5); } }
-                    //]}
-                    //selectMenu={((menu) => {
-                    //    if (menu.title == "Cadhoc") {
-                    //        return true;
-                    //    }
-                    //    return false
-                    //})}
                     selectMenu={null}
                     menuItems={
                         [
@@ -174,434 +168,103 @@ storiesOf('UpMenu', module)
 
                             },
 
-
-
                             {
-                                "title": "SPONGE BOB",
-                                "uri": "/Patient?SejourId=39593&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                "icon": null,
-
-                                "isVisible": true,
-                                "childMenuItems": [
-                                    {
-                                        "title": "aaaaa",
-                                        "uri": "/Patient/Administratif?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                        "icon": "",
-
-                                        "isVisible": true,
-                                        "childMenuItems": []
-                                    },
-                                    {
-                                        "title": "bbbbb",
-                                        "uri": "/Patient/Administratif?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                        "icon": "",
-
-                                        "isVisible": false,
-                                        "childMenuItems": []
-                                    },
-                                    {
-                                        "title": "cccc",
-                                        "uri": "/Patient/Administratif?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                        "icon": "",
-
-                                        "isVisible": true,
-                                        "childMenuItems": []
-                                    }
-                                ]
-
-                            },
-                            {
-                                "title": "39610 SUIVI",
+                                "title": "Dernier acces",
                                 "uri": "",
-                                "icon": null,
-
+                                forceOpen: true,
+                                "icon": "up up-certificatSante",
                                 "isVisible": true,
                                 "childMenuItems": [
                                     {
-                                        "title": "Administratif",
-                                        "uri": "/Patient/Administratif?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                        "icon": "",
+                                        "title": "SPONGE BOB",
+                                        "uri": "/Patient?SejourId=39593&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                        "icon": null,
 
                                         "isVisible": true,
                                         "childMenuItems": [
                                             {
-                                                "title": "Etat civil",
-                                                "uri": "/Patient/Administratif/Etat_civil?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                "title": "aaaaa",
+                                                "uri": "/Patient/Administratif?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
                                                 "icon": "",
 
                                                 "isVisible": true,
                                                 "childMenuItems": []
                                             },
                                             {
-                                                "title": "Correspondants",
-                                                "uri": "/Patient/Administratif/Correspondants?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                "title": "bbbbb",
+                                                "uri": "/Patient/Administratif?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
                                                 "icon": "",
 
-                                                "isVisible": true,
+                                                "isVisible": false,
                                                 "childMenuItems": []
                                             },
                                             {
-                                                "title": "Editions",
-                                                "uri": "/Patient/Administratif/Editions?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            },
-                                            {
-                                                "title": "Couvertures sociales",
-                                                "uri": "/Patient/Administratif/Couvertures_sociales?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            },
-                                            {
-                                                "title": "Prise en charge HAD",
-                                                "uri": "/Patient/Administratif/Prise_En_Charge?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": [
-                                                    {
-                                                        "title": "Création d'une prise en charge HAD",
-                                                        "uri": "/Patient/Administratif/Prise_En_Charge/Crea_PriseEnCharge?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "title": "Mouvements",
-                                                "uri": "/Patient/Administratif/HAD/Mouvements?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            },
-                                            {
-                                                "title": "Messages",
-                                                "uri": "/Patient/Administratif/Messages?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                "title": "cccc",
+                                                "uri": "/Patient/Administratif?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
                                                 "icon": "",
 
                                                 "isVisible": true,
                                                 "childMenuItems": []
                                             }
                                         ]
+
                                     },
                                     {
-                                        "title": "Facturation",
-                                        "uri": "/Patient/Facturation?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                        "icon": "",
+                                        "title": "39610 SUIVI",
+                                        "uri": "",
+                                        "icon": null,
 
                                         "isVisible": true,
                                         "childMenuItems": [
                                             {
-                                                "title": "Médicaments facturables en sus",
-                                                "uri": "/Patient/Facturation/Produits_LPP?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                "title": "Administratif",
+                                                "uri": "/Patient/Administratif?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
                                                 "icon": "",
 
                                                 "isVisible": true,
                                                 "childMenuItems": [
                                                     {
-                                                        "title": "",
-                                                        "uri": "/Patient/Facturation/Produits_LPP/Affichage_LPP?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "title": "Etat civil",
+                                                        "uri": "/Patient/Administratif/Etat_civil?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
                                                         "icon": "",
 
                                                         "isVisible": true,
                                                         "childMenuItems": []
                                                     },
                                                     {
-                                                        "title": "",
-                                                        "uri": "/Patient/Facturation/Produits_LPP/Creation_LPP?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "title": "Correspondants",
+                                                        "uri": "/Patient/Administratif/Correspondants?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
                                                         "icon": "",
 
                                                         "isVisible": true,
                                                         "childMenuItems": []
                                                     },
                                                     {
-                                                        "title": "",
-                                                        "uri": "/Patient/Facturation/Produits_LPP/Modification_LPP?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "title": "Médicaments coûteux",
-                                                "uri": "/Patient/Facturation/MedicamentCouteux?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            },
-                                            {
-                                                "title": "Visites médecin traitant",
-                                                "uri": "/Patient/Facturation/visite_medecin?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": [
-                                                    {
-                                                        "title": "",
-                                                        "uri": "/Patient/Facturation/visite_medecin/affichage_vm?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "title": "Editions",
+                                                        "uri": "/Patient/Administratif/Editions?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
                                                         "icon": "",
 
                                                         "isVisible": true,
                                                         "childMenuItems": []
                                                     },
                                                     {
-                                                        "title": "",
-                                                        "uri": "/Patient/Facturation/visite_medecin/creation_vm?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "title": "Couvertures sociales",
+                                                        "uri": "/Patient/Administratif/Couvertures_sociales?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
                                                         "icon": "",
 
                                                         "isVisible": true,
                                                         "childMenuItems": []
                                                     },
                                                     {
-                                                        "title": "",
-                                                        "uri": "/Patient/Facturation/visite_medecin/modification_vm?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "title": "Médical",
-                                        "uri": "/Patient/Medical?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                        "icon": "",
-
-                                        "isVisible": true,
-                                        "childMenuItems": [
-                                            {
-                                                "title": "Général",
-                                                "uri": "/Patient/Medical/Informations_Medicales?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": [
-                                                    {
-                                                        "title": "Modification Informations Médicales",
-                                                        "uri": "/Patient/Medical/Informations_Medicales/Modification_Informations_Medicales?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    },
-                                                    {
-                                                        "title": "Antécedents",
-                                                        "uri": "/Patient/Medical/Informations_Medicales/Antecedents?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "title": "Motif",
-                                                "uri": "/Patient/Medical/Motif?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            },
-                                            {
-                                                "title": "Séquences",
-                                                "uri": "/Patient/Medical/Sequence_Medicale?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": [
-                                                    {
-                                                        "title": "Creation Sequence Medicale",
-                                                        "uri": "/Patient/Medical/Sequence_Medicale/Creation_Sequence_Medicale?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    },
-                                                    {
-                                                        "title": "Creation Sequence Medicale Depuis Simulation TAA",
-                                                        "uri": "/Patient/Medical/Sequence_Medicale/Creation_Sequence_Medicale_SimuTAA?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    },
-                                                    {
-                                                        "title": "Creation Sequence Medicale",
-                                                        "uri": "/Patient/Medical/Sequence_Medicale/Modification_Sequence_Medicale?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    },
-                                                    {
-                                                        "title": "Consultation Sequence Medicale",
-                                                        "uri": "/Patient/Medical/Sequence_Medicale/Consultation_Sequence_Medicale?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "title": "Informations",
-                                                "uri": "/Patient/Medical/Informations?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            },
-                                            {
-                                                "title": "Actes CCAM",
-                                                "uri": "/Patient/Medical/Actes_CCAM?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            },
-                                            {
-                                                "title": "Chimiothérapie",
-                                                "uri": "/Patient/Medical/Chimiotherapie?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            },
-                                            {
-                                                "title": "Comptes rendus",
-                                                "uri": "/Patient/Medical/Compte_rendu?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            },
-                                            {
-                                                "title": "Dispensation",
-                                                "uri": "/Patient/Medical/Dispensations?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": [
-                                                    {
-                                                        "title": "Lire",
-                                                        "uri": "/Patient/Medical/Dispensations/Lire?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    },
-                                                    {
-                                                        "title": "Ajouter",
-                                                        "uri": "/Patient/Medical/Dispensations/Ajouter?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    },
-                                                    {
-                                                        "title": "Modifier",
-                                                        "uri": "/Patient/Medical/Dispensations/Modifier?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "title": "Traitements",
-                                                "uri": "/Patient/Medical/Traitements?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "title": "Soins",
-                                        "uri": "/Patient/Soins?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                        "icon": "",
-
-                                        "isVisible": true,
-                                        "childMenuItems": [
-                                            {
-                                                "title": "Evaluations",
-                                                "uri": "/Patient/Soins/Evaluations?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": [
-                                                    {
-                                                        "title": "AGGIR",
-                                                        "uri": "/Patient/Soins/Evaluations/AGGIR?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    },
-                                                    {
-                                                        "title": "Braden",
-                                                        "uri": "/Patient/Soins/Evaluations/Braden?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    },
-                                                    {
-                                                        "title": "Norton",
-                                                        "uri": "/Patient/Soins/Evaluations/Norton?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    },
-                                                    {
-                                                        "title": "Doloplus",
-                                                        "uri": "/Patient/Soins/Evaluations/Doloplus?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    },
-                                                    {
-                                                        "title": "G0",
-                                                        "uri": "/Patient/Soins/Evaluations/G0?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    },
-                                                    {
-                                                        "title": "G3",
-                                                        "uri": "/Patient/Soins/Evaluations/G3?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    },
-                                                    {
-                                                        "title": "G4",
-                                                        "uri": "/Patient/Soins/Evaluations/G4?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "title": "Prise en charge HAD",
+                                                        "uri": "/Patient/Administratif/Prise_En_Charge?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
                                                         "icon": "",
 
                                                         "isVisible": true,
                                                         "childMenuItems": [
                                                             {
-                                                                "title": "G4 Modification",
-                                                                "uri": "/Patient/Soins/Evaluations/G4/G4_Modif?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "title": "Création d'une prise en charge HAD",
+                                                                "uri": "/Patient/Administratif/Prise_En_Charge/Crea_PriseEnCharge?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
                                                                 "icon": "",
 
                                                                 "isVisible": true,
@@ -610,8 +273,16 @@ storiesOf('UpMenu', module)
                                                         ]
                                                     },
                                                     {
-                                                        "title": "SIIPS",
-                                                        "uri": "/Patient/Soins/Evaluations/SIIPS?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "title": "Mouvements",
+                                                        "uri": "/Patient/Administratif/HAD/Mouvements?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": []
+                                                    },
+                                                    {
+                                                        "title": "Messages",
+                                                        "uri": "/Patient/Administratif/Messages?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
                                                         "icon": "",
 
                                                         "isVisible": true,
@@ -620,23 +291,237 @@ storiesOf('UpMenu', module)
                                                 ]
                                             },
                                             {
-                                                "title": "Précautions",
-                                                "uri": "/Patient/Soins/Precautions?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            },
-                                            {
-                                                "title": "AVQ",
-                                                "uri": "/Patient/Soins/AVQ?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                "title": "Facturation",
+                                                "uri": "/Patient/Facturation?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
                                                 "icon": "",
 
                                                 "isVisible": true,
                                                 "childMenuItems": [
                                                     {
-                                                        "title": "Consultation Grille AVQ",
-                                                        "uri": "/Patient/Soins/AVQ/Consultation_AVQ?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "title": "Médicaments facturables en sus",
+                                                        "uri": "/Patient/Facturation/Produits_LPP?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": [
+                                                            {
+                                                                "title": "",
+                                                                "uri": "/Patient/Facturation/Produits_LPP/Affichage_LPP?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            },
+                                                            {
+                                                                "title": "",
+                                                                "uri": "/Patient/Facturation/Produits_LPP/Creation_LPP?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            },
+                                                            {
+                                                                "title": "",
+                                                                "uri": "/Patient/Facturation/Produits_LPP/Modification_LPP?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "title": "Médicaments coûteux",
+                                                        "uri": "/Patient/Facturation/MedicamentCouteux?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": []
+                                                    },
+                                                    {
+                                                        "title": "Visites médecin traitant",
+                                                        "uri": "/Patient/Facturation/visite_medecin?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": [
+                                                            {
+                                                                "title": "",
+                                                                "uri": "/Patient/Facturation/visite_medecin/affichage_vm?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            },
+                                                            {
+                                                                "title": "",
+                                                                "uri": "/Patient/Facturation/visite_medecin/creation_vm?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            },
+                                                            {
+                                                                "title": "",
+                                                                "uri": "/Patient/Facturation/visite_medecin/modification_vm?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "title": "Médical",
+                                                "uri": "/Patient/Medical?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                "icon": "",
+
+                                                "isVisible": true,
+                                                "childMenuItems": [
+                                                    {
+                                                        "title": "Général",
+                                                        "uri": "/Patient/Medical/Informations_Medicales?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": [
+                                                            {
+                                                                "title": "Modification Informations Médicales",
+                                                                "uri": "/Patient/Medical/Informations_Medicales/Modification_Informations_Medicales?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            },
+                                                            {
+                                                                "title": "Antécedents",
+                                                                "uri": "/Patient/Medical/Informations_Medicales/Antecedents?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "title": "Motif",
+                                                        "uri": "/Patient/Medical/Motif?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": []
+                                                    },
+                                                    {
+                                                        "title": "Séquences",
+                                                        "uri": "/Patient/Medical/Sequence_Medicale?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": [
+                                                            {
+                                                                "title": "Creation Sequence Medicale",
+                                                                "uri": "/Patient/Medical/Sequence_Medicale/Creation_Sequence_Medicale?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            },
+                                                            {
+                                                                "title": "Creation Sequence Medicale Depuis Simulation TAA",
+                                                                "uri": "/Patient/Medical/Sequence_Medicale/Creation_Sequence_Medicale_SimuTAA?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            },
+                                                            {
+                                                                "title": "Creation Sequence Medicale",
+                                                                "uri": "/Patient/Medical/Sequence_Medicale/Modification_Sequence_Medicale?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            },
+                                                            {
+                                                                "title": "Consultation Sequence Medicale",
+                                                                "uri": "/Patient/Medical/Sequence_Medicale/Consultation_Sequence_Medicale?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "title": "Informations",
+                                                        "uri": "/Patient/Medical/Informations?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": []
+                                                    },
+                                                    {
+                                                        "title": "Actes CCAM",
+                                                        "uri": "/Patient/Medical/Actes_CCAM?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": []
+                                                    },
+                                                    {
+                                                        "title": "Chimiothérapie",
+                                                        "uri": "/Patient/Medical/Chimiotherapie?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": []
+                                                    },
+                                                    {
+                                                        "title": "Comptes rendus",
+                                                        "uri": "/Patient/Medical/Compte_rendu?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": []
+                                                    },
+                                                    {
+                                                        "title": "Dispensation",
+                                                        "uri": "/Patient/Medical/Dispensations?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": [
+                                                            {
+                                                                "title": "Lire",
+                                                                "uri": "/Patient/Medical/Dispensations/Lire?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            },
+                                                            {
+                                                                "title": "Ajouter",
+                                                                "uri": "/Patient/Medical/Dispensations/Ajouter?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            },
+                                                            {
+                                                                "title": "Modifier",
+                                                                "uri": "/Patient/Medical/Dispensations/Modifier?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "title": "Traitements",
+                                                        "uri": "/Patient/Medical/Traitements?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
                                                         "icon": "",
 
                                                         "isVisible": true,
@@ -645,65 +530,428 @@ storiesOf('UpMenu', module)
                                                 ]
                                             },
                                             {
-                                                "title": "Comptes rendus",
-                                                "uri": "/Patient/Soins/Compte_rendu?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            },
-                                            {
-                                                "title": "Prescriptions",
-                                                "uri": "/Patient/Medical/Ordonnances?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                "title": "Soins",
+                                                "uri": "/Patient/Soins?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
                                                 "icon": "",
 
                                                 "isVisible": true,
                                                 "childMenuItems": [
                                                     {
-                                                        "title": "Ajouter numérisation",
-                                                        "uri": "/Patient/Soins/Prescriptions/Ajouter?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "title": "Evaluations",
+                                                        "uri": "/Patient/Soins/Evaluations?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
                                                         "icon": "",
 
-                                                        "isVisible": false,
+                                                        "isVisible": true,
+                                                        "childMenuItems": [
+                                                            {
+                                                                "title": "AGGIR",
+                                                                "uri": "/Patient/Soins/Evaluations/AGGIR?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            },
+                                                            {
+                                                                "title": "Braden",
+                                                                "uri": "/Patient/Soins/Evaluations/Braden?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            },
+                                                            {
+                                                                "title": "Norton",
+                                                                "uri": "/Patient/Soins/Evaluations/Norton?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            },
+                                                            {
+                                                                "title": "Doloplus",
+                                                                "uri": "/Patient/Soins/Evaluations/Doloplus?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            },
+                                                            {
+                                                                "title": "G0",
+                                                                "uri": "/Patient/Soins/Evaluations/G0?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            },
+                                                            {
+                                                                "title": "G3",
+                                                                "uri": "/Patient/Soins/Evaluations/G3?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            },
+                                                            {
+                                                                "title": "G4",
+                                                                "uri": "/Patient/Soins/Evaluations/G4?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": [
+                                                                    {
+                                                                        "title": "G4 Modification",
+                                                                        "uri": "/Patient/Soins/Evaluations/G4/G4_Modif?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                        "icon": "",
+
+                                                                        "isVisible": true,
+                                                                        "childMenuItems": []
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "title": "SIIPS",
+                                                                "uri": "/Patient/Soins/Evaluations/SIIPS?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "title": "Précautions",
+                                                        "uri": "/Patient/Soins/Precautions?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
                                                         "childMenuItems": []
                                                     },
                                                     {
-                                                        "title": "Lire Numérisation",
-                                                        "uri": "/Patient/Soins/Prescriptions/Lire?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "title": "AVQ",
+                                                        "uri": "/Patient/Soins/AVQ?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
                                                         "icon": "",
 
-                                                        "isVisible": false,
+                                                        "isVisible": true,
+                                                        "childMenuItems": [
+                                                            {
+                                                                "title": "Consultation Grille AVQ",
+                                                                "uri": "/Patient/Soins/AVQ/Consultation_AVQ?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "title": "Comptes rendus",
+                                                        "uri": "/Patient/Soins/Compte_rendu?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
                                                         "childMenuItems": []
                                                     },
                                                     {
-                                                        "title": "Modifier Numérisation",
-                                                        "uri": "/Patient/Soins/Prescriptions/Modifier?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "title": "Prescriptions",
+                                                        "uri": "/Patient/Medical/Ordonnances?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
                                                         "icon": "",
 
-                                                        "isVisible": false,
+                                                        "isVisible": true,
+                                                        "childMenuItems": [
+                                                            {
+                                                                "title": "Ajouter numérisation",
+                                                                "uri": "/Patient/Soins/Prescriptions/Ajouter?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": false,
+                                                                "childMenuItems": []
+                                                            },
+                                                            {
+                                                                "title": "Lire Numérisation",
+                                                                "uri": "/Patient/Soins/Prescriptions/Lire?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": false,
+                                                                "childMenuItems": []
+                                                            },
+                                                            {
+                                                                "title": "Modifier Numérisation",
+                                                                "uri": "/Patient/Soins/Prescriptions/Modifier?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": false,
+                                                                "childMenuItems": []
+                                                            },
+                                                            {
+                                                                "title": "Vue Globale",
+                                                                "uri": "/Patient/Soins/Prescriptions/VueGlobale?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": false,
+                                                                "childMenuItems": []
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "title": "Anciens Traitements",
+                                                        "uri": "/Patient/Soins/Anciens_Traitements?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
                                                         "childMenuItems": []
                                                     },
                                                     {
-                                                        "title": "Vue Globale",
-                                                        "uri": "/Patient/Soins/Prescriptions/VueGlobale?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "title": "Spécificités",
+                                                        "uri": "/Patient/Soins/Specificites?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
                                                         "icon": "",
 
-                                                        "isVisible": false,
+                                                        "isVisible": true,
                                                         "childMenuItems": []
                                                     }
                                                 ]
                                             },
                                             {
-                                                "title": "Anciens Traitements",
-                                                "uri": "/Patient/Soins/Anciens_Traitements?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                "title": "Social",
+                                                "uri": "/Patient/Social?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                "icon": "",
+
+                                                "isVisible": true,
+                                                "childMenuItems": [
+                                                    {
+                                                        "title": "Situation",
+                                                        "uri": "/Patient/Social/Situation_Sociale?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": [
+                                                            {
+                                                                "title": "Consultation de la situtation sociale du patient",
+                                                                "uri": "/Patient/Social/Situation_Sociale/Consu_SituationSociale?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            },
+                                                            {
+                                                                "title": "Renseignement de la situation sociale du patient",
+                                                                "uri": "/Patient/Social/Situation_Sociale/Crea_SituationSociale?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "title": "Condition de vie",
+                                                        "uri": "/Patient/Social/Condition_de_vie?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": []
+                                                    },
+                                                    {
+                                                        "title": "Autres Budgets",
+                                                        "uri": "/Patient/Social/Autres_Budgets?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": []
+                                                    },
+                                                    {
+                                                        "title": "Prestations",
+                                                        "uri": "/Patient/Social/Prestations?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": []
+                                                    },
+                                                    {
+                                                        "title": "Comptes rendus",
+                                                        "uri": "/Patient/Social/Compte_rendu?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": []
+                                                    },
+                                                    {
+                                                        "title": "Placements",
+                                                        "uri": "/Patient/Social/Placements?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "title": "Psychologie",
+                                                "uri": "/Patient/Psychologie?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                "icon": "",
+
+                                                "isVisible": true,
+                                                "childMenuItems": [
+                                                    {
+                                                        "title": "Demandes",
+                                                        "uri": "/Patient/Psychologie/Demandes?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": []
+                                                    },
+                                                    {
+                                                        "title": "Visites",
+                                                        "uri": "/Patient/Psychologie/Visites_a_dom?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": []
+                                                    },
+                                                    {
+                                                        "title": "Comptes rendus",
+                                                        "uri": "/Patient/Psychologie/Compte_rendu?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "title": "Coordination",
+                                                "uri": "/Patient/Coordination?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                "icon": "",
+
+                                                "isVisible": true,
+                                                "childMenuItems": [
+                                                    {
+                                                        "title": "Plans de soins salariés",
+                                                        "uri": "/Patient/Coordination/Plans_Soins_Salaries?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": []
+                                                    },
+                                                    {
+                                                        "title": "Visites Salariés",
+                                                        "uri": "/Patient/Coordination/Visites_Salaries?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": [
+                                                            {
+                                                                "title": "",
+                                                                "uri": "/Patient/Coordination/Visites_Salaries/Affichage?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            },
+                                                            {
+                                                                "title": "",
+                                                                "uri": "/Patient/Coordination/Visites_Salaries/Creation?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "title": "Visites Libérales",
+                                                        "uri": "/Patient/Coordination/Visites_Liberales?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": [
+                                                            {
+                                                                "title": "",
+                                                                "uri": "/Patient/Coordination/Visites_Liberales/Affichage?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            },
+                                                            {
+                                                                "title": "",
+                                                                "uri": "/Patient/Coordination/Visites_Liberales/Creation?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            },
+                                                            {
+                                                                "title": "",
+                                                                "uri": "/Patient/Coordination/Visites_Liberales/Creation_HPS?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                                "icon": "",
+
+                                                                "isVisible": true,
+                                                                "childMenuItems": []
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "title": "Transmissions ciblées",
+                                                        "uri": "/Patient/Coordination/Trans_Ciblees?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": []
+                                                    },
+                                                    {
+                                                        "title": "Résumé Sej.",
+                                                        "uri": "/Patient/Coordination/Resume_Sej?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "title": "Demandes Produits",
+                                                "uri": "/Patient/Commandes?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                "icon": "",
+
+                                                "isVisible": true,
+                                                "childMenuItems": [
+                                                    {
+                                                        "title": "Demandes de produits",
+                                                        "uri": "/Patient/Commandes/Demande_Nom_Usage?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": []
+                                                    },
+                                                    {
+                                                        "title": "Articles au chevet du patient",
+                                                        "uri": "/Patient/Commandes/Articles_Patient?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": []
+                                                    },
+                                                    {
+                                                        "title": "Transports",
+                                                        "uri": "/Patient/Commandes/Transports?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                        "icon": "",
+
+                                                        "isVisible": true,
+                                                        "childMenuItems": []
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "title": "Comptes rendus Lib.",
+                                                "uri": "/Patient/Comptes_rendus_Lib?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
                                                 "icon": "",
 
                                                 "isVisible": true,
                                                 "childMenuItems": []
                                             },
                                             {
-                                                "title": "Spécificités",
-                                                "uri": "/Patient/Soins/Specificites?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
+                                                "title": "Fichiers associés",
+                                                "uri": "/Patient/Fichiers_associes?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
                                                 "icon": "",
 
                                                 "isVisible": true,
@@ -711,255 +959,10 @@ storiesOf('UpMenu', module)
                                             }
                                         ]
                                     },
-                                    {
-                                        "title": "Social",
-                                        "uri": "/Patient/Social?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                        "icon": "",
-
-                                        "isVisible": true,
-                                        "childMenuItems": [
-                                            {
-                                                "title": "Situation",
-                                                "uri": "/Patient/Social/Situation_Sociale?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": [
-                                                    {
-                                                        "title": "Consultation de la situtation sociale du patient",
-                                                        "uri": "/Patient/Social/Situation_Sociale/Consu_SituationSociale?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    },
-                                                    {
-                                                        "title": "Renseignement de la situation sociale du patient",
-                                                        "uri": "/Patient/Social/Situation_Sociale/Crea_SituationSociale?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "title": "Condition de vie",
-                                                "uri": "/Patient/Social/Condition_de_vie?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            },
-                                            {
-                                                "title": "Autres Budgets",
-                                                "uri": "/Patient/Social/Autres_Budgets?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            },
-                                            {
-                                                "title": "Prestations",
-                                                "uri": "/Patient/Social/Prestations?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            },
-                                            {
-                                                "title": "Comptes rendus",
-                                                "uri": "/Patient/Social/Compte_rendu?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            },
-                                            {
-                                                "title": "Placements",
-                                                "uri": "/Patient/Social/Placements?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "title": "Psychologie",
-                                        "uri": "/Patient/Psychologie?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                        "icon": "",
-
-                                        "isVisible": true,
-                                        "childMenuItems": [
-                                            {
-                                                "title": "Demandes",
-                                                "uri": "/Patient/Psychologie/Demandes?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            },
-                                            {
-                                                "title": "Visites",
-                                                "uri": "/Patient/Psychologie/Visites_a_dom?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            },
-                                            {
-                                                "title": "Comptes rendus",
-                                                "uri": "/Patient/Psychologie/Compte_rendu?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "title": "Coordination",
-                                        "uri": "/Patient/Coordination?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                        "icon": "",
-
-                                        "isVisible": true,
-                                        "childMenuItems": [
-                                            {
-                                                "title": "Plans de soins salariés",
-                                                "uri": "/Patient/Coordination/Plans_Soins_Salaries?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            },
-                                            {
-                                                "title": "Visites Salariés",
-                                                "uri": "/Patient/Coordination/Visites_Salaries?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": [
-                                                    {
-                                                        "title": "",
-                                                        "uri": "/Patient/Coordination/Visites_Salaries/Affichage?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    },
-                                                    {
-                                                        "title": "",
-                                                        "uri": "/Patient/Coordination/Visites_Salaries/Creation?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "title": "Visites Libérales",
-                                                "uri": "/Patient/Coordination/Visites_Liberales?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": [
-                                                    {
-                                                        "title": "",
-                                                        "uri": "/Patient/Coordination/Visites_Liberales/Affichage?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    },
-                                                    {
-                                                        "title": "",
-                                                        "uri": "/Patient/Coordination/Visites_Liberales/Creation?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    },
-                                                    {
-                                                        "title": "",
-                                                        "uri": "/Patient/Coordination/Visites_Liberales/Creation_HPS?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                        "icon": "",
-
-                                                        "isVisible": true,
-                                                        "childMenuItems": []
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "title": "Transmissions ciblées",
-                                                "uri": "/Patient/Coordination/Trans_Ciblees?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            },
-                                            {
-                                                "title": "Résumé Sej.",
-                                                "uri": "/Patient/Coordination/Resume_Sej?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "title": "Demandes Produits",
-                                        "uri": "/Patient/Commandes?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                        "icon": "",
-
-                                        "isVisible": true,
-                                        "childMenuItems": [
-                                            {
-                                                "title": "Demandes de produits",
-                                                "uri": "/Patient/Commandes/Demande_Nom_Usage?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            },
-                                            {
-                                                "title": "Articles au chevet du patient",
-                                                "uri": "/Patient/Commandes/Articles_Patient?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            },
-                                            {
-                                                "title": "Transports",
-                                                "uri": "/Patient/Commandes/Transports?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                                "icon": "",
-
-                                                "isVisible": true,
-                                                "childMenuItems": []
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "title": "Comptes rendus Lib.",
-                                        "uri": "/Patient/Comptes_rendus_Lib?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                        "icon": "",
-
-                                        "isVisible": true,
-                                        "childMenuItems": []
-                                    },
-                                    {
-                                        "title": "Fichiers associés",
-                                        "uri": "/Patient/Fichiers_associes?SejourId=39610&PatientId=27387&DossierId=e680e431-cd7c-4402-a0f2-0eb523501c45",
-                                        "icon": "",
-
-                                        "isVisible": true,
-                                        "childMenuItems": []
-                                    }
                                 ]
+
                             },
+
                             {
                                 "title": "",
                                 "uri": "/Home",

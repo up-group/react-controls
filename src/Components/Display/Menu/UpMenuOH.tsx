@@ -70,15 +70,15 @@ class branchIdHelper {
     }
 }
 
-export interface Utilisateur { 
-    Nom: string; 
+export interface Utilisateur {
+    Nom: string;
     DerniereConnexion: Date;
     NomBinome: string;
-    onChangeMdpClick: () => void; 
-    Alertes: { 
-        NonLues: number; 
-        onClick: () => void 
-    } 
+    onChangeMdpClick: () => void;
+    Alertes: {
+        NonLues: number;
+        onClick: () => void
+    }
 }
 
 
@@ -159,6 +159,7 @@ export interface MenuItemData {
     isVisible: boolean;
     childMenuItems?: MenuItemData[];
     styleType?: "button";
+    forceOpen?: boolean;
 }
 
 
@@ -390,27 +391,27 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
         });
 
         return <div className={styleTopbar} >
-            { isNullOrUndef(this.props.Antennes) ? null :
+            {isNullOrUndef(this.props.Antennes) ? null :
                 <div className={styleGauche} >
                     {this.props.Antennes}
                 </div>
             }
 
-            { isNullOrUndef(this.props.Recherche) ? null :
+            {isNullOrUndef(this.props.Recherche) ? null :
                 <div className={styleGauche} >
                     {this.props.Recherche}
                 </div>
             }
 
             <span className={styleDroite} >
-                { isNullOrUndef(this.props.Utilisateur) ? null :
+                {isNullOrUndef(this.props.Utilisateur) ? null :
                     <IconUtilisateur IconSize="14px" lineHeight={1.14} AvecCercle={false} Color="#4a4a4a" BackgroundColor="#ffffff" >
                         <span className={styleInfosTexte} >
                             <i>{this.props.Utilisateur.Nom}</i>
-                            <IconChevron Direction={DirectionEnum.Bas} Color="#4a4a4a" BackgroundColor="#ffffff" IconSize="14px" 
+                            <IconChevron Direction={DirectionEnum.Bas} Color="#4a4a4a" BackgroundColor="#ffffff" IconSize="14px"
                                 onClick={this.onUserClick} tabIndex={-1} onBlur={this.onUserBlur} />
-                                
-                            { this.state.UserExpand ? <UserExpand Utilisateur={this.props.Utilisateur} /> : null }
+
+                            {this.state.UserExpand ? <UserExpand Utilisateur={this.props.Utilisateur} /> : null}
                         </span>
                     </IconUtilisateur>
                 }
@@ -438,11 +439,11 @@ export class UserExpand extends React.Component<UserExpandProps, UserExpandState
         if (isNullOrUndef(dateTime)) {
             return null;
         }
-        return addZeroBeforeNumber(dateTime.getDate(), 2) + "/" 
-            + addZeroBeforeNumber(dateTime.getMonth(), 2) + "/" 
+        return addZeroBeforeNumber(dateTime.getDate(), 2) + "/"
+            + addZeroBeforeNumber(dateTime.getMonth(), 2) + "/"
             + addZeroBeforeNumber(dateTime.getFullYear(), 4) + " "
-            + addZeroBeforeNumber(dateTime.getHours(), 2) + ":" 
-            + addZeroBeforeNumber(dateTime.getMinutes(), 2) + ":" 
+            + addZeroBeforeNumber(dateTime.getHours(), 2) + ":"
+            + addZeroBeforeNumber(dateTime.getMinutes(), 2) + ":"
             + addZeroBeforeNumber(dateTime.getSeconds(), 2);
     }
 
@@ -466,23 +467,23 @@ export class UserExpand extends React.Component<UserExpandProps, UserExpandState
         var derniereCo: string = this.writeDateTime(this.props.Utilisateur.DerniereConnexion);
 
         return <div className={styleUserExpand + " " + styleG} >
-            { derniereCo === null ? null :
-                <p>Dernière connexion : {derniereCo}</p> 
+            {derniereCo === null ? null :
+                <p>Dernière connexion : {derniereCo}</p>
             }
-            { stringIsNullOrEmpty(this.props.Utilisateur.NomBinome) ? null :
+            {stringIsNullOrEmpty(this.props.Utilisateur.NomBinome) ? null :
                 <p>Votre binôme : {this.props.Utilisateur.NomBinome}</p>
             }
-            { isNullOrUndef(this.props.Utilisateur.onChangeMdpClick) ? null :
+            {isNullOrUndef(this.props.Utilisateur.onChangeMdpClick) ? null :
                 <p >
                     <IconVerrou onMouseDown={this.props.Utilisateur.onChangeMdpClick} className={styleChangeMdp} >
                         <span className={styleChangeMdp} > Changer votre mot de passe</span>
                     </IconVerrou>
                 </p>
             }
-            { isNullOrUndef(this.props.Utilisateur.Alertes) ? null :
+            {isNullOrUndef(this.props.Utilisateur.Alertes) ? null :
                 <p>
-                    <IconAlertes AlertNumber={this.props.Utilisateur.Alertes.NonLues} className={styleAlertes} 
-                            onMouseDown={this.props.Utilisateur.Alertes.onClick} >
+                    <IconAlertes AlertNumber={this.props.Utilisateur.Alertes.NonLues} className={styleAlertes}
+                        onMouseDown={this.props.Utilisateur.Alertes.onClick} >
                         <span className={styleAlertes} > Alertes utilisateur</span>
                     </IconAlertes>
                 </p>
@@ -527,6 +528,7 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState> {
             var localId = this.props.branchId + i + (v.childMenuItems != null && v.childMenuItems.length != 0 ? "*" : "-");
 
             return <SubItems
+                forceOpen={v.forceOpen}
                 sibling={arr}
                 top={this.props.top}
                 icon={v.icon}
@@ -695,7 +697,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
                 </a>
             </div>
             <div className={innnerSubmenu} >
-                {this.anyChild && (this.state.active || this.isMenuSelected) ?
+                {this.anyChild && (this.state.active || this.isMenuSelected || this.props.forceOpen === true) ?
                     <SubMenu
                         top={this.props.top}
                         onBranchClick={this.props.onBranchClick}
