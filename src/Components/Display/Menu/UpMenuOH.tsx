@@ -530,9 +530,7 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState> {
             return null;
         }
 
-        var srcMenu = this.props.childMenuItems;
-
-        var lis = srcMenu.map((v, i, arr) => {
+        var lis = this.props.childMenuItems.map((v, i, arr) => {
             var localId = this.props.branchId + i + (v.childMenuItems != null && v.childMenuItems.length != 0 ? "*" : "-");
 
             return <SubItems
@@ -556,11 +554,6 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState> {
         });
 
         if (this.props.branchId === "") {
-            // var scroll = style({
-            //     overflow: "auto",
-            //     height: window.innerHeight - 150,
-            // });
-
             return <Scrollbars style={{ height: window.innerHeight - 150 }}>
                 {lis}
             </Scrollbars>;
@@ -609,17 +602,27 @@ export interface SubItemsProps extends MenuItemData {
 }
 
 export interface SubItemsState {
-    active: boolean;
 }
 
 export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
     constructor(p, c) {
         super(p, c);
-        this.state = { active: false };
     }
 
     startsWith(str: string, search: string) {
         return str.substr(0, search.length) === search;
+    }
+
+    shouldComponentUpdate(nextProps: SubItemsProps, nextState: SubItemsState) {
+        if (this.props.selectedBranchId.substr(0, this.props.branchId.length) === this.props.branchId) {
+            return true
+        }
+
+        if (nextProps.selectedBranchId.substr(0, nextProps.branchId.length) === nextProps.branchId) {
+            return true
+        }
+
+        return false;
     }
 
     render() {
@@ -661,9 +664,32 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
             fontSize: 25,
             display: this.hasIcon ? "initial" : "none",
         });
+
+
+
         var innnerSubmenu = style({
             display: this.props.collapse ? "none" : "initial",
+            $nest: {
+                ["& > div"]: {
+                    height: "100%",
+                    overflow: "hidden",
+                    maxHeight: 0,
+                    transition: "max-height 1s",
+                }
+            }
+
         });
+
+        var innnerSubmenuOpen = style({
+            $nest: {
+                ["& > div"]: {
+                    maxHeight: 1000,
+                    transition: "max-height 2.5s",
+                }
+            }
+
+        });
+
 
         if (this.props.collapse) {
             return <div className={branch} data-branch={this.props.branchId} >
@@ -704,8 +730,8 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
                     {content}
                 </a>
             </div>
-            <div className={innnerSubmenu} >
-                {this.anyChild && (this.state.active || this.isMenuSelected || this.props.forceOpen === true) ?
+            {this.anyChild ?
+                <div className={innnerSubmenu + ((this.isMenuSelected === true || this.props.forceOpen === true) ? " " + innnerSubmenuOpen : "")} >
                     <SubMenu
                         top={this.props.top}
                         onBranchClick={this.props.onBranchClick}
@@ -715,8 +741,9 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
                         onMenuClick={this.props.onMenuClick}
                         childMenuItems={this.props.childMenuItems}
                         collapse={this.props.collapse}
-                    /> : null}
-            </div>
+                    />
+                </div>
+                : null}
         </div>
     }
 
@@ -805,7 +832,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
             this.SendBranchClick();
         }
 
-        this.setState({ active: false });
+        //this.setState({ active: false });
         e.preventDefault();
         e.stopPropagation();
         return false;

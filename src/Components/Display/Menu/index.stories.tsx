@@ -128,7 +128,8 @@ storiesOf('UpMenu', module)
                         Alertes: { NonLues: 36, onClick: () => { }, },
                     }}
 
-                    onDeconnexionClick={() => { }} onMenuClick={action("Menu clicked")}
+                    onDeconnexionClick={() => { }}
+                    onMenuClick={() => { }}
                     selectMenu={null}
                     menuItems={
                         [
