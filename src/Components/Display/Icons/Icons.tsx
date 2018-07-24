@@ -8,7 +8,7 @@ export interface AlertIconProps {
     IconSize: string | number;
     className?: string;
 
-    AlertNumber: number;
+    AlertNumber: string | number;
     AlertFont?: AttributPolice;
     AlertCircle?: {
         Active: boolean;
@@ -24,6 +24,7 @@ export class AlertIcon extends React.Component<AlertIconProps, AlertIconState> {
 
     render() {
         var fontSize: string = (getFontSizeNumber(this.props.IconSize) * 0.6).toString() + "px";
+        var nbChar: number = this.props.AlertNumber.toString().length;
 
         var styleAlerteG = style({
             position: "relative",
@@ -31,7 +32,7 @@ export class AlertIcon extends React.Component<AlertIconProps, AlertIconState> {
         var styleAlerteNumber =  style({
             position: "absolute",
             top: "-0.5em",
-            right: "-0.3em",
+            right: "-" + (0.3 * nbChar).toString() + "em",
             fontSize: fontSize,
         });
 
@@ -42,7 +43,7 @@ export class AlertIcon extends React.Component<AlertIconProps, AlertIconState> {
 
         if (isNullOrUndef(this.props.AlertCircle) === false && this.props.AlertCircle.Active) {
             styleAlerteNumber += " " + style({
-                padding: "0.1em",
+                padding: "0.1em 0.3em",
                 borderRadius: "50%",
                 backgroundColor: this.props.AlertCircle.Color,
             });
@@ -74,7 +75,7 @@ export interface IconProps {
     lineHeight?: any;
     letterSpacing?: any;
     
-    AlertNumber?: number;
+    AlertNumber?: string | number;
     AlertFont?: AttributPolice;
     AlertCircle?: {
         Active: boolean;
