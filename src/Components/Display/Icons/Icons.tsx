@@ -453,6 +453,90 @@ export class IconAlertes extends React.Component<IconProps, IconState> {
         return <MaterialinearIcon {...this.props} IconName="Lbell" />;
     }
 }
+export class IconMaison extends React.Component<IconProps, IconState> {
+    static defaultProps = {
+        Color: "7a756f",
+        BackgroundColor: "#ffffff",
+        IconSize: "14px",
+        AvecCercle: false,
+    }
+    constructor(p, c) {
+        super(p, c);
+    }
+    render() {
+        return <MaterialinearIcon {...this.props} IconName="Lhome" />;
+    }
+}
+export class IconVieuxTelephone extends React.Component<IconProps, IconState> {
+    static defaultProps = {
+        Color: "7a756f",
+        BackgroundColor: "#ffffff",
+        IconSize: "14px",
+        AvecCercle: false,
+    }
+    constructor(p, c) {
+        super(p, c);
+    }
+    render() {
+        return <MaterialinearIcon {...this.props} IconName="Ltelephone2" />;
+    }
+}
+export class IconRepresentantLegal extends React.Component<IconProps, IconState> {
+    static defaultProps = {
+        Color: "7a756f",
+        BackgroundColor: "#ffffff",
+        IconSize: "14px",
+        AvecCercle: false,
+    }
+    constructor(p, c) {
+        super(p, c);
+    }
+    render() {
+        return <MaterialinearIcon {...this.props} IconName="Luser-lock" />;
+    }
+}
+export class IconPersonneConfiance extends React.Component<IconProps, IconState> {
+    static defaultProps = {
+        Color: "7a756f",
+        BackgroundColor: "#ffffff",
+        IconSize: "14px",
+        AvecCercle: false,
+    }
+    constructor(p, c) {
+        super(p, c);
+    }
+    render() {
+        return <MaterialinearIcon {...this.props} IconName="people_outline" />;
+    }
+}
+export class IconSerrure extends React.Component<IconProps, IconState> {
+    static defaultProps = {
+        Color: "7a756f",
+        BackgroundColor: "#ffffff",
+        IconSize: "14px",
+        AvecCercle: false,
+    }
+    constructor(p, c) {
+        super(p, c);
+    }
+    render() {
+        return <MaterialinearIcon {...this.props} IconName="Lkey-hole" />;
+    }
+}
+export class IconProcheAidant extends React.Component<IconProps, IconState> {
+    static defaultProps = {
+        Color: "7a756f",
+        BackgroundColor: "#ffffff",
+        IconSize: "14px",
+        AvecCercle: false,
+    }
+    constructor(p, c) {
+        super(p, c);
+    }
+    render() {
+        return <MaterialinearIcon {...this.props} IconName="Lusers-add" />;
+    }
+}
 
 
 export class IconLswaLink extends React.Component<IconProps, IconState> {
