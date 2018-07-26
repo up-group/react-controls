@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import FinanceurInput, { PosIconEnum } from "./index"
+import FinanceurInput, { PosIconEnum } from "./TextInput"
 
 
 function ValidateFalse(texte: string): boolean {

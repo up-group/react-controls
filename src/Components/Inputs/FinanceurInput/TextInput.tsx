@@ -1,5 +1,5 @@
 import * as React from "react"
-import { style } from "typestyle"
+import { style } from "typestyle/lib"
 import { isNullOrUndef, stringIsNullOrEmpty, getFontClassName } from "../../../Common/utils/helpers";
 import { IconInformations, IconInfos, IconSuccess, IconError } from "../../Display/Icons/Icons";
 
@@ -31,6 +31,10 @@ export interface TextInputProps {
     Width?: string;
     Validate?: (value: string) => boolean;
     onChange?: (value: string) => void;
+
+    onFocus?: (event) => void;
+    onBlur?: (event) => void;
+    onKeyDown?: (event) => void;
 }
 
 export interface TextInputState {
@@ -81,6 +85,10 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
     private onBlur = (event) => {
         var success: boolean = this.processValidation(event.target.value);     
         this.setState({ Success: success, });
+
+        if ( ! isNullOrUndef(this.props.onBlur)) {
+            this.props.onBlur(event);
+        }
     }
     private onChange = (event) => {
         var success: boolean = this.processValidation(event.target.value); 
@@ -173,13 +181,16 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
                     <br />
                 </span>
             }
+            
             <span className={styleFontInput + " " + styleInputContainer} >
                 { isNullOrUndef(this.props.Icon) ? null : 
                     <span className={styleIcon} >{this.props.Icon}</span>
                 }
+
                 <input className={styleFontInput + " " + styleInput} onBlur={this.onBlur} onChange={this.onChange} 
-                    value={this.state.Value} placeholder={this.props.Placeholder} 
-                    disabled={this.props.Disable} type={type}  />
+                    value={this.state.Value} placeholder={this.props.Placeholder} disabled={this.props.Disable} type={type}
+                    onFocus={this.props.onFocus} onKeyDown={this.props.onKeyDown} />
+
                 {texteSup}
             </span>
         </span>;
