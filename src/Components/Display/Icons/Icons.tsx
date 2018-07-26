@@ -147,6 +147,48 @@ export class IconInformations extends React.Component<IconProps, IconState> {
         return <MaterialinearIcon {...this.props} IconName="Lclipboard-text" />;
     }
 }
+export class IconInfos extends React.Component<IconProps, IconState> {
+    static defaultProps = {
+        IconSize: "12px",
+        AvecCercle: false,
+        backgroundColor: "#ffffff",
+        Color: "#c5d0de"
+    }
+    constructor(p, c) {
+        super(p, c);
+    }
+    render() {
+        return <MaterialinearIcon {...this.props} IconName="info" />;
+    }
+}
+export class IconSuccess extends React.Component<IconProps, IconState> {
+    static defaultProps = {
+        IconSize: "12px",
+        AvecCercle: false,
+        backgroundColor: "#05c591",
+        Color: "#ffffff"
+    }
+    constructor(p, c) {
+        super(p, c);
+    }
+    render() {
+        return <MaterialinearIcon {...this.props} IconName="Lcheck_circle" />;
+    }
+}
+export class IconError extends React.Component<IconProps, IconState> {
+    static defaultProps = {
+        IconSize: "12px",
+        AvecCercle: false,
+        backgroundColor: "#c50e1f",
+        Color: "#ffffff"
+    }
+    constructor(p, c) {
+        super(p, c);
+    }
+    render() {
+        return <MaterialinearIcon {...this.props} IconName="Lcross-circle" />;
+    }
+}
 export class IconEdit extends React.Component<IconProps, IconState> {
     static defaultProps = {
         Color: "#f39100",

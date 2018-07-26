@@ -52,6 +52,7 @@ import UpCheckbox from './Components/Inputs/Checkbox/UpCheckBox'
 import UpToggle from './Components/Inputs/Toggle'
 import UpRadio from './Components/Inputs/Radio'
 import * as UpIcons from "./Components/Display/Icons/Icons"
+import UpFinanceurInput from "./Components/Inputs/FinanceurInput"
 
 import { ThemeProvider as UpThemeProvider } from './Common/theming/themedComponents'
 import UpDefaultTheme from './Common/theming'
@@ -122,4 +123,5 @@ export {
     UpButtonGroupDropDown,
     UpHelper,
     UpIcons,
+    UpFinanceurInput,
 };
