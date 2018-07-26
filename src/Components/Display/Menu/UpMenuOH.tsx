@@ -366,14 +366,15 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
 
     render() {
         var styleGauche = style({
-            width: "25%",
-            height: "40px",
+            width: "20%",
+            minWidth: "250px",
             float: "left",
-            marginTop: "10px",
             marginLeft: "60px",
+            marginTop: "16px",
         });
         var styleDroite = getFontClassName({ fontSize: "14px", color: "#4a4a4a", }) + " " + style({
             marginTop: "16px",
+            height: "100%",
             marginRight: "60px",
             display: "inline-block",
         });
@@ -391,12 +392,6 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
         });
 
         return <div className={styleTopbar} >
-            {isNullOrUndef(this.props.Antennes) ? null :
-                <div className={styleGauche} >
-                    {this.props.Antennes}
-                </div>
-            }
-
             {isNullOrUndef(this.props.Recherche) ? null :
                 <div className={styleGauche} >
                     {this.props.Recherche}
@@ -404,6 +399,10 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
             }
 
             <span className={styleDroite} >
+                {isNullOrUndef(this.props.Antennes) ? null :
+                    this.props.Antennes
+                }
+
                 {isNullOrUndef(this.props.Utilisateur) ? null :
                     <IconUtilisateur IconSize="14px" lineHeight={1.14} AvecCercle={false} Color="#4a4a4a" BackgroundColor="#ffffff" >
                         <span className={styleInfosTexte} >
