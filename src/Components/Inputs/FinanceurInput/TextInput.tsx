@@ -29,9 +29,9 @@ export interface TextInputProps {
     SuccessText?: string;
     ErrorText?: string;
     Width?: string;
+    Require?: boolean;
     Validate?: (value: string) => boolean;
     onChange?: (value: string) => void;
-
     onFocus?: (event) => void;
     onBlur?: (event) => void;
     onKeyDown?: (event) => void;
@@ -113,6 +113,11 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
             verticalAlign: "top",
         });
         var styleLabel = getFontClassName({ color: this.getColors().Label, fontSize: "14px", });
+        var styleRequire = getFontClassName({ color: "red", fontSize: "14px", lineHeight: 1.36, }) + " " + style({            
+            position: "absolute",
+            top: 0,
+            right: 0,
+        });
         var styleFontInput = getFontClassName({ color: this.getColors().Value, fontSize: "14px", lineHeight: 1.36, });
         var styleInputContainer = style({
             position: "relative",
@@ -124,8 +129,8 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
             borderBottom: "1px solid " + this.getColors().Border,
             paddingBottom: "6px",
             boxSizing: "border-box",
-            paddingLeft: iconAGauche && isNullOrUndef(this.props.Icon) === false ? "20px" : "",
-            paddingRight: iconAGauche ? "8px" : "28px",
+            paddingLeft: (iconAGauche && isNullOrUndef(this.props.Icon) === false ? 20 : 0).toString() + "px",
+            paddingRight: ((iconAGauche ? 8 : 28) + (this.props.Require ? 6 : 0)).toString() + "px",
             $nest: {
                 "&:hover": {
                     borderBottomColor: this.getColors().BorderFocus,
@@ -146,7 +151,7 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
             position: "absolute",
             top: 0,
             left: iconAGauche ? "0px" : "",
-            right: iconAGauche ? "" : "8px",
+            right: iconAGauche ? "" : (this.props.Require ? "14px" : "8px"),
         });
         var styleFontInfos = getFontClassName({ color: this.getColors().Value, fontSize: "12px", lineHeight: 1.58, }) + " " + style({
             opacity: 0.5,
@@ -183,6 +188,8 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
             }
             
             <span className={styleFontInput + " " + styleInputContainer} >
+                { this.props.Require ? <span className={styleRequire} >*</span> : null }
+
                 { isNullOrUndef(this.props.Icon) ? null : 
                     <span className={styleIcon} >{this.props.Icon}</span>
                 }

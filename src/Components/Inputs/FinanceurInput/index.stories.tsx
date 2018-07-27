@@ -323,3 +323,57 @@ storiesOf('FinanceurInput', module)
             </div>
         )
     )
+    .addWithInfo('Require', '',  
+        () => (
+            <div style={{padding: "16px"}} >
+                <p>
+                    <FinanceurInput Placeholder="placeholder" />
+                    &emsp;
+                    <FinanceurInput Value="Valeur" />
+                    &emsp;
+                    <FinanceurInput />
+                </p>
+                <p>
+                    <FinanceurInput Require={true} Placeholder="placeholder" />
+                    &emsp;
+                    <FinanceurInput Require={true} Value="Valeur" />
+                    &emsp;
+                    <FinanceurInput Require={true} />
+                </p>
+                <p>
+                    <FinanceurInput Require={true} Label="Bonjour" Placeholder="hover" />
+                    &emsp;
+                    <FinanceurInput Require={true} Label="Bonjour" Value="hover" />
+                </p>
+                <p>
+                    <FinanceurInput Require={true} Icon={<span>♫</span>} IconPos={PosIconEnum.Gauche} Placeholder="focus" />
+                    &emsp;
+                    <FinanceurInput Require={true} Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Value="focus" />
+                </p>
+                <p>
+                    <FinanceurInput Require={true} Placeholder="success" Validate={ValidateTrue}
+                        SuccessText="Victoire pour le peuple." />
+                    &emsp;
+                    <FinanceurInput Require={true} Value="success" Validate={ValidateTrue} Label="ah ?"
+                        SuccessText="Victoire pour le peuple." />
+                </p>
+                <p>
+                    <FinanceurInput Placeholder="error" Validate={ValidateFalse}
+                        ErrorText="Réessayer encore." />
+                    &emsp;
+                    <FinanceurInput Value="error" Validate={ValidateFalse}
+                        ErrorText="Réessayer encore." />
+                </p>
+                <p>
+                    <FinanceurInput Require={true} Placeholder="disable" Disable={true} />
+                    &emsp;
+                    <FinanceurInput Require={true} Value="disable" Disable={true} />
+                </p>
+                <p>
+                    <FinanceurInput Require={true} Placeholder="password" Password={true} onChange={passwordChange} Validate={passwordValidate} />
+                    &emsp;
+                    <FinanceurInput Require={true} Value="password" Password={true} onChange={passwordChange} Validate={passwordValidate} />
+                </p>
+            </div>
+        )
+    )
