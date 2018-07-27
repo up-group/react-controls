@@ -92,11 +92,9 @@ var styleTopbar = style({
 var styleContenu = style({
     position: "absolute",
     left: 0,
-    top: 0,
-    width: "100%",
-    height: "100%",
-    marginTop: heightTopBar,
-    minHeight: 250,
+    top: heightTopBar,
+    bottom: 0,
+    right: 0,
     overflow: "hidden",
 });
 var styleUserExpand = style({
