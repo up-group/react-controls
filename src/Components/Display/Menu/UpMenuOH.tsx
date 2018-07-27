@@ -95,7 +95,7 @@ var styleContenu = style({
     top: 0,
     width: "100%",
     height: "100%",
-    paddingTop: heightTopBar,
+    marginTop: heightTopBar,
     minHeight: 250,
     overflow: "hidden",
 });
