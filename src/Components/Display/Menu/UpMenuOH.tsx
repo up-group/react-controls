@@ -1,59 +1,16 @@
 ﻿import * as React from "react"
 import { style } from "typestyle"
+import { Scrollbars } from 'react-custom-scrollbars';
 
 import { getFontClassName, stringIsNullOrEmpty, isNullOrUndef, addZeroBeforeNumber } from "../../../Common/utils/helpers";
-import { IconChevron, IconUtilisateur, IconDeconnexion, DirectionEnum, IconVerrou, IconAlertes } from "../Icons/Icons";
-import { Scrollbars } from 'react-custom-scrollbars';
 import UpHover from '../../Containers/Hover/UpHover';
+import { IconChevron, IconUtilisateur, IconDeconnexion, DirectionEnum, IconVerrou, IconAlertes } from "../Icons/Icons";
 
 
-var UP = require("./up.png");
-var widthLeftMenu: number | string = 300;
-var heightTopBar: number | string = 60;
-
-
-function getWidthDroite(): string {
-    var tailleBody: number = window.innerWidth;
-
-    if (typeof widthLeftMenu === "number") {
-        return (tailleBody - widthLeftMenu).toString() + "px";
-    }
-
-    var taille: number = parseInt(widthLeftMenu);
-    var unite: string = widthLeftMenu.substring(taille.toString().length);
-
-    switch (unite) {
-        case "%":
-            return (100 - taille).toString() + "%";
-
-        case "px":
-            return (tailleBody - taille).toString() + "px";
-
-        default:
-            return (tailleBody - taille).toString() + "px";
-    }
-}
-function getHeightContent(): string {
-    var tailleBody: number = window.innerHeight;
-
-    if (typeof heightTopBar === "number") {
-        return (tailleBody - heightTopBar).toString() + "px";
-    }
-
-    var taille: number = parseInt(heightTopBar);
-    var unite: string = heightTopBar.substring(taille.toString().length);
-
-    switch (unite) {
-        case "%":
-            return (100 - taille).toString() + "%";
-
-        case "px":
-            return (tailleBody - taille).toString() + "px";
-
-        default:
-            return (tailleBody - taille).toString() + "px";
-    }
-}
+const UP = require("./up.png");
+const heightTopBar: number = 60;
+const widthLeftMenuStandard: number = 300;
+const widthLeftMenuCollapse: number = 64;
 
 
 class branchIdHelper {
@@ -82,32 +39,23 @@ export interface Utilisateur {
 }
 
 
-var menuOh = style({
+var styleMenuOh = style({
     backgroundColor: "#f5f5f5",
     overflow: "hidden",
-    height:/*"100%"*/window.innerHeight,
-    width: /*"100%"*/window.innerWidth,
+    height: "100%",//window.innerHeight,
+    width: "100%",//window.innerWidth,
 });
-var rightSpace = style({
-    position: "fixed",
-    top: 0,
-    right: 0,
-    left: widthLeftMenu,
-    height: "100%",
-    transition: "left 0.5s",
-});
-var rightSpaceCollapse = style({
-    left: 60,
-    transition: "left 0.5s",
-});
-var leftSpace = style({
+var styleLeftMenu = style({
     zIndex: 1,
-    position: "fixed",
+    position: "absolute",
     left: 0,
     top: 0,
     height: "100%",
+    width: widthLeftMenuStandard,
     backgroundColor: "#4e5b59",
     alignItems: "center",
+    transition: "width 0.5s",
+    overflow: "hidden",
     $nest: {
         '& i': {
             cursor: "pointer",
@@ -116,37 +64,44 @@ var leftSpace = style({
             textDecoration: "none",
         },
     },
-    width: widthLeftMenu,
-    transition: "width 0.5s",
 });
-var leftSpaceCollapse = style({
-    width: 60,
-    transition: "width 0.5s",
+var styleLeftMenuCollapse = style({
+    width: widthLeftMenuCollapse,
+});
+var rightSpace = style({
+    position: "absolute",
+    top: 0,
+    right: 0,
+    left: widthLeftMenuStandard,
+    height: "100%",
+    transition: "left 0.5s",
+    overflow: "hidden",
+});
+var rightSpaceCollapse = style({
+    left: widthLeftMenuCollapse,
 });
 var styleTopbar = style({
     width: "100%",
-    right: 0,
+    left: 0,
     top: 0,
-    position: "relative",
-
-    //width: getWidthDroite(),
+    position: "absolute",
     height: heightTopBar,
-    //padding: "16px 32px 16px 60px",
     backgroundColor: "#ffffff",
     textAlign: "right",
 });
 var styleContenu = style({
-    minHeight: 250,
-    //position: "relative",
-    left: widthLeftMenu,
-    right: 0,
-    //width: getWidthDroite(),
+    position: "absolute",
+    left: 0,
     top: 0,
-    height: getHeightContent(),
+    width: "100%",
+    height: "100%",
+    paddingTop: heightTopBar,
+    minHeight: 250,
+    overflow: "hidden",
 });
 var styleUserExpand = style({
     position: "absolute",
-    top: "60px",
+    top: heightTopBar,
     right: "128px",
     overflow: "visible",
 });
@@ -195,7 +150,7 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
     render() {
         var right = rightSpace + (this.state.collapseActive ? " " + rightSpaceCollapse : "")
 
-        return <div className={menuOh} >
+        return <div className={styleMenuOh/*()*/} >
             <LeftMenu
                 onHover={this.onHover}
                 onCollapseChange={this.onCollapseChange} collapse={this.state.collapse} selectedBranchId={this.state.selectedBranchId} onBranchClick={this.onBranchClick}
@@ -205,7 +160,7 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
                 <TopMenu Recherche={this.props.Recherche} Antennes={this.props.Antennes}
                     Utilisateur={this.props.Utilisateur} onDeconnexionClick={this.props.onDeconnexionClick} />
 
-                <div className={styleContenu} >
+                <div className={styleContenu/*()*/} >
                     {this.props.children}
                 </div>
             </div>
@@ -214,17 +169,17 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
 
     onCollapseChange = () => {
         if (this.state.collapseActive) {
-            widthLeftMenu = 300;
+            // widthLeftMenu = widthLeftMenuStandard;
             this.setState({ collapseActive: false, collapse: false });
         } else {
-            widthLeftMenu = 70;
+            // widthLeftMenu = widthLeftMenuCollapse;
             this.setState({ collapseActive: true, collapse: true });
         }
     }
 
     onHover = (hover: boolean) => {
         if (this.state.collapseActive) {
-            widthLeftMenu = hover ? 300 : 70;
+            // widthLeftMenu = hover ? widthLeftMenuStandard : widthLeftMenuCollapse;
             console.log(hover)
             this.setState({ collapse: !hover });
         }
@@ -288,7 +243,7 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
         var img_space = style({
             //width: "100%",
             height: 60,
-            margin: 24
+            margin: 24,
         });
         var img_style = style({
             //width: "100%",
@@ -300,13 +255,25 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
             height: 45,
             paddingLeft: 25,
             color: "#FFF",
-            fontSize: 25
+            fontSize: 25,
         });
         var firstSub = style({
-            marginLeft: 24
+            // marginLeft: 24,
+            paddingLeft: "24px",
+            position: "absolute",
+            top: "153px",
+            bottom: "0",
+            left: "0",
+            right: "0",
+            $nest: {
+                "& > *": {
+                    height: "100%",
+                    width: "100%",
+                },
+            },
         });
 
-        var left = leftSpace + (this.props.collapse ? " " + leftSpaceCollapse : "");
+        var left = styleLeftMenu + (this.props.collapse ? " " + styleLeftMenuCollapse : "");
 
         // <input type="button" value="TTT" onClick={this.props.onCollapseChange} />
 
@@ -319,9 +286,9 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
             <div className={div_style} >
                 <span className={"icon-Lmenu"} onClick={this.props.onCollapseChange} />
             </div>
-            <UpHover onHoverChange={this.props.onHover}>
-                <div className={firstSub} >
-                    {<SubMenu
+            <div className={firstSub} >
+                <UpHover onHoverChange={this.props.onHover}>
+                    <SubMenu
                         open={false}
                         onBranchClick={this.props.onBranchClick}
                         branchId={""}
@@ -330,9 +297,9 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
                         childMenuItems={this.props.menuItems}
                         top={false}
                         collapse={this.props.collapse}
-                    />}
-                </div>
-            </UpHover>
+                    />
+                </UpHover>
+            </div>
         </aside>
     }
 }
@@ -553,7 +520,9 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState> {
         });
 
         if (this.props.branchId === "") {
-            return <Scrollbars style={{ height: window.innerHeight - 150 }}>
+            return <Scrollbars style={{ 
+                        height: "100%",//window.innerHeight - 150 
+                    }} >
                 {lis}
             </Scrollbars>;
         } else {
@@ -663,9 +632,6 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
             fontSize: 25,
             display: this.hasIcon ? "initial" : "none",
         });
-
-
-
         var innnerSubmenu = style({
             display: this.props.collapse ? "none" : "initial",
             $nest: {
@@ -678,7 +644,6 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
             }
 
         });
-
         var innnerSubmenuOpen = style({
             $nest: {
                 ["& > div"]: {
@@ -688,7 +653,6 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
             }
 
         });
-
 
         if (this.props.collapse) {
             return <div className={branch} data-branch={this.props.branchId} >
@@ -822,7 +786,6 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
     get isThisMenuSelected() {
         return this.props.selectedBranchId === this.props.branchId;
     }
-
 
     onClick = (e) => {
         if (this.props.selectedBranchId.substr(0, this.props.branchId.length) === this.props.branchId) {
