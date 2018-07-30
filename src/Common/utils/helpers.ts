@@ -95,6 +95,10 @@ export function stringIsNullOrEmpty(chaine: string): boolean {
     return isNullOrUndef(chaine) || chaine.trim().length === 0;
 }
 
+export function numberIsNullOrUndef(number: number): boolean {
+    return isNullOrUndef(number) || isNaN(number);
+}
+
 export function arrayIsNullOrEmpty(array: any[]): boolean {
     return isNullOrUndef(array) || array.length == 0;
 }

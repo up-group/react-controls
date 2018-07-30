@@ -1,7 +1,20 @@
 import * as React from "react"
-import { style } from "typestyle/lib"
-import { isNullOrUndef, stringIsNullOrEmpty, getFontClassName } from "../../../Common/utils/helpers";
-import { IconInformations, IconInfos, IconSuccess, IconError } from "../../Display/Icons/Icons";
+import { style } from "typestyle"
+
+import { isNullOrUndef, stringIsNullOrEmpty, getFontClassName, numberIsNullOrUndef } from "../../../Common/utils/helpers";
+import { IconInfos, IconSuccess, IconError, IconChevron, DirectionEnum } from "../../Display/Icons/Icons";
+
+
+interface ColorSet {
+    ValueDefault: string;
+    Value: string;
+    Placeholder: string;
+    BorderDefault: string;
+    Border: string;
+    BorderFocus: string;
+    Label: string;
+    Chevron: string;
+}
 
 
 export enum PosIconEnum {
@@ -9,12 +22,10 @@ export enum PosIconEnum {
     Droite = 1,
 }
 
-export interface ColorSet {
-    Value: string;
-    Placeholder: string;
-    Border: string;
-    BorderFocus: string;
-    Label: string;
+export enum InputTypeEnum {
+    Text = 0,
+    Password = 1,
+    ComboBox = 2,
 }
 
 export interface TextInputProps {
@@ -24,44 +35,61 @@ export interface TextInputProps {
     Label?: string;
     Icon?: JSX.Element;
     IconPos?: PosIconEnum;
-    Password?: boolean;
     InformationText?: string;
     SuccessText?: string;
     ErrorText?: string;
     Width?: string;
     Require?: boolean;
+    ReadOnly?: boolean;
+    InitialState?: boolean;
+    Type?: InputTypeEnum;
+    ComboItems?: string[];
+    ComboItemSelectIdx?: number;
     Validate?: (value: string) => boolean;
     onChange?: (value: string) => void;
     onFocus?: (event) => void;
     onBlur?: (event) => void;
-    onKeyDown?: (event) => void;
+    onKeyDown?: (event, isAbort?: boolean) => void;
+    onComboItemSelect?: (idx: number) => void;
 }
 
 export interface TextInputState {
     Success?: boolean;
     Value: string;
+    TextCanChange: boolean;
+    IconAGauche: boolean;
+    ComboOuverte: boolean;
 }
 
 export default class TextInput extends React.Component<TextInputProps, TextInputState> {
     constructor(p, c) {
-        super(p, c);
+        super(p, c);        
+        var ValueIdxInvalide: boolean = numberIsNullOrUndef(this.props.ComboItemSelectIdx) || this.props.ComboItemSelectIdx < 0
+            || isNullOrUndef(this.props.ComboItems) || this.props.ComboItemSelectIdx >= this.props.ComboItems.length;
         this.state = {
-            Success: null,
-            Value: this.props.Value,
+            Success: isNullOrUndef(this.props.InitialState) ? null : this.props.InitialState,
+            Value: this.props.Type === InputTypeEnum.ComboBox && ValueIdxInvalide === false ? this.props.ComboItems[this.props.ComboItemSelectIdx] : this.props.Value,
+            TextCanChange: this.props.Type !== InputTypeEnum.ComboBox && this.props.ReadOnly === false,
+            IconAGauche: this.props.Type === InputTypeEnum.ComboBox ? true : isNullOrUndef(this.props.IconPos) || this.props.IconPos === PosIconEnum.Gauche,
+            ComboOuverte: false,
         };
     }
 
-    private getColors = (): ColorSet => {
-        var value: string = "#354052";
-        var border: string = "#979797";
+    private get Colors(): ColorSet {
+        var valueDefault: string = "#354052";
+        var value: string = valueDefault;
+        var borderDefault: string = "#979797";
+        var border: string = borderDefault;
         var borderFocus: string = "#f59100";
         var placeholder: string = "#4e5b59";
         var label: string = "#7f8fa4";
+        var chevron: string = "#f59100";
 
         if (this.props.Disable) {
             value = "#b3b3b3";
             border = "#dcdcdc";
             borderFocus = border;
+            chevron = value;
         } else if (this.state.Success != null) {
             if (this.state.Success) {
                 border = "#05c591";
@@ -72,7 +100,16 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
             }
         }
 
-        return { Value: value, Placeholder: placeholder, Border: border, BorderFocus: borderFocus, Label: label, };
+        return { 
+            ValueDefault: valueDefault, 
+            Value: value, 
+            Placeholder: placeholder, 
+            BorderDefault: borderDefault, 
+            Border: border, 
+            BorderFocus: borderFocus, 
+            Label: label, 
+            Chevron: chevron, 
+        };
     }
 
     private processValidation = (value: string): boolean => {
@@ -102,9 +139,31 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
             this.props.onChange(event.target.value);
         }
     }
+    private onKeyDown = (event) => {
+        var abort: boolean = false;
+        if (this.state.TextCanChange === false) {
+            event.preventDefault();
+            abort = true;
+        }
+        this.props.onKeyDown(event, abort);
+    }
+
+    private onChevronClick = (event) => {
+        this.setState({ ComboOuverte: true, });
+    }
+    private onChevronBlur = (event) => {
+        this.setState({ ComboOuverte: false, });
+    }
+    private onComboItemClick = (idx: number) => {
+        this.setState({ Value: this.props.ComboItems[idx], });
+
+        if ( ! isNullOrUndef(this.props.onComboItemSelect)) {
+            this.props.onComboItemSelect(idx);
+        }
+    }
 
     render() {
-        var iconAGauche: boolean = isNullOrUndef(this.props.IconPos) || this.props.IconPos === PosIconEnum.Gauche;
+        var chevronPresent: boolean = this.props.Type === InputTypeEnum.ComboBox;
 
         var styleG = style({
             width: isNullOrUndef(this.props.Width) ? "250px" : this.props.Width,
@@ -112,70 +171,100 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
             display: "inline-block",
             verticalAlign: "top",
         });
-        var styleLabel = getFontClassName({ color: this.getColors().Label, fontSize: "14px", });
-        var styleRequire = getFontClassName({ color: "red", fontSize: "14px", lineHeight: 1.36, }) + " " + style({            
+        var styleLabel = getFontClassName({ color: this.Colors.Label, fontSize: "14px", });
+        var styleRequire = getFontClassName({ color: "red", fontSize: "14px", lineHeight: 1.36, }) + " " + style({
             position: "absolute",
             top: 0,
             right: 0,
         });
-        var styleFontInput = getFontClassName({ color: this.getColors().Value, fontSize: "14px", lineHeight: 1.36, });
+        var styleFontInput = getFontClassName({ color: this.Colors.Value, fontSize: "14px", lineHeight: 1.36, });
         var styleInputContainer = style({
             position: "relative",
             width: "100%",
+            display: "inline-block",
+            $nest: {                
+                "& *:focus": {
+                    outline: "none",
+                },
+            },
         });
         var styleInput = style({
             width: "100%",
             border: "none",
-            borderBottom: "1px solid " + this.getColors().Border,
+            borderBottom: "1px solid " + this.Colors.Border,
             paddingBottom: "6px",
             boxSizing: "border-box",
-            paddingLeft: (iconAGauche && isNullOrUndef(this.props.Icon) === false ? 20 : 0).toString() + "px",
-            paddingRight: ((iconAGauche ? 8 : 28) + (this.props.Require ? 6 : 0)).toString() + "px",
+            paddingLeft: (this.state.IconAGauche && isNullOrUndef(this.props.Icon) === false ? 20 : 0).toString() + "px",
+            paddingRight: ((this.state.IconAGauche && (chevronPresent === false) ? 8 : 28) + (this.props.Require ? 6 : 0)).toString() + "px",
+            backgroundColor: "inherit",
             $nest: {
                 "&:hover": {
-                    borderBottomColor: this.getColors().BorderFocus,
+                    borderBottomColor: this.Colors.BorderFocus,
                 },
                 "&:focus": {
-                    borderBottomColor: this.getColors().BorderFocus,
-                    outline: "none",
-                },
-                "&:disabled": {
-                    backgroundColor: "initial",
+                    borderBottomColor: this.Colors.BorderFocus,
                 },
                 "&::placeholder": {
-                    color: this.getColors().Placeholder,
+                    color: this.Colors.Placeholder,
                 }
             },
         });
         var styleIcon = style({
             position: "absolute",
             top: 0,
-            left: iconAGauche ? "0px" : "",
-            right: iconAGauche ? "" : (this.props.Require ? "14px" : "8px"),
+            left: this.state.IconAGauche ? "0px" : "",
+            right: this.state.IconAGauche ? "" : (this.props.Require ? "14px" : "8px"),
         });
-        var styleFontInfos = getFontClassName({ color: this.getColors().Value, fontSize: "12px", lineHeight: 1.58, }) + " " + style({
+        var styleChevron = style({
+            position: "absolute",
+            top: "20%",
+            right: this.props.Require ? "14px" : "8px",
+        });
+        var styleIconInfos = style({
             opacity: 0.5,
         });
-        var styleFontInfosSuc = getFontClassName({ color: this.getColors().Border, fontSize: "12px", lineHeight: 1.58, });
+        var styleFontInfos = getFontClassName({ color: this.Colors.Value, fontSize: "12px", lineHeight: 1.58, }) + " " + style({
+            opacity: 0.5,
+        });
+        var styleFontInfosSuc = getFontClassName({ color: this.Colors.Border, fontSize: "12px", lineHeight: 1.58, });
         var styleSousLabel = style({
-            display: "inline-block",
             width: "100%",
         });
+        var styleCombo = getFontClassName({ color: this.Colors.ValueDefault, fontSize: "14px", lineHeight: 1.36, }) + " " + style({
+            position: "absolute",
+            top: "100%",
+            right: 0,
+            left: 0,
+            maxHeight: "250px",
+            overflow: "auto",
+            padding: "10px 10px 0px",
+            zIndex: 9998,
+            backgroundColor: "#ffffff",
+            borderRadius: "0 0 4px 4px",
+            border: "1px solid " + this.Colors.BorderDefault,
+            borderTop: "none",
+        });
 
-        var type = this.props.Password ? "password" : "";
+        var type = this.props.Type === InputTypeEnum.Password ? "password" : "";
         
         var texteSup: JSX.Element = null;
         if (this.state.Success === null) {
             if ( ! stringIsNullOrEmpty(this.props.InformationText)) {
-                texteSup = <IconInfos><span className={styleFontInfos + " " + styleSousLabel} > {this.props.InformationText}</span></IconInfos>
+                texteSup = <IconInfos Color={this.Colors.Value} BackgroundColor="" IconSize="16px" className={styleIconInfos} >
+                    <span className={styleFontInfos + " " + styleSousLabel} > {this.props.InformationText}</span>
+                </IconInfos>
             }
         } else if (this.state.Success) {
             if ( ! stringIsNullOrEmpty(this.props.SuccessText)) {
-                texteSup = <IconSuccess><span className={styleFontInfosSuc + " " + styleSousLabel} > {this.props.SuccessText}</span></IconSuccess>
+                texteSup = <IconSuccess Color={this.Colors.Border} BackgroundColor="" IconSize="16px" >
+                    <span className={styleFontInfosSuc + " " + styleSousLabel} > {this.props.SuccessText}</span>
+                </IconSuccess>
             }
         } else {
             if ( ! stringIsNullOrEmpty(this.props.ErrorText)) {
-                texteSup = <IconError><span className={styleFontInfosSuc + " " + styleSousLabel} > {this.props.ErrorText}</span></IconError>
+                texteSup = <IconError Color={this.Colors.Border} BackgroundColor="" IconSize="16px" >
+                    <span className={styleFontInfosSuc + " " + styleSousLabel} > {this.props.ErrorText}</span>
+                </IconError>
             }
         }
 
@@ -193,13 +282,28 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
                 { isNullOrUndef(this.props.Icon) ? null : 
                     <span className={styleIcon} >{this.props.Icon}</span>
                 }
+                { chevronPresent === false ? null :
+                    <IconChevron Direction={DirectionEnum.Bas} Color={this.Colors.Chevron} IconSize="14px" BackgroundColor=""
+                            onClick={this.props.Disable ? null : this.onChevronClick} onBlur={this.onChevronBlur} 
+                            tabIndex={-1} className={styleChevron} />
+                }
 
                 <input className={styleFontInput + " " + styleInput} onBlur={this.onBlur} onChange={this.onChange} 
                     value={this.state.Value} placeholder={this.props.Placeholder} disabled={this.props.Disable} type={type}
-                    onFocus={this.props.onFocus} onKeyDown={this.props.onKeyDown} />
+                    onFocus={this.props.onFocus} onKeyDown={this.onKeyDown} />
 
-                {texteSup}
+                { this.state.ComboOuverte === false ? null :
+                    <span className={styleCombo} >                    
+                        { isNullOrUndef(this.props.ComboItems) ? null :
+                            this.props.ComboItems.map((value: string, idx: number): JSX.Element => {
+                                return <p key={idx} onMouseDown={() => this.onComboItemClick(idx)} >{value}</p>
+                            }) 
+                        }
+                    </span>
+                }
             </span>
+
+            {texteSup}
         </span>;
     }
 }

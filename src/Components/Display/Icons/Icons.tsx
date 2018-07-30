@@ -172,7 +172,7 @@ export class IconSuccess extends React.Component<IconProps, IconState> {
         super(p, c);
     }
     render() {
-        return <MaterialinearIcon {...this.props} IconName="Lcheck_circle" />;
+        return <MaterialinearIcon {...this.props} IconName="check_circle" />;
     }
 }
 export class IconError extends React.Component<IconProps, IconState> {
@@ -186,7 +186,11 @@ export class IconError extends React.Component<IconProps, IconState> {
         super(p, c);
     }
     render() {
-        return <MaterialinearIcon {...this.props} IconName="Lcross-circle" />;
+        var className = (stringIsNullOrEmpty(this.props.className) ? "" : (this.props.className + " ")) + style({
+            display: "inline-block",
+            transform: "rotateZ(0.125turn)"
+        });
+        return <MaterialinearIcon className={className} {...this.props} IconName="add_circle" />;
     }
 }
 export class IconEdit extends React.Component<IconProps, IconState> {

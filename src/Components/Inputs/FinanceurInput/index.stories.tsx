@@ -1,19 +1,19 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import FinanceurInput, { PosIconEnum } from "./TextInput"
+import FinanceurInput, { PosIconEnum, InputTypeEnum } from "./TextInput"
 
 
-function ValidateFalse(texte: string): boolean {
+function InputValidateFalse(texte: string): boolean {
     return false;
 }
-function ValidateTrue(texte: string): boolean {
+function InputValidateTrue(texte: string): boolean {
     return true;
 }
-function passwordChange(texte: string): void {
+function InputpasswordChange(texte: string): void {
     alert("Nouvelle valeur : " + texte);
 }
-function passwordValidate(texte: string): boolean {
+function InputpasswordValidate(texte: string): boolean {
     var regexResult = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/i.exec(texte);
     return regexResult !== null
 }
@@ -33,7 +33,7 @@ storiesOf('FinanceurInput', module)
                 <p>
                     <FinanceurInput Placeholder="hover" />
                     &emsp;
-                    <FinanceurInput Value="hover" />
+                    <FinanceurInput Value="hover" ReadOnly={false} />
                 </p>
                 <p>
                     <FinanceurInput Placeholder="focus" />
@@ -41,14 +41,14 @@ storiesOf('FinanceurInput', module)
                     <FinanceurInput Value="focus" />
                 </p>
                 <p>
-                    <FinanceurInput Placeholder="success" Validate={ValidateTrue} />
+                    <FinanceurInput Placeholder="success" Validate={InputValidateTrue} />
                     &emsp;
-                    <FinanceurInput Value="success" Validate={ValidateTrue} />
+                    <FinanceurInput Value="success" Validate={InputValidateTrue} />
                 </p>
                 <p>
-                    <FinanceurInput Placeholder="error" Validate={ValidateFalse} />
+                    <FinanceurInput Placeholder="error" Validate={InputValidateFalse} />
                     &emsp;
-                    <FinanceurInput Value="error" Validate={ValidateFalse} />
+                    <FinanceurInput Value="error" Validate={InputValidateFalse} />
                 </p>
                 <p>
                     <FinanceurInput Placeholder="disable" Disable={true} />
@@ -56,9 +56,14 @@ storiesOf('FinanceurInput', module)
                     <FinanceurInput Value="disable" Disable={true} />
                 </p>
                 <p>
-                    <FinanceurInput Placeholder="password" Password={true} onChange={passwordChange} Validate={passwordValidate} />
+                    <FinanceurInput Placeholder="password" Type={InputTypeEnum.Password} onChange={InputpasswordChange} Validate={InputpasswordValidate} />
                     &emsp;
-                    <FinanceurInput Value="password" Password={true} onChange={passwordChange} Validate={passwordValidate} />
+                    <FinanceurInput Value="password" Type={InputTypeEnum.Password} onChange={InputpasswordChange} Validate={InputpasswordValidate} />
+                </p>
+                <p>
+                    <FinanceurInput Placeholder="ReadOnly" ReadOnly={true} />
+                    &emsp;
+                    <FinanceurInput Value="ReadOnly" ReadOnly={true} />
                 </p>
             </div>
         )
@@ -72,17 +77,17 @@ storiesOf('FinanceurInput', module)
                     <FinanceurInput Value="info"InformationText="balabalabalabalabalabalabalabaablabablalblab" />
                 </p>
                 <p>
-                    <FinanceurInput Placeholder="success" Validate={ValidateTrue} SuccessText="Victoire pour le peuple !" />
+                    <FinanceurInput Placeholder="success" Validate={InputValidateTrue} SuccessText="Victoire pour le peuple !" />
                     &emsp;
-                    <FinanceurInput Value="success" Validate={ValidateTrue} SuccessText="Victoire pour le peuple !" />
+                    <FinanceurInput Value="success" Validate={InputValidateTrue} SuccessText="Victoire pour le peuple !" />
                 </p>
                 <p>
-                    <FinanceurInput Placeholder="password" Password={true} Validate={passwordValidate}
+                    <FinanceurInput Placeholder="password" Type={InputTypeEnum.Password} Validate={InputpasswordValidate}
                         ErrorText="Le mot de passe doit contenir 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial, et doit faire entre 8 et 16 caractères"
                         InformationText="Ceci est une infos. Très utile. Oui."
                         SuccessText="Ce mot de passe est robuste. Comm... non." />
                     &emsp;
-                    <FinanceurInput Value="password" Password={true} Validate={passwordValidate} 
+                    <FinanceurInput Value="password" Type={InputTypeEnum.Password} Validate={InputpasswordValidate} 
                         ErrorText="Le mot de passe doit contenir 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial, et doit faire entre 8 et 16 caractères"
                         InformationText="Ceci est une infos. Très utile. Oui."
                         SuccessText="Ce mot de passe est robuste. Comm... non." />
@@ -111,14 +116,14 @@ storiesOf('FinanceurInput', module)
                     <FinanceurInput Label="Tapez quelque chose... s'il-vous-plait..." Value="focus" />
                 </p>
                 <p>
-                    <FinanceurInput Label="Tapez quelque chose... s'il-vous-plait..." Placeholder="success" Validate={ValidateTrue} />
+                    <FinanceurInput Label="Tapez quelque chose... s'il-vous-plait..." Placeholder="success" Validate={InputValidateTrue} />
                     &emsp;
-                    <FinanceurInput Label="Tapez quelque chose... s'il-vous-plait..." Value="success" Validate={ValidateTrue} />
+                    <FinanceurInput Label="Tapez quelque chose... s'il-vous-plait..." Value="success" Validate={InputValidateTrue} />
                 </p>
                 <p>
-                    <FinanceurInput Label="Tapez quelque chose... s'il-vous-plait..." Placeholder="error" Validate={ValidateFalse} />
+                    <FinanceurInput Label="Tapez quelque chose... s'il-vous-plait..." Placeholder="error" Validate={InputValidateFalse} />
                     &emsp;
-                    <FinanceurInput Label="Tapez quelque chose... s'il-vous-plait..." Value="error" Validate={ValidateFalse} />
+                    <FinanceurInput Label="Tapez quelque chose... s'il-vous-plait..." Value="error" Validate={InputValidateFalse} />
                 </p>
                 <p>
                     <FinanceurInput Label="Tapez quelque chose... s'il-vous-plait..." Placeholder="disable" Disable={true} />
@@ -126,9 +131,9 @@ storiesOf('FinanceurInput', module)
                     <FinanceurInput Label="Tapez quelque chose... s'il-vous-plait..." Value="disable" Disable={true} />
                 </p>
                 <p>
-                    <FinanceurInput Label="Tapez quelque chose... s'il-vous-plait..." Placeholder="password" Password={true} Validate={passwordValidate} />
+                    <FinanceurInput Label="Tapez quelque chose... s'il-vous-plait..." Placeholder="password" Type={InputTypeEnum.Password} Validate={InputpasswordValidate} />
                     &emsp;
-                    <FinanceurInput Label="Tapez quelque chose... s'il-vous-plait..." Value="password" Password={true} Validate={passwordValidate} />
+                    <FinanceurInput Label="Tapez quelque chose... s'il-vous-plait..." Value="password" Type={InputTypeEnum.Password} Validate={InputpasswordValidate} />
                 </p>
                 <p>
                     <FinanceurInput Label="Alors ici c'est surtout pour voir ce qu'il ce passe si on dépasse la ligne." Placeholder="placeholder" />
@@ -175,14 +180,14 @@ storiesOf('FinanceurInput', module)
                     <FinanceurInput Icon={<span>♫</span>} Value="focus" />
                 </p>
                 <p>
-                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Gauche} Placeholder="success" Validate={ValidateTrue} />
+                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Gauche} Placeholder="success" Validate={InputValidateTrue} />
                     &emsp;
-                    <FinanceurInput Icon={<span>♫</span>} Value="success" Validate={ValidateTrue} />
+                    <FinanceurInput Icon={<span>♫</span>} Value="success" Validate={InputValidateTrue} />
                 </p>
                 <p>
-                    <FinanceurInput Icon={<span>♫</span>} Placeholder="error" Validate={ValidateFalse} />
+                    <FinanceurInput Icon={<span>♫</span>} Placeholder="error" Validate={InputValidateFalse} />
                     &emsp;
-                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Gauche} Value="error" Validate={ValidateFalse} />
+                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Gauche} Value="error" Validate={InputValidateFalse} />
                 </p>
                 <p>
                     <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Gauche} Placeholder="disable" Disable={true} />
@@ -190,9 +195,9 @@ storiesOf('FinanceurInput', module)
                     <FinanceurInput Icon={<span>♫</span>} Value="disable" Disable={true} />
                 </p>
                 <p>
-                    <FinanceurInput Icon={<span>♫</span>} Placeholder="password" Password={true} Validate={passwordValidate} />
+                    <FinanceurInput Icon={<span>♫</span>} Placeholder="password" Type={InputTypeEnum.Password} Validate={InputpasswordValidate} />
                     &emsp;
-                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Gauche} Value="password" Password={true} Validate={passwordValidate} />
+                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Gauche} Value="password" Type={InputTypeEnum.Password} Validate={InputpasswordValidate} />
                 </p>
             </div>
         )
@@ -225,14 +230,14 @@ storiesOf('FinanceurInput', module)
                     <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Value="focus" />
                 </p>
                 <p>
-                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Placeholder="success" Validate={ValidateTrue} />
+                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Placeholder="success" Validate={InputValidateTrue} />
                     &emsp;
-                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Value="success" Validate={ValidateTrue} />
+                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Value="success" Validate={InputValidateTrue} />
                 </p>
                 <p>
-                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Placeholder="error" Validate={ValidateFalse} />
+                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Placeholder="error" Validate={InputValidateFalse} />
                     &emsp;
-                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Value="error" Validate={ValidateFalse} />
+                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Value="error" Validate={InputValidateFalse} />
                 </p>
                 <p>
                     <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Placeholder="disable" Disable={true} />
@@ -240,9 +245,9 @@ storiesOf('FinanceurInput', module)
                     <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Value="disable" Disable={true} />
                 </p>
                 <p>
-                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Placeholder="password" Password={true} Validate={passwordValidate} />
+                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Placeholder="password" Type={InputTypeEnum.Password} Validate={InputpasswordValidate} />
                     &emsp;
-                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Value="password" Password={true} Validate={passwordValidate} />
+                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Value="password" Type={InputTypeEnum.Password} Validate={InputpasswordValidate} />
                 </p>
             </div>
         )
@@ -277,17 +282,17 @@ storiesOf('FinanceurInput', module)
                         InformationText="Ceci est une infos. Très utile. Oui." />
                 </p>
                 <p>
-                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Gauche} Placeholder="success" Validate={ValidateTrue}
+                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Gauche} Placeholder="success" Validate={InputValidateTrue}
                         SuccessText="Ce mot de passe est robuste. Comm... non." Label={"cliquez pour victorier"} />
                     &emsp;
-                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Value="success" Validate={ValidateTrue}
+                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Value="success" Validate={InputValidateTrue}
                         SuccessText="Ce mot de passe est robuste. Comm... non." />
                 </p>
                 <p>
-                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Placeholder="error" Validate={ValidateFalse}
+                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Placeholder="error" Validate={InputValidateFalse}
                         ErrorText="Le mot de passe doit contenir 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial, et doit faire entre 8 et 16 caractères" />
                     &emsp;
-                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Gauche} Value="error" Validate={ValidateFalse}
+                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Gauche} Value="error" Validate={InputValidateFalse}
                         ErrorText="Le mot de passe doit contenir 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial, et doit faire entre 8 et 16 caractères"
                         Label={"cliquez pour perdoyer"} />
                 </p>
@@ -299,23 +304,23 @@ storiesOf('FinanceurInput', module)
                         InformationText="Ceci est une infos. Très utile. Oui." Label={"Au revoir"} />
                 </p>
                 <p>
-                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Placeholder="password" Password={true} Validate={passwordValidate}
+                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Placeholder="password" Type={InputTypeEnum.Password} Validate={InputpasswordValidate}
                         ErrorText="Le mot de passe doit contenir 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial, et doit faire entre 8 et 16 caractères"
                         InformationText="Ceci est une infos. Très utile. Oui."
                         SuccessText="Ce mot de passe est robuste. Comm... non." Label={"mdp bonjour"} />
                     &emsp;
-                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Gauche} Value="password" Password={true} Validate={passwordValidate}
+                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Gauche} Value="password" Type={InputTypeEnum.Password} Validate={InputpasswordValidate}
                         ErrorText="Le mot de passe doit contenir 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial, et doit faire entre 8 et 16 caractères"
                         InformationText="Ceci est une infos. Très utile. Oui."
                         SuccessText="Ce mot de passe est robuste. Comm... non." Label={"mdp bonjour"} />
                 </p>
                 <p>
-                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Gauche} Placeholder="password" Password={true} Validate={passwordValidate}
+                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Gauche} Placeholder="password" Type={InputTypeEnum.Password} Validate={InputpasswordValidate}
                         ErrorText="Le mot de passe doit contenir 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial, et doit faire entre 8 et 16 caractères"
                         InformationText="Ceci est une infos. Très utile. Oui."
                         SuccessText="Ce mot de passe est robuste. Comm... non." Label={"mdp au revoir"} Disable={true} />
                     &emsp;
-                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Value="password" Password={true} Validate={passwordValidate}
+                    <FinanceurInput Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Value="password" Type={InputTypeEnum.Password} Validate={InputpasswordValidate}
                         ErrorText="Le mot de passe doit contenir 1 minuscule, 1 majuscule, 1 chiffre, 1 caractère spécial, et doit faire entre 8 et 16 caractères"
                         InformationText="Ceci est une infos. Très utile. Oui."
                         SuccessText="Ce mot de passe est robuste. Comm... non." Label={"mdp au revoir"} Disable={true} />
@@ -351,17 +356,17 @@ storiesOf('FinanceurInput', module)
                     <FinanceurInput Require={true} Icon={<span>♫</span>} IconPos={PosIconEnum.Droite} Value="focus" />
                 </p>
                 <p>
-                    <FinanceurInput Require={true} Placeholder="success" Validate={ValidateTrue}
+                    <FinanceurInput Require={true} Placeholder="success" Validate={InputValidateTrue}
                         SuccessText="Victoire pour le peuple." />
                     &emsp;
-                    <FinanceurInput Require={true} Value="success" Validate={ValidateTrue} Label="ah ?"
+                    <FinanceurInput Require={true} Value="success" Validate={InputValidateTrue} Label="ah ?"
                         SuccessText="Victoire pour le peuple." />
                 </p>
                 <p>
-                    <FinanceurInput Placeholder="error" Validate={ValidateFalse}
+                    <FinanceurInput Placeholder="error" Validate={InputValidateFalse}
                         ErrorText="Réessayer encore." />
                     &emsp;
-                    <FinanceurInput Value="error" Validate={ValidateFalse}
+                    <FinanceurInput Value="error" Validate={InputValidateFalse}
                         ErrorText="Réessayer encore." />
                 </p>
                 <p>
@@ -370,9 +375,83 @@ storiesOf('FinanceurInput', module)
                     <FinanceurInput Require={true} Value="disable" Disable={true} />
                 </p>
                 <p>
-                    <FinanceurInput Require={true} Placeholder="password" Password={true} onChange={passwordChange} Validate={passwordValidate} />
+                    <FinanceurInput Require={true} Placeholder="password" Type={InputTypeEnum.Password} onChange={InputpasswordChange} Validate={InputpasswordValidate} />
                     &emsp;
-                    <FinanceurInput Require={true} Value="password" Password={true} onChange={passwordChange} Validate={passwordValidate} />
+                    <FinanceurInput Require={true} Value="password" Type={InputTypeEnum.Password} onChange={InputpasswordChange} Validate={InputpasswordValidate} />
+                </p>
+            </div>
+        )
+    )
+    .addWithInfo('ComboBox', '',  
+        () => (
+            <div style={{padding: "16px"}} >
+                <p>
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="empty" />
+                    &emsp;
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} />
+                </p>
+                <p>
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="invalid idx" ComboItems={["1", "2", "3", "4"]} ComboItemSelectIdx={-4} />
+                    &emsp;
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="invalid idx" ComboItems={["1", "2", "3", "4"]} ComboItemSelectIdx={-1} />
+                    &emsp;
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="invalid idx" ComboItems={["1", "2", "3", "4"]} ComboItemSelectIdx={4} />
+                </p>
+                <p>
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="placeholder" ComboItems={["1", "2", "3", "4"]} />
+                    &emsp;
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="placeholder" ComboItemSelectIdx={0} ComboItems={["1", "2", "3", "4"]} />
+                </p>
+                <p>
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="focus" ComboItems={["bonjour", "bonjour", "bonjour", "bonjour"]} />
+                    &emsp;
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="focus" ComboItemSelectIdx={1} ComboItems={["bonjour", "bonjour", "bonjour", "bonjour"]} />
+                </p>
+                <p>
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="success" ComboItems={["1", "2", "3", "4"]} Validate={InputValidateTrue} />
+                    &emsp;
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="success" ComboItemSelectIdx={2} ComboItems={["1", "2", "3", "4"]} Validate={InputValidateTrue} />
+                </p>
+                <p>
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="error" ComboItems={["1", "2", "3", "4"]} Validate={InputValidateTrue} />
+                    &emsp;
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="error" ComboItemSelectIdx={3} ComboItems={["1", "2", "3", "4"]} Validate={InputValidateTrue} />
+                </p>
+                <p>
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="disable" ComboItems={["1", "2", "3", "4"]} Disable={true} />
+                    &emsp;
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="disable" ComboItemSelectIdx={1} ComboItems={["1", "2", "3", "4"]} Disable={true} />
+                </p>
+                <p>
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="icons" ComboItems={["1", "2", "3", "4"]} Icon={<span>♫</span>} />
+                    &emsp;
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="icons" ComboItemSelectIdx={1} ComboItems={["1", "2", "3", "4"]} Icon={<span>♫</span>} />
+                </p>
+                <p>
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="taille" ComboItems={["parce qu'il y a besoin de place", "2", "3", "4"]} Width={"300px"} />
+                    &emsp;
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="taille" ComboItemSelectIdx={1} ComboItems={["parce qu'il y a besoin de place", "2", "3", "4"]}
+                            Width={"300px"} />
+                </p>
+                <p>
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="label" ComboItems={["parce qu'il y a besoin de place", "2", "3", "4"]} Label="Bonjour" />
+                    &emsp;
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="label" ComboItemSelectIdx={1} ComboItems={["parce qu'il y a besoin de place", "2", "3", "4"]} 
+                            Label="Bonjour" />
+                </p>
+                <p>
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="success" ComboItems={["1", "2", "3", "4"]} Validate={InputValidateTrue} 
+                            SuccessText="victoire" InformationText="click !" />
+                    &emsp;
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="success" Icon={<span>♫</span>} ComboItemSelectIdx={2} ComboItems={["1", "2", "3", "4"]} 
+                            Validate={InputValidateTrue} SuccessText="victoire" InformationText="click !" />
+                </p>
+                <p>
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="error" Icon={<span>♫</span>} ComboItems={["1", "2", "3", "4"]} Validate={InputValidateTrue} 
+                            ErrorText="defaite" InformationText="click !" />
+                    &emsp;
+                    <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="error" ComboItemSelectIdx={3} ComboItems={["1", "2", "3", "4"]} Validate={InputValidateTrue} 
+                            ErrorText="defaite" InformationText="click !" />
                 </p>
             </div>
         )
