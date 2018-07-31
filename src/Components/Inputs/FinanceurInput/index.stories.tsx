@@ -556,3 +556,51 @@ storiesOf('FinanceurInput', module)
             </div>
         )
     )
+    .addWithInfo('Number', '',  
+        () => (
+            <div style={{padding: "16px"}} >
+                <p>
+                    <FinanceurInput Type={InputTypeEnum.Number} Placeholder="placeholder" />
+                    &emsp;
+                    <FinanceurInput Type={InputTypeEnum.Number} Value="Valeur" />
+                    &emsp;
+                    <FinanceurInput Type={InputTypeEnum.Number} />
+                </p>
+                <p>
+                    <FinanceurInput Type={InputTypeEnum.Number} Placeholder="hover" />
+                    &emsp;
+                    <FinanceurInput Type={InputTypeEnum.Number} Value="5" ReadOnly={false} />
+                </p>
+                <p>
+                    <FinanceurInput Type={InputTypeEnum.Number} Placeholder="focus" />
+                    &emsp;
+                    <FinanceurInput Type={InputTypeEnum.Number} Value="911" />
+                </p>
+                <p>
+                    <FinanceurInput Type={InputTypeEnum.Number} Placeholder="success" Validate={InputValidateTrue} />
+                    &emsp;
+                    <FinanceurInput Type={InputTypeEnum.Number} Value="76" ReadOnly={false} Validate={InputValidateTrue} />
+                </p>
+                <p>
+                    <FinanceurInput Type={InputTypeEnum.Number} Placeholder="error" Validate={InputValidateFalse} />
+                    &emsp;
+                    <FinanceurInput Type={InputTypeEnum.Number} Value="654" Validate={InputValidateFalse} />
+                </p>
+                <p>
+                    <FinanceurInput Type={InputTypeEnum.Number} Placeholder="disable" Disable={true} />
+                    &emsp;
+                    <FinanceurInput Type={InputTypeEnum.Number} Value="6878" Disable={true} />
+                </p>
+                <p>
+                    <FinanceurInput Type={InputTypeEnum.Number} Placeholder="password" onChange={InputpasswordChange} Validate={InputpasswordValidate} />
+                    &emsp;
+                    <FinanceurInput Type={InputTypeEnum.Number} Value="38438" onChange={InputpasswordChange} Validate={InputpasswordValidate} />
+                </p>
+                <p>
+                    <FinanceurInput Type={InputTypeEnum.Number} Placeholder="ReadOnly" ReadOnly={true} />
+                    &emsp;
+                    <FinanceurInput Type={InputTypeEnum.Number} Value="3846" ReadOnly={true} />
+                </p>
+            </div>
+        )
+    )

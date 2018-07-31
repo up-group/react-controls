@@ -26,6 +26,7 @@ export enum InputTypeEnum {
     Text = 0,
     Password = 1,
     ComboBox = 2,
+    Number = 3,
 }
 
 export interface TextInputProps {
@@ -63,14 +64,26 @@ export interface TextInputState {
 
 export default class TextInput extends React.Component<TextInputProps, TextInputState> {
     constructor(p, c) {
-        super(p, c);        
+        super(p, c);   
+
         var ValueIdxInvalide: boolean = numberIsNullOrUndef(this.props.ComboItemSelectIdx) || this.props.ComboItemSelectIdx < 0
             || isNullOrUndef(this.props.ComboItems) || this.props.ComboItemSelectIdx >= this.props.ComboItems.length;
+
+        var valeur: string = this.props.Type === InputTypeEnum.ComboBox && ValueIdxInvalide === false ? 
+            this.props.ComboItems[this.props.ComboItemSelectIdx] : 
+            this.props.Value;
+        if (this.props.Type === InputTypeEnum.Number) {
+            if (stringIsNullOrEmpty(valeur) || numberIsNullOrUndef(Number(valeur))) {
+                valeur = "";
+            }
+        }
+
         this.state = {
             Success: isNullOrUndef(this.props.InitialState) ? null : this.props.InitialState,
-            Value: this.props.Type === InputTypeEnum.ComboBox && ValueIdxInvalide === false ? this.props.ComboItems[this.props.ComboItemSelectIdx] : this.props.Value,
+            Value: valeur,
             TextCanChange: this.props.Type !== InputTypeEnum.ComboBox && this.props.ReadOnly !== true,
-            IconAGauche: this.props.Type === InputTypeEnum.ComboBox ? true : isNullOrUndef(this.props.IconPos) || this.props.IconPos === PosIconEnum.Gauche,
+            IconAGauche: this.props.Type === InputTypeEnum.ComboBox || this.props.Type === InputTypeEnum.Number ? true : 
+                isNullOrUndef(this.props.IconPos) || this.props.IconPos === PosIconEnum.Gauche,
             ComboOuverte: false,
         };
     }
@@ -128,6 +141,13 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
         }
     }
     private onChange = (event) => {
+        if (this.props.Type === InputTypeEnum.Number) {
+            if (numberIsNullOrUndef(Number(event.target.value))) {
+                event.preventDefault();
+                return false;
+            }
+        }
+
         var success: boolean = this.processValidation(event.target.value); 
         if (this.state.Success !== success) {
             this.setState({ Success: success, Value: event.target.value, });
@@ -149,10 +169,21 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
     }
 
     private onChevronClick = (event) => {
-        this.setState({ ComboOuverte: true, });
+        if (this.props.Type === InputTypeEnum.ComboBox) {
+            this.setState({ ComboOuverte: true, });
+        } else {
+            var valeur: number = stringIsNullOrEmpty(this.state.Value) ? 0 : Number(this.state.Value);
+            this.setState({ Value: (valeur - 1).toString(), });
+        }
+    }
+    private onChevron2Click = (event) => {
+        var valeur: number = stringIsNullOrEmpty(this.state.Value) ? 0 : Number(this.state.Value);
+        this.setState({ Value: (valeur + 1).toString(), });
     }
     private onChevronBlur = (event) => {
-        this.setState({ ComboOuverte: false, });
+        if (this.props.Type === InputTypeEnum.ComboBox) {
+            this.setState({ ComboOuverte: false, });
+        }
     }
     private onComboItemClick = (idx: number) => {
         this.setState({ Value: this.props.ComboItems[idx], });
@@ -163,7 +194,9 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
     }
 
     render() {
-        var chevronPresent: boolean = this.props.Type === InputTypeEnum.ComboBox;
+        var chevronPresent: boolean = this.props.Type === InputTypeEnum.ComboBox || this.props.Type === InputTypeEnum.Number;
+        var chevron2Present: boolean = this.props.Type === InputTypeEnum.Number;
+        var droiteChevron: number = this.props.Type === InputTypeEnum.ComboBox ? 8 : 2;
 
         var styleG = style({
             width: isNullOrUndef(this.props.Width) ? "250px" : this.props.Width,
@@ -217,8 +250,13 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
         });
         var styleChevron = style({
             position: "absolute",
-            top: "20%",
-            right: this.props.Require ? "14px" : "8px",
+            top: this.props.Type === InputTypeEnum.Number ? "40%" : "20%",
+            right: (droiteChevron + (this.props.Require ? 6 : 0)).toString() + "px",
+        });
+        var styleChevron2 = style({
+            position: "absolute",
+            top: "0",
+            right: (droiteChevron + (this.props.Require ? 6 : 0)).toString() + "px",
         });
         var styleIconInfos = style({
             opacity: 0.5,
@@ -286,6 +324,10 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
                     <IconChevron Direction={DirectionEnum.Bas} Color={this.Colors.Chevron} IconSize="14px" BackgroundColor=""
                             onClick={this.props.Disable ? null : this.onChevronClick} onBlur={this.onChevronBlur} 
                             tabIndex={-1} className={styleChevron} />
+                }
+                { chevron2Present === false ? null : 
+                    <IconChevron Direction={DirectionEnum.Haut} Color={this.Colors.Chevron} IconSize="14px" BackgroundColor=""
+                            onClick={this.props.Disable ? null : this.onChevron2Click} className={styleChevron2} />
                 }
 
                 <input className={styleFontInput + " " + styleInput} onBlur={this.onBlur} onChange={this.onChange} 
