@@ -69,7 +69,7 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
         this.state = {
             Success: isNullOrUndef(this.props.InitialState) ? null : this.props.InitialState,
             Value: this.props.Type === InputTypeEnum.ComboBox && ValueIdxInvalide === false ? this.props.ComboItems[this.props.ComboItemSelectIdx] : this.props.Value,
-            TextCanChange: this.props.Type !== InputTypeEnum.ComboBox && this.props.ReadOnly === false,
+            TextCanChange: this.props.Type !== InputTypeEnum.ComboBox && this.props.ReadOnly !== true,
             IconAGauche: this.props.Type === InputTypeEnum.ComboBox ? true : isNullOrUndef(this.props.IconPos) || this.props.IconPos === PosIconEnum.Gauche,
             ComboOuverte: false,
         };
