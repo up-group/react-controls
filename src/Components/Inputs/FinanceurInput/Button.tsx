@@ -22,14 +22,16 @@ export default class Button extends React.Component<ButtonProps, ButtonState> {
     }
 
     render() {
-        var color = this.props.Disable ? "#ffffff" : this.props.Secondary ? "#f59100" : "#ffffff";
-        var backColor = this.props.Disable ? "#d7d7d7" : this.props.Secondary ? "" : "#f59100";
+        var orange = "#f59100";
+        var color = this.props.Disable ? "#ffffff" : this.props.Secondary ? orange : "#ffffff";
+        var backColor = this.props.Disable ? "#d7d7d7" : this.props.Secondary ? "" : orange;
+        var borderColor = this.props.Disable ? backColor : orange;
         var fontWeight = this.props.RoundAngle ? "bold" : "normal";
         var height = this.props.TwoLines ? "60px" : "40px";
 
         var styleG = getFontClassName({ fontSize: "14px", color: color, fontWeight: fontWeight, lineHeight: height, }) + " " + style({
             borderRadius: this.props.RoundAngle ? "30px" : "3px",
-            border: "1px solid #f59100",
+            border: "1px solid " + borderColor,
             backgroundColor: backColor,
             textAlign: "center",
             display: "inline-block",

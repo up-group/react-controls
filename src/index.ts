@@ -53,6 +53,7 @@ import UpToggle from './Components/Inputs/Toggle'
 import UpRadio from './Components/Inputs/Radio'
 import * as UpIcons from "./Components/Display/Icons/Icons"
 import UpFinanceurInput, { PosIconEnum as UpFinanceurInputIconPosEnum, InputTypeEnum as UpFinanceurInputTypeEnum } from "./Components/Inputs/FinanceurInput/TextInput"
+import UpFinanceurButton from "./Components/Inputs/FinanceurInput/Button"
 
 import { ThemeProvider as UpThemeProvider } from './Common/theming/themedComponents'
 import UpDefaultTheme from './Common/theming'
@@ -126,4 +127,5 @@ export {
     UpFinanceurInput,
     UpFinanceurInputIconPosEnum,
     UpFinanceurInputTypeEnum,
+    UpFinanceurButton,
 };
