@@ -789,6 +789,11 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
     }
 
     get isThisMenuSelected() {
+
+        if (this.startsWith(this.props.selectedBranchId,this.props.branchId) && this.anyChild === false) {
+            return true
+        }
+
         return this.props.selectedBranchId === this.props.branchId;
     }
 
