@@ -65,8 +65,18 @@ var styleLeftMenu = style({
         },
     },
 });
+var imgHomelink = style({ display: "inline" });
+
 var styleLeftMenuCollapse = style({
     width: widthLeftMenuCollapse,
+    $nest: {
+        '& a': {
+            display: "none",
+        },
+        ['& .' + imgHomelink]: {
+            display : "inline"
+        }
+    },
 });
 var rightSpace = style({
     position: "absolute",
@@ -178,7 +188,6 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
     onHover = (hover: boolean) => {
         if (this.state.collapseActive) {
             // widthLeftMenu = hover ? widthLeftMenuStandard : widthLeftMenuCollapse;
-            console.log(hover)
             this.setState({ collapse: !hover });
         }
     }
@@ -272,12 +281,10 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
         });
 
         var left = styleLeftMenu + (this.props.collapse ? " " + styleLeftMenuCollapse : "");
-
         // <input type="button" value="TTT" onClick={this.props.onCollapseChange} />
-
         return <aside className={left} >
             <div className={img_space}>
-                <a onClick={this.props.onHomeClick} >
+                <a className={imgHomelink} onClick={this.props.onHomeClick} >
                     <img className={img_style} src={UP} ></img>
                 </a>
             </div>
@@ -433,8 +440,8 @@ export class UserExpand extends React.Component<UserExpandProps, UserExpandState
         var derniereCo: string = this.writeDateTime(this.props.Utilisateur.DerniereConnexion);
         var nbAlerte: string = isNullOrUndef(this.props.Utilisateur.Alertes.NonLues) ? null :
             isNaN(this.props.Utilisateur.Alertes.NonLues) ? null :
-                this.props.Utilisateur.Alertes.NonLues <= 0 ? null : 
-                    this.props.Utilisateur.Alertes.NonLues > 99 ? "99+" : 
+                this.props.Utilisateur.Alertes.NonLues <= 0 ? null :
+                    this.props.Utilisateur.Alertes.NonLues > 99 ? "99+" :
                         this.props.Utilisateur.Alertes.NonLues.toString();
 
         return <div className={styleUserExpand + " " + styleG} >
@@ -453,9 +460,9 @@ export class UserExpand extends React.Component<UserExpandProps, UserExpandState
             }
             {isNullOrUndef(this.props.Utilisateur.Alertes) ? null :
                 <p>
-                    <IconAlertes AlertNumber={nbAlerte} AlertCircle={{Active: true, Color: "#f44336"}} 
-                            AlertFont={{fontSize: "8px", color: "#ffffff"}} // la taille de la police va ici être écrasée par l'alerte
-                            onMouseDown={this.props.Utilisateur.Alertes.onClick} >
+                    <IconAlertes AlertNumber={nbAlerte} AlertCircle={{ Active: true, Color: "#f44336" }}
+                        AlertFont={{ fontSize: "8px", color: "#ffffff" }} // la taille de la police va ici être écrasée par l'alerte
+                        onMouseDown={this.props.Utilisateur.Alertes.onClick} >
                         <span className={styleAlertes} > Alertes utilisateur</span>
                     </IconAlertes>
                 </p>
@@ -518,9 +525,9 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState> {
         });
 
         if (this.props.branchId === "") {
-            return <Scrollbars style={{ 
-                        height: "100%",//window.innerHeight - 150 
-                    }} >
+            return <Scrollbars style={{
+                height: "100%",//window.innerHeight - 150 
+            }} >
                 {lis}
             </Scrollbars>;
         } else {
