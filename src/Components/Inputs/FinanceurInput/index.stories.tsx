@@ -2,6 +2,7 @@ import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 
 import FinanceurInput, { PosIconEnum, InputTypeEnum } from "./TextInput"
+import Button from './Button';
 
 
 function InputValidateFalse(texte: string): boolean {
@@ -15,7 +16,10 @@ function InputpasswordChange(texte: string): void {
 }
 function InputpasswordValidate(texte: string): boolean {
     var regexResult = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/i.exec(texte);
-    return regexResult !== null
+    return regexResult !== null;
+}
+function onButtonClick() {
+    alert("click !");
 }
 
 
@@ -452,6 +456,102 @@ storiesOf('FinanceurInput', module)
                     &emsp;
                     <FinanceurInput Type={InputTypeEnum.ComboBox} Placeholder="error" ComboItemSelectIdx={3} ComboItems={["1", "2", "3", "4"]} Validate={InputValidateTrue} 
                             ErrorText="defaite" InformationText="click !" />
+                </p>
+            </div>
+        )
+    )
+    .addWithInfo('Button', '',  
+        () => (
+            <div style={{padding: "16px"}} >
+                <p>
+                    <Button Text="" />
+                    &emsp;
+                    <Button Text="" onClick={onButtonClick} />
+                    &emsp;
+                    <Button Text="" Secondary={true} />
+                    &emsp;
+                    <Button Text="" Secondary={true} onClick={onButtonClick} />
+                </p>
+                <p>
+                    <Button Text="bonjur" />
+                    &emsp;
+                    <Button Text="bonjur" onClick={onButtonClick} />
+                    &emsp;
+                    <Button Text="bonjur" Secondary={true} />
+                    &emsp;
+                    <Button Text="bonjur" Secondary={true} onClick={onButtonClick} />
+                </p>
+                <p>
+                    <Button Text="bonjur" Disable={true} />
+                    &emsp;
+                    <Button Text="bonjur" Disable={true} onClick={onButtonClick} />
+                    &emsp;
+                    <Button Text="bonjur" Disable={true} Secondary={true} />
+                    &emsp;
+                    <Button Text="bonjur" Disable={true} Secondary={true} onClick={onButtonClick} />
+                </p>
+                <p>
+                    <Button Text="bonjur" TwoLines={true} />
+                    &emsp;
+                    <Button Text="bonjur" TwoLines={true} onClick={onButtonClick} />
+                    &emsp;
+                    <Button Text="bonjur" TwoLines={true} Secondary={true} />
+                    &emsp;
+                    <Button Text="bonjur" TwoLines={true} Secondary={true} onClick={onButtonClick} />
+                </p>
+                <p>
+                    <Button Text="bonjur" Disable={true} TwoLines={true} />
+                    &emsp;
+                    <Button Text="bonjur" Disable={true} TwoLines={true} onClick={onButtonClick} />
+                    &emsp;
+                    <Button Text="bonjur" Disable={true} TwoLines={true} Secondary={true} />
+                    &emsp;
+                    <Button Text="bonjur" Disable={true} TwoLines={true} Secondary={true} onClick={onButtonClick} />
+                </p>
+                <p>
+                    <Button Text="" RoundAngle={true} />
+                    &emsp;
+                    <Button Text="" RoundAngle={true} onClick={onButtonClick} />
+                    &emsp;
+                    <Button Text="" RoundAngle={true} Secondary={true} />
+                    &emsp;
+                    <Button Text="" RoundAngle={true} Secondary={true} onClick={onButtonClick} />
+                </p>
+                <p>
+                    <Button Text="bonjur" RoundAngle={true} />
+                    &emsp;
+                    <Button Text="bonjur" RoundAngle={true} onClick={onButtonClick} />
+                    &emsp;
+                    <Button Text="bonjur" RoundAngle={true} Secondary={true} />
+                    &emsp;
+                    <Button Text="bonjur" RoundAngle={true} Secondary={true} onClick={onButtonClick} />
+                </p>
+                <p>
+                    <Button Text="bonjur" Disable={true} RoundAngle={true} />
+                    &emsp;
+                    <Button Text="bonjur" Disable={true} RoundAngle={true} onClick={onButtonClick} />
+                    &emsp;
+                    <Button Text="bonjur" Disable={true} RoundAngle={true} Secondary={true} />
+                    &emsp;
+                    <Button Text="bonjur" Disable={true} RoundAngle={true} Secondary={true} onClick={onButtonClick} />
+                </p>
+                <p>
+                    <Button Text="bonjur" TwoLines={true} RoundAngle={true} />
+                    &emsp;
+                    <Button Text="bonjur" TwoLines={true} RoundAngle={true} onClick={onButtonClick} />
+                    &emsp;
+                    <Button Text="bonjur" TwoLines={true} RoundAngle={true} Secondary={true} />
+                    &emsp;
+                    <Button Text="bonjur" TwoLines={true} RoundAngle={true} Secondary={true} onClick={onButtonClick} />
+                </p>
+                <p>
+                    <Button Text="bonjur" TwoLines={true} Disable={true} RoundAngle={true} />
+                    &emsp;
+                    <Button Text="bonjur" TwoLines={true} Disable={true} RoundAngle={true} onClick={onButtonClick} />
+                    &emsp;
+                    <Button Text="bonjur" TwoLines={true} Disable={true} RoundAngle={true} Secondary={true} />
+                    &emsp;
+                    <Button Text="bonjur" TwoLines={true} Disable={true} RoundAngle={true} Secondary={true} onClick={onButtonClick} />
                 </p>
             </div>
         )
