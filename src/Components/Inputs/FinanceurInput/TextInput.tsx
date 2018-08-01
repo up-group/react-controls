@@ -161,7 +161,7 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
     }
     private onKeyDown = (event) => {
         var abort: boolean = false;
-        if (this.state.TextCanChange === false) {
+        if (this.state.TextCanChange === false && event.keyCode !== 9) {
             event.preventDefault();
             abort = true;
         }
