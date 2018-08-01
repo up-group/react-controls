@@ -36,7 +36,8 @@ export default class Button extends React.Component<ButtonProps, ButtonState> {
             textAlign: "center",
             display: "inline-block",
             minWidth: "180px",
-            height: height,            
+            height: height,
+            cursor: this.props.Disable || isNullOrUndef(this.props.onClick) ? "auto" : "pointer",
         });
 
         return <span className={styleG} onClick={this.props.Disable ? null : this.props.onClick} >

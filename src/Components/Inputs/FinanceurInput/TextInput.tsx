@@ -281,6 +281,7 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
             borderRadius: "0 0 4px 4px",
             border: "1px solid " + this.Colors.BorderDefault,
             borderTop: "none",
+            cursor: "pointer",
         });
 
         var type = this.props.Type === InputTypeEnum.Password ? "password" : "";
