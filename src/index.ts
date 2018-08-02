@@ -55,6 +55,7 @@ import * as UpIcons from "./Components/Display/Icons/Icons"
 import UpFinanceurInput, { PosIconEnum as UpFinanceurInputIconPosEnum, InputTypeEnum as UpFinanceurInputTypeEnum } from "./Components/Inputs/FinanceurInput/TextInput"
 import UpFinanceurButton from "./Components/Inputs/FinanceurInput/Button"
 import UpFinanceurRadioGroup from "./Components/Inputs/FinanceurInput/RadioGroup"
+import UpFinanceurTextArea from "./Components/Inputs/FinanceurInput/TextArea"
 
 import { ThemeProvider as UpThemeProvider } from './Common/theming/themedComponents'
 import UpDefaultTheme from './Common/theming'
@@ -130,4 +131,5 @@ export {
     UpFinanceurInputTypeEnum,
     UpFinanceurButton,
     UpFinanceurRadioGroup,
+    UpFinanceurTextArea,
 };

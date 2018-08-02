@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react'
 
 import FinanceurInput, { PosIconEnum, InputTypeEnum } from "./TextInput"
 import Button from './Button';
+import TextArea from './TextArea';
 
 
 function InputValidateFalse(texte: string): boolean {
@@ -601,6 +602,21 @@ storiesOf('FinanceurInput', module)
                     &emsp;
                     <FinanceurInput Type={InputTypeEnum.Number} Value="3846" ReadOnly={true} />
                 </p>
+            </div>
+        )
+    )
+    .addWithInfo('Text Area', '',  
+        () => (
+            <div style={{padding: "16px"}} >
+                <TextArea InformationText="bdzlkbqdlkbdlzqbfl bqzlkfbqzlibfilqzbfliqzb fliqbzlifbqlizbf liqbzflibqzlifblqizbfilqbzlifbqlib fzlqbzlifb qlizbflqbzflib" />
+                <TextArea Placeholder="Place older than me !" />
+                <TextArea Placeholder="Place older than me !" 
+                        Value="blablablablablablablablablablablablablablablablabalblablablablbalbalbalblablablablablablablablablbalbalbab" />
+                <TextArea Placeholder="Place older than me !" Require={true} />
+                <TextArea Placeholder="Place older than me !" Disable={true} />
+                <TextArea Placeholder="Place older than me !" ReadOnly={true} />
+                <TextArea Placeholder="Place older than me !" ErrorText="erreur hahhahhahahha" Validate={InputValidateFalse} />
+                <TextArea Placeholder="Place older than me !" SuccessText="reusii hihihihihih" Validate={InputValidateTrue} />
             </div>
         )
     )

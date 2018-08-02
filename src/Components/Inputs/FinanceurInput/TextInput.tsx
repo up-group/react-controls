@@ -5,7 +5,7 @@ import { isNullOrUndef, stringIsNullOrEmpty, getFontClassName, numberIsNullOrUnd
 import { IconInfos, IconSuccess, IconError, IconChevron, DirectionEnum } from "../../Display/Icons/Icons";
 
 
-interface ColorSet {
+export interface ColorSet {
     ValueDefault: string;
     Value: string;
     Placeholder: string;
@@ -14,6 +14,43 @@ interface ColorSet {
     BorderFocus: string;
     Label: string;
     Chevron: string;
+}
+
+export function GetFinanceurColors(disable: boolean, success: boolean): ColorSet {
+    var valueDefault: string = "#354052";
+    var value: string = valueDefault;
+    var borderDefault: string = "#979797";
+    var border: string = borderDefault;
+    var borderFocus: string = "#f59100";
+    var placeholder: string = valueDefault;
+    var label: string = "#7f8fa4";
+    var chevron: string = "#f59100";
+
+    if (disable) {
+        value = "#b3b3b3";
+        border = "#dcdcdc";
+        borderFocus = border;
+        chevron = value;
+    } else if (success != null) {
+        if (success) {
+            border = "#05c591";
+        } else {
+            value = "#c50e1f";
+            border = value;
+            placeholder = value;
+        }
+    }
+
+    return { 
+        ValueDefault: valueDefault, 
+        Value: value, 
+        Placeholder: placeholder, 
+        BorderDefault: borderDefault, 
+        Border: border, 
+        BorderFocus: borderFocus, 
+        Label: label, 
+        Chevron: chevron, 
+    };
 }
 
 
@@ -88,43 +125,6 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
         };
     }
 
-    private get Colors(): ColorSet {
-        var valueDefault: string = "#354052";
-        var value: string = valueDefault;
-        var borderDefault: string = "#979797";
-        var border: string = borderDefault;
-        var borderFocus: string = "#f59100";
-        var placeholder: string = "#4e5b59";
-        var label: string = "#7f8fa4";
-        var chevron: string = "#f59100";
-
-        if (this.props.Disable) {
-            value = "#b3b3b3";
-            border = "#dcdcdc";
-            borderFocus = border;
-            chevron = value;
-        } else if (this.state.Success != null) {
-            if (this.state.Success) {
-                border = "#05c591";
-            } else {
-                value = "#c50e1f";
-                border = value;
-                placeholder = value;
-            }
-        }
-
-        return { 
-            ValueDefault: valueDefault, 
-            Value: value, 
-            Placeholder: placeholder, 
-            BorderDefault: borderDefault, 
-            Border: border, 
-            BorderFocus: borderFocus, 
-            Label: label, 
-            Chevron: chevron, 
-        };
-    }
-
     private processValidation = (value: string): boolean => {
         if (isNullOrUndef(this.props.Validate)) {
             return null;
@@ -133,8 +133,10 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
     }
 
     private onBlur = (event) => {
-        var success: boolean = this.processValidation(event.target.value);     
-        this.setState({ Success: success, });
+        var success: boolean = this.processValidation(event.target.value);    
+        if (this.state.Success !== success) { 
+            this.setState({ Success: success, });
+        }
 
         if ( ! isNullOrUndef(this.props.onBlur)) {
             this.props.onBlur(event);
@@ -198,19 +200,21 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
         var chevron2Present: boolean = this.props.Type === InputTypeEnum.Number;
         var droiteChevron: number = this.props.Type === InputTypeEnum.ComboBox ? 8 : 2;
 
+        var couleurs: ColorSet = GetFinanceurColors(this.props.Disable, this.state.Success);
+
         var styleG = style({
             width: isNullOrUndef(this.props.Width) ? "250px" : this.props.Width,
             position: "relative",
             display: "inline-block",
             verticalAlign: "top",
         });
-        var styleLabel = getFontClassName({ color: this.Colors.Label, fontSize: "14px", });
+        var styleLabel = getFontClassName({ color: couleurs.Label, fontSize: "14px", });
         var styleRequire = getFontClassName({ color: "red", fontSize: "14px", lineHeight: 1.36, }) + " " + style({
             position: "absolute",
             top: 0,
             right: 0,
         });
-        var styleFontInput = getFontClassName({ color: this.Colors.Value, fontSize: "14px", lineHeight: 1.36, });
+        var styleFontInput = getFontClassName({ color: couleurs.Value, fontSize: "14px", lineHeight: 1.36, });
         var styleInputContainer = style({
             position: "relative",
             width: "100%",
@@ -224,7 +228,7 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
         var styleInput = style({
             width: "100%",
             border: "none",
-            borderBottom: "1px solid " + this.Colors.Border,
+            borderBottom: "1px solid " + couleurs.Border,
             paddingBottom: "6px",
             boxSizing: "border-box",
             paddingLeft: (this.state.IconAGauche && isNullOrUndef(this.props.Icon) === false ? 20 : 0).toString() + "px",
@@ -232,13 +236,14 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
             backgroundColor: "inherit",
             $nest: {
                 "&:hover": {
-                    borderBottomColor: this.Colors.BorderFocus,
+                    borderBottomColor: couleurs.BorderFocus,
                 },
                 "&:focus": {
-                    borderBottomColor: this.Colors.BorderFocus,
+                    borderBottomColor: couleurs.BorderFocus,
                 },
                 "&::placeholder": {
-                    color: this.Colors.Placeholder,
+                    color: couleurs.Placeholder,
+                    opacity: 0.5,
                 }
             },
         });
@@ -261,14 +266,14 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
         var styleIconInfos = style({
             opacity: 0.5,
         });
-        var styleFontInfos = getFontClassName({ color: this.Colors.Value, fontSize: "12px", lineHeight: 1.58, }) + " " + style({
+        var styleFontInfos = getFontClassName({ color: couleurs.Value, fontSize: "12px", lineHeight: 1.58, }) + " " + style({
             opacity: 0.5,
         });
-        var styleFontInfosSuc = getFontClassName({ color: this.Colors.Border, fontSize: "12px", lineHeight: 1.58, });
+        var styleFontInfosSuc = getFontClassName({ color: couleurs.Border, fontSize: "12px", lineHeight: 1.58, });
         var styleSousLabel = style({
             width: "100%",
         });
-        var styleCombo = getFontClassName({ color: this.Colors.ValueDefault, fontSize: "14px", lineHeight: 1.36, }) + " " + style({
+        var styleCombo = getFontClassName({ color: couleurs.ValueDefault, fontSize: "14px", lineHeight: 1.36, }) + " " + style({
             position: "absolute",
             top: "100%",
             right: 0,
@@ -279,7 +284,7 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
             zIndex: 9998,
             backgroundColor: "#ffffff",
             borderRadius: "0 0 4px 4px",
-            border: "1px solid " + this.Colors.BorderDefault,
+            border: "1px solid " + couleurs.BorderDefault,
             borderTop: "none",
             cursor: "pointer",
         });
@@ -289,19 +294,19 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
         var texteSup: JSX.Element = null;
         if (this.state.Success === null) {
             if ( ! stringIsNullOrEmpty(this.props.InformationText)) {
-                texteSup = <IconInfos Color={this.Colors.Value} BackgroundColor="" IconSize="16px" className={styleIconInfos} >
+                texteSup = <IconInfos Color={couleurs.Value} BackgroundColor="" IconSize="16px" className={styleIconInfos} >
                     <span className={styleFontInfos + " " + styleSousLabel} > {this.props.InformationText}</span>
                 </IconInfos>
             }
         } else if (this.state.Success) {
             if ( ! stringIsNullOrEmpty(this.props.SuccessText)) {
-                texteSup = <IconSuccess Color={this.Colors.Border} BackgroundColor="" IconSize="16px" >
+                texteSup = <IconSuccess Color={couleurs.Border} BackgroundColor="" IconSize="16px" >
                     <span className={styleFontInfosSuc + " " + styleSousLabel} > {this.props.SuccessText}</span>
                 </IconSuccess>
             }
         } else {
             if ( ! stringIsNullOrEmpty(this.props.ErrorText)) {
-                texteSup = <IconError Color={this.Colors.Border} BackgroundColor="" IconSize="16px" >
+                texteSup = <IconError Color={couleurs.Border} BackgroundColor="" IconSize="16px" >
                     <span className={styleFontInfosSuc + " " + styleSousLabel} > {this.props.ErrorText}</span>
                 </IconError>
             }
@@ -322,12 +327,12 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
                     <span className={styleIcon} >{this.props.Icon}</span>
                 }
                 { chevronPresent === false ? null :
-                    <IconChevron Direction={DirectionEnum.Bas} Color={this.Colors.Chevron} IconSize="14px" BackgroundColor=""
+                    <IconChevron Direction={DirectionEnum.Bas} Color={couleurs.Chevron} IconSize="14px" BackgroundColor=""
                             onClick={this.props.Disable ? null : this.onChevronClick} onBlur={this.onChevronBlur} 
                             tabIndex={-1} className={styleChevron} />
                 }
                 { chevron2Present === false ? null : 
-                    <IconChevron Direction={DirectionEnum.Haut} Color={this.Colors.Chevron} IconSize="14px" BackgroundColor=""
+                    <IconChevron Direction={DirectionEnum.Haut} Color={couleurs.Chevron} IconSize="14px" BackgroundColor=""
                             onClick={this.props.Disable ? null : this.onChevron2Click} className={styleChevron2} />
                 }
 
