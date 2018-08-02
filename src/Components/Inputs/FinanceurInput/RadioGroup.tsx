@@ -10,6 +10,7 @@ export interface RadioGroupProps {
     ValueIdx?: number[];
     Horizontal: boolean;
     MultiCheckAccept?: boolean;
+    Disable?: boolean;
     onChange?: (ValueIdx?: number[]) => void;
 }
 
@@ -28,7 +29,7 @@ export default class RadioGroup extends React.Component<RadioGroupProps, RadioGr
         };
     }
 
-    private onCheck(valueIdx: number) {
+    private onChange(valueIdx: number) {
         if (this.props.MultiCheckAccept) {
             if (this.state.ValueIdx.indexOf(valueIdx) >= 0) {
                 this.setState({ ValueIdx: this.state.ValueIdx.filter(i => i !== valueIdx), }, this.propageOnChange);
@@ -55,7 +56,8 @@ export default class RadioGroup extends React.Component<RadioGroupProps, RadioGr
         return <span>
             { this.props.Values.map((value: string, idx: number): JSX.Element => {
                 return <span key={idx} >
-                    <Radio Value={value} Check={this.state.ValueIdx.indexOf(idx) >= 0} onCheck={() => this.onCheck(idx)} MultiCheckAccept={this.props.MultiCheckAccept} />
+                    <Radio Value={value} Check={this.state.ValueIdx.indexOf(idx) >= 0} onChange={() => this.onChange(idx)} 
+                            MultiCheckAccept={this.props.MultiCheckAccept} Disable={this.props.Disable} />
 
                     { idx === this.props.Values.length ? null : 
                         this.props.Horizontal ? <span>&emsp;</span> : <br />
@@ -71,7 +73,8 @@ export interface RadioProps {
     Value: string;
     Check: boolean;
     MultiCheckAccept?: boolean;
-    onCheck?: () => void;
+    Disable?: boolean;
+    onChange?: () => void;
 }
 
 export interface RadioState {
@@ -80,13 +83,14 @@ export interface RadioState {
 export class Radio extends React.Component<RadioProps, RadioState> {
     constructor(p, c) {
         super(p, c);
-        this.state = {
-        };
+        // this.state = {
+        // };
     }
 
     render() {
         var styleG = getFontClassName({ fontSize: "14px", color: "#4e5b59", }) + " " + style({
-            cursor: "pointer",
+            cursor: this.props.Disable ? "auto" : "pointer",
+            opacity: this.props.Disable ? 0.5 : 1,
             $nest: {
                 "& > span": {
                     verticalAlign: "middle",
@@ -96,11 +100,11 @@ export class Radio extends React.Component<RadioProps, RadioState> {
          
         if (this.props.MultiCheckAccept) {
             if (this.props.Check) {
-                return <IconCheckBox_Check Color="#f59100" IconSize="16px" onClick={this.props.onCheck} >
+                return <IconCheckBox_Check Color="#f59100" IconSize="16px" onClick={this.props.Disable ? null : this.props.onChange} >
                     <span className={styleG} > {this.props.Value}</span>
                 </IconCheckBox_Check>
             } else {
-                return <IconCheckBox_Empty Color="#d7d7d7" IconSize="16px" onClick={this.props.onCheck} >
+                return <IconCheckBox_Empty Color="#d7d7d7" IconSize="16px" onClick={this.props.Disable ? null : this.props.onChange} >
                     <span className={styleG} > {this.props.Value}</span>
                 </IconCheckBox_Empty>
             }
@@ -118,7 +122,7 @@ export class Radio extends React.Component<RadioProps, RadioState> {
             boxSizing: "border-box",
         });
 
-        return <span className={styleG} onClick={this.props.onCheck} >
+        return <span className={styleG} onClick={this.props.Disable ? null : this.props.onChange} >
             <span className={styleCercle} /><span> {this.props.Value}</span>
         </span>;
     }
