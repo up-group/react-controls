@@ -120,6 +120,8 @@ export default class TextArea extends React.Component<TextAreaProps, TextAreaSta
         var styleFontInfosSuc = getFontClassName({ color: couleurs.Border, fontSize: "12px", lineHeight: 1.58, });
         var styleSousLabel = style({
             width: "100%",
+            textAlign: "justify",
+            display: "inline-block",
         });
         
         var texteSup: JSX.Element = null;

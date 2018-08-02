@@ -272,6 +272,8 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
         var styleFontInfosSuc = getFontClassName({ color: couleurs.Border, fontSize: "12px", lineHeight: 1.58, });
         var styleSousLabel = style({
             width: "100%",
+            textAlign: "justify",
+            display: "inline-block",
         });
         var styleCombo = getFontClassName({ color: couleurs.ValueDefault, fontSize: "14px", lineHeight: 1.36, }) + " " + style({
             position: "absolute",
