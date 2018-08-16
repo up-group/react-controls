@@ -195,6 +195,14 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.Value !== this.props.Value && nextProps.Value !== this.state.Value) {
+            if (nextProps.type !== InputTypeEnum.ComboBox) {
+                this.setState({ Value: nextProps.Value });
+            }
+        }
+    }
+
     render() {
         var chevronPresent: boolean = this.props.Type === InputTypeEnum.ComboBox || this.props.Type === InputTypeEnum.Number;
         var chevron2Present: boolean = this.props.Type === InputTypeEnum.Number;
@@ -271,9 +279,9 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
         });
         var styleFontInfosSuc = getFontClassName({ color: couleurs.Border, fontSize: "12px", lineHeight: 1.58, });
         var styleSousLabel = style({
-            width: "100%",
             textAlign: "justify",
             display: "inline-block",
+            width: "100%",
         });
         var styleCombo = getFontClassName({ color: couleurs.ValueDefault, fontSize: "14px", lineHeight: 1.36, }) + " " + style({
             position: "absolute",
@@ -297,19 +305,19 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
         if (this.state.Success === null) {
             if ( ! stringIsNullOrEmpty(this.props.InformationText)) {
                 texteSup = <IconInfos Color={couleurs.Value} BackgroundColor="" IconSize="16px" className={styleIconInfos} >
-                    <span className={styleFontInfos + " " + styleSousLabel} > {this.props.InformationText}</span>
+                    <span className={styleFontInfos} > {this.props.InformationText}</span>
                 </IconInfos>
             }
         } else if (this.state.Success) {
             if ( ! stringIsNullOrEmpty(this.props.SuccessText)) {
                 texteSup = <IconSuccess Color={couleurs.Border} BackgroundColor="" IconSize="16px" >
-                    <span className={styleFontInfosSuc + " " + styleSousLabel} > {this.props.SuccessText}</span>
+                    <span className={styleFontInfosSuc} > {this.props.SuccessText}</span>
                 </IconSuccess>
             }
         } else {
             if ( ! stringIsNullOrEmpty(this.props.ErrorText)) {
                 texteSup = <IconError Color={couleurs.Border} BackgroundColor="" IconSize="16px" >
-                    <span className={styleFontInfosSuc + " " + styleSousLabel} > {this.props.ErrorText}</span>
+                    <span className={styleFontInfosSuc} > {this.props.ErrorText}</span>
                 </IconError>
             }
         }
@@ -353,7 +361,7 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
                 }
             </span>
 
-            {texteSup}
+            <span className={styleSousLabel} >{texteSup}</span>
         </span>;
     }
 }

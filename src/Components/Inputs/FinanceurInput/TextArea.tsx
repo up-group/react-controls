@@ -128,19 +128,19 @@ export default class TextArea extends React.Component<TextAreaProps, TextAreaSta
         if (this.state.Success === null) {
             if ( ! stringIsNullOrEmpty(this.props.InformationText)) {
                 texteSup = <IconInfos Color={couleurs.Value} BackgroundColor="" IconSize="16px" className={styleIconInfos} >
-                    <span className={styleFontInfos + " " + styleSousLabel} > {this.props.InformationText}</span>
+                    <span className={styleFontInfos} > {this.props.InformationText}</span>
                 </IconInfos>
             }
         } else if (this.state.Success) {
             if ( ! stringIsNullOrEmpty(this.props.SuccessText)) {
                 texteSup = <IconSuccess Color={couleurs.Border} BackgroundColor="" IconSize="16px" >
-                    <span className={styleFontInfosSuc + " " + styleSousLabel} > {this.props.SuccessText}</span>
+                    <span className={styleFontInfosSuc} > {this.props.SuccessText}</span>
                 </IconSuccess>
             }
         } else {
             if ( ! stringIsNullOrEmpty(this.props.ErrorText)) {
                 texteSup = <IconError Color={couleurs.Border} BackgroundColor="" IconSize="16px" >
-                    <span className={styleFontInfosSuc + " " + styleSousLabel} > {this.props.ErrorText}</span>
+                    <span className={styleFontInfosSuc} > {this.props.ErrorText}</span>
                 </IconError>
             }
         }
@@ -161,7 +161,7 @@ export default class TextArea extends React.Component<TextAreaProps, TextAreaSta
                         onChange={this.onChange} onBlur={this.onBlur} onFocus={this.props.onFocus} onKeyDown={this.props.onKeyDown} />
             </span>
 
-            {texteSup}
+            <span className={styleSousLabel} >{texteSup}</span>
         </span>;
     }
 }
