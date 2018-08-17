@@ -346,9 +346,9 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
                             onClick={this.props.Disable ? null : this.onChevron2Click} className={styleChevron2} />
                 }
 
-                <input className={styleFontInput + " " + styleInput} onBlur={this.onBlur} onChange={this.onChange} 
-                    value={this.state.Value} placeholder={this.props.Placeholder} disabled={this.props.Disable} type={type}
-                    onFocus={this.props.onFocus} onKeyDown={this.onKeyDown} />
+                <input className={styleFontInput + " " + styleInput} disabled={this.props.Disable} type={type}
+                    value={isNullOrUndef(this.state.Value) ? "" : this.state.Value} placeholder={this.props.Placeholder}
+                    onFocus={this.props.onFocus} onKeyDown={this.onKeyDown} onBlur={this.onBlur} onChange={this.onChange} />
 
                 { this.state.ComboOuverte === false ? null :
                     <span className={styleCombo} >                    

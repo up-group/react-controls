@@ -156,7 +156,7 @@ export default class TextArea extends React.Component<TextAreaProps, TextAreaSta
             <span className={styleContainer} >
                 { this.props.Require ? <span className={styleRequire} >*</span> : null }
             
-                <textarea className={styleArea} placeholder={this.props.Placeholder} value={this.state.Text} 
+                <textarea className={styleArea} placeholder={this.props.Placeholder} value={isNullOrUndef(this.state.Text) ? "" : this.state.Text} 
                         disabled={this.props.Disable} readOnly={this.props.ReadOnly}
                         onChange={this.onChange} onBlur={this.onBlur} onFocus={this.props.onFocus} onKeyDown={this.props.onKeyDown} />
             </span>
