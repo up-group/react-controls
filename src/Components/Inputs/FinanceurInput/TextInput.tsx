@@ -83,6 +83,8 @@ export interface TextInputProps {
     Type?: InputTypeEnum;
     ComboItems?: string[];
     ComboItemSelectIdx?: number;
+    NumberMax?: number;
+    NumberMin?: number;
     Validate?: (value: string) => boolean;
     onChange?: (value: string) => void;
     onFocus?: (event) => void;
@@ -112,6 +114,10 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
         if (this.props.Type === InputTypeEnum.Number) {
             if (stringIsNullOrEmpty(valeur) || numberIsNullOrUndef(Number(valeur))) {
                 valeur = "";
+            } else if (isNullOrUndef(this.props.NumberMax) === false && this.props.NumberMax < Number(valeur)) {
+                valeur = this.props.NumberMax.toString();
+            } else if (isNullOrUndef(this.props.NumberMin) === false && this.props.NumberMin > Number(valeur)) {
+                valeur = this.props.NumberMin.toString();
             }
         }
 
@@ -144,7 +150,7 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
     }
     private onChange = (event) => {
         if (this.props.Type === InputTypeEnum.Number) {
-            if (numberIsNullOrUndef(Number(event.target.value))) {
+            if (numberIsNullOrUndef(Number(event.target.value)) || Number(event.target.value) < this.props.NumberMin || Number(event.target.value) > this.props.NumberMax) {
                 event.preventDefault();
                 return false;
             }
@@ -173,14 +179,24 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
     private onChevronClick = (event) => {
         if (this.props.Type === InputTypeEnum.ComboBox) {
             this.setState({ ComboOuverte: true, });
-        } else {
-            var valeur: number = stringIsNullOrEmpty(this.state.Value) ? 0 : Number(this.state.Value);
-            this.setState({ Value: (valeur - 1).toString(), });
+        } else { // type=number
+            var valeur: number = stringIsNullOrEmpty(this.state.Value) ? -1 : (Number(this.state.Value) - 1);
+            if (isNullOrUndef(this.props.NumberMax) === false && this.props.NumberMax < Number(valeur)) {
+                valeur = this.props.NumberMax;
+            } else if (isNullOrUndef(this.props.NumberMin) === false && this.props.NumberMin > Number(valeur)) {
+                valeur = this.props.NumberMin;
+            }
+            this.setState({ Value: valeur.toString(), });
         }
     }
     private onChevron2Click = (event) => {
-        var valeur: number = stringIsNullOrEmpty(this.state.Value) ? 0 : Number(this.state.Value);
-        this.setState({ Value: (valeur + 1).toString(), });
+        var valeur: number = stringIsNullOrEmpty(this.state.Value) ? 1 : (Number(this.state.Value) + 1);
+        if (isNullOrUndef(this.props.NumberMax) === false && this.props.NumberMax < Number(valeur)) {
+            valeur = this.props.NumberMax;
+        } else if (isNullOrUndef(this.props.NumberMin) === false && this.props.NumberMin > Number(valeur)) {
+            valeur = this.props.NumberMin;
+        }
+        this.setState({ Value: valeur.toString(), });
     }
     private onChevronBlur = (event) => {
         if (this.props.Type === InputTypeEnum.ComboBox) {
@@ -199,6 +215,25 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
         if (nextProps.Value !== this.props.Value && nextProps.Value !== this.state.Value) {
             if (nextProps.type !== InputTypeEnum.ComboBox) {
                 this.setState({ Value: nextProps.Value });
+            }
+
+            switch (nextProps.type) {
+                case InputTypeEnum.ComboBox:
+                    break;
+                case InputTypeEnum.Number:
+                    var valeur: string = nextProps.Value;
+                    if (stringIsNullOrEmpty(valeur) || numberIsNullOrUndef(Number(valeur))) {
+                        valeur = "";
+                    } else if (isNullOrUndef(this.props.NumberMax) === false && this.props.NumberMax < Number(valeur)) {
+                        valeur = this.props.NumberMax.toString();
+                    } else if (isNullOrUndef(this.props.NumberMin) === false && this.props.NumberMin > Number(valeur)) {
+                        valeur = this.props.NumberMin.toString();
+                    }
+                    this.setState({ Value: valeur });
+                    break;
+                default:
+                    this.setState({ Value: nextProps.Value });
+                    break;
             }
         }
     }
