@@ -173,7 +173,10 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
             event.preventDefault();
             abort = true;
         }
-        this.props.onKeyDown(event, abort);
+        
+        if ( ! isNullOrUndef(this.props.onKeyDown)) {
+            this.props.onKeyDown(event, abort);
+        }
     }
 
     private onChevronClick = (event) => {
