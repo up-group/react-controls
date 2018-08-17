@@ -2,9 +2,9 @@ import * as React from "react";
 import { style } from "typestyle";
 
 import { getFontClassName, isNullOrUndef, stringIsNullOrEmpty } from "../../../Common/utils/helpers";
-
-import { GetFinanceurColors, ColorSet } from "./TextInput";
 import { IconInfos, IconSuccess, IconError } from "../../Display/Icons/Icons";
+
+import { ValidationReturn, GetFinanceurColors, ColorSet } from ".";
 
 
 export interface TextAreaProps {
@@ -19,7 +19,7 @@ export interface TextAreaProps {
     ReadOnly?: boolean;
     Width?: string;
     Height?: string;
-    Validate?: (value: string) => boolean;
+    Validate?: (value: string) => ValidationReturn;
     onChange?: (value: string) => void;
     onFocus?: (event) => void;
     onBlur?: (event) => void;
@@ -27,43 +27,40 @@ export interface TextAreaProps {
 }
 
 export interface TextAreaState {
-    Success: boolean;
     Text: string;
+    Success: boolean;
+    SpecificMessage: string;
 }
 
 export default class TextArea extends React.Component<TextAreaProps, TextAreaState> {
     constructor(p, c) {
         super(p, c);
         this.state = {
-            Success: null,
             Text: this.props.Value,
+            Success: null,
+            SpecificMessage: null,
         };
     }
 
-    private processValidation = (value: string): boolean => {
-        if (isNullOrUndef(this.props.Validate)) {
-            return null;
+    private processValidation = (value: string) => {
+        var validation: ValidationReturn = isNullOrUndef(this.props.Validate) ? null : this.props.Validate(value);
+
+        if (isNullOrUndef(validation) || isNullOrUndef(validation.ok)) {
+            this.setState({ Text: value, Success: null, SpecificMessage: null, });
+        } else {
+            this.setState({ Text: value, Success: validation.ok, SpecificMessage: validation.specificMessage, });
         }
-        return this.props.Validate(value);
     }
 
     private onChange = (event) => {
-        var success: boolean = this.processValidation(event.target.value); 
-        if (this.state.Success !== success) {
-            this.setState({ Success: success, Text: event.target.value, });
-        } else {
-            this.setState({ Text: event.target.value, });
-        }
+        this.processValidation(event.target.value);
 
         if ( ! isNullOrUndef(this.props.onChange)) {
             this.props.onChange(event.target.value);
         }
     }
     private onBlur = (event) => {
-        var success: boolean = this.processValidation(event.target.value);    
-        if (this.state.Success !== success) { 
-            this.setState({ Success: success, });
-        }
+        this.processValidation(event.target.value);
 
         if ( ! isNullOrUndef(this.props.onBlur)) {
             this.props.onBlur(event);
@@ -132,15 +129,21 @@ export default class TextArea extends React.Component<TextAreaProps, TextAreaSta
                 </IconInfos>
             }
         } else if (this.state.Success) {
-            if ( ! stringIsNullOrEmpty(this.props.SuccessText)) {
+            var texteSupStr: string = stringIsNullOrEmpty(this.state.SpecificMessage) ? 
+                stringIsNullOrEmpty(this.props.SuccessText) ? "" : this.props.SuccessText : 
+                this.state.SpecificMessage;
+            if (texteSupStr != "") {
                 texteSup = <IconSuccess Color={couleurs.Border} BackgroundColor="" IconSize="16px" >
-                    <span className={styleFontInfosSuc} > {this.props.SuccessText}</span>
+                    <span className={styleFontInfosSuc} > {texteSupStr}</span>
                 </IconSuccess>
             }
         } else {
-            if ( ! stringIsNullOrEmpty(this.props.ErrorText)) {
+            var texteSupStr: string = stringIsNullOrEmpty(this.state.SpecificMessage) ? 
+                stringIsNullOrEmpty(this.props.ErrorText) ? "" : this.props.ErrorText : 
+                this.state.SpecificMessage;
+            if (texteSupStr != "") {
                 texteSup = <IconError Color={couleurs.Border} BackgroundColor="" IconSize="16px" >
-                    <span className={styleFontInfosSuc} > {this.props.ErrorText}</span>
+                    <span className={styleFontInfosSuc} > {texteSupStr}</span>
                 </IconError>
             }
         }

@@ -48,6 +48,15 @@ export default class RadioGroup extends React.Component<RadioGroupProps, RadioGr
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.ValueIdx !== this.props.ValueIdx && nextProps.ValueIdx !== this.state.ValueIdx) {
+            this.setState({ ValueIdx: arrayIsNullOrEmpty(nextProps.ValueIdx) ? [] : 
+                    (nextProps.MultiCheckAccept ? 
+                        nextProps.ValueIdx.map((d: number, idx: number): number => { return d; }) :
+                        [nextProps.ValueIdx[0]]) });
+        }
+    }
+
     render() {
         if (arrayIsNullOrEmpty(this.props.Values)) {
             return <span />;
@@ -110,14 +119,14 @@ export class Radio extends React.Component<RadioProps, RadioState> {
             }
         }
 
-        var taille: string = this.props.Check ? "5" : "2";
-        var couleur: string = this.props.Check ? "f59100" : "d7d7d7";
+        var epaisseurCercle: string = this.props.Check ? "5" : "2";
+        var couleurCercle: string = this.props.Check ? "f59100" : "d7d7d7";
         
         var styleCercle = style({
             borderRadius: "50%",
             height: "16px",
             width: "16px",
-            border: taille + "px solid #" + couleur,
+            border: epaisseurCercle + "px solid #" + couleurCercle,
             display: "inline-block",
             boxSizing: "border-box",
         });

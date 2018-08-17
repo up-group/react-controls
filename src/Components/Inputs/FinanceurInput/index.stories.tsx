@@ -6,18 +6,18 @@ import Button from './Button';
 import TextArea from './TextArea';
 
 
-function InputValidateFalse(texte: string): boolean {
-    return false;
+function InputValidateFalse(texte: string): {ok:boolean} {
+    return {ok:false};
 }
-function InputValidateTrue(texte: string): boolean {
-    return true;
+function InputValidateTrue(texte: string): {ok:boolean} {
+    return {ok:true};
 }
 function InputpasswordChange(texte: string): void {
     alert("Nouvelle valeur : " + texte);
 }
-function InputpasswordValidate(texte: string): boolean {
+function InputpasswordValidate(texte: string): {ok:boolean} {
     var regexResult = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/i.exec(texte);
-    return regexResult !== null;
+    return {ok: regexResult !== null};
 }
 function onButtonClick() {
     alert("click !");

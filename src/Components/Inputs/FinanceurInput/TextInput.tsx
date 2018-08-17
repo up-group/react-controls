@@ -4,54 +4,7 @@ import { style } from "typestyle"
 import { isNullOrUndef, stringIsNullOrEmpty, getFontClassName, numberIsNullOrUndef } from "../../../Common/utils/helpers";
 import { IconInfos, IconSuccess, IconError, IconChevron, DirectionEnum } from "../../Display/Icons/Icons";
 
-
-export interface ColorSet {
-    ValueDefault: string;
-    Value: string;
-    Placeholder: string;
-    BorderDefault: string;
-    Border: string;
-    BorderFocus: string;
-    Label: string;
-    Chevron: string;
-}
-
-export function GetFinanceurColors(disable: boolean, success: boolean): ColorSet {
-    var valueDefault: string = "#354052";
-    var value: string = valueDefault;
-    var borderDefault: string = "#979797";
-    var border: string = borderDefault;
-    var borderFocus: string = "#f59100";
-    var placeholder: string = valueDefault;
-    var label: string = "#7f8fa4";
-    var chevron: string = "#f59100";
-
-    if (disable) {
-        value = "#b3b3b3";
-        border = "#dcdcdc";
-        borderFocus = border;
-        chevron = value;
-    } else if (success != null) {
-        if (success) {
-            border = "#05c591";
-        } else {
-            value = "#c50e1f";
-            border = value;
-            placeholder = value;
-        }
-    }
-
-    return { 
-        ValueDefault: valueDefault, 
-        Value: value, 
-        Placeholder: placeholder, 
-        BorderDefault: borderDefault, 
-        Border: border, 
-        BorderFocus: borderFocus, 
-        Label: label, 
-        Chevron: chevron, 
-    };
-}
+import { ValidationReturn, GetFinanceurColors, ColorSet } from ".";
 
 
 export enum PosIconEnum {
@@ -85,7 +38,7 @@ export interface TextInputProps {
     ComboItemSelectIdx?: number;
     NumberMax?: number;
     NumberMin?: number;
-    Validate?: (value: string) => boolean;
+    Validate?: (value: string) => ValidationReturn;
     onChange?: (value: string) => void;
     onFocus?: (event) => void;
     onBlur?: (event) => void;
@@ -99,6 +52,7 @@ export interface TextInputState {
     TextCanChange: boolean;
     IconAGauche: boolean;
     ComboOuverte: boolean;
+    SpecificMessage: string;
 }
 
 export default class TextInput extends React.Component<TextInputProps, TextInputState> {
@@ -128,21 +82,22 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
             IconAGauche: this.props.Type === InputTypeEnum.ComboBox || this.props.Type === InputTypeEnum.Number ? true : 
                 isNullOrUndef(this.props.IconPos) || this.props.IconPos === PosIconEnum.Gauche,
             ComboOuverte: false,
+            SpecificMessage: null,
         };
     }
 
-    private processValidation = (value: string): boolean => {
-        if (isNullOrUndef(this.props.Validate)) {
-            return null;
+    private processValidation = (value: string) => {
+        var validation: ValidationReturn = isNullOrUndef(this.props.Validate) ? null : this.props.Validate(value);
+
+        if (isNullOrUndef(validation) || isNullOrUndef(validation.ok)) {
+            this.setState({ Value: value, Success: null, SpecificMessage: null, });
+        } else {
+            this.setState({ Value: value, Success: validation.ok, SpecificMessage: validation.specificMessage, });
         }
-        return this.props.Validate(value);
     }
 
     private onBlur = (event) => {
-        var success: boolean = this.processValidation(event.target.value);    
-        if (this.state.Success !== success) { 
-            this.setState({ Success: success, });
-        }
+        this.processValidation(event.target.value);
 
         if ( ! isNullOrUndef(this.props.onBlur)) {
             this.props.onBlur(event);
@@ -150,18 +105,14 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
     }
     private onChange = (event) => {
         if (this.props.Type === InputTypeEnum.Number) {
-            if (numberIsNullOrUndef(Number(event.target.value)) || Number(event.target.value) < this.props.NumberMin || Number(event.target.value) > this.props.NumberMax) {
+            if (numberIsNullOrUndef(Number(event.target.value)) 
+                    || Number(event.target.value) < this.props.NumberMin || Number(event.target.value) > this.props.NumberMax) {
                 event.preventDefault();
                 return false;
             }
         }
 
-        var success: boolean = this.processValidation(event.target.value); 
-        if (this.state.Success !== success) {
-            this.setState({ Success: success, Value: event.target.value, });
-        } else {
-            this.setState({ Value: event.target.value, });
-        }
+        this.processValidation(event.target.value);
 
         if ( ! isNullOrUndef(this.props.onChange)) {
             this.props.onChange(event.target.value);
@@ -173,7 +124,7 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
             event.preventDefault();
             abort = true;
         }
-        
+
         if ( ! isNullOrUndef(this.props.onKeyDown)) {
             this.props.onKeyDown(event, abort);
         }
@@ -189,7 +140,7 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
             } else if (isNullOrUndef(this.props.NumberMin) === false && this.props.NumberMin > Number(valeur)) {
                 valeur = this.props.NumberMin;
             }
-            this.setState({ Value: valeur.toString(), });
+            this.processValidation(valeur.toString());
         }
     }
     private onChevron2Click = (event) => {
@@ -199,7 +150,7 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
         } else if (isNullOrUndef(this.props.NumberMin) === false && this.props.NumberMin > Number(valeur)) {
             valeur = this.props.NumberMin;
         }
-        this.setState({ Value: valeur.toString(), });
+        this.processValidation(valeur.toString());
     }
     private onChevronBlur = (event) => {
         if (this.props.Type === InputTypeEnum.ComboBox) {
@@ -207,7 +158,7 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
         }
     }
     private onComboItemClick = (idx: number) => {
-        this.setState({ Value: this.props.ComboItems[idx], });
+        this.processValidation(this.props.ComboItems[idx]);
 
         if ( ! isNullOrUndef(this.props.onComboItemSelect)) {
             this.props.onComboItemSelect(idx);
@@ -216,10 +167,6 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.Value !== this.props.Value && nextProps.Value !== this.state.Value) {
-            if (nextProps.type !== InputTypeEnum.ComboBox) {
-                this.setState({ Value: nextProps.Value });
-            }
-
             switch (nextProps.type) {
                 case InputTypeEnum.ComboBox:
                     break;
@@ -232,10 +179,10 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
                     } else if (isNullOrUndef(this.props.NumberMin) === false && this.props.NumberMin > Number(valeur)) {
                         valeur = this.props.NumberMin.toString();
                     }
-                    this.setState({ Value: valeur });
+                    this.setState({ Value: valeur, Success: null, SpecificMessage: null, });
                     break;
                 default:
-                    this.setState({ Value: nextProps.Value });
+                    this.setState({ Value: nextProps.Value, Success: null, SpecificMessage: null, });
                     break;
             }
         }
@@ -321,7 +268,7 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
             display: "inline-block",
             width: "100%",
         });
-        var styleCombo = getFontClassName({ color: couleurs.ValueDefault, fontSize: "14px", lineHeight: 1.36, }) + " " + style({
+        var styleCombo = style({
             position: "absolute",
             top: "100%",
             right: 0,
@@ -336,6 +283,9 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
             borderTop: "none",
             cursor: "pointer",
         });
+        var styleLigneCombo = getFontClassName({ color: couleurs.ValueDefault, fontSize: "14px", lineHeight: 1.36, }) + " " + style({
+            minHeight: "19px",
+        });
 
         var type = this.props.Type === InputTypeEnum.Password ? "password" : "";
         
@@ -347,15 +297,21 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
                 </IconInfos>
             }
         } else if (this.state.Success) {
-            if ( ! stringIsNullOrEmpty(this.props.SuccessText)) {
+            var texteSupStr: string = stringIsNullOrEmpty(this.state.SpecificMessage) ? 
+                stringIsNullOrEmpty(this.props.SuccessText) ? "" : this.props.SuccessText : 
+                this.state.SpecificMessage;
+            if (texteSupStr != "") {
                 texteSup = <IconSuccess Color={couleurs.Border} BackgroundColor="" IconSize="16px" >
-                    <span className={styleFontInfosSuc} > {this.props.SuccessText}</span>
+                    <span className={styleFontInfosSuc} > {texteSupStr}</span>
                 </IconSuccess>
             }
         } else {
-            if ( ! stringIsNullOrEmpty(this.props.ErrorText)) {
+            var texteSupStr: string = stringIsNullOrEmpty(this.state.SpecificMessage) ? 
+                stringIsNullOrEmpty(this.props.ErrorText) ? "" : this.props.ErrorText : 
+                this.state.SpecificMessage;
+            if (texteSupStr != "") {
                 texteSup = <IconError Color={couleurs.Border} BackgroundColor="" IconSize="16px" >
-                    <span className={styleFontInfosSuc} > {this.props.ErrorText}</span>
+                    <span className={styleFontInfosSuc} > {texteSupStr}</span>
                 </IconError>
             }
         }
@@ -392,7 +348,9 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
                     <span className={styleCombo} >                    
                         { isNullOrUndef(this.props.ComboItems) ? null :
                             this.props.ComboItems.map((value: string, idx: number): JSX.Element => {
-                                return <p key={idx} onMouseDown={() => this.onComboItemClick(idx)} >{value}</p>
+                                return <p key={idx} onMouseDown={() => this.onComboItemClick(idx)} className={styleLigneCombo} >
+                                    {stringIsNullOrEmpty(value) ? "..." : value}
+                                </p>
                             }) 
                         }
                     </span>

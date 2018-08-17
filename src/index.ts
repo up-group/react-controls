@@ -51,11 +51,17 @@ import UpEmail from './Components/Inputs/Email'
 import UpCheckbox from './Components/Inputs/Checkbox/UpCheckBox'
 import UpToggle from './Components/Inputs/Toggle'
 import UpRadio from './Components/Inputs/Radio'
-import * as UpIcons from "./Components/Display/Icons/Icons"
-import UpFinanceurInput, { PosIconEnum as UpFinanceurInputIconPosEnum, InputTypeEnum as UpFinanceurInputTypeEnum } from "./Components/Inputs/FinanceurInput/TextInput"
-import UpFinanceurButton from "./Components/Inputs/FinanceurInput/Button"
-import UpFinanceurRadioGroup from "./Components/Inputs/FinanceurInput/RadioGroup"
-import UpFinanceurTextArea from "./Components/Inputs/FinanceurInput/TextArea"
+import * as UpIcons from "./Components/Display/Icons/Icons";
+
+import { 
+    Button as UpFinanceurButton,
+    RadioGroup as UpFinanceurRadioGroup,
+    TextArea as UpFinanceurTextArea,
+    TextInput as UpFinanceurInput,
+    InputTypeEnum as UpFinanceurInputTypeEnum,
+    PosIconEnum as UpFinanceurInputIconPosEnum,
+    ValidationReturn as UpFinanceurValidationReturn,
+} from "./Components/Inputs/FinanceurInput";
 
 import { ThemeProvider as UpThemeProvider } from './Common/theming/themedComponents'
 import UpDefaultTheme from './Common/theming'
@@ -132,4 +138,5 @@ export {
     UpFinanceurButton,
     UpFinanceurRadioGroup,
     UpFinanceurTextArea,
+    UpFinanceurValidationReturn,
 };
