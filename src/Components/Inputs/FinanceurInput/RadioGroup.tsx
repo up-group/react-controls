@@ -29,15 +29,19 @@ export default class RadioGroup extends React.Component<RadioGroupProps, RadioGr
         };
     }
 
-    private onChange(valueIdx: number) {
+    private onChange(valueIdx: number, check: boolean) {
         if (this.props.MultiCheckAccept) {
             if (this.state.ValueIdx.indexOf(valueIdx) >= 0) {
-                this.setState({ ValueIdx: this.state.ValueIdx.filter(i => i !== valueIdx), }, this.propageOnChange);
+                if ( ! check) {
+                    this.setState({ ValueIdx: this.state.ValueIdx.filter(i => i !== valueIdx), }, this.propageOnChange);
+                }
             } else {
-                this.setState({ ValueIdx: this.state.ValueIdx.concat(valueIdx), }, this.propageOnChange);
+                if (check) {
+                    this.setState({ ValueIdx: this.state.ValueIdx.concat(valueIdx), }, this.propageOnChange);
+                }
             }
         } else {
-            if (this.state.ValueIdx[0] !== valueIdx) {
+            if (this.state.ValueIdx[0] !== valueIdx && check) {
                 this.setState({ ValueIdx: [valueIdx], }, this.propageOnChange);
             }
         }
@@ -65,7 +69,7 @@ export default class RadioGroup extends React.Component<RadioGroupProps, RadioGr
         return <span>
             { this.props.Values.map((value: string, idx: number): JSX.Element => {
                 return <span key={idx} >
-                    <Radio Value={value} Check={this.state.ValueIdx.indexOf(idx) >= 0} onChange={() => this.onChange(idx)} 
+                    <Radio Text={value} Check={this.state.ValueIdx.indexOf(idx) >= 0} onChange={(check: boolean) => this.onChange(idx, check)} 
                             MultiCheckAccept={this.props.MultiCheckAccept} Disable={this.props.Disable} />
 
                     { idx === this.props.Values.length ? null : 
@@ -79,21 +83,39 @@ export default class RadioGroup extends React.Component<RadioGroupProps, RadioGr
 
 
 export interface RadioProps {
-    Value: string;
+    Text: string;
     Check: boolean;
     MultiCheckAccept?: boolean;
     Disable?: boolean;
-    onChange?: () => void;
+    onChange?: (check: boolean) => void;
 }
 
 export interface RadioState {
+    Check: boolean;
 }
 
 export class Radio extends React.Component<RadioProps, RadioState> {
     constructor(p, c) {
         super(p, c);
-        // this.state = {
-        // };
+        this.state = {
+            Check: this.props.Check,
+        };
+    }
+
+    onChange = (check: boolean) => {
+        if (this.state.Check === check) {
+            return ;
+        }
+        this.setState({ Check: check, });
+        if ( ! isNullOrUndef(this.props.onChange)) {
+            this.props.onChange(check);
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.Check !== this.props.Check) {
+            this.setState({ Check: nextProps.Check, });
+        }
     }
 
     render() {
@@ -108,19 +130,19 @@ export class Radio extends React.Component<RadioProps, RadioState> {
         });
          
         if (this.props.MultiCheckAccept) {
-            if (this.props.Check) {
-                return <IconCheckBox_Check Color="#f59100" IconSize="16px" onClick={this.props.Disable ? null : this.props.onChange} >
-                    <span className={styleG} > {this.props.Value}</span>
+            if (this.state.Check) {
+                return <IconCheckBox_Check Color="#f59100" IconSize="16px" onClick={this.props.Disable ? null : () => this.onChange(false)} >
+                    <span className={styleG} > {this.props.Text}</span>
                 </IconCheckBox_Check>
             } else {
-                return <IconCheckBox_Empty Color="#d7d7d7" IconSize="16px" onClick={this.props.Disable ? null : this.props.onChange} >
-                    <span className={styleG} > {this.props.Value}</span>
+                return <IconCheckBox_Empty Color="#d7d7d7" IconSize="16px" onClick={this.props.Disable ? null : () => this.onChange(true)} >
+                    <span className={styleG} > {this.props.Text}</span>
                 </IconCheckBox_Empty>
             }
         }
 
-        var epaisseurCercle: string = this.props.Check ? "5" : "2";
-        var couleurCercle: string = this.props.Check ? "f59100" : "d7d7d7";
+        var epaisseurCercle: string = this.state.Check ? "5" : "2";
+        var couleurCercle: string = this.state.Check ? "f59100" : "d7d7d7";
         
         var styleCercle = style({
             borderRadius: "50%",
@@ -131,8 +153,8 @@ export class Radio extends React.Component<RadioProps, RadioState> {
             boxSizing: "border-box",
         });
 
-        return <span className={styleG} onClick={this.props.Disable ? null : this.props.onChange} >
-            <span className={styleCercle} /><span> {this.props.Value}</span>
+        return <span className={styleG} onClick={this.props.Disable ? null : () => this.props.onChange(!this.state.Check)} >
+            <span className={styleCercle} /><span> {this.props.Text}</span>
         </span>;
     }
 }

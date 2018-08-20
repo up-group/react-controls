@@ -112,9 +112,10 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
             }
         }
 
+        var saveOldValue: string = this.state.Value;
         this.processValidation(event.target.value);
 
-        if ( ! isNullOrUndef(this.props.onChange)) {
+        if ((! isNullOrUndef(this.props.onChange)) && saveOldValue !== event.target.value) {
             this.props.onChange(event.target.value);
         }
     }
@@ -134,6 +135,7 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
         if (this.props.Type === InputTypeEnum.ComboBox) {
             this.setState({ ComboOuverte: true, });
         } else { // type=number
+            var saveOldValue: string = this.state.Value;
             var valeur: number = stringIsNullOrEmpty(this.state.Value) ? -1 : (Number(this.state.Value) - 1);
             if (isNullOrUndef(this.props.NumberMax) === false && this.props.NumberMax < Number(valeur)) {
                 valeur = this.props.NumberMax;
@@ -141,9 +143,13 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
                 valeur = this.props.NumberMin;
             }
             this.processValidation(valeur.toString());
+            if ((! isNullOrUndef(this.props.onChange)) && saveOldValue !== valeur.toString()) {
+                this.props.onChange(valeur.toString());
+            }
         }
     }
     private onChevron2Click = (event) => {
+        var saveOldValue: string = this.state.Value;
         var valeur: number = stringIsNullOrEmpty(this.state.Value) ? 1 : (Number(this.state.Value) + 1);
         if (isNullOrUndef(this.props.NumberMax) === false && this.props.NumberMax < Number(valeur)) {
             valeur = this.props.NumberMax;
@@ -151,6 +157,9 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
             valeur = this.props.NumberMin;
         }
         this.processValidation(valeur.toString());
+        if ((! isNullOrUndef(this.props.onChange)) && saveOldValue !== valeur.toString()) {
+            this.props.onChange(valeur.toString());
+        }
     }
     private onChevronBlur = (event) => {
         if (this.props.Type === InputTypeEnum.ComboBox) {
@@ -158,10 +167,14 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
         }
     }
     private onComboItemClick = (idx: number) => {
+        var saveOldValue: string = this.state.Value;
         this.processValidation(this.props.ComboItems[idx]);
 
         if ( ! isNullOrUndef(this.props.onComboItemSelect)) {
             this.props.onComboItemSelect(idx);
+        }
+        if ((! isNullOrUndef(this.props.onChange)) && saveOldValue !== this.props.ComboItems[idx]) {
+            this.props.onChange(this.props.ComboItems[idx]);
         }
     }
 

@@ -53,9 +53,10 @@ export default class TextArea extends React.Component<TextAreaProps, TextAreaSta
     }
 
     private onChange = (event) => {
+        var saveOldValue: string = this.state.Text;
         this.processValidation(event.target.value);
 
-        if ( ! isNullOrUndef(this.props.onChange)) {
+        if ((! isNullOrUndef(this.props.onChange)) && saveOldValue !== event.target.value) {
             this.props.onChange(event.target.value);
         }
     }
