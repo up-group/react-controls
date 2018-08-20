@@ -361,7 +361,7 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
                     <span className={styleCombo} >                    
                         { isNullOrUndef(this.props.ComboItems) ? null :
                             this.props.ComboItems.map((value: string, idx: number): JSX.Element => {
-                                return <p key={idx} onMouseDown={() => this.onComboItemClick(idx)} className={styleLigneCombo} >
+                                return <p key={idx} onMouseDown={() => this.onComboItemClick(idx)} className={styleLigneCombo} tabIndex={-1} >
                                     {stringIsNullOrEmpty(value) ? "..." : value}
                                 </p>
                             }) 
