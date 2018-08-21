@@ -199,6 +199,9 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
                     break;
             }
         }
+        if (nextProps.InitialState !== this.props.InitialState && nextProps.InitialState !== this.state.Success) {
+            this.setState({ Success: isNullOrUndef(nextProps.InitialState) ? null : nextProps.InitialState, });
+        }
     }
 
     render() {
