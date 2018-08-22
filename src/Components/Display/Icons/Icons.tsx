@@ -67,6 +67,7 @@ export interface IconProps {
     tabIndex?: number;
     onClick?: (event) => void;
     onMouseDown?: (event) => void;
+    onFocus?: (event) => void;
     onBlur?: (event) => void;
 
     fontWeight?: any;
@@ -127,7 +128,8 @@ export class MaterialinearIcon extends React.Component<MaterialIconProps, Materi
 
         var iconeName: string = "icon-" + this.props.IconName;
 
-        return <span onClick={this.props.onClick} tabIndex={this.props.tabIndex} onBlur={this.props.onBlur} onMouseDown={this.props.onMouseDown} className={styleFocus} >
+        return <span onClick={this.props.onClick} tabIndex={this.props.tabIndex} className={styleFocus}
+                onFocus={this.props.onFocus} onBlur={this.props.onBlur} onMouseDown={this.props.onMouseDown} >
             { isNullOrUndef(this.props.AlertNumber) ?
                 <span className={iconeName + " " + styleIcone} /> :
                 <AlertIcon IconSize={this.props.IconSize} className={styleIcone}
@@ -601,7 +603,8 @@ export class IconLswaLink extends React.Component<IconProps, IconState> {
         var styleCurseur = style({
             cursor: this.props.onClick ? "pointer" : "auto",
         });
-        return <span className={styleCurseur} onClick={this.props.onClick} tabIndex={this.props.tabIndex} onBlur={this.props.onBlur} onMouseDown={this.props.onMouseDown} >
+        return <span className={styleCurseur} onClick={this.props.onClick} tabIndex={this.props.tabIndex} 
+                onFocus={this.props.onFocus} onBlur={this.props.onBlur} onMouseDown={this.props.onMouseDown} >
             {/* <img src={imgLswa} /> */}            
             { isNullOrUndef(this.props.AlertNumber) ?
                 <img src={imgLswa} /> :
@@ -623,7 +626,8 @@ export class IconPercevalLink extends React.Component<IconProps, IconState> {
         var styleCurseur = style({
             cursor: this.props.onClick ? "pointer" : "auto",
         });
-        return <span className={styleCurseur} onClick={this.props.onClick} tabIndex={this.props.tabIndex} onBlur={this.props.onBlur} onMouseDown={this.props.onMouseDown} >
+        return <span className={styleCurseur} onClick={this.props.onClick} tabIndex={this.props.tabIndex} 
+                onFocus={this.props.onFocus} onBlur={this.props.onBlur} onMouseDown={this.props.onMouseDown} >
             {/* <img src={imgPerceval} /> */}
             { isNullOrUndef(this.props.AlertNumber) ?
                 <img src={imgPerceval} /> :
@@ -706,7 +710,8 @@ export class IconLoading extends React.Component<IconLoadingProps, IconLoadingSt
             styleG += " " + this.props.className;
         }
 
-        return <span ref="iconLoad" onClick={this.props.onClick} tabIndex={this.props.tabIndex} onBlur={this.props.onBlur} onMouseDown={this.props.onMouseDown} > 
+        return <span ref="iconLoad" onClick={this.props.onClick} tabIndex={this.props.tabIndex} 
+                onFocus={this.props.onFocus} onBlur={this.props.onBlur} onMouseDown={this.props.onMouseDown} > 
             {/* <span className={styleG} /> */}
             
             { isNullOrUndef(this.props.AlertNumber) ?

@@ -92,6 +92,7 @@ export interface RadioProps {
 
 export interface RadioState {
     Check: boolean;
+    Focus: boolean;
 }
 
 export class Radio extends React.Component<RadioProps, RadioState> {
@@ -99,27 +100,12 @@ export class Radio extends React.Component<RadioProps, RadioState> {
         super(p, c);
         this.state = {
             Check: this.props.Check,
+            Focus: false,
         };
     }
-
-    onChange = (check: boolean) => {
-        if (this.state.Check === check) {
-            return ;
-        }
-        this.setState({ Check: check, });
-        if ( ! isNullOrUndef(this.props.onChange)) {
-            this.props.onChange(check);
-        }
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.Check !== this.props.Check) {
-            this.setState({ Check: nextProps.Check, });
-        }
-    }
-
-    render() {
-        var styleG = getFontClassName({ fontSize: "14px", color: "#4e5b59", }) + " " + style({
+    
+    private styleG(): string {
+        return getFontClassName({ fontSize: "14px", color: "#4e5b59", }) + " " + style({
             cursor: this.props.Disable ? "auto" : "pointer",
             opacity: this.props.Disable ? 0.5 : 1,
             $nest: {
@@ -128,31 +114,52 @@ export class Radio extends React.Component<RadioProps, RadioState> {
                 },
             },
         });
-         
-        if (this.props.MultiCheckAccept) {
-            if (this.state.Check) {
-                return <IconCheckBox_Check Color="#f59100" IconSize="16px" tabIndex={0}
-                        onClick={this.props.Disable ? null : () => this.onChange(false)} >
-                    <span className={styleG} > {this.props.Text}</span>
-                </IconCheckBox_Check>
-            } else {
-                return <IconCheckBox_Empty Color="#d7d7d7" IconSize="16px" tabIndex={0}
-                        onClick={this.props.Disable ? null : () => this.onChange(true)} >
-                    <span className={styleG} > {this.props.Text}</span>
-                </IconCheckBox_Empty>
-            }
-        }
-
-        var epaisseurCercle: string = this.state.Check ? "5" : "2";
-        var couleurCercle: string = this.state.Check ? "f59100" : "d7d7d7";
-        
-        var styleFocus = style({
+    }
+    private styleFocus(): string {
+        return style({
             $nest: {
                 "&:focus": {
                     outline: "none",
                 },
             },
         });
+    }
+    private styleSousligner(): string {
+        return style({
+            textDecoration: this.state.Focus ? "underline dotted #f59100" : "none",
+        });
+    }
+
+    private onChange = (check: boolean) => {
+        if (this.state.Check === check) {
+            return ;
+        }
+        this.setState({ Check: check, });
+        if ( ! isNullOrUndef(this.props.onChange)) {
+            this.props.onChange(check);
+        }
+    }
+    private onFocus = (event) => {
+        this.setState({ Focus: true, });
+    }
+    private onBlur = (event) => {
+        this.setState({ Focus: false, });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.Check !== this.props.Check) {
+            this.setState({ Check: nextProps.Check, });
+        }
+    }
+
+    render() {         
+        if (this.props.MultiCheckAccept) {
+            return this.renderMulti();
+        }
+
+        var epaisseurCercle: string = this.state.Check ? "5" : "2";
+        var couleurCercle: string = this.state.Check ? "f59100" : "d7d7d7";
+        
         var styleCercle = style({
             borderRadius: "50%",
             height: "16px",
@@ -162,9 +169,30 @@ export class Radio extends React.Component<RadioProps, RadioState> {
             boxSizing: "border-box",
         });
 
-        return <span className={styleG + " " + styleFocus} tabIndex={0} 
-                onClick={this.props.Disable ? null : () => this.props.onChange(!this.state.Check)} >
-            <span className={styleCercle} /><span> {this.props.Text}</span>
+        return <span className={this.styleG() + " " + this.styleFocus()} tabIndex={0} 
+                onClick={this.props.Disable ? null : () => this.props.onChange(!this.state.Check)}
+                onFocus={this.onFocus} onBlur={this.onBlur} >
+            <span className={styleCercle} />
+            <span className={this.styleSousligner()} > {this.props.Text}</span>
+        </span>;
+    }
+    private renderMulti(): JSX.Element {
+        var result: JSX.Element = <span className={this.styleG() + " " + this.styleSousligner()} > {this.props.Text}</span>;
+
+        if (this.state.Check) {
+            result = <IconCheckBox_Check Color="#f59100" IconSize="16px"
+                    onClick={this.props.Disable ? null : () => this.onChange(false)} >
+                {result}
+            </IconCheckBox_Check>;
+        } else {
+            result = <IconCheckBox_Empty Color="#d7d7d7" IconSize="16px"
+                    onClick={this.props.Disable ? null : () => this.onChange(true)} >
+                {result}
+            </IconCheckBox_Empty>;
+        }
+
+        return <span className={this.styleFocus()} tabIndex={0} onFocus={this.onFocus} onBlur={this.onBlur} >
+            {result}
         </span>;
     }
 }
