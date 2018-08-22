@@ -38,6 +38,7 @@ export interface TextInputProps {
     ComboItemSelectIdx?: number;
     NumberMax?: number;
     NumberMin?: number;
+    AutoFocus?: boolean;
     Validate?: (value: string) => ValidationReturn;
     onChange?: (value: string) => void;
     onFocus?: (event) => void;
@@ -356,7 +357,7 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
                             onClick={this.props.Disable ? null : this.onChevron2Click} className={styleChevron2} />
                 }
 
-                <input className={styleFontInput + " " + styleInput} disabled={this.props.Disable} type={type}
+                <input className={styleFontInput + " " + styleInput} disabled={this.props.Disable} type={type} autoFocus={this.props.AutoFocus}
                     value={isNullOrUndef(this.state.Value) ? "" : this.state.Value} placeholder={this.props.Placeholder}
                     onFocus={this.props.onFocus} onKeyDown={this.onKeyDown} onBlur={this.onBlur} onChange={this.onChange} />
 

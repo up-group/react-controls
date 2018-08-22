@@ -131,11 +131,13 @@ export class Radio extends React.Component<RadioProps, RadioState> {
          
         if (this.props.MultiCheckAccept) {
             if (this.state.Check) {
-                return <IconCheckBox_Check Color="#f59100" IconSize="16px" onClick={this.props.Disable ? null : () => this.onChange(false)} >
+                return <IconCheckBox_Check Color="#f59100" IconSize="16px" tabIndex={0}
+                        onClick={this.props.Disable ? null : () => this.onChange(false)} >
                     <span className={styleG} > {this.props.Text}</span>
                 </IconCheckBox_Check>
             } else {
-                return <IconCheckBox_Empty Color="#d7d7d7" IconSize="16px" onClick={this.props.Disable ? null : () => this.onChange(true)} >
+                return <IconCheckBox_Empty Color="#d7d7d7" IconSize="16px" tabIndex={0}
+                        onClick={this.props.Disable ? null : () => this.onChange(true)} >
                     <span className={styleG} > {this.props.Text}</span>
                 </IconCheckBox_Empty>
             }
@@ -144,6 +146,13 @@ export class Radio extends React.Component<RadioProps, RadioState> {
         var epaisseurCercle: string = this.state.Check ? "5" : "2";
         var couleurCercle: string = this.state.Check ? "f59100" : "d7d7d7";
         
+        var styleFocus = style({
+            $nest: {
+                "&:focus": {
+                    outline: "none",
+                },
+            },
+        });
         var styleCercle = style({
             borderRadius: "50%",
             height: "16px",
@@ -153,7 +162,8 @@ export class Radio extends React.Component<RadioProps, RadioState> {
             boxSizing: "border-box",
         });
 
-        return <span className={styleG} onClick={this.props.Disable ? null : () => this.props.onChange(!this.state.Check)} >
+        return <span className={styleG + " " + styleFocus} tabIndex={0} 
+                onClick={this.props.Disable ? null : () => this.props.onChange(!this.state.Check)} >
             <span className={styleCercle} /><span> {this.props.Text}</span>
         </span>;
     }

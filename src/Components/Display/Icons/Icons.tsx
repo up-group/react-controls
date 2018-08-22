@@ -108,6 +108,13 @@ export class MaterialinearIcon extends React.Component<MaterialIconProps, Materi
         super(p, c);
     }
     render() {
+        var styleFocus = style({
+            $nest: {
+                "&:focus": {
+                    outline: "none",
+                },
+            },
+        });
         var styleIcone = style({
             backgroundColor: this.props.BackgroundColor ? this.props.BackgroundColor : "",
             padding: this.props.AvecCercle ? "5px" : "0",
@@ -120,7 +127,7 @@ export class MaterialinearIcon extends React.Component<MaterialIconProps, Materi
 
         var iconeName: string = "icon-" + this.props.IconName;
 
-        return <span onClick={this.props.onClick} tabIndex={this.props.tabIndex} onBlur={this.props.onBlur} onMouseDown={this.props.onMouseDown} >
+        return <span onClick={this.props.onClick} tabIndex={this.props.tabIndex} onBlur={this.props.onBlur} onMouseDown={this.props.onMouseDown} className={styleFocus} >
             { isNullOrUndef(this.props.AlertNumber) ?
                 <span className={iconeName + " " + styleIcone} /> :
                 <AlertIcon IconSize={this.props.IconSize} className={styleIcone}

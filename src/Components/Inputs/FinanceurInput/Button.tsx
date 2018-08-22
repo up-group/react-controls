@@ -1,7 +1,7 @@
 import * as React from "react";
 import { style } from "typestyle";
 
-import { getFontClassName, isNullOrUndef } from "../../../Common/utils/helpers";
+import { getFontClassName, isNullOrUndef, numberIsNullOrUndef } from "../../../Common/utils/helpers";
 
 
 export interface ButtonProps {
@@ -10,6 +10,7 @@ export interface ButtonProps {
     Secondary?: boolean;
     TwoLines?: boolean;
     RoundAngle?: boolean;
+    TabIndex?: number;
     onClick?: () => void;
 }
 
@@ -19,6 +20,12 @@ export interface ButtonState {
 export default class Button extends React.Component<ButtonProps, ButtonState> {
     constructor(p, c) {
         super(p, c);
+    }
+
+    onKeyDown = (event) => {
+        if(event.keyCode === 13 && !isNullOrUndef(this.props.onClick)) {
+            this.props.onClick();
+        }
     }
 
     render() {
@@ -39,9 +46,18 @@ export default class Button extends React.Component<ButtonProps, ButtonState> {
             height: height,
             cursor: this.props.Disable || isNullOrUndef(this.props.onClick) ? "auto" : "pointer",
             padding: "0 8px",
+            $nest: {                
+                "&:focus": {
+                    outline: "none",
+                },
+            },
         });
 
-        return <span className={styleG} onClick={this.props.Disable ? null : this.props.onClick} >
+        var tabIndex: number = numberIsNullOrUndef(this.props.TabIndex) ? 0 : this.props.TabIndex;
+
+        return <span className={styleG} tabIndex={tabIndex} 
+                onClick={this.props.Disable ? null : this.props.onClick} 
+                onKeyDown={this.props.Disable ? null : this.onKeyDown} >
             {this.props.Text}
         </span>;
     }

@@ -19,6 +19,7 @@ export interface TextAreaProps {
     ReadOnly?: boolean;
     Width?: string;
     Height?: string;
+    AutoFocus?: boolean;
     Validate?: (value: string) => ValidationReturn;
     onChange?: (value: string) => void;
     onFocus?: (event) => void;
@@ -161,7 +162,7 @@ export default class TextArea extends React.Component<TextAreaProps, TextAreaSta
                 { this.props.Require ? <span className={styleRequire} >*</span> : null }
             
                 <textarea className={styleArea} placeholder={this.props.Placeholder} value={isNullOrUndef(this.state.Text) ? "" : this.state.Text} 
-                        disabled={this.props.Disable} readOnly={this.props.ReadOnly}
+                        disabled={this.props.Disable} readOnly={this.props.ReadOnly} autoFocus={this.props.AutoFocus}
                         onChange={this.onChange} onBlur={this.onBlur} onFocus={this.props.onFocus} onKeyDown={this.props.onKeyDown} />
             </span>
 
