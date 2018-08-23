@@ -33,10 +33,9 @@ export default class Button extends React.Component<ButtonProps, ButtonState> {
         var color = this.props.Disable ? "#ffffff" : this.props.Secondary ? orange : "#ffffff";
         var backColor = this.props.Disable ? "#d7d7d7" : this.props.Secondary ? "" : orange;
         var borderColor = this.props.Disable ? backColor : orange;
-        var fontWeight = this.props.RoundAngle ? "bold" : "normal";
         var height = this.props.TwoLines ? "60px" : "40px";
 
-        var styleG = getFontClassName({ fontSize: "14px", color: color, fontWeight: fontWeight, lineHeight: height, }) + " " + style({
+        var styleG = getFontClassName({ fontSize: "14px", color: color, lineHeight: height, }) + " " + style({
             borderRadius: this.props.RoundAngle ? "30px" : "3px",
             border: "1px solid " + borderColor,
             backgroundColor: backColor,
@@ -49,6 +48,7 @@ export default class Button extends React.Component<ButtonProps, ButtonState> {
             $nest: {                
                 "&:focus": {
                     outline: "none",
+                    fontWeight: "bold",
                 },
             },
         });

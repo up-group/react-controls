@@ -90,7 +90,9 @@ export default class CheckboxGroup extends React.Component<CheckboxGroupProps, C
     }
 
     componentDidUpdate() {
-        this.inputTab[this.state.FocusIdx].focus();
+        if (this.state.FocusIdx !== null) {
+            this.inputTab[this.state.FocusIdx].focus();
+        }
     }
 
     render() {

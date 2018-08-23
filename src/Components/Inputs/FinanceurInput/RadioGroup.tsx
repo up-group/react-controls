@@ -88,7 +88,9 @@ export default class RadioGroup extends React.Component<RadioGroupProps, RadioGr
     }
 
     componentDidUpdate() {
-        this.inputTab[this.state.FocusIdx].focus();
+        if (this.state.FocusIdx !== null) {
+            this.inputTab[this.state.FocusIdx].focus();
+        }
     }
 
     render() {
