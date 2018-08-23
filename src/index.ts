@@ -55,12 +55,15 @@ import * as UpIcons from "./Components/Display/Icons/Icons";
 
 import { 
     Button as UpFinanceurButton,
-    RadioGroup as UpFinanceurRadioGroup,
     TextArea as UpFinanceurTextArea,
     TextInput as UpFinanceurInput,
     InputTypeEnum as UpFinanceurInputTypeEnum,
     PosIconEnum as UpFinanceurInputIconPosEnum,
     ValidationReturn as UpFinanceurValidationReturn,
+    RadioGroup as UpFinanceurRadioGroup,
+    Radio as UpFinanceurRadio,
+    CheckboxGroup as UpFinanceurCheckboxGroup,
+    Checkbox as UpFinanceurCheckbox,
 } from "./Components/Inputs/FinanceurInput";
 
 import { ThemeProvider as UpThemeProvider } from './Common/theming/themedComponents'
@@ -136,7 +139,10 @@ export {
     UpFinanceurInputIconPosEnum,
     UpFinanceurInputTypeEnum,
     UpFinanceurButton,
-    UpFinanceurRadioGroup,
     UpFinanceurTextArea,
     UpFinanceurValidationReturn,
+    UpFinanceurRadioGroup,
+    UpFinanceurRadio,
+    UpFinanceurCheckboxGroup,
+    UpFinanceurCheckbox,
 };
