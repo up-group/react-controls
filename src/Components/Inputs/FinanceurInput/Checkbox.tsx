@@ -73,7 +73,7 @@ export default class Checkbox extends React.Component<CheckboxProps, CheckboxSta
     }
 
     render() {
-        var couleurCheck: string = this.state.Check && !this.props.Disable ? "f59100" : "d7d7d7";
+        var couleurCheck: string = this.state.Check && !this.props.Disable ? "#f59100" : "#d7d7d7";
 
         var styleG = getFontClassName({ fontSize: "14px", color: "#4e5b59", }) + " " + style({
             cursor: this.props.Disable ? "auto" : "pointer",
