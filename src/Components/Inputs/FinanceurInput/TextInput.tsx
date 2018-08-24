@@ -57,6 +57,8 @@ export interface TextInputState {
 }
 
 export default class TextInput extends React.Component<TextInputProps, TextInputState> {
+    private control: any;
+
     constructor(p, c) {
         super(p, c);   
 
@@ -228,6 +230,12 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
         }
     }
 
+    public focus = () => {
+        if (!this.props.Disable) {
+            this.control.focus();
+        }
+    }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.Value !== this.props.Value && nextProps.Value !== this.state.Value) {
             switch (nextProps.type) {
@@ -347,10 +355,10 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
             borderRadius: "0 0 4px 4px",
             border: "1px solid " + couleurs.BorderDefault,
             borderTop: "none",
-            cursor: "pointer",
         });
         var styleLigneCombo = getFontClassName({ color: couleurs.ValueDefault, fontSize: "14px", lineHeight: 1.36, }) + " " + style({
             minHeight: "19px",
+            cursor: "pointer",
         });
 
         var type = this.props.Type === InputTypeEnum.Password ? "password" : "";
@@ -408,7 +416,8 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
 
                 <input className={styleFontInput + " " + styleInput} disabled={this.props.Disable} type={type} autoFocus={this.props.AutoFocus}
                     value={isNullOrUndef(this.state.Value) ? "" : this.state.Value} placeholder={this.props.Placeholder}
-                    onFocus={this.props.onFocus} onKeyDown={this.onKeyDown} onBlur={this.onBlur} onChange={this.onChange} />
+                    onFocus={this.props.onFocus} onKeyDown={this.onKeyDown} onBlur={this.onBlur} onChange={this.onChange}
+                    ref={(c) => { this.control = c; }} />
 
                 { this.state.ComboOuverte === false ? null :
                     <span className={styleCombo} >                    
