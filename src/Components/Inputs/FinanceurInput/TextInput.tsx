@@ -331,10 +331,10 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
             right: (droiteChevron + (this.props.Require ? 6 : 0)).toString() + "px",
         });
         var styleIconInfos = style({
-            opacity: 0.5,
+            opacity: this.state.Success === false ? 1 : 0.5,
         });
         var styleFontInfos = getFontClassName({ color: couleurs.Value, fontSize: "12px", lineHeight: 1.58, }) + " " + style({
-            opacity: 0.5,
+            opacity: this.state.Success === false ? 1 : 0.5,
         });
         var styleFontInfosSuc = getFontClassName({ color: couleurs.Border, fontSize: "12px", lineHeight: 1.58, });
         var styleSousLabel = style({
@@ -364,31 +364,30 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
         var type = this.props.Type === InputTypeEnum.Password ? "password" : "";
         
         var texteSup: JSX.Element = null;
-        if (this.state.Success === null) {
-            if ( ! stringIsNullOrEmpty(this.props.InformationText)) {
-                texteSup = <IconInfos Color={couleurs.Value} BackgroundColor="" IconSize="16px" className={styleIconInfos} >
-                    <span className={styleFontInfos} > {this.props.InformationText}</span>
-                </IconInfos>
-            }
-        } else if (this.state.Success) {
+        if (this.state.Success) {
             var texteSupStr: string = stringIsNullOrEmpty(this.state.SpecificMessage) ? 
                 stringIsNullOrEmpty(this.props.SuccessText) ? "" : this.props.SuccessText : 
                 this.state.SpecificMessage;
             if (texteSupStr != "") {
                 texteSup = <IconSuccess Color={couleurs.Border} BackgroundColor="" IconSize="16px" >
                     <span className={styleFontInfosSuc} > {texteSupStr}</span>
-                </IconSuccess>
+                </IconSuccess>;
             }
-        } else {
+        } else if (this.state.Success !== null) {
             var texteSupStr: string = stringIsNullOrEmpty(this.state.SpecificMessage) ? 
                 stringIsNullOrEmpty(this.props.ErrorText) ? "" : this.props.ErrorText : 
                 this.state.SpecificMessage;
             if (texteSupStr != "") {
                 texteSup = <IconError Color={couleurs.Border} BackgroundColor="" IconSize="16px" >
                     <span className={styleFontInfosSuc} > {texteSupStr}</span>
-                </IconError>
+                </IconError>;
             }
         }
+        if (texteSup === null && ! stringIsNullOrEmpty(this.props.InformationText)) {
+            texteSup = <IconInfos Color={couleurs.Value} BackgroundColor="" IconSize="16px" className={styleIconInfos} >
+                <span className={styleFontInfos} > {this.props.InformationText}</span>
+            </IconInfos>;
+        } 
 
         return <span className={styleG} >
             { stringIsNullOrEmpty(this.props.Label) ? null :
