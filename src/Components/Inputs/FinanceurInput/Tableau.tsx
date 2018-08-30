@@ -8,8 +8,9 @@ import { TextInput, PosIconEnum } from ".";
 
 export interface EnTete {
     Libelle?: string;
-    OrderActif?: boolean; 
     RechercheActif?: boolean;
+    OrderActif?: boolean;
+    OrderCompare?: (obj1: any, obj2: any) => number;
 }
 
 export interface Ordre {
@@ -91,6 +92,19 @@ export default class Tableau extends React.Component<TableauProps, TableauState>
                 for (var cptOrdre: number = 0; cptOrdre < orderToApply.length; cptOrdre++) {
                     var dataDonnees: any = donnees[cptDonnees][orderToApply[cptOrdre].IdxCol];
                     var dataResult: any = result[cptResult][orderToApply[cptOrdre].IdxCol];
+
+                    if (!isNullOrUndef(this.props.EnTetes[orderToApply[cptOrdre].IdxCol].OrderCompare)) {
+                        var comp: number = this.props.EnTetes[orderToApply[cptOrdre].IdxCol].OrderCompare(dataDonnees, dataResult);
+                        if (comp === 0) {// egal
+                            continue;
+                        }
+                        if ((orderToApply[cptOrdre].Descendant && comp > 0) // dataDonnees > dataResult
+                                || (!orderToApply[cptOrdre].Descendant && comp < 0)) { // dataDonnees < dataResult
+                            result.splice(cptResult, 0, donnees[cptDonnees]);
+                            insert = true;
+                        }
+                        break;
+                    }
 
                     if (dataDonnees === null) {
                         break;
