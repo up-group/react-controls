@@ -77,6 +77,7 @@ export default class TextArea extends React.Component<TextAreaProps, TextAreaSta
             position: "relative",
             display: "inline-block",
             verticalAlign: "top",
+            textAlign: "left",
         });
         var styleLabel = getFontClassName({ color: couleurs.Label, fontSize: "14px", });
         var styleRequire = getFontClassName({ color: "red", fontSize: "14px", lineHeight: 1.36, }) + " " + style({

@@ -103,6 +103,76 @@ export function arrayIsNullOrEmpty(array: any[]): boolean {
     return isNullOrUndef(array) || array.length == 0;
 }
 
+export function arrayIsIdentical(array1: any[], array2: any[]): boolean {
+    if (array1 === array2) {
+        return true;
+    }
+    if (array1.length !== array2.length) {
+        return false;
+    }
+    for (var cpt: number = 0; cpt < array1.length; cpt++) {
+        if (array1[cpt] !== array2[cpt]) {
+            if (array1[cpt] instanceof Array && array2[cpt] instanceof Array) {
+                if (!arrayIsIdentical(array1[cpt], array2[cpt])) {
+                    return false;
+                }
+            } else if (typeof array1[cpt] === "object" && typeof array2[cpt] === "object") {
+                if (!objectIsIdentical(array1[cpt], array2[cpt])) {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+export function objectIsIdentical(obj1: any, obj2: any): boolean {
+    if (obj1 === obj2) {
+        return true;
+    }
+    for (var prop in obj1) {
+        if (!obj2.hasOwnProperty(prop) || typeof obj1[prop] !== typeof obj2[prop]) {
+            return false;
+        }
+    }
+    for (var prop in obj2) {
+        if (!obj1.hasOwnProperty(prop)) {
+            return false;
+        }
+        if (obj1[prop] !== obj2[prop]) {
+            if (obj1[prop] instanceof Array && obj2[prop] instanceof Array) {
+                if (!arrayIsIdentical(obj1[prop], obj2[prop])) {
+                    return false;
+                }
+            } else if (typeof obj1[prop] === "object" /*&& typeof obj2[prop] === "object"*/) {
+                if (!objectIsIdentical(obj1[prop], obj2[prop])) {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+export function objectContains(objet: any, search: string): boolean {
+    if (isNullOrUndef(objet) || stringIsNullOrEmpty(search)) {
+        return false;
+    }
+    if (typeof objet === "object") {
+        for (var item in objet) {
+            if (objectContains(objet[item], search)) {
+                return true;
+            }
+        }
+    } else if (objet.toString().indexOf(search) >= 0) {
+        return true;
+    }
+    return false;
+}
+
 export function addZeroBeforeNumber(nombre: number, tailleMin: number): string {
     var result = nombre.toString();
     while (result.length < tailleMin) {

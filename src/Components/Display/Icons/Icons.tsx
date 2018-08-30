@@ -592,6 +592,20 @@ export class IconProcheAidant extends React.Component<IconProps, IconState> {
         return <MaterialinearIcon {...this.props} IconName="Lusers-add" />;
     }
 }
+export class IconCalendrier extends React.Component<IconProps, IconState> {
+    static defaultProps = {
+        Color: "7a756f",
+        BackgroundColor: "#ffffff",
+        IconSize: "14px",
+        AvecCercle: false,
+    }
+    constructor(p, c) {
+        super(p, c);
+    }
+    render() {
+        return <MaterialinearIcon {...this.props} IconName="Lcalendar-full" />;
+    }
+}
 
 
 export class IconLswaLink extends React.Component<IconProps, IconState> {

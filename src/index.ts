@@ -64,6 +64,8 @@ import {
     Radio as UpFinanceurRadio,
     CheckboxGroup as UpFinanceurCheckboxGroup,
     Checkbox as UpFinanceurCheckbox,
+    Tableau as UpFinanceurTableau,
+    EnTete as UpFinanceurTableauEnTete,
 } from "./Components/Inputs/FinanceurInput";
 
 import { ThemeProvider as UpThemeProvider } from './Common/theming/themedComponents'
@@ -145,4 +147,6 @@ export {
     UpFinanceurRadio,
     UpFinanceurCheckboxGroup,
     UpFinanceurCheckbox,
+    UpFinanceurTableau,
+    UpFinanceurTableauEnTete,
 };
