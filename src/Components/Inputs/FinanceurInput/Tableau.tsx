@@ -222,14 +222,23 @@ export default class Tableau extends React.Component<TableauProps, TableauState>
                     { !enTetes ? null :
                         <tr className={styleEnTete} >
                             { this.props.EnTetes.map((enTete: EnTete, idx: number): JSX.Element => {
-                                return isNullOrUndef(enTete) ? <td key={idx} /> : <td key={idx} >
-                                    <span>{enTete.Libelle}</span>
-                                    &nbsp;
-                                    { !this.props.OrderActif || enTete.OrderActif === false ? null : 
-                                        <IconChevron Direction={DirectionEnum.Bas} onClick={() => this.onOrder(idx)}
-                                                Color={colorEnTete} IconSize="12px" fontWeight={500} />
+                                var icon: JSX.Element = null;
+                                if (this.props.OrderActif && enTete.OrderActif !== false) {
+                                    var direction: DirectionEnum = DirectionEnum.Bas;
+                                    if (!arrayIsNullOrEmpty(this.state.Order)) {
+                                        var ordre: Ordre[] = this.state.Order.filter((item) => { return item.IdxCol === idx; });
+                                        if (ordre && ordre[0] && ordre[0].Descendant) {
+                                            direction = DirectionEnum.Haut;
+                                        }
                                     }
-                                </td>;
+                                    icon = <IconChevron Color={colorEnTete} IconSize="12px" fontWeight={500} 
+                                            onClick={() => this.onOrder(idx)} Direction={direction} />
+                                }
+
+                                return isNullOrUndef(enTete) ? <td key={idx} /> : 
+                                    <td key={idx} >
+                                        <span>{enTete.Libelle}</span>&nbsp;{icon}
+                                    </td>;
                             }) }
                         </tr>
                     }
