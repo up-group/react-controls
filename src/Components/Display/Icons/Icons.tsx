@@ -261,6 +261,21 @@ export class IconCorrespondant extends React.Component<IconProps, IconState> {
         return <MaterialinearIcon {...this.props} IconName="Lfirst-aid" />; 
     }
 }
+export class IconSalarie extends React.Component<IconProps, IconState> {
+    static defaultProps = {
+        Color: "#ffffff",
+        BackgroundColor: "#7ad032",
+        IconSize: "10px",
+        AvecCercle: true,
+        lineHeight: 1.2,
+    }
+    constructor(p, c) {
+        super(p, c);
+    }
+    render() {
+        return <MaterialinearIcon {...this.props} IconName="Lfirst-aid" />; 
+    }
+}
 export class IconPatient extends React.Component<IconProps, IconState> {
     static defaultProps = {
         Color: "#ffffff",
