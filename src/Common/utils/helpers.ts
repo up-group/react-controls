@@ -1,4 +1,5 @@
-import { style } from "typestyle"
+import { style } from "typestyle";
+import * as moment from "moment";
 
 
 export function callIfExists(func, ...args) {
@@ -179,4 +180,41 @@ export function addZeroBeforeNumber(nombre: number, tailleMin: number): string {
         result = "0" + result;
     }
     return result;
+}
+
+export function formatDate(date: Date): string {
+    moment.locale("fr");
+    return isNullOrUndef(date) ? null : moment(date).format('DD/MM/YYYY');
+}
+
+export function isBissextile(annee: number): boolean {
+    if (annee % 400 === 0) {
+        return true;
+    }
+    if (annee % 100 === 0) {
+        return false;
+    }
+    if (annee % 4 === 0) {
+        return true;
+    }
+    return false;
+}
+
+export function jourDuMois(mois: number, annee: number, moisBase0: boolean = false): number {
+    var fevrier: number = isBissextile(annee) ? 29 : 28;
+    switch(mois) {
+        case 0: return moisBase0 ? 31 : -1;
+        case 1: return moisBase0 ? fevrier : 31;
+        case 2: return moisBase0 ? 31 : fevrier;
+        case 3: return moisBase0 ? 30 : 31;
+        case 4: return moisBase0 ? 31 : 30;
+        case 5: return moisBase0 ? 30 : 31;
+        case 6: return moisBase0 ? 31 : 30;
+        case 7: return 31;
+        case 8: return moisBase0 ? 30 : 31;
+        case 9: return moisBase0 ? 31 : 30;
+        case 10: return moisBase0 ? 30 : 31;
+        case 11: return moisBase0 ? 31 : 30;
+        case 12: return moisBase0 ? -1 : 31;
+    }
 }

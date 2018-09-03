@@ -609,7 +609,7 @@ export class IconProcheAidant extends React.Component<IconProps, IconState> {
 }
 export class IconCalendrier extends React.Component<IconProps, IconState> {
     static defaultProps = {
-        Color: "7a756f",
+        Color: "#7a756f",
         BackgroundColor: "#ffffff",
         IconSize: "14px",
         AvecCercle: false,
