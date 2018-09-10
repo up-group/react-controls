@@ -1,7 +1,7 @@
 import * as React from "react"
 import { style } from "typestyle"
 
-import { isNullOrUndef, stringIsNullOrEmpty, getFontClassName, formatDate, } from "../../../Common/utils/helpers";
+import { isNullOrUndef, stringIsNullOrEmpty, getFontClassName, formatDate, incrementJour, ConvertToDate, } from "../../../Common/utils/helpers";
 import { IconInfos, IconSuccess, IconError, } from "../../Display/Icons/Icons";
 
 import { ValidationReturn, GetFinanceurColors, ColorSet } from ".";
@@ -22,6 +22,8 @@ export interface DateInputProps {
     ReadOnly?: boolean;
     InitialState?: boolean;
     AutoFocus?: boolean;
+    // Min?: Date;
+    // Max?: Date;
     Validate?: (value: Date | string) => ValidationReturn;
     onChange?: (value: Date | string) => void;
     onFocus?: (event) => void;
@@ -50,7 +52,14 @@ export default class DateInput extends React.Component<DateInputProps, DateInput
         };
     }
 
-    private processValidation = (value: Date) => {
+    private processValidation = (value: Date | string) => {
+        if (typeof value === "string") {
+            var dConvert: Date = ConvertToDate(value);
+            if (dConvert !== null) {
+                value = dConvert;
+            }
+        }
+
         var validation: ValidationReturn = isNullOrUndef(this.props.Validate) ? null : this.props.Validate(value);
 
         if (isNullOrUndef(validation) || isNullOrUndef(validation.ok)) {
@@ -59,39 +68,27 @@ export default class DateInput extends React.Component<DateInputProps, DateInput
             this.setState({ Value: value, Success: validation.ok, SpecificMessage: validation.specificMessage, });
         }
     }
-    private doNumberDown = () => {
+    private incDate = (nbJour: number) => {
         if (this.props.ReadOnly || this.props.Disable) {
+            return ;
+        }
+        if (typeof this.state.Value === "string") {
             return ;
         }
         
-        // var saveOldValue: Date = this.state.Value;
-        // var valeur: number = isNullOrUndef(this.state.Value) ? -1 : (Number(this.state.Value) - 1);
-        // if (isNullOrUndef(this.props.NumberMax) === false && this.props.NumberMax < Number(valeur)) {
-        //     valeur = this.props.NumberMax;
-        // } else if (isNullOrUndef(this.props.NumberMin) === false && this.props.NumberMin > Number(valeur)) {
-        //     valeur = this.props.NumberMin;
-        // }
-        // this.processValidation(valeur.toString());
-        // if ((! isNullOrUndef(this.props.onChange)) && saveOldValue !== valeur.toString()) {
-        //     this.props.onChange(valeur.toString());
-        // }
-    }
-    private doNumberUp = () => {
-        if (this.props.ReadOnly || this.props.Disable) {
-            return ;
-        }
+        var saveOldValue: Date = this.state.Value;
+        var valeur: Date = incrementJour(this.state.Value, nbJour);
 
-        // var saveOldValue: Date = this.state.Value;
-        // var valeur: number = stringIsNullOrEmpty(this.state.Value) ? 1 : (Number(this.state.Value) + 1);
-        // if (isNullOrUndef(this.props.NumberMax) === false && this.props.NumberMax < Number(valeur)) {
-        //     valeur = this.props.NumberMax;
-        // } else if (isNullOrUndef(this.props.NumberMin) === false && this.props.NumberMin > Number(valeur)) {
-        //     valeur = this.props.NumberMin;
+        // if (isNullOrUndef(this.props.Max) === false && this.props.Max < valeur) {
+        //     valeur = this.props.Max;
+        // } else if (isNullOrUndef(this.props.Min) === false && this.props.Min > valeur) {
+        //     valeur = this.props.Min;
         // }
-        // this.processValidation(valeur.toString());
-        // if ((! isNullOrUndef(this.props.onChange)) && saveOldValue !== valeur.toString()) {
-        //     this.props.onChange(valeur.toString());
-        // }
+
+        this.processValidation(valeur);
+        if ((! isNullOrUndef(this.props.onChange)) && saveOldValue.toString() !== valeur.toString()) {
+            this.props.onChange(valeur);
+        }
     }
 
     private onBlur = (event) => {
@@ -116,10 +113,10 @@ export default class DateInput extends React.Component<DateInputProps, DateInput
         
         if (!this.props.Disable && !this.props.ReadOnly) {
             if (event.keyCode === 38) { // fleche haut
-                this.doNumberUp();
+                this.incDate(1);
                 abort = true;
             } else if (event.keyCode === 40) { // fleche bas
-                this.doNumberDown();
+                this.incDate(-1);
                 abort = true;
             }
         }
@@ -293,7 +290,9 @@ export default class DateInput extends React.Component<DateInputProps, DateInput
                 }
                 
                 <span className={styleChevron} >
-                    <Calendrier ref={(c) => { this._calendar = c; }} onChange={this.onCalendarItemClick} />
+                    <Calendrier ref={(c) => { this._calendar = c; }} 
+                        Date={typeof this.state.Value === "string" ? null : this.state.Value} 
+                        onChange={this.onCalendarItemClick} />
                 </span>
 
                 <input className={styleFontInput + " " + styleInput} disabled={this.props.Disable} autoFocus={this.props.AutoFocus}
