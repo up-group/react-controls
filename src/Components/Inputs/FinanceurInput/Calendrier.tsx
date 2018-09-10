@@ -1,9 +1,10 @@
 import * as React from "react";
 import { style } from "typestyle";
-import { IconCalendrier } from "../../Display/Icons/Icons";
-import { relative } from "path";
+import { IconCalendrier, IconChevron, DirectionEnum } from "../../Display/Icons/Icons";
 import { stringIsNullOrEmpty, jourDuMois, isNullOrUndef } from "../../../Common/utils/helpers";
 
+
+const MONTH: string[] = ["Jan.", "Fév.", "Mars", "Avr.", "Mai", "Juin", "Juil.", "Août", "Sep.", "Oct.", "Nov.", "Déc."];
 
 export interface CalendrierProps {
     Date?: Date;
@@ -26,10 +27,39 @@ export default class Calendrier extends React.Component<CalendrierProps, Calendr
         }
     }
 
+    public Blur = () => {
+        if (this.state.Deplie) {
+            this.setState({ Deplie: false, });
+        }
+    }
+
     private onCalendrierClick = () => {
         if (!this.props.Disable) {
             this.setState({ Deplie: !this.state.Deplie, });
         }
+    }
+
+    private incYear = (increment: number) => {
+        this.setState({ Date: new Date(this.state.Date.getFullYear() + increment, this.state.Date.getMonth(), this.state.Date.getDate()), });
+    }
+    private incMonth = (increment: number) => {
+        var annee: number = this.state.Date.getFullYear();
+        var mois: number = this.state.Date.getMonth() + increment;
+        while (mois > 11) {
+            annee++;
+            mois -= 12;
+        }
+        while (mois < 0) {
+            annee--;
+            mois += 12;
+        }
+        this.setState({ Date: new Date(annee, mois, this.state.Date.getDate()), });
+    }
+    private onDaySelect = (jour: number) => {
+        if (!isNullOrUndef(this.props.onChange)) {
+            this.props.onChange(new Date(this.state.Date.getFullYear(), this.state.Date.getMonth(), jour));
+        }
+        this.setState({ Deplie: false, });
     }
 
     componentWillReceiveProps(nextProps) {
@@ -55,11 +85,12 @@ export default class Calendrier extends React.Component<CalendrierProps, Calendr
             top: "15%",
             display: "inline-block",
             zIndex: 100,
-
-            backgroundColor: "green",
+            padding: "4px",
+            backgroundColor: "#ffffff",
+            borderRadius: "4px",
+            border: "1px solid #979797",
         });
         var styleTable = style({
-            margin: "4px",
             $nest: {
                 "& th": {
                     textAlign: "center",
@@ -78,6 +109,9 @@ export default class Calendrier extends React.Component<CalendrierProps, Calendr
                 },
             },
         });
+        var styleCursor = style({
+            cursor: "pointer",
+        });
 
         var jdm: number = jourDuMois(this.state.Date.getMonth(), this.state.Date.getFullYear(), true);
 
@@ -94,19 +128,20 @@ export default class Calendrier extends React.Component<CalendrierProps, Calendr
         }
         var cpt2: number = cpt;
         while (cpt2 < 7) {
-            premiereLigne.push(<td key={cpt2} >{cpt2 - cpt + 1}</td>);
+            var j = cpt2 - cpt + 1;
+            premiereLigne.push(<td key={cpt2} className={styleCursor} onClick={() => this.onDaySelect(j)} >{j}</td>);
             cpt2++;
         }
 
-        var lignesComplete: JSX.Element[] = [];
+        var lignesCompletes: JSX.Element[] = [];
         var nbBoucleComplete: number = (jdm - cpt2 + cpt) / 7; // nombre quil faut tronquer
         nbBoucleComplete = nbBoucleComplete - (nbBoucleComplete % 1)
         for (var cpt3: number = 0; cpt3 < nbBoucleComplete; cpt3++) {
-            lignesComplete.push(
+            lignesCompletes.push(
                 <tr key={cpt3 + 2} >
                     { [cpt2 - cpt + 1, cpt2 - cpt + 2, cpt2 - cpt + 3, cpt2 - cpt + 4, cpt2 - cpt + 5, cpt2 - cpt + 6, cpt2 - cpt + 7].map((j, i) => {
                         cpt2++;
-                        return <td key={i} >{j}</td>;
+                        return <td key={i} className={styleCursor} onClick={() => this.onDaySelect(j)} >{j}</td>;
                     }) }
                 </tr>
             );
@@ -118,7 +153,8 @@ export default class Calendrier extends React.Component<CalendrierProps, Calendr
             derniersJour = [];
             var cpt4: number = 0;
             while (cpt4 < jRestant) {
-                derniersJour.push(<td key={cpt4} >{cpt2 - cpt + 1 + cpt4}</td>);
+                var j = cpt2 - cpt + 1 + cpt4;
+                derniersJour.push(<td key={cpt4} className={styleCursor} onClick={() => this.onDaySelect(j)} >{j}</td>);
                 cpt4++;
             }
             while (cpt4 < 7) {
@@ -128,7 +164,15 @@ export default class Calendrier extends React.Component<CalendrierProps, Calendr
         }
 
         return <span className={styleG} >
-            <span>annee mois ...</span>
+            <span>
+                <IconChevron Direction={DirectionEnum.Gauche} onClick={() => this.incMonth(-1)} />
+                {MONTH[this.state.Date.getMonth()]}
+                <IconChevron Direction={DirectionEnum.Droite} onClick={() => this.incMonth(1)} />
+                
+                <IconChevron Direction={DirectionEnum.Gauche} onClick={() => this.incYear(-1)} />
+                {this.state.Date.getFullYear()}
+                <IconChevron Direction={DirectionEnum.Droite} onClick={() => this.incYear(1)} />
+            </span>
             <br />
             <table className={styleTable} >
                 <tbody>
@@ -142,7 +186,7 @@ export default class Calendrier extends React.Component<CalendrierProps, Calendr
                         <th>D.</th>
                     </tr>
                     <tr>{premiereLigne}</tr>
-                    {lignesComplete}
+                    {lignesCompletes}
                     { derniersJour === null ? null : 
                         <tr>{derniersJour}</tr>
                     }

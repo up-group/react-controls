@@ -38,6 +38,7 @@ export interface DateInputState {
 
 export default class DateInput extends React.Component<DateInputProps, DateInputState> {
     private control: any;
+    private _calendar: any;
 
     constructor(p, c) {
         super(p, c);
@@ -99,6 +100,8 @@ export default class DateInput extends React.Component<DateInputProps, DateInput
         if ( ! isNullOrUndef(this.props.onBlur)) {
             this.props.onBlur(event);
         }
+
+        this._calendar.Blur();
     }
     private onChange = (event) => {
         var saveOldValue: Date | string = this.state.Value;
@@ -141,14 +144,11 @@ export default class DateInput extends React.Component<DateInputProps, DateInput
 
     private onCalendarItemClick = (date: Date) => {
         var saveOldValue: Date | string = this.state.Value;
-        // this.processValidation(this.props.ComboItems[idx]);
+        this.processValidation(date);
 
-        // if ( ! isNullOrUndef(this.props.onComboItemSelect)) {
-        //     this.props.onComboItemSelect(idx);
-        // }
-        // if ((! isNullOrUndef(this.props.onChange)) && saveOldValue !== this.props.ComboItems[idx]) {
-        //     this.props.onChange(this.props.ComboItems[idx]);
-        // }
+        if ((! isNullOrUndef(this.props.onChange)) && saveOldValue.toString() !== date.toString()) {
+            this.props.onChange(date);
+        }
     }
 
     public focus = () => {
@@ -293,7 +293,7 @@ export default class DateInput extends React.Component<DateInputProps, DateInput
                 }
                 
                 <span className={styleChevron} >
-                    <Calendrier onChange={null} />
+                    <Calendrier ref={(c) => { this._calendar = c; }} onChange={this.onCalendarItemClick} />
                 </span>
 
                 <input className={styleFontInput + " " + styleInput} disabled={this.props.Disable} autoFocus={this.props.AutoFocus}
