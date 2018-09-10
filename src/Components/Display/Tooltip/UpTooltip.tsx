@@ -4,7 +4,6 @@ import { Component } from "react";
 
 import * as classNames from 'classnames'
 
-import {IntentType} from '../../../Common/theming/types'
 import * as ReactTooltip from 'react-tooltip'
 import {GenerateId, isString} from '../../../Common/utils'
 import {Placement, Effect} from './' 
@@ -44,7 +43,7 @@ export default class UpTooltip extends Component<UpTooltipProps, UpTooltipState>
        content : '',
        place : 'right',
        effect: 'float',
-       type:'light',
+       //type:'light',
        multiline:false,
        html:false,
        delayHide:500,
@@ -88,35 +87,35 @@ export default class UpTooltip extends Component<UpTooltipProps, UpTooltipState>
 
     var custom = '' ;
 
-    if(this.props.type=='light') {
-      custom = style({
-        background: "#FEFEFE !important",
-        border: "1px #ccc solid",
-        borderRadius: "6px",
-        $nest : {
-          '&.place-top:after' : {
-            borderTopColor: "#ccc !important",
-            borderTopStyle: "solid !important",
-            borderTopWidth: "6px !important"
-          },
-          '&.place-left:after' : {
-            borderLeftColor: "#ccc !important",
-            borderLeftStyle: "solid !important",
-            borderLeftWidth: "6px !important"
-          },
-          '&.place-right:after' : {
-            borderRightColor: "#ccc !important",
-            borderRightStyle: "solid !important",
-            borderRightWidth: "6px !important"
-          },
-          '&.place-bottom:after' : {
-            borderBottomColor: "#ccc !important",
-            borderBottomStyle: "solid !important",
-            borderBottomWidth: "6px !important"
-          }
-        }
-      });
-    }
+    //if(this.props.type=='light') {
+    //  custom = style({
+    //    background: "#FEFEFE !important",
+    //    border: "1px #ccc solid",
+    //    borderRadius: "6px",
+    //    $nest : {
+    //      '&.place-top:after' : {
+    //        borderTopColor: "#ccc !important",
+    //        borderTopStyle: "solid !important",
+    //        borderTopWidth: "6px !important"
+    //      },
+    //      '&.place-left:after' : {
+    //        borderLeftColor: "#ccc !important",
+    //        borderLeftStyle: "solid !important",
+    //        borderLeftWidth: "6px !important"
+    //      },
+    //      '&.place-right:after' : {
+    //        borderRightColor: "#ccc !important",
+    //        borderRightStyle: "solid !important",
+    //        borderRightWidth: "6px !important"
+    //      },
+    //      '&.place-bottom:after' : {
+    //        borderBottomColor: "#ccc !important",
+    //        borderBottomStyle: "solid !important",
+    //        borderBottomWidth: "6px !important"
+    //      }
+    //    }
+    //  });
+    //}
 
     return (
       <div style={{display:"inline-block"}}>

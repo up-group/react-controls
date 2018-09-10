@@ -1,8 +1,5 @@
 // Imports
 import * as React from 'react'
-import styled, {css} from '../../../Common/theming/themedComponents';
-import { ThemeInterface } from "../../../Common/theming/types";
-import { ThemeProps, InterpolationFunction } from "styled-components/typings/styled-components";
 import {UpLigneProps} from './'
 
 const defaultProps: UpLigneProps = {
@@ -10,15 +7,15 @@ const defaultProps: UpLigneProps = {
   textAlign: 'center',
 };
 
-export const style = css`
-  text-align: ${(props: UpLigneProps) => props.textAlign || defaultProps.textAlign};
-  color: ${(props: UpLigneProps) => props.color || defaultProps.color};
-  display:'inline-block';
-`;
+//export const style = css`
+//  text-align: ${(props: UpLigneProps) => props.textAlign || defaultProps.textAlign};
+//  color: ${(props: UpLigneProps) => props.color || defaultProps.color};
+//  display:'inline-block';
+//`;
 
-export const SpanStyled = styled.span`
-  ${style}
-`;
+//export const SpanStyled = styled.span`
+//  ${style}
+//`;
 
 const LigneStyled: React.StatelessComponent<UpLigneProps> = (props) => {
   const {dataFor, className, children, ...others} = props ;
@@ -30,9 +27,9 @@ const LigneStyled: React.StatelessComponent<UpLigneProps> = (props) => {
       }
   }
   
-  return (<SpanStyled className={className} {...tooltipProps} {...others}>
+  return (<span className={className} {...tooltipProps} {...others}>
       {children}
-      </SpanStyled>)
+      </span>)
 };
 
 export default LigneStyled

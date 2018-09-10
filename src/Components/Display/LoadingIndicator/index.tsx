@@ -2,7 +2,8 @@
 import * as React from 'react';
 import Box from '../../Containers/Box';
 import { UpGrid, UpRow, UpCol } from '../../Containers/Grid'
-import SvgIcon, { Circle } from './styles';
+import SvgIcon from '../SvgIcon';
+//import SvgIcon, { Circle } from './styles';
 export type LoadingIndicatorDisplayMode = "inline" | "modal" | "zone"
 
 
@@ -64,7 +65,7 @@ export default class LoadingIndicator extends React.Component<LoadingIndicatorPr
                 <div style={overlay} >
                     <div style={circle}>
                         <SvgIcon viewBox="0 0 48 48">
-                            <Circle cx="24" cy="24" r="21" stroke="#007acc" strokeWidth="6" fill="none" />
+                            <circle cx="24" cy="24" r="21" stroke="#007acc" strokeWidth="6" fill="none" />
                         </SvgIcon>
                     </div>
                 </div>
@@ -74,7 +75,7 @@ export default class LoadingIndicator extends React.Component<LoadingIndicatorPr
 
             return <Box boxSize={"auto"} pad={"none"} margin={'none'} alignItems="center" justifyContent="center">
                 <SvgIcon viewBox="0 0 48 48">
-                    <Circle cx="24" cy="24" r="21" stroke="#007acc" strokeWidth="6" fill="none" />
+                    <circle cx="24" cy="24" r="21" stroke="#007acc" strokeWidth="6" fill="none" />
                 </SvgIcon>
                 {
                     this.props.message &&
@@ -89,7 +90,7 @@ export default class LoadingIndicator extends React.Component<LoadingIndicatorPr
                         <UpRow>
                             <UpCol span={6}>
                                 <SvgIcon viewBox="0 0 48 48">
-                                    <Circle
+                                    <circle
                                         cx="24"
                                         cy="24"
                                         r="21"

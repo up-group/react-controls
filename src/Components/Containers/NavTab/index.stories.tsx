@@ -1,19 +1,18 @@
 import * as React from 'react'
 import { storiesOf, ReactiveVar} from '@storybook/react'
 
-import UpDefaultTheme from '../../../Common/theming'
-import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themedComponents'
 
 import UpNavTap from './UpNavTap'
 import UpPanel from '../../Containers/Panel'
 
-const tab1 = <UpPanel type="info" message="Information sur ..." />
-const tab2 = <UpPanel type="warning" message="Attention sur ..." />
-const tab3 = <UpPanel type="danger" message="Erreur sur ..." />
+const tab1 = <UpPanel /*type="info" */message="Information sur ..." />
+const tab2 = <UpPanel /*type="warning"*/ message="Attention sur ..." />
+const tab3 = <UpPanel /*type="danger"*/ message="Erreur sur ..." />
 
 storiesOf('UpNavTap', module)
   .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
-   () =>  (<UpThemeProvider theme={UpDefaultTheme}>
+    () => (
+        
         <div style={{"margin" : "30px"}}>
         <UpNavTap tabs={[{
           content: tab1,
@@ -26,5 +25,5 @@ storiesOf('UpNavTap', module)
           head:"Tab 3"
         }]} />
         </div>
-      </UpThemeProvider>)
+      )
 ) ;

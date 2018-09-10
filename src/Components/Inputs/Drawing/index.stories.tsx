@@ -2,9 +2,6 @@ import * as React from 'react'
 import * as update from 'react-addons-update'
 import { storiesOf } from '@storybook/react'
 
-import UpDefaultTheme from '../../../Common/theming'
-import {IntentType} from '../../../Common/theming/types'
-import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themedComponents'
 
 import UpDrawing , {CropedShape} from './'
 import Shape from './Shape'
@@ -82,9 +79,7 @@ export default class SimpleDrawing extends React.PureComponent<any, SimpleDrawin
 storiesOf('UpDrawing', module)
   .addWithInfo('Simple usage', 'Utilisation simple',
    () => (
-    <UpThemeProvider theme={UpDefaultTheme}>
         <div style={{margin:"30px"}}>
            <SimpleDrawing />
         </div>
-    </UpThemeProvider>
   )) ;

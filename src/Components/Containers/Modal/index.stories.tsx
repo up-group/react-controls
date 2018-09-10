@@ -1,8 +1,6 @@
 import * as React from 'react'
 import { storiesOf, ReactiveVar } from '@storybook/react'
 
-import UpDefaultTheme from '../../../Common/theming'
-import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themedComponents'
 
 import UpModal from './UpModal'
 import UpButton from '../../Inputs/Button'
@@ -38,7 +36,7 @@ class ModalWrapper extends React.Component<ModalWrapperProps, ModalWrapperState>
     }
     render() {
         const CloseAction = () => <UpButton actionType={"close"} onClick={this.closeModal}>Close</UpButton>;
-        const Info = () => <UpPanel type={"warning"} disableAutoIntentIcon={false}>
+        const Info = () => <UpPanel /*type={"warning"}*/ disableAutoIntentIcon={false}>
             <p>Bienvenue !!</p>
         </UpPanel>;
 
@@ -56,13 +54,12 @@ const HTML = `<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "htt
 
 storiesOf('UpModal', module)
     .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
-    () => (<UpThemeProvider theme={UpDefaultTheme}>
-        <ModalWrapper />
-    </UpThemeProvider>)
+        () => (
+            <ModalWrapper />
+        )
     ).addWithInfo('Html', 'Set the content using HTML',
-    () => (
-        <UpThemeProvider theme={UpDefaultTheme}>
+        () => (
             <ModalWrapper html={HTML} />
-        </UpThemeProvider>
-    )
+
+        )
     );

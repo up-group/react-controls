@@ -1,13 +1,11 @@
 import * as React from 'react'
-import defaultTheme from '../../../Common/theming'
-import  UpTooltip, {Tooltip} from '../../Display/Tooltip'
-import { ButtonGroupStyled } from './styles'
-import {ThemedProps, IntentType} from '../../../Common/theming/types' 
+//import  UpTooltip, {Tooltip} from '../../Display/Tooltip'
+//import { ButtonGroupStyled } from './styles'
 
 export type Alignement = 'h' | 'v'
 export type AddOnMode = 'none' | 'left' | 'right'
 
-export interface UpButtonGroupProps extends ThemedProps {
+export interface UpButtonGroupProps  {
   gutter?:number;
   align?:Alignement;
   isAddOn?:AddOnMode;
@@ -24,15 +22,14 @@ export default class UpButtonGroup extends React.Component<UpButtonGroupProps, u
   public static defaultProps: UpButtonGroupProps = {
     gutter:10,
     align:'h',
-    theme:defaultTheme
   };
 
   public render() {
     const {children, ...others} = this.props ;
     return (
-        <ButtonGroupStyled {...others}>
+        <div {...others}>
             {children}
-        </ButtonGroupStyled>
+        </div>
     ) ;
   }
 }

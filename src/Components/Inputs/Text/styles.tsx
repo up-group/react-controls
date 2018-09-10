@@ -1,9 +1,7 @@
 // Imports
 import * as React from 'react'
-import styled, { css } from '../../../Common/theming/themedComponents';
 import Textarea from 'react-textarea-autosize'
-import { ThemeInterface } from "../../../Common/theming/types";
-import { defaultStyles } from '../_Common/Styled/Input/styles'
+//import { defaultStyles } from '../_Common/Styled/Input/styles'
 import { UpTextStyledProps } from './'
 
 const sizeMap = {
@@ -50,20 +48,23 @@ export class BaseTextArea extends React.Component<UpTextStyledProps, undefined> 
     }
 }
 
-const base = props => css`
-  min-height:80px;
-  width: ${(props: UpTextStyledProps) => sizeMap[props.width] || "500px"};
-  padding:10px;
-`;
+//const base = props => css`
+//  min-height:80px;
+//  width: ${(props: UpTextStyledProps) => sizeMap[props.width] || "500px"};
+//  padding:10px;
+//`;
 
-const error = props => css`
-  border : 1px solid ${props.theme.danger};
-`;
+//const error = props => css`
+//  border : 1px solid ${props.theme.danger};
+//`;
 
-export const TexAreatStyled = styled<UpTextStyledProps>(BaseTextArea) `
-${(props) => defaultStyles}
-${(props: UpTextStyledProps) => base(props)}
-${(props: UpTextStyledProps) => props.hasError ? error(props) : css``}
-`;
+//export const TexAreatStyled = styled<UpTextStyledProps>(BaseTextArea) `
+//${(props) => defaultStyles}
+//${(props: UpTextStyledProps) => base(props)}
+//${(props: UpTextStyledProps) => props.hasError ? error(props) : css``}
+//`;
 
-export default TexAreatStyled;
+//export default TexAreatStyled;
+
+
+export default BaseTextArea;

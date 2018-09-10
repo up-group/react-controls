@@ -2,8 +2,6 @@ import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions';
 
-import UpDefaultTheme from '../../../Common/theming'
-import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themedComponents'
 
 import UpSelect from './'
 
@@ -37,8 +35,7 @@ export class Test extends React.Component<testProps, testState>{
     }
 
     render() {
-        return <UpThemeProvider theme={UpDefaultTheme}>
-            <div>
+        return  <div>
                 <div>
                     <button onClick={() => {
                         this.setState({
@@ -125,7 +122,6 @@ export class Test extends React.Component<testProps, testState>{
                 {JSON.stringify(this.state.lastChange)}
             </div>
             </div>
-        </UpThemeProvider>
     }
 }
 
@@ -133,14 +129,12 @@ export class Test extends React.Component<testProps, testState>{
 storiesOf('UpSelect', module)
     .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
     () => (
-        <UpThemeProvider theme={UpDefaultTheme}>
             <UpSelect width="normal" tooltip="Civilité" default={null} data={[
                 { id: 1, text: 'M.' },
                 { id: 2, text: 'Mme' },
                 { id: 3, text: 'Mlle' },
                 { id: 4, text: 'Dr' },
             ]} onChange={console.log} />
-        </UpThemeProvider>
     ))
     .addWithInfo('Set value', 'Utilisation du composant en lui passant les données à afficher',
     () => (
@@ -148,7 +142,6 @@ storiesOf('UpSelect', module)
     ))
     .addWithInfo('Ajax', 'Utilisation du composant lié à une source de donnée',
     () => (
-        <UpThemeProvider theme={UpDefaultTheme}>
             <UpSelect autoload={false}
                 isRequired={false}
                 allowClear={true}
@@ -184,11 +177,9 @@ storiesOf('UpSelect', module)
                     text: "title"
                 }}
                 onChange={console.log} />
-        </UpThemeProvider>
     ))
     .addWithInfo('Ajax avec modification des réponses', 'Utilisation du composant lié à une source de donnée',
     () => (
-        <UpThemeProvider theme={UpDefaultTheme}>
             <UpSelect autoload={false}
                 isRequired={false}
                 allowClear={true}
@@ -204,11 +195,9 @@ storiesOf('UpSelect', module)
                     }
                 }}
                 onChange={console.log} />
-        </UpThemeProvider>
     ))
     .addWithInfo('Required', 'Utilisation du composant avec valeur requise',
     () => (
-        <UpThemeProvider theme={UpDefaultTheme}>
             <div style={{ margin: "30px" }}>
                 <UpSelect isRequired={true}
                     allowClear={true}
@@ -223,11 +212,9 @@ storiesOf('UpSelect', module)
                     ]}
                     onChange={console.log} />
             </div>
-        </UpThemeProvider>
     ))
     .addWithInfo('Return Id Value', 'Utilisation du composant en retournant la valeur de l\'identifiant et non plus l\'objet sélectionné',
     () => (
-        <UpThemeProvider theme={UpDefaultTheme}>
             <div style={{ margin: "30px" }}>
                 <UpSelect isRequired={true}
                     allowClear={true}
@@ -245,11 +232,9 @@ storiesOf('UpSelect', module)
                     ]}
                     onChange={console.log} />
             </div>
-        </UpThemeProvider>
     ))
     .addWithInfo('Size', 'Utilisation du composant en retournant la valeur de l\'identifiant et non plus l\'objet sélectionné',
     () => (
-        <UpThemeProvider theme={UpDefaultTheme}>
             <div style={{ margin: "30px" }}>
                 <UpSelect isRequired={true}
                     allowClear={true}
@@ -346,11 +331,9 @@ storiesOf('UpSelect', module)
                     ]}
                     onChange={console.log} />
             </div>
-        </UpThemeProvider>
     ))
     .addWithInfo('Creatable', 'Utilisation du composant avec autorisation de création de nouvelle option',
     () => (
-        <UpThemeProvider theme={UpDefaultTheme}>
             <div style={{ margin: "30px" }}>
                 <UpSelect autoload={false}
                     isRequired={false}
@@ -387,5 +370,4 @@ storiesOf('UpSelect', module)
                     }}
                     onChange={console.log} />
             </div>
-        </UpThemeProvider>
     ));

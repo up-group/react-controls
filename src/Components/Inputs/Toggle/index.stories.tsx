@@ -2,18 +2,15 @@ import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 import { style } from 'typestyle'
 
-import UpDefaultTheme from '../../../Common/theming'
-import {IntentType} from '../../../Common/theming/types'
-import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themedComponents'
 
 import UpToggle from './'
-import {Size} from './UpToggle'
+import { Size } from './UpToggle'
 import UpLabel from '../../Display/Label'
 import UpNotification from '../../Display/Notification'
 import UpBox from '../../Containers/Box'
 
 interface ToggleWrapperProps {
-   size?:Size;
+    size?: Size;
 }
 
 interface ToggleWrapperState {
@@ -22,16 +19,16 @@ interface ToggleWrapperState {
 
 class ToggleWrapper extends React.Component<ToggleWrapperProps, ToggleWrapperState>{
     public static defaultProps = {
-        size:'normal'
+        size: 'normal'
     }
-    
+
     constructor(props, context) {
         super(props, context);
         this.state = {
             checked: false
         }
     }
-    onChange = (value)  => {
+    onChange = (value) => {
         this.setState({ checked: value });
     }
     render() {
@@ -42,25 +39,23 @@ class ToggleWrapper extends React.Component<ToggleWrapperProps, ToggleWrapperSta
 
 storiesOf('UpToggle', module)
     .addWithInfo('Simple usage', 'Utilisation avec plusieurs options',
-    () => (
-    <UpThemeProvider theme={UpDefaultTheme}>
-        <UpBox style={{margin:"40px 30px"}}>
-            <UpNotification status={"info"}>
-                Le composant <code>UpToggle</code> a un comportement similaire à <code>UpCheckBox</code> mais avec une UX centrée sur l'idée d'activation/désactivation. 
+        () => (
+            <UpBox style={{ margin: "40px 30px" }}>
+                <UpNotification>
+                    Le composant <code>UpToggle</code> a un comportement similaire à <code>UpCheckBox</code> mais avec une UX centrée sur l'idée d'activation/désactivation.
                 Il existe 3 tailles selon le cas d'utilisation : <code>small</code>, <code>normal</code> et <code>large</code>.
             </UpNotification>
 
-            <UpBox style={{margin:"30px"}}>
-                <UpLabel textAlign={"left"} inline={true} width="medium" text="Activation de ... :">
-                    <ToggleWrapper size={'small'} />
-                </UpLabel>
-                <UpLabel textAlign={"left"} inline={true} width="medium" text="Activation de ... :">
-                    <ToggleWrapper size={'normal'} />
-                </UpLabel>
-                <UpLabel textAlign={"left"} inline={true} width="medium" text="Activation de ... :">
-                    <ToggleWrapper size={'large'} />
-                </UpLabel>
+                <UpBox style={{ margin: "30px" }}>
+                    <UpLabel textAlign={"left"} inline={true} width="medium" text="Activation de ... :">
+                        <ToggleWrapper size={'small'} />
+                    </UpLabel>
+                    <UpLabel textAlign={"left"} inline={true} width="medium" text="Activation de ... :">
+                        <ToggleWrapper size={'normal'} />
+                    </UpLabel>
+                    <UpLabel textAlign={"left"} inline={true} width="medium" text="Activation de ... :">
+                        <ToggleWrapper size={'large'} />
+                    </UpLabel>
+                </UpBox>
             </UpBox>
-        </UpBox>
-    </UpThemeProvider>
-    )) ;
+        ));

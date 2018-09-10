@@ -1,10 +1,9 @@
 // Imports
 import * as React from 'react'
 import * as classnames from 'classnames'
-import { BaseButton } from './styles'
+//import { BaseButton } from './styles'
 import { UpButtonProps, DropDownType, Action, Separator, IconPosition } from './'
 import UpTooltip, { Tooltip } from '../../Display/Tooltip'
-import defaultTheme from '../../../Common/theming'
 import { isString } from '../../../Common/utils'
 import { IconName } from "../../Display/SvgIcon/icons";
 
@@ -34,13 +33,13 @@ export default class UpButton extends React.Component<UpButtonProps, UpButtonSta
         iconName: false,
         iconPosition: 'none',
         iconSize: 20,
-        intent: 'default',
+        //intent: 'default',
         width: 'auto',
         height: 'normal',
         tooltip: null,
         dropDown: 'none',
         onClick: (e: React.MouseEvent<HTMLButtonElement>) => { },
-        theme: defaultTheme
+        //theme: defaultTheme
     };
 
     private handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
@@ -142,18 +141,18 @@ export default class UpButton extends React.Component<UpButtonProps, UpButtonSta
             <div className={classnames('up-btn-wrapper', buttonWrapper)}>
                 {
                     tooltip === null ?
-                        <BaseButton iconName={icon} iconPosition={position} onClick={this.handleClick} isToggled={this.state.isToggled} {...others}>
+                        <button /*iconName={icon} iconPosition={position}*/ onClick={this.handleClick}/* isToggled={this.state.isToggled}*/ {...others}>
                             {children != null &&
                                 <span>{children}</span>
                             }
-                        </BaseButton>
+                        </button>
                         :
                         <UpTooltip {..._tooltip}>
-                            <BaseButton iconName={icon} iconPosition={position} onClick={this.handleClick} isToggled={this.state.isToggled} {...others}>
+                            <button /*iconName={icon} iconPosition={position}*/ onClick={this.handleClick} /*isToggled={this.state.isToggled}*/ {...others}>
                                 {children != null &&
                                     <span>{children}</span>
                                 }
-                            </BaseButton>
+                            </button>
                         </UpTooltip>
                 }
                 {this.props.dropDown != 'none' && this.state.isToggled &&

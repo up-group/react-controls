@@ -4,8 +4,7 @@ import "normalize.css/normalize.css"
 import * as React from "react"
 import { UpDateProps } from './'
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
-import UpDateStyle from './styles'
-import defaultTheme from '../../../Common/theming'
+//import UpDateStyle from './styles'
 
 // Exports
 const MIN_DATE = new Date(-8640000000000);
@@ -16,7 +15,7 @@ export default class UpDate extends BaseControlComponent<UpDateProps, Date> {
     public static defaultProps: UpDateProps = {
         format: "DD/MM/YYYY",
         showError: true,
-        theme:defaultTheme
+        //theme:defaultTheme
     };
 
     constructor(p, c) {
@@ -32,21 +31,22 @@ export default class UpDate extends BaseControlComponent<UpDateProps, Date> {
                 || this.props.maxDate != nextProps.maxDate
                 || this.props.minDate != nextProps.minDate
                 || this.props.readonly != nextProps.readonly
-                || this.props.theme !== nextProps.theme
+                //|| this.props.theme !== nextProps.theme
         }
         return shouldUpdate;
     }
 
     renderControl() {
         const {format, hasError, disabled, minDate, maxDate, readonly, ...others} = this.props ;    
-        return <UpDateStyle
-            format={format} 
-            value={this.state.value}
-            hasError={hasError || this.hasError()}
-            onChange={this.handleChangeEvent}
-            disabled={disabled}
-            minDate={minDate ? minDate : MIN_DATE}
-            maxDate={maxDate ? maxDate : MAX_DATE}></UpDateStyle>;
+        return <input type="date"/>
+        //return <UpDateStyle
+        //    format={format} 
+        //    value={this.state.value}
+        //    hasError={hasError || this.hasError()}
+        //    onChange={this.handleChangeEvent}
+        //    disabled={disabled}
+        //    minDate={minDate ? minDate : MIN_DATE}
+        //    maxDate={maxDate ? maxDate : MAX_DATE}></UpDateStyle>;
     }
 
     getValue(newDate: any) {

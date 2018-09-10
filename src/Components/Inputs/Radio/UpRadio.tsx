@@ -1,7 +1,7 @@
 // Imports
 import * as React from 'react'
 import UpLabel from '../../Display/Label/'
-import { StyledRadioButton, RadioGroup } from './styles'
+//import { StyledRadioButton, RadioGroup } from './styles'
 import { UpRadioProps, Position } from './'
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 
@@ -52,22 +52,23 @@ export default class UpRadio extends BaseControlComponent<UpRadioProps, any> {
         var radioGroupClass = "upContainer__groupradio-" + this.props.displayMode;
 
         return (
-            <RadioGroup onClick={this.stopPropagation} className={radioGroupClass} >
+            <div onClick={this.stopPropagation} className={radioGroupClass} >
                 {/* Avoid set active element when using the component inside a label */}
                 <label style={{ display: "none" }}><input type="radio" /></label>
                 {options.map((option, i) => {
                     return (
-                        <StyledRadioButton onChange={this.handleChangeEvent} key={`Key_${this.props.name}_${option.value}`}
-                            name={this.props.name}
-                            checked={this.state.value != null && this.state.value === option.value}
-                            text={option.text}
-                            value={option.value}>
-                        </StyledRadioButton>
+                        <input type="radio"/>
+                        //<StyledRadioButton onChange={this.handleChangeEvent} key={`Key_${this.props.name}_${option.value}`}
+                        //    name={this.props.name}
+                        //    checked={this.state.value != null && this.state.value === option.value}
+                        //    text={option.text}
+                        //    value={option.value}>
+                        //</StyledRadioButton>
                     )
                 }
 
                 )}
-            </RadioGroup>
+            </div>
         );
     }
 }

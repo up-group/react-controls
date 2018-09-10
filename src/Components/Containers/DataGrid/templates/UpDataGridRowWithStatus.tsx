@@ -3,7 +3,6 @@ import * as ReactDOM from 'react-dom'
 
 import UpCheckbox from '../../../Inputs/Checkbox/UpCheckBox'
 import UpButton from '../../../Inputs/Button'
-import { IntentType } from '../../../../Common/theming/types'
 
 import UpDataGridCell from '../UpDataGridCell'
 import { Column, Row, Action } from '../UpDataGrid'
@@ -64,7 +63,7 @@ export default class UpDataGridRowWithStatus extends React.Component<UpDataGridR
                     <UpDataGridCell key={"cell-actions"} value={this.props.value} column={{ label: "", isSortable: false }}>
                         {
                             this.props.actions.map((value, index) => {
-                                return <UpButton tooltip={value.description} key={`btn-${index}`} actionType={value.type} width="icon" intent={value.intent} onClick={
+                                return <UpButton tooltip={value.description} key={`btn-${index}`} actionType={value.type} width="icon"/* intent={value.intent}*/ onClick={
                                     () => {
                                         if (value.action != null) {
                                             value.action({ value: this.props.value, isSelected: this.props.isSelected });

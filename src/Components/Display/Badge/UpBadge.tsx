@@ -1,17 +1,14 @@
 import * as React from 'react';
 import {style} from 'typestyle';
-import {ThemedProps, IntentType} from '../../../Common/theming/types' 
-import {withTheme} from 'styled-components'
 
 export type WidthSize = 'auto' | 'small' | 'medium' | 'large' | 'xlarge' ;
 export type Align = 'left' | 'right'  ;
 
-export interface UpBadgeProps extends ThemedProps {
+export interface UpBadgeProps {
   text:string;
   color?:string;
   background?:string;
   rounded?:boolean;
-  intent?:IntentType;
 };
  
 class UpBadge extends React.Component<UpBadgeProps, {}> {
@@ -32,10 +29,10 @@ class UpBadge extends React.Component<UpBadgeProps, {}> {
       var fontColor = color ;
       var backgroundColor = background ;
 
-      if(this.props.intent !== null) {
-          fontColor = this.props.theme.colorMap[`${this.props.intent}Fg`] ;
-          backgroundColor = this.props.theme.colorMap[`${this.props.intent}`] ;
-      }
+      //if(this.props.intent !== null) {
+      //    fontColor = this.props.theme.colorMap[`${this.props.intent}Fg`] ;
+      //    backgroundColor = this.props.theme.colorMap[`${this.props.intent}`] ;
+      //}
 
       const BadgeStyle = style({
         borderRadius: (this.props.rounded===true)? '18px':'6px',
@@ -56,4 +53,4 @@ class UpBadge extends React.Component<UpBadgeProps, {}> {
   }
 }
 
-export default withTheme(UpBadge)
+export default UpBadge

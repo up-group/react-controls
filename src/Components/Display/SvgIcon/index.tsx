@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { SvgProps } from './types';
-import styled from '../../../Common/theming/themedComponents';
 
 import Icons from './icons';
 
@@ -14,16 +13,16 @@ export interface SvgIconWrapperProps {
   dataFor?:string;
 }
 
-const SvgIconWrapper = styled.div`
-    float: ${(props:SvgIconWrapperProps) => props.position ? props.position : "left"};
-    display: inline;
-    width: ${ (props:SvgIconWrapperProps) => props.width}px ;
-    height:${ (props:SvgIconWrapperProps) => props.height}px ;
-    margin: 1px;
-    svg {
-      fill:${ (props:SvgIconWrapperProps) => props.color} ;
-    }
-`
+//const SvgIconWrapper = styled.div`
+//    float: ${(props:SvgIconWrapperProps) => props.position ? props.position : "left"};
+//    display: inline;
+//    width: ${ (props:SvgIconWrapperProps) => props.width}px ;
+//    height:${ (props:SvgIconWrapperProps) => props.height}px ;
+//    margin: 1px;
+//    svg {
+//      fill:${ (props:SvgIconWrapperProps) => props.color} ;
+//    }
+//`
 export type Props = SvgProps & React.HTMLProps<typeof SvgIcon>;
 
 export default function SvgIcon({
@@ -41,10 +40,10 @@ export default function SvgIcon({
   const width = others.height || 20 ;
    
   if(iconName) {
-    const SvgIconElement = () => <SvgIconWrapper position={position} className={className} color={color} height={height} width={width}
+    const SvgIconElement = () => <div/* position={position} className={className} color={color} height={height} width={width}*/
       //{...others}
       dangerouslySetInnerHTML={{__html: Icons[iconName]}}
-    ></SvgIconWrapper> ;
+    ></div> ;
 
     if(dataFor != null) {
       return (

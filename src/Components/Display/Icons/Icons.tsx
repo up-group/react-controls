@@ -1,7 +1,6 @@
 import * as React from "react"
 import { style } from "typestyle";
 import { getFontClassName, isNullOrUndef, stringIsNullOrEmpty, AttributPolice, getFontSizeNumber } from "../../../Common/utils/helpers";
-import { keyframes } from "../../../Common/theming/themedComponents";
 
 
 export interface AlertIconProps {
@@ -711,14 +710,14 @@ export class IconLoading extends React.Component<IconLoadingProps, IconLoadingSt
 
         tailleIcon -= largeurCercle * 2;
 
-        const animation = keyframes`
-            0% {
-            transform: rotate(0deg);
-            }
-            100% {
-            transform: rotate(360deg);
-            }
-        `;
+        //const animation = keyframes`
+        //    0% {
+        //    transform: rotate(0deg);
+        //    }
+        //    100% {
+        //    transform: rotate(360deg);
+        //    }
+        //`;
 
         var styleG = style({
             borderRadius: "50%",
@@ -727,8 +726,8 @@ export class IconLoading extends React.Component<IconLoadingProps, IconLoadingSt
             border: largeurCercle + "px solid " + this.props.Color,
             borderRight: largeurCercle + "px solid " + this.props.BackgroundColor,
             backgroundColor: this.props.BackgroundColor,
-            animation: animation + " " + temps.toString() + "s linear infinite",
-            "-webkit-animation": animation + " " + temps.toString() + "s linear infinite",
+            //animation: animation + " " + temps.toString() + "s linear infinite",
+            //"-webkit-animation": animation + " " + temps.toString() + "s linear infinite",
             display: "inline-block",
             boxSizing: "initial",
             margin: this.props.AvecCercle ? "5px" : "0",

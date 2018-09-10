@@ -1,6 +1,6 @@
 // Imports
 import * as React from 'react';
-import LinkStyled from './styles';
+//import LinkStyled from './styles';
 
 const MethodTypePush = 'push';
 
@@ -40,13 +40,13 @@ export class Link extends React.Component<LinkProps, undefined> {
     } = this.props;
 
     return (
-      <LinkStyled
-        plain={plain}
+      <a
+        //plain={plain}
         href={href}
         color={color}
         onClick={this.handleClick}>
         {label || children}
-      </LinkStyled>
+      </a>
     );
   }
 }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '../../Containers/Box';
-import Component, { Button } from './styles';
+//import Component, { Button } from './styles';
 import {UpBoxProps} from '../../Containers/Box/UpBox';
 import { Status } from './types';
 
@@ -60,19 +60,19 @@ export default class Toast extends React.Component<Props, State> {
       return null;
     }
     return (
-      <Component status={status} {...this.state}>
+      <div /*status={status} {...this.state}*/>
         <Box alignItems="center" justifyContent="center" flexDirection="row" pad="medium" style={{ width: 'auto' }}>
           <Box style={{ flexGrow: 2 }}>
             {message != null  && message}
             {children != null  && children}
           </Box>
           <Box alignItems="flex-end" justifyContent="flex-end">
-            <Button onClick={this.handleClose}>
+            <button onClick={this.handleClose}>
               ✕
-            </Button>
+            </button>
           </Box>
         </Box>
-      </Component>
+      </div>
     );
   }
 }

@@ -8,7 +8,7 @@ import * as Select from 'react-select'
 import axios from 'axios'
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import { UpSelectProps, UpSelectStyledProps } from './'
-import WrapperSelect from './styles';
+//import WrapperSelect from './styles';
 import * as queryString from 'query-string';
 
 var CancelToken = axios.CancelToken;
@@ -355,7 +355,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             }
         }
         return (
-            <WrapperSelect width={this.props.width}>
+            <div /*width={this.props.width}*/>
                 <SelectComponent
                     {...specProps}
                     placeholder={this.props.placeholder}
@@ -379,7 +379,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                     optionRenderer={this.getOptionRenderer}
                     valueRenderer={this.getValueRenderer}
                     onChange={this.onChange} />
-            </WrapperSelect>
+            </div>
         );
     }
 

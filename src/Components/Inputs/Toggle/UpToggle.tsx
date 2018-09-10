@@ -4,11 +4,10 @@ import UpLabel from '../../Display/Label/index'
 import * as classNames from 'classnames'
 
 import {style} from 'typestyle'
-import { ThemedProps } from '../../../Common/theming/types' 
 
 export type Size = 'small' | 'normal' | 'large'
 
-export interface UpToggleStyledProps extends ThemedProps {
+export interface UpToggleStyledProps {
     className?:string;
 }
 
@@ -42,7 +41,6 @@ const WrapperStyle = style({
       padding: 0,
       "-webkit-touch-callout": "none",
       "-webkit-user-select": "none",
-      "-khtml-user-select": "none",
       "-moz-user-select": "none",
       "-ms-user-select": "none",
       "user-select": "none",

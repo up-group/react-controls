@@ -1,9 +1,8 @@
 // Imports
 import * as React from "react"
 import { BaseControlComponent } from "../_Common/BaseControl/BaseControl"
-import { TexAreatStyled } from "./styles";
+//import { TexAreatStyled } from "./styles";
 import { UpTextProps } from './'
-import defaultTheme from '../../../Common/theming'
 import CKEditor from "./CKEditor"
 
 // Exports
@@ -37,7 +36,7 @@ export default class UpText extends BaseControlComponent<UpTextProps, string> {
                         ['NumberedList', 'BulletedList', '-', 'Table']
                     ]
         },
-        theme:defaultTheme
+        //theme:defaultTheme
     }
     
     constructor(p, c) {
@@ -55,7 +54,7 @@ export default class UpText extends BaseControlComponent<UpTextProps, string> {
                 <CKEditor config={configRTE} activeClass="p10" content={this.state.value} onChange={this.handleChangeEvent} />
             );         
         } else {
-            return (<TexAreatStyled value={this.state.value} hasError={this.hasError()} onChange={this.handleChangeEvent} {...others} />)           
+            return (<textarea value={this.state.value} /*hasError={this.hasError()}*/ onChange={this.handleChangeEvent} {...others} />)           
         }
     }
 

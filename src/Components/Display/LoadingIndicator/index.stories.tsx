@@ -1,8 +1,6 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import UpDefaultTheme from '../../../Common/theming'
-import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themedComponents'
 
 import UpLoadingIndicator from './'
 
@@ -43,12 +41,9 @@ const styles : React.CSSProperties = {
 storiesOf('UpLoadingIndicator', module)
   .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
    () => (
-    <UpThemeProvider theme={UpDefaultTheme}>
       <UpLoadingIndicator isLoading={true} message="Chargement en cours"></UpLoadingIndicator>
-    </UpThemeProvider>
   )).addWithInfo('Modal', 'Utilisation du composant modal',
  () => (
-  <UpThemeProvider theme={UpDefaultTheme}>
     <div style={styles.main}>
         <UpLoadingIndicator isLoading={true} displayMode={"modal"} message="Chargement en cours"></UpLoadingIndicator>
         <h1>Welcome to STORYBOOK</h1>
@@ -106,10 +101,8 @@ storiesOf('UpLoadingIndicator', module)
           loaders and plugins you are using in this project.
         </p>
       </div>
-  </UpThemeProvider>
 )).addWithInfo('Modal sur une zone', 'Utilisation du composant modal',
 () => (
- <UpThemeProvider theme={UpDefaultTheme}>
    <div style={styles.main}>
        <h1>Welcome to STORYBOOK</h1>
        <p>
@@ -169,5 +162,4 @@ storiesOf('UpLoadingIndicator', module)
         </p>
         </div>
      </div>
- </UpThemeProvider>
 ));

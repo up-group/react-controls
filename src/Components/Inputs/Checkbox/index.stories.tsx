@@ -1,9 +1,6 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import UpDefaultTheme from '../../../Common/theming'
-import {IntentType} from '../../../Common/theming/types'
-import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themedComponents'
 
 import UpCheckbox from './UpCheckBox'
 import UpLabel from '../../Display/Label'
@@ -25,7 +22,6 @@ var onActivationChange = () => {
 storiesOf('UpCheckbox', module)
     .addWithInfo('Simple usage', 'Utilisation avec plusieurs options',
     () => (
-    <UpThemeProvider theme={UpDefaultTheme}>
         <UpLabel textAlign={"left"} inline={true} width="medium" text="Activation de ... :">
             <UpCheckbox options={[{
                     text: "",
@@ -35,11 +31,9 @@ storiesOf('UpCheckbox', module)
                     checked: state.activation === true
                 }]} />
             </UpLabel>
-    </UpThemeProvider>
     ))
   .addWithInfo('Multiple usage', 'Utilisation avec plusieurs options',
    () => (
-    <UpThemeProvider theme={UpDefaultTheme}>
         <UpLabel inline={true} width="small" text="Choix :">
             <UpCheckbox options={[{
                     text: "Vous êtes majeur ?",
@@ -61,5 +55,4 @@ storiesOf('UpCheckbox', module)
                     checked: state.grand === true
                 }]} />
             </UpLabel>
-    </UpThemeProvider>
   )) ;

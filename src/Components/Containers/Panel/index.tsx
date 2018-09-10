@@ -1,13 +1,12 @@
 // Imports
 import UpPanel from './UpPanel'
-import {IntentType, ThemedProps} from "../../../Common/theming/types"
 import { IconName } from '../../../Components/Display/SvgIcon/icons'
 
 // Exports
-export interface UpPanelProps extends ThemedProps  {
+export interface UpPanelProps  {
   title?:string | JSX.Element;
   footer?: string | React.ReactElement<any>;
-  type?:IntentType;
+
   message?:string;
   iconName?:IconName;
   iconSize?:number;

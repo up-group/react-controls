@@ -4,8 +4,7 @@ import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import { UpNumberProps } from './'
 import TypeNumberControl from '../_Common/Validation/TypeNumberControl'
 
-import { NumericInput } from '@blueprintjs/core'
-import { style } from 'typestyle'
+import { style } from "typestyle"
 
 // Exports
 export default class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
@@ -58,14 +57,15 @@ export default class UpNumber extends BaseControlComponent<UpNumberProps, number
             }
         })
         return (
-            <NumericInput
-                className={s}
-                value = { this.state.value }
-                stepSize={stepSize}
-                majorStepSize={stepSize ? stepSize + 10 : 10}
-                onValueChange={this.handleNumericChange}
-                minorStepSize={1 / (Math.pow(10, this.props.decimalPlace))}>
-            </NumericInput>
+            <input type="number" onChange={(e) => { this.handleNumericChange(parseFloat(e.target.value), e.target.value) }} value={this.state.value} />
+            //<NumericInput
+            //    className={s}
+            //    value = { this.state.value }
+            //    stepSize={stepSize}
+            //    majorStepSize={stepSize ? stepSize + 10 : 10}
+            //    onValueChange={this.handleNumericChange}
+            //    minorStepSize={1 / (Math.pow(10, this.props.decimalPlace))}>
+            //</NumericInput>
         );
     }
 }

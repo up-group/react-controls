@@ -1,61 +1,59 @@
 import * as React from 'react'
 import { UpDateTimeStyledProps } from './'
 
-import styled from '../../../Common/theming/themedComponents';
 
-import { DateInput, TimePicker, IDatePickerLocaleUtils } from '@blueprintjs/datetime'
-import { ThemeInterface } from "../../../Common/theming/types";
 
-class UpLocaleUtils implements IDatePickerLocaleUtils {
-    formatDay(day: Date, locale: string) {
-        return "jour";
-    }
-    formatMonthTitle(month: Date, locale: string) {
-        return "";
-    }
-    formatWeekdayShort(weekday: number, locale: string) {
-        return "";
-    }
-    formatWeekdayLong(weekday: number, locale: string) {
-        return "";
-    }
-    getFirstDayOfWeek(locale: string) {
-        return 1;
-    }
-    getMonths(locale: string): [string, string, string, string, string, string, string, string, string, string, string, string] {
-        return ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
-            "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
-    }
-}
+//class UpLocaleUtils implements IDatePickerLocaleUtils {
+//    formatDay(day: Date, locale: string) {
+//        return "jour";
+//    }
+//    formatMonthTitle(month: Date, locale: string) {
+//        return "";
+//    }
+//    formatWeekdayShort(weekday: number, locale: string) {
+//        return "";
+//    }
+//    formatWeekdayLong(weekday: number, locale: string) {
+//        return "";
+//    }
+//    getFirstDayOfWeek(locale: string) {
+//        return 1;
+//    }
+//    getMonths(locale: string): [string, string, string, string, string, string, string, string, string, string, string, string] {
+//        return ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
+//            "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+//    }
+//}
 
-const locale = new UpLocaleUtils();
+//const locale = new UpLocaleUtils();
 
 const BaseDate: React.StatelessComponent<UpDateTimeStyledProps> = (props) => {
 
     const { value, className, format, onChangeDate, disabled, minDate, maxDate, innerRef, onChangeTime } = props;
     const picker = (<span className="pt-icon pt-icon-calendar"></span>);
-
+    //<DateInput
+    //    className={className}
+    //    locale="fr"
+    //    ref={innerRef}
+    //    invalidDateMessage=""
+    //    localeUtils={locale}
+    //    rightElement={picker}
+    //    canClearSelection={true}
+    //    closeOnSelection={true}
+    //    disabled={disabled}
+    //    minDate={minDate}
+    //    maxDate={maxDate}
+    //    value={value}
+    //    onChange={onChangeDate} format={format} />
+    //    <TimePicker value={value} onChange={onChangeTime} />
     return (<div>
-        <DateInput 
-            className={className}
-            locale="fr"
-            ref={innerRef}
-            invalidDateMessage=""
-            localeUtils={locale}
-            rightElement={picker}
-            canClearSelection={true}
-            closeOnSelection={true}
-            disabled={disabled}
-            minDate={minDate}
-            maxDate={maxDate}
-            value={value}
-            onChange={onChangeDate} format={format} />
-        <TimePicker value={value} onChange={onChangeTime} />
+        <input type="datetime" />
+
     </div>);
 }
 
-export const NormalDate = styled<UpDateTimeStyledProps>(BaseDate) `
-`;
+//export const NormalDate = styled<UpDateTimeStyledProps>(BaseDate)`
+//`;
 
 export default class UpDateStyle extends React.Component<UpDateTimeStyledProps, undefined> {
     public static defaultProps: UpDateTimeStyledProps = {
@@ -85,7 +83,8 @@ export default class UpDateStyle extends React.Component<UpDateTimeStyledProps, 
 
     public render() {
         return (
-            <NormalDate  innerRef={this.setInput} {...this.props} />
+            <input type="datetime" />
+            //<NormalDate innerRef={this.setInput} {...this.props} />
         );
     }
 }

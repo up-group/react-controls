@@ -16,7 +16,6 @@ import UpLoadingIndicator from '../../Display/LoadingIndicator'
 import UpButton from '../../Inputs/Button/index'
 
 import { ActionType } from '../../Inputs/Button'
-import { IntentType } from '../../../Common/theming/types'
 import { IconName } from '../../../Components/Display/SvgIcon/icons'
 import shallowEqual from '../../../Common/utils/shallowEqual'
 
@@ -106,7 +105,7 @@ const DataGridStyle = style({
 
 export interface Action {
     type: ActionType,
-    intent: IntentType,
+    //intent: IntentType,
     description: string,
     action: (row: Row) => void
 }

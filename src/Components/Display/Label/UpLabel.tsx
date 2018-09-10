@@ -2,7 +2,7 @@ import * as React from 'react';
 import {UpLabelProps} from './'
 // import "@blueprintjs/core/dist/blueprint.css"
 
-import { LabelStyled } from './styles';
+//import { LabelStyled } from './styles';
 
 export default class UpLabel extends React.Component<UpLabelProps, {}> {
   
@@ -37,13 +37,13 @@ export default class UpLabel extends React.Component<UpLabelProps, {}> {
   render() {
       const {children, text, required, ...others} = this.props ; 
       return (
-        <LabelStyled onFocus={this.onFocus} onClick={this.onClick} {...others}>
+        <label onFocus={this.onFocus} onClick={this.onClick} {...others}>
           <span className="up-label-text">{text}</span>
           {required && 
             <span className="up-label-required"></span>
           }
           {children}
-        </LabelStyled>
+          </label>
       ) ;
   }
 }

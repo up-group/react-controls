@@ -1,1 +1,1 @@
-export { Props, ImageSize } from './index';
+//export { Props, ImageSize } from './index';

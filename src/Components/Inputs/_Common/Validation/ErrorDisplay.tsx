@@ -31,7 +31,7 @@ export default class ErrorDisplay extends React.Component<ErrorDisplayProps, {}>
 
         const Error = () => {
             return (<div className={"up-wrapper-error"}>
-                    <UpTooltip type={"error"} content={this.props.error}>
+                    <UpTooltip content={this.props.error}>
                         <UpSvgIcon width={15} height={15} iconName="error-sign" color={"red"} />
                     </UpTooltip></div>) ;
         } ;

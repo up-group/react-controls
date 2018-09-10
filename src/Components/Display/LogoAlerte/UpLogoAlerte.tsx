@@ -1,7 +1,6 @@
 import * as React from "react"
 import SvgIcon from "../SvgIcon/index"
 import { IconName } from "../SvgIcon/icons"
-import { ThemedProps, IntentType } from '../../../Common/theming/types'
 import UpTooltip, { Tooltip } from '../../Display/Tooltip/index'
 import UpBut from "../../Inputs/Button/index"
 
@@ -10,7 +9,7 @@ export interface UpLogoAlerteProps {
     icon: IconName;
     title?: string;
     alerteNumber?: number;
-    intenet: IntentType
+    //intenet: IntentType
 }
 
 export interface UpLogoAlerteState {
@@ -19,7 +18,7 @@ export interface UpLogoAlerteState {
 
 export default class UpLogoAlerte extends React.Component<UpLogoAlerteProps, UpLogoAlerteState>{
     public static defaultProps: UpLogoAlerteProps = {
-        intenet: "default",
+        //intenet: "default",
         alerteNumber: 0,
         title: "",
         icon: "none"
@@ -46,35 +45,35 @@ export default class UpLogoAlerte extends React.Component<UpLogoAlerteProps, UpL
 
 
 
-        switch (this.props.intenet) {
-            case 'primary':
-                backgroundColor = "#0073b7";
-                borderColor = "#addaf1";
-                texteColor = "#337ab7";
-                break;
-            case 'danger':
-                backgroundColor = "#dd4b39";
-                borderColor = "#eea59c";
-                texteColor = "#a94442";
-                break;
-            case 'warning':
-                backgroundColor = "#f39c12";
-                borderColor = "#f9cd88";
-                texteColor = "#f39c12";
-                break;
-            case 'success':
-                backgroundColor = "#00a65a";
-                borderColor = "#7FD2AC";
-                texteColor = "#3c763d";
-                break;
-            case 'info':
-            case 'default':
-            default:
-                backgroundColor = "#3c8dbc";
-                borderColor = "#7FDFF7";
-                texteColor = "#00c0ef";
-                break;
-        }
+        //switch (this.props.intenet) {
+        //    case 'primary':
+        //        backgroundColor = "#0073b7";
+        //        borderColor = "#addaf1";
+        //        texteColor = "#337ab7";
+        //        break;
+        //    case 'danger':
+        //        backgroundColor = "#dd4b39";
+        //        borderColor = "#eea59c";
+        //        texteColor = "#a94442";
+        //        break;
+        //    case 'warning':
+        //        backgroundColor = "#f39c12";
+        //        borderColor = "#f9cd88";
+        //        texteColor = "#f39c12";
+        //        break;
+        //    case 'success':
+        //        backgroundColor = "#00a65a";
+        //        borderColor = "#7FD2AC";
+        //        texteColor = "#3c763d";
+        //        break;
+        //    case 'info':
+        //    case 'default':
+        //    default:
+        //        backgroundColor = "#3c8dbc";
+        //        borderColor = "#7FDFF7";
+        //        texteColor = "#00c0ef";
+        //        break;
+        //}
 
 
         var StyleLogoAlerteIcon: React.CSSProperties = {

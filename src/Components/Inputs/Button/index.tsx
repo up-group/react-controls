@@ -1,6 +1,5 @@
 // Imports
 import UpButton from './UpButton'
-import { ThemedProps, IntentType } from '../../../Common/theming/types'
 import { Tooltip } from '../../Display/Tooltip'
 import { IconName } from '../../../Components/Display/SvgIcon/icons'
 
@@ -36,7 +35,7 @@ export interface Separator {
     size?:number;
 }
 
-export interface CommonProps extends ThemedProps {
+export interface CommonProps {
     color?: string; // Ovverride the defaut intent styling
     backgroundColor?: string; // Ovverride the defaut intent styling
     borderColor?: string; // Ovverride the defaut intent styling
@@ -49,7 +48,7 @@ export interface CommonProps extends ThemedProps {
     iconName?: any;
     iconSize?: number;
     iconPosition?: IconPosition;
-    intent?: IntentType;
+    //intent?: IntentType;
     width?: ButtonWidth;
     height?: ButtonHeight;
     tooltip?: string | Tooltip;

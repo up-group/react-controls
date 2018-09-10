@@ -1,13 +1,10 @@
 // Imports
 import * as React from 'react'
-import styled, { css } from '../../../../../Common/theming/themedComponents'
 import SvgIcon from "../../../../Display/SvgIcon/index"
-import { ThemeInterface } from "../../../../../Common/theming/types"
 import { IconName } from '../../../../../Components/Display/SvgIcon/icons'
 
-import { inputStyles, HeightLarge } from "./styles"
+//import { inputStyles, HeightLarge } from "./styles"
 import { CommonInputTextWithIconProps } from '../../BaseControl/BaseInput'
-import defaultTheme from '../../../../../Common/theming'
 
 // Exports
 export type InputType = 'text' | 'email' | 'number' | 'integer' | 'phone' | 'search';
@@ -53,20 +50,20 @@ const sizeMap = {
     fill: "100%",
 };
 
-const error = css`
-.up-input {
-  border-color:${(props) => (props.theme) ? props.theme.colorMap.danger : defaultTheme.colorMap.danger};
-  border-width: 1px;
-  border-style: solid;
-}
-`
+//const error = css`
+//.up-input {
+//  border-color:${(props) => (props.theme) ? props.theme.colorMap.danger : defaultTheme.colorMap.danger};
+//  border-width: 1px;
+//  border-style: solid;
+//}
+//`
 
-export const InputStyled = styled<StyledProps>(BaseInput) `
-  ${inputStyles}
-  ${(props) => props.hasError ? error : css``}
-  color: ${(props: StyledProps) => props.color};
-  .up-input {
-    width: ${(props: StyledProps) => sizeMap[props.width]};
-    ${(props: StyledProps) => (props.height == "large" ? HeightLarge : css``)}
-  }
-`;
+//export const InputStyled = styled<StyledProps>(BaseInput) `
+//  ${inputStyles}
+//  ${(props) => props.hasError ? error : css``}
+//  color: ${(props: StyledProps) => props.color};
+//  .up-input {
+//    width: ${(props: StyledProps) => sizeMap[props.width]};
+//    ${(props: StyledProps) => (props.height == "large" ? HeightLarge : css``)}
+//  }
+//`;
