@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
 import UpCheckbox from '../../../Inputs/Checkbox/UpCheckBox'
-import UpButton from '../../../Inputs/Button'
+import UpButton from '../../../Inputs/Button/UpButton'
 
 import UpDataGridCell from '../UpDataGridCell'
 import { Column, Row, Action } from '../UpDataGrid'

@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions';
 
 
-import UpSwitch from './index'
+import UpSwitch from './UpSwitch'
 
 storiesOf('UpSwitch', module)
     .addWithInfo('Simple usage', '',

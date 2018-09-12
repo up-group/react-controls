@@ -13,9 +13,9 @@ import UpDataGridRow from './UpDataGridRow'
 import UpDefaultCellFormatter, { ICellFormatter } from './UpDefaultCellFormatter'
 
 import UpLoadingIndicator from '../../Display/LoadingIndicator'
-import UpButton from '../../Inputs/Button/index'
+import UpButton from '../../Inputs/Button/UpButton'
 
-import { ActionType } from '../../Inputs/Button'
+import { ActionType } from '../../Inputs/Button/UpButton'
 import { IconName } from '../../../Components/Display/SvgIcon/icons'
 import shallowEqual from '../../../Common/utils/shallowEqual'
 

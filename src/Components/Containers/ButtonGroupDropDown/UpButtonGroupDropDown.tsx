@@ -1,5 +1,5 @@
 import * as React from "react"
-import UpButton, { UpButtonProps } from "../../Inputs/Button/index"
+import UpButton, { UpButtonProps } from "../../Inputs/Button/UpButton"
 import { style } from "typestyle"
 
 export interface buttonGroupDropDownElement {

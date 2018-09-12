@@ -537,10 +537,13 @@ export default class BaseNewInput extends React.Component<TextInputProps, TextIn
                 <input
                     type={typeText}
                     className={styleFontInput + " " + styleInput}
-                    //disabled={this.props.disabled}                    //autoFocus={this.props.autoFocus}                    value={isNullOrUndef(this.state.Value) ? "" : this.state.Value}
+                    //disabled={this.props.disabled}
+                    //autoFocus={this.props.autoFocus}
+                    value={isNullOrUndef(this.state.Value) ? "" : this.state.Value}
                     placeholder={this.props.placeholder}
                     onFocus={this.props.onFocus}
-                    //onKeyDown={this.onKeyDown}
+                    //onKeyDown={this.onKeyDown}
+
                     onBlur={this.onBlur}
                     onChange={this.onChange}
                     {...rest}

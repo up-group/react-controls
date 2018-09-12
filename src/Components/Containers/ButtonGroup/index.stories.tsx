@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 
 
 import UpButtonGroup from './'
-import UpButton from '../../Inputs/Button'
+import UpButton from '../../Inputs/Button/UpButton'
 import UpButtonGroupDropDown from '../ButtonGroupDropDown/UpButtonGroupDropDown'
 
 storiesOf('UpButtonGroup', module)
@@ -19,8 +19,8 @@ storiesOf('UpButtonGroup', module)
                         <UpButton
 
                             onClick={action('OnClick')}
-                            dropDown="down"
-                            extraActions={[{ libelle: "Option 1", onClick: action('Option 1') }, { libelle: "Option 2", onClick: action('Option 2') }, { size: 2 }, { libelle: "Option 3", onClick: action("Option 3") }]}
+                        //dropDown="down"
+                        //extraActions={[{ libelle: "Option 1", onClick: action('Option 1') }, { libelle: "Option 2", onClick: action('Option 2') }, { size: 2 }, { libelle: "Option 3", onClick: action("Option 3") }]}
                         />
                     </UpButtonGroup>
                 </div>
@@ -30,8 +30,8 @@ storiesOf('UpButtonGroup', module)
                         <UpButton
 
                             onClick={action('OnClick')}
-                            dropDown="down"
-                            extraActions={[{ libelle: "Option 1", onClick: action('Option 1') }, { libelle: "Option 2", onClick: action('Option 2') }, { size: 2 }, { libelle: "Option 3", onClick: action("Option 3") }]}
+                        //dropDown="down"
+                        //extraActions={[{ libelle: "Option 1", onClick: action('Option 1') }, { libelle: "Option 2", onClick: action('Option 2') }, { size: 2 }, { libelle: "Option 3", onClick: action("Option 3") }]}
                         />
                     </UpButtonGroup>
                 </div></div>

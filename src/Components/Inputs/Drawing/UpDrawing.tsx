@@ -3,7 +3,7 @@ import {UpDrawingProps} from "./"
 import {style} from 'typestyle'
 import CanvasState from "./CanvasState"
 
-import UpButton  from '../../Inputs/Button'
+import UpButton  from '../../Inputs/Button/UpButton'
 import UpButtonGroup  from '../../Containers/ButtonGroup'
 
 import UpLigne from '../../Display/Ligne' 

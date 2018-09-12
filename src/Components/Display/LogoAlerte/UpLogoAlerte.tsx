@@ -2,7 +2,7 @@ import * as React from "react"
 import SvgIcon from "../SvgIcon/index"
 import { IconName } from "../SvgIcon/icons"
 import UpTooltip, { Tooltip } from '../../Display/Tooltip/index'
-import UpBut from "../../Inputs/Button/index"
+import UpBut from "../../Inputs/Button/UpButton"
 
 
 export interface UpLogoAlerteProps {

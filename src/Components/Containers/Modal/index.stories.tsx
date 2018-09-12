@@ -3,7 +3,7 @@ import { storiesOf, ReactiveVar } from '@storybook/react'
 
 
 import UpModal from './UpModal'
-import UpButton from '../../Inputs/Button'
+import UpButton from '../../Inputs/Button/UpButton'
 import UpPanel from '../../Containers/Panel'
 
 export interface ModalWrapperProps {
