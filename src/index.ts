@@ -41,13 +41,13 @@ import UpInput from './Components/Inputs/Input'
 import UpSelect from './Components/Inputs/Select'
 //import UpFile from './Components/Inputs/File'
 import UpDate from './Components/Inputs/Date'
-import UpSwitch from './Components/Inputs/Switch'
+import UpSwitch from "./Components/Inputs/Switch/UpSwitch"
 import UpDateTime from './Components/Inputs/DateTime'
 import UpTimePicker from './Components/Inputs/TimePicker'
 import UpText from './Components/Inputs/Text'
 import UpNumber from "./Components/Inputs/Number/UpNumber"
-import UpPhone from './Components/Inputs/Phone'
-import UpEmail from './Components/Inputs/Email'
+import UpPhone from './Components/Inputs/Phone/UpPhone'
+import UpEmail from "./Components/Inputs/Email/UpEmail"
 import UpCheckbox from './Components/Inputs/Checkbox/UpCheckBox'
 //import UpToggle from './Components/Inputs/Toggle'
 import UpRadio from './Components/Inputs/Radio'
