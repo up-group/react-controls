@@ -45,7 +45,7 @@ import UpSwitch from './Components/Inputs/Switch'
 import UpDateTime from './Components/Inputs/DateTime'
 import UpTimePicker from './Components/Inputs/TimePicker'
 import UpText from './Components/Inputs/Text'
-import UpNumber from './Components/Inputs/Number'
+import UpNumber from "./Components/Inputs/Number/UpNumber"
 import UpPhone from './Components/Inputs/Phone'
 import UpEmail from './Components/Inputs/Email'
 import UpCheckbox from './Components/Inputs/Checkbox/UpCheckBox'
