@@ -9,14 +9,14 @@ storiesOf('UpEmail', module)
    () => (
      
         <div style={{padding:"30px"}}>
-          <UpEmail />
+          <UpEmail  />
         </div>
    
   )).addWithInfo('Email Input Required', 'Avec valeur requise',
    () => (
      
         <div style={{padding:"30px"}}>
-          <UpEmail isRequired={true} />
+          <UpEmail required={true} />
         </div>
    
   )) ;
