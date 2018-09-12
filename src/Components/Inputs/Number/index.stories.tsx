@@ -69,18 +69,18 @@ storiesOf('UpNumber', module)
         () => (
 
             <div style={{ padding: "16px" }} >
-                <UpNumber label="nothing"/>
+                <UpNumber label="nothing" />
                 <UpNumber label={"disabled"} disabled={true} />
                 <UpNumber label={"focus"} autoFocus={true} />
-                <br/>
-                <UpNumber label={'onchange'} onChange={console.log} />
+                <br />
+                <UpNumber label={'onchange'} onChange={(a) => { console.log(a) }} />
                 <UpNumber />
                 <UpNumber />
-                <br/>
+                <br />
                 <UpNumber label={"min 5"} min={5} />
                 <UpNumber label={"max 10"} max={10} />
                 <UpNumber label={"max 100 min 150"} min={100} max={150} />
-                <input type='number'  min={100} max={150} />
+                <input type='number' min={100} max={150} />
                 <br />
                 <UpNumber label={"value 5"} value={5} />
                 <UpNumber label={"value null "} value={0} />
