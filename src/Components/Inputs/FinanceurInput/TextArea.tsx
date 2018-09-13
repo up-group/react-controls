@@ -20,6 +20,7 @@ export interface TextAreaProps {
     Width?: string;
     Height?: string;
     AutoFocus?: boolean;
+    InitialState?: boolean;
     Validate?: (value: string) => ValidationReturn;
     onChange?: (value: string) => void;
     onFocus?: (event) => void;
@@ -38,7 +39,7 @@ export default class TextArea extends React.Component<TextAreaProps, TextAreaSta
         super(p, c);
         this.state = {
             Text: this.props.Value,
-            Success: null,
+            Success: isNullOrUndef(this.props.InitialState) ? null : this.props.InitialState,
             SpecificMessage: null,
         };
     }
@@ -66,6 +67,21 @@ export default class TextArea extends React.Component<TextAreaProps, TextAreaSta
 
         if ( ! isNullOrUndef(this.props.onBlur)) {
             this.props.onBlur(event);
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        var partialState: any = {};
+
+        if (nextProps.Value !== this.props.Value && nextProps.Value !== this.state.Text) {
+            partialState = { Text: nextProps.Value, Success: null, SpecificMessage: null, };
+        }
+        if (nextProps.InitialState !== this.props.InitialState && nextProps.InitialState !== this.state.Success) {
+            partialState = { Success: isNullOrUndef(nextProps.InitialState) ? null : nextProps.InitialState, };
+        }
+
+        if (partialState.hasOwnProperty("Success")) {
+            this.setState(partialState);
         }
     }
 

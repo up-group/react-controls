@@ -66,6 +66,7 @@ import {
     Checkbox as UpFinanceurCheckbox,
     Tableau as UpFinanceurTableau,
     EnTete as UpFinanceurTableauEnTete,
+    DateInput as UpFinanceurDateInput,
 } from "./Components/Inputs/FinanceurInput";
 
 import { ThemeProvider as UpThemeProvider } from './Common/theming/themedComponents'
@@ -149,4 +150,5 @@ export {
     UpFinanceurCheckbox,
     UpFinanceurTableau,
     UpFinanceurTableauEnTete,
+    UpFinanceurDateInput,
 };

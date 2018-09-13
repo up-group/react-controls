@@ -41,7 +41,7 @@ export default class Button extends React.Component<ButtonProps, ButtonState> {
             backgroundColor: backColor,
             textAlign: "center",
             display: "inline-block",
-            minWidth: "180px",
+            minWidth: "150px",
             height: height,
             cursor: this.props.Disable || isNullOrUndef(this.props.onClick) ? "auto" : "pointer",
             padding: "0 8px",
