@@ -51,7 +51,7 @@ import UpEmail from "./Components/Inputs/Email/UpEmail"
 import UpCheckbox from './Components/Inputs/Checkbox/UpCheckBox'
 //import UpToggle from './Components/Inputs/Toggle'
 import UpRadio from './Components/Inputs/Radio'
-import * as UpIcons from "./Components/Display/Icons/Icons";
+import * as UpIcons from "./Components/Display/Icons/materialinear";
 
 import { 
     Button as UpFinanceurButton,
