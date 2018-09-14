@@ -12,13 +12,13 @@ storiesOf('UpIcons', module)
     .addWithInfo('font load', '',
         () => (
             <div style={{ padding: "16px" }} >
-                <IconsM.Restaurant_menu color="red" onClick={() => { alert(0) }} />
+                <IconsM.RestaurantMenu color="red" onClick={() => { alert(0) }} />
                 <br /><br />
-                <IconsM.Restaurant_menu color="blue" fontWeight="bold" onClick={() => { alert(0) }} />
+                <IconsM.RestaurantMenu color="blue" fontWeight="bold" onClick={() => { alert(0) }} />
                 <br /><br />
-                <IconsM.Restaurant_menu AvecCercle={true} color="blue" fontWeight="normal" onClick={() => { alert(0) }} />
+                <IconsM.RestaurantMenu AvecCercle={true} color="blue" fontWeight="normal" onClick={() => { alert(0) }} />
                 <br /><br />
-                <IconsM.Restaurant_menu AlertNumber={5} AlertCircle={{ Active: true, Color: "red" }} color="blue" fontWeight="normal" onClick={() => { alert(0) }} />
+                <IconsM.RestaurantMenu AlertNumber={5} AlertCircle={{ Active: true, Color: "red" }} color="blue" fontWeight="normal" onClick={() => { alert(0) }} />
                 <br /><br />
             </div>
         )
