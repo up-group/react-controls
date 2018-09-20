@@ -621,6 +621,34 @@ export class IconCalendrier extends React.Component<IconProps, IconState> {
         return <MaterialinearIcon {...this.props} IconName="Lcalendar-full" />;
     }
 }
+export class IconOeil extends React.Component<IconProps, IconState> {
+    static defaultProps = {
+        Color: "#f39100",
+        BackgroundColor: "#ffffff",
+        IconSize: "24px",
+        AvecCercle: false,
+    }
+    constructor(p, c) {
+        super(p, c);
+    }
+    render() {
+        return <MaterialinearIcon {...this.props} IconName="Leye" />;
+    }
+}
+export class IconRenouveler extends React.Component<IconProps, IconState> {
+    static defaultProps = {
+        Color: "#f39100",
+        BackgroundColor: "#ffffff",
+        IconSize: "24px",
+        AvecCercle: false,
+    }
+    constructor(p, c) {
+        super(p, c);
+    }
+    render() {
+        return <MaterialinearIcon {...this.props} IconName="sync" />;
+    }
+}
 
 
 export class IconLswaLink extends React.Component<IconProps, IconState> {
