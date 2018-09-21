@@ -27,7 +27,7 @@ export interface DateInputProps {
     Validate?: (value: Date | string) => ValidationReturn;
     onChange?: (value: Date | string) => void;
     onFocus?: (event) => void;
-    onBlur?: (event) => void;
+    onBlur?: (value: Date | string) => void;
     onKeyDown?: (event, isAbort?: boolean) => void;
 }
 
@@ -52,21 +52,21 @@ export default class DateInput extends React.Component<DateInputProps, DateInput
         };
     }
 
-    private processValidation = (value: Date | string) => {
+    private processValidation = (value: Date | string, convert: boolean, callback: () => void) => {
         if (typeof value === "string") {
             var dConvert: Date = ConvertToDate(value);
-            if (dConvert !== null) {
+            if (dConvert !== null && convert) {
                 value = dConvert;
             }
         }
-
-        var validation: ValidationReturn = isNullOrUndef(this.props.Validate) ? null : this.props.Validate(value);
+        
+        var validation: ValidationReturn = isNullOrUndef(this.props.Validate) ? null : this.props.Validate(dConvert !== null ? dConvert : value);
 
         if (isNullOrUndef(validation) || isNullOrUndef(validation.ok)) {
-            this.setState({ Value: value, Success: null, SpecificMessage: null, });
+            this.setState({ Value: value, Success: null, SpecificMessage: null, }, callback);
         } else {
-            this.setState({ Value: value, Success: validation.ok, SpecificMessage: validation.specificMessage, });
-        }
+            this.setState({ Value: value, Success: validation.ok, SpecificMessage: validation.specificMessage, }, callback);
+        }        
     }
     private incDate = (nbJour: number) => {
         if (this.props.ReadOnly || this.props.Disable) {
@@ -85,28 +85,28 @@ export default class DateInput extends React.Component<DateInputProps, DateInput
         //     valeur = this.props.Min;
         // }
 
-        this.processValidation(valeur);
-        if ((! isNullOrUndef(this.props.onChange)) && saveOldValue.toString() !== valeur.toString()) {
-            this.props.onChange(valeur);
-        }
+        this.processValidation(valeur, false, () => {
+            if ((! isNullOrUndef(this.props.onChange)) && saveOldValue.toString() !== this.state.Value.toString()) {
+                this.props.onChange(this.state.Value);
+            }
+        });
     }
 
     private onBlur = (event) => {
-        this.processValidation(event.target.value);
-
-        if ( ! isNullOrUndef(this.props.onBlur)) {
-            this.props.onBlur(event);
-        }
-
-        this._calendar.Blur();
+        this.processValidation(event.target.value, true, () => {
+            if ( ! isNullOrUndef(this.props.onBlur)) {
+                this.props.onBlur(this.state.Value);
+            }
+            this._calendar.Blur();
+        });
     }
     private onChange = (event) => {
         var saveOldValue: Date | string = this.state.Value;
-        this.processValidation(event.target.value);
-
-        if ((! isNullOrUndef(this.props.onChange)) && saveOldValue !== event.target.value) {
-            this.props.onChange(event.target.value);
-        }
+        this.processValidation(event.target.value, false, () => {
+            if ((! isNullOrUndef(this.props.onChange)) && saveOldValue !== this.state.Value) {
+                this.props.onChange(this.state.Value);
+            }
+        });
     }
     private onKeyDown = (event) => {
         var abort: boolean = false;
@@ -141,11 +141,11 @@ export default class DateInput extends React.Component<DateInputProps, DateInput
 
     private onCalendarItemClick = (date: Date) => {
         var saveOldValue: Date | string = this.state.Value;
-        this.processValidation(date);
-
-        if ((! isNullOrUndef(this.props.onChange)) && saveOldValue.toString() !== date.toString()) {
-            this.props.onChange(date);
-        }
+        this.processValidation(date, true, () => {
+            if ((! isNullOrUndef(this.props.onChange)) && saveOldValue.toString() !== this.state.Value.toString()) {
+                this.props.onChange(this.state.Value);
+            }
+        });
     }
 
     public focus = () => {

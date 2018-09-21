@@ -285,10 +285,17 @@ export function ConvertToDate(date: string): Date {
     }
 
     if (jourMoisAnnee.length !== 3 
-            || jourMoisAnnee[2] < 1000
+            // || jourMoisAnnee[2] < 1000
+            || (jourMoisAnnee[2] > 99 && jourMoisAnnee[2] < 1850)
             || jourMoisAnnee[1] < 1 || jourMoisAnnee[1] > 12 
             || jourMoisAnnee[0] < 1 || jourMoisAnnee[0] > jourDuMois(jourMoisAnnee[1], jourMoisAnnee[2])) {
         return null;
+    }
+
+    if (jourMoisAnnee[2] <= 99) {
+        var anneeEnCours: number = new Date().getFullYear();
+        var anneeLimite: number = anneeEnCours % 100;
+        jourMoisAnnee[2] = anneeEnCours - anneeLimite + jourMoisAnnee[2] - (jourMoisAnnee[2] > anneeLimite ? 100 : 0);
     }
 
     return new Date(jourMoisAnnee[2], jourMoisAnnee[1] - 1, jourMoisAnnee[0]);
