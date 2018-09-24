@@ -632,7 +632,7 @@ export class IconOeil extends React.Component<IconProps, IconState> {
         super(p, c);
     }
     render() {
-        return <MaterialinearIcon {...this.props} IconName="Leye" />;
+        return <MaterialinearIcon {...this.props} IconName="visibility" />;
     }
 }
 export class IconRenouveler extends React.Component<IconProps, IconState> {
