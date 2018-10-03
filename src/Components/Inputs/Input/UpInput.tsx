@@ -13,8 +13,6 @@ export default class UpInput extends BaseControlComponent<UpInputProps, any> {
         showError: true,
         theme:defaultTheme,
         width: "fill"
-
-
     };
 
     constructor(p, c) {

@@ -1,5 +1,8 @@
-import { configure, setAddon } from '@storybook/react'
+import { configure, setAddon, addDecorator } from '@storybook/react'
 import infoAddon, {setDefaults} from '@storybook/addon-info'
+
+import { withKnobs } from '@storybook/addon-knobs/react';
+addDecorator(withKnobs)
 
 // addon-info
 setDefaults({

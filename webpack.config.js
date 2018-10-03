@@ -1,7 +1,7 @@
 const path = require('path');
 const ROOT_PATH = path.resolve(__dirname);
 var webpack = require('webpack');
-
+const TSDocGenPlugin = require('react-docgen-typescript-webpack-plugin');
 module.exports = {
     devtool: 'cheap-module-source-map',
     entry: {
@@ -71,6 +71,7 @@ module.exports = {
             jQuery: 'jquery',
             $: 'jquery',
             jquery: 'jquery'
-        })
+        }),
+        new TSDocGenPlugin(),
     ]
 };
