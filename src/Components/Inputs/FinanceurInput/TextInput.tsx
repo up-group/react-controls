@@ -237,6 +237,8 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
     }
 
     componentWillReceiveProps(nextProps) {
+        var partialState: any = {};
+
         if (nextProps.Value !== this.props.Value && nextProps.Value !== this.state.Value) {
             switch (nextProps.type) {
                 case InputTypeEnum.ComboBox:
@@ -250,15 +252,19 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
                     } else if (isNullOrUndef(this.props.NumberMin) === false && this.props.NumberMin > Number(valeur)) {
                         valeur = this.props.NumberMin.toString();
                     }
-                    this.setState({ Value: valeur, Success: null, SpecificMessage: null, });
+                    partialState = { Value: valeur, Success: null, SpecificMessage: null, };
                     break;
                 default:
-                    this.setState({ Value: nextProps.Value, Success: null, SpecificMessage: null, });
+                    partialState = { Value: nextProps.Value, Success: null, SpecificMessage: null, };
                     break;
             }
         }
         if (nextProps.InitialState !== this.props.InitialState && nextProps.InitialState !== this.state.Success) {
-            this.setState({ Success: isNullOrUndef(nextProps.InitialState) ? null : nextProps.InitialState, });
+            partialState = { Success: isNullOrUndef(nextProps.InitialState) ? null : nextProps.InitialState, };
+        }
+
+        if (partialState.hasOwnProperty("Success")) {
+            this.setState(partialState);
         }
     }
 

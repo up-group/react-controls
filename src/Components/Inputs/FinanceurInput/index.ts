@@ -6,6 +6,7 @@ import Radio, { RadioProps, RadioState } from "./Radio";
 import CheckboxGroup, { CheckboxGroupProps, CheckboxGroupState } from "./CheckboxGroup";
 import Checkbox, { CheckboxProps, CheckboxState } from "./Checkbox";
 import Tableau, { TableauProps, TableauState, EnTete, Ordre } from "./Tableau";
+import DateInput, { DateInputProps, DateInputState } from "./DateInput";
 
 
 export interface ValidationReturn { 
@@ -70,4 +71,5 @@ export {
     CheckboxGroup, CheckboxGroupProps, CheckboxGroupState,
     Checkbox, CheckboxProps, CheckboxState,
     Tableau, TableauProps, TableauState, EnTete, Ordre,
+    DateInput, DateInputProps, DateInputState,
 }

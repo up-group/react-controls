@@ -1,4 +1,5 @@
-import { style } from "typestyle"
+import { style } from "typestyle";
+import * as moment from "moment";
 
 
 export function callIfExists(func, ...args) {
@@ -179,4 +180,123 @@ export function addZeroBeforeNumber(nombre: number, tailleMin: number): string {
         result = "0" + result;
     }
     return result;
+}
+
+export function formatDate(date: Date): string {
+    moment.locale("fr");
+    return isNullOrUndef(date) ? null : moment(date).format('DD/MM/YYYY');
+}
+
+export function isBissextile(annee: number): boolean {
+    if (annee % 400 === 0) {
+        return true;
+    }
+    if (annee % 100 === 0) {
+        return false;
+    }
+    if (annee % 4 === 0) {
+        return true;
+    }
+    return false;
+}
+
+export function jourDuMois(mois: number, annee: number, moisBase0: boolean = false): number {
+    var fevrier: number = isBissextile(annee) ? 29 : 28;
+    switch(mois) {
+        case 0: return moisBase0 ? 31 : -1;
+        case 1: return moisBase0 ? fevrier : 31;
+        case 2: return moisBase0 ? 31 : fevrier;
+        case 3: return moisBase0 ? 30 : 31;
+        case 4: return moisBase0 ? 31 : 30;
+        case 5: return moisBase0 ? 30 : 31;
+        case 6: return moisBase0 ? 31 : 30;
+        case 7: return 31;
+        case 8: return moisBase0 ? 30 : 31;
+        case 9: return moisBase0 ? 31 : 30;
+        case 10: return moisBase0 ? 30 : 31;
+        case 11: return moisBase0 ? 31 : 30;
+        case 12: return moisBase0 ? -1 : 31;
+    }
+}
+
+export function incrementJour(date: Date, increment: number): Date {
+    var annee: number = date.getFullYear();
+    var mois: number = date.getMonth();
+    var jour: number = date.getDate() + increment;
+    var jdm: number = jourDuMois(mois, annee, true);
+
+    while (jour < 1) {
+        if (mois < 1) {
+            mois = 11;
+            annee--;
+        } else {
+            mois--;
+        }
+        jdm = jourDuMois(mois, annee, true);
+        jour += jdm;
+    }
+
+    while (jour > jdm) {
+        if (mois > 10) {
+            mois = 0;
+            annee++;
+        } else {
+            mois++;
+        }
+        jour -= jdm;
+        jdm = jourDuMois(mois, annee, true);
+    }
+
+    return new Date(annee, mois, jour);
+}
+    
+export function ConvertToDate(date: string): Date {
+    if (stringIsNullOrEmpty(date)) {
+        return null;
+    }
+    
+    date = date.trim();
+    var jourMoisAnnee: number[] = [];
+    var nbPas: number = 0;
+
+    for (var idx: number = 0; idx < date.length; idx++) {
+        var car: string = date[idx];
+
+        if (["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].indexOf(car) >= 0) {
+            var nb: number = Number(car);
+            if (nbPas === 0) {
+                jourMoisAnnee.push(nb);
+            } else {
+                jourMoisAnnee[jourMoisAnnee.length - 1] = jourMoisAnnee[jourMoisAnnee.length - 1] * 10 + nb;
+            }
+        
+            if (jourMoisAnnee.length < 3 && nbPas === 1) {
+                nbPas = 0;
+            } else {
+                nbPas++;
+            }
+        } else {
+            if (["/", "-", ".", " "].indexOf(car) >= 0) {
+                nbPas = 0;
+            } else {
+                return null;
+            }
+        }
+    }
+
+    if (jourMoisAnnee.length !== 3 
+            // || jourMoisAnnee[2] < 1000
+            || (jourMoisAnnee[2] > 99 && jourMoisAnnee[2] < 1850)
+            || jourMoisAnnee[1] < 1 || jourMoisAnnee[1] > 12 
+            || jourMoisAnnee[0] < 1 || jourMoisAnnee[0] > jourDuMois(jourMoisAnnee[1], jourMoisAnnee[2])) {
+        return null;
+    }
+
+    if (jourMoisAnnee[2] <= 99) {
+        var anneeEnCours: number = new Date().getFullYear();
+        var anneeLimite: number = anneeEnCours % 100;
+        jourMoisAnnee[2] = anneeEnCours - anneeLimite + jourMoisAnnee[2] - (jourMoisAnnee[2] > anneeLimite ? 100 : 0);
+    }
+
+    return new Date(jourMoisAnnee[2], jourMoisAnnee[1] - 1, jourMoisAnnee[0]);
 }
