@@ -156,6 +156,7 @@ const large = props => css`
   line-height: 1.3;
   border-radius: ${(props) => props.theme.borderRadius || DEFAULT_BORDER_RADIUS};
   svg {
+    margin:0px;
     width:32px;
     height:32px;
   }
@@ -168,6 +169,7 @@ const normal = props => css`
   width : ${(props: UpButtonStyledProps) => (props.dropDown != 'none') ? "auto" : buttonSizeMap[props.width] || 'inherit'};
   border-radius: ${(props: UpButtonStyledProps) => props.theme.borderRadius || DEFAULT_BORDER_RADIUS}; 
   svg {
+    margin:0px;
     width:20px;
     height:20px;
   }
@@ -179,6 +181,7 @@ const small = props => css`
     line-height: 1.5;
     border-radius: 3px;
     svg {
+      margin:0px;
       width:16px;
       height:16px;
     }
@@ -190,6 +193,7 @@ const xsmall = props => css`
   line-height: 1.5;
   border-radius: 3px;
   svg {
+    margin:0px;
     width:12px;
     height:12px;
   }
@@ -205,7 +209,7 @@ const icon = props => css`
   font-size: 12px;
   line-height: 1.5;
   svg {
-    margin:3px;
+    margin:3px !important;
     width:15px;
     height:15px;
     border:0px;
@@ -222,6 +226,7 @@ const iconXSmall = props => css`
   line-height: 1;
 
   svg {
+    margin:3px;
     width:12px;
     height:12px;
   }
@@ -235,8 +240,9 @@ const iconSmall = props => css`
   font-size: 12px;
   line-height: 1.5;
   svg {
-      width:16px;
-      height:16px;
+    margin:3px;
+    width:16px;
+    height:16px;
   }
 `;
 
@@ -248,6 +254,7 @@ const iconNormal = props => css`
   font-size: 12px;
   line-height: 1.5;
   svg {
+    margin:3px;
     width:20px;
     height:20px;
   }
@@ -261,6 +268,7 @@ const iconLarge = props => css`
   font-size: 14px;
   line-height: 1.5;
   svg {
+    margin:3px;
     width:32px;
     height:32px;
   }
@@ -306,7 +314,7 @@ const rounded = props => css`
     width:32px;
   }
   svg {
-    margin:7px;
+    margin:7px !important;
     width: 16px;
     height: 16px;
   }

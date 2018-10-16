@@ -22,7 +22,7 @@ export interface UpBoxProps {
     backgroundImage?: string;
     full?: Full;
     selectable?: boolean;
-    style?: {};
+    style?: React.CSSProperties;
     className?: string;
   };
   
@@ -41,7 +41,11 @@ import {
   });
 
   export default class UpBox extends React.Component<UpBoxProps> {
-      
+    
+    static defaultProps : Partial<UpBoxProps> = {
+        style : {}
+    }
+    
     getBoxStyles = () => {
 
         var BoxStyles = style({
@@ -78,7 +82,7 @@ import {
         var {children, style, ...others} = this.props ;
         
         return (
-            <div style={style || ""} className={cn(this.getBoxStyles(), this.getSize())}>
+            <div style={style} className={cn(this.getBoxStyles(), this.getSize())}>
               {children || null}
             </div>
           );

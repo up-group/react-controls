@@ -34,7 +34,7 @@ export default function SvgIcon({
   color,
   position,
   dataFor,
-  ...others,
+  ...others
 }: Props): JSX.Element {
 
   const height = others.height || 20 ;
