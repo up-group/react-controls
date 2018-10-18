@@ -4,18 +4,32 @@ import { storiesOf } from '@storybook/react'
 import UpDefaultTheme from '../../../Common/theming'
 import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themedComponents'
 
+import { storybookMainBodyStyles } from '../../../../stories/styles.ts' ;
+
 import UpNotification from './'
 
 var onSelectionChange = (data) => {
     console.log(data) ;
 }
 
-storiesOf('UpNotification', module)
-  .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+const stories = storiesOf('UpNotification', module) ;
+
+const RootContainer = (storyFn) => (
+  <UpThemeProvider theme={UpDefaultTheme}>
+    <div style={storybookMainBodyStyles}>
+      <UpNotification>
+        Présentation du composant <code>UpNotification</code>
+      </UpNotification>
+      { storyFn() }
+    </div>
+  </UpThemeProvider>
+);
+
+stories.addDecorator(RootContainer);
+
+stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
    () => (
-    <UpThemeProvider theme={UpDefaultTheme}>
-      <UpNotification status="info" message="Chargement en cours"></UpNotification>
-    </UpThemeProvider>
+    <UpNotification status="info" message="Chargement en cours"></UpNotification>
   )).addWithInfo('Activation Close', 'Utilisation du composant en autorisant la fermeture de la notification',
   () => (
    <UpThemeProvider theme={UpDefaultTheme}>

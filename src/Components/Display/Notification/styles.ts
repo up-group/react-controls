@@ -1,7 +1,5 @@
 // Imports
 import styled, {css} from '../../../Common/theming/themedComponents';
-import * as Color from 'color'
-import {UpGrid, UpGridProps} from '../../Containers/Grid'
 import {UpNotificationStyledProps} from './'
 import {ThemeInterface} from '../../../Common/theming/types'
 

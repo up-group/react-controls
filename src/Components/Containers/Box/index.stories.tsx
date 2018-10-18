@@ -1,17 +1,37 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions';
 
 import UpBox from './'
+import UpNotification from '../../Display/Notification/UpNotification';
+import { UpThemeProvider, UpDefaultTheme } from '../../..';
 
-storiesOf('UpBox', module)
-  .addWithInfo('UpBox : center', 'Alignement des éléments au centre',
+import { storybookMainBodyStyles } from '../../../../stories/styles' ;
+
+const stories = storiesOf('UpBox', module) ;
+
+const RootContainer = (storyFn) => (
+  <UpThemeProvider theme={UpDefaultTheme}>
+    <div style={storybookMainBodyStyles}>
+      <UpNotification>
+        Présentation du composant <code>UpBox</code>
+      </UpNotification>
+      { storyFn() }
+    </div>
+  </UpThemeProvider>
+);
+
+stories.addDecorator(RootContainer);
+
+stories.addWithInfo('UpBox : center', 'Alignement des éléments au centre',
    () => (
     <div style={{margin:"30px"}}>
      <UpBox alignItems={'center'} backgroundColor={'#369'} 
             color={'white'}
             pad={'small'} 
             margin={{horizontal:'small', vertical:'small'}}>
+        <p>Alignement des élément au centre</p>
+        <p>Alignement des élément au centre</p>
+        <p>Alignement des élément au centre</p>
         <p>Alignement des élément au centre</p>
      </UpBox>
     </div>

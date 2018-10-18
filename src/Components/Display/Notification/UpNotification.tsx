@@ -14,10 +14,11 @@ import defaultTheme from '../../../Common/theming'
 
 export default class UpNotification extends React.Component<UpNotificationProps, {}> {
   
-  public static defaultProps : UpNotificationProps = {
+   static defaultProps : UpNotificationProps = {
     message:"",
     theme:defaultTheme,
-    displayMode:"inline"
+    displayMode:"inline",
+    status:'info',
   }
 
   constructor(props) {
@@ -33,14 +34,15 @@ export default class UpNotification extends React.Component<UpNotificationProps,
             width={theme && theme.notificationIconSize > 0 ?  theme.notificationIconSize : defaultIconSize}
             height={theme && theme.notificationIconSize > 0  ? theme.notificationIconSize : defaultIconSize}
             color={theme ? theme.colorMap[`${status}Dark`] : "black"} /> ;
+    
     var NotificationRender ;
     if(this.props.displayMode=="inline") {
-        NotificationRender =  () => (<NotificationStyled status={status} {...others}>
+        NotificationRender =  () => (<NotificationStyled status={status}  theme={theme} {...others}>
             <UpGrid>
                 {title && 
                     <UpRow>
                     <UpCol span={24}>
-                        <UpHeading tag={'h2'} textAlign={'left'}>{title}</UpHeading>
+                      <UpHeading tag={'h2'} textAlign={'left'}>{title}</UpHeading>
                     </UpCol>
                     </UpRow>
                 }
@@ -61,7 +63,7 @@ export default class UpNotification extends React.Component<UpNotificationProps,
         </NotificationStyled>);
     } else if(this.props.displayMode=="modal") {
         NotificationRender = () => (<UpModal header={title} showModal={true}>
-            <UpPanel disableAutoIntentIcon={false} type={status}>
+            <UpPanel theme={theme} disableAutoIntentIcon={false} type={status}>
                 {message}
             </UpPanel>
         </UpModal>);

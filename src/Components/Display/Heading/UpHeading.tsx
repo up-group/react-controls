@@ -3,7 +3,7 @@ import * as React from 'react';
 import { H1, H2, H3, H4, H5 } from './styles';
 import { UpHeadingProps } from './'
 
-export default class UpHeading extends React.Component<UpHeadingProps, undefined> {
+export default class UpHeading extends React.Component<UpHeadingProps> {
   public static defaultProps: UpHeadingProps = {
     color: '#007acc',
     textAlign: 'center',
