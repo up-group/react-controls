@@ -1,5 +1,6 @@
 ﻿import * as React from 'react'
 import BaseNewInput, { TextInputProps, ValidationReturn } from "../_Common/BaseControl/BaseNewInput"
+import UpInput from '../Input';
 
 
 export interface UpPhoneProps {
