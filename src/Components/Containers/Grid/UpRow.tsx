@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as classNames from 'classnames';
 import * as assign from 'object-assign';
 
-import { Alignment, Justification, LayoutMode, UpRowProps} from './'
+import {UpRowProps} from './types'
 
 export default class UpRow extends React.Component<UpRowProps, any> {
   static defaultProps = {

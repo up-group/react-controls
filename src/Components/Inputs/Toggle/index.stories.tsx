@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
-import { style } from 'typestyle'
 
+import UpDefaultTheme from '../../../Common/theming'
+import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
 
 import UpToggle from './'
 import { Size } from './UpToggle'
@@ -37,7 +38,7 @@ class ToggleWrapper extends React.Component<ToggleWrapperProps, ToggleWrapperSta
     }
 }
 
-storiesOf('UpToggle', module)
+storiesOf('Inputs/UpToggle', module)
     .addWithInfo('Simple usage', 'Utilisation avec plusieurs options',
         () => (
             <UpBox style={{ margin: "40px 30px" }}>

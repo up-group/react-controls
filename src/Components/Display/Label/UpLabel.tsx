@@ -1,8 +1,6 @@
 import * as React from 'react';
-import {UpLabelProps} from './'
-// import "@blueprintjs/core/dist/blueprint.css"
-
-//import { LabelStyled } from './styles';
+import { UpLabelProps } from './types';
+import { getStyles } from './styles';
 
 export default class UpLabel extends React.Component<UpLabelProps, {}> {
   
@@ -17,12 +15,6 @@ export default class UpLabel extends React.Component<UpLabelProps, {}> {
     super(props) ;
   }
   
-  componentWillUnmount() {
-  }
-
-  componentDidMount() {
-  }
-
   // Fix double focus with the blueprint datepicker.
   onFocus = (e) => {
     e.preventDefault() ;
@@ -37,13 +29,13 @@ export default class UpLabel extends React.Component<UpLabelProps, {}> {
   render() {
       const {children, text, required, ...others} = this.props ; 
       return (
-        <label onFocus={this.onFocus} onClick={this.onClick} {...others}>
+        <label className={getStyles(this.props)} onFocus={this.onFocus} onClick={this.onClick} {...others}>
           <span className="up-label-text">{text}</span>
           {required && 
             <span className="up-label-required"></span>
           }
           {children}
-          </label>
+        </label>
       ) ;
   }
 }

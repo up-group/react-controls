@@ -8,12 +8,29 @@ import UpHeading from '../../Display/Heading'
 
 import iconMap from '../../../Common/theming/iconMap'
 import SvgIcon from '../SvgIcon'
-import {UpNotificationProps} from './'
-//import NotificationStyled from './styles'
+import defaultTheme from '../../../Common/theming'
 
-export default class UpNotification extends React.Component<UpNotificationProps, {}> {
+import { IntentType } from '../../../Common/theming/types';
+import { getStyles } from './styles';
+import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
+
+export type NotificationDisplayMode = 'inline' | 'modal' ;
+
+// Exports
+export interface CommonProps  {
+  status?: IntentType;
+  dismissable?:boolean;
+  title?:string;
+  displayMode? : NotificationDisplayMode;
+}
+
+export interface UpNotificationProps extends CommonProps  {
+  message?: JSX.Element | string;
+}
+
+class UpNotification extends React.Component<UpNotificationProps & WithThemeProps> {
   
-  public static defaultProps : UpNotificationProps = {
+   static defaultProps : UpNotificationProps & WithThemeProps = {
     message:"",
     //theme:defaultTheme,
     displayMode:"inline"
@@ -24,8 +41,7 @@ export default class UpNotification extends React.Component<UpNotificationProps,
   }
   
   render() {
-    const {children, message,  title, ...others} = this.props ;
-
+    const {children, message, status, theme, title} = this.props ;
     const defaultIconSize = 60 ;
 
     const icon = <SvgIcon iconName={iconMap[status]}
@@ -33,9 +49,10 @@ export default class UpNotification extends React.Component<UpNotificationProps,
             height={/*theme && theme.notificationIconSize > 0  ? theme.notificationIconSize : */defaultIconSize}
             color={/*theme ? theme.colorMap[`${status}Dark`] :*/ "black"} /> ;
     var NotificationRender ;
+    
     if(this.props.displayMode=="inline") {
-        NotificationRender =  () => (<div /*status={status} {...others}*/>
-            <UpGrid>
+        NotificationRender =  () => (<div className={getStyles(this.props)}>
+            <UpGrid className={'up-notification'}>
                 {title && 
                     <UpRow>
                     <UpCol span={24}>
@@ -65,8 +82,11 @@ export default class UpNotification extends React.Component<UpNotificationProps,
             </UpPanel>
         </UpModal>);
     }
+
     return (
         <NotificationRender />
     );
   }
 };
+
+export default withTheme<UpNotificationProps>(UpNotification)

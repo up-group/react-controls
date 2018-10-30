@@ -2,11 +2,13 @@ import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions';
 
+import UpDefaultTheme from '../../../Common/theming'
+import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
 
 import UpSelect from './'
 
-
-
+import { getRootContainer } from '../../../Common/stories';
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
 export interface testProps {
 
@@ -125,9 +127,12 @@ export class Test extends React.Component<testProps, testState>{
     }
 }
 
+const stories = storiesOf('Inputs/UpSelect', module) ;
 
-storiesOf('UpSelect', module)
-    .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+stories.addDecorator(withKnobs)
+stories.addDecorator(getRootContainer('UpSelect'));
+
+stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
     () => (
             <UpSelect width="normal" tooltip="Civilité" default={null} data={[
                 { id: 1, text: 'M.' },

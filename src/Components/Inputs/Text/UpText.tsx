@@ -1,42 +1,54 @@
 // Imports
 import * as React from "react"
 import { BaseControlComponent } from "../_Common/BaseControl/BaseControl"
-//import { TexAreatStyled } from "./styles";
-import { UpTextProps } from './'
-import CKEditor from "./CKEditor"
+import defaultTheme from '../../../Common/theming'
+
+import Textarea from 'react-textarea-autosize'
+import { UpTextProps } from "./types";
+import { getStyles } from "./styles";
+
+import * as classnames from 'classnames'
+
+class BaseTextArea extends React.Component<UpTextProps> {
+
+    textArea: any;
+    constructor(p, c) {
+        super(p, c);
+    }
+
+    setInput = (input) => {
+        // The ref function is called twice, 
+        // the first one with the component instance (as React) 
+        // and the second one with the DOM node instance
+        if (this.textArea == undefined) {
+            this.textArea = input;
+        }
+    }
+
+    componentDidMount() {
+        if (this.props.dataFor && this.textArea) {
+            this.textArea._rootDOMNode.setAttribute('data-tip', 'tooltip');
+            this.textArea._rootDOMNode.setAttribute('data-for', this.props.dataFor);
+        }
+    }
+
+    render() {
+        const {className, value, onChange} = this.props;
+
+        return <Textarea value={value}
+            ref={this.setInput}
+            className={className}
+            onChange={onChange}></Textarea>;
+    }
+}
 
 // Exports
 export default class UpText extends BaseControlComponent<UpTextProps, string> {
+    
     public static defaultProps:UpTextProps = {
         width: 'xlarge',
         showError: true,
-        enableRTE:false,
-        configRTE: {
-            language: 'fr',
-            enterMode: 2,
-            shiftEnterMode: 1,
-            height: 60,
-            skin: 'office2013',
-            resize_enabled: false,
-            toolbarCanCollapse: true,
-            toolbarStartupExpanded: false,
-            autoGrow_onStartup: true,
-            autoGrow_minHeight: 60,
-            autoGrow_maxHeight: 600,
-            autoGrow_bottomSpace: 10,
-            startupFocus: false,
-            removePlugins: 'elementspath',
-            toolbar:
-                    [
-                        ['Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo'],
-                        ['TextColor', 'BGColor'],
-                        ['HorizontalRule', 'SpecialChar'],
-                        ['Bold', '-', 'Italic', '-', 'Underline', '-', 'Strike', '-', 'Subscript', '-', 'Superscript', '-', 'RemoveFormat'],
-                        ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-                        ['NumberedList', 'BulletedList', '-', 'Table']
-                    ]
-        },
-        //theme:defaultTheme
+        theme:defaultTheme
     }
     
     constructor(p, c) {
@@ -48,14 +60,10 @@ export default class UpText extends BaseControlComponent<UpTextProps, string> {
     }
     
     renderControl(): JSX.Element {
-        const {value, onChange, readonly, tooltip, enableRTE, configRTE, ...others} = this.props ;
-        if(enableRTE===true) {
-            return (
-                <CKEditor config={configRTE} activeClass="p10" content={this.state.value} onChange={this.handleChangeEvent} />
-            );         
-        } else {
-            return (<textarea value={this.state.value} /*hasError={this.hasError()}*/ onChange={this.handleChangeEvent} {...others} />)           
-        }
+        const {value, onChange, className, readonly, tooltip, ...others} = this.props ;
+        return <BaseTextArea className={classnames(getStyles(this.props), className)} 
+                value={this.state.value} 
+                onChange={this.handleChangeEvent} {...others} />
     }
 
     getValue(event: any) {

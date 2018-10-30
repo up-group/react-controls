@@ -1,8 +1,13 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 
+import UpDefaultTheme from '../../../Common/theming'
+import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
 
 import UpLoadingIndicator from './'
+
+import { getRootContainer } from '../../../Common/stories';
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
 const styles : React.CSSProperties = {
   main: {
@@ -38,8 +43,12 @@ const styles : React.CSSProperties = {
   },
 };
 
-storiesOf('UpLoadingIndicator', module)
-  .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+const stories = storiesOf('Display/UpLoadingIndicator', module) ;
+
+stories.addDecorator(withKnobs)
+stories.addDecorator(getRootContainer('UpLoadingIndicator'));
+
+stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
    () => (
       <UpLoadingIndicator isLoading={true} message="Chargement en cours"></UpLoadingIndicator>
   )).addWithInfo('Modal', 'Utilisation du composant modal',

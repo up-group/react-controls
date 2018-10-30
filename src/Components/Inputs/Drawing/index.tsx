@@ -1,6 +1,5 @@
 // Imports
 import UpDrawing from './UpDrawing'
-import { StyledComponentProps } from "../../../Common/utils/types"
 
 import Shape from './Shape'
 

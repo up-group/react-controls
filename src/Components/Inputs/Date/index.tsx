@@ -2,9 +2,10 @@
 import UpDate from './UpDate'
 import { StyledComponentProps } from '../../../Common/utils/types'
 import { BaseControlProps } from '../_Common/BaseControl/BaseControl'
+import { WithThemeProps } from '../../../Common/theming/withTheme';
 
 // Exports
-export interface CommonProps {
+export interface CommonProps extends WithThemeProps {
   hasError?: boolean;
   format?:string;
   minDate?:Date;

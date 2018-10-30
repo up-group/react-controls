@@ -1,9 +1,35 @@
 // Imports
 import * as React from 'react'
-import UpLabel from '../../Display/Label/'
-//import { StyledRadioButton, RadioGroup } from './styles'
-import { UpRadioProps, Position } from './'
+import * as classnames from 'classnames'
+
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
+import { UpRadioStyledProps, UpRadioProps } from './types';
+import { RadioGroupStyles, getStyles } from './styles';
+import { style } from 'typestyle';
+
+type RadioGroupProps = {
+    className?:string;
+}
+
+const RadioGroup: React.StatelessComponent<RadioGroupProps> = (props) => {
+    const { children, className } = props;
+    return (
+      <div onClick={this.stopPropagation} className={classnames(className, style(RadioGroupStyles))}>
+        {children}
+      </div>
+    )
+  }
+
+const BaseRadioButton: React.StatelessComponent<UpRadioStyledProps> = (props) => {
+    const { checked, className, name, text, value, onChange } = props;
+    return (
+      <label className={classnames("up-control", "up-radio", getStyles(props), className)}>
+        <input checked={checked} onChange={onChange} name={name} type="radio" value={value} />
+        <span className="up-control-indicator"></span>
+        <span className="up-control-text">{text}</span>
+      </label>
+    )
+}
 
 // Exports
 export default class UpRadio extends BaseControlComponent<UpRadioProps, any> {
@@ -17,10 +43,6 @@ export default class UpRadio extends BaseControlComponent<UpRadioProps, any> {
 
     constructor(props) {
         super(props);
-        //this.state = {
-        //    value: (props.value !== undefined) ? props.value
-        //        : null
-        //};
     }
 
     stopPropagation = (event) => {
@@ -52,23 +74,24 @@ export default class UpRadio extends BaseControlComponent<UpRadioProps, any> {
         var radioGroupClass = "upContainer__groupradio-" + this.props.displayMode;
 
         return (
-            <div onClick={this.stopPropagation} className={radioGroupClass} >
+            <RadioGroup className={radioGroupClass}>
                 {/* Avoid set active element when using the component inside a label */}
                 <label style={{ display: "none" }}><input type="radio" /></label>
                 {options.map((option, i) => {
                     return (
-                        <input type="radio"/>
-                        //<StyledRadioButton onChange={this.handleChangeEvent} key={`Key_${this.props.name}_${option.value}`}
-                        //    name={this.props.name}
-                        //    checked={this.state.value != null && this.state.value === option.value}
-                        //    text={option.text}
-                        //    value={option.value}>
-                        //</StyledRadioButton>
+                        <BaseRadioButton 
+                            onChange={this.handleChangeEvent} 
+                            key={`Key_${this.props.name}_${option.value}`}
+                            name={this.props.name}
+                            checked={this.state.value != null && this.state.value === option.value}
+                            text={option.text}
+                            value={option.value}>
+                        </BaseRadioButton>
                     )
                 }
 
                 )}
-            </div>
+            </RadioGroup>
         );
     }
 }

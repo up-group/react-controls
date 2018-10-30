@@ -1,5 +1,7 @@
 import * as React from 'react';
 import {style} from 'typestyle';
+import {IntentType} from '../../../Common/theming/types'
+import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 
 export type WidthSize = 'auto' | 'small' | 'medium' | 'large' | 'xlarge' ;
 export type Align = 'left' | 'right'  ;
@@ -11,7 +13,7 @@ export interface UpBadgeProps {
   rounded?:boolean;
 };
  
-class UpBadge extends React.Component<UpBadgeProps, {}> {
+class UpBadge extends React.Component<UpBadgeProps & WithThemeProps> {
   
   public static defaultProps: UpBadgeProps = {
     text:'',
@@ -53,4 +55,4 @@ class UpBadge extends React.Component<UpBadgeProps, {}> {
   }
 }
 
-export default UpBadge
+export default withTheme<UpBadgeProps>(UpBadge)

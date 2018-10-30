@@ -1,8 +1,6 @@
 ﻿
 import "./UpMenu.scss"
 import * as React from "react"
-import SvgIcon from "../SvgIcon/index"
-import { IconName } from "../SvgIcon/icons"
 
 export interface UpMenuProps {
     menuItems: MenuItemData[];

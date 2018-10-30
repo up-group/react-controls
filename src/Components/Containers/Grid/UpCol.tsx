@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as classNames from 'classnames';
 import * as assign from 'object-assign';
 
-import {UpColProps, ColSize} from './'
+import {UpColProps, ColSize} from './types'
 
 export default class UpCol extends React.Component<UpColProps, any> {
   

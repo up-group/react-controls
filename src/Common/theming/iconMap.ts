@@ -1,4 +1,4 @@
-import { IconName } from '../../Components/Display/SvgIcon/icons'
+import { IconName } from "./icons";
 
 export interface IconMap {
   success:IconName,

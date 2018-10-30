@@ -2,15 +2,28 @@ import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions';
 
+import UpDefaultTheme from '../../../Common/theming'
+import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
 
 import {UpGrid, UpRow, UpCol} from './'
 import UpPanel from '../../Containers/Panel'
 
-storiesOf('UpGrid', module)
-  .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
-   () => (
+import { getRootContainer } from '../../../Common/stories';
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+
+const stories = storiesOf('Containers/UpGrid', module) ;
+
+stories.addDecorator(withKnobs)
+stories.addDecorator(getRootContainer('UpGrid'));
+
+    
+stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+   () => {
+    const gutter = number('gutter', 0);
+
+    return <UpThemeProvider theme={UpDefaultTheme}>
       <div style={{"margin": "30px"}}>
-      <UpGrid>
+      <UpGrid gutter={gutter}>
         <UpRow>
           <UpCol span={10}>
             <UpPanel /*type={"primary"}*/ title={"Mon Panel"} />
@@ -35,4 +48,6 @@ storiesOf('UpGrid', module)
         </UpRow>
       </UpGrid>
       </div>
-  ));
+    </UpThemeProvider>
+   }
+);

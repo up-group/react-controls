@@ -1,15 +1,12 @@
 // Imports
-import * as React from 'react'
-import { BaseControlComponent } from './BaseControl'
 import { BaseControlProps } from './BaseControl'
-//import { InputStyled} from '../Styled/Input/BaseInput'
-import { IconName } from '../../../../Components/Display/SvgIcon/icons'
+import { IconName } from '../../../../Common/theming/icons';
 
 // Exports
 export type WidthSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'fill';
 export type HeightSize = 'normal' | 'large';
 
-export interface CommonInputTextProps extends BaseControlProps<string> {
+export interface CommonInputTextProps<VT> extends BaseControlProps<VT> {
     placeholder?: string;
     height?: HeightSize;
     width?: WidthSize;
@@ -17,6 +14,6 @@ export interface CommonInputTextProps extends BaseControlProps<string> {
     maxLength?:number;
 }
 
-export interface CommonInputTextWithIconProps extends CommonInputTextProps {
+export interface CommonInputTextWithIconProps<VT> extends CommonInputTextProps<VT> {
     iconName?:IconName;
 }

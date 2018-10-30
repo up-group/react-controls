@@ -2,14 +2,22 @@ import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions';
 
+import UpDefaultTheme from '../../../Common/theming'
+import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
 
 import UpBadge from './'
 
 import UpBox from '../../Containers/Box'
 
+import { getRootContainer } from '../../../Common/stories';
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
-storiesOf('UpBadge', module)
-  .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+const stories = storiesOf('Containers/UpBadge', module) ;
+
+stories.addDecorator(withKnobs)
+stories.addDecorator(getRootContainer('UpBadge'));
+
+stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
    () => (
       <UpBox style={{margin:'30px'}}>
         <UpBadge text="1" rounded={true} /*intent="primary"*/ />

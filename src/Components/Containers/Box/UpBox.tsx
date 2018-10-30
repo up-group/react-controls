@@ -7,32 +7,47 @@ import {style} from 'typestyle'
 // Import classnames 
 import * as cn from 'classnames' ;
 
-export interface UpBoxProps {
-    alignItems?: 'flex-start' | 'center' | 'flex-end' | 'baseline' | 'stretch';
-    flexDirection?: 'row' | 'column';
-    justifyContent?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around';
-    flexWrap?: boolean;
-    reverse?: boolean;
-    boxSize?: BoxSize | BoxSizeObject;
-    pad?: Size | SizeObject;
-    children?: any;
-    margin?: Size | SizeObject;
-    color?: string;
-    backgroundColor?: string;
-    backgroundImage?: string;
-    full?: Full;
-    selectable?: boolean;
-    style?: {};
-    className?: string;
-  };
-  
 import {
     calculateFlexWrap,
     calculateFullStyle,
     sizeToString,
     boxSizeToStyle,
   } from './styleUtils';
-  
+
+  import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
+
+export interface UpBoxProps {
+    /** Alignment of the items inside the box on the main axe (<code>row</code> or <code>column</code>) */
+    alignItems?: 'flex-start' | 'center' | 'flex-end' | 'baseline' | 'stretch';
+    /** Direction of the items flow */
+    flexDirection?: 'row' | 'column';
+     /** Alignment of the items flow inside the box on the second axe */
+    justifyContent?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around';
+    /** Alignment of the items flow inside the box on the second axe */
+    flexWrap?: boolean;
+    /** Apply the reverse alignment order  */
+    reverse?: boolean;
+    /** Define a specific size both horizontally and vertically  */
+    boxSize?: BoxSize | BoxSizeObject;
+    /** Define a specific padding for the box  */
+    pad?: Size | SizeObject;
+    /** Define a specific margin for the box  */
+    margin?: Size | SizeObject;
+    /** Define the font color inside the box  */
+    color?: string;
+    backgroundColor?: string;
+    /** Specify a background image */
+    backgroundImage?: string;
+    /** Make the box using the full width and heigth of the parent container */
+    full?: Full;
+    /** Does the box selectable */
+    selectable?: boolean;
+    /** Specify a specific style for the box */
+    style?: React.CSSProperties;
+    /** Specify a specific className for the box */
+    className?: string;
+  };
+
   const FullSize = style({
     flexGrow:1,
     flexShrink:0,
@@ -40,10 +55,13 @@ import {
     width:"100%"
   });
 
-  export default class UpBox extends React.Component<UpBoxProps> {
-      
+  class UpBox extends React.Component<UpBoxProps & WithThemeProps> {
+    
+    static defaultProps : Partial<UpBoxProps & WithThemeProps> = {
+        style : {}
+    }
+    
     getBoxStyles = () => {
-
         var BoxStyles = style({
             display: 'flex',
             backgroundColor: this.props.backgroundColor || 'transparent',
@@ -78,9 +96,11 @@ import {
         var {children, style, ...others} = this.props ;
         
         return (
-            <div style={style || ""} className={cn(this.getBoxStyles(), this.getSize())}>
+            <div style={style || {}} className={cn(this.getBoxStyles(), this.getSize())}>
               {children || null}
             </div>
           );
     }
 }
+
+export default withTheme<UpBoxProps>(UpBox);

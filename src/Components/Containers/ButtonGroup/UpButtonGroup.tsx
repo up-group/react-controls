@@ -1,16 +1,130 @@
 import * as React from 'react'
-//import  UpTooltip, {Tooltip} from '../../Display/Tooltip'
-//import { ButtonGroupStyled } from './styles'
+import { NestedCSSProperties } from 'typestyle/lib/types';
+import { style } from 'typestyle';
+import * as classnames from 'classnames';
+import { WithThemeProps } from '../../../Common/theming/withTheme';
 
 export type Alignement = 'h' | 'v'
 export type AddOnMode = 'none' | 'left' | 'right'
 
-export interface UpButtonGroupProps  {
+export interface UpButtonGroupProps extends WithThemeProps {
   gutter?:number;
   align?:Alignement;
   isAddOn?:AddOnMode;
 }
-export interface UpButtonGroupStyledProps extends UpButtonGroupProps {
+
+const noGutterStyle = (props:UpButtonGroupProps) : NestedCSSProperties => {
+  if(props.gutter !== 0) {
+    return {} ;
+  }
+  switch(props.isAddOn) {
+    case "none": {
+        return {
+          $nest : {
+            '.up-btn-wrapper:first-child:not(:last-child):not(.up-dropdown-toggle) .up-btn' : {
+              borderTopRightRadius: 0,
+              borderBottomRightRadius: 0,
+            },
+            '.up-btn-wrapper:last-child:not(:first-child):not(.up-dropdown-toggle) .up-btn' : {
+              borderTopLeftRadius: 0,
+              borderBottomLeftRadius: 0,
+            },
+           '.up-btn-wrapper:not(:last-child):not(:first-child) .up-btn' : {
+              borderRadius: 0,
+            }
+        }
+      }
+    }
+    case "right": {
+      return {
+        $nest : {
+          '.up-btn-wrapper:first-child .up-btn' : {
+            borderTopLeftRadius: 0,
+            borderBottomLeftRadius: 0,
+          },
+          '.up-btn-wrapper:first-child:not(:last-child):not(.up-dropdown-toggle) .up-btn' : {
+            borderTopRightRadius: 0,
+            borderBottomRightRadius: 0,
+          },
+          '.up-btn-wrapper:last-child:not(:first-child):not(.up-dropdown-toggle) .up-btn' : {
+            borderTopLeftRadius: 0,
+            borderBottomLeftRadius: 0,
+          },
+          '.up-btn-wrapper:not(:last-child):not(:first-child) .up-btn' : {
+            borderRadius: 0,
+          }
+        }
+      };
+    }
+    case "left": {
+      return {
+        $nest : {
+          '.up-btn-wrapper:last-child .up-btn' : {
+            borderTopRightRadius: 0,
+            borderBottomRightRadius: 0,
+          },
+          '.up-btn-wrapper:first-child:not(:last-child):not(.up-dropdown-toggle) .up-btn' : {
+            borderTopRightRadius: 0,
+            borderBottomRightRadius: 0,
+          },
+          '.up-btn-wrapper:last-child:not(:first-child):not(.up-dropdown-toggle) .up-btn' : {
+            borderTopLeftRadius: 0,
+            borderBottomLeftRadius: 0,
+          },
+          '.up-btn-wrapper:not(:last-child):not(:first-child) .up-btn' : {
+            borderRadius: 0
+          },
+        }
+      };
+  }
+} 
+};
+
+var setGutter = (props:UpButtonGroupProps) : NestedCSSProperties => {
+  if(props.align==='v') {
+    return {
+      $nest : {
+        'button.up-btn' : {
+          marginBottom: `${props.gutter}px`,
+        },
+      },
+    };
+  } else {
+    return {
+      $nest : {
+        'button.up-btn' : {
+          marginRight: `${props.gutter}px`,
+        },
+      },
+    };
+  }
+}
+
+var setAlignment = (props:UpButtonGroupProps) : NestedCSSProperties => {
+  if(props.align==='v') {
+    return {
+      $nest : {
+        'button.up-btn, div' : {
+          display:'block',
+          float:'left',
+          clear:'left',
+        }
+      }
+    };
+  } else {
+    return {
+      $nest : {
+        'button.up-btn' : {
+          display:'inline-block',
+          float:'left',
+        }
+      }
+    };
+  }
+}
+
+export const ButtonGroupStyled =  (props: UpButtonGroupProps) => {
+  return classnames(style(setGutter(props)), style(setAlignment(props)), style(noGutterStyle(props))) ; 
 };
 
 export default class UpButtonGroup extends React.Component<UpButtonGroupProps, undefined> {
@@ -27,7 +141,7 @@ export default class UpButtonGroup extends React.Component<UpButtonGroupProps, u
   public render() {
     const {children, ...others} = this.props ;
     return (
-        <div {...others}>
+        <div {...others} className={ButtonGroupStyled(this.props)}>
             {children}
         </div>
     ) ;

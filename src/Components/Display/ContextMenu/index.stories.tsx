@@ -8,6 +8,9 @@ import UpContextMenu from './UpContextMenu'
 import UpContextMenuItem from './UpContextMenuItem'
 import UpContextMenuItemDivider from './UpContextMenuItemDivider'
 
+import { getRootContainer } from '../../../Common/stories';
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+
 const MENU_TYPE = 'SIMPLE';
 
 export interface SimpleMenuState {
@@ -49,8 +52,12 @@ export default class SimpleMenu extends React.PureComponent<any, SimpleMenuState
     }
 }
 
-storiesOf('UpContextMenu', module)
-.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+const stories = storiesOf('Display/UpContextMenu', module) ;
+
+stories.addDecorator(withKnobs)
+stories.addDecorator(getRootContainer('UpContextMenu'));
+
+stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
  () => (
   <SimpleMenu />
 ))

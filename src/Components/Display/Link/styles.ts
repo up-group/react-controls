@@ -1,37 +1,38 @@
-//// Imports
-//import styled, {css} from '../../../Common/theming/themedComponents';
-//import { LinkProps } from './';
-//import { ThemeInterface } from "../../../Common/theming/types";
+// Imports
+import { NestedCSSProperties } from 'typestyle/lib/types';
+import { UpLinkProps } from './UpLink';
+import { style } from 'typestyle';
 
+const plainStyle = (props: UpLinkProps) : NestedCSSProperties => {
+  if (props.plain) {
+    return {
+      cursor: 'pointer',
+      lineHeight: 'inherit',
+      textDecoration: 'inherit',
+    }
+  }
+  return {
+    textDecoration: 'underline',
+    lineHeight: 'inherit',
+    cursor: 'pointer',
+  }
+};
 
-//const plainStyle = (plain: boolean) => {
-//  if (plain) {
-//    return css`
-//      cursor: pointer;
-//      line-height: inherit;
-//      text-decoration: inherit;
-//    `;
-//  }
-//  return css`
-//    text-decoration: underline;
-//    line-height: inherit;
-//    cursor: pointer;
-//  `;
-//};
+const colorStyle = (props: UpLinkProps) => {
+  if (props.color) {
+    return {
+      color: props.color,
+    }
+  }
+  return null;
+};
 
-//const colorStyle = (color: string) => {
-//  if (color) {
-//    return css`
-//      color: ${color};
-//    `;
-//  }
-//  return null;
-//};
-
-//export default styled.a`
-//  font-size: 1.1875rem;
-//  line-height: 24px;
-//  font-weight: 400;
-//  ${(props: LinkProps) => colorStyle(props.color)}
-//  ${(props: LinkProps) => plainStyle(props.plain || false)}
-//`;
+export const getStyles = (props : UpLinkProps) : string => (
+  style({
+    fontSize: '1.1875rem',
+    lineHeight: '24px',
+    fontWeight: 400,
+    ...colorStyle(props),
+    ...plainStyle(props),
+  })
+)

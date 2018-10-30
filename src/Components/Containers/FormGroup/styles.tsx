@@ -1,21 +1,21 @@
-//// Imports
-//import * as React from 'react'
-//import { UpFormGroupStyledProps } from './';
+// Imports
+import { NestedCSSProperties } from 'typestyle/lib/types';
+import { style } from 'typestyle';
+import { WithThemeProps } from '../../../Common/theming/withTheme';
 
-//const base = (props: UpFormGroupStyledProps) => css`
-//  border: none;
-//  legend {
-//    border-bottom : 1px solid ${props.theme.colorMap.darkGray5};
-//    color:${props.theme.colorMap.darkGray5};
-//    font-weight:700;
-//    font-size: 16px;
-//    width:98%
-//  }
-//`;
+const base = (props: WithThemeProps) : NestedCSSProperties => (
+  {
+    border: 'none',
+    $nest : {
+      legend : {
+        borderBottom : `1px solid ${props.theme.colorMap.darkGray5}`,
+        color:props.theme.colorMap.darkGray5,
+        fontWeight:700,
+        fontSize: '16px',
+        width:'98%',
+      }
+    }
+  }
+);
 
-//export const FormGroupStyled = styled.fieldset`
-//  ${(props: UpFormGroupStyledProps) => base(props)}
-//`;
-
-//export const FormGroupTitle = styled.legend`
-//`;
+export const getStyles = (props: WithThemeProps) => style(base(props))

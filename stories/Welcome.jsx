@@ -1,5 +1,7 @@
 import React from 'react';
 
+import '../src/Common/theming/style.css'
+
 const styles = {
   main: {
     margin: 15,

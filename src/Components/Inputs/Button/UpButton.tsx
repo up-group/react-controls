@@ -3,14 +3,18 @@ import * as React from 'react'
 import { InputHTMLAttributes } from "react"
 
 import * as classnames from 'classnames'
-//import { BaseButton } from './styles'
 import UpTooltip, { Tooltip } from '../../Display/Tooltip'
 import { isString } from '../../../Common/utils'
-import { IconName } from "../../Display/SvgIcon/icons";
 
 import { style } from "typestyle"
-import { getFontClassName, isNullOrUndef, numberIsNullOrUndef } from "../../../Common/utils/helpers";
-
+import { Dictionary } from '../../../Common/utils/types';
+import SvgIcon from '../../Display/SvgIcon';
+import { UpLoadingIndicator } from '../../..';
+import { styleButton } from './styles';
+import { ActionType } from '../../../Common/actions';
+import { IconName, IconNames } from '../../../Common/theming/icons';
+import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
+import { IntentType } from '../../../Common/theming/types';
 
 export const fontSizeMap = {
     xsmall: 10,
@@ -29,41 +33,55 @@ export const buttonSizeMap = {
 export type FontSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
 export type ButtonWidth = 'normal' | 'icon' | 'auto';
 export type ButtonHeight = 'xsmall' | 'small' | 'normal' | 'large';
-export type ActionType = IconName;
-export type IconPosition = 'none' | 'left' | 'right';
-
+export type IconPosition = 'none' | 'left' | 'right' ;
+export type DropDownType = 'none' | 'up' | 'down' | 'element' ;
 
 export interface Action {
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
     iconName?: any;
     tooltip?: string | Tooltip;
-    libelle: string;
+    libelle:string;
 }
 
 export interface Separator {
-    size?: number;
+    size?:number;
 }
 
-//export interface CommonProps {
-//    color?: string; // Ovverride the defaut intent styling
-//    backgroundColor?: string; // Ovverride the defaut intent styling
-//    borderColor?: string; // Ovverride the defaut intent styling
-//    fontSize?: FontSize;
-//    disabled?: boolean;
-//    shadow?: boolean;
-//    rounded?: boolean;
-//    rotate?: boolean;
-//    actionType?: ActionType;
-//    iconName?: any;
-//    iconSize?: number;
-//    iconPosition?: IconPosition;
-//    //intent?: IntentType;
-//    width?: ButtonWidth;
-//    height?: ButtonHeight;
-//    tooltip?: string | Tooltip;
-//    extraActions?: Array<Action | Separator>;
-//    isProcessing?: boolean;
-//}
+// This is so that the onClick handler is accepted without type interferance
+export interface UpButtonProps {
+    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    /** Surcharge la couleur définit par le type d'intent */
+    color?: string;
+    /** Surcharge la couleur du fond définit par le type d'intent */
+    backgroundColor?: string; 
+    /** Surcharge la couleur du bord définit par le type d'intent */
+    borderColor?: string;
+    /** Définit la taille de la police */
+    fontSize?: FontSize;
+    /** Etat de désactivation du bouton */
+    disabled?: boolean;
+    /** Afficher une ombre */
+    shadow?: boolean;
+    /** Afficher en arrondi */
+    rounded?: boolean;
+    /** Activer la rotation de l'icône */
+    rotate?: boolean;
+    /** Définir le type de l'action */
+    actionType?: ActionType;
+    iconName?: any;
+    iconSize?: number;
+    iconPosition?: IconPosition;
+    intent?: IntentType;
+    width?: ButtonWidth;
+    height?: ButtonHeight;
+    tooltip?: string | Tooltip;
+    extraActions?:Array<Action | Separator>;
+    dropDown?: DropDownType;
+    isProcessing?:boolean;
+    dataFor?: string; // Use for tooltip
+    isToggled?:boolean;
+    className?:string;
+}
 
 // This is so that the onClick handler is accepted without type interferance
 export interface UpButtonProps extends InputHTMLAttributes<HTMLButtonElement>  /*extends CommonProps*/ {
@@ -95,8 +113,56 @@ export interface UpButtonState extends InputHTMLAttributes<HTMLInputElement> {
     isToggled?: boolean;
 }
 
+export var ActionIconMap = new Dictionary<ActionType, IconName>([]);
+for (var i = 0; i < IconNames.length; i++) {
+    var iconName = IconNames[i];
+    ActionIconMap.set(iconName, iconName);
+}
+
+const BaseButton : React.StatelessComponent<UpButtonProps> = (props) => {
+    const { children, className, onClick, dataFor, width, iconPosition, isProcessing } = props;
+
+    const actionType = props.actionType;
+    var iconName: IconName = 'none';
+    if (actionType && ActionIconMap.containsKey(actionType)) {
+        iconName = ActionIconMap.get(actionType);
+    } else if (props.iconName) {
+        iconName = props.iconName;
+    }
+
+    // Our SVG Icon viewbox is 24*24 units
+    const icon = <SvgIcon iconName={iconName}
+        width={props.iconSize}
+        height={props.iconSize}
+        className={props.rotate ? 'rotating' : ''}
+        color={props.color} />;
+
+    var tooltipProps = {};
+    
+    if (dataFor) {
+        tooltipProps = {
+            "data-tip": "tooltip",
+            "data-for": dataFor
+        }
+    }
+
+    const MainButton = (<button onClick={onClick} className={classnames('up-btn', styleButton(props), className)} {...tooltipProps} >
+        {iconName != 'none' && isProcessing !== true &&
+            icon
+        }
+        {width !== 'icon' && isProcessing !== true &&
+            children
+        }
+        {width !== 'icon' && isProcessing === true &&
+           <UpLoadingIndicator displayMode={"inline"} isLoading={true} /> 
+        }
+    </button>) ;
+
+    return MainButton ;
+}
+
 // Exports
-export default class UpButton extends React.Component<UpButtonProps, UpButtonState> {
+class UpButton extends React.Component<UpButtonProps & WithThemeProps, UpButtonState> {
 
     constructor(props) {
         super(props);
@@ -106,22 +172,22 @@ export default class UpButton extends React.Component<UpButtonProps, UpButtonSta
         };
     }
 
-    public static defaultProps: UpButtonProps = {
-        //backgroundColor: '',
-        //borderColor: '',
-        //fontSize: 'large',
-        //disabled: false,
-        //shadow: false,
-        //iconName: false,
-        //iconPosition: 'none',
-        //iconSize: 20,
-        ////intent: 'default',
-        //width: 'auto',
-        //height: 'normal',
-        //tooltip: null,
-        //dropDown: 'none',
-        //onClick: (e: React.MouseEvent<HTMLButtonElement>) => { },
-        //theme: defaultTheme
+    public static defaultProps: UpButtonProps & WithThemeProps = {
+        backgroundColor: '',
+        borderColor: '',
+        fontSize: 'large',
+        disabled: false,
+        shadow: false,
+        iconName: false,
+        iconPosition: 'none',
+        iconSize: 20,
+        intent: 'default',
+        width: 'auto',
+        height: 'normal',
+        tooltip: null,
+        dropDown: 'none',
+        onClick: (e: React.MouseEvent<HTMLButtonElement>) => { },
+        theme: defaultTheme
     };
 
     //private handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
@@ -312,3 +378,5 @@ export default class UpButton extends React.Component<UpButtonProps, UpButtonSta
         //        );
     }
 }
+
+export default withTheme<UpButtonProps>(UpButton)

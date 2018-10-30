@@ -1,1 +1,0 @@
-export { LoadingIndicatorProps } from './';

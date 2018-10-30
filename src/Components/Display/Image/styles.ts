@@ -1,8 +1,7 @@
-//import styled, {css} from '../../../Common/theming/themedComponents';
-
-//import remStringFromPx from '../../../Common/utils';
-//import { Props } from './index';
-//import { ThemeInterface } from "../../../Common/theming/types";
+import remStringFromPx from '../../../Common/utils';
+import { NestedCSSProperties } from 'typestyle/lib/types';
+import { UpImageProps } from './UpImage';
+import { style } from 'typestyle';
 
 //const imageSizeMap = {
 //  thumb: 50,
@@ -15,33 +14,33 @@
 //  full: 1200,
 //};
 
-//export const imageStyle = ({ imageSize }: Props) => {
-//  const sizeWithDefault = imageSize || 'small';
-//  const px = imageSizeMap[sizeWithDefault];
-//  const rem = remStringFromPx(px);
-//  if (sizeWithDefault === 'full') {
-//    return css`
-//      width: 100vw;
-//      height: auto;
-//    `;
-//  }
-//  if (sizeWithDefault === 'thumb') {
-//    return css`
-//      width: ${rem};
-//      height: ${rem};
-//      flex: 0 0 auto;
-//      object-fit: cover;
-//    `;
-//  }
-//  return css`
-//    max-width: 100%;
-//    height: auto;
-//    min-height: ${rem};
-//    max-height: ${rem};
-//    display: block;
-//  `;
-//};
+export const imageStyle = ({ imageSize } : UpImageProps) : NestedCSSProperties => {
+  const sizeWithDefault = imageSize || 'small';
+  const px = imageSizeMap[sizeWithDefault];
+  const rem = remStringFromPx(px);
+  if (sizeWithDefault === 'full') {
+    return {
+      width: '100vw',
+      height: 'auto',
+    };
+  }
+  if (sizeWithDefault === 'thumb') {
+    return {
+      width: rem,
+      height: rem,
+      flex: '0 0 auto',
+      objectFit: 'cover',
+    };
+  }
+  return {
+    maxWidth: '100%',
+    height: 'auto',
+    minHeight: rem,
+    maxHeight: rem,
+    display: 'block',
+  };
+};
 
-//export const Img = styled.img`
-//  ${(props: Props) => imageStyle(props)}
-//`;
+export const getStyles = (props:UpImageProps) : string => (
+  style(imageStyle(props))
+)

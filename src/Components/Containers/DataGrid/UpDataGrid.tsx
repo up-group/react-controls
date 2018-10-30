@@ -15,9 +15,9 @@ import UpDefaultCellFormatter, { ICellFormatter } from './UpDefaultCellFormatter
 import UpLoadingIndicator from '../../Display/LoadingIndicator'
 import UpButton from '../../Inputs/Button/UpButton'
 
-import { ActionType } from '../../Inputs/Button/UpButton'
-import { IconName } from '../../../Components/Display/SvgIcon/icons'
+import { IntentType } from '../../../Common/theming/types'
 import shallowEqual from '../../../Common/utils/shallowEqual'
+import { ActionType } from '../../../Common/actions';
 
 
 const WrapperDataGridStyle = style({

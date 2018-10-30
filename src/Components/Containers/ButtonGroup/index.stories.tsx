@@ -2,19 +2,29 @@ import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions';
 
+import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
+
+import UpDefaultTheme from '../../../Common/theming'
 
 import UpButtonGroup from './'
-import UpButton from '../../Inputs/Button/UpButton'
-import UpButtonGroupDropDown from '../ButtonGroupDropDown/UpButtonGroupDropDown'
+import UpButton from '../../Inputs/Button'
+import { getRootContainer } from '../../../Common/stories';
 
-storiesOf('UpButtonGroup', module)
-    .addWithInfo('DropDown', 'Utilisation du composant en lui passant les données à afficher',
-        () => (
-            <div>
-                <div style={{ "margin": "30px" }}>
-                    <UpButtonGroup gutter={0} align={"h"}>
-                        <UpButton onClick={action("Main")} actionType={"add"} >
-                            Add
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+
+const stories = storiesOf('Containers/UpButtonGroup', module) ;
+
+stories.addDecorator(withKnobs)
+stories.addDecorator(getRootContainer('UpButtonGroup'));
+
+stories.addWithInfo('DropDown', 'Utilisation du composant en lui passant les données à afficher',
+   () => (
+    <UpThemeProvider theme={UpDefaultTheme}>
+      <div>
+      <div style={{"margin": "30px"}}>
+        <UpButtonGroup gutter={0} align={"h"}>
+          <UpButton onClick={action("Main")} actionType={"add"} intent={"primary"}>
+            Add
           </UpButton>
                         <UpButton
 

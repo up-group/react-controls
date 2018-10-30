@@ -7,9 +7,9 @@ import * as Select from 'react-select'
 
 import axios from 'axios'
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
-import { UpSelectProps, UpSelectStyledProps } from './'
-//import WrapperSelect from './styles';
 import * as queryString from 'query-string';
+import { UpSelectProps } from './types';
+import { getStyles } from './styles';
 
 var CancelToken = axios.CancelToken;
 
@@ -355,7 +355,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             }
         }
         return (
-            <div /*width={this.props.width}*/>
+            <div className={getStyles(this.props)}>
                 <SelectComponent
                     {...specProps}
                     placeholder={this.props.placeholder}

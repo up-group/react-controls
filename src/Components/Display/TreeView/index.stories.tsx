@@ -3,9 +3,15 @@ import { storiesOf } from '@storybook/react'
 
 import UpTreeView from './UpTreeView'
 
+import { getRootContainer } from '../../../Common/stories';
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
-storiesOf('UpTreeView', module)
-    .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+const stories = storiesOf('Display/UpTreeView', module) ;
+
+stories.addDecorator(withKnobs)
+stories.addDecorator(getRootContainer('UpTreeView'));
+
+stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
     () => {
         return <UpTreeView
             onBranchClick={console.log}

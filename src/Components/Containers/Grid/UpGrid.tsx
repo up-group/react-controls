@@ -1,19 +1,21 @@
 // Imports 
 import * as React from 'react';
-//import {Grid} from './styles'
-import {UpGridProps, LayoutMode} from './'
-import * as classNames from 'classnames'
-import * as assign from 'object-assign'
+import {UpGridProps} from './types'
+import defaultTheme from '../../../Common/theming'
+import { GridStyles } from './styles';
+import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 
-class UpGrid extends React.Component<UpGridProps, any> {
+import * as classnames from 'classnames'
+
+class UpGrid extends React.Component<UpGridProps & WithThemeProps> {
   
-  public static defaultProps : UpGridProps = {
+  public static defaultProps : UpGridProps & WithThemeProps = {
       gutter:0,
       //theme:defaultTheme
   }
 
   render() {
-    const { children, type, gutter } = this.props;
+    const { children, type, gutter, className } = this.props;
     var rows = children ;
     //const _gutter = gutter != null ? gutter : (this.props.theme.gridGutter != null ? this.props.theme.gridGutter : 0) ;
     //if(_gutter > 0 || type != 'float') {
@@ -31,11 +33,11 @@ class UpGrid extends React.Component<UpGridProps, any> {
     //    });
     //}
     return (
-        <div style={this.props.style}>
+        <div style={this.props.style} className={classnames(className, GridStyles)}>
             {rows}
         </div>
     );
   }
 }
 
-export default UpGrid
+export default withTheme<UpGridProps>(UpGrid) 

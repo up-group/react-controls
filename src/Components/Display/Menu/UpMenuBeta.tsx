@@ -1,13 +1,10 @@
 ﻿
 import * as React from "react"
 import SvgIcon from "../SvgIcon/index"
-import { IconName } from "../SvgIcon/icons"
 import { style } from "typestyle"
 import Text from "../../Inputs/Input/index"
 
 import "./up.png"
-
-
 
 export interface UpMenuProps {
     username?: string;

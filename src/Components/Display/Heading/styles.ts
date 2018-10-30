@@ -1,9 +1,9 @@
-//// Imports
-//import styled, {css} from '../../../Common/theming/themedComponents';
-//import { marginCss } from '../Paragraph/styles';
-//import { UpHeadingProps, Tag } from './';
-//import { ThemeInterface } from "../../../Common/theming/types";
-//import remStringFromPX from '../../../Common/utils';
+// Imports
+import { marginCss } from '../Paragraph/styles';
+import remStringFromPX from '../../../Common/utils';
+import { NestedCSSProperties } from 'typestyle/lib/types';
+import { Tag, UpHeadingProps } from './UpHeading';
+import { style } from 'typestyle';
 
 //const sizeMap = {
 //  h1: 36,
@@ -15,51 +15,33 @@
 
 //const calculateSize = (tag: Tag): string => remStringFromPX(sizeMap[tag]);
 
-//const truncateCss = (truncate: boolean) => {
-//  if (truncate) {
-//    return css`
-//      white-space: nowrap;
-//      overflow: hidden;
-//      text-overflow: ellipsis;
-//    `;
-//  }
-//  return '';
-//};
+const truncateCss = (truncate: boolean) : NestedCSSProperties => {
+  if (truncate) {
+    return {
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+    }
+  }
+  return {};
+};
 
-//const textTransformCss = (upcase: boolean) => {
-//  if (upcase) {
-//    return css`
-//      text-transform: uppercase;
-//    `;
-//  }
-//  return '';
-//};
+const textTransformCss = (upcase: boolean) => {
+  if (upcase) {
+    return {
+      textTransform: 'uppercase',
+    }
+  }
+  return {};
+};
 
-//const HeadingStyles = css`
-//  font-size: ${(props: UpHeadingProps) => calculateSize(props.tag)};
-//  text-align: ${(props: UpHeadingProps) => props.textAlign};
-//  color: ${(props: UpHeadingProps) => props.color};
-//  ${(props: UpHeadingProps) => truncateCss(props.truncate)};
-//  ${(props: UpHeadingProps) => textTransformCss(props.upcase)};
-//  ${(props: UpHeadingProps) => marginCss(props.margin)};
-//`;
-
-//export const H1 = styled.h1`
-//  ${HeadingStyles}
-//`;
-
-//export const H2 = styled.h2`
-//  ${HeadingStyles}
-//`;
-
-//export const H3 = styled.h3`
-//  ${HeadingStyles}
-//`;
-
-//export const H4 = styled.h4`
-//  ${HeadingStyles}
-//`;
-
-//export const H5 = styled.h5`
-//  ${HeadingStyles}
-//`;
+export const getStyles = (props: UpHeadingProps) : string => (
+  style({
+    fontSize: calculateSize(props.tag),
+    textAlign: props.textAlign,
+    color: props.color,
+    ...truncateCss(props.truncate),
+    ...textTransformCss(props.upcase),
+    ...marginCss(props.margin),
+  } as NestedCSSProperties)
+)

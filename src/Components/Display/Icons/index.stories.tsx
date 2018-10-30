@@ -1,15 +1,19 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
-
 import * as Icons from "./Icons"
 import * as IconsM from "./materialinear"
 
+import { getRootContainer } from '../../../Common/stories';
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
-var alertFont = { fontSize: "36px", color: "green", }
+const alertFont = {fontSize: "36px", color: "green",}
 
+const stories = storiesOf('Display/UpIcons', module) ;
 
-storiesOf('UpIcons', module)
-    .addWithInfo('font load', '',
+stories.addDecorator(withKnobs)
+stories.addDecorator(getRootContainer('UpIcons'));
+
+stories.addWithInfo('IconLoading', '',  
         () => (
             <div style={{ padding: "16px" }} >
                 <IconsM.RestaurantMenu color="red" onClick={() => { alert(0) }} />

@@ -1,7 +1,6 @@
 import * as React from "react"
-import { style } from "typestyle";
+import { style, keyframes } from "typestyle";
 import { getFontClassName, isNullOrUndef, stringIsNullOrEmpty, AttributPolice, getFontSizeNumber } from "../../../Common/utils/helpers";
-
 
 export interface AlertIconProps {
     IconSize: string | number;
@@ -738,14 +737,14 @@ export class IconLoading extends React.Component<IconLoadingProps, IconLoadingSt
 
         tailleIcon -= largeurCercle * 2;
 
-        //const animation = keyframes`
-        //    0% {
-        //    transform: rotate(0deg);
-        //    }
-        //    100% {
-        //    transform: rotate(360deg);
-        //    }
-        //`;
+        const animation = keyframes({
+            from : {
+                transform: 'rotate(0deg)',
+            },
+            to : {
+                transform: 'rotate(360deg)',
+            }
+        })
 
         var styleG = style({
             borderRadius: "50%",

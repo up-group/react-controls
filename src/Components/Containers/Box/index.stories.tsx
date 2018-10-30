@@ -3,9 +3,13 @@ import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions';
 
 import UpBox from './'
+import { getRootContainer } from '../../../Common/stories';
 
-storiesOf('UpBox', module)
-  .addWithInfo('UpBox : center', 'Alignement des éléments au centre',
+const stories = storiesOf('Containers/UpBox', module) ;
+
+stories.addDecorator(getRootContainer('UpBox'));
+
+stories.addWithInfo('UpBox : center', 'Alignement des éléments au centre',
    () => (
     <div style={{margin:"30px"}}>
      <UpBox alignItems={'center'} backgroundColor={'#369'} 

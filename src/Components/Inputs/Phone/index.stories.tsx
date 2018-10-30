@@ -1,23 +1,31 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 
+import UpDefaultTheme from '../../../Common/theming'
+import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
 
 import UpPhone from './UpPhone'
-import UpLabel from '../../Display/Label'
 
-storiesOf('UpPhone', module)
-    .addWithInfo('Phone input', 'Utilisation simple',
-        () => (
+import { getRootContainer } from '../../../Common/stories';
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
-            <div style={{ padding: "30px" }}>
-                <UpPhone />
-            </div>
+const stories = storiesOf('Inputs/UpPhone', module) ;
 
-        )).addWithInfo('Phone Input Required', 'Avec valeur requise',
-            () => (
+stories.addDecorator(withKnobs)
+stories.addDecorator(getRootContainer('UpPhone'));
 
-                <div style={{ padding: "30px" }}>
-                    <UpPhone required={true} />
-                </div>
-
-            ));
+stories.addWithInfo('Phone input', 'Utilisation simple',
+   () => (
+    <UpThemeProvider theme={UpDefaultTheme}> 
+        <div style={{padding:"30px"}}>
+          <UpPhone />
+        </div>
+    </UpThemeProvider>
+  )).addWithInfo('Phone Input Required', 'Avec valeur requise',
+   () => (
+    <UpThemeProvider theme={UpDefaultTheme}> 
+        <div style={{padding:"30px"}}>
+          <UpPhone isRequired={true} />
+        </div>
+    </UpThemeProvider>
+  )) ;

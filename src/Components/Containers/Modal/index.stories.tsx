@@ -1,10 +1,15 @@
 import * as React from 'react'
 import { storiesOf, ReactiveVar } from '@storybook/react'
 
+import UpDefaultTheme from '../../../Common/theming'
+import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
 
 import UpModal from './UpModal'
 import UpButton from '../../Inputs/Button/UpButton'
 import UpPanel from '../../Containers/Panel'
+
+import { getRootContainer } from '../../../Common/stories';
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
 export interface ModalWrapperProps {
     html?: string;
@@ -40,23 +45,30 @@ class ModalWrapper extends React.Component<ModalWrapperProps, ModalWrapperState>
             <p>Bienvenue !!</p>
         </UpPanel>;
 
-        return (<div><UpModal onClose={this.onClose} footer={<CloseAction />}
-            header={'Header'} showModal={this.state.showModal} html={this.props.html}>
-            {this.props.html == null &&
-                <Info />
-            }
-        </UpModal>
-            <UpButton actionType={"confirm"} onClick={this.openModal}>Open</UpButton></div>);
+        return (
+        <div>
+            <UpModal onClose={this.onClose} footer={<CloseAction />}
+                header={'Header'} showModal={this.state.showModal} html={this.props.html}>
+                {this.props.html == null &&
+                    <Info />
+                }
+            </UpModal>
+            <UpButton actionType={"confirm"} onClick={this.openModal}>Open</UpButton>
+        </div>);
     }
 }
 
 const HTML = `<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> <html> <head> <title>Mon titre</title> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="UTF-8"> </head> <body text="#000000" vlink="#990000" alink="#990000" link="#990000" bgcolor="#ffffff"><p>Mon message</p></body></html>`;
 
-storiesOf('UpModal', module)
-    .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
-        () => (
-            <ModalWrapper />
-        )
+const stories = storiesOf('Containers/UpModal', module) ;
+
+stories.addDecorator(withKnobs)
+stories.addDecorator(getRootContainer('UpModal'));
+
+stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+    () => (<UpThemeProvider theme={UpDefaultTheme}>
+        <ModalWrapper />
+    </UpThemeProvider>)
     ).addWithInfo('Html', 'Set the content using HTML',
         () => (
             <ModalWrapper html={HTML} />

@@ -6,7 +6,6 @@ import CanvasState from "./CanvasState"
 import UpButton  from '../../Inputs/Button/UpButton'
 import UpButtonGroup  from '../../Containers/ButtonGroup'
 
-import UpLigne from '../../Display/Ligne' 
 import UpToggle from '../../Inputs/Toggle'
 import UpLabel from '../../Display/Label'
 

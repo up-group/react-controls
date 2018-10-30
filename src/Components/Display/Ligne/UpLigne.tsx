@@ -1,4 +1,26 @@
-//import { style } from './styles';
-import LigneStyled from './styles'
+import * as React from 'react';
+import { getStyles } from './styles';
 
-export default LigneStyled ;
+export interface UpLigneProps {
+    color?: string;
+    textAlign?: string;
+    className?: string;
+    dataFor?:string; // for tooltip
+  }
+
+  const UpLigne: React.StatelessComponent<UpLigneProps> = (props) => {
+    const {dataFor, className, children, ...others} = props ;
+    var tooltipProps = {} ;
+    if (dataFor) {
+        tooltipProps = {
+            "data-tip": "tooltip",
+            "data-for": dataFor
+        }
+    }
+    
+    return (<span className={getStyles(props)} {...tooltipProps} {...others}>
+        {children}
+        </span>)
+  };
+
+export default UpLigne 

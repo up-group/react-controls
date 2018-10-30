@@ -1,12 +1,14 @@
 // Imports
 import * as React from 'react'
-//import { FormGroupStyled, FormGroupTitle} from './styles'
 import { UpFormGroupProps } from './'
+import defaultTheme from '../../../Common/theming'
+import { getStyles } from './styles';
+import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
  
 // Exports
-export default class UpFormGroup extends React.Component<UpFormGroupProps, {}> {
+class UpFormGroup extends React.Component<UpFormGroupProps & WithThemeProps> {
   
-  public static defaultProps:UpFormGroupProps = {
+  public static defaultProps:UpFormGroupProps & WithThemeProps = {
      title:"",
      //theme:defaultTheme
   }
@@ -15,19 +17,15 @@ export default class UpFormGroup extends React.Component<UpFormGroupProps, {}> {
     super(props) ;
   }
 
-  componentWillUnmount() {
-  }
-
-  componentDidMount() {
-  }
-
   render() {
       const {title, children, ...others} = this.props ;
       return (
-          <fieldset {...others}>
-              <legend>{title}</legend>
+        <fieldset className={getStyles(this.props)} {...others}>
+            <legend>{title}</legend>
             {children}
-          </fieldset>
+        </fieldset>
       );
   }
 }
+
+export default withTheme<UpFormGroupProps>(UpFormGroup)

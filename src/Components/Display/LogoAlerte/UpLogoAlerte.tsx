@@ -1,9 +1,8 @@
 import * as React from "react"
 import SvgIcon from "../SvgIcon/index"
-import { IconName } from "../SvgIcon/icons"
-import UpTooltip, { Tooltip } from '../../Display/Tooltip/index'
-import UpBut from "../../Inputs/Button/UpButton"
-
+import { IntentType } from '../../../Common/theming/types'
+import UpTooltip from '../../Display/Tooltip/index'
+import { IconName } from "../../../Common/theming/icons";
 
 export interface UpLogoAlerteProps {
     icon: IconName;
@@ -12,11 +11,7 @@ export interface UpLogoAlerteProps {
     //intenet: IntentType
 }
 
-export interface UpLogoAlerteState {
-
-}
-
-export default class UpLogoAlerte extends React.Component<UpLogoAlerteProps, UpLogoAlerteState>{
+export default class UpLogoAlerte extends React.Component<UpLogoAlerteProps>{
     public static defaultProps: UpLogoAlerteProps = {
         //intenet: "default",
         alerteNumber: 0,
@@ -26,10 +21,7 @@ export default class UpLogoAlerte extends React.Component<UpLogoAlerteProps, UpL
 
     constructor(p, c) {
         super(p, c);
-        this.state = {};
     }
-
-
 
     render() {
 
@@ -42,39 +34,35 @@ export default class UpLogoAlerte extends React.Component<UpLogoAlerteProps, UpL
         var borderColor = "green";
         var texteColor = "green";
 
-
-
-
-        //switch (this.props.intenet) {
-        //    case 'primary':
-        //        backgroundColor = "#0073b7";
-        //        borderColor = "#addaf1";
-        //        texteColor = "#337ab7";
-        //        break;
-        //    case 'danger':
-        //        backgroundColor = "#dd4b39";
-        //        borderColor = "#eea59c";
-        //        texteColor = "#a94442";
-        //        break;
-        //    case 'warning':
-        //        backgroundColor = "#f39c12";
-        //        borderColor = "#f9cd88";
-        //        texteColor = "#f39c12";
-        //        break;
-        //    case 'success':
-        //        backgroundColor = "#00a65a";
-        //        borderColor = "#7FD2AC";
-        //        texteColor = "#3c763d";
-        //        break;
-        //    case 'info':
-        //    case 'default':
-        //    default:
-        //        backgroundColor = "#3c8dbc";
-        //        borderColor = "#7FDFF7";
-        //        texteColor = "#00c0ef";
-        //        break;
-        //}
-
+        switch (this.props.intenet) {
+            case 'primary':
+                backgroundColor = "#0073b7";
+                borderColor = "#addaf1";
+                texteColor = "#337ab7";
+                break;
+            case 'danger':
+                backgroundColor = "#dd4b39";
+                borderColor = "#eea59c";
+                texteColor = "#a94442";
+                break;
+            case 'warning':
+                backgroundColor = "#f39c12";
+                borderColor = "#f9cd88";
+                texteColor = "#f39c12";
+                break;
+            case 'success':
+                backgroundColor = "#00a65a";
+                borderColor = "#7FD2AC";
+                texteColor = "#3c763d";
+                break;
+            case 'info':
+            case 'default':
+            default:
+                backgroundColor = "#3c8dbc";
+                borderColor = "#7FDFF7";
+                texteColor = "#00c0ef";
+                break;
+        }
 
         var StyleLogoAlerteIcon: React.CSSProperties = {
             backgroundColor: backgroundColor,
@@ -96,9 +84,6 @@ export default class UpLogoAlerte extends React.Component<UpLogoAlerteProps, UpL
             fontSize: 30,
             color: texteColor
         }
-
-        //return <UpBut tooltip="test" actionType="add" onClick={() => { }}></UpBut>
-
 
         return <UpTooltip content={this.props.title}>
             <div style={styleLogoAlerte}>

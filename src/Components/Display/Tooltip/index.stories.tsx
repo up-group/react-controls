@@ -8,6 +8,11 @@ import UpTooltip from './'
 import UpLigne from '../Ligne'
 import UpPanel from '../../Containers/Panel'
 
+import UpDefaultTheme from '../../../Common/theming'
+import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
+
+import { getRootContainer } from '../../../Common/stories';
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
 const TooltipRenderer = (<div>
     <p style={{ padding: "10px" }}>
@@ -15,12 +20,17 @@ const TooltipRenderer = (<div>
     </p>
 </div>);
 
-storiesOf('UpTooltip', module)
-    .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
-        () => (
-            <div style={{ margin: "30px" }}>
-                <UpPanel >
-                    Exemple d'utilisation du composant
+const stories = storiesOf('Display/UpTooltip', module) ;
+
+stories.addDecorator(withKnobs)
+stories.addDecorator(getRootContainer('UpTooltip'));
+
+stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+ () => (
+    <UpThemeProvider theme={UpDefaultTheme}>
+        <div style={{margin:"30px"}}>
+            <UpPanel type={"primary"}>
+                Exemple d'utilisation du composant 
                 <UpTooltip title={"Détails"} content={TooltipRenderer}>
                         <UpLigne>&nbsp;<code>&lt;UpTooltip /&gt;</code>&nbsp;</UpLigne>
                     </UpTooltip> sur du texte.

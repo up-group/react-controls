@@ -6,11 +6,12 @@ import ErrorDisplay from "../Validation/ErrorDisplay"
 import UpTooltip, { Tooltip } from '../../../Display/Tooltip'
 import TypeNullControl from "../Validation/TypeNullControl"
 import { isString } from '../../../../Common/utils'
+import { WithThemeProps } from "../../../../Common/theming/withTheme";
 
 // Exports
 const ONCHANGE_MUST_BE_SPECIFIED = "La méthode onChange doit être spécifié dans le cas où la valeur du composant est défini dans les props";
 
-export interface BaseControlProps<_BaseType> {
+export interface BaseControlProps<_BaseType> extends WithThemeProps {
     onChange?: (arg: _BaseType, event: any, error: boolean) => void;
     value?: _BaseType;
     defaultValue?: _BaseType;

@@ -1,34 +1,41 @@
-//// Imports
-//import styled, {css} from '../../../Common/theming/themedComponents';
-//import * as Color from 'color'
-//import {UpGrid, UpGridProps} from '../../Containers/Grid'
-//import {UpNotificationStyledProps} from './'
-//import {ThemeInterface} from '../../../Common/theming/types'
+// Imports
+import { UpNotificationProps } from './UpNotification';
+import { NestedCSSProperties } from 'typestyle/lib/types';
+import * as classnames from 'classnames';
+import { style } from 'typestyle';
+import { WithThemeProps } from '../../../Common/theming/withTheme';
 
-//const colors = (props: UpNotificationStyledProps) => css`
-//  position:relative;
-//  background-color: ${props.theme.colorMap[`${props.status}Dark`] || props.theme.colorMap.black3};
-//  color: ${props.theme.colorMap.offwhite};
-//  p {
-//    font-weight: 500;
-//    text-align:left;
-//  }
-//`;
+export const colors = (props: UpNotificationProps & WithThemeProps ) : NestedCSSProperties => {
+  return { 
+      position: 'relative',
+      backgroundColor: props.theme.colorMap[`${props.status}Dark`] || props.theme.colorMap.black3,
+      color: props.theme.colorMap.offwhite,
+      $nest : {
+              p : {
+                  fontWeight: 500,
+                  textAlign:'left',
+              },
+          }
+  }
+};
 
-//const icon  = (props: UpNotificationStyledProps) => css`
-//  svg {
-//    fill: ${props.theme.colorMap.offwhite};;
-//    margin:10px;
-//    display:inline-block;
-//}`
+export const icon  = (props : UpNotificationProps & WithThemeProps) : NestedCSSProperties => {
+  return {
+      $nest : {
+          '.up-notification svg' : {
+              fill: props.theme.colorMap.offwhite,
+              margin: '10px',
+              display: 'inline-block',
+          }
+      }
+  }
+};
 
-//const NotificationStyled = styled.div`
-//  ${(props: UpNotificationStyledProps) => colors(props)}
-//  ${(props: UpNotificationStyledProps) => icon(props)}
-//  width:98%;
-//  margin:1%;
-//  padding:8px;
-//  border-radius:4px;
-//`;
-
-//export default NotificationStyled
+export const getStyles  = (props: UpNotificationProps) : string => (
+  classnames(style(colors(props)), style(icon(props)), style({
+    width:'98%',
+    margin:'1%',
+    padding:'8px',
+    borderRadius:'4px',
+  }))
+);

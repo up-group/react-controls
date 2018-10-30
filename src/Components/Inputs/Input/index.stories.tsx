@@ -1,43 +1,32 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 
+import UpDefaultTheme from '../../../Common/theming'
+import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
 
 import UpInput from './UpInput'
-import UpLabel from '../../Display/Label'
 
-storiesOf('UpInput', module)
-    .addWithInfo('Text input', 'Utilisation simple',
-        () => (
-            <div style={{ padding: "30px" }}>
-                <UpInput type={"text"} />
-            </div>
+import { getRootContainer } from '../../../Common/stories';
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
-        )).addWithInfo('Search Input', 'Champ de recherche',
-            () => (
+const stories = storiesOf('Inputs/UpInput', module) ;
 
-                <div style={{ padding: "30px" }}>
-                    <UpInput type={"search"} />
-                </div>
+stories.addDecorator(withKnobs)
+stories.addDecorator(getRootContainer('UpInput'));
 
-            )).addWithInfo('Email Input', 'Champ email',
-                () => (
-
-                    <div style={{ padding: "30px" }}>
-                        <UpInput type={"email"} />
-                    </div>
-
-                )).addWithInfo('Phone Input', 'Champ phone',
-                    () => (
-
-                        <div style={{ padding: "30px" }}>
-                            <UpInput type={"phone"} />
-                        </div>
-
-                    )).addWithInfo('Required Input', 'Champ requis',
-                        () => (
-
-                            <div style={{ padding: "30px" }}>
-                                <UpInput isRequired={true} type={"email"} />
-                            </div>
-
-                        ));
+stories.addWithInfo('Text input', 'Utilisation simple',
+   () => (
+    <UpInput type={"text"} />
+  )).addWithInfo('Search Input', 'Champ de recherche',
+   () => (
+    <UpInput type={"search"} />
+  )).addWithInfo('Email Input', 'Champ email',
+   () => (
+    <UpInput type={"email"} />
+  )).addWithInfo('Phone Input', 'Champ phone',
+  () => (
+    <UpInput type={"phone"} />
+  )).addWithInfo('Required Input', 'Champ requis',
+ () => (
+    <UpInput isRequired={true} type={"email"} />
+)) ;

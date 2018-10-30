@@ -1,13 +1,13 @@
 // Imports
 import * as React from 'react'
-import UpLabel from '../../Display/Label/index'
 import * as classNames from 'classnames'
 
 import {style} from 'typestyle'
+import { WithThemeProps } from '../../../Common/theming/withTheme';
 
 export type Size = 'small' | 'normal' | 'large'
 
-export interface UpToggleStyledProps {
+export interface UpToggleStyledProps extends WithThemeProps {
     className?:string;
 }
 

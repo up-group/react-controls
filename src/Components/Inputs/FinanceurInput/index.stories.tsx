@@ -23,9 +23,15 @@ function onButtonClick() {
     alert("click !");
 }
 
+import { getRootContainer } from '../../../Common/stories';
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
-storiesOf('FinanceurInput', module)
-    .addWithInfo('Standard', '',  
+const stories = storiesOf('Inputs/FinanceurInput', module) ;
+
+stories.addDecorator(withKnobs)
+stories.addDecorator(getRootContainer('FinanceurInput'));
+
+stories.addWithInfo('Standard', '',  
         () => (
             <div style={{padding: "16px"}} >
                 <p>

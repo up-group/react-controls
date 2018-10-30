@@ -2,11 +2,13 @@ import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions';
 
+import UpDefaultTheme from '../../../Common/theming'
+import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
 
 import UpMenu from './UpMenu'
 import UpMenuOH from './UpMenuOH'
 
-storiesOf('UpMenu', module)
+storiesOf('Display/UpMenu', module)
     .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
         () => (
             <UpMenu onMenuClick={action("Menu clicked")}

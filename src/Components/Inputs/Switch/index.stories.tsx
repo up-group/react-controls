@@ -1,12 +1,17 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions';
-
 
 import UpSwitch from './UpSwitch'
 
-storiesOf('UpSwitch', module)
-    .addWithInfo('Simple usage', '',
+import { getRootContainer } from '../../../Common/stories';
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+
+const stories = storiesOf('Inputs/UpSwitch', module) ;
+
+stories.addDecorator(withKnobs)
+stories.addDecorator(getRootContainer('UpSwitch'));
+
+stories.addWithInfo('Simple usage', '',
     () => (
         <UpSwitch isNullable={true} onChange={console.log} />
     ))

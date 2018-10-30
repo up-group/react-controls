@@ -1,39 +1,47 @@
-//// Imports
-//import styled from '../../../Common/theming/themedComponents';
-//import {sizeMap} from '../_Common/Styled' 
-//import 'react-select/dist/react-select.css'
-//import { ThemeInterface } from "../../../Common/theming/types";
-//import {UpSelectStyledProps} from './'
+// Imports
+import * as classnames from 'classnames'
+import {sizeMap} from '../_Common/Styled' 
+import 'react-select/dist/react-select.css'
 
-//var getWidth = function(props) {
-//    switch(props.width) {
-//      case 'auto':
-//      return `.Select { width: auto }` ;
-//      case 'full':
-//      return `.Select { width: 100% }` ;
-//      case 'xsmall' :
-//      return `.Select { width: ${sizeMap[props.width]? sizeMap[props.width] : "5em" };` ;
-//      case 'small':
-//      return `.Select { width: ${sizeMap[props.width]? sizeMap[props.width] : "8em" };` ;
-//      case 'normal':
-//      return `.Select { width: ${sizeMap[props.width]? sizeMap[props.width] : "23em" };` ;
-//      case 'large':
-//      return `.Select { width: ${sizeMap[props.width]? sizeMap[props.width] : "30em" };` ;
-//      default:
-//      return `.Select { width: ${sizeMap[props.width]? sizeMap[props.width] : "100%" };` ;
-//    }
-//}
+import { UpSelectStyledProps } from './types';
 
-//var getHeight = function(props) {
-//    return `.Select-input { height: 32px }
-//            .Select-control  { height: 32px }` ;
-//}
+var getWidth = (props : UpSelectStyledProps) => {
+  let width = "100%" ;  
+  switch(props.width) {
+      case 'auto':
+        width = 'auto';
+      case 'full':
+        width = '100%' ;
+      case 'xsmall' :
+        width = sizeMap[props.width] ? sizeMap[props.width] : "5em" ;
+      case 'small':
+        width = sizeMap[props.width]? sizeMap[props.width] : "8em";
+      case 'normal':
+        width = sizeMap[props.width]? sizeMap[props.width] : "23em" ;
+      case 'large':
+        width = sizeMap[props.width]? sizeMap[props.width] : "30em" ;
+      default:
+        width =sizeMap[props.width]? sizeMap[props.width] : "100%" ;
+    }
 
-//// Exports
-//const WrapperSelect = styled.div`
-//  width:100%;
-//  ${(props: UpSelectStyledProps) => getWidth(props)}
-//  ${(props: UpSelectStyledProps) => getHeight(props)}
-//`;
+    return  {
+      width:'100%',
+      $nest : {
+        '.Select' : { width }
+      }
+    }
+}
 
-//export default WrapperSelect ;
+var getHeight = (props: UpSelectStyledProps) => {
+    return {
+      $nest : {
+        '.Select-input' : { height: '32px' },
+        '.Select-control' : { height: '32px' },
+      }
+    }
+}
+
+// Exports
+export const getStyles = (props: UpSelectStyledProps) => (
+  classnames(getWidth(props), getHeight(props))
+)

@@ -2,23 +2,23 @@ import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 
+import UpDefaultTheme from '../../../Common/theming'
+import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
 
 import UpText from './'
 import UpLabel from '../../Display/Label'
 
-storiesOf('UpText', module)
-    .addWithInfo('Simple usage', 'Utilisation avec plusieurs options',
+import { getRootContainer } from '../../../Common/stories';
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+
+const stories = storiesOf('Inputs/UpSwitch', module) ;
+
+stories.addDecorator(withKnobs)
+stories.addDecorator(getRootContainer('UpSwitch'));
+
+stories.addWithInfo('Simple usage', 'Utilisation avec plusieurs options',
     () => (
-            <div style={{ padding: "30px" }}>
-                <UpLabel text={"Observation : "}>
-                    <UpText width={'fill'} />
-                </UpLabel>
-            </div>
-    )).addWithInfo('RTE', 'Utilisation en mode RTE',
-    () => (
-            <div style={{ padding: "30px" }}>
-                <UpLabel text={"Observation : "}>
-                    <UpText enableRTE={true} width={'fill'} onChange={action('Text changed')} />
-                </UpLabel>
-            </div>
-    ));;
+        <UpLabel text={"Observation : "}>
+             <UpText width={'fill'} />
+        </UpLabel>
+    ));

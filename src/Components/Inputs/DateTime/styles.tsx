@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { UpDateTimeStyledProps } from './'
 
-
+import { DateInput, TimePicker, IDatePickerLocaleUtils } from '@blueprintjs/datetime'
 
 //class UpLocaleUtils implements IDatePickerLocaleUtils {
 //    formatDay(day: Date, locale: string) {
@@ -52,9 +52,6 @@ const BaseDate: React.StatelessComponent<UpDateTimeStyledProps> = (props) => {
     </div>);
 }
 
-//export const NormalDate = styled<UpDateTimeStyledProps>(BaseDate)`
-//`;
-
 export default class UpDateStyle extends React.Component<UpDateTimeStyledProps, undefined> {
     public static defaultProps: UpDateTimeStyledProps = {
         //hasError: false,
@@ -83,8 +80,7 @@ export default class UpDateStyle extends React.Component<UpDateTimeStyledProps, 
 
     public render() {
         return (
-            <input type="datetime" />
-            //<NormalDate innerRef={this.setInput} {...this.props} />
+            <BaseDate  innerRef={this.setInput} {...this.props} />
         );
     }
 }

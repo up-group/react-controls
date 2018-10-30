@@ -22,20 +22,21 @@ export default class UpPhone extends React.Component<UpPhoneProps & TextInputPro
         return <BaseNewInput Validate={this.validate} type={"tel"}  {...this.props} ></BaseNewInput>
     }
 
-    private validate = (value): ValidationReturn => {
-        var pattern = /^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/
-        if (pattern && value) {
-            var result = pattern.test(value);
-            if (result) {
-                return { ok: true }
-            } else {
-                return {
-                    ok: false,
-                    specificMessage: "Doit être un numéro de téléphone "
-                }
-            }
-        }
-        return { ok: true }
+    phoneHandleChangeEvent = (event) => {
+        this.handleChangeEvent(event) ;
+    }   
+
+    renderControl() {
+        return (
+            <UpInput iconName="phone" 
+                validation={[{
+                    pattern: /^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/,
+                    errorMessage: "Le champ doit être un numéro de téléphone "
+                }]} 
+                value={this.state.value} onChange={this.phoneHandleChangeEvent} 
+                isRequired={this.props.isRequired}
+                showError={this.props.showError} />
+        );
     }
 }
 

@@ -1,12 +1,22 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 
+import UpDefaultTheme from '../../../Common/theming'
+import { IntentType } from '../../../Common/theming/types'
+import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
 
 import UpRadio from './UpRadio'
 import UpLabel from '../../Display/Label'
 
-storiesOf('UpRadio', module)
-    .addWithInfo('Multiple usage', 'Utilisation avec plusieurs options',
+import { withKnobs, text, boolean, number, array} from '@storybook/addon-knobs';
+import { getRootContainer } from '../../../Common/stories';
+
+const stories = storiesOf('Inputs/UpRadio', module) ;
+
+stories.addDecorator(withKnobs)
+
+stories.addDecorator(getRootContainer('UpRadio'));
+stories.addWithInfo('Multiple usage', 'Utilisation avec plusieurs options',
     () => (
             <div style={{ padding: "30px" }}>
                 <UpRadio onChange={console.log} defaultValue={"option1"} name={"modeAdresse"} options={[{ text: "Option 1", value: "option1" }, { text: "Option 2", value: "option2" }, { text: "Option 3", value: "option3" }]} />

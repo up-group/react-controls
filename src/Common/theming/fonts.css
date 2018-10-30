@@ -10,3 +10,9 @@
     font-style: normal;
     src: url('./fonts/upfont.ttf');
 }
+@font-face {
+    font-family: 'Icons16';
+    font-weight: normal;
+    font-style: normal;
+    src: url('../../../fonts/icons-16.ttf');
+}
