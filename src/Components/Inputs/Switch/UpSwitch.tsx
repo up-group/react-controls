@@ -16,8 +16,6 @@ export interface UpSwitchState {
     value?: boolean;
 }
 
-
-
 export default class UpSwitch extends BaseControlComponent<UpSwitchProps, boolean> {
     constructor(p, c) {
         super(p, c);

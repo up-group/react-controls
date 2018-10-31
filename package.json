@@ -67,6 +67,7 @@
   "devDependencies": {
     "@storybook/addon-actions": "3.2.11",
     "@storybook/addon-info": "3.2.11",
+    "@storybook/addon-knobs": "^3.4.0",
     "@storybook/react": "3.2.11",
     "@types/chai": "^3.5.2",
     "@types/chai-enzyme": "^0.6.1",
@@ -100,6 +101,7 @@
     "json-loader": "^0.5.4",
     "markdown-loader": "^2.0.0",
     "node-sass": "^4.5.3",
+    "npm": "^6.0.0",
     "react-addons-test-utils": "^15.5.1",
     "react-storybook-addon-info": "^3.5.0",
     "react-test-renderer": "^15.5.4",
@@ -111,8 +113,7 @@
     "typescript": "2.4.0",
     "url-loader": "^0.5.8",
     "webpack": "^2.3.3",
-    "yarn": "^0.21.3",
-    "npm": "^6.0.0"
+    "yarn": "^0.21.3"
   },
   "dependencies": {
     "axios": "^0.16.1",

@@ -1,7 +1,6 @@
 // Imports
 import * as React from 'react'
 import { UpPanelProps, UpPanelStyledProps } from './'
-import defaultTheme from '../../../Common/theming'
 import { isString } from 'util';
 import UpSvgIcon from '../../Display/SvgIcon';
 import * as classnames from 'classnames'

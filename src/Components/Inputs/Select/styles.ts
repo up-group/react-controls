@@ -1,9 +1,9 @@
 // Imports
 import * as classnames from 'classnames'
-import {sizeMap} from '../_Common/Styled' 
 import 'react-select/dist/react-select.css'
 
 import { UpSelectStyledProps } from './types';
+import { sizeMap } from '../_Common/Styled';
 
 var getWidth = (props : UpSelectStyledProps) => {
   let width = "100%" ;  

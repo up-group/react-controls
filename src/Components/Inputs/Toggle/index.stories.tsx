@@ -10,6 +10,8 @@ import UpLabel from '../../Display/Label'
 import UpNotification from '../../Display/Notification'
 import UpBox from '../../Containers/Box'
 
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+
 interface ToggleWrapperProps {
     size?: Size;
 }
@@ -38,8 +40,10 @@ class ToggleWrapper extends React.Component<ToggleWrapperProps, ToggleWrapperSta
     }
 }
 
-storiesOf('Inputs/UpToggle', module)
-    .addWithInfo('Simple usage', 'Utilisation avec plusieurs options',
+const stories = storiesOf('Inputs/UpToggle', module) ;
+
+stories.addDecorator(withKnobs)
+stories.addWithInfo('Simple usage', 'Utilisation avec plusieurs options',
         () => (
             <UpBox style={{ margin: "40px 30px" }}>
                 <UpNotification>

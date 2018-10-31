@@ -13,7 +13,7 @@ const stories = storiesOf('Display/UpIcons', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpIcons'));
 
-stories.addWithInfo('IconLoading', '',  
+stories.addWithInfo('RestaurantMenu', '',  
         () => (
             <div style={{ padding: "16px" }} >
                 <IconsM.RestaurantMenu color="red" onClick={() => { alert(0) }} />
@@ -27,7 +27,6 @@ stories.addWithInfo('IconLoading', '',
             </div>
         )
     )
-
     .addWithInfo('IconLoading', '',
         () => (
             <div style={{ padding: "16px" }} >

@@ -8,12 +8,12 @@ export interface UpLogoAlerteProps {
     icon: IconName;
     title?: string;
     alerteNumber?: number;
-    //intenet: IntentType
+    intent: IntentType
 }
 
 export default class UpLogoAlerte extends React.Component<UpLogoAlerteProps>{
     public static defaultProps: UpLogoAlerteProps = {
-        //intenet: "default",
+        intent: "default",
         alerteNumber: 0,
         title: "",
         icon: "none"
@@ -34,7 +34,7 @@ export default class UpLogoAlerte extends React.Component<UpLogoAlerteProps>{
         var borderColor = "green";
         var texteColor = "green";
 
-        switch (this.props.intenet) {
+        switch (this.props.intent) {
             case 'primary':
                 backgroundColor = "#0073b7";
                 borderColor = "#addaf1";

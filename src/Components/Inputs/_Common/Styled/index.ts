@@ -1,16 +1,16 @@
 import { NestedCSSProperties } from "typestyle/lib/types";
 
-//export const sizeMap = {
-//  xxsmall: "30px",
-//  xsmall: "60px",
-//  small: "150px",
-//  normal: "300px",
-//  medium: "250px",
-//  large: "350px",
-//  xlarge: "400px",
-//  xxlarge: "500px",
-//  fill: "100%",
-//};
+export const sizeMap = {
+  xxsmall: "30px",
+  xsmall: "60px",
+  small: "150px",
+  normal: "300px",
+  medium: "250px",
+  large: "350px",
+  xlarge: "400px",
+  xxlarge: "500px",
+  fill: "100%",
+};
 
 export const CommonCheckableStyle = (props) : NestedCSSProperties => {
   return {

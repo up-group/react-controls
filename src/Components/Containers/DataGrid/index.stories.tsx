@@ -8,7 +8,6 @@ import { ThemeProvider as UpThemeProvider } from "../../../Common/theming/ThemeP
 import UpPagination from "./UpPagination";
 import UpDataGrid from "./UpDataGrid";
 import { ICellFormatter } from "./UpDefaultCellFormatter";
-import RowTemplate from "./templates/UpDataGridRowWithStatus";
 import { getRootContainer } from "../../../Common/stories";
 
 import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
@@ -196,7 +195,7 @@ stories
       />
     )
   )
-  .addWithInfo(
+  /*.addWithInfo(
     "Avec template",
     "Utilisation d'un template spécifique pour les lignes",
     () => (
@@ -244,7 +243,7 @@ stories
         data={data}
       />
     )
-  )
+  )*/
   .addWithInfo(
     "Avec source externe",
     "Utilisation d'une source externe spécifique pour les lignes",

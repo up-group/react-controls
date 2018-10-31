@@ -52,6 +52,8 @@ import UpToggle from './Components/Inputs/Toggle'
 import UpRadio from './Components/Inputs/Radio'
 import * as UpIcons from "./Components/Display/Icons/materialinear";
 
+import UpDefaultTheme, { UpThemeProvider, UpThemeInterface, UpThemeColorMap } from './Common/theming'
+
 import { 
     Button as UpFinanceurButton,
     TextArea as UpFinanceurTextArea,
@@ -104,16 +106,15 @@ export {
     UpFormGroup,
     UpTooltip,
     UpVisibilitySensor,
-   // UpThemeProvider,
-   // UpThemeInterface,
-   // UpThemeColorMap,
-   // UpDefaultTheme,
+    UpThemeProvider,
+    UpThemeInterface,
+    UpThemeColorMap,
+    UpDefaultTheme,
     UpToggle,
     UpCheckbox,
     UpRadio,
     UpCalendarTimeline,
     UpIconName,
-    UpIntentType,
     UpDataGrid,
     UpModal,
     UpDashboard,

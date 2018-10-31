@@ -1,49 +1,62 @@
-import * as React from 'react'
-import * as update from 'react-addons-update'
+import * as React from "react";
+import * as update from "react-addons-update";
 
-import { storiesOf } from '@storybook/react'
+import { storiesOf } from "@storybook/react";
 
-import UpTooltip from './'
+import UpTooltip from "./";
 
-import UpLigne from '../Ligne'
-import UpPanel from '../../Containers/Panel'
+import UpLigne from "../Ligne";
+import UpPanel from "../../Containers/Panel";
 
-import UpDefaultTheme from '../../../Common/theming'
-import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
+import UpDefaultTheme from "../../../Common/theming";
+import { ThemeProvider as UpThemeProvider } from "../../../Common/theming/ThemeProvider";
 
-import { getRootContainer } from '../../../Common/stories';
-import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+import { getRootContainer } from "../../../Common/stories";
+import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
 
-const TooltipRenderer = (<div>
+const TooltipRenderer = (
+  <div>
     <p style={{ padding: "10px" }}>
-        Pour plus d'info, veuillez consulter le site de notre produit...
+      Pour plus d'info, veuillez consulter le site de notre produit...
     </p>
-</div>);
+  </div>
+);
 
-const stories = storiesOf('Display/UpTooltip', module) ;
+const stories = storiesOf("Display/UpTooltip", module);
 
-stories.addDecorator(withKnobs)
-stories.addDecorator(getRootContainer('UpTooltip'));
+stories.addDecorator(withKnobs);
+stories.addDecorator(getRootContainer("UpTooltip"));
 
-stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
- () => (
-    <UpThemeProvider theme={UpDefaultTheme}>
-        <div style={{margin:"30px"}}>
-            <UpPanel type={"primary"}>
-                Exemple d'utilisation du composant 
-                <UpTooltip title={"Détails"} content={TooltipRenderer}>
-                        <UpLigne>&nbsp;<code>&lt;UpTooltip /&gt;</code>&nbsp;</UpLigne>
-                    </UpTooltip> sur du texte.
-            </UpPanel>
-            </div>
-        )).addWithInfo('Sur un lien', 'Utilisation du composant en lui passant les données à afficher',
-            () => (
-                <div style={{ margin: "30px" }}>
-                    <UpPanel >
-                        Exemple d'utilisation du composant
-               <UpTooltip id={"Tooltip"} title={"Détails"} content={TooltipRenderer}>
-                            <a data-for={"Tooltip"} data-tip="React-tooltip">◕‿‿◕</a>
-                        </UpTooltip> sur du texte.
-           </UpPanel>
-                </div>
-            ))
+stories
+  .addWithInfo(
+    "Simple usage",
+    "Utilisation du composant en lui passant les données à afficher",
+    () => (
+      <UpPanel type={"primary"}>
+        Exemple d'utilisation du composant
+        <UpTooltip title={"Détails"} content={TooltipRenderer}>
+          <UpLigne>
+            &nbsp;
+            <code>&lt;UpTooltip /&gt;</code>
+            &nbsp;
+          </UpLigne>
+        </UpTooltip>{" "}
+        sur du texte.
+      </UpPanel>
+    )
+  )
+  .addWithInfo(
+    "Sur un lien",
+    "Utilisation du composant en lui passant les données à afficher",
+    () => (
+      <UpPanel>
+        Exemple d'utilisation du composant
+        <UpTooltip id={"Tooltip"} title={"Détails"} content={TooltipRenderer}>
+          <a data-for={"Tooltip"} data-tip="React-tooltip">
+            ◕‿‿◕
+          </a>
+        </UpTooltip>{" "}
+        sur du texte.
+      </UpPanel>
+    )
+  );

@@ -7,21 +7,17 @@ import { CommonCheckableStyle } from '../_Common/Styled';
 import { style } from 'typestyle';
 import { WithThemeProps } from '../../../Common/theming/withTheme';
 
-import { getFontClassName, isNullOrUndef } from "../../../Common/utils/helpers";
-//import { IconCheckBox_Check, IconCheckBox_Empty } from "../../Display/Icons/Icons";
-import { CheckBox, CheckBoxOutlineBlank } from "../../Display/Icons/materialinear";
-import { debug } from "util";
+export interface UpCheckboxProps {
+  options: Array<Option>;
+}
 
-
-
-
-export interface UpCheckboxProps /*extends InputHTMLAttributes<HTMLInputElement>*/ {
-    text?: string;
-    //Check?: boolean;
-    //onChangeValue?: (check: boolean) => void;
-    //Disable?: boolean;
-    //onChange?: (check: boolean) => void;
-    //onKeyDown?: (event) => void;
+export interface Option {
+  name: string;
+  value: any;
+  text?: string;
+  iconName?: string;
+  onChange?: (e: any) => void;
+  checked?: boolean;
 }
 
 export interface UpCheckboxStyledProps extends WithThemeProps {

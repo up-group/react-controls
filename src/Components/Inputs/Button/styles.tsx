@@ -1,16 +1,14 @@
 // Imports
-import * as React from 'react'
-// import styled, { css, keyframes } from '../../../Common/theming/ThemeProvider';
 import remStringFromPX from '../../../Common/utils'
 import { NestedCSSProperties } from 'typestyle/lib/types';
-import { UpButtonProps, fontSizeMap, buttonSizeMap } from './UpButton';
 
 import * as classnames from 'classnames' ;
 import { style, keyframes } from 'typestyle';
 import { WithThemeProps } from '../../../Common/theming/withTheme';
+import { UpButtonProps, fontSizeMap, buttonSizeMap, UpButtonStyledProps } from '.';
 
-//const DEFAULT_MIN_SIZE = "30px"
-//const DEFAULT_BORDER_RADIUS = "4px"
+const DEFAULT_MIN_SIZE = "30px"
+const DEFAULT_BORDER_RADIUS = "4px"
 
 const shadow = (props:UpButtonProps) : NestedCSSProperties => {
   return {
@@ -369,7 +367,7 @@ const rotate = (props:UpButtonProps) : NestedCSSProperties => {
   }
 }
 
-export const styleButton = (props:UpButtonProps) : string => {
+export const getStyles = (props:UpButtonStyledProps) : string => {
   return classnames(
     style(base(props)), 
     style(getWidth(props)), 

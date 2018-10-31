@@ -3,16 +3,16 @@ import { NestedCSSProperties } from 'typestyle/lib/types';
 import { UpImageProps } from './UpImage';
 import { style } from 'typestyle';
 
-//const imageSizeMap = {
-//  thumb: 50,
-//  xxsmall: 100,
-//  xsmall: 200,
-//  small: 300,
-//  medium: 400,
-//  large: 500,
-//  xlarge: 600,
-//  full: 1200,
-//};
+const imageSizeMap = {
+ thumb: 50,
+ xxsmall: 100,
+ xsmall: 200,
+ small: 300,
+ medium: 400,
+ large: 500,
+ xlarge: 600,
+ full: 1200,
+};
 
 export const imageStyle = ({ imageSize } : UpImageProps) : NestedCSSProperties => {
   const sizeWithDefault = imageSize || 'small';

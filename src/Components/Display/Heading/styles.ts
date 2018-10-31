@@ -5,15 +5,15 @@ import { NestedCSSProperties } from 'typestyle/lib/types';
 import { Tag, UpHeadingProps } from './UpHeading';
 import { style } from 'typestyle';
 
-//const sizeMap = {
-//  h1: 36,
-//  h2: 30,
-//  h3: 24,
-//  h4: 18,
-//  h5: 16
-//};
+const sizeMap = {
+ h1: 36,
+ h2: 30,
+ h3: 24,
+ h4: 18,
+ h5: 16
+};
 
-//const calculateSize = (tag: Tag): string => remStringFromPX(sizeMap[tag]);
+const calculateSize = (tag: Tag): string => remStringFromPX(sizeMap[tag]);
 
 const truncateCss = (truncate: boolean) : NestedCSSProperties => {
   if (truncate) {

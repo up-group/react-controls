@@ -2,12 +2,11 @@ import * as React from 'react'
 import { NestedCSSProperties } from 'typestyle/lib/types';
 import { style } from 'typestyle';
 import * as classnames from 'classnames';
-import { WithThemeProps } from '../../../Common/theming/withTheme';
 
 export type Alignement = 'h' | 'v'
 export type AddOnMode = 'none' | 'left' | 'right'
 
-export interface UpButtonGroupProps extends WithThemeProps {
+export interface UpButtonGroupProps {
   gutter?:number;
   align?:Alignement;
   isAddOn?:AddOnMode;
@@ -80,7 +79,7 @@ const noGutterStyle = (props:UpButtonGroupProps) : NestedCSSProperties => {
 } 
 };
 
-var setGutter = (props:UpButtonGroupProps) : NestedCSSProperties => {
+const setGutter = (props:UpButtonGroupProps) : NestedCSSProperties => {
   if(props.align==='v') {
     return {
       $nest : {
@@ -100,7 +99,7 @@ var setGutter = (props:UpButtonGroupProps) : NestedCSSProperties => {
   }
 }
 
-var setAlignment = (props:UpButtonGroupProps) : NestedCSSProperties => {
+const setAlignment = (props:UpButtonGroupProps) : NestedCSSProperties => {
   if(props.align==='v') {
     return {
       $nest : {
@@ -123,7 +122,7 @@ var setAlignment = (props:UpButtonGroupProps) : NestedCSSProperties => {
   }
 }
 
-export const ButtonGroupStyled =  (props: UpButtonGroupProps) => {
+export const getStyles =  (props: UpButtonGroupProps) => {
   return classnames(style(setGutter(props)), style(setAlignment(props)), style(noGutterStyle(props))) ; 
 };
 
@@ -141,7 +140,7 @@ export default class UpButtonGroup extends React.Component<UpButtonGroupProps, u
   public render() {
     const {children, ...others} = this.props ;
     return (
-        <div {...others} className={ButtonGroupStyled(this.props)}>
+        <div {...others} className={getStyles(this.props)}>
             {children}
         </div>
     ) ;

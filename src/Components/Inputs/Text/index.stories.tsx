@@ -11,10 +11,10 @@ import UpLabel from '../../Display/Label'
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
-const stories = storiesOf('Inputs/UpSwitch', module) ;
+const stories = storiesOf('Inputs/UpText', module) ;
 
 stories.addDecorator(withKnobs)
-stories.addDecorator(getRootContainer('UpSwitch'));
+stories.addDecorator(getRootContainer('UpText'));
 
 stories.addWithInfo('Simple usage', 'Utilisation avec plusieurs options',
     () => (

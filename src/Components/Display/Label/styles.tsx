@@ -3,13 +3,13 @@ import { UpLabelStyledProps } from "./types";
 import { style } from "typestyle";
 import * as classnames from 'classnames';
 
-//export const sizeMap = {
-//  auto: "40px",
-//  small: "100px",
-//  medium: "150px",
-//  large: "250px",
-//  xlarge: "350px"
-//};
+export const sizeMap = {
+ auto: "40px",
+ small: "100px",
+ medium: "150px",
+ large: "250px",
+ xlarge: "350px"
+};
 
 const inline : NestedCSSProperties = { 
   $nest :{

@@ -1,6 +1,6 @@
 // Imports
 import * as React from 'react';
-import UpButton from './';
+import UpButton from '../UpButton';
 import * as chai from 'chai';
 import * as chaiEnzyme from 'chai-enzyme';
 import { shallow, mount, render } from 'enzyme';
