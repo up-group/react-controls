@@ -43,7 +43,6 @@ export const marginCss = (margin: Margin) : NestedCSSProperties => {
 
 export const getStyles = (props : UpParagraphProps) => (
   style({
-      maxWidth: '630px',
       textAlign: props.textAlign || defaultProps.textAlign,
       color: props.color || defaultProps.color,
       ...marginCss(props.margin || defaultProps.margin),

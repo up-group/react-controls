@@ -1,47 +1,46 @@
 import * as React from "react"
-import { style } from "typestyle"
+import * as cn from 'classnames';
+
 import SvgIcon from "../SvgIcon/index"
-import Header from "../TimeLine/lib/layout/Header";
 import { IconName } from "../../../Common/theming/icons";
+import { BulleStyle, IconStyle, ValueStyle, MessageStyle, ChildrenStyle } from "./styles";
+import UpBox from "../../Containers/Box";
+import withTheme, { WithThemeProps } from "../../../Common/theming/withTheme";
 
 export interface UpBulleProps {
-    BackgroundImage: string;
-    Message: string;
+    backgroundImage: string;
+    message: string;
     icon: IconName;
-    Valeur: number
+    value: number;
+    className?: string;
 }
-export interface UpBulleState {
+
+class UpBulle extends React.Component<UpBulleProps & WithThemeProps>{
     
-}
-export default class UpBulle extends React.Component<UpBulleProps, UpBulleState>{
     constructor(p, c) {
         super(p, c);
-
-        this.state = {
-           
-        }
     }
+
     render() { 
-        var BulleStyle = style({
-            fontSize: "12px",
-            cursor: "pointer",
-            color:"white",
-            width: "228px",
-            height: "50px",
-            borderRadius: "4px",
-            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
-            padding: "7px 10px 5px 5px",
-            margin: "0px 25px 25px 0px",
-            float: "left",
-        });
-        var IconStyle = style({
-            margin: "5px",
-        });
-        return <div className={BulleStyle} style={{ backgroundImage: this.props.BackgroundImage }}>
-            <SvgIcon className={IconStyle} iconName={this.props.icon} color={"white"} />
-            <p style={{ padding: "0px 5px 5px 10px", float: "left", fontSize: "24px" }}>{this.props.Valeur}      </p>
-            <p style={{ paddingTop: "6px", float: "left", wordWrap: "break-word", width:"150px" }}>{this.props.Message}     </p>
-            <p style={{ padding: "0px 5px 5px 10px", float: "left" }}>{this.props.children}    </p>
-        </div>
+        return (
+            <div className={cn(BulleStyle(this.props), this.props.className)} style={{ backgroundImage: this.props.backgroundImage }}>
+                <UpBox flexDirection={'row'} justifyContent={'flex-start'} alignItems={'center'}>
+                    {this.props.icon &&
+                        <SvgIcon className={IconStyle} iconName={this.props.icon} color={"white"} />
+                    }
+                    {this.props.value &&
+                        <div className={ValueStyle}>{this.props.value}</div>
+                    }
+                    {this.props.message &&
+                        <div className={MessageStyle}>{this.props.message}</div>
+                    }
+                    {this.props.children &&
+                        <div className={ChildrenStyle}>{this.props.children}</div>
+                    }
+                </UpBox>
+            </div>
+        )
     }
 }
+
+export default withTheme<UpBulleProps>(UpBulle)

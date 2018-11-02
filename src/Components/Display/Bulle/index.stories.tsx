@@ -4,54 +4,70 @@ import UpBulle from './UpBulle'
 
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+import { style } from 'typestyle';
 
 const stories = storiesOf('Display/UpBulle', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpBulle'));
 
-stories.addWithInfo('Simple usage 2', 'Utilisation du composant en lui passant les données à afficher',
+const defaultBulle = style({
+        margin: "0px 25px 25px 0px",
+        width: '228px',
+})
+
+stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
     () => (
         <div>
-            <UpBulle BackgroundImage={"linear-gradient(102deg, #cd0649, #ff54a0)"}
-                    Message={"messages non-lus"}
-                    icon={"chat"}
-                    Valeur={1}> 
+            <UpBulle 
+                backgroundImage={"linear-gradient(102deg, #cd0649, #ff54a0)"}
+                message={"messages non-lus"}
+                icon={"chat"}
+                className={defaultBulle}
+                value={1}> 
+            </UpBulle>
+
+            <UpBulle
+                backgroundImage={"linear-gradient(282deg, #bddf3d, #5cbc15"}
+                message={"anniversaire client à venir"}
+                icon={"cake"}
+                className={defaultBulle}
+                value={2}>
             </UpBulle>
             <UpBulle
-                    BackgroundImage={"linear-gradient(282deg, #bddf3d, #5cbc15"}
-                    Message={"anniversaire client à venir"}
-                    icon={"cake"}
-                    Valeur={2}>
-            </UpBulle>
-            <UpBulle
-                BackgroundImage={"linear-gradient(282deg, #fcd333, #f89225)"}
-                Message={"clients en liste d'attente"}
+                backgroundImage={"linear-gradient(282deg, #fcd333, #f89225)"}
+                message={"clients en liste d'attente"}
                 icon={"list2"}
-                Valeur={3}> 
+                className={defaultBulle}
+                value={3}> 
             </UpBulle>
             <UpBulle
-                    BackgroundImage={"linear-gradient(102deg, #f00001, #ff4f32)"}
-                    Message={"dossiers avec \n piéces manquantes"}
+                backgroundImage={"linear-gradient(102deg, #f00001, #ff4f32)"}
+                message={"dossiers avec \n piéces manquantes"}
                 icon={"clip"}
-                    Valeur={4}>
+                className={defaultBulle}
+                value={4}>
             </UpBulle>
             <UpBulle
-                    BackgroundImage={"linear-gradient(282deg, #21d7ff, #158fd8)"}
-                    Message={"clients absents"}
-                    icon={"profile"}
-                    Valeur={5}>
-            </UpBulle>
-            <UpBulle BackgroundImage={"linear-gradient(282deg, #21aeff, #1161e3)"}
-                    Message={"salariés absents "}
+                backgroundImage={"linear-gradient(282deg, #21d7ff, #158fd8)"}
+                message={"clients absents"}
                 icon={"profile"}
-                    Valeur={6} >
+                className={defaultBulle}
+                value={5}>
+            </UpBulle>
+            <UpBulle 
+                backgroundImage={"linear-gradient(282deg, #21aeff, #1161e3)"}
+                message={"salariés absents "}
+                icon={"profile"}
+                className={defaultBulle}
+                value={6} >
             </UpBulle> 
             <UpBulle
-                    BackgroundImage={"linear-gradient(282deg, #16f4a9, #14bfac)"}
-                    Message={"retours d'absence"}
-                    icon={"go-back"}
-                    Valeur={7} >
+                backgroundImage={"linear-gradient(282deg, #16f4a9, #14bfac)"}
+                message={"retours d'absence"}
+                icon={"go-back"}
+                className={defaultBulle}
+                value={7} >
             </UpBulle>
           </div>
     ));

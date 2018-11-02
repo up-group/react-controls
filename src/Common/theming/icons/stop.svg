@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 18.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
-<g id="stop_1_">
-	<g>
-		<path fill-rule="evenodd" clip-rule="evenodd" d="M16,3H4C3.45,3,3,3.45,3,4v12c0,0.55,0.45,1,1,1h12c0.55,0,1-0.45,1-1V4
-			C17,3.45,16.55,3,16,3z"/>
-	</g>
-</g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>0: Icons / Dark / Stop</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="0:-Icons-/-Dark-/-Stop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M22.2857143,21.4285714 C22.2857143,21.9025714 21.9025714,22.2857143 21.4285714,22.2857143 L2.57142857,22.2857143 C2.09742857,22.2857143 1.71428571,21.9025714 1.71428571,21.4285714 L1.71428571,2.57142857 C1.71428571,2.09828571 2.09742857,1.71428571 2.57142857,1.71428571 L21.4285714,1.71428571 C21.9025714,1.71428571 22.2857143,2.09828571 22.2857143,2.57142857 L22.2857143,21.4285714 L22.2857143,21.4285714 Z M22.2857143,0 L1.71428571,0 C0.768,0 0,0.768 0,1.71428571 L0,22.2857143 C0,23.232 0.768,24 1.71428571,24 L22.2857143,24 C23.232,24 24,23.232 24,22.2857143 L24,1.71428571 C24,0.768 23.232,0 22.2857143,0 L22.2857143,0 Z" id="Fill-124" fill="#000000"></path>
+    </g>
 </svg>

@@ -7,6 +7,15 @@ export interface ThemeInterface {
     notificationIconSize?: number;
     gridGutter?: number;
     intentTypeIcons?: IconMap;
+    typography?: Typography
+}
+
+export interface Typography {
+    baseFontSize: string;
+    headerFontFamily: string;
+    bodyFontFamily: string;
+    bodyLineHeight:string | number;
+    bodySpacing:string | number;
 }
 
 export interface ThemeColorMap {

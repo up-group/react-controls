@@ -22,7 +22,7 @@ export const colors = (props: UpNotificationProps & WithThemeProps ) : NestedCSS
 export const icon  = (props : UpNotificationProps & WithThemeProps) : NestedCSSProperties => {
   return {
       $nest : {
-          '.up-notification svg' : {
+          '.up-notification svg, .up-notification svg path, .up-notification svg polygon' : {
               fill: props.theme.colorMap.offwhite,
               margin: '10px',
               display: 'inline-block',

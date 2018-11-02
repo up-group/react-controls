@@ -96,7 +96,7 @@ export interface UpBoxProps {
         var {children, style, ...others} = this.props ;
         
         return (
-            <div style={style || {}} className={cn(this.getBoxStyles(), this.getSize())}>
+            <div style={style || {}} className={cn(this.getBoxStyles(), this.getSize(), this.props.className)}>
               {children || null}
             </div>
           );

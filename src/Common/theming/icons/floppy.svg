@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>0: Icons / Dark / Floppy</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="0:-Icons-/-Dark-/-Floppy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M14.25,7.5 C14.664,7.5 15,7.16475 15,6.75 L15,3.75 C15,3.33525 14.664,3 14.25,3 C13.836,3 13.5,3.33525 13.5,3.75 L13.5,6.75 C13.5,7.16475 13.836,7.5 14.25,7.5 L14.25,7.5 Z M22.5,21 C22.5,21.828 21.828,22.5 21,22.5 L3,22.5 C2.172,22.5 1.5,21.828 1.5,21 L1.5,3 C1.5,2.172 2.172,1.5 3,1.5 L4.5,1.5 L4.5,9 C4.5,9.828 5.172,10.5 6,10.5 L18,10.5 C18.828,10.5 19.5,9.828 19.5,9 L19.5,1.5 L21,1.5 C21.828,1.5 22.5,2.172 22.5,3 L22.5,21 L22.5,21 Z M6,1.5 L18,1.5 L18,8.25 C18,8.66475 17.664,9 17.25,9 L6.75,9 C6.336,9 6,8.66475 6,8.25 L6,1.5 L6,1.5 Z M21,0 L3,0 C1.34325,0 0,1.34325 0,3 L0,21 C0,22.65675 1.34325,24 3,24 L21,24 C22.65675,24 24,22.65675 24,21 L24,3 C24,1.34325 22.65675,0 21,0 L21,0 Z" id="Fill-141" fill="#000000"></path>
+    </g>
+</svg>

@@ -3,6 +3,8 @@ import { storiesOf } from '@storybook/react';
 import Welcome from './Welcome';
 import { configure } from '@storybook/react';
 
+import './default.css';
+
 storiesOf('Welcome', module).add('to Storybook', () => { return <Welcome /> ; });
 
 const req = require.context('../src/Components', true, /\.stories\.(js|tsx)$/)

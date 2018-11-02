@@ -58,7 +58,7 @@ export const errorStyles = (props : StyledProps) => {
               borderWidth: '1px',
               borderStyle: 'solid',
           },
-          '.up-input-group svg' : {
+          '.up-input-group svg, .up-input-group svg path, .up-input-group svg polygon' : {
             fill: props.theme ? props.theme.colorMap.danger : defaultTheme.colorMap.danger,
           }
       }

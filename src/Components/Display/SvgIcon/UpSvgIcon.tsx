@@ -25,7 +25,7 @@ const getStyles = (props : SvgIconWrapperProps) : NestedCSSProperties => ({
     height: `${props.height}px`,
     margin: '1px',
     $nest : {
-        svg : {
+        'svg, svg path, svg polygon' : {
             fill: props.color,
         }
     }
@@ -51,7 +51,7 @@ const UpSvgIcon : React.StatelessComponent<UpSvgIconProps> = ({
 }: UpSvgIconProps) => {
 
   const height = others.height || 20 ;
-  const width = others.height || 20 ;
+  const width = others.width || 20 ;
    
   if(iconName) {
     const SvgIconElement = () => <SvgIconWrapper className={className} color={color} height={height} width={width}
