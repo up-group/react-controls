@@ -65,13 +65,13 @@ const stories = storiesOf('Containers/UpModal', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpModal'));
 
-stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+stories.add('Simple usage',
     () => (<UpThemeProvider theme={UpDefaultTheme}>
         <ModalWrapper />
-    </UpThemeProvider>)
-    ).addWithInfo('Html', 'Set the content using HTML',
+    </UpThemeProvider>), { info : 'Utilisation du composant en lui passant les données à afficher'}
+    ).add('Html',
         () => (
             <ModalWrapper html={HTML} />
 
-        )
+        ), { info : 'Set the content using HTML'}
     );

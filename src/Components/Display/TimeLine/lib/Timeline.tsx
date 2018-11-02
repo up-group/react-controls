@@ -204,10 +204,10 @@ export default class UpCalendarTimeline extends React.Component<any, any> {
             dimensionItems, height, groupHeights, groupTops
         } = this.stackItems(props.items, props.groups, this.state.canvasTimeStart, this.state.visibleTimeStart, this.state.visibleTimeEnd, this.state.width)
 
-        this.state.dimensionItems = dimensionItems
-        this.state.height = height
-        this.state.groupHeights = groupHeights
-        this.state.groupTops = groupTops
+        // this.state.dimensionItems = dimensionItems
+        // this.state.height = height
+        // this.state.groupHeights = groupHeights
+        // this.state.groupTops = groupTops
     }
 
     lastTouchDistance?;

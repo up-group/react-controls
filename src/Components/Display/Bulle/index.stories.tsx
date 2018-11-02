@@ -16,7 +16,7 @@ const defaultBulle = style({
         width: '228px',
 })
 
-stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+stories.add('Simple usage',
     () => (
         <div>
             <UpBulle 
@@ -70,4 +70,5 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
                 value={7} >
             </UpBulle>
           </div>
-    ));
+    ), { info : 'Utilisation du composant en lui passant les données à afficher'}
+);

@@ -16,7 +16,7 @@ const stories = storiesOf('Containers/UpGrid', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpGrid'));
 
-stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+stories.add('Simple usage',
    () => {
     const gutter = number('gutter', 0);
 
@@ -48,5 +48,5 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
       </UpGrid>
       </div>
     </UpThemeProvider>
-   }
+   }, { info : 'Utilisation du composant en lui passant les données à afficher'}
 );

@@ -1,6 +1,5 @@
 // Imports
 import * as classnames from 'classnames'
-import 'react-select/dist/react-select.css'
 
 import { UpSelectStyledProps } from './types';
 import { sizeMap } from '../_Common/Styled';

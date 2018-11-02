@@ -17,10 +17,3 @@ export default class InfoLabel extends React.Component<any, any> {
         )
     }
 }
-
-//InfoLabel.propTypes = {
-//    label: React.PropTypes.string.isRequired
-//}
-//InfoLabel.defaultProps = {
-//    label: ''
-//}

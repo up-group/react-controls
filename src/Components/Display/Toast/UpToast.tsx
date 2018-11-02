@@ -47,8 +47,8 @@ export default class Toast extends React.Component<Props, State> {
   public static defaultProps = {
     status: 'none' as Status,
   };
-  constructor() {
-    super();
+  constructor(props, context) {
+    super(props, context);
     this.handleClose = this.handleClose.bind(this);
     this.state = {
       isVisible: true,

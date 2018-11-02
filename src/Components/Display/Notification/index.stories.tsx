@@ -18,13 +18,16 @@ const stories = storiesOf('Display/UpNotification', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpLoadingIndicator'));
 
-stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+stories.add('Simple usage',
    () => (
       <UpNotification/* status="info"*/ message="Chargement en cours"></UpNotification>
-  )).addWithInfo('Activation Close', 'Utilisation du composant en autorisant la fermeture de la notification',
+  ), {info: 'Utilisation du composant en lui passant les données à afficher'}
+).add('Activation Close',
   () => (
      <UpNotification dismissable={true} /*status="info"*/ message="Chargement en cours"></UpNotification>
- )).addWithInfo('Modal', 'Utilisation du composant modal',
+ ), {info:'Utilisation du composant en autorisant la fermeture de la notification'}
+).add('Modal',
  () => (
     <UpNotification title={"Erreur"} dismissable={true} displayMode={"modal"}/* status="danger"*/ message="Un  problème est survenu !!"></UpNotification>
-));
+), {info: 'Utilisation du composant modal'}
+);

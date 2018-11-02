@@ -17,7 +17,7 @@ const stories = storiesOf('Containers/UpBadge', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpBadge'));
 
-stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+stories.add('Simple usage',
    () => (
       <UpBox style={{margin:'30px'}}>
         <UpBadge text="1" rounded={true} /*intent="primary"*/ />
@@ -26,4 +26,5 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
         <UpBadge text="4" rounded={true} /*intent="warning"*/ />
         <UpBadge text="5" rounded={true} /*intent="danger"*/ />
       </UpBox>
-  )) ;
+  ), { info : 'Utilisation du composant en lui passant les données à afficher'}
+) ;

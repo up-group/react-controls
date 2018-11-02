@@ -10,6 +10,8 @@ import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import * as queryString from 'query-string';
 import { UpSelectProps } from './types';
 import { getStyles } from './styles';
+import { Props } from 'react-select/lib/stateManager';
+import { State } from 'react-select/lib/Creatable';
 
 var CancelToken = axios.CancelToken;
 
@@ -273,11 +275,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         const dataSource = this.props.dataSource;
         var loadOptions: any = false;
 
-        const SelectComponent = dataSource != null
-            ? ((this.props.allowCreate === true) ? Select.AsyncCreatable : Select.Async)
-            : ((this.props.allowCreate === true) ? Select.Creatable : Select);
-
-        if (typeof dataSource !== "undefined") {
+        if (dataSource !== undefined) {
             var queryParam = dataSource.queryParameterName || 'search';
             var minimumInputLength = this.props.minimumInputLength;
             loadOptions = (input: string, callback) => {
@@ -354,31 +352,46 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                 "autoload": this.props.autoload
             }
         }
+
+        const selectComponentProps = {
+            ...specProps,
+            placeholder: this.props.placeholder,
+            filterOptions: this.props.filterOptions || this.filterOptions,
+            allowCreate:this.props.allowCreate,
+            promptTextCreator:this.props.promptTextCreator,
+            value:this.state.extra.fullObject,
+            autoBlur:false,
+            isLoading:this.props.isLoading,
+            valueKey:this.props.valueKey || "id",
+            labelKey:this.props.labelKey || "text",
+            loadingPlaceholder:this.state.extra.loadingPlaceholder,
+            multi:this.props.multiple,
+            clearable:this.props.allowClear,
+            disabled:this.props.disabled,
+            noResultsText:this.props.noResultsText,
+            clearAllText:this.props.clearAllText,
+            clearValueText:this.props.clearValueText,
+            addLabelText:this.props.addLabelText,
+            searchPromptText:this.props.searchPromptText,
+            optionRenderer:this.getOptionRenderer,
+            valueRenderer:this.getValueRenderer,
+            onChange:this.onChange,
+        }
+       
         return (
             <div className={getStyles(this.props)}>
-                <SelectComponent
-                    {...specProps}
-                    placeholder={this.props.placeholder}
-                    filterOptions={this.props.filterOptions || this.filterOptions}
-                    allowCreate={this.props.allowCreate}
-                    promptTextCreator={this.props.promptTextCreator}
-                    value={this.state.extra.fullObject}
-                    autoBlur={false}
-                    isLoading={this.props.isLoading}
-                    valueKey={this.props.valueKey || "id"}
-                    labelKey={this.props.labelKey || "text"}
-                    loadingPlaceholder={this.state.extra.loadingPlaceholder}
-                    multi={this.props.multiple}
-                    clearable={this.props.allowClear}
-                    disabled={this.props.disabled}
-                    noResultsText={this.props.noResultsText}
-                    clearAllText={this.props.clearAllText}
-                    clearValueText={this.props.clearValueText}
-                    addLabelText={this.props.addLabelText}
-                    searchPromptText={this.props.searchPromptText}
-                    optionRenderer={this.getOptionRenderer}
-                    valueRenderer={this.getValueRenderer}
-                    onChange={this.onChange} />
+                {dataSource != null && this.props.allowCreate === true &&
+                    <Select.AsyncCreatable {...selectComponentProps} />
+                }
+                {dataSource != null && this.props.allowCreate === false &&
+                    <Select.Async {...selectComponentProps} />
+                }
+                {dataSource == null && this.props.allowCreate === true &&
+                    <Select.Creatable {...selectComponentProps} />
+                }
+                {dataSource == null && this.props.allowCreate === false &&
+                    <Select.SelectBase {...selectComponentProps} />
+                }
             </div>
         );
     }

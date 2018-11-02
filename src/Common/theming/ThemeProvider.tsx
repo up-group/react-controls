@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ThemeInterface } from "./types";
 import UpDefaultTheme from './';
+import * as PropTypes  from 'prop-types';
 
 export interface ThemeProviderProps {
     theme?: ThemeInterface,
@@ -8,7 +9,7 @@ export interface ThemeProviderProps {
 
 export class ThemeProvider extends React.Component<ThemeProviderProps> {
     static childContextTypes = {
-      theme: React.PropTypes.object,
+      theme: PropTypes.object,
     };
 
     static defaultProps = {

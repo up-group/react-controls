@@ -11,7 +11,7 @@ const stories = storiesOf('Display/UpTreeView', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpTreeView'));
 
-stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+stories.add('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
     () => {
         return <UpTreeView
             onBranchClick={console.log}
@@ -35,9 +35,8 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
                 ]
             }
         ]} />
-    })
-
-    .addWithInfo('Show invisible', 'Utilisation du composant en lui passant les données à afficher',
+    }, { info : "Utilisation du composant en lui passant les données à afficher" }
+).add('Show invisible',
     () => {
         return <UpTreeView
             onBranchClick={console.log}
@@ -63,5 +62,5 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
                     ]
                 }
             ]} />
-    })
-    ;
+    }, { info : "Utilisation du composant en lui passant les données à afficher" }
+);

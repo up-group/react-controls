@@ -14,14 +14,15 @@ const stories = storiesOf('Inputs/UpEmail', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpEmail'));
 
-stories.addWithInfo('Email input', 'Utilisation simple',
+stories.add('Email input',
    () => (
         <div style={{padding:"30px"}}>
           <UpEmail  />
         </div>
-)).addWithInfo('Email Input Required', 'Avec valeur requise',
+  ), { info :  'Utilisation simple' }
+).add('Email Input Required',
    () => (
         <div style={{padding:"30px"}}>
           <UpEmail required={true} />
         </div>
-  )) ;
+), { info :  'Avec valeur requise' }) ;

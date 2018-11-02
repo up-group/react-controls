@@ -13,7 +13,7 @@ module.exports = {
         publicPath: '/assets'
     },
     module: {
-        rules: [
+        rules: [ 
             {
                 test: /\.tsx?/,
                 use: [
@@ -27,7 +27,6 @@ module.exports = {
                 test: /\.css$/,
                 loader: ['style-loader', 'css-loader']
             },
-            { test: /\.json$/, loader: 'json-loader' },
             { test: /\.md$/, loader: 'html!markdown-loader' },
             { test: /\.svg$/, loader: 'svg-inline-loader' },
             {

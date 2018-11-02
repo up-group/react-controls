@@ -14,18 +14,20 @@ const stories = storiesOf('Inputs/UpPhone', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpPhone'));
 
-stories.addWithInfo('Phone input', 'Utilisation simple',
+stories.add('Phone input',
    () => (
     <UpThemeProvider theme={UpDefaultTheme}> 
         <div style={{padding:"30px"}}>
           <UpPhone />
         </div>
     </UpThemeProvider>
-  )).addWithInfo('Phone Input Required', 'Avec valeur requise',
+  ), {info :  'Utilisation simple'}
+).add('Phone Input Required',
    () => (
     <UpThemeProvider theme={UpDefaultTheme}> 
         <div style={{padding:"30px"}}>
           <UpPhone isRequired={true} />
         </div>
     </UpThemeProvider>
-  )) ;
+  ), {info:  'Avec valeur requise'} 
+) ;

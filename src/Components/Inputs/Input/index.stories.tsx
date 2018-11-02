@@ -14,19 +14,24 @@ const stories = storiesOf('Inputs/UpInput', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpInput'));
 
-stories.addWithInfo('Text input', 'Utilisation simple',
+stories.add('Text input',
    () => (
     <UpInput type={"text"} />
-  )).addWithInfo('Search Input', 'Champ de recherche',
+  ), {info : 'Utilisation simple'}
+).add('Search Input',
    () => (
     <UpInput type={"search"} />
-  )).addWithInfo('Email Input', 'Champ email',
+  ), {info : 'Champ de recherche'}
+).add('Email Input',
    () => (
     <UpInput type={"email"} />
-  )).addWithInfo('Phone Input', 'Champ phone',
+  ), {info : 'Champ email'}
+).add('Phone Input',
   () => (
     <UpInput type={"phone"} />
-  )).addWithInfo('Required Input', 'Champ requis',
+  ), {info : 'Champ phone'}
+).add('Required Input',
  () => (
     <UpInput isRequired={true} type={"email"} />
-)) ;
+  ), {info : 'Champ requis'}
+) ;

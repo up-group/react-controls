@@ -136,18 +136,3 @@ export default class Sidebar extends React.Component<any, any> {
         )
     }
 }
-
-//Sidebar.propTypes = {
-//    groups: React.PropTypes.oneOfType([React.PropTypes.array, React.PropTypes.object]).isRequired,
-//    width: React.PropTypes.number.isRequired,
-//    lineHeight: React.PropTypes.number.isRequired,
-//    zIndex: React.PropTypes.number,
-//    fixedHeader: React.PropTypes.oneOf(['fixed', 'absolute', 'none']),
-//    keys: React.PropTypes.object.isRequired,
-//    children: React.PropTypes.node
-//}
-//Sidebar.defaultProps = {
-//    fixedHeader: 'none',
-//    zIndex: 12,
-//    children: null
-//}

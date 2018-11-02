@@ -12,7 +12,7 @@ const stories = storiesOf('Display/UpHeading', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpHeading'));
 
-stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+stories.add('Simple usage',
  () => (
   <div>
     <UpHeading tag='h1'>H1</UpHeading>   
@@ -21,4 +21,5 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
     <UpHeading tag='h4'>H4</UpHeading>
     <UpHeading tag='h5'>H5</UpHeading>
   </div>
-))
+), { info : 'Utilisation du composant en lui passant les données à afficher'}
+)

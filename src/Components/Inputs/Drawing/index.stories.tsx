@@ -83,9 +83,10 @@ const stories = storiesOf('Inputs/UpDrawing', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpDrawing'));
-stories.addWithInfo('Simple usage', 'Utilisation simple',
+stories.add('Simple usage', 'Utilisation simple',
    () => (
         <div style={{margin:"30px"}}>
            <SimpleDrawing />
         </div>
-  )) ;
+  ), { info : 'Utilisation simple' }
+) ;

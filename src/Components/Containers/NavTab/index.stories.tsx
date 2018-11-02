@@ -16,7 +16,7 @@ const stories = storiesOf('Containers/UpNavTap', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpNavTap'));
 
-stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+stories.add('Simple usage',
    () =>  (
       <UpNavTap tabs={[{
         content: tab1,
@@ -28,5 +28,5 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
         content: tab3,
         head:"Tab 3"
       }]} />
-    )
+    ), { info : 'Utilisation du composant en lui passant les données à afficher'}
 ) ;

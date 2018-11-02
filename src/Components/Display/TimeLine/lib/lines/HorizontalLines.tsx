@@ -38,9 +38,3 @@ export default class HorizontalLines extends React.Component<any, any> {
         )
     }
 }
-
-//HorizontalLines.propTypes = {
-//    canvasWidth: React.PropTypes.number.isRequired,
-//    lineHeight: React.PropTypes.number.isRequired,
-//    lineCount: React.PropTypes.number.isRequired
-//}

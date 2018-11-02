@@ -1,31 +1,7 @@
 import * as React from 'react'
 import { UpDateTimeStyledProps } from './'
 
-import { DateInput, TimePicker, IDatePickerLocaleUtils } from '@blueprintjs/datetime'
-
-//class UpLocaleUtils implements IDatePickerLocaleUtils {
-//    formatDay(day: Date, locale: string) {
-//        return "jour";
-//    }
-//    formatMonthTitle(month: Date, locale: string) {
-//        return "";
-//    }
-//    formatWeekdayShort(weekday: number, locale: string) {
-//        return "";
-//    }
-//    formatWeekdayLong(weekday: number, locale: string) {
-//        return "";
-//    }
-//    getFirstDayOfWeek(locale: string) {
-//        return 1;
-//    }
-//    getMonths(locale: string): [string, string, string, string, string, string, string, string, string, string, string, string] {
-//        return ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
-//            "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
-//    }
-//}
-
-//const locale = new UpLocaleUtils();
+import UpDate from '../Date'
 
 const BaseDate: React.StatelessComponent<UpDateTimeStyledProps> = (props) => {
 

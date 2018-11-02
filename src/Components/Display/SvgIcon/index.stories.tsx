@@ -19,7 +19,7 @@ const stories = storiesOf('Display/UpSvgIcon', module) ;
 stories.addDecorator(withKnobs);
 stories.addDecorator(getRootContainer('UpSvgIcon'));
 
-stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+stories.add('Simple usage',
    () => {
     const color = text('color', '#369');
     const width = number('width', 32);
@@ -41,4 +41,5 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
         </UpParagraph>
       </UpBox>
     </UpThemeProvider>
-   });
+   }, {info: 'Utilisation du composant en lui passant les données à afficher'}
+);

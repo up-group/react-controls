@@ -50,7 +50,7 @@ export default class UpVisibilitySensor extends React.Component<UpVisibilitySens
   }
 
   debounceCheck: any;
-  node: Element;
+  node: Element | Text;
   interval: any;
 
   constructor(props: UpVisibilitySensorProps) {
@@ -219,8 +219,8 @@ export default class UpVisibilitySensor extends React.Component<UpVisibilitySens
     if (!el) {
       return this.state;
     }
-
-    rect = el.getBoundingClientRect();
+    // We assert that our el is a Element
+    rect = (el as Element).getBoundingClientRect();
 
     if (this.props.containment) {
       var containmentDOMRect = this.props.containment.getBoundingClientRect();

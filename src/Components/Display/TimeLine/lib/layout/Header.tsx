@@ -222,27 +222,3 @@ export default class Header extends React.Component<any, any> {
         )
     }
 }
-
-//Header.propTypes = {
-//    // groups: React.PropTypes.array.isRequired,
-//    // width: React.PropTypes.number.isRequired,
-//    // lineHeight: React.PropTypes.number.isRequired,
-//    // headerBackgroundColor: React.PropTypes.string.isRequired,
-//    showPeriod: React.PropTypes.func.isRequired,
-//    canvasTimeStart: React.PropTypes.number.isRequired,
-//    canvasTimeEnd: React.PropTypes.number.isRequired,
-//    canvasWidth: React.PropTypes.number.isRequired,
-//    lineHeight: React.PropTypes.number.isRequired,
-//    visibleTimeStart: React.PropTypes.number.isRequired,
-//    visibleTimeEnd: React.PropTypes.number.isRequired,
-//    // visibleTimeEnd: React.PropTypes.number.isRequired,
-//    minUnit: React.PropTypes.string.isRequired,
-//    timeSteps: React.PropTypes.object.isRequired,
-//    width: React.PropTypes.number.isRequired,
-//    fixedHeader: React.PropTypes.oneOf(['fixed', 'absolute', 'none']),
-//    zIndex: React.PropTypes.number
-//}
-//Header.defaultProps = {
-//    fixedHeader: 'none',
-//    zIndex: 11
-//}

@@ -11,11 +11,11 @@ const stories = storiesOf('Inputs/UpSwitch', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpSwitch'));
 
-stories.addWithInfo('Simple usage', '',
+stories.add('Simple usage', 
     () => (
         <UpSwitch isNullable={true} onChange={console.log} />
     ))
-    .addWithInfo('Remplace les valeurs text', '',
+    .add('Remplace les valeurs text',
     () => (
         <UpSwitch isNullable={true} onChange={console.log} displayTrue="Toujours" displayNull="¯\\_(ツ)_/¯" displayFalse="Jamais" />
     ));

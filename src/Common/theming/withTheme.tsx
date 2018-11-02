@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { ThemeInterface } from './types';
 
+import * as PropTypes  from 'prop-types';
+
 export type WithThemeProps = {
  theme?:ThemeInterface;
 }
@@ -16,7 +18,7 @@ const withTheme =  function withTheme<P extends object>(WrappedComponent: React.
             what you want from the context
         */
         static contextTypes = {
-            theme: React.PropTypes.object
+            theme: PropTypes.object
         };
 
         constructor(props, context) {

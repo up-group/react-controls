@@ -14,9 +14,9 @@ export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeSta
     render() {
         return <span className="form-control"
             style={{
-                "borderColor": this.props.hasError === true ? { borderColor: "red" } : null,
-                "width": "5em",
-                "padding": "4px"
+                borderColor: this.props.hasError === true ? 'red' : 'inherit',
+                width: "5em",
+                padding: "4px"
             }}
             >
             <input

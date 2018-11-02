@@ -22,12 +22,4 @@ export default class TodayLine extends React.Component<any,any> {
         }
     }
 }
-//TodayLine.propTypes = {
-//    canvasTimeStart: React.PropTypes.number.isRequired,
-//    canvasTimeEnd: React.PropTypes.number.isRequired,
-//    canvasWidth: React.PropTypes.number.isRequired,
-//    lineHeight: React.PropTypes.number.isRequired,
-//    lineCount: React.PropTypes.number.isRequired
-//}
-//TodayLine.defaultProps = {
-//}
+

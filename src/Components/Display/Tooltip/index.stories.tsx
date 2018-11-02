@@ -27,10 +27,8 @@ const stories = storiesOf("Display/UpTooltip", module);
 stories.addDecorator(withKnobs);
 stories.addDecorator(getRootContainer("UpTooltip"));
 
-stories
-  .addWithInfo(
+stories.add(
     "Simple usage",
-    "Utilisation du composant en lui passant les données à afficher",
     () => (
       <UpPanel type={"primary"}>
         Exemple d'utilisation du composant
@@ -43,11 +41,10 @@ stories
         </UpTooltip>{" "}
         sur du texte.
       </UpPanel>
-    )
+    ), { info : "Utilisation du composant en lui passant les données à afficher" }
   )
-  .addWithInfo(
+  .add(
     "Sur un lien",
-    "Utilisation du composant en lui passant les données à afficher",
     () => (
       <UpPanel>
         Exemple d'utilisation du composant
@@ -58,5 +55,5 @@ stories
         </UpTooltip>{" "}
         sur du texte.
       </UpPanel>
-    )
+    ), { info : "Utilisation du composant en lui passant les données à afficher" }
   );

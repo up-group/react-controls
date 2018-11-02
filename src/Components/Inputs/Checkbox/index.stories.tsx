@@ -24,7 +24,7 @@ var onActivationChange = () => {
 const stories = storiesOf('Inputs/UpCheckbox', module) ;
 stories.addDecorator(getRootContainer('UpCheckbox'));
 stories.addDecorator(withKnobs)
-stories.addWithInfo('Simple usage', 'Utilisation avec plusieurs options',
+stories.add('Simple usage',
     () => (
         <UpLabel textAlign={"left"} inline={true} width="medium" text="Activation de ... :">
             <UpCheckbox options={[{
@@ -35,8 +35,8 @@ stories.addWithInfo('Simple usage', 'Utilisation avec plusieurs options',
                     checked: state.activation === true
                 }]} />
             </UpLabel>
-    ))
-  .addWithInfo('Multiple usage', 'Utilisation avec plusieurs options',
+), { info : 'Utilisation avec plusieurs options' }
+).add('Multiple usage',
    () => (
         <UpLabel inline={true} width="small" text="Choix :">
             <UpCheckbox options={[{
@@ -59,4 +59,5 @@ stories.addWithInfo('Simple usage', 'Utilisation avec plusieurs options',
                     checked: state.grand === true
                 }]} />
             </UpLabel>
-  )) ;
+  ), { info : 'Utilisation avec plusieurs options' }
+) ;

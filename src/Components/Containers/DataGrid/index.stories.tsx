@@ -42,9 +42,8 @@ const storiesPagination = storiesOf("Containers/UpPagination", module);
 
 storiesPagination.addDecorator(withKnobs);
 storiesPagination.addDecorator(getRootContainer("UpPagination"));
-storiesPagination.addWithInfo(
+storiesPagination.add(
   "Simple usage",
-  "Utilisation du composant en lui passant le nombre d'élément à afficher",
   () => (
     <UpPagination
       total={100}
@@ -52,7 +51,7 @@ storiesPagination.addWithInfo(
         console.log(page, take, skip);
       }}
     />
-  )
+  ), { info : 'Utilisation du composant en lui passant les données à afficher'}
 );
 
 const stories = storiesOf("Containers/UpDataGrid", module);
@@ -60,9 +59,8 @@ stories.addDecorator(withKnobs);
 stories.addDecorator(getRootContainer("UpDataGrid"));
 
 stories
-  .addWithInfo(
+  .add(
     "Simple usage",
-    "Utilisation du composant de grid sans pagination et sans sélection",
     () => (
       <UpDataGrid
         isPaginationEnabled={false}
@@ -93,11 +91,10 @@ stories
         ]}
         data={data}
       />
-    )
+    ), { info :  "Utilisation du composant de grid sans pagination et sans sélection"}
   )
-  .addWithInfo(
+  .add(
     "Export csv",
-    "Utilisation du composant de grid sans pagination et sans sélection",
     () => (
       <UpDataGrid
         exportCsv={{ fileName: "export.csv", textButton: "Exporter" }}
@@ -109,11 +106,10 @@ stories
         ]}
         data={data}
       />
-    )
+    ), { info :  "Utilisation du composant de grid sans pagination et sans sélection"}
   )
-  .addWithInfo(
+  .add(
     "Avec sélection",
-    "Utilisation du composant de grid avec sélection",
     () => (
       <UpDataGrid
         onSelectionChange={(a, b) => {
@@ -145,11 +141,10 @@ stories
         ]}
         data={data}
       />
-    )
+    ), {info: "Utilisation du composant de grid avec sélection"}
   )
-  .addWithInfo(
+  .add(
     "Avec actions",
-    "Utilisation d'un jeux d'action commun à toutes les lignes",
     () => (
       <UpDataGrid
         actions={[
@@ -193,9 +188,9 @@ stories
         ]}
         data={data}
       />
-    )
+    ), {info : "Utilisation d'un jeux d'action commun à toutes les lignes"}
   )
-  /*.addWithInfo(
+  /*.add(
     "Avec template",
     "Utilisation d'un template spécifique pour les lignes",
     () => (
@@ -244,9 +239,8 @@ stories
       />
     )
   )*/
-  .addWithInfo(
+  .add(
     "Avec source externe",
-    "Utilisation d'une source externe spécifique pour les lignes",
     () => (
       <UpDataGrid
         dataSource={{
@@ -275,11 +269,10 @@ stories
           }
         ]}
       />
-    )
+    ), {info : "Utilisation d'une source externe spécifique pour les lignes"}
   )
-  .addWithInfo(
+  .add(
     "Avec source externe et pagination",
-    "Utilisation d'une source externe spécifique pour les lignes avec activation de la pagination",
     () => (
       <UpDataGrid
         dataSource={{
@@ -309,11 +302,10 @@ stories
           }
         ]}
       />
-    )
+    ), {info: "Utilisation d'une source externe spécifique pour les lignes avec activation de la pagination"}
   )
-  .addWithInfo(
+  .add(
     "Avec source externe et pagination en bas",
-    "Utilisation d'une source externe spécifique pour les lignes avec activation de la pagination",
     () => (
       <UpDataGrid
         dataSource={{
@@ -344,11 +336,10 @@ stories
           }
         ]}
       />
-    )
+    ), {info:"Utilisation d'une source externe spécifique pour les lignes avec activation de la pagination"}
   )
-  .addWithInfo(
+  .add(
     "Avec source externe et pagination haut et bas",
-    "Utilisation d'une source externe spécifique pour les lignes avec activation de la pagination",
     () => (
       <UpDataGrid
         paginationPosition="both"
@@ -379,11 +370,10 @@ stories
           }
         ]}
       />
-    )
+    ), {info:"Utilisation d'une source externe spécifique pour les lignes avec activation de la pagination"}
   )
-  .addWithInfo(
+  .add(
     "Avec cell formatter",
-    "Utilisation d'une source externe spécifique pour les lignes avec formattage spécifique des cellules",
     () => (
       <UpDataGrid
         paginationPosition="both"
@@ -415,9 +405,9 @@ stories
           }
         ]}
       />
-    )
+    ), {info : "Utilisation d'une source externe spécifique pour les lignes avec formattage spécifique des cellules"}
   )
-  .addWithInfo("Injection de ligne", "", () => (
+  .add("Injection de ligne", () => (
     <UpDataGrid
       injectRow={(previous, next, col) => {
         if (
@@ -459,8 +449,9 @@ stories
       ]}
       data={data}
     />
-  ))
-  .addWithInfo("Test props modification", "", () => <Test />);
+  ), {info: "Injection de lignes"}
+  )
+  .add("Test props modification", () => <Test />, { info : "With test de modification de props"});
 
 export interface testProps {}
 

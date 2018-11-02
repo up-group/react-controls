@@ -18,7 +18,7 @@ const stories = storiesOf('Containers/UpPanel', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpPanel'));
 
-stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+stories.add('Simple usage',
    () =>  (<UpThemeProvider theme={UpDefaultTheme}>
         <div style={{"margin": "30px"}}>
           <UpPanel type={"primary"} title={"Mon Panel"} />
@@ -27,5 +27,6 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
           <UpPanel type={"warning"} title={"Mon Panel"} />
           <UpPanel type={"danger"} title={Title} />
         </div>
-      </UpThemeProvider>)
+      </UpThemeProvider>
+      ), { info : 'Utilisation du composant en lui passant les données à afficher'}
 ) ;

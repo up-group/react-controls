@@ -9,7 +9,7 @@ const stories = storiesOf('Containers/UpBox', module) ;
 
 stories.addDecorator(getRootContainer('UpBox'));
 
-stories.addWithInfo('UpBox : center', 'Alignement des éléments au centre',
+stories.add('UpBox : center',
    () => (
     <div style={{margin:"30px"}}>
      <UpBox alignItems={'center'} backgroundColor={'#369'} 
@@ -19,7 +19,8 @@ stories.addWithInfo('UpBox : center', 'Alignement des éléments au centre',
         <p>Alignement des élément au centre</p>
      </UpBox>
     </div>
-  )).addWithInfo('UpBox : baseline', 'Alignement des éléments baseline',
+  ), { info : 'Alignement des éléments au centre'})
+  .add('UpBox : baseline',
   () => (
     <div style={{margin:"30px"}}>
     <UpBox alignItems={'baseline'} backgroundColor={'#369'} 
@@ -31,7 +32,8 @@ stories.addWithInfo('UpBox : center', 'Alignement des éléments au centre',
       <p>Alignement des élément baseline : position 3 </p>
     </UpBox>
   </div>
- )).addWithInfo('UpBox : flex-end', 'Alignement des éléments à droite',
+ ), { info : 'Alignement des éléments baseline'})
+  .add('UpBox : flex-end',
  () => (
   <div style={{margin:"30px"}}>
    <UpBox alignItems={'flex-end'} backgroundColor={'#369'} 
@@ -43,7 +45,8 @@ stories.addWithInfo('UpBox : center', 'Alignement des éléments au centre',
       <p>Alignement des élément flex-end : position 3 </p>
    </UpBox>
   </div>
-)).addWithInfo('UpBox : flex-start', 'Alignement des éléments à gauche',
+), { info : 'Alignement des éléments à droite'})
+.add('UpBox : flex-start',
 () => (
   <div style={{margin:"30px"}}>
     <UpBox alignItems={'flex-start'} backgroundColor={'#369'} 
@@ -55,7 +58,8 @@ stories.addWithInfo('UpBox : center', 'Alignement des éléments au centre',
         <p>Alignement des élément flex-start : position 3 </p>
     </UpBox>
   </div>
-)).addWithInfo('UpBox : stretch', 'Alignement des éléments stretch',
+), { info : 'Alignement des éléments à gauche'})
+  .add('UpBox : stretch',
 () => (
   <div style={{margin:"30px"}}>
     <UpBox  alignItems={'stretch'} 
@@ -68,4 +72,4 @@ stories.addWithInfo('UpBox : center', 'Alignement des éléments au centre',
       <p>Alignement des élément stretch : position 3 </p>
   </UpBox>
   </div>
-)) ;
+), { info : 'Alignement des éléments stretch'}) ;

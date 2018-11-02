@@ -132,7 +132,7 @@ const stories = storiesOf('Inputs/UpSelect', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpSelect'));
 
-stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+stories.add('Simple usage',
     () => (
             <UpSelect width="normal" tooltip="Civilité" default={null} data={[
                 { id: 1, text: 'M.' },
@@ -140,12 +140,12 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
                 { id: 3, text: 'Mlle' },
                 { id: 4, text: 'Dr' },
             ]} onChange={console.log} />
-    ))
-    .addWithInfo('Set value', 'Utilisation du composant en lui passant les données à afficher',
+    ), { info : 'Utilisation du composant en lui passant les données à afficher'}
+).add('Set value',
     () => (
         <Test />
-    ))
-    .addWithInfo('Ajax', 'Utilisation du composant lié à une source de donnée',
+    ), { info : 'Utilisation du composant en lui passant les données à afficher'}
+).add('Ajax',
     () => (
             <UpSelect autoload={false}
                 isRequired={false}
@@ -182,8 +182,8 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
                     text: "title"
                 }}
                 onChange={console.log} />
-    ))
-    .addWithInfo('Ajax avec modification des réponses', 'Utilisation du composant lié à une source de donnée',
+    ), { info : 'Utilisation du composant lié à une source de donnée' }
+).add('Ajax avec modification des réponses',
     () => (
             <UpSelect autoload={false}
                 isRequired={false}
@@ -200,8 +200,8 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
                     }
                 }}
                 onChange={console.log} />
-    ))
-    .addWithInfo('Required', 'Utilisation du composant avec valeur requise',
+    ), { info :  'Utilisation du composant lié à une source de donnée' }
+).add('Required',
     () => (
             <div style={{ margin: "30px" }}>
                 <UpSelect isRequired={true}
@@ -217,8 +217,8 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
                     ]}
                     onChange={console.log} />
             </div>
-    ))
-    .addWithInfo('Return Id Value', 'Utilisation du composant en retournant la valeur de l\'identifiant et non plus l\'objet sélectionné',
+    ), { info : 'Utilisation du composant avec valeur requise'}
+).add('Return Id Value',
     () => (
             <div style={{ margin: "30px" }}>
                 <UpSelect isRequired={true}
@@ -237,8 +237,8 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
                     ]}
                     onChange={console.log} />
             </div>
-    ))
-    .addWithInfo('Size', 'Utilisation du composant en retournant la valeur de l\'identifiant et non plus l\'objet sélectionné',
+    ), { info :  'Utilisation du composant en retournant la valeur de l\'identifiant et non plus l\'objet sélectionné' }
+).add('Size',
     () => (
             <div style={{ margin: "30px" }}>
                 <UpSelect isRequired={true}
@@ -336,8 +336,8 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
                     ]}
                     onChange={console.log} />
             </div>
-    ))
-    .addWithInfo('Creatable', 'Utilisation du composant avec autorisation de création de nouvelle option',
+    ), { info : 'Utilisation du composant en retournant la valeur de l\'identifiant et non plus l\'objet sélectionné'},
+).add('Creatable',
     () => (
             <div style={{ margin: "30px" }}>
                 <UpSelect autoload={false}
@@ -375,4 +375,5 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
                     }}
                     onChange={console.log} />
             </div>
-    ));
+    ), { info : 'Utilisation du composant avec autorisation de création de nouvelle option'}
+);

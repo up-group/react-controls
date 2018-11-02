@@ -20,6 +20,8 @@ export interface UpDateStyledProps extends CommonProps, StyledComponentProps {
   className? : string;
   disabled?:boolean;
   dataFor?:string; 
+  focused?:boolean;
+  onFocusChange? : ({focused} : {focused:boolean}) => void;
 }
 
 export default UpDate ;

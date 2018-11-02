@@ -59,14 +59,3 @@ export default class VerticalLines extends React.Component<any, any> {
         )
     }
 }
-
-//VerticalLines.propTypes = {
-//    canvasTimeStart: React.PropTypes.number.isRequired,
-//    canvasTimeEnd: React.PropTypes.number.isRequired,
-//    canvasWidth: React.PropTypes.number.isRequired,
-//    lineHeight: React.PropTypes.number.isRequired,
-//    lineCount: React.PropTypes.number.isRequired,
-//    minUnit: React.PropTypes.string.isRequired,
-//    timeSteps: React.PropTypes.object.isRequired,
-//    fixedHeader: React.PropTypes.string.isRequired
-//}

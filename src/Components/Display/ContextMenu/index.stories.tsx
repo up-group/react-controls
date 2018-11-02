@@ -18,6 +18,7 @@ export interface SimpleMenuState {
 }
 
 export default class SimpleMenu extends React.PureComponent<any, SimpleMenuState> {
+    
     constructor(props) {
         super(props);
         this.state = { logs: [] };
@@ -57,7 +58,8 @@ const stories = storiesOf('Display/UpContextMenu', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpContextMenu'));
 
-stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+stories.add('Simple usage',
  () => (
   <SimpleMenu />
-))
+), { info : 'Utilisation du composant en lui passant les données à afficher'}
+)

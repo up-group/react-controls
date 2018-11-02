@@ -14,9 +14,8 @@ stories.addDecorator(withKnobs);
 stories.addDecorator(getRootContainer("UpButtonGroup"));
 
 stories
-  .addWithInfo(
+  .add(
     "DropDown",
-    "Utilisation du composant en lui passant les données à afficher",
     () => (
       <div>
         <UpButtonGroup gutter={0} align={"h"}>
@@ -43,11 +42,10 @@ stories
           />
         </UpButtonGroup>
       </div>
-    )
+    ), { info :  "Utilisation du composant en lui passant les données à afficher"}
   )
-  .addWithInfo(
+  .add(
     "Multi Button",
-    "Utilisation du composant en lui passant les données à afficher",
     () => (
       <div style={{ margin: "30px" }}>
         <UpButtonGroup gutter={0} align={"h"}>
@@ -112,5 +110,5 @@ stories
           </UpButton>
         </UpButtonGroup>
       </div>
-    )
+    ), { info :  "Utilisation du composant en lui passant les données à afficher"}
   );

@@ -9,7 +9,7 @@ const stories = storiesOf('Containers/UpTile', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpTile'));
 
-stories.addWithInfo('Simple usage 1', 'Utilisation du composant en lui passant les données à afficher',
+stories.add('Simple usage 1',
     () => (
         <div>
             <br />
@@ -21,4 +21,5 @@ stories.addWithInfo('Simple usage 1', 'Utilisation du composant en lui passant l
             <UpTile Title="INFOS">Test </UpTile>
             <UpTile Title="INFOS">Test </UpTile>
         </div>
-    ));
+    ), { info : 'Utilisation du composant en lui passant les données à afficher'}
+    );

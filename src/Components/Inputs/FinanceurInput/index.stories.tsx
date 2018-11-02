@@ -31,7 +31,7 @@ const stories = storiesOf('Inputs/FinanceurInput', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('FinanceurInput'));
 
-stories.addWithInfo('Standard', '',  
+stories.add('Standard',  
         () => (
             <div style={{padding: "16px"}} >
                 <p>
@@ -79,7 +79,7 @@ stories.addWithInfo('Standard', '',
             </div>
         )
     )
-    .addWithInfo('With Bot label', '',  
+    .add('With Bot label',
         () => (
             <div style={{padding: "16px"}} >
                 <p>
@@ -106,7 +106,7 @@ stories.addWithInfo('Standard', '',
             </div>
         )
     )
-    .addWithInfo('With Top Label', '',  
+    .add('With Top Label', 
         () => (
             <div style={{padding: "16px"}} >
                 <p>
@@ -163,7 +163,7 @@ stories.addWithInfo('Standard', '',
             </div>
         )
     )
-    .addWithInfo('With Icon (left)', '',  
+    .add('With Icon (left)', 
         () => (
             <div style={{padding: "16px"}} >
                 <p>
@@ -213,7 +213,7 @@ stories.addWithInfo('Standard', '',
             </div>
         )
     )
-    .addWithInfo('With Icon (right)', '',  
+    .add('With Icon (right)', 
         () => (
             <div style={{padding: "16px"}} >
                 <p>
@@ -263,7 +263,7 @@ stories.addWithInfo('Standard', '',
             </div>
         )
     )
-    .addWithInfo('With Label and Icon', '',  
+    .add('With Label and Icon',
         () => (
             <div style={{padding: "16px"}} >
                 <p>
@@ -339,7 +339,7 @@ stories.addWithInfo('Standard', '',
             </div>
         )
     )
-    .addWithInfo('Require', '',  
+    .add('Require',  
         () => (
             <div style={{padding: "16px"}} >
                 <p>
@@ -393,7 +393,7 @@ stories.addWithInfo('Standard', '',
             </div>
         )
     )
-    .addWithInfo('ComboBox', '',  
+    .add('ComboBox',
         () => (
             <div style={{padding: "16px"}} >
                 <p>
@@ -467,7 +467,7 @@ stories.addWithInfo('Standard', '',
             </div>
         )
     )
-    .addWithInfo('Button', '',  
+    .add('Button',
         () => (
             <div style={{padding: "16px"}} >
                 <p>
@@ -563,7 +563,7 @@ stories.addWithInfo('Standard', '',
             </div>
         )
     )
-    .addWithInfo('Number', '',  
+    .add('Number',
         () => (
             <div style={{padding: "16px"}} >
                 <p>
@@ -611,7 +611,7 @@ stories.addWithInfo('Standard', '',
             </div>
         )
     )
-    .addWithInfo('Text Area', '',  
+    .add('Text Area',
         () => (
             <div style={{padding: "16px"}} >
                 <TextArea InformationText="bdzlkbqdlkbdlzqbfl bqzlkfbqzlibfilqzbfliqzb fliqbzlifbqlizbf liqbzflibqzlifblqizbfilqbzlifbqlib fzlqbzlifb qlizbflqbzflib" />

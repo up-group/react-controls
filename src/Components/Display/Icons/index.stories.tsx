@@ -13,7 +13,7 @@ const stories = storiesOf('Display/UpIcons', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpIcons'));
 
-stories.addWithInfo('RestaurantMenu', '',  
+stories.add('RestaurantMenu',  
         () => (
             <div style={{ padding: "16px" }} >
                 <IconsM.RestaurantMenu color="red" onClick={() => { alert(0) }} />
@@ -25,9 +25,9 @@ stories.addWithInfo('RestaurantMenu', '',
                 <IconsM.RestaurantMenu AlertNumber={5} AlertCircle={{ Active: true, Color: "red" }} color="blue" fontWeight="normal" onClick={() => { alert(0) }} />
                 <br /><br />
             </div>
-        )
+        ), { info : 'Utilisation du composant en lui passant les données à afficher'}
     )
-    .addWithInfo('IconLoading', '',
+    .add('IconLoading',
         () => (
             <div style={{ padding: "16px" }} >
                 <Icons.IconLoading AlertNumber={9} />
@@ -46,9 +46,9 @@ stories.addWithInfo('RestaurantMenu', '',
                 <br /><br />
                 <Icons.IconLoading IconSize="8cm" BackgroundColor="grey" > 8cm</Icons.IconLoading>
             </div>
-        )
+        ), { info : 'Utilisation du composant en lui passant les données à afficher'}
     )
-    .addWithInfo('IconAlertes', '',
+    .add('IconAlertes',
         () => (
             <div>
                 <Icons.IconAlertes />
@@ -86,9 +86,9 @@ stories.addWithInfo('RestaurantMenu', '',
                 <br /><br />
                 <Icons.IconAlertes AlertNumber={36} AlertCircle={{ Active: true, Color: "#f44336" }} AlertFont={alertFont} BackgroundColor="gray" Color="red" IconSize="40px" />
             </div>
-        )
+        ), { info : 'Utilisation du composant en lui passant les données à afficher'}
     )
-    .addWithInfo('Icone LSWA - Perceval', '',
+    .add('Icone LSWA - Perceval',
         () => (
             <div style={{ padding: "16px" }} >
                 <Icons.IconLswaLink IconSize="20" AlertNumber={3} AlertCircle={{ Active: true, Color: "red" }} />
@@ -104,5 +104,5 @@ stories.addWithInfo('RestaurantMenu', '',
                 <br />
                 <Icons.IconPercevalLink IconSize="150" AlertNumber={3} AlertCircle={{ Active: true, Color: "red" }} />
             </div>
-        )
+        ), { info : 'Utilisation du composant en lui passant les données à afficher'}
     )

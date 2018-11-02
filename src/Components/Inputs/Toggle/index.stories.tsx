@@ -1,9 +1,6 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import UpDefaultTheme from '../../../Common/theming'
-import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
-
 import UpToggle from './'
 import { Size } from './UpToggle'
 import UpLabel from '../../Display/Label'
@@ -43,7 +40,7 @@ class ToggleWrapper extends React.Component<ToggleWrapperProps, ToggleWrapperSta
 const stories = storiesOf('Inputs/UpToggle', module) ;
 
 stories.addDecorator(withKnobs)
-stories.addWithInfo('Simple usage', 'Utilisation avec plusieurs options',
+stories.add('Simple usage',
         () => (
             <UpBox style={{ margin: "40px 30px" }}>
                 <UpNotification>
@@ -63,4 +60,5 @@ stories.addWithInfo('Simple usage', 'Utilisation avec plusieurs options',
                     </UpLabel>
                 </UpBox>
             </UpBox>
-        ));
+        ),  {info : 'Utilisation avec plusieurs options'},
+);

@@ -15,7 +15,7 @@ const stories = storiesOf('Inputs/UpRichText', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpRichText'));
 
-stories.addWithInfo('Simple usage', 'Utilisation avec plusieurs options',
+stories.add('Simple usage',
     () => (
         <UpThemeProvider theme={UpDefaultTheme}>
             <div style={{ padding: "30px" }}>
@@ -24,4 +24,5 @@ stories.addWithInfo('Simple usage', 'Utilisation avec plusieurs options',
                 </UpLabel>
             </div>
         </UpThemeProvider>
-    ));
+    ), { info :  'Utilisation avec plusieurs options'}
+);

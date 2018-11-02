@@ -9,7 +9,7 @@ import UpMenu from './UpMenu'
 import UpMenuOH from './UpMenuOH'
 
 storiesOf('Display/UpMenu', module)
-    .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+    .add('Simple usage',
         () => (
             <UpMenu onMenuClick={action("Menu clicked")}
                 topMenuItems={[
@@ -36,8 +36,8 @@ storiesOf('Display/UpMenu', module)
                         { title: "t", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
                         { title: "teshtztht", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
                     ]}></UpMenu>
-        ))
-    .addWithInfo('Simple usage 2', 'Utilisation du composant en lui passant les données à afficher',
+        ), { info : 'Utilisation du composant en lui passant les données à afficher'}
+).add('Simple usage 2',
         () => (
             <UpMenuOH onDeconnexionClick={() => { }} onMenuClick={action("Menu clicked")}
                 Antennes={null} Recherche={null}
@@ -114,8 +114,8 @@ storiesOf('Display/UpMenu', module)
                         { title: "teshtztht", icon: "up up-dossier", isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
                     ]}>
             </UpMenuOH>
-        ))
-    .addWithInfo('UpMenuOH ss', 'Utilisation du composant en lui passant les données à afficher',
+        ), { info : 'Utilisation du composant en lui passant les données à afficher'}
+).add('UpMenuOH ss',
         () => (
             <UpMenuOH
                 Antennes={null} Recherche={null} Utilisateur={{
@@ -2039,12 +2039,6 @@ storiesOf('Display/UpMenu', module)
                             "childMenuItems": []
                         }
                     ]
-
-
-
-
-
-
                 }>
 
                 <div>
@@ -2053,5 +2047,5 @@ storiesOf('Display/UpMenu', module)
 
 
             </UpMenuOH>
-        ))
-    ;
+        ), { info : 'Utilisation du composant en lui passant les données à afficher'}
+);

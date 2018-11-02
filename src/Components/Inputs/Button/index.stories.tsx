@@ -13,7 +13,7 @@ import UpParagraph from '../../Display/Paragraph';
 
 const stories = storiesOf('Inputs/UpButton', module) ;
 stories.addDecorator(withKnobs);
-stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+stories.add('Simple usage',
    () => {
     const actionType = text('actionType', 'add');
     const intent = text('intent', 'primary');
@@ -41,7 +41,8 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
         </UpNotification>
       </UpBox>
     </UpThemeProvider>
-   }).addWithInfo('Icon', 'Utilisation du composant en lui passant les données à afficher',
+   }, { info : "Utilisation du composant en lui passant les données à afficher" }
+).add('Icon',
   () => (
    <UpThemeProvider theme={UpDefaultTheme}>
      <UpBox style={{margin:"40px 30px"}}>
@@ -55,7 +56,8 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
         </UpNotification>
       </UpBox>
    </UpThemeProvider>
- )).addWithInfo('Icon à droite', 'Utilisation du composant en lui passant les données à afficher',
+ ), { info : "Utilisation du composant en lui passant les données à afficher" }
+).add('Icon à droite',
  () => (
   <UpThemeProvider theme={UpDefaultTheme}>
     <UpBox style={{margin:"40px 30px"}}>
@@ -69,7 +71,8 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
         </UpNotification>
     </UpBox>
   </UpThemeProvider>
-)).addWithInfo('DropDown', 'Utilisation du composant en mode DropDown',
+), { info : "Utilisation du composant en lui passant les données à afficher" }
+).add('DropDown',
  () => (
   <UpThemeProvider theme={UpDefaultTheme}>
       <UpBox style={{margin:"40px 30px"}}>
@@ -99,7 +102,8 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
           </UpNotification>
       </UpBox>
   </UpThemeProvider>
-)).addWithInfo('DropDown avex text', 'Utilisation du composant en mode DropDown',
+), { info :  'Utilisation du composant en mode DropDown' }
+).add('DropDown avex text',
 () => (
  <UpThemeProvider theme={UpDefaultTheme}>
     <UpBox style={{margin:"40px 30px"}}>
@@ -129,7 +133,8 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
       </UpNotification>
     </UpBox>
  </UpThemeProvider>
-)).addWithInfo('DropDown avex text et icône à gauche', 'Utilisation du composant en mode DropDown',
+), { info :  'Utilisation du composant en mode DropDown'}
+).add('DropDown avex text et icône à gauche',
 () => (
  <UpThemeProvider theme={UpDefaultTheme}>
    <UpBox style={{margin:"40px 30px"}}>
@@ -159,7 +164,8 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
         </UpNotification>
     </UpBox>
  </UpThemeProvider>
-)).addWithInfo('Avec indication d\'opération', 'Utilisation du composant avec activation de l\'indication dd\'un processus en cours',
+), { info :  'Utilisation du composant en mode DropDown'}
+).add('Avec indication d\'opération',
 () => {
   const isProcessing = boolean('isProcessing', true);
   return <UpThemeProvider theme={UpDefaultTheme}>
@@ -173,7 +179,8 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
     </UpBox>
         
  </UpThemeProvider>
-}).addWithInfo('Arrondi', 'Utilisation du composant avec activation de l\'indication dd\'un processus en cours',
+},  { info: 'Utilisation du composant avec activation de l\'indication dd\'un processus en cours' },
+).add('Arrondi',
 () => {
   const isProcessing = boolean('isProcessing', false);
   return <UpThemeProvider theme={UpDefaultTheme}>
@@ -186,4 +193,5 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
       </UpNotification>
     </UpBox>
  </UpThemeProvider>;
-});
+}, { info : 'Utilisation du composant avec activation de l\'indication dd\'un processus en cours'}
+);

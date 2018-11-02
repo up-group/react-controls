@@ -16,18 +16,20 @@ const stories = storiesOf('Inputs/UpNumber', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpNumber'));
 
-stories.addWithInfo('Simple usage', 'Utilisation avec plusieurs options',
+stories.add('Simple usage',
    () => (
     <UpThemeProvider theme={UpDefaultTheme}>
         <UpLabel textAlign={"left"} inline={false} width="small" text="Number :">
             <UpNumber />
             </UpLabel>
     </UpThemeProvider>
-  )).addWithInfo('Integer', 'Only greather than 0',
+  ), { info: 'Utilisation avec plusieurs options' }
+).add('Integer',
   () => (
    <UpThemeProvider theme={UpDefaultTheme}>
        <UpLabel textAlign={"left"} inline={true} width="small" text="Number :">
            <UpNumber min={0} />
            </UpLabel>
    </UpThemeProvider>
- )) ;
+    ), {info :  'Only greather than 0'}
+ ) ;

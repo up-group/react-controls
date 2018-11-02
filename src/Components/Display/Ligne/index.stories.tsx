@@ -14,9 +14,10 @@ const stories = storiesOf('Display/UpLigne', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpLigne'));
 
-stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+stories.add('Simple usage',
    () => (
       <UpLigne className={"up-indication"} color={"red"}>
         Mon message
       </UpLigne>
-  ));
+  ), { info : 'Utilisation du composant en lui passant les données à afficher'}
+);

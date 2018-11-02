@@ -10,10 +10,12 @@ const stories = storiesOf('Inputs/UpDate', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpDate'));
-stories.addWithInfo('Simple usage', 'Utilisation simple',
+stories.add('Simple usage', 'Utilisation simple',
    () => (
     <UpDate onChange={(value, event) => {console.log(event);console.log(value)}} />
-  )).addWithInfo('Date requise', 'La date est requise',
+  ), { info : 'Utilisation simple' }
+).add('Date requise',
   () => (
     <UpDate isRequired={true} onChange={(value, event) => {console.log(event);console.log(value)}} />
- )) ;
+ ), { info : 'La date est requise' }
+) ;

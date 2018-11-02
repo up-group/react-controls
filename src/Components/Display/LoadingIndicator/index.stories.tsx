@@ -9,18 +9,16 @@ import UpLoadingIndicator from './'
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
-const styles : React.CSSProperties = {
+const styles : {[key : string] : React.CSSProperties} = {
   main: {
     margin: 15,
     maxWidth: 600,
     lineHeight: 1.4,
     fontFamily: '"Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif',
   },
-
   logo: {
     width: 200,
   },
-
   link: {
     color: '#1474f3',
     textDecoration: 'none',
@@ -48,10 +46,11 @@ const stories = storiesOf('Display/UpLoadingIndicator', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpLoadingIndicator'));
 
-stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
+stories.add('Simple usage',
    () => (
       <UpLoadingIndicator isLoading={true} message="Chargement en cours"></UpLoadingIndicator>
-  )).addWithInfo('Modal', 'Utilisation du composant modal',
+  ), { info : 'Utilisation du composant en lui passant les données à afficher'}
+).add('Modal',
  () => (
     <div style={styles.main}>
         <UpLoadingIndicator isLoading={true} displayMode={"modal"} message="Chargement en cours"></UpLoadingIndicator>
@@ -110,7 +109,8 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
           loaders and plugins you are using in this project.
         </p>
       </div>
-)).addWithInfo('Modal sur une zone', 'Utilisation du composant modal',
+), {info:  'Utilisation du composant modal'}
+).add('Modal sur une zone',
 () => (
    <div style={styles.main}>
        <h1>Welcome to STORYBOOK</h1>
@@ -171,4 +171,4 @@ stories.addWithInfo('Simple usage', 'Utilisation du composant en lui passant les
         </p>
         </div>
      </div>
-));
+), {info:  'Utilisation du composant modal'});

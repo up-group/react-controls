@@ -1,16 +1,16 @@
-import { configure, setAddon } from '@storybook/react'
-import infoAddon, {setDefaults} from '@storybook/addon-info'
+import { configure, setAddon, addDecorator} from '@storybook/react'
+import { withInfo } from '@storybook/addon-info';
 
-// addon-info
-setDefaults({
-  inline: false,
-  maxPropsIntoLine: 1,
-  maxPropObjectKeys: 10,
-  maxPropArrayLength: 10,
-  maxPropStringLength: 100,
-});
-
-setAddon(infoAddon);
+addDecorator(
+  withInfo({
+    header: false, // Global configuration for the info addon across all of your stories.
+    inline: false,
+    maxPropsIntoLine: 1,
+    maxPropObjectKeys: 10,
+    maxPropArrayLength: 10,
+    maxPropStringLength: 100,
+  })
+);
 
 function loadStories() {
   require('../stories/index.jsx');
