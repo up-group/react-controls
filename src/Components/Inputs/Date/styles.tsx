@@ -7,30 +7,6 @@ import 'react-dates/lib/css/_datepicker.css';
 import { SingleDatePicker } from 'react-dates'
 import { generateUniqueId } from '../../../Common/utils/helpers';
 
-// class UpLocaleUtils implements IDatePickerLocaleUtils {
-//     formatDay(day: Date, locale: string) {
-//         return "jour";
-//     }
-//     formatMonthTitle(month: Date, locale: string) {
-//         return "";
-//     }
-//     formatWeekdayShort(weekday: number, locale: string) {
-//         return "";
-//     }
-//     formatWeekdayLong(weekday: number, locale: string) {
-//         return "";
-//     }
-//     getFirstDayOfWeek(locale: string) {
-//         return 1;
-//     }
-//     getMonths(locale: string): [string, string, string, string, string, string, string, string, string, string, string, string] {
-//         return ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
-//             "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
-//     }
-// }
-
-//const locale = new UpLocaleUtils();
-
 // To be defined as date props
 // focusStartDate
 // chooseAvailableStartDate

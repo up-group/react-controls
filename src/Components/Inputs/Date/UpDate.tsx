@@ -1,6 +1,6 @@
 // Imports
 import "normalize.css/normalize.css"
-// import "@blueprintjs/core/dist/blueprint.css"
+import 'react-dates/initialize';
 import * as React from "react"
 import { UpDateProps } from './'
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'

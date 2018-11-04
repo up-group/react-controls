@@ -10,7 +10,7 @@ const stories = storiesOf('Inputs/UpDate', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpDate'));
-stories.add('Simple usage', 'Utilisation simple',
+stories.add('Simple usage',
    () => (
     <UpDate onChange={(value, event) => {console.log(event);console.log(value)}} />
   ), { info : 'Utilisation simple' }
