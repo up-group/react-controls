@@ -122,6 +122,7 @@
     "ckeditor": "^4.7.3",
     "classnames": "^2.2.5",
     "color": "^1.0.3",
+    "csx": "^9.0.0",
     "draft-js": "^0.10.0",
     "github-markdown-css": "^2.4.1",
     "inputmask-core": "^2.2.0",

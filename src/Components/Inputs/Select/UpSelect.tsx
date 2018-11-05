@@ -3,13 +3,14 @@ import * as React from 'react'
 import * as update from 'react-addons-update'
 import * as classnames from 'classnames'
 import * as Select from 'react-select'
-
 import axios from 'axios'
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import * as queryString from 'query-string';
 import { UpSelectProps } from './types';
 import { getStyles } from './styles';
 import { Props } from 'react-select/lib/Select';
+
+import { color } from 'csx';
 
 const CancelToken = axios.CancelToken;
 
@@ -42,6 +43,21 @@ const formatGroupLabel = data => (
 const customStyles = {
     option: (provided, state) => ({
       ...provided,
+      color: state.isSelected ? 'white' :  provided.color,
+      fontWeight :  state.isSelected ? 700 : provided.fontWeight || 'inherit',
+      backgroundColor : state.isSelected ? '#EE7F2D' : 'transparent',
+      padding: 10,
+      cursor: 'pointer',
+      ':active' : {
+        color: 'white',
+        fontWeight : 700,
+        backgroundColor : state.isSelected ? '#EE7F2D' : `${color('#EE7F2D').lighten(0.1).toRGBA().toString()} !important` ,
+      },
+      ':hover' : {
+        color: 'white',
+        fontWeight : 700,
+        backgroundColor : state.isSelected ? '#EE7F2D' : `${color('#EE7F2D').lighten(0.2).toRGBA().toString()} !important` ,
+      }
     }),
     control: (provided, state) => ({
         ...provided, 
