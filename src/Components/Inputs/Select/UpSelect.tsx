@@ -11,7 +11,7 @@ import { UpSelectProps } from './types';
 import { getStyles } from './styles';
 import { Props } from 'react-select/lib/Select';
 
-var CancelToken = axios.CancelToken;
+const CancelToken = axios.CancelToken;
 
 const groupStyles = {
     display: 'flex',
@@ -131,38 +131,53 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     }
 
     setValue = (receiveValue: any) => {
+        let valueToParse = {...receiveValue};
         if (this.props.multiple === true) {
-            let isPairArray = this.isPairArray(receiveValue)
+            let isPairArray = this.isPairArray(receiveValue);
+            let newState = null;
             if (isPairArray === true) {
-                var extra = this.state.extra === undefined || this.state.extra === null ? {} : this.state.extra;
+                const extra = this.state.extra === undefined || this.state.extra === null ? {} : {...this.state.extra};
                 extra.fullObject = receiveValue;
-                this.setState({ extra: extra });
+                newState = { extra } ;
             } else if (isPairArray == false && Array.isArray(receiveValue) === true && this.props.data != null) {
-                var extra = this.state.extra === undefined || this.state.extra === null ? {} : this.state.extra;
+                const extra = this.state.extra === undefined || this.state.extra === null ? {} : {...this.state.extra};
                 let data = this.makePairFromIds(receiveValue);
                 extra.fullObject = data;
-                this.setState({ extra: extra });
+                newState = { extra } ;
                 return this.parseValue(data)
             } else if (receiveValue == null) {
-                this.setState(update(this.state, { extra: { fullObject: { $set: null } } }));
+                newState = update(this.state, { extra: { fullObject: { $set: null } } });
             }
+
+            if(this.props.closeMenuOnSelect) {
+                newState.extra.menuIsOpen = false ;
+            }
+
+            this.setState(newState);
         } else {
             let isPair = this.isPair(receiveValue);
+            let newState = null;
             if (isPair === true) {
-                var extra = this.state.extra === undefined || this.state.extra === null ? {} : this.state.extra;
+                const extra = this.state.extra === undefined || this.state.extra === null ? {} : {...this.state.extra};
                 extra.fullObject = receiveValue;
-                this.setState({ extra: extra });
+                newState = { extra: extra };
             } else if (isPair === false && this.props.data != null) {
                 let data = this.makePairFromId(receiveValue);
-                var extra = this.state.extra === undefined || this.state.extra === null ? {} : this.state.extra;
+                const extra = this.state.extra === undefined || this.state.extra === null ? {} : {...this.state.extra};
                 extra.fullObject = data;
-                this.setState({ extra: extra });
-                return this.parseValue(data)
+                newState = { extra: extra };
+                valueToParse = data ;
             } else if (receiveValue == null) {
-                this.setState(update(this.state, { extra: { fullObject: { $set: null } } }));
+                newState = update(this.state, { extra: { fullObject: { $set: null } } });
             }
+            
+            if(this.props.closeMenuOnSelect) {
+                newState.extra.menuIsOpen = false ;
+            }
+            
+            this.setState(newState);
         }
-        return this.parseValue(receiveValue);
+        return this.parseValue(valueToParse);
     }
 
     private makePairFromIds = (ids: any[]) => {
@@ -170,7 +185,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     }
 
     private makePairFromId = (id) => {
-        for (var i = 0; i < this.props.data.length; i++) {
+        for (let i = 0; i < this.props.data.length; i++) {
             if (this.props.data[i][this.keyId] === id) {
                 return {
                     [this.keyId]: this.props.data[i][this.keyId],
@@ -197,13 +212,13 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             return true;
         }
 
-        var regexp = /{-?[\w]+}/gi;
-        var arr = this.keyText.match(regexp);
+        const regexp = /{-?[\w]+}/gi;
+        const arr = this.keyText.match(regexp);
         if (arr === null) {
             return obj.hasOwnProperty(this.keyId) && obj.hasOwnProperty(this.keyText);
         } else {
-            for (var i = 0; i < arr.length; i++) {
-                var sourceText = arr[i].replace("{", "").replace("}", "");
+            for (let i = 0; i < arr.length; i++) {
+                const sourceText = arr[i].replace("{", "").replace("}", "");
                 if (obj.hasOwnProperty(sourceText) == false) {
                     return false
                 }
@@ -230,7 +245,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         }
 
         if (this.props.returnType === "id") {
-            var fullobject = this.state.extra.fullObject;
+            const fullobject = this.state.extra.fullObject;
             if (this.props.multiple && fullobject != null) {
                 return fullobject
                     .map((v) => {
@@ -260,9 +275,9 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             return (<OptionRenderer {...option}></OptionRenderer>)
         } else {
             if (option[this.keyId])
-                return (<span key={`option_{option[this.keyId]}`} >{this.format(option, this.keyText)}</span>)
+                return (<span key={`option_${option[this.keyId]}`} >{this.format(option, this.keyText)}</span>)
             else
-                return (<span key={`option_{option["id"]}`} >{this.format(option, option["text"])}</span>)
+                return (<span key={`option_${option["id"]}`} >{this.format(option, option["text"])}</span>)
         }
     }
 
@@ -272,21 +287,21 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             return (<ValueRenderer {...value}></ValueRenderer>)
         } else {
             if (value[this.keyId])
-                return (<span key={`option_{value[this.keyId]}`} >{this.format(value, this.keyText)}</span>)
+                return (<span key={`option_${value[this.keyId]}`} >{this.format(value, this.keyText)}</span>)
             else
-                return (<span key={`option_{option["id"]}`} >{this.format(value, value["text"])}</span>)
+                return (<span key={`option_${value["id"]}`} >{this.format(value, value["text"])}</span>)
         }
     }
 
     private format(object, strFormat: string) {
-        var regexp = /{-?[\w]+}/gi;
-        var arr = strFormat.match(regexp);
+        const regexp = /{-?[\w]+}/gi;
+        const arr = strFormat.match(regexp);
         if (arr === null) {
             return object[strFormat] || object["text"];
         }
 
-        for (var i = 0; i < arr.length; i++) {
-            var sourceText = arr[i].replace("{", "").replace("}", "");
+        for (let i = 0; i < arr.length; i++) {
+            const sourceText = arr[i].replace("{", "").replace("}", "");
             strFormat = strFormat.replace(arr[i], this.findInObject(object, sourceText.split(".")));
         }
 
@@ -298,7 +313,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     }
 
     private findInObject = (object, path: string[]) => {
-        var local = path.shift();
+        const local = path.shift();
 
         if (path.length === 0) {
             return object[local];
@@ -309,11 +324,11 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
 
     renderControl() {
         const dataSource = this.props.dataSource;
-        var loadOptions: any = false;
+        let loadOptions: any = false;
 
         if (dataSource !== undefined) {
-            var queryParam = dataSource.queryParameterName || 'search';
-            var minimumInputLength = this.props.minimumInputLength;
+            const queryParam = dataSource.queryParameterName || 'search';
+            const minimumInputLength = this.props.minimumInputLength;
             loadOptions = (input: string, callback) => {
                 if (minimumInputLength && input.length < minimumInputLength) {
                     if (input.length !== 0) {
@@ -333,18 +348,18 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                 if (this.timeOutLoadOptions) {
                     clearTimeout(this.timeOutLoadOptions);
                 }
-                var _loadOptionsAfterDealy = () => {
+                const _loadOptionsAfterDealy = () => {
                     if (this.axiosSource) {
                         this.axiosSource.cancel('Next request in progress');
                     }
-                    var qs = `${queryParam}=${input}`;
+                    let qs = `${queryParam}=${input}`;
                     if (dataSource.getExtraParams) {
-                        var params = dataSource.getExtraParams();
+                        const params = dataSource.getExtraParams();
                         if (params) {
                             qs += `&${queryString.stringify(params)}`;
                         }
                     }
-                    var query = `${dataSource.query}?${qs}`;
+                    let query = `${dataSource.query}?${qs}`;
                     if (dataSource.endPoint) {
                         query = `${dataSource.endPoint}/${query}`
                     }
@@ -352,7 +367,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                     axios.get(query, {
                         cancelToken: this.axiosSource.token
                     }).then((response) => {
-                        var data = response.data;
+                        let data = response.data;
 
                         if (dataSource.handleResponse) {
                             data = dataSource.handleResponse(data);
@@ -377,8 +392,9 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             };
             loadOptions = loadOptions.bind(this);
         }
-        var data = this.props.data;
-        var specProps: any = {
+
+        const data = this.props.data;
+        let specProps: any = {
             options: data
         }
 
@@ -395,7 +411,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             filterOptions: this.props.filterOptions || this.filterOptions,
             allowCreate:this.props.allowCreate,
             promptTextCreator:this.props.promptTextCreator,
-            value:this.state.extra.fullObject,
+            value: this.state.extra.fullObject,
             autoBlur:false,
             isLoading:this.props.isLoading,
             loadingMessage:(input: string) => this.state.extra.loadingPlaceholder,
@@ -411,9 +427,10 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             valueRenderer:this.getValueRenderer,
             onChange:this.onChange,
             menuIsOpen: this.state.extra.menuIsOpen,
-            onMenuOpen: () => this.setState({extra : { menuIsOpen : true}}),
-            onMenuClose: () => this.setState({extra : { menuIsOpen : false}}),
-            onInputChange: (inputValue:string) => this.setState({extra : { inputValue : inputValue}}),
+            
+            onMenuOpen: () => this.setState(update(this.state, {extra : { menuIsOpen : { $set  : true }}})),
+            onMenuClose: () => this.setState(update(this.state, {extra : { menuIsOpen : { $set  : false }}})),
+            onInputChange: (inputValue:string) => this.setState(update(this.state, {extra : { inputValue : { $set  : inputValue }}})),
             getOptionLabel : (option: object) => option[this.keyText],
             getOptionValue : (option:object) => this.parseValue(option),
             inputValue: this.state.extra.inputValue,
@@ -458,10 +475,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     }
 
     onChange = (event) => {
-        var data = this.setValue(event);
+        const data = this.setValue(event);
         this.handleChangeEvent(data);
-        if(this.props.closeMenuOnSelect) {
-            this.setState({extra : { menuIsOpen : false}}) ;
-        }
     }
 }

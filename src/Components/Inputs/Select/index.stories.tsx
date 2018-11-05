@@ -133,14 +133,20 @@ stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpSelect'));
 
 const SimpleSelect = (props) => {
-    let [selectedValue, setValue] = React['useState'](null);
+    let [selectedValue, setValue] = React['useState']({ id: 1, text: 'M.' });
+    
+    const onChange = (value) => {
+        console.log(value) ;
+        setValue(value);
+    }
+
     return (
         <UpSelect width="normal" tooltip="Civilité" default={null} data={[
             { id: 1, text: 'M.' },
             { id: 2, text: 'Mme' },
             { id: 3, text: 'Mlle' },
             { id: 4, text: 'Dr' },
-        ]} value={selectedValue} onChange={setValue} />
+        ]} value={selectedValue} onChange={onChange} />
 )}
 
 stories.add('Simple usage',
