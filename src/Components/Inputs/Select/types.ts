@@ -43,7 +43,6 @@ export interface UpSelectProps extends BaseControlProps<any> {
     searchPromptText?: string;
     promptTextCreator?:(label:string) => string;
     isOptionUnique?:(option: object, options: Array<object>, labelKey: string, valueKey: string) => boolean;
-    isValidNewOption?:(label:string) => boolean;
     onNewOptionClick?: (option) => void;
     optionRenderer?: React.StatelessComponent<UpSelectOption>;
     valueRenderer?: React.StatelessComponent<UpSelectOption>;
@@ -116,6 +115,26 @@ export interface UpSelectProps extends BaseControlProps<any> {
     openMenuOnClick? : boolean;
     /** Définit le tabIndex attribute sur l'input */
     tabIndex?:string;
+
+    /** CREATABLE PROPS */
+    /** Activation de la création d'option alors que isLoading est à true. 
+     *  Permet de prévenir "Créer ..." option d'être affiché alors que l'appel à une API asynchrone
+     *  est toujours en cours */
+    allowCreateWhileLoading? : boolean;
+    /** Retourne le label pour "Créer ..." option dans le menu */
+    formatCreateLabel?: (inputValue : string) => React.ReactNode;
+    /** Retourne si l'option  "Créer ..." doit être affichée */
+    isValidNewOption?: (inputValue, selectValue, selectOptions) => boolean;
+    /** Retourne le nouvel objet */
+    getNewOptionData?:(inputValue, optionLabel) => object;
+    /** Si définit, sera appelée lorsqu'une nouvelle option est créée, et onChange ne sera pas appelé. 
+     * A utiliser afin de définir ce qui doit advenir lors de la création de nouvelle option. 
+    */
+    onCreateOption?: (inputValue: string) => void;
+    /**
+     * Définit la position de l'option "Créer  ..." dans la liste.
+     */
+    createOptionPosition? : 'first' | 'last';
 }
 
 export type MenuPlacement = "auto" | "bottom" | "top" ;

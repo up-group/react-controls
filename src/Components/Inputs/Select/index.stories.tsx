@@ -151,10 +151,6 @@ const SimpleSelect = (props) => {
 
 stories.add('Simple usage',
     () => <SimpleSelect />, { info : 'Utilisation du composant en lui passant les données à afficher'}
-).add('Set value',
-    () => (
-        <Test />
-    ), { info : 'Utilisation du composant en lui passant les données à afficher'}
 ).add('Ajax',
     () => (
             <UpSelect autoload={false}
@@ -339,16 +335,56 @@ stories.add('Simple usage',
                     allowCreate={true}
                     default={null}
                     multiple={false}
-                    tooltip="Votre ville de naissance"
+                    tooltip="Votre civilité"
                     minimumInputLength={3}
-                    dataSource={{
-                        query: "https://jsonplaceholder.typicode.com/todos",
-                        text: "title"
-                    }}
-                    filterOptions={(option, filter) => {
-                        return option['title'] != null && option['title'].toLowerCase().indexOf(filter.toLowerCase()) >= 0 ;
-                    }}
+                    createOptionPosition={'first'}
+                    data={[
+                        { id: 1, text: 'M.' },
+                        { id: 2, text: 'Mme' },
+                        { id: 3, text: 'Mlle' },
+                        { id: 4, text: 'Dr' },
+                    ]}
                     onChange={console.log} />
             </div>
     ), { info : 'Utilisation du composant avec autorisation de création de nouvelle option'}
+).add('Async Creatable',
+() => (
+        <div style={{ margin: "30px" }}>
+            <UpSelect autoload={false}
+                isRequired={false}
+                allowClear={true}
+                allowCreate={true}
+                default={null}
+                multiple={false}
+                tooltip="Votre ville de naissance"
+                minimumInputLength={3}
+                createOptionPosition={'first'}
+                dataSource={{
+                    query: "https://jsonplaceholder.typicode.com/todos",
+                    text: "title"
+                }}
+                onChange={console.log} />
+        </div>
+), { info : 'Utilisation du composant avec autorisation de création de nouvelle option'}
+).add('Multi Creatable',
+() => (
+        <div style={{ margin: "30px" }}>
+            <UpSelect autoload={false}
+                isRequired={false}
+                allowClear={true}
+                allowCreate={true}
+                default={null}
+                multiple={true}
+                tooltip="Vos couleurs préférées"
+                minimumInputLength={3}
+                createOptionPosition={'first'}
+                data={[
+                    { id: 1, text: 'Rouge' },
+                    { id: 2, text: 'Bleu' },
+                    { id: 3, text: 'Vert' },
+                    { id: 4, text: 'Orange' },
+                ]}
+                onChange={console.log} />
+        </div>
+), { info : 'Utilisation du composant avec autorisation de création de nouvelle option'}
 );

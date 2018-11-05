@@ -71,6 +71,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         openMenuOnClick: true,
         tabIndex: "0",
         closeMenuOnSelect: true,
+        createOptionPosition: 'last',
     }
 
     constructor(p, c) {
@@ -114,7 +115,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     }
 
     setValue = (receiveValue: any) => {
-        let valueToParse = {...receiveValue};
+        let valueToParse = Array.isArray(receiveValue) ? [...receiveValue] : {...receiveValue};
         if (this.props.multiple === true) {
             let isPairArray = this.isPairArray(receiveValue);
             let newState = null;
@@ -212,8 +213,8 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
 
     parseValue = (receiveValue: any) => {
         if (this.props.returnType === "id" && typeof (receiveValue) === "object" && receiveValue != null) {
-            if (this.props.multiple === true) {
-                return receiveValue.map(((v) => { return v != null ? (v[this.keyId] || v["id"]) : null; }));
+            if (this.props.multiple === true && Array.isArray(receiveValue)) {
+                return receiveValue.map(((v) => { return v != null ? (v[this.keyId] || v["id"] || v) : null; }));
             } else {
                 return receiveValue[this.keyId] || receiveValue["id"];
             }
@@ -314,7 +315,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     }
 
     filterOptions = (option, filter) => {
-        return option[this.keyText] != null && option[this.keyText].toLowerCase().indexOf(filter.toLowerCase()) >= 0 ;
+        return !filter || (option.label != null && (option.label.toLowerCase == null || option.label.toLowerCase().includes(filter.toLowerCase()))) ;
     }
 
     private findInObject = (object, path: string[]) => {
@@ -326,6 +327,31 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             return this.findInObject(object[local], path);
         }
     }
+
+    /** Retourne le label pour "Créer ..." option dans le menu */
+    formatCreateLabel = (inputValue : string) => {
+       if(this.props.formatCreateLabel != null) {
+           return this.props.formatCreateLabel(inputValue) ;
+       }
+       return <p>{`Créer "${inputValue}"`}</p> ;
+    } ;
+
+    /** Retourne si l'option  "Créer ..." doit être affichée */
+    isValidNewOption = (inputValue, selectValue, selectOptions) => {
+        if(this.props.isValidNewOption != null) {
+            return this.props.isValidNewOption(inputValue, selectValue, selectOptions) ;
+        }
+        
+        return inputValue != null && inputValue != "" && (selectValue == null || selectValue.filter(option => option[this.keyText].toLowerCase() == inputValue.toLowerCase()).length == 0) && (selectOptions == null || selectOptions.filter(option => option[this.keyText].toLowerCase() == inputValue.toLowerCase()).length == 0);
+    };
+
+    /** Retourne le nouvel objet */
+    getNewOptionData = (inputValue, optionLabel) => {
+        if(this.props.getNewOptionData != null) {
+            return this.props.getNewOptionData(inputValue, optionLabel) ;
+        }
+        return { [this.keyText] : optionLabel, [this.keyId] : inputValue, __isNew__ : true };
+    };
 
     renderControl() {
         const dataSource = this.props.dataSource;
@@ -340,58 +366,51 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                         const newState = update(this.state, { extra: { loadingPlaceholder: { $set: `Veuillez renseigner au minimum ${minimumInputLength} caractères` } } });
                         this.setState(newState);
                     } else {
-                        const newState = update(this.state, { extra: { loadingPlaceholder: { $set: this.props.placeholder } } });
-                        //this.setState({ extra: { loadingPlaceholder: this.props.placeholder } });
+                        const newState = update(this.state, { extra: { loadingPlaceholder: { $set: this.props.loadingPlaceholder } } });
                         this.setState(newState);
                     }
                     return false;
                 } else {
-                    const newState = update(this.state, { extra: { loadingPlaceholder: { $set: this.props.placeholder } } });
-                    //this.setState({ extra: { loadingPlaceholder: this.props.placeholder } });
+                    const newState = update(this.state, { extra: { loadingPlaceholder: { $set: this.props.loadingPlaceholder } } });
                     this.setState(newState);
                 }
                 if (this.timeOutLoadOptions) {
                     clearTimeout(this.timeOutLoadOptions);
                 }
-                //const _loadOptionsAfterDealy = () => {
-                    if (this.axiosSource) {
-                        this.axiosSource.cancel('Next request in progress');
-                    }
-                    let qs = `${queryParam}=${input}`;
-                    if (dataSource.getExtraParams) {
-                        const params = dataSource.getExtraParams();
-                        if (params) {
-                            qs += `&${queryString.stringify(params)}`;
-                        }
-                    }
-                    let query = `${dataSource.query}?${qs}`;
-                    if (dataSource.endPoint) {
-                        query = `${dataSource.endPoint}/${query}`
-                    }
-                    this.axiosSource = CancelToken.source();
-                    return axios.get(query, {
-                        cancelToken: this.axiosSource.token
-                    }).then((response) => {
-                        let data = response.data;
 
-                        if (dataSource.handleResponse) {
-                            data = dataSource.handleResponse(data);
-                        }
+                if (this.axiosSource) {
+                    this.axiosSource.cancel('Next request in progress');
+                }
+                let qs = `${queryParam}=${input}`;
+                if (dataSource.getExtraParams) {
+                    const params = dataSource.getExtraParams();
+                    if (params) {
+                        qs += `&${queryString.stringify(params)}`;
+                    }
+                }
+                let query = `${dataSource.query}?${qs}`;
+                if (dataSource.endPoint) {
+                    query = `${dataSource.endPoint}/${query}`
+                }
+                this.axiosSource = CancelToken.source();
+                return axios.get(query, {
+                    cancelToken: this.axiosSource.token
+                }).then((response) => {
+                    let data = response.data;
 
-                        this.axiosSource = null;
-                        return data;
-                    }).catch(function (thrown) {
-                        if (axios.isCancel(thrown)) {
-                            console.log('Request canceled', thrown.message);
-                        } else {
-                            // handle error
-                        }
-                        this.axiosSource = null;
-                        throw thrown ;
-                    });
-                //}
-                // Load options after a delay
-                // this.timeOutLoadOptions = setTimeout(_loadOptionsAfterDealy, dataSource.delay | 1000);
+                    if (dataSource.handleResponse) {
+                        data = dataSource.handleResponse(data);
+                    }
+
+                    this.axiosSource = null;
+                    return data;
+                }).catch(function (thrown) {
+                    if (axios.isCancel(thrown)) {
+                        console.log('Request canceled', thrown.message);
+                    }
+                    this.axiosSource = null;
+                    throw thrown ;
+                });
             };
             loadOptions = loadOptions.bind(this);
         }
@@ -408,12 +427,21 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             }
         }
 
+        if(this.props.allowCreate) {
+            specProps.allowCreateWhileLoading = this.props.allowCreateWhileLoading;
+            specProps.formatCreateLabel = this.formatCreateLabel ;
+            specProps.isValidNewOption = this.isValidNewOption ;
+            specProps.getNewOptionData = this.getNewOptionData ;
+            specProps.onCreateOption = this.props.onCreateOption ;
+            specProps.createOptionPosition = this.props.createOptionPosition ;
+        }
+
         const selectComponentProps : Props = {
             ...specProps,
             placeholder: this.props.placeholder,
-            filterOptions: (option, filter) => {
+            filterOption: (option, filter) => {
                 const filterHandler = this.props.filterOptions || this.filterOptions ;
-                filterHandler(option, filter) ;
+                return filterHandler(option, filter) ;
             },
             allowCreate:this.props.allowCreate,
             promptTextCreator:this.props.promptTextCreator,
@@ -433,7 +461,6 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             valueRenderer:this.getValueRenderer,
             onChange:this.onChange,
             menuIsOpen: this.state.extra.menuIsOpen,
-            
             onMenuOpen: () => this.setState(update(this.state, {extra : { menuIsOpen : { $set  : true }}})),
             onMenuClose: () => this.setState(update(this.state, {extra : { menuIsOpen : { $set  : false }}})),
             onInputChange: (inputValue:string) => this.setState(update(this.state, {extra : { inputValue : { $set  : inputValue }}})),
