@@ -38,22 +38,6 @@ const formatGroupLabel = data => (
         <span style={groupBadgeStyles}>{data.options.length}</span>
     </div>
 );
-
-const formatOptionLabel = ({ color, text }) => (
-    <div style={{ display: "flex", alignItems: "center" }}>
-      {color && <div
-        style={{
-          background: color,
-          borderRadius: 6,
-          height: 6,
-          width: 6,
-          marginRight: 6
-        }}
-      />
-      }
-      {text}
-    </div>
-);
   
 // Exports
 export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
@@ -76,7 +60,6 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         width: 'full',
         returnType: "full",
         formatGroupLabel : formatGroupLabel,
-        formatOptionLabel : formatOptionLabel,
         isRtl: false,
         isSearchable: true,
         minMenuHeight : 140,
@@ -238,6 +221,28 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
 
         return receiveValue;
     }
+    
+    getOptionLabel  = (option: object) => option[this.keyText];
+
+    formatOptionLabel = (option) => {
+        const { color } = option ;
+        const text = this.getOptionLabel(option) ;
+        return (
+        <div style={{ display: "flex", alignItems: "center", cursor: 'pointer' }}>
+          {color && <div
+            style={{
+              background: color,
+              borderRadius: 6,
+              height: 6,
+              width: 6,
+              marginRight: 6
+            }}
+          />
+          }
+          {text}
+        </div>
+        )
+    }
 
     getValue(data: any) {
         if (data == null) {
@@ -329,7 +334,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         if (dataSource !== undefined) {
             const queryParam = dataSource.queryParameterName || 'search';
             const minimumInputLength = this.props.minimumInputLength;
-            loadOptions = (input: string, callback) => {
+            loadOptions = (input: string) => {
                 if (minimumInputLength && input.length < minimumInputLength) {
                     if (input.length !== 0) {
                         const newState = update(this.state, { extra: { loadingPlaceholder: { $set: `Veuillez renseigner au minimum ${minimumInputLength} caractères` } } });
@@ -348,7 +353,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                 if (this.timeOutLoadOptions) {
                     clearTimeout(this.timeOutLoadOptions);
                 }
-                const _loadOptionsAfterDealy = () => {
+                //const _loadOptionsAfterDealy = () => {
                     if (this.axiosSource) {
                         this.axiosSource.cancel('Next request in progress');
                     }
@@ -364,7 +369,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                         query = `${dataSource.endPoint}/${query}`
                     }
                     this.axiosSource = CancelToken.source();
-                    axios.get(query, {
+                    return axios.get(query, {
                         cancelToken: this.axiosSource.token
                     }).then((response) => {
                         let data = response.data;
@@ -373,11 +378,8 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                             data = dataSource.handleResponse(data);
                         }
 
-                        callback(null, {
-                            options: data,
-                            complete: false
-                        });
                         this.axiosSource = null;
+                        return data;
                     }).catch(function (thrown) {
                         if (axios.isCancel(thrown)) {
                             console.log('Request canceled', thrown.message);
@@ -385,10 +387,11 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                             // handle error
                         }
                         this.axiosSource = null;
+                        throw thrown ;
                     });
-                }
+                //}
                 // Load options after a delay
-                this.timeOutLoadOptions = setTimeout(_loadOptionsAfterDealy, dataSource.delay | 1000);
+                // this.timeOutLoadOptions = setTimeout(_loadOptionsAfterDealy, dataSource.delay | 1000);
             };
             loadOptions = loadOptions.bind(this);
         }
@@ -408,7 +411,10 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         const selectComponentProps : Props = {
             ...specProps,
             placeholder: this.props.placeholder,
-            filterOptions: this.props.filterOptions || this.filterOptions,
+            filterOptions: (option, filter) => {
+                const filterHandler = this.props.filterOptions || this.filterOptions ;
+                filterHandler(option, filter) ;
+            },
             allowCreate:this.props.allowCreate,
             promptTextCreator:this.props.promptTextCreator,
             value: this.state.extra.fullObject,
@@ -431,7 +437,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             onMenuOpen: () => this.setState(update(this.state, {extra : { menuIsOpen : { $set  : true }}})),
             onMenuClose: () => this.setState(update(this.state, {extra : { menuIsOpen : { $set  : false }}})),
             onInputChange: (inputValue:string) => this.setState(update(this.state, {extra : { inputValue : { $set  : inputValue }}})),
-            getOptionLabel : (option: object) => option[this.keyText],
+            getOptionLabel : this.getOptionLabel,
             getOptionValue : (option:object) => this.parseValue(option),
             inputValue: this.state.extra.inputValue,
             defaultInputValue: "",

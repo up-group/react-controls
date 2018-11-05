@@ -166,6 +166,7 @@ stories.add('Simple usage',
                 minimumInputLength={3}
                 value
                 returnType="id"
+                labelKey={"title"}
                 filterOptions={(option, filter) => {
                     return option['title'] != null && option['title'].toLowerCase().indexOf(filter.toLowerCase()) >= 0 ;
                 }}
