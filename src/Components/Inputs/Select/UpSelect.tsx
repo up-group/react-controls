@@ -1,8 +1,7 @@
 // Imports
 import * as React from 'react'
 import * as update from 'react-addons-update'
-//import Component from './styles';
-import * as ReactDOM from "react-dom"
+import * as classnames from 'classnames'
 import * as Select from 'react-select'
 
 import axios from 'axios'
@@ -10,11 +9,52 @@ import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import * as queryString from 'query-string';
 import { UpSelectProps } from './types';
 import { getStyles } from './styles';
-import { Props } from 'react-select/lib/stateManager';
-import { State } from 'react-select/lib/Creatable';
+import { Props } from 'react-select/lib/Select';
 
 var CancelToken = axios.CancelToken;
 
+const groupStyles = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  };
+
+const groupBadgeStyles : React.CSSProperties = {
+    backgroundColor: '#EBECF0',
+    borderRadius: '2em',
+    color: '#172B4D',
+    display: 'inline-block',
+    fontSize: 12,
+    fontWeight: 500,
+    lineHeight: '1',
+    minWidth: 1,
+    padding: '0.16666666666667em 0.5em',
+    textAlign: 'center',
+  };
+  
+const formatGroupLabel = data => (
+    <div style={groupStyles}>
+        <span>{data.label}</span>
+        <span style={groupBadgeStyles}>{data.options.length}</span>
+    </div>
+);
+
+const formatOptionLabel = ({ color, text }) => (
+    <div style={{ display: "flex", alignItems: "center" }}>
+      {color && <div
+        style={{
+          background: color,
+          borderRadius: 6,
+          height: 6,
+          width: 6,
+          marginRight: 6
+        }}
+      />
+      }
+      {text}
+    </div>
+);
+  
 // Exports
 export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     timeOutLoadOptions: any;
@@ -34,7 +74,20 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         isLoading: false,
         allowCreate: false,
         width: 'full',
-        returnType: "full"
+        returnType: "full",
+        formatGroupLabel : formatGroupLabel,
+        formatOptionLabel : formatOptionLabel,
+        isRtl: false,
+        isSearchable: true,
+        minMenuHeight : 140,
+        maxMenuHeight : 300,
+        menuPlacement: 'auto',
+        menuShouldBlockScroll: false,
+        menuShouldScrollIntoView: true,
+        openMenuOnFocus: false,
+        openMenuOnClick: true,
+        tabIndex: "0",
+        closeMenuOnSelect: true,
     }
 
     constructor(p, c) {
@@ -240,25 +293,8 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         return strFormat;
     }
 
-    filterOptions = (options, filter, currentValues) => {
-        var _options = [];
-        var _self = this;
-        options.map((value) => {
-            // check if the option is selected
-            var isInValues: boolean = false;
-            for (var i in currentValues) {
-                var curentValue = currentValues[i];
-                if (value[_self.keyId] === curentValue[_self.keyId]) {
-                    isInValues = true;
-                    break;
-                }
-            };
-            // Return the option only if it is not in the current values
-            if (isInValues === false)
-                _options.push(value);
-        });
-
-        return _options;
+    filterOptions = (option, filter) => {
+        return option[this.keyText] != null && option[this.keyText].toLowerCase().indexOf(filter.toLowerCase()) >= 0 ;
     }
 
     private findInObject = (object, path: string[]) => {
@@ -353,7 +389,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             }
         }
 
-        const selectComponentProps = {
+        const selectComponentProps : Props = {
             ...specProps,
             placeholder: this.props.placeholder,
             filterOptions: this.props.filterOptions || this.filterOptions,
@@ -362,13 +398,11 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             value:this.state.extra.fullObject,
             autoBlur:false,
             isLoading:this.props.isLoading,
-            valueKey:this.props.valueKey || "id",
-            labelKey:this.props.labelKey || "text",
-            loadingPlaceholder:this.state.extra.loadingPlaceholder,
-            multi:this.props.multiple,
-            clearable:this.props.allowClear,
-            disabled:this.props.disabled,
-            noResultsText:this.props.noResultsText,
+            loadingMessage:(input: string) => this.state.extra.loadingPlaceholder,
+            isMulti:this.props.multiple,
+            isClearable:this.props.allowClear,
+            isDisabled:this.props.disabled,
+            noOptionsMessage: (inputValue:string) => this.props.noResultsText,
             clearAllText:this.props.clearAllText,
             clearValueText:this.props.clearValueText,
             addLabelText:this.props.addLabelText,
@@ -376,10 +410,37 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             optionRenderer:this.getOptionRenderer,
             valueRenderer:this.getValueRenderer,
             onChange:this.onChange,
+            menuIsOpen: this.state.extra.menuIsOpen,
+            onMenuOpen: () => this.setState({extra : { menuIsOpen : true}}),
+            onMenuClose: () => this.setState({extra : { menuIsOpen : false}}),
+            onInputChange: (inputValue:string) => this.setState({extra : { inputValue : inputValue}}),
+            getOptionLabel : (option: object) => option[this.keyText],
+            getOptionValue : (option:object) => this.parseValue(option),
+            inputValue: this.state.extra.inputValue,
+            defaultInputValue: "",
+            formatGroupLabel: this.props.formatGroupLabel,
+            formatOptionLabel: this.props.formatOptionLabel,
+            isOptionDisabled: this.props.isOptionDisabled,
+            isOptionSelected: this.props.isOptionSelected,
+            isRtl : this.props.isRtl,
+            isSearchable : this.props.isSearchable,
+            minMenuHeight : this.props.minMenuHeight,
+            maxMenuHeight : this.props.maxMenuHeight,
+            menuPlacement : this.props.menuPlacement,
+            menuShouldBlockScroll : this.props.menuShouldBlockScroll,
+            menuShouldScrollIntoView : this.props.menuShouldScrollIntoView,
+            onBlur: this.props.onBlur,
+            onFocus: this.props.onFocus,
+            onKeyDown: this.props.onKeyDown,
+            onMenuScrollToBottom: this.props.onMenuScrollToBottom,
+            onMenuScrollToTop: this.props.onMenuScrollToTop,
+            openMenuOnFocus: this.props.openMenuOnFocus,
+            openMenuOnClick: this.props.openMenuOnClick,
+            closeMenuOnSelect: this.props.closeMenuOnSelect,
         }
        
         return (
-            <div className={getStyles(this.props)}>
+            <div className={classnames('up-select-wrapper', getStyles(this.props))}>
                 {dataSource != null && this.props.allowCreate === true &&
                     <Select.AsyncCreatable {...selectComponentProps} />
                 }
@@ -399,5 +460,8 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     onChange = (event) => {
         var data = this.setValue(event);
         this.handleChangeEvent(data);
+        if(this.props.closeMenuOnSelect) {
+            this.setState({extra : { menuIsOpen : false}}) ;
+        }
     }
 }

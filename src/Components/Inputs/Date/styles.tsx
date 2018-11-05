@@ -22,7 +22,7 @@ const BaseDate: React.StatelessComponent<UpDateStyledProps> = (props) => {
         <SingleDatePicker 
             focused={focused}
             onFocusChange={onFocusChange}
-            date={moment(value)}
+            date={value ? moment(value) : null}
             onDateChange={onChange}
             id={generateUniqueId()}
             disabled={disabled}

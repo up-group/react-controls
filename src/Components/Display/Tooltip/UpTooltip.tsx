@@ -118,8 +118,8 @@ export default class UpTooltip extends Component<UpTooltipProps, UpTooltipState>
     //}
 
     return (
-      <div style={{display:"inline-block"}}>
-         {childrenWithProps}
+      <div style={{display:"inline-block", width:'100%'}}>
+        {childrenWithProps}
         <ReactTooltip className={classNames('up-tooltip', custom)} id={_id} getContent={this.getContent} {...others} />
       </div>
     );
