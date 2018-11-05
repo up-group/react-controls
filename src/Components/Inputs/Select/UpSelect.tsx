@@ -149,7 +149,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                 newState = update(this.state, { extra: { fullObject: { $set: null } } });
             }
 
-            if(this.props.closeMenuOnSelect) {
+            if(newState != null && this.props.closeMenuOnSelect) {
                 newState.extra.menuIsOpen = false ;
             }
 
@@ -171,10 +171,10 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                 newState = update(this.state, { extra: { fullObject: { $set: null } } });
             }
             
-            if(this.props.closeMenuOnSelect) {
+            if(newState != null && this.props.closeMenuOnSelect) {
                 newState.extra.menuIsOpen = false ;
             }
-            
+
             this.setState(newState);
         }
         return this.parseValue(valueToParse);
