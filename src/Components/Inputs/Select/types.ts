@@ -3,7 +3,6 @@ import * as React from 'react';
 import { BaseControlProps } from '../_Common/BaseControl/BaseControl'
 import { string } from 'prop-types';
 
-export type SelectWidth = 'xsmall' | 'small' | 'normal' | 'large' | 'full' | 'auto';
 export type ReturnType = 'id' | 'full';
 
 export interface UpSelectOption {
@@ -47,7 +46,6 @@ export interface UpSelectProps extends BaseControlProps<any> {
     optionRenderer?: React.StatelessComponent<UpSelectOption>;
     valueRenderer?: React.StatelessComponent<UpSelectOption>;
     dataFor?: string; //For tooltip,
-    width?: SelectWidth;
     returnType?: ReturnType;
     /** Focus le composant quand il est monté */
     autoFocus?: boolean;
@@ -146,5 +144,4 @@ export type FormatOptionContext = {
 }
 
 export interface UpSelectStyledProps {
-    width?: SelectWidth;
 }

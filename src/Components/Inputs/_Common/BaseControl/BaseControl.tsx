@@ -106,7 +106,7 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
     }
 
     private checkData = (value?: any) => {
-        var result = this._validationManager.isValidValue(value || this.state.value);
+        var result = this._validationManager.isValidValue(value);
         if (result.hasError) {
             this.setState({ error: result.errorMessage });
         } else {

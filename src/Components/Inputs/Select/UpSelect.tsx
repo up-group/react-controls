@@ -38,6 +38,59 @@ const formatGroupLabel = data => (
         <span style={groupBadgeStyles}>{data.options.length}</span>
     </div>
 );
+
+const customStyles = {
+    option: (provided, state) => ({
+      ...provided,
+    }),
+    control: (provided, state) => ({
+        ...provided, 
+        outline: 'none',
+        borderRadius:0,
+        border: state.isFocused ? 0 : 0,
+        // This line disable the blue border
+        boxShadow: state.isFocused ? 0 : 0,
+        '&:hover': {
+           border: state.isFocused ? 0 : 0,
+           borderBottom : '1px solid orange',
+        },
+        borderBottom : '1px solid orange',
+    }),
+    dropdownIndicator :  (provided, state) => ({
+        ...provided, 
+        color :  '#EE7F2D',
+        'svg, svg path': {
+            fill : '#EE7F2D',
+        }
+    }),
+    multiValueLabel: (provided, state) => ({
+        ...provided, 
+        backgroundColor :  '#EE7F2D',
+        color :  'white',
+    }),
+    multiValueRemove: (provided, state) => ({
+        ...provided, 
+        backgroundColor :  '#EE7F2D',
+        color :  'white',
+    }),
+    clearIndicator: (provided, state) => ({
+        ...provided, 
+        color :  '#EE7F2D',
+        'svg, svg path': {
+            fill : '#EE7F2D',
+        }
+    }),
+    container: (provided, state) => ({
+        border:0,
+        outline: 'none',
+    }),
+    singleValue: (provided, state) => {
+      const opacity = state.isDisabled ? 0.5 : 1;
+      const transition = 'opacity 300ms';
+
+      return { ...provided, opacity, transition };
+    }
+  }
   
 // Exports
 export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
@@ -57,7 +110,6 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         showError: true,
         isLoading: false,
         allowCreate: false,
-        width: 'full',
         returnType: "full",
         formatGroupLabel : formatGroupLabel,
         isRtl: false,
@@ -487,6 +539,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             openMenuOnFocus: this.props.openMenuOnFocus,
             openMenuOnClick: this.props.openMenuOnClick,
             closeMenuOnSelect: this.props.closeMenuOnSelect,
+            styles: customStyles,
         }
        
         return (

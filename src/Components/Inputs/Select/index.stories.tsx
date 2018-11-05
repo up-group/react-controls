@@ -87,7 +87,7 @@ export class Test extends React.Component<testProps, testState>{
 
                 <div >
 
-                    <UpSelect width="normal"
+                    <UpSelect
                         value={this.state.valE}
                         returnType="id"
                         tooltip="Civilité" default={null}
@@ -103,7 +103,6 @@ export class Test extends React.Component<testProps, testState>{
                     </div>
                     <UpSelect
                         value={this.state.valEM}
-                        width="normal"
                         returnType="id"
                         multiple={true}
                         tooltip="Civilité" default={null} data={[
@@ -136,12 +135,11 @@ const SimpleSelect = (props) => {
     let [selectedValue, setValue] = React['useState']({ id: 1, text: 'M.' });
     
     const onChange = (value) => {
-        console.log(value) ;
         setValue(value);
     }
 
     return (
-        <UpSelect width="normal" tooltip="Civilité" default={null} data={[
+        <UpSelect tooltip="Civilité" default={null} data={[
             { id: 1, text: 'M.' },
             { id: 2, text: 'Mme' },
             { id: 3, text: 'Mlle' },
@@ -163,9 +161,6 @@ stories.add('Simple usage',
                 value
                 returnType="id"
                 labelKey={"title"}
-                filterOptions={(option, filter) => {
-                    return option['title'] != null && option['title'].toLowerCase().indexOf(filter.toLowerCase()) >= 0 ;
-                }}
                 dataSource={{
                     query: "https://jsonplaceholder.typicode.com/todos",
                     text: "title"
@@ -227,105 +222,6 @@ stories.add('Simple usage',
                     onChange={console.log} />
             </div>
     ), { info :  'Utilisation du composant en retournant la valeur de l\'identifiant et non plus l\'objet sélectionné' }
-).add('Size',
-    () => (
-            <div style={{ margin: "30px" }}>
-                <UpSelect isRequired={true}
-                    allowClear={true}
-                    width={'auto'}
-                    default={null}
-                    multiple={false}
-                    returnType={"id"}
-                    valueKey={"id"}
-                    tooltip="Votre ville de naissance"
-                    data={[
-                        { id: 1, text: 'M.' },
-                        { id: 2, text: 'Mme' },
-                        { id: 3, text: 'Mlle' },
-                        { id: 4, text: 'Dr' },
-                    ]}
-                    onChange={console.log} />
-                <UpSelect isRequired={true}
-                    allowClear={true}
-                    width={'full'}
-                    default={null}
-                    multiple={false}
-                    returnType={"id"}
-                    valueKey={"id"}
-                    tooltip="Votre ville de naissance"
-                    data={[
-                        { id: 1, text: 'M.' },
-                        { id: 2, text: 'Mme' },
-                        { id: 3, text: 'Mlle' },
-                        { id: 4, text: 'Dr' },
-                    ]}
-                    onChange={console.log} />
-
-                <UpSelect isRequired={true}
-                    allowClear={true}
-                    width={'xsmall'}
-                    default={null}
-                    multiple={false}
-                    returnType={"id"}
-                    valueKey={"id"}
-                    tooltip="Votre ville de naissance"
-                    data={[
-                        { id: 1, text: 'M.' },
-                        { id: 2, text: 'Mme' },
-                        { id: 3, text: 'Mlle' },
-                        { id: 4, text: 'Dr' },
-                    ]}
-                    onChange={console.log} />
-
-                <UpSelect isRequired={true}
-                    allowClear={true}
-                    width={'small'}
-                    default={null}
-                    multiple={false}
-                    returnType={"id"}
-                    valueKey={"id"}
-                    tooltip="Votre ville de naissance"
-                    data={[
-                        { id: 1, text: 'M.' },
-                        { id: 2, text: 'Mme' },
-                        { id: 3, text: 'Mlle' },
-                        { id: 4, text: 'Dr' },
-                    ]}
-                    onChange={console.log} />
-
-                <UpSelect isRequired={true}
-                    allowClear={true}
-                    width={'normal'}
-                    default={null}
-                    multiple={false}
-                    returnType={"id"}
-                    valueKey={"id"}
-                    tooltip="Votre ville de naissance"
-                    data={[
-                        { id: 1, text: 'M.' },
-                        { id: 2, text: 'Mme' },
-                        { id: 3, text: 'Mlle' },
-                        { id: 4, text: 'Dr' },
-                    ]}
-                    onChange={console.log} />
-
-                <UpSelect isRequired={true}
-                    allowClear={true}
-                    width={'large'}
-                    default={null}
-                    multiple={false}
-                    returnType={"id"}
-                    valueKey={"id"}
-                    tooltip="Votre ville de naissance"
-                    data={[
-                        { id: 1, text: 'M.' },
-                        { id: 2, text: 'Mme' },
-                        { id: 3, text: 'Mlle' },
-                        { id: 4, text: 'Dr' },
-                    ]}
-                    onChange={console.log} />
-            </div>
-    ), { info : 'Utilisation du composant en retournant la valeur de l\'identifiant et non plus l\'objet sélectionné'},
 ).add('Creatable',
     () => (
             <div style={{ margin: "30px" }}>

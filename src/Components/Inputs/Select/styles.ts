@@ -1,36 +1,7 @@
 // Imports
-import * as classnames from 'classnames'
-
 import { UpSelectStyledProps } from './types';
-import { sizeMap } from '../_Common/Styled';
 import { style } from 'typestyle';
 
-var getWidth = (props : UpSelectStyledProps) => {
-  let width = "100%" ;  
-  switch(props.width) {
-      case 'auto':
-        width = 'auto';
-      case 'full':
-        width = '100%' ;
-      case 'xsmall' :
-        width = sizeMap[props.width] ? sizeMap[props.width] : "5em" ;
-      case 'small':
-        width = sizeMap[props.width]? sizeMap[props.width] : "8em";
-      case 'normal':
-        width = sizeMap[props.width]? sizeMap[props.width] : "23em" ;
-      case 'large':
-        width = sizeMap[props.width]? sizeMap[props.width] : "30em" ;
-      default:
-        width = sizeMap[props.width]? sizeMap[props.width] : "100%" ;
-    }
-
-    return  {
-      width:'100%',
-      $nest : {
-        '.Select' : { width }
-      }
-    }
-}
 
 var getHeight = (props: UpSelectStyledProps) => {
     return {
@@ -43,5 +14,5 @@ var getHeight = (props: UpSelectStyledProps) => {
 
 // Exports
 export const getStyles = (props: UpSelectStyledProps) => (
-  classnames(style(getWidth(props)), style(getHeight(props)))
+  style(getHeight(props))
 )

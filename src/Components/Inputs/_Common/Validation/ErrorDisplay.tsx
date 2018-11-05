@@ -23,7 +23,7 @@ const ErrorDisplayStyle = style({
     }
 }) ;
 
-export default class ErrorDisplay extends React.Component<ErrorDisplayProps, {}> {
+export default class ErrorDisplay extends React.Component<ErrorDisplayProps> {
     constructor(p, c) {
         super(p, c);
     }
