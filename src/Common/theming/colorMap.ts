@@ -72,6 +72,15 @@ const colorMap: ThemeColorMap = {
   dangerActive:'#c9302c',
   dangerHoverActive:'#ac2925',
 
+  error: '#c9302c',
+  errorDark: '#ac2925',
+  errorLight: '#f46e65',
+  errorFg: "#FFF" ,
+  errorHoverFg: "#FFF" ,
+  errorHover:'#ac2925',
+  errorActive:'#c9302c',
+  errorHoverActive:'#ac2925',
+
   info: '#31b0d5',
   infoDark: '#269abc',
   infoLight: '#75DAF8',

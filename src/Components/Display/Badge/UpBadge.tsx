@@ -11,6 +11,7 @@ export interface UpBadgeProps {
   color?:string;
   background?:string;
   rounded?:boolean;
+  intent?: IntentType;
 };
  
 class UpBadge extends React.Component<UpBadgeProps & WithThemeProps> {
@@ -31,10 +32,10 @@ class UpBadge extends React.Component<UpBadgeProps & WithThemeProps> {
       var fontColor = color ;
       var backgroundColor = background ;
 
-      //if(this.props.intent !== null) {
-      //    fontColor = this.props.theme.colorMap[`${this.props.intent}Fg`] ;
-      //    backgroundColor = this.props.theme.colorMap[`${this.props.intent}`] ;
-      //}
+      if(this.props.intent !== null) {
+          fontColor = this.props.theme.colorMap[`${this.props.intent}Fg`] ;
+          backgroundColor = this.props.theme.colorMap[`${this.props.intent}`] ;
+      }
 
       const BadgeStyle = style({
         borderRadius: (this.props.rounded===true)? '18px':'6px',

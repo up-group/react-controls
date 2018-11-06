@@ -90,6 +90,15 @@ export interface ThemeColorMap {
     dangerHoverFg: string,
     dangerActive:string,
     dangerHoverActive:string,
+    
+    error: string,
+    errorDark: string,
+    errorLight: string,
+    errorFg: string,
+    errorHover:string,
+    errorHoverFg: string,
+    errorActive:string,
+    errorHoverActive:string,
 
     info: string,
     infoDark: string,
