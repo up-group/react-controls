@@ -79,7 +79,7 @@ export default class LoadingIndicator extends React.Component<LoadingIndicatorPr
             </div >
 
         } else if (_displayMode == "inline") {
-            return <Box boxSize={"auto"} pad={"none"} margin={'none'} alignItems="center" justifyContent="center">
+            return <Box boxSize={"auto"} pad={"none"} margin={'none'} alignItems="center" justifyContent="center" className={'up-loading-indicator'}>
                 <SvgIcon viewBox="0 0 48 48">
                     <Circle cx="24" cy="24" r="21" stroke="#007acc" strokeWidth="6" fill="none" />
                 </SvgIcon>

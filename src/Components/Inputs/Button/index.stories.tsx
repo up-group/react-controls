@@ -173,7 +173,7 @@ stories.add('Simple usage',
       <UpNotification status={"info"}>
           Le composant <code>UpButton</code> avec indication du traitement en cours :
           <UpParagraph>
-             <UpButton onClick={null} width={"normal"} isProcessing={isProcessing}>Save</UpButton>
+             <UpButton iconName={'edit'} iconPosition={'left'} onClick={null} width={"normal"} isProcessing={isProcessing}>Save</UpButton>
           </UpParagraph>
       </UpNotification>
     </UpBox>

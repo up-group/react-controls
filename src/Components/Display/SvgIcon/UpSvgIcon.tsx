@@ -32,8 +32,8 @@ const getStyles = (props : SvgIconWrapperProps) : NestedCSSProperties => ({
 } as NestedCSSProperties);
 
 const SvgIconWrapper : React.StatelessComponent<SvgIconWrapperProps> = (props : SvgIconWrapperProps) => {
-    const {children, ...othersProps} = props ;
-    return <div {...othersProps} className={classnames('up-icon-wrapper', style(getStyles(props)))}>
+    const {children, className, ...othersProps} = props ;
+    return <div {...othersProps} className={classnames('up-icon-wrapper', className, style(getStyles(props)))}>
         {children}
     </div>
 }

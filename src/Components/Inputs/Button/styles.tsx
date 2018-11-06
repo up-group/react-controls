@@ -6,6 +6,7 @@ import * as classnames from 'classnames' ;
 import { style, keyframes } from 'typestyle';
 import { WithThemeProps } from '../../../Common/theming/withTheme';
 import { UpButtonProps, fontSizeMap, buttonSizeMap, UpButtonStyledProps } from '.';
+import { calc } from 'csx';
 
 const DEFAULT_MIN_SIZE = "30px"
 const DEFAULT_BORDER_RADIUS = "4px"
@@ -71,7 +72,22 @@ const base = (props:UpButtonProps & WithThemeProps) : NestedCSSProperties => {
       '&:focus' : {
         outline: 'transparent auto 0px',
         outlineOffset: '0px',
+      },
+      '& .up-loading-indicator-wrapper' : {
+        position: 'absolute',
+        top: '0',
+        left: '0',
+        width:'100%',
+        height: calc('100%'),
+        display: 'flex',
+        alignContent: 'center',
+        justifyItems: 'center',
+      },
+      '& .up-loading-indicator-wrapper > div' : {
+        width:'100%',
+        height: calc('100%'),
       }
+
     }
   }
 };
@@ -358,7 +374,7 @@ const rotatingAnimation = keyframes({
 const rotate = (props:UpButtonProps) : NestedCSSProperties => {
   return {
     $nest : {
-      '&.rotating' : {
+      '& .up-rotating' : {
         '-webkit-animation': `${rotatingAnimation} 2s linear infinite`,
         '-ms-animation': `${rotatingAnimation} 2s linear infinite`,
         animation: `${rotatingAnimation} 2s linear infinite`,

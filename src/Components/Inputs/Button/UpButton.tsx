@@ -41,7 +41,7 @@ export class BaseButton extends React.Component<UpButtonStyledProps> {
         const icon = <UpSvgIcon iconName={iconName}
             width={this.props.iconSize}
             height={this.props.iconSize}
-            className={this.props.rotate ? 'rotating' : ''}
+            className={this.props.rotate ? 'up-rotating' : ''}
             color={this.props.color} />;
 
         var tooltipProps = {};
@@ -54,17 +54,16 @@ export class BaseButton extends React.Component<UpButtonStyledProps> {
 
         const MainButton = (
         <button onClick={onClick} className={classnames('up-btn', getStyles(this.props), className)} {...tooltipProps} >
-            {iconName != 'none' && iconPosition == 'left' && isProcessing !== true &&
+            {iconName != 'none' &&
                 icon
             }
             {width !== 'icon' && isProcessing !== true &&
                children
             }
             {width !== 'icon' && isProcessing === true &&
-            <UpLoadingIndicator displayMode={"inline"} isLoading={true} /> 
-            }
-            {iconName != 'none' && iconPosition == 'right' && isProcessing !== true &&
-            icon
+                <div className='up-loading-indicator-wrapper'>
+                    <UpLoadingIndicator displayMode={"inline"} isLoading={true} /> 
+                </div>
             }
         </button>) ;
 
@@ -137,6 +136,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
             zIndex: 1000,
             listStyle: "none",
             backgroundColor: "#ffffff",
+            color: '#111',
             minWidth: 160,
             margin: 0,
             paddingTop: 10,
