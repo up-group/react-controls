@@ -287,7 +287,7 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
                         {pageNumberNavigation}
                     </UpCol>
                     <UpCol span={3}>
-                        <UpSelect placeholder={this.props.nbByPageMessage} width={"small"} default={{ id: this.props.defaultTake, text: this.props.defaultTake }} data={takes} onChange={this.onTakeChange} />
+                        <UpSelect placeholder={this.props.nbByPageMessage} default={{ id: this.props.defaultTake, text: this.props.defaultTake }} data={takes} onChange={this.onTakeChange} />
                     </UpCol>
                     <UpCol span={5}>
                         <span className={paginationCounterStyle}>
