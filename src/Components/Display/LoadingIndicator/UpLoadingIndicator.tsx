@@ -79,20 +79,18 @@ export default class LoadingIndicator extends React.Component<LoadingIndicatorPr
             </div >
 
         } else if (_displayMode == "inline") {
-
             return <Box boxSize={"auto"} pad={"none"} margin={'none'} alignItems="center" justifyContent="center">
                 <SvgIcon viewBox="0 0 48 48">
                     <Circle cx="24" cy="24" r="21" stroke="#007acc" strokeWidth="6" fill="none" />
                 </SvgIcon>
-                {
-                    this.props.message &&
+                {this.props.message &&
                     <p>{this.props.message}</p>
                 }
             </Box >;
         } else {
             return <aside
                 className="loading-screen" style={{ "position": "fixed", "top": 0, "right": 0, "bottom": 0, "left": 0, "zIndex": 9999, backgroundColor: "white", "opacity": 0.8 }}>
-                <div style={{ "position": "absolute", "top": "50%", "left": "40%", "marginTop": "-7em" }}>
+                <div style={{ "position": "absolute", "top": "50%", "left": "40%", "marginTop": "-7em",'minWidth': '300px'}}>
                     <UpGrid>
                         <UpRow>
                             <UpCol span={6}>
@@ -112,7 +110,7 @@ export default class LoadingIndicator extends React.Component<LoadingIndicatorPr
                                     <UpRow>
                                         <UpCol span={24}>
                                             <hgroup style={{ "textShadow": "0px 0px 0.1ex" }} className="">
-                                                <h3 style={{ "fontSize": "22px" }}>
+                                                <h3 style={{ "fontSize": "22px", 'margin':'0px' }}>
                                                     <span>{_title}</span>
                                                 </h3>
                                             </hgroup>
