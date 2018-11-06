@@ -54,6 +54,15 @@ export interface ThemeColorMap {
     primaryHoverFg: string,
     primaryActive:string,
     primaryHoverActive:string,
+    
+    secondary: string,
+    secondaryDark: string,
+    secondaryLight: string,
+    secondaryFg: string,
+    secondaryHover:string,
+    secondaryHoverFg: string,
+    secondaryActive:string,
+    secondaryHoverActive:string,
 
     default: string,
     defaultDark: string,

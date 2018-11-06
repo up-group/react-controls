@@ -1,5 +1,7 @@
 import { keyframes } from 'typestyle';
 import { NestedCSSProperties } from 'typestyle/lib/types';
+import { LoadingIndicatorProps } from './UpLoadingIndicator';
+import { WithThemeProps } from '../../../Common/theming/withTheme';
 
 const draw = keyframes({
   from : {
@@ -10,21 +12,21 @@ const draw = keyframes({
   },
 });
 
-const color = keyframes({
+const color = (props : WithThemeProps) => keyframes({
   from : {
-    stroke: '#007acc',
+    stroke: props.theme.colorMap.primary,
   },
   to : {
-    stroke: '#293953',
+    stroke: props.theme.colorMap.primaryDark,
   }
 });
 
-export const circleStyle : NestedCSSProperties = {
+export const circleStyle = (props : WithThemeProps) : NestedCSSProperties => ({
   strokeDasharray: [89,200],
   strokeDashoffset: '-10',
   strokeLinecap: 'round',
-  animation: `${color} 2s ease-in-out infinite`
-}
+  animation: `${color(props)} 2s ease-in-out infinite`
+})
 
 export const svgStyle: NestedCSSProperties = {
   width: '48px',

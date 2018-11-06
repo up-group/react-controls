@@ -5,6 +5,8 @@ import Box from '../../Containers/Box';
 import { UpGrid, UpRow, UpCol } from '../../Containers/Grid'
 import { style } from 'typestyle';
 import { svgStyle, circleStyle } from './styles';
+import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
+import { UpLoadingIndicator } from '../../..';
 export type LoadingIndicatorDisplayMode = "inline" | "modal" | "zone"
 
 export interface LoadingIndicatorProps {
@@ -16,9 +18,9 @@ export interface LoadingIndicatorProps {
 type SVGProps = React.SVGAttributes<SVGSVGElement> ;
 type CircleProps = React.SVGAttributes<SVGCircleElement>;
 
-const Circle : React.StatelessComponent<CircleProps> = (props : CircleProps) => {
+const Circle : React.StatelessComponent<CircleProps & WithThemeProps> = (props : CircleProps & WithThemeProps) => {
     const {children, className, ...others} = props; 
-    return <circle className={classnames(style(circleStyle), className)} {...others}>{children}</circle>;
+    return <circle className={classnames(style(circleStyle(props)), className)} {...others}>{children}</circle>;
 }
 
 const SvgIcon : React.StatelessComponent<SVGProps> = (props : SVGProps) => {
@@ -26,18 +28,18 @@ const SvgIcon : React.StatelessComponent<SVGProps> = (props : SVGProps) => {
     return <svg className={classnames(style(svgStyle), className)} {...others}>{children}</svg>;
 }
 
-export default class LoadingIndicator extends React.Component<LoadingIndicatorProps>{
+class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithThemeProps>{
     constructor(p, c) {
         super(p, c);
     }
 
     render() {
-        var _displayMode = this.props.displayMode;
+        let _displayMode = this.props.displayMode;
         if (_displayMode == null) {
             _displayMode = "inline";
         }
 
-        var _title = this.props.title;
+        let _title = this.props.title;
         if (_title == null) {
             _title = "Veuillez patienter...";
         }
@@ -48,12 +50,12 @@ export default class LoadingIndicator extends React.Component<LoadingIndicatorPr
 
         if (_displayMode == "zone") {
 
-            var container: React.CSSProperties = {
+            const container: React.CSSProperties = {
                 position: "relative",
                 display: "block"
             };
 
-            var overlay: React.CSSProperties = {
+            const overlay: React.CSSProperties = {
                 position: "absolute",
                 left: 0,
                 right: 0,
@@ -62,7 +64,7 @@ export default class LoadingIndicator extends React.Component<LoadingIndicatorPr
                 backgroundColor: "rgba(0,0,0,0.4)",
                 display: this.props.isLoading ? "block" : "none",
             }
-            var circle: React.CSSProperties = {
+            const circle: React.CSSProperties = {
                 padding: 40,
                 textAlign: "center"
             }
@@ -72,7 +74,7 @@ export default class LoadingIndicator extends React.Component<LoadingIndicatorPr
                 <div style={overlay} >
                     <div style={circle}>
                         <SvgIcon viewBox="0 0 48 48">
-                            <Circle cx="24" cy="24" r="21" stroke="#007acc" strokeWidth="6" fill="none" />
+                            <Circle theme={this.props.theme} cx="24" cy="24" r="21" stroke={this.props.theme.colorMap.primary} strokeWidth="6" fill="none" />
                         </SvgIcon>
                     </div>
                 </div>
@@ -81,7 +83,7 @@ export default class LoadingIndicator extends React.Component<LoadingIndicatorPr
         } else if (_displayMode == "inline") {
             return <Box boxSize={"auto"} pad={"none"} margin={'none'} alignItems="center" justifyContent="center" className={'up-loading-indicator'}>
                 <SvgIcon viewBox="0 0 48 48">
-                    <Circle cx="24" cy="24" r="21" stroke="#007acc" strokeWidth="6" fill="none" />
+                    <Circle theme={this.props.theme} cx="24" cy="24" r="21" stroke={this.props.theme.colorMap.primary} strokeWidth="6" fill="none" />
                 </SvgIcon>
                 {this.props.message &&
                     <p>{this.props.message}</p>
@@ -96,10 +98,11 @@ export default class LoadingIndicator extends React.Component<LoadingIndicatorPr
                             <UpCol span={6}>
                                 <SvgIcon viewBox="0 0 48 48">
                                     <Circle
+                                        theme={this.props.theme}
                                         cx="24"
                                         cy="24"
                                         r="21"
-                                        stroke="#007acc"
+                                        stroke={this.props.theme.colorMap.primary}
                                         strokeWidth="6"
                                         fill="none"
                                     />
@@ -131,4 +134,6 @@ export default class LoadingIndicator extends React.Component<LoadingIndicatorPr
 
         }
     }
-}
+};
+
+export default withTheme<LoadingIndicatorProps>(LoadingIndicator);
