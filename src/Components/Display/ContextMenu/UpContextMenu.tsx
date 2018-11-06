@@ -1,11 +1,13 @@
 import * as React  from 'react'
 import { callIfExists } from '../../../Common/utils/helpers'
 import GlobalEventListener from '../../../Common/utils/eventListener'
-import {cssRaw} from 'typestyle'
+import {style} from 'typestyle'
 import * as assign from 'object-assign'
 import * as classNames from 'classnames'
 
 import {MENU_HIDE, MENU_SHOW} from './actions'
+import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
+import { NestedCSSProperties } from 'typestyle/lib/types';
 
 export interface UpContextMenuProps {
     id:string;
@@ -21,69 +23,10 @@ export interface UpContextMenuState {
     isVisible:boolean;
 }
 
-cssRaw(`
-.up-contextmenu {
-    min-width: 160px;
-    padding: 5px 0;
-    margin: 2px 0 0;
-    font-size: 16px;
-    color: #373a3c;
-    text-align: left;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid rgba(0,0,0,.15);
-    border-radius: .25rem;
-    outline: none;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.up-contextmenu.up-contextmenu--visible {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.up-contextmenu-link {
-    display: inline-block;
-    width: 100%;
-    padding: 3px 20px;
-    clear: both;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #373a3c;
-    text-align: inherit;
-    white-space: nowrap;
-    background: 0 0;
-    border: 0;
-}
-
-.up-contextmenu-link.active,
-.up-contextmenu-link:hover {
-    color: #fff;
-    background-color: #0275d8;
-    border-color: #0275d8;
-    text-decoration: none;
-}
-.up-contextmenu-item.submenu > a {
-    padding-right: 27px;
-}
-
-.up-contextmenu-item.submenu > a:after {
-    content: "▶";
-    display: inline-block;
-    position: absolute;
-    right: 7px;
-}
-`)
-
-export default class UpContextMenu extends React.PureComponent<UpContextMenuProps, UpContextMenuState> {
+class UpContextMenu extends React.PureComponent<UpContextMenuProps & WithThemeProps, UpContextMenuState> {
 
     menu:HTMLElement;
     listenerId : string;
-
-    public static defaultProps = {
-
-    }
 
     constructor(props) {
         super(props);
@@ -148,11 +91,8 @@ export default class UpContextMenu extends React.PureComponent<UpContextMenuProp
                 wrapper(() => {
                     this.menu.style.top = `${top}px`;
                     this.menu.style.left = `${left}px`;
-                    
                 });
             });
-        } else {
-
         }
     }
 
@@ -163,8 +103,6 @@ export default class UpContextMenu extends React.PureComponent<UpContextMenuProp
     }
 
     handleShow = (e) => {
-        console.log('handleShow') ;
-        console.log(e) ;
         if (e.detail.id !== this.props.id) return;
 
         const { x, y } = e.detail.position;
@@ -179,8 +117,6 @@ export default class UpContextMenu extends React.PureComponent<UpContextMenuProp
     }
 
     handleHide = (e) => {
-        console.log('handleHide') ;
-        console.log(e) ;
         document.removeEventListener('mousedown', this.handleOutsideClick);
         document.removeEventListener('ontouchstart', this.handleOutsideClick);
         document.removeEventListener('scroll', this.handleHide);
@@ -200,18 +136,65 @@ export default class UpContextMenu extends React.PureComponent<UpContextMenuProp
     }
 
     render() {
-        const { children } = this.props;
+        const { children, theme } = this.props;
         const { top, left } = this.state;
-        const style = {position: "fixed" as "fixed", top: top, left: left};
-
-        var MenuStyle = 'up-contextmenu'
-        if(this.state.isVisible) 
-            MenuStyle = classNames(MenuStyle , 'up-contextmenu--visible') ;
+        
+        const MenuStyle = style({
+                position: "fixed", 
+                top: top, 
+                left: left,
+                minWidth: '160px',
+                padding: '5px 0',
+                margin: '2px 0 0',
+                fontSize: '16px',
+                color: theme.colorMap.primaryFg,
+                textAlign: 'left',
+                backgroundColor: '#fff',
+                backgroundClip: 'padding-box',
+                border: '1px solid rgba(0,0,0,.15)',
+                borderRadius: '.25rem',
+                outline: 'none',
+                opacity: this.state.isVisible ? 1 : 0,
+                pointeEvents: this.state.isVisible ? 'auto' : 'none',
+                $nest : {
+                    '.up-contextmenu-link' : {
+                        display: 'inline-block',
+                        width: '100%',
+                        padding: '3px 20px',
+                        clear: 'both',
+                        fontWeight: 400,
+                        lineHeight: 1.5,
+                        color: theme.colorMap.primary,
+                        textAlign: 'inherit',
+                        whiteSpace: 'nowrap',
+                        background: 'transparent',
+                        border: 0,
+                        textDecoration: 'none',
+                    },
+                    '.up-contextmenu-link.active, .up-contextmenu-link:hover' : {
+                        color: theme.colorMap.primaryFg,
+                        backgroundColor: theme.colorMap.primary,
+                        borderColor: theme.colorMap.primaryDark,
+                        textDecoration: 'none',
+                    },
+                    '.up-contextmenu-item.submenu > a' : {
+                        paddingRight: '27px',
+                    },
+                    '.up-contextmenu-item.submenu > a:after' : {
+                        content: "▶",
+                        display: 'inline-block',
+                        position: 'absolute',
+                        right: '7px',
+                    }
+                }
+            } as NestedCSSProperties) ;
 
         return (
-            <nav ref={this.setMenu} style={style} onContextMenu={this.handleHide} className={MenuStyle}>
+            <nav ref={this.setMenu} onContextMenu={this.handleHide} className={MenuStyle}>
                 {children}
             </nav>
         );
     }
 }
+
+export default withTheme<UpContextMenuProps>(UpContextMenu)
