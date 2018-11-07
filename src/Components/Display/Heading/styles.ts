@@ -6,11 +6,12 @@ import { Tag, UpHeadingProps } from './UpHeading';
 import { style } from 'typestyle';
 
 const sizeMap = {
- h1: 36,
- h2: 30,
- h3: 24,
- h4: 18,
- h5: 16
+ h1: 32, // 24 pt
+ h2: 26.7, // 20 pt
+ h3: 21.3, // 16 pt
+ h4: 18.7, // 14 pt 
+ h5: 18,
+ h6: 16, // 16 pt
 };
 
 const calculateSize = (tag: Tag): string => remStringFromPX(sizeMap[tag]);
@@ -40,6 +41,7 @@ export const getStyles = (props: UpHeadingProps) : string => (
     fontSize: calculateSize(props.tag),
     textAlign: props.textAlign,
     color: props.color,
+    letterSpacing: 'normal',
     ...truncateCss(props.truncate),
     ...textTransformCss(props.upcase),
     ...marginCss(props.margin),

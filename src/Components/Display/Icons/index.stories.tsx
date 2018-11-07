@@ -1,4 +1,4 @@
-import * as React from 'react'
+/* import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 import * as Icons from "./Icons"
 import * as IconsM from "./materialinear"
@@ -105,4 +105,4 @@ stories.add('RestaurantMenu',
                 <Icons.IconPercevalLink IconSize="150" AlertNumber={3} AlertCircle={{ Active: true, Color: "red" }} />
             </div>
         ), { info : 'Utilisation du composant en lui passant les données à afficher'}
-    )
+    ) */

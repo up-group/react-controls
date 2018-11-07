@@ -2,17 +2,18 @@
 import * as React from 'react'
 import * as classnames from 'classnames'
 
+import * as update from 'react-addons-update'
+
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import { UpInputProps, Validation, UpInputStyledProps } from './types'
 import TypeStringControl from '../_Common/Validation/TypeStringControl'
-import defaultTheme from '../../../Common/theming'
 import SvgIcon from '../../Display/SvgIcon';
 import { IconName } from '../../../Common/theming/icons';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import { getStyles } from '../_Common/Styled/Input/styles';
 
-const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> = (props) => {
-    const {className, type, iconName, placeholder, disabled, readonly, maxLength, dataFor, onChange } = props;
+const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> = (props: UpInputStyledProps & WithThemeProps) => {
+    const {className, type, iconName, iconPosition, placeholder, disabled, readonly, maxLength, dataFor, onChange, onFocus, onBlur } = props;
 
     var icon:any = "" ;
     if(iconName) {
@@ -30,19 +31,26 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> =
       }
     }
     return (<div className={classnames(getStyles(props) ,className)}>
-              <div className="up-input-group">
-                <input value={props.value} onChange={onChange} className="up-input" type={type} placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readonly} maxLength={maxLength} {...tooltipProps}/>
-                {icon}
+              <div className={classnames("up-input-group", props.focused === true ? 'up-input-focused' : null)}>
+                {iconPosition === 'left' &&
+                    icon
+                }
+                <input value={props.value} onChange={onChange} onFocus={onFocus} onBlur={onBlur} className="up-input" type={type} placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readonly} maxLength={maxLength} {...tooltipProps}/>
+                {iconPosition === 'right' &&
+                    icon
+                }
               </div>
             </div>);
 }
 
 // Exports
 class UpInput extends BaseControlComponent<UpInputProps & WithThemeProps, any> {
+    
     public static defaultProps: UpInputProps & WithThemeProps = {
         showError: true,
         //theme:defaultTheme,
-        width: "fill"
+        width: "fill",
+        iconPosition : 'left',
     };
 
     constructor(p, c) {
@@ -67,8 +75,32 @@ class UpInput extends BaseControlComponent<UpInputProps & WithThemeProps, any> {
         this.handleChangeEvent(event) ;
     }   
 
+    onFocus = (e) => {
+        if(this.state.extra === undefined) {
+            this.setState({ extra : { focused : true}});
+        } else {
+            this.setState(update(this.state, { extra : { focused : { $set : true}}}));
+        }
+        if(this.props.onFocus)
+            this.props.onFocus(e) ;
+    }
+
+    onBlur = (e) =>  {
+        if(this.state.extra === undefined) {
+            this.setState({ extra : { focused : false}});
+        } else {
+            this.setState(update(this.state, { extra : { focused : { $set : false}}}))
+        }
+        if(this.props.onBlur)
+            this.props.onBlur(e) ;
+    }
+
+    get isFocused() {
+        return this.state.extra ? this.state.extra.focused === true : false ;
+    }
+
     renderControl() {
-        const {type, onChange, value, validation, hasError, iconName, width, disabled, readonly, tooltip, maxLength, placeholder, theme, ...others } = this.props;
+        const {type, onChange, value, validation, hasError, iconName, iconPosition, width, disabled, readonly, tooltip, maxLength, placeholder, theme, ...others } = this.props;
         var realIconName = iconName ;
         if(realIconName == null && type != null) {
             realIconName = type as IconName ;
@@ -78,6 +110,7 @@ class UpInput extends BaseControlComponent<UpInputProps & WithThemeProps, any> {
             <BaseInput
                 value={this.state.value == null ? "" : this.state.value}
                 iconName={realIconName}
+                iconPosition={iconPosition}
                 width={width}
                 disabled={disabled}
                 readonly={readonly}
@@ -88,6 +121,9 @@ class UpInput extends BaseControlComponent<UpInputProps & WithThemeProps, any> {
                 type={type || "text"}
                 hasError={this.props.hasError || this.hasError()}
                 showError={this.props.showError}
+                onFocus={this.onFocus}
+                onBlur={this.onBlur}
+                focused={this.isFocused}
                 onChange={this.inputHandleChangeEvent}>
                 {this.props.children}
             </BaseInput>

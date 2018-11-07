@@ -11,7 +11,7 @@ class UpGrid extends React.Component<UpGridProps & WithThemeProps> {
   
   public static defaultProps : UpGridProps & WithThemeProps = {
       gutter:0,
-      //theme:defaultTheme
+      theme:defaultTheme
   }
 
   render() {
@@ -32,6 +32,7 @@ class UpGrid extends React.Component<UpGridProps & WithThemeProps> {
        return row;
        });
     }
+
     return (
         <div style={this.props.style} className={classnames(className, GridStyles)}>
             {rows}

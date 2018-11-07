@@ -5,36 +5,39 @@ import { style } from 'typestyle';
 import defaultTheme from '../../../../../Common/theming'
 
 import * as classnames from 'classnames'
+import { WithThemeProps } from '../../../../../Common/theming/withTheme';
 
 export const HeightLarge = (props) : NestedCSSProperties => {
   return {
     height: '40px',
     lineHeight: '40px',
     fontSize: '16px',
-    padding: '0 15px',
+    padding: props.theme.inputBorderLess ? '6px 0' : '0 15px',
   }
 }
 
-export const defaultStyles = (props) : NestedCSSProperties => { 
-  return {
+export const defaultStyles = (props: WithThemeProps) : NestedCSSProperties => { 
+  let styles : NestedCSSProperties = {
     outline: 'none',
-    border: '1px',
-    borderRadius: '3px',
-    borderStyle: 'ridge',
-    boxShadow: '0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
+    position: 'relative',
+    borderWidth: props.theme.inputBorderLess ? '0 0 1px 0' : '1px',
+    borderRadius: props.theme.inputBorderLess ? 0 : '3px',
+    borderStyle: 'solid',
+    boxShadow:  props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
     background: '#FFFF',
     height: '36px',
-    padding: '0 10px',
+    padding: props.theme.inputBorderLess ? '6px 0px' : '0px 10px',
     verticalAlign: 'middle',
     lineHeight: '30px',
     fontSize: '14px',
     fontWeight: 400,
-    color: 'rgba(19, 124, 189, 0)',
-    transition: 'box-shadow 100ms cubic-bezier(0.4, 1, 0.75, 0.9)',
+    transition: props.theme.inputBorderLess ? 'none' : 'box-shadow 100ms cubic-bezier(0.4, 1, 0.75, 0.9)',
     '-webkit-appearance': 'none',
       '-moz-appearance': 'none',
             appearance: 'none',
-  }
+  };
+  const themeStyles = props.theme.styles.get('input') || {} ;
+  return { ...styles, ...themeStyles } ;
 };
 
 const sizeMap = {
@@ -55,8 +58,6 @@ export const errorStyles = (props : StyledProps) => {
       $nest : {
           '.up-input' : {
               borderColor: props.theme ? props.theme.colorMap.danger : defaultTheme.colorMap.danger,
-              borderWidth: '1px',
-              borderStyle: 'solid',
           },
           '.up-input-group svg, .up-input-group svg path, .up-input-group svg polygon' : {
             fill: props.theme ? props.theme.colorMap.danger : defaultTheme.colorMap.danger,
@@ -67,29 +68,22 @@ export const errorStyles = (props : StyledProps) => {
 
 
 export const inputStyles = (props) : NestedCSSProperties => {
+  
   return {
     $nest : {
       '.up-input' : {
         ...defaultStyles(props),
       },
-      '.up-input::-webkit-input-placeholder' : {
-        opacity: 1,
-        color: 'rgba(92, 112, 128, 0.5)', 
+      '.up-input::-moz-placeholder, .up-input:-ms-input-placeholder, .up-input::placeholder, .up-input::-webkit-input-placeholder' : {
+        opacity: 0.5,
+        color: '#4e5b59', 
       },
-      '.up-input::-moz-placeholder' : {
-        opacity: 1,
-        color: 'rgba(92, 112, 128, 0.5)', 
+      '.up-input:focus, .up-input:hover' : {
+        borderColor : props.theme.colorMap.primary,
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #137cbd, 0 0 0 3px rgba(19, 124, 189, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
       },
-      '.up-input:-ms-input-placeholder' : {
-        opacity: 1,
-        color: 'rgba(92, 112, 128, 0.5)', 
-      },
-      '.up-input::placeholder' : {
-        opacity: 1,
-        color: 'rgba(92, 112, 128, 0.5)', 
-      },
-      '.up-input:focus' : {
-        boxShadow: '0 0 0 1px #137cbd, 0 0 0 3px rgba(19, 124, 189, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
+      '.up-input-group:hover svg, .up-input-group:hover svg path, .up-input-group:hover svg polygon' : {
+        fill: props.theme.colorMap.primary,
       },
       '.up-input.up-round' : {
         borderRadius: '30px',
@@ -125,10 +119,10 @@ export const inputStyles = (props) : NestedCSSProperties => {
         color: 'rgba(191, 204, 214, 0.5)', 
       },
       '.up-dark .up-input:focus' : {
-        boxShadow: '0 0 0 1px #137cbd, 0 0 0 1px #137cbd, 0 0 0 3px rgba(19, 124, 189, 0.3), inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)',
+        boxShadow: props.theme.inputBorderLess ? 'inherit' :'0 0 0 1px #137cbd, 0 0 0 1px #137cbd, 0 0 0 3px rgba(19, 124, 189, 0.3), inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)',
       },
       '.up-dark .up-input[readonly]' : {
-        boxShadow: 'inset 0 0 0 1px rgba(16, 22, 26, 0.4)',
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px rgba(16, 22, 26, 0.4)',
       },
       '.up-dark .up-input:disabled, .up-dark .up-input.up-disabled' : {
         boxShadow: 'none',
@@ -136,97 +130,97 @@ export const inputStyles = (props) : NestedCSSProperties => {
         color: 'rgba(191, 204, 214, 0.5)',
       },
       '.up-input.up-intent-primary' : {
-        boxShadow: '0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), inset 0 0 0 1px #137cbd, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), inset 0 0 0 1px #137cbd, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
       },
       '.up-input.up-intent-primary:focus' : {
-        boxShadow: '0 0 0 1px #137cbd, 0 0 0 3px rgba(19, 124, 189, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #137cbd, 0 0 0 3px rgba(19, 124, 189, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
       },
       '.up-input.up-intent-primary[readonly]' : {
-        boxShadow: 'inset 0 0 0 1px #137cbd', 
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #137cbd', 
       },
       '.up-input.up-intent-primary:disabled, .up-input.up-intent-primary.up-disabled' : {
         boxShadow: 'none', 
       },
       '.up-dark .up-input.up-intent-primary' : {
-        boxShadow: '0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), inset 0 0 0 1px #137cbd, inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)',
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), inset 0 0 0 1px #137cbd, inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)',
       },
       '.up-dark .up-input.up-intent-primary:focus' : {
-        boxShadow: '0 0 0 1px #137cbd, 0 0 0 1px #137cbd, 0 0 0 3px rgba(19, 124, 189, 0.3), inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)', 
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #137cbd, 0 0 0 1px #137cbd, 0 0 0 3px rgba(19, 124, 189, 0.3), inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)', 
       },
       '.up-dark .up-input.up-intent-primary[readonly]' : {
-        boxShadow: 'inset 0 0 0 1px #137cbd', 
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #137cbd', 
       },
       '.up-dark .up-input.up-intent-primary:disabled, .up-dark .up-input.up-intent-primary.up-disabled' : {
         boxShadow: 'none', 
       },
       '.up-input.up-intent-success' : {
-        boxShadow: '0 0 0 0 rgba(15, 153, 96, 0), 0 0 0 0 rgba(15, 153, 96, 0), inset 0 0 0 1px #0f9960, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(15, 153, 96, 0), 0 0 0 0 rgba(15, 153, 96, 0), inset 0 0 0 1px #0f9960, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
       },
       '.up-input.up-intent-success:focus' : {
-        boxShadow: '0 0 0 1px #0f9960, 0 0 0 3px rgba(15, 153, 96, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #0f9960, 0 0 0 3px rgba(15, 153, 96, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
       },
       '.up-input.up-intent-success[readonly]' : {
-        boxShadow: 'inset 0 0 0 1px #0f9960', 
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #0f9960', 
       },
       '.up-input.up-intent-success:disabled, .up-input.up-intent-success.up-disabled' : {
         boxShadow: 'none', 
       },
       '.up-dark .up-input.up-intent-success' : {
-        boxShadow: '0 0 0 0 rgba(15, 153, 96, 0), 0 0 0 0 rgba(15, 153, 96, 0), 0 0 0 0 rgba(15, 153, 96, 0), inset 0 0 0 1px #0f9960, inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)',
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(15, 153, 96, 0), 0 0 0 0 rgba(15, 153, 96, 0), 0 0 0 0 rgba(15, 153, 96, 0), inset 0 0 0 1px #0f9960, inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)',
       },
       '.up-dark .up-input.up-intent-success:focus' : {
-        boxShadow: '0 0 0 1px #0f9960, 0 0 0 1px #0f9960, 0 0 0 3px rgba(15, 153, 96, 0.3), inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)', 
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #0f9960, 0 0 0 1px #0f9960, 0 0 0 3px rgba(15, 153, 96, 0.3), inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)', 
       },
       '.up-dark .up-input.up-intent-success[readonly]' : {
-        boxShadow: 'inset 0 0 0 1px #0f9960',
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #0f9960',
       },
       '.up-dark .up-input.up-intent-success:disabled, .up-dark .up-input.up-intent-success.up-disabled' : {
         boxShadow: 'none',
       },
       '.up-input.up-intent-warning' : {
-        boxShadow: '0 0 0 0 rgba(217, 130, 43, 0), 0 0 0 0 rgba(217, 130, 43, 0), inset 0 0 0 1px #d9822b, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(217, 130, 43, 0), 0 0 0 0 rgba(217, 130, 43, 0), inset 0 0 0 1px #d9822b, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
       },
       '.up-input.up-intent-warning:focus' : {
-        boxShadow: '0 0 0 1px #d9822b, 0 0 0 3px rgba(217, 130, 43, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #d9822b, 0 0 0 3px rgba(217, 130, 43, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
       },
       '.up-input.up-intent-warning[readonly]' : {
-        boxShadow: 'inset 0 0 0 1px #d9822b', 
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #d9822b', 
       },
       '.up-input.up-intent-warning:disabled, .up-input.up-intent-warning.up-disabled' : {
         boxShadow: 'none', 
       },
       '.up-dark .up-input.up-intent-warning' : {
-        boxShadow: '0 0 0 0 rgba(217, 130, 43, 0), 0 0 0 0 rgba(217, 130, 43, 0), 0 0 0 0 rgba(217, 130, 43, 0), inset 0 0 0 1px #d9822b, inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)',
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(217, 130, 43, 0), 0 0 0 0 rgba(217, 130, 43, 0), 0 0 0 0 rgba(217, 130, 43, 0), inset 0 0 0 1px #d9822b, inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)',
       },
       '.up-dark .up-input.up-intent-warning:focus' : {
-        boxShadow: '0 0 0 1px #d9822b, 0 0 0 1px #d9822b, 0 0 0 3px rgba(217, 130, 43, 0.3), inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)',
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #d9822b, 0 0 0 1px #d9822b, 0 0 0 3px rgba(217, 130, 43, 0.3), inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)',
       },
       '.up-dark .up-input.up-intent-warning[readonly]' : {
-        boxShadow: 'inset 0 0 0 1px #d9822b', 
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #d9822b', 
       },
       '.up-dark .up-input.up-intent-warning:disabled, .up-dark .up-input.up-intent-warning.up-disabled' : {
         boxShadow: 'none', 
       },
       '.up-input.up-intent-danger' : {
-        boxShadow: '0 0 0 0 rgba(219, 55, 55, 0), 0 0 0 0 rgba(219, 55, 55, 0), inset 0 0 0 1px #db3737, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(219, 55, 55, 0), 0 0 0 0 rgba(219, 55, 55, 0), inset 0 0 0 1px #db3737, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
       },
       '.up-input.up-intent-danger:focus' : {
-        boxShadow: '0 0 0 1px #db3737, 0 0 0 3px rgba(219, 55, 55, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #db3737, 0 0 0 3px rgba(219, 55, 55, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
       },
       '.up-input.up-intent-danger[readonly]' : {
-        boxShadow: 'inset 0 0 0 1px #db3737',
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #db3737',
       },
       '.up-input.up-intent-danger:disabled, .up-input.up-intent-danger.up-disabled' : {
         boxShadow: 'none',
       },
       '.up-dark .up-input.up-intent-danger' : {
-        boxShadow: '0 0 0 0 rgba(219, 55, 55, 0), 0 0 0 0 rgba(219, 55, 55, 0), 0 0 0 0 rgba(219, 55, 55, 0), inset 0 0 0 1px #db3737, inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)',
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(219, 55, 55, 0), 0 0 0 0 rgba(219, 55, 55, 0), 0 0 0 0 rgba(219, 55, 55, 0), inset 0 0 0 1px #db3737, inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)',
       },
       '.up-dark .up-input.up-intent-danger:focus' : {
-        boxShadow: '0 0 0 1px #db3737, 0 0 0 1px #db3737, 0 0 0 3px rgba(219, 55, 55, 0.3), inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)',
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #db3737, 0 0 0 1px #db3737, 0 0 0 3px rgba(219, 55, 55, 0.3), inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)',
       },
       '.up-dark .up-input.up-intent-danger[readonly]' : {
-        boxShadow: 'inset 0 0 0 1px #db3737',
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #db3737',
       },
       '.up-dark .up-input.up-intent-danger:disabled, .up-dark .up-input.up-intent-danger.up-disabled' : {
         boxShadow: 'none', 
@@ -242,10 +236,10 @@ export const inputStyles = (props) : NestedCSSProperties => {
         position: 'relative',
       },
       '.up-input-group .up-input:not(:first-child)' : {
-        paddingLeft: '30px',
+        paddingLeft: '34px',
       },
       '.up-input-group .up-input:not(:last-child)' : {
-        paddingRight: '30px',
+        paddingRight: '34px',
       },
       '.up-input-group .up-input-action, .up-input-group > .up-button, .up-input-group > .up-icon-wrapper' : {
         position: 'absolute',
@@ -272,7 +266,7 @@ export const inputStyles = (props) : NestedCSSProperties => {
         fontWeight: 400,
         fontStyle: 'normal',
         zIndex: 1,
-        margin: '7px',
+        margin: props.theme.inputBorderLess ? '6px 0px' : '6px',
         color: '#5c7080',
         
       },
@@ -349,13 +343,13 @@ export const inputStyles = (props) : NestedCSSProperties => {
         color: 'rgba(191, 204, 214, 0.5)', 
       },
       '.up-input-group.up-intent-primary .up-input' : {
-        boxShadow: '0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), inset 0 0 0 1px #137cbd, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), inset 0 0 0 1px #137cbd, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
       },
       '.up-input-group.up-intent-primary .up-input:focus' : {
-        boxShadow: '0 0 0 1px #137cbd, 0 0 0 3px rgba(19, 124, 189, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #137cbd, 0 0 0 3px rgba(19, 124, 189, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
       },
       '.up-input-group.up-intent-primary .up-input[readonly]' : {
-        boxShadow: 'inset 0 0 0 1px #137cbd',
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #137cbd',
       },
       '.up-input-group.up-intent-primary .up-input:disabled, .up-input-group.up-intent-primary .up-input.up-disabled' : {
         boxShadow: 'none',
@@ -367,13 +361,13 @@ export const inputStyles = (props) : NestedCSSProperties => {
         color: '#48aff0',
       },
       '.up-input-group.up-intent-success .up-input' : {
-        boxShadow: '0 0 0 0 rgba(15, 153, 96, 0), 0 0 0 0 rgba(15, 153, 96, 0), inset 0 0 0 1px #0f9960, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(15, 153, 96, 0), 0 0 0 0 rgba(15, 153, 96, 0), inset 0 0 0 1px #0f9960, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
       },
       '.up-input-group.up-intent-success .up-input:focus' : {
-        boxShadow: '0 0 0 1px #0f9960, 0 0 0 3px rgba(15, 153, 96, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #0f9960, 0 0 0 3px rgba(15, 153, 96, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
       },
       '.up-input-group.up-intent-success .up-input[readonly]' : {
-        boxShadow: 'inset 0 0 0 1px #0f9960',
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #0f9960',
       },
       '.up-input-group.up-intent-success .up-input:disabled, .up-input-group.up-intent-success .up-input.up-disabled' : {
         boxShadow: 'none', 
@@ -385,13 +379,13 @@ export const inputStyles = (props) : NestedCSSProperties => {
         color: '#3dcc91', 
       },
       '.up-input-group.up-intent-warning .up-input' : {
-        boxShadow: '0 0 0 0 rgba(217, 130, 43, 0), 0 0 0 0 rgba(217, 130, 43, 0), inset 0 0 0 1px #d9822b, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(217, 130, 43, 0), 0 0 0 0 rgba(217, 130, 43, 0), inset 0 0 0 1px #d9822b, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
       },
       '.up-input-group.up-intent-warning .up-input:focus' : {
-        boxShadow: '0 0 0 1px #d9822b, 0 0 0 3px rgba(217, 130, 43, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #d9822b, 0 0 0 3px rgba(217, 130, 43, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
       },
       '.up-input-group.up-intent-warning .up-input[readonly]' : {
-        boxShadow: 'inset 0 0 0 1px #d9822b', 
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #d9822b', 
       },
       '.up-input-group.up-intent-warning .up-input:disabled, .up-input-group.up-intent-warning .up-input.up-disabled' : {
         boxShadow: 'none', 
@@ -403,13 +397,13 @@ export const inputStyles = (props) : NestedCSSProperties => {
         color: '#ffb366', 
       },
       '.up-input-group.up-intent-danger .up-input' : {
-        boxShadow: '0 0 0 0 rgba(219, 55, 55, 0), 0 0 0 0 rgba(219, 55, 55, 0), inset 0 0 0 1px #db3737, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(219, 55, 55, 0), 0 0 0 0 rgba(219, 55, 55, 0), inset 0 0 0 1px #db3737, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
       },
       '.up-input-group.up-intent-danger .up-input:focus' : {
-        boxShadow: '0 0 0 1px #db3737, 0 0 0 3px rgba(219, 55, 55, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #db3737, 0 0 0 3px rgba(219, 55, 55, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
       },
       '.up-input-group.up-intent-danger .up-input[readonly]' : {
-        boxShadow: 'inset 0 0 0 1px #db3737', 
+        boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #db3737', 
       },
       '.up-input-group.up-intent-danger .up-input:disabled, .up-input-group.up-intent-danger .up-input.up-disabled' : {
         boxShadow: 'none', 
@@ -424,13 +418,22 @@ export const inputStyles = (props) : NestedCSSProperties => {
   }
 };
 
+export const focusStyles = (props: StyledProps) => style(props.focused === true ? {
+  $nest : {
+    '.up-input-group.up-input-focused .up-icon-wrapper svg, .up-input-group.up-input-focused .up-icon-wrapper svg path, .up-input-group.up-input-focused .up-icon-wrapper  svg polygon' : {
+      fill: props.theme.colorMap.primary,
+    }
+  }
+} : {
+});
+
 export const getStyles = (props: StyledProps) : string => {
   const heightStyle = props.height == "large" ? HeightLarge : {};
   return classnames(
       style(inputStyles(props)),
       errorStyles(props),
+      focusStyles(props),
       style({
-      color: props.color,
       $nest : {
         '.up-input' : {
           width: sizeMap[props.width],

@@ -2,6 +2,7 @@ import { Tooltip } from '../../Display/Tooltip'
 import { IconName } from '../../../Common/theming/icons';
 import { WithThemeProps } from '../../../Common/theming/withTheme';
 import { CommonInputTextProps } from '../_Common/BaseControl/BaseInput';
+import { InputIconPosition } from '../_Common/Styled/Input/types';
 
 // Exports
 export type WidthSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'fill' ;
@@ -18,13 +19,13 @@ export interface UpInputStyledProps extends CommonProps<string> {
     backgroundColor?: string;
     borderColor?: string;
     type?: InputType;
-    iconName?: IconName;
     hasError?: boolean;
     showError?:boolean;
     onChange?: (data: any) => void;
     className?: string;
     value:string;
     maxLength?:number;
+    focused?:boolean;
     dataFor?:string; // Use for tooltip
 }
 
@@ -36,12 +37,13 @@ export interface CommonProps<VT> extends CommonInputTextProps<VT> {
     readonly?: boolean;
     tooltip?: string | Tooltip;
     showError?: boolean;
+    iconName?: IconName;
+    iconPosition?: InputIconPosition;
 }
 
 export interface UpInputProps extends CommonProps<string> {
     type?: InputType;
     hasError?: boolean;
-    iconName?:IconName;
     value?:string;
     validation?:Array<Validation>;
     maxLength?:number;

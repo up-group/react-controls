@@ -24,7 +24,7 @@ stories.add('Text input',
   ), {info : 'Champ de recherche'}
 ).add('Email Input',
    () => (
-    <UpInput type={"email"} />
+    <UpInput type={"email"} iconPosition={'left'} />
   ), {info : 'Champ email'}
 ).add('Phone Input',
   () => (

@@ -130,13 +130,16 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
                 _tooltip = this.props.tooltip as Tooltip;
             }
         }
-        return (<ErrorDisplay showError={this.props.showError} hasError={this.hasError()} error={this.state.error}>
-            {_tooltip === null ?
-                this.renderControl()
-                :
-                <UpTooltip {..._tooltip}>
-                    {this.renderControl()}
-                </UpTooltip>}
+        const RenderControl = this.renderControl() ;
+        return (
+        <ErrorDisplay showError={this.props.showError} hasError={this.hasError()} error={this.state.error}>
+        {_tooltip === null ?
+            RenderControl
+            :
+            <UpTooltip {..._tooltip}>
+                {RenderControl}
+            </UpTooltip>
+        }
         </ErrorDisplay>
         );
     }

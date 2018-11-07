@@ -1,13 +1,17 @@
 import { IconMap } from './iconMap'
+import { Dictionary } from '../utils/types';
+import { NestedCSSProperties } from 'typestyle/lib/types';
 
 export interface ThemeInterface {
     colorMap: ThemeColorMap;
     borderRadius?: string;
+    inputBorderLess?:boolean;
     minButtonSize?: string;
     notificationIconSize?: number;
     gridGutter?: number;
     intentTypeIcons?: IconMap;
-    typography?: Typography
+    typography?: Typography;
+    styles?: Dictionary<string, NestedCSSProperties>;
 }
 
 export interface Typography {
@@ -19,6 +23,7 @@ export interface Typography {
 }
 
 export interface ThemeColorMap {
+
     white: string,
     dark1: string,
     dark2: string,

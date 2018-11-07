@@ -10,8 +10,8 @@ export type WithThemeProps = {
 const withTheme =  function withTheme<P extends object>(WrappedComponent: React.ComponentType<P & WithThemeProps>) {
     return class ComponentWithTheme extends React.Component<P & WithThemeProps> {
         
-        //static displayName = `WithTheme(${getDisplayName(WrappedComponent)})`;
-        static displayName = `${getDisplayName(WrappedComponent)}`;
+        static displayName = `WithTheme(${getDisplayName(WrappedComponent)})`;
+        //static displayName = `${getDisplayName(WrappedComponent)}`;
     
         /* 
             contexTypes is a required static property to declare 

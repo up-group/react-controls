@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Margin } from '../Paragraph';
 import { getStyles } from './styles';
 // Exports
-export type Tag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
+export type Tag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' ;
 
 export interface UpHeadingProps {
   color?: string;
@@ -18,7 +18,7 @@ export interface UpHeadingProps {
 export default class UpHeading extends React.Component<UpHeadingProps> {
   
   public static defaultProps: UpHeadingProps = {
-    color: '#007acc',
+    color: 'rgba(0, 0, 0, 0.87)',
     textAlign: 'center',
     tag: 'h1',
     truncate: false,
