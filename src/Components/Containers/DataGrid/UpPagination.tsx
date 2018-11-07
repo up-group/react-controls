@@ -5,6 +5,7 @@ import { UpGrid, UpRow, UpCol } from '../../Containers/Grid'
 import UpSelect, { UpSelectOption } from '../../Inputs/Select'
 
 import { style } from "typestyle"
+import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 
 export interface UpPaginationState {
     page: number; // Donnée calculée à partir de Skip et Take mais conservé dans l'état
@@ -13,15 +14,25 @@ export interface UpPaginationState {
 }
 
 export interface UpPaginationProps {
+    /** Nombre total d'éléments paginés */
     total: number;
+    /** Valeur initiale du nombre d'éléments à ignorer */
     defaultSkip?: number;
+    /** Valeur initiale du nombre d'éléments à récupérer */
     defaultTake?: number;
+    /** Valeur initiale de l'index de pagination */
     defaultPage?: number;
+    /** Message à afficher si aucun résultat retourné */
     noResultMessage?: string;
+    /** Message à afficher pour l'information du nombre d'élément par page */
     nbByPageMessage?: string;
-    takes?: Array<UpSelectOption>; // Les valeurs possibles de take
-    isTakeChangeEnable?: boolean; // Activer ou non le composant de modification du nombre d'éléments à afficher par page
-    isExtraInfoDisplay?: boolean; // Afficher ou non les informations indiquant le positionnement dans les éléments paginés
+    /** Les options pour le nombre d'élément à récupérer */
+    takes?: Array<UpSelectOption>;
+    /** Activer ou non le composant de modification du nombre d'éléments à afficher par page */
+    isTakeChangeEnable?: boolean;
+    /** Afficher ou non les informations indiquant le positionnement dans les éléments paginés */
+    isExtraInfoDisplay?: boolean; 
+    /** Notification de du changement de l'état de la pagination */
     onPageChange: (page: number, take: number, skip: number) => void;
 }
 
@@ -42,17 +53,19 @@ const lastChild = {
     borderTopRightRadius: "4px",
     borderBottomRightRadius: "4px"
 };
-const itemHover = {
-    color: "#23527C",
-    backgroundColor: "#eee",
-    borderColor: "#ddd"
-};
-const itemActive = {
-    color: "#fff",
-    backgroundColor: "#337ab7",
-    borderColor: "#337ab7",
-    cursor: "not-allowed"
-};
+const itemHover = (props : WithThemeProps) => ({
+    color: props.theme.colorMap.primaryFg,
+    backgroundColor: props.theme.colorMap.primary,
+    borderColor: props.theme.colorMap.primaryDark,
+});
+
+const itemActive = (props : WithThemeProps) => ({
+    color: props.theme.colorMap.primaryFg,
+    backgroundColor: props.theme.colorMap.primary,
+    borderColor: props.theme.colorMap.primary,
+    cursor: "not-allowed",
+});
+
 const itemDisabled = {
     color: "#777",
     cursor: "not-allowed",
@@ -60,60 +73,64 @@ const itemDisabled = {
     borderColor: "#ddd"
 };
 
-const paginationItemStyle = style({
-    display: "inline",
-    $nest: {
-        '> a': {
-            minWidth: 41,
-            textAlign: "center",
-            position: "relative",
-            float: "left",
-            padding: "6px 3px",
-            marginLeft: "-1px",
-            lineHeight: "1.43",
-            color: "#337ab7",
-            textDecoration: "none",
-            backgroundColor: "#fff",
-            border: "1px solid #ddd"
-        },
-        "&:first-child a": firstChild,
-        "&:first-child span": firstChild,
-        "&:last-child a": lastChild,
-        "&:last-child span": lastChild,
-        'a:hover': itemHover,
-        'a:focus': itemHover,
-        'span:hover': itemHover,
-        'span:focus': itemHover,
-        "&.active > a": itemActive,
-        "&.active > span": itemActive,
-        "&.active > a:hover": itemActive,
-        "&.active > span:hover": itemActive,
-        "&.active > a:focus": itemActive,
-        "&.active > span:focus": itemActive,
-        "&.disabled > a": itemDisabled,
-        "&.disabled > span": itemDisabled,
-        "&.disabled > a:hover": itemDisabled,
-        "&.disabled > span:hover": itemDisabled,
-        "&.disabled > a:focus": itemDisabled,
-        "&.disabled > span:focus": itemDisabled
-    }
-});
+const paginationItemStyle = (props : WithThemeProps) => {
+    const itemHoverStyle = itemHover(props);
+    const itemActiveStyle = itemActive(props) ;
 
-const paginationCounterStyle = style({
+    return style({
+        display: "inline",
+        $nest: {
+            '> a': {
+                minWidth: 41,
+                textAlign: "center",
+                position: "relative",
+                float: "left",
+                padding: "6px 3px",
+                marginLeft: "-1px",
+                lineHeight: "1.43",
+                color: props.theme.colorMap.primary,
+                textDecoration: "none",
+                backgroundColor: props.theme.colorMap.primaryFg,
+                border: `1px solid ${props.theme.colorMap.primary}`
+            },
+            "&:first-child a": firstChild,
+            "&:first-child span": firstChild,
+            "&:last-child a": lastChild,
+            "&:last-child span": lastChild,
+            'a:hover': itemHoverStyle,
+            'a:focus': itemHoverStyle,
+            'span:hover': itemHoverStyle,
+            'span:focus': itemHoverStyle,
+            "&.active > a": itemActiveStyle,
+            "&.active > span": itemActiveStyle,
+            "&.active > a:hover": itemActiveStyle,
+            "&.active > span:hover": itemActiveStyle,
+            "&.active > a:focus": itemActiveStyle,
+            "&.active > span:focus": itemActiveStyle,
+            "&.disabled > a": itemDisabled,
+            "&.disabled > span": itemDisabled,
+            "&.disabled > a:hover": itemDisabled,
+            "&.disabled > span:hover": itemDisabled,
+            "&.disabled > a:focus": itemDisabled,
+            "&.disabled > span:focus": itemDisabled
+        }
+    });
+}
+
+const paginationCounterStyle = (props : WithThemeProps) => style({
     margin: "0px 0px",
-    color: "#2a6496",
-    backgroundColor: "#eee",
-    borderColor: "#ddd",
+    color: props.theme.colorMap.primary,
+    backgroundColor: props.theme.colorMap.primaryFg,
     borderRadius: "4px",
     padding: "6px 12px",
     lineHeight: "1.43",
     textDecoration: "none",
-    border: "1px solid #ddd",
+    border: `1px solid ${props.theme.colorMap.primary}`,
     float: "right",
     cursor: "pointer",
 });
 
-export default class UpPagination extends React.Component<UpPaginationProps, UpPaginationState> {
+class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, UpPaginationState> {
 
     static defaultProps: UpPaginationProps = {
         noResultMessage: "Aucun résultat",
@@ -219,39 +236,40 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
 
         const takes = this.props.takes;
 
-        var pageNumberNavigation = <span />
+        let pageNumberNavigation = <span />
 
         if (pages.length >= 2) {
 
+            const paginationItemClass = paginationItemStyle(this.props) ;
 
-            var PageNumber: any = <span />
+            let PageNumber: any = <span />
 
             if (pages.length <= 15) {
                 PageNumber = pages.map((value, index) => {
-                    return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemStyle)} onClick={this.goTo.bind(this, value)}>
+                    return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemClass)} onClick={this.goTo.bind(this, value)}>
                         <a onClick={(e) => e.preventDefault()} href="#">{value}</a>
                     </li>
                 })
             } else {
                 PageNumber = pages.map((value, index, array) => {
                     if (value < 4 || array.length - 3 < value) {
-                        return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemStyle)} onClick={this.goTo.bind(this, value)}>
+                        return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemClass)} onClick={this.goTo.bind(this, value)}>
                             <a onClick={(e) => e.preventDefault()} href="#">{value}</a>
                         </li>
                     } else if (this.inRange(this.state.page, value, 4)) {
-                        return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemStyle)} onClick={this.goTo.bind(this, value)}>
+                        return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemClass)} onClick={this.goTo.bind(this, value)}>
                             <a onClick={(e) => e.preventDefault()} href="#">{value}</a>
                         </li>
                     } else if (this.state.page < 8 && this.inRange(7, value, 5)) {
-                        return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemStyle)} onClick={this.goTo.bind(this, value)}>
+                        return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemClass)} onClick={this.goTo.bind(this, value)}>
                             <a onClick={(e) => e.preventDefault()} href="#">{value}</a>
                         </li>
                     } else if (array.length - this.state.page < 8 && this.inRange(array.length - 6, value, 5)) {
-                        return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemStyle)} onClick={this.goTo.bind(this, value)}>
+                        return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemClass)} onClick={this.goTo.bind(this, value)}>
                             <a onClick={(e) => e.preventDefault()} href="#">{value}</a>
                         </li>
                     } else if (value === 4 || array.length - 3 === value) {
-                        return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemStyle)} >
+                        return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemClass)} >
                             <a onClick={(e) => e.preventDefault()} href="#">..</a>
                         </li>
                     } else {
@@ -262,15 +280,15 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
                 });
             }
 
-            var pageNumberNavigation = <nav>
+            pageNumberNavigation = <nav>
                 <ul className={paginationStyle}>
-                    <li key={`page-prev`} className={classname(this.state.page == 1 ? "disabled" : "", paginationItemStyle)} onClick={this.goToPreviousPage}>
+                    <li key={`page-prev`} className={classname(this.state.page == 1 ? "disabled" : "", paginationItemClass)} onClick={this.goToPreviousPage}>
                         <a onClick={(e) => e.preventDefault()} href="#" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
                     {PageNumber}
-                    <li key={`page-next`} className={classname(this.state.page == maxPage ? "disabled" : "", paginationItemStyle)} onClick={this.goToNextPage}>
+                    <li key={`page-next`} className={classname(this.state.page == maxPage ? "disabled" : "", paginationItemClass)} onClick={this.goToNextPage}>
                         <a href="#" aria-label="Next" onClick={(e) => e.preventDefault()}>
                             <span aria-hidden="true">&raquo;</span>
                         </a>
@@ -290,7 +308,7 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
                         <UpSelect placeholder={this.props.nbByPageMessage} default={{ id: this.props.defaultTake, text: this.props.defaultTake }} data={takes} onChange={this.onTakeChange} />
                     </UpCol>
                     <UpCol span={5}>
-                        <span className={paginationCounterStyle}>
+                        <span className={paginationCounterStyle({theme : this.props.theme})}>
                             {maxPage == 0 &&
                                 <span>{this.props.noResultMessage}</span>
                             }
@@ -311,3 +329,5 @@ export default class UpPagination extends React.Component<UpPaginationProps, UpP
         )
     }
 }
+
+export default withTheme<UpPaginationProps>(UpPagination) ;
