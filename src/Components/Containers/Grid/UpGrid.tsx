@@ -17,21 +17,21 @@ class UpGrid extends React.Component<UpGridProps & WithThemeProps> {
   render() {
     const { children, type, gutter, className } = this.props;
     var rows = children ;
-    //const _gutter = gutter != null ? gutter : (this.props.theme.gridGutter != null ? this.props.theme.gridGutter : 0) ;
-    //if(_gutter > 0 || type != 'float') {
-    //    rows = React.Children.map(children, (row: React.ReactElement<any>) => {
-    //    if (!row) {
-    //        return null;
-    //    }
-    //    if (row.props) {
-    //        return React.cloneElement(row, {
-    //            gutter: row.props.gutter==0 ? _gutter : row.props.gutter,
-    //            type: row.props.type? row.props.type : row.props.type
-    //        });
-    //    }
-    //    return row;
-    //    });
-    //}
+    const _gutter = gutter != null ? gutter : (this.props.theme.gridGutter != null ? this.props.theme.gridGutter : 0) ;
+    if(_gutter > 0 || type != 'float') {
+       rows = React.Children.map(children, (row: React.ReactElement<any>) => {
+       if (!row) {
+           return null;
+       }
+       if (row.props) {
+           return React.cloneElement(row, {
+               gutter: row.props.gutter==0 ? _gutter : row.props.gutter,
+               type: row.props.type? row.props.type : row.props.type
+           });
+       }
+       return row;
+       });
+    }
     return (
         <div style={this.props.style} className={classnames(className, GridStyles)}>
             {rows}
