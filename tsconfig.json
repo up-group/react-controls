@@ -8,7 +8,13 @@
     "jsx": "react",
     "allowJs": false,
     "declaration": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "src/Common/*"
+      ]
+    }
   },
   "include": [
     "src/**/*"
