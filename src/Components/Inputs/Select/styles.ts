@@ -2,7 +2,6 @@
 import { UpSelectStyledProps } from './types';
 import { style } from 'typestyle';
 
-
 var getHeight = (props: UpSelectStyledProps) => {
     return {
       $nest : {

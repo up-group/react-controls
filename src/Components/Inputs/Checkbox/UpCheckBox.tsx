@@ -1,11 +1,10 @@
 // Imports
 import * as React from 'react'
-
 import * as classNames from 'classnames'
 
 import { CommonCheckableStyle } from '../_Common/Styled';
 import { style } from 'typestyle';
-import { WithThemeProps } from '../../../Common/theming/withTheme';
+import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 
 export interface UpCheckboxProps {
   options: Array<Option>;
@@ -28,7 +27,7 @@ export interface UpCheckboxProps {
     options: Array<Option>;
 }
 
-const BaseCheckBox: React.StatelessComponent<UpCheckboxStyledProps & Option> = (props) => {
+const BaseCheckBox: React.StatelessComponent<UpCheckboxStyledProps & Option> = (props: UpCheckboxStyledProps & Option & WithThemeProps) => {
   const { checked, className, text, name, value, onChange } = props;
 
   return (
@@ -50,7 +49,7 @@ export interface UpCheckboxState {
 }
 
 // Exports
-export default class UpCheckbox extends React.Component<UpCheckboxProps, UpCheckboxState> {
+class UpCheckbox extends React.Component<UpCheckboxProps & WithThemeProps, UpCheckboxState> {
   constructor(props) {
     super(props) ;
     this.state = {
@@ -98,6 +97,7 @@ export default class UpCheckbox extends React.Component<UpCheckboxProps, UpCheck
                 text={option.text} 
                 name={option.name} 
                 value={option.value}
+                theme={this.props.theme}
                 checked={option.checked}>
               </BaseCheckBox>
           })
@@ -106,3 +106,5 @@ export default class UpCheckbox extends React.Component<UpCheckboxProps, UpCheck
     );
   }
 }
+
+export default withTheme<UpCheckboxProps>(UpCheckbox);

@@ -6,6 +6,7 @@ import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import { UpRadioStyledProps, UpRadioProps } from './types';
 import { RadioGroupStyles, getStyles } from './styles';
 import { style } from 'typestyle';
+import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 
 type RadioGroupProps = {
     className?:string;
@@ -20,7 +21,7 @@ const RadioGroup: React.StatelessComponent<RadioGroupProps> = (props) => {
     )
   }
 
-const BaseRadioButton: React.StatelessComponent<UpRadioStyledProps> = (props) => {
+const BaseRadioButton: React.StatelessComponent<UpRadioStyledProps & WithThemeProps> = (props : UpRadioStyledProps & WithThemeProps) => {
     const { checked, className, name, text, value, onChange } = props;
     return (
       <label className={classnames("up-control", "up-radio", getStyles(props), className)}>
@@ -32,7 +33,7 @@ const BaseRadioButton: React.StatelessComponent<UpRadioStyledProps> = (props) =>
 }
 
 // Exports
-export default class UpRadio extends BaseControlComponent<UpRadioProps, any> {
+class UpRadio extends BaseControlComponent<UpRadioProps, any> {
 
     public static defaultProps: UpRadioProps = {
         displayMode: "vertical",
@@ -85,6 +86,7 @@ export default class UpRadio extends BaseControlComponent<UpRadioProps, any> {
                             name={this.props.name}
                             checked={this.state.value != null && this.state.value === option.value}
                             text={option.text}
+                            theme={this.props.theme}
                             value={option.value}>
                         </BaseRadioButton>
                     )
@@ -95,3 +97,5 @@ export default class UpRadio extends BaseControlComponent<UpRadioProps, any> {
         );
     }
 }
+
+export default withTheme<UpRadioProps>(UpRadio);
