@@ -12,29 +12,84 @@ import { generateUniqueId } from '../../../Common/utils/helpers';
 // chooseAvailableStartDate
 
 import defaultPhrases from './i18n/fr';
+import { WithThemeProps } from 'theming/withTheme';
+import { style } from 'typestyle';
 moment.locale('fr')
 
-const BaseDate: React.StatelessComponent<UpDateStyledProps> = (props) => {
+const getStyles = (props: UpDateStyledProps & WithThemeProps) => style({
+    $nest : {
+        '& .SingleDatePickerInput__withBorder' : {
+            borderWidth : props.theme.inputBorderLess ? '0 0 1px 0' : '1px',
+            borderColor : props.focused ? props.theme.colorMap.primary : 'inherit',
+            borderRadius : props.theme.inputBorderLess ? 0 : props.theme.borderRadius,
+        },
+        '& .SingleDatePickerInput__withBorder:hover' : {
+            borderColor : props.theme.colorMap.primary,
+        },
+        '& .SingleDatePickerInput_calendarIcon' : {
+            margin: props.theme.inputBorderLess ? '0 5px 0 0' : '0 5px 0 10px',
+            padding: '6px',
+        }, 
+        '& .SingleDatePickerInput_calendarIcon svg, & .SingleDatePickerInput_calendarIcon svg path' : {
+            fill : props.focused ? props.theme.colorMap.primary : props.theme.colorMap.darkGray4,
+        },
+        '& .SingleDatePickerInput_clearDate svg, & .SingleDatePickerInput_clearDate svg path' : {
+            fill : props.focused ? props.theme.colorMap.primary : props.theme.colorMap.darkGray4,
+        },
+        '& .SingleDatePickerInput__withBorder:hover svg, & .SingleDatePickerInput__withBorder:hover svg path ' : {
+            fill: props.theme.colorMap.primary,
+        },
+        '& .DateInput_input' : {
+            padding: '6px',
+            fontSize: '16px',
+            lineHeight : '18px',
+        },
+        '& .DateInput_input__focused' : {
+            borderWidth: 0,
+        }, 
+        '& .SingleDatePickerInput_clearDate:hover': {
+            backgroundColor: 'transparent',
+        },
+        '& .SingleDatePickerInput_clearDate:hover svg, & .SingleDatePickerInput_clearDate:hover svg path' : {
+            fill: props.theme.colorMap.primary,
+        },
+        '& .CalendarDay:hover, & .CalendarDay__selected' : {
+            backgroundColor: props.theme.colorMap.primary,
+            color: props.theme.colorMap.primaryFg,
+            borderColor: props.theme.colorMap.primaryDark,
+        }, 
+        '& .DayPickerNavigation_button svg, & .DayPickerNavigation_button svg path' : {
+            fill: props.theme.colorMap.primary,
+        },
+        '& .DayPickerNavigation_button:hover' : {
+            borderColor: props.theme.colorMap.primary,
+        }
+    }
+})
+
+const BaseDate: React.StatelessComponent<UpDateStyledProps & WithThemeProps> = (props: UpDateStyledProps & WithThemeProps) => {
 
     const {value, focused, onFocusChange, className, format, disabled, minDate, maxDate, innerRef, onChange, ...others} = props;
-   
+    
     return (
-        <SingleDatePicker 
-            focused={focused}
-            onFocusChange={onFocusChange}
-            date={value ? moment(value) : null}
-            onDateChange={onChange}
-            id={generateUniqueId()}
-            disabled={disabled}
-            showClearDate={true}
-            showDefaultInputIcon={true}
-            noBorder={false}
-            screenReaderInputMessage={'Date'}
-            ref={innerRef}
-            keepOpenOnDateSelect={false}
-            hideKeyboardShortcutsPanel={true}
-            phrases={defaultPhrases}
+        <div className={getStyles(props)}>
+            <SingleDatePicker 
+                focused={focused}
+                onFocusChange={onFocusChange}
+                date={value ? moment(value) : null}
+                onDateChange={onChange}
+                id={generateUniqueId()}
+                disabled={disabled}
+                showClearDate={true}
+                showDefaultInputIcon={true}
+                noBorder={false}
+                screenReaderInputMessage={'Date'}
+                ref={innerRef}
+                keepOpenOnDateSelect={false}
+                hideKeyboardShortcutsPanel={true}
+                phrases={defaultPhrases}
             />
+        </div>
     );
 }
 

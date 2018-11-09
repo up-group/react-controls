@@ -6,12 +6,13 @@ import { UpDateProps } from './'
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import UpDateStyle from "./styles";
 import defaultTheme from "../../../Common/theming";
+import withTheme, { WithThemeProps } from "../../../Common/theming/withTheme";
 
 // Exports
 const MIN_DATE = new Date(-8640000000000);
 const MAX_DATE = new Date(+8640000000000);
 
-export default class UpDate extends BaseControlComponent<UpDateProps, Date> {
+class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Date> {
 
     public static defaultProps: UpDateProps = {
         format: "DD/MM/YYYY",
@@ -38,9 +39,10 @@ export default class UpDate extends BaseControlComponent<UpDateProps, Date> {
     }
 
     renderControl() {
-        const {format, hasError, disabled, minDate, maxDate, readonly, ...others} = this.props ;    
+        const {format, hasError, disabled, minDate, maxDate, readonly, theme, ...others} = this.props ;    
         return <UpDateStyle
            format={format} 
+           theme={theme}
            value={this.state.value}
            hasError={hasError || this.hasError()}
            onChange={this.handleChangeEvent}
@@ -53,3 +55,5 @@ export default class UpDate extends BaseControlComponent<UpDateProps, Date> {
         return newDate;
     }
 }
+
+export default withTheme<UpDateProps>(UpDate) 
