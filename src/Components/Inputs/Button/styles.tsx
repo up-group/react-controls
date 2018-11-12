@@ -65,6 +65,7 @@ const base = (props:UpButtonProps & WithThemeProps) : NestedCSSProperties => {
         height: props.theme.minButtonSize || DEFAULT_MIN_SIZE,
         paddingLeft: props.width=="auto" ?"8px":"inherit",
         paddingRight: props.width=="auto"?"8px":"inherit",
+        color: props.isProcessing ? props.theme.colorMap.disabledBg : 'inherit',
       },
       '&:active' : {
         boxShadow: 'inset 5px 5px 5px rgba(16, 22, 26, 0.2)',

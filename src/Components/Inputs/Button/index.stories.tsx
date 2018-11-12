@@ -34,7 +34,11 @@ stories.add('Simple usage',
               </li>
             </ul> 
             <UpParagraph>
-               <UpButton actionType={actionType} intent={intent} onClick={(event) => {console.log(event)}} width={"auto"}>
+               <UpButton actionType={actionType} intent={intent} onClick={(event) => {
+                 return new Promise(function(resolve, reject) {
+                    setTimeout(() => resolve(true), 5000)
+                 })
+               }} width={"auto"}>
                 Add
               </UpButton>
            </UpParagraph>
@@ -49,7 +53,11 @@ stories.add('Simple usage',
         <UpNotification status={"info"}>
             Le composant <code>UpButton</code> afficher en mode icône :
             <UpParagraph>
-              <UpButton actionType="add" width={"icon"} intent="primary" onClick={(event) => {console.log(event)}}>
+              <UpButton actionType="add" width={"icon"} intent="primary"  onClick={(event) => {
+                 return new Promise(function(resolve, reject) {
+                    setTimeout(() => resolve(true), 5000)
+                 })
+               }}>
                 Add
               </UpButton> 
             </UpParagraph>

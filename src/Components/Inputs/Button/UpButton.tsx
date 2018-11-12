@@ -3,7 +3,7 @@ import * as React from 'react'
 import * as classnames from 'classnames'
 import { UpButtonProps, Action, Separator, IconPosition, UpButtonStyledProps } from './'
 import UpTooltip, { Tooltip } from '../../Display/Tooltip'
-import defaultTheme, {UpThemeInterface} from '../../../Common/theming'
+import defaultTheme from '../../../Common/theming'
 import { isString } from '../../../Common/utils'
 
 import { style } from "typestyle"
@@ -18,6 +18,8 @@ import withTheme from '../../../Common/theming/withTheme';
 
 export interface UpButtonState {
     isToggled?: boolean;
+    isProcessing?:boolean;
+    prevProps?:UpButtonProps;
 }
 
 export var ActionIconMap = new Dictionary<ActionType, IconName>([]);
@@ -29,7 +31,7 @@ for (var i = 0; i < IconNames.length; i++) {
 export class BaseButton extends React.Component<UpButtonStyledProps> {
     
     render() {
-        const { children, className, onClick, dataFor, width, iconPosition, isProcessing } = this.props;
+        let { children, className, onClick, dataFor, width, iconPosition, isProcessing } = this.props;
         const actionType = this.props.actionType;
         let iconName: IconName = 'none';
         if (actionType && ActionIconMap.containsKey(actionType)) {           
@@ -51,16 +53,15 @@ export class BaseButton extends React.Component<UpButtonStyledProps> {
                 "data-for": dataFor
             }
         }
-
         const MainButton = (
         <button onClick={onClick} className={classnames('up-btn', getStyles(this.props), className)} {...tooltipProps} >
-            {iconName != 'none' &&
+            {iconName != 'none' && isProcessing !== true &&
                 icon
             }
-            {width !== 'icon' && isProcessing !== true &&
+            {width !== 'icon' &&
                children
             }
-            {width !== 'icon' && isProcessing === true &&
+            {isProcessing === true &&
                 <div className='up-loading-indicator-wrapper'>
                     <UpLoadingIndicator displayMode={"inline"} isLoading={true} /> 
                 </div>
@@ -78,7 +79,8 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         super(props);
         this.handleClick = this.handleClick.bind(this);
         this.state = {
-            isToggled: false
+            isToggled: false,
+            prevProps: props,
         };
     }
 
@@ -102,7 +104,20 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
 
     private handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
         if (this.props.disabled !== true) {
-            this.props.onClick(e);
+            const returnValue = this.props.onClick(e);
+
+            if (Promise.resolve(returnValue) === returnValue) {
+              this.setState({ isProcessing: true }, () => {
+                returnValue.then((result) => {
+                  this.setState({ isProcessing: false });
+                  return result ;
+                }).catch((errors) => {
+                  this.setState({ isProcessing: false });
+                  return errors ;
+                });
+              });
+            }
+        
             if (this.props.dropDown != 'none') {
                 this.setState({ isToggled: !this.state.isToggled });
             }
@@ -126,8 +141,23 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         return (element as Separator).size !== undefined;
     }
 
+    static getDerivedStateFromProps(props: UpButtonProps, state: UpButtonState) {
+        if (  (state.prevProps.isProcessing !== props.isProcessing && state.isProcessing !== props.isProcessing)
+          ||  (state.prevProps.isToggled !== props.isToggled && props.isToggled !== state.isToggled)) {
+          return {
+            ...state,
+            isProcessing: props.isProcessing,
+            isToggled: props.isToggled,
+            prevProps : props,
+          };
+        }
+        return { ...state, prevProps : props };
+    }
+    
+    disabled = () => this.props.disabled || this.state.isProcessing ;
+    
     public render() {
-        const { children, tooltip, onClick, iconName, iconPosition, ...others } = this.props;
+        const { children, tooltip, onClick, iconName, iconPosition, disabled, isProcessing, ...others } = this.props;
 
         const BtnList = style({
             display: this.state.isToggled ? "block" : "none",
@@ -185,6 +215,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         } else if (position === 'none' && icon === false) {
             position = 'left';
         }
+        
         var _tooltip: Tooltip = null;
         if (tooltip) {
             if (isString(tooltip)) {
@@ -200,14 +231,14 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
             <div className={classnames('up-btn-wrapper', buttonWrapper)}>
                 {
                     tooltip === null ?
-                        <BaseButton iconName={icon} iconPosition={position} onClick={this.handleClick} isToggled={this.state.isToggled} {...others}>
+                        <BaseButton iconName={icon} iconPosition={position} onClick={this.handleClick} isToggled={this.state.isToggled} isProcessing={this.state.isProcessing} disabled={this.disabled()} {...others}>
                             {children != null &&
                                 <span>{children}</span>
                             }
                         </BaseButton>
                         :
                         <UpTooltip {..._tooltip}>
-                            <BaseButton iconName={icon} iconPosition={position} onClick={this.handleClick} isToggled={this.state.isToggled} {...others}>
+                            <BaseButton iconName={icon} iconPosition={position} onClick={this.handleClick} isToggled={this.state.isToggled} disabled={this.disabled()} {...others}>
                                 {children != null &&
                                     <span>{children}</span>
                                 }

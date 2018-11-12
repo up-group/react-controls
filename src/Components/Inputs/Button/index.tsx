@@ -56,27 +56,38 @@ export interface CommonProps extends WithThemeProps {
     rotate?: boolean;
     /** Définir le type de l'action */
     actionType?: ActionType;
+    /** Définir le nom de l'icône à associer au bouton */
     iconName?: any;
+    /** Définit la taille de l'icône  */
     iconSize?: number;
+    /** Définir la position de l'icône */
     iconPosition?: IconPosition;
+    /** Définir l'intention du bouton */
     intent?: IntentType;
     width?: ButtonWidth;
     height?: ButtonHeight;
+    /** Définir une aide associée au bouton */
     tooltip?: string | Tooltip;
+    /** Définir des actions supplémentaires au bouton */
     extraActions?:Array<Action | Separator>;
+    /** Définir le type de bouton  */
     dropDown?: DropDownType;
+    /** Définir si l'action associée est en cours d'exécution */
     isProcessing?:boolean;
+    /** Définir si le bouton est par défaut 'toggled' */
+    isToggled?: boolean;
 }
 
 // This is so that the onClick handler is accepted without type interferance
 export interface UpButtonProps extends CommonProps {
-    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void | Promise<any>;
 }
 
 export interface UpButtonStyledProps extends UpButtonProps {
     className?: string; // Needed by styled components to set the created className to a complex element
     dataFor?: string; // Use for tooltip
     isToggled?:boolean;
+    isProcessing?:boolean;
 }
 
 export default UpButton 
