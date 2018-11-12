@@ -15,15 +15,17 @@ const draw = keyframes({
 const color = (props : WithThemeProps) => keyframes({
   from : {
     stroke: props.theme.colorMap.primary,
+    strokeDashoffset: 2 * Math.PI * 24,
   },
   to : {
     stroke: props.theme.colorMap.primaryDark,
+    strokeDashoffset: 0,
   }
 });
 
 export const circleStyle = (props : WithThemeProps) : NestedCSSProperties => ({
-  strokeDasharray: [89,200],
-  strokeDashoffset: '-10',
+  strokeDashoffset: 2 * Math.PI * 24,
+  strokeDasharray: [2 * Math.PI * 24],
   strokeLinecap: 'round',
   animation: `${color(props)} 2s ease-in-out infinite`
 })
