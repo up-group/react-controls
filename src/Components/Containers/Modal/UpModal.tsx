@@ -3,6 +3,8 @@ import * as ReactDOM from "react-dom"
 import * as classnames from 'classnames'
 import {style, media} from 'typestyle' 
 
+import UpSvgIcon from '../../Display/SvgIcon'
+
 export interface UpModalProps {
     showModal?: boolean;
     header?: string | JSX.Element;
@@ -148,9 +150,6 @@ const ModalStyle = style({
             fontWeight: "bold",
             lineHeight: 1,
             color: "#000",
-            textShadow: "0 1px 0 #fff",
-            filter: "alpha(opacity=20)",
-            opacity: 0.2
         },
         "& .up-modal-close:hover" : CloseHover,
         "& .up-modal-close:focus" : CloseHover,
@@ -259,12 +258,14 @@ export default class UpModal extends React.Component<UpModalProps, UpModalState>
         if (typeof (this.props.header) === "string") {
             header = <div className="up-modal-header">
                 <h4 className="up-modal-title">{this.props.header}</h4>
-                <span onClick={this.closeModal} className="up-modal-close">X</span>
+                <span onClick={this.closeModal} className="up-modal-close"><UpSvgIcon iconName={'close'}></UpSvgIcon></span>
             </div>
         } else {
             header = <div className="up-modal-header">
                 {this.props.header}
-                <span onClick={this.closeModal} className="up-modal-close">X</span>
+                <span onClick={this.closeModal} className="up-modal-close">
+                    <UpSvgIcon iconName={'close'}></UpSvgIcon>
+                </span>
             </div>
         }
 

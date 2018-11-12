@@ -26,6 +26,7 @@ const defaultTheme: ThemeInterface = {
   intentTypeIcons : iconMap,
   typography : typography,
   styles : defaultStyles,
+  borderRadius: '6px',
 }
 
 export { UpThemeProvider, ThemeInterface as UpThemeInterface, colorMap as UpThemeColorMap  } 

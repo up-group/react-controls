@@ -6,6 +6,7 @@ import UpSvgIcon from '../../Display/SvgIcon';
 import * as classnames from 'classnames'
 import { getStyles } from './styles';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
+import { UpGrid, UpCol, UpRow } from '../Grid';
 
 const BasePanel: React.StatelessComponent<UpPanelStyledProps & WithThemeProps> = (props) => {
   var { children } = props;
@@ -37,18 +38,26 @@ const BasePanel: React.StatelessComponent<UpPanelStyledProps & WithThemeProps> =
           {props.title &&
               <div className="up-panel-header">{props.title}</div>
           }
-          <div className="up-panel-body">
-              {iconName &&
-                  icon
-              }
-              {message &&
-                  <span className="up-panel-message">{message}</span>
-              }
-              {children}
-          </div>
-          {props.footer &&
-              <div className="up-panel-footer">{props.footer}</div>
-          }
+          <UpGrid className="up-panel-body">
+            <UpRow justify={'center'} align={'middle'}>
+                {iconName &&
+                    <UpCol span={2}>
+                    {icon}
+                    </UpCol>
+                }
+                <UpCol span={iconName ? 22 : 20}>
+                    <div className="up-panel-message">
+                        {message &&
+                            <p>{message}</p>
+                        }
+                        {children}
+                    </div>
+                </UpCol>
+            </UpRow>
+        </UpGrid>
+        {props.footer &&
+            <div className="up-panel-footer">{props.footer}</div>
+        }
       </div>
   );
 }
@@ -57,7 +66,7 @@ const BasePanel: React.StatelessComponent<UpPanelStyledProps & WithThemeProps> =
 class UpPanel extends React.Component<UpPanelProps, undefined> {
   public static defaultProps: UpPanelProps & WithThemeProps = {
     footer: "",
-    //type:"default",
+    type:"default",
     disableAutoIntentIcon:true
   };
   public render() {

@@ -7,7 +7,7 @@ import {UpRowProps} from './types'
 export default class UpRow extends React.Component<UpRowProps, any> {
   static defaultProps = {
     gutter: 0,
-    type:'float'
+    type:'flex'
   };
 
   render() {

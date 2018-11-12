@@ -105,7 +105,7 @@ const DataGridStyle = style({
 
 export interface Action {
     type: ActionType,
-    //intent: IntentType,
+    intent?: IntentType,
     description: string,
     action: (row: Row) => void
 }
@@ -429,6 +429,14 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
     }
 
     arraysEqual(arr1: any[], arr2: any[]) {
+        if(arr2 == arr1) {
+            return true ;
+        }
+        
+        if(arr1 == null || arr2 == null) {
+            return false
+        }
+
         if (arr1.length !== arr2.length) {
             return false;
         }

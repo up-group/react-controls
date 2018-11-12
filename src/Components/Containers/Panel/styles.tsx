@@ -16,7 +16,7 @@ const shadow = (props:UpPanelStyledProps & WithThemeProps) : NestedCSSProperties
 const base = (props:UpPanelStyledProps & WithThemeProps) : NestedCSSProperties => ({
   textAlign: 'left',
   display: 'block',
-  borderRadius: props.theme.borderRadius || '4px',
+  borderRadius: props.theme.borderRadius || '6px',
   verticalAlign: 'top',
   border: '1px solid transparent',
   width: '100%',
@@ -32,6 +32,7 @@ const base = (props:UpPanelStyledProps & WithThemeProps) : NestedCSSProperties =
         background: 'linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0)) left no-repeat, center no-repeat' , 
         backgroundColor: '#fff',
         padding: '20px',
+        borderRadius: props.theme.borderRadius || '6px',
     },
     '.up-panel-message' : {
         margin:'10px',

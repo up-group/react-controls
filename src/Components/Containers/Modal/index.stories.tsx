@@ -41,7 +41,7 @@ class ModalWrapper extends React.Component<ModalWrapperProps, ModalWrapperState>
     }
     render() {
         const CloseAction = () => <UpButton actionType={"close"} onClick={this.closeModal}>Close</UpButton>;
-        const Info = () => <UpPanel /*type={"warning"}*/ disableAutoIntentIcon={false}>
+        const Info = () => <UpPanel type={"warning"} disableAutoIntentIcon={false}>
             <p>Bienvenue !!</p>
         </UpPanel>;
 

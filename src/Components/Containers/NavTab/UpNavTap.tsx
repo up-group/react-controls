@@ -5,7 +5,6 @@ export interface Tab {
     content: JSX.Element;
 }
 
-
 export type LoadType = "onShow" | "onLoad";
 
 export interface UpNavTabProps {
@@ -79,7 +78,7 @@ export class TabContents extends React.Component<TabContentsProps, TabContentsSt
     }
 
     render() {
-        var contents = this.props.contents.map((v, i) => { return <TAbContent loadType={this.props.loadType} selectedTabKey={this.props.selectedTabKey} tab={v} key={i} tabKey={i} /> });
+        var contents = this.props.contents.map((v, i) => { return <TabContent loadType={this.props.loadType} selectedTabKey={this.props.selectedTabKey} tab={v} key={i} tabKey={i} /> });
 
         return <div>
             {contents}
@@ -98,7 +97,7 @@ export interface TabContentState {
 
 }
 
-export class TAbContent extends React.Component<TabContentProps, TabContentState>{
+export class TabContent extends React.Component<TabContentProps, TabContentState>{
 
     constructor(p, c) {
         super(p, c);
@@ -115,9 +114,6 @@ export class TAbContent extends React.Component<TabContentProps, TabContentState
         return <div style={style}>{this.props.tab.content}</div>
     }
 }
-
-
-
 
 export interface TabHeadsProps {
     heads: Tab[];
@@ -179,10 +175,11 @@ export class TabHead extends React.Component<TabHeadProps, TabHeadState>{
         }
 
         if (this.props.selectedTabKey == this.props.tabKey) {
-
             style.borderTop = "1px solid #ddd";
             style.borderLeft = "1px solid #ddd";
             style.borderRight = "1px solid #ddd";
+            style.borderBottom = "1px solid white";
+            style.top = "1px";
         }
 
         return <div onClick={() => { this.props.selectTabKey(this.props.tabKey); }} style={style}>
