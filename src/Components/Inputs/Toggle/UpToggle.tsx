@@ -3,33 +3,31 @@ import * as React from 'react'
 import * as classNames from 'classnames'
 
 import {style} from 'typestyle'
-import { WithThemeProps } from '../../../Common/theming/withTheme';
+import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
+
+import defaultTheme from '../../../Common/theming'
 
 export type Size = 'small' | 'normal' | 'large'
 
-export interface UpToggleStyledProps extends WithThemeProps {
-    className?:string;
-}
-
 export interface UpToggleProps {
-    //position?:Position;
     value: any;
     checked?:boolean;
     defaultChecked?:boolean;
     disabled?:boolean;
-    onChange?:(event) =>void;
-    onFocus?:(event) =>void;
-    onBlur?:(event) =>void;
     icons?:any;
     size?:Size;
     className?:string;
+    onChange?:(event) =>void;
+    onFocus?:(event) =>void;
+    onBlur?:(event) =>void;
 }
 
-const WrapperStyle = style({
+const wrapperStyle = (props: UpToggleProps & WithThemeProps) => style({
   display:"inline-block",
   $nest : {
-    "svg" : {
-       margin:"0px"
+    "svg path" : {
+       margin:"0px",
+       fill: props.theme.colorMap.primaryFg,
     },
     ".up-toggle" : {
       touchAction: "pan-x",
@@ -66,7 +64,6 @@ const WrapperStyle = style({
     },
 
     ".up-toggle-track" : {
-      width: "50px",
       backgroundColor: "#4D4D4D",
       "-webkit-transition": "all 0.2s ease",
       "-moz-transition": "all 0.2s ease",
@@ -78,11 +75,11 @@ const WrapperStyle = style({
     },
 
     ".up-toggle--checked .up-toggle-track" : {
-      backgroundColor: "#19AB27"
+      backgroundColor: props.theme.colorMap.primary
     },
 
     ".up-toggle--checked:hover:not(.up-toggle--disabled) .up-toggle-track" : {
-      backgroundColor: "#128D15"
+      backgroundColor: props.theme.colorMap.primaryDark
     },
 
     ".up-toggle-track-check" : {
@@ -132,8 +129,8 @@ const WrapperStyle = style({
       "-moz-transition": "all 0.25s ease"
     },
     ".up-toggle--checked .up-toggle-thumb" : {
-      left: "30px",
-      borderColor: "#19AB27"
+      left: props.size === 'normal' ? "30px" : "24px",
+      borderColor: props.theme.colorMap.primary,
     },
     ".up-toggle--focus .up-toggle-thumb" : {
       "-webkit-box-shadow": "0px 0px 3px 2px #0099E0",
@@ -164,20 +161,26 @@ const DefaultUnchecked = () => <svg width='10' height='10' viewBox='0 0 10 10'>
 <path d='M9.9 2.12L7.78 0 4.95 2.828 2.12 0 0 2.12l2.83 2.83L0 7.776 2.123 9.9 4.95 7.07 7.78 9.9 9.9 7.776 7.072 4.95 9.9 2.12' fill='#fff' fillRule='evenodd' />
 </svg> ;
 
+export interface UpToggleState {
+  checked?: boolean;
+  hasFocus?: boolean;
+}
+
 // Exports
-export default class UpToggle extends React.PureComponent<UpToggleProps, any> {
+class UpToggle extends React.PureComponent<UpToggleProps & WithThemeProps, UpToggleState> {
   previouslyChecked : boolean ;
   input:any;
   moved:boolean;
   startX:number;
   activated:boolean;
 
-  public static defaultProps = {
-      icons: {
-        checked: <DefaultChecked />,
-        unchecked: <DefaultUnchecked />,
+  public static defaultProps : Partial<UpToggleProps & WithThemeProps> = {
+    icons: {
+      checked: <DefaultChecked />,
+      unchecked: <DefaultUnchecked />,
     },
-    size:'normal'
+    size:'normal',
+    theme : defaultTheme,
   }
 
   constructor (props) {
@@ -321,7 +324,7 @@ export default class UpToggle extends React.PureComponent<UpToggleProps, any> {
         height = '14px' ;
         break ;
       case 'normal' :
-      height = '24px' ;
+        height = '24px' ;
         break ;
       case 'large' :
         height = '32px' ;
@@ -502,10 +505,10 @@ export default class UpToggle extends React.PureComponent<UpToggleProps, any> {
           ...this.getTrackCheckPosition()
         }
       }
-    });
+     });
 
     return (
-      <div className={classNames(WrapperStyle, SizeStyle)}>
+      <div className={classNames(wrapperStyle(this.props), SizeStyle)}>
         <div className={classes} 
           onClick={this.handleClick}
           onTouchStart={this.handleTouchStart}
@@ -534,3 +537,5 @@ export default class UpToggle extends React.PureComponent<UpToggleProps, any> {
     )
   }
 }
+
+export default withTheme<UpToggleProps>(UpToggle) ;
