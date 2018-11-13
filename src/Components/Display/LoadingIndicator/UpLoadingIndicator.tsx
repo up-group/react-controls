@@ -6,7 +6,6 @@ import { UpGrid, UpRow, UpCol } from '../../Containers/Grid'
 import { style } from 'typestyle';
 import { svgStyle, circleStyle } from './styles';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
-import { UpLoadingIndicator } from '../../..';
 export type LoadingIndicatorDisplayMode = "inline" | "modal" | "zone"
 
 export interface LoadingIndicatorProps {

@@ -14,11 +14,11 @@ const draw = keyframes({
 
 const color = (props : WithThemeProps) => keyframes({
   from : {
-    stroke: props.theme.colorMap.primary,
+    stroke: props.theme.colorMap.primaryDark,
     strokeDashoffset: 2 * Math.PI * 24,
   },
   to : {
-    stroke: props.theme.colorMap.primaryDark,
+    stroke: props.theme.colorMap.primary,
     strokeDashoffset: 0,
   }
 });
