@@ -184,7 +184,9 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
             cursor: "pointer",
             padding: "8px",
             $nest: {
-                '&:hover': { backgroundColor: "#f5f5f5" },
+                '&:hover': { 
+                    backgroundColor: "#f5f5f5",
+                },
             }
         });
 

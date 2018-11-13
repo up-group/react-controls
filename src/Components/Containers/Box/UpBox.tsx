@@ -20,7 +20,7 @@ export interface UpBoxProps {
     /** Alignment of the items inside the box on the main axe (<code>row</code> or <code>column</code>) */
     alignItems?: 'flex-start' | 'center' | 'flex-end' | 'baseline' | 'stretch';
     /** Direction of the items flow */
-    flexDirection?: 'row' | 'column';
+    flexDirection?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
      /** Alignment of the items flow inside the box on the second axe */
     justifyContent?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around';
     /** Alignment of the items flow inside the box on the second axe */

@@ -5,35 +5,34 @@ import { Component } from "react";
 import * as classNames from 'classnames'
 
 import * as ReactTooltip from 'react-tooltip'
-import {GenerateId, isString} from '../../../Common/utils'
-import {Placement, Effect} from './' 
+import { GenerateId } from '../../../Common/utils'
 
 import {UpTooltipProps} from './'
 
-import {cssRaw, style} from 'typestyle' 
+import { style } from 'typestyle' 
 
-cssRaw(`
-  .up-tooltip-header {
-    padding:4px;
-    border-bottom:1px solid #111;
-    font-weight:700;
-    font-size:13px;
-    color:#111;
-    background:whitesmoke;
-  }
-  .up-tooltip-body {
-    padding:8px 0px;
-  }
-  .up-tooltip {
-    pointer-events: auto !important;
-    opacity: 0.95 !important;
-    padding:0px;
-    &:hover {
-      visibility: visible !important;
-      opacity: 1 !important;
+const getStyles = (props : UpTooltipProps) => style({
+  pointerEvents: 'auto',
+  opacity: 0.95,
+  padding: '0px',
+  $nest : {
+    '.up-tooltip-header' : {
+      padding: '4px',
+      borderBottom:'1px solid #111',
+      fontWeight:700,
+      fontSize: '13px',
+      color:'#111',
+      background:'whitesmoke',
+    },
+    '.up-tooltip-body' : {
+      padding:'8px',
+    },
+    '&:hover' : {
+      visibility: 'visible',
+      opacity: 1,
     }
-   }
-`) ;
+  }
+}) ;
 
 export interface UpTooltipState {}
 
@@ -43,7 +42,7 @@ export default class UpTooltip extends Component<UpTooltipProps, UpTooltipState>
        content : '',
        place : 'right',
        effect: 'float',
-       //type:'light',
+       type: 'light',
        multiline:false,
        html:false,
        delayHide:500,
@@ -87,40 +86,40 @@ export default class UpTooltip extends Component<UpTooltipProps, UpTooltipState>
 
     var custom = '' ;
 
-    //if(this.props.type=='light') {
-    //  custom = style({
-    //    background: "#FEFEFE !important",
-    //    border: "1px #ccc solid",
-    //    borderRadius: "6px",
-    //    $nest : {
-    //      '&.place-top:after' : {
-    //        borderTopColor: "#ccc !important",
-    //        borderTopStyle: "solid !important",
-    //        borderTopWidth: "6px !important"
-    //      },
-    //      '&.place-left:after' : {
-    //        borderLeftColor: "#ccc !important",
-    //        borderLeftStyle: "solid !important",
-    //        borderLeftWidth: "6px !important"
-    //      },
-    //      '&.place-right:after' : {
-    //        borderRightColor: "#ccc !important",
-    //        borderRightStyle: "solid !important",
-    //        borderRightWidth: "6px !important"
-    //      },
-    //      '&.place-bottom:after' : {
-    //        borderBottomColor: "#ccc !important",
-    //        borderBottomStyle: "solid !important",
-    //        borderBottomWidth: "6px !important"
-    //      }
-    //    }
-    //  });
-    //}
+    if(this.props.type=='light') {
+     custom = style({
+       background: "#FEFEFE !important",
+       border: "1px #ccc solid",
+       borderRadius: "6px",
+       $nest : {
+         '&.place-top:after' : {
+           borderTopColor: "#ccc !important",
+           borderTopStyle: "solid !important",
+           borderTopWidth: "6px !important"
+         },
+         '&.place-left:after' : {
+           borderLeftColor: "#ccc !important",
+           borderLeftStyle: "solid !important",
+           borderLeftWidth: "6px !important"
+         },
+         '&.place-right:after' : {
+           borderRightColor: "#ccc !important",
+           borderRightStyle: "solid !important",
+           borderRightWidth: "6px !important"
+         },
+         '&.place-bottom:after' : {
+           borderBottomColor: "#ccc !important",
+           borderBottomStyle: "solid !important",
+           borderBottomWidth: "6px !important"
+         }
+       }
+     });
+    }
 
     return (
       <div style={{display:"inline-block", width:'100%'}}>
         {childrenWithProps}
-        <ReactTooltip className={classNames('up-tooltip', custom)} id={_id} getContent={this.getContent} {...others} />
+        <ReactTooltip className={classNames('up-tooltip', getStyles(this.props), custom)} id={_id} getContent={this.getContent} {...others} />
       </div>
     );
   }

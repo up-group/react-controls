@@ -26,7 +26,7 @@ stories.add('Simple usage',
   ), { info: 'Utilisation avec plusieurs options' }
 ).add('Integer',
   () => (
-   <UpThemeProvider theme={UpDefaultTheme}>
+   <UpThemeProvider theme={{...UpDefaultTheme, inputBorderLess: false}}>
        <UpLabel textAlign={"left"} inline={true} width="small" text="Number :">
            <UpNumber min={0} />
            </UpLabel>

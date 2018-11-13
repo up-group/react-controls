@@ -1,116 +1,131 @@
-﻿// Imports
-import * as React from 'react'
-import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
-//import { UpNumberProps } from './'
-import TypeNumberControl from '../_Common/Validation/TypeNumberControl'
-import { CommonProps } from '../Input/'
-import { style } from "typestyle"
-import { Tooltip } from '../../Display/Tooltip'
+﻿import * as React from 'react';
+import UpInput, { CommonProps } from "../Input";
+import { BaseControlComponent } from "../_Common/BaseControl/BaseControl";
+import TypeNumberControl from "../_Common/Validation/TypeNumberControl";
+import { style } from "typestyle";
+import UpBox from '../../Containers/Box';
+import withTheme from '../../../Common/theming/withTheme';
+import defaultTheme from '../../../Common/theming';
+import UpButton from '../Button/UpButton';
 
-
-
-import TextInput, { PosIconEnum, InputTypeEnum } from "../FinanceurInput/TextInput"
-import BaseNewInput, { TextInputProps } from "../_Common/BaseControl/BaseNewInput"
-
-
-export interface UpNumberProps  {
-    type?: "number";
+export interface UpNumberProps extends CommonProps<number | string> {
+   max?: number;
+   min?: number;
+   stepSize?: number;
+   decimalPlace?: number;
+   value?: number | string;
 }
 
-export interface UpNumberState {
-
+export interface UpNumberStyledProps extends UpNumberProps {
+   dataFor?: string; // For tooltip
+   handleNumericChange?: (valueAsNumber: number, valueAsString: string) => void;
 }
 
-export default class UpNumber extends React.Component<UpNumberProps & TextInputProps, UpNumberState>  {
-    //public static defaultProps: UpNumberProps = {};
+class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
+   
+    public static defaultProps : UpNumberProps = {
+       decimalPlace: 2,
+       showError: true,
+       max: Infinity,
+       min: -Infinity,
+       theme: defaultTheme,
+   };
 
-    constructor(p, c) {
-        super(p, c);
-        this.state = {};
-    }
+   constructor(p, c) {
+       super(p, c);
+       this.state = {
+           value: p.value
+       }
+       this._validationManager.addControl(new TypeNumberControl(this.props.decimalPlace === 0, this.props.min, this.props.max));
+   }
 
-    render() {
+   round = (value, decimals) => {
+       decimals = Math.abs(parseInt(decimals)) || 0;
+       var multiplier = Math.pow(10, decimals);
+       return Math.round(value * multiplier) / multiplier;
+   }
 
-        return <BaseNewInput type={"number"}  {...this.props} ></BaseNewInput>
-    }
+   handleNumericChange = (valueAsNumber: number, valueAsString: string) => {
+       if (this.props.decimalPlace != null) {
+           var _newValue = this.round(valueAsNumber, this.props.decimalPlace);
+           if (isNaN(valueAsNumber)) {
+               this.handleChangeEvent(this.state.value);
+           } else if (_newValue === valueAsNumber && _newValue.toString() !== valueAsString) {
+               this.handleChangeEvent(valueAsString);
+           } else {
+               this.handleChangeEvent(valueAsNumber);
+           }
+       } else {
+           this.handleChangeEvent(valueAsNumber);
+
+       }
+   }
+
+   getValue(value) {
+       return value;
+   }
+
+   increment = () => {
+        let newValue = parseFloat(this.state.value as string);
+        if(isNaN(newValue)) {
+            newValue = 0 ;
+        }
+
+        newValue += this.props.stepSize ? this.props.stepSize : 1 ;
+
+        if(this.props.max && newValue > this.props.max) {
+            newValue == this.props.max
+        }
+        this.setState({ value: newValue}) 
+   }
+
+   decrement = () => {
+        let newValue = new Number(parseFloat(this.state.value as string)).valueOf() ;
+        if(isNaN(newValue)) {
+            newValue = 0 ;
+        }
+        
+        newValue -= this.props.stepSize ? this.props.stepSize : 1 ;
+      
+        if(this.props.max && newValue < this.props.min) {
+            newValue == this.props.max
+        }
+        this.setState({ value: newValue}) 
+   }
+
+   renderControl() {
+       const { isRequired, theme, onChange, readonly, value, tooltip } = this.props;
+    
+       return (
+           <div className={style({
+                position: 'relative',
+                $nest : {
+                    'input' : {
+                        textAlign: 'right',
+                        paddingRight : theme.inputBorderLess ? '42px !important' : '26px !important',
+                    },
+                    '.up-btn-wrapper' : {
+                        height: '16px',
+                    }
+                }
+            })}>
+            <UpInput  
+                    tooltip={tooltip}
+                    readonly={readonly}
+                    isRequired={isRequired}
+                    value={ this.state.value ? this.state.value.toString() : "" } 
+                    onChange={(value) => { this.handleNumericChange(parseFloat(value), value) }} />
+             <UpBox className={style({
+                 position: 'absolute', 
+                 right: theme.inputBorderLess ? '0px' : '2px',
+                 bottom: theme.inputBorderLess ? '6px' : '5px',
+             })} flexDirection={theme.inputBorderLess ? 'row' : 'column-reverse'}>
+                <UpButton width={'icon'} iconSize={9} height={'xsmall'} onClick={this.decrement} iconName={'arrow-down'}></UpButton>
+                <UpButton width={'icon'} iconSize={9} height={'xsmall'} onClick={this.increment} iconName={'arrow-up'}></UpButton>
+             </UpBox>
+           </div>
+       );
+   }
 }
 
-
-
-//export interface UpNumberProps extends CommonProps {
-//    max?: number;
-//    min?: number;
-//    stepSize?: number;
-//    decimalPlace?: number;
-//    value?: number | string;
-//}
-
-//export interface UpNumberStyledProps extends UpNumberProps {
-//    dataFor?: string; // For tooltip
-//    handleNumericChange?: (valueAsNumber: number, valueAsString: string) => void;
-//}
-
-//export default  class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
-//    public static defaultProps = {
-//        decimalPlace: 2,
-//        showError: true,
-//        max: Infinity,
-//        min: -Infinity
-//    };
-
-//    constructor(p, c) {
-//        super(p, c);
-//        this.state = {
-//            value: p.value
-//        }
-//        this._validationManager.addControl(new TypeNumberControl(this.props.decimalPlace === 0, this.props.min, this.props.max));
-//    }
-
-//    round = (value, decimals) => {
-//        decimals = Math.abs(parseInt(decimals)) || 0;
-//        var multiplier = Math.pow(10, decimals);
-//        return Math.round(value * multiplier) / multiplier;
-//    }
-
-//    handleNumericChange = (valueAsNumber: number, valueAsString: string) => {
-//        if (this.props.decimalPlace != null) {
-//            var _newValue = this.round(valueAsNumber, this.props.decimalPlace);
-//            if (isNaN(valueAsNumber)) {
-//                this.handleChangeEvent(this.state.value);
-//            } else if (_newValue === valueAsNumber && _newValue.toString() !== valueAsString) {
-//                this.handleChangeEvent(valueAsString);
-//            } else {
-//                this.handleChangeEvent(valueAsNumber);
-//            }
-//        } else {
-//            this.handleChangeEvent(valueAsNumber);
-
-//        }
-//    }
-
-//    getValue(value) {
-//        return value;
-//    }
-
-//    renderControl() {
-//        const { isRequired, onChange, readonly, decimalPlace, stepSize, value, tooltip } = this.props;
-//        var s = style({
-//            $nest: {
-//                "& .pt-input-group": { flex: "1 1 auto" }
-//            }
-//        })
-//        return (
-//            <TextInput Type={InputTypeEnum.Number} Placeholder="placeholder" />
-
-//            //<input type="number" onChange={(e) => { this.handleNumericChange(parseFloat(e.target.value), e.target.value) }} value={this.state.value} />
-//            //<NumericInput
-//            //    className={s}
-//            //    value = { this.state.value }
-//            //    stepSize={stepSize}
-//            //    majorStepSize={stepSize ? stepSize + 10 : 10}
-//            //    onValueChange={this.handleNumericChange}
-//            //    minorStepSize={1 / (Math.pow(10, this.props.decimalPlace))}>
-//            //</NumericInput>
-//        );
-//    }
-//}
+export default withTheme<UpNumberProps>(UpNumber)

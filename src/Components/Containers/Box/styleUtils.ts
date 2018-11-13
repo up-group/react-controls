@@ -1,8 +1,6 @@
 import {
   Size,
   SizeObject,
-  ResponsiveSize,
-  Breakpoint,
   BoxSize,
   BoxSizeObject,
   Full,

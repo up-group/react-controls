@@ -45,9 +45,9 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> =
 }
 
 // Exports
-class UpInput extends BaseControlComponent<UpInputProps & WithThemeProps, any> {
+class UpInput extends BaseControlComponent<UpInputProps, any> {
     
-    public static defaultProps: UpInputProps & WithThemeProps = {
+    public static defaultProps: UpInputProps = {
         showError: true,
         theme:defaultTheme,
         width: "fill",

@@ -48,8 +48,6 @@ const base = (props:UpButtonProps & WithThemeProps) : NestedCSSProperties => {
     cursor: 'pointer',
     verticalAlign: 'middle',
     position: 'relative',
-    width: buttonSizeMap[props.width] || 'auto',
-    lineHeight: props.theme.minButtonSize || DEFAULT_MIN_SIZE,
     $nest : {
       '&.up-btn .up-icon-wrapper' : {
         ...positions(props),
@@ -88,7 +86,6 @@ const base = (props:UpButtonProps & WithThemeProps) : NestedCSSProperties => {
         width:'100%',
         height: calc('100%'),
       }
-
     }
   }
 };
@@ -190,8 +187,8 @@ const small = (props:UpButtonProps) : NestedCSSProperties => {
     $nest : {
       svg : {
         margin:'0px',
-        width:'16px',
-        height:'16px',
+        width: props.iconSize ? props.iconSize : '16px',
+        height: props.iconSize ? props.iconSize : '16px',
       }
     }
   }
@@ -206,8 +203,8 @@ const xsmall = (props:UpButtonProps) : NestedCSSProperties => {
     $nest : {
       svg : {
         margin:'0px',
-        width: '12px',
-        height: '12px',
+        width: props.iconSize ? props.iconSize : '12px',
+        height: props.iconSize ? props.iconSize : '12px',
       }
     }
   }
@@ -226,8 +223,8 @@ const icon = (props:UpButtonProps) : NestedCSSProperties => {
     $nest : {
       '&.up-btn svg, &.up-btn svg path, &.up-btn svg polygon' : {
         margin:'3px !important',
-        width:'15px',
-        height:'15px',
+        width: props.iconSize ? props.iconSize : '15px',
+        height: props.iconSize ? props.iconSize : '15px',
         border:'0px',
         padding:'0px',
       }
@@ -242,12 +239,14 @@ const iconXSmall = (props:UpButtonProps) : NestedCSSProperties => {
     minHeight:'initial',
     borderRadius: '3px',
     fontSize: '10px',
+    width:'16px',
+    height:'16px',
     lineHeight: '1',
     $nest : {
       svg : {
         margin:'3px',
-        width:'12px',
-        height:'12px',
+        width: props.iconSize ? props.iconSize : '12px',
+        height: props.iconSize ? props.iconSize : '12px',
       }
     }
   }

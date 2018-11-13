@@ -1,4 +1,5 @@
 import UpTooltip from './UpTooltip'
+import { IntentType } from 'theming/types';
 
 export type Placement = "top" | "right" | "bottom" | "left" 
 export type Effect = "float" | "solid" 
@@ -8,7 +9,7 @@ export default UpTooltip
 export interface Tooltip {
   content: JSX.Element | string ;
   place?: Placement;
-  //type?: IntentType;
+  type?: IntentType;
   effect?: Effect;
   multiline?:boolean;
   html?: boolean; 
