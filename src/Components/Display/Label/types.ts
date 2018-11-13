@@ -9,12 +9,9 @@ export interface CommonProps {
     required?:boolean;
     width?:WidthSize;
     textAlign?: Align;
+    color?: string;
 }
 
 export interface UpLabelProps extends CommonProps {
   text:string;
 };
-
-export interface UpLabelStyledProps extends CommonProps {
-
-}

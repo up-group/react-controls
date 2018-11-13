@@ -8,14 +8,15 @@ import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import { UpInputProps, Validation, UpInputStyledProps } from './types'
 import TypeStringControl from '../_Common/Validation/TypeStringControl'
 import SvgIcon from '../../Display/SvgIcon';
-import { IconName } from '../../../Common/theming/icons';
+import { IconName, IconNames } from '../../../Common/theming/icons';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import { getStyles } from '../_Common/Styled/Input/styles';
+import defaultTheme from '../../../Common/theming/';
 
 const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> = (props: UpInputStyledProps & WithThemeProps) => {
     const {className, type, iconName, iconPosition, placeholder, disabled, readonly, maxLength, dataFor, onChange, onFocus, onBlur } = props;
 
-    var icon:any = "" ;
+    var icon:any = null ;
     if(iconName) {
       icon = <SvgIcon iconName={iconName}
           width={20}
@@ -32,11 +33,11 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> =
     }
     return (<div className={classnames(getStyles(props) ,className)}>
               <div className={classnames("up-input-group", props.focused === true ? 'up-input-focused' : null)}>
-                {iconPosition === 'left' &&
+                {iconPosition === 'left' && iconName &&
                     icon
                 }
                 <input value={props.value} onChange={onChange} onFocus={onFocus} onBlur={onBlur} className="up-input" type={type} placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readonly} maxLength={maxLength} {...tooltipProps}/>
-                {iconPosition === 'right' &&
+                {iconPosition === 'right' && iconName &&
                     icon
                 }
               </div>
@@ -48,7 +49,7 @@ class UpInput extends BaseControlComponent<UpInputProps & WithThemeProps, any> {
     
     public static defaultProps: UpInputProps & WithThemeProps = {
         showError: true,
-        //theme:defaultTheme,
+        theme:defaultTheme,
         width: "fill",
         iconPosition : 'left',
     };
@@ -102,7 +103,7 @@ class UpInput extends BaseControlComponent<UpInputProps & WithThemeProps, any> {
     renderControl() {
         const {type, onChange, value, validation, hasError, iconName, iconPosition, width, disabled, readonly, tooltip, maxLength, placeholder, theme, ...others } = this.props;
         var realIconName = iconName ;
-        if(realIconName == null && type != null) {
+        if(realIconName == null && type != null && IconNames.indexOf(type as IconName) != -1) {
             realIconName = type as IconName ;
         }
 

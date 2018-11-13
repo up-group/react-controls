@@ -1,5 +1,5 @@
 import { NestedCSSProperties } from "typestyle/lib/types";
-import { UpLabelStyledProps } from "./types";
+import { UpLabelProps } from "./types";
 import { style } from "typestyle";
 import * as classnames from 'classnames';
 
@@ -26,7 +26,7 @@ const inline : NestedCSSProperties = {
   }
 }
 
-const base = (props: UpLabelStyledProps) : NestedCSSProperties => (
+const base = (props: UpLabelProps) : NestedCSSProperties => (
   {
     display: 'block',
     margin: '0 0 8px',
@@ -36,6 +36,8 @@ const base = (props: UpLabelStyledProps) : NestedCSSProperties => (
         width: sizeMap[props.width],
         marginRight:'8px',
         display: 'inline-block',
+        color: props.color,
+        fontSize: '14px',
       },
       '.up-input, .up-select' : {
         display: 'block',
@@ -53,6 +55,6 @@ const base = (props: UpLabelStyledProps) : NestedCSSProperties => (
   }
 )
 
-export const getStyles =  (props: UpLabelStyledProps) : string => (
+export const getStyles =  (props: UpLabelProps) : string => (
   classnames(style(base(props)), props.inline ? style(inline) : null)
 );
