@@ -22,3 +22,5 @@ coverage/*
 *.snap
 *.snap
 package-lock.json
+
+src/Others
