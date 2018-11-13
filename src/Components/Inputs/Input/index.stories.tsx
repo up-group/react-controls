@@ -72,6 +72,15 @@ stories.add('Text input',
         <UpLabel text={'Email :'} required={true} inline={true}>
           <UpInput isRequired={true} type={"email"} />
         </UpLabel>
+        <UpLabel text={'Email :'} required={true} inline={true}>
+          <UpInput isRequired={true} type={"email"} iconPosition={'right'}/>
+        </UpLabel>
+        <UpLabel text={'Email :'}>
+          <UpInput isRequired={true} type={"email"} />
+        </UpLabel>
+        <UpLabel text={'Email :'}>
+          <UpInput isRequired={true} type={"email"}  iconPosition={'right'} />
+        </UpLabel>
       </UpCol>
     </UpRow>
   </UpGrid>
