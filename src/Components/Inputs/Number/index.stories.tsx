@@ -26,10 +26,18 @@ stories.add('Simple usage',
   ), { info: 'Utilisation avec plusieurs options' }
 ).add('Integer',
   () => (
-   <UpThemeProvider theme={{...UpDefaultTheme, inputBorderLess: false}}>
+    <>
+    <UpThemeProvider theme={{...UpDefaultTheme, inputBorderLess: false}}>
        <UpLabel textAlign={"left"} inline={true} width="small" text="Number :">
            <UpNumber min={0} />
-           </UpLabel>
+        </UpLabel>
    </UpThemeProvider>
+   
+   <UpThemeProvider theme={UpDefaultTheme}>
+       <UpLabel textAlign={"left"} inline={true} width="small" text="Number :">
+           <UpNumber min={0} />
+        </UpLabel>
+   </UpThemeProvider>
+   </>
     ), {info :  'Only greather than 0'}
  ) ;

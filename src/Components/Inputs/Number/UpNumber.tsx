@@ -7,6 +7,7 @@ import UpBox from '../../Containers/Box';
 import withTheme from '../../../Common/theming/withTheme';
 import defaultTheme from '../../../Common/theming';
 import UpButton from '../Button/UpButton';
+import { UpButtonProps } from '../Button';
 
 export interface UpNumberProps extends CommonProps<number | string> {
    max?: number;
@@ -20,6 +21,25 @@ export interface UpNumberStyledProps extends UpNumberProps {
    dataFor?: string; // For tooltip
    handleNumericChange?: (valueAsNumber: number, valueAsString: string) => void;
 }
+
+const wrapperNumberStyles = (props : UpNumberProps) => style({
+    position: 'relative',
+    $nest : {
+        'input' : {
+            textAlign: 'right',
+            paddingRight : props.theme.inputBorderLess ? '42px !important' : '26px !important',
+        },
+        '.up-btn-wrapper' : {
+            height: '16px',
+        }
+    }
+})
+
+const wrapperNumberButtonsStyles = (props : UpNumberProps) => style({
+    position: 'absolute', 
+    right: props.theme.inputBorderLess ? '0px' : '2px',
+    bottom: props.theme.inputBorderLess ? '9px' : '5px',
+})
 
 class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
    
@@ -57,7 +77,6 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
            }
        } else {
            this.handleChangeEvent(valueAsNumber);
-
        }
    }
 
@@ -80,7 +99,7 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
    }
 
    decrement = () => {
-        let newValue = new Number(parseFloat(this.state.value as string)).valueOf() ;
+        let newValue = parseFloat(this.state.value as string) ;
         if(isNaN(newValue)) {
             newValue = 0 ;
         }
@@ -94,32 +113,17 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
    }
 
    renderControl() {
-       const { isRequired, theme, onChange, readonly, value, tooltip } = this.props;
+       const { isRequired, theme, readonly, tooltip } = this.props;
     
        return (
-           <div className={style({
-                position: 'relative',
-                $nest : {
-                    'input' : {
-                        textAlign: 'right',
-                        paddingRight : theme.inputBorderLess ? '42px !important' : '26px !important',
-                    },
-                    '.up-btn-wrapper' : {
-                        height: '16px',
-                    }
-                }
-            })}>
+           <div className={wrapperNumberStyles(this.props)}>
             <UpInput  
                     tooltip={tooltip}
                     readonly={readonly}
                     isRequired={isRequired}
                     value={ this.state.value ? this.state.value.toString() : "" } 
                     onChange={(value) => { this.handleNumericChange(parseFloat(value), value) }} />
-             <UpBox className={style({
-                 position: 'absolute', 
-                 right: theme.inputBorderLess ? '0px' : '2px',
-                 bottom: theme.inputBorderLess ? '6px' : '5px',
-             })} flexDirection={theme.inputBorderLess ? 'row' : 'column-reverse'}>
+             <UpBox className={wrapperNumberButtonsStyles(this.props)} flexDirection={theme.inputBorderLess ? 'row' : 'column-reverse'}>
                 <UpButton width={'icon'} iconSize={9} height={'xsmall'} onClick={this.decrement} iconName={'arrow-down'}></UpButton>
                 <UpButton width={'icon'} iconSize={9} height={'xsmall'} onClick={this.increment} iconName={'arrow-up'}></UpButton>
              </UpBox>
