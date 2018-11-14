@@ -6,6 +6,7 @@
     "module": "commonjs",
     "outDir": "dist/",
     "jsx": "react",
+    "lib": ["es7", "dom"],
     "allowJs": false,
     "declaration": true,
     "skipLibCheck": true,
