@@ -5,7 +5,7 @@ import { Component } from "react";
 import * as classNames from 'classnames'
 
 import * as ReactTooltip from 'react-tooltip'
-import { GenerateId } from '../../../Common/utils'
+import { GenerateId, isFunction } from '../../../Common/utils'
 
 import {UpTooltipProps} from './'
 
@@ -71,18 +71,24 @@ export default class UpTooltip extends Component<UpTooltipProps, UpTooltipState>
 
   render() {
     const {id, children, content, ...others} = this.props ;
-    var _id = id ;
-    if(!_id) {
-      _id = GenerateId() ;
+    let tooltipId = id ;
+    if(!tooltipId) {
+      tooltipId = GenerateId() ;
     }
-
-    var childrenWithProps = React.Children.map(this.props.children, function(child) {
-        if (React.isValidElement(child)) {
-          return React.cloneElement(child as React.ReactElement<any>, { "dataFor" : _id  });
-        } else {
-          return child ;
-        }
-    });
+    let childrenWithProps = null ;
+    let childrenAsFunction = null ;
+    
+    if(children != null && isFunction(children)) {
+      childrenAsFunction = children as (value : UpTooltipProps) => JSX.Element ;
+    } else {
+      childrenWithProps = React.Children.map(this.props.children, function(child) {
+          if (React.isValidElement(child)) {
+            return React.cloneElement(child as React.ReactElement<any>, { "dataFor" : tooltipId  });
+          } else {
+            return child ;
+          }
+      });
+    }
 
     var custom = '' ;
 
@@ -118,8 +124,13 @@ export default class UpTooltip extends Component<UpTooltipProps, UpTooltipState>
 
     return (
       <div style={{display:"inline-block", width:'100%'}}>
-        {childrenWithProps}
-        <ReactTooltip className={classNames('up-tooltip', getStyles(this.props), custom)} id={_id} getContent={this.getContent} {...others} />
+        {childrenWithProps &&
+          childrenWithProps
+        }
+        {childrenAsFunction &&
+           childrenAsFunction({id : tooltipId})
+        }
+        <ReactTooltip className={classNames('up-tooltip', getStyles(this.props), custom)} id={tooltipId} getContent={this.getContent} {...others} />
       </div>
     );
   }
