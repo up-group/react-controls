@@ -5,7 +5,9 @@ import { Component } from "react";
 import * as classNames from 'classnames'
 
 import * as ReactTooltip from 'react-tooltip'
-import { generateId, isFunction } from '../../../Common/utils'
+import { generateId, isFunction, isEmpty } from '../../../Common/utils'
+
+import {UpTooltipProps} from './'
 
 import { style } from 'typestyle' 
 import UpDefaultTheme, { withTheme, WithThemeProps } from "../../../Common/theming";
@@ -149,17 +151,22 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps, UpTooltipStat
        }
      });
     }
-
-    return (
-      <>
+    const renderChildren = <>
         {childrenWithProps &&
           childrenWithProps
         }
         {childrenAsFunction &&
            childrenAsFunction({id : tooltipId})
         }
+    </>
+    if(isEmpty(content)) {
+      return renderChildren ;
+    }
+    return (
+      <div style={{display:"inline-block", width:'100%'}}>
+        {renderChildren}
         <ReactTooltip className={classNames('up-tooltip', getStyles(this.props), custom)} id={tooltipId} getContent={this.getContent} {...others} />
-      </>
+      </div>
     );
   }
 }
