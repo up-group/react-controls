@@ -8,10 +8,8 @@ import { WithThemeProps } from '../../../Common/theming/withTheme';
 import { NestedCSSProperties } from 'typestyle/lib/types';
 import UpTooltip, { UpTooltipProps } from '../Tooltip';
 
-
 const display1LeftGreyLevel1: NestedCSSProperties = {
     fontFamily: 'Roboto',
-    fontSize: '34px',
     fontWeight: 500,
     textAlign: 'left',
     color: colorMap.gray1,
@@ -19,14 +17,13 @@ const display1LeftGreyLevel1: NestedCSSProperties = {
   
 const body1RightGreyLevel1: NestedCSSProperties = {
     fontFamily: 'Roboto',
-    fontSize: '14px',
     textAlign: 'left',
     color: colorMap.gray1,
 };
   
 const body1CenterGreyLevel1: NestedCSSProperties = {
     fontFamily: 'Roboto',
-    fontSize: '1rem',
+    fontSize: '1vw',
     textAlign: 'center',
     color: colorMap.gray1,
   };
@@ -66,8 +63,6 @@ const WrapperCircularProgressStyle = style({
   position: 'relative',
   display: 'block',
   margin: 'auto',
-  boxShadow: '0 0 1em black',
-  borderRadius: '100%',
   $nest: {
     '&:after': {},
     svg: {
@@ -78,17 +73,29 @@ const WrapperCircularProgressStyle = style({
     },
     '& svg > circle': {
       strokeDashArray :'0',
-      filter: 'url(#dropshadow)',
+      //filter: 'url(#dropshadow)',
       transition : 'all 1s linear',
     },
   },
 });
 
-const DefaultValueLabelStyle = {
+const DefaultValueLabelStyle = (props: IProgressCircleProps) => ( {
   ...display1LeftGreyLevel1,
-  fontSize: '2rem',
-  marginRight: '8px',
-};
+  $nest : {
+    '.up-progress-value' : {
+      fontSize: props.size/6,
+      marginRight: '2px',
+    },
+    '.up-progress-value-max' : {
+      fontSize: props.size/7,
+    }
+  }
+});
+
+const DefaultUniteStyle = (props: IProgressCircleProps) => ({
+  ...display1LeftGreyLevel1,
+  fontSize: props.size/7,
+})
 
 const DefaultWrapperValueLabelStyle = style({
   ...body1RightGreyLevel1,
@@ -127,11 +134,11 @@ const DisplayValue = ({value,
       return null;
     case 'fraction':
       return (
-        <div className={DefaultWrapperValueLabelStyle}>
-          <span className={style(valueLabelStyle)}>
+        <div className={style(valueLabelStyle)}>
+          <span className={'up-progress-value'}>
             <Currency value={value} />
           </span>
-          <span> / <Currency value={max} /></span>
+          <span className={'up-progress-value-max'}>  / <Currency value={max} /></span>
         </div>
       );
     case 'percentage':
@@ -170,6 +177,26 @@ const getRadius = (size) => {
   return  Math.abs(size / 2 - 10) ;
 }
 
+const LabelCircularProgressStyle = (props : IProgressCircleProps) => {
+  const fullSize = props.size + 20 ;
+  return style({
+    position: 'absolute',
+    top: (fullSize/2) - (fullSize/8) + 10,
+    left: props.thickness + (fullSize/10) + 5,
+    right:'0px',
+    width: fullSize - props.thickness + 2 - (fullSize/10),
+    textAlign: 'center',
+  });
+};
+
+const TooltipCircularProgressStyle = (props : IProgressCircleProps) => {
+  return style({
+    width: '100%',
+    textAlign: 'center',
+    padding:'8px',
+  });
+};
+
 class ProgressCircle extends React.PureComponent<IProgressCircleProps, IProgressCircleState> {
   // The ref to the completed circle
   circle;
@@ -183,7 +210,7 @@ class ProgressCircle extends React.PureComponent<IProgressCircleProps, IProgress
     completedColor: colorMap.primary,
     uncompletedColor: colorMap.disabledBg,
     backgroundColor: colorMap.white,
-    shadow: true,
+    shadow: false,
     uniteLabel: '',
     modeDisplayValue: 'fraction',
     clockWise: true,
@@ -228,7 +255,6 @@ class ProgressCircle extends React.PureComponent<IProgressCircleProps, IProgress
     clearTimeout(this.completedDashOffset);
   }
 
-
   render() {
     const {
       completedColor,
@@ -245,37 +271,37 @@ class ProgressCircle extends React.PureComponent<IProgressCircleProps, IProgress
       valueLabelStyle,
     } = this.props;
 
-    const LabelCircularProgressStyle = style({
-      position: 'absolute',
-      top: '38px',
-      left: '28px',
-      right:'0px',
-      width: `${size - 20 - 36}px`,
-      textAlign: 'center',
-    });
-
     const r = getRadius(size) ;
     const fullDashOffset = Math.PI * 2 * r ;
     const unCompletedDashOffset = 0;
 
-    const renderValue = <div className={LabelCircularProgressStyle}>
-      <DisplayValue value={value} max={max} modeDisplayValue={modeDisplayValue} valueLabelStyle={valueLabelStyle || DefaultValueLabelStyle } />
-      <DisplayUnite uniteLabel={uniteLabel} uniteStyle={uniteStyle || body1CenterGreyLevel1} />
+    const renderValue = <div className={LabelCircularProgressStyle(this.props)}>
+      <DisplayValue value={value} max={max} modeDisplayValue={this.props.size < 80 ? 'percentage' : modeDisplayValue} valueLabelStyle={valueLabelStyle || DefaultValueLabelStyle(this.props) } />
+      <DisplayUnite uniteLabel={uniteLabel} uniteStyle={uniteStyle || DefaultUniteStyle(this.props) } />
+    </div>
+
+    const renderTooltip = <div className={TooltipCircularProgressStyle(this.props)}>
+      <DisplayValue value={value} max={max} modeDisplayValue={modeDisplayValue} valueLabelStyle={valueLabelStyle} />
+      <DisplayUnite uniteLabel={uniteLabel} uniteStyle={uniteStyle || DefaultUniteStyle(this.props) } />
     </div>
 
     return (
-      <UpTooltip content={this.props.size <= 60 ? renderValue : null}>
+      <UpTooltip content={this.props.size <= 60 ? renderTooltip : null}>
         {
           (props: UpTooltipProps) => (
             <div data-tip="tooltip" data-for={props.id} className={WrapperCircularProgressStyle}>
               <svg
-                width={size}
-                height={size}
+                width={size + 20}
+                height={size + 20}
                 version="1.1"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                {shadow ? Shadow : null}
+                {
+                  Shadow
+                }
                 <circle
+                  x={10}
+                  y={10}
                   style={shadow ? { filter: 'url(#dropshadow)' } : {}}
                   strokeWidth={thickness}
                   stroke={uncompletedColor}
@@ -287,6 +313,8 @@ class ProgressCircle extends React.PureComponent<IProgressCircleProps, IProgress
                   strokeDashoffset={unCompletedDashOffset}
                 />
                 <circle
+                  x={10}
+                  y={10}
                   strokeWidth={thickness}
                   stroke={completedColor}
                   r={r}

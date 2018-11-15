@@ -26,7 +26,8 @@ stories.add('Index',
     const clockWise = boolean('clockWise', true);
     const shadow = boolean('shadow', true);
     const thickness = number('thickness', 8);
-
+    const shadow = boolean('shadow', true);
+    
     return <UpThemeProvider theme={UpDefaultTheme}>
       <UpBox style={{margin:"40px 30px"}}>
         <UpParagraph>
