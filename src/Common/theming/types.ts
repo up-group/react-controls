@@ -223,6 +223,6 @@ export interface ThemeColorMap {
 
 export type IntentType = 'primary' | 'danger' | 'warning' | 'success' | 'info' | 'default' | 'error' | 'light' ;
 
-export interface ThemedProps {
+export interface WithThemeProps {
     theme?: ThemeInterface
 }

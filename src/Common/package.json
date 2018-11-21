@@ -1,0 +1,12 @@
+{
+    "name": "common",
+    "version": "1.0.0",
+    "description": "React-Controls UI common package",
+    "main": "index.ts",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Guillaume CHOMAT",
+    "license": "ISC"
+  }
+  

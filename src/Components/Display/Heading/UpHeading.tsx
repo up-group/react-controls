@@ -1,5 +1,6 @@
 // Imports
 import * as React from 'react';
+import * as classnames from 'classnames';
 
 import { Margin } from '../Paragraph';
 import { getStyles } from './styles';
@@ -13,6 +14,7 @@ export interface UpHeadingProps {
   truncate?: boolean;
   upcase?: boolean;
   margin?: Margin;
+  className?: string;
 }
 
 export default class UpHeading extends React.Component<UpHeadingProps> {
@@ -27,9 +29,9 @@ export default class UpHeading extends React.Component<UpHeadingProps> {
   };
 
   public render() {
-    const { children, tag } = this.props;
+    const { children, tag, className } = this.props;
     return React.createElement(tag, {
-      className: getStyles(this.props),
+      className: classnames(getStyles(this.props), className),
     }, children) ;
   }
 }

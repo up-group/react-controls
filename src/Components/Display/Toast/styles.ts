@@ -1,9 +1,9 @@
 import colorMap from '../../../Common/theming/colorMap';
 import { NestedCSSProperties } from 'typestyle/lib/types';
 import { keyframes, style } from 'typestyle';
-import { Status, UpToastStyledProps } from './UpToast';
+import { IntentType } from 'theming/types';
 
-const backgroundColor = (status: Status) : NestedCSSProperties => (
+const backgroundColor = (status: IntentType) : NestedCSSProperties => (
   {
     backgroundColor: colorMap[status] || colorMap.offwhite,
     color: colorMap[`{status}_fg`] || colorMap.black1,
@@ -40,7 +40,7 @@ export const buttonStyle : NestedCSSProperties = {
   fontSize: '2rem',
 };
 
-export const getStyle = (props: UpToastStyledProps) : string => (
+export const getStyle = (props: any) : string => (
   style({
     position: 'fixed',
     backgroundColor: '#333', /* Black background color */

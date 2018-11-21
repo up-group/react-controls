@@ -13,7 +13,9 @@
     "baseUrl": ".",
     "paths": {
       "*": [
-        "src/Common/*"
+        "src/Common/*",
+        "src/Component/*",
+        "src/*"
       ]
     }
   },

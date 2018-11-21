@@ -14,7 +14,7 @@ import { getStyles } from '../_Common/Styled/Input/styles';
 import defaultTheme from '../../../Common/theming/';
 
 const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> = (props: UpInputStyledProps & WithThemeProps) => {
-    const {className, type, iconName, iconPosition, placeholder, disabled, readonly, maxLength, dataFor, onChange, onFocus, onBlur } = props;
+    const {name, className, type, iconName, iconPosition, placeholder, disabled, readonly, maxLength, dataFor, onChange, onFocus, onBlur } = props;
 
     var icon:any = null ;
     if(iconName) {
@@ -36,7 +36,7 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> =
                 {iconPosition === 'left' && iconName &&
                     icon
                 }
-                <input value={props.value} onChange={onChange} onFocus={onFocus} onBlur={onBlur} className="up-input" type={type} placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readonly} maxLength={maxLength} {...tooltipProps}/>
+                <input name={name} value={props.value} onChange={onChange} onFocus={onFocus} onBlur={onBlur} className="up-input" type={type} placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readonly} maxLength={maxLength} {...tooltipProps}/>
                 {iconPosition === 'right' && iconName &&
                     icon
                 }
@@ -101,7 +101,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
     }
 
     renderControl() {
-        const {type, onChange, value, validation, hasError, iconName, iconPosition, width, disabled, readonly, tooltip, maxLength, placeholder, theme, ...others } = this.props;
+        const { name, type, onChange, value, validation, hasError, iconName, iconPosition, width, disabled, readonly, tooltip, maxLength, placeholder, theme, ...others } = this.props;
         var realIconName = iconName ;
         if(realIconName == null && type != null && IconNames.indexOf(type as IconName) != -1) {
             realIconName = type as IconName ;
@@ -109,6 +109,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
 
         return (
             <BaseInput
+                name={name}
                 value={this.state.value == null ? "" : this.state.value}
                 iconName={realIconName}
                 iconPosition={iconPosition}
@@ -123,9 +124,9 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
                 hasError={this.props.hasError || this.hasError()}
                 showError={this.props.showError}
                 onFocus={this.onFocus}
-                onBlur={this.onBlur}
                 focused={this.isFocused}
-                onChange={this.inputHandleChangeEvent}>
+                onChange={this.inputHandleChangeEvent}
+                onBlur={this.onBlur}>
                 {this.props.children}
             </BaseInput>
         );

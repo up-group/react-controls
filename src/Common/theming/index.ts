@@ -2,7 +2,7 @@ import colorMap from './colorMap';
 import iconMap from './iconMap';
 import typography from './typography';
 
-import { ThemeInterface } from './types';
+import { ThemeInterface, WithThemeProps } from './types';
 
 import { ThemeProvider as UpThemeProvider } from './ThemeProvider'
 import { Dictionary } from '../utils/types';
@@ -29,6 +29,6 @@ const defaultTheme: ThemeInterface = {
   borderRadius: '6px',
 }
 
-export { UpThemeProvider, ThemeInterface as UpThemeInterface, colorMap as UpThemeColorMap  } 
+export { UpThemeProvider, ThemeInterface as UpThemeInterface, colorMap as UpThemeColorMap, WithThemeProps } 
 
 export default defaultTheme ;

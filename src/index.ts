@@ -52,23 +52,7 @@ import UpToggle from './Components/Inputs/Toggle'
 import UpRadio from './Components/Inputs/Radio'
 import * as UpIcons from "./Components/Display/Icons/materialinear";
 
-import UpDefaultTheme, { UpThemeProvider, UpThemeInterface, UpThemeColorMap } from './Common/theming'
-
-import { 
-    Button as UpFinanceurButton,
-    TextArea as UpFinanceurTextArea,
-    TextInput as UpFinanceurInput,
-    InputTypeEnum as UpFinanceurInputTypeEnum,
-    PosIconEnum as UpFinanceurInputIconPosEnum,
-    ValidationReturn as UpFinanceurValidationReturn,
-    RadioGroup as UpFinanceurRadioGroup,
-    Radio as UpFinanceurRadio,
-    CheckboxGroup as UpFinanceurCheckboxGroup,
-    Checkbox as UpFinanceurCheckbox,
-    Tableau as UpFinanceurTableau,
-    EnTete as UpFinanceurTableauEnTete,
-    DateInput as UpFinanceurDateInput,
-} from "./Components/Inputs/FinanceurInput";
+import UpDefaultTheme, { UpThemeProvider, UpThemeInterface, UpThemeColorMap, WithThemeProps } from './Common/theming'
 
 import { IconName as UpIconName } from './Common/theming/icons'
 
@@ -110,6 +94,7 @@ export {
     UpThemeInterface,
     UpThemeColorMap,
     UpDefaultTheme,
+    WithThemeProps,
     UpToggle,
     UpCheckbox,
     UpRadio,
@@ -126,23 +111,9 @@ export {
     UpContextMenuItemDivider,
     UpContextMenuTrigger,
     UpMenu,
-    UpMenuOH,
     UpTreeView,
     UpNavTab,
     UpBulle,
     UpHelper,
     UpIcons,
-    UpFinanceurInput,
-    UpFinanceurInputIconPosEnum,
-    UpFinanceurInputTypeEnum,
-    UpFinanceurButton,
-    UpFinanceurTextArea,
-    UpFinanceurValidationReturn,
-    UpFinanceurRadioGroup,
-    UpFinanceurRadio,
-    UpFinanceurCheckboxGroup,
-    UpFinanceurCheckbox,
-    UpFinanceurTableau,
-    UpFinanceurTableauEnTete,
-    UpFinanceurDateInput,
 };
