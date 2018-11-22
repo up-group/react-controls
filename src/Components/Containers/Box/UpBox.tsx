@@ -15,6 +15,7 @@ import {
   } from './styleUtils';
 
   import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
+import defaultTheme from '../../../Common/theming';
 
 export interface UpBoxProps {
     /** Alignment of the items inside the box on the main axe (<code>row</code> or <code>column</code>) */
@@ -58,7 +59,8 @@ export interface UpBoxProps {
   class UpBox extends React.Component<UpBoxProps & WithThemeProps> {
     
     static defaultProps : Partial<UpBoxProps & WithThemeProps> = {
-        style : {}
+        style : {},
+        theme:defaultTheme,
     }
     
     getBoxStyles = () => {

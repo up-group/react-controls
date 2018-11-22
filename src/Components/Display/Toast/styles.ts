@@ -1,7 +1,7 @@
 import colorMap from '../../../Common/theming/colorMap';
 import { NestedCSSProperties } from 'typestyle/lib/types';
 import { keyframes, style } from 'typestyle';
-import { IntentType } from 'theming/types';
+import { IntentType } from '../../../Common/theming/types';
 
 const backgroundColor = (status: IntentType) : NestedCSSProperties => (
   {

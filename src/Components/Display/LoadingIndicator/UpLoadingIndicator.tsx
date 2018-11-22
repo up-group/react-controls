@@ -8,6 +8,8 @@ import { svgStyle, circleStyle } from './styles';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 export type LoadingIndicatorDisplayMode = "inline" | "modal" | "zone"
 
+import defaultTheme from '../../../Common/theming' ;
+
 export interface LoadingIndicatorProps {
     isLoading: boolean;
     displayMode?: LoadingIndicatorDisplayMode;
@@ -28,6 +30,11 @@ const SvgIcon : React.StatelessComponent<SVGProps> = (props : SVGProps) => {
 }
 
 class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithThemeProps>{
+    
+    public static defaultProps: Partial<LoadingIndicatorProps> & WithThemeProps = {
+        theme: defaultTheme,
+    }
+    
     constructor(p, c) {
         super(p, c);
     }

@@ -7,6 +7,8 @@ import { BulleStyle, IconStyle, ValueStyle, MessageStyle, ChildrenStyle } from "
 import UpBox from "../../Containers/Box";
 import withTheme, { WithThemeProps } from "../../../Common/theming/withTheme";
 
+import defaultTheme from '../../../Common/theming';
+
 export interface UpBulleProps {
     backgroundImage: string;
     message: string;
@@ -17,6 +19,10 @@ export interface UpBulleProps {
 
 class UpBulle extends React.Component<UpBulleProps & WithThemeProps>{
     
+    public static defaultProps: Partial<UpBulleProps> & WithThemeProps = {
+        theme: defaultTheme,
+    }
+
     constructor(p, c) {
         super(p, c);
     }

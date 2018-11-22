@@ -12,7 +12,7 @@ import { generateUniqueId } from '../../../Common/utils/helpers';
 // chooseAvailableStartDate
 
 import defaultPhrases from './i18n/fr';
-import { WithThemeProps } from 'theming/withTheme';
+import { WithThemeProps } from '../../../Common/theming/withTheme';
 import { style } from 'typestyle';
 moment.locale('fr')
 

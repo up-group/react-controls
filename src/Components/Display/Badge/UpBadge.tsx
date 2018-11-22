@@ -2,6 +2,7 @@ import * as React from 'react';
 import {style} from 'typestyle';
 import {IntentType} from '../../../Common/theming/types'
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
+import defaultTheme from '../../../Common/theming';
 
 export type WidthSize = 'auto' | 'small' | 'medium' | 'large' | 'xlarge' ;
 export type Align = 'left' | 'right'  ;
@@ -16,11 +17,12 @@ export interface UpBadgeProps {
  
 class UpBadge extends React.Component<UpBadgeProps & WithThemeProps> {
   
-  public static defaultProps: UpBadgeProps = {
+  public static defaultProps: UpBadgeProps & WithThemeProps = {
     text:'',
     color:'#FFF',
     background:"black",
-    rounded:false
+    rounded:false,
+    theme: defaultTheme,
   }
 
   constructor(props) {

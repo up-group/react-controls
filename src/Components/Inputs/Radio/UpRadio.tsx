@@ -7,6 +7,7 @@ import { UpRadioStyledProps, UpRadioProps } from './types';
 import { RadioGroupStyles, getStyles } from './styles';
 import { style } from 'typestyle';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
+import defaultTheme from '../../../Common/theming';
 
 type RadioGroupProps = {
     className?:string;
@@ -39,7 +40,8 @@ class UpRadio extends BaseControlComponent<UpRadioProps, any> {
         displayMode: "vertical",
         options: [],
         name: "option",
-        showError: true
+        showError: true,
+        theme:defaultTheme,
     }
 
     constructor(props) {

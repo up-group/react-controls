@@ -8,6 +8,8 @@ import { getStyles } from './styles';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import { UpGrid, UpCol, UpRow } from '../Grid';
 
+import defaultTheme from '../../../Common/theming';
+
 const BasePanel: React.StatelessComponent<UpPanelStyledProps & WithThemeProps> = (props) => {
   var { children } = props;
   var iconName = props.iconName;
@@ -64,11 +66,14 @@ const BasePanel: React.StatelessComponent<UpPanelStyledProps & WithThemeProps> =
 
 // Exports
 class UpPanel extends React.Component<UpPanelProps, undefined> {
+  
   public static defaultProps: UpPanelProps & WithThemeProps = {
     footer: "",
     type:"default",
-    disableAutoIntentIcon:true
+    disableAutoIntentIcon:true,
+    theme: defaultTheme,
   };
+
   public render() {
     return (
       <BasePanel {...this.props}></BasePanel>

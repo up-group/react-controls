@@ -7,6 +7,7 @@ import UpTooltip, { Tooltip } from '../../../Display/Tooltip'
 import TypeNullControl from "../Validation/TypeNullControl"
 import { isString } from '../../../../Common/utils'
 import { WithThemeProps } from "../../../../Common/theming/withTheme";
+import defaultTheme from "../../../../Common/theming";
 
 // Exports
 const ONCHANGE_MUST_BE_SPECIFIED = "La méthode onChange doit être spécifié dans le cas où la valeur du composant est défini dans les props";
@@ -33,6 +34,10 @@ export interface BaseControlState<_BaseType> {
 export abstract class BaseControlComponent<_Props, _BaseType> extends React.Component<BaseControlProps<_BaseType> & _Props, BaseControlState<_BaseType>> {
 
     _validationManager: ValidationManager;
+
+    public static defaultProps: WithThemeProps = {
+        theme: defaultTheme,
+    }
 
     constructor(props?: BaseControlProps<_BaseType> & _Props, context?) {
         super(props, context);

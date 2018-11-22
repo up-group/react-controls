@@ -6,6 +6,7 @@ import UpSelect, { UpSelectOption } from '../../Inputs/Select'
 
 import { style } from "typestyle"
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
+import defaultTheme from '../../../Common/theming';
 
 export interface UpPaginationState {
     page: number; // Donnée calculée à partir de Skip et Take mais conservé dans l'état
@@ -132,7 +133,7 @@ const paginationCounterStyle = (props : WithThemeProps) => style({
 
 class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, UpPaginationState> {
 
-    static defaultProps: UpPaginationProps = {
+    static defaultProps: UpPaginationProps & WithThemeProps = {
         noResultMessage: "Aucun résultat",
         nbByPageMessage: "Par page",
         isTakeChangeEnable: true,
@@ -145,6 +146,7 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
         defaultPage: 1,
         defaultSkip: 0,
         defaultTake: 50,
+        theme:defaultTheme,
         onPageChange: (page: number, take: number, skip: number) => { }
     }
 

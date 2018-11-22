@@ -5,6 +5,7 @@ import * as classNames from 'classnames'
 import { CommonCheckableStyle } from '../_Common/Styled';
 import { style } from 'typestyle';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
+import defaultTheme from '../../../Common/theming';
 
 export interface UpCheckboxProps {
   options: Array<Option>;
@@ -49,6 +50,11 @@ export interface UpCheckboxState {
 
 // Exports
 class UpCheckbox extends React.Component<UpCheckboxProps & WithThemeProps, UpCheckboxState> {
+  
+  static defaultProps : Partial<UpCheckboxProps> & WithThemeProps = {
+    theme:defaultTheme,
+  }
+
   constructor(props) {
     super(props) ;
     this.state = {

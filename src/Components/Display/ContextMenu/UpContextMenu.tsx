@@ -9,6 +9,8 @@ import {MENU_HIDE, MENU_SHOW} from './actions'
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import { NestedCSSProperties } from 'typestyle/lib/types';
 
+import defaultTheme from '../../../Common/theming' ;
+
 export interface UpContextMenuProps {
     id:string;
     onHide?:() => void;
@@ -27,6 +29,10 @@ class UpContextMenu extends React.PureComponent<UpContextMenuProps & WithThemePr
 
     menu:HTMLElement;
     listenerId : string;
+
+    public static defaultProps: Partial<UpContextMenuProps> & WithThemeProps = {
+        theme: defaultTheme,
+    }
 
     constructor(props) {
         super(props);
