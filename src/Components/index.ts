@@ -47,6 +47,7 @@ import UpEmail from "./Inputs/Email/UpEmail"
 import UpCheckbox from './Inputs/Checkbox/UpCheckBox'
 import UpToggle from './Inputs/Toggle'
 import UpRadio from './Inputs/Radio'
+import UpPassword from './Inputs/Password'
 import * as UpIcons from "./Display/Icons/materialinear";
 
 export {
@@ -72,6 +73,7 @@ export {
     UpText,
     UpNumber,
     UpEmail,
+    UpPassword,
     UpPhone,
     UpPanel,
     UpGrid,
