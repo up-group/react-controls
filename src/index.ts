@@ -48,6 +48,7 @@ import UpEmail from "./Components/Inputs/Email/UpEmail"
 import UpCheckbox from './Components/Inputs/Checkbox/UpCheckBox'
 import UpToggle from './Components/Inputs/Toggle'
 import UpRadio from './Components/Inputs/Radio'
+import UpPassword from './Components/Inputs/Password'
 import * as UpIcons from "./Components/Display/Icons/materialinear";
 
 import UpDefaultTheme, { UpThemeProvider, UpThemeInterface, UpThemeColorMap, WithThemeProps } from './Common/theming'
@@ -77,6 +78,7 @@ export {
     UpText,
     UpNumber,
     UpEmail,
+    UpPassword,
     UpPhone,
     UpPanel,
     UpGrid,
