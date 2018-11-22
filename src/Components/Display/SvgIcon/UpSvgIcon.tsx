@@ -76,7 +76,7 @@ const UpSvgIcon : React.StatelessComponent<UpSvgIconProps> = ({
 
     return (
       <svg
-        //{...others}
+        {...others}
         fill={color}
         viewBox={viewBoxProps}>
         {children}
