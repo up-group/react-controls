@@ -20,7 +20,7 @@ stories.add('Simple usage',
     
     return <UpThemeProvider theme={UpDefaultTheme}>
       <UpBox style={{margin:"40px 30px"}}>
-        <UpNotification status={"info"}>
+        <UpNotification intent={"info"}>
             Le composant <code>UpButton</code> permet de définir un bouton avec trois propriétés principales :
             <ul>
               <li>
@@ -50,7 +50,7 @@ stories.add('Simple usage',
   () => (
    <UpThemeProvider theme={UpDefaultTheme}>
      <UpBox style={{margin:"40px 30px"}}>
-        <UpNotification status={"info"}>
+        <UpNotification intent={"info"}>
             Le composant <code>UpButton</code> afficher en mode icône :
             <UpParagraph>
               <UpButton actionType="add" width={"icon"} intent="primary"  onClick={(event) => {
@@ -69,7 +69,7 @@ stories.add('Simple usage',
  () => (
   <UpThemeProvider theme={UpDefaultTheme}>
     <UpBox style={{margin:"40px 30px"}}>
-        <UpNotification status={"info"}>
+        <UpNotification intent={"info"}>
             Le composant <code>UpButton</code> en positionnant l'icône à droite :
             <UpParagraph>
               <UpButton actionType="add" iconPosition={"right"} width={"normal"} intent="primary" onClick={(event) => {console.log(event)}}>
@@ -84,7 +84,7 @@ stories.add('Simple usage',
  () => (
   <UpThemeProvider theme={UpDefaultTheme}>
       <UpBox style={{margin:"40px 30px"}}>
-          <UpNotification status={"info"}>
+          <UpNotification intent={"info"}>
               Le composant <code>UpButton</code> en définissant un menu d'actions associées :
               <UpParagraph>
                  <UpButton intent="primary" onClick={(event) => {action("Main")}} dropDown={'down'} 
@@ -115,7 +115,7 @@ stories.add('Simple usage',
 () => (
  <UpThemeProvider theme={UpDefaultTheme}>
     <UpBox style={{margin:"40px 30px"}}>
-      <UpNotification status={"info"}>
+      <UpNotification intent={"info"}>
           Le composant <code>UpButton</code> en définissant un menu d'actions associées, un label principal et l'icône à gauche :
           <UpParagraph>
             <UpButton iconPosition={"left"} intent="primary" onClick={(event) => {action("Main")}} dropDown={'down'} 
@@ -146,7 +146,7 @@ stories.add('Simple usage',
 () => (
  <UpThemeProvider theme={UpDefaultTheme}>
    <UpBox style={{margin:"40px 30px"}}>
-        <UpNotification status={"info"}>
+        <UpNotification intent={"info"}>
           Le composant <code>UpButton</code> en définissant un menu d'actions associées et un label principal :
           <UpParagraph>
             <UpButton intent="primary" onClick={(event) => {action("Main")}} dropDown={'down'} 
@@ -178,7 +178,7 @@ stories.add('Simple usage',
   const isProcessing = boolean('isProcessing', true);
   return <UpThemeProvider theme={UpDefaultTheme}>
    <UpBox style={{margin:"40px 30px"}}>
-      <UpNotification status={"info"}>
+      <UpNotification intent={"info"}>
           Le composant <code>UpButton</code> avec indication du traitement en cours :
           <UpParagraph>
              <UpButton iconName={'edit'} iconPosition={'left'} onClick={null} width={"normal"} isProcessing={isProcessing}>Save</UpButton>
@@ -193,7 +193,7 @@ stories.add('Simple usage',
   const isProcessing = boolean('isProcessing', false);
   return <UpThemeProvider theme={UpDefaultTheme}>
    <UpBox style={{margin:"40px 30px"}}>
-      <UpNotification status={"info"}>
+      <UpNotification intent={"info"}>
           Le composant <code>UpButton</code> en mode icône et avec indication du traitement en cours :
           <UpParagraph>
             <UpButton rotate={isProcessing} intent="primary" rounded={true} width="icon" onClick={this.refresh} actionType="refresh"></UpButton>

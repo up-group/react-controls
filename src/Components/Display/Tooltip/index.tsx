@@ -1,5 +1,5 @@
 import UpTooltip from './UpTooltip'
-import { IntentType } from 'theming/types';
+import { IntentType } from '../../../Common/theming/types';
 
 export type Placement = "top" | "right" | "bottom" | "left" 
 export type Effect = "float" | "solid" 

@@ -8,7 +8,7 @@ import { WithThemeProps } from '../../../Common/theming/withTheme';
 export const colors = (props: UpNotificationProps & WithThemeProps ) : NestedCSSProperties => {
   return { 
       position: 'relative',
-      backgroundColor: props.theme.colorMap[`${props.status}Dark`] || props.theme.colorMap.black3,
+      backgroundColor: props.theme.colorMap[`${props.intent}Dark`] || props.theme.colorMap.black3,
       color: props.theme.colorMap.offwhite,
       $nest : {
               p : {

@@ -18,7 +18,7 @@ export type NotificationDisplayMode = 'inline' | 'modal' ;
 
 // Exports
 export interface CommonProps  {
-  status?: IntentType;
+  intent?: IntentType;
   dismissable?:boolean;
   title?:string;
   displayMode? : NotificationDisplayMode;
@@ -34,7 +34,7 @@ class UpNotification extends React.Component<UpNotificationProps & WithThemeProp
     message:"",
     theme:defaultTheme,
     displayMode:"inline",
-    status:'info',
+    intent:'info',
   }
 
   constructor(props) {
@@ -42,13 +42,13 @@ class UpNotification extends React.Component<UpNotificationProps & WithThemeProp
   }
   
   render() {
-    const {children, message, status, theme, title} = this.props ;
+    const {children, message, intent, theme, title} = this.props ;
     const defaultIconSize = 60 ;
 
-    const icon = <SvgIcon iconName={iconMap[status]}
+    const icon = <SvgIcon iconName={iconMap[intent]}
             width={theme && theme.notificationIconSize > 0 ?  theme.notificationIconSize : defaultIconSize}
             height={theme && theme.notificationIconSize > 0  ? theme.notificationIconSize : defaultIconSize}
-            color={theme ? theme.colorMap[`${status}Dark`] : "black"} /> ;
+            color={theme ? theme.colorMap[`${intent}Dark`] : "black"} /> ;
     
     let NotificationRender ;
     
