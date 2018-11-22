@@ -76,11 +76,13 @@ export interface CommonProps extends WithThemeProps {
     isProcessing?:boolean;
     /** Définir si le bouton est par défaut 'toggled' */
     isToggled?: boolean;
+    /** Tye type of the button  */
+    type?: 'button' | 'submit' | 'reset';
 }
 
 // This is so that the onClick handler is accepted without type interferance
 export interface UpButtonProps extends CommonProps {
-    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void | Promise<any>;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void | Promise<any>;
 }
 
 export interface UpButtonStyledProps extends UpButtonProps {
