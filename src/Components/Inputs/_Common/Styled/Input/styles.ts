@@ -72,7 +72,6 @@ export const errorStyles = (props : StyledProps) => {
   }) ;
 };
 
-
 export const inputStyles = (props) : NestedCSSProperties => {
   
   return {
