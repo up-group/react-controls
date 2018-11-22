@@ -30,7 +30,7 @@ stories.add('Simple usage',
             <UpCheckbox options={[{
                     text: "",
                     name: "Option1",
-                    onChange: onActivationChange,
+                    onOptionChange: onActivationChange,
                     value: true,
                     checked: state.activation === true
                 }]} />
@@ -42,19 +42,19 @@ stories.add('Simple usage',
             <UpCheckbox options={[{
                     text: "Vous êtes majeur ?",
                     name: "Option1",
-                    onChange: onOptionChange,
+                    onOptionChange: onOptionChange,
                     value: true,
                     checked: state.majeur === true
                 }, {
                     text: "Vous êtes Homme ?",
                     name: "Option2",
-                    onChange: onOptionChange,
+                    onOptionChange: onOptionChange,
                     value: true,
                     checked: state.homme === true
                 }, {
                     text: "Vous êtes grand ?",
                     name: "Option3",
-                    onChange: onOptionChange,
+                    onOptionChange: onOptionChange,
                     value: true,
                     checked: state.grand === true
                 }]} />

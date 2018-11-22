@@ -39,8 +39,6 @@ import UpInput from './Inputs/Input'
 import UpSelect from './Inputs/Select'
 import UpFile from './Inputs/File'
 import UpDate from './Inputs/Date'
-import UpSwitch from "./Inputs/Switch/UpSwitch"
-import UpDateTime from './Inputs/DateTime'
 import UpTimePicker from './Inputs/TimePicker'
 import UpText from './Inputs/Text'
 import UpNumber from "./Inputs/Number/UpNumber"
@@ -70,8 +68,6 @@ export {
     UpSelect,
     UpFile,
     UpDate,
-    UpDateTime,
-    UpSwitch,
     UpTimePicker,
     UpText,
     UpNumber,

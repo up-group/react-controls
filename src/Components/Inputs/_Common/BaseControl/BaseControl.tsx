@@ -12,7 +12,7 @@ import { WithThemeProps } from "../../../../Common/theming/withTheme";
 const ONCHANGE_MUST_BE_SPECIFIED = "La méthode onChange doit être spécifié dans le cas où la valeur du composant est défini dans les props";
 
 export interface BaseControlProps<_BaseType> extends WithThemeProps {
-    onChange?: (arg: _BaseType, event: any, error: boolean) => void;
+    onChange?: (event: React.ChangeEvent<any>, arg: _BaseType, error: boolean) => void;
     value?: _BaseType;
     defaultValue?: _BaseType;
     disabled?: boolean;
@@ -20,6 +20,8 @@ export interface BaseControlProps<_BaseType> extends WithThemeProps {
     tooltip?: string | Tooltip;
     isRequired?: boolean;
     showError?: boolean;
+    error?: string;
+    touched?: boolean;
 }
 
 export interface BaseControlState<_BaseType> {
@@ -65,14 +67,18 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
 
     abstract renderControl(): JSX.Element;
 
-    private checkAndDispatch = (value?: any) => {
-        var _value = (value !== undefined) ? value : this.state.value;
-        var cleanData: _BaseType = this.getValue(_value);
+    private checkAndDispatch = (event?: React.ChangeEvent<any>, value?: _BaseType) => {
+        const _value = (value !== undefined) ? value : (event !== undefined) ? event : this.state.value;
+        const cleanData: _BaseType = this.getValue(_value);
         if (this._validationManager !== undefined) {
-            var hasError = this.checkData(cleanData);
-            this.setState({ value: cleanData }, () => { this.dispatchOnChange(this.state.value, null, hasError) });
+            const result = this.checkData(cleanData);
+            if(result != null) {
+                this.setState({ value: cleanData, error : result.hasError ? result.errorMessage : null }, () => { this.dispatchOnChange(this.state.value, event, result.hasError) });
+            } else {
+                this.setState({ value: cleanData }, () => { this.dispatchOnChange(this.state.value, event, null) });
+            }
         } else {
-            this.setState({ value: cleanData }, () => { this.dispatchOnChange(this.state.value, null, null); });
+            this.setState({ value: cleanData }, () => { this.dispatchOnChange(this.state.value, event, null); });
         }
     }
 
@@ -97,22 +103,18 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
             // Handle specific conversion between the value receive from props and the inner state
             var value = this.setValue(nextProps.value);
             // Reset the error : if one it will be set in the checkData
-            this.setState({ value: value, error: null }, this.checkAndDispatch);
+            this.setState({ value: value, error: nextProps.error }, this.checkAndDispatch);
+        } else if(nextProps.error !== undefined && this.props.error != nextProps.error) {
+            this.setState({ error: nextProps.error });
         }
     }
 
-    public handleChangeEvent = (event) => {
-        this.checkAndDispatch(event);
+    public handleChangeEvent = (event: React.ChangeEvent<any>, value?: _BaseType) => {
+        this.checkAndDispatch(event, value);
     }
 
     private checkData = (value?: any) => {
-        var result = this._validationManager.isValidValue(value);
-        if (result.hasError) {
-            this.setState({ error: result.errorMessage });
-        } else {
-            this.setState({ error: null });
-        }
-        return result.hasError;
+        return this._validationManager.isValidValue(value);
     }
 
     public hasError = (): boolean => {
@@ -148,9 +150,9 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
         this.checkAndDispatch();
     }
 
-    public dispatchOnChange = (data: _BaseType, event, error: boolean) => {
-        if (this.props.onChange !== undefined) {
-            this.props.onChange(data, event, error);
+    public dispatchOnChange = (data: _BaseType, event: React.ChangeEvent<any>, error: boolean) => {
+        if (this.props.onChange !== undefined && event != null) {
+            this.props.onChange(event, data, error);
         }
     }
 }

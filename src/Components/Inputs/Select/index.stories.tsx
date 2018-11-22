@@ -79,7 +79,7 @@ export class Test extends React.Component<testProps, testState>{
                             query: "https://jsonplaceholder.typicode.com/users",
                             text: "name"
                         }}
-                        onChange={(a) => { this.setState({ valM: a, lastChange: a }); }} />
+                        onChange={(event, a) => { this.setState({ valM: a, lastChange: a }); }} />
                 </div>
                 <div>
                     {JSON.stringify(this.state.valM)}
@@ -111,7 +111,7 @@ export class Test extends React.Component<testProps, testState>{
                             { id: 3, text: 'Mlle' },
                             { id: 4, text: 'Dr' },
                         ]}
-                        onChange={(a) => { this.setState({ valEM: a, lastChange: a }); }} />
+                        onChange={(event, value) => { this.setState({ valEM: value, lastChange: value }); }} />
                 </div>
 
             <div>

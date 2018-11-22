@@ -73,27 +73,28 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
     }
 
     inputHandleChangeEvent = (event) => {
-        this.handleChangeEvent(event) ;
+        event.persist() ;
+        this.handleChangeEvent(event, undefined) ;
     }   
 
-    onFocus = (e) => {
+    onFocus = (event) => {
         if(this.state.extra === undefined) {
             this.setState({ extra : { focused : true}});
         } else {
             this.setState(update(this.state, { extra : { focused : { $set : true}}}));
         }
         if(this.props.onFocus)
-            this.props.onFocus(e) ;
+            this.props.onFocus(event) ;
     }
 
-    onBlur = (e) =>  {
+    onBlur = (event) =>  {
         if(this.state.extra === undefined) {
             this.setState({ extra : { focused : false}});
         } else {
             this.setState(update(this.state, { extra : { focused : { $set : false}}}))
         }
         if(this.props.onBlur)
-            this.props.onBlur(e) ;
+            this.props.onBlur(event) ;
     }
 
     get isFocused() {
@@ -101,7 +102,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
     }
 
     renderControl() {
-        const { name, type, onChange, value, validation, hasError, iconName, iconPosition, width, disabled, readonly, tooltip, maxLength, placeholder, theme, ...others } = this.props;
+        const { name, touched, type, onChange, value, validation, hasError, iconName, iconPosition, width, disabled, readonly, tooltip, maxLength, placeholder, theme, ...others } = this.props;
         var realIconName = iconName ;
         if(realIconName == null && type != null && IconNames.indexOf(type as IconName) != -1) {
             realIconName = type as IconName ;
@@ -125,6 +126,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
                 showError={this.props.showError}
                 onFocus={this.onFocus}
                 focused={this.isFocused}
+                touched={touched}
                 onChange={this.inputHandleChangeEvent}
                 onBlur={this.onBlur}>
                 {this.props.children}

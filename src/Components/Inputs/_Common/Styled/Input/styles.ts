@@ -56,10 +56,16 @@ export const errorStyles = (props : StyledProps) => {
   }
   return style({
       $nest : {
-          '.up-input' : {
-              borderColor: props.theme ? props.theme.colorMap.danger : defaultTheme.colorMap.danger,
+          '& .up-input' : {
+            borderColor: props.theme ? props.theme.colorMap.danger : defaultTheme.colorMap.danger,
           },
-          '.up-input-group svg, .up-input-group svg path, .up-input-group svg polygon' : {
+          '& .up-input-group svg': {
+            fill: props.theme ? props.theme.colorMap.danger : defaultTheme.colorMap.danger,
+          },
+          '& .up-input-group svg path' : {
+            fill: props.theme ? props.theme.colorMap.danger : defaultTheme.colorMap.danger,
+          },
+          '& .up-input-group svg polygon' : {
             fill: props.theme ? props.theme.colorMap.danger : defaultTheme.colorMap.danger,
           }
       }
@@ -71,7 +77,7 @@ export const inputStyles = (props) : NestedCSSProperties => {
   
   return {
     $nest : {
-      '.up-input' : {
+      '& .up-input' : {
         ...defaultStyles(props),
       },
       '.up-input::-moz-placeholder, .up-input:-ms-input-placeholder, .up-input::placeholder, .up-input::-webkit-input-placeholder' : {

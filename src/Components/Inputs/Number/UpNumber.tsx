@@ -65,18 +65,18 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
        return Math.round(value * multiplier) / multiplier;
    }
 
-   handleNumericChange = (valueAsNumber: number, valueAsString: string) => {
+   handleNumericChange = (event: React.ChangeEvent<any>, valueAsNumber: number, valueAsString: string) => {
        if (this.props.decimalPlace != null) {
            var _newValue = this.round(valueAsNumber, this.props.decimalPlace);
            if (isNaN(valueAsNumber)) {
-               this.handleChangeEvent(this.state.value);
+               this.handleChangeEvent(event, this.state.value);
            } else if (_newValue === valueAsNumber && _newValue.toString() !== valueAsString) {
-               this.handleChangeEvent(valueAsString);
+               this.handleChangeEvent(event, valueAsString);
            } else {
-               this.handleChangeEvent(valueAsNumber);
+               this.handleChangeEvent(event, valueAsNumber);
            }
        } else {
-           this.handleChangeEvent(valueAsNumber);
+           this.handleChangeEvent(event, valueAsNumber);
        }
    }
 
@@ -122,7 +122,7 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
                     readonly={readonly}
                     isRequired={isRequired}
                     value={ this.state.value ? this.state.value.toString() : "" } 
-                    onChange={(value) => { this.handleNumericChange(parseFloat(value), value) }} />
+                    onChange={(event, value) => { event.persist() ; this.handleNumericChange(event, parseFloat(value), value) }} />
              <UpBox className={wrapperNumberButtonsStyles(this.props)} flexDirection={theme.inputBorderLess ? 'row' : 'column-reverse'}>
                 <UpButton width={'icon'} iconSize={9} height={'xsmall'} onClick={this.decrement} iconName={'arrow-down'}></UpButton>
                 <UpButton width={'icon'} iconSize={9} height={'xsmall'} onClick={this.increment} iconName={'arrow-up'}></UpButton>

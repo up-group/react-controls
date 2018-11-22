@@ -12,15 +12,16 @@ export interface UpCheckboxProps {
 
 export interface Option {
   name: string;
-  value: any;
+  value?: any;
   text?: string;
   iconName?: string;
-  onChange?: (e: any) => void;
+  onOptionChange?: (event: React.ChangeEvent<any>, value: boolean) => void;
   checked?: boolean;
 }
 
 export interface UpCheckboxStyledProps extends WithThemeProps {
-    className?: string;
+  className?: string;
+  onChange?: (event: React.ChangeEvent<any>, value: Option) => void;
 }
 
 export interface UpCheckboxProps {
@@ -34,10 +35,8 @@ const BaseCheckBox: React.StatelessComponent<UpCheckboxStyledProps & Option> = (
     <label className={classNames("up-control", "up-checkbox", style(CommonCheckableStyle(props)), className)}>
       <input onClick={(e) => {
         e.stopPropagation();
-        onChange({
-          name,
-          checked:!checked
-      })}} checked={checked} name={name} type="checkbox" value={value} />
+        e.persist() ;
+        onChange(e, { name, checked:!checked })}} checked={checked} name={name} type="checkbox" value={value} />
       <span className="up-control-indicator"></span>
       {text}
     </label>
@@ -67,12 +66,12 @@ class UpCheckbox extends React.Component<UpCheckboxProps & WithThemeProps, UpChe
     event.stopPropagation() ;
   }
 
-  handleChangeEvent = (optionChange:Option) => {
+  handleChangeEvent = (event: React.ChangeEvent<any>, optionChange: Option) => {
     const options = [...this.state.options] ;
     for (let propKey in options) {
         const option = options[propKey] ;
-        if(option.name == optionChange.name && option.onChange!=undefined) {
-          option.onChange(optionChange.checked);
+        if(option.name == optionChange.name && option.onOptionChange!=undefined) {
+          option.onOptionChange(event, optionChange.checked);
           option.checked = optionChange.checked;
         }
     }

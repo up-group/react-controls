@@ -13,15 +13,24 @@ export default class ValidationManager {
 
     isValidValue(value: any): ErrorControlType<any> {
         var newValue = value;
-        for (var i = 0; i < this.ErrorControl.length; i++) {
-            var result = this.ErrorControl[i].isValidValue(value);
-            if (result.hasError) {
-                return result;
-            } else if (result.correctValue !== undefined) {
-                newValue = result.correctValue;
+        let firstError = null ;
+        this.ErrorControl.forEach( (handler) => {
+            if(firstError == null) {
+                var result = handler.isValidValue(value);
+                if (result.hasError) {
+                    firstError = result;
+                } else if (result.correctValue !== undefined) {
+                    newValue = result.correctValue;
+                }
             }
+        });
+        
+        if(firstError != null) {
+            return firstError ;   
         }
-        return { hasError: false, errorMessage: null, correctValue: newValue }
+        if(this.ErrorControl.length) {
+            return { hasError: false, errorMessage: null, correctValue: newValue }
+        }    
+        return null;
     }
-
 }

@@ -577,7 +577,8 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     }
 
     onChange = (event) => {
+        event.persist() ;
         const data = this.setValue(event);
-        this.handleChangeEvent(data);
+        this.handleChangeEvent(event, data);
     }
 }

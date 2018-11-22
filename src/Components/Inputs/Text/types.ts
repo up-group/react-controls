@@ -9,7 +9,7 @@ export interface UpTextProps extends WithThemeProps {
     placeholder?: string;
     disabled?: boolean;
     showError?: boolean;
-    onChange?: (data: any) => void;
+    onChange?: (event: React.ChangeEvent<any>, data: string) => void;
     value?: string;
     hasError?: boolean;
     isRequired?: boolean;

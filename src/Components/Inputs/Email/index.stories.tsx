@@ -23,6 +23,6 @@ stories.add('Email input',
 ).add('Email Input Required',
    () => (
         <div style={{padding:"30px"}}>
-          <UpEmail required={true} />
+          <UpEmail isRequired={true} />
         </div>
 ), { info :  'Avec valeur requise' }) ;

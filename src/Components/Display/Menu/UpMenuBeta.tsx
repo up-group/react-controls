@@ -350,7 +350,6 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
                     ONE HOME
                 </div>
                 <div className={inputDiv} >
-                    <Text value={this.state.strSearch} onChange={this.onSearchChange}  iconName="search" />
                 </div>
             </div>
 

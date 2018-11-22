@@ -7,7 +7,7 @@ import { InputIconPosition } from '../_Common/Styled/Input/types';
 // Exports
 export type WidthSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'fill' ;
 export type HeightSize = 'normal' | 'large' ;
-export type InputType = 'text' | 'email' | 'number' | 'integer' | 'phone' | 'search' ;
+export type InputType = 'text' | 'email' | 'number' | 'integer' | 'phone' | 'search' | 'password' ;
 
 export interface Validation {
     pattern : RegExp;
