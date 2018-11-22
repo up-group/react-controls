@@ -10,6 +10,7 @@ import { UpGrid, UpRow, UpCol } from '../../Containers/Grid'
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import UpPassword from '../Password';
 
 const stories = storiesOf('Inputs/UpInput', module) ;
 
@@ -93,7 +94,7 @@ stories.add('Text input',
  <UpGrid>
    <UpRow>
      <UpCol span={6}> 
-     <Formik initialValues={{ email: '' }}
+     <Formik initialValues={{ email: '', password: ''}}
             onSubmit={(values, { setSubmitting }) => {
               setTimeout(() => {
                 alert(JSON.stringify(values, null, 2));
@@ -117,7 +118,6 @@ stories.add('Text input',
                 handleSubmit,
                 handleReset,
               } = props;
-              console.log(props) ;
               return (
                 <form onSubmit={handleSubmit}>
                   <UpLabel text={'Email'} >
@@ -130,8 +130,10 @@ stories.add('Text input',
                       onChange={handleChange}
                       placeholder={'Renseignez votre email'} />
                   </UpLabel>
-                  <UpLabel text={'Password'} >
-                    <UpInput type={'password'} />
+                  <UpLabel text={'Password'}>
+                    <UpPassword 
+                      value={values.password}
+                      onChange={handleChange}  />
                   </UpLabel>
                 </form>
               );

@@ -23,12 +23,12 @@ export const CommonCheckableStyle = (props: WithThemeProps) : NestedCSSPropertie
     textTransform: 'none',
     lineHeight: '16px',  
     $nest : {
-      svg : {
+      '& svg' : {
         margin:'4px 4px 4px 0px',
         display:'inline-block',
         float:'left',
       },
-      '.up-control-indicator' : {
+      '& .up-control-indicator' : {
         fontFamily: '"Icons16", sans-serif',
         fontSize: '16px',
         fontWeight: 400,
@@ -50,11 +50,11 @@ export const CommonCheckableStyle = (props: WithThemeProps) : NestedCSSPropertie
             '-ms-user-select': 'none',
                 userSelect: 'none', 
       },
-     '.up-control-indicator::before' : {
+     '& .up-control-indicator::before' : {
         position: 'relative',
         content: '""', 
       },
-      'input' : {
+      '& input' : {
         position: 'absolute',
         top: 0,
         left: 0,
@@ -62,7 +62,7 @@ export const CommonCheckableStyle = (props: WithThemeProps) : NestedCSSPropertie
         zIndex:0,
         visibility:'hidden',
       },
-      'input:checked ~ .up-control-indicator, input:indeterminate ~ .up-control-indicator' : {
+      '& input:checked ~ .up-control-indicator,& input:indeterminate ~ .up-control-indicator' : {
         background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat  ${props.theme.colorMap.primary}`,
         boxShadow: 'inset 0 0 0 1px rgba(16, 22, 26, 0.4), inset 0 -1px 0 rgba(16, 22, 26, 0.2)',
         color: '#ffffff', 
@@ -74,32 +74,32 @@ export const CommonCheckableStyle = (props: WithThemeProps) : NestedCSSPropertie
         background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ${props.theme.colorMap.primaryDark}` ,
         boxShadow: 'inset 0 0 0 1px rgba(16, 22, 26, 0.4), inset 0 -1px 0 rgba(16, 22, 26, 0.2)', 
       },
-      'input:not(:disabled):active ~ .up-control-indicator' : {
+      '& input:not(:disabled):active ~ .up-control-indicator' : {
         boxShadow: 'inset 0 0 0 1px rgba(16, 22, 26, 0.2), inset 0 1px 2px rgba(16, 22, 26, 0.2)',
         background: props.theme.colorMap.primary,
       },
-      'input:not(:disabled):active:checked ~ .up-control-indicator, input:not(:disabled):active:indeterminate ~ .up-control-indicator' : {
+      '& input:not(:disabled):active:checked ~ .up-control-indicator,& input:not(:disabled):active:indeterminate ~ .up-control-indicator' : {
         boxShadow: 'inset 0 0 0 1px rgba(16, 22, 26, 0.4), inset 0 1px 2px rgba(16, 22, 26, 0.2)',
         background: props.theme.colorMap.primary, 
       },
-      'input:focus ~ .up-control-indicator' : {
+      '& input:focus ~ .up-control-indicator' : {
         outline: 'rgba(19, 124, 189, 0.5) auto 2px',
         outlineOffset: '2px',
         '-moz-outline-radius': '6px', 
       },
-      'input:disabled ~ .up-control-indicator' : {
+      '& input:disabled ~ .up-control-indicator' : {
         boxShadow: 'none',
         background: 'rgba(206, 217, 224, 0.5)',
         cursor: 'notAllowed', 
       },
-      'input:disabled:checked ~ .up-control-indicator' : {
+      '& input:disabled:checked ~ .up-control-indicator' : {
         boxShadow: 'none',
         background: 'rgba(19, 124, 189, 0.5)', 
       },
-      'input[type="checkbox"]:checked ~ .up-control-indicator::before' : {
+      '& input[type="checkbox"]:checked ~ .up-control-indicator::before' : {
         content: '""', 
       },
-      'input[type="checkbox"]:indeterminate ~ .up-control-indicator::before' : {
+      '& input[type="checkbox"]:indeterminate ~ .up-control-indicator::before' : {
         content: '""', 
       },
     }

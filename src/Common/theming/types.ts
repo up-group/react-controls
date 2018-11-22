@@ -221,7 +221,7 @@ export interface ThemeColorMap {
     sepia5: string
 }
 
-export type IntentType = 'primary' | 'danger' | 'warning' | 'success' | 'info' | 'default' | 'error' | 'light' ;
+export type IntentType = 'primary' | 'secondary' | 'danger' | 'warning' | 'success' | 'info' | 'default' | 'error' | 'light' ;
 
 export interface WithThemeProps {
     theme?: ThemeInterface

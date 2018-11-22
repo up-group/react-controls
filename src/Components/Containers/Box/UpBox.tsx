@@ -64,7 +64,7 @@ export interface UpBoxProps {
     }
     
     getBoxStyles = () => {
-        var BoxStyles = style({
+        const BoxStyles = style({
             display: 'flex',
             backgroundColor: this.props.backgroundColor || 'transparent',
             color: this.props.color || 'black',
@@ -79,8 +79,7 @@ export interface UpBoxProps {
     }
 
     getSize = () => {
-
-        var Sizes = style({
+        const Sizes = style({
             flexShrink:1,
             flexDirection: this.props.flexDirection || 'column',
             flexWrap: calculateFlexWrap(this.props.flexWrap, this.props.reverse),
@@ -95,7 +94,7 @@ export interface UpBoxProps {
     }
 
     render() {
-        var {children, style, ...others} = this.props ;
+        const { children, style, ...others } = this.props ;
         
         return (
             <div style={style || {}} className={cn(this.getBoxStyles(), this.getSize(), this.props.className)}>

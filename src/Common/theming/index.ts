@@ -13,7 +13,7 @@ const defaultStyles = new Dictionary<string, NestedCSSProperties>([{
     color: '#354052',
     borderColor: '#979797',
     $nest : {
-      '.up-input-group svg, .up-input-group svg path, .up-input-group svg polygon' : {
+      '& .up-input-group svg,& .up-input-group svg path,& .up-input-group svg polygon' : {
         fill : '#979797'
       }
     }

@@ -56,7 +56,7 @@ export const errorStyles = (props : StyledProps) => {
   }
   return style({
       $nest : {
-          '& .up-input' : {
+          '& .up-input-group .up-input' : {
             borderColor: props.theme ? props.theme.colorMap.danger : defaultTheme.colorMap.danger,
           },
           '& .up-input-group svg': {
@@ -80,15 +80,15 @@ export const inputStyles = (props) : NestedCSSProperties => {
       '& .up-input' : {
         ...defaultStyles(props),
       },
-      '.up-input::-moz-placeholder, .up-input:-ms-input-placeholder, .up-input::placeholder, .up-input::-webkit-input-placeholder' : {
+      '& .up-input::-moz-placeholder,& .up-input:-ms-input-placeholder,& .up-input::placeholder,& .up-input::-webkit-input-placeholder' : {
         opacity: 0.5,
         color: '#4e5b59', 
       },
-      '.up-input:focus, .up-input:hover' : {
+      '& .up-input:focus,& .up-input:hover' : {
         borderColor : props.theme.colorMap.primary,
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #137cbd, 0 0 0 3px rgba(19, 124, 189, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
       },
-      '.up-input-group:hover svg, .up-input-group:hover svg path, .up-input-group:hover svg polygon' : {
+      '& .up-input-group:hover svg,& .up-input-group:hover svg path,& .up-input-group:hover svg polygon' : {
         fill: props.theme.colorMap.primary,
       },
       '.up-input.up-round' : {
@@ -124,10 +124,10 @@ export const inputStyles = (props) : NestedCSSProperties => {
       '.up-dark .up-input::placeholder' : {
         color: 'rgba(191, 204, 214, 0.5)', 
       },
-      '.up-dark .up-input:focus' : {
+      '& .up-dark .up-input:focus' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' :'0 0 0 1px #137cbd, 0 0 0 1px #137cbd, 0 0 0 3px rgba(19, 124, 189, 0.3), inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)',
       },
-      '.up-dark .up-input[readonly]' : {
+      '& .up-dark .up-input[readonly]' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px rgba(16, 22, 26, 0.4)',
       },
       '.up-dark .up-input:disabled, .up-dark .up-input.up-disabled' : {
@@ -135,97 +135,97 @@ export const inputStyles = (props) : NestedCSSProperties => {
         background: 'rgba(57, 75, 89, 0.5)',
         color: 'rgba(191, 204, 214, 0.5)',
       },
-      '.up-input.up-intent-primary' : {
+      '& .up-input.up-intent-primary' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), inset 0 0 0 1px #137cbd, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
       },
-      '.up-input.up-intent-primary:focus' : {
+      '& .up-input.up-intent-primary:focus' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #137cbd, 0 0 0 3px rgba(19, 124, 189, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
       },
-      '.up-input.up-intent-primary[readonly]' : {
+      '& .up-input.up-intent-primary[readonly]' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #137cbd', 
       },
       '.up-input.up-intent-primary:disabled, .up-input.up-intent-primary.up-disabled' : {
         boxShadow: 'none', 
       },
-      '.up-dark .up-input.up-intent-primary' : {
+      '& .up-dark .up-input.up-intent-primary' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), inset 0 0 0 1px #137cbd, inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)',
       },
-      '.up-dark .up-input.up-intent-primary:focus' : {
+      '& .up-dark .up-input.up-intent-primary:focus' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #137cbd, 0 0 0 1px #137cbd, 0 0 0 3px rgba(19, 124, 189, 0.3), inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)', 
       },
-      '.up-dark .up-input.up-intent-primary[readonly]' : {
+      '& .up-dark .up-input.up-intent-primary[readonly]' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #137cbd', 
       },
       '.up-dark .up-input.up-intent-primary:disabled, .up-dark .up-input.up-intent-primary.up-disabled' : {
         boxShadow: 'none', 
       },
-      '.up-input.up-intent-success' : {
+      '& .up-input.up-intent-success' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(15, 153, 96, 0), 0 0 0 0 rgba(15, 153, 96, 0), inset 0 0 0 1px #0f9960, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
       },
-      '.up-input.up-intent-success:focus' : {
+      '& .up-input.up-intent-success:focus' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #0f9960, 0 0 0 3px rgba(15, 153, 96, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
       },
-      '.up-input.up-intent-success[readonly]' : {
+      '& .up-input.up-intent-success[readonly]' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #0f9960', 
       },
       '.up-input.up-intent-success:disabled, .up-input.up-intent-success.up-disabled' : {
         boxShadow: 'none', 
       },
-      '.up-dark .up-input.up-intent-success' : {
+      '& .up-dark .up-input.up-intent-success' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(15, 153, 96, 0), 0 0 0 0 rgba(15, 153, 96, 0), 0 0 0 0 rgba(15, 153, 96, 0), inset 0 0 0 1px #0f9960, inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)',
       },
-      '.up-dark .up-input.up-intent-success:focus' : {
+      '& .up-dark .up-input.up-intent-success:focus' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #0f9960, 0 0 0 1px #0f9960, 0 0 0 3px rgba(15, 153, 96, 0.3), inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)', 
       },
-      '.up-dark .up-input.up-intent-success[readonly]' : {
+      '& .up-dark .up-input.up-intent-success[readonly]' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #0f9960',
       },
       '.up-dark .up-input.up-intent-success:disabled, .up-dark .up-input.up-intent-success.up-disabled' : {
         boxShadow: 'none',
       },
-      '.up-input.up-intent-warning' : {
+      '& .up-input.up-intent-warning' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(217, 130, 43, 0), 0 0 0 0 rgba(217, 130, 43, 0), inset 0 0 0 1px #d9822b, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
       },
-      '.up-input.up-intent-warning:focus' : {
+      '& .up-input.up-intent-warning:focus' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #d9822b, 0 0 0 3px rgba(217, 130, 43, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
       },
-      '.up-input.up-intent-warning[readonly]' : {
+      '& .up-input.up-intent-warning[readonly]' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #d9822b', 
       },
       '.up-input.up-intent-warning:disabled, .up-input.up-intent-warning.up-disabled' : {
         boxShadow: 'none', 
       },
-      '.up-dark .up-input.up-intent-warning' : {
+      '& .up-dark .up-input.up-intent-warning' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(217, 130, 43, 0), 0 0 0 0 rgba(217, 130, 43, 0), 0 0 0 0 rgba(217, 130, 43, 0), inset 0 0 0 1px #d9822b, inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)',
       },
-      '.up-dark .up-input.up-intent-warning:focus' : {
+      '& .up-dark .up-input.up-intent-warning:focus' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #d9822b, 0 0 0 1px #d9822b, 0 0 0 3px rgba(217, 130, 43, 0.3), inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)',
       },
-      '.up-dark .up-input.up-intent-warning[readonly]' : {
+      '& .up-dark .up-input.up-intent-warning[readonly]' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #d9822b', 
       },
       '.up-dark .up-input.up-intent-warning:disabled, .up-dark .up-input.up-intent-warning.up-disabled' : {
         boxShadow: 'none', 
       },
-      '.up-input.up-intent-danger' : {
+      '& .up-input.up-intent-danger' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(219, 55, 55, 0), 0 0 0 0 rgba(219, 55, 55, 0), inset 0 0 0 1px #db3737, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
       },
-      '.up-input.up-intent-danger:focus' : {
+      '& .up-input.up-intent-danger:focus' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #db3737, 0 0 0 3px rgba(219, 55, 55, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
       },
-      '.up-input.up-intent-danger[readonly]' : {
+      '& .up-input.up-intent-danger[readonly]' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #db3737',
       },
       '.up-input.up-intent-danger:disabled, .up-input.up-intent-danger.up-disabled' : {
         boxShadow: 'none',
       },
-      '.up-dark .up-input.up-intent-danger' : {
+      '& .up-dark .up-input.up-intent-danger' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(219, 55, 55, 0), 0 0 0 0 rgba(219, 55, 55, 0), 0 0 0 0 rgba(219, 55, 55, 0), inset 0 0 0 1px #db3737, inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)',
       },
-      '.up-dark .up-input.up-intent-danger:focus' : {
+      '& .up-dark .up-input.up-intent-danger:focus' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #db3737, 0 0 0 1px #db3737, 0 0 0 3px rgba(219, 55, 55, 0.3), inset 0 0 0 1px rgba(16, 22, 26, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.4)',
       },
-      '.up-dark .up-input.up-intent-danger[readonly]' : {
+      '& .up-dark .up-input.up-intent-danger[readonly]' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #db3737',
       },
       '.up-dark .up-input.up-intent-danger:disabled, .up-dark .up-input.up-intent-danger.up-disabled' : {
@@ -265,7 +265,7 @@ export const inputStyles = (props) : NestedCSSProperties => {
         paddingTop: 0,
         paddingBottom: 0,
       },
-      '.up-input-group .up-icon-wrapper' : {
+      '& .up-input-group .up-icon-wrapper' : {
         lineHeight: 1,
         fontFamily: '"Icons16", sans-serif',
         fontSize: '16px',
@@ -348,13 +348,13 @@ export const inputStyles = (props) : NestedCSSProperties => {
       '.up-dark .up-input-group.up-disabled .up-icon-wrapper' : {
         color: 'rgba(191, 204, 214, 0.5)', 
       },
-      '.up-input-group.up-intent-primary .up-input' : {
+      '& .up-input-group.up-intent-primary .up-input' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), inset 0 0 0 1px #137cbd, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
       },
-      '.up-input-group.up-intent-primary .up-input:focus' : {
+      '& .up-input-group.up-intent-primary .up-input:focus' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #137cbd, 0 0 0 3px rgba(19, 124, 189, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
       },
-      '.up-input-group.up-intent-primary .up-input[readonly]' : {
+      '& .up-input-group.up-intent-primary .up-input[readonly]' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #137cbd',
       },
       '.up-input-group.up-intent-primary .up-input:disabled, .up-input-group.up-intent-primary .up-input.up-disabled' : {
@@ -366,13 +366,13 @@ export const inputStyles = (props) : NestedCSSProperties => {
       '.up-dark .up-input-group.up-intent-primary .up-icon-wrapper' : {
         color: '#48aff0',
       },
-      '.up-input-group.up-intent-success .up-input' : {
+      '& .up-input-group.up-intent-success .up-input' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(15, 153, 96, 0), 0 0 0 0 rgba(15, 153, 96, 0), inset 0 0 0 1px #0f9960, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
       },
-      '.up-input-group.up-intent-success .up-input:focus' : {
+      '& .up-input-group.up-intent-success .up-input:focus' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #0f9960, 0 0 0 3px rgba(15, 153, 96, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
       },
-      '.up-input-group.up-intent-success .up-input[readonly]' : {
+      '& .up-input-group.up-intent-success .up-input[readonly]' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #0f9960',
       },
       '.up-input-group.up-intent-success .up-input:disabled, .up-input-group.up-intent-success .up-input.up-disabled' : {
@@ -384,13 +384,13 @@ export const inputStyles = (props) : NestedCSSProperties => {
       '.up-dark .up-input-group.up-intent-success .up-icon-wrapper' : {
         color: '#3dcc91', 
       },
-      '.up-input-group.up-intent-warning .up-input' : {
+      '& .up-input-group.up-intent-warning .up-input' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(217, 130, 43, 0), 0 0 0 0 rgba(217, 130, 43, 0), inset 0 0 0 1px #d9822b, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
       },
-      '.up-input-group.up-intent-warning .up-input:focus' : {
+      '& .up-input-group.up-intent-warning .up-input:focus' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #d9822b, 0 0 0 3px rgba(217, 130, 43, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
       },
-      '.up-input-group.up-intent-warning .up-input[readonly]' : {
+      '& .up-input-group.up-intent-warning .up-input[readonly]' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #d9822b', 
       },
       '.up-input-group.up-intent-warning .up-input:disabled, .up-input-group.up-intent-warning .up-input.up-disabled' : {
@@ -402,13 +402,13 @@ export const inputStyles = (props) : NestedCSSProperties => {
       '.up-dark .up-input-group.up-intent-warning .up-icon-wrapper' : {
         color: '#ffb366', 
       },
-      '.up-input-group.up-intent-danger .up-input' : {
+      '& .up-input-group.up-intent-danger .up-input' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(219, 55, 55, 0), 0 0 0 0 rgba(219, 55, 55, 0), inset 0 0 0 1px #db3737, inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
       },
-      '.up-input-group.up-intent-danger .up-input:focus' : {
+      '& .up-input-group.up-intent-danger .up-input:focus' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #db3737, 0 0 0 3px rgba(219, 55, 55, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
       },
-      '.up-input-group.up-intent-danger .up-input[readonly]' : {
+      '& .up-input-group.up-intent-danger .up-input[readonly]' : {
         boxShadow: props.theme.inputBorderLess ? 'inherit' : 'inset 0 0 0 1px #db3737', 
       },
       '.up-input-group.up-intent-danger .up-input:disabled, .up-input-group.up-intent-danger .up-input.up-disabled' : {
@@ -426,7 +426,7 @@ export const inputStyles = (props) : NestedCSSProperties => {
 
 export const focusStyles = (props: StyledProps) => style(props.focused === true ? {
   $nest : {
-    '.up-input-group.up-input-focused .up-icon-wrapper svg, .up-input-group.up-input-focused .up-icon-wrapper svg path, .up-input-group.up-input-focused .up-icon-wrapper  svg polygon' : {
+    '& .up-input-group.up-input-focused .up-icon-wrapper svg, & .up-input-group.up-input-focused .up-icon-wrapper svg path, & .up-input-group.up-input-focused .up-icon-wrapper svg polygon' : {
       fill: props.theme.colorMap.primary,
     }
   }
@@ -441,7 +441,7 @@ export const getStyles = (props: StyledProps) : string => {
       focusStyles(props),
       style({
       $nest : {
-        '.up-input' : {
+        '& .up-input' : {
           width: sizeMap[props.width],
           ...heightStyle,
         }

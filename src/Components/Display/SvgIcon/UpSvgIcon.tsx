@@ -25,7 +25,7 @@ const getStyles = (props : SvgIconWrapperProps) : NestedCSSProperties => ({
     height: `${props.height}px`,
     margin: '1px',
     $nest : {
-        'svg, svg path, svg polygon' : {
+        '& svg, & svg path, & svg polygon' : {
             fill: props.color,
         }
     }
