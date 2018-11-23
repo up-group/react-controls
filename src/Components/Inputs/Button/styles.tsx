@@ -222,11 +222,11 @@ const icon = (props:UpButtonProps) : NestedCSSProperties => {
     lineHeight: '1.5',
     $nest : {
       '&.up-btn svg, &.up-btn svg path, &.up-btn svg polygon' : {
-        margin:'3px !important',
+        margin:'0px !important',
         width: props.iconSize ? props.iconSize : '15px',
         height: props.iconSize ? props.iconSize : '15px',
         border:'0px',
-        padding:'0px',
+        padding:'3px',
       }
     }
   }
