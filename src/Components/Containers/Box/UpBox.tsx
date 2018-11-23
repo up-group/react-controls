@@ -47,6 +47,8 @@ export interface UpBoxProps {
     style?: React.CSSProperties;
     /** Specify a specific className for the box */
     className?: string;
+    /** Add click handler on the Box */
+    onClick?: (event : React.MouseEvent<any>) => void;
   };
 
   const FullSize = style({
@@ -61,6 +63,7 @@ export interface UpBoxProps {
     static defaultProps : Partial<UpBoxProps & WithThemeProps> = {
         style : {},
         theme:defaultTheme,
+        onClick: (e) => {},
     }
     
     getBoxStyles = () => {
@@ -94,13 +97,13 @@ export interface UpBoxProps {
     }
 
     render() {
-        const { children, style, ...others } = this.props ;
+        const { children, style, onClick, ...others } = this.props ;
         
         return (
-            <div style={style || {}} className={cn(this.getBoxStyles(), this.getSize(), this.props.className)}>
+            <div onClick={onClick} style={style || {}} className={cn(this.getBoxStyles(), this.getSize(), this.props.className)}>
               {children || null}
             </div>
-          );
+        );
     }
 }
 
