@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { getStyles } from './styles';
+import * as classnames from 'classnames';
 
 // Exports
 export type ParagraphSize = 'small' | 'medium' | 'large' | 'xlarge';
@@ -25,12 +26,13 @@ export interface UpParagraphProps {
   textAlign?: string;
   paragraphSize?: ParagraphSize;
   margin?: Margin;
-  children?: string | JSX.Element | Array<React.ReactNode>
+  children?: string | JSX.Element | Array<React.ReactNode>;
+  className?:string;
 }
 
 const UpParagraph : React.StatelessComponent<UpParagraphProps> = (props : UpParagraphProps) => {
-    const {children} = props ;   
-    return <p className={getStyles(props)}>{children}</p>
+    const { children, className } = props ;   
+    return <p className={classnames(getStyles(props), className) }>{children}</p>
 } ;
 
 export default UpParagraph;
