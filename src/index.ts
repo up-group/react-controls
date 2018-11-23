@@ -51,7 +51,7 @@ import UpRadio from './Components/Inputs/Radio'
 import UpPassword from './Components/Inputs/Password'
 import * as UpIcons from "./Components/Display/Icons/materialinear";
 
-import UpDefaultTheme, { UpThemeProvider, UpThemeInterface, UpThemeColorMap, WithThemeProps } from './Common/theming'
+import UpDefaultTheme, { UpThemeProvider, UpThemeInterface, UpThemeColorMap, WithThemeProps, withTheme } from './Common/theming'
 
 import { IconName as UpIconName } from './Common/theming/icons'
 
@@ -93,6 +93,7 @@ export {
     UpThemeColorMap,
     UpDefaultTheme,
     WithThemeProps,
+    withTheme,
     UpToggle,
     UpCheckbox,
     UpRadio,

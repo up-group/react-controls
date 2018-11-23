@@ -7,6 +7,7 @@ import { ThemeInterface, WithThemeProps } from './types';
 import { ThemeProvider as UpThemeProvider } from './ThemeProvider'
 import { Dictionary } from '../utils/types';
 import { NestedCSSProperties } from 'typestyle/lib/types';
+import withTheme from './withTheme';
 
 const defaultStyles = new Dictionary<string, NestedCSSProperties>([{
   key : 'input', value : {
@@ -29,6 +30,6 @@ const defaultTheme: ThemeInterface = {
   borderRadius: '6px',
 }
 
-export { UpThemeProvider, ThemeInterface as UpThemeInterface, colorMap as UpThemeColorMap, WithThemeProps } 
+export { UpThemeProvider, ThemeInterface as UpThemeInterface, colorMap as UpThemeColorMap, WithThemeProps, withTheme } 
 
 export default defaultTheme ;
