@@ -13,6 +13,7 @@ import defaultTheme from "../../../../Common/theming";
 const ONCHANGE_MUST_BE_SPECIFIED = "La méthode onChange doit être spécifié dans le cas où la valeur du composant est défini dans les props";
 
 export interface BaseControlProps<_BaseType> extends WithThemeProps {
+    name?: string;
     onChange?: (event: React.ChangeEvent<any>, arg: _BaseType, error: boolean) => void;
     value?: _BaseType;
     defaultValue?: _BaseType;

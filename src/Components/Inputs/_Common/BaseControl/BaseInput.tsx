@@ -7,7 +7,6 @@ export type WidthSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'fi
 export type HeightSize = 'normal' | 'large';
 
 export interface CommonInputTextProps<VT> extends BaseControlProps<VT> {
-    name?: string;
     placeholder?: string;
     height?: HeightSize;
     width?: WidthSize;

@@ -11,6 +11,7 @@ import { getStyles } from './styles';
 import { Props } from 'react-select/lib/Select';
 
 import { color } from 'csx';
+import { ValueType, ActionMeta } from 'react-select/lib/types';
 
 const CancelToken = axios.CancelToken;
 
@@ -506,6 +507,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
 
         const selectComponentProps : Props = {
             ...specProps,
+            name: this.props.name,
             placeholder: this.props.placeholder,
             filterOption: (option, filter) => {
                 const filterHandler = this.props.filterOptions || this.filterOptions ;
@@ -527,7 +529,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             searchPromptText:this.props.searchPromptText,
             optionRenderer:this.getOptionRenderer,
             valueRenderer:this.getValueRenderer,
-            onChange:this.onChange,
+            onChange:this.onChange.bind(this, this.props.name),
             menuIsOpen: this.state.extra.menuIsOpen,
             onMenuOpen: () => this.setState(update(this.state, {extra : { menuIsOpen : { $set  : true }}})),
             onMenuClose: () => this.setState(update(this.state, {extra : { menuIsOpen : { $set  : false }}})),
@@ -576,9 +578,21 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         );
     }
 
-    onChange = (event) => {
-        event.persist() ;
-        const data = this.setValue(event);
+    onChange = (name: string, value: ValueType<object>, action: ActionMeta) => {
+        const data = this.setValue(value);
+        const fakeEvent = new Event("change", { bubbles: true }) ;
+        const event : React.ChangeEvent<any> 
+            = { ...fakeEvent,
+                target : {
+                    ...fakeEvent.target,
+                    name,
+                    value,
+                },
+                nativeEvent: fakeEvent, 
+                isDefaultPrevented: () => false, 
+                persist: () => {},
+                isPropagationStopped: () => false} as React.SyntheticEvent<any>;
+                
         this.handleChangeEvent(event, data);
     }
 }
