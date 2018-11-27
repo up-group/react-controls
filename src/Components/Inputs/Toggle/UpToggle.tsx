@@ -17,7 +17,7 @@ export interface UpToggleProps {
     icons?:any;
     size?:Size;
     className?:string;
-    onChange?:(event) =>void;
+    onChange?:(event, value) =>void;
     onFocus?:(event) =>void;
     onBlur?:(event) =>void;
 }
@@ -304,7 +304,7 @@ class UpToggle extends React.PureComponent<UpToggleProps & WithThemeProps, UpTog
     }
     
     if(this.props.onChange) 
-      this.props.onChange(event.target.checked) ;
+      this.props.onChange(event, event.target.checked) ;
   }
 
   getIcon = (type) => {

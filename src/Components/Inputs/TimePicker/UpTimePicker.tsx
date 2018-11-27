@@ -87,6 +87,20 @@ export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeSta
     }
 
     sendChange = () => {
-        this.props.onChange(this.state.hour + ":" + this.state.minute);
+        const value = this.state.hour + ":" + this.state.minute ;
+        const fakeEvent = new Event("change", { bubbles: true }) ;
+        const event : React.ChangeEvent<any> 
+                = { ...fakeEvent,
+                    target : {
+                        ...fakeEvent.target,
+                        value,
+                        name: this.props.name,
+            },
+            nativeEvent: fakeEvent, 
+            isDefaultPrevented: () => false, 
+            persist: () => {},
+            isPropagationStopped: () => false} as React.SyntheticEvent<any>;
+
+        this.props.onChange(event, value);
     }
 }

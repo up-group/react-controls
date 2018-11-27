@@ -59,11 +59,15 @@ export default class UpText extends BaseControlComponent<UpTextProps, string> {
         }
     }
     
+    onChange(event) {
+        this.handleChangeEvent(event, event.target.value);
+    }
+
     renderControl(): JSX.Element {
         const {value, onChange, className, readonly, tooltip, ...others} = this.props ;
         return <BaseTextArea className={classnames(getStyles(this.props), className)} 
                 value={this.state.value} 
-                onChange={this.handleChangeEvent} {...others} />
+                onChange={this.onChange} {...others} />
     }
 
     getValue(event: any) {

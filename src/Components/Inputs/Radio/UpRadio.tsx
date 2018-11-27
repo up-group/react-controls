@@ -64,7 +64,7 @@ class UpRadio extends BaseControlComponent<UpRadioProps, any> {
 
     public dispatchOnChange = (data: any, event?, error?: boolean) => {
         if (this.props.onChange !== undefined) {
-            this.props.onChange(data, event, error);
+            this.props.onChange(event, data, error);
         }
     }
 

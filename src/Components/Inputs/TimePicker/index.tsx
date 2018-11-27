@@ -3,9 +3,10 @@ import UpTimePicker from './UpTimePicker'
 export default UpTimePicker ;
 
 export interface UpTimeProps {
-    hasError: boolean;
+    hasError?: boolean;
     className?:string;
-    onChange: (value: string) => void;
+    name?:string;
+    onChange?:(event, value: string) => void;
 }
 
 export interface UpTimeState {
