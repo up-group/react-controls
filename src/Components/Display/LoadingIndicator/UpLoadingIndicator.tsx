@@ -113,7 +113,7 @@ class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithTheme
                 loadingIndicatorStyle.opacity = 0.8 ;
                 loadingIndicatorStyle.padding = 10;
                 loadingIndicatorStyle.borderRadius = this.props.theme.borderRadius;
-                loadingIndicatorStyle.boxShadow = "2px 2px 4px 2px #111";
+                loadingIndicatorStyle.boxShadow = "1px 1px 3px 2px #111";
             }
 
             return <aside
