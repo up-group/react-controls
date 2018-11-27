@@ -38,6 +38,23 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Date> {
         return shouldUpdate;
     }
 
+    onChange = (startDate: Date, endDate?: Date) => {
+        const fakeEvent = new Event("change", { bubbles: true }) ;
+        const event : React.ChangeEvent<any> 
+                = { ...fakeEvent,
+                    target : {
+                        ...fakeEvent.target,
+                        name: this.props.name,
+                        value: startDate,
+            },
+            nativeEvent: fakeEvent, 
+            isDefaultPrevented: () => false, 
+            persist: () => {},
+            isPropagationStopped: () => false} as React.SyntheticEvent<any>;
+
+        this.handleChangeEvent(event, startDate);
+    }
+
     renderControl() {
         const {format, hasError, disabled, minDate, maxDate, readonly, theme, ...others} = this.props ;    
         return <UpDateStyle
@@ -45,7 +62,7 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Date> {
            theme={theme}
            value={this.state.value}
            hasError={hasError || this.hasError()}
-           onChange={this.handleChangeEvent}
+           onChange={this.onChange}
            disabled={disabled}
            minDate={minDate ? minDate : MIN_DATE}
            maxDate={maxDate ? maxDate : MAX_DATE}></UpDateStyle>;

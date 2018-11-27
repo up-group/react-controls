@@ -131,9 +131,11 @@ export default class UpDateStyle extends React.Component<UpDateStyledProps, Date
         }
     }
 
+    
     public render() {
+        const { onChange, ...otherProps } = this.props ;
         return (
-            <BaseDate innerRef={this.setInput} {...this.props} focused={this.state.focused} onFocusChange={this.onFocusChange} />
+            <BaseDate innerRef={this.setInput} onChange={onChange} {...otherProps} focused={this.state.focused} onFocusChange={this.onFocusChange} />
         );
     }
 }
