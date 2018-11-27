@@ -59,7 +59,7 @@ export default class UpText extends BaseControlComponent<UpTextProps, string> {
         }
     }
     
-    onChange(event) {
+    onChange = (event) => {
         this.handleChangeEvent(event, event.target.value);
     }
 
