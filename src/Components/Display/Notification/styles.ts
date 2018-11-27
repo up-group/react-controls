@@ -8,22 +8,24 @@ import { WithThemeProps } from '../../../Common/theming/withTheme';
 export const colors = (props: UpNotificationProps & WithThemeProps ) : NestedCSSProperties => {
   return { 
       position: 'relative',
-      backgroundColor: props.theme.colorMap[`${props.intent}Dark`] || props.theme.colorMap.black3,
-      color: props.theme.colorMap.offwhite,
+      backgroundColor: props.theme.colorMap[`${props.intent}Light`] || props.theme.colorMap.white3,
+      color: props.theme.colorMap[`${props.intent}Dark`] ||  props.theme.colorMap.darkGray5,
+      border: `1px solid ${props.theme.colorMap[`${props.intent}Dark`] ||  props.theme.colorMap.darkGray5}`,
+      borderRadius: props.theme.borderRadius,
       $nest : {
-              p : {
-                  fontWeight: 500,
-                  textAlign:'left',
-              },
-          }
+            p : {
+                fontWeight: 500,
+                textAlign:'left',
+            },
+        }
   }
 };
 
 export const icon  = (props : UpNotificationProps & WithThemeProps) : NestedCSSProperties => {
   return {
       $nest : {
-          '.up-notification svg, .up-notification svg path, .up-notification svg polygon' : {
-              fill: props.theme.colorMap.offwhite,
+          '& .up-notification svg, & .up-notification svg path, & .up-notification svg polygon' : {
+              fill: props.theme ? props.theme.colorMap[`${props.intent}Dark`] : props.theme.colorMap.offwhite,
               margin: '10px',
               display: 'inline-block',
           }

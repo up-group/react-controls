@@ -46,9 +46,9 @@ class UpNotification extends React.Component<UpNotificationProps & WithThemeProp
     const defaultIconSize = 60 ;
 
     const icon = <SvgIcon iconName={iconMap[intent]}
-            width={theme && theme.notificationIconSize > 0 ?  theme.notificationIconSize : defaultIconSize}
-            height={theme && theme.notificationIconSize > 0  ? theme.notificationIconSize : defaultIconSize}
-            color={theme ? theme.colorMap[`${intent}Dark`] : "black"} /> ;
+        width={theme && theme.notificationIconSize > 0 ?  theme.notificationIconSize : defaultIconSize}
+        height={theme && theme.notificationIconSize > 0  ? theme.notificationIconSize : defaultIconSize}
+    /> ;
     
     let NotificationRender ;
     
@@ -67,10 +67,10 @@ class UpNotification extends React.Component<UpNotificationProps & WithThemeProp
                     <UpCol span={2}>
                         {icon}
                     </UpCol>
-                    <UpCol span={21}>
+                    <UpCol span={21} style={{paddingTop: '10px'}}>
                         {message && 
                             <p>
-                            {message}
+                                {message}
                             </p>
                         }
                         {children}

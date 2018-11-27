@@ -52,6 +52,8 @@ export interface ThemeColorMap {
     light3: string,
 
     primary: string,
+    primaryBorder : string,
+    primaryHoverBorder : string,
     primaryDark: string,
     primaryLight: string,
     primaryFg: string,
@@ -61,6 +63,8 @@ export interface ThemeColorMap {
     primaryHoverActive:string,
     
     secondary: string,
+    secondaryBorder : string,
+    secondaryHoverBorder : string,
     secondaryDark: string,
     secondaryLight: string,
     secondaryFg: string,
@@ -70,6 +74,8 @@ export interface ThemeColorMap {
     secondaryHoverActive:string,
 
     default: string,
+    defaultBorder : string,
+    defaultHoverBorder : string,
     defaultDark: string,
     defaultLight: string,
     defaultFg: string,
@@ -79,6 +85,8 @@ export interface ThemeColorMap {
     defaultHoverActive:string,
 
     success: string,
+    successBorder : string,
+    successHoverBorder : string,
     successDark: string,
     successLight: string,
     successFg: string,
@@ -88,6 +96,8 @@ export interface ThemeColorMap {
     successHoverActive:string,
 
     warning: string,
+    warningBorder : string,
+    warningHoverBorder : string,
     warningDark: string,
     warningLight: string,
     warningFg: string,
@@ -97,6 +107,8 @@ export interface ThemeColorMap {
     warningHoverActive:string,
 
     danger: string,
+    dangerBorder : string,
+    dangerHoverBorder : string,
     dangerDark: string,
     dangerLight: string,
     dangerFg: string,
@@ -106,6 +118,8 @@ export interface ThemeColorMap {
     dangerHoverActive:string,
     
     error: string,
+    errorBorder : string,
+    errorHoverBorder : string,
     errorDark: string,
     errorLight: string,
     errorFg: string,
@@ -115,6 +129,8 @@ export interface ThemeColorMap {
     errorHoverActive:string,
 
     info: string,
+    infoBorder : string,
+    infoHoverBorder : string,
     infoDark: string,
     infoLight: string,
     infoFg: string,
