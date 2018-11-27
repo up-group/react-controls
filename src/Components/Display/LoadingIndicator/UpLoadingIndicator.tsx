@@ -6,9 +6,10 @@ import { UpGrid, UpRow, UpCol } from '../../Containers/Grid'
 import { style } from 'typestyle';
 import { svgStyle, circleStyle } from './styles';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
-export type LoadingIndicatorDisplayMode = "inline" | "modal" | "zone"
+export type LoadingIndicatorDisplayMode = "inline" | "layer" | "modal" | "zone"
 
 import defaultTheme from '../../../Common/theming' ;
+import UpBox from '../../Containers/Box';
 
 export interface LoadingIndicatorProps {
     isLoading: boolean;
@@ -97,46 +98,66 @@ class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithTheme
                 }
             </Box >;
         } else {
+            const wrapperStyle : React.CSSProperties = { "position": "fixed", "top": 0, "right": 0, "bottom": 0, "left": 0, "zIndex": 9999, backgroundColor: "white", "opacity": 0.8 } ;
+            
+            const loadingIndicatorStyle: React.CSSProperties  = { 
+                'minWidth': '300px'
+            } ;
+
+            if(_displayMode == 'layer') {
+                wrapperStyle.backgroundColor= "transparent";
+                wrapperStyle.opacity= 1;
+
+                loadingIndicatorStyle.zIndex = 9999;
+                loadingIndicatorStyle.backgroundColor = "white";
+                loadingIndicatorStyle.opacity = 0.8 ;
+                loadingIndicatorStyle.padding = 10;
+                loadingIndicatorStyle.borderRadius = this.props.theme.borderRadius;
+                loadingIndicatorStyle.boxShadow = "2px 2px 4px 2px #111";
+            }
+
             return <aside
-                className={classnames('up-loading-screen', this.props.className)} style={{ "position": "fixed", "top": 0, "right": 0, "bottom": 0, "left": 0, "zIndex": 9999, backgroundColor: "white", "opacity": 0.8 }}>
-                <div style={{ "position": "absolute", "top": "50%", "left": "40%", "marginTop": "-7em",'minWidth': '300px'}}>
-                    <UpGrid>
-                        <UpRow>
-                            <UpCol span={6}>
-                                <SvgIcon viewBox="0 0 48 48">
-                                    <Circle
-                                        theme={this.props.theme}
-                                        cx="24"
-                                        cy="24"
-                                        r="21"
-                                        stroke={this.props.theme.colorMap.primary}
-                                        strokeWidth="6"
-                                        fill="none"
-                                    />
-                                </SvgIcon>
-                            </UpCol>
-                            <UpCol span={18}>
-                                <UpGrid>
-                                    <UpRow>
-                                        <UpCol span={24}>
-                                            <hgroup style={{ "textShadow": "0px 0px 0.1ex" }} className="">
-                                                <h3 style={{ "fontSize": "22px", 'margin':'0px' }}>
-                                                    <span>{_title}</span>
-                                                </h3>
-                                            </hgroup>
-                                        </UpCol>
-                                    </UpRow>
-                                    <UpRow>
-                                        <UpCol span={24}>
-                                            <p className="loading-status text-info"
-                                                style={{ "textAlign": "left" }}>{this.props.message}</p>
-                                        </UpCol>
-                                    </UpRow>
-                                </UpGrid>
-                            </UpCol>
-                        </UpRow>
-                    </UpGrid>
-                </div>
+                className={classnames('up-loading-screen', this.props.className)} style={wrapperStyle}>
+                <UpBox boxSize={'full'} justifyContent={'center'} alignItems={'center'}>
+                    <div style={loadingIndicatorStyle}>
+                        <UpGrid>
+                            <UpRow>
+                                <UpCol span={6}>
+                                    <SvgIcon viewBox="0 0 48 48">
+                                        <Circle
+                                            theme={this.props.theme}
+                                            cx="24"
+                                            cy="24"
+                                            r="21"
+                                            stroke={this.props.theme.colorMap.primary}
+                                            strokeWidth="6"
+                                            fill="none"
+                                        />
+                                    </SvgIcon>
+                                </UpCol>
+                                <UpCol span={18}>
+                                    <UpGrid>
+                                        <UpRow>
+                                            <UpCol span={24}>
+                                                <hgroup style={{ "textShadow": "0px 0px 0.1ex" }} className="">
+                                                    <h3 style={{ "fontSize": "22px", 'margin':'0px' }}>
+                                                        <span>{_title}</span>
+                                                    </h3>
+                                                </hgroup>
+                                            </UpCol>
+                                        </UpRow>
+                                        <UpRow>
+                                            <UpCol span={24}>
+                                                <p className="loading-status text-info"
+                                                    style={{ "textAlign": "left" }}>{this.props.message}</p>
+                                            </UpCol>
+                                        </UpRow>
+                                    </UpGrid>
+                                </UpCol>
+                            </UpRow>
+                        </UpGrid>
+                    </div>
+                </UpBox>
             </aside>;
 
         }
