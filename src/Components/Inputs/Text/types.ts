@@ -9,10 +9,11 @@ export interface UpTextProps extends WithThemeProps {
     placeholder?: string;
     disabled?: boolean;
     showError?: boolean;
-    onChange?: (event: React.ChangeEvent<any>, data: string) => void;
     value?: string;
     hasError?: boolean;
     isRequired?: boolean;
+    name?: string;
     className?: string;
     dataFor?:string; // For tooltip
+    onChange?: (event: React.ChangeEvent<any>, data: string) => void;
 }
