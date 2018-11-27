@@ -15,6 +15,7 @@ export interface LoadingIndicatorProps {
     displayMode?: LoadingIndicatorDisplayMode;
     message?: string;
     title?: string;
+    className?: string;
 }
 type SVGProps = React.SVGAttributes<SVGSVGElement> ;
 type CircleProps = React.SVGAttributes<SVGCircleElement>;
@@ -75,7 +76,7 @@ class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithTheme
                 textAlign: "center"
             }
 
-            return <div style={container}>
+            return <div style={container} className={classnames('up-loading-indicator', this.props.className)}>
                 {this.props.children}
                 <div style={overlay} >
                     <div style={circle}>
@@ -87,7 +88,7 @@ class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithTheme
             </div >
 
         } else if (_displayMode == "inline") {
-            return <Box boxSize={"auto"} pad={"none"} margin={'none'} alignItems="center" justifyContent="center" className={'up-loading-indicator'}>
+            return <Box boxSize={"auto"} pad={"none"} margin={'none'} alignItems="center" justifyContent="center" className={classnames('up-loading-indicator', this.props.className)}>
                 <SvgIcon viewBox="0 0 48 48">
                     <Circle theme={this.props.theme} cx="24" cy="24" r="21" stroke={this.props.theme.colorMap.primary} strokeWidth="6" fill="none" />
                 </SvgIcon>
@@ -97,7 +98,7 @@ class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithTheme
             </Box >;
         } else {
             return <aside
-                className="loading-screen" style={{ "position": "fixed", "top": 0, "right": 0, "bottom": 0, "left": 0, "zIndex": 9999, backgroundColor: "white", "opacity": 0.8 }}>
+                className={classnames('up-loading-screen', this.props.className)} style={{ "position": "fixed", "top": 0, "right": 0, "bottom": 0, "left": 0, "zIndex": 9999, backgroundColor: "white", "opacity": 0.8 }}>
                 <div style={{ "position": "absolute", "top": "50%", "left": "40%", "marginTop": "-7em",'minWidth': '300px'}}>
                     <UpGrid>
                         <UpRow>
