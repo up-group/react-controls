@@ -41,7 +41,8 @@ const getStyles = (props: UpDateStyledProps & WithThemeProps) => style({
         },
         '& .DateInput_input' : {
             padding: '6px',
-            fontSize: '16px',
+            fontSize:'14px',
+            color: '#354052',
             lineHeight : '18px',
         },
         '& .DateInput_input__focused' : {
@@ -130,7 +131,6 @@ export default class UpDateStyle extends React.Component<UpDateStyledProps, Date
             this.dateInput.inputRef.setAttribute('data-for', _props.dataFor);
         }
     }
-
     
     public render() {
         const { onChange, ...otherProps } = this.props ;

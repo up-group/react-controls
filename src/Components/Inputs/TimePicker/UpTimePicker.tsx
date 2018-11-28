@@ -66,7 +66,11 @@ export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeSta
                 '& .up-time-separator' : {
                     marginLeft: 10,
                     marginRight: 10,
-                }
+                }, 
+                '& input, & .up-time-separator' : {
+                    fontSize:'14px',
+                    color: '#354052',
+                },
             }
         });
 
