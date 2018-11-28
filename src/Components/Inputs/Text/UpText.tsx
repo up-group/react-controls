@@ -47,7 +47,7 @@ class BaseTextArea extends React.Component<UpTextProps> {
 export default class UpText extends BaseControlComponent<UpTextProps, string> {
     
     public static defaultProps:UpTextProps = {
-        width: 'xlarge',
+        width: 'fill',
         showError: true,
         theme:defaultTheme
     }
