@@ -16,7 +16,7 @@ const inline : NestedCSSProperties = {
     '& .up-label-text' : {
       lineHeight: '30px',
     },
-    '& >div,.up-input,.up-input-group,.up-select' :  {
+    '& >div,& .up-input,& .up-input-group,& .up-select' :  {
       display: 'inline-block',
       verticalAlign: 'top', 
     },
@@ -39,7 +39,7 @@ const base = (props: UpLabelProps) : NestedCSSProperties => (
         color: props.color,
         fontSize: '14px',
       },
-      '& .up-input, .up-select' : {
+      '& .up-input, & .up-select' : {
         display: 'block',
         textTransform: 'none',
       },

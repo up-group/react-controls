@@ -62,6 +62,10 @@ export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeSta
             $nest : {
                 '& div' : {
                     display:'inline-block',
+                },
+                '& .up-time-separator' : {
+                    marginLeft: 10,
+                    marginRight: 10,
                 }
             }
         });
@@ -73,27 +77,25 @@ export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeSta
                 borderColor: this.props.hasError === true ? 'red' : 'inherit',
                 borderBottomWidth: '1px',
                 borderBottomStyle: 'solid', 
-                width: "auto",
-                padding: "4px"
+                width: "160px", // Fix width
+                padding: "2px",
+                display: 'flex',
             }}>
-            <div>
                 <input
-                        type="text"
-                        value={this.state.hour.toString()}
-                        onKeyDown={this.onKeyDownHour}
-                        onChange={this.onchangeHourEvent}
-                        style={{
-                            "border": "none",
-                            "width": "2em",
-                            "textAlign": "center"
-                        }}
+                    type="text"
+                    value={this.state.hour.toString()}
+                    onKeyDown={this.onKeyDownHour}
+                    onChange={this.onchangeHourEvent}
+                    style={{
+                        "border": "none",
+                        "width": "2em",
+                        "textAlign": "center"
+                    }}
                 />
                 <UpContextMenuTrigger rightClick={false} id={this.hourContextMenuId} holdToDisplay={1000}>
                     <UpSvgIcon iconName={'caret-down'} style={{cursor: 'pointer'}} />
                 </UpContextMenuTrigger>
-            </div>
-            <div className={'up-time-separator'}>:</div>
-            <div>
+                <div className={'up-time-separator'}>:</div>
                 <input
                     type="text"
                     value={this.state.minute.toString()}
@@ -109,19 +111,21 @@ export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeSta
                 <UpContextMenuTrigger rightClick={false} id={this.minuteContextMenuId} holdToDisplay={1000}>
                     <UpSvgIcon iconName={'caret-down'} style={{cursor: 'pointer'}} />
                 </UpContextMenuTrigger>
-            </div>
-            <UpSvgIcon iconName={'timer'} />
-        </UpBox>
-        <UpContextMenu id={this.minuteContextMenuId}>
-            {minuteSteps.map(step => {
-                return <UpContextMenuItem onClick={this.setMinute} data={{value: step}}>{step}</UpContextMenuItem>
-            })}
-        </UpContextMenu>
-        <UpContextMenu id={this.hourContextMenuId}>
-            {hourSteps.map(step => {
-                return <UpContextMenuItem onClick={this.setHour} data={{value: step}}>{step}</UpContextMenuItem>
-            })}
-        </UpContextMenu>
+                <UpSvgIcon iconName={'timer'} style={{
+                    marginLeft: 10,
+                    marginTop: 5,
+                }}/>
+            </UpBox>
+            <UpContextMenu id={this.minuteContextMenuId}>
+                {minuteSteps.map(step => {
+                    return <UpContextMenuItem onClick={this.setMinute} data={{value: step}}>{step}</UpContextMenuItem>
+                })}
+            </UpContextMenu>
+            <UpContextMenu id={this.hourContextMenuId}>
+                {hourSteps.map(step => {
+                    return <UpContextMenuItem onClick={this.setHour} data={{value: step}}>{step}</UpContextMenuItem>
+                })}
+            </UpContextMenu>
         </>
         );
     }

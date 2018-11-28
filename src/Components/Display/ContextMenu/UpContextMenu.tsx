@@ -149,7 +149,6 @@ class UpContextMenu extends React.PureComponent<UpContextMenuProps & WithThemePr
                 position: "fixed", 
                 top: top, 
                 left: left,
-                minWidth: '160px',
                 padding: '5px 0',
                 margin: '2px 0 0',
                 fontSize: '16px',
