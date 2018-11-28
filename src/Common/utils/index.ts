@@ -4,7 +4,7 @@ import remStringFromPx from './remStringFromPx';
 
 export default remStringFromPx;
 
-export function GenerateId()
+export function generateId()
 {
     var id = "";
     var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

@@ -5,7 +5,7 @@ import { Component } from "react";
 import * as classNames from 'classnames'
 
 import * as ReactTooltip from 'react-tooltip'
-import { GenerateId, isFunction } from '../../../Common/utils'
+import { generateId, isFunction } from '../../../Common/utils'
 
 import {UpTooltipProps} from './'
 
@@ -73,7 +73,7 @@ export default class UpTooltip extends Component<UpTooltipProps, UpTooltipState>
     const {id, children, content, ...others} = this.props ;
     let tooltipId = id ;
     if(!tooltipId) {
-      tooltipId = GenerateId() ;
+      tooltipId = generateId() ;
     }
     let childrenWithProps = null ;
     let childrenAsFunction = null ;

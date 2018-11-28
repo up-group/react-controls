@@ -5,6 +5,7 @@ import UpBox from '../../Containers/Box';
 import { style } from "typestyle";
 
 import * as classnames from 'classnames';
+import { generateId } from "../../../Common/utils";
 
 export interface UpTimeProps {
     hasError?: boolean;
@@ -26,6 +27,9 @@ export interface UpTimeState {
 export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeState> {
     inputElement: HTMLInputElement;
     
+    hourContextMenuId = `hour-time-picker-${generateId()}`;
+    minuteContextMenuId = `minute-time-picker-${generateId()}`;
+
     public static defaultProps = {
         minuteStep : 5,
         withIcon: true,
@@ -84,7 +88,7 @@ export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeSta
                             "textAlign": "center"
                         }}
                 />
-                <UpContextMenuTrigger rightClick={false} id={'hour-time-picker'} holdToDisplay={1000}>
+                <UpContextMenuTrigger rightClick={false} id={this.hourContextMenuId} holdToDisplay={1000}>
                     <UpSvgIcon iconName={'caret-down'} style={{cursor: 'pointer'}} />
                 </UpContextMenuTrigger>
             </div>
@@ -102,18 +106,18 @@ export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeSta
                         "textAlign": "center"
                     }}
                 />
-                <UpContextMenuTrigger rightClick={false} id={'minute-time-picker'} holdToDisplay={1000}>
+                <UpContextMenuTrigger rightClick={false} id={this.minuteContextMenuId} holdToDisplay={1000}>
                     <UpSvgIcon iconName={'caret-down'} style={{cursor: 'pointer'}} />
                 </UpContextMenuTrigger>
             </div>
             <UpSvgIcon iconName={'timer'} />
         </UpBox>
-        <UpContextMenu id="minute-time-picker">
+        <UpContextMenu id={this.minuteContextMenuId}>
             {minuteSteps.map(step => {
                 return <UpContextMenuItem onClick={this.setMinute} data={{value: step}}>{step}</UpContextMenuItem>
             })}
         </UpContextMenu>
-        <UpContextMenu id="hour-time-picker">
+        <UpContextMenu id={this.hourContextMenuId}>
             {hourSteps.map(step => {
                 return <UpContextMenuItem onClick={this.setHour} data={{value: step}}>{step}</UpContextMenuItem>
             })}
