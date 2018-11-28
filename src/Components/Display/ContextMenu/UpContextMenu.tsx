@@ -161,6 +161,7 @@ class UpContextMenu extends React.PureComponent<UpContextMenuProps & WithThemePr
                 borderRadius: '.25rem',
                 outline: 'none',
                 opacity: this.state.isVisible ? 1 : 0,
+                zIndex: this.state.isVisible ? 9999 : -1,
                 pointeEvents: this.state.isVisible ? 'auto' : 'none',
                 $nest : {
                     '& .up-contextmenu-link' : {

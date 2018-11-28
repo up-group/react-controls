@@ -14,11 +14,7 @@ export interface UpContextMenuItemProps {
     onClick: (event, data) => void;
 }
 
-export interface UpContextMenuItemState {
-    
-}
-
-export default class UpContextMenuItem extends React.PureComponent<UpContextMenuItemProps, UpContextMenuItemState> {
+export default class UpContextMenuItem extends React.PureComponent<UpContextMenuItemProps> {
     
     public static defaultProps = {
         disabled: false,

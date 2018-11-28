@@ -97,12 +97,12 @@ export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeSta
             </div>
         </div>
     }
-    setHour() {
-        console.log(arguments) ;
+    setHour = (e, selectedOption)  => {
+        this.onchangeHour(selectedOption.value)
     }
 
-    setMinute() {
-        console.log(arguments) ;
+    setMinute = (e, selectedOption)  =>  {
+        this.onchangeMin(selectedOption.value)
     }
 
     onFocusMinute = (e) => {
