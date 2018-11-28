@@ -1,5 +1,10 @@
 ﻿import * as React from "react";
 import { UpContextMenu, UpContextMenuItem, UpContextMenuItemDivider, UpContextMenuTrigger } from "../../Display/ContextMenu";
+import UpSvgIcon from "../../Display/SvgIcon";
+import UpBox from '../../Containers/Box';
+import { style } from "typestyle";
+
+import * as classnames from 'classnames';
 
 export interface UpTimeProps {
     hasError?: boolean;
@@ -8,6 +13,7 @@ export interface UpTimeProps {
     value?: string;
     onChange?:(event, value: string) => void;
     minuteStep? : number;
+    withIcon?: boolean;
 }
 
 export interface UpTimeState {
@@ -22,6 +28,7 @@ export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeSta
     
     public static defaultProps = {
         minuteStep : 5,
+        withIcon: true,
     }
 
     constructor(p, c) {
@@ -47,15 +54,26 @@ export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeSta
             currentStep += 1;
         }
 
-        return <div className="form-control"
+        const wrapperStyles = style({
+            $nest : {
+                '& div' : {
+                    display:'inline-block',
+                }
+            }
+        });
+
+        return (
+            <>
+            <UpBox className={classnames(wrapperStyles, 'up-form-control')} flexDirection={'row'} alignItems={'flex-start'} justifyContent={'flex-end'} 
             style={{
                 borderColor: this.props.hasError === true ? 'red' : 'inherit',
-                width: "5em",
+                borderBottomWidth: '1px',
+                borderBottomStyle: 'solid', 
+                width: "auto",
                 padding: "4px"
             }}>
-            <div style={{display: 'inline-block'}}>
-                <UpContextMenuTrigger rightClick={false} id={'hour-time-picker'} holdToDisplay={1000}>
-                    <input
+            <div>
+                <input
                         type="text"
                         value={this.state.hour.toString()}
                         onKeyDown={this.onKeyDownHour}
@@ -65,37 +83,43 @@ export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeSta
                             "width": "2em",
                             "textAlign": "center"
                         }}
-                        />
+                />
+                <UpContextMenuTrigger rightClick={false} id={'hour-time-picker'} holdToDisplay={1000}>
+                    <UpSvgIcon iconName={'caret-down'} style={{cursor: 'pointer'}} />
                 </UpContextMenuTrigger>
-                <UpContextMenu id="hour-time-picker">
-                    {hourSteps.map(step => {
-                        return <UpContextMenuItem onClick={this.setHour} data={{value: step}}>{step}</UpContextMenuItem>
-                    })}
-                </UpContextMenu>
             </div>
-            :
-            <div style={{display: 'inline-block'}}>
+            <div className={'up-time-separator'}>:</div>
+            <div>
+                <input
+                    type="text"
+                    value={this.state.minute.toString()}
+                    onKeyDown={this.onKeyDownMin}
+                    onChange={this.onchangeMinEvent}
+                    onFocus={this.onFocusMinute}
+                    style={{
+                        "border": "none",
+                        "width": "2em",
+                        "textAlign": "center"
+                    }}
+                />
                 <UpContextMenuTrigger rightClick={false} id={'minute-time-picker'} holdToDisplay={1000}>
-                    <input
-                        type="text"
-                        value={this.state.minute.toString()}
-                        onKeyDown={this.onKeyDownMin}
-                        onChange={this.onchangeMinEvent}
-                        onFocus={this.onFocusMinute}
-                        style={{
-                            "border": "none",
-                            "width": "2em",
-                            "textAlign": "center"
-                        }}
-                    />
+                    <UpSvgIcon iconName={'caret-down'} style={{cursor: 'pointer'}} />
                 </UpContextMenuTrigger>
-                <UpContextMenu id="minute-time-picker">
-                    {minuteSteps.map(step => {
-                        return <UpContextMenuItem onClick={this.setMinute} data={{value: step}}>{step}</UpContextMenuItem>
-                    })}
-                </UpContextMenu>
             </div>
-        </div>
+            <UpSvgIcon iconName={'timer'} />
+        </UpBox>
+        <UpContextMenu id="minute-time-picker">
+            {minuteSteps.map(step => {
+                return <UpContextMenuItem onClick={this.setMinute} data={{value: step}}>{step}</UpContextMenuItem>
+            })}
+        </UpContextMenu>
+        <UpContextMenu id="hour-time-picker">
+            {hourSteps.map(step => {
+                return <UpContextMenuItem onClick={this.setHour} data={{value: step}}>{step}</UpContextMenuItem>
+            })}
+        </UpContextMenu>
+        </>
+        );
     }
     setHour = (e, selectedOption)  => {
         this.onchangeHour(selectedOption.value)

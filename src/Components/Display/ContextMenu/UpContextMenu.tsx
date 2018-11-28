@@ -198,7 +198,7 @@ class UpContextMenu extends React.PureComponent<UpContextMenuProps & WithThemePr
 
         return (
             <nav ref={this.setMenu} onContextMenu={this.handleHide} className={MenuStyle}>
-                {children}
+                {this.state.isVisible && children}
             </nav>
         );
     }
