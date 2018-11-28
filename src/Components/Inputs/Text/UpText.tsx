@@ -33,9 +33,10 @@ class BaseTextArea extends React.Component<UpTextProps> {
     }
 
     render() {
-        const {className, value, onChange} = this.props;
+        const {className, value, onChange, name} = this.props;
 
         return <Textarea value={value}
+            name={name}
             ref={this.setInput}
             className={className}
             onChange={onChange}></Textarea>;
@@ -60,6 +61,7 @@ export default class UpText extends BaseControlComponent<UpTextProps, string> {
     }
     
     onChange = (event) => {
+        event.persist() ;
         this.handleChangeEvent(event, event.target.value);
     }
 

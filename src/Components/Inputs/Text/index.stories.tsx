@@ -23,7 +23,7 @@ stories.add('Simple usage',
     ), { info : 'Utilisation avec plusieurs options'}
 ).add('Form',
 () => (
-    <Formik initialValues={{ email: '', password: ''}}
+    <Formik initialValues={{ description: ''}}
             onSubmit={(values, { setSubmitting }) => {
               setTimeout(() => {
                 alert(JSON.stringify(values, null, 2));
@@ -31,9 +31,7 @@ stories.add('Simple usage',
               }, 500);
             }}
             validationSchema={Yup.object().shape({
-              email: Yup.string()
-                .email()
-                .required('Required'),
+              
             })}>
             {(props) => {
               const {
@@ -50,7 +48,11 @@ stories.add('Simple usage',
               return (
                 <form onSubmit={handleSubmit}>
                  <UpLabel text={"Observation : "}>
-                    <UpText width={'fill'} />
+                    <UpText width={'fill'} 
+                      name={'description'}
+                      value={values.description}
+                      onChange={handleChange}
+                    />
                 </UpLabel>
                 </form>
               );
