@@ -26,7 +26,7 @@ const groupBadgeStyles : React.CSSProperties = {
     borderRadius: '2em',
     color: '#172B4D',
     display: 'inline-block',
-    fontSize: 12,
+    fontSize: '12px',
     fontWeight: 500,
     lineHeight: '1',
     minWidth: 1,
@@ -48,6 +48,7 @@ const customStyles = {
       fontWeight :  state.isSelected ? 700 : provided.fontWeight || 'inherit',
       backgroundColor : state.isSelected ? '#EE7F2D' : 'transparent',
       padding: 10,
+      fontSize: '14px',
       cursor: 'pointer',
       ':active' : {
         color: 'white',
@@ -64,6 +65,8 @@ const customStyles = {
         ...provided, 
         outline: 'none',
         borderRadius:0,
+        color: provided.color,
+        fontSize: '14px',
         border: state.isFocused ? 0 : 0,
         // This line disable the blue border
         boxShadow: state.isFocused ? 0 : 0,
@@ -507,6 +510,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
 
         const selectComponentProps : Props = {
             ...specProps,
+            color: '#354052',
             name: this.props.name,
             placeholder: this.props.placeholder,
             filterOption: (option, filter) => {
