@@ -47,7 +47,6 @@ const ModalStyle = style({
         "& .up-modal-open" :{
             overflow: "hidden"
         },
-
         "& .up-modal.fade" : {
             visibility:"hidden",
             transition: ".5s ease-in-out",
@@ -56,7 +55,6 @@ const ModalStyle = style({
             "-o-transition": ".5s ease-in-out",
             opacity:0
         },
-
         "& .up-modal.in" : {
             visibility:"visible",
             transition: ".5s ease-in-out",
@@ -65,7 +63,6 @@ const ModalStyle = style({
             "-o-transition": ".5s ease-in-out",
             opacity: 1
         },
-
         "& .up-modal.fade .up-modal-dialog" : {
             transition: "transform .5s ease-out",
             transform: "translate(0, -25%)"
@@ -139,10 +136,10 @@ const ModalStyle = style({
         "& .up-modal-footer .btn-group .btn + .btn" : {
             marginLeft: "-1px"
         },
-        ".up-modal-footer .btn-block + .btn-block": {
+        "& .up-modal-footer .btn-block + .btn-block": {
             marginLeft: 0
         },
-        " & .up-modal-close" : {
+        "& .up-modal-close" : {
             position: "absolute",
             top:"8px",
             left:"96%",

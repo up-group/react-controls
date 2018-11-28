@@ -163,7 +163,7 @@ class UpContextMenu extends React.PureComponent<UpContextMenuProps & WithThemePr
                 opacity: this.state.isVisible ? 1 : 0,
                 pointeEvents: this.state.isVisible ? 'auto' : 'none',
                 $nest : {
-                    '.up-contextmenu-link' : {
+                    '& .up-contextmenu-link' : {
                         display: 'inline-block',
                         width: '100%',
                         padding: '3px 20px',
@@ -177,16 +177,16 @@ class UpContextMenu extends React.PureComponent<UpContextMenuProps & WithThemePr
                         border: 0,
                         textDecoration: 'none',
                     },
-                    '.up-contextmenu-link.active, .up-contextmenu-link:hover' : {
+                    '& .up-contextmenu-link.active,& .up-contextmenu-link:hover' : {
                         color: theme.colorMap.primaryFg,
                         backgroundColor: theme.colorMap.primary,
                         borderColor: theme.colorMap.primaryDark,
                         textDecoration: 'none',
                     },
-                    '.up-contextmenu-item.submenu > a' : {
+                    '& .up-contextmenu-item.submenu > a' : {
                         paddingRight: '27px',
                     },
-                    '.up-contextmenu-item.submenu > a:after' : {
+                    '& .up-contextmenu-item.submenu > a:after' : {
                         content: "▶",
                         display: 'inline-block',
                         position: 'absolute',

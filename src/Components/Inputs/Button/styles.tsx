@@ -52,7 +52,7 @@ const base = (props:UpButtonProps & WithThemeProps) : NestedCSSProperties => {
       '&.up-btn .up-icon-wrapper' : {
         ...positions(props),
       },
-      '&.up-btn svg, &.up-btn svg path, &.up-btn svg polygon' : {
+      '&.up-btn svg' : {
         margin: '0px',
         display: 'inline-block',
       },
@@ -153,7 +153,7 @@ const large = (props:UpButtonProps & WithThemeProps) : NestedCSSProperties => {
     lineHeight: '1.3',
     borderRadius: props.theme.borderRadius || DEFAULT_BORDER_RADIUS,
     $nest : {
-      '&.up-btn svg, &.up-btn svg path, &.up-btn svg polygon' : {
+      '&.up-btn svg' : {
         margin:'0px',
         width:'32px',
         height:'32px',
@@ -169,7 +169,7 @@ const normal = (props:UpButtonProps & WithThemeProps) : NestedCSSProperties => {
     width : props.dropDown != 'none' ? "auto" : buttonSizeMap[props.width] || 'inherit',
     borderRadius: props.theme.borderRadius || DEFAULT_BORDER_RADIUS, 
     $nest : {
-      '&.up-btn svg, &.up-btn svg path, &.up-btn svg polygon' : {
+      '&.up-btn svg' : {
         margin:'0px',
         width:'20px',
         height:'20px',
@@ -221,7 +221,7 @@ const icon = (props:UpButtonProps) : NestedCSSProperties => {
     fontSize: '12px',
     lineHeight: '1.5',
     $nest : {
-      '&.up-btn svg, &.up-btn svg path, &.up-btn svg polygon' : {
+      '&.up-btn svg' : {
         margin:'0px !important',
         width: props.iconSize ? props.iconSize : '15px',
         height: props.iconSize ? props.iconSize : '15px',
@@ -347,7 +347,7 @@ const rounded = (props:UpButtonProps) : NestedCSSProperties => {
         height:'32px',
         width:'32px',
       },
-      '&.up-btn svg, &.up-btn svg path, &.up-btn svg polygon' : {
+      '&.up-btn svg' : {
         margin:'7px !important',
         width: '16px',
         height: '16px',

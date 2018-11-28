@@ -12,12 +12,10 @@ export interface UpContextMenuTriggerProps {
     collect?: () => void;
     holdToDisplay?: number;
     renderTag?: any;
-}
-export interface UpContextMenuTriggerState {
-
+    rightClick?: boolean;
 }
 
-export class UpContextMenuTrigger extends React.PureComponent<UpContextMenuTriggerProps,UpContextMenuTriggerState> {
+export class UpContextMenuTrigger extends React.PureComponent<UpContextMenuTriggerProps> {
     
     element : HTMLElement;
     mouseDown : boolean = false ;
@@ -25,19 +23,24 @@ export class UpContextMenuTrigger extends React.PureComponent<UpContextMenuTrigg
     public static defaultProps = {
         attributes: {},
         holdToDisplay: null,
-        renderTag: 'div'
+        renderTag: 'div',
+        rightClick: true,
     };
 
+    isHandledEvent = (event) => {
+        return (this.props.rightClick  && (event.which === 3 || event.button === 2))
+        ||  (!this.props.rightClick && event.button === 0) ;
+    }
 
     handleMouseDown = (event) => {
-        if (event.which === 3 || event.button === 2) {
+        if ( this.isHandledEvent(event) ) {
             this.mouseDown = true;
             this.handleContextClick(event);
         }
     }
 
     handleMouseUp = (event) => {
-        if (event.which === 3 || event.button === 2) {
+        if ( this.isHandledEvent(event) ) {
             this.mouseDown = false;
         }
     }
@@ -77,7 +80,7 @@ export class UpContextMenuTrigger extends React.PureComponent<UpContextMenuTrigg
     }
 }
 
-export class UpTouchContextMenuTrigger extends React.PureComponent<UpContextMenuTriggerProps, UpContextMenuTriggerState> {
+export class UpTouchContextMenuTrigger extends React.PureComponent<UpContextMenuTriggerProps> {
     element : HTMLElement;
     mouseDown : boolean = false ;
 

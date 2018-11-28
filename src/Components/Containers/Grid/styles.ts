@@ -4,7 +4,7 @@ import { media, style } from "typestyle";
 export const GridStyles : string = style(
   {
     $nest : {
-      '.up-row' : {
+      '& .up-row' : {
         position: 'relative',
         marginLeft: 0,
         marginRight: 0,
@@ -14,17 +14,17 @@ export const GridStyles : string = style(
         flexDirection: 'row',
         flexWrap: 'wrap',
       },
-      '.up-row:before,.up-row:after' : {
+      '& .up-row:before,.up-row:after' : {
         content: " ",
         display: 'table',
       },
-      '.up-row:after' : {
+      '& .up-row:after' : {
         clear: 'both',
         visibility: 'hidden',
         fontSize: 0,
         height: 0,
       },
-      '.up-row-flex' : {
+      '& .up-row-flex' : {
         display: 'flex',
         '-webkit-box-orient': 'horizontal',
         '-webkit-box-direction': 'normal',
@@ -35,57 +35,57 @@ export const GridStyles : string = style(
         '-ms-flex-wrap': 'wrap',
         flexWrap: 'wrap',
       },
-      '.up-row-flex:before, .up-row-flex:after' : {
+      '& .up-row-flex:before,& .up-row-flex:after' : {
         display: 'flex',
       },
-      '.up-row-flex-start' : {
+      '& .up-row-flex-start' : {
         '-webkit-box-pack': 'start',
         '-webkit-justify-content': 'flex-start',
         '-ms-flex-pack': 'start',
         justifyContent: 'flex-start',
       },
-      '.up-row-flex-center' : {
+      '& .up-row-flex-center' : {
         '-webkit-box-pack': 'center',
         '-webkit-justify-content': 'center',
         '-ms-flex-pack': 'center',
         justifyContent: 'center',
       },
-      '.up-row-flex-end' : {
+      '& .up-row-flex-end' : {
         '-webkit-box-pack': 'end',
         '-webkit-justify-content': 'flex-end',
         '-ms-flex-pack': 'end',
         justifyContent: 'flex-end',
       },
-      '.up-row-flex-space-between' : {
+      '& .up-row-flex-space-between' : {
         '-webkit-box-pack': 'justify',
         '-webkit-justify-content': 'space-between',
         '-ms-flex-pack': 'justify',
         justifyContent: 'space-between',
       },
-      '.up-row-flex-space-around' : {
+      '& .up-row-flex-space-around' : {
         '-webkit-justify-content': 'space-around',
         '-ms-flex-pack': 'distribute',
         justifycontent: 'space-around',
       },
-      '.up-row-flex-top' : {
+      '& .up-row-flex-top' : {
         '-webkit-box-align': 'start',
         '-webkit-align-items': 'flex-start',
         '-ms-flex-align': 'start',
         alignItems: 'flex-start',
       },
-      '.up-row-flex-middle' : {
+      '& .up-row-flex-middle' : {
         '-webkit-box-align': 'center',
         '-webkit-align-items': 'center',
         '-ms-flex-align': 'center',
         alignItems: 'center',
     },
-    '.up-row-flex-bottom' : {
+    '& .up-row-flex-bottom' : {
       '-webkit-box-align': 'end',
       '-webkit-align-items': 'flex-end',
       '-ms-flex-align': 'end',
       alignItems: 'flex-end',
     },
-    '.up-col' : {
+    '& .up-col' : {
       position: 'relative',
       display: 'block',
     },
@@ -101,45 +101,45 @@ export const GridStyles : string = style(
           '-ms-flex': '0 0 auto',
               flex: '0 0 auto',
     },
-    '.up-col-24' : {
+    '& .up-col-24' : {
       display: 'block',
       width: '100%',
     },
-    '.up-col-push-24' : {
+    '& .up-col-push-24' : {
       left: '100%',
     },
-    '.up-col-pull-24' : {
+    '& .up-col-pull-24' : {
       right: '100%',
     },
-    '.up-col-offset-24' : {
+    '& .up-col-offset-24' : {
       marginLeft: '100%',
     },
-    '.up-col-order-24' : {
+    '& .up-col-order-24' : {
       '-webkit-box-ordinal-group': 25,
       '-webkit-order': 24,
       '-ms-flex-order': 24,
       order: 24,
     },
-    '.up-col-23' : {
+    '& .up-col-23' : {
       display: 'block',
       width: '95.83333333%',
     },
-    '.up-col-push-23' : {
+    '& .up-col-push-23' : {
       left: '95.83333333%',
     },
-    '.up-col-pull-23' : {
+    '& .up-col-pull-23' : {
       right: '95.83333333%',
     },
-    '.up-col-offset-23' : {
+    '& .up-col-offset-23' : {
       marginLeft:'95.83333333%',
     },
-    '.up-col-order-23' : {
+    '& .up-col-order-23' : {
       '-webkit-box-ordinal-group': 24,
       '-webkit-order': 23,
           '-ms-flex-order': 23,
               order: 23,
     },
-    '.up-col-22' : {
+    '& .up-col-22' : {
       display: 'block',
       width: '91.66666667%',
     },

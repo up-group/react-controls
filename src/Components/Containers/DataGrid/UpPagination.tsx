@@ -81,7 +81,7 @@ const paginationItemStyle = (props : WithThemeProps) => {
     return style({
         display: "inline",
         $nest: {
-            '> a': {
+            '& > a': {
                 minWidth: 41,
                 textAlign: "center",
                 position: "relative",
@@ -98,10 +98,10 @@ const paginationItemStyle = (props : WithThemeProps) => {
             "&:first-child span": firstChild,
             "&:last-child a": lastChild,
             "&:last-child span": lastChild,
-            'a:hover': itemHoverStyle,
-            'a:focus': itemHoverStyle,
-            'span:hover': itemHoverStyle,
-            'span:focus': itemHoverStyle,
+            '& a:hover': itemHoverStyle,
+            '& a:focus': itemHoverStyle,
+            '& span:hover': itemHoverStyle,
+            '& span:focus': itemHoverStyle,
             "&.active > a": itemActiveStyle,
             "&.active > span": itemActiveStyle,
             "&.active > a:hover": itemActiveStyle,
@@ -191,7 +191,7 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
         });
     }
 
-    onTakeChange = (data: any) => {
+    onTakeChange = (event, data: any) => {
         if (data && data.id != this.state.take) {
             var newTake = data.id;
             var newPage = this.getPage(newTake, this.state.skip);

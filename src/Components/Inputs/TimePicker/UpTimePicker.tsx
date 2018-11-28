@@ -1,48 +1,112 @@
 ﻿import * as React from "react";
-import {UpTimeProps, UpTimeState} from './'
+import { UpContextMenu, UpContextMenuItem, UpContextMenuItemDivider, UpContextMenuTrigger } from "../../Display/ContextMenu";
+
+export interface UpTimeProps {
+    hasError?: boolean;
+    className?:string;
+    name?:string;
+    value?: string;
+    onChange?:(event, value: string) => void;
+    minuteStep? : number;
+}
+
+export interface UpTimeState {
+    hour?: number;
+    minute?: number;
+    focusedHour? : boolean;
+    focusedMinute? : boolean;
+}
 
 export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeState> {
     inputElement: HTMLInputElement;
+    
+    public static defaultProps = {
+        minuteStep : 5,
+    }
+
     constructor(p, c) {
         super(p, c);
         this.state = {
-            hour: 0,
-            minute: 0
+            hour: this.props.value ? parseInt(this.props.value.split(':')[0]) : 0,
+            minute: this.props.value ? parseInt(this.props.value.split(':')[1]) : 0
         };
     }
 
     render() {
-        return <span className="form-control"
+        
+        const minuteSteps = [] ;
+        let currentStep = 0 ;
+        while(currentStep < 60) {
+            minuteSteps.push(currentStep) ;
+            currentStep += this.props.minuteStep;
+        }
+        const hourSteps = [] ;
+        currentStep = 1 ;
+        while(currentStep < 24) {
+            hourSteps.push(currentStep) ;
+            currentStep += 1;
+        }
+
+        return <div className="form-control"
             style={{
                 borderColor: this.props.hasError === true ? 'red' : 'inherit',
                 width: "5em",
                 padding: "4px"
-            }}
-            >
-            <input
-                type="text"
-                value={this.state.hour.toString()}
-                onKeyDown={this.onKeyDownHour}
-                onChange={this.onchangeHour}
-                style={{
-                    "border": "none",
-                    "width": "2em",
-                    "textAlign": "center"
-                }}
-                />
+            }}>
+            <div style={{display: 'inline-block'}}>
+                <UpContextMenuTrigger rightClick={false} id={'hour-time-picker'} holdToDisplay={1000}>
+                    <input
+                        type="text"
+                        value={this.state.hour.toString()}
+                        onKeyDown={this.onKeyDownHour}
+                        onChange={this.onchangeHourEvent}
+                        style={{
+                            "border": "none",
+                            "width": "2em",
+                            "textAlign": "center"
+                        }}
+                        />
+                </UpContextMenuTrigger>
+                <UpContextMenu id="hour-time-picker">
+                    {hourSteps.map(step => {
+                        return <UpContextMenuItem onClick={this.setHour} data={{value: step}}>{step}</UpContextMenuItem>
+                    })}
+                </UpContextMenu>
+            </div>
             :
-            <input
-                type="text"
-                value={this.state.minute.toString()}
-                onKeyDown={this.onKeyDownMin}
-                onChange={this.onchangeMin}
-                style={{
-                    "border": "none",
-                    "width": "2em",
-                    "textAlign": "center"
-                }}
-                />
-        </span>
+            <div style={{display: 'inline-block'}}>
+                <UpContextMenuTrigger rightClick={false} id={'minute-time-picker'} holdToDisplay={1000}>
+                    <input
+                        type="text"
+                        value={this.state.minute.toString()}
+                        onKeyDown={this.onKeyDownMin}
+                        onChange={this.onchangeMinEvent}
+                        onFocus={this.onFocusMinute}
+                        style={{
+                            "border": "none",
+                            "width": "2em",
+                            "textAlign": "center"
+                        }}
+                    />
+                </UpContextMenuTrigger>
+                <UpContextMenu id="minute-time-picker">
+                    {minuteSteps.map(step => {
+                        return <UpContextMenuItem onClick={this.setMinute} data={{value: step}}>{step}</UpContextMenuItem>
+                    })}
+                </UpContextMenu>
+            </div>
+        </div>
+    }
+    setHour() {
+        console.log(arguments) ;
+    }
+
+    setMinute() {
+        console.log(arguments) ;
+    }
+
+    onFocusMinute = (e) => {
+        this.setState({ focusedMinute : true })
     }
 
     onchangeHourEvent = (e) => { this.onchangeHour(e.target.value); }
@@ -55,7 +119,7 @@ export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeSta
         } else if (hour > 23) {
             hour = 0;
         }
-        this.setState({ hour: hour }, this.sendChange);
+        this.setState({ hour }, this.sendChange);
     }
     onKeyDownHour = (e) => {
         if (e.keyCode == 38) { // up
@@ -76,7 +140,7 @@ export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeSta
         } else if (minute > 59) {
             minute = 0;
         }
-        this.setState({ minute: minute }, this.sendChange);
+        this.setState({ minute }, this.sendChange);
     }
     onKeyDownMin = (e) => {
         if (e.keyCode == 38) { // up
@@ -87,20 +151,22 @@ export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeSta
     }
 
     sendChange = () => {
-        const value = this.state.hour + ":" + this.state.minute ;
-        const fakeEvent = new Event("change", { bubbles: true }) ;
-        const event : React.ChangeEvent<any> 
-                = { ...fakeEvent,
-                    target : {
-                        ...fakeEvent.target,
-                        value,
-                        name: this.props.name,
-            },
-            nativeEvent: fakeEvent, 
-            isDefaultPrevented: () => false, 
-            persist: () => {},
-            isPropagationStopped: () => false} as React.SyntheticEvent<any>;
+        if(this.props.onChange != null) {
+            const value = this.state.hour + ":" + this.state.minute ;
+            const fakeEvent = new Event("change", { bubbles: true }) ;
+            const event : React.ChangeEvent<any> 
+                    = { ...fakeEvent,
+                        target : {
+                            ...fakeEvent.target,
+                            value,
+                            name: this.props.name,
+                },
+                nativeEvent: fakeEvent, 
+                isDefaultPrevented: () => false, 
+                persist: () => {},
+                isPropagationStopped: () => false} as React.SyntheticEvent<any>;
 
-        this.props.onChange(event, value);
+            this.props.onChange(event, value);
+        }
     }
 }

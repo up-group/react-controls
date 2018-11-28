@@ -482,26 +482,26 @@ class UpToggle extends React.PureComponent<UpToggleProps & WithThemeProps, UpTog
 
     const SizeStyle = style({
       $nest : {
-        ".up-toggle-track" : {
+        "& .up-toggle-track" : {
             height: this.getTrackHeight(),
             width: this.getTrackWidth(),
             padding: 0,
             borderRadius: this.getTrackBorder()
         },
-        ".up-toggle-thumb" : {
+        "& .up-toggle-thumb" : {
           width: this.getThumbWidth(), 
           height: this.getThumbHeight(),
           border: "1px solid #4D4D4D",
           borderRadius: this.getThumbBorder(),
           ...this.getThumbPosition()
         },
-        ".up-toggle-track-x" : {
+        "& .up-toggle-track-x" : {
           ...this.getTrackXPosition()
         },
-        ".up-toggle--checked .up-toggle-thumb" : {
+        "& .up-toggle--checked .up-toggle-thumb" : {
           ...this.getThumbSelectedPosition()
         },
-        ".up-toggle-track-check" : {
+        "& .up-toggle-track-check" : {
           ...this.getTrackCheckPosition()
         }
       }

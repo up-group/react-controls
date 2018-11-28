@@ -14,7 +14,7 @@ const ErrorDisplayStyle = style({
     position:"relative", 
     cursor:"help",
     $nest: {
-        ".up-wrapper-error" : {
+        "& .up-wrapper-error" : {
             display:"inline-block",
             position:"absolute",
             top:"8px",

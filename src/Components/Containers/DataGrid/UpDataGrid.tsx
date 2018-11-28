@@ -35,7 +35,7 @@ const DataGridStyle = style({
     //display: "table",
     borderCollapse: "collapse",
     $nest: {
-        ".up-data-grid-header": {
+        "& .up-data-grid-header": {
             backgroundColor: "#fafafa",
             backgroundImage: "linear-gradient(to bottom, #ffffff, #f2f2f2)",
             backgroundRepeat: "repeat-x",
@@ -46,30 +46,30 @@ const DataGridStyle = style({
             fontWeight: 700,
             //display: "table-header-group"
         },
-        ".up-data-grid-body": {
+        "& .up-data-grid-body": {
             background: "white",
             //display: "table-row-group"
         },
-        ".up-selection": {
+        "& .up-selection": {
             width: "0.2em"
         },
-        ".up-display-label": CellInnerElementStyle,
-        ".up-display-value": CellInnerElementStyle,
-        ".up-data-grid-row": {
+        "& .up-display-label": CellInnerElementStyle,
+        "& .up-display-value": CellInnerElementStyle,
+        "& .up-data-grid-row": {
             //display: "table-row"
         },
-        ".up-data-grid-header-cell": {
+        "& .up-data-grid-header-cell": {
             //display: "table-cell",
             textAlign: "left",
             verticalAlign: "top",
             padding: "4px"
         },
-        ".up-data-grid-cell": {
+        "& .up-data-grid-cell": {
             //   display: "table-cell",
             verticalAlign: "top",
             padding: "8px"
         },
-        ".up-data-grid-row-bordered": {
+        "& .up-data-grid-row-bordered": {
             borderTop: "0.1em solid #428bca"
 
             //$nest: {
@@ -78,16 +78,16 @@ const DataGridStyle = style({
             //    }
             //}
         },
-        ".up-data-grid-row-borderless": {
+        "& .up-data-grid-row-borderless": {
             $nest: {
                 ".up-data-grid-cell": {
                     border: "0"
                 }
             }
         },
-        ".up-data-grid-row-selected": {
+        "& .up-data-grid-row-selected": {
             $nest: {
-                ".up-data-grid-cell": {
+                "& .up-data-grid-cell": {
                     borderTop: "0.1em solid #737373",
                     borderBottom: "0.1em solid #737373",
                     backgroundColor: "whitesmoke"
@@ -97,7 +97,7 @@ const DataGridStyle = style({
         //"button": {
         //    margin: "4px 4px"
         //},
-        ".up-data-grid-sortable": {
+        "& .up-data-grid-sortable": {
             cursor: "pointer"
         }
     }
@@ -505,10 +505,10 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
         if (this.props.isOddEvenEnabled) {
             OddEvenStyle = style({
                 $nest: {
-                    '.up-data-grid-row:nth-child(even)': {
+                    '& .up-data-grid-row:nth-child(even)': {
                         background: "#EFEFEF"
                     },
-                    '.up-data-grid-row:nth-child(odd)': {
+                    '& .up-data-grid-row:nth-child(odd)': {
                         background: "#FFF"
                     }
                 }

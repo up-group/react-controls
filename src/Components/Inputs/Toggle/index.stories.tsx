@@ -28,7 +28,7 @@ class ToggleWrapper extends React.Component<ToggleWrapperProps, ToggleWrapperSta
             checked: false
         }
     }
-    onChange = (value) => {
+    onChange = (event, value) => {
         this.setState({ checked: value });
     }
     render() {

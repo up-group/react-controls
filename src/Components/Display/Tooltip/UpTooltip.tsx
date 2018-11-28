@@ -16,7 +16,7 @@ const getStyles = (props : UpTooltipProps) => style({
   opacity: 0.95,
   padding: '0px',
   $nest : {
-    '.up-tooltip-header' : {
+    '& .up-tooltip-header' : {
       padding: '4px',
       borderBottom:'1px solid #111',
       fontWeight:700,
@@ -24,7 +24,7 @@ const getStyles = (props : UpTooltipProps) => style({
       color:'#111',
       background:'whitesmoke',
     },
-    '.up-tooltip-body' : {
+    '& .up-tooltip-body' : {
       padding:'8px',
     },
     '&:hover' : {

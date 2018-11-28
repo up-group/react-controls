@@ -20,15 +20,15 @@ const noGutterStyle = (props:UpButtonGroupProps) : NestedCSSProperties => {
     case "none": {
         return {
           $nest : {
-            '.up-btn-wrapper:first-child:not(:last-child):not(.up-dropdown-toggle) .up-btn' : {
+            '& .up-btn-wrapper:first-child:not(:last-child):not(.up-dropdown-toggle) .up-btn' : {
               borderTopRightRadius: 0,
               borderBottomRightRadius: 0,
             },
-            '.up-btn-wrapper:last-child:not(:first-child):not(.up-dropdown-toggle) .up-btn' : {
+            '& .up-btn-wrapper:last-child:not(:first-child):not(.up-dropdown-toggle) .up-btn' : {
               borderTopLeftRadius: 0,
               borderBottomLeftRadius: 0,
             },
-           '.up-btn-wrapper:not(:last-child):not(:first-child) .up-btn' : {
+           '& .up-btn-wrapper:not(:last-child):not(:first-child) .up-btn' : {
               borderRadius: 0,
             }
         }
@@ -37,19 +37,19 @@ const noGutterStyle = (props:UpButtonGroupProps) : NestedCSSProperties => {
     case "right": {
       return {
         $nest : {
-          '.up-btn-wrapper:first-child .up-btn' : {
+          '& .up-btn-wrapper:first-child .up-btn' : {
             borderTopLeftRadius: 0,
             borderBottomLeftRadius: 0,
           },
-          '.up-btn-wrapper:first-child:not(:last-child):not(.up-dropdown-toggle) .up-btn' : {
+          '& .up-btn-wrapper:first-child:not(:last-child):not(.up-dropdown-toggle) .up-btn' : {
             borderTopRightRadius: 0,
             borderBottomRightRadius: 0,
           },
-          '.up-btn-wrapper:last-child:not(:first-child):not(.up-dropdown-toggle) .up-btn' : {
+          '& .up-btn-wrapper:last-child:not(:first-child):not(.up-dropdown-toggle) .up-btn' : {
             borderTopLeftRadius: 0,
             borderBottomLeftRadius: 0,
           },
-          '.up-btn-wrapper:not(:last-child):not(:first-child) .up-btn' : {
+          '& .up-btn-wrapper:not(:last-child):not(:first-child) .up-btn' : {
             borderRadius: 0,
           }
         }
@@ -58,19 +58,19 @@ const noGutterStyle = (props:UpButtonGroupProps) : NestedCSSProperties => {
     case "left": {
       return {
         $nest : {
-          '.up-btn-wrapper:last-child .up-btn' : {
+          '& .up-btn-wrapper:last-child .up-btn' : {
             borderTopRightRadius: 0,
             borderBottomRightRadius: 0,
           },
-          '.up-btn-wrapper:first-child:not(:last-child):not(.up-dropdown-toggle) .up-btn' : {
+          '& .up-btn-wrapper:first-child:not(:last-child):not(.up-dropdown-toggle) .up-btn' : {
             borderTopRightRadius: 0,
             borderBottomRightRadius: 0,
           },
-          '.up-btn-wrapper:last-child:not(:first-child):not(.up-dropdown-toggle) .up-btn' : {
+          '& .up-btn-wrapper:last-child:not(:first-child):not(.up-dropdown-toggle) .up-btn' : {
             borderTopLeftRadius: 0,
             borderBottomLeftRadius: 0,
           },
-          '.up-btn-wrapper:not(:last-child):not(:first-child) .up-btn' : {
+          '& .up-btn-wrapper:not(:last-child):not(:first-child) .up-btn' : {
             borderRadius: 0
           },
         }
@@ -83,7 +83,7 @@ const setGutter = (props:UpButtonGroupProps) : NestedCSSProperties => {
   if(props.align==='v') {
     return {
       $nest : {
-        'button.up-btn' : {
+        '& button.up-btn' : {
           marginBottom: `${props.gutter}px`,
         },
       },
@@ -91,7 +91,7 @@ const setGutter = (props:UpButtonGroupProps) : NestedCSSProperties => {
   } else {
     return {
       $nest : {
-        'button.up-btn' : {
+        '& button.up-btn' : {
           marginRight: `${props.gutter}px`,
         },
       },
@@ -103,7 +103,7 @@ const setAlignment = (props:UpButtonGroupProps) : NestedCSSProperties => {
   if(props.align==='v') {
     return {
       $nest : {
-        'button.up-btn, div' : {
+        '& button.up-btn, div' : {
           display:'block',
           float:'left',
           clear:'left',
@@ -113,7 +113,7 @@ const setAlignment = (props:UpButtonGroupProps) : NestedCSSProperties => {
   } else {
     return {
       $nest : {
-        'button.up-btn' : {
+        '& button.up-btn' : {
           display:'inline-block',
           float:'left',
         }

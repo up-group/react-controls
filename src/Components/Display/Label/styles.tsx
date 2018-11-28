@@ -13,14 +13,14 @@ export const sizeMap = {
 
 const inline : NestedCSSProperties = { 
   $nest :{
-    '.up-label-text' : {
+    '& .up-label-text' : {
       lineHeight: '30px',
     },
-    '>div,.up-input,.up-input-group,.up-select' :  {
+    '& >div,.up-input,.up-input-group,.up-select' :  {
       display: 'inline-block',
       verticalAlign: 'top', 
     },
-    '.up-input-group .up-input' : {
+    '& .up-input-group .up-input' : {
       marginLeft: 0, 
     }
   }
@@ -31,7 +31,7 @@ const base = (props: UpLabelProps) : NestedCSSProperties => (
     display: 'block',
     margin: '0 0 8px',
     $nest : {
-      '.up-label-text' : {
+      '& .up-label-text' : {
         textAlign: props.textAlign,
         width: sizeMap[props.width],
         marginRight: props.inline ? '24px' : '8px',
@@ -39,16 +39,16 @@ const base = (props: UpLabelProps) : NestedCSSProperties => (
         color: props.color,
         fontSize: '14px',
       },
-      '.up-input, .up-select' : {
+      '& .up-input, .up-select' : {
         display: 'block',
         textTransform: 'none',
       },
-      '.up-select select' : {
+      '& .up-select select' : {
         width: '100%',
         verticalAlign: 'top',
         fontWeight: 400, 
       },
-      '.pt-button-group.pt-vertical' : {
+      '& .pt-button-group.pt-vertical' : {
         marginTop:'0px',
       }
     }
