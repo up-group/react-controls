@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react'
 import UpDefaultTheme from '../../../Common/theming'
 import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themedComponents'
 
-import { storybookMainBodyStyles } from '../../../../stories/styles.ts' ;
+import { storybookMainBodyStyles } from '../../../../stories/styles' ;
 
 import UpNotification from './'
 
