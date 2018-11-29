@@ -74,7 +74,7 @@ var styleLeftMenuCollapse = style({
             display: "none",
         },
         ['& .' + imgHomelink]: {
-            display : "inline"
+            display: "inline"
         }
     },
 });
@@ -512,7 +512,7 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState> {
                 selectedBranchId={this.props.selectedBranchId}
                 branchId={localId}
                 onBranchClick={this.props.onBranchClick}
-                key={i}
+                key={`${v.title}${v.uri}${i}`}
                 open={this.props.open}
                 onMenuClick={this.props.onMenuClick}
                 uri={v.uri}
@@ -790,7 +790,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
 
     get isThisMenuSelected() {
 
-        if (this.startsWith(this.props.selectedBranchId,this.props.branchId) && this.anyChild === false) {
+        if (this.startsWith(this.props.selectedBranchId, this.props.branchId) && this.anyChild === false) {
             return true
         }
 
