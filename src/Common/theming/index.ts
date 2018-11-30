@@ -28,7 +28,7 @@ const defaultTheme: ThemeInterface = {
   typography : typography,
   styles : defaultStyles,
   borderRadius: '6px',
-  notificationIconSize: 60,
+  notificationIconSize: '100%',
 }
 
 export { UpThemeProvider, ThemeInterface as UpThemeInterface, colorMap as UpThemeColorMap, WithThemeProps, withTheme } 

@@ -4,6 +4,7 @@ import { NestedCSSProperties } from 'typestyle/lib/types';
 import Icons, { IconName } from '../../../Common/theming/icons';
 import * as classnames from 'classnames' ;
 import { DeviceSmartphones, DeviceLaptops } from '../../../Common/utils/device';
+import { isString } from '../../../Common/utils';
 
 export interface SvgProps extends React.SVGProps<{}> {
     iconName?: IconName;
@@ -36,7 +37,7 @@ const getStyles = (props : SvgIconWrapperProps) : string => style({
 }));
 
 const SvgIconWrapper : React.StatelessComponent<SvgIconWrapperProps> = (props : SvgIconWrapperProps) => {
-    const {children, className, ...othersProps} = props ;
+    const {children, className, height, width, ...othersProps} = props ;
     return <div {...othersProps} className={classnames('up-icon-wrapper', className, getStyles(props))}>
         {children}
     </div>
@@ -51,14 +52,16 @@ const UpSvgIcon : React.StatelessComponent<UpSvgIconProps> = ({
   className,
   color,
   dataFor,
+  width,
+  height,
   ...others
 }: UpSvgIconProps) => {
 
-  const height = others.height || 20 ;
-  const width = others.width || 20 ;
+  const finalHeight = height && !isString(height) ? `${height}px` : height || '20px' ;
+  const finalWidth = width && !isString(width) ? `${width}px` : width || '20px' ;
    
   if(iconName) {
-    const SvgIconElement = () => <SvgIconWrapper className={className} color={color} height={height} width={width}
+    const SvgIconElement = () => <SvgIconWrapper className={className} color={color} height={finalHeight} width={finalWidth}
       {...others}
       dangerouslySetInnerHTML={{__html: Icons[iconName]}}
     ></SvgIconWrapper> ;
