@@ -5,7 +5,7 @@ import UpBox from './'
 import UpNotification from '../../Display/Notification/UpNotification';
 import { UpThemeProvider, UpDefaultTheme } from '../../..';
 
-import { storybookMainBodyStyles } from '../../../../stories/styles' ;
+import { storybookMainBodyStyles } from '../../../stories/styles' ;
 
 const stories = storiesOf('UpBox', module) ;
 
