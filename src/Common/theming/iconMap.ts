@@ -3,6 +3,7 @@ import { IconName } from "./icons";
 export interface IconMap {
   success:IconName,
   danger:IconName,
+  error:IconName,
   warning:IconName,
   info:IconName,
   none:IconName
@@ -11,6 +12,7 @@ export interface IconMap {
 const iconMap : IconMap = {
   success: 'ok-sign',
   danger: 'error-sign',
+  error: 'error-sign',
   warning: 'warning-sign',
   info:'info-sign',
   none: 'none'

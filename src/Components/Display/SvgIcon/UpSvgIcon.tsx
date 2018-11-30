@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { style } from 'typestyle';
+import { style, media } from 'typestyle';
 import { NestedCSSProperties } from 'typestyle/lib/types';
 import Icons, { IconName } from '../../../Common/theming/icons';
 import * as classnames from 'classnames' ;
+import { DeviceSmartphones, DeviceLaptops } from '../../../Common/utils/device';
 
 export interface SvgProps extends React.SVGProps<{}> {
     iconName?: IconName;
@@ -19,21 +20,24 @@ export interface SvgIconWrapperProps {
   children?: Array<React.ReactNode>;
 }
 
-const getStyles = (props : SvgIconWrapperProps) : NestedCSSProperties => ({
+const getStyles = (props : SvgIconWrapperProps) : string => style({
     display: 'inline-block',
-    width:  `${props.width}px`,
-    height: `${props.height}px`,
+    width:  `${props.width}`,
+    height: `${props.height}`,
     margin: '1px',
     $nest : {
         '& svg, & svg path, & svg polygon' : {
             fill: props.color,
         }
     }
-} as NestedCSSProperties);
+}, media(DeviceSmartphones, {
+  width:  `100%`,
+  height: `100%`,
+}));
 
 const SvgIconWrapper : React.StatelessComponent<SvgIconWrapperProps> = (props : SvgIconWrapperProps) => {
     const {children, className, ...othersProps} = props ;
-    return <div {...othersProps} className={classnames('up-icon-wrapper', className, style(getStyles(props)))}>
+    return <div {...othersProps} className={classnames('up-icon-wrapper', className, getStyles(props))}>
         {children}
     </div>
 }

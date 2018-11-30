@@ -9,15 +9,24 @@ import UpNotification from './'
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import UpLoadingIndicator from '../LoadingIndicator';
+import { style } from 'typestyle';
 
 const stories = storiesOf('Display/UpNotification', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpNotification'));
 
+const wrapperBoxesStyle = style({
+  $nest : {
+    '& > div' : {
+      margin : '10px 0px',
+    },
+  },
+});
+
 stories.add('Simple usage',
    () => (
-      <>
+      <div className={wrapperBoxesStyle}>
       <UpNotification intent="info">
         <UpLoadingIndicator isLoading={true} displayMode={'inline'} />
       </UpNotification>
@@ -27,13 +36,16 @@ stories.add('Simple usage',
       <UpNotification intent="danger">
         <p>Une erreur est survenue dans le traitement de votre demande !</p>
       </UpNotification>
+      <UpNotification intent="error">
+        <p>Une erreur est survenue dans le traitement de votre demande !</p>
+      </UpNotification>
       <UpNotification intent="warning">
         <p>Votre connexion se termine dans 10 minutes !</p>
       </UpNotification>
       <UpNotification intent="default">
         <p> Bonjour !</p>
       </UpNotification>
-      </>
+      </div>
   ), {info: 'Utilisation du composant en lui passant les données à afficher'}
 ).add('Activation Close',
   () => (

@@ -61,9 +61,9 @@ class UpNotification extends React.Component<UpNotificationProps & WithThemeProp
                 <UpGrid className={'up-notification'}>
                     {title && 
                         <UpRow>
-                        <UpCol span={24}>
-                            <UpHeading tag={'h2'} textAlign={'left'}>{title}</UpHeading>
-                        </UpCol>
+                            <UpCol span={24}>
+                                <UpHeading tag={'h2'} textAlign={'left'}>{title}</UpHeading>
+                            </UpCol>
                         </UpRow>
                     }
                     <UpRow>

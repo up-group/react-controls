@@ -7,7 +7,7 @@ export interface ThemeInterface {
     borderRadius?: string;
     inputBorderLess?:boolean;
     minButtonSize?: string;
-    notificationIconSize?: number;
+    notificationIconSize?: string | number;
     gridGutter?: number;
     intentTypeIcons?: IconMap;
     typography?: Typography;
