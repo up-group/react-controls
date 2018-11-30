@@ -238,7 +238,7 @@ class UpToast extends React.Component<IToastProps & WithThemeProps, IToastState>
         <div className={classnames(buttonStyle, 'up-toast-close', 'icon-close')} onClick={this.handleClose}></div>
         <div className={'up-toast-body'}>
           {message != null  &&
-            <UpNotification className={'up-toast-message'} message={message} intent={intent} />
+            <UpNotification iconWidth={6} className={'up-toast-message'} message={message} intent={intent} />
           }
           {children != null  && children}
         </div>

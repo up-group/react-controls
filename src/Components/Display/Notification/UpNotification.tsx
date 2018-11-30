@@ -29,6 +29,7 @@ export interface CommonProps  {
 export interface UpNotificationProps extends CommonProps  {
   message?: JSX.Element | string;
   className?: string;
+  iconWidth?:number;
 }
 
 class UpNotification extends React.Component<UpNotificationProps & WithThemeProps> {
@@ -38,6 +39,7 @@ class UpNotification extends React.Component<UpNotificationProps & WithThemeProp
     theme:defaultTheme,
     displayMode:"inline",
     intent:'info',
+    iconWidth: 2,
   }
 
   constructor(props) {
@@ -67,10 +69,10 @@ class UpNotification extends React.Component<UpNotificationProps & WithThemeProp
                         </UpRow>
                     }
                     <UpRow>
-                    <UpCol span={2}>
+                    <UpCol span={this.props.iconWidth}>
                         {icon}
                     </UpCol>
-                    <UpCol span={21} style={{paddingTop: '10px'}}>
+                    <UpCol span={23 - this.props.iconWidth} style={{paddingTop: '10px'}}>
                         {message && 
                             <p>
                                 {message}
