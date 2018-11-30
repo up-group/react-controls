@@ -6,19 +6,20 @@ import { color } from 'csx';
 import { NestedCSSProperties } from 'typestyle/lib/types';
 import * as classnames from 'classnames';
 import UpHeading from '../Heading';
-import { IntentType, ThemeColorMap } from '../../../Common/theming/types';
+import { IntentType, WithThemeProps } from '../../../Common/theming/types';
 import { DeviceSmartphones } from '../../../Common/utils/device';
 import colorMap from '../../../Common/theming/colorMap';
+import defaultTheme, { withTheme } from '../../../Common/theming';
+import { UpNotification } from 'Components';
 
-
-const mapIntentColor = {
+const mapIntentColor = (props) => ({
   default :  { fg : colorMap.blue1, bg : color(colorMap.blue1).lighten('60%').toHexString() },
   info :  { fg : colorMap.blue1, bg : color(colorMap.blue1).lighten('60%').toHexString() },
   error : { fg : colorMap.blue1, bg : '#fbeded' },
   danger : { fg : colorMap.blue1, bg : '#fbeded' },
   warning : { fg : colorMap.blue1, bg : color(colorMap.blue1).lighten('50%').toHexString() },
   success : { fg : colorMap.blue1, bg : '#eef7ee' },
-};
+});
 
 const mapIntentIconClass = {
   default : 'icon-donut_large',
@@ -38,8 +39,11 @@ const mapIntentIcon = {
   success : <span className={classnames(mapIntentIconClass['success'])}></span>,
 };
 
-export const getIntentColor = (intent) : ThemeColorMap => {
-  return  mapIntentColor.hasOwnProperty(intent) ? mapIntentColor[intent] : null ;
+export const getIntentColor = (intent, theme) => {
+  return { 
+    fg : theme.colorMap[`${intent}Dark`] ||  theme.colorMap.darkGray5, 
+    bg : theme.colorMap[`${intent}Light`] || theme.colorMap.white3 
+  }
 };
 
 export const getIntentIcon = (intent) : React.ReactNode => {
@@ -50,13 +54,14 @@ export const getIntentIconClass = (intent) : React.ReactNode => {
   return  mapIntentIconClass.hasOwnProperty(intent) ? mapIntentIconClass[intent] : null ;
 };
 
-export const getIntentStyle = (intent) : any => {
+export const getIntentStyle = (intent, theme) : any => {
+  const intentColors = getIntentColor(intent, theme) ;
   return  {
-    color : mapIntentColor[intent].fg,
-    backgroundColor: mapIntentColor[intent].bg,
+    color : intentColors.fg,
+    backgroundColor: intentColors.bg,
     $nest : {
       p : {
-        color : mapIntentColor[intent].fg,
+        color : intentColors.fg,
       },
     },
   };
@@ -147,16 +152,17 @@ export interface IToastState {
   isUnmounting: boolean;
 }
 
-export default class Toast extends React.Component<IToastProps, IToastState> {
+class UpToast extends React.Component<IToastProps & WithThemeProps, IToastState> {
 
   manualClosingTimeout ;
   autoClosingTimeout ;
 
-  public static defaultProps = {
+  public static defaultProps : IToastProps & WithThemeProps = {
     intent: 'default',
     title: 'Notification',
     duration : 5000,
     autoDismissable: true,
+    theme: defaultTheme,
   };
 
   constructor(props, context) {
@@ -212,9 +218,9 @@ export default class Toast extends React.Component<IToastProps, IToastState> {
     }
   }
 
-  public render() {
+  render() {
     const { isVisible, isUnmounting } = this.state;
-    const { message, children, intent, title } = this.props;
+    const { message, children, intent, title, theme } = this.props;
 
     if (!isVisible) {
       return null;
@@ -227,13 +233,12 @@ export default class Toast extends React.Component<IToastProps, IToastState> {
     });
 
     return (
-      <div className={classnames(wrapperToastStyle, getIntentStyle(intent))} >
+      <div className={classnames(wrapperToastStyle, getIntentStyle(intent, theme))} >
         <UpHeading tag={'h4'} margin={'none'} className={classnames(toastTitleStyle, 'up-toast-title')}>{title}</UpHeading>
         <div className={classnames(buttonStyle, 'up-toast-close', 'icon-close')} onClick={this.handleClose}></div>
         <div className={'up-toast-body'}>
           {message != null  &&
-            // <Message className={'up-toast-message'} message={message} intent={intent} />
-            null
+            <UpNotification className={'up-toast-message'} message={message} intent={intent} />
           }
           {children != null  && children}
         </div>
@@ -241,3 +246,4 @@ export default class Toast extends React.Component<IToastProps, IToastState> {
     );
   }
 }
+export default withTheme<IToastProps>(UpToast) ;

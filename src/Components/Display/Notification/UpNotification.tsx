@@ -1,5 +1,7 @@
 // Imports
 import * as React from 'react'
+import * as classnames from 'classnames';
+
 //import Paragraph from '../Paragraph'
 import {UpGrid, UpRow, UpCol} from '../../Containers/Grid'
 import UpModal from '../../Containers/Modal/UpModal'
@@ -26,6 +28,7 @@ export interface CommonProps  {
 
 export interface UpNotificationProps extends CommonProps  {
   message?: JSX.Element | string;
+  className?: string;
 }
 
 class UpNotification extends React.Component<UpNotificationProps & WithThemeProps> {
@@ -42,7 +45,7 @@ class UpNotification extends React.Component<UpNotificationProps & WithThemeProp
   }
   
   render() {
-    const {children, message, intent, theme, title} = this.props ;
+    const {children, message, intent, theme, title, className} = this.props ;
     const defaultIconSize = 60 ;
 
     const icon = <SvgIcon iconName={iconMap[intent]}
@@ -54,7 +57,7 @@ class UpNotification extends React.Component<UpNotificationProps & WithThemeProp
     
     if(this.props.displayMode=="inline") {
         NotificationRender =  () => (
-            <div className={getStyles(this.props)}>
+            <div className={classnames(getStyles(this.props), className)}>
                 <UpGrid className={'up-notification'}>
                     {title && 
                         <UpRow>
