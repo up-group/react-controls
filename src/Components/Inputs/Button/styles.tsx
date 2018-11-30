@@ -56,7 +56,7 @@ const base = (props:UpButtonProps & WithThemeProps) : NestedCSSProperties => {
         margin: '0px',
         display: 'inline-block',
       },
-      span : {
+      '& span' : {
         display: 'inline-block',
         paddingTop: '8px',
         paddingBottom: '3px',
@@ -185,7 +185,7 @@ const small = (props:UpButtonProps) : NestedCSSProperties => {
     lineHeight: '1.5',
     borderRadius: '3px',
     $nest : {
-      svg : {
+      '&.up-btn svg' : {
         margin:'0px',
         width: props.iconSize ? props.iconSize : '16px',
         height: props.iconSize ? props.iconSize : '16px',
@@ -201,7 +201,7 @@ const xsmall = (props:UpButtonProps) : NestedCSSProperties => {
     lineHeight: '1.5',
     borderRadius: '3px',
     $nest : {
-      svg : {
+      '&.up-btn svg' : {
         margin:'0px',
         width: props.iconSize ? props.iconSize : '12px',
         height: props.iconSize ? props.iconSize : '12px',
@@ -243,7 +243,7 @@ const iconXSmall = (props:UpButtonProps) : NestedCSSProperties => {
     height:'16px',
     lineHeight: '1',
     $nest : {
-      svg : {
+      '&.up-btn svg' : {
         margin:'3px',
         width: props.iconSize ? props.iconSize : '12px',
         height: props.iconSize ? props.iconSize : '12px',
@@ -261,7 +261,7 @@ const iconSmall = (props:UpButtonProps) : NestedCSSProperties => {
     fontSize: '12px',
     lineHeight: '1.5',
     $nest : {
-      svg : {
+      '&.up-btn svg' : {
         margin:'3px',
         width:'16px',
         height:'16px',
@@ -279,7 +279,7 @@ const iconNormal = (props:UpButtonProps) : NestedCSSProperties => {
     fontSize: '12px',
     lineHeight: 1.5,
     $nest : {
-      svg : {
+      '&.up-btn svg' : {
         margin:'3px',
         width:'20px',
         height:'20px',
@@ -297,7 +297,7 @@ const iconLarge = (props:UpButtonProps) : NestedCSSProperties => {
     fontSize: '14px',
     lineHeight: 1.5,
     $nest : {
-      svg : {
+      '&.up-btn svg' : {
         margin:'3px',
         width:'32px',
         height:'32px',

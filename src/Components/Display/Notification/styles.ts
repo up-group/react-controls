@@ -35,9 +35,9 @@ export const icon  = (props : UpNotificationProps & WithThemeProps) : NestedCSSP
 
 export const getStyles  = (props: UpNotificationProps) : string => (
   classnames(style(colors(props)), style(icon(props)), style({
-    width:'98%',
-    margin:'1%',
+    width:'100%',
     padding:'8px',
     borderRadius:'4px',
+    boxSizing:'border-box',
   }))
 );
