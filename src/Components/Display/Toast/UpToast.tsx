@@ -10,7 +10,7 @@ import { IntentType, WithThemeProps } from '../../../Common/theming/types';
 import { DeviceSmartphones } from '../../../Common/utils/device';
 import colorMap from '../../../Common/theming/colorMap';
 import defaultTheme, { withTheme } from '../../../Common/theming';
-import { UpNotification } from 'Components';
+import UpNotification from '../Notification';
 
 const mapIntentColor = (props) => ({
   default :  { fg : colorMap.blue1, bg : color(colorMap.blue1).lighten('60%').toHexString() },
