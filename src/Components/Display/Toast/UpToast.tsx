@@ -11,33 +11,7 @@ import { DeviceSmartphones } from '../../../Common/utils/device';
 import colorMap from '../../../Common/theming/colorMap';
 import defaultTheme, { withTheme } from '../../../Common/theming';
 import UpNotification from '../Notification';
-
-const mapIntentColor = (props) => ({
-  default :  { fg : colorMap.blue1, bg : color(colorMap.blue1).lighten('60%').toHexString() },
-  info :  { fg : colorMap.blue1, bg : color(colorMap.blue1).lighten('60%').toHexString() },
-  error : { fg : colorMap.blue1, bg : '#fbeded' },
-  danger : { fg : colorMap.blue1, bg : '#fbeded' },
-  warning : { fg : colorMap.blue1, bg : color(colorMap.blue1).lighten('50%').toHexString() },
-  success : { fg : colorMap.blue1, bg : '#eef7ee' },
-});
-
-const mapIntentIconClass = {
-  default : 'icon-donut_large',
-  info :  'icon-info',
-  error : 'icon-Lexclamation',
-  danger : 'icon-Lexclamation',
-  warning : 'icon-Lwarning',
-  success : 'icon-Lcheck',
-};
-
-const mapIntentIcon = {
-  default : <span className={classnames(mapIntentIconClass['default'])}></span>,
-  info : <span className={classnames(mapIntentIconClass['info'])}></span>,
-  danger : <span className={classnames(mapIntentIconClass['danger'])}></span>,
-  error : <span className={classnames(mapIntentIconClass['error'])}></span>,
-  warning : <span className={classnames(mapIntentIconClass['warning'])}></span>,
-  success : <span className={classnames(mapIntentIconClass['success'])}></span>,
-};
+import UpSvgIcon from '../SvgIcon';
 
 export const getIntentColor = (intent, theme) => {
   return { 
@@ -46,25 +20,20 @@ export const getIntentColor = (intent, theme) => {
   }
 };
 
-export const getIntentIcon = (intent) : React.ReactNode => {
-  return  mapIntentIcon.hasOwnProperty(intent) ? mapIntentIcon[intent] : null ;
-};
-
-export const getIntentIconClass = (intent) : React.ReactNode => {
-  return  mapIntentIconClass.hasOwnProperty(intent) ? mapIntentIconClass[intent] : null ;
-};
-
 export const getIntentStyle = (intent, theme) : any => {
   const intentColors = getIntentColor(intent, theme) ;
-  return  {
+  return  style({
     color : intentColors.fg,
     backgroundColor: intentColors.bg,
     $nest : {
-      p : {
+      '& p, & .up-toast-title' : {
         color : intentColors.fg,
       },
+      '& .up-toast-close svg, & .up-toast-close svg path, & .up-toast-close svg polygon' : {
+        fill:  intentColors.fg,
+      },
     },
-  };
+  });
 };
 
 export const getHoverColor = (hexaColor : string) => color(hexaColor).darken('10%').toHexString();
@@ -115,25 +84,34 @@ const wrapperToastCss : NestedCSSProperties = {
   minWidth: '400px',
   flexDirection: 'column',
   $nest : {
-    '.up-toast-body' : {
-      padding: '12px',
+    '& .up-toast-body' : {
+      padding: '0px',
     },
-    '.up-toast-message' : {
+    '& .up-toast-message' : {
       border: '0px',
-      marginBottom:'12px',
+      marginBottom:'0px',
+    },
+    '& .up-toast-message p' : {
+      margin: '1rem',
+    },
+    '& .up-toast-title' : {
+      marginBottom: '0px',
     },
   },
 };
 
 const toastTitleStyle = style({
-  padding:'6px',
-  borderTopLeftRadius: '6px',
-  borderTopRightRadius: '6px',
-  width:'100%',
-  margin: '0px 0px 10px 0px',
-}, media(DeviceSmartphones, {
-
-}));
+  $nest: {
+    '&.up-toast-title' : {
+      padding:'6px',
+      borderTopLeftRadius: '6px',
+      borderTopRightRadius: '6px',
+      width:'100%',
+      margin: '0px 0px 10px 0px',
+      textAlign: 'left',
+    }
+  }
+});
 
 export interface IToastProps {
   message?: JSX.Element | string ;
@@ -229,18 +207,21 @@ class UpToast extends React.Component<IToastProps & WithThemeProps, IToastState>
     const wrapperToastStyle = style({
       ...wrapperToastCss,
       animationName : isUnmounting ? unmount : mount,
-      animationDuration : ' 1s',
+      animationDuration : '1.5s',
     });
 
     return (
       <div className={classnames(wrapperToastStyle, getIntentStyle(intent, theme))} >
         <UpHeading tag={'h4'} margin={'none'} className={classnames(toastTitleStyle, 'up-toast-title')}>{title}</UpHeading>
-        <div className={classnames(buttonStyle, 'up-toast-close', 'icon-close')} onClick={this.handleClose}></div>
+        <div className={classnames(buttonStyle, 'up-toast-close')} onClick={this.handleClose}>
+          <UpSvgIcon iconName={'close'} />
+        </div>
         <div className={'up-toast-body'}>
-          {message != null  &&
-            <UpNotification iconWidth={6} className={'up-toast-message'} message={message} intent={intent} />
+          {(message != null || children != null)  &&
+            <UpNotification iconWidth={4} className={'up-toast-message'} message={message} intent={intent}>
+              {children}
+            </UpNotification>
           }
-          {children != null  && children}
         </div>
       </div>
     );

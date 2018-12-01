@@ -69,17 +69,17 @@ class UpNotification extends React.Component<UpNotificationProps & WithThemeProp
                         </UpRow>
                     }
                     <UpRow>
-                    <UpCol span={this.props.iconWidth}>
-                        {icon}
-                    </UpCol>
-                    <UpCol span={23 - this.props.iconWidth} style={{paddingTop: '10px'}}>
-                        {message && 
-                            <p>
-                                {message}
-                            </p>
-                        }
-                        {children}
-                    </UpCol>
+                        <UpCol span={this.props.iconWidth} xs={8}>
+                            {icon}
+                        </UpCol>
+                        <UpCol span={23 - this.props.iconWidth} style={{paddingTop: '10px'}} xs={16}>
+                            {message && 
+                                <p>
+                                    {message}
+                                </p>
+                            }
+                            {children}
+                        </UpCol>
                     </UpRow>
                 </UpGrid>
             </div>);

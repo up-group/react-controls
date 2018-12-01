@@ -16,6 +16,7 @@ export const colors = (props: UpNotificationProps & WithThemeProps ) : NestedCSS
             p : {
                 fontWeight: 500,
                 textAlign:'left',
+                color: props.theme.colorMap[`${props.intent}Dark`] ||  props.theme.colorMap.darkGray5,
             },
         }
   }
