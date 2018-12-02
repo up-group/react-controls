@@ -81,7 +81,8 @@ const wrapperToastCss : NestedCSSProperties = {
   boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
   textAlign: 'center',
   padding: '0px',
-  minWidth: '400px',
+  width: '350px',
+  height: 'auto',
   flexDirection: 'column',
   $nest : {
     '& .up-toast-body' : {
@@ -92,7 +93,7 @@ const wrapperToastCss : NestedCSSProperties = {
       marginBottom:'0px',
     },
     '& .up-toast-message p' : {
-      margin: '1rem',
+      margin: '6px',
     },
     '& .up-toast-title' : {
       marginBottom: '0px',
@@ -138,7 +139,7 @@ class UpToast extends React.Component<IToastProps & WithThemeProps, IToastState>
   public static defaultProps : IToastProps & WithThemeProps = {
     intent: 'default',
     title: 'Notification',
-    duration : 5000,
+    duration : 500000,
     autoDismissable: true,
     theme: defaultTheme,
   };

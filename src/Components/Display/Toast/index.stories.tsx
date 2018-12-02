@@ -15,7 +15,7 @@ stories.addDecorator(getRootContainer('UpToast'));
 
 stories.add('Simple usage',
    () => {
-    const intent = text('intent', 'primary');
+    const intent = text('intent', 'success');
     const message = text('message', 'Succès');
 
     return <UpThemeProvider theme={UpDefaultTheme}>
