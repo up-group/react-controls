@@ -181,7 +181,7 @@ stories.add('Simple usage',
       <UpNotification intent={"info"}>
           Le composant <code>UpButton</code> avec indication du traitement en cours :
           <UpParagraph>
-             <UpButton iconName={'edit'} iconPosition={'left'} onClick={null} width={"normal"} isProcessing={isProcessing}>Save</UpButton>
+             <UpButton intent={'primary'} iconName={'edit'} iconPosition={'left'} onClick={null} width={"normal"} isProcessing={isProcessing}>Save</UpButton>
           </UpParagraph>
       </UpNotification>
     </UpBox>

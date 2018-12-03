@@ -145,7 +145,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
 
     static getDerivedStateFromProps(props: UpButtonProps, state: UpButtonState) {
         if (  (state.prevProps.isProcessing !== props.isProcessing && state.isProcessing !== props.isProcessing)
-          ||  (state.prevProps.isToggled !== props.isToggled && props.isToggled !== state.isToggled)) {
+          ||  (state.prevProps.isToggled !== props.isToggled && state.isToggled !== props.isToggled )) {
           return {
             ...state,
             isProcessing: props.isProcessing,
@@ -231,22 +231,21 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
             }
         }
         let handleClickProps = this.props.type === 'submit' ? {} : { onClick : this.handleClick } ;
+        
+        const renderButton =  <BaseButton iconName={icon} iconPosition={position} isToggled={this.state.isToggled} { ...handleClickProps } isProcessing={this.state.isProcessing} disabled={this.disabled()} {...others}>
+            {children != null &&
+                <span>{children}</span>
+            }
+        </BaseButton>
+
         return (
             <div className={classnames('up-btn-wrapper', buttonWrapper)}>
                 {
                     tooltip === null ?
-                        <BaseButton iconName={icon} iconPosition={position} isToggled={this.state.isToggled} { ...handleClickProps } isProcessing={this.state.isProcessing} disabled={this.disabled()} {...others}>
-                            {children != null &&
-                                <span>{children}</span>
-                            }
-                        </BaseButton>
+                        renderButton
                         :
                         <UpTooltip {..._tooltip}>
-                            <BaseButton iconName={icon} iconPosition={position} isToggled={this.state.isToggled} { ...handleClickProps } disabled={this.disabled()} {...others}>
-                                {children != null &&
-                                    <span>{children}</span>
-                                }
-                            </BaseButton>
+                            {renderButton}
                         </UpTooltip>
                 }
                 {this.props.dropDown != 'none' && this.state.isToggled &&
