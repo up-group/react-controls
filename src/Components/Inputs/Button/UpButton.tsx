@@ -79,7 +79,8 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         super(props);
         this.handleClick = this.handleClick.bind(this);
         this.state = {
-            isToggled: false,
+            isToggled: this.props.isToggled,
+            isProcessing: this.props.isProcessing,
             prevProps: props,
         };
     }
