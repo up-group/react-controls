@@ -155,24 +155,16 @@ export default class DateInput extends React.Component<DateInputProps, DateInput
     }
 
     componentWillReceiveProps(nextProps) {
-        var doSetState: boolean = false;
-        var value = this.state.Value;
-        var success = this.state.Success;
-        var specmess = this.state.SpecificMessage;
+        var partialState: any = {};
 
         if (nextProps.Value !== this.props.Value && nextProps.Value !== this.state.Value) {
-            doSetState = true;
-            value = nextProps.Value;
-            success = null;
-            specmess = null;
-        }
-        if (nextProps.InitialState !== this.props.InitialState && nextProps.InitialState !== this.state.Success) {
-            doSetState = true;
-            success = isNullOrUndef(nextProps.InitialState) ? null : nextProps.InitialState;
+            partialState = { Value: nextProps.Value, Success: null, SpecificMessage: null, };
+        } else if (nextProps.InitialState !== this.props.InitialState && nextProps.InitialState !== this.state.Success) {
+            partialState.Success = isNullOrUndef(nextProps.InitialState) ? null : nextProps.InitialState;
         }
 
-        if (doSetState) {
-            this.setState({ Value: value, Success: success, SpecificMessage: specmess, });
+        if (partialState.hasOwnProperty("Success")) {
+            this.setState(partialState);
         }
     }
 
