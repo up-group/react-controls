@@ -92,7 +92,9 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
     private processValidation = (value: string) => {
         var validation: ValidationReturn = isNullOrUndef(this.props.Validate) ? null : this.props.Validate(value);
 
-        if (isNullOrUndef(validation) || isNullOrUndef(validation.ok)) {
+        if (isNullOrUndef(this.props.Validate)) {
+            this.setState({ Value: value, Success: this.props.InitialState, SpecificMessage: null, });
+        } else if (isNullOrUndef(validation) || isNullOrUndef(validation.ok)) {
             this.setState({ Value: value, Success: null, SpecificMessage: null, });
         } else {
             this.setState({ Value: value, Success: validation.ok, SpecificMessage: validation.specificMessage, });
@@ -252,15 +254,15 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
                     } else if (isNullOrUndef(this.props.NumberMin) === false && this.props.NumberMin > Number(valeur)) {
                         valeur = this.props.NumberMin.toString();
                     }
-                    partialState = { Value: valeur, Success: null, SpecificMessage: null, };
+                    partialState = { Value: valeur, Success: nextProps.InitialState, SpecificMessage: null, };
                     break;
                 default:
-                    partialState = { Value: nextProps.Value, Success: null, SpecificMessage: null, };
+                    partialState = { Value: nextProps.Value, Success: nextProps.InitialState, SpecificMessage: null, };
                     break;
             }
         }
-        if (nextProps.InitialState !== this.props.InitialState && nextProps.InitialState !== this.state.Success) {
-            partialState.Success = isNullOrUndef(nextProps.InitialState) ? null : nextProps.InitialState;
+        if (nextProps.InitialState !== this.state.Success) {
+            partialState.Success = nextProps.InitialState;
         }
 
         if (partialState.hasOwnProperty("Success")) {

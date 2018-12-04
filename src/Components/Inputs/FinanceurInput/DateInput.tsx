@@ -62,7 +62,9 @@ export default class DateInput extends React.Component<DateInputProps, DateInput
         
         var validation: ValidationReturn = isNullOrUndef(this.props.Validate) ? null : this.props.Validate(dConvert !== null ? dConvert : value);
 
-        if (isNullOrUndef(validation) || isNullOrUndef(validation.ok)) {
+        if (isNullOrUndef(this.props.Validate)) {
+            this.setState({ Value: value, Success: this.props.InitialState, SpecificMessage: null, }, callback);
+        } else if (isNullOrUndef(validation) || isNullOrUndef(validation.ok)) {
             this.setState({ Value: value, Success: null, SpecificMessage: null, }, callback);
         } else {
             this.setState({ Value: value, Success: validation.ok, SpecificMessage: validation.specificMessage, }, callback);
@@ -158,9 +160,9 @@ export default class DateInput extends React.Component<DateInputProps, DateInput
         var partialState: any = {};
 
         if (nextProps.Value !== this.props.Value && nextProps.Value !== this.state.Value) {
-            partialState = { Value: nextProps.Value, Success: null, SpecificMessage: null, };
-        } else if (nextProps.InitialState !== this.props.InitialState && nextProps.InitialState !== this.state.Success) {
-            partialState.Success = isNullOrUndef(nextProps.InitialState) ? null : nextProps.InitialState;
+            partialState = { Value: nextProps.Value, Success: nextProps.InitialState, SpecificMessage: null, };
+        } else if (nextProps.InitialState !== this.state.Success) {
+            partialState.Success = nextProps.InitialState;
         }
 
         if (partialState.hasOwnProperty("Success")) {
