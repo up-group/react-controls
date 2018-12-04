@@ -260,7 +260,7 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
             }
         }
         if (nextProps.InitialState !== this.props.InitialState && nextProps.InitialState !== this.state.Success) {
-            partialState = { Success: isNullOrUndef(nextProps.InitialState) ? null : nextProps.InitialState, };
+            partialState.Success = isNullOrUndef(nextProps.InitialState) ? null : nextProps.InitialState;
         }
 
         if (partialState.hasOwnProperty("Success")) {
