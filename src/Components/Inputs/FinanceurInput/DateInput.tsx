@@ -140,7 +140,7 @@ export default class DateInput extends React.Component<DateInputProps, DateInput
     }
 
     private onCalendarItemClick = (date: Date) => {
-        var saveOldValue: Date | string = this.state.Value;
+        var saveOldValue: Date | string = isNullOrUndef(this.state.Value) ? "" : this.state.Value;
         this.processValidation(date, true, () => {
             if ((! isNullOrUndef(this.props.onChange)) && saveOldValue.toString() !== this.state.Value.toString()) {
                 this.props.onChange(this.state.Value);

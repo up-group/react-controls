@@ -91,21 +91,18 @@ export default class Calendrier extends React.Component<CalendrierProps, Calendr
             border: "1px solid #979797",
         });
         var styleTable = style({
+            display: "table",
             $nest: {
-                "& th": {
-                    textAlign: "center",
-                    verticalAlign: "middle",
-                    minWidth: "25px",
-                    paddingRight: "0",
-                    paddingBottom: "0",
-                    fontWeight: "normal",
+                "& > span": {
+                    display: "table-row",
                 },
-                "& td": {
+                "& > span > span": {
                     textAlign: "center",
                     verticalAlign: "middle",
                     minWidth: "25px",
                     paddingRight: "0",
                     paddingBottom: "0",
+                    display: "table-cell",
                 },
             },
         });
@@ -123,13 +120,13 @@ export default class Calendrier extends React.Component<CalendrierProps, Calendr
         var premiereLigne: JSX.Element[] = [];
         var cpt: number = 0;
         while (cpt < idx1eJour) {
-            premiereLigne.push(<td key={cpt} />);
+            premiereLigne.push(<span key={cpt} />);
             cpt++;
         }
         var cpt2: number = cpt;
         while (cpt2 < 7) {
-            var j = cpt2 - cpt + 1;
-            premiereLigne.push(<td key={cpt2} className={styleCursor} onClick={() => this.onDaySelect(j)} >{j}</td>);
+            let jp = cpt2 - cpt + 1;
+            premiereLigne.push(<span key={cpt2} className={styleCursor} onClick={() => this.onDaySelect(jp)} >{jp}</span>);
             cpt2++;
         }
 
@@ -138,12 +135,12 @@ export default class Calendrier extends React.Component<CalendrierProps, Calendr
         nbBoucleComplete = nbBoucleComplete - (nbBoucleComplete % 1)
         for (var cpt3: number = 0; cpt3 < nbBoucleComplete; cpt3++) {
             lignesCompletes.push(
-                <tr key={cpt3 + 2} >
+                <span key={cpt3 + 2} >
                     { [cpt2 - cpt + 1, cpt2 - cpt + 2, cpt2 - cpt + 3, cpt2 - cpt + 4, cpt2 - cpt + 5, cpt2 - cpt + 6, cpt2 - cpt + 7].map((j, i) => {
                         cpt2++;
-                        return <td key={i} className={styleCursor} onClick={() => this.onDaySelect(j)} >{j}</td>;
+                        return <span key={i} className={styleCursor} onClick={() => this.onDaySelect(j)} >{j}</span>;
                     }) }
-                </tr>
+                </span>
             );
         }
         
@@ -153,12 +150,12 @@ export default class Calendrier extends React.Component<CalendrierProps, Calendr
             derniersJour = [];
             var cpt4: number = 0;
             while (cpt4 < jRestant) {
-                var j = cpt2 - cpt + 1 + cpt4;
-                derniersJour.push(<td key={cpt4} className={styleCursor} onClick={() => this.onDaySelect(j)} >{j}</td>);
+                let jd = cpt2 - cpt + 1 + cpt4;
+                derniersJour.push(<span key={cpt4} className={styleCursor} onClick={() => this.onDaySelect(jd)} >{jd}</span>);
                 cpt4++;
             }
             while (cpt4 < 7) {
-                derniersJour.push(<td key={cpt4} />);
+                derniersJour.push(<span key={cpt4} />);
                 cpt4++;
             }
         }
@@ -174,24 +171,22 @@ export default class Calendrier extends React.Component<CalendrierProps, Calendr
                 <IconChevron Direction={DirectionEnum.Droite} onClick={() => this.incYear(1)} />
             </span>
             <br />
-            <table className={styleTable} >
-                <tbody>
-                    <tr>
-                        <th>L.</th>
-                        <th>M.</th>
-                        <th>M.</th>
-                        <th>J.</th>
-                        <th>V.</th>
-                        <th>S.</th>
-                        <th>D.</th>
-                    </tr>
-                    <tr>{premiereLigne}</tr>
-                    {lignesCompletes}
-                    { derniersJour === null ? null : 
-                        <tr>{derniersJour}</tr>
-                    }
-                </tbody>
-            </table>
+            <span className={styleTable} >
+                <span>
+                    <span>L.</span>
+                    <span>M.</span>
+                    <span>M.</span>
+                    <span>J.</span>
+                    <span>V.</span>
+                    <span>S.</span>
+                    <span>D.</span>
+                </span>
+                <span>{premiereLigne}</span>
+                {lignesCompletes}
+                { derniersJour === null ? null : 
+                    <span>{derniersJour}</span>
+                }
+            </span>
         </span>;
     }
 }
