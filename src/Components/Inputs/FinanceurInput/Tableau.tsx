@@ -198,9 +198,9 @@ export default class Tableau extends React.Component<TableauProps, TableauState>
                     width: "100%",
                 },
                 "& td": {
-                    height: "50px",
+                    minHeight: "32px",
                     verticalAlign: "middle",
-                    paddingRight: "8px",
+                    padding: "5px 8px 5px 5px",
                 },
                 "& tr:nth-child(2n)": {
                     backgroundColor: enTetes ? "#f5f5f5" : backColor,
