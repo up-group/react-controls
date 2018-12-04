@@ -9,6 +9,7 @@ export interface CheckboxProps {
     Text: string;
     Check: boolean;
     Disable?: boolean;
+    ReadOnly?: boolean;
     onChange?: (check: boolean) => void;
     onKeyDown?: (event) => void;
 }
@@ -30,7 +31,7 @@ export default class Checkbox extends React.Component<CheckboxProps, CheckboxSta
     }
 
     private onKeyDown = (event) => {
-        if (this.props.Disable) {
+        if (this.props.Disable || this.props.ReadOnly) {
             return ;
         }
         // espace
@@ -43,7 +44,7 @@ export default class Checkbox extends React.Component<CheckboxProps, CheckboxSta
         }
     }
     private onClick = (event) => {
-        if (this.props.Disable) {
+        if (this.props.Disable || this.props.ReadOnly) {
             return ;
         }
         this.setState({ Check: !this.state.Check, }, () => {
@@ -76,7 +77,7 @@ export default class Checkbox extends React.Component<CheckboxProps, CheckboxSta
         var couleurCheck: string = this.state.Check && !this.props.Disable ? "#f59100" : "#d7d7d7";
 
         var styleG = getFontClassName({ fontSize: "14px", color: "#4e5b59", }) + " " + style({
-            cursor: this.props.Disable ? "auto" : "pointer",
+            cursor: this.props.Disable || this.props.ReadOnly ? "auto" : "pointer",
             opacity: this.props.Disable ? 0.5 : 1,
             textDecoration: this.state.Focus && !this.props.Disable ? "underline #f59100" : "none",
             $nest: {

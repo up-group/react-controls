@@ -10,6 +10,7 @@ export interface CheckboxGroupProps {
     ValueIdx?: number[];
     Horizontal: boolean;
     Disable?: boolean;
+    ReadOnly?: boolean;
     onChange?: (ValueIdx?: number[]) => void;
 }
 
@@ -32,7 +33,7 @@ export default class CheckboxGroup extends React.Component<CheckboxGroupProps, C
     }
 
     private onChange(valueIdx: number, check: boolean) {
-        if (this.props.Disable) {
+        if (this.props.Disable || this.props.ReadOnly) {
             return ;
         }
 
@@ -103,7 +104,7 @@ export default class CheckboxGroup extends React.Component<CheckboxGroupProps, C
         return <span>
             { this.props.Values.map((value: string, idx: number): JSX.Element => {
                 return <span key={idx} >
-                    <Checkbox Text={value} Check={this.state.ValueIdx.indexOf(idx) >= 0} Disable={this.props.Disable}
+                    <Checkbox Text={value} Check={this.state.ValueIdx.indexOf(idx) >= 0} Disable={this.props.Disable} ReadOnly={this.props.ReadOnly}
                             onChange={(check: boolean) => this.onChange(idx, check)} onKeyDown={this.onKeyDown}
                             ref={(c) => { this.inputTab[idx] = c; }} />
 
