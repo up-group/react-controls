@@ -121,11 +121,12 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
    }
 
    renderControl() {
-       const { isRequired, theme, readonly, tooltip } = this.props;
+       const { isRequired, theme, readonly, tooltip, name } = this.props;
     
        return (
            <div className={wrapperNumberStyles(this.props)}>
             <UpInput  
+                    name={name}
                     tooltip={tooltip}
                     readonly={readonly}
                     isRequired={isRequired}
