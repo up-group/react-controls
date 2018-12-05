@@ -39,6 +39,11 @@ const wrapperNumberButtonsStyles = (props : UpNumberProps) => style({
     position: 'absolute', 
     right: props.theme.inputBorderLess ? '0px' : '2px',
     bottom: props.theme.inputBorderLess ? '9px' : '5px',
+    $nest : {
+        '& .up-btn-wrapper .up-btn .up-icon-wrapper svg' : {
+            margin: '0px',
+        },
+    },
 })
 
 class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
@@ -124,8 +129,8 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
                     value={ this.state.value ? this.state.value.toString() : "" } 
                     onChange={(event, value) => { event.persist() ; this.handleNumericChange(event, parseFloat(value), value) }} />
              <UpBox className={wrapperNumberButtonsStyles(this.props)} flexDirection={theme.inputBorderLess ? 'row' : 'column-reverse'}>
-                <UpButton width={'icon'} iconSize={9} height={'xsmall'} onClick={this.decrement} iconName={'arrow-down'}></UpButton>
-                <UpButton width={'icon'} iconSize={9} height={'xsmall'} onClick={this.increment} iconName={'arrow-up'}></UpButton>
+                <UpButton intent={'primary'} width={'icon'} iconSize={9} height={'xsmall'} onClick={this.decrement} iconName={'arrow-down'}></UpButton>
+                <UpButton intent={'primary'} width={'icon'} iconSize={9} height={'xsmall'} onClick={this.increment} iconName={'arrow-up'}></UpButton>
              </UpBox>
            </div>
        );
