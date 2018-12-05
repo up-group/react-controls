@@ -24,6 +24,7 @@ stories.add('Index',
     const value = number('value', 32);
     const size = number('size', 120);
     const clockWise = boolean('clockWise', true);
+    const shadow = boolean('shadow', true);
     const thickness = number('thickness', 8);
 
     return <UpThemeProvider theme={UpDefaultTheme}>
@@ -33,7 +34,7 @@ stories.add('Index',
             <dl style={{margin : '10px'}}>
               <dt style={{color : color, marginBottom : '10px'}}>{ }</dt>
               <dd>
-                <UpProgessCircle value={value} clockWise={clockWise} 
+                <UpProgessCircle value={value} clockWise={clockWise} shadow={shadow}
                     size={size} thickness={thickness} completedColor={color} />
               </dd>
             </dl>
