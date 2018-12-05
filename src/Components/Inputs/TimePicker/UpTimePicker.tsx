@@ -1,5 +1,5 @@
 ﻿import * as React from "react";
-import { UpContextMenu, UpContextMenuItem, UpContextMenuItemDivider, UpContextMenuTrigger } from "../../Display/ContextMenu";
+import { UpContextMenu, UpContextMenuItem, UpContextMenuTrigger } from "../../Display/ContextMenu";
 import UpSvgIcon from "../../Display/SvgIcon";
 import UpBox from '../../Containers/Box';
 import { style } from "typestyle";

@@ -49,6 +49,8 @@ import UpCheckbox from './Components/Inputs/Checkbox/UpCheckBox'
 import UpToggle from './Components/Inputs/Toggle'
 import UpRadio from './Components/Inputs/Radio'
 import UpPassword from './Components/Inputs/Password'
+import UpProgressCircle from './Components/Display/ProgressCircle';
+
 import * as UpIcons from "./Components/Display/Icons/materialinear";
 
 import UpDefaultTheme, { UpThemeProvider, UpThemeInterface, UpThemeColorMap, WithThemeProps, withTheme } from './Common/theming'
@@ -115,4 +117,5 @@ export {
     UpBulle,
     UpHelper,
     UpIcons,
+    UpProgressCircle,
 };

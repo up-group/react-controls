@@ -48,6 +48,7 @@ import UpCheckbox from './Inputs/Checkbox/UpCheckBox'
 import UpToggle from './Inputs/Toggle'
 import UpRadio from './Inputs/Radio'
 import UpPassword from './Inputs/Password'
+import UpProgressCircle from './Display/ProgressCircle'
 import * as UpIcons from "./Display/Icons/materialinear";
 
 export {
@@ -103,4 +104,5 @@ export {
     UpNavTab,
     UpBulle,
     UpIcons,
+    UpProgressCircle,
 };
