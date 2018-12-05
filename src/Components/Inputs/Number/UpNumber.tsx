@@ -74,9 +74,11 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
    }
 
    handleNumericChange = (event: React.ChangeEvent<any>, valueAsNumber: number, valueAsString: string) => {
-       if (this.props.decimalPlace != null) {
-           var _newValue = this.round(valueAsNumber, this.props.decimalPlace);
-           if (isNaN(valueAsNumber)) {
+        if (this.props.decimalPlace != null) {
+            var _newValue = this.round(valueAsNumber, this.props.decimalPlace);
+            // Update event value 
+            event.target.value  = _newValue ;
+            if (isNaN(valueAsNumber)) {
                this.handleChangeEvent(event, this.state.value);
            } else if (_newValue === valueAsNumber && _newValue.toString() !== valueAsString) {
                this.handleChangeEvent(event, valueAsString);
@@ -84,6 +86,8 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
                this.handleChangeEvent(event, valueAsNumber);
            }
        } else {
+           // Update event value 
+           event.target.value  = valueAsNumber ;
            this.handleChangeEvent(event, valueAsNumber);
        }
    }
