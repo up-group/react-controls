@@ -38,10 +38,13 @@ const wrapperNumberStyles = (props : UpNumberProps) => style({
 const wrapperNumberButtonsStyles = (props : UpNumberProps) => style({
     position: 'absolute', 
     right: props.theme.inputBorderLess ? '0px' : '2px',
-    bottom: props.theme.inputBorderLess ? '9px' : '5px',
+    bottom: props.theme.inputBorderLess ? '9px' : '3px',
     $nest : {
         '& .up-btn-wrapper .up-btn .up-icon-wrapper svg' : {
             margin: '0px',
+        },
+        '& .up-btn-wrapper .up-btn' : {
+            marginLeft: '4px',
         },
     },
 })
