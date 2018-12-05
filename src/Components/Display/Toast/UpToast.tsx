@@ -139,7 +139,7 @@ class UpToast extends React.Component<IToastProps & WithThemeProps, IToastState>
   public static defaultProps : IToastProps & WithThemeProps = {
     intent: 'default',
     title: 'Notification',
-    duration : 500000,
+    duration : 5000,
     autoDismissable: true,
     theme: defaultTheme,
   };
