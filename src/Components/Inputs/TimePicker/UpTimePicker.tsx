@@ -6,6 +6,7 @@ import { style } from "typestyle";
 
 import * as classnames from 'classnames';
 import { generateId } from "../../../Common/utils";
+import { eventFactory } from "../../../Common/utils/eventListener";
 
 export interface UpTimeProps {
     hasError?: boolean;
@@ -192,20 +193,7 @@ export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeSta
     sendChange = () => {
         if(this.props.onChange != null) {
             const value = this.state.hour + ":" + this.state.minute ;
-            const fakeEvent = new Event("change", { bubbles: true }) ;
-            const event : React.ChangeEvent<any> 
-                    = { ...fakeEvent,
-                        target : {
-                            ...fakeEvent.target,
-                            value,
-                            name: this.props.name,
-                },
-                nativeEvent: fakeEvent, 
-                isDefaultPrevented: () => false, 
-                persist: () => {},
-                isPropagationStopped: () => false} as React.SyntheticEvent<any>;
-
-            this.props.onChange(event, value);
+            this.props.onChange(eventFactory(this.props.name, value), value);
         }
     }
 }

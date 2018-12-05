@@ -12,6 +12,7 @@ import { Props } from 'react-select/lib/Select';
 
 import { color } from 'csx';
 import { ValueType, ActionMeta } from 'react-select/lib/types';
+import { eventFactory } from '../../../Common/utils/eventListener';
 
 const CancelToken = axios.CancelToken;
 
@@ -584,19 +585,6 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
 
     onChange = (name: string, value: ValueType<object>, action: ActionMeta) => {
         const data = this.setValue(value);
-        const fakeEvent = new Event("change", { bubbles: true }) ;
-        const event : React.ChangeEvent<any> 
-            = { ...fakeEvent,
-                target : {
-                    ...fakeEvent.target,
-                    name,
-                    value,
-                },
-                nativeEvent: fakeEvent, 
-                isDefaultPrevented: () => false, 
-                persist: () => {},
-                isPropagationStopped: () => false} as React.SyntheticEvent<any>;
-                
-        this.handleChangeEvent(event, data);
+        this.handleChangeEvent(eventFactory(name, value), data);
     }
 }

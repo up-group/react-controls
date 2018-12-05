@@ -7,7 +7,7 @@ import UpBox from '../../Containers/Box';
 import withTheme from '../../../Common/theming/withTheme';
 import defaultTheme from '../../../Common/theming';
 import UpButton from '../Button/UpButton';
-import { UpButtonProps } from '../Button';
+import { eventFactory } from '../../../Common/utils/eventListener';
 
 export interface UpNumberProps extends CommonProps<number | string> {
    max?: number;
@@ -107,7 +107,9 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
         if(this.props.max && newValue > this.props.max) {
             newValue == this.props.max
         }
-        this.setState({ value: newValue}) 
+        this.setState({ value: newValue}, () => {
+            this.handleChangeEvent(eventFactory(this.props.name, this.state.value), this.state.value);
+        }) 
    }
 
    decrement = () => {
@@ -121,7 +123,9 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
         if(this.props.max && newValue < this.props.min) {
             newValue == this.props.max
         }
-        this.setState({ value: newValue}) 
+        this.setState({ value: newValue}, () => {
+            this.handleChangeEvent(eventFactory(this.props.name, this.state.value), this.state.value);
+        }); 
    }
 
    renderControl() {

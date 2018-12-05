@@ -1,6 +1,22 @@
-
-import assign from 'object-assign';
 import {hasOwnProp, generateUniqueId} from './helpers'
+
+export const eventFactory = (name: string, value: any) => {
+    const fakeEvent = new Event("change", { bubbles: true }) ;
+    const event : React.ChangeEvent<any> 
+        = { ...fakeEvent,
+            target : {
+                ...fakeEvent.target,
+                name: name,
+                value: value,
+            },
+            nativeEvent: fakeEvent, 
+            isDefaultPrevented: () => false, 
+            persist: () => {},
+            isPropagationStopped: () => false
+        } as React.SyntheticEvent<any>;
+    
+    return event ;
+}
 
 export class GlobalEventListener {
     callbacks: object;

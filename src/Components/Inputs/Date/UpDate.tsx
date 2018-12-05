@@ -7,6 +7,7 @@ import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import UpDateStyle from "./styles";
 import defaultTheme from "../../../Common/theming";
 import withTheme, { WithThemeProps } from "../../../Common/theming/withTheme";
+import { eventFactory } from "../../../Common/utils/eventListener";
 
 // Exports
 const MIN_DATE = new Date(-8640000000000);
@@ -39,20 +40,7 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Date> {
     }
 
     onChange = (startDate: Date, endDate?: Date) => {
-        const fakeEvent = new Event("change", { bubbles: true }) ;
-        const event : React.ChangeEvent<any> 
-                = { ...fakeEvent,
-                    target : {
-                        ...fakeEvent.target,
-                        name: this.props.name,
-                        value: startDate,
-            },
-            nativeEvent: fakeEvent, 
-            isDefaultPrevented: () => false, 
-            persist: () => {},
-            isPropagationStopped: () => false} as React.SyntheticEvent<any>;
-
-        this.handleChangeEvent(event, startDate);
+        this.handleChangeEvent(eventFactory(this.props.name, startDate), startDate);
     }
 
     renderControl() {

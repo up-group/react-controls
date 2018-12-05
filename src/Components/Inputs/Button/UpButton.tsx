@@ -120,7 +120,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
               });
             }
         
-            if (this.props.dropDown != 'none') {
+            if (this.props.dropDown !== 'none') {
                 this.setState({ isToggled: !this.state.isToggled });
             }
         }
@@ -129,7 +129,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
     }
 
     private collapse = (): void => {
-        if (this.props.dropDown != 'none') {
+        if (this.props.dropDown !== 'none') {
             this.setState({ isToggled: false });
         }
     }
