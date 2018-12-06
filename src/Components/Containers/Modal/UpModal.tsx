@@ -1,7 +1,7 @@
 import * as React from "react"
 import * as ReactDOM from "react-dom"
 import * as classnames from 'classnames'
-import {style, media} from 'typestyle' 
+import {style, media, keyframes} from 'typestyle' 
 
 import UpSvgIcon from '../../Display/SvgIcon'
 import UpDefaultTheme, { withTheme, WithThemeProps,  } from "../../../Common/theming";
@@ -22,6 +22,15 @@ const HeaderFooterAfterBeforeStyle = {
     display: "table",
     content: " "
 };
+
+const appearFromTop = keyframes({
+    from : {
+        marginTop: '-50%',
+    },
+    to : {
+        marginTop : 0,
+    }
+})
 
 const ModalStyle = (props: WithThemeProps) => style({
     $nest: {
@@ -54,14 +63,16 @@ const ModalStyle = (props: WithThemeProps) => style({
             "-webkit-transition": ".5s ease-in-out",
             "-moz-transition": ".5s ease-in-out",
             "-o-transition": ".5s ease-in-out",
-            opacity: 1
+            opacity: 1,
+            animationDuration: '1s',
+            animationName: appearFromTop,
         },
         "& .up-modal.fade .up-modal-dialog" : {
-            transition: "transform .5s ease-out",
+            transition: "transform 1s ease-out",
             transform: "translate(0, -25%)"
         },
         "& .up-modal.in .up-modal-dialog" : {
-            transition: "transform .5s ease-out",
+            transition: "transform 1s ease-out",
             transform: "translate(0, 0)"
         },
         "& .up-modal-open .modal" : {
@@ -277,7 +288,7 @@ class UpModal extends React.Component<UpModalProps & WithThemeProps, UpModalStat
 
         return (
             <div className={ModalStyle(this.props)}> 
-                <div className={classnames("up-modal", (this.state.showModal===true) ? "in" : "fade")}  id="myModal" role="dialog" aria-labelledby="myModalLabel">
+                <div className={classnames("up-modal", (this.state.showModal===true) ? "in" : "fade", appearFromTop)}  id="myModal" role="dialog" aria-labelledby="myModalLabel">
                     <div className="up-modal-dialog" role="document">
                         <div className="up-modal-content">
                             {header}

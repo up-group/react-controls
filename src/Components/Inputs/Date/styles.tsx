@@ -122,7 +122,12 @@ export default class UpDateStyle extends React.Component<UpDateStyledProps, Date
         }
     }
 
-    onFocusChange = ({focused} : {focused:boolean}) => this.setState({ focused }) ;
+    onFocusChange = ({focused} : {focused:boolean}) => {
+        this.setState({ focused }) ;
+        if(this.props.onChange &&  focused === false) {
+            this.props.onChange(this.dateInput.value) ;
+        }
+    } ;
 
     componentDidMount() {
         var _props = this.props as UpDateStyledProps;
