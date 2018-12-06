@@ -112,6 +112,7 @@ const ModalStyle = (props: WithThemeProps) => style({
         },
         "& .up-modal-header" : {
             padding: "15px",
+            minHeight: '40px',
             borderBottom: "1px solid #e5e5e5",
             position:"relative"
         },
