@@ -15,7 +15,7 @@ export interface UpLinkProps extends React.Props<UpLink> {
   color?: string;
   method?: Method;
   dataFor?: string; // tooltip 
-  onClick:(e:React.MouseEvent<HTMLAnchorElement>)=>void;
+  onClick?:(e:React.MouseEvent<HTMLAnchorElement>)=>void;
 }
 
 export class UpLink extends React.Component<UpLinkProps & WithThemeProps> {
