@@ -1,6 +1,7 @@
 // Imports
 import * as React from 'react';
 import { getStyles } from './styles';
+import UpDefaultTheme, { WithThemeProps, withTheme } from '../../../Common/theming';
 
 const MethodTypePush = 'push';
 
@@ -17,10 +18,11 @@ export interface UpLinkProps extends React.Props<UpLink> {
   onClick:(e:React.MouseEvent<HTMLAnchorElement>)=>void;
 }
 
-export class UpLink extends React.Component<UpLinkProps> {
-  public static defaultProps: UpLinkProps = {
+export class UpLink extends React.Component<UpLinkProps & WithThemeProps> {
+  public static defaultProps: UpLinkProps & WithThemeProps = {
     method: MethodTypePush,
-    onClick:(e:React.MouseEvent<HTMLAnchorElement>)=>{}
+    onClick:(e:React.MouseEvent<HTMLAnchorElement>)=>{},
+    theme: UpDefaultTheme,
   };
 
   public constructor(props:UpLinkProps) {
@@ -61,4 +63,4 @@ export class UpLink extends React.Component<UpLinkProps> {
   }
 }
 
-export default UpLink;
+export default withTheme<UpLinkProps>(UpLink);

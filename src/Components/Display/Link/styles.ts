@@ -2,6 +2,8 @@
 import { NestedCSSProperties } from 'typestyle/lib/types';
 import { UpLinkProps } from './UpLink';
 import { style } from 'typestyle';
+import { WithThemeProps } from '../../../Common/theming';
+import {color} from 'csx' ;
 
 const plainStyle = (props: UpLinkProps) : NestedCSSProperties => {
   if (props.plain) {
@@ -18,13 +20,15 @@ const plainStyle = (props: UpLinkProps) : NestedCSSProperties => {
   }
 };
 
-const colorStyle = (props: UpLinkProps) => {
-  if (props.color) {
-    return {
-      color: props.color,
-    }
-  }
-  return null;
+const colorStyle = (props: UpLinkProps & WithThemeProps) => {
+  return {
+    color: props.color || props.theme.colorMap.primary,
+    $nest : {
+      '&:hover' : {
+        color: props.color ? color(props.color).darken(0.1).toHexString() : props.theme.colorMap.primary,
+      },
+    },
+  };
 };
 
 export const getStyles = (props : UpLinkProps) : string => (
