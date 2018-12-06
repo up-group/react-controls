@@ -4,6 +4,7 @@ import * as classnames from 'classnames'
 import {style, media} from 'typestyle' 
 
 import UpSvgIcon from '../../Display/SvgIcon'
+import UpDefaultTheme, { withTheme, WithThemeProps,  } from "../../../Common/theming";
 
 export interface UpModalProps {
     showModal?: boolean;
@@ -22,15 +23,7 @@ const HeaderFooterAfterBeforeStyle = {
     content: " "
 };
 
-const CloseHover = {
-    color: "#000",
-    textDecoration: "none",
-    cursor: "pointer",
-    filter: "alpha(opacity=50)",
-    opacity: 0.5
-}
-
-const ModalStyle = style({
+const ModalStyle = (props: WithThemeProps) => style({
     $nest: {
         "& .up-modal" : {
             position: "fixed",
@@ -148,8 +141,16 @@ const ModalStyle = style({
             lineHeight: 1,
             color: "#000",
         },
-        "& .up-modal-close:hover" : CloseHover,
-        "& .up-modal-close:focus" : CloseHover,
+        "& .up-modal-close svg, & .up-modal-close svg path, & .up-modal-close svg polygon" : {
+            fill: props.theme.colorMap.primary,
+        },
+        "& .up-modal-close:hover, & .up-modal-close:focus" : {
+            color: props.theme.colorMap.primaryDark,
+            textDecoration: "none",
+            cursor: "pointer",
+            filter: "alpha(opacity=50)",
+            opacity: 0.5
+        },
         "& .up-modal-scrollbar-measure": {
             position: "absolute",
             top: "-9999px",
@@ -212,9 +213,10 @@ const ModalStyle = style({
 })
 ) ;
 
-export default class UpModal extends React.Component<UpModalProps, UpModalState>{
-    public static defaultProps: UpModalProps = {
-        showModal: true
+class UpModal extends React.Component<UpModalProps & WithThemeProps, UpModalState>{
+    public static defaultProps: UpModalProps & WithThemeProps = {
+        showModal: true,
+        theme: UpDefaultTheme,
     };
 
     constructor(p, c) {
@@ -274,7 +276,7 @@ export default class UpModal extends React.Component<UpModalProps, UpModalState>
         }
 
         return (
-            <div className={ModalStyle}> 
+            <div className={ModalStyle(this.props)}> 
                 <div className={classnames("up-modal", (this.state.showModal===true) ? "in" : "fade")}  id="myModal" role="dialog" aria-labelledby="myModalLabel">
                     <div className="up-modal-dialog" role="document">
                         <div className="up-modal-content">
@@ -293,3 +295,5 @@ export default class UpModal extends React.Component<UpModalProps, UpModalState>
             </div>) ;
     }
 }
+
+export default withTheme<UpModalProps>(UpModal) ;
