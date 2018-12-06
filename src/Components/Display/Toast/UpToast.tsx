@@ -121,7 +121,7 @@ export interface IToastProps {
   intent?: IntentType;
   autoDismissable?:boolean;
   duration?:number;
-  title?: string;
+  title?: JSX.Element | string ;
   subtitle?: string;
   icon?: JSX.Element;
 }
