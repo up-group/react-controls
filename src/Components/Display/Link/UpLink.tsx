@@ -13,6 +13,7 @@ export interface UpLinkProps extends React.Props<UpLink> {
   label?: string;
   color?: string;
   method?: Method;
+  dataFor?: string; // tooltip 
   onClick:(e:React.MouseEvent<HTMLAnchorElement>)=>void;
 }
 
@@ -35,14 +36,24 @@ export class UpLink extends React.Component<UpLinkProps> {
       label,
       children,
       color,
+      dataFor,
       href,
     } = this.props;
+    
+    var tooltipProps = {} ;
+    if (dataFor) {
+        tooltipProps = {
+            "data-tip": "tooltip",
+            "data-for": dataFor
+        }
+    }
 
     return (
       <a
         className={getStyles(this.props)}
         href={href}
         color={color}
+        {...tooltipProps}
         onClick={this.handleClick}>
         {label || children}
       </a>
