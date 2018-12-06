@@ -33,7 +33,7 @@ const colorStyle = (props: UpLinkProps & WithThemeProps) => {
 
 export const getStyles = (props : UpLinkProps) : string => (
   style({
-    fontSize: '1.1875rem',
+    fontSize: '1rem',
     lineHeight: '24px',
     fontWeight: 400,
     ...colorStyle(props),
