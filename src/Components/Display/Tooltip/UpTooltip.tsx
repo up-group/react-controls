@@ -123,7 +123,7 @@ export default class UpTooltip extends Component<UpTooltipProps, UpTooltipState>
     }
 
     return (
-      <div style={{display:"inline-block", width:'100%'}}>
+      <>
         {childrenWithProps &&
           childrenWithProps
         }
@@ -131,7 +131,7 @@ export default class UpTooltip extends Component<UpTooltipProps, UpTooltipState>
            childrenAsFunction({id : tooltipId})
         }
         <ReactTooltip className={classNames('up-tooltip', getStyles(this.props), custom)} id={tooltipId} getContent={this.getContent} {...others} />
-      </div>
+      </>
     );
   }
 }
