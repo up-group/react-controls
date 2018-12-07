@@ -147,7 +147,7 @@ const ModalStyle = (props: WithThemeProps) => style({
         "& .up-modal-close" : {
             position: "absolute",
             top:"8px",
-            left:"96%",
+            right:"8px",
             fontSize: "21px",
             fontWeight: "bold",
             lineHeight: 1,
