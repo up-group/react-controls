@@ -362,7 +362,7 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
                 },
             },
         });
-
+        
         return <div className={styleTopbar} >
             {isNullOrUndef(this.props.Recherche) ? null :
                 <div className={styleGauche} >
@@ -411,7 +411,7 @@ export class UserExpand extends React.Component<UserExpandProps, UserExpandState
             return null;
         }
         return addZeroBeforeNumber(dateTime.getDate(), 2) + "/"
-            + addZeroBeforeNumber(dateTime.getMonth(), 2) + "/"
+            + addZeroBeforeNumber(dateTime.getMonth() + 1, 2) + "/"
             + addZeroBeforeNumber(dateTime.getFullYear(), 4) + " "
             + addZeroBeforeNumber(dateTime.getHours(), 2) + ":"
             + addZeroBeforeNumber(dateTime.getMinutes(), 2) + ":"
