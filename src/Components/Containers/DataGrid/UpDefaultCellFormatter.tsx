@@ -23,7 +23,11 @@ export default class UpDefaultCellFormatter implements ICellFormatter {
         } else {
             var nextValue = value[pathParts[0]];
             var nextPath = pathParts.slice(1).join('.');
-            valueExtracted = this.getValue(nextValue, nextPath)
+            if(nextPath != null) {
+                valueExtracted = this.getValue(nextValue, nextPath);
+            } else {
+                valueExtracted = nextValue;
+            }
         }
         var result: any = "";
         var type = column.type;
