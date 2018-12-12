@@ -18,7 +18,8 @@ const base = (props:UpPanelStyledProps & WithThemeProps) : NestedCSSProperties =
   display: 'block',
   borderRadius: props.theme.borderRadius || '6px',
   verticalAlign: 'top',
-  border: '1px solid transparent',
+  borderWidth: '1px',
+  borderStyle: 'solid',
   width: '100%',
   marginBottom:'10px', 
   $nest : {

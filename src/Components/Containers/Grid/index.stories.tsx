@@ -24,24 +24,24 @@ stories.add('Simple usage',
       <div style={{"margin": "30px"}}>
       <UpGrid gutter={gutter}>
         <UpRow>
-          <UpCol span={10}>
+          <UpCol xs={24} sm={12} md={8} lg={6} >
             <UpPanel type={"primary"} title={"Mon Panel"} />
           </UpCol>
-          <UpCol span={4}>
+          <UpCol xs={24} sm={12} md={8} lg={6}>
             <UpPanel type={"default"} title={"Mon Panel"} />
           </UpCol>
-          <UpCol span={10}>
+          <UpCol xs={24} sm={12} md={8} lg={6}>
             <UpPanel type={"info"} title={"Mon Panel"} />
           </UpCol>
         </UpRow>
         <UpRow>
-          <UpCol span={4} xs={24} sm={18} md={8} lg={4}>
+          <UpCol xs={24} sm={12} md={8} lg={6}>
             <UpPanel type={"primary"} title={"Mon Panel"} />
           </UpCol>
-          <UpCol span={8} xs={24} sm={18} md={12} lg={8}>
+          <UpCol xs={24} sm={12} md={8} lg={6}>
             <UpPanel type={"default"} title={"Mon Panel"} />
           </UpCol>
-          <UpCol span={12} xs={24} sm={18} md={16} lg={12}>
+          <UpCol xs={24} sm={12} md={8} lg={6}>
             <UpPanel type={"info"} title={"Mon Panel"} />
           </UpCol>
         </UpRow>
