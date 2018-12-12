@@ -31,10 +31,7 @@ const getStyles = (props : SvgIconWrapperProps) : string => style({
             fill: props.color,
         }
     }
-}, media(DeviceSmartphones, {
-  width:  `100%`,
-  height: `100%`,
-}));
+});
 
 const SvgIconWrapper : React.StatelessComponent<SvgIconWrapperProps> = (props : SvgIconWrapperProps) => {
     const {children, className, height, width, ...othersProps} = props ;
