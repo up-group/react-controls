@@ -10,15 +10,15 @@ import UpPagination from './UpPagination'
 import UpUpDataGridToolbar from './UpDataGridToolbar'
 import UpDataGridRowHeader from './UpDataGridRowHeader'
 import UpDataGridRow from './UpDataGridRow'
-import UpDefaultCellFormatter, { ICellFormatter } from './UpDefaultCellFormatter'
+import { ICellFormatter } from './UpDefaultCellFormatter'
 
 import UpLoadingIndicator from '../../Display/LoadingIndicator'
 import UpButton from '../../Inputs/Button/UpButton'
 
-import { IntentType } from '../../../Common/theming/types'
+import { IntentType, WithThemeProps } from '../../../Common/theming/types'
 import shallowEqual from '../../../Common/utils/shallowEqual'
 import { ActionType } from '../../../Common/actions';
-
+import UpDefaultTheme, { withTheme } from '../../../Common/theming';
 
 const WrapperDataGridStyle = style({
     position: "relative"
@@ -28,55 +28,37 @@ const CellInnerElementStyle = {
     marginTop: "0.3em"
 };
 
-const DataGridStyle = style({
+const DataGridStyle = (props : UpDataGridProps & WithThemeProps) => style({
     width: "100%",
-    border: "1px solid #737373",
+    borderWidth: 0,
     borderRadius: "4px",
-    //display: "table",
-    borderCollapse: "collapse",
+    borderSpacing: 0,
+    color: props.theme.colorMap.darkGray5,
+    fontSize: '14px',
     $nest: {
         "& .up-data-grid-header": {
-            backgroundColor: "#fafafa",
-            backgroundImage: "linear-gradient(to bottom, #ffffff, #f2f2f2)",
+            backgroundColor: 'white',
             backgroundRepeat: "repeat-x",
-            border: "1px solid #d4d4d4",
-            borderRadius: "4px",
-            boxShadow: "0 1px 4px rgba(0, 0, 0, 0.067)",
-            color: "#428bca",
             fontWeight: 700,
-            //display: "table-header-group"
+            fontSize: '12px',
         },
         "& .up-data-grid-body": {
             background: "white",
-            //display: "table-row-group"
         },
         "& .up-selection": {
             width: "0.2em"
         },
-        "& .up-display-label": CellInnerElementStyle,
-        "& .up-display-value": CellInnerElementStyle,
-        "& .up-data-grid-row": {
-            //display: "table-row"
-        },
+        "& .up-display-label, & .up-display-value": CellInnerElementStyle,
         "& .up-data-grid-header-cell": {
-            //display: "table-cell",
             textAlign: "left",
-            verticalAlign: "top",
-            padding: "4px"
+            padding: "8px",
+            paddingLeft: '14px',
         },
         "& .up-data-grid-cell": {
-            //   display: "table-cell",
-            verticalAlign: "top",
-            padding: "8px"
+            padding: "14px"
         },
         "& .up-data-grid-row-bordered": {
             borderTop: "0.1em solid #428bca"
-
-            //$nest: {
-            //    "& > div": {
-            //        borderTop: "0.1em solid #428bca"
-            //    }
-            //}
         },
         "& .up-data-grid-row-borderless": {
             $nest: {
@@ -88,15 +70,13 @@ const DataGridStyle = style({
         "& .up-data-grid-row-selected": {
             $nest: {
                 "& .up-data-grid-cell": {
-                    borderTop: "0.1em solid #737373",
-                    borderBottom: "0.1em solid #737373",
-                    backgroundColor: "whitesmoke"
+                    borderTop: `0.1em solid ${props.theme.colorMap.primaryDark}`,
+                    borderBottom:`0.1em solid ${props.theme.colorMap.primaryDark}`,
+                    backgroundColor: props.theme.colorMap.primary,
+                    color : props.theme.colorMap.primaryFg,
                 }
             }
         },
-        //"button": {
-        //    margin: "4px 4px"
-        //},
         "& .up-data-grid-sortable": {
             cursor: "pointer"
         }
@@ -182,9 +162,9 @@ export interface UpDataGridState {
 
 export type SortDirection = 'ASC' | 'DESC'
 
-export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataGridState> {
+class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDataGridState> {
 
-    static defaultProps: UpDataGridProps = {
+    static defaultProps: UpDataGridProps & WithThemeProps = {
         columns: [],
         actions: [],
         dataKey: 'Entity',
@@ -195,7 +175,8 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
         isSelectionEnabled: false,
         isPaginationEnabled: false,
         isOddEvenEnabled: true,
-        isSortEnabled: true
+        isSortEnabled: true,
+        theme: UpDefaultTheme,
     }
 
     constructor(props, context) {
@@ -225,20 +206,6 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
             this.fetchData();
         }
     }
-
-    //prepareColumns = (columns : Array<Column>) : Array<Column> => {
-    //    let newColumns : Array<Column> = [] ;
-    //    const formatter = new UpDefaultCellFormatter() ;
-
-    //    columns.map((value:Column, index) => {
-    //        if(value.formatter == null) 
-    //            value.formatter = formatter ;
-
-    //        newColumns.push(value);
-    //    });
-
-    //    return newColumns ;
-    //}
 
     mapDataToRow = (data: Array<any>): Array<Row> => {
         let rows: Array<Row> = [];
@@ -448,21 +415,6 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
         return true;
     }
 
-    //objectEqual(obj1, obj2) {
-    //    var aProps = Object.getOwnPropertyNames(obj1);
-    //    var bProps = Object.getOwnPropertyNames(obj2);
-    //    if (aProps.length != bProps.length) {
-    //        return false;
-    //    }
-    //    for (var i = 0; i < aProps.length; i++) {
-    //        var propName = aProps[i];
-    //        if (obj1[propName] !== obj2[propName]) {
-    //            return false;
-    //        }
-    //    }
-    //    return true;
-    //}
-
     componentWillReceiveProps(nextProps: UpDataGridProps) {
         var data = this.state.data;
         var curentState = data.map((v => { return v.value; }));
@@ -506,10 +458,10 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
             OddEvenStyle = style({
                 $nest: {
                     '& .up-data-grid-row:nth-child(even)': {
-                        background: "#EFEFEF"
+                        background: "#FFF"
                     },
                     '& .up-data-grid-row:nth-child(odd)': {
-                        background: "#FFF"
+                        background: "#f5f5f5"
                     }
                 }
             });
@@ -523,7 +475,6 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
             });
             columns = newUnsortableColumns;
         }
-
 
         var rows = [];
 
@@ -573,7 +524,7 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
                 <UpLoadingIndicator message={"Chargement en cours"} isLoading={this.state.isDataFetching} />
                 {this.btnExportCsv}
                 {!this.state.isDataFetching &&
-                    <table ref={(r) => { this.refTable = r; }} className={classnames("up-data-grid-main", DataGridStyle)}>
+                    <table ref={(r) => { this.refTable = r; }} className={classnames("up-data-grid-main", DataGridStyle(this.props))}>
                         <UpDataGridRowHeader isSelectionEnabled={this.props.isSelectionEnabled}
                             onSelectionChange={this.onSelectionAllChange.bind(this)}
                             onSortChange={this.onSortChange.bind(this)}
@@ -592,15 +543,6 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
     }
 
     refTable: HTMLTableElement = null;
-
-    componentDidUpdate(prevProps, prevState) {
-
-        //if (this.refTable != null) {
-        //    var a = new exporterTable(this.refTable, {});
-        //    debugger
-        //}
-
-    }
 
     get isExportCsvEnable() {
         if (this.props.data == null || this.props.data.length === 0 ) {
@@ -663,12 +605,6 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
-            //$(a).attr({
-            //    'download': filename,
-            //    'href': ,
-            //    'target': '_blank'
-            //});
-
         }
     }
 
@@ -702,10 +638,6 @@ export default class UpDataGrid extends React.Component<UpDataGridProps, UpDataG
         csv += getRows('td');
         return csv;
     }
-
-
 }
 
-
-
-
+export default withTheme<UpDataGridProps>(UpDataGrid);

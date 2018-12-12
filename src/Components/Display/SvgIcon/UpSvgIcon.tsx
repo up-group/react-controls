@@ -1,9 +1,7 @@
 import * as React from 'react';
-import { style, media } from 'typestyle';
-import { NestedCSSProperties } from 'typestyle/lib/types';
+import { style } from 'typestyle';
 import Icons, { IconName } from '../../../Common/theming/icons';
 import * as classnames from 'classnames' ;
-import { DeviceSmartphones, DeviceLaptops } from '../../../Common/utils/device';
 import { isString } from '../../../Common/utils';
 
 export interface SvgProps extends React.SVGProps<{}> {
