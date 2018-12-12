@@ -7,22 +7,48 @@ import * as classNames from 'classnames'
 import * as ReactTooltip from 'react-tooltip'
 import { generateId, isFunction } from '../../../Common/utils'
 
-import {UpTooltipProps} from './'
-
 import { style } from 'typestyle' 
+import UpDefaultTheme, { withTheme, WithThemeProps } from "../../../Common/theming";
+import { IntentType } from '../../../Common/theming/types';
 
-const getStyles = (props : UpTooltipProps) => style({
+export type Placement = "top" | "right" | "bottom" | "left" 
+export type Effect = "float" | "solid" 
+
+export interface Tooltip {
+  content: JSX.Element | string ;
+  place?: Placement;
+  type?: IntentType;
+  effect?: Effect;
+  multiline?:boolean;
+  html?: boolean; 
+  title?: JSX.Element | string;
+  delayHide?:number;
+  delayShow?:number;
+  disable?:boolean;
+}
+
+export interface UpTooltipProps extends React.Props<UpTooltip>, Tooltip {
+  id?:string;
+}
+
+const getStyles = (props : UpTooltipProps & WithThemeProps) => style({
   pointerEvents: 'auto',
   opacity: 0.95,
   padding: '0px',
   $nest : {
+    '& .up-tooltip-content' : {
+      padding: '0px',
+      margin: '0px',
+    },
     '& .up-tooltip-header' : {
-      padding: '4px',
-      borderBottom:'1px solid #111',
+      padding: '8px 14px',
+      margin: 0,
+      borderBottom:'1px solid #ebebeb',
+      borderRadius: props.theme.borderRadius,
       fontWeight:700,
       fontSize: '13px',
-      color:'#111',
-      background:'whitesmoke',
+      color:'#4d4f5c',
+      background:'#f7f7f7',
     },
     '& .up-tooltip-body' : {
       padding:'8px',
@@ -36,10 +62,11 @@ const getStyles = (props : UpTooltipProps) => style({
 
 export interface UpTooltipState {}
 
-export default class UpTooltip extends Component<UpTooltipProps, UpTooltipState> {
+class UpTooltip extends Component<UpTooltipProps & WithThemeProps, UpTooltipState> {
 
-   public static defaultProps : UpTooltipProps = {
+   public static defaultProps : UpTooltipProps & WithThemeProps = {
        content : '',
+       title: 'Note',
        place : 'right',
        effect: 'float',
        type: 'light',
@@ -47,7 +74,8 @@ export default class UpTooltip extends Component<UpTooltipProps, UpTooltipState>
        html:false,
        delayHide:500,
        delayShow:500,
-       disable:false
+       disable:false,
+       theme : UpDefaultTheme,
     };
 
   constructor(props: UpTooltipProps) {
@@ -56,15 +84,15 @@ export default class UpTooltip extends Component<UpTooltipProps, UpTooltipState>
 
   getContent = () => {
     return (
-      <div>
+      <div className="up-tooltip-content">
         {this.props.title != null && 
-        <div className="up-tooltip-header">
+        <p className="up-tooltip-header">
           {this.props.title}
-        </div>
+        </p>
         }
-        <div className="up-tooltip-body">
+        <p className="up-tooltip-body">
           {this.props.content}
-        </div>
+        </p>
       </div>
     )
   }
@@ -92,29 +120,29 @@ export default class UpTooltip extends Component<UpTooltipProps, UpTooltipState>
 
     var custom = '' ;
 
-    if(this.props.type=='light') {
+    if(this.props.type == 'light') {
      custom = style({
-       background: "#FEFEFE !important",
-       border: "1px #ccc solid",
-       borderRadius: "6px",
+       background: "white !important",
+       border: "1px #ebebeb solid",
+       borderRadius: this.props.theme.borderRadius,
        $nest : {
          '&.place-top:after' : {
-           borderTopColor: "#ccc !important",
+           borderTopColor: "#ebebeb !important",
            borderTopStyle: "solid !important",
            borderTopWidth: "6px !important"
          },
          '&.place-left:after' : {
-           borderLeftColor: "#ccc !important",
+           borderLeftColor: "#ebebeb !important",
            borderLeftStyle: "solid !important",
            borderLeftWidth: "6px !important"
          },
          '&.place-right:after' : {
-           borderRightColor: "#ccc !important",
+           borderRightColor: "#ebebeb !important",
            borderRightStyle: "solid !important",
            borderRightWidth: "6px !important"
          },
          '&.place-bottom:after' : {
-           borderBottomColor: "#ccc !important",
+           borderBottomColor: "#ebebeb !important",
            borderBottomStyle: "solid !important",
            borderBottomWidth: "6px !important"
          }
@@ -135,3 +163,4 @@ export default class UpTooltip extends Component<UpTooltipProps, UpTooltipState>
     );
   }
 }
+export default withTheme<UpTooltipProps>(UpTooltip) ;

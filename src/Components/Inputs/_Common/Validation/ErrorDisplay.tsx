@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import UpSvgIcon from '../../../Display/SvgIcon' 
-import  UpTooltip, {Tooltip} from '../../../Display/Tooltip'
+import  UpTooltip, { Tooltip } from '../../../Display/Tooltip'
 import { style } from 'typestyle'
 
 export interface ErrorDisplayProps {
