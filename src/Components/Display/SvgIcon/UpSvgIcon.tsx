@@ -26,7 +26,7 @@ const getStyles = (props : SvgIconWrapperProps) : string => style({
     margin: '1px',
     $nest : {
         '& svg, & svg path, & svg polygon' : {
-            fill: props.color,
+            fill: props.color || 'inherit',
         }
     }
 });
