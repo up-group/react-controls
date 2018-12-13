@@ -497,9 +497,9 @@ export class Test extends React.Component<testProps, testState> {
           onSelectionChange={console.log}
           isPaginationEnabled={true}
           isSelectionEnabled={true}
-          defaultPage={this.state.page}
-          defaultSkip={this.state.skip}
-          defaultTake={50}
+          page={this.state.page}
+          skip={this.state.skip}
+          take={50}
           total={this.state.total}
           columns={[
             {

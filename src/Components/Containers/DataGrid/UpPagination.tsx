@@ -17,12 +17,12 @@ export interface UpPaginationState {
 export interface UpPaginationProps {
     /** Nombre total d'éléments paginés */
     total: number;
-    /** Valeur initiale du nombre d'éléments à ignorer */
-    defaultSkip?: number;
-    /** Valeur initiale du nombre d'éléments à récupérer */
-    defaultTake?: number;
-    /** Valeur initiale de l'index de pagination */
-    defaultPage?: number;
+    /** Valeur du nombre d'éléments à ignorer */
+    skip?: number;
+    /** Valeur du nombre d'éléments à récupérer */
+    take?: number;
+    /** Valeur de l'index de pagination */
+    page?: number;
     /** Message à afficher si aucun résultat retourné */
     noResultMessage?: string;
     /** Message à afficher pour l'information du nombre d'élément par page */
@@ -151,9 +151,9 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
         super(props);
 
         this.state = {
-            page: this.getPage(this.props.defaultTake || 50, this.props.defaultSkip || 0),
-            skip: this.props.defaultSkip || 0,
-            take: this.props.defaultTake || 50
+            page: this.getPage(this.props.take || 50, this.props.skip || 0),
+            skip: this.props.skip || 0,
+            take: this.props.take || 50
         }
     }
 
@@ -210,8 +210,8 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
     }
 
     componentWillReceiveProps(nextProps: UpPaginationProps) {
-        if(nextProps.defaultTake != undefined) {
-            const newState = { take: nextProps.defaultTake , skip: nextProps.defaultSkip, page: this.getPage(nextProps.defaultTake, nextProps.defaultSkip) };
+        if(nextProps.take != undefined) {
+            const newState = { take: nextProps.take , skip: nextProps.skip, page: this.getPage(nextProps.take, nextProps.skip) };
             this.setState(newState);
         }
     }
@@ -307,7 +307,7 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
                         {pageNumberNavigation}
                     </UpCol>
                     <UpCol span={3}>
-                        <UpSelect placeholder={this.props.nbByPageMessage} default={{ id: this.props.defaultTake, text: this.props.defaultTake }} data={takes} onChange={this.onTakeChange} />
+                        <UpSelect placeholder={this.props.nbByPageMessage} default={{ id: this.props.take, text: this.props.take }} data={takes} onChange={this.onTakeChange} />
                     </UpCol>
                     <UpCol span={5}>
                         <span className={paginationCounterStyle({theme : this.props.theme})}>

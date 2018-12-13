@@ -127,9 +127,9 @@ export interface UpDataGridProps {
     dataKey?: string;
     isDataFetching?: boolean;
     // For pagination
-    defaultSkip?: number;
-    defaultTake?: number;
-    defaultPage?: number;
+    skip?: number;
+    take?: number;
+    page?: number;
     total?: number;
 
     exportCsv?: exportCsv;
@@ -152,11 +152,11 @@ export interface UpDataGridProps {
 
 export interface UpDataGridState {
     data: Array<Row>;
-    columns?: Array<Column>,
-    page: number;
-    skip: number;
-    take: number;
-    total: number;
+    columns: Array<Column>,
+    page?: number;
+    skip?: number;
+    take?: number;
+    total?: number;
     isDataFetching?: boolean;
 }
 
@@ -169,9 +169,6 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
         actions: [],
         dataKey: 'Entity',
         paginationPosition: 'top',
-        defaultSkip: 0,
-        defaultTake: 50,
-        defaultPage: 1,
         isSelectionEnabled: false,
         isPaginationEnabled: false,
         isOddEvenEnabled: true,
@@ -186,13 +183,13 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
 
         const data = props.data as Array<any>;
         const columns: Array<Column> = this.props.columns;
-        var _state = {
+        const _state = {
             data: [],
             isDataFetching: false,
             columns: columns, //this.prepareColumns(columns),
-            page: 1,
-            skip: 0,
-            take: props.defaultTake,
+            skip: props.skip || 0,
+            take: props.take || 50,
+            page: props.page || 1,
             total: props.total
         };
         if (props.data != null) {
@@ -422,17 +419,18 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
         if (this.props.dataSource == null && arrayEqualResult === false) {
             data = (nextProps.data != null) ? this.mapDataToRow(nextProps.data) : nextProps.data;
         }
-        var newState: UpDataGridState
+        const newState: UpDataGridState
             = {
                 data: data,
                 columns: nextProps.columns,//(nextProps.columns != null) ? this.prepareColumns(nextProps.columns) : nextProps.columns,
                 total: nextProps.total,
                 isDataFetching: nextProps.isDataFetching,
-                skip: nextProps.defaultSkip > nextProps.total ? 0 : nextProps.defaultSkip,
-                take: nextProps.defaultTake,
-                page: (nextProps.defaultPage - 1) * nextProps.defaultSkip > nextProps.total ? 1 : nextProps.defaultPage
             };
-
+        if(nextProps.skip != null) {
+            newState.skip = nextProps.skip > nextProps.total ? 0 : nextProps.skip;
+            newState.take = nextProps.take;
+            newState.page = (nextProps.page - 1) * nextProps.skip > nextProps.total ? 1 : nextProps.page;
+        }
         this.setState(newState, () => {
             if (arrayEqualResult === false) {
                 if (this.props.onSelectionChange) {
@@ -452,7 +450,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
         { id: 500, text: "500" }];
 
         const pagination = <div style={{ margin: '10px 0px' }}>
-            <UpPagination defaultSkip={this.state.skip} defaultTake={this.state.take}
+            <UpPagination skip={this.state.skip} take={this.state.take}
             total={this.state.total} onPageChange={this.onPageChange.bind(this)} takes={takes} />
         </div>;
         const toolbar = <UpUpDataGridToolbar />;
