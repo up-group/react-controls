@@ -24,7 +24,7 @@ export default class UpDefaultCellFormatter implements ICellFormatter {
             var nextValue = value[pathParts[0]];
             var nextPath = pathParts.slice(1).join('.');
             if(nextPath != null) {
-                valueExtracted = this.getValue(nextValue, nextPath);
+                valueExtracted = this.getValue(nextValue, { field : nextPath } );
             } else {
                 valueExtracted = nextValue;
             }
