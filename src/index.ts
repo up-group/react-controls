@@ -50,6 +50,8 @@ import UpToggle from './Components/Inputs/Toggle'
 import UpRadio from './Components/Inputs/Radio'
 import UpPassword from './Components/Inputs/Password'
 import UpProgressCircle from './Components/Display/ProgressCircle';
+import UpPDFViewer from './Components/Display/PDFViewer/UpPDFViewer';
+import UpDropFile from './Components/Inputs/DropFile/UpDropFile';
 
 import * as UpIcons from "./Components/Display/Icons/materialinear";
 
@@ -118,4 +120,6 @@ export {
     UpHelper,
     UpIcons,
     UpProgressCircle,
+    UpDropFile,
+    UpPDFViewer,
 };
