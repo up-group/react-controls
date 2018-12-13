@@ -443,13 +443,18 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
     }
 
     render() {
-        const takes = [{ id: 20, text: "20" },
+        const takes = [
+        { id: 10, text: "10" },
+        { id: 20, text: "20" },
         { id: 50, text: "50" },
         { id: 100, text: "100" },
-        { id: 200, text: "200" }];
+        { id: 200, text: "200" },
+        { id: 500, text: "500" }];
 
-        const pagination = <UpPagination defaultSkip={this.state.skip} defaultTake={this.state.take}
-            total={this.state.total} onPageChange={this.onPageChange.bind(this)} takes={takes} />;
+        const pagination = <div style={{ margin: '10px 0px' }}>
+            <UpPagination defaultSkip={this.state.skip} defaultTake={this.state.take}
+            total={this.state.total} onPageChange={this.onPageChange.bind(this)} takes={takes} />
+        </div>;
         const toolbar = <UpUpDataGridToolbar />;
         const RowTemplate = this.props.rowTemplate;
 
@@ -521,7 +526,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
                 {this.props.isPaginationEnabled && this.props.paginationPosition != 'bottom' &&
                     pagination
                 }
-                <UpLoadingIndicator message={"Chargement en cours"} isLoading={this.state.isDataFetching} />
+                <UpLoadingIndicator displayMode={'layer'} message={"Chargement en cours"} isLoading={this.state.isDataFetching} />
                 {this.btnExportCsv}
                 {!this.state.isDataFetching &&
                     <table ref={(r) => { this.refTable = r; }} className={classnames("up-data-grid-main", DataGridStyle(this.props))}>
