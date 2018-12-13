@@ -159,8 +159,8 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
 
     goToPreviousPage = () => {
         if (this.state.page > 1) {
-            var previousPage = this.state.page - 1;
-            var newState = { page: previousPage, skip: (previousPage - 1) * this.state.take };
+            const previousPage = this.state.page - 1;
+            const newState = { page: previousPage, skip: (previousPage - 1) * this.state.take };
             this.setState(newState, () => {
                 this.props.onPageChange(this.state.page, this.state.take, this.state.skip)
             });
@@ -174,8 +174,8 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
 
     goToNextPage = () => {
         if (this.state.page < this.getMaxPage()) {
-            var nextPage = this.state.page + 1;
-            var newState = { page: nextPage, skip: (nextPage - 1) * this.state.take };
+            const nextPage = this.state.page + 1;
+            const newState = { page: nextPage, skip: (nextPage - 1) * this.state.take };
             this.setState(newState, () => {
                 this.props.onPageChange(this.state.page, this.state.take, this.state.skip)
             });
@@ -183,7 +183,7 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
     }
 
     goTo = (page: number) => {
-        var newState = { page: page, skip: (page - 1) * this.state.take };
+        const newState = { page: page, skip: (page - 1) * this.state.take };
         this.setState(newState, () => {
             this.props.onPageChange(this.state.page, this.state.take, this.state.skip)
         });
@@ -191,11 +191,11 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
 
     onTakeChange = (event, data: any) => {
         if (data && data.id != this.state.take) {
-            var newTake = data.id;
-            var newPage = this.getPage(newTake, this.state.skip);
-            var newSkip = newTake*(newPage-1)
+            const newTake = data.id;
+            const newPage = this.getPage(newTake, this.state.skip);
+            const newSkip = newTake*(newPage-1)
             
-            var newState = { take: newTake, page: newPage, skip: newSkip };
+            const newState = { take: newTake, page: newPage, skip: newSkip };
             this.setState(newState, function () {
                 this.props.onPageChange(this.state.page, this.state.take, this.state.skip);
             });
@@ -203,7 +203,7 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
     }
 
     getPage = (take: number, skip: number) => {
-        if(take >= this.props.total) {
+        if(this.props.total != null && take >= this.props.total) {
             return 1 ; // Set the page to 1
         }
         return Math.floor((skip + take) / take)
@@ -211,13 +211,17 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
 
     componentWillReceiveProps(nextProps: UpPaginationProps) {
         if(nextProps.take != undefined) {
-            const newState = { take: nextProps.take , skip: nextProps.skip, page: this.getPage(nextProps.take, nextProps.skip) };
+            const newState = { 
+                take: nextProps.take , 
+                skip: nextProps.skip, 
+                page: this.getPage(nextProps.take, nextProps.skip) 
+            };
             this.setState(newState);
         }
     }
 
     inRange(curPage, pagevalue, distance) {
-        var absRange = Math.abs(curPage - pagevalue);
+        const absRange = Math.abs(curPage - pagevalue);
         if (absRange < distance) {
             return true;
         }

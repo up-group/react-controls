@@ -320,7 +320,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
         if (this.props.onPageChange)
             this.props.onPageChange(page, take, skip);
 
-        this.setState({ page: page, take: take, skip: skip }, () => {
+        this.setState({ page, take, skip }, () => {
             if (this.props.dataSource != undefined) {
                 this.fetchData();
             }
