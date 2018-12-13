@@ -143,19 +143,17 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
         { id: 100, text: "100" },
         { id: 200, text: "200" }],
         total: 0,
-        defaultPage: 1,
-        defaultSkip: 0,
-        defaultTake: 50,
         theme:defaultTheme,
         onPageChange: (page: number, take: number, skip: number) => { }
     }
 
     constructor(props, context) {
         super(props);
+
         this.state = {
-            page: this.getPage(this.props.defaultTake, this.props.defaultSkip),
-            skip: this.props.defaultSkip,
-            take: this.props.defaultTake
+            page: this.getPage(this.props.defaultTake || 50, this.props.defaultSkip || 0),
+            skip: this.props.defaultSkip || 0,
+            take: this.props.defaultTake || 50
         }
     }
 
@@ -212,8 +210,10 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
     }
 
     componentWillReceiveProps(nextProps: UpPaginationProps) {
-        var newState = { take: nextProps.defaultTake, skip: nextProps.defaultSkip, page: this.getPage(nextProps.defaultTake, nextProps.defaultSkip) };
-        this.setState(newState);
+        if(nextProps.defaultTake != undefined) {
+            const newState = { take: nextProps.defaultTake , skip: nextProps.defaultSkip, page: this.getPage(nextProps.defaultTake, nextProps.defaultSkip) };
+            this.setState(newState);
+        }
     }
 
     inRange(curPage, pagevalue, distance) {
