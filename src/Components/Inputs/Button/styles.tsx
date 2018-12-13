@@ -115,7 +115,7 @@ const active = (props:UpButtonProps & WithThemeProps) : NestedCSSProperties => {
   return {
     color : props.color || props.theme.colorMap[`${props.intent}Fg`] || 'black',
     backgroundColor: props.backgroundColor || props.theme.colorMap[props.intent],
-    borderColor: props.borderColor || props.theme.colorMap[`${props.intent}Dark`],
+    borderColor: props.borderColor || props.theme.colorMap[`${props.intent}Border`],
     borderWidth:'1px',
     borderStyle:'solid',
     $nest : {
@@ -123,8 +123,8 @@ const active = (props:UpButtonProps & WithThemeProps) : NestedCSSProperties => {
         color : props.color || props.theme.colorMap[`${props.intent}HoverFg`] || 'black',
         backgroundColor: props.color || props.theme.colorMap[`${props.intent}Hover`] || 'white',
       },
-      '&:hover svg, &:hover svg path, &:hover svg polygon' : {
-        fill: props.backgroundColor || props.theme.colorMap[`${props.intent}Fg`],
+      '&.up-btn:hover svg, &.up-btn:hover svg path, &.up-btn:hover svg polygon' : {
+        fill: props.backgroundColor || props.theme.colorMap[`${props.intent}HoverFg`],
       },
       '&:hover:active' : {
         color : props.color || props.theme.colorMap[`${props.intent}HoverFg`] || 'black',
