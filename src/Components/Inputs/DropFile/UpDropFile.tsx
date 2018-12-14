@@ -84,7 +84,7 @@ const Base: NestedCSSProperties = {
   borderRadius: '4px',
   minHeight: '64px',
   height: 'auto',
-  marginTop: '50px',
+  marginTop: '8px',
   position: 'relative',
 };
 
