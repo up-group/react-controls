@@ -94,6 +94,7 @@ export interface Column {
     label: string | JSX.Element;
     field?: string;
     formatter?: ICellFormatter;
+    render?: ({value: any, column: Column}) => JSX.Element;
     type?: any;
     isSortable?: boolean;
     isSorted?: boolean;

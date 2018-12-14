@@ -70,7 +70,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
                 }
 
                 {this.props.columns.map((value, index) => {
-                    return <UpDataGridCell key={`cell-${index}`} value={this.props.value} column={value} />
+                    return <UpDataGridCell key={`cell-${index}`} value={this.props.value} column={value} render={value.render} />
                 })}
 
                 {finalActions &&

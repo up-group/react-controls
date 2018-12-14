@@ -121,11 +121,15 @@ export class UpCellFormatter extends React.Component<UpCellFormatterProps, {}>{
     }
 
     render() {
-        var valueExtracted = this.props.value[this.props.column.field];
         if (this.props.column.formatter != null) {
             return this.props.column.formatter.format(this.props.value, this.props.column);
         }
-
+        let valueExtracted =  null ;
+        
+        if(this.props.column.field) {
+            this.props.value[this.props.column.field];
+        }
+        
         if (valueExtracted == null) {
             return <span>{this.props.children}</span>
         }
