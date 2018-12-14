@@ -3,6 +3,7 @@ import { style } from 'typestyle';
 import Icons, { IconName } from '../../../Common/theming/icons';
 import * as classnames from 'classnames' ;
 import { isString } from '../../../Common/utils';
+import { NestedCSSProperties } from 'typestyle/lib/types';
 
 export interface SvgProps extends React.SVGProps<{}> {
     iconName?: IconName;
@@ -19,17 +20,22 @@ export interface SvgIconWrapperProps {
   children?: Array<React.ReactNode>;
 }
 
-const getStyles = (props : SvgIconWrapperProps) : string => style({
-    display: 'inline-block',
-    width:  `${props.width}`,
-    height: `${props.height}`,
-    margin: '1px',
-    $nest : {
-        '& svg, & svg path, & svg polygon' : {
-            fill: props.color || 'inherit',
-        }
+const getStyles = (props : SvgIconWrapperProps) : string => {
+    const styles : NestedCSSProperties = {
+      display: 'inline-block',
+      width:  `${props.width}`,
+      height: `${props.height}`,
+      margin: '1px',
     }
-});
+    if(props.color) {
+      styles['$nest'] = {
+        '& svg, & svg path, & svg polygon' : {
+            fill: props.color,
+        }
+      };
+    }
+    return style(styles);
+  };
 
 const SvgIconWrapper : React.StatelessComponent<SvgIconWrapperProps> = (props : SvgIconWrapperProps) => {
     const {children, className, height, width, ...othersProps} = props ;
