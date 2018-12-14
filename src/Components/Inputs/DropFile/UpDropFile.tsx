@@ -403,7 +403,9 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
   }
 
   deleteFile = (e) => {
-    e.stopPropagation();
+    if (e != null) {
+      e.stopPropagation();
+    }
     if(this.props.onChange) {
         this.props.onChange(eventFactory(this.props.name, null), null);
     }
@@ -570,28 +572,34 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
                 {isFileSelected === true ?
                   <>
                     {this.props.disabled !== true &&
-                      <UpTooltip content={`Supprimer le fichier ${this.fileName || ''}`} place={'top'}>
+                     <div onClick={e => e.stopPropagation()}>
+                     <UpTooltip content={`Supprimer le fichier ${this.fileName || ''}`} place={'top'}>
                         <UpSvgIcon iconName={'delete'}
                           onClick={this.deleteFile}
                           color={this.props.theme.colorMap.primary}
                           className={classnames(iconTitleStyle, 'up-file-action')} />
                       </UpTooltip>
+                      </div>
                     }
                     {this.props.enableCrop && isFileImage(this.props.value.name) &&
+                      <div onClick={e => e.stopPropagation()}>
                       <UpTooltip content={'Redimensionner l\'image'} place={'top'}>
                         <UpSvgIcon iconName={'crop'}
                           onClick={this.cropFile}
                           color={this.props.theme.colorMap.primary}
                           className={classnames(iconTitleStyle, 'up-file-action')} />
                       </UpTooltip>
+                      </div>
                     }
                     {(this.props.value) &&
-                      <UpTooltip content={`Ouvrir le fichier ${this.fileName}`} place={'top'}>
+                      <div onClick={e => e.stopPropagation()}>
+                      <UpTooltip content={`Ouvrir le fichier ${this.fileName}`} place={'top'} >
                         <UpSvgIcon iconName={'read'}
                           onClick={this.openFile}
                           color={this.props.theme.colorMap.primary}
                           className={classnames(iconTitleStyle, 'up-file-action')} />
                       </UpTooltip>
+                      </div>
                     }
                   </> :
                   <>
