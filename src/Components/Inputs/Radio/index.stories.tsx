@@ -37,6 +37,12 @@ stories.add('Multiple usage',
 ).add('Display as Button with required',
     () => (
             <div style={{ padding: "30px" }}>
-                <UpRadio name={"modeAdresse"} isRequired={true} displayMode="button" options={[{ text: "Option 1", value: "option1" }, { text: "Option 2", value: "option2" }, { text: "Option 3", value: "option3" }]} />
+                <UpRadio name={"modeAdresse"} 
+                    isRequired={true} 
+                    displayMode="button" 
+                    gutter={10}
+                    options={[{ text: "Option 1", value: "option1" }, 
+                    { text: "Option 2", value: "option2", intent: 'success' }, 
+                    { text: "Option 3", value: "option3", intent: 'danger' }]} />
             </div>
 ), {info : 'Affichage des radio comme button marqué comme requis'} );

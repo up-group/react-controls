@@ -3,29 +3,66 @@ import * as React from 'react'
 import * as classnames from 'classnames'
 
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
-import { UpRadioStyledProps, UpRadioProps } from './types';
 import { RadioGroupStyles, getStyles } from './styles';
 import { style } from 'typestyle';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import defaultTheme from '../../../Common/theming';
+import {BaseControlProps} from '../_Common/BaseControl/BaseControl' 
+import { IntentType } from 'theming/types';
+import { number } from 'prop-types';
 
-type RadioGroupProps = {
-    className?:string;
+// Exports
+export type Position = 'left' | 'right' ;
+export type DisplayMode = 'horizontal' | 'vertical' | 'button' ; 
+
+export interface Option {
+    value:any;
+    text?:string;
+    iconName?:string;
+    name?:string;
+    checked?:boolean;
+    intent?: IntentType;
 }
 
-const RadioGroup: React.StatelessComponent<RadioGroupProps> = (props) => {
+export interface UpRadioStyledProps extends Option {
+    className?:string;
+    gutter?:number;
+    onChange?:(e:any) => void;
+}
+
+export interface UpRadioState {
+    options?: Array<Option>;
+    value?:any;
+}
+
+export interface UpRadioProps extends BaseControlProps<any> {
+    options: Array<Option>;
+    position?:Position;
+    name:string;
+    value?:any;
+    displayMode?: DisplayMode,
+    gutter?:number,
+    onChange?: (arg: any, event: any, error: boolean) => void;
+}
+
+export type RadioGroupProps = {
+    className?:string;
+    gutter?:number;
+}
+
+const RadioGroup: React.StatelessComponent<RadioGroupProps & WithThemeProps> = (props) => {
     const { children, className } = props;
     return (
-      <div onClick={this.stopPropagation} className={classnames(className, style(RadioGroupStyles))}>
+      <div onClick={this.stopPropagation} className={classnames(className, style(RadioGroupStyles(props)))}>
         {children}
       </div>
     )
   }
 
 const BaseRadioButton: React.StatelessComponent<UpRadioStyledProps & WithThemeProps> = (props : UpRadioStyledProps & WithThemeProps) => {
-    const { checked, className, name, text, value, onChange } = props;
+    const { checked, className, name, text, value, onChange, intent } = props;
     return (
-      <label className={classnames("up-control", "up-radio", getStyles(props), className)}>
+      <label className={classnames("up-control", "up-radio", getStyles(props), intent ? `up-intent-${intent}` : null, className)}>
         <input checked={checked} onChange={onChange} name={name} type="radio" value={value} />
         <span className="up-control-indicator"></span>
         <span className="up-control-text">{text}</span>
@@ -70,19 +107,16 @@ class UpRadio extends BaseControlComponent<UpRadioProps, any> {
 
     renderControl() {
         const options = this.props.options;
-        /*const icon = <SvgIcon iconName={props.iconName}
-              width={props.iconSize}
-              height={props.iconSize}
-              color={props.color} /> ;*/
         var radioGroupClass = "upContainer__groupradio-" + this.props.displayMode;
 
         return (
-            <RadioGroup className={radioGroupClass}>
+            <RadioGroup className={radioGroupClass} gutter={this.props.gutter} theme={this.props.theme}>
                 {/* Avoid set active element when using the component inside a label */}
                 <label style={{ display: "none" }}><input type="radio" /></label>
                 {options.map((option, i) => {
                     return (
                         <BaseRadioButton 
+                            intent={option.intent}
                             onChange={this.handleChangeEvent} 
                             key={`Key_${this.props.name}_${option.value}`}
                             name={this.props.name}
