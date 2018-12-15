@@ -8,7 +8,7 @@ import { style } from 'typestyle';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import defaultTheme from '../../../Common/theming';
 import {BaseControlProps} from '../_Common/BaseControl/BaseControl' 
-import { IntentType } from 'theming/types';
+import { IntentType } from '../../../Common/theming/types';
 import { number } from 'prop-types';
 
 // Exports
