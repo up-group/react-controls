@@ -52,6 +52,7 @@ import UpPassword from './Components/Inputs/Password'
 import UpProgressCircle from './Components/Display/ProgressCircle';
 import UpPDFViewer from './Components/Display/PDFViewer/UpPDFViewer';
 import UpDropFile from './Components/Inputs/DropFile/UpDropFile';
+import UpRating from './Components/Inputs/Rating/UpRating';
 
 import * as UpIcons from "./Components/Display/Icons/materialinear";
 
@@ -122,4 +123,5 @@ export {
     UpProgressCircle,
     UpDropFile,
     UpPDFViewer,
+    UpRating,
 };

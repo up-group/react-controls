@@ -51,6 +51,7 @@ import UpPassword from './Inputs/Password'
 import UpProgressCircle from './Display/ProgressCircle'
 import UpDropFile from './Inputs/DropFile/UpDropFile'
 import UpPDFViewer from './Display/PDFViewer/UpPDFViewer'
+import UpRating from './Inputs/Rating/UpRating'
 
 import * as UpIcons from "./Display/Icons/materialinear";
 
@@ -110,4 +111,5 @@ export {
     UpProgressCircle,
     UpPDFViewer,
     UpDropFile,
+    UpRating,
 };
