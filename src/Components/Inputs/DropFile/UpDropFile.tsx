@@ -259,6 +259,15 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
     return this.value != null ? this.value.name : ''
   }
 
+  get isPDF() {
+    return this.value != null && getMimeTypeFromBase64(this.value.value_base64 as string) === 'application/pdf' ;
+  }
+
+  get isImage() {
+    return this.value != null && getMimeTypeFromBase64(this.value.value_base64 as string).startsWith('image/') ;
+  }
+
+
   handleEvent = (e: Event) => {
     switch (e.type) {
       case 'resize':
@@ -516,8 +525,7 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
     const theme = this.props.theme;
     const hasError: boolean = this.props.error !== undefined && this.props.touched;
     const isFileSelected = this.value != null ;
-    const isPDF = isFileSelected && getMimeTypeFromBase64(this.preview) === 'application/pdf' ;
-
+    
     const iconTitleStyle = style({
       fontSize: '12px', 
       padding: '4px',
@@ -540,14 +548,16 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
 
     return (
       <div ref={(wrapperUpDropFile) => { this.wrapperUpDropFile = wrapperUpDropFile; }}>
-          <UpLabel>{this.props.label} {this.props.required && ' *'}
-            {this.props.onMouseOver &&
-              <span
-                className={classnames(iconTitleStyle, 'icon-info')}
-                onClick={this.props.onMouseOver}
-              />
-            }
-          </UpLabel>
+          {!isEmpty(this.props.label) &&
+            <UpLabel>{this.props.label} {this.props.required && ' *'}
+              {this.props.onMouseOver &&
+                <span
+                  className={classnames(iconTitleStyle, 'icon-info')}
+                  onClick={this.props.onMouseOver}
+                />
+              }
+            </UpLabel>
+          }
           <div className={FileStyle} onClick={this.onZoneClick.bind(this)}>
             <Dropzone onMouseEnter={() => this.setState({ showOptions: true })}
               onMouseLeave={() => this.setState({ showOptions: false })}
@@ -558,13 +568,13 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
               disableClick
               onDrop={this.onFileDrop.bind(this)}
             >
-              {false &&
+              {!this.isPDF && !this.isImage &&
                 <UpNotification intent={'info'}>
                   <UpParagraph>Aucune prévisualisation disponible pour ce type de fichier.</UpParagraph>
                   <UpParagraph><UpLink onClick={ () => { this.openFile(null); }}>Ouvrir le fichier</UpLink></UpParagraph>
                 </UpNotification>
               }
-              {isPDF &&
+              {this.isPDF &&
                 <UpPDFViewer onLoadSuccess={() => {}} base64PDF={this.preview} />
               }
               {(this.state.showOptions === true || isFileSelected === false) &&
