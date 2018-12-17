@@ -5,7 +5,7 @@ import UpCheckbox from '../../Inputs/Checkbox/UpCheckBox'
 
 import UpDataGridCellHeader from './UpDataGridCellHeader'
 import { Column, Action, SortDirection } from './UpDataGrid'
-import { isEmpty } from 'utils';
+import { isEmpty } from '../../../Common/utils';
 
 export interface UpDataGridRowHeaderState {
     isSelected: boolean;
