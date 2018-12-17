@@ -568,7 +568,7 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
               disableClick
               onDrop={this.onFileDrop.bind(this)}
             >
-              {!this.isPDF && !this.isImage &&
+              {isFileSelected && !this.isPDF && !this.isImage &&
                 <UpNotification intent={'info'}>
                   <UpParagraph>Aucune prévisualisation disponible pour ce type de fichier.</UpParagraph>
                   <UpParagraph><UpLink onClick={ () => { this.openFile(null); }}>Ouvrir le fichier</UpLink></UpParagraph>
