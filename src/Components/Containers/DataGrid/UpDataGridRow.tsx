@@ -39,7 +39,6 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
 
     constructor(props, context) {
         super(props, context);
-
     }
 
     onSelectionChange = (isSelected) => {
@@ -59,7 +58,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
         let finalActions : Array<Action> = null ;
         if(this.props.actions && !Array.isArray(this.props.actions)) {
             finalActions = this.props.actions(this.props.value) ;
-        } else {
+        } else if(this.props.actions != null) {
             finalActions = this.props.actions as Array<Action> ;
         }
 
