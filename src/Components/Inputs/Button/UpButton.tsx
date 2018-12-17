@@ -31,7 +31,7 @@ for (var i = 0; i < IconNames.length; i++) {
 export class BaseButton extends React.Component<UpButtonStyledProps> {
     
     render() {
-        let { children, className, onClick, dataFor, width, iconPosition, isProcessing, type} = this.props;
+        let { children, className, onClick, dataFor, width, iconPosition, isProcessing, type, disabled } = this.props;
         const actionType = this.props.actionType;
         let iconName: IconName = 'none';
         if (actionType && ActionIconMap.containsKey(actionType)) {           
@@ -54,7 +54,7 @@ export class BaseButton extends React.Component<UpButtonStyledProps> {
             }
         }
         const MainButton = (
-        <button type={type} onClick={onClick} className={classnames('up-btn', getStyles(this.props), className)} {...tooltipProps} >
+        <button type={type} disabled={disabled} onClick={onClick} className={classnames('up-btn', getStyles(this.props), className)} {...tooltipProps} >
             {iconName != 'none' && isProcessing !== true &&
                 icon
             }
