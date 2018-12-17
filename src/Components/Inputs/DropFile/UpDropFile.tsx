@@ -260,11 +260,11 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
   }
 
   get isPDF() {
-    return this.value != null && getMimeTypeFromBase64(this.value.value_base64 as string) === 'application/pdf' ;
+    return this.value != null && this.value.value_base64 != null && getMimeTypeFromBase64(this.value.value_base64 as string) === 'application/pdf' ;
   }
 
   get isImage() {
-    return this.value != null && getMimeTypeFromBase64(this.value.value_base64 as string).startsWith('image/') ;
+    return this.value != null && this.value.value_base64 != null && getMimeTypeFromBase64(this.value.value_base64 as string).startsWith('image/') ;
   }
 
 
