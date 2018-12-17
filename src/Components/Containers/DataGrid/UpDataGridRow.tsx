@@ -10,6 +10,7 @@ import UpDefaultCellFormatter from './UpDefaultCellFormatter'
 
 import shallowEqual from '../../../Common/utils/shallowEqual'
 import { isArray } from 'util';
+import { isEmpty } from '../../../Common/utils';
 
 export interface UpDataGridRowState {
 }
@@ -68,12 +69,10 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
                 {this.props.isSelectionEnabled &&
                     <UpDataGridCell key={"cell-selection"} value={selection} column={{ label: "", formatter: formatter }} />
                 }
-
                 {this.props.columns.map((value, index) => {
                     return <UpDataGridCell key={`cell-${index}`} value={this.props.value} column={value} render={value.render} />
                 })}
-
-                {finalActions &&
+                {!isEmpty(finalActions) &&
                     <UpDataGridCell key={"cell-actions"} value={this.props.value} column={{ label: "", isSortable: false }}>
                         {
                             finalActions.map((value, index) => {
