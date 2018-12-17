@@ -60,6 +60,13 @@ stories.add('Simple usage',
                }}>
                 Add
               </UpButton> 
+              <UpButton actionType="delete" disabled={true} width={"icon"} intent="danger"  onClick={(event) => {
+                 return new Promise(function(resolve, reject) {
+                    setTimeout(() => resolve(true), 5000)
+                 })
+               }}>
+                Delete
+              </UpButton>
             </UpParagraph>
         </UpNotification>
       </UpBox>

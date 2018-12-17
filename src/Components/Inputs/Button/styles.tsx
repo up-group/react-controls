@@ -45,7 +45,6 @@ const base = (props:UpButtonProps & WithThemeProps) : NestedCSSProperties => {
     paddingRight : props.width === 'icon' ? '0px' : props.iconPosition === 'right'? '32px' : '6px',
     textDecoration: 'none',
     display: 'inline-block',
-    cursor: 'pointer',
     verticalAlign: 'middle',
     position: 'relative',
     $nest : {
@@ -64,9 +63,6 @@ const base = (props:UpButtonProps & WithThemeProps) : NestedCSSProperties => {
         paddingLeft: props.width=="auto" ?"8px":"inherit",
         paddingRight: props.width=="auto"?"8px":"inherit",
         color: props.isProcessing ? props.theme.colorMap.disabledBg : 'inherit',
-      },
-      '&:active' : {
-        boxShadow: 'inset 5px 5px 5px rgba(16, 22, 26, 0.2)',
       },
       '&:focus' : {
         outline: 'transparent auto 0px',
@@ -94,7 +90,11 @@ const disabled = (props:UpButtonProps & WithThemeProps) : NestedCSSProperties =>
   return {
     background: props.theme.colorMap.disabledBg,
     color: props.theme.colorMap.disabledFg,
-    cursor: 'not-allowed'
+    $nest : {
+      '&.up-btn' :  {
+        cursor: 'not-allowed',
+      },
+    }
   }
 };
 
@@ -136,12 +136,16 @@ const active = (props:UpButtonProps & WithThemeProps) : NestedCSSProperties => {
       '&:active' : {
         color : props.color || props.theme.colorMap[`${props.intent}HoverFg`] || 'black',
         backgroundColor: props.color || props.theme.colorMap[`${props.intent}Active`] || 'white',
+        boxShadow: 'inset 5px 5px 5px rgba(16, 22, 26, 0.2)',
       },
       '&:active svg, &:active svg path, &:active svg polygon' :  {
         fill: props.backgroundColor || props.theme.colorMap[`${props.intent}HoverFg`],
       },
       '&.up-btn svg, &.up-btn svg path, &.up-btn svg polygon' : {
           fill: props.color || props.theme.colorMap[`${props.intent}Fg`] || 'white',
+      },
+      '&.up-btn' : {
+        cursor: 'pointer',
       },
     }
   }

@@ -61,7 +61,7 @@
     "publishLocalToSchemaForm": "copyfiles dist/*.* dist/**/* package.json src/*.* src/**/* src/theming/icons/* ../react-schemaform/node_modules/@up-group/react-controls/",
     "publishLocalToApp": "copyfiles dist/src/*.* dist/src/**/* src/theming/icons/* ../../loopback/revolution-digitale/client/node_modules/@up-group/react-controls/dist",
     "test": "jest --notify --coverage",
-    "storybook": "nvm use 8.11.3 ; start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -o ./docs"
   },
   "devDependencies": {
