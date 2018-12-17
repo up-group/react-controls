@@ -307,13 +307,13 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
         return (
             <UpGrid>
                 <UpRow>
-                    <UpCol span={16}>
+                    <UpCol span={14}>
                         {pageNumberNavigation}
                     </UpCol>
                     <UpCol span={3}>
                         <UpSelect placeholder={this.props.nbByPageMessage} default={{ id: this.props.take, text: this.props.take }} data={takes} onChange={this.onTakeChange} />
                     </UpCol>
-                    <UpCol span={5}>
+                    <UpCol span={7}>
                         <span className={paginationCounterStyle({theme : this.props.theme})}>
                             {maxPage == 0 &&
                                 <span>{this.props.noResultMessage}</span>
