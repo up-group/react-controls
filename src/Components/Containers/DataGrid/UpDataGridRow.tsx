@@ -9,7 +9,6 @@ import { Column, Row, Action } from './UpDataGrid'
 import UpDefaultCellFormatter from './UpDefaultCellFormatter'
 
 import shallowEqual from '../../../Common/utils/shallowEqual'
-import { isArray } from 'util';
 import { isEmpty } from '../../../Common/utils';
 
 export interface UpDataGridRowState {
@@ -58,7 +57,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
         const selection = <UpCheckbox options={[{ name: "up-selection", checked: this.props.isSelected === true, value: true, onOptionChange: this.onSelectionChange }]} />;
         
         let finalActions : Array<Action> = null ;
-        if(this.props.actions && !isArray(this.props.actions)) {
+        if(this.props.actions && !Array.isArray(this.props.actions)) {
             finalActions = this.props.actions(this.props.value) ;
         } else {
             finalActions = this.props.actions as Array<Action> ;
