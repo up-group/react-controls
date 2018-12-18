@@ -41,6 +41,7 @@ import UpFile from './Inputs/File'
 import UpDate from './Inputs/Date'
 import UpTimePicker from './Inputs/TimePicker'
 import UpText from './Inputs/Text'
+import UpRichext from './Inputs/RichText'
 import UpNumber from "./Inputs/Number/UpNumber"
 import UpPhone from './Inputs/Phone/UpPhone'
 import UpEmail from "./Inputs/Email/UpEmail"
@@ -76,6 +77,7 @@ export {
     UpDate,
     UpTimePicker,
     UpText,
+    UpRichext,
     UpNumber,
     UpEmail,
     UpPassword,
