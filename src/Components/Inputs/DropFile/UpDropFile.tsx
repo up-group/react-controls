@@ -267,7 +267,6 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
     return this.value != null && this.value.value_base64 != null && getMimeTypeFromBase64(this.value.value_base64 as string).startsWith('image/') ;
   }
 
-
   handleEvent = (e: Event) => {
     switch (e.type) {
       case 'resize':

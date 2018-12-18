@@ -2,9 +2,13 @@
 import * as React from "react"
 import { BaseControlComponent } from "../_Common/BaseControl/BaseControl"
 import defaultTheme from '../../../Common/theming'
-import CKEditor from "./CKEditor"
+
 import { UpRichTextProps } from "./types";
-import { getStyles } from "./styles";
+
+import * as CKEditor from '@ckeditor/ckeditor5-react';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as Font from '@ckeditor/ckeditor5-font/src/font';
+import * as FontFamily from '@ckeditor/ckeditor5-font/src/fontfamily';
 
 // Exports
 export default class UpText extends BaseControlComponent<UpRichTextProps, string> {
@@ -15,26 +19,8 @@ export default class UpText extends BaseControlComponent<UpRichTextProps, string
             language: 'fr',
             enterMode: 2,
             shiftEnterMode: 1,
-            height: 60,
-            skin: 'office2013',
-            resize_enabled: false,
-            toolbarCanCollapse: true,
-            toolbarStartupExpanded: false,
-            autoGrow_onStartup: true,
-            autoGrow_minHeight: 60,
-            autoGrow_maxHeight: 600,
-            autoGrow_bottomSpace: 10,
-            startupFocus: false,
-            removePlugins: 'elementspath',
-            toolbar:
-                    [
-                        ['Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo'],
-                        ['TextColor', 'BGColor'],
-                        ['HorizontalRule', 'SpecialChar'],
-                        ['Bold', '-', 'Italic', '-', 'Underline', '-', 'Strike', '-', 'Subscript', '-', 'Superscript', '-', 'RemoveFormat'],
-                        ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-                        ['NumberedList', 'BulletedList', '-', 'Table']
-                    ]
+            // plugins: [ FontFamily, Font ],
+            toolbar: [ 'heading', 'bold', 'italic', 'fontFamily', 'fontSize', '|', 'link', 'blockQuote', 'numberedList', 'bulletedList', 'undo', 'redo'  ]
         },
         theme:defaultTheme
     }
@@ -48,9 +34,23 @@ export default class UpText extends BaseControlComponent<UpRichTextProps, string
     }
     
     renderControl(): JSX.Element {
-        const {configRTE} = this.props ;
+        const { configRTE } = this.props ;
         return (
-            <CKEditor config={configRTE} className={getStyles(this.props)} content={this.state.value} onChange={this.handleChangeEvent} />
+            <CKEditor
+                editor={ ClassicEditor }
+                data={this.state.value || ''}
+                name={this.props.name}
+                config={this.props.configRTE}
+                disabled={this.props.disabled}
+                onInit={ editor => {
+                    // You can store the "editor" and use when it is needed.
+                    console.log( 'Editor is ready to use!', editor );
+                }}
+                onChange={ ( event, editor ) => {
+                    const data = editor.getData();
+                    this.handleChangeEvent(event, data) ;
+                }}
+            />
         );
     }
 
