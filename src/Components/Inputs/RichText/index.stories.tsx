@@ -9,6 +9,9 @@ import UpLabel from '../../Display/Label'
 
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+import { Formik } from 'formik';
+
+import * as Yup from 'yup';
 
 const stories = storiesOf('Inputs/UpRichText', module) ;
 
@@ -25,4 +28,41 @@ stories.add('Simple usage',
             </div>
         </UpThemeProvider>
     ), { info :  'Utilisation avec plusieurs options'}
-);
+).add('Form',
+() => (
+    <Formik initialValues={{ description: ''}}
+            onSubmit={(values, { setSubmitting }) => {
+              setTimeout(() => {
+                alert(JSON.stringify(values, null, 2));
+                setSubmitting(false);
+              }, 500);
+            }}
+            validationSchema={Yup.object().shape({
+              
+            })}>
+            {(props) => {
+              const {
+                values,
+                touched,
+                errors,
+                dirty,
+                isSubmitting,
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                handleReset,
+              } = props;
+              return (
+                <form onSubmit={handleSubmit}>
+                 <UpLabel text={"Observation : "}>
+                    <UpRichText width={'fill'} 
+                      name={'description'}
+                      value={values.description}
+                      onChange={handleChange}
+                    />
+                </UpLabel>
+                </form>
+              );
+            }}
+    </Formik>
+), { info : 'Utilisation dans Formik'});

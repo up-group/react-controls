@@ -9,6 +9,7 @@ import * as CKEditor from '@ckeditor/ckeditor5-react';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import * as Font from '@ckeditor/ckeditor5-font/src/font';
 import * as FontFamily from '@ckeditor/ckeditor5-font/src/fontfamily';
+import { eventFactory } from "../../../Common/utils/eventListener";
 
 // Exports
 export default class UpText extends BaseControlComponent<UpRichTextProps, string> {
@@ -48,7 +49,7 @@ export default class UpText extends BaseControlComponent<UpRichTextProps, string
                 }}
                 onChange={ ( event, editor ) => {
                     const data = editor.getData();
-                    this.handleChangeEvent(event, data) ;
+                    this.handleChangeEvent(eventFactory(this.props.name, data), data) ;
                 }}
             />
         );
