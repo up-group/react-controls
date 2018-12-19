@@ -19,7 +19,7 @@ export function isString(object:any) {
 }
 
 export function isEmpty(value: any) : boolean {
-    return value === undefined || value === null || value === "" || value === GUID_EMPTY;
+    return value === undefined || value === null || value === "" || value === GUID_EMPTY || (Array.isArray(value) && value.length === 0) ;
 }
 
 export function isEmptyId(id)  : boolean {
