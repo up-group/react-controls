@@ -111,6 +111,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
         return (
             <BaseInput
                 name={name}
+                rounded={(this.props.rounded)}
                 value={this.state.value == null ? "" : this.state.value}
                 iconName={realIconName}
                 iconPosition={iconPosition}

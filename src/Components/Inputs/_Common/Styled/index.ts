@@ -13,6 +13,10 @@ export const sizeMap = {
   fill: "100%",
 };
 
+const boxShadow = {
+  boxShadow: 'inset 0 0 0 1px rgba(245, 145, 0, 0.4), inset 0 -1px 0 rgba(245, 145, 0, 0.2)',
+}
+
 export const CommonCheckableStyle = (props: WithThemeProps) : NestedCSSProperties => {
   return {
     position:'relative',
@@ -29,6 +33,7 @@ export const CommonCheckableStyle = (props: WithThemeProps) : NestedCSSPropertie
         float:'left',
       },
       '& .up-control-indicator' : {
+        ...boxShadow,
         fontFamily: '"Icons16", sans-serif',
         fontSize: '16px',
         fontWeight: 400,
@@ -39,7 +44,6 @@ export const CommonCheckableStyle = (props: WithThemeProps) : NestedCSSPropertie
         left: 0,
         margin: 0,
         border: 'none',
-        boxShadow: 'inset 0 0 0 1px rgba(16, 22, 26, 0.2), inset 0 -1px 0 rgba(16, 22, 26, 0.1)',
         backgroundClip: 'padding-box',
         cursor: 'pointer',
         width: '16px',
@@ -49,6 +53,9 @@ export const CommonCheckableStyle = (props: WithThemeProps) : NestedCSSPropertie
           '-moz-user-select': 'none',
             '-ms-user-select': 'none',
                 userSelect: 'none', 
+      },
+      '&.up-checkbox .up-control-indicator' : {
+        borderRadius: props.theme.borderRadius,  
       },
      '& .up-control-indicator::before' : {
         position: 'relative',
@@ -63,9 +70,9 @@ export const CommonCheckableStyle = (props: WithThemeProps) : NestedCSSPropertie
         visibility:'hidden',
       },
       '& input:checked ~ .up-control-indicator, & input:indeterminate ~ .up-control-indicator' : {
+        ...boxShadow,
         background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat  ${props.theme.colorMap.primary}`,
         color: props.theme.colorMap.primaryFg,
-        boxShadow: 'inset 0 0 0 1px rgba(16, 22, 26, 0.4), inset 0 -1px 0 rgba(16, 22, 26, 0.2)',
       },
       '&:hover .up-control-indicator' : {
         background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ${props.theme.colorMap.primaryDark}`, 
@@ -74,12 +81,12 @@ export const CommonCheckableStyle = (props: WithThemeProps) : NestedCSSPropertie
       '&:hover input:checked ~ .up-control-indicator, &:hover input:indeterminate ~ .up-control-indicator' : {
         background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ${props.theme.colorMap.primaryDark}`,
         color: props.theme.colorMap.primaryFg,
-        boxShadow: 'inset 0 0 0 1px rgba(16, 22, 26, 0.4), inset 0 -1px 0 rgba(16, 22, 26, 0.2)', 
+        ...boxShadow,
       },
       '&.up-intent-danger input:checked ~ .up-control-indicator' : {
         background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat  ${props.theme.colorMap.danger}`,
         color: props.theme.colorMap.dangerFg,
-        boxShadow: 'inset 0 0 0 1px rgba(16, 22, 26, 0.4), inset 0 -1px 0 rgba(16, 22, 26, 0.2)',
+        ...boxShadow,
       },
       '&.up-intent-danger:hover .up-control-indicator' : {
         background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ${props.theme.colorMap.dangerDark}`, 
@@ -87,7 +94,7 @@ export const CommonCheckableStyle = (props: WithThemeProps) : NestedCSSPropertie
       },
       '&.up-intent-danger:hover ~ .up-control-indicator' : {
         background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ${props.theme.colorMap.dangerDark}` ,
-        boxShadow: 'inset 0 0 0 1px rgba(16, 22, 26, 0.4), inset 0 -1px 0 rgba(16, 22, 26, 0.2)', 
+        ...boxShadow,
         color: props.theme.colorMap.dangerFg,
       },
       '& input:checked .up-control-text, &:hover .up-control-text' : {
@@ -101,7 +108,7 @@ export const CommonCheckableStyle = (props: WithThemeProps) : NestedCSSPropertie
       },
       '&.up-intent-success input:checked ~ .up-control-indicator' : {
         background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat  ${props.theme.colorMap.success}`,
-        boxShadow: 'inset 0 0 0 1px rgba(16, 22, 26, 0.4), inset 0 -1px 0 rgba(16, 22, 26, 0.2)',
+        ...boxShadow,
       },
       '&.up-intent-success:hover .up-control-indicator' : {
         background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ${props.theme.colorMap.successDark}`, 
@@ -110,26 +117,26 @@ export const CommonCheckableStyle = (props: WithThemeProps) : NestedCSSPropertie
       '&.up-intent-success:hover ~ .up-control-indicator' : {
         background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ${props.theme.colorMap.successDark}` ,
         color: props.theme.colorMap.successFg,
-        boxShadow: 'inset 0 0 0 1px rgba(16, 22, 26, 0.4), inset 0 -1px 0 rgba(16, 22, 26, 0.2)', 
+        ...boxShadow,
       },
 
       '&.up-intent-success input:not(:disabled):active ~ .up-control-indicator' : {
-        boxShadow: 'inset 0 0 0 1px rgba(16, 22, 26, 0.2), inset 0 1px 2px rgba(16, 22, 26, 0.2)',
+        ...boxShadow,
         background: props.theme.colorMap.success,
         color: props.theme.colorMap.successFg,
       },
       '&.up-intent-success input:not(:disabled):active:checked ~ .up-control-indicator' : {
-        boxShadow: 'inset 0 0 0 1px rgba(16, 22, 26, 0.4), inset 0 1px 2px rgba(16, 22, 26, 0.2)',
+        ...boxShadow,
         background: props.theme.colorMap.success, 
         color: props.theme.colorMap.successFg,
       },
       '&.up-intent-danger input:not(:disabled):active ~ .up-control-indicator' : {
-        boxShadow: 'inset 0 0 0 1px rgba(16, 22, 26, 0.2), inset 0 1px 2px rgba(16, 22, 26, 0.2)',
+        ...boxShadow,
         background: props.theme.colorMap.danger,
         color: props.theme.colorMap.dangerFg,
       },
       '&.up-intent-danger input:not(:disabled):active:checked ~ .up-control-indicator' : {
-        boxShadow: 'inset 0 0 0 1px rgba(16, 22, 26, 0.4), inset 0 1px 2px rgba(16, 22, 26, 0.2)',
+        ...boxShadow,
         background: props.theme.colorMap.danger, 
         color: props.theme.colorMap.dangerFg,
       },
@@ -143,12 +150,12 @@ export const CommonCheckableStyle = (props: WithThemeProps) : NestedCSSPropertie
         color: props.theme.colorMap.successFg,
       },
       '& input:not(:disabled):active ~ .up-control-indicator' : {
-        boxShadow: 'inset 0 0 0 1px rgba(16, 22, 26, 0.2), inset 0 1px 2px rgba(16, 22, 26, 0.2)',
+        ...boxShadow,
         background: props.theme.colorMap.primary,
         color: props.theme.colorMap.successFg,
       },
       '& input:not(:disabled):active:checked ~ .up-control-indicator,& input:not(:disabled):active:indeterminate ~ .up-control-indicator' : {
-        boxShadow: 'inset 0 0 0 1px rgba(16, 22, 26, 0.4), inset 0 1px 2px rgba(16, 22, 26, 0.2)',
+        ...boxShadow,
         background: props.theme.colorMap.primary, 
         color: props.theme.colorMap.primaryFg,
       },

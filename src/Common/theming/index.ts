@@ -27,7 +27,7 @@ const defaultTheme: ThemeInterface = {
   intentTypeIcons : iconMap,
   typography : typography,
   styles : defaultStyles,
-  borderRadius: '6px',
+  borderRadius: '4px',
   notificationIconSize: '100%',
 }
 

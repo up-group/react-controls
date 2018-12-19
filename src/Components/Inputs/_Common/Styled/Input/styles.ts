@@ -72,7 +72,7 @@ export const errorStyles = (props : StyledProps) => {
   }) ;
 };
 
-export const inputStyles = (props) : NestedCSSProperties => {
+export const inputStyles = (props: WithThemeProps) : NestedCSSProperties => {
   
   return {
     $nest : {

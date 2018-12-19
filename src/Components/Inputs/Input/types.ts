@@ -39,6 +39,7 @@ export interface CommonProps<VT> extends CommonInputTextProps<VT> {
     showError?: boolean;
     iconName?: IconName;
     iconPosition?: InputIconPosition;
+    rounded?: boolean;
 }
 
 export interface UpInputProps extends CommonProps<string> {
