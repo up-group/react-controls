@@ -7,6 +7,7 @@ import { NestedCSSProperties } from 'typestyle/lib/types';
 
 export interface SvgProps extends React.SVGProps<{}> {
     iconName?: IconName;
+    iconHtml?:string;
     dataFor?:string; // For tooltip management
 }
 
@@ -50,6 +51,7 @@ const UpSvgIcon : React.StatelessComponent<UpSvgIconProps> = ({
   children,
   viewBox,
   iconName,
+  iconHtml,
   className,
   color,
   dataFor,
@@ -61,10 +63,12 @@ const UpSvgIcon : React.StatelessComponent<UpSvgIconProps> = ({
   const finalHeight = height && !isString(height) ? `${height}px` : height || '20px' ;
   const finalWidth = width && !isString(width) ? `${width}px` : width || '20px' ;
    
-  if(iconName) {
+  const iconData = iconName ? Icons[iconName] : iconHtml ? iconHtml : null ;
+
+  if(iconData) {
     const SvgIconElement = () => <SvgIconWrapper className={className} color={color} height={finalHeight} width={finalWidth}
       {...others}
-      dangerouslySetInnerHTML={{__html: Icons[iconName]}}
+      dangerouslySetInnerHTML={{__html: iconData}}
     ></SvgIconWrapper> ;
 
     if(dataFor != null) {

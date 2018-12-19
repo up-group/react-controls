@@ -19,6 +19,8 @@ const stories = storiesOf('Display/UpSvgIcon', module) ;
 stories.addDecorator(withKnobs);
 stories.addDecorator(getRootContainer('UpSvgIcon'));
 
+const logoPng = require('./logo-up-square.svg');
+
 stories.add('Simple usage',
    () => {
     const color = text('color', '#369');
@@ -42,4 +44,20 @@ stories.add('Simple usage',
       </UpBox>
     </UpThemeProvider>
    }, {info: 'Utilisation du composant en lui passant les données à afficher'}
-);
+).add('Set html directly',
+() => {
+ const color = text('color', '#369');
+ const width = number('width', 32);
+ const height = number('height', 32);
+
+ return <UpThemeProvider theme={UpDefaultTheme}>
+   <UpBox style={{margin:"40px 30px"}}>
+     <UpParagraph>
+        <UpBox flexDirection={'row'} flexWrap={true}>
+          <UpSvgIcon iconHtml={logoPng} width={width} height={height} />
+       </UpBox>
+     </UpParagraph>
+   </UpBox>
+ </UpThemeProvider>
+}, {info: 'Utilisation du composant en lui passant les données à afficher'}
+)
