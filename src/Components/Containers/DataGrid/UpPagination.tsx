@@ -7,6 +7,7 @@ import UpSelect, { UpSelectOption } from '../../Inputs/Select'
 import { style } from "typestyle"
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import defaultTheme from '../../../Common/theming';
+import UpBox from '../Box';
 
 export interface UpPaginationState {
     page: number; // Donnée calculée à partir de Skip et Take mais conservé dans l'état
@@ -247,7 +248,7 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
         if (pages.length >= 2) {
 
             const paginationItemClass = paginationItemStyle(this.props) ;
-
+            
             let PageNumber: any = <span />
 
             if (pages.length <= 15) {
@@ -275,7 +276,7 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
                             <a onClick={(e) => e.preventDefault()} href="#">{value}</a>
                         </li>
                     } else if (value === 4 || array.length - 3 === value) {
-                        return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemClass)} >
+                        return <li key={`page-${value}`} className={style(itemDisabled)}>
                             <a onClick={(e) => e.preventDefault()} href="#">..</a>
                         </li>
                     } else {
@@ -310,11 +311,14 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
                     <UpCol span={14}>
                         {pageNumberNavigation}
                     </UpCol>
-                    <UpCol span={3}>
-                        <UpSelect placeholder={this.props.nbByPageMessage} default={{ id: this.props.take, text: this.props.take }} data={takes} onChange={this.onTakeChange} />
+                    <UpCol span={1}>
                     </UpCol>
-                    <UpCol span={7}>
-                        <span className={paginationCounterStyle({theme : this.props.theme})}>
+                    <UpCol span={9}>
+                        <UpBox flexDirection={'row'} alignItems={'baseline'} justifyContent={'flex-end'}>
+                            <div style={{width: '120px', marginRight: '12px'}}>
+                                <UpSelect placeholder={this.props.nbByPageMessage} default={{ id: this.props.take, text: this.props.take }} data={takes} onChange={this.onTakeChange} />
+                            </div>
+                            <span className={paginationCounterStyle({theme : this.props.theme})}>
                             {maxPage == 0 &&
                                 <span>{this.props.noResultMessage}</span>
                             }
@@ -328,7 +332,8 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
                                     <span>{this.props.total}</span>
                                 </span>
                             }
-                        </span>
+                            </span>
+                        </UpBox> 
                     </UpCol>
                 </UpRow>
             </UpGrid>
