@@ -13,7 +13,7 @@ export const colors = (props: UpNotificationProps & WithThemeProps ) : NestedCSS
       border: `1px solid ${props.theme.colorMap[`${props.intent}Dark`] ||  props.theme.colorMap.darkGray5}`,
       borderRadius: props.theme.borderRadius,
       $nest : {
-            p : {
+            '& p, & span, & div, & em, & strong' : {
                 fontWeight: 500,
                 textAlign:'left',
                 color: props.theme.colorMap[`${props.intent}Dark`] ||  props.theme.colorMap.darkGray5,
