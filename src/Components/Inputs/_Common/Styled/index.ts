@@ -76,11 +76,9 @@ export const CommonCheckableStyle = (props: WithThemeProps) : NestedCSSPropertie
       },
       '&:hover .up-control-indicator' : {
         background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ${props.theme.colorMap.primaryDark}`, 
-        color: props.theme.colorMap.primaryFg,
       },
       '&:hover input:checked ~ .up-control-indicator, &:hover input:indeterminate ~ .up-control-indicator' : {
         background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ${props.theme.colorMap.primaryDark}`,
-        color: props.theme.colorMap.primaryFg,
         ...boxShadow,
       },
       '&.up-intent-danger input:checked ~ .up-control-indicator' : {
@@ -95,15 +93,6 @@ export const CommonCheckableStyle = (props: WithThemeProps) : NestedCSSPropertie
       '&.up-intent-danger:hover ~ .up-control-indicator' : {
         background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ${props.theme.colorMap.dangerDark}` ,
         ...boxShadow,
-        color: props.theme.colorMap.dangerFg,
-      },
-      '& input:checked .up-control-text, &:hover .up-control-text' : {
-        color: props.theme.colorMap.primaryFg,
-      },
-      '&.up-intent-success input:checked .up-control-text, &.up-intent-success:hover .up-control-text' : {
-        color: props.theme.colorMap.successFg,
-      },
-      '&.up-intent-danger input:checked .up-control-text, &.up-intent-danger:hover .up-control-text' : {
         color: props.theme.colorMap.dangerFg,
       },
       '&.up-intent-success input:checked ~ .up-control-indicator' : {

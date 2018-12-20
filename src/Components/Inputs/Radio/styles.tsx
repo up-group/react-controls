@@ -54,6 +54,9 @@ export const RadioGroupStyles = (props: RadioGroupProps & WithThemeProps) => {
         float : 'left',
         marginRight: '10px',
       },
+      '&.upContainer__groupradio-button input:checked ~ .up-control-indicator::before' : {
+        display:'none',
+      },
       '&.upContainer__groupradio-button label.up-radio' : {
         float : 'left',
         padding: '8px',
@@ -72,10 +75,13 @@ export const RadioGroupStyles = (props: RadioGroupProps & WithThemeProps) => {
         borderTopRightRadius:props.theme.borderRadius,
         borderBottomRightRadius:props.theme.borderRadius,
       }, 
-      '&.upContainer__groupradio-button label.up-radio input ~ .up-control-indicator::before' : {
-        display:'none',
+      '&.upContainer__groupradio-button .up-radio:hover input:indeterminate ~ .up-control-text' : {
+        color: props.theme.colorMap.black1,
       },
-      '&.upContainer__groupradio-button label.up-radio  input ~ .up-control-text' : {
+      '&.upContainer__groupradio-button .up-radio:hover .up-control-text' : {
+        color: props.theme.colorMap.primaryFg,
+      },
+      '&.upContainer__groupradio-button label.up-radio input ~ .up-control-text' : {
         position:'relative',
       },
       '&.upContainer__groupradio-button label.up-radio input ~ .up-control-indicator' : {
