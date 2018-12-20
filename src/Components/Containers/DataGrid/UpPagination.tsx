@@ -276,7 +276,7 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
                             <a onClick={(e) => e.preventDefault()} href="#">{value}</a>
                         </li>
                     } else if (value === 4 || array.length - 3 === value) {
-                        return <li key={`page-${value}`} className={classname(style(itemDisabled), 'disabled')}>
+                        return <li key={`page-${value}`} className={classname(paginationItemClass, 'disabled')}>
                             <a onClick={(e) => e.preventDefault()} href="#">..</a>
                         </li>
                     } else {
