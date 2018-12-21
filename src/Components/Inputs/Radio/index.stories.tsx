@@ -7,6 +7,7 @@ import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeP
 
 import UpRadio from './UpRadio'
 import UpLabel from '../../Display/Label'
+import UpHeading from '../../Display/Heading'
 
 import { withKnobs, text, boolean, number, array} from '@storybook/addon-knobs';
 import { getRootContainer } from '../../../Common/stories';
@@ -18,14 +19,13 @@ stories.addDecorator(getRootContainer('UpRadio'));
 stories.add('Multiple usage',
     () => (
             <div style={{ padding: "30px" }}>
-                <UpRadio onChange={console.log} defaultValue={"option1"} name={"modeAdresse"} options={[{ text: "Option 1", value: "option1" }, { text: "Option 2", value: "option2" }, { text: "Option 3", value: "option3" }]} />
+                <UpRadio onChange={console.log} defaultValue={"option1"} alignMode="vertical"  name={"modeAdresse"} options={[{ text: "Option 1", value: "option1" }, { text: "Option 2", value: "option2" }, { text: "Option 3", value: "option3" }]} />
             </div>
     ), {info : 'Utilisation avec plusieurs options'}
 ).add('Display horizontally',
     () => (
             <div style={{ padding: "30px" }}>
-
-                <UpRadio defaultValue={"option1"} name={"modeAdresse"} displayMode="horizontal" options={[{ text: "Option 1", value: "option1" }, { text: "Option 2", value: "option2" }, { text: "Option 3", value: "option3" }]} />
+                <UpRadio defaultValue={"option1"} name={"modeAdresse"} alignMode="horizontal" gutter={8} options={[{ text: "Option 1", value: "option1" }, { text: "Option 2", value: "option2" }, { text: "Option 3", value: "option3" }]} />
             </div>
     ), {info : 'Affichage des radio en ligne'}
 ).add('Display as Button',
@@ -45,4 +45,22 @@ stories.add('Multiple usage',
                     { text: "Option 2", value: "option2", intent: 'success' }, 
                     { text: "Option 3", value: "option3", intent: 'danger' }]} />
             </div>
-), {info : 'Affichage des radio comme button marqué comme requis'} );
+), {info : 'Affichage des radio comme button marqué comme requis'} 
+).add('Display as Large',
+() => (
+        <>
+            <div style={{ marginTop: "10px" }}>
+                <UpHeading tag={'h3'} textAlign={'left'} margin={'medium'}>Afficher horizontalement, et large :</UpHeading>
+                <UpRadio name={"value1"} alignMode={'horizontal'} displayMode="large" options={[{ text: "Option 1", value: "option1" }, { text: "Option 2", value: "option2" }, { text: "Option 3", value: "option3" }]} />
+            </div>
+            <div style={{ marginTop: "10px" }}>
+                <UpHeading tag={'h3'} textAlign={'left'} margin={'medium'}>Afficher verticalement, et large :</UpHeading>
+                <UpRadio name={"value2"} alignMode={'vertical'} displayMode="large" options={[{ text: "Option 1", value: "option1" }, { text: "Option 2", value: "option2" }, { text: "Option 3", value: "option3" }]} />
+            </div>
+            <div style={{ marginTop: "10px" }}>
+                <UpHeading tag={'h3'} textAlign={'left'} margin={'medium'}>Afficher horizontalement, avec icône et large :</UpHeading>
+                <UpRadio name={"value3"} alignMode={'horizontal'} displayMode="large" options={[{ text: "Option 1", value: "option1", iconName: 'calendar' }, { text: "Option 2", value: "option2", iconName: 'cake' }, { text: "Option 3", value: "option3", iconName: 'cocktail'}]} />
+            </div>
+        </>
+), {info : 'Affichage des radio comme button'}
+);

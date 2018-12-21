@@ -10,15 +10,18 @@ import defaultTheme from '../../../Common/theming';
 import {BaseControlProps} from '../_Common/BaseControl/BaseControl' 
 import { IntentType } from '../../../Common/theming/types';
 import { number } from 'prop-types';
+import UpSvgIcon from '../../Display/SvgIcon';
+import { IconName } from '../../../Common/theming/icons';
 
 // Exports
 export type Position = 'left' | 'right' ;
-export type DisplayMode = 'horizontal' | 'vertical' | 'button' ; 
+export type AlignMode = 'horizontal' | 'vertical' ; 
+export type DisplayMode = 'normal' | 'button' | 'large' ;
 
 export interface Option {
     value:any;
     text?:string;
-    iconName?:string;
+    iconName?:IconName;
     name?:string;
     checked?:boolean;
     intent?: IntentType;
@@ -40,6 +43,7 @@ export interface UpRadioProps extends BaseControlProps<any> {
     position?:Position;
     name:string;
     value?:any;
+    alignMode?: AlignMode,
     displayMode?: DisplayMode,
     gutter?:number,
     onChange?: (arg: any, event: any, error: boolean) => void;
@@ -60,12 +64,18 @@ const RadioGroup: React.StatelessComponent<RadioGroupProps & WithThemeProps> = (
   }
 
 const BaseRadioButton: React.StatelessComponent<UpRadioStyledProps & WithThemeProps> = (props : UpRadioStyledProps & WithThemeProps) => {
-    const { checked, className, name, text, value, onChange, intent } = props;
+    const { checked, iconName, className, name, text, value, onChange, intent } = props;
     return (
       <label className={classnames("up-control", "up-radio", getStyles(props), intent ? `up-intent-${intent}` : null, className)}>
         <input checked={checked} onChange={onChange} name={name} type="radio" value={value} />
-        <span className="up-control-indicator"></span>
-        <span className="up-control-text">{text}</span>
+        <span className="up-control-wrapper">
+            <span className="up-control-indicator"></span>
+        </span>
+        <span className="up-control-text">
+        {iconName &&
+            <UpSvgIcon iconName={iconName} />
+        }
+        <span>{text}</span></span>
       </label>
     )
 }
@@ -74,7 +84,8 @@ const BaseRadioButton: React.StatelessComponent<UpRadioStyledProps & WithThemePr
 class UpRadio extends BaseControlComponent<UpRadioProps, any> {
 
     public static defaultProps: UpRadioProps = {
-        displayMode: "vertical",
+        alignMode: "horizontal",
+        displayMode: "normal",
         options: [],
         name: "option",
         showError: true,
@@ -107,7 +118,7 @@ class UpRadio extends BaseControlComponent<UpRadioProps, any> {
 
     renderControl() {
         const options = this.props.options;
-        var radioGroupClass = "upContainer__groupradio-" + this.props.displayMode;
+        var radioGroupClass = `upContainer__groupradio-${this.props.displayMode} upContainer__groupradio-${this.props.alignMode}`;
 
         return (
             <RadioGroup className={radioGroupClass} gutter={this.props.gutter} theme={this.props.theme}>
@@ -122,6 +133,7 @@ class UpRadio extends BaseControlComponent<UpRadioProps, any> {
                             name={this.props.name}
                             checked={this.state.value != null && this.state.value === option.value}
                             text={option.text}
+                            iconName={option.iconName}
                             theme={this.props.theme}
                             value={option.value}>
                         </BaseRadioButton>
