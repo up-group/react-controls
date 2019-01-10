@@ -118,7 +118,7 @@ class UpRadio extends BaseControlComponent<UpRadioProps, any> {
 
     renderControl() {
         const options = this.props.options;
-        var radioGroupClass = `upContainer__groupradio-${this.props.displayMode} upContainer__groupradio-${this.props.alignMode}`;
+        var radioGroupClass = `upContainer__groupradio upContainer__groupradio-${this.props.displayMode} upContainer__groupradio-${this.props.alignMode}`;
 
         return (
             <RadioGroup className={radioGroupClass} gutter={this.props.gutter} theme={this.props.theme}>
@@ -138,9 +138,7 @@ class UpRadio extends BaseControlComponent<UpRadioProps, any> {
                             value={option.value}>
                         </BaseRadioButton>
                     )
-                }
-
-                )}
+                })}
             </RadioGroup>
         );
     }

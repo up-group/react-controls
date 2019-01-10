@@ -43,7 +43,7 @@ stories.add('Simple usage',
         <p>Votre connexion se termine dans 10 minutes !</p>
       </UpNotification>
       <UpNotification intent="default">
-        <p> Bonjour !</p>
+        <p>Bonjour !</p>
       </UpNotification>
       </div>
   ), {info: 'Utilisation du composant en lui passant les données à afficher'}
@@ -56,7 +56,7 @@ stories.add('Simple usage',
 ).add('Modal',
  () => (
     <UpNotification title={"Erreur"} dismissable={true} displayMode={"modal"} intent="danger">
-        <p>Un  problème est survenu !!</p>
+        <p>Un problème est survenu !!</p>
     </UpNotification>
 ), {info: 'Utilisation du composant modal'}
 );

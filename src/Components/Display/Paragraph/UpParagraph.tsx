@@ -6,7 +6,6 @@ import * as classnames from 'classnames';
 export type ParagraphSize = 'small' | 'medium' | 'large' | 'xlarge';
 export type Margin = 'none' | 'small' | 'medium' | 'large';
 
-
 export interface SizeMap {
   small: number;
   medium: number;
@@ -32,7 +31,7 @@ export interface UpParagraphProps {
 
 const UpParagraph : React.StatelessComponent<UpParagraphProps> = (props : UpParagraphProps) => {
     const { children, className } = props ;   
-    return <p className={classnames(getStyles(props), className) }>{children}</p>
+    return <p className={classnames(getStyles(props), className)}>{children}</p>
 } ;
 
 export default UpParagraph;

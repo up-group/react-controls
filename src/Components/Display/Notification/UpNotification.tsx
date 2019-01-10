@@ -15,6 +15,7 @@ import defaultTheme from '../../../Common/theming'
 import { IntentType } from '../../../Common/theming/types';
 import { getStyles } from './styles';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
+import UpBox from '../../Containers/Box';
 
 export type NotificationDisplayMode = 'inline' | 'modal' ;
 
@@ -29,7 +30,7 @@ export interface CommonProps  {
 export interface UpNotificationProps extends CommonProps  {
   message?: JSX.Element | string;
   className?: string;
-  iconWidth?:number;
+  iconSize?: string;
 }
 
 class UpNotification extends React.Component<UpNotificationProps & WithThemeProps> {
@@ -39,7 +40,7 @@ class UpNotification extends React.Component<UpNotificationProps & WithThemeProp
     theme:defaultTheme,
     displayMode:"inline",
     intent:'info',
-    iconWidth: 2,
+    iconSize: "48px",
   }
 
   constructor(props) {
@@ -48,12 +49,17 @@ class UpNotification extends React.Component<UpNotificationProps & WithThemeProp
   
   render() {
     const {children, message, intent, theme, title, className} = this.props ;
-    const defaultIconSize = 60 ;
 
-    const icon = <SvgIcon iconName={iconMap[intent]}
-        width={theme && theme.notificationIconSize != null ?  theme.notificationIconSize : defaultIconSize}
-        height={theme && theme.notificationIconSize != null ? theme.notificationIconSize : defaultIconSize}
-    /> ;
+    let icon = null ;
+    
+    const iconSize = this.props.iconSize || theme && theme.notificationIconSize != null ? theme.notificationIconSize : 60;
+    
+    if (intent && iconMap[intent]) {
+        icon = <SvgIcon iconName={iconMap[intent]}
+            width={iconSize}
+            height={iconSize}   
+        /> ;
+    }
     
     let NotificationRender ;
     
@@ -69,17 +75,15 @@ class UpNotification extends React.Component<UpNotificationProps & WithThemeProp
                         </UpRow>
                     }
                     <UpRow>
-                        <UpCol span={this.props.iconWidth} xs={8}>
+                        <UpBox flexDirection={'row'} justifyContent={'flex-start'} alignItems={'center'}>
                             {icon}
-                        </UpCol>
-                        <UpCol span={23 - this.props.iconWidth} style={{paddingTop: '10px'}} xs={16}>
-                            {message && 
-                                <p>
-                                    {message}
-                                </p>
-                            }
-                            {children}
-                        </UpCol>
+                            <div style={{ alignSelf: 'auto'}}>
+                                {message && 
+                                    <p>{message}</p>
+                                }
+                                {children}
+                            </div>
+                        </UpBox>
                     </UpRow>
                 </UpGrid>
             </div>);

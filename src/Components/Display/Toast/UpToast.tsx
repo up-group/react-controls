@@ -219,7 +219,7 @@ class UpToast extends React.Component<IToastProps & WithThemeProps, IToastState>
         </div>
         <div className={'up-toast-body'}>
           {(message != null || children != null)  &&
-            <UpNotification iconWidth={4} className={'up-toast-message'} message={message} intent={intent}>
+            <UpNotification iconSize={"32px"} className={'up-toast-message'} message={message} intent={intent}>
               {children}
             </UpNotification>
           }
