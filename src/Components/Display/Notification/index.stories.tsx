@@ -1,10 +1,7 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import UpDefaultTheme from '../../../Common/theming'
-import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
-
-import UpNotification from './'
+import UpNotification from './UpNotification'
 
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
@@ -59,4 +56,11 @@ stories.add('Simple usage',
         <p>Un problème est survenu !!</p>
     </UpNotification>
 ), {info: 'Utilisation du composant modal'}
+).add('Text',
+  () => (
+    <UpNotification dismissable={true} displayMode={"text"} intent="danger">
+      <p>Un problème est survenu !!</p>
+    </UpNotification>
+  ), { info: 'Utilisation du composant en mode <code>text</code>' }
 );
+

@@ -63,36 +63,34 @@ class UpNotification extends React.Component<UpNotificationProps & WithThemeProp
     
     let NotificationRender ;
     
-    if(this.props.displayMode=="inline") {
-        NotificationRender =  () => (
-            <div className={classnames(getStyles(this.props), className)}>
-                <UpGrid className={'up-notification'}>
-                    {title && 
-                        <UpRow>
-                            <UpCol span={24}>
-                                <UpHeading tag={'h2'} textAlign={'left'}>{title}</UpHeading>
-                            </UpCol>
-                        </UpRow>
-                    }
+    NotificationRender =  () => (
+        <div className={classnames(getStyles(this.props), className)}>
+            <UpGrid className={'up-notification'}>
+                {this.props.displayMode !== "modal" && title && 
                     <UpRow>
-                        <UpBox flexDirection={'row'} justifyContent={'flex-start'} alignItems={'center'}>
-                            {icon}
-                            <div style={{ alignSelf: 'auto'}}>
-                                {message && 
-                                    <p>{message}</p>
-                                }
-                                {children}
-                            </div>
-                        </UpBox>
+                        <UpCol span={24}>
+                            <UpHeading tag={'h2'} textAlign={'left'}>{title}</UpHeading>
+                        </UpCol>
                     </UpRow>
-                </UpGrid>
-            </div>);
-    } else if(this.props.displayMode=="modal") {
-        NotificationRender = () => (<UpModal header={title} showModal={true}>
-            <UpPanel disableAutoIntentIcon={false}/* type={status}*/>
-                {message}
-            </UpPanel>
-        </UpModal>);
+                }
+                <UpRow>
+                    <UpBox flexDirection={'row'} justifyContent={'flex-start'} alignItems={'center'}>
+                        {icon}
+                        <div style={{ alignSelf: 'auto'}}>
+                            {message && 
+                                <p>{message}</p>
+                            }
+                            {children}
+                        </div>
+                    </UpBox>
+                </UpRow>
+            </UpGrid>
+        </div>);
+
+    if(this.props.displayMode=="modal") {
+        return <UpModal header={title} showModal={true}>
+                <NotificationRender />
+            </UpModal>;
     }
 
     return (
