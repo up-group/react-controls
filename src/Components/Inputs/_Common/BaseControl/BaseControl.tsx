@@ -11,7 +11,6 @@ import defaultTheme from "../../../../Common/theming";
 
 // Exports
 const ONCHANGE_MUST_BE_SPECIFIED = "La méthode onChange doit être spécifié dans le cas où la valeur du composant est défini dans les props";
-
 export interface BaseControlProps<_BaseType> extends WithThemeProps {
     name?: string;
     onChange?: (event: React.ChangeEvent<any>, arg: _BaseType, error: boolean) => void;
@@ -25,13 +24,11 @@ export interface BaseControlProps<_BaseType> extends WithThemeProps {
     error?: string;
     touched?: boolean;
 }
-
 export interface BaseControlState<_BaseType> {
     error?: string;
     value?: _BaseType;
     extra?: any;
 }
-
 export abstract class BaseControlComponent<_Props, _BaseType> extends React.Component<BaseControlProps<_BaseType> & _Props, BaseControlState<_BaseType>> {
 
     _validationManager: ValidationManager;
@@ -110,7 +107,7 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
             var value = this.setValue(nextProps.value);
             // Reset the error : if one it will be set in the checkData
             this.setState({ value: value, error: nextProps.error }, this.checkAndDispatch);
-        } else if(nextProps.error !== undefined && this.props.error != nextProps.error) {
+        } else if(this.props.error != nextProps.error) {
             this.setState({ error: nextProps.error });
         }
     }
