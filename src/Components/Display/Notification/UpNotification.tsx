@@ -17,7 +17,7 @@ import { getStyles } from './styles';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import UpBox from '../../Containers/Box';
 
-export type NotificationDisplayMode = 'inline' | 'modal' ;
+export type NotificationDisplayMode = 'inline' | 'modal' | 'text' ;
 
 // Exports
 export interface CommonProps  {

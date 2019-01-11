@@ -8,10 +8,10 @@ import { WithThemeProps } from '../../../Common/theming/withTheme';
 export const colors = (props: UpNotificationProps & WithThemeProps ) : NestedCSSProperties => {
   return { 
       position: 'relative',
-      backgroundColor: props.theme.colorMap[`${props.intent}Light`] || props.theme.colorMap.white3,
+      backgroundColor: props.displayMode === 'text' ? 'transparent' : props.theme.colorMap[`${props.intent}Light`] || props.theme.colorMap.white3,
       color: props.theme.colorMap[`${props.intent}Dark`] ||  props.theme.colorMap.darkGray5,
-      border: `1px solid ${props.theme.colorMap[`${props.intent}Dark`] ||  props.theme.colorMap.darkGray5}`,
-      borderRadius: props.theme.borderRadius,
+      border: props.displayMode === 'text' ? 0 : `1px solid ${props.theme.colorMap[`${props.intent}Dark`] ||  props.theme.colorMap.darkGray5}`,
+      borderRadius: props.displayMode === 'text' ? 0 : props.theme.borderRadius,
       $nest : {
             '& p, & span, & div, & em, & strong' : {
                 fontWeight: 500,
