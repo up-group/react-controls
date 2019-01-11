@@ -12,14 +12,14 @@ import { svgStyle } from 'Components/Display/LoadingIndicator/styles';
 const baseStyles = (props: UpRadioStyledProps) : NestedCSSProperties => (
 {
   $nest : {
-    '.up-control-indicator' : {
+    '& .up-control-indicator' : {
       borderRadius: '50%',
       fontSize: '6px',
     },
-    '.up-control-text' : {
+    '& .up-control-text' : {
       zIndex:100,
     },
-    'input:checked ~ .up-control-wrapper .up-control-indicator::before' : {
+    '& input:checked ~ .up-control-wrapper .up-control-indicator::before' : {
       display: 'inline-block',
       position: 'absolute',
       top: '50%',
@@ -32,7 +32,7 @@ const baseStyles = (props: UpRadioStyledProps) : NestedCSSProperties => (
       height: '1em',
       content: "", 
     }, 
-    'input:indeterminate ~ .up-control-wrapper .up-control-indicator::before' : {
+    '& input:indeterminate ~ .up-control-wrapper .up-control-indicator::before' : {
       display: 'inline-block',
       position: 'absolute',
       top: '50%',
@@ -75,8 +75,11 @@ export const RadioGroupStyles = (props: RadioGroupProps & WithThemeProps) => {
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
       },
-      '&.upContainer__groupradio-button input:checked ~ .up-control-wrapper .up-control-indicator::before' : {
-        display:'none',
+      '&.upContainer__groupradio-button input:checked ~ .up-control-wrapper .up-control-indicator::before': {
+        display: 'none',
+      },
+      '&.upContainer__groupradio-button input:indeterminate ~ .up-control-wrapper .up-control-indicator::before': {
+        display: 'none',
       },
       '&.upContainer__groupradio-button label.up-radio' : {
         padding: '8px',
