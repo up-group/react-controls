@@ -50,7 +50,8 @@ export interface RatingProps {
     max: number,
     value?: number,
     className?:string,
-    disabled?: boolean;
+    disabled?: boolean; 
+    dataFor?: string; // Move to specific props
     onChange?: (event: React.ChangeEvent<any>, value: number) => void;
 }
 
@@ -137,9 +138,9 @@ class UpRating extends React.PureComponent<RatingProps & WithThemeProps, RatingS
     }
 
     render() {
-        const {className, value, numberOfStars, max, theme} = this.props
+        const { className, value, numberOfStars, max, dataFor, theme} = this.props
         return (
-            <div className={classnames(RatingWrapperStyle, className)}>
+            <div className={classnames(RatingWrapperStyle, className)} data-for={dataFor} data-tip={"tooltip"}>>
                 {
                     Array(numberOfStars).fill(0).map( (element, index) => {
                         const fillMode = getStarFill(index+1, numberOfStars, this.state.editedValue != null ? this.state.editedValue : value, max)
