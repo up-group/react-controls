@@ -74,14 +74,12 @@ class UpNotification extends React.Component<UpNotificationProps & WithThemeProp
                     </UpRow>
                 }
                 <UpRow>
-                    <UpBox flexDirection={'row'} justifyContent={'flex-start'} alignItems={'center'}>
+                    <UpBox flexDirection={'row'} alignContent={'flex-start'} justifyContent={'center'} alignItems={'center'}>
                         {icon}
-                        <div style={{ alignSelf: 'auto'}}>
-                            {message && 
-                                <p>{message}</p>
-                            }
-                            {children}
-                        </div>
+                        {message && 
+                            <p>{message}</p>
+                        }
+                        {children}
                     </UpBox>
                 </UpRow>
             </UpGrid>
