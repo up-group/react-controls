@@ -362,7 +362,7 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
                 },
             },
         });
-        
+
         return <div className={styleTopbar} >
             {isNullOrUndef(this.props.Recherche) ? null :
                 <div className={styleGauche} >
@@ -618,7 +618,8 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
             fontStyle: "normal",
             fontStretch: "normal",
             //lineHeight: 2.29,
-            minHeight : this.hasIcon || this.props.styleType === "button" ? 42 : 32,
+            minHeight: this.hasIcon || this.props.styleType === "button" ? 42 : 32,
+            wordBreak: "break-all",
             letterSpacing: "normal",
             color: this.isThisMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
             $nest: {
