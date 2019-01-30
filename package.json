@@ -12,7 +12,9 @@
     "UI",
     "React",
     "Health",
-    "UpGroup"
+    "UpGroup",
+    "TypeScript",
+    "TypeStyle"
   ],
   "author": "@UpGroup",
   "license": "ISC",
