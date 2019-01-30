@@ -149,10 +149,6 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
         );
     }
 
-    componentDidMount() {
-        this.checkAndDispatch();
-    }
-
     public dispatchOnChange = (data: _BaseType, event: React.ChangeEvent<any>, error: boolean) => {
         if (this.props.onChange !== undefined && event != null) {
             this.props.onChange(event, data, error);
