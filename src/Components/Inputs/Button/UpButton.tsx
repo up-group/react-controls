@@ -88,7 +88,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
     public static defaultProps: UpButtonProps = {
         backgroundColor: '',
         borderColor: '',
-        fontSize: 'large',
+        fontSize: 'medium',
         disabled: false,
         shadow: false,
         iconName: false,
@@ -143,26 +143,17 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         return (element as Separator).size !== undefined;
     }
 
-    static getDerivedStateFromProps(props: UpButtonProps, state: UpButtonState) {
-        if (  (state.prevProps.isProcessing !== props.isProcessing && state.isProcessing !== props.isProcessing)
-          ||  (state.prevProps.isToggled !== props.isToggled && state.isToggled !== props.isToggled )) {
-          return {
-            ...state,
-            isProcessing: props.isProcessing,
-            isToggled: props.isToggled,
-            prevProps : props,
-          };
-        }
-        return { ...state, prevProps : props };
-    }
-    
+    isControlled = (propName: string) => this.props[propName] !== undefined; 
+
+    getValue = (propName: string) => this.isControlled(propName) ? this.props[propName] : this.state[propName] ;
+
     disabled = () => this.props.disabled || this.state.isProcessing ;
     
     public render() {
         const { children, tooltip, onClick, iconName, iconPosition, disabled, isProcessing, ...others } = this.props;
 
         const BtnList = style({
-            display: this.state.isToggled ? "block" : "none",
+            display: this.getValue('isToggled') ? "block" : "none",
             position: "absolute",
             top: "35px",
             zIndex: 1000,
@@ -176,9 +167,9 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
             paddingLeft: 0,
             borderRadius: 4,
             boxShadow: "0 6px 12px rgba(0, 0, 0, .175)",
-            height: this.state.isToggled ? 'auto' : '0px',
-            transition: this.state.isToggled ? "height 2s ease-in" : "height 2s ease-out",
-            transform: this.state.isToggled ? "scaleY(1)" : "scaleY(0)",
+            height: this.getValue('isToggled') ? 'auto' : '0px',
+            transition: this.getValue('isToggled') ? "height 2s ease-in" : "height 2s ease-out",
+            transform: this.getValue('isToggled') ? "scaleY(1)" : "scaleY(0)",
             transformOrigin: "top"
         });
 
@@ -232,7 +223,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         }
         let handleClickProps = this.props.type === 'submit' ? {} : { onClick : this.handleClick } ;
         
-        const renderButton =  <BaseButton iconName={icon} iconPosition={position} isToggled={this.state.isToggled} { ...handleClickProps } isProcessing={this.state.isProcessing} disabled={this.disabled()} {...others}>
+        const renderButton = <BaseButton iconName={icon} iconPosition={position} isToggled={this.getValue('isToggled')} {...handleClickProps} isProcessing={this.getValue('isProcessing')} disabled={this.disabled()} {...others}>
             {children != null &&
                 <span>{children}</span>
             }
@@ -248,7 +239,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
                             {renderButton}
                         </UpTooltip>
                 }
-                {this.props.dropDown != 'none' && this.state.isToggled &&
+                {this.props.dropDown != 'none' && this.getValue('isToggled') &&
                     <ul tabIndex={0} className={BtnList}>
                         {
                             this.props.extraActions.map((v, i) => {

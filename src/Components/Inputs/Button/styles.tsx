@@ -38,16 +38,18 @@ const positions = (props:UpButtonProps) : NestedCSSProperties => {
  
 const base = (props:UpButtonProps & WithThemeProps) : NestedCSSProperties => {
   return {
-    textAlign: 'center',
-    fontSize: remStringFromPX(fontSizeMap[props.fontSize]),
-    border: 'none',
-    paddingLeft : props.width === 'icon' ? '0px' : props.iconPosition === 'left' ? '32px' : '6px',
-    paddingRight : props.width === 'icon' ? '0px' : props.iconPosition === 'right'? '32px' : '6px',
-    textDecoration: 'none',
-    display: 'inline-block',
-    verticalAlign: 'middle',
-    position: 'relative',
     $nest : {
+      '&.up-btn' : {
+        textAlign: 'center',
+        fontSize: remStringFromPX(fontSizeMap[props.fontSize]),
+        border: 'none',
+        paddingLeft: props.width === 'icon' ? '0px' : props.iconPosition === 'left' ? '32px' : '6px',
+        paddingRight: props.width === 'icon' ? '0px' : props.iconPosition === 'right' ? '32px' : '6px',
+        textDecoration: 'none',
+        display: 'inline-block',
+        verticalAlign: 'middle',
+        position: 'relative',
+      },
       '&.up-btn .up-icon-wrapper' : {
         ...positions(props),
       },
@@ -55,7 +57,7 @@ const base = (props:UpButtonProps & WithThemeProps) : NestedCSSProperties => {
         margin: '0px',
         display: 'inline-block',
       },
-      '& span' : {
+      '&.up-btn span' : {
         display: 'inline-block',
         paddingTop: '8px',
         paddingBottom: '3px',
@@ -64,11 +66,11 @@ const base = (props:UpButtonProps & WithThemeProps) : NestedCSSProperties => {
         paddingRight: props.width=="auto"?"8px":"inherit",
         color: props.isProcessing ? props.theme.colorMap.disabledBg : 'inherit',
       },
-      '&:focus' : {
+      '&.up-btn:focus' : {
         outline: 'transparent auto 0px',
         outlineOffset: '0px',
       },
-      '& .up-loading-indicator-wrapper' : {
+      '&.up-btn .up-loading-indicator-wrapper' : {
         position: 'absolute',
         top: '0',
         left: '0',
@@ -78,7 +80,7 @@ const base = (props:UpButtonProps & WithThemeProps) : NestedCSSProperties => {
         alignContent: 'center',
         justifyItems: 'center',
       },
-      '& .up-loading-indicator-wrapper > div' : {
+      '&.up-btn .up-loading-indicator-wrapper > div' : {
         width:'100%',
         height: calc('100%'),
       }

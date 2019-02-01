@@ -76,10 +76,10 @@ export const RadioGroupStyles = (props: RadioGroupProps & WithThemeProps) => {
         justifyContent: 'flex-start',
       },
       '&.upContainer__groupradio-button input:checked ~ .up-control-wrapper .up-control-indicator::before': {
-        display: 'none',
+        visibility: 'hidden',
       },
       '&.upContainer__groupradio-button input:indeterminate ~ .up-control-wrapper .up-control-indicator::before': {
-        display: 'none',
+        visibility: 'hidden',
       },
       '&.upContainer__groupradio-button label.up-radio' : {
         padding: '8px',

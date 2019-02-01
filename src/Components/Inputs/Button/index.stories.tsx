@@ -143,28 +143,28 @@ stories.add('Simple usage',
             Le composant <code>UpButton</code> en définissant un menu d'actions associées, un label principal et l'icône à gauche
           </UpParagraph>
         </UpNotification>
+        <UpParagraph>
+          <UpButton iconPosition={"left"} intent="primary" onClick={(event) => { action("Main") }} dropDown={'down'}
+            extraActions={[
+              {
+                libelle: "Option 1",
+                onClick: action("Option 1")
+              },
+              {
+                libelle: "Option 2",
+                onClick: action("Option 2")
+              },
+              {
+                size: 2,
+              },
+              {
+                libelle: "Option 3",
+                onClick: action("Option 3")
+              }
+            ]}>Options
+          </UpButton>
+        </UpParagraph>
       </UpBox>
-      <UpParagraph>
-        <UpButton iconPosition={"left"} intent="primary" onClick={(event) => { action("Main") }} dropDown={'down'}
-          extraActions={[
-            {
-              libelle: "Option 1",
-              onClick: action("Option 1")
-            },
-            {
-              libelle: "Option 2",
-              onClick: action("Option 2")
-            },
-            {
-              size: 2,
-            },
-            {
-              libelle: "Option 3",
-              onClick: action("Option 3")
-            }
-          ]}>Options
-            </UpButton>
-      </UpParagraph>
     </UpThemeProvider>
   ), { info: 'Utilisation du composant en mode DropDown' }
 ).add('DropDown avec text et icône à gauche',
