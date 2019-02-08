@@ -9,6 +9,7 @@ import defaultTheme from '../../../Common/theming';
 
 export interface UpCheckboxProps {
   options: Array<Option>;
+  styles?: React.CSSProperties;
 }
 
 export interface Option {
@@ -53,6 +54,7 @@ class UpCheckbox extends React.Component<UpCheckboxProps & WithThemeProps, UpChe
   
   static defaultProps : Partial<UpCheckboxProps> & WithThemeProps = {
     theme:defaultTheme,
+    styles: { marginTop: '8px' },
   }
 
   constructor(props) {
@@ -60,12 +62,6 @@ class UpCheckbox extends React.Component<UpCheckboxProps & WithThemeProps, UpChe
     this.state = {
         options : props.options
     };
-  }
-  
-  componentWillReceiveProps(nextProps: UpCheckboxProps) {
-      if (nextProps.options !== this.props.options) {
-          this.setState({options: nextProps.options });
-      }
   }
 
   stopPropagation = (event) => {
@@ -84,14 +80,22 @@ class UpCheckbox extends React.Component<UpCheckboxProps & WithThemeProps, UpChe
     this.setState({options}) ;
   }
 
+  get isControlled() {
+    return this.props.options !== undefined;
+  }
+
+  get currentOptions() {
+    return this.isControlled ? this.props.options : this.state.options;
+  }
+
   render() {
-    const options = this.state.options ;
+    const options = this.currentOptions ;
     /*const icon = <SvgIcon iconName={props.iconName}
           width={props.iconSize}
           height={props.iconSize}
           color={props.color} /> ;*/
     return (
-      <div onClick={this.stopPropagation} style={{marginTop:'8px'}}>
+      <div onClick={this.stopPropagation} style={this.props.styles}>
         {/* Avoid set active element when using the component inside a label */}
         <label style={{display:"none"}}><input type="checkbox" /></label>
         {

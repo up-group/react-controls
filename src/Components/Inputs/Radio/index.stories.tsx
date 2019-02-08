@@ -14,14 +14,26 @@ import { getRootContainer } from '../../../Common/stories';
 
 const stories = storiesOf('Inputs/UpRadio', module) ;
 
+
+const SimpleRadio = (props) => {
+    let [selectedValue, setValue] = React.useState(null);
+
+    const onChange = (event, value) => {
+        setValue(value);
+    }
+
+    return (
+        <div style={{ padding: "30px" }}>
+            <UpRadio onChange={onChange} value={selectedValue} defaultValue={"option1"} alignMode="vertical" name={"modeAdresse"} options={[{ text: "Option 1", value: "option1" }, { text: "Option 2", value: "option2" }, { text: "Option 3", value: "option3" }]} />
+        </div>
+    )
+}
+
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpRadio'));
 stories.add('Multiple usage',
-    () => (
-            <div style={{ padding: "30px" }}>
-                <UpRadio onChange={console.log} defaultValue={"option1"} alignMode="vertical"  name={"modeAdresse"} options={[{ text: "Option 1", value: "option1" }, { text: "Option 2", value: "option2" }, { text: "Option 3", value: "option3" }]} />
-            </div>
-    ), {info : 'Utilisation avec plusieurs options'}
+    () => <SimpleRadio />, 
+    {info : 'Utilisation avec plusieurs options'}
 ).add('Display horizontally',
     () => (
             <div style={{ padding: "30px" }}>
@@ -47,7 +59,9 @@ stories.add('Multiple usage',
             </div>
 ), {info : 'Affichage des radio comme button marqué comme requis'} 
 ).add('Display as Large',
-() => (
+() => {
+    
+    return (
         <>
             <div style={{ marginTop: "10px" }}>
                 <UpHeading tag={'h3'} textAlign={'left'} margin={'medium'}>Afficher horizontalement, et large :</UpHeading>
@@ -62,5 +76,6 @@ stories.add('Multiple usage',
                 <UpRadio name={"value3"} alignMode={'horizontal'} displayMode="large" options={[{ text: "Option 1", value: "option1", iconName: 'calendar' }, { text: "Option 2", value: "option2", iconName: 'cake' }, { text: "Option 3", value: "option3", iconName: 'cocktail'}]} />
             </div>
         </>
-), {info : 'Affichage des radio comme button'}
+    )}
+, {info : 'Affichage des radio comme button'}
 );

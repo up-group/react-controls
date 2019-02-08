@@ -132,7 +132,7 @@ stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpSelect'));
 
 const SimpleSelect = (props) => {
-    let [selectedValue, setValue] = React['useState']({ id: 1, text: 'M.' });
+    let [selectedValue, setValue] = React.useState({ id: 1, text: 'M.' });
     
     const onChange = (event, value) => {
         setValue(value);

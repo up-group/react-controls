@@ -12,10 +12,6 @@ storiesOf('Display/UpMenu', module)
     .add('Simple usage',
         () => (
             <UpMenu onMenuClick={action("Menu clicked")}
-                topMenuItems={[
-                    { title: "Recherche", icon: "up up-dossier", action: "https://www.google.fr" },
-                    { title: "Alertes", icon: "up up-dossier", action: () => { alert(5); } }
-                ]}
                 menuItems={
                     [
                         {

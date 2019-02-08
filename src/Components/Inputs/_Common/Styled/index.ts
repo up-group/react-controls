@@ -69,7 +69,7 @@ export const CommonCheckableStyle = (props: WithThemeProps) : NestedCSSPropertie
         zIndex:0,
         visibility:'hidden',
       },
-      '& input:checked ~ .up-control-indicator, & input:indeterminate ~ .up-control-indicator, & input:checked ~ .up-control-wrapper .up-control-indicator, & input:indeterminate ~ .up-control-wrapper .up-control-indicator' : {
+      '& input:checked ~ .up-control-indicator, & input:checked ~ .up-control-wrapper .up-control-indicator' : {
         ...boxShadow,
         background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat  ${props.theme.colorMap.primary}`,
         color: props.theme.colorMap.primaryFg,
@@ -138,7 +138,7 @@ export const CommonCheckableStyle = (props: WithThemeProps) : NestedCSSPropertie
         background: props.theme.colorMap.primary,
         color: props.theme.colorMap.successFg,
       },
-      '& input:not(:disabled):active:checked ~ .up-control-indicator,& input:not(:disabled):active:indeterminate ~ .up-control-indicator,& input:not(:disabled):active:checked ~ .up-control-wrapper .up-control-indicator,& input:not(:disabled):active:indeterminate ~ .up-control-wrapper .up-control-indicator' : {
+      '& input:not(:disabled):active:checked ~ .up-control-indicator,& input:not(:disabled):active:checked ~ .up-control-wrapper .up-control-indicator' : {
         ...boxShadow,
         background: props.theme.colorMap.primary, 
         color: props.theme.colorMap.primaryFg,

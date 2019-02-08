@@ -14,7 +14,7 @@ import {
     boxSizeToStyle,
   } from './styleUtils';
 
-  import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
+import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import defaultTheme from '../../../Common/theming';
 
 export interface UpBoxProps {

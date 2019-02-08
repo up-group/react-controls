@@ -101,6 +101,14 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
         return this.state.extra ? this.state.extra.focused === true : false ;
     }
 
+    get isControlled() {
+        return this.props.value !== undefined ;
+    }
+
+    get currentValue() {
+        return this.isControlled ? this.props.value : this.state.value ;
+    }
+
     renderControl() {
         const { name, touched, type, onChange, value, validation, hasError, iconName, iconPosition, width, disabled, readonly, tooltip, maxLength, placeholder, theme, ...others } = this.props;
         var realIconName = iconName ;
@@ -112,7 +120,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
             <BaseInput
                 name={name}
                 rounded={(this.props.rounded)}
-                value={this.state.value == null ? "" : this.state.value}
+                value={this.currentValue == null ? "" : this.currentValue}
                 iconName={realIconName}
                 iconPosition={iconPosition}
                 width={width}

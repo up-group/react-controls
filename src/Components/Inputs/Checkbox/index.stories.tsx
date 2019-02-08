@@ -6,19 +6,57 @@ import UpLabel from '../../Display/Label'
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
+const SimpleCheckbox = (props) => {
+    let [selectedValue, setValue] = React.useState(null);
 
-var onOptionChange = () => { }
-var state = {
-    activation: false,
-    majeur: false,
-    homme: true,
-    grand: false,
-    couleur: "red",
-    selection: null //{id: 3, text : ""}
+    const onChange = (event, value) => {
+        setValue(value);
+    }
+
+    return <UpCheckbox options={[{
+        text: "",
+        name: "Option1",
+        onOptionChange: onChange,
+        value: true,
+        checked: selectedValue === true
+    }]} />
 }
 
-var onActivationChange = () => {
-    state.activation = !state.activation;
+
+const MultipleCheckbox = (props) => {
+    let [selectedOption1, setOption1Value] = React.useState(null);
+    let [selectedOption2, setOption2Value] = React.useState(null);
+    let [selectedOption3, setOption3Value] = React.useState(null);
+
+    const onChangeOption1 = (event, value) => {
+        setOption1Value(value);
+    }
+    const onChangeOption2 = (event, value) => {
+        setOption2Value(value);
+    }
+    const onChangeOption3 = (event, value) => {
+        setOption3Value(value);
+    }
+
+    return <UpCheckbox options={[{
+        text: "Vous êtes majeur ?",
+        name: "Option1",
+        onOptionChange: onChangeOption1,
+        value: true,
+        checked: selectedOption1 === true
+    }, {
+        text: "Vous êtes Homme ?",
+        name: "Option2",
+        onOptionChange: onChangeOption2,
+        value: true,
+        checked: selectedOption2 === true
+    }, {
+        text: "Vous êtes grand ?",
+        name: "Option3",
+        onOptionChange: onChangeOption3,
+        value: true,
+        checked: selectedOption3 === true
+    }]} />
 }
 
 const stories = storiesOf('Inputs/UpCheckbox', module) ;
@@ -27,37 +65,13 @@ stories.addDecorator(withKnobs)
 stories.add('Simple usage',
     () => (
         <UpLabel textAlign={"left"} inline={true} width="medium" text="Activation de ... :">
-            <UpCheckbox options={[{
-                    text: "",
-                    name: "Option1",
-                    onOptionChange: onActivationChange,
-                    value: true,
-                    checked: state.activation === true
-                }]} />
-            </UpLabel>
+            <SimpleCheckbox />
+        </UpLabel>
 ), { info : 'Utilisation avec plusieurs options' }
 ).add('Multiple usage',
    () => (
         <UpLabel inline={true} width="small" text="Choix :">
-            <UpCheckbox options={[{
-                    text: "Vous êtes majeur ?",
-                    name: "Option1",
-                    onOptionChange: onOptionChange,
-                    value: true,
-                    checked: state.majeur === true
-                }, {
-                    text: "Vous êtes Homme ?",
-                    name: "Option2",
-                    onOptionChange: onOptionChange,
-                    value: true,
-                    checked: state.homme === true
-                }, {
-                    text: "Vous êtes grand ?",
-                    name: "Option3",
-                    onOptionChange: onOptionChange,
-                    value: true,
-                    checked: state.grand === true
-                }]} />
-            </UpLabel>
+           <MultipleCheckbox />
+        </UpLabel>
   ), { info : 'Utilisation avec plusieurs options' }
 ) ;

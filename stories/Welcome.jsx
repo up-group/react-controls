@@ -45,9 +45,9 @@ export default class Welcome extends React.Component {
   render() {
     return (
       <div style={styles.main}>
-        <h1>Welcome to STORYBOOK</h1>
+        <h1>Welcome to React-Controls</h1>
         <p>
-          This is a UI component dev environment for your app.
+          This is a UI component design book for the library <code>react-controls</code>.
         </p>
         <p>
           We've added some basic stories inside the
@@ -56,49 +56,19 @@ export default class Welcome extends React.Component {
           {' '}
           directory.
           <br />
-          A story is a single state of one or more UI components. You can have as many stories as you want.
-          <br />
-          (Basically a story is like a visual test case.)
+          A story is a single state of one or more UI components.
         </p>
+
         <p>
-          See these sample
-          {' '}
-          <a style={styles.link} href="#" onClick={this.showApp.bind(this)}>stories</a>
-          {' '}
-          for a component called
-          {' '}
-          <code style={styles.code}>Button</code>
-          .
+          Our component's hierarchy is based on 3 main categories :
+          <ul>
+            <li><code>Containers</code> components</li>
+            <li><code>Display</code> components</li>
+            <li><code>Inputs</code> components</li>
+          </ul>
         </p>
-        <p>
-          Just like that, you can add your own components as stories.
-          <br />
-          You can also edit those components and see changes right away.
-          <br />
-          (Try editing the <code style={styles.code}>Button</code> component
-          located at <code style={styles.code}>src/stories/Button.js</code>.)
-        </p>
-        <p>
-          This is just one thing you can do with Storybook.
-          <br />
-          Have a look at the
-          {' '}
-          <a style={styles.link} href="https://github.com/storybooks/storybook" target="_blank">
-            Storybook
-          </a>
-          {' '}
-          repo for more information.
-        </p>
-        <p style={styles.note}>
-          <b>NOTE:</b>
-          <br />
-          Have a look at the
-          {' '}
-          <code style={styles.code}>.storybook/webpack.config.js</code>
-          {' '}
-          to add webpack
-          loaders and plugins you are using in this project.
-        </p>
+
+        
       </div>
     );
   }

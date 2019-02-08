@@ -17,13 +17,23 @@ const stories = storiesOf('Inputs/UpInput', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpInput'));
 
+const SimpleInput = (props) => {
+  let [selectedValue, setValue] = React.useState(null);
+
+  const onChange = (event, value) => {
+    setValue(value);
+  }
+
+  return <UpInput value={selectedValue} onChange={onChange} type={"text"} />;
+}
+
 stories.add('Text input',
    () => (
     <UpGrid>
       <UpRow>
         <UpCol span={6}> 
           <UpLabel text={'Nom :'} required={true} inline={true}>
-            <UpInput type={"text"} />
+            <SimpleInput />
           </UpLabel>
         </UpCol>
       </UpRow>

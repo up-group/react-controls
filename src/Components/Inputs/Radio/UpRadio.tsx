@@ -67,7 +67,7 @@ const BaseRadioButton: React.StatelessComponent<UpRadioStyledProps & WithThemePr
     const { checked, iconName, className, name, text, value, onChange, intent } = props;
     return (
       <label className={classnames("up-control", "up-radio", getStyles(props), intent ? `up-intent-${intent}` : null, className)}>
-        <input checked={checked} onChange={onChange} name={name} type="radio" value={value} />
+        <input checked={checked} onChange={(e) => {e.persist(); onChange(e)}} name={name} type="radio" value={value} />
         <span className="up-control-wrapper">
             <span className="up-control-indicator"></span>
         </span>
@@ -106,14 +106,18 @@ class UpRadio extends BaseControlComponent<UpRadioProps, any> {
                 : data
     }
 
-    private afterSetState = () => {
-        this.dispatchOnChange(this.state.value);
-    }
-
     public dispatchOnChange = (data: any, event?, error?: boolean) => {
         if (this.props.onChange !== undefined) {
             this.props.onChange(event, data, error);
         }
+    }
+
+    get isControlled() {
+        return this.props.value !== undefined;
+    }
+
+    get currentValue() {
+        return this.isControlled ? this.props.value : this.state.value;
     }
 
     renderControl() {
@@ -131,7 +135,7 @@ class UpRadio extends BaseControlComponent<UpRadioProps, any> {
                             onChange={this.handleChangeEvent} 
                             key={`Key_${this.props.name}_${option.value}`}
                             name={this.props.name}
-                            checked={this.state.value != null && this.state.value === option.value}
+                            checked={this.currentValue != null && this.currentValue === option.value}
                             text={option.text}
                             iconName={option.iconName}
                             theme={this.props.theme}

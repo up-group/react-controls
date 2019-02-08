@@ -1,64 +1,118 @@
-﻿
+﻿import * as React from "react"
+import { WithThemeProps, withTheme, } from "../../../Common/theming";
+import defaultTheme from '../../../Common/theming';
+import { isFunction } from "../../../Common/utils";
+
 import "./UpMenu.scss"
-import * as React from "react"
+import UpSvgIcon from "../SvgIcon";
+import { IconName } from "theming/icons";
+
+type RenderCallback = (state: UpMenuState) => JSX.Element;
 
 export interface UpMenuProps {
+    title?:string;
+    icon?: RenderCallback | JSX.Element;
+    header?: RenderCallback | JSX.Element;
     menuItems: MenuItemData[];
-    topMenuItems?: TopMenuItemProps[];
+    footer?: RenderCallback | JSX.Element;
+    children?: RenderCallback | React.ReactNode;
     onMenuClick?: (uri: string) => boolean | void;
-    onDeconnexionClick?: () => void;
-    onReglagesClick?: () => void;
-    onUpClick?: () => void;
-    onHomeClick?: () => void;
 }
 
 export interface UpMenuState {
-    col: boolean;
+    minified: boolean;
 }
 
-export default class UpMenu extends React.Component<UpMenuProps, UpMenuState>{
+class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
+
+    static defaultProps = {
+        theme: defaultTheme,
+    }
 
     constructor(p, c) {
         super(p, c);
         this.state = {
-            col: true,
+            minified: true,
         };
     }
 
-    clickCollapse = () => {
-        this.setState({ col: !this.state.col })
+    toggleMinification = () => {
+        this.setState({ minified: !this.state.minified });
     }
 
     render() {
+        const { title, header, icon, footer, menuItems, children } = this.props;
 
-        var menu = this.props.menuItems.map((v, i) => {
+        var menu = menuItems.map((v, i) => {
             return <MenuItem onMenuClick={this.props.onMenuClick} key={i} title={v.title} icon={v.icon} uri={v.uri} isSelected={v.isSelected} isVisible={v.isVisible} childMenuItems={v.childMenuItems} />
         });
 
+        let renderChildren = children;
 
-        return <div className="UpMenu">
-            <div className={"sidebar-mini skin-up" + (this.state.col ? " sidebar-collapse" : "")}>
-                <TopMenu childMenuItems={this.props.topMenuItems} onUpClick={this.props.onUpClick} onHomeClick={this.props.onHomeClick} onReglagesClick={this.props.onReglagesClick} onDeconnexionClick={this.props.onDeconnexionClick} />
-                <aside className="main-sidebar">
-                    <section className="sidebar" >
-                        <div className="user-panel">
-                            <a className="sidebar-toggle" onClick={this.clickCollapse}>
-                                <i className="pe p7 pe-7s-menu"></i>
-                                <span className="sr-only">Bouton Menu</span>
-                            </a>
-                        </div>
-                        <ul className="sidebar-menu">
-                            {menu}
-                        </ul>
-                    </section>
-                </aside>
-                <div className="content-wrapper" style={{ minHeight: 415 }}>
-                    <section className="content">
-                        {this.props.children}
-                    </section>
+        if (children != null && isFunction(children)) {
+            const childrenAsFunction = children as (state: UpMenuState) => JSX.Element;
+            renderChildren = childrenAsFunction(this.state);
+        }
+        let renderHeader = header;
+
+        if (header != null && isFunction(header)) {
+            const childrenAsFunction = children as (state: UpMenuState) => JSX.Element;
+            renderChildren = childrenAsFunction(this.state);
+        }
+
+        let renderFooter = footer
+
+        if (footer != null && isFunction(footer)) {
+            const footerAsFunction = footer as (state: UpMenuState) => JSX.Element;
+            renderFooter = footerAsFunction(this.state);
+        }
+
+        let renderIcon = icon;
+
+        if (icon != null && isFunction(icon)) {
+            const iconAsFunction = icon as (state: UpMenuState) => JSX.Element;
+            renderIcon = iconAsFunction(this.state);
+        }
+
+        return (
+            <div className="UpMenu">
+                <div className={"sidebar-mini skin-up" + (this.state.minified ? " sidebar-collapse" : "")}>
+                    <div className="icon-wrapper">
+                        <section className="icon">
+                            {renderIcon}
+                        </section>
+                    </div>
+                    <div className="header-wrapper">
+                        <section className="header">
+                            {renderHeader}
+                        </section>
+                    </div>
+                    <aside className="main-sidebar">
+                        <section className="sidebar" >
+                            <div className="sidebar-actions">
+                                <a className="sidebar-toggle" onClick={this.toggleMinification}>
+                                    <i className="pe p7 pe-7s-menu"></i>
+                                    <span className="sr-only">{title}</span>
+                                </a>
+                            </div>
+                            <ul className="sidebar-menu">
+                                {menu}
+                            </ul>
+                        </section>
+                    </aside>
+                    <div className="content-wrapper">
+                        <section className="content">
+                            {renderChildren}
+                        </section>
+                    </div>
+                    <div className="footer-wrapper">
+                        <section className="footer">
+                            {renderFooter}
+                        </section>
+                    </div>
                 </div>
             </div>
-        </div>
+        );
     }
 }
 
@@ -92,19 +146,19 @@ export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
         var active = this.state.active || this.props.isSelected ? " active" : "";
 
         return <li className={hide + "treeview" + active}>
-            <a onClick={this.onClickA} href={this.props.uri}>
-                <i className={this.props.icon} onClick={this.iconClick}></i>
+            <a onClick={this.onItemClick} href={this.props.uri}>
+                <UpSvgIcon onClick={this.onIconClick} iconName={this.props.icon as IconName}></UpSvgIcon>
                 <span>{this.props.title}</span>
             </a>
             <SubMenu onMenuClick={this.props.onMenuClick} childMenuItems={this.props.childMenuItems} />
         </li>
     }
 
-    iconClick = () => {
+    onIconClick = () => {
         this.setState({ active: !this.state.active });
     }
 
-    onClickA = (e) => {
+    onItemClick = (e) => {
         var value = this.props.onMenuClick(this.props.uri);
         if (value === false) {
             e.preventDefault();
@@ -120,7 +174,7 @@ export interface SubMenuProps {
 export interface SubMenuState {
 }
 
-export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
+export class SubMenu extends React.Component<SubMenuProps, SubMenuState> {
 
     constructor(p, c) {
         super(p, c);
@@ -192,110 +246,4 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
     }
 }
 
-export interface TopMenuProps {
-    onDeconnexionClick: () => void;
-    onReglagesClick: () => void;
-    onUpClick: () => void;
-    onHomeClick: () => void;
-    childMenuItems: TopMenuItemProps[];
-}
-
-export interface TopMenuState {
-
-}
-
-export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
-
-    constructor(p, c) {
-        super(p, c);
-        this.state = {};
-    }
-
-    render() {
-
-        var topMenuItem = [];
-        if (this.props.childMenuItems && this.props.childMenuItems.length) {
-            topMenuItem = this.props.childMenuItems.map((v, i) => {
-                return <TopMenuItem key={i} title={v.title} icon={v.icon} action={v.action} />
-            });
-        }
-
-        return <header className="main-header">
-
-            <a onClick={this.props.onUpClick} className="logo">
-                <span className="logo-mini"><span className="up-logo" /></span>
-                <span className="logo-lg"><span className="up-logo" />OneHome</span>
-            </a>
-
-            <nav className="navbar navbar-static-top" role="navigation">
-                <a onClick={this.props.onHomeClick} className="sidebar-toggle" data-toggle="" role="button">
-                    <span className="sr-only">Bouton Menu</span>
-                </a>
-                <div className="col-md-4">
-                    <div className="input-group">
-                        <input type="text" className="form-control" placeholder="Nom usager, n° téléphone,..." />
-                        <span className="input-group-addon" id="basic-addon2"><i className="pe pe-7s-search"></i>
-                        </span>
-                    </div>
-                </div>
-                <div className="navbar-custom-menu">
-                    <ul className="nav navbar-nav">
-                        {topMenuItem}
-                        <li className="dropdown user user-menu open">
-                            <a id="imageProfil" className="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                <span className="hidden-xs">Stéphane ROMANO</span>
-                            </a>
-                        </li>
-                        <li title="Réglages" data-toggle="tooltip" data-placement="bottom" data-original-title="Réglages">
-                            <a onClick={this.props.onReglagesClick} data-toggle="control-sidebar">
-                                <i className="pe pe-7s-edit"></i>
-                            </a>
-                        </li>
-                        <li title="Déconnexion" data-toggle="tooltip" data-placement="bottom">
-                            <a onClick={this.props.onDeconnexionClick}>
-                                <i className="pe pe-7s-power"></i>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </nav>
-        </header>
-    }
-}
-
-
-export interface TopMenuItemProps {
-    title: string;
-    action: string | (() => void);
-    icon: string;
-}
-
-export interface TopMenuItemState {
-
-}
-
-export class TopMenuItem extends React.Component<TopMenuItemProps, TopMenuItemState>{
-    //public static defaultProps: TopMenuItemProps = {};
-
-    constructor(p, c) {
-        super(p, c);
-        this.state = {};
-    }
-
-    render() {
-        if (typeof (this.props.action) === "string") {
-            return <li title={this.props.title} data-toggle="tooltip" data-placement="bottom">
-                <a href={this.props.action}>
-                    <i className={this.props.icon}></i>
-                </a>
-            </li>
-        } else {
-            return <li title={this.props.title} data-toggle="tooltip" data-placement="bottom">
-                <a onClick={this.props.action}>
-                    <i className={this.props.icon}></i>
-                </a>
-            </li>
-        }
-    }
-}
+export default withTheme<UpMenuProps>(UpMenu);
