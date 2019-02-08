@@ -24,7 +24,7 @@ export const defaultStyles = (props: WithThemeProps) : NestedCSSProperties => {
     borderRadius: props.theme.inputBorderLess ? 0 : '3px',
     borderStyle: 'solid',
     boxShadow:  props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
-    background: '#FFFF',
+    background: 'transparent',
     padding: props.theme.inputBorderLess ? '6px 0px' : '0px 10px',
     height: props.theme.inputBorderLess ? 'inherit' : '36px',
     lineHeight: props.theme.inputBorderLess ? 'inherit' : '30px',
