@@ -28,8 +28,8 @@ const baseStyles = (props: UpRadioStyledProps) : NestedCSSProperties => (
       transform: 'translate(-50%, -50%)',
       borderRadius: '50%',
       background: '#ffffff',
-      width: '1em',
-      height: '1em',
+      width: '6px',
+      height: '6px',
       content: "", 
     }, 
     '& input:indeterminate ~ .up-control-wrapper .up-control-indicator::before' : {
