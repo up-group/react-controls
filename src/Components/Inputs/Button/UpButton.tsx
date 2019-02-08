@@ -33,18 +33,21 @@ export class BaseButton extends React.Component<UpButtonStyledProps> {
     render() {
         let { children, className, onClick, dataFor, width, iconPosition, isProcessing, type, disabled } = this.props;
         const actionType = this.props.actionType;
-        let iconName: IconName = 'none';
+        let iconName: IconName = null;
         if (actionType && ActionIconMap.containsKey(actionType)) {           
             iconName = ActionIconMap.get(actionType);
         } else if (this.props.iconName) {
             iconName = this.props.iconName;
         }
-        // Our SVG Icon viewbx is 24*24 units
-        const icon = <UpSvgIcon iconName={iconName}
-            width={this.props.iconSize}
-            height={this.props.iconSize}
-            className={this.props.rotate ? 'up-rotating' : ''}
-            color={this.props.color} />;
+        let icon = null ;
+        if (iconName) {
+            // Our SVG Icon viewbx is 24*24 units
+            icon = <UpSvgIcon iconName={iconName}
+                width={this.props.iconSize}
+                height={this.props.iconSize}
+                className={this.props.rotate ? 'up-rotating' : ''}
+                color={this.props.color} />;
+        }
 
         var tooltipProps = {};
         if (dataFor) {
@@ -55,7 +58,7 @@ export class BaseButton extends React.Component<UpButtonStyledProps> {
         }
         const MainButton = (
         <button type={type} disabled={disabled} onClick={onClick} className={classnames('up-btn', getStyles(this.props), className)} {...tooltipProps} >
-            {iconName != 'none' && isProcessing !== true &&
+            {icon != null && isProcessing !== true &&
                 icon
             }
             {width !== 'icon' &&
@@ -91,7 +94,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         fontSize: 'medium',
         disabled: false,
         shadow: false,
-        iconName: false,
+        iconName: null,
         iconPosition: 'none',
         iconSize: 20,
         intent: 'default',
@@ -196,7 +199,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         });
 
         var icon: boolean | IconName = iconName;
-        if (icon === false && this.props.dropDown != 'none') {
+        if (icon == null && this.props.dropDown != 'none') {
             if (this.props.dropDown == 'up') {
                 icon = 'caret-up';
             } else if (this.props.dropDown == 'down') {
@@ -207,7 +210,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         var position: IconPosition = iconPosition;
         if (position === 'none' && this.props.dropDown != 'none') {
             position = 'right';
-        } else if (position === 'none' && icon === false) {
+        } else if (position === 'none' && icon == null) {
             position = 'left';
         }
         

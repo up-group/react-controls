@@ -57,7 +57,7 @@ export interface CommonProps extends WithThemeProps {
     /** Définir le type de l'action */
     actionType?: ActionType;
     /** Définir le nom de l'icône à associer au bouton */
-    iconName?: IconName | false;
+    iconName?: IconName;
     /** Définit la taille de l'icône  */
     iconSize?: number;
     /** Définir la position de l'icône */

@@ -47,7 +47,12 @@ stories.add('Simple usage',
             })
           }} width={"auto"}>
             Add
-              </UpButton>
+          </UpButton>
+          <UpButton intent={intent} onClick={(event) => {
+            return new Promise(function (resolve, reject) {
+              setTimeout(() => resolve(true), 5000)
+            })
+          }} width={"auto"}>Test</UpButton>
         </UpParagraph>
       </UpBox>
     </UpThemeProvider>
