@@ -42,8 +42,6 @@ export interface CommonProps extends WithThemeProps {
     color?: string;
     /** Surcharge la couleur du fond définit par le type d'intent */
     backgroundColor?: string; 
-    /** Le radius à appliquer au bord du bouton */
-    borderRadius?:string;
     /** Surcharge la couleur du bord définit par le type d'intent */
     borderColor?: string;
     /** Définit la taille de la police */

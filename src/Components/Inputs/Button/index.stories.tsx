@@ -51,7 +51,7 @@ stories.add('Simple usage',
               Add
             </UpButton>
             <UpButton 
-              borderRadius={'17px'}
+              rounded={true}
               intent={intent} onClick={(event) => {
               return new Promise(function (resolve, reject) {
                 setTimeout(() => resolve(true), 5000)

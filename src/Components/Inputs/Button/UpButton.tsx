@@ -152,7 +152,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
 
     disabled = () => this.props.disabled || this.state.isProcessing ;
     
-    public render() {
+    render() {
         const { children, tooltip, onClick, iconName, iconPosition, disabled, isProcessing, ...others } = this.props;
 
         const BtnList = style({

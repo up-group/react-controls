@@ -157,7 +157,7 @@ const large = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
   return {
     fontSize: '18px',
     lineHeight: '1.3',
-    borderRadius: props.borderRadius ? props.borderRadius : props.theme.borderRadius || DEFAULT_BORDER_RADIUS,
+    borderRadius: props.theme.borderRadius || DEFAULT_BORDER_RADIUS,
     $nest: {
       '&.up-btn svg': {
         margin: '0px',
@@ -173,7 +173,7 @@ const normal = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
     lineHeight: '1.2',
     height: '34px',
     width: props.dropDown != 'none' ? "auto" : buttonSizeMap[props.width] || 'inherit',
-    borderRadius: props.borderRadius ? props.borderRadius : props.theme.borderRadius || DEFAULT_BORDER_RADIUS,
+    borderRadius: props.theme.borderRadius || DEFAULT_BORDER_RADIUS,
     $nest: {
       '&.up-btn svg': {
         margin: '0px',
@@ -365,20 +365,30 @@ const getHeight = (props: UpButtonProps): NestedCSSProperties => {
 }
 
 const rounded = (props: UpButtonProps): NestedCSSProperties => {
-  return {
-    height: '32px',
-    width: '32px',
-    borderRadius: '16px',
-    $nest: {
-      div: {
-        margin: '0px',
-        height: '32px',
-        width: '32px',
-      },
-      '&.up-btn svg': {
-        margin: '7px !important',
-        width: '16px',
-        height: '16px',
+  if(props.width === 'icon') {
+    return {
+      height: '32px',
+      width: '32px',
+      borderRadius: '16px',
+      $nest: {
+        div: {
+          margin: '0px',
+          height: '32px',
+          width: '32px',
+        },
+        '&.up-btn svg': {
+          margin: '4px !important',
+          width: '24px',
+          height: '24px',
+        }
+      }
+    }
+  } else {
+    return {
+      $nest: {
+        '&.up-btn' : {
+          borderRadius: '17px',
+        }
       }
     }
   }
