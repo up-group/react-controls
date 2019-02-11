@@ -157,7 +157,7 @@ const large = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
   return {
     fontSize: '18px',
     lineHeight: '1.3',
-    borderRadius: props.theme.borderRadius || DEFAULT_BORDER_RADIUS,
+    borderRadius: props.borderRadius ? props.borderRadius : props.theme.borderRadius || DEFAULT_BORDER_RADIUS,
     $nest: {
       '&.up-btn svg': {
         margin: '0px',
@@ -173,7 +173,7 @@ const normal = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
     lineHeight: '1.2',
     height: '34px',
     width: props.dropDown != 'none' ? "auto" : buttonSizeMap[props.width] || 'inherit',
-    borderRadius: props.theme.borderRadius || DEFAULT_BORDER_RADIUS,
+    borderRadius: props.borderRadius ? props.borderRadius : props.theme.borderRadius || DEFAULT_BORDER_RADIUS,
     $nest: {
       '&.up-btn svg': {
         margin: '0px',

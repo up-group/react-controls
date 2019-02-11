@@ -198,7 +198,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
             position: "relative"
         });
 
-        var icon: boolean | IconName = iconName;
+        let icon: boolean | IconName = iconName;
         if (icon == null && this.props.dropDown != 'none') {
             if (this.props.dropDown == 'up') {
                 icon = 'caret-up';
@@ -207,14 +207,14 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
             }
         }
 
-        var position: IconPosition = iconPosition;
+        let position: IconPosition = iconPosition;
         if (position === 'none' && this.props.dropDown != 'none') {
             position = 'right';
         } else if (position === 'none' && icon == null) {
             position = 'left';
         }
         
-        var _tooltip: Tooltip = null;
+        let _tooltip: Tooltip = null;
         if (tooltip) {
             if (isString(tooltip)) {
                 _tooltip = {

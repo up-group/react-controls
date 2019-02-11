@@ -11,6 +11,7 @@ import UpBox from '../../Containers/Box';
 import UpNotification from '../../Display/Notification';
 import UpParagraph from '../../Display/Paragraph';
 import UpHeading from '../../Display/Heading';
+import UpButtonGroup from '../../Containers/ButtonGroup';
 
 const stories = storiesOf('Inputs/UpButton', module);
 stories.addDecorator(withKnobs);
@@ -41,18 +42,22 @@ stories.add('Simple usage',
           </UpBox>
         </UpNotification>
         <UpParagraph>
-          <UpButton actionType={actionType} intent={intent} onClick={(event) => {
-            return new Promise(function (resolve, reject) {
-              setTimeout(() => resolve(true), 5000)
-            })
-          }} width={"auto"}>
-            Add
-          </UpButton>
-          <UpButton intent={intent} onClick={(event) => {
-            return new Promise(function (resolve, reject) {
-              setTimeout(() => resolve(true), 5000)
-            })
-          }} width={"auto"}>Test</UpButton>
+          <UpButtonGroup>
+            <UpButton actionType={actionType} intent={intent} onClick={(event) => {
+              return new Promise(function (resolve, reject) {
+                setTimeout(() => resolve(true), 5000)
+              })
+            }} width={"auto"}>
+              Add
+            </UpButton>
+            <UpButton 
+              borderRadius={'17px'}
+              intent={intent} onClick={(event) => {
+              return new Promise(function (resolve, reject) {
+                setTimeout(() => resolve(true), 5000)
+              })
+            }} width={"auto"}>Test</UpButton>
+          </UpButtonGroup>
         </UpParagraph>
       </UpBox>
     </UpThemeProvider>
