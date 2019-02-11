@@ -56,7 +56,7 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState>  {
         const type = this.state.isVisible ? this.props.type : 'password' ;
 
         return <div style={{position: 'relative'}}>
-            <UpInput {...this.props} type={type} iconName="lock-closed" /*validation={emailValidation}*/ />
+            <UpInput {...this.props} type={type} iconName="lock-closed" />
             <UpSvgIcon className={classnames(getStyles(this.props), 'up-password')} 
                 onClick={this.toggleVisible}
                 iconName={this.state.isVisible ? iconEyeClose : iconEyeOpen} />

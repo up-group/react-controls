@@ -142,6 +142,7 @@ stories.add('Text input',
                   </UpLabel>
                   <UpLabel text={'Password'}>
                     <UpPassword 
+                      name={'password'}
                       value={values.password}
                       onChange={handleChange}  />
                   </UpLabel>
