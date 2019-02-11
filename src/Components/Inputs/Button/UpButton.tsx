@@ -90,7 +90,6 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
 
     public static defaultProps: UpButtonProps = {
         backgroundColor: '',
-        borderColor: '',
         fontSize: 'medium',
         disabled: false,
         shadow: false,

@@ -70,7 +70,18 @@ const colorMap: ThemeColorMap = {
   primaryHover : colors.pumpkine,
   primaryHoverActive : colors.pumpkine,
   primaryHoverFg : colors.white,
-  
+
+  secondary: 'transparent',
+  secondaryActive: color(colors.tangerine).darken(0.1).toHexString(),
+  secondaryBorder: colors.tangerine,
+  secondaryHoverBorder: colors.tangerine,
+  secondaryFg: colors.tangerine,
+  secondaryDark: color(colors.tangerine).darken(0.1).toHexString(),
+  secondaryLight: color(colors.tangerine).lighten(0.4).toHexString(),
+  secondaryHover: colors.tangerine,
+  secondaryHoverActive: colors.tangerine,
+  secondaryHoverFg: colors.white,
+
   info:colors.turquoiseBlue,
   infoActive: color(colors.turquoiseBlue).darken(0.1).toHexString(),
   infoBorder:colors.turquoiseDark,
@@ -81,17 +92,6 @@ const colorMap: ThemeColorMap = {
   infoHover:color(colors.turquoiseDark).darken(0.1).toHexString(),
   infoHoverActive:color(colors.turquoiseDark).darken(0.1).toHexString(),
   infoHoverFg:colors.white,
-
-  secondary:colors.white,
-  secondaryActive: color(colors.brownGrey).darken(0.1).toHexString(),
-  secondaryBorder: colors.white,
-  secondaryHoverBorder:colors.greyishBrown,
-  secondaryFg:colors.greyishBrown,
-  secondaryDark:colors.greyishBrown,
-  secondaryLight:color(colors.greyishBrown).darken(0.4).toHexString(),
-  secondaryHover:colors.greyishBrown,
-  secondaryHoverActive:colors.greyishBrown,
-  secondaryHoverFg:colors.white,
 
   warning:colors.tangerine10,
   warningActive: color(colors.tangerine10).darken(0.1).toHexString(),

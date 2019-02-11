@@ -52,7 +52,8 @@ stories.add('Simple usage',
             </UpButton>
             <UpButton 
               rounded={true}
-              intent={intent} onClick={(event) => {
+              intent={'secondary'}
+              onClick={(event) => {
               return new Promise(function (resolve, reject) {
                 setTimeout(() => resolve(true), 5000)
               })

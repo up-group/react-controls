@@ -42,7 +42,9 @@ const base = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
       '&.up-btn': {
         textAlign: 'center',
         fontSize: remStringFromPX(fontSizeMap[props.fontSize]),
-        border: 'none',
+        borderColor: props.borderColor || props.theme.colorMap[`${props.intent}Border`],
+        borderWidth: '1px',
+        borderStyle: 'solid',
         paddingLeft: props.width === 'icon' ? '0px' : (props.iconName != null || props.actionType != null) &&  props.iconPosition === 'left' ? '32px' : '6px',
         paddingRight: props.width === 'icon' ? '0px' : (props.iconName != null || props.actionType != null) && props.iconPosition === 'right' ? '32px' : '6px',
         textDecoration: 'none',
