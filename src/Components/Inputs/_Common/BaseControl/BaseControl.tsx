@@ -8,6 +8,7 @@ import TypeNullControl from "../Validation/TypeNullControl"
 import { isString } from '../../../../Common/utils'
 import { WithThemeProps } from "../../../../Common/theming/withTheme";
 import defaultTheme from "../../../../Common/theming";
+import { eventFactory } from "../../../../Common/utils/eventListener";
 
 // Exports
 const ONCHANGE_MUST_BE_SPECIFIED = "La méthode onChange doit être spécifié dans le cas où la valeur du composant est défini dans les props";
@@ -73,15 +74,19 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
     private checkAndDispatch = (event?: React.ChangeEvent<any>, value?: _BaseType) => {
         const _value = (value !== undefined) ? value : (event !== undefined) ? event : this.state.value;
         const cleanData: _BaseType = this.getValue(_value);
+        let cloneEvent = event;
+        if (event) {
+            cloneEvent = eventFactory(event.target.name, cleanData);
+        }
         if (this._validationManager !== undefined) {
             const result = this.checkData(cleanData);
             if(result != null) {
-                this.setState({ value: cleanData, error : result.hasError ? result.errorMessage : null }, () => { this.dispatchOnChange(this.state.value, event, result.hasError) });
+                this.setState({ value: cleanData, error: result.hasError ? result.errorMessage : null }, () => { this.dispatchOnChange(this.state.value, cloneEvent, result.hasError) });
             } else {
-                this.setState({ value: cleanData }, () => { this.dispatchOnChange(this.state.value, event, null) });
+                this.setState({ value: cleanData }, () => { this.dispatchOnChange(this.state.value, cloneEvent, null) });
             }
         } else {
-            this.setState({ value: cleanData }, () => { this.dispatchOnChange(this.state.value, event, null); });
+            this.setState({ value: cleanData }, () => { this.dispatchOnChange(this.state.value, cloneEvent, null); });
         }
     }
 
