@@ -16,11 +16,12 @@ export const fontSizeMap = {
 export const buttonSizeMap = {
     normal: '150px',
     icon: '32px',
-    auto: 'auto'
+    auto: 'auto',
+    full: '100%',
 };
 
 export type FontSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
-export type ButtonWidth = 'normal' | 'icon' | 'auto';
+export type ButtonWidth = 'normal' | 'icon' | 'auto' | 'full';
 export type ButtonHeight = 'xsmall' | 'small' | 'normal' | 'large';
 export type ActionType = IconName;
 export type IconPosition = 'none' | 'left' | 'right' ;
