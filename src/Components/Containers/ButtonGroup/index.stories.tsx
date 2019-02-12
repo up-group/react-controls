@@ -109,6 +109,28 @@ stories
             Remove
           </UpButton>
         </UpButtonGroup>
+
+        <UpButtonGroup gutter={17} align={"v"}>
+          <UpButton onClick={action("Add")} width={"normal"} actionType={"add"}>
+            Add
+          </UpButton>
+          <UpButton
+            onClick={action("Edit")}
+            width={"normal"}
+            intent={'primary'}
+            actionType={"edit"}
+          >
+            Edit
+          </UpButton>
+          <UpButton
+            onClick={action("Delete")}
+            width={"normal"}
+            intent={'danger'}
+            actionType={"delete"}
+          >
+            Remove
+          </UpButton>
+        </UpButtonGroup>
       </div>
     ), { info :  "Utilisation du composant en lui passant les données à afficher"}
   );

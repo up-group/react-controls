@@ -227,7 +227,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         
         const renderButton = <BaseButton iconName={icon} iconPosition={position} isToggled={this.getValue('isToggled')} {...handleClickProps} isProcessing={this.getValue('isProcessing')} disabled={this.disabled()} {...others}>
             {children != null &&
-                <span>{children}</span>
+                <span className={'up-btn-label'}>{children}</span>
             }
         </BaseButton>
 

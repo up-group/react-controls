@@ -59,14 +59,16 @@ const base = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
         margin: '0px',
         display: 'inline-block',
       },
-      '&.up-btn span': {
+      '&.up-btn .up-btn-label': {
         display: 'inline-block',
         paddingTop: '8px',
         paddingBottom: '3px',
         height: props.theme.minButtonSize || DEFAULT_MIN_SIZE,
-        paddingLeft: props.width == "auto" ? "8px" : "inherit",
-        paddingRight: props.width == "auto" ? "8px" : "inherit",
+        paddingLeft: props.width == "auto" ? "8px" : "0px",
+        paddingRight: props.width == "auto" ? "8px" : "0px",
         color: props.isProcessing ? props.theme.colorMap.disabledBg : 'inherit',
+        width:'100%',
+        textAlign: 'center',
       },
       '&.up-btn:focus': {
         outline: 'transparent auto 0px',

@@ -47,7 +47,7 @@ stories.add('Simple usage',
               return new Promise(function (resolve, reject) {
                 setTimeout(() => resolve(true), 5000)
               })
-            }} width={"auto"}>
+            }} width={"normal"}>
               Add
             </UpButton>
             <UpButton 
@@ -57,7 +57,7 @@ stories.add('Simple usage',
               return new Promise(function (resolve, reject) {
                 setTimeout(() => resolve(true), 5000)
               })
-            }} width={"auto"}>Test</UpButton>
+              }} width={"normal"}>Test</UpButton>
           </UpButtonGroup>
         </UpParagraph>
       </UpBox>

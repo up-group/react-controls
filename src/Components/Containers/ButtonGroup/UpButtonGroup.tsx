@@ -102,22 +102,17 @@ const setGutter = (props:UpButtonGroupProps) : NestedCSSProperties => {
 const setAlignment = (props:UpButtonGroupProps) : NestedCSSProperties => {
   if(props.align==='v') {
     return {
-      $nest : {
-        '& button.up-btn, div' : {
-          display:'block',
-          float:'left',
-          clear:'left',
-        }
-      }
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
     };
   } else {
     return {
-      $nest : {
-        '& button.up-btn' : {
-          display:'inline-block',
-          float:'left',
-        }
-      }
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
     };
   }
 }
@@ -133,12 +128,12 @@ export default class UpButtonGroup extends React.Component<UpButtonGroupProps, u
   }
 
   public static defaultProps: UpButtonGroupProps = {
-    gutter:10,
+    gutter:17,
     align:'h',
   };
 
   public render() {
-    const {children, ...others} = this.props ;
+    const { children, align, gutter, isAddOn, ...others} = this.props ;
     return (
         <div {...others} className={getStyles(this.props)}>
             {children}
