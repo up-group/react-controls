@@ -83,7 +83,7 @@ const setGutter = (props:UpButtonGroupProps) : NestedCSSProperties => {
   if(props.align==='v') {
     return {
       $nest : {
-        '& button.up-btn' : {
+        '& .up-btn-wrapper' : {
           marginBottom: `${props.gutter}px`,
         },
       },
@@ -91,7 +91,7 @@ const setGutter = (props:UpButtonGroupProps) : NestedCSSProperties => {
   } else {
     return {
       $nest : {
-        '& button.up-btn' : {
+        '& .up-btn-wrapper' : {
           marginRight: `${props.gutter}px`,
         },
       },

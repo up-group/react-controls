@@ -109,14 +109,20 @@ stories
             Remove
           </UpButton>
         </UpButtonGroup>
-
+      </div>
+    ), { info :  "Utilisation du composant en lui passant les données à afficher"}
+)
+  .add(
+    "Multi Button",
+    () => (
+      <div style={{ margin: "30px", width:"200px", padding:"10px" }}>
         <UpButtonGroup gutter={17} align={"v"}>
-          <UpButton onClick={action("Add")} width={"normal"} actionType={"add"}>
+          <UpButton intent={'secondary'} onClick={action("Add")} width={"full"} actionType={"add"}>
             Add
           </UpButton>
           <UpButton
             onClick={action("Edit")}
-            width={"normal"}
+            width={"full"}
             intent={'primary'}
             actionType={"edit"}
           >
@@ -124,7 +130,7 @@ stories
           </UpButton>
           <UpButton
             onClick={action("Delete")}
-            width={"normal"}
+            width={"full"}
             intent={'danger'}
             actionType={"delete"}
           >
@@ -132,5 +138,5 @@ stories
           </UpButton>
         </UpButtonGroup>
       </div>
-    ), { info :  "Utilisation du composant en lui passant les données à afficher"}
+    ), { info: "Utilisation du composant en lui passant les données à afficher" }
   );

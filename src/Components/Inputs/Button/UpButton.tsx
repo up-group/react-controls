@@ -12,7 +12,7 @@ import { Dictionary } from '../../../Common/utils/types';
 import { ActionType } from '../../../Common/actions';
 import { IconName, IconNames } from '../../../Common/theming/icons';
 import UpSvgIcon from '../../Display/SvgIcon';
-import { getStyles } from './styles';
+import { getStyles, getWrapperStyles } from './styles';
 
 import withTheme from '../../../Common/theming/withTheme';
 
@@ -192,10 +192,6 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
             backgroundColor: '#e5e5e5'
         });
 
-        const buttonWrapper = style({
-            display: "inline-block",
-            position: "relative"
-        });
 
         let icon: boolean | IconName = iconName;
         if (icon == null && this.props.dropDown != 'none') {
@@ -232,7 +228,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         </BaseButton>
 
         return (
-            <div className={classnames('up-btn-wrapper', buttonWrapper)}>
+            <div className={classnames('up-btn-wrapper', getWrapperStyles(this.props))}>
                 {
                     tooltip === null ?
                         renderButton

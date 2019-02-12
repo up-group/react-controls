@@ -42,7 +42,7 @@ stories.add('Simple usage',
           </UpBox>
         </UpNotification>
         <UpParagraph>
-          <UpButtonGroup>
+          <UpButtonGroup gutter={17}>
             <UpButton actionType={actionType} intent={intent} onClick={(event) => {
               return new Promise(function (resolve, reject) {
                 setTimeout(() => resolve(true), 5000)

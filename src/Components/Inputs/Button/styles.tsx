@@ -437,3 +437,11 @@ export const getStyles = (props: UpButtonStyledProps): string => {
     props.rotate ? style(rotate(props)) : null,
     props.isToggled ? style(toggle(props)) : null);
 }
+
+export const getWrapperStyles = (props: UpButtonStyledProps): string => {
+  return style({
+    display: "inline-block",
+    position: "relative",
+    width: props.dropDown != 'none' ? "auto" : buttonSizeMap[props.width] || 'inherit',
+  }); 
+}
