@@ -113,8 +113,8 @@ stories.add('Text input',
             }}
             validationSchema={Yup.object().shape({
               email: Yup.string()
-                .email()
-                .required('Required'),
+                .email("Vous devez renseigner un email valide")
+                .required('L\'email est requis'),
             })}>
             {(props) => {
               const {
@@ -134,6 +134,8 @@ stories.add('Text input',
                     <UpInput
                       name={'email'}
                       type={'email'}
+                      errorDisplayMode={'inline'}
+                      showError={dirty && touched.email}
                       error={errors.email === undefined ? null : errors.email }
                       hasError={errors.email != null}
                       value={values.email}

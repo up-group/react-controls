@@ -1,7 +1,7 @@
 // Imports 
 import * as React from "react";
 import ValidationManager from "../Validation/ValidationManager"
-import ErrorDisplay from "../Validation/ErrorDisplay"
+import ErrorDisplay, { ErrorDisplayMode } from "../Validation/ErrorDisplay"
 // Importation des règles CSS de bases -> à transformer en styled-components
 import UpTooltip, { Tooltip } from '../../../Display/Tooltip'
 import TypeNullControl from "../Validation/TypeNullControl"
@@ -22,6 +22,7 @@ export interface BaseControlProps<_BaseType> extends WithThemeProps {
     tooltip?: string | Tooltip;
     isRequired?: boolean;
     showError?: boolean;
+    errorDisplayMode?: ErrorDisplayMode;
     error?: string;
     touched?: boolean;
 }
@@ -34,8 +35,9 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
 
     _validationManager: ValidationManager;
 
-    public static defaultProps: WithThemeProps = {
+    public static defaultProps: BaseControlProps<any> = {
         theme: defaultTheme,
+        errorDisplayMode: 'tooltip',
     }
 
     constructor(props?: BaseControlProps<_BaseType> & _Props, context?) {
@@ -142,7 +144,7 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
         }
         const RenderControl = this.renderControl() ;
         return (
-        <ErrorDisplay showError={this.props.showError} hasError={this.hasError()} error={this.state.error}>
+        <ErrorDisplay theme={this.props.theme} displayMode={this.props.errorDisplayMode} showError={this.props.showError} hasError={this.hasError()} error={this.state.error}>
         {_tooltip === null ?
             RenderControl
             :

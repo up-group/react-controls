@@ -110,7 +110,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
     }
 
     renderControl() {
-        const { name, touched, type, onChange, value, validation, hasError, iconName, iconPosition, width, disabled, readonly, tooltip, maxLength, placeholder, theme, ...others } = this.props;
+        const { name, touched, type, onChange, value, validation, errorDisplayMode, hasError, iconName, iconPosition, width, disabled, readonly, tooltip, maxLength, placeholder, theme, ...others } = this.props;
         var realIconName = iconName ;
         if(realIconName == null && type != null && IconNames.indexOf(type as IconName) != -1) {
             realIconName = type as IconName ;
