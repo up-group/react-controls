@@ -2,12 +2,22 @@ import React from 'react';
 
 import '../src/Common/theming/style.css'
 
+import {style} from 'typestyle';
+
 const styles = {
   main: {
-    margin: 15,
-    maxWidth: 600,
     lineHeight: 1.4,
-    fontFamily: '"Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif',
+    fontFamily: '"-apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Arial, freesans, sans-serif',
+    backgroundColor : 'rgb(245, 145, 0)',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    width:'100%',
+    height: '100%',
+    color:'white',
+    paddingLeft: '60px',
+    paddingRight: '60px',
+    textShadow: '0 1px 2px rgba(0,0,0,0.25)',
   },
 
   logo: {
@@ -36,6 +46,13 @@ const styles = {
   },
 };
 
+const Heading = style({
+  fontSize: '56px',
+  lineHeight: '64px',
+  fontWeight: 700,
+  color: 'white',
+})
+
 export default class Welcome extends React.Component {
   showApp(e) {
     e.preventDefault();
@@ -45,7 +62,7 @@ export default class Welcome extends React.Component {
   render() {
     return (
       <div style={styles.main}>
-        <h1>Welcome to React-Controls</h1>
+        <h1 className={Heading}>Design System by Up</h1>
         <p>
           This is a UI component design book for the library <code>react-controls</code>.
         </p>
@@ -67,8 +84,6 @@ export default class Welcome extends React.Component {
             <li><code>Inputs</code> components</li>
           </ul>
         </p>
-
-        
       </div>
     );
   }
