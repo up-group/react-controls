@@ -27,6 +27,56 @@ const SimpleInput = (props) => {
   return <UpInput value={selectedValue} onChange={onChange} type={"text"} />;
 }
 
+const EmailForm = (props) => {
+  const [onBlurState, setOnBlurState] = React.useState({} as any);
+
+  const {
+    values,
+    touched,
+    errors,
+    dirty,
+    isSubmitting,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    handleReset,
+  } = props;
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <UpLabel text={'Email'} >
+        <UpInput
+          name={'email'}
+          type={'email'}
+          onBlur={(e) => {
+            handleBlur(e);
+            setOnBlurState({ ...onBlurState, email: true });
+          }}
+          errorDisplayMode={'inline'}
+          showError={dirty && onBlurState.email}
+          error={errors.email === undefined ? null : errors.email}
+          hasError={errors.email != null}
+          value={values.email}
+          onChange={handleChange}
+          onFocus={(e) => {
+            setOnBlurState({ ...onBlurState, email: false });
+          }}
+          iconPosition={'right'}
+          placeholder={'Renseignez votre email'} />
+      </UpLabel>
+      <UpLabel text={'Password'}>
+        <UpPassword
+          name={'password'}
+          onBlur={handleBlur}
+          iconPosition={'right'}
+          value={values.password}
+          onChange={handleChange} />
+      </UpLabel>
+    </form>
+  );
+}
+
+
 stories.add('Text input',
   () => (
     <UpGrid>
@@ -116,43 +166,7 @@ stories.add('Text input',
                 .email("Vous devez renseigner un email valide")
                 .required('L\'email est requis'),
             })}>
-            {(props) => {
-              const {
-                values,
-                touched,
-                errors,
-                dirty,
-                isSubmitting,
-                handleChange,
-                handleBlur,
-                handleSubmit,
-                handleReset,
-              } = props;
-              return (
-                <form onSubmit={handleSubmit}>
-                  <UpLabel text={'Email'} >
-                    <UpInput
-                      name={'email'}
-                      type={'email'}
-                      errorDisplayMode={'inline'}
-                      showError={dirty && touched.email}
-                      error={errors.email === undefined ? null : errors.email}
-                      hasError={errors.email != null}
-                      value={values.email}
-                      onChange={handleChange}
-                      iconPosition={'right'}
-                      placeholder={'Renseignez votre email'} />
-                  </UpLabel>
-                  <UpLabel text={'Password'}>
-                    <UpPassword
-                      name={'password'}
-                      iconPosition={'right'}
-                      value={values.password}
-                      onChange={handleChange} />
-                  </UpLabel>
-                </form>
-              );
-            }}
+            {(props) => <EmailForm {...props} />}
           </Formik>
         </UpCol>
       </UpRow>
