@@ -8,6 +8,7 @@ import { style } from 'typestyle';
 import withTheme from '../../../Common/theming/withTheme';
 import defaultTheme from '../../../Common/theming';
 import * as classnames from 'classnames' ;
+import { runInThisContext } from 'vm';
 
 const getStyles = (props: UpInputProps) => style({ 
     position : 'absolute', 
@@ -56,7 +57,7 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState>  {
         const type = this.state.isVisible ? this.props.type : 'password' ;
 
         return <div style={{position: 'relative'}}>
-            <UpInput {...this.props} type={type} iconName="lock-closed" />
+            <UpInput {...this.props} type={type} iconName={this.props.iconPosition === 'left' ? "lock-closed" : null} />
             <UpSvgIcon className={classnames(getStyles(this.props), 'up-password')} 
                 onClick={this.toggleVisible}
                 iconName={this.state.isVisible ? iconEyeClose : iconEyeOpen} />

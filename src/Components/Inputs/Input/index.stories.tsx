@@ -140,12 +140,13 @@ stories.add('Text input',
                       hasError={errors.email != null}
                       value={values.email}
                       onChange={handleChange}
-                      iconPosition={'left'}
+                      iconPosition={'right'}
                       placeholder={'Renseignez votre email'} />
                   </UpLabel>
                   <UpLabel text={'Password'}>
                     <UpPassword
                       name={'password'}
+                      iconPosition={'right'}
                       value={values.password}
                       onChange={handleChange} />
                   </UpLabel>
