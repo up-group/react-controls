@@ -58,6 +58,14 @@ stories.add('Simple usage',
                 setTimeout(() => resolve(true), 5000)
               })
               }} width={"normal"}>Test</UpButton>
+            <UpButton
+              intent={'primary'}
+              disabled={true}
+              onClick={(event) => {
+                return new Promise(function (resolve, reject) {
+                  setTimeout(() => resolve(true), 5000)
+                })
+              }} width={"normal"}>Disabled</UpButton>
           </UpButtonGroup>
         </UpParagraph>
       </UpBox>

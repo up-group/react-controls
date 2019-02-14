@@ -14,7 +14,7 @@ export const colors = {
   turquoiseBlue:'#039eb2',
   oceanBlue: '#0360a8',
   paleRed: '#d9534f',
-  boringGreen: '#5cb85c',
+  boringGreen: '#05C591', //'#5cb85c',
   tangerine10: '#f39100',
   turquoiseDark : '#0e8c9b',
   paleYellow : '#f8f1ad',
@@ -147,7 +147,7 @@ const colorMap: ThemeColorMap = {
   black3: '#555555',
 
   disabledBg: '#EFEFEF',
-  disabledFg: '#111',
+  disabledFg: '#D7D7D7',
 
   white:'#ffffff',
 

@@ -94,11 +94,12 @@ const base = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
 
 const disabled = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
   return {
-    background: props.theme.colorMap.disabledBg,
-    color: props.theme.colorMap.disabledFg,
     $nest: {
-      '&.up-btn': {
+      '&.up-btn[disabled]': {
         cursor: 'not-allowed',
+        background: props.theme.colorMap.disabledBg,
+        color: props.theme.colorMap.disabledFg,
+        borderColor: props.theme.colorMap.disabledBg,
       },
     }
   }

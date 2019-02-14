@@ -12,7 +12,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import UpPassword from '../Password';
 
-const stories = storiesOf('Inputs/UpInput', module) ;
+const stories = storiesOf('Inputs/UpInput', module);
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpInput'));
@@ -28,83 +28,83 @@ const SimpleInput = (props) => {
 }
 
 stories.add('Text input',
-   () => (
+  () => (
     <UpGrid>
       <UpRow>
-        <UpCol span={6}> 
+        <UpCol span={6}>
           <UpLabel text={'Nom :'} required={true} inline={true}>
             <SimpleInput />
           </UpLabel>
         </UpCol>
       </UpRow>
     </UpGrid>
-  ), {info : 'Utilisation simple'}
+  ), { info: 'Utilisation simple' }
 ).add('Search Input',
-   () => (
+  () => (
     <UpGrid>
       <UpRow>
-        <UpCol span={6}> 
+        <UpCol span={6}>
           <UpLabel text={'Recherche :'} required={true} inline={true}>
             <UpInput type={"search"} />
           </UpLabel>
         </UpCol>
       </UpRow>
     </UpGrid>
-  ), {info : 'Champ de recherche'}
+  ), { info: 'Champ de recherche' }
 ).add('Email Input',
-   () => (
+  () => (
     <UpGrid>
       <UpRow>
-        <UpCol span={6}> 
+        <UpCol span={6}>
           <UpLabel text={'Email :'} required={true} inline={true}>
             <UpInput type={"email"} validation={[{
-                pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                errorMessage: "Le champ doit être un courriel"
+              pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              errorMessage: "Le champ doit être un courriel"
             }]} iconPosition={'left'} />
           </UpLabel>
         </UpCol>
       </UpRow>
     </UpGrid>
-  ), {info : 'Champ email'}
+  ), { info: 'Champ email' }
 ).add('Phone Input',
   () => (
     <UpGrid>
       <UpRow>
-        <UpCol span={6}> 
+        <UpCol span={6}>
           <UpLabel text={'Phone :'} required={true} inline={true}>
             <UpInput type={"phone"} />
           </UpLabel>
         </UpCol>
       </UpRow>
     </UpGrid>
-  ), {info : 'Champ phone'}
+  ), { info: 'Champ phone' }
 ).add('Required Input',
-() => (
- <UpGrid>
-   <UpRow>
-     <UpCol span={6}> 
-       <UpLabel text={'Email :'} required={true} inline={true}>
-         <UpInput isRequired={true} type={"email"} />
-       </UpLabel>
-       <UpLabel text={'Email :'} required={true} inline={true}>
-         <UpInput isRequired={true} type={"email"} iconPosition={'right'}/>
-       </UpLabel>
-       <UpLabel text={'Email :'}>
-         <UpInput isRequired={true} type={"email"} />
-       </UpLabel>
-       <UpLabel text={'Email :'}>
-         <UpInput isRequired={true} type={"email"}  iconPosition={'right'} />
-       </UpLabel>
-     </UpCol>
-   </UpRow>
- </UpGrid>
- ), {info : 'Champ requis'}
+  () => (
+    <UpGrid>
+      <UpRow>
+        <UpCol span={6}>
+          <UpLabel text={'Email :'} required={true} inline={true}>
+            <UpInput isRequired={true} type={"email"} />
+          </UpLabel>
+          <UpLabel text={'Email :'} required={true} inline={true}>
+            <UpInput isRequired={true} type={"email"} iconPosition={'right'} />
+          </UpLabel>
+          <UpLabel text={'Email :'}>
+            <UpInput isRequired={true} type={"email"} />
+          </UpLabel>
+          <UpLabel text={'Email :'}>
+            <UpInput isRequired={true} type={"email"} iconPosition={'right'} />
+          </UpLabel>
+        </UpCol>
+      </UpRow>
+    </UpGrid>
+  ), { info: 'Champ requis' }
 ).add('Form',
-() => (
- <UpGrid>
-   <UpRow>
-     <UpCol span={6}> 
-     <Formik initialValues={{ email: '', password: ''}}
+  () => (
+    <UpGrid>
+      <UpRow>
+        <UpCol span={12}>
+          <Formik initialValues={{ email: '', password: '' }}
             onSubmit={(values, { setSubmitting }) => {
               setTimeout(() => {
                 alert(JSON.stringify(values, null, 2));
@@ -136,24 +136,25 @@ stories.add('Text input',
                       type={'email'}
                       errorDisplayMode={'inline'}
                       showError={dirty && touched.email}
-                      error={errors.email === undefined ? null : errors.email }
+                      error={errors.email === undefined ? null : errors.email}
                       hasError={errors.email != null}
                       value={values.email}
                       onChange={handleChange}
+                      iconPosition={'left'}
                       placeholder={'Renseignez votre email'} />
                   </UpLabel>
                   <UpLabel text={'Password'}>
-                    <UpPassword 
+                    <UpPassword
                       name={'password'}
                       value={values.password}
-                      onChange={handleChange}  />
+                      onChange={handleChange} />
                   </UpLabel>
                 </form>
               );
             }}
           </Formik>
-     </UpCol>
-   </UpRow>
- </UpGrid>
- ), {info : 'Champ requis'}
-) ;
+        </UpCol>
+      </UpRow>
+    </UpGrid>
+  ), { info: 'Champ requis' }
+);
