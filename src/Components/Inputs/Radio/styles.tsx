@@ -1,6 +1,6 @@
 import * as classnames from 'classnames'
 
-import { CommonCheckableStyle } from '../_Common/Styled'
+import { getCheckableStyles } from '../_Common/Styled'
 import { UpRadioStyledProps, UpRadioProps } from './UpRadio';
 import { style } from 'typestyle';
 import { NestedCSSProperties } from 'typestyle/lib/types';
@@ -45,7 +45,7 @@ const baseStyles = (props: UpRadioStyledProps) : NestedCSSProperties => (
 });
 
 export const getStyles = (props: UpRadioStyledProps & WithThemeProps) => (
-  classnames(style(CommonCheckableStyle(props)), style(baseStyles(props)))
+  classnames(style(getCheckableStyles(props)), style(baseStyles(props)))
 );
 
 export const RadioGroupStyles = (props: RadioGroupProps & WithThemeProps) => {

@@ -17,7 +17,7 @@ const boxShadow = {
   boxShadow: 'inset 0 0 0 1px rgba(245, 145, 0, 0.4), inset 0 -1px 0 rgba(245, 145, 0, 0.2)',
 }
 
-export const CommonCheckableStyle = (props: WithThemeProps) : NestedCSSProperties => {
+export const getCheckableStyles = (props: WithThemeProps) : NestedCSSProperties => {
   return {
     position:'relative',
     display: 'block',
@@ -31,6 +31,10 @@ export const CommonCheckableStyle = (props: WithThemeProps) : NestedCSSPropertie
         margin:'4px 4px 4px 0px',
         display:'inline-block',
         float:'left',
+      },
+      '& .up-control-label' : {
+        color: '#7f8fa4',
+        fontSize:'14px',
       },
       '& .up-control-indicator' : {
         ...boxShadow,

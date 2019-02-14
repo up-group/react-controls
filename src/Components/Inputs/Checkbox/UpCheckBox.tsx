@@ -2,7 +2,7 @@
 import * as React from 'react'
 import * as classNames from 'classnames'
 
-import { CommonCheckableStyle } from '../_Common/Styled';
+import { getCheckableStyles } from '../_Common/Styled';
 import { style } from 'typestyle';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import defaultTheme from '../../../Common/theming';
@@ -34,13 +34,13 @@ const BaseCheckBox: React.StatelessComponent<UpCheckboxStyledProps & Option> = (
   const { checked, className, text, name, value, onChange } = props;
 
   return (
-    <label className={classNames("up-control", "up-checkbox", style(CommonCheckableStyle(props)), className)}>
+    <label className={classNames("up-control", "up-checkbox", style(getCheckableStyles(props)), className)}>
       <input onClick={(e) => {
         e.stopPropagation();
         e.persist() ;
         onChange(e, { name, checked:!checked })}} checked={checked} name={name} type="checkbox" value={value} />
       <span className="up-control-indicator"></span>
-      {text}
+      <span className="up-control-label">{text}</span>
     </label>
   )
 }
