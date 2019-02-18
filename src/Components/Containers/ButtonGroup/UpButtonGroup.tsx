@@ -5,11 +5,13 @@ import * as classnames from 'classnames';
 
 export type Alignement = 'h' | 'v'
 export type AddOnMode = 'none' | 'left' | 'right'
+export type Width = 'auto' | 'full' 
 
 export interface UpButtonGroupProps {
   gutter?:number;
   align?:Alignement;
   isAddOn?:AddOnMode;
+  width?:Width;
 }
 
 const noGutterStyle = (props:UpButtonGroupProps) : NestedCSSProperties => {
@@ -105,20 +107,32 @@ const setAlignment = (props:UpButtonGroupProps) : NestedCSSProperties => {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'flex-start',
-      alignItems: 'center',
+      alignItems: 'center'
     };
   } else {
     return {
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'flex-start',
-      alignItems: 'center',
+      alignItems: 'center'
+    };
+  }
+}
+
+const setWidth = (props:UpButtonGroupProps) : NestedCSSProperties => {
+  if(props.width==='full') {
+    return {
+      width: '100%'
+    };
+  } else {
+    return {
+      width: 'auto'
     };
   }
 }
 
 export const getStyles =  (props: UpButtonGroupProps) => {
-  return classnames(style(setGutter(props)), style(setAlignment(props)), style(noGutterStyle(props))) ; 
+  return classnames(style(setGutter(props)), style(setAlignment(props)), style(noGutterStyle(props)), style(setWidth(props))) ; 
 };
 
 export default class UpButtonGroup extends React.Component<UpButtonGroupProps, undefined> {
