@@ -57,6 +57,7 @@ export const errorStyles = (props : StyledProps) => {
   return style({
       $nest : {
           '& .up-input-group .up-input' : {
+            color: props.theme ? props.theme.colorMap.danger : defaultTheme.colorMap.danger,
             borderColor: props.theme ? props.theme.colorMap.danger : defaultTheme.colorMap.danger,
           },
           '& .up-input-group svg': {
