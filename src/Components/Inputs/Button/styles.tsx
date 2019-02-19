@@ -21,15 +21,16 @@ export type Position = 'left' | 'right' | 'none'
 
 const positions = (props: UpButtonProps): NestedCSSProperties => {
   const positions: NestedCSSProperties = {};
+  const offsetInPx = `${(props.theme.minButtonSize - 22) / 2}px`;
   if (props.width != 'icon') {
     if (props.iconPosition === 'left') {
       positions.position = 'absolute';
-      positions.top = '6px';
-      positions.left = '6px';
+      positions.top = offsetInPx;
+      positions.left = offsetInPx;
     } else if (props.iconPosition === 'right') {
       positions.position = 'absolute';
-      positions.top = '6px';
-      positions.right = '6px';
+      positions.top = offsetInPx;
+      positions.right = offsetInPx;
     }
   }
   return positions;
@@ -45,6 +46,8 @@ const base = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
         borderColor: props.borderColor || props.theme.colorMap[`${props.intent}Border`],
         borderWidth: '1px',
         borderStyle: 'solid',
+        paddingBottom: '0px',
+        paddingTop: '0px',
         paddingLeft: props.width === 'icon' ? '0px' : (props.iconName != null || props.actionType != null) &&  props.iconPosition === 'left' ? '32px' : '6px',
         paddingRight: props.width === 'icon' ? '0px' : (props.iconName != null || props.actionType != null) && props.iconPosition === 'right' ? '32px' : '6px',
         textDecoration: 'none',
@@ -61,14 +64,14 @@ const base = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
       },
       '&.up-btn .up-btn-label': {
         display: 'inline-block',
-        paddingTop: '8px',
-        paddingBottom: '3px',
         height: props.theme.minButtonSize || DEFAULT_MIN_SIZE,
+        paddingTop: (props.theme.minButtonSize - fontSizeMap[props.fontSize])/2,
         paddingLeft: props.width == "auto" ? "8px" : "0px",
         paddingRight: props.width == "auto" ? "8px" : "0px",
         color: props.isProcessing ? props.theme.colorMap.disabledBg : 'inherit',
         width:'100%',
         textAlign: 'center',
+        textTransform: 'uppercase',
       },
       '&.up-btn:focus': {
         outline: 'transparent auto 0px',
@@ -174,9 +177,8 @@ const large = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
 };
 const normal = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
   return {
-    fontSize: '14px',
-    lineHeight: '1.2',
-    height: '34px',
+    fontSize: remStringFromPX(fontSizeMap[props.fontSize]),
+    height: props.theme.minButtonSize || DEFAULT_MIN_SIZE,
     width: props.dropDown != 'none' ? "auto" : buttonSizeMap[props.width] || 'inherit',
     borderRadius: props.theme.borderRadius || DEFAULT_BORDER_RADIUS,
     $nest: {

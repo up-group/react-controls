@@ -6,7 +6,7 @@ export interface ThemeInterface {
     colorMap: ThemeColorMap;
     borderRadius?: string;
     inputBorderLess?:boolean;
-    minButtonSize?: string;
+    minButtonSize?: number;
     notificationIconSize?: string | number;
     gridGutter?: number;
     intentTypeIcons?: IconMap;
