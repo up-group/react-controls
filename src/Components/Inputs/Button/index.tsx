@@ -8,7 +8,7 @@ import { WithThemeProps } from '../../../Common/theming/withTheme';
 export const fontSizeMap = {
     xsmall: 10,
     small: 12,
-    medium: 16,
+    medium: 14,
     large: 20,
     xlarge: 24
 };
