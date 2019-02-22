@@ -161,6 +161,7 @@ stories.add('Text input',
                 setSubmitting(false);
               }, 500);
             }}
+            validateOnBlur={true}
             validationSchema={Yup.object().shape({
               email: Yup.string()
                 .email("Vous devez renseigner un email valide")
