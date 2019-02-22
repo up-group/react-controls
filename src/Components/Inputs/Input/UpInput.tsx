@@ -14,44 +14,50 @@ import { getStyles } from '../_Common/Styled/Input/styles';
 import defaultTheme from '../../../Common/theming/';
 
 const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> = (props: UpInputStyledProps & WithThemeProps) => {
-    const {name, className, type, iconName, iconPosition, placeholder, disabled, readonly, maxLength, dataFor, onChange, onFocus, onBlur } = props;
+    const { name, className, type, iconName, iconPosition, placeholder, disabled, readonly, maxLength, dataFor, onChange, onFocus, onBlur } = props;
 
-    var icon:any = null ;
-    if(iconName) {
-      icon = <SvgIcon iconName={iconName}
-          width={20}
-          height={20}
-          color={props.color} /> ;
+    var icon: any = null;
+    if (iconName) {
+        icon = <SvgIcon iconName={iconName}
+            width={20}
+            height={20}
+            color={props.color} />;
     }
     // Tooltip
     var tooltipProps = {};
-    if(dataFor) {
-      tooltipProps = {
-        "data-tip" : "tooltip",
-        "data-for" :  dataFor
-      }
+    if (dataFor) {
+        tooltipProps = {
+            "data-tip": "tooltip",
+            "data-for": dataFor
+        }
     }
     return (<div className={classnames(getStyles(props), className)}>
-              <div className={classnames("up-input-group", props.focused === true ? 'up-input-focused' : null)}>
-                {iconPosition === 'left' && iconName &&
-                    icon
-                }
-            <input name={name} value={props.value} onChange={onChange} onFocus={onFocus} onBlur={onBlur} className="up-input" type={type} placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readonly} maxLength={maxLength} {...tooltipProps}/>
-                {iconPosition === 'right' && iconName &&
-                    icon
-                }
-              </div>
-            </div>);
+        <div className={classnames("up-input-group", props.focused === true ? 'up-input-focused' : null, props.value != null && props.value != '' ? 'up-input-valued' : null)}>
+            {iconPosition === 'left' && iconName &&
+                icon
+            }
+            {iconPosition === 'left' && props.floatingLabel &&
+                <label>{props.floatingLabel}</label>
+            }
+            <input name={name} value={props.value} onChange={onChange} onFocus={onFocus} onBlur={onBlur} className="up-input" type={type} placeholder={props.floatingLabel ? '' : placeholder} dir="auto" disabled={disabled} readOnly={readonly} maxLength={maxLength} {...tooltipProps} />
+            {iconPosition === 'right' && props.floatingLabel &&
+                <label>{props.floatingLabel}</label>
+            }
+            {iconPosition === 'right' && iconName &&
+                icon
+            }
+        </div>
+    </div>);
 }
 
 // Exports
 class UpInput extends BaseControlComponent<UpInputProps, any> {
-    
+
     public static defaultProps: UpInputProps = {
         showError: true,
-        theme:defaultTheme,
+        theme: defaultTheme,
         width: "fill",
-        iconPosition : 'left',
+        iconPosition: 'left',
     };
 
     constructor(p, c) {
@@ -73,45 +79,47 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
     }
 
     inputHandleChangeEvent = (event) => {
-        event.persist() ;
-        this.handleChangeEvent(event, undefined) ;
-    }   
+        event.persist();
+        this.handleChangeEvent(event, undefined);
+    }
 
     onFocus = (event) => {
-        const handleOnFocus = () => {
+        event.persist();
+        const handleOnFocus = (event) => {
             if (this.props.onFocus)
                 this.props.onFocus(event);
         }
 
-        if(this.state.extra === undefined) {
-            this.setState({ extra: { focused: true } }, handleOnFocus);
+        if (this.state.extra === undefined) {
+            this.setState({ extra: { focused: true } }, handleOnFocus.bind(null, event));
         } else {
-            this.setState(update(this.state, { extra: { focused: { $set: true } } }), handleOnFocus);
+            this.setState(update(this.state, { extra: { focused: { $set: true } } }), handleOnFocus.bind(null, event));
         }
     }
 
-    onBlur = (event) =>  {
-        const handleOnBlur = () => {
+    onBlur = (event) => {
+        event.persist();
+        const handleOnBlur = (event) => {
             if (this.props.onBlur)
                 this.props.onBlur(event);
         }
 
-        if(this.state.extra === undefined) {
-            this.setState({ extra: { focused: false } }, handleOnBlur);
+        if (this.state.extra === undefined) {
+            this.setState({ extra: { focused: false } }, handleOnBlur.bind(null, event));
         } else {
-            this.setState(update(this.state, { extra: { focused: { $set: false } } }), handleOnBlur)
+            this.setState(update(this.state, { extra: { focused: { $set: false } } }), handleOnBlur.bind(null, event))
         }
     }
 
     get isFocused() {
-        return this.state.extra ? this.state.extra.focused === true : false ;
+        return this.state.extra ? this.state.extra.focused === true : false;
     }
 
     renderControl() {
-        const { name, touched, type, onChange, value, validation, errorDisplayMode, hasError, iconName, iconPosition, width, disabled, readonly, tooltip, maxLength, placeholder, theme, ...others } = this.props;
-        var realIconName = iconName ;
-        if(realIconName == null && type != null && IconNames.indexOf(type as IconName) != -1) {
-            realIconName = type as IconName ;
+        const { name, touched, type, onChange, value, validation, errorDisplayMode, hasError, iconName, iconPosition, width, disabled, readonly, tooltip, maxLength, placeholder, floatingLabel, theme, ...others } = this.props;
+        var realIconName = iconName;
+        if (realIconName == null && type != null && IconNames.indexOf(type as IconName) != -1) {
+            realIconName = type as IconName;
         }
 
         return (
@@ -128,6 +136,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
                 theme={theme}
                 maxLength={maxLength}
                 placeholder={placeholder}
+                floatingLabel={floatingLabel}
                 type={type || "text"}
                 hasError={this.props.hasError || this.hasError()}
                 showError={this.props.showError}

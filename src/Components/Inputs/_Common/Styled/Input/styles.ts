@@ -6,6 +6,7 @@ import defaultTheme from '../../../../../Common/theming'
 
 import * as classnames from 'classnames'
 import { WithThemeProps } from '../../../../../Common/theming/withTheme';
+import { UpInputProps } from 'Components/Inputs/Input/types';
 
 export const HeightLarge = (props) : NestedCSSProperties => {
   return {
@@ -73,12 +74,23 @@ export const errorStyles = (props : StyledProps) => {
   }) ;
 };
 
-export const inputStyles = (props: WithThemeProps) : NestedCSSProperties => {
+export const inputStyles = (props: UpInputProps & WithThemeProps) : NestedCSSProperties => {
   
   return {
+    marginTop: props.floatingLabel ? '14px' : '0px',
     $nest : {
       '& .up-input' : {
         ...defaultStyles(props),
+      },
+      '& .up-input-group label': {
+        fontSize: '14px',
+        position: 'absolute',
+        top: '-10px',
+        left: '0px',
+        color: '#979797',
+        transformOrigin: 'top left',
+        transform: 'translate(0, 16px) scale(1)',
+        transition: 'all .1s ease-in-out',
       },
       '& .up-input::-moz-placeholder,& .up-input:-ms-input-placeholder,& .up-input::placeholder,& .up-input::-webkit-input-placeholder' : {
         opacity: 0.5,
@@ -424,13 +436,17 @@ export const inputStyles = (props: WithThemeProps) : NestedCSSProperties => {
   }
 };
 
-export const focusStyles = (props: StyledProps) => style(props.focused === true ? {
+export const focusStyles = (props: StyledProps) => style({
   $nest : {
     '& .up-input-group.up-input-focused .up-icon-wrapper svg, & .up-input-group.up-input-focused .up-icon-wrapper svg path, & .up-input-group.up-input-focused .up-icon-wrapper svg polygon' : {
       fill: props.theme.colorMap.primary,
+    },
+    '& .up-input-group.up-input-focused label, & .up-input-group.up-input-valued label' : {
+      transform: 'translate(0, 4px) scale(.75)',
+      fontSize: '12px',
+      color: props.theme.colorMap.primary,
     }
   }
-} : {
 });
 
 export const getStyles = (props: StyledProps) : string => {

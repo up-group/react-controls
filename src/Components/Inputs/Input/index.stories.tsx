@@ -44,7 +44,6 @@ const EmailForm = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <UpLabel text={'Email'} >
         <UpInput
           name={'email'}
           type={'email'}
@@ -52,6 +51,7 @@ const EmailForm = (props) => {
             handleBlur(e);
             setOnBlurState({ ...onBlurState, email: true });
           }}
+          floatingLabel={'Email'}
           errorDisplayMode={'inline'}
           showError={dirty && onBlurState.email}
           error={errors.email === undefined ? null : errors.email}
@@ -63,15 +63,13 @@ const EmailForm = (props) => {
           }}
           iconPosition={'right'}
           placeholder={'Renseignez votre email'} />
-      </UpLabel>
-      <UpLabel text={'Password'}>
-        <UpPassword
-          name={'password'}
-          onBlur={handleBlur}
-          iconPosition={'right'}
-          value={values.password}
-          onChange={handleChange} />
-      </UpLabel>
+      <UpPassword
+        name={'password'}
+        floatingLabel={'Password'}
+        onBlur={handleBlur}
+        iconPosition={'right'}
+        value={values.password}
+        onChange={handleChange} />
     </form>
   );
 }

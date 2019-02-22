@@ -12,6 +12,7 @@ export interface CommonInputTextProps<VT> extends BaseControlProps<VT> {
     width?: WidthSize;
     hasError?:boolean;
     maxLength?:number;
+    floatingLabel?:string;
     onFocus?: (e) => void;
     onBlur?: (e) => void;
 }
