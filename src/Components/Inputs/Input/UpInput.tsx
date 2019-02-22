@@ -31,12 +31,12 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> =
         "data-for" :  dataFor
       }
     }
-    return (<div className={classnames(getStyles(props) ,className)}>
+    return (<div className={classnames(getStyles(props), className)}>
               <div className={classnames("up-input-group", props.focused === true ? 'up-input-focused' : null)}>
                 {iconPosition === 'left' && iconName &&
                     icon
                 }
-                <input name={name} value={props.value} onChange={onChange} onFocus={onFocus} onBlur={onBlur} className="up-input" type={type} placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readonly} maxLength={maxLength} {...tooltipProps}/>
+            <input name={name} value={props.value} onChange={onChange} onFocus={onFocus} onBlur={onBlur} className="up-input" type={type} placeholder={placeholder} dir="auto" disabled={disabled} readOnly={readonly} maxLength={maxLength} {...tooltipProps}/>
                 {iconPosition === 'right' && iconName &&
                     icon
                 }
@@ -78,35 +78,33 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
     }   
 
     onFocus = (event) => {
-        if(this.state.extra === undefined) {
-            this.setState({ extra : { focused : true}});
-        } else {
-            this.setState(update(this.state, { extra : { focused : { $set : true}}}));
+        const handleOnFocus = () => {
+            if (this.props.onFocus)
+                this.props.onFocus(event);
         }
-        if(this.props.onFocus)
-            this.props.onFocus(event) ;
+
+        if(this.state.extra === undefined) {
+            this.setState({ extra: { focused: true } }, handleOnFocus);
+        } else {
+            this.setState(update(this.state, { extra: { focused: { $set: true } } }), handleOnFocus);
+        }
     }
 
     onBlur = (event) =>  {
-        if(this.state.extra === undefined) {
-            this.setState({ extra : { focused : false}});
-        } else {
-            this.setState(update(this.state, { extra : { focused : { $set : false}}}))
+        const handleOnBlur = () => {
+            if (this.props.onBlur)
+                this.props.onBlur(event);
         }
-        if(this.props.onBlur)
-            this.props.onBlur(event) ;
+
+        if(this.state.extra === undefined) {
+            this.setState({ extra: { focused: false } }, handleOnBlur);
+        } else {
+            this.setState(update(this.state, { extra: { focused: { $set: false } } }), handleOnBlur)
+        }
     }
 
     get isFocused() {
         return this.state.extra ? this.state.extra.focused === true : false ;
-    }
-
-    get isControlled() {
-        return this.props.value !== undefined ;
-    }
-
-    get currentValue() {
-        return this.isControlled ? this.props.value : this.state.value ;
     }
 
     renderControl() {
