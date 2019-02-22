@@ -71,6 +71,14 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
         return receiveValue ;
     }
 
+    get isControlled() {
+        return this.props.value !== undefined;
+    }
+
+    get currentValue() {
+        return this.isControlled ? this.props.value : this.state.value;
+    }
+
     abstract renderControl(): JSX.Element;
 
     private checkAndDispatch = (event?: React.ChangeEvent<any>, value?: _BaseType) => {
@@ -80,15 +88,15 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
         if (event) {
             cloneEvent = eventFactory(event.target.name, cleanData);
         }
+        let result = null ;
         if (this._validationManager !== undefined) {
-            const result = this.checkData(cleanData);
-            if(result != null) {
-                this.setState({ value: cleanData, error: result.hasError ? result.errorMessage : null }, () => { this.dispatchOnChange(this.state.value, cloneEvent, result.hasError) });
-            } else {
-                this.setState({ value: cleanData }, () => { this.dispatchOnChange(this.state.value, cloneEvent, null) });
-            }
+            result = this.checkData(cleanData);
+        }
+        
+        if(this.isControlled) {
+            this.dispatchOnChange(cleanData, cloneEvent, null);
         } else {
-            this.setState({ value: cleanData }, () => { this.dispatchOnChange(this.state.value, cloneEvent, null); });
+            this.setState({ value: cleanData, error: result != null && result.hasError ? result.errorMessage : null }, () => { this.dispatchOnChange(this.state.value, cloneEvent, result != null && result.hasError) });
         }
     }
 
