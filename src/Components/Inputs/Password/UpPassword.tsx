@@ -47,20 +47,48 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState>  {
         }
     }
 
-    toggleVisible = () => this.setState({
-        isVisible : !this.state.isVisible,
-    })
+    toggleVisible = (e) => {
+        this.setState({
+            isVisible : !this.state.isVisible,
+        })
+    }
+
+    get isHidden() {
+        return this.state.isVisible === false ;
+    }
+
+    get isShown() {
+        return this.state.isVisible === true;
+    }
+
+
+    hide = () => {
+        if(this.isHidden)
+            return ;
+        this.setState({
+            isVisible: false,
+        });
+    }
+
+    show = () => {
+        if (this.isShown)
+            return;
+        this.setState({
+            isVisible: true,
+        });
+    }
 
     render() {
         const iconEyeOpen : IconName = 'eye-open' ;
         const iconEyeClose : IconName = 'eye-close' ;
-        const type = this.state.isVisible ? this.props.type : 'password' ;
+        const type = this.state.isVisible === true ? this.props.type : 'password' ;
 
         return <div style={{position: 'relative'}}>
             <UpInput {...this.props} type={type} iconName={this.props.iconPosition === 'left' ? "lock-closed" : null} />
             <UpSvgIcon className={classnames(getStyles(this.props), 'up-password')} 
-                onClick={this.toggleVisible}
-                iconName={this.state.isVisible ? iconEyeClose : iconEyeOpen} />
+                onMouseOver={this.show}
+                onMouseOut={this.hide}
+                iconName={this.state.isVisible === true ? iconEyeClose : iconEyeOpen} />
         </div>
     }
 }
