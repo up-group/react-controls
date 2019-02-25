@@ -115,14 +115,7 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
     }
 
     public componentWillReceiveProps(nextProps) {
-        var newValue = nextProps.value;
-        var oldValue = this.state.value;
-        if (newValue !== undefined && !this.equal(newValue, oldValue)) {
-            // Handle specific conversion between the value receive from props and the inner state
-            var value = this.setValue(nextProps.value);
-            // Reset the error : if one it will be set in the checkData
-            this.setState({ value: value, error: nextProps.error }, this.checkAndDispatch);
-        } else if(this.props.error != nextProps.error) {
+        if(this.props.error != nextProps.error) {
             this.setState({ error: nextProps.error });
         }
     }
