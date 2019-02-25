@@ -12,6 +12,8 @@ import UpHeading from '../../Display/Heading'
 import { withKnobs, text, boolean, number, array} from '@storybook/addon-knobs';
 import { getRootContainer } from '../../../Common/stories';
 
+import { Formik } from 'formik';
+import * as Yup from 'yup'; 
 const stories = storiesOf('Inputs/UpRadio', module) ;
 
 
@@ -78,4 +80,47 @@ stories.add('Multiple usage',
         </>
     )}
 , {info : 'Affichage des radio comme button'}
+).add('Form',
+    () => (
+        <div style={{ padding: "30px" }}>
+            <Formik initialValues={{ modeAdresse: null }}
+                onSubmit={(values, { setSubmitting }) => {
+                    setTimeout(() => {
+                        alert(JSON.stringify(values, null, 2));
+                        setSubmitting(false);
+                    }, 500);
+                }}
+                validateOnBlur={true}
+                validationSchema={Yup.object().shape({
+                    email: Yup.string()
+                        .required('Le choix est requis'),
+                })}>
+                {(props) => <RadioForm {...props} />}
+            </Formik>
+        </div>
+    ), { info: 'Affichage des radio en ligne' }
 );
+
+
+const RadioForm = (props) => {
+    const [onBlurState, setOnBlurState] = React.useState({} as any);
+
+    const {
+        values,
+        touched,
+        errors,
+        dirty,
+        isSubmitting,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        handleReset,
+    } = props;
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <UpRadio defaultValue={"option1"} name={"modeAdresse"} onChange={handleChange}
+            alignMode="horizontal" value={values.modeAdresse} gutter={8} options={[{ text: "Option 1", value: "option1" }, { text: "Option 2", value: "option2" }, { text: "Option 3", value: "option3" }]} />
+        </form>
+    );
+}
