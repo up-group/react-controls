@@ -57,7 +57,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
         showError: true,
         theme: defaultTheme,
         width: "fill",
-        iconPosition: 'left',
+        iconPosition: 'right',
     };
 
     constructor(p, c) {
