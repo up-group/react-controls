@@ -12,6 +12,7 @@ import { IconName, IconNames } from '../../../Common/theming/icons';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import { getStyles } from '../_Common/Styled/Input/styles';
 import defaultTheme from '../../../Common/theming/';
+import { generateId } from '../../../Common/utils';
 
 const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> = (props: UpInputStyledProps & WithThemeProps) => {
     const { name, className, type, iconName, iconPosition, placeholder, disabled, readonly, maxLength, dataFor, onChange, onFocus, onBlur } = props;
@@ -23,6 +24,7 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> =
             height={20}
             color={props.color} />;
     }
+
     // Tooltip
     var tooltipProps = {};
     if (dataFor) {
@@ -31,17 +33,18 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> =
             "data-for": dataFor
         }
     }
+    const id = generateId() ;
     return (<div className={classnames(getStyles(props), className)}>
         <div className={classnames("up-input-group", props.focused === true ? 'up-input-focused' : null, props.value != null && props.value != '' ? 'up-input-valued' : null)}>
             {iconPosition === 'left' && iconName &&
                 icon
             }
             {iconPosition === 'left' && props.floatingLabel &&
-                <label>{props.floatingLabel}</label>
+                <label htmlFor={id}>{props.floatingLabel}</label>
             }
-            <input name={name} value={props.value} onChange={onChange} onFocus={onFocus} onBlur={onBlur} className="up-input" type={type} placeholder={props.floatingLabel ? '' : placeholder} dir="auto" disabled={disabled} readOnly={readonly} maxLength={maxLength} {...tooltipProps} />
+            <input id={id} name={name} value={props.value} onChange={onChange} onFocus={onFocus} onBlur={onBlur} className="up-input" type={type} placeholder={props.floatingLabel ? '' : placeholder} dir="auto" disabled={disabled} readOnly={readonly} maxLength={maxLength} {...tooltipProps} />
             {iconPosition === 'right' && props.floatingLabel &&
-                <label>{props.floatingLabel}</label>
+                <label htmlFor={id}>{props.floatingLabel}</label>
             }
             {iconPosition === 'right' && iconName &&
                 icon
