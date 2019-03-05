@@ -11,26 +11,19 @@ import UpMenuOH from './UpMenuOH'
 storiesOf('Display/UpMenu', module)
     .add('Simple usage',
         () => (
-            <UpMenu onMenuClick={action("Menu clicked")}
+            <UpMenu 
+                onMenuClick={action("Menu clicked")}
                 menuItems={
                     [
                         {
-                            title: "test", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [
-                                {
-                                    title: "aaaaaa", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [
-
-                                        { title: "bbbbb", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                                        { title: "ccccc", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                                        { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] }
-                                    ]
-                                },
-                                { title: "ffffff sc", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                                { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] }
+                            title: "Stack", icon: "stack", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [
+                                { title: "Option 1", icon: "weather-rain", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
+                                { title: "Option 2", icon: "weather-snow", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
+                                { title: "Option 3", icon: "weather-sunset", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] }
                             ]
                         },
-                        { title: "tehtztst", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                        { title: "t", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                        { title: "teshtztht", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
+                        { title: "Smart", icon: "smartphone", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
+                        { title: "Settings", icon: "settings", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
                     ]}></UpMenu>
         ), { info : 'Utilisation du composant en lui passant les données à afficher'}
 ).add('Simple usage 2',

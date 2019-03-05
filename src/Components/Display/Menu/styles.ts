@@ -1,0 +1,148 @@
+import { DeviceLRTablets } from "../../../Common/utils/device";
+import { media, style } from "typestyle";
+import { UpMenuProps, UpMenuState } from "./UpMenu";
+import { WithThemeProps } from "../../../Common/theming";
+import { position } from "tether";
+
+export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState) : string => style({
+    $nest : {
+        '&.up-menu' : {
+            width: props.minified ? '76px' : '275px',
+            minWidth: '76px',
+            zIndex: 1000,
+            position: 'relative',
+            height: 'calc(100% - 0px)',
+            backgroundColor: '#4E5B59',
+            transition: 'width 0.5s',
+            padding: '14px',
+        },
+        '&.up-menu li a' : {
+            color: '#ffffff',
+            textDecoration: 'none',
+        },
+        '&.up-menu ul, &.up-menu ul li' : {
+            margin:0,
+            padding:0,
+            listStyle: 'none',
+        },
+        '&.up-menu ul li .up-icon-wrapper svg, .up-menu ul li .up-icon-wrapper svg path, .up-menu ul li .up-icon-wrapper svg polygon': {
+            fill: '#ffffff',
+            cursor: 'pointer',
+        },
+        '&.up-menu ul li.selected .up-icon-wrapper svg, .up-menu ul li.selected .up-icon-wrapper svg path, .up-menu ul li.selected .up-icon-wrapper svg polygon': {
+            fill: props.theme.colorMap.primary,
+        },
+        '&.up-menu ul li:hover .up-icon-wrapper svg, .up-menu ul li:hover .up-icon-wrapper svg path, .up-menu ul li:hover .up-icon-wrapper svg polygon': {
+            fill: props.theme.colorMap.primary,
+        },
+        '&.up-menu nav > ul > li .up-menu-item-title' : {
+            display: props.minified ? 'none' : 'inherit',
+            fontSize:'14px',
+            fontWeight: 500,
+            textAlign: 'left',
+            marginLeft: '14px',
+        },
+        '&.up-menu ul li.selected .up-menu-item-title': {
+            color: props.theme.colorMap.primary,
+        },
+        '&.up-menu ul li:hover ul li .up-menu-item-title, &.up-menu ul li.selected ul li .up-menu-item-title': {
+            color: "#fff",
+        },
+        '&.up-menu ul li.selected ul li:hover .up-menu-item-title': {
+            color: props.theme.colorMap.primary,
+        },
+        '&.up-menu nav > ul > li': {
+            position: 'relative',
+            width:'247px',
+            overflow:'hidden',
+        },
+        '&.up-menu nav > ul > li:hover': {
+            overflow: 'visible',
+        },
+        '&.up-menu nav > ul > li.selected > a, &.up-menu nav > ul > li:hover > a' : {
+            backgroundColor: '#424C4A',
+            borderRadius: '24px',
+        },
+        '&.up-menu nav > ul > li a': {
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            padding: '12px',
+        },
+        '&.up-menu nav > ul > li > ul > li a' : {
+            padding: '0px',
+        },
+        '&.up-menu nav > ul > li > a' : {
+            width: props.minified ? '48px' : 'auto',
+        },
+        '&.up-menu nav > ul > li .up-sub-menu-title' : {
+            display : 'none',
+            color: '#FFF',
+        },
+        '&.up-menu nav > ul > li:hover .up-sub-menu-title' : {
+            display: props.minified ? 'inline-block' : 'none',
+            marginBottom : '8px',
+        },
+        '&.up-menu nav > ul > li:not(:last-child)': {
+            marginBottom: '6px',
+        },
+        '&.up-menu nav > ul > li > ul' : {
+            display: 'none',
+            transform: 'scaleY(0)',
+        },
+        '&.up-menu nav > ul > li > ul > li' : {
+            display: 'block',
+        },
+        '&.up-menu nav > ul > li:hover .up-menu-item-title': {
+            zIndex: 1001,
+            display: props.minified ? 'none' : 'inline-block',
+        },
+        '&.up-menu nav > ul > li:hover ul li .up-menu-item-title': {
+            display: 'inline-block',
+        },
+        '&.up-menu nav > ul > li:hover > ul': {
+            display: props.minified ? 'block' : 'none',
+            backgroundColor: '#4E5B59',
+            top: props.minified ? '0px' : 'inherit',
+            left: props.minified ? '62px' : 'inherit',
+            position: props.minified ? 'absolute' : 'inherit',
+            padding: props.minified ? '16px 9px 8px 9px' : 'inherit',
+            width: 'auto',
+            opacity: 1,
+            transform: 'scaleY(1)',
+            transformOrigin: '50% 0',
+            transition: 'transform 0.5s ease',
+            zIndex: 1000,
+            borderBottomRightRadius: props.theme.borderRadius,
+            borderTopRightRadius: props.theme.borderRadius,
+        },
+        '&.up-menu nav > ul > li ul li:not(last-child)' : {
+            marginBottom: '8px',
+        },
+        '&.up-menu .up-menu-actions' : {
+            width: '16px',
+            height: '16px',
+            margin: '30px 14px',
+        },
+        '&.up-menu .up-menu-toggle svg, .up-menu .up-menu-toggle svg path, .up-menu .up-menu-toggle svg polygon': {
+            fill: '#ffffff',
+            cursor: 'pointer',
+        },
+        '&.up-menu .up-menu-toggle:hover svg, .up-menu .up-menu-toggle:hover svg path, .up-menu .up-menu-toggle:hover svg polygon': {
+            fill: props.theme.colorMap.primary,
+        },
+    },
+}, media(DeviceLRTablets, {
+    $nest: {
+        '.skin-up.main-header.navbar.dropdown-menu li.divider': {
+            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+        },
+        '.skin-up.main-header.navbar.dropdown-menu li a' : {
+            color: '#fff',
+        },
+        '.skin-up.main-header.navbar.dropdown-menu li a: hover' : {
+            background: 'rgb(0, 170, 212)',
+        }
+    }
+}));
