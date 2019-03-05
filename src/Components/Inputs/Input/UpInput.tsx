@@ -15,7 +15,7 @@ import defaultTheme from '../../../Common/theming/';
 import { generateId } from '../../../Common/utils';
 
 const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> = (props: UpInputStyledProps & WithThemeProps) => {
-    const { name, className, type, iconName, iconPosition, placeholder, disabled, readonly, maxLength, dataFor, onChange, onFocus, onBlur } = props;
+    const { name, autocomplete, className, type, iconName, iconPosition, placeholder, disabled, readonly, maxLength, dataFor, onChange, onFocus, onBlur } = props;
 
     var icon: any = null;
     if (iconName) {
@@ -42,7 +42,7 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> =
             {iconPosition === 'left' && props.floatingLabel &&
                 <label htmlFor={id}>{props.floatingLabel}</label>
             }
-            <input id={id} name={name} value={props.value} onChange={onChange} onFocus={onFocus} onBlur={onBlur} className="up-input" type={type} placeholder={props.floatingLabel ? '' : placeholder} dir="auto" disabled={disabled} readOnly={readonly} maxLength={maxLength} {...tooltipProps} />
+            <input id={id} autoComplete={autocomplete} name={name} value={props.value} onChange={onChange} onFocus={onFocus} onBlur={onBlur} className="up-input" type={type} placeholder={props.floatingLabel ? '' : placeholder} dir="auto" disabled={disabled} readOnly={readonly} maxLength={maxLength} {...tooltipProps} />
             {iconPosition === 'right' && props.floatingLabel &&
                 <label htmlFor={id}>{props.floatingLabel}</label>
             }
@@ -119,7 +119,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
     }
 
     renderControl() {
-        const { name, touched, type, onChange, value, validation, errorDisplayMode, hasError, iconName, iconPosition, width, disabled, readonly, tooltip, maxLength, placeholder, floatingLabel, theme, ...others } = this.props;
+        const { name, autocomplete, touched, type, onChange, value, validation, errorDisplayMode, hasError, iconName, iconPosition, width, disabled, readonly, tooltip, maxLength, placeholder, floatingLabel, theme, ...others } = this.props;
         var realIconName = iconName;
         if (realIconName == null && type != null && IconNames.indexOf(type as IconName) != -1) {
             realIconName = type as IconName;
@@ -133,6 +133,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
                 iconName={realIconName}
                 iconPosition={iconPosition}
                 width={width}
+                autocomplete={autocomplete}
                 disabled={disabled}
                 readonly={readonly}
                 tooltip={tooltip}
