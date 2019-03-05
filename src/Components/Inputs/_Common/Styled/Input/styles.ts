@@ -91,6 +91,7 @@ export const inputStyles = (props: UpInputProps & WithThemeProps) : NestedCSSPro
         transformOrigin: 'top left',
         transform: 'translate(0, 16px) scale(1)',
         transition: 'all .1s ease-in-out',
+        cursor: 'text',
       },
       '& .up-input::-moz-placeholder,& .up-input:-ms-input-placeholder,& .up-input::placeholder,& .up-input::-webkit-input-placeholder' : {
         opacity: 0.5,
