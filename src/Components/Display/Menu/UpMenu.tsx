@@ -1,11 +1,14 @@
 ﻿import * as React from "react"
 import { WithThemeProps, withTheme, } from "../../../Common/theming";
 import defaultTheme from '../../../Common/theming';
-import { isFunction } from "../../../Common/utils";
+import { isFunction, isEmpty } from "../../../Common/utils";
 
-import "./UpMenu.scss"
 import UpSvgIcon from "../SvgIcon";
 import { IconName } from "theming/icons";
+import { MenuStyles } from "./styles";
+import * as classnames from 'classnames';
+
+const logo = require('./logo-up-square.svg');
 
 type RenderCallback = (state: UpMenuState) => JSX.Element;
 
@@ -27,6 +30,7 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
 
     static defaultProps = {
         theme: defaultTheme,
+        icon: (props) => <UpSvgIcon width={48} height={48} iconHtml={logo}></UpSvgIcon>
     }
 
     constructor(p, c) {
@@ -75,43 +79,40 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
         }
 
         return (
-            <div className="UpMenu">
-                <div className={"sidebar-mini skin-up" + (this.state.minified ? " sidebar-collapse" : "")}>
-                    <div className="icon-wrapper">
-                        <section className="icon">
-                            {renderIcon}
-                        </section>
+            <aside className={classnames("up-menu", MenuStyles({ ...this.props, ...this.state }))}>
+                {renderIcon &&
+                    <section className="up-app-icon-wrapper">
+                        {renderIcon}
+                    </section>
+                }
+                {renderHeader && 
+                    <section className="up-menu-header">
+                        {renderHeader}
+                    </section>
+                }
+                <section className="up-menu-nav" >
+                    <div className="up-menu-actions">
+                        <UpSvgIcon iconName={'burger-menu'} 
+                            className="up-menu-toggle" onClick={this.toggleMinification}>
+                        </UpSvgIcon>
                     </div>
-                    <div className="header-wrapper">
-                        <section className="header">
-                            {renderHeader}
-                        </section>
-                    </div>
-                    <aside className="main-sidebar">
-                        <section className="sidebar" >
-                            <div className="sidebar-actions">
-                                <a className="sidebar-toggle" onClick={this.toggleMinification}>
-                                    <i className="pe p7 pe-7s-menu"></i>
-                                    <span className="sr-only">{title}</span>
-                                </a>
-                            </div>
-                            <ul className="sidebar-menu">
-                                {menu}
-                            </ul>
-                        </section>
-                    </aside>
-                    <div className="content-wrapper">
-                        <section className="content">
-                            {renderChildren}
-                        </section>
-                    </div>
-                    <div className="footer-wrapper">
-                        <section className="footer">
-                            {renderFooter}
-                        </section>
-                    </div>
-                </div>
-            </div>
+                    <nav>
+                        <ul>
+                            {menu}
+                        </ul>
+                    </nav>
+                </section>
+                {renderChildren && 
+                    <section className="up-menu-content">
+                        {renderChildren}
+                    </section>
+                }
+                {renderFooter &&
+                    <section className="up-menu-footer">
+                        {renderFooter}
+                    </section>
+                }
+            </aside>
         );
     }
 }
@@ -141,16 +142,18 @@ export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
     }
 
     render() {
+        const hide = this.props.isVisible === false;
+        const active = this.state.active || this.props.isSelected;
+        const hasChilren = !isEmpty(this.props.childMenuItems);
 
-        var hide = this.props.isVisible === false ? "hide " : "";
-        var active = this.state.active || this.props.isSelected ? " active" : "";
-
-        return <li className={hide + "treeview" + active}>
+        return <li className={classnames("treeview", { "hide": hide, "active": active, 'hasChildren': hasChilren})}>
             <a onClick={this.onItemClick} href={this.props.uri}>
-                <UpSvgIcon onClick={this.onIconClick} iconName={this.props.icon as IconName}></UpSvgIcon>
-                <span>{this.props.title}</span>
+                <UpSvgIcon title={this.props.title} width={24} height={24} onClick={this.onIconClick} iconName={this.props.icon as IconName}></UpSvgIcon>
+                <span className={'up-menu-item-title'}>{this.props.title}</span>
             </a>
-            <SubMenu onMenuClick={this.props.onMenuClick} childMenuItems={this.props.childMenuItems} />
+            {!isEmpty(this.props.childMenuItems) &&
+                <SubMenu title={this.props.title} onMenuClick={this.props.onMenuClick} childMenuItems={this.props.childMenuItems} />
+            }
         </li>
     }
 
@@ -167,6 +170,7 @@ export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
 }
 
 export interface SubMenuProps {
+    title?:string;
     childMenuItems?: MenuItemData[];
     onMenuClick: (uri: string) => void;
 }
@@ -186,13 +190,18 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState> {
             return null;
         }
 
-        var lis = this.props.childMenuItems.map((v, i) => {
+        var items = this.props.childMenuItems.map((v, i) => {
             return <SubItems key={i} onMenuClick={this.props.onMenuClick} uri={v.uri} title={v.title} isVisible={v.isVisible} isSelected={v.isSelected} icon={v.icon} childMenuItems={v.childMenuItems} />
         })
 
-        return <ul className="treeview-menu menu-open">
-            {lis}
-        </ul>
+        return <>
+            <ul className="up-sub-menu">
+                {this.props.title &&
+                    <span className={'up-sub-menu-title'}>{this.props.title}</span>
+                }
+                {items}
+            </ul>
+        </>
     }
 }
 
@@ -217,12 +226,10 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
 
         return <li className={active + hide}>
             <a onClick={this.onClickA} href={this.props.uri}>
-                {this.anyChild ?
+                {this.anyChild &&
                     <i onClick={this.onClick} className={(this.state.active ? "pe-7s-angle-down" : "pe-7s-angle-right")} ></i>
-                    :
-                    <i></i>
                 }
-                {this.props.title}
+                <span className={'up-menu-item-title'}>{this.props.title}</span>
             </a>
             {this.anyChild ? <SubMenu onMenuClick={this.props.onMenuClick} childMenuItems={this.props.childMenuItems} /> : null}
         </li>

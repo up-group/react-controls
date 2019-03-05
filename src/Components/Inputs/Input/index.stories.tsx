@@ -70,6 +70,18 @@ const EmailForm = (props) => {
         iconPosition={'right'}
         value={values.password}
         onChange={handleChange} />
+      <UpInput
+        name={'firstName'}
+        floatingLabel={'First Name'}
+        onBlur={handleBlur}
+        value={values.firstName}
+        onChange={handleChange} />
+      <UpInput
+        name={'lastName'}
+        floatingLabel={'Last Name'}
+        onBlur={handleBlur}
+        value={values.lastName}
+        onChange={handleChange} />
     </form>
   );
 }
