@@ -61,6 +61,7 @@ const EmailForm = (props) => {
           onFocus={(e) => {
             setOnBlurState({ ...onBlurState, email: false });
           }}
+          autocomplete={'off'}
           iconPosition={'right'}
           placeholder={'Renseignez votre email'} />
       <UpPassword
@@ -68,6 +69,7 @@ const EmailForm = (props) => {
         floatingLabel={'Password'}
         onBlur={handleBlur}
         iconPosition={'right'}
+        autocomplete={'off'}
         value={values.password}
         onChange={handleChange} />
       <UpInput
@@ -75,12 +77,14 @@ const EmailForm = (props) => {
         floatingLabel={'First Name'}
         onBlur={handleBlur}
         value={values.firstName}
+        autocomplete={'off'}
         onChange={handleChange} />
       <UpInput
         name={'lastName'}
         floatingLabel={'Last Name'}
         onBlur={handleBlur}
         value={values.lastName}
+        autocomplete={'off'}
         onChange={handleChange} />
     </form>
   );
