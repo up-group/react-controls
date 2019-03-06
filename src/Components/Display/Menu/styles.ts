@@ -79,6 +79,8 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState) : 
         '&.up-menu nav > ul > li .up-sub-menu-title' : {
             display : 'none',
             color: '#FFF',
+            fontSize: '14px',
+            fontWeight:500,
         },
         '&.up-menu nav > ul > li:hover .up-sub-menu-title' : {
             display: props.minified ? 'inline-block' : 'none',
@@ -90,6 +92,7 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState) : 
         '&.up-menu nav > ul > li > ul' : {
             display: 'none',
             transform: 'scaleY(0)',
+            minWidth: '180px',
         },
         '&.up-menu nav > ul > li > ul > li' : {
             display: 'block',
