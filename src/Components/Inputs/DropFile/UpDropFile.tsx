@@ -2,16 +2,15 @@ import * as React from 'react';
 import { style } from 'typestyle/lib';
 import * as classnames from 'classnames';
 import UpDefaultTheme, { WithThemeProps, withTheme } from '../../../Common/theming';
-import { isFunction } from 'util';
 
-import Dropzone from 'react-dropzone';
+import * as Dropzone from 'react-dropzone';
 
 import { NestedCSSProperties } from 'typestyle/lib/types';
 
 import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css'
 
-import { openFileAsBase64, getMimeTypeFromBase64, isEmpty, on, off } from '../../../Common/utils';
+import { isFunction, openFileAsBase64, getMimeTypeFromBase64, isEmpty, on, off } from '../../../Common/utils';
 
 import UpNotification from '../../Display/Notification';
 import UpParagraph from '../../Display/Paragraph';
@@ -23,6 +22,7 @@ import UpButton from '../Button';
 import UpLabel from '../../Display/Label';
 import UpSvgIcon from '../../Display/SvgIcon';
 import { eventFactory } from '../../../Common/utils/eventListener';
+import { ThemeInterface } from 'theming/types';
 
 export interface IFile {
     type?: IFileType;
@@ -233,7 +233,7 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
   }
 
   onLoadImage = (image: HTMLImageElement) => {
-    if (!this.isRatioControlled()) {
+    if (!this.isRatioControlled) {
       this.setState({ ratio: image.width / image.height }, () => {
         this.updateWrapperHeight();
       });
@@ -242,17 +242,22 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
     }
   }
 
-  isValueControlled = () => this.props.value !== undefined ; // True, value controlled by parent
-  isRatioControlled = () => this.props.ratio !== undefined ; // True, ratio controlled by parent
+  get isValueControlled () {
+    return this.props.value !== undefined ; // True, value controlled by parent
+  }
+
+  get isRatioControlled () {
+    return this.props.ratio !== undefined ; // True, ratio controlled by parent
+  }
 
   get preview() {
       return this.value != null ? this.value.value_base64 as string : ''
   }
   get value() {
-    return this.isValueControlled() ? this.props.value : this.state.value
+    return this.isValueControlled ? this.props.value : this.state.value
   }
   get ratio() {
-    return  this.isRatioControlled() ? this.props.ratio : this.state.ratio ;
+    return  this.isRatioControlled ? this.props.ratio : this.state.ratio ;
   }
 
   get fileName() {
@@ -418,7 +423,7 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
         this.props.onChange(eventFactory(this.props.name, null), null);
     }
 
-    if(!this.isValueControlled()) {
+    if(!this.isValueControlled) {
         this.setState({
             value: null,
             errors: null,
@@ -503,7 +508,7 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
             onChange(eventFactory(this.props.name, null), file);
           }
 
-          if(!this.isValueControlled()) {
+          if(!this.isValueControlled) {
             this.setState({
                 errors: null,
                 showModal: false,
@@ -521,9 +526,9 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
   }
 
   render() {
-    const theme = this.props.theme;
+    const theme:ThemeInterface = this.props.theme;
     const hasError: boolean = this.props.error !== undefined && this.props.touched;
-    const isFileSelected = this.value != null ;
+    const isFileSelected:boolean = this.value != null ;
     
     const iconTitleStyle = style({
       fontSize: '12px', 
@@ -547,110 +552,108 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
 
     return (
       <div ref={(wrapperUpDropFile) => { this.wrapperUpDropFile = wrapperUpDropFile; }}>
-          {!isEmpty(this.props.label) &&
-            <UpLabel>{this.props.label} {this.props.required && ' *'}
-              {this.props.onMouseOver &&
-                <span
-                  className={classnames(iconTitleStyle, 'icon-info')}
-                  onClick={this.props.onMouseOver}
-                />
-              }
-            </UpLabel>
-          }
-          <div className={FileStyle} onClick={this.onZoneClick.bind(this)}>
-            <Dropzone onMouseEnter={() => this.setState({ showOptions: true })}
-              onMouseLeave={() => this.setState({ showOptions: false })}
-              ref={(node) => { this.dropZoneRef = node; }}
-              style={{ backgroundSize: '100%', width: this.state.width ? `${this.state.width}px` : '100%', height: this.state.height ? `${this.state.height}px` : '100%' }}
-              className={classnames('up-btn', BaseStyle(this.preview), isFileSelected ? boxUploaded : boxUpload)}
-              name={this.props.name}
-              disableClick
-              onDrop={this.onFileDrop.bind(this)}
-            >
-              {isFileSelected && !this.isPDF && !this.isImage &&
-                <UpNotification intent={'info'}>
-                  <UpParagraph>Aucune prévisualisation disponible pour ce type de fichier.</UpParagraph>
-                  <UpParagraph><UpLink onClick={ () => { this.openFile(null); }}>Ouvrir le fichier</UpLink></UpParagraph>
-                </UpNotification>
-              }
-              {this.isPDF &&
-                <UpPDFViewer onLoadSuccess={() => {}} base64PDF={this.preview} />
-              }
-              {(this.state.showOptions === true || isFileSelected === false) &&
+        {!isEmpty(this.props.label) &&
+          <UpLabel>{this.props.label} {this.props.required && ' *'}
+            {this.props.onMouseOver &&
+              <span
+                className={classnames(iconTitleStyle, 'icon-info')}
+                onClick={this.props.onMouseOver}
+              />
+            }
+          </UpLabel>
+        }
+        <div className={FileStyle} onClick={this.onZoneClick.bind(this)}>
+          <Dropzone onMouseEnter={() => this.setState({ showOptions: true })}
+            onMouseLeave={() => this.setState({ showOptions: false })}
+            ref={(node) => { this.dropZoneRef = node; }}
+            style={{ backgroundSize: '100%', width: this.state.width ? `${this.state.width}px` : '100%', height: this.state.height ? `${this.state.height}px` : '100%' }}
+            className={classnames('up-btn', BaseStyle(this.preview), isFileSelected ? boxUploaded : boxUpload)}
+            name={this.props.name}
+            disableClick
+            onDrop={this.onFileDrop.bind(this)}
+          >
+            {isFileSelected && !this.isPDF && !this.isImage &&
+              <UpNotification intent={'info'}>
+                <UpParagraph>Aucune prévisualisation disponible pour ce type de fichier.</UpParagraph>
+                <UpParagraph><UpLink onClick={() => { this.openFile(null); }}>Ouvrir le fichier</UpLink></UpParagraph>
+              </UpNotification>
+            }
+            {this.isPDF &&
+              <UpPDFViewer onLoadSuccess={() => { }} base64PDF={this.preview} />
+            }
+            {(this.state.showOptions === true || isFileSelected === false) &&
               <div className={wrapperActionStyle(this.props)}>
-                {isFileSelected === true ?
+                {isFileSelected === true &&
                   <>
                     {this.props.disabled !== true &&
-                     <div onClick={e => e.stopPropagation()}>
-                     <UpTooltip content={`Supprimer le fichier ${this.fileName || ''}`} place={'top'}>
-                        <UpSvgIcon iconName={'delete'}
-                          onClick={this.deleteFile}
-                          color={this.props.theme.colorMap.primary}
-                          className={classnames(iconTitleStyle, 'up-file-action')} />
-                      </UpTooltip>
-                      </div>
-                    }
-                    {this.props.enableCrop && isFileImage(this.props.value.name) &&
                       <div onClick={e => e.stopPropagation()}>
-                      <UpTooltip content={'Redimensionner l\'image'} place={'top'}>
-                        <UpSvgIcon iconName={'crop'}
-                          onClick={this.cropFile}
-                          color={this.props.theme.colorMap.primary}
-                          className={classnames(iconTitleStyle, 'up-file-action')} />
-                      </UpTooltip>
+                        <UpTooltip content={`Supprimer le fichier ${this.fileName || ''}`} place={'top'}>
+                          <UpSvgIcon iconName={'delete'}
+                            onClick={this.deleteFile}
+                            color={this.props.theme.colorMap.primary}
+                            className={classnames(iconTitleStyle, 'up-file-action')} />
+                        </UpTooltip>
                       </div>
                     }
-                    {(this.props.value) &&
+                    {this.props.enableCrop && this.props.value && isFileImage(this.props.value.name) &&
                       <div onClick={e => e.stopPropagation()}>
-                      <UpTooltip content={`Ouvrir le fichier ${this.fileName}`} place={'top'} >
-                        <UpSvgIcon iconName={'read'}
-                          onClick={this.openFile}
-                          color={this.props.theme.colorMap.primary}
-                          className={classnames(iconTitleStyle, 'up-file-action')} />
-                      </UpTooltip>
+                        <UpTooltip content={'Redimensionner l\'image'} place={'top'}>
+                          <UpSvgIcon iconName={'crop'}
+                            onClick={this.cropFile}
+                            color={this.props.theme.colorMap.primary}
+                            className={classnames(iconTitleStyle, 'up-file-action')} />
+                        </UpTooltip>
                       </div>
                     }
-                  </> :
-                  <>
-                    {isFileSelected === false &&
-                      <UpTooltip content={'Choisir un fichier'} place={'top'}>
-                        <UpSvgIcon iconName={'upload'} 
-                          color={this.props.theme.colorMap.primary}
-                          className={classnames(iconTitleStyle, 'up-file-action')} />
-                      </UpTooltip>
+                    {this.props.value &&
+                      <div onClick={e => e.stopPropagation()}>
+                        <UpTooltip content={`Ouvrir le fichier ${this.fileName}`} place={'top'} >
+                          <UpSvgIcon iconName={'read'}
+                            onClick={this.openFile}
+                            color={this.props.theme.colorMap.primary}
+                            className={classnames(iconTitleStyle, 'up-file-action')} />
+                        </UpTooltip>
+                      </div>
                     }
                   </>
                 }
+                {isFileSelected === false &&
+                  <UpTooltip content={'Choisir un fichier'} place={'top'}>
+                    <UpSvgIcon iconName={'upload'}
+                      color={this.props.theme.colorMap.primary}
+                      className={classnames(iconTitleStyle, 'up-file-action')} />
+                  </UpTooltip>
+                }
               </div>
-              }
-            </Dropzone>
+            }
+          </Dropzone>
+        </div>
+        {isFileSelected && this.fileName &&
+          <div className={wrapperFileNameStyle(this.props)}>
+            <span>{this.fileName}</span>
           </div>
-          {isFileSelected && this.fileName &&
-            <div className={wrapperFileNameStyle(this.props)}>
-              <span>{this.fileName}</span>
-            </div>
-          }
-          {this.props.allowedExtensions && this.props.allowedExtensions.length > 0 &&
-            <span className={ExtensionsStyle(this.props)}>{`Formats autorisés : ${this.props.allowedExtensions.join(', ')}`}</span>
-          }
-           {this.state.errors &&
-            <div className={wrapperErrorsStyle}>
-                {this.state.errors.map(error => <UpNotification message={error} />)}
-            </div>
-          }
-          {this.props.touched && hasError &&
-            <span>{this.props.error}</span>
-          }
+        }
+        {this.props.allowedExtensions && this.props.allowedExtensions.length > 0 &&
+          <span className={ExtensionsStyle(this.props)}>{`Formats autorisés : ${this.props.allowedExtensions.join(', ')}`}</span>
+        }
+        {this.state.errors &&
+          <div className={wrapperErrorsStyle}>
+              {this.state.errors.map(error => <UpNotification message={error} />)}
+          </div>
+        }
+        {this.props.touched && hasError &&
+          <span>{this.props.error}</span>
+        }
 
         {this.props.enableCrop && this.state.showModal &&
           <UpModal
             onClose={this.closeModal}
             showModal={this.state.showModal}
-          >
+          > 
             <UpButton actionType={'save'} intent={'primary'} onClick={this.uploadFile.bind(this)}>Sauvegarder</UpButton>
             <Cropper
               ref={(cropper) => { this.cropper = cropper; }}
-              src={this.props.value.value_base64}
+              src={this.props.value ? this.props.value.value_base64 : null}
               aspectRatio={this.ratio}
               guides={false}
               crop={this._crop.bind(this)}
