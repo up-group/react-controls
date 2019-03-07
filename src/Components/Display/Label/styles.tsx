@@ -33,11 +33,11 @@ const base = (props: UpLabelProps) : NestedCSSProperties => (
     $nest : {
       '& .up-label-text' : {
         textAlign: props.textAlign,
-        width: sizeMap[props.width],
         marginRight: props.inline ? '24px' : '8px',
         display: 'inline-block',
         color: props.color,
         fontSize: '14px',
+        width: '100%',
       },
       '& .up-input, & .up-select' : {
         display: 'block',

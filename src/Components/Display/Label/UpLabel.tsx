@@ -8,7 +8,7 @@ export default class UpLabel extends React.Component<UpLabelProps, {}> {
     text:'',
     disabled:false,
     required:false,
-    textAlign:'right',
+    textAlign:'left',
     color: '#7f8fa4',
   }
 
@@ -29,6 +29,7 @@ export default class UpLabel extends React.Component<UpLabelProps, {}> {
 
   render() {
       const {children, text, required, ...others} = this.props ; 
+
       return (
         <label className={getStyles(this.props)} onFocus={this.onFocus} onClick={this.onClick} {...others}>
           <span className="up-label-text">{text}</span>
