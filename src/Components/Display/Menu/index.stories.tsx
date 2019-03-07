@@ -11,8 +11,7 @@ import { MenuItemData } from './UpMenuBeta';
 import { isEmpty } from '../../../Common/utils';
 
 const resetMenuSelection = (menu: Array<MenuItemData>): Array<MenuItemData>  =>  {
-    const newMenu = menu.map(m => ({ ...m, childMenuItems : resetMenuSelection(m.childMenuItems), isSelected: false }));
-    return newMenu
+    return menu.map(m => ({ ...m, childMenuItems : resetMenuSelection(m.childMenuItems), isSelected: false }));
 }
 
 const hasItemSelected = (uri: string, menu: Array<MenuItemData>): boolean => {
@@ -20,8 +19,7 @@ const hasItemSelected = (uri: string, menu: Array<MenuItemData>): boolean => {
 }
 
 const setMenuSelection = (uri: string, menu: Array<MenuItemData>): Array<MenuItemData> => {
-    const newMenu = menu.map(m => ({ ...m, childMenuItems: setMenuSelection(uri, m.childMenuItems), isSelected: m.uri === uri || hasItemSelected(uri, m.childMenuItems)}));
-    return newMenu
+    return menu.map(m => ({ ...m, childMenuItems: setMenuSelection(uri, m.childMenuItems), isSelected: m.uri === uri || hasItemSelected(uri, m.childMenuItems)}));
 }
 
 const HookedMenu = (props) => {
