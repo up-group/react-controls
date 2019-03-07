@@ -7,25 +7,48 @@ import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeP
 
 import UpMenu from './UpMenu'
 import UpMenuOH from './UpMenuOH'
+import { MenuItemData } from './UpMenuBeta';
+import { isEmpty } from '../../../Common/utils';
+
+const resetMenuSelection = (menu: Array<MenuItemData>): Array<MenuItemData>  =>  {
+    const newMenu = menu.map(m => ({ ...m, childMenuItems : resetMenuSelection(m.childMenuItems), isSelected: false }));
+    return newMenu
+}
+
+const hasItemSelected = (uri: string, menu: Array<MenuItemData>): boolean => {
+    return !isEmpty(menu) && menu.find(i => uri === i.uri || hasItemSelected(uri, i.childMenuItems)) != null ;
+}
+
+const setMenuSelection = (uri: string, menu: Array<MenuItemData>): Array<MenuItemData> => {
+    const newMenu = menu.map(m => ({ ...m, childMenuItems: setMenuSelection(uri, m.childMenuItems), isSelected: m.uri === uri || hasItemSelected(uri, m.childMenuItems)}));
+    return newMenu
+}
+
+
+const HookedMenu = (props) => {
+    const defaultMenu: Array<MenuItemData> = [
+        {
+            title: "Stack", icon: "stack", isSelected: false, isVisible: true, uri: "/stack", childMenuItems: [
+                { title: "Option 1", icon: "weather-rain", isSelected: false, isVisible: true, uri: "/stack/option1", childMenuItems: [] },
+                { title: "Option 2", icon: "weather-snow", isSelected: false, isVisible: true, uri: "/stack/option2", childMenuItems: [] },
+                { title: "Option 3", icon: "weather-sunset", isSelected: false, isVisible: true, uri: "/stack/option3", childMenuItems: [] }
+            ]
+        },
+        { title: "Smart", icon: "smartphone", isSelected: false, isVisible: true, uri: "/smart", childMenuItems: [] },
+        { title: "Settings", icon: "settings", isSelected: false, isVisible: true, uri: "/settings", childMenuItems: [] },
+    ];
+    const [menu, setMenu] = React.useState(defaultMenu);
+
+    return <UpMenu onClick={(uri) => {
+        const newMenu = setMenuSelection(uri, menu) ;
+        setMenu(newMenu);
+        return false;
+    }} menuItems={menu}></UpMenu>
+};
 
 storiesOf('Display/UpMenu', module)
     .add('Simple usage',
-        () => (
-            <UpMenu 
-                onMenuClick={action("Menu clicked")}
-                menuItems={
-                    [
-                        {
-                            title: "Stack", icon: "stack", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [
-                                { title: "Option 1", icon: "weather-rain", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                                { title: "Option 2", icon: "weather-snow", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                                { title: "Option 3", icon: "weather-sunset", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] }
-                            ]
-                        },
-                        { title: "Smart", icon: "smartphone", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                        { title: "Settings", icon: "settings", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                    ]}></UpMenu>
-        ), { info : 'Utilisation du composant en lui passant les données à afficher'}
+        () => (<HookedMenu />), { info : 'Utilisation du composant en lui passant les données à afficher'}
 ).add('Simple usage 2',
         () => (
             <UpMenuOH onDeconnexionClick={() => { }} onMenuClick={action("Menu clicked")}

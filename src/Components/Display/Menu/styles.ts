@@ -29,7 +29,7 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState) : 
             fill: '#ffffff',
             cursor: 'pointer',
         },
-        '&.up-menu ul li.selected .up-icon-wrapper svg, .up-menu ul li.selected .up-icon-wrapper svg path, .up-menu ul li.selected .up-icon-wrapper svg polygon': {
+        '&.up-menu ul li.active .up-icon-wrapper svg, .up-menu ul li.active .up-icon-wrapper svg path, .up-menu ul li.active .up-icon-wrapper svg polygon': {
             fill: props.theme.colorMap.primary,
         },
         '&.up-menu ul li:hover .up-icon-wrapper svg, .up-menu ul li:hover .up-icon-wrapper svg path, .up-menu ul li:hover .up-icon-wrapper svg polygon': {
@@ -42,13 +42,13 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState) : 
             textAlign: 'left',
             marginLeft: '14px',
         },
-        '&.up-menu ul li.selected .up-menu-item-title': {
+        '&.up-menu ul li.active .up-menu-item-title, &.up-menu ul li:hover ul li.active .up-menu-item-title, &.up-menu ul li.active ul li.active .up-menu-item-title' : {
             color: props.theme.colorMap.primary,
         },
-        '&.up-menu ul li:hover ul li .up-menu-item-title, &.up-menu ul li.selected ul li .up-menu-item-title': {
+        '&.up-menu ul li:hover ul li .up-menu-item-title, &.up-menu ul li.active ul li .up-menu-item-title': {
             color: "#fff",
         },
-        '&.up-menu ul li.selected ul li:hover .up-menu-item-title': {
+        '&.up-menu ul li ul li:hover .up-menu-item-title': {
             color: props.theme.colorMap.primary,
         },
         '&.up-menu nav > ul > li': {
@@ -59,7 +59,7 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState) : 
         '&.up-menu nav > ul > li:hover': {
             overflow: 'visible',
         },
-        '&.up-menu nav > ul > li.selected > a, &.up-menu nav > ul > li:hover > a' : {
+        '&.up-menu nav > ul > li.active > a, &.up-menu nav > ul > li:hover > a' : {
             backgroundColor: '#424C4A',
             borderRadius: '24px',
         },
@@ -97,6 +97,9 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState) : 
         '&.up-menu nav > ul > li > ul > li' : {
             display: 'block',
         },
+        '&.up-menu nav > ul li.active > ul' : {
+            display: props.minified ? 'block' : 'inherit',
+        },
         '&.up-menu nav > ul > li:hover .up-menu-item-title': {
             zIndex: 1001,
             display: props.minified ? 'none' : 'inline-block',
@@ -110,7 +113,7 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState) : 
             top: props.minified ? '0px' : 'inherit',
             left: props.minified ? '62px' : 'inherit',
             position: props.minified ? 'absolute' : 'inherit',
-            padding: props.minified ? '16px 9px 8px 9px' : 'inherit',
+            padding: '16px 9px 8px 9px',
             width: 'auto',
             opacity: 1,
             transform: 'scaleY(1)',
@@ -119,6 +122,18 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState) : 
             zIndex: 1000,
             borderBottomRightRadius: props.theme.borderRadius,
             borderTopRightRadius: props.theme.borderRadius,
+        },
+        '&.up-menu nav > ul > li.active:not(:hover) > ul': {
+            display: props.minified ? 'none' : 'block',
+            padding: '16px 9px 8px 9px',
+            width: 'auto',
+            opacity: 1,
+            transform: 'scaleY(1)',
+            transformOrigin: '50% 0',
+            transition: 'transform 0.5s ease',
+        }, 
+        '&.up-menu nav > ul > li.active:hover > ul': {
+            display: 'block',
         },
         '&.up-menu nav > ul > li ul li:not(last-child)' : {
             marginBottom: '8px',

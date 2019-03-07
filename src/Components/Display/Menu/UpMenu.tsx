@@ -19,7 +19,7 @@ export interface UpMenuProps {
     menuItems: MenuItemData[];
     footer?: RenderCallback | JSX.Element;
     children?: RenderCallback | React.ReactNode;
-    onMenuClick?: (uri: string) => boolean | void;
+    onClick?: (uri: string) => boolean | void;
 }
 
 export interface UpMenuState {
@@ -48,7 +48,7 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
         const { title, header, icon, footer, menuItems, children } = this.props;
 
         var menu = menuItems.map((v, i) => {
-            return <MenuItem onMenuClick={this.props.onMenuClick} key={i} title={v.title} icon={v.icon} uri={v.uri} isSelected={v.isSelected} isVisible={v.isVisible} childMenuItems={v.childMenuItems} />
+            return <MenuItem onClick={this.props.onClick} key={i} title={v.title} icon={v.icon} uri={v.uri} isSelected={v.isSelected} isVisible={v.isVisible} childMenuItems={v.childMenuItems} />
         });
 
         let renderChildren = children;
@@ -127,7 +127,7 @@ export interface MenuItemData {
 }
 
 export interface MenuItemProps extends MenuItemData {
-    onMenuClick?: (uri: string) => boolean | void;
+    onClick?: (uri: string) => boolean | void;
 }
 
 export interface MenuItemState {
@@ -143,28 +143,25 @@ export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
 
     render() {
         const hide = this.props.isVisible === false;
-        const active = this.state.active || this.props.isSelected;
+        const active = this.props.isSelected;
         const hasChilren = !isEmpty(this.props.childMenuItems);
 
         return <li className={classnames("treeview", { "hide": hide, "active": active, 'hasChildren': hasChilren})}>
             <a onClick={this.onItemClick} href={this.props.uri}>
-                <UpSvgIcon title={this.props.title} width={24} height={24} onClick={this.onIconClick} iconName={this.props.icon as IconName}></UpSvgIcon>
+                <UpSvgIcon title={this.props.title} width={24} height={24} iconName={this.props.icon as IconName}></UpSvgIcon>
                 <span className={'up-menu-item-title'}>{this.props.title}</span>
             </a>
             {!isEmpty(this.props.childMenuItems) &&
-                <SubMenu title={this.props.title} onMenuClick={this.props.onMenuClick} childMenuItems={this.props.childMenuItems} />
+                <SubMenu title={this.props.title} onClick={this.props.onClick} childMenuItems={this.props.childMenuItems} />
             }
         </li>
     }
 
-    onIconClick = () => {
-        this.setState({ active: !this.state.active });
-    }
-
     onItemClick = (e) => {
-        var value = this.props.onMenuClick(this.props.uri);
+        const value = this.props.onClick(this.props.uri);
         if (value === false) {
             e.preventDefault();
+            e.stopPropagation();
         }
     }
 }
@@ -172,7 +169,7 @@ export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
 export interface SubMenuProps {
     title?:string;
     childMenuItems?: MenuItemData[];
-    onMenuClick: (uri: string) => void;
+    onClick: (uri: string) => void;
 }
 
 export interface SubMenuState {
@@ -191,7 +188,7 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState> {
         }
 
         var items = this.props.childMenuItems.map((v, i) => {
-            return <SubItems key={i} onMenuClick={this.props.onMenuClick} uri={v.uri} title={v.title} isVisible={v.isVisible} isSelected={v.isSelected} icon={v.icon} childMenuItems={v.childMenuItems} />
+            return <SubItems key={i} onClick={this.props.onClick} uri={v.uri} title={v.title} isVisible={v.isVisible} isSelected={v.isSelected} icon={v.icon} childMenuItems={v.childMenuItems} />
         })
 
         return <>
@@ -206,7 +203,7 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState> {
 }
 
 export interface SubItemsProps extends MenuItemData {
-    onMenuClick: (uri: string) => boolean | void;
+    onClick: (uri: string) => boolean | void;
 }
 
 export interface SubItemsState {
@@ -231,7 +228,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
                 }
                 <span className={'up-menu-item-title'}>{this.props.title}</span>
             </a>
-            {this.anyChild ? <SubMenu onMenuClick={this.props.onMenuClick} childMenuItems={this.props.childMenuItems} /> : null}
+            {this.anyChild ? <SubMenu onClick={this.props.onClick} childMenuItems={this.props.childMenuItems} /> : null}
         </li>
     }
     get anyChild() {
@@ -239,14 +236,14 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
     }
 
     onClick = (e) => {
-        this.setState({ active: !this.state.active });
         e.preventDefault();
         e.stopPropagation();
+        this.setState({ active: !this.state.active });
         return false;
     }
 
     onClickA = (e) => {
-        var value = this.props.onMenuClick(this.props.uri);
+        var value = this.props.onClick(this.props.uri);
         if (value === false) {
             e.preventDefault();
         }
