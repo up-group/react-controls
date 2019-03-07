@@ -14,6 +14,5 @@ steps:
 
 - script: |
     npm i
-    npm run prepublish
-    npm run publishBeta
+    npm build
   displayName: 'npm install, prepublish and publis beta'
