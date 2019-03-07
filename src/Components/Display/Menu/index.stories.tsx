@@ -24,7 +24,6 @@ const setMenuSelection = (uri: string, menu: Array<MenuItemData>): Array<MenuIte
     return newMenu
 }
 
-
 const HookedMenu = (props) => {
     const defaultMenu: Array<MenuItemData> = [
         {
