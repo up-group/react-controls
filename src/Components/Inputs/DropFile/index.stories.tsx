@@ -11,6 +11,7 @@ import UpBox from '../../Containers/Box';
 import UpNotification from '../../Display/Notification';
 import UpParagraph from '../../Display/Paragraph';
 import UpDropFile from './UpDropFile';
+import { style } from 'typestyle';
 
 const stories = storiesOf('Inputs/UpDropFile', module) ;
 
@@ -23,8 +24,8 @@ stories.add('Simple usage',
      <UpNotification intent={"info"}>
          Le composant <code>UpDropFile</code> permet de définir ...
      </UpNotification>
-     <UpParagraph>
-       <UpDropFile label={'File'} name={'file'}>
+     <UpParagraph className={style({width:'100%'})}>
+       <UpDropFile label={'File'} name={'file'} maxImgWidth={600}>
          Add
         </UpDropFile>
      </UpParagraph>

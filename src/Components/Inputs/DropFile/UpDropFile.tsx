@@ -37,6 +37,15 @@ export interface IFile {
     version?: string;
     width?: number;
     height?: number;
+    originalFile?: {
+      lastModified: number;
+      lastModifiedDate: Date;
+      name: string;
+      preview: string;
+      size: number;
+      type: string;
+      webkitRelativePath: string;
+    }
   }
   
   export interface IFileType {
@@ -64,6 +73,7 @@ interface UpDropFileProps extends WithThemeProps {
   maxImgWidth? : number,
   loadFile?:(id:string) => Promise<IFile>;
   source?: () => Promise<IFile>;
+  autoResizeContainer?:boolean;
 }
 
 const boxUpload = style({
@@ -185,6 +195,7 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
   static defaultProps : Partial<UpDropFileProps> & WithThemeProps = {
     maxImgWidth : 600,
     theme: UpDefaultTheme,
+    autoResizeContainer : false,
   };
 
   constructor(props, context) {
@@ -353,6 +364,7 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
                 const tmpUpload: IFile = {
                     name: `${file.name}.png`,
                     value_base64: data,
+                    originalFile : file,
                 };
 
                 this.handleImage(tmpUpload) ;
@@ -369,6 +381,7 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
             const upload: IFile = {
                 name: file.name,
                 value_base64: reader.result,
+                originalFile: file,
             };
 
             if (isFileImage(file.name)) {
@@ -553,7 +566,7 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
     return (
       <div ref={(wrapperUpDropFile) => { this.wrapperUpDropFile = wrapperUpDropFile; }}>
         {!isEmpty(this.props.label) &&
-          <UpLabel>{this.props.label} {this.props.required && ' *'}
+          <UpLabel text={`${this.props.label} ${this.props.required ? ' *' : ''}`}>
             {this.props.onMouseOver &&
               <span
                 className={classnames(iconTitleStyle, 'icon-info')}
@@ -566,7 +579,7 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
           <Dropzone onMouseEnter={() => this.setState({ showOptions: true })}
             onMouseLeave={() => this.setState({ showOptions: false })}
             ref={(node) => { this.dropZoneRef = node; }}
-            style={{ backgroundSize: '100%', width: this.state.width ? `${this.state.width}px` : '100%', height: this.state.height ? `${this.state.height}px` : '100%' }}
+            style={{ backgroundSize: '100%', width: this.props.autoResizeContainer && this.state.width ? `${this.state.width}px` : '100%', height: this.state.height ? `${this.state.height}px` : '100%' }}
             className={classnames('up-btn', BaseStyle(this.preview), isFileSelected ? boxUploaded : boxUpload)}
             name={this.props.name}
             disableClick
