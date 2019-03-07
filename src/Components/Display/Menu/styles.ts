@@ -25,6 +25,13 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState) : 
             padding:0,
             listStyle: 'none',
         },
+        '&.up-menu nav > ul li.separator' : {
+            borderBottom: `1px solid ${props.theme.colorMap.disabledFg}`,
+            margin: '27px 0 !important',
+            padding:0,
+            width: 'auto',
+            lineHeight: '3px',
+        },
         '&.up-menu ul li .up-icon-wrapper svg, &.up-menu ul li .up-icon-wrapper svg g, .up-menu ul li .up-icon-wrapper svg path, .up-menu ul li .up-icon-wrapper svg polygon': {
             fill: '#ffffff',
             stroke: '#ffffff',

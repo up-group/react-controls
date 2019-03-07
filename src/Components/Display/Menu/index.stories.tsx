@@ -7,7 +7,7 @@ import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeP
 
 import UpMenu from './UpMenu'
 import UpMenuOH from './UpMenuOH'
-import { MenuItemData } from './UpMenuBeta';
+import { MenuItemData } from './UpMenu';
 import { isEmpty } from '../../../Common/utils';
 
 const resetMenuSelection = (menu: Array<MenuItemData>): Array<MenuItemData>  =>  {
@@ -32,6 +32,7 @@ const HookedMenu = (props) => {
             ]
         },
         { title: "Smart", icon: "smartphone", isSelected: false, isVisible: true, uri: "/smart", childMenuItems: [] },
+        { isSeparator: true},
         { title: "Settings", icon: "settings", isSelected: false, isVisible: true, uri: "/settings", childMenuItems: [] },
     ];
     const [menu, setMenu] = React.useState(defaultMenu);

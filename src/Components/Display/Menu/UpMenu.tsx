@@ -47,10 +47,10 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
     }
 
     render() {
-        const { title, header, icon, footer, menuItems, children } = this.props;
+        const { header, icon, footer, menuItems, children } = this.props;
 
         var menu = menuItems.map((v, i) => {
-            return <MenuItem onClick={this.props.onClick} key={i} title={v.title} icon={v.icon} uri={v.uri} isSelected={v.isSelected} isVisible={v.isVisible} childMenuItems={v.childMenuItems} />
+            return <MenuItem onClick={this.props.onClick} key={i} title={v.title} icon={v.icon} uri={v.uri} isSelected={v.isSelected} isVisible={v.isVisible} childMenuItems={v.childMenuItems} isSeparator={v.isSeparator} />
         });
 
         let renderChildren = children;
@@ -120,12 +120,13 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
 }
 
 export interface MenuItemData {
-    title: string;
-    uri: string;
-    icon: string;
-    isSelected: boolean;
-    isVisible: boolean;
+    title?: string;
+    uri?: string;
+    icon?: string;
+    isSelected?: boolean;
+    isVisible?: boolean;
     childMenuItems?: MenuItemData[];
+    isSeparator? : boolean;
 }
 
 export interface MenuItemProps extends MenuItemData {
@@ -146,12 +147,15 @@ export class MenuItem extends React.Component<MenuItemProps>{
         const hide = this.props.isVisible === false;
         const active = this.props.isSelected;
         const hasChilren = !isEmpty(this.props.childMenuItems);
-
-        return <li className={classnames("treeview", { "hide": hide, "active": active, 'hasChildren': hasChilren})}>
+        const isSeparator = this.props.isSeparator;
+        
+        return <li className={classnames("treeview", { "hide": hide, "active": active, 'hasChildren': hasChilren, 'separator': isSeparator })}>
+            {this.props.uri && 
             <a onClick={this.onItemClick} href={this.props.uri}>
                 <UpSvgIcon title={this.props.title} width={24} height={24} iconName={this.props.icon as IconName}></UpSvgIcon>
                 <span className={'up-menu-item-title'}>{this.props.title}</span>
             </a>
+            }
             {!isEmpty(this.props.childMenuItems) &&
                 <SubMenu title={this.props.title} onClick={this.props.onClick} childMenuItems={this.props.childMenuItems} />
             }
