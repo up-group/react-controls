@@ -8,6 +8,8 @@ import { IconName } from "theming/icons";
 import { MenuStyles } from "./styles";
 import * as classnames from 'classnames';
 
+import { isEqual } from 'lodash' ;
+
 const logo = require('./logo-up-square.svg');
 
 type RenderCallback = (state: UpMenuState) => JSX.Element;
@@ -130,15 +132,14 @@ export interface MenuItemProps extends MenuItemData {
     onClick?: (uri: string) => boolean | void;
 }
 
-export interface MenuItemState {
-    active: boolean;
-}
-
-export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
+export class MenuItem extends React.Component<MenuItemProps>{
 
     constructor(p, c) {
         super(p, c);
-        this.state = { active: false };
+    }
+
+    shouldComponentUpdate(nextProps) {
+        return !isEqual(this.props, nextProps) ;
     }
 
     render() {
@@ -172,14 +173,15 @@ export interface SubMenuProps {
     onClick: (uri: string) => void;
 }
 
-export interface SubMenuState {
-}
-
-export class SubMenu extends React.Component<SubMenuProps, SubMenuState> {
+export class SubMenu extends React.Component<SubMenuProps> {
 
     constructor(p, c) {
         super(p, c);
         this.state = {};
+    }
+
+    shouldComponentUpdate(nextProps) {
+        return !isEqual(this.props, nextProps);
     }
 
     render() {
@@ -215,6 +217,10 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
     constructor(p, c) {
         super(p, c);
         this.state = { active: false };
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return !isEqual(this.props, nextProps) || !isEqual(this.state, nextState);
     }
 
     render() {
