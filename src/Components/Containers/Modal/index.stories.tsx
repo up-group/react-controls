@@ -17,7 +17,6 @@ export interface ModalWrapperProps {
 
 interface ModalWrapperState {
     showModal: boolean;
-
 }
 
 class ModalWrapper extends React.Component<ModalWrapperProps, ModalWrapperState>{
@@ -40,7 +39,7 @@ class ModalWrapper extends React.Component<ModalWrapperProps, ModalWrapperState>
         this.setState({ showModal: false });
     }
     render() {
-        const CloseAction = () => <UpButton actionType={"close"} onClick={this.closeModal}>Close</UpButton>;
+        const CloseAction = () => <UpButton intent={'secondary'} actionType={"close"} onClick={this.closeModal}>Close</UpButton>;
         const Info = () => <UpPanel type={"warning"} disableAutoIntentIcon={false}>
             <p>Bienvenue !!</p>
         </UpPanel>;
@@ -53,7 +52,7 @@ class ModalWrapper extends React.Component<ModalWrapperProps, ModalWrapperState>
                     <Info />
                 }
             </UpModal>
-            <UpButton actionType={"confirm"} onClick={this.openModal}>Open</UpButton>
+            <UpButton intent={'secondary'} actionType={"confirm"} onClick={this.openModal}>Open</UpButton>
         </div>);
     }
 }

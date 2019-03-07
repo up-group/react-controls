@@ -25,15 +25,18 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState) : 
             padding:0,
             listStyle: 'none',
         },
-        '&.up-menu ul li .up-icon-wrapper svg, .up-menu ul li .up-icon-wrapper svg path, .up-menu ul li .up-icon-wrapper svg polygon': {
+        '&.up-menu ul li .up-icon-wrapper svg, &.up-menu ul li .up-icon-wrapper svg g, .up-menu ul li .up-icon-wrapper svg path, .up-menu ul li .up-icon-wrapper svg polygon': {
             fill: '#ffffff',
+            stroke: '#ffffff',
             cursor: 'pointer',
         },
-        '&.up-menu ul li.active .up-icon-wrapper svg, .up-menu ul li.active .up-icon-wrapper svg path, .up-menu ul li.active .up-icon-wrapper svg polygon': {
+        '&.up-menu ul li.active .up-icon-wrapper svg, &.up-menu ul li.active .up-icon-wrapper svg g, .up-menu ul li.active .up-icon-wrapper svg path, .up-menu ul li.active .up-icon-wrapper svg polygon': {
             fill: props.theme.colorMap.primary,
+            stroke: props.theme.colorMap.primary,
         },
-        '&.up-menu ul li:hover .up-icon-wrapper svg, .up-menu ul li:hover .up-icon-wrapper svg path, .up-menu ul li:hover .up-icon-wrapper svg polygon': {
+        '&.up-menu ul li:hover .up-icon-wrapper svg, &.up-menu ul li:hover .up-icon-wrapper svg g, .up-menu ul li:hover .up-icon-wrapper svg path, .up-menu ul li:hover .up-icon-wrapper svg polygon': {
             fill: props.theme.colorMap.primary,
+            stroke: props.theme.colorMap.primary,
         },
         '&.up-menu nav > ul > li .up-menu-item-title' : {
             display: props.minified ? 'none' : 'inherit',
@@ -147,8 +150,9 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState) : 
             fill: '#ffffff',
             cursor: 'pointer',
         },
-        '&.up-menu .up-menu-toggle:hover svg, .up-menu .up-menu-toggle:hover svg path, .up-menu .up-menu-toggle:hover svg polygon': {
+        '&.up-menu .up-menu-toggle:hover svg, &.up-menu .up-menu-toggle:hover svg g, .up-menu .up-menu-toggle:hover svg path, .up-menu .up-menu-toggle:hover svg polygon': {
             fill: props.theme.colorMap.primary,
+            stroke: props.theme.colorMap.primary,
         },
     },
 }, media(DeviceLRTablets, {

@@ -30,9 +30,10 @@ const getStyles = (props : SvgIconWrapperProps) : string => {
     }
     if(props.color) {
       styles['$nest'] = {
-        '& svg, & svg path, & svg polygon' : {
-            fill: props.color,
-        }
+        '& svg, & svg g, & svg path, & svg polygon' : {
+          fill: props.color,
+          stroke: props.color,
+        },
       };
     }
     return style(styles);
