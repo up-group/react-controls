@@ -72,8 +72,9 @@ export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeSta
                     fontSize:'14px',
                     color: '#354052',
                 },
-                '& svg, & svg path, & svg polygon' : {
+                '& svg,  & svg g, & svg path, & svg polygon' : {
                     fill : '#354052',
+                    strok: '#354052',
                 },
             }
         });

@@ -9,13 +9,16 @@ import { Dictionary } from '../utils/types';
 import { NestedCSSProperties } from 'typestyle/lib/types';
 import withTheme from './withTheme';
 
+const defaultColor = '#979797'
+
 const defaultStyles = new Dictionary<string, NestedCSSProperties>([{
   key : 'input', value : {
-    color: '#354052',
-    borderColor: '#979797',
+    color: defaultColor,
+    borderColor: defaultColor,
     $nest : {
-      '& .up-input-group svg,& .up-input-group svg path,& .up-input-group svg polygon' : {
-        fill : '#979797'
+      '& .up-input-group svg, & .up-input-group svg g,& .up-input-group svg path,& .up-input-group svg polygon' : {
+        fill: defaultColor,
+        stroke: defaultColor,
       }
     }
   }}]) ;

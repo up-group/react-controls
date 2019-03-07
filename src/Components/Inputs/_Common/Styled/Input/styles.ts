@@ -101,8 +101,9 @@ export const inputStyles = (props: UpInputProps & WithThemeProps) : NestedCSSPro
         borderColor : props.theme.colorMap.primary,
         boxShadow: props.theme.inputBorderLess ? 'inherit' : '0 0 0 1px #137cbd, 0 0 0 3px rgba(19, 124, 189, 0.3), inset 0 1px 1px rgba(16, 22, 26, 0.2)', 
       },
-      '& .up-input-group:hover svg,& .up-input-group:hover svg path,& .up-input-group:hover svg polygon' : {
+      '& .up-input-group:hover svg, & .up-input-group:hover svg g, & .up-input-group:hover svg path,& .up-input-group:hover svg polygon' : {
         fill: props.theme.colorMap.primary,
+        stroke: props.theme.colorMap.primary,
       },
       '.up-input.up-round' : {
         borderRadius: '30px',
