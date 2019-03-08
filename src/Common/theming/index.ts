@@ -16,9 +16,8 @@ const defaultStyles = new Dictionary<string, NestedCSSProperties>([{
     color: defaultColor,
     borderColor: defaultColor,
     $nest : {
-      '& .up-input-group svg, & .up-input-group svg g,& .up-input-group svg path,& .up-input-group svg polygon' : {
+      '& .up-input-group svg, & .up-input-group svg path,& .up-input-group svg polygon' : {
         fill: defaultColor,
-        stroke: defaultColor,
       }
     }
   }}]) ;

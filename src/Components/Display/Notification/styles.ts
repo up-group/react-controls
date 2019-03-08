@@ -29,10 +29,7 @@ export const icon  = (props : UpNotificationProps & WithThemeProps) : NestedCSSP
               fill: props.theme ? props.theme.colorMap[`${props.intent}Dark`] : props.theme.colorMap.offwhite,
               margin: '10px',
               display: 'inline-block',
-          }, 
-          '& .up-notification svg g' : {
-              stroke: props.theme ? props.theme.colorMap[`${props.intent}Dark`] : props.theme.colorMap.offwhite,
-          }
+          },
       }
   }
 };
