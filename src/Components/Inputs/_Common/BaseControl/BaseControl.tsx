@@ -14,7 +14,7 @@ import { eventFactory } from "../../../../Common/utils/eventListener";
 const ONCHANGE_MUST_BE_SPECIFIED = "La méthode onChange doit être spécifié dans le cas où la valeur du composant est défini dans les props";
 export interface BaseControlProps<_BaseType> extends WithThemeProps {
     name?: string;
-    onChange?: (event: React.ChangeEvent<any>, arg: _BaseType, error: boolean) => void;
+    onChange?: (event: React.ChangeEvent<any>, arg: _BaseType, error: string) => void;
     value?: _BaseType;
     defaultValue?: _BaseType;
     disabled?: boolean;
@@ -44,7 +44,7 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
         super(props, context);
         this.state = {
             error: null,
-            value: this.props.value !== undefined ? this.props.value as any  :
+            value: this.props.value !== undefined ? this.props.value as any :
                 this.props.defaultValue !== undefined ? this.props.defaultValue as any
                     : null
         };
@@ -68,7 +68,7 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
     abstract getValue(args: any): _BaseType;
 
     protected setValue = (receiveValue: any): _BaseType => {
-        return receiveValue ;
+        return receiveValue;
     }
 
     get isControlled() {
@@ -88,15 +88,29 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
         if (event) {
             cloneEvent = eventFactory(event.target.name, cleanData);
         }
-        let result = null ;
+        let result = null;
         if (this._validationManager !== undefined) {
             result = this.checkData(cleanData);
         }
-        
-        if(this.isControlled) {
-            this.dispatchOnChange(cleanData, cloneEvent, null);
+
+        if (this.isControlled) {
+            this.dispatchOnChange(
+              cleanData,
+              cloneEvent,
+              result ? result.errorMessage : null
+            );
         } else {
-            this.setState({ value: cleanData, error: result != null && result.hasError ? result.errorMessage : null }, () => { this.dispatchOnChange(this.state.value, cloneEvent, result != null && result.hasError) });
+            this.setState({ value: cleanData, error: result != null && result.hasError ? result.errorMessage : null }, () => {
+                this.dispatchOnChange(
+                    this
+                        .state
+                        .value,
+                    cloneEvent,
+                    result !=
+                    null &&
+                    result.errorMessage
+                );
+            });
         }
     }
 
@@ -115,7 +129,7 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
     }
 
     public componentWillReceiveProps(nextProps) {
-        if(this.props.error != nextProps.error) {
+        if (this.props.error != nextProps.error) {
             this.setState({ error: nextProps.error });
         }
     }
@@ -143,21 +157,21 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
                 _tooltip = this.props.tooltip as Tooltip;
             }
         }
-        const RenderControl = this.renderControl() ;
+        const RenderControl = this.renderControl();
         return (
-        <ErrorDisplay theme={this.props.theme} displayMode={this.props.errorDisplayMode} showError={this.props.showError} hasError={this.hasError()} error={this.state.error}>
-        {_tooltip === null ?
-            RenderControl
-            :
-            <UpTooltip {..._tooltip}>
-                {RenderControl}
-            </UpTooltip>
-        }
-        </ErrorDisplay>
+            <ErrorDisplay theme={this.props.theme} displayMode={this.props.errorDisplayMode} showError={this.props.showError} hasError={this.hasError()} error={this.state.error}>
+                {_tooltip === null ?
+                    RenderControl
+                    :
+                    <UpTooltip {..._tooltip}>
+                        {RenderControl}
+                    </UpTooltip>
+                }
+            </ErrorDisplay>
         );
     }
 
-    public dispatchOnChange = (data: _BaseType, event: React.ChangeEvent<any>, error: boolean) => {
+    public dispatchOnChange = (data: _BaseType, event: React.ChangeEvent<any>, error: string) => {
         if (this.props.onChange !== undefined && event != null) {
             this.props.onChange(event, data, error);
         }

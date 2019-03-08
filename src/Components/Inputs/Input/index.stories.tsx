@@ -44,26 +44,26 @@ const EmailForm = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-        <UpInput
-          name={'email'}
-          type={'email'}
-          onBlur={(e) => {
-            handleBlur(e);
-            setOnBlurState({ ...onBlurState, email: true });
-          }}
-          floatingLabel={'Email'}
-          errorDisplayMode={'inline'}
-          showError={dirty && onBlurState.email}
-          error={errors.email === undefined ? null : errors.email}
-          hasError={errors.email != null}
-          value={values.email}
-          onChange={handleChange}
-          onFocus={(e) => {
-            setOnBlurState({ ...onBlurState, email: false });
-          }}
-          autocomplete={'off'}
-          iconPosition={'right'}
-          placeholder={'Renseignez votre email'} />
+      <UpInput
+        name={'email'}
+        type={'email'}
+        onBlur={(e) => {
+          handleBlur(e);
+          setOnBlurState({ ...onBlurState, email: true });
+        }}
+        floatingLabel={'Email'}
+        errorDisplayMode={'inline'}
+        showError={dirty && onBlurState.email}
+        error={errors.email === undefined ? null : errors.email}
+        hasError={errors.email != null}
+        value={values.email}
+        onChange={handleChange}
+        onFocus={(e) => {
+          setOnBlurState({ ...onBlurState, email: false });
+        }}
+        autocomplete={'off'}
+        iconPosition={'right'}
+        placeholder={'Renseignez votre email'} />
       <UpPassword
         name={'password'}
         floatingLabel={'Password'}
@@ -87,6 +87,29 @@ const EmailForm = (props) => {
         autocomplete={'off'}
         onChange={handleChange} />
     </form>
+  );
+}
+
+const PhoneInput = (props) => {
+  const [phoneValue, setPhoneValue] = React.useState("");
+  const [error, setError] = React.useState("");
+  const validation = [{
+    pattern: /^0[67][\d]+$/,
+    errorMessage: "Phone erroné"
+  }
+  ];
+  return (
+    <UpInput
+      type={"phone"}
+      error={error}
+      onChange={(e, v, error) => {
+        setPhoneValue(v);
+        //setError(error);
+      }}
+      value={phoneValue}
+      validation={validation}
+      errorDisplayMode={"inline"}
+    />
   );
 }
 
@@ -136,7 +159,7 @@ stories.add('Text input',
       <UpRow>
         <UpCol span={6}>
           <UpLabel text={'Phone :'} required={true} inline={true}>
-            <UpInput type={"phone"} />
+            <PhoneInput />
           </UpLabel>
         </UpCol>
       </UpRow>

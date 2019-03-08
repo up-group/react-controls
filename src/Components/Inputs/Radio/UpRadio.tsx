@@ -46,7 +46,7 @@ export interface UpRadioProps extends BaseControlProps<any> {
     alignMode?: AlignMode,
     displayMode?: DisplayMode,
     gutter?:number,
-    onChange?: (arg: any, event: any, error: boolean) => void;
+    onChange?: (arg: any, event: any, error?: string) => void;
 }
 
 export type RadioGroupProps = {
@@ -106,7 +106,7 @@ class UpRadio extends BaseControlComponent<UpRadioProps, any> {
                 : data
     }
 
-    public dispatchOnChange = (data: any, event?, error?: boolean) => {
+    public dispatchOnChange = (data: any, event?, error?: string) => {
         if (this.props.onChange !== undefined) {
             this.props.onChange(event, data, error);
         }
