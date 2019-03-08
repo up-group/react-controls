@@ -22,17 +22,17 @@ export const getIntentColor = (intent, theme) => {
 
 export const getIntentStyle = (intent, theme) : any => {
   const intentColors = getIntentColor(intent, theme) ;
-  return  style({
-    color : intentColors.fg,
+  return style({
+    color: intentColors.fg,
     backgroundColor: intentColors.bg,
-    $nest : {
-      '& p, & .up-toast-title' : {
-        color : intentColors.fg,
+    $nest: {
+      "& p, & .up-toast-title": {
+        color: intentColors.fg
       },
-      '& .up-toast-close svg, & .up-toast-close svg path, & .up-toast-close svg polygon' : {
-        fill:  intentColors.fg,
-      },
-    },
+      "& .up-toast-close .colored svg, & .up-toast-close .colored svg path, & .up-toast-close .colored svg polygon, & .up-toast-close .colored svg polyline": {
+        fill: intentColors.fg
+      }
+    }
   });
 };
 

@@ -110,55 +110,89 @@ const disabled = (props: UpButtonProps & WithThemeProps): NestedCSSProperties =>
 
 const toggle = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
   return {
-    color: props.color || props.theme.colorMap[`${props.intent}HoverFg`] || 'black',
-    backgroundColor: props.color || props.theme.colorMap[`${props.intent}Active`] || 'white',
-    boxShadow: 'inset 5px 5px 5px rgba(16, 22, 26, 0.2)',
+    color:
+      props.color ||
+      props.theme.colorMap[`${props.intent}HoverFg`] ||
+      "black",
+    backgroundColor:
+      props.color || props.theme.colorMap[`${props.intent}Active`] || "white",
+    boxShadow: "inset 5px 5px 5px rgba(16, 22, 26, 0.2)",
     $nest: {
-      '&.up-btn svg, &.up-btn svg path, &.up-btn svg polygon': {
-        fill: props.backgroundColor || props.theme.colorMap[`${props.intent}HoverFg`],
-      },
-    },
+      "&.up-btn svg, &.up-btn svg path, &.up-btn svg polygon, &.up-btn svg polyline": {
+        fill:
+          props.backgroundColor ||
+          props.theme.colorMap[`${props.intent}HoverFg`]
+      }
+    }
   };
 };
 
 const active = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
   return {
-    color: props.color || props.theme.colorMap[`${props.intent}Fg`] || 'black',
-    backgroundColor: props.backgroundColor || props.theme.colorMap[props.intent],
-    borderColor: props.borderColor || props.theme.colorMap[`${props.intent}Border`],
-    borderWidth: '1px',
-    borderStyle: 'solid',
+    color:
+      props.color || props.theme.colorMap[`${props.intent}Fg`] || "black",
+    backgroundColor:
+      props.backgroundColor || props.theme.colorMap[props.intent],
+    borderColor:
+      props.borderColor || props.theme.colorMap[`${props.intent}Border`],
+    borderWidth: "1px",
+    borderStyle: "solid",
     $nest: {
-      '&:hover': {
-        color: props.color || props.theme.colorMap[`${props.intent}HoverFg`] || 'black',
-        backgroundColor: props.color || props.theme.colorMap[`${props.intent}Hover`] || 'white',
+      "&:hover": {
+        color:
+          props.color ||
+          props.theme.colorMap[`${props.intent}HoverFg`] ||
+          "black",
+        backgroundColor:
+          props.color ||
+          props.theme.colorMap[`${props.intent}Hover`] ||
+          "white"
       },
-      '&.up-btn:hover svg, &.up-btn:hover svg path, &.up-btn:hover svg polygon': {
-        fill: props.backgroundColor || props.theme.colorMap[`${props.intent}HoverFg`],
+      "&.up-btn:hover .colored svg, &.up-btn:hover .colored svg path, &.up-btn:hover .colored svg polygon, &.up-btn:hover .colored svg polyline": {
+        fill:
+          props.backgroundColor ||
+          props.theme.colorMap[`${props.intent}HoverFg`]
       },
-      '&:hover:active': {
-        color: props.color || props.theme.colorMap[`${props.intent}HoverFg`] || 'black',
-        backgroundColor: props.color || props.theme.colorMap[`${props.intent}HoverActive`] || 'white',
+      "&:hover:active": {
+        color:
+          props.color ||
+          props.theme.colorMap[`${props.intent}HoverFg`] ||
+          "black",
+        backgroundColor:
+          props.color ||
+          props.theme.colorMap[`${props.intent}HoverActive`] ||
+          "white"
       },
-      '&:hover:active svg, &:hover:active svg path, &:hover:active svg polygon': {
-        fill: props.backgroundColor || props.theme.colorMap[`${props.intent}HoverFg`],
+      "&:hover:active .colored svg, &:hover:active .colored svg path, &:hover:active .colored svg polygon, &:hover:active .colored svg polyline": {
+        fill:
+          props.backgroundColor ||
+          props.theme.colorMap[`${props.intent}HoverFg`]
       },
-      '&:active': {
-        color: props.color || props.theme.colorMap[`${props.intent}HoverFg`] || 'black',
-        backgroundColor: props.color || props.theme.colorMap[`${props.intent}Active`] || 'white',
-        boxShadow: 'inset 5px 5px 5px rgba(16, 22, 26, 0.2)',
+      "&:active": {
+        color:
+          props.color ||
+          props.theme.colorMap[`${props.intent}HoverFg`] ||
+          "black",
+        backgroundColor:
+          props.color ||
+          props.theme.colorMap[`${props.intent}Active`] ||
+          "white",
+        boxShadow: "inset 5px 5px 5px rgba(16, 22, 26, 0.2)"
       },
-      '&:active svg, &:active svg path, &:active svg polygon': {
-        fill: props.backgroundColor || props.theme.colorMap[`${props.intent}HoverFg`],
+      "&:active .colored svg, &:active .colored svg path, &:active .colored svg polygon, &:active .colored svg polyline": {
+        fill:
+          props.backgroundColor ||
+          props.theme.colorMap[`${props.intent}HoverFg`]
       },
-      '&.up-btn svg, &.up-btn svg path, &.up-btn svg polygon': {
-        fill: props.color || props.theme.colorMap[`${props.intent}Fg`] || 'white',
+      "&.up-btn .colored svg, &.up-btn .colored svg path, &.up-btn .colored svg polygon, &.up-btn .colored svg polyline": {
+        fill:
+          props.color || props.theme.colorMap[`${props.intent}Fg`] || "white"
       },
-      '&.up-btn': {
-        cursor: 'pointer',
-      },
+      "&.up-btn": {
+        cursor: "pointer"
+      }
     }
-  }
+  };
 };
 
 const large = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {

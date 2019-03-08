@@ -544,23 +544,23 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
     const isFileSelected:boolean = this.value != null ;
     
     const iconTitleStyle = style({
-      fontSize: '12px', 
-      padding: '4px',
+      fontSize: "12px",
+      padding: "4px",
       $nest: {
-        '&:hover': {
-          backgroundColor: theme.colorMap.primary || '#039eb2',
-          cursor: 'pointer',
-          boxShadow: `1px 1px 2px ${theme.colorMap.primaryDark}`,
+        "&:hover": {
+          backgroundColor: theme.colorMap.primary || "#039eb2",
+          cursor: "pointer",
+          boxShadow: `1px 1px 2px ${theme.colorMap.primaryDark}`
         },
-        '&.up-file-action.up-icon-wrapper svg, &.up-file-action.up-icon-wrapper svg path, &.up-file-action.up-icon-wrapper svg polygon' : {
-            fill: theme.colorMap.primary || '#039eb2',
-            margin:'0px',
+        "&.up-file-action.up-icon-wrapper svg, &.up-file-action.up-icon-wrapper svg path, &.up-file-action.up-icon-wrapper svg polygon, , &.up-file-action.up-icon-wrapper svg polyline": {
+          fill: theme.colorMap.primary || "#039eb2",
+          margin: "0px"
         },
-        '&.up-file-action.up-icon-wrapper:hover svg, &.up-file-action.up-icon-wrapper:hover svg path, &.up-file-action.up-icon-wrapper:hover svg polygon' : {
-            fill: theme.colorMap.primaryFg || 'white',
-            margin:'0px',  
-        },
-      },
+        "&.up-file-action.up-icon-wrapper:hover svg, &.up-file-action.up-icon-wrapper:hover svg path, &.up-file-action.up-icon-wrapper:hover svg polygon, &.up-file-action.up-icon-wrapper:hover svg polyline": {
+          fill: theme.colorMap.primaryFg || "white",
+          margin: "0px"
+        }
+      }
     });
 
     return (

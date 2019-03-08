@@ -17,20 +17,21 @@ const RatingBoxStyle = (props : WithThemeProps) => style({
   margin: "auto",
 });
 
-const CommonStartCSS = (props: RatingProps & WithThemeProps) => ({
+const CommonStartCSS = (props: RatingProps & WithThemeProps) =>
+  ({
     fontSize: "16px",
     height: "32px",
     width: "32px",
     padding: "2px",
-    position: 'relative',
-    display: 'inline-block',
-    $nest : {
-        '&.up-star svg, &.up-star svg path, &.up-star svg polygon' : {
-            fill: props.theme.colorMap.primary,
-        },
+    position: "relative",
+    display: "inline-block",
+    $nest: {
+      "&.up-star svg, &.up-star svg path, &.up-star svg polygon,, &.up-star svg polyline": {
+        fill: props.theme.colorMap.primary
+      }
     },
-    cursor : props.disabled ? 'default' : 'pointer',
-} as NestedCSSProperties);
+    cursor: props.disabled ? "default" : "pointer"
+  } as NestedCSSProperties);
 
 const FullStarStyle = style({
     ...CommonStartCSS,
