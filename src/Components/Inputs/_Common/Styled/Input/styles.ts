@@ -37,8 +37,7 @@ export const defaultStyles = (props: WithThemeProps) : NestedCSSProperties => {
       '-moz-appearance': 'none',
             appearance: 'none',
   };
-  const themeStyles = props.theme.styles.get('input') || {} ;
-  return { ...styles, ...themeStyles } ;
+  return styles;
 };
 
 const sizeMap = {
@@ -75,7 +74,6 @@ export const errorStyles = (props : StyledProps) => {
 };
 
 export const inputStyles = (props: UpInputProps & WithThemeProps) : NestedCSSProperties => {
-  
   return {
     marginTop: props.floatingLabel ? "14px" : "0px",
     $nest: {
@@ -531,10 +529,12 @@ export const focusStyles = (props: StyledProps) =>
 
 export const getStyles = (props: StyledProps) : string => {
   const heightStyle = props.height == "large" ? HeightLarge : {};
+  const themeStyles = props.theme.styles.get('input') || {};
   return classnames(
       style(inputStyles(props)),
       errorStyles(props),
       focusStyles(props),
+      style(themeStyles),
       style({
       $nest : {
         '& .up-input' : {

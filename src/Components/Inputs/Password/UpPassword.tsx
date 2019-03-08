@@ -78,14 +78,36 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState>  {
         const iconEyeOpen : IconName = 'eye-open' ;
         const iconEyeClose : IconName = 'eye-close' ;
         const type = this.state.isVisible === true ? this.props.type : 'password' ;
-
-        return <div style={{position: 'relative'}}>
-            <UpInput {...this.props} type={type} iconName={this.props.iconPosition === 'left' ? "lock-closed" : null} />
-            <UpSvgIcon className={classnames(getStyles(this.props), 'up-password')} 
-                onMouseOver={this.show}
-                onMouseOut={this.hide}
-                iconName={this.state.isVisible === true ? iconEyeClose : iconEyeOpen} />
-        </div>
+        const themeStyles = this.props.theme.styles.get("input") || {};
+        return (
+          <div
+            className={style(themeStyles)}
+            style={{ position: "relative" }}
+          >
+            <UpInput
+              {...this.props}
+              type={type}
+              iconName={
+                this.props.iconPosition === "left"
+                  ? "lock-closed"
+                  : null
+              }
+            />
+            <UpSvgIcon
+              className={classnames(
+                getStyles(this.props),
+                "up-password"
+              )}
+              onMouseOver={this.show}
+              onMouseOut={this.hide}
+              iconName={
+                this.state.isVisible === true
+                  ? iconEyeClose
+                  : iconEyeOpen
+              }
+            />
+          </div>
+        );
     }
 }
 
