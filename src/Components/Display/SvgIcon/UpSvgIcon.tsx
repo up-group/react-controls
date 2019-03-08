@@ -1,16 +1,17 @@
 import * as React from 'react';
 import { style, cssRaw } from 'typestyle';
 import Icons, { IconName } from '../../../Common/theming/icons';
+import Mentors, { MentorName } from "../../../Common/theming/mentors";
+import Illustrations, { IllustrationName } from "../../../Common/theming/illustrations";
 import * as classnames from 'classnames' ;
 import { isString } from '../../../Common/utils';
 import { NestedCSSProperties } from 'typestyle/lib/types';
 
 export interface SvgProps extends React.SVGProps<{}> {
-    iconName?: IconName;
-    iconHtml?:string;
-    dataFor?:string; // For tooltip management
+  iconName?: IconName | MentorName | IllustrationName;
+  iconHtml?: string;
+  dataFor?: string; // For tooltip management
 }
-
 export interface SvgIconWrapperProps {
   className:string;
   color:string;
@@ -19,6 +20,19 @@ export interface SvgIconWrapperProps {
   dangerouslySetInnerHTML:any;
   dataFor?:string;
   children?: Array<React.ReactNode>;
+}
+
+const getIconData = (iconName: string): string => {
+  if(Icons[iconName] !== undefined) {
+    return Icons[iconName];
+  } 
+  if (Illustrations[iconName] !== undefined) {
+    return Illustrations[iconName];
+  }
+  if (Mentors[iconName] !== undefined) {
+    return Mentors[iconName];
+  }
+  return null;
 }
 
 const getStyles = (props : SvgIconWrapperProps) : string => {
@@ -64,7 +78,7 @@ const UpSvgIcon : React.StatelessComponent<UpSvgIconProps> = ({
   const finalHeight = height && !isString(height) ? `${height}px` : height || '20px' ;
   const finalWidth = width && !isString(width) ? `${width}px` : width || '20px' ;
    
-  const iconData = iconName ? Icons[iconName] : iconHtml ? iconHtml : null ;
+  const iconData = iconName ? getIconData(iconName) : iconHtml ? iconHtml : null ;
 
   if(iconData) {
     const SvgIconElement = () => <SvgIconWrapper className={className} color={color} height={finalHeight} width={finalWidth}
