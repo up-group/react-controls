@@ -29,9 +29,8 @@ export const getIntentStyle = (intent, theme) : any => {
       '& p, & .up-toast-title' : {
         color : intentColors.fg,
       },
-      '& .up-toast-close svg, & .up-toast-close svg g, & .up-toast-close svg path, & .up-toast-close svg polygon' : {
+      '& .up-toast-close svg, & .up-toast-close svg path, & .up-toast-close svg polygon' : {
         fill:  intentColors.fg,
-        stroke: intentColors.fg,
       },
     },
   });

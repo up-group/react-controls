@@ -153,9 +153,8 @@ const ModalStyle = (props: WithThemeProps) => style({
             lineHeight: 1,
             color: "#000",
         },
-        "& .up-modal-close svg, & .up-modal-close svg g, & .up-modal-close svg path, & .up-modal-close svg polygon" : {
+        "& .up-modal-close svg, & .up-modal-close svg path, & .up-modal-close svg polygon" : {
             fill: props.theme.colorMap.primary,
-            stroke: props.theme.colorMap.primary,
         },
         "& .up-modal-close:hover, & .up-modal-close:focus" : {
             color: props.theme.colorMap.primaryDark,

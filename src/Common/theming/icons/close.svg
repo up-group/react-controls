@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
-    <title>Icone/Foncé/croix</title>
+<svg width="24px" height="24px" viewBox="-3 -3 30 30" version="1.1" 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <!-- Apply a scale out of 24/30 = 0.8 -->
+    <title>0: Icons / Dark / Close</title>
     <desc>Created with Sketch.</desc>
-    <g id="Symbols" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="Formulaire-/-Elements-de-base-/-Fenêtre-modale-/-modale" transform="translate(-754.000000, -16.000000)">
-            <g id="Icone/Foncé/croix" transform="translate(755.000000, 17.000000)">
-                <g id="Page-1" transform="translate(0.400000, 0.400000)">
-                    <path d="M10.9333333,0.26672 L0.266666667,10.9333867" id="Stroke-1" stroke-width="2"></path>
-                    <path d="M0.266666667,0.26672 L10.9333333,10.9333867" id="Stroke-3" stroke-width="2"></path>
-                </g>
-            </g>
-        </g>
+    <defs></defs>
+    <g id="0:-Icons-/-Dark-/-Cross" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M23.3287852,23.3339286 C22.4349752,24.2254527 20.98682,24.2254527 20.091867,23.3339286 L11.9995714,15.241633 L3.90727578,23.3339286 C3.01346573,24.2254527 1.56416759,24.2254527 0.670357538,23.3339286 C-0.223452513,22.4309747 -0.223452513,20.9908204 0.670357538,20.0878666 L8.76265314,11.995571 L0.670357538,3.90327535 C-0.223452513,3.01175126 -0.223452513,1.56016716 0.670357538,0.668643069 C1.56416759,-0.222881023 3.01346573,-0.222881023 3.90727578,0.668643069 L11.9995714,8.76093867 L20.091867,0.668643069 C20.98682,-0.222881023 22.4349752,-0.222881023 23.3287852,0.668643069 C24.2237383,1.56016716 24.2237383,3.01175126 23.3287852,3.90327535 L15.2364896,11.995571 L23.3287852,20.0878666 C24.2237383,20.9908204 24.2237383,22.4309747 23.3287852,23.3339286 L23.3287852,23.3339286 Z" id="Fill-35" fill="#000000"></path>
     </g>
 </svg>
