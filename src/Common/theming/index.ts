@@ -11,16 +11,20 @@ import withTheme from './withTheme';
 
 const defaultColor = '#979797'
 
-const defaultStyles = new Dictionary<string, NestedCSSProperties>([{
-  key : 'input', value : {
-    color: defaultColor,
-    borderColor: defaultColor,
-    $nest : {
-      '& .up-input-group svg, & .up-input-group svg path,& .up-input-group svg polygon' : {
-        fill: defaultColor,
+const defaultStyles = new Dictionary<string, NestedCSSProperties>([
+  {
+    key: "input",
+    value: {
+      color: defaultColor,
+      borderColor: defaultColor,
+      $nest: {
+        "& .up-input-group .colored svg, & .up-input-group .colored svg path,& .up-input-group .colored svg polygon, & .up-input-group .colored svg polyline": {
+          fill: defaultColor
+        }
       }
     }
-  }}]) ;
+  }
+]);
 
 const defaultTheme: ThemeInterface = {
   colorMap: colorMap,

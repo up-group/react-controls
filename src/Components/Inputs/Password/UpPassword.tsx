@@ -10,23 +10,19 @@ import defaultTheme from '../../../Common/theming';
 import * as classnames from 'classnames' ;
 import { runInThisContext } from 'vm';
 
-const getStyles = (props: UpInputProps) => style({ 
-    position : 'absolute', 
-    top: 0, right: '0', 
-    cursor: 'pointer',
+const getStyles = (props: UpInputProps) =>
+  style({
+    position: "absolute",
+    top: 0,
+    right: "0",
+    cursor: "pointer",
     zIndex: 10,
-    $nest : {
-        '&.up-password:hover svg' : {
-           fill: props.theme.colorMap.primary, 
-        },
-        '&.up-password:hover svg polygon' : {
-           fill: props.theme.colorMap.primary, 
-        },
-        '&.up-password:hover svg path' : {
-           fill: props.theme.colorMap.primary, 
-        }
-    } 
-    });
+    $nest: {
+      "&.up-password:hover svg, &.up-password:hover svg polygon, &.up-password:hover svg path, &.up-password:hover svg polyline": {
+        fill: props.theme.colorMap.primary
+      }
+    }
+  });
 
 export interface UpPasswordProps extends UpInputProps {}
 

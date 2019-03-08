@@ -35,6 +35,9 @@ const getIconData = (iconName: string): string => {
   return null;
 }
 
+const isColorMustNotBeOverrided = (iconName: string): boolean =>
+  Illustrations[iconName] !== undefined || Mentors[iconName] !== undefined;
+
 const getStyles = (props : SvgIconWrapperProps) : string => {
     const styles : NestedCSSProperties = {
       display: 'inline-block',
@@ -43,10 +46,10 @@ const getStyles = (props : SvgIconWrapperProps) : string => {
       margin: '1px',
     }
     if(props.color) {
-      styles['$nest'] = {
-        '& svg, & svg path, & svg polygon' : {
-          fill: props.color,
-        },
+      styles["$nest"] = {
+        "&.colored svg, &.colored svg path, &.colored svg polygon, &.colored svg polyline": {
+          fill: props.color
+        }
       };
     }
     return style(styles);
@@ -78,9 +81,12 @@ const UpSvgIcon : React.StatelessComponent<UpSvgIconProps> = ({
   const finalWidth = width && !isString(width) ? `${width}px` : width || '20px' ;
    
   const iconData = iconName ? getIconData(iconName) : iconHtml ? iconHtml : null ;
-
+  let mentorOrIllustrationStyles = null ;
+  if (iconName && !isColorMustNotBeOverrided(iconName)) {
+    mentorOrIllustrationStyles = 'colored' ;
+  }
   if(iconData) {
-    const SvgIconElement = () => <SvgIconWrapper className={className} color={color} height={finalHeight} width={finalWidth}
+    const SvgIconElement = () => <SvgIconWrapper className={classnames(className, mentorOrIllustrationStyles)} color={color} height={finalHeight} width={finalWidth}
       {...others}
       dangerouslySetInnerHTML={{__html: iconData}}
     ></SvgIconWrapper> ;

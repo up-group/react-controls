@@ -24,14 +24,16 @@ export const colors = (props: UpNotificationProps & WithThemeProps ) : NestedCSS
 
 export const icon  = (props : UpNotificationProps & WithThemeProps) : NestedCSSProperties => {
   return {
-      $nest : {
-          '& .up-notification svg, & .up-notification svg path, & .up-notification svg polygon' : {
-              fill: props.theme ? props.theme.colorMap[`${props.intent}Dark`] : props.theme.colorMap.offwhite,
-              margin: '10px',
-              display: 'inline-block',
-          },
+    $nest: {
+      "& .up-notification .colored svg, & .up-notification .colored svg path, & .up-notification .colored svg polygon, & .up-notification .colored svg polyline": {
+        fill: props.theme
+          ? props.theme.colorMap[`${props.intent}Dark`]
+          : props.theme.colorMap.offwhite,
+        margin: "10px",
+        display: "inline-block"
       }
-  }
+    }
+  };
 };
 
 export const getStyles  = (props: UpNotificationProps) : string => (
