@@ -174,8 +174,8 @@ const large = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
     $nest: {
       '&.up-btn svg': {
         margin: '0px',
-        width: '32px',
-        height: '32px',
+        width: '20px',
+        height: '20px',
       }
     }
   }
@@ -330,17 +330,19 @@ const iconNormal = (props: UpButtonProps): NestedCSSProperties => {
 
 const iconLarge = (props: UpButtonProps): NestedCSSProperties => {
   return {
-    padding: '6px 8px',
-    borderRadius: '3px',
-    minWidth: 'initial',
-    minHeight: 'initial',
-    fontSize: '14px',
-    lineHeight: 1.5,
     $nest: {
+      '&.up-btn' : {
+        padding: '8px',
+        borderRadius: '3px',
+        minWidth: 'initial',
+        minHeight: 'initial',
+        fontSize: '14px',
+        lineHeight: 1.5,
+      },
       '&.up-btn svg': {
         margin: '3px',
-        width: '32px',
-        height: '32px',
+        width: '20px',
+        height: '20px',
       }
     }
   }
@@ -399,7 +401,7 @@ const rounded = (props: UpButtonProps): NestedCSSProperties => {
     return {
       $nest: {
         '&.up-btn' : {
-          borderRadius: '17px',
+          borderRadius: '22px',
         }
       }
     }

@@ -9,6 +9,7 @@ import { MenuStyles } from "./styles";
 import * as classnames from 'classnames';
 
 import { isEqual } from 'lodash' ;
+import { render } from "enzyme";
 
 const logo = require('./logo-up-square.svg');
 
@@ -50,6 +51,9 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
         const { header, icon, footer, menuItems, children } = this.props;
 
         var menu = menuItems.map((v, i) => {
+            if(v.render != null) {
+                return v.render({ ...v, ...this.state });
+            }
             return <MenuItem onClick={this.props.onClick} key={i} title={v.title} icon={v.icon} uri={v.uri} isSelected={v.isSelected} isVisible={v.isVisible} childMenuItems={v.childMenuItems} isSeparator={v.isSeparator} />
         });
 
@@ -127,7 +131,8 @@ export interface MenuItemData {
     isVisible?: boolean;
     childMenuItems?: MenuItemData[];
     isSeparator? : boolean;
-}
+    render?: (props: MenuItemData & UpMenuState) => JSX.Element;
+ }
 
 export interface MenuItemProps extends MenuItemData {
     onClick?: (uri: string) => boolean | void;
