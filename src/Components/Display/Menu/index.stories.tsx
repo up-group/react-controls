@@ -2,13 +2,13 @@ import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions';
 
-import UpDefaultTheme from '../../../Common/theming'
-import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
-
-import UpMenu from './UpMenu'
+import UpMenu, { UpMenuState } from './UpMenu'
 import UpMenuOH from './UpMenuOH'
 import { MenuItemData } from './UpMenu';
 import { isEmpty } from '../../../Common/utils';
+
+import UpButton from '../../Inputs/Button/UpButton'
+import { style } from 'typestyle';
 
 const resetMenuSelection = (menu: Array<MenuItemData>): Array<MenuItemData>  =>  {
     return menu.map(m => ({ ...m, childMenuItems : resetMenuSelection(m.childMenuItems), isSelected: false }));
@@ -34,6 +34,10 @@ const HookedMenu = (props) => {
         { title: "Smart", icon: "smartphone", isSelected: false, isVisible: true, uri: "/smart", childMenuItems: [] },
         { isSeparator: true},
         { title: "Settings", icon: "settings", isSelected: false, isVisible: true, uri: "/settings", childMenuItems: [] },
+        { isSeparator: true },
+        { render  : (props : MenuItemData & UpMenuState ) => {
+            return <UpButton intent={'primary'} onClick={() => action('Command')} width={props.minified ? 'icon' : 'full'} height={'large'} actionType={'briefcase'}>{'Commander'}</UpButton>
+        }},
     ];
     const [menu, setMenu] = React.useState(defaultMenu);
 
