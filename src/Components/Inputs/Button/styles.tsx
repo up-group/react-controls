@@ -51,8 +51,10 @@ const base = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
         paddingLeft: props.width === 'icon' ? '0px' : (props.iconName != null || props.actionType != null) &&  props.iconPosition === 'left' ? '32px' : '6px',
         paddingRight: props.width === 'icon' ? '0px' : (props.iconName != null || props.actionType != null) && props.iconPosition === 'right' ? '32px' : '6px',
         textDecoration: 'none',
-        display: 'inline-block',
-        verticalAlign: 'middle',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
         position: 'relative',
       },
       '&.up-btn .up-icon-wrapper': {
@@ -64,8 +66,7 @@ const base = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
       },
       '&.up-btn .up-btn-label': {
         display: 'inline-block',
-        height: props.theme.minButtonSize || DEFAULT_MIN_SIZE,
-        paddingTop: (props.theme.minButtonSize - fontSizeMap[props.fontSize])/2,
+        paddingTop: 0,
         paddingLeft: props.width == "auto" ? "8px" : "0px",
         paddingRight: props.width == "auto" ? "8px" : "0px",
         color: props.isProcessing ? props.theme.colorMap.disabledBg : 'inherit',

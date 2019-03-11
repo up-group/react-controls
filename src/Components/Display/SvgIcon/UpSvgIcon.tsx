@@ -56,7 +56,7 @@ const getStyles = (props : SvgIconWrapperProps) : string => {
   };
 
 const SvgIconWrapper : React.StatelessComponent<SvgIconWrapperProps> = (props : SvgIconWrapperProps) => {
-    const {children, className, height, width, ...othersProps} = props ;
+    const {children, className, height, width, color, ...othersProps} = props ;
     return <div {...othersProps} className={classnames('up-icon-wrapper', className, getStyles(props))}>
         {children}
     </div>
