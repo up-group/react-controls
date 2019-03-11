@@ -54,6 +54,7 @@ const EmailForm = (props) => {
         floatingLabel={'Email'}
         errorDisplayMode={'inline'}
         showError={dirty && onBlurState.email}
+        showSuccess={dirty && onBlurState.email}
         error={errors.email === undefined ? null : errors.email}
         hasError={errors.email != null}
         value={values.email}

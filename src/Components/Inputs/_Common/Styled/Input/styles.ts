@@ -7,6 +7,7 @@ import defaultTheme from '../../../../../Common/theming'
 import * as classnames from 'classnames'
 import { WithThemeProps } from '../../../../../Common/theming/withTheme';
 import { UpInputProps } from 'Components/Inputs/Input/types';
+import { isEmpty } from "../../../../../Common/utils";
 
 export const HeightLarge = (props) : NestedCSSProperties => {
   return {
@@ -50,27 +51,51 @@ const sizeMap = {
   fill: "100%",
 };
 
-export const errorStyles = (props : StyledProps) => {
-  if(!props.hasError || !props.showError) {
-    return null;
-  }
-  return style({
-    $nest: {
-      "& .up-input-group .up-input": {
-        color: props.theme
-          ? props.theme.colorMap.danger
-          : defaultTheme.colorMap.danger,
-        borderColor: props.theme
-          ? props.theme.colorMap.danger
-          : defaultTheme.colorMap.danger
-      },
-      "& .up-input-group .colored svg, & .up-input-group .colored svg path, & .up-input-group .colored svg polygon, & .up-input-group .colored svg polyline": {
-        fill: props.theme
-          ? props.theme.colorMap.danger
-          : defaultTheme.colorMap.danger
+export const statusStyles = (props : StyledProps) => {
+  if (!props.hasError && props.showSuccess && !isEmpty(props.value)) {
+    return style({
+      $nest: {
+        "& .up-input-group .up-input": {
+          color: props.theme
+            ? props.theme.colorMap.success
+            : defaultTheme.colorMap.success,
+          borderColor: props.theme
+            ? props.theme.colorMap.success
+            : defaultTheme.colorMap.success
+        },
+        "& .up-input-group .up-icon-wrapper.colored svg, & .up-input-group .up-icon-wrapper.colored svg path, & .up-input-group .up-icon-wrapper.colored svg polygon, & .up-input-group .up-icon-wrapper.colored svg polyline": {
+          fill: props.theme
+            ? props.theme.colorMap.success
+            : defaultTheme.colorMap.success
+        }
       }
-    }
-  });
+    });
+  }
+  if(props.hasError && props.showError) {
+    return style({
+      $nest: {
+        "& .up-input-group .up-input": {
+          color: props.theme
+            ? props.theme.colorMap.danger
+            : defaultTheme.colorMap.danger,
+          borderColor: props.theme
+            ? props.theme.colorMap.danger
+            : defaultTheme.colorMap.danger
+        },
+        "& .up-input-group .up-icon-wrapper.colored svg, & .up-input-group .up-icon-wrapper.colored svg path, & .up-input-group .up-icon-wrapper.colored svg polygon, & .up-input-group .up-icon-wrapper .colored svg polyline": {
+          fill: props.theme
+            ? props.theme.colorMap.danger
+            : defaultTheme.colorMap.danger
+        }
+      }
+    });
+  }
+    return null;
+};
+
+
+export const successStyles = (props: StyledProps) => {
+  
 };
 
 export const inputStyles = (props: UpInputProps & WithThemeProps) : NestedCSSProperties => {
@@ -532,7 +557,7 @@ export const getStyles = (props: StyledProps) : string => {
   const themeStyles = props.theme.styles.get('input') || {};
   return classnames(
       style(inputStyles(props)),
-      errorStyles(props),
+      statusStyles(props),
       focusStyles(props),
       style(themeStyles),
       style({
