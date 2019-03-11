@@ -155,7 +155,7 @@ const ModalStyle = (props: WithThemeProps) =>
           lineHeight: 1,
           color: "#000"
         },
-        "& .up-modal-close .colored svg, & .up-modal-close .colored svg path, & .up-modal-close .colored svg polygon, & .up-modal-close .colored svg polyline": {
+        "& .up-modal-close.colored svg, & .up-modal-close.colored svg path, & .up-modal-close.colored svg polygon, & .up-modal-close.colored svg polyline": {
           fill: props.theme.colorMap.primary
         },
         "& .up-modal-close:hover, & .up-modal-close:focus": {
