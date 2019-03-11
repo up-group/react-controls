@@ -52,9 +52,9 @@ stories.add('Simple usage',
                   </dd>
                 </dl>
               ))}
-              </UpBox>
-              <UpHeading tag={"h2"}>Mentors</UpHeading>
-              <UpBox flexDirection={"row"} flexWrap={true}>
+            </UpBox>
+            <UpHeading tag={"h2"}>Mentors</UpHeading>
+            <UpBox flexDirection={"row"} flexWrap={true}>
               {MentorNames.map(icon => (
                 <dl style={{ margin: "10px" }}>
                   <dt
@@ -64,15 +64,15 @@ stories.add('Simple usage',
                     <UpSvgIcon
                       iconName={icon}
                       color={color}
-                      width={width}
-                      height={height}
+                      width={48}
+                      height={48}
                     />
                   </dd>
                 </dl>
               ))}
-              </UpBox>
-              <UpHeading tag={"h2"}>Illustrations</UpHeading>
-              <UpBox flexDirection={"row"} flexWrap={true}>
+            </UpBox>
+            <UpHeading tag={"h2"}>Illustrations</UpHeading>
+            <UpBox flexDirection={"row"} flexWrap={true}>
               {IllustrationNames.map(icon => (
                 <dl style={{ margin: "10px" }}>
                   <dt
@@ -82,8 +82,8 @@ stories.add('Simple usage',
                     <UpSvgIcon
                       iconName={icon}
                       color={color}
-                      width={width}
-                      height={height}
+                      width={115}
+                      height={115}
                     />
                   </dd>
                 </dl>
