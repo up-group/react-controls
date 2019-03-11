@@ -160,7 +160,7 @@ export const MenuStyles = (
                  fill: "#ffffff",
                  cursor: "pointer"
                },
-               "&.up-menu .up-menu-toggle:hover .colored svg, .up-menu .up-menu-toggle:hover .colored svg path, .up-menu .up-menu-toggle:hover .colored svg polygon,, .up-menu .up-menu-toggle:hover .colored svg polyline": {
+               "&.up-menu .up-menu-toggle.colored:hover svg, .up-menu .up-menu-toggle.colored:hover svg path, .up-menu .up-menu-toggle.colored:hover svg polygon, .up-menu .up-menu-toggle.colored:hover svg polyline": {
                  fill: props.theme.colorMap.primary
                }
              }

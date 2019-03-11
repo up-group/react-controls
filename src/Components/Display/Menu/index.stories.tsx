@@ -11,15 +11,21 @@ import UpButton from '../../Inputs/Button/UpButton'
 import { style } from 'typestyle';
 
 const resetMenuSelection = (menu: Array<MenuItemData>): Array<MenuItemData>  =>  {
+    if (isEmpty(menu)) {
+        return [];
+    }
     return menu.map(m => ({ ...m, childMenuItems : resetMenuSelection(m.childMenuItems), isSelected: false }));
 }
 
 const hasItemSelected = (uri: string, menu: Array<MenuItemData>): boolean => {
-    return !isEmpty(menu) && menu.find(i => uri === i.uri || hasItemSelected(uri, i.childMenuItems)) != null ;
+    return !isEmpty(menu) && menu.find(i => (i.uri != null && uri === i.uri) || hasItemSelected(uri, i.childMenuItems)) != null ;
 }
 
 const setMenuSelection = (uri: string, menu: Array<MenuItemData>): Array<MenuItemData> => {
-    return menu.map(m => ({ ...m, childMenuItems: setMenuSelection(uri, m.childMenuItems), isSelected: m.uri === uri || hasItemSelected(uri, m.childMenuItems)}));
+    if (isEmpty(menu)) {
+        return [] ;
+    }
+    return  menu.map(m => ({ ...m, childMenuItems: setMenuSelection(uri, m.childMenuItems), isSelected: m.uri !== null && m.uri === uri || hasItemSelected(uri, m.childMenuItems)}));
 }
 
 const HookedMenu = (props) => {
