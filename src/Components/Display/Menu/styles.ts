@@ -15,7 +15,7 @@ export const MenuStyles = (
                  minWidth: "76px",
                  zIndex: 1000,
                  position: "relative",
-                 height: "calc(100% - 0px)",
+                 height: "100vh",
                  backgroundColor: "#4E5B59",
                  transition: "width 0.5s",
                  padding: "14px"
@@ -30,22 +30,22 @@ export const MenuStyles = (
                  listStyle: "none"
                },
                "&.up-menu nav > ul li.separator": {
-                 borderBottom: `1px solid ${
-                   props.theme.colorMap.disabledFg
-                 }`,
+                 //borderBottom: `1px solid ${
+                 //  props.theme.colorMap.disabledFg
+                 //}`,
                  margin: "27px 0 !important",
                  padding: 0,
                  width: "auto",
                  lineHeight: "3px"
                },
-               "&.up-menu ul li .up-icon-wrapper .colored svg, .up-menu ul li .up-icon-wrapper .colored svg path, .up-menu ul li .up-icon-wrapper .colored svg polygon, .up-menu ul li .up-icon-wrapper .colored svg polyline": {
+               "&.up-menu ul li .up-icon-wrapper.colored svg, .up-menu ul li .up-icon-wrapper.colored svg path, .up-menu ul li .up-icon-wrapper.colored svg polygon, .up-menu ul li .up-icon-wrapper.colored svg polyline": {
                  fill: "#ffffff",
                  cursor: "pointer"
                },
-               "&.up-menu ul li.active .up-icon-wrapper .colored svg, .up-menu ul li.active .up-icon-wrapper .colored svg path, .up-menu ul li.active .up-icon-wrapper .colored svg polygon, .up-menu ul li.active .up-icon-wrapper .colored svg polyline": {
+               "&.up-menu ul li.active .up-icon-wrapper.colored svg, .up-menu ul li.active .up-icon-wrapper.colored svg path, .up-menu ul li.active .up-icon-wrapper.colored svg polygon, .up-menu ul li.active .up-icon-wrapper.colored svg polyline": {
                  fill: props.theme.colorMap.primary
                },
-               "&.up-menu ul li:hover .up-icon-wrapper .colored svg, .up-menu ul li:hover .up-icon-wrapper .colored svg path, .up-menu ul li:hover .up-icon-wrapper .colored svg polygon, .up-menu ul li:hover .up-icon-wrapper .colored svg polyline": {
+               "&.up-menu ul li:hover .up-icon-wrapper.colored svg, .up-menu ul li:hover .up-icon-wrapper.colored svg path, .up-menu ul li:hover .up-icon-wrapper.colored svg polygon, .up-menu ul li:hover .up-icon-wrapper.colored svg polyline": {
                  fill: props.theme.colorMap.primary
                },
                "&.up-menu nav > ul > li .up-menu-item-title": {
@@ -156,7 +156,7 @@ export const MenuStyles = (
                  height: "16px",
                  margin: "30px 14px"
                },
-               "&.up-menu .up-menu-toggle .colored svg, .up-menu .up-menu-toggle .colored svg path, .up-menu .up-menu-toggle .colored svg polygon, .up-menu .up-menu-toggle .colored svg polyline": {
+               "&.up-menu .up-menu-toggle.colored svg, .up-menu .up-menu-toggle.colored svg path, .up-menu .up-menu-toggle.colored svg polygon, .up-menu .up-menu-toggle.colored svg polyline": {
                  fill: "#ffffff",
                  cursor: "pointer"
                },
