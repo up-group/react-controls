@@ -13,18 +13,23 @@ import { eventFactory } from "../../../../Common/utils/eventListener";
 // Exports
 const ONCHANGE_MUST_BE_SPECIFIED = "La méthode onChange doit être spécifié dans le cas où la valeur du composant est défini dans les props";
 export interface BaseControlProps<_BaseType> extends WithThemeProps {
-    name?: string;
-    onChange?: (event: React.ChangeEvent<any>, arg: _BaseType, error: string) => void;
-    value?: _BaseType;
-    defaultValue?: _BaseType;
-    disabled?: boolean;
-    readonly?: boolean;
-    tooltip?: string | Tooltip;
-    isRequired?: boolean;
-    showError?: boolean;
-    errorDisplayMode?: ErrorDisplayMode;
-    error?: string;
-    touched?: boolean;
+  name?: string;
+  onChange?: (
+    event: React.ChangeEvent<any>,
+    arg: _BaseType,
+    error: string
+  ) => void;
+  value?: _BaseType;
+  defaultValue?: _BaseType;
+  disabled?: boolean;
+  readonly?: boolean;
+  tooltip?: string | Tooltip;
+  isRequired?: boolean;
+  showError?: boolean;
+  showSuccess?: boolean;
+  errorDisplayMode?: ErrorDisplayMode;
+  error?: string;
+  touched?: boolean;
 }
 export interface BaseControlState<_BaseType> {
     error?: string;

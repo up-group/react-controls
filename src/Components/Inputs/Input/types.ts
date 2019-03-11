@@ -30,17 +30,18 @@ export interface UpInputStyledProps extends CommonProps<string> {
 }
 
 export interface CommonProps<VT> extends CommonInputTextProps<VT> {
-    disabled?: boolean;
-    placeholder?: string;
-    height?: HeightSize;
-    width?: WidthSize;
-    readonly?: boolean;
-    tooltip?: string | Tooltip;
-    showError?: boolean;
-    iconName?: IconName;
-    iconPosition?: InputIconPosition;
-    rounded?: boolean;
-    autocomplete?: string;
+  disabled?: boolean;
+  placeholder?: string;
+  height?: HeightSize;
+  width?: WidthSize;
+  readonly?: boolean;
+  tooltip?: string | Tooltip;
+  showError?: boolean; 
+  showSuccess?: boolean;
+  iconName?: IconName;
+  iconPosition?: InputIconPosition;
+  rounded?: boolean;
+  autocomplete?: string;
 }
 
 export interface UpInputProps extends CommonProps<string> {
