@@ -3,7 +3,11 @@ import { style } from 'typestyle/lib';
 import * as classnames from 'classnames';
 import UpDefaultTheme, { WithThemeProps, withTheme } from '../../../Common/theming';
 
-import * as Dropzone from 'react-dropzone';
+// Temp fix
+let Dropzone = require("react-dropzone");
+if ("default" in Dropzone) {
+  Dropzone = Dropzone.default;
+}
 
 import { NestedCSSProperties } from 'typestyle/lib/types';
 

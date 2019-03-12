@@ -45,48 +45,73 @@ const EmailForm = (props) => {
   return (
     <form onSubmit={handleSubmit}>
       <UpInput
-        name={'email'}
-        type={'email'}
-        onBlur={(e) => {
+        name={"email"}
+        type={"email"}
+        onBlur={e => {
           handleBlur(e);
           setOnBlurState({ ...onBlurState, email: true });
         }}
-        floatingLabel={'Email'}
-        errorDisplayMode={'inline'}
+        floatingLabel={"Email"}
+        errorDisplayMode={"inline"}
         showError={dirty && onBlurState.email}
         showSuccess={dirty && onBlurState.email}
         error={errors.email === undefined ? null : errors.email}
         hasError={errors.email != null}
         value={values.email}
         onChange={handleChange}
-        onFocus={(e) => {
+        onFocus={e => {
           setOnBlurState({ ...onBlurState, email: false });
         }}
-        autocomplete={'off'}
-        iconPosition={'right'}
-        placeholder={'Renseignez votre email'} />
+        autocomplete={"off"}
+        iconPosition={"right"}
+        placeholder={"Renseignez votre email"}
+      />
       <UpPassword
-        name={'password'}
-        floatingLabel={'Password'}
-        onBlur={handleBlur}
-        iconPosition={'right'}
-        autocomplete={'off'}
+        name={"password"}
+        floatingLabel={"Password"}
+        onBlur={e => {
+          handleBlur(e);
+          setOnBlurState({ ...onBlurState, password: true });
+        }}
+        iconPosition={"right"}
+        autocomplete={"off"}
+        onFocus={e => {
+          setOnBlurState({ ...onBlurState, password: false });
+        }}
+        showSuccess={dirty && onBlurState.password}
         value={values.password}
-        onChange={handleChange} />
+        onChange={handleChange}
+      />
       <UpInput
-        name={'firstName'}
-        floatingLabel={'First Name'}
-        onBlur={handleBlur}
+        name={"firstName"}
+        floatingLabel={"First Name"}
+        onBlur={e => {
+          handleBlur(e);
+          setOnBlurState({ ...onBlurState, firstName: true });
+        }}
+        onFocus={e => {
+          setOnBlurState({ ...onBlurState, firstName: false });
+        }}
         value={values.firstName}
-        autocomplete={'off'}
-        onChange={handleChange} />
+        showSuccess={dirty && onBlurState.firstName}
+        autocomplete={"off"}
+        onChange={handleChange}
+      />
       <UpInput
-        name={'lastName'}
-        floatingLabel={'Last Name'}
-        onBlur={handleBlur}
+        name={"lastName"}
+        floatingLabel={"Last Name"}
+        onBlur={e => {
+          handleBlur(e);
+          setOnBlurState({ ...onBlurState, lastName: true });
+        }}
+        onFocus={e => {
+          setOnBlurState({ ...onBlurState, lastName: false });
+        }}
         value={values.lastName}
-        autocomplete={'off'}
-        onChange={handleChange} />
+        showSuccess={dirty && onBlurState.lastName}
+        autocomplete={"off"}
+        onChange={handleChange}
+      />
     </form>
   );
 }
