@@ -24,8 +24,14 @@ stories.add('Simple usage',
      <UpNotification intent={"info"}>
          Le composant <code>UpDropFile</code> permet de définir ...
      </UpNotification>
+     
      <UpParagraph className={style({width:'100%'})}>
        <UpDropFile label={'File'} name={'file'} maxImgWidth={600}>
+         Add
+        </UpDropFile>
+     </UpParagraph>
+     <UpParagraph className={style({ width: '100%' })}>
+       <UpDropFile showPreview={false} label={'File without preview'} name={'file'} maxImgWidth={600}>
          Add
         </UpDropFile>
      </UpParagraph>
