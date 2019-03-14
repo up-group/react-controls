@@ -5,7 +5,6 @@ import * as classnames from 'classnames';
 //import Paragraph from '../Paragraph'
 import {UpGrid, UpRow, UpCol} from '../../Containers/Grid'
 import UpModal from '../../Containers/Modal/UpModal'
-import UpPanel from '../../Containers/Panel'
 import UpHeading from '../../Display/Heading'
 
 import iconMap from '../../../Common/theming/iconMap'

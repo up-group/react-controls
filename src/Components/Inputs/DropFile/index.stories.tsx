@@ -34,9 +34,11 @@ const FileForm = props => {
   return (
     <form onSubmit={handleSubmit}>
       <UpDropFile
-        allowedExtensions={['jpg']}
+        allowedExtensions={['jpg', 'jpeg', 'png']}
+        autoResizeContainer={true}
         name={"file"}
         value={values.file}
+        enableCrop={true}
         onChange={handleChange}
         label={"File"}
         maxImgWidth={600}
