@@ -8,10 +8,13 @@ let Dropzone = require("react-dropzone");
 if ("default" in Dropzone) {
   Dropzone = Dropzone.default;
 }
+let Cropper = require("react-cropper");
+if ("default" in Cropper) {
+  Cropper = Cropper.default;
+}
 
 import { NestedCSSProperties } from 'typestyle/lib/types';
 
-import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css'
 
 import { isFunction, openFileAsBase64, getMimeTypeFromBase64, isEmpty, on, off } from '../../../Common/utils';
