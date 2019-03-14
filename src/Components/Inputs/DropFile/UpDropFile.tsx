@@ -26,7 +26,7 @@ import UpButton from '../Button';
 import UpLabel from '../../Display/Label';
 import UpSvgIcon from '../../Display/SvgIcon';
 import { eventFactory } from '../../../Common/utils/eventListener';
-import { ThemeInterface } from 'theming/types';
+import { ThemeInterface, IntentType } from 'theming/types';
 import UpBox from '../../Containers/Box';
 
 export interface IFile {
@@ -173,11 +173,16 @@ const wrapperFileNameStyle = (props: WithThemeProps) => style({
   },
 });
 
+interface Message {
+  message : string ;
+  intent: IntentType;
+}
+
 interface UpDropFileState {
   height: number;
   width: number;
   isLoading: boolean;
-  errors?: any[];
+  errors?: Array<Message>;
   showModal: boolean;
   showOptions: boolean;
   color: string;
@@ -804,8 +809,8 @@ class UpDropFile extends React.Component<
           )}
         {this.state.errors && (
           <div className={wrapperErrorsStyle}>
-            {this.state.errors.map(error => (
-              <UpNotification message={error} />
+            {this.state.errors.map((error, index) => (
+              <UpNotification key={index} message={error.message} intent={error.intent} />
             ))}
           </div>
         )}
