@@ -501,15 +501,12 @@ class UpDropFile extends React.Component<
     if (e != null) {
       e.stopPropagation();
     }
-    const value = this.props.value;
-    const source = this.props.source;
-
-    if (isFunction(source)) {
-      source().then((file: IFile) => {
+    if (isFunction(this.props.source)) {
+      this.props.source().then((file: IFile) => {
         window.open(getUrlToFile(file.id));
       });
     } else if (this.value != null && this.preview != null) {
-      openFileAsBase64(this.preview as string, value.name);
+      openFileAsBase64(this.preview as string, this.value.name);
     }
   };
 
@@ -645,7 +642,7 @@ class UpDropFile extends React.Component<
             }}
             style={{
               backgroundSize: "100%",
-              maxWidth: '100%',
+              maxWidth: "100%",
               width:
                 this.props.autoResizeContainer && this.state.width
                   ? `${this.state.width}px`
@@ -663,9 +660,13 @@ class UpDropFile extends React.Component<
           >
             {isFileSelected && !this.isPDF && !this.isImage && (
               <UpNotification intent={"info"} displayMode={"text"}>
-                <UpBox flexDirection={"column"}>
-                  <UpParagraph>{this.props.noPreviewMessage}</UpParagraph>
+                <UpBox
+                  onClick={e => e.stopPropagation()}
+                  flexDirection={"column"}
+                >
                   <UpParagraph>
+                    {this.props.noPreviewMessage}
+                    <br />
                     <UpLink
                       onClick={() => {
                         this.openFile(null);
@@ -679,18 +680,22 @@ class UpDropFile extends React.Component<
             )}
             {isFileSelected && !this.props.showPreview && (
               <UpNotification intent={"info"} displayMode={"text"}>
-                <UpParagraph>
-                  {this.props.previewDisabledMessage}
-                </UpParagraph>
-                <UpParagraph>
-                  <UpLink
-                    onClick={() => {
-                      this.openFile(null);
-                    }}
-                  >
-                    {this.props.openFileLabel}
-                  </UpLink>
-                </UpParagraph>
+                <UpBox
+                  onClick={e => e.stopPropagation()}
+                  flexDirection={"column"}
+                >
+                  <UpParagraph>
+                    {this.props.previewDisabledMessage}
+                    <br />
+                    <UpLink
+                      onClick={() => {
+                        this.openFile(null);
+                      }}
+                    >
+                      {this.props.openFileLabel}
+                    </UpLink>
+                  </UpParagraph>
+                </UpBox>
               </UpNotification>
             )}
             {this.props.showPreview && this.isPDF && (
