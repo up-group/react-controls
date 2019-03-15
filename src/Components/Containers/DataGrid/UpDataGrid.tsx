@@ -144,7 +144,7 @@ export interface UpDataGridProps {
         skipParamName?: string;
         takeParamName?: string;
     },
-
+    takes?: Array<{ id: number, text: string}>;
     // Event Handler
     onPageChange?: (page: number, take: number, skip: number) => void;
     onSortChange?: (c: Column, dir: SortDirection) => void;
@@ -175,6 +175,13 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
         isOddEvenEnabled: true,
         isSortEnabled: true,
         theme: UpDefaultTheme,
+        takes: [
+            { id: 10, text: "10" },
+            { id: 20, text: "20" },
+            { id: 50, text: "50" },
+            { id: 100, text: "100" },
+            { id: 200, text: "200" },
+            { id: 500, text: "500" }]
     }
 
     constructor(props, context) {
@@ -442,13 +449,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
     }
 
     render() {
-        const takes = [
-        { id: 10, text: "10" },
-        { id: 20, text: "20" },
-        { id: 50, text: "50" },
-        { id: 100, text: "100" },
-        { id: 200, text: "200" },
-        { id: 500, text: "500" }];
+        const takes = this.props.takes;
 
         const pagination = <div style={{ margin: '10px 0px' }}>
             <UpPagination skip={this.state.skip} take={this.state.take}
@@ -527,18 +528,16 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
                 }
                 <UpLoadingIndicator displayMode={'layer'} message={"Chargement en cours"} isLoading={this.state.isDataFetching} />
                 {this.btnExportCsv}
-                {!this.state.isDataFetching &&
-                    <table ref={(r) => { this.refTable = r; }} className={classnames("up-data-grid-main", DataGridStyle(this.props))}>
-                        <UpDataGridRowHeader isSelectionEnabled={this.props.isSelectionEnabled}
-                            onSelectionChange={this.onSelectionAllChange.bind(this)}
-                            onSortChange={this.onSortChange.bind(this)}
-                            actions={this.props.actions}
-                            columns={columns} />
-                        <tbody className={classnames("up-data-grid-body", OddEvenStyle)}>
-                            {rows}
-                        </tbody>
-                    </table>
-                }
+                <table ref={(r) => { this.refTable = r; }} className={classnames("up-data-grid-main", DataGridStyle(this.props))}>
+                    <UpDataGridRowHeader isSelectionEnabled={this.props.isSelectionEnabled}
+                        onSelectionChange={this.onSelectionAllChange.bind(this)}
+                        onSortChange={this.onSortChange.bind(this)}
+                        actions={this.props.actions}
+                        columns={columns} />
+                    <tbody className={classnames("up-data-grid-body", OddEvenStyle)}>
+                        {rows}
+                    </tbody>
+                </table>
                 {!this.state.isDataFetching && this.props.isPaginationEnabled && this.props.paginationPosition != 'top' &&
                     <div style={{ marginTop: "10px" }}>{pagination}</div>
                 }
