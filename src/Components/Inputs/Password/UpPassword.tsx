@@ -57,7 +57,6 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState>  {
         return this.state.isVisible === true;
     }
 
-
     hide = () => {
         if(this.isHidden)
             return ;
@@ -72,6 +71,10 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState>  {
         this.setState({
             isVisible: true,
         });
+    }
+
+    get showStatus() {
+      return (this.props.hasError && this.props.showError) || (!this.props.hasError && this.props.value && this.props.showSuccess) ;
     }
 
     render() {
@@ -93,6 +96,7 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState>  {
                   : null
               }
             />
+            {!this.showStatus &&
             <UpSvgIcon
               className={classnames(
                 getStyles(this.props),
@@ -106,6 +110,7 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState>  {
                   : iconEyeOpen
               }
             />
+            }
           </div>
         );
     }

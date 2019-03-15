@@ -56,9 +56,6 @@ export const statusStyles = (props : StyledProps) => {
     return style({
       $nest: {
         "& .up-input-group .up-input": {
-          color: props.theme
-            ? props.theme.colorMap.success
-            : defaultTheme.colorMap.success,
           borderColor: props.theme
             ? props.theme.colorMap.success
             : defaultTheme.colorMap.success
