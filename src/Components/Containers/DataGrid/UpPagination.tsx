@@ -1,12 +1,12 @@
 import * as React from 'react'
-import * as classname from 'classnames'
+import * as classnames from 'classnames'
 
 import { UpGrid, UpRow, UpCol } from '../../Containers/Grid'
 import UpSelect, { UpSelectOption } from '../../Inputs/Select'
 
 import { style } from "typestyle"
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
-import defaultTheme from '../../../Common/theming';
+import defaultTheme, { UpThemeInterface } from '../../../Common/theming';
 import UpBox from '../Box';
 
 export interface UpPaginationState {
@@ -24,8 +24,6 @@ export interface UpPaginationProps {
     take?: number;
     /** Valeur de l'index de pagination */
     page?: number;
-    /** Message à afficher si aucun résultat retourné */
-    noResultMessage?: string;
     /** Message à afficher pour l'information du nombre d'élément par page */
     nbByPageMessage?: string;
     /** Les options pour le nombre d'élément à récupérer */
@@ -34,6 +32,12 @@ export interface UpPaginationProps {
     isTakeChangeEnable?: boolean;
     /** Afficher ou non les informations indiquant le positionnement dans les éléments paginés */
     isExtraInfoDisplay?: boolean; 
+    /** Label pour le lien 'Suivant' */
+    nextLabel?:string;
+    /** Label pour le lien 'Précédent' */
+    previousLabel?:string;
+    /** Affihage du nombre de résultats */
+    renderResultMessage?: (theme: UpThemeInterface, from: number, to: number, total: number) => JSX.Element;
     /** Notification de du changement de l'état de la pagination */
     onPageChange: (page: number, take: number, skip: number) => void;
 }
@@ -135,7 +139,6 @@ const paginationCounterStyle = (props : WithThemeProps) => style({
 class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, UpPaginationState> {
 
     static defaultProps: UpPaginationProps & WithThemeProps = {
-        noResultMessage: "Aucun résultat",
         nbByPageMessage: "Par page",
         isTakeChangeEnable: true,
         isExtraInfoDisplay: true,
@@ -144,8 +147,27 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
         { id: 100, text: "100" },
         { id: 200, text: "200" }],
         total: 0,
-        theme:defaultTheme,
-        onPageChange: (page: number, take: number, skip: number) => { }
+        theme: defaultTheme,
+        previousLabel: '&laquo;',
+        nextLabel: '&raquo;',
+        onPageChange: (page: number, take: number, skip: number) => { },
+        renderResultMessage: (theme : UpThemeInterface, from: number, to: number, total: number ) => (
+            <span className={classnames('up-pagination-result-message', paginationCounterStyle({ theme }))}>
+                {total == 0 &&
+                    <span>Aucun résultat</span>
+                }
+                {total != 0 &&
+                    <span>
+                        <span>R&eacute;sultat(s)&nbsp;</span>
+                        <span>{from}</span>
+                        <span> &agrave; </span>
+                        <span>{to}</span>
+                        <span> sur </span>
+                        <span>{total}</span>
+                    </span>
+                }
+            </span>
+        )
     }
 
     constructor(props, context) {
@@ -247,36 +269,36 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
 
         if (pages.length >= 2) {
 
-            const paginationItemClass = paginationItemStyle(this.props) ;
+            const paginationItemClass = classnames(paginationItemStyle(this.props), 'up-pagination-page') ;
             
             let PageNumber: any = <span />
 
             if (pages.length <= 15) {
                 PageNumber = pages.map((value, index) => {
-                    return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemClass)} onClick={this.goTo.bind(this, value)}>
+                    return <li key={`page-${value}`} className={classnames(this.state.page == value ? "active" : "", paginationItemClass)} onClick={this.goTo.bind(this, value)}>
                         <a onClick={(e) => e.preventDefault()} href="#">{value}</a>
                     </li>
                 })
             } else {
                 PageNumber = pages.map((value, index, array) => {
                     if (value < 4 || array.length - 3 < value) {
-                        return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemClass)} onClick={this.goTo.bind(this, value)}>
+                        return <li key={`page-${value}`} className={classnames(this.state.page == value ? "active" : "", paginationItemClass)} onClick={this.goTo.bind(this, value)}>
                             <a onClick={(e) => e.preventDefault()} href="#">{value}</a>
                         </li>
                     } else if (this.inRange(this.state.page, value, 4)) {
-                        return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemClass)} onClick={this.goTo.bind(this, value)}>
+                        return <li key={`page-${value}`} className={classnames(this.state.page == value ? "active" : "", paginationItemClass)} onClick={this.goTo.bind(this, value)}>
                             <a onClick={(e) => e.preventDefault()} href="#">{value}</a>
                         </li>
                     } else if (this.state.page < 8 && this.inRange(7, value, 5)) {
-                        return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemClass)} onClick={this.goTo.bind(this, value)}>
+                        return <li key={`page-${value}`} className={classnames(this.state.page == value ? "active" : "", paginationItemClass)} onClick={this.goTo.bind(this, value)}>
                             <a onClick={(e) => e.preventDefault()} href="#">{value}</a>
                         </li>
                     } else if (array.length - this.state.page < 8 && this.inRange(array.length - 6, value, 5)) {
-                        return <li key={`page-${value}`} className={classname(this.state.page == value ? "active" : "", paginationItemClass)} onClick={this.goTo.bind(this, value)}>
+                        return <li key={`page-${value}`} className={classnames(this.state.page == value ? "active" : "", paginationItemClass)} onClick={this.goTo.bind(this, value)}>
                             <a onClick={(e) => e.preventDefault()} href="#">{value}</a>
                         </li>
                     } else if (value === 4 || array.length - 3 === value) {
-                        return <li key={`page-${value}`} className={classname(paginationItemClass, 'disabled')}>
+                        return <li key={`page-${value}`} className={classnames(paginationItemClass, 'disabled')}>
                             <a onClick={(e) => e.preventDefault()} href="#">..</a>
                         </li>
                     } else {
@@ -287,57 +309,86 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
                 });
             }
 
-            pageNumberNavigation = <nav>
+            pageNumberNavigation = (
+              <nav className={'up-pagination-nav'}>
                 <ul className={paginationStyle}>
-                    <li key={`page-prev`} className={classname(this.state.page == 1 ? "disabled" : "", paginationItemClass)} onClick={this.goToPreviousPage}>
-                        <a onClick={(e) => e.preventDefault()} href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    {PageNumber}
-                    <li key={`page-next`} className={classname(this.state.page == maxPage ? "disabled" : "", paginationItemClass)} onClick={this.goToNextPage}>
-                        <a href="#" aria-label="Next" onClick={(e) => e.preventDefault()}>
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
+                  <li
+                    key={`page-prev`}
+                    className={classnames(
+                      "up-pagination-page-prev",
+                      this.state.page == 1 ? "disabled" : "",
+                      paginationItemClass
+                    )}
+                    onClick={this.goToPreviousPage}
+                  >
+                    <a
+                      onClick={e => e.preventDefault()}
+                      href="#"
+                      aria-label="Previous"
+                    >
+                                <span aria-hidden="true" dangerouslySetInnerHTML={{ __html: this.props.previousLabel }}></span>
+                    </a>
+                  </li>
+                  {PageNumber}
+                  <li
+                    key={`page-next`}
+                    className={classnames(
+                      "up-pagination-page-next",
+                      this.state.page == maxPage ? "disabled" : "",
+                      paginationItemClass
+                    )}
+                    onClick={this.goToNextPage}
+                  >
+                    <a
+                      href="#"
+                      aria-label="Next"
+                      onClick={e => e.preventDefault()}
+                    >
+                        <span aria-hidden="true" dangerouslySetInnerHTML={{ __html: this.props.nextLabel}}></span>
+                    </a>
+                  </li>
                 </ul>
-            </nav>
+              </nav>
+            );
 
         }
 
         return (
-            <UpGrid>
-                <UpRow>
-                    <UpCol span={14}>
-                        {pageNumberNavigation}
-                    </UpCol>
-                    <UpCol span={1}>
-                    </UpCol>
-                    <UpCol span={9}>
-                        <UpBox flexDirection={'row'} alignItems={'baseline'} justifyContent={'flex-end'}>
-                            <div style={{width: '120px', marginRight: '12px'}}>
-                                <UpSelect placeholder={this.props.nbByPageMessage} default={{ id: this.props.take, text: this.props.take }} data={takes} onChange={this.onTakeChange} />
-                            </div>
-                            <span className={paginationCounterStyle({theme : this.props.theme})}>
-                            {maxPage == 0 &&
-                                <span>{this.props.noResultMessage}</span>
-                            }
-                            {maxPage != 0 &&
-                                <span>
-                                    <span>R&eacute;sultat(s)&nbsp;</span>
-                                    <span>{from}</span>
-                                    <span> &agrave; </span>
-                                    <span>{to}</span>
-                                    <span> sur </span>
-                                    <span>{this.props.total}</span>
-                                </span>
-                            }
-                            </span>
-                        </UpBox> 
-                    </UpCol>
-                </UpRow>
-            </UpGrid>
-        )
+          <UpGrid className={"up-pagination-wrapper"}>
+            <UpRow>
+              <UpCol span={14}>{pageNumberNavigation}</UpCol>
+              <UpCol span={1} />
+              <UpCol span={9}>
+                <UpBox
+                  flexDirection={"row"}
+                  alignItems={"baseline"}
+                  justifyContent={"flex-end"}
+                >
+                  <div
+                    className={"up-pagination-takes"}
+                    style={{ width: "120px", marginRight: "12px" }}
+                  >
+                    <UpSelect
+                      placeholder={this.props.nbByPageMessage}
+                      default={{
+                        id: this.props.take,
+                        text: this.props.take
+                      }}
+                      data={takes}
+                      onChange={this.onTakeChange}
+                    />
+                  </div>
+                  {this.props.renderResultMessage(
+                    this.props.theme,
+                    from,
+                    to,
+                    this.props.total
+                  )}
+                </UpBox>
+              </UpCol>
+            </UpRow>
+          </UpGrid>
+        );
     }
 }
 

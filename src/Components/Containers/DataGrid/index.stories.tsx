@@ -1,8 +1,10 @@
 import * as React from "react";
+import * as classnames from 'classnames' ;
+
 import { storiesOf } from "@storybook/react";
 
-import UpDefaultTheme from "../../../Common/theming";
-import { IntentType } from "../../../Common/theming/types";
+import UpDefaultTheme, { UpThemeInterface } from "../../../Common/theming";
+import { IntentType, WithThemeProps } from "../../../Common/theming/types";
 import { ThemeProvider as UpThemeProvider } from "../../../Common/theming/ThemeProvider";
 
 import UpPagination from "./UpPagination";
@@ -11,6 +13,7 @@ import { ICellFormatter } from "./UpDefaultCellFormatter";
 import { getRootContainer } from "../../../Common/stories";
 
 import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
+import { style } from "typestyle";
 
 var data = [];
 var data2 = [];
@@ -58,6 +61,19 @@ const stories = storiesOf("Containers/UpDataGrid", module);
 stories.addDecorator(withKnobs);
 stories.addDecorator(getRootContainer("UpDataGrid"));
 
+const paginationCounterStyle = (props: WithThemeProps) => style({
+  margin: "0px 0px",
+  color: props.theme.colorMap.primary,
+  backgroundColor: props.theme.colorMap.primaryFg,
+  borderRadius: "4px",
+  padding: "6px 12px",
+  lineHeight: "1.43",
+  textDecoration: "none",
+  border: `1px solid ${props.theme.colorMap.primary}`,
+  float: "right",
+  cursor: "pointer",
+});
+
 stories
   .add(
     "Simple usage",
@@ -91,7 +107,10 @@ stories
         ]}
         data={data}
       />
-    ), { info :  "Utilisation du composant de grid sans pagination et sans sélection"}
+    ),
+    {
+      info: "Utilisation du composant de grid sans pagination et sans sélection"
+    }
   )
   .add(
     "Export csv",
@@ -106,7 +125,10 @@ stories
         ]}
         data={data}
       />
-    ), { info :  "Utilisation du composant de grid sans pagination et sans sélection"}
+    ),
+    {
+      info: "Utilisation du composant de grid sans pagination et sans sélection"
+    }
   )
   .add(
     "Avec sélection",
@@ -141,7 +163,8 @@ stories
         ]}
         data={data}
       />
-    ), {info: "Utilisation du composant de grid avec sélection"}
+    ),
+    { info: "Utilisation du composant de grid avec sélection" }
   )
   .add(
     "Avec actions",
@@ -188,7 +211,8 @@ stories
         ]}
         data={data}
       />
-    ), {info : "Utilisation d'un jeux d'action commun à toutes les lignes"}
+    ),
+    { info: "Utilisation d'un jeux d'action commun à toutes les lignes" }
   )
   /*.add(
     "Avec template",
@@ -269,7 +293,8 @@ stories
           }
         ]}
       />
-    ), {info : "Utilisation d'une source externe spécifique pour les lignes"}
+    ),
+    { info: "Utilisation d'une source externe spécifique pour les lignes" }
   )
   .add(
     "Avec source externe et pagination",
@@ -302,7 +327,11 @@ stories
           }
         ]}
       />
-    ), {info: "Utilisation d'une source externe spécifique pour les lignes avec activation de la pagination"}
+    ),
+    {
+      info:
+        "Utilisation d'une source externe spécifique pour les lignes avec activation de la pagination"
+    }
   )
   .add(
     "Avec source externe et pagination en bas",
@@ -310,6 +339,71 @@ stories
       <UpDataGrid
         dataSource={{
           query: "https://jsonplaceholder.typicode.com/posts"
+        }}
+        className={style({
+          $nest: {
+            "&.up-data-grid-container .up-pagination-nav li a": {
+              border: 0,
+              fontSize: "10pt"
+            },
+            "&.up-data-grid-container .up-pagination-result-message": {
+              border: 0,
+              color: "black",
+              fontSize: "10pt"
+            },
+            "& .up-pagination-takes": {
+              display: "none"
+            },
+            "& .up-pagination-page a": {
+              textDecoration: "underline",
+              color: "black",
+              minWidth: "auto",
+              padding: "4px"
+            },
+            "& .up-pagination-page:hover a, & .up-pagination-page.active:hover a, & .up-pagination-page:hover span": {
+              background: "transparent",
+              color: UpDefaultTheme.colorMap.primary
+            },
+            "& .up-pagination-page.disabled a": {
+              textDecoration: "none"
+            },
+            "& .up-pagination-page.disabled:hover a, & .up-pagination-page.disabled:hover span": {
+              color: UpDefaultTheme.colorMap.disabledFg
+            },
+            "& .up-pagination-page.active a": {
+              background: "transparent",
+              color: UpDefaultTheme.colorMap.primary
+            }
+          }
+        })}
+        paginationProps={{
+          previousLabel: "Précédent",
+          nextLabel: "Suivant",
+          renderResultMessage: (
+            theme: UpThemeInterface,
+            from: number,
+            to: number,
+            total: number
+          ) => (
+            <span
+              className={classnames(
+                "up-pagination-result-message",
+                paginationCounterStyle({ theme })
+              )}
+            >
+              {total == 0 && <span>Aucun résultat</span>}
+              {total != 0 && (
+                <span>
+                  <span>R&eacute;sultat(s)&nbsp;</span>
+                  <span>{from}</span>
+                  <span> &agrave; </span>
+                  <span>{to}</span>
+                  <span> sur </span>
+                  <span>{total}</span>
+                </span>
+              )}
+            </span>
+          )
         }}
         paginationPosition="bottom"
         isPaginationEnabled={true}
@@ -336,7 +430,11 @@ stories
           }
         ]}
       />
-    ), {info:"Utilisation d'une source externe spécifique pour les lignes avec activation de la pagination"}
+    ),
+    {
+      info:
+        "Utilisation d'une source externe spécifique pour les lignes avec activation de la pagination"
+    }
   )
   .add(
     "Avec source externe et pagination haut et bas",
@@ -370,7 +468,11 @@ stories
           }
         ]}
       />
-    ), {info:"Utilisation d'une source externe spécifique pour les lignes avec activation de la pagination"}
+    ),
+    {
+      info:
+        "Utilisation d'une source externe spécifique pour les lignes avec activation de la pagination"
+    }
   )
   .add(
     "Avec cell formatter",
@@ -405,53 +507,62 @@ stories
           }
         ]}
       />
-    ), {info : "Utilisation d'une source externe spécifique pour les lignes avec formattage spécifique des cellules"}
+    ),
+    {
+      info:
+        "Utilisation d'une source externe spécifique pour les lignes avec formattage spécifique des cellules"
+    }
   )
-  .add("Injection de ligne", () => (
-    <UpDataGrid
-      injectRow={(previous, next, col) => {
-        if (
-          next == null ||
-          (previous &&
-            previous.value &&
-            previous.value.c1 &&
-            previous.value.c1.indexOf("2") != -1)
-        ) {
-          return <div style={{ color: "red" }}>Injected row</div>;
-        }
-        return null;
-      }}
-      isPaginationEnabled={false}
-      isSelectionEnabled={false}
-      isSortEnabled={false}
-      columns={[
-        {
-          label: "Col 1",
-          field: "c1",
-          isSortable: true
-        },
-        {
-          label: "Col 2",
-          field: "c2",
-          type: "boolean",
-          isSortable: true
-        },
-        {
-          label: "Col 3",
-          field: "c3",
-          isSortable: true
-        },
-        {
-          label: "Col 4",
-          field: "c4",
-          isSortable: true
-        }
-      ]}
-      data={data}
-    />
-  ), {info: "Injection de lignes"}
+  .add(
+    "Injection de ligne",
+    () => (
+      <UpDataGrid
+        injectRow={(previous, next, col) => {
+          if (
+            next == null ||
+            (previous &&
+              previous.value &&
+              previous.value.c1 &&
+              previous.value.c1.indexOf("2") != -1)
+          ) {
+            return <div style={{ color: "red" }}>Injected row</div>;
+          }
+          return null;
+        }}
+        isPaginationEnabled={false}
+        isSelectionEnabled={false}
+        isSortEnabled={false}
+        columns={[
+          {
+            label: "Col 1",
+            field: "c1",
+            isSortable: true
+          },
+          {
+            label: "Col 2",
+            field: "c2",
+            type: "boolean",
+            isSortable: true
+          },
+          {
+            label: "Col 3",
+            field: "c3",
+            isSortable: true
+          },
+          {
+            label: "Col 4",
+            field: "c4",
+            isSortable: true
+          }
+        ]}
+        data={data}
+      />
+    ),
+    { info: "Injection de lignes" }
   )
-  .add("Test props modification", () => <Test />, { info : "With test de modification de props"});
+  .add("Test props modification", () => <Test />, {
+    info: "With test de modification de props"
+  });
 
 export interface testProps {}
 
@@ -497,10 +608,12 @@ export class Test extends React.Component<testProps, testState> {
           onSelectionChange={console.log}
           isPaginationEnabled={true}
           isSelectionEnabled={true}
-          page={this.state.page}
-          skip={this.state.skip}
-          take={50}
-          total={this.state.total}
+          paginationProps={{
+            page : this.state.page,
+            skip : this.state.skip,
+            take : 50,
+            total: this.state.total,
+          }}
           columns={[
             {
               label: "Col 1",
