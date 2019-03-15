@@ -6,7 +6,7 @@ import { style } from 'typestyle'
 
 import axios from 'axios'
 
-import UpPagination from './UpPagination'
+import UpPagination, { UpPaginationProps } from './UpPagination'
 import UpUpDataGridToolbar from './UpDataGridToolbar'
 import UpDataGridRowHeader from './UpDataGridRowHeader'
 import UpDataGridRow from './UpDataGridRow'
@@ -115,7 +115,7 @@ export interface exportCsv {
 }
 
 export interface UpDataGridProps {
-    injectRow?: (previous: any, next: any, colum: Column[]) => JSX.Element;
+    className?:string;
     columns: Array<Column>;
     actions?: Array<Action>;
     isSelectionEnabled?: boolean;
@@ -127,12 +127,7 @@ export interface UpDataGridProps {
     data?: Array<any>;
     dataKey?: string;
     isDataFetching?: boolean;
-    // For pagination
-    skip?: number;
-    take?: number;
-    page?: number;
-    total?: number;
-
+   
     exportCsv?: exportCsv;
 
     dataSource?: {
@@ -143,10 +138,12 @@ export interface UpDataGridProps {
         dirParamName?: string;
         skipParamName?: string;
         takeParamName?: string;
-    },
-    takes?: Array<{ id: number, text: string}>;
+    };
+    
+    loadingMessage?: string,
+    paginationProps?: Partial<UpPaginationProps>,
+    injectRow?: (previous: any, next: any, colum: Column[]) => JSX.Element;
     // Event Handler
-    onPageChange?: (page: number, take: number, skip: number) => void;
     onSortChange?: (c: Column, dir: SortDirection) => void;
     onSelectionChange?: (lastChangeRow: Row, seletectedRow: Row[]) => void;
 }
@@ -175,13 +172,16 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
         isOddEvenEnabled: true,
         isSortEnabled: true,
         theme: UpDefaultTheme,
-        takes: [
-            { id: 10, text: "10" },
-            { id: 20, text: "20" },
-            { id: 50, text: "50" },
-            { id: 100, text: "100" },
-            { id: 200, text: "200" },
-            { id: 500, text: "500" }]
+        loadingMessage: "Chargement en cours",
+        paginationProps : {
+            takes: [
+                { id: 10, text: "10" },
+                { id: 20, text: "20" },
+                { id: 50, text: "50" },
+                { id: 100, text: "100" },
+                { id: 200, text: "200" },
+                { id: 500, text: "500" }]
+        }
     }
 
     constructor(props, context) {
@@ -325,8 +325,12 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
     }
 
     onPageChange = (page: number, take: number, skip: number) => {
-        if (this.props.onPageChange)
-            this.props.onPageChange(page, take, skip);
+        if (this.props.paginationProps.onPageChange)
+            this.props.paginationProps.onPageChange(
+              page,
+              take,
+              skip
+            );
 
         this.setState({ page, take, skip }, () => {
             if (this.props.dataSource != undefined) {
@@ -431,13 +435,21 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
             = {
                 data: data,
                 columns: nextProps.columns,//(nextProps.columns != null) ? this.prepareColumns(nextProps.columns) : nextProps.columns,
-                total: nextProps.total,
+                total: nextProps.paginationProps.total,
                 isDataFetching: nextProps.isDataFetching,
             };
-        if(nextProps.skip != null) {
-            newState.skip = nextProps.skip > nextProps.total ? 0 : nextProps.skip;
-            newState.take = nextProps.take;
-            newState.page = (nextProps.page - 1) * nextProps.skip > nextProps.total ? 1 : nextProps.page;
+        if (nextProps.paginationProps.skip != null) {
+            newState.skip =
+                nextProps.paginationProps.skip > nextProps.paginationProps.total
+                ? 0
+                : nextProps.paginationProps.skip;
+            newState.take = nextProps.paginationProps.take;
+            newState.page =
+              (nextProps.paginationProps.page - 1) *
+                nextProps.paginationProps.skip >
+              nextProps.paginationProps.total
+                ? 1
+                : nextProps.paginationProps.page;
         }
         this.setState(newState, () => {
             if (arrayEqualResult === false) {
@@ -449,18 +461,27 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
     }
 
     render() {
-        const takes = this.props.takes;
+        const {
+          skip,
+          take,
+          total,
+          onPageChange,
+          ...otherProps
+        } = this.props.paginationProps;
 
         const pagination = <div style={{ margin: '10px 0px' }}>
-            <UpPagination skip={this.state.skip} take={this.state.take}
-            total={this.state.total} onPageChange={this.onPageChange.bind(this)} takes={takes} />
+            <UpPagination 
+                skip={this.state.skip} 
+                take={this.state.take}
+                total={this.state.total} 
+                onPageChange={this.onPageChange.bind(this)} {...otherProps} />
         </div>;
-        const toolbar = <UpUpDataGridToolbar />;
+        // const toolbar = <UpUpDataGridToolbar />;
         const RowTemplate = this.props.rowTemplate;
 
-        var OddEvenStyle = null;
+        let oddEvenStyle = null;
         if (this.props.isOddEvenEnabled) {
-            OddEvenStyle = style({
+            oddEvenStyle = style({
                 $nest: {
                     '& .up-data-grid-row:nth-child(even)': {
                         background: "#FFF"
@@ -471,9 +492,9 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
                 }
             });
         }
-        var columns = this.state.columns;
+        let columns = this.state.columns;
         if (this.props.isSortEnabled == false) {
-            var newUnsortableColumns: Array<Column> = [];
+            let newUnsortableColumns: Array<Column> = [];
             columns.map((value, index) => {
                 value.isSortable = false;
                 newUnsortableColumns.push(value);
@@ -481,9 +502,9 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
             columns = newUnsortableColumns;
         }
 
-        var rows = [];
+        let rows = [];
 
-        for (var index = 0; index < this.state.data.length; index++) {
+        for (let index = 0; index < this.state.data.length; index++) {
             let value = this.state.data[index];
 
             if (RowTemplate) {
@@ -522,11 +543,11 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
         }
 
         return (
-            <div className={classnames("up-data-grid-container", WrapperDataGridStyle)} >
+            <div className={classnames("up-data-grid-container", WrapperDataGridStyle, this.props.className)} >
                 {this.props.isPaginationEnabled && this.props.paginationPosition != 'bottom' &&
                     pagination
                 }
-                <UpLoadingIndicator displayMode={'layer'} message={"Chargement en cours"} isLoading={this.state.isDataFetching} />
+                <UpLoadingIndicator displayMode={'layer'} message={this.props.loadingMessage} isLoading={this.state.isDataFetching} />
                 {this.btnExportCsv}
                 <table ref={(r) => { this.refTable = r; }} className={classnames("up-data-grid-main", DataGridStyle(this.props))}>
                     <UpDataGridRowHeader isSelectionEnabled={this.props.isSelectionEnabled}
@@ -534,7 +555,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
                         onSortChange={this.onSortChange.bind(this)}
                         actions={this.props.actions}
                         columns={columns} />
-                    <tbody className={classnames("up-data-grid-body", OddEvenStyle)}>
+                    <tbody className={classnames("up-data-grid-body", oddEvenStyle)}>
                         {rows}
                     </tbody>
                 </table>
