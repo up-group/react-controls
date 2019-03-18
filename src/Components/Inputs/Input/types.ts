@@ -19,7 +19,6 @@ export interface UpInputStyledProps extends CommonProps<string> {
     backgroundColor?: string;
     borderColor?: string;
     type?: InputType;
-    hasError?: boolean;
     showError?:boolean;
     onChange?: (data: any) => void;
     className?: string;

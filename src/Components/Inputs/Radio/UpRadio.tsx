@@ -119,6 +119,16 @@ class UpRadio extends BaseControlComponent<UpRadioProps, any> {
     get currentValue() {
         return this.isControlled ? this.props.value : this.state.value;
     }
+    
+    showError() {
+        return this.props.showError !== undefined
+            ? this.props.showError === true
+            : this.hasError;
+    }
+
+    showSuccess() {
+        return this.props.showSuccess
+    }
 
     renderControl() {
         const options = this.props.options;

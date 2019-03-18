@@ -34,6 +34,16 @@ export default class UpText extends BaseControlComponent<UpRichTextProps, string
         }
     }
     
+    showError() {
+        return this.props.showError !== undefined
+            ? this.props.showError === true
+            : this.hasError;
+    }
+
+    showSuccess() {
+        return this.props.showSuccess
+    }
+
     renderControl(): JSX.Element {
         const { configRTE } = this.props ;
         return (

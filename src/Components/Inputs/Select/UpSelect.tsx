@@ -425,6 +425,16 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         }
         return { [this.keyText] : optionLabel, [this.keyId] : inputValue, __isNew__ : true };
     };
+    
+    showError() {
+        return this.props.showError !== undefined
+            ? this.props.showError === true
+            : this.hasError;
+    }
+
+    showSuccess() {
+        return this.props.showSuccess
+    }
 
     renderControl() {
         const dataSource = this.props.dataSource;
