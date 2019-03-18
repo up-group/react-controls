@@ -130,7 +130,7 @@ const PhoneInput = (props) => {
       error={error}
       onChange={(e, v, error) => {
         setPhoneValue(v);
-        //setError(error);
+        setError(error);
       }}
       value={phoneValue}
       validation={validation}

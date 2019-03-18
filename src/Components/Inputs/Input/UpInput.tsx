@@ -95,7 +95,6 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> =
 class UpInput extends BaseControlComponent<UpInputProps, any> {
 
     public static defaultProps: UpInputProps = {
-        showError: true,
         theme: defaultTheme,
         width: "fill",
         iconPosition: 'right',
@@ -146,14 +145,38 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
         }
 
         if (this.state.extra === undefined) {
-            this.setState({ extra: { focused: false } }, handleOnBlur.bind(null, event));
+            this.setState({ extra: { focused: false, touched: true } }, handleOnBlur.bind(null, event));
         } else {
-            this.setState(update(this.state, { extra: { focused: { $set: false } } }), handleOnBlur.bind(null, event))
+          this.setState(
+            update(this.state, {
+              extra: {
+                focused: { $set: false },
+                touched: { $set: true }
+              }
+            }),
+            handleOnBlur.bind(null, event)
+          );
         }
     }
 
     get isFocused() {
-        return this.state.extra ? this.state.extra.focused === true : false;
+      return this.state.extra ? this.state.extra.focused === true : false;
+    }
+
+    get isTouched() {
+      return this.state.extra ? this.state.extra.touched === true : false;
+    }
+
+    public showError() {
+      return this.props.showError !== undefined
+        ? this.props.showError
+        : this.hasError && !this.isFocused && this.isTouched;
+  }
+
+    showSuccess() {
+      return this.props.showSuccess !== undefined
+        ? this.props.showSuccess
+        : !this.hasError && !this.isFocused && this.isTouched && !isEmpty(this.currentValue);
     }
 
     renderControl() {
@@ -180,9 +203,9 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
             placeholder={placeholder}
             floatingLabel={floatingLabel}
             type={type || "text"}
-            hasError={this.props.hasError || this.hasError()}
-            showError={this.props.showError}
-            showSuccess={this.props.showSuccess}
+            hasError={this.hasError}
+            showError={this.showError()}
+            showSuccess={this.showSuccess()}
             onFocus={this.onFocus}
             focused={this.isFocused}
             touched={touched}

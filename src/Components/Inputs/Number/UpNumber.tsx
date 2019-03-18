@@ -127,6 +127,16 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
             this.handleChangeEvent(eventFactory(this.props.name, this.state.value), this.state.value);
         }); 
    }
+    
+   showError() {
+        return this.props.showError !== undefined
+            ? this.props.showError === true
+            : this.hasError;
+    }
+    
+    showSuccess() {
+        return this.props.showSuccess
+    }
 
    renderControl() {
        const { isRequired, theme, readonly, tooltip, name } = this.props;

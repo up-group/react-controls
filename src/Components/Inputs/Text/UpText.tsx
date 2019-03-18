@@ -64,6 +64,16 @@ export default class UpText extends BaseControlComponent<UpTextProps, string> {
         event.persist() ;
         this.handleChangeEvent(event, event.target.value);
     }
+    
+    showError() {
+        return this.props.showError !== undefined
+            ? this.props.showError === true
+            : this.hasError;
+    }
+
+    showSuccess() {
+        return this.props.showSuccess
+    }
 
     renderControl(): JSX.Element {
         const {value, onChange, className, readonly, tooltip, ...others} = this.props ;
