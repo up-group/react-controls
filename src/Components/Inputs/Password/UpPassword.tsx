@@ -32,6 +32,9 @@ export interface UpPasswordState {
 
 class UpPassword extends React.Component<UpPasswordProps, UpPasswordState>  {
 
+    updatingShow
+    updatingHide
+
     static defaultProps = {
         theme: defaultTheme
     }
@@ -58,19 +61,37 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState>  {
     }
 
     hide = () => {
-        if(this.isHidden)
-            return ;
-        this.setState({
-            isVisible: false,
-        });
+      if (this.isHidden || this.updatingShow) {
+        return;
+      }
+    
+      this.updatingHide = setTimeout(
+        () =>
+          this.setState(
+            {
+              isVisible: false
+            },
+            () => (this.updatingHide = null)
+          ),
+        500
+      );
     }
 
     show = () => {
-        if (this.isShown)
-            return;
-        this.setState({
-            isVisible: true,
-        });
+      if (this.isShown || this.updatingShow) {
+        return;
+      }
+
+      this.updatingShow = setTimeout(
+        () =>
+          this.setState(
+            {
+              isVisible: true
+            },
+            () => (this.updatingShow = null)
+          ),
+        0
+      );
     }
 
     get showStatus() {
