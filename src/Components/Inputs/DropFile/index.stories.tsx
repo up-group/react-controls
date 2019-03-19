@@ -53,24 +53,31 @@ stories.addDecorator(withKnobs);
 stories.add('Simple usage',
 () => {
 
- return <UpThemeProvider theme={UpDefaultTheme}>
-   <UpBox style={{margin:"40px 30px"}}>
-     <UpNotification intent={"info"}>
+ return (
+   <UpThemeProvider theme={UpDefaultTheme}>
+     <UpBox style={{ margin: "40px 30px" }}>
+       <UpNotification intent={"info"}>
          Le composant <code>UpDropFile</code> permet de définir ...
-     </UpNotification>
-     
-     <UpParagraph className={style({width:'100%'})}>
-       <UpDropFile label={'File'} name={'file'} maxImgWidth={600}>
-         Add
-        </UpDropFile>
-     </UpParagraph>
-     <UpParagraph className={style({ width: '100%' })}>
-       <UpDropFile showPreview={false} label={'File without preview'} name={'file'} maxImgWidth={600}>
-         Add
-        </UpDropFile>
-     </UpParagraph>
-   </UpBox>
- </UpThemeProvider>
+       </UpNotification>
+
+       <UpBox className={style({ width: "300px !important" })}>
+         <UpDropFile label={"File"} name={"file"} maxImgWidth={600}>
+           Add
+         </UpDropFile>
+       </UpBox>
+       <UpBox className={style({ width: "300px !important" })}>
+         <UpDropFile
+           showPreview={false}
+           label={"File without preview"}
+           name={"file"}
+           maxImgWidth={600}
+         >
+           Add
+         </UpDropFile>
+       </UpBox>
+     </UpBox>
+   </UpThemeProvider>
+ );
  
 }, { info : "Utilisation du composant en lui passant les données à afficher" }
 ).add('Form',
@@ -81,7 +88,7 @@ stories.add('Simple usage',
           <UpNotification intent={"info"}>
             Le composant <code>UpDropFile</code> permet de définir ...
           </UpNotification>
-          <UpParagraph className={style({ width: "100%" })}>
+          <UpBox className={style({ width: "100%" })}>
             <Formik
               initialValues={{ file: null }}
               onSubmit={(values, { setSubmitting }) => {
@@ -97,7 +104,7 @@ stories.add('Simple usage',
             >
               {props => <FileForm {...props} />}
             </Formik>
-          </UpParagraph>
+          </UpBox>
         </UpBox>
       </UpThemeProvider>
     );

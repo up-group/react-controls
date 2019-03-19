@@ -103,7 +103,7 @@ const boxUploaded = style({
   borderStyle: 'solid',
 });
 
-const Base: NestedCSSProperties = {
+const base: NestedCSSProperties = {
   fontFamily: 'Roboto',
   textAlign: 'center',
   cursor: 'pointer',
@@ -115,14 +115,14 @@ const Base: NestedCSSProperties = {
   position: 'relative',
 };
 
-const BaseStyle = bgSrc => style({
-  ...Base,
+const baseStyle = bgSrc => style({
+  ...base,
   maxWidth: '100%',
   backgroundImage: `url(${bgSrc})`,
   backgroundRepeat: 'no-repeat',
 });
 
-const FileStyle = style({
+const fileStyle = style({
   color: '#7a756f',
   textAlign: 'center',
   display: 'inline-block',
@@ -131,7 +131,11 @@ const FileStyle = style({
   marginTop: '16px',
 });
 
-const ExtensionsStyle = (props: WithThemeProps) => style({
+const wrapperDropStyle = style({
+  width: '100%',
+});
+
+const extensionsStyle = (props: WithThemeProps) => style({
   fontSize: '11px',
   fontFamily: 'Roboto',
   color: props.theme.colorMap.darkGray5,
@@ -567,7 +571,6 @@ class UpDropFile extends React.Component<
   // tslint:disable-next-line:function-name
   _crop() {
     // image in dataUrl
-
   }
 
   uploadFile() {
@@ -632,6 +635,7 @@ class UpDropFile extends React.Component<
     return (
       <>
       <div
+        className={wrapperDropStyle}
         ref={wrapperUpDropFile => {
           this.wrapperUpDropFile = wrapperUpDropFile;
         }}
@@ -648,7 +652,7 @@ class UpDropFile extends React.Component<
             )}
           </UpLabel>
         )}
-        <div className={FileStyle} onClick={this.onZoneClick.bind(this)}>
+        <div className={fileStyle} onClick={this.onZoneClick.bind(this)}>
           <Dropzone
             onMouseEnter={() => this.setState({ showOptions: true })}
             onMouseLeave={() => this.setState({ showOptions: false })}
@@ -666,7 +670,7 @@ class UpDropFile extends React.Component<
             }}
             className={classnames(
               "up-btn",
-              BaseStyle(this.props.showPreview ? this.preview : ""),
+              baseStyle(this.props.showPreview ? this.preview : ""),
               isFileSelected ? boxUploaded : boxUpload
             )}
             name={this.props.name}
@@ -801,7 +805,7 @@ class UpDropFile extends React.Component<
         )}
         {this.props.allowedExtensions &&
           this.props.allowedExtensions.length > 0 && (
-            <span className={ExtensionsStyle(this.props)}>{`${
+            <span className={extensionsStyle(this.props)}>{`${
               this.props.allowExtensionsLabel
             } : ${this.props.allowedExtensions.join(", ")}`}</span>
           )}
