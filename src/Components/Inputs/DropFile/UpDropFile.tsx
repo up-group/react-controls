@@ -14,7 +14,7 @@ import "cropperjs/dist/cropper.css";
 
 import { style } from 'typestyle/lib';
 import * as classnames from 'classnames';
-import UpDefaultTheme, { WithThemeProps, withTheme } from '../../../Common/theming';
+import UpDefaultTheme, { WithThemeProps, withTheme, UpThemeInterface } from '../../../Common/theming';
 import { ThemeInterface, IntentType } from "../../../Common/theming/types";
 
 import { NestedCSSProperties } from 'typestyle/lib/types';
@@ -115,17 +115,23 @@ const base: NestedCSSProperties = {
   position: 'relative',
 };
 
-const baseStyle = bgSrc => style({
-  ...base,
-  maxWidth: '100%',
-  backgroundImage: `url(${bgSrc})`,
-  backgroundRepeat: 'no-repeat',
-});
+const baseStyle = (bgSrc: string, theme : UpThemeInterface) =>
+  style({
+    ...base,
+    maxWidth: "100%",
+    backgroundImage: `url(${bgSrc})`,
+    backgroundRepeat: "no-repeat",
+    $nest: {
+      "& canvas": {
+        maxWidth: "100%",
+        borderRadius: theme.borderRadius,
+      }
+    }
+  });
 
 const fileStyle = style({
   color: '#7a756f',
   textAlign: 'center',
-  display: 'inline-block',
   height: '100%',
   width: '100%',
   marginTop: '16px',
@@ -670,7 +676,7 @@ class UpDropFile extends React.Component<
             }}
             className={classnames(
               "up-btn",
-              baseStyle(this.props.showPreview ? this.preview : ""),
+              baseStyle(this.props.showPreview ? this.preview : "", this.props.theme),
               isFileSelected ? boxUploaded : boxUpload
             )}
             name={this.props.name}
