@@ -14,10 +14,15 @@ const stories = storiesOf('Inputs/UpPassword', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpPassword'));
 
+const ControlledPassword = (props) => {
+  const [value, setValue] = React.useState('') ;
+  return <UpPassword value={value} onChange={(e,v) => setValue(v)} />;
+}
+
 stories.add('Password input',
    () => (
         <div style={{padding:"30px"}}>
-          <UpPassword  />
+          <ControlledPassword />
         </div>
   ), { info :  'Utilisation simple' }
 );
