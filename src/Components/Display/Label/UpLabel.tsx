@@ -28,7 +28,7 @@ export default class UpLabel extends React.Component<UpLabelProps, {}> {
   // End Fix 
 
   render() {
-      const {children, text, required, ...others} = this.props ; 
+      const {children, text, required, textAlign, inline, ...others} = this.props ; 
 
       return (
         <label className={getStyles(this.props)} onFocus={this.onFocus} onClick={this.onClick} {...others}>
