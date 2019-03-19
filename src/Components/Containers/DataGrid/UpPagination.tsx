@@ -72,54 +72,55 @@ const itemActive = (props : WithThemeProps) => ({
     cursor: "not-allowed",
 });
 
-const itemDisabled = {
+const itemDisabled = (props: WithThemeProps) => ({
     color: "#777",
     cursor: "not-allowed",
     backgroundColor: "#fff",
-    borderColor: "#ddd"
-};
+    borderColor: props.theme.colorMap.defaultBorder
+});
 
 const paginationItemStyle = (props : WithThemeProps) => {
     const itemHoverStyle = itemHover(props);
     const itemActiveStyle = itemActive(props) ;
-
+    const itemDisabledStyle = itemDisabled(props);
+    
     return style({
-        display: "inline",
-        $nest: {
-            '& > a': {
-                minWidth: 41,
-                textAlign: "center",
-                position: "relative",
-                float: "left",
-                padding: "6px 3px",
-                marginLeft: "-1px",
-                lineHeight: "1.43",
-                color: props.theme.colorMap.primary,
-                textDecoration: "none",
-                backgroundColor: props.theme.colorMap.primaryFg,
-                border: `1px solid ${props.theme.colorMap.primary}`
-            },
-            "&:first-child a": firstChild,
-            "&:first-child span": firstChild,
-            "&:last-child a": lastChild,
-            "&:last-child span": lastChild,
-            '& a:hover': itemHoverStyle,
-            '& a:focus': itemHoverStyle,
-            '& span:hover': itemHoverStyle,
-            '& span:focus': itemHoverStyle,
-            "&.active > a": itemActiveStyle,
-            "&.active > span": itemActiveStyle,
-            "&.active > a:hover": itemActiveStyle,
-            "&.active > span:hover": itemActiveStyle,
-            "&.active > a:focus": itemActiveStyle,
-            "&.active > span:focus": itemActiveStyle,
-            "&.disabled > a": itemDisabled,
-            "&.disabled > span": itemDisabled,
-            "&.disabled > a:hover": itemDisabled,
-            "&.disabled > span:hover": itemDisabled,
-            "&.disabled > a:focus": itemDisabled,
-            "&.disabled > span:focus": itemDisabled
-        }
+      display: "inline",
+      $nest: {
+        "& > a": {
+          minWidth: 41,
+          textAlign: "center",
+          position: "relative",
+          float: "left",
+          padding: "6px 3px",
+          marginLeft: "-1px",
+          lineHeight: "1.43",
+          color: props.theme.colorMap.primary,
+          textDecoration: "none",
+          backgroundColor: props.theme.colorMap.primaryFg,
+          border: `1px solid ${props.theme.colorMap.primary}`
+        },
+        "&:first-child a": firstChild,
+        "&:first-child span": firstChild,
+        "&:last-child a": lastChild,
+        "&:last-child span": lastChild,
+        "& a:hover": itemHoverStyle,
+        "& a:focus": itemHoverStyle,
+        "& span:hover": itemHoverStyle,
+        "& span:focus": itemHoverStyle,
+        "&.active > a": itemActiveStyle,
+        "&.active > span": itemActiveStyle,
+        "&.active > a:hover": itemActiveStyle,
+        "&.active > span:hover": itemActiveStyle,
+        "&.active > a:focus": itemActiveStyle,
+        "&.active > span:focus": itemActiveStyle,
+        "&.disabled > a": itemDisabledStyle,
+        "&.disabled > span": itemDisabledStyle,
+        "&.disabled > a:hover": itemDisabledStyle,
+        "&.disabled > span:hover": itemDisabledStyle,
+        "&.disabled > a:focus": itemDisabledStyle,
+        "&.disabled > span:focus": itemDisabledStyle
+      }
     });
 }
 
