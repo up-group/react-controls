@@ -34,7 +34,6 @@ stories.add('Simple usage',
     return (
       <UpThemeProvider theme={UpDefaultTheme}>
         <UpBox style={{ margin: "40px 30px" }}>
-          <UpParagraph>
             <UpHeading tag={"h2"}>Icons</UpHeading>
             <UpBox flexDirection={"row"} flexWrap={true}>
               {IconNames.map(icon => (
@@ -89,7 +88,6 @@ stories.add('Simple usage',
                 </dl>
               ))}
             </UpBox>
-          </UpParagraph>
         </UpBox>
       </UpThemeProvider>
     );
