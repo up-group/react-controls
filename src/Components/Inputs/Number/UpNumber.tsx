@@ -38,7 +38,7 @@ const wrapperNumberStyles = (props : UpNumberProps) => style({
 const wrapperNumberButtonsStyles = (props : UpNumberProps) => style({
     position: 'absolute', 
     right: props.theme.inputBorderLess ? '0px' : '2px',
-    bottom: props.theme.inputBorderLess ? '9px' : '3px',
+    bottom: props.theme.inputBorderLess ? '7px' : '2px',
     $nest : {
         '& .up-btn-wrapper .up-btn .up-icon-wrapper svg' : {
             margin: '0px',
@@ -46,6 +46,9 @@ const wrapperNumberButtonsStyles = (props : UpNumberProps) => style({
         '& .up-btn-wrapper .up-btn' : {
             marginLeft: '4px',
         },
+        '& .up-btn-wrapper' : {
+            width: 'auto',
+        }
     },
 })
 
@@ -135,7 +138,7 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
     }
     
     showSuccess() {
-        return this.props.showSuccess
+        return false
     }
 
    renderControl() {
