@@ -26,7 +26,7 @@ const CommonStartCSS = (props: RatingProps & WithThemeProps) =>
     position: "relative",
     display: "inline-block",
     $nest: {
-      "&.up-star svg, &.up-star svg path, &.up-star svg polygon,, &.up-star svg polyline": {
+      "&.up-star svg, &.up-star svg path, &.up-star svg polygon, &.up-star svg polyline": {
         fill: props.theme.colorMap.primary
       }
     },
