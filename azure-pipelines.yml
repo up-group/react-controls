@@ -22,6 +22,12 @@ steps:
     contents: '**' 
     targetFolder: $(Build.ArtifactStagingDirectory) 
     cleanTargetFolder: true
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: infrastructure
+    contents: '**' 
+    targetFolder: $(Build.ArtifactStagingDirectory) 
+    cleanTargetFolder: false
 - task: PublishBuildArtifacts@1
   inputs:
     pathtoPublish: $(Build.ArtifactStagingDirectory)
