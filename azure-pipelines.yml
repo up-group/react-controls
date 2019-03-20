@@ -11,9 +11,20 @@ steps:
   inputs:
     versionSpec: '11.x'
   displayName: 'Install Node.js'
-
 - script: |
     npm i
     npm build
     npm run build-storybook
   displayName: 'npm install and publish static site'
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: docs
+    contents: '**' 
+    targetFolder: $(Build.ArtifactStagingDirectory) 
+    cleanTargetFolder: true
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: $(Build.ArtifactStagingDirectory)
+    artifactName: site
+    publishLocation: Container
+    targetPath:
