@@ -9,10 +9,11 @@ pool:
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '8.x'
+    versionSpec: '11.x'
   displayName: 'Install Node.js'
 
 - script: |
     npm i
     npm build
-  displayName: 'npm install, prepublish and publis beta'
+    npm run build-storybook
+  displayName: 'npm install and publish static site'
