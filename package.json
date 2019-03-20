@@ -65,7 +65,7 @@
     "publishLocalToApp": "copyfiles dist/src/*.* dist/src/**/* src/theming/icons/* ../../loopback/revolution-digitale/client/node_modules/@up-group/react-controls/dist",
     "test": "jest --notify --coverage",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -o ./docs"
+    "build-storybook": "build-storybook -o ./public"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
@@ -156,7 +156,7 @@
     "react-maskedinput": "^3.3.4",
     "react-pdf": "^4.0.0",
     "react-pure-render": "^1.0.2",
-    "react-select": "^2.0.0",
+    "react-select": "2.1.1",
     "react-sortable-hoc": "^0.6.1",
     "react-textarea-autosize": "^7.1.0-1",
     "react-tooltip": "^3.3.0",
