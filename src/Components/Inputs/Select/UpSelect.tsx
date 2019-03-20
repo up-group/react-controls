@@ -500,7 +500,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
 
         const data = this.props.data;
         let specProps: any = {
-            options: data
+            options: data,
         }
 
         if (loadOptions !== false) {
