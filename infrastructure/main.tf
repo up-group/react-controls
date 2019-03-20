@@ -1,7 +1,6 @@
 terraform {
   backend "azurerm" {}
 }
-
 variable "env" {}
 variable "build_id" {}
 
@@ -54,7 +53,7 @@ resource "azurerm_storage_account" "sa-web" {
 
   tags = {
     Project          = "ODI"
-    Environment      = "${var.environment}"
+    Environment      = "${var.env}"
     OrganizationName = "ODIFRAN"
     SubProject       = "Commerçant"
   }
