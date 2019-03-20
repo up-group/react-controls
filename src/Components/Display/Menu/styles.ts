@@ -2,7 +2,6 @@ import { DeviceLRTablets } from "../../../Common/utils/device";
 import { media, style } from "typestyle";
 import { UpMenuProps, UpMenuState } from "./UpMenu";
 import { WithThemeProps } from "../../../Common/theming";
-import { position } from "tether";
 
 export const MenuStyles = (
          props: UpMenuProps & WithThemeProps & UpMenuState
