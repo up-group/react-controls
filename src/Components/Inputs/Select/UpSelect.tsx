@@ -501,12 +501,13 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         const data = this.props.data;
         let specProps: any = {
             options: data,
+            loadOptions: false,
         }
 
         if (loadOptions !== false) {
             specProps = {
-                "loadOptions": loadOptions,
-                "autoload": this.props.autoload
+                loadOptions,
+                autoload: this.props.autoload
             }
         }
 
@@ -578,10 +579,10 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         return (
             <div className={classnames('up-select-wrapper', getStyles(this.props))}>
                 {dataSource != null && this.props.allowCreate === true &&
-                    <Select.AsyncCreatable {...selectComponentProps} />
+                    <Select.AsyncCreatable {...selectComponentProps as any} />
                 }
                 {dataSource != null && this.props.allowCreate === false &&
-                    <Select.Async {...selectComponentProps} />
+                    <Select.Async {...selectComponentProps as any} />
                 }
                 {dataSource == null && this.props.allowCreate === true &&
                     <Select.Creatable {...selectComponentProps} />
