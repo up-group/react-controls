@@ -10,30 +10,52 @@ data "azurerm_app_service_plan" "asp" {
   resource_group_name = "up-france-services-${var.env}-rg"
 }
 
-data "azurerm_container_registry" "cr" {
-  name                = "upgroup"
-  resource_group_name = "fd-devops"
-}
-
 resource "azurerm_resource_group" "rg" {
   name     = "up-public-react-controls-${var.env}-rg"
   location = "West Europe"
 }
 
-resource "azurerm_app_service" "app" {
-  name                = "up-public-react-controls-${var.env}-app"
-  location            = "${azurerm_resource_group.rg.location}"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
-  app_service_plan_id = "${data.azurerm_app_service_plan.asp.id}"
+resource "azurerm_storage_account" "sa-web" {
+  name                      = "reactcontrols${var.env}sa"
+  location                  = "${azurerm_resource_group.rg.location}"
+  resource_group_name       = "${azurerm_resource_group.rg.name}"
+  app_service_plan_id       = "${data.azurerm_app_service_plan.asp.id}"
+  account_tier              = "Standard"
+  account_replication_type  = "GRS"
 
-  app_settings {
-    DOCKER_REGISTRY_SERVER_URL      = "https://${data.azurerm_container_registry.cr.login_server}"
-    DOCKER_REGISTRY_SERVER_USERNAME = "${data.azurerm_container_registry.cr.admin_username}"
-    DOCKER_REGISTRY_SERVER_PASSWORD = "${data.azurerm_container_registry.cr.admin_password}"
+  properties = {
+    networkAcls = {
+      bypass              = "AzureServices"
+      virtualNetworkRules = []
+      ipRules             = []
+      defaultAction       = "Allow"
+    }
+
+    supportsHttpsTrafficOnly = true
+
+    encryption = {
+      services = {
+        file = {
+          enabled = true
+        }
+
+        blob = {
+          enabled = true
+        }
+      }
+
+      keySource = "Microsoft.Storage"
+    }
+
+    accessTier = "Hot"
   }
 
-  site_config {
-    linux_fx_version = "DOCKER|${data.azurerm_container_registry.cr.login_server}/public/react-controls:${var.build_id}"
-    always_on        = "true"
+  dependsOn = []
+
+  tags = {
+    Project          = "ODI"
+    Environment      = "${var.environment}"
+    OrganizationName = "ODIFRAN"
+    SubProject       = "Commerçant"
   }
 }
