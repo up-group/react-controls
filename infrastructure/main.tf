@@ -29,4 +29,14 @@ resource "azurerm_storage_account" "sa-web" {
     OrganizationName = "UPPUBLIC"
     SubProject       = "React-Controls"
   }
+   provisioner "local-exec" {
+    command = "az storage blob service-properties update --account-name ${azurerm_storage_account.sa-web.name} --static-website  --index-document index.html --404-document index.html"
+  }
+}
+
+resource "azurerm_storage_container" "site" {
+  name                  = "site"
+  resource_group_name   = "${azurerm_resource_group.rg.name}"
+  storage_account_name  = "${azurerm_storage_account.sa-web.name}"
+  container_access_type = "private"
 }
