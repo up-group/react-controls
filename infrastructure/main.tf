@@ -33,9 +33,9 @@ resource "azurerm_storage_account" "sa-web" {
     OrganizationName = "UPPUBLIC"
     SubProject       = "React-Controls"
   }
-   provisioner "local-exec" {
+  /*provisioner "local-exec" {
      command = "az login  --subscription \"${var.armsubscriptionid}\" -u \"${var.armclientid}\" -p \"${var.armclientsecret}\" | az storage blob service-properties update --account-name ${azurerm_storage_account.sa-web.name} --static-website  --index-document index.html --404-document index.html"
-  }
+  }*/
 }
 
 resource "azurerm_storage_container" "site" {
