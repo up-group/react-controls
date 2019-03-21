@@ -18,14 +18,11 @@ resource "azurerm_storage_account" "sa-web" {
   name                      = "reactcontrols${var.env}sa"
   location                  = "${azurerm_resource_group.rg.location}"
   resource_group_name       = "${azurerm_resource_group.rg.name}"
-  account_tier              = "Standard"
-  account_replication_type  = "GRS"
-
-
-  
+  account_tier             = "Standard"
+  account_replication_type = "RAGRS"
+  account_kind             = "StorageV2"
   access_tier= "Hot"
   depends_on = []
-
   tags = {
     Project          = "Up.Public"
     Environment      = "${var.env}"
