@@ -598,37 +598,39 @@ class UpDataGrid extends React.Component<
           this.props.className
         )}
       >
-        {this.props.isPaginationEnabled &&
-          this.props.paginationPosition != "bottom" &&
-          pagination}
-        <UpLoadingIndicator
-          displayMode={"layer"}
-          message={this.props.loadingMessage}
-          isLoading={this.state.isDataFetching}
-        />
+        {this.props.isPaginationEnabled && this.props.paginationPosition != "bottom" &&
+          pagination
+        }
         {this.btnExportCsv}
-        <table
-          ref={r => {
-            this.refTable = r;
-          }}
-          className={classnames("up-data-grid-main", DataGridStyle(this.props))}
+        <UpLoadingIndicator
+          displayMode={"zone"}
+          message={this.props.loadingMessage}
+          isLoading={true /*this.state.isDataFetching*/}
         >
-          <UpDataGridRowHeader
-            isSelectionEnabled={this.props.isSelectionEnabled}
-            onSelectionChange={this.onSelectionAllChange.bind(this)}
-            onSortChange={this.onSortChange.bind(this)}
-            actions={this.props.actions}
-            columns={columns}
-          />
-          <tbody className={classnames("up-data-grid-body", oddEvenStyle)}>
-            {rows}
-          </tbody>
-        </table>
-        {!this.state.isDataFetching &&
-          this.props.isPaginationEnabled &&
-          this.props.paginationPosition != "top" && (
-            <div style={{ marginTop: "10px" }}>{pagination}</div>
-          )}
+        <>
+          <table
+            ref={r => {
+              this.refTable = r;
+            }}
+            className={classnames("up-data-grid-main", DataGridStyle(this.props))}
+          >
+            <UpDataGridRowHeader
+              isSelectionEnabled={this.props.isSelectionEnabled}
+              onSelectionChange={this.onSelectionAllChange.bind(this)}
+              onSortChange={this.onSortChange.bind(this)}
+              actions={this.props.actions}
+              columns={columns}
+            />
+            <tbody className={classnames("up-data-grid-body", oddEvenStyle)}>
+              {rows}
+            </tbody>
+          </table>
+        </>
+        </UpLoadingIndicator>
+        {this.props.isPaginationEnabled && this.props.paginationPosition != "top" && (
+          <div style={{ marginTop: "10px" }}>{pagination}</div>
+        )
+        }
       </div>
     );
   }
