@@ -5,6 +5,7 @@ variable "env" {}
 variable "armclientid" {}
 variable "armclientsecret" {}
 variable "armtenantid" {}
+variable "armsubscriptionid" {}
 variable "build_id" {}
 
 data "azurerm_app_service_plan" "asp" {
