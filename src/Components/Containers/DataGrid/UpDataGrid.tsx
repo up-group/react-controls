@@ -605,7 +605,7 @@ class UpDataGrid extends React.Component<
         <UpLoadingIndicator
           displayMode={"zone"}
           message={this.props.loadingMessage}
-          isLoading={true /*this.state.isDataFetching*/}
+          isLoading={this.state.isDataFetching}
         >
         <>
           <table
