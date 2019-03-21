@@ -437,12 +437,12 @@ class UpDropFile extends React.Component<
           };
 
           this.handleImage(tmpUpload);
-          this.setState({ showModal: true });
+          this.setState({ showModal: true, errors: null });
           if (onChange) {
             const file = { ...this.value, ...tmpUpload };
             onChange(eventFactory(this.props.name, file), file);
           } else {
-            this.setState({ value: { ...this.value, ...tmpUpload } });
+            this.setState({ value: { ...this.value, ...tmpUpload }, errors: null });
           }
         }.bind(this);
         this.resizeImage(this.props.maxImgWidth, reader.result, handleResize);
@@ -459,10 +459,10 @@ class UpDropFile extends React.Component<
         if (onChange) {
           onChange(eventFactory(this.props.name, upload), upload);
           if (isFileImage(file.name)) {
-            this.setState({ showModal: true });
+            this.setState({ showModal: true, errors: null });
           }
         } else {
-          this.setState({ value: upload, showModal: isFileImage(file.name) });
+          this.setState({ value: upload, showModal: isFileImage(file.name), errors: null });
         }
       }
     };
