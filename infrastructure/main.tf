@@ -33,7 +33,7 @@ resource "azurerm_storage_account" "sa-web" {
     SubProject       = "React-Controls"
   }
    provisioner "local-exec" {
-     command = "az login  --service-principal -u \"${var.armclientid}\" -p \"${var.armclientsecret}\" --tenant \"${var.armtenantid}\" | az storage blob service-properties update --account-name ${azurerm_storage_account.sa-web.name} --static-website  --index-document index.html --404-document index.html"
+     command = "az login  --subscription \"${var.armsubscriptionid}\" -u \"${var.armclientid}\" -p \"${var.armclientsecret}\" --tenant \"${var.armtenantid}\" | az storage blob service-properties update --account-name ${azurerm_storage_account.sa-web.name} --static-website  --index-document index.html --404-document index.html"
   }
 }
 
