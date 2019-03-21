@@ -362,7 +362,7 @@ class UpPagination extends React.Component<
         if (value === 0) {
           return (
             <li
-              key={`page-${value}`}
+              key={`page-${index}`}
               className={classnames(paginationItemClass, "disabled")}
             >
               <a onClick={e => e.preventDefault()} href="#">
@@ -374,7 +374,7 @@ class UpPagination extends React.Component<
 
         return (
           <li
-            key={`page-${value}`}
+            key={`page-${index}`}
             className={classnames(
               this.state.page == value ? "active" : "",
               paginationItemClass
