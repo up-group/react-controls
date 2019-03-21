@@ -10,6 +10,8 @@ export type LoadingIndicatorDisplayMode = "inline" | "layer" | "modal" | "zone"
 
 import defaultTheme from '../../../Common/theming' ;
 import UpBox from '../../Containers/Box';
+import { NestedCSSProperties } from 'typestyle/lib/types';
+import { color } from 'csx';
 
 export interface LoadingIndicatorProps {
     isLoading: boolean;
@@ -42,15 +44,8 @@ class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithTheme
     }
 
     render() {
-        let _displayMode = this.props.displayMode;
-        if (_displayMode == null) {
-            _displayMode = "inline";
-        }
-
-        let _title = this.props.title;
-        if (_title == null) {
-            _title = "Veuillez patienter...";
-        }
+        const _displayMode = this.props.displayMode || "inline";
+        const _title = this.props.title || "Veuillez patienter...";
 
         if (!this.props.isLoading && _displayMode != "zone") {
             return null;
@@ -72,21 +67,61 @@ class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithTheme
                 backgroundColor: "rgba(0,0,0,0.4)",
                 display: this.props.isLoading ? "block" : "none",
             }
-            const circle: React.CSSProperties = {
-                padding: 40,
-                textAlign: "center"
-            }
 
-            return <div style={container} className={classnames('up-loading-indicator', this.props.className)}>
+            const loadingIndicatorStyle: NestedCSSProperties = {};
+            loadingIndicatorStyle.position = "absolute";
+            loadingIndicatorStyle.left = 'calc(50% - 42px)';
+            loadingIndicatorStyle.top = 'calc(50% - 42px)';
+            loadingIndicatorStyle.padding= 40;
+            loadingIndicatorStyle.textAlign = "center";
+            loadingIndicatorStyle.width = '84px';
+            loadingIndicatorStyle.margin = 'auto';
+            loadingIndicatorStyle.zIndex = 9999;
+            loadingIndicatorStyle.backgroundColor = "white";
+            loadingIndicatorStyle.opacity = 1;
+            loadingIndicatorStyle.padding = 10;
+            loadingIndicatorStyle.borderRadius = this.props.theme.borderRadius;
+            loadingIndicatorStyle.boxShadow = "1px 1px 3px 2px #111";
+            
+            return (
+              <div
+                style={container}
+                className={classnames(
+                  "up-loading-indicator",
+                  this.props.className
+                )}
+              >
                 {this.props.children}
-                <div style={overlay} >
-                    <div style={circle}>
-                        <SvgIcon viewBox="0 0 48 48">
-                            <Circle theme={this.props.theme} cx="24" cy="24" r="21" stroke={this.props.theme.colorMap.primary} strokeWidth="6" fill="none" />
-                        </SvgIcon>
+                <div style={overlay}>
+                    <div className={style(loadingIndicatorStyle)}>
+                        <Box
+                            boxSize={"auto"}
+                            pad={"none"}
+                            margin={"none"}
+                            flexDirection={"row"}
+                            alignItems="center"
+                            justifyContent="center"
+                            className={classnames(
+                                "up-loading-indicator",
+                                this.props.className
+                            )}
+                        >
+                            <SvgIcon viewBox="0 0 64 64">
+                                <Circle
+                                theme={this.props.theme}
+                                cx="32"
+                                cy="32"
+                                r="29"
+                                stroke={this.props.theme.colorMap.primary}
+                                strokeWidth="6"
+                                fill="none"
+                                />
+                            </SvgIcon>
+                        </Box>
                     </div>
                 </div>
-            </div >
+              </div>
+            );
 
         } else if (_displayMode == "inline") {
             return <Box boxSize={"auto"} pad={"none"} margin={'none'} alignItems="center" justifyContent="center" className={classnames('up-loading-indicator', this.props.className)}>
