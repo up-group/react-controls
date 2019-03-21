@@ -34,7 +34,7 @@ const generatePagesNavigation = (page, total, take): Array<number> => {
       // push an empty link if only at least 2 steps after
       if (page != 5) pages.push(0);
 
-      if (page > 4 || page < maxPage - 2) {
+      if (page > 4 && page < maxPage - 2) {
         pages.push(page);
       }
 
