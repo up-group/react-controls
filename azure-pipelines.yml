@@ -18,7 +18,7 @@ steps:
   displayName: 'npm install and publish static site'
 - task: CopyFiles@2
   inputs:
-    sourceFolder: docs
+    sourceFolder: public
     contents: '**' 
     targetFolder: $(Build.ArtifactStagingDirectory) 
     cleanTargetFolder: true
