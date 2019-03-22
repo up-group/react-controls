@@ -1,11 +1,14 @@
 
 import * as React from "react"
-import './UpTile.scss'
+import * as classnames from 'classnames' ;
+
 import './bootstrap-grid.css'
 import * as $ from 'jquery'
 import SvgIcon from "../../Display/SvgIcon/index";
 
 import UpPanel from "../Panel/index"
+
+import { TitleStyles } from './styles' ;
 
 export interface UpTileProps {
     Title?: string
@@ -56,7 +59,7 @@ export default class UpTile extends React.Component<UpTileProps, UpTileState>{
             }
         }
 
-        return <div className="UpTile">
+        return <div className={classnames('UpTile', TitleStyles)}>
             <div style={null}>
                 <div className={"box box-home" + (!this.state.isCollapse ? "" : " collapsed-box")}>
                     <div className="box-header with-border">
