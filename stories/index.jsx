@@ -5,9 +5,11 @@ import { configure } from '@storybook/react';
 
 import './default.css';
 
-storiesOf('Welcome', module).add('to Storybook', () => { return <Welcome /> ; });
+storiesOf("INTRO|Up", module).add("default", () => {
+  return <Welcome />;
+});
 
-const req = require.context('../src/Components', true, /\.stories\.(js|tsx)$/)
+const req = require.context('../src/Components', true, /\.stories\.(js|ts)x$/)
 
 function loadStories() {
   req.keys().forEach((filename) => req(filename))
