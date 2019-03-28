@@ -9,6 +9,10 @@ import { isEmpty } from '../../../Common/utils';
 
 import UpButton from '../../Inputs/Button/UpButton'
 import { style } from 'typestyle';
+import UpSvgIcon from '../SvgIcon';
+import UpLigne from '../../Display/Ligne';
+import colorMap from "../../../Common/theming/colorMap";
+import UpBox from "../../Containers/Box";
 
 const resetMenuSelection = (menu: Array<MenuItemData>): Array<MenuItemData>  =>  {
     if (isEmpty(menu)) {
@@ -47,11 +51,55 @@ const HookedMenu = (props) => {
     ];
     const [menu, setMenu] = React.useState(defaultMenu);
 
-    return <UpMenu onClick={(uri) => {
-        const newMenu = setMenuSelection(uri, menu) ;
-        setMenu(newMenu);
-        return false;
-    }} menuItems={menu}></UpMenu>
+    const footerStyle = style({
+        color: '#9B9B9B',
+        fontFamily: 'Roboto',
+        fontSize: '12px',
+        lineHeight: '18px',
+        textAlign: 'center',
+        whiteSpace: 'pre-line',
+    });
+
+    return (
+      <UpMenu
+        onClick={uri => {
+          const newMenu = setMenuSelection(uri, menu);
+          setMenu(newMenu);
+          return false;
+        }}
+        menuItems={menu}
+        footer={() => (
+            <UpBox style={{ width: "100%", height: "100%;" }}>
+                <div
+                    className={footerStyle}>
+                Copyright. Tous droits réservés Up 2019
+              </div>
+              <a
+                className={footerStyle}
+                href="https://up.coop/donnees-personnelles"
+                target="_blank"
+              >
+                Conditions générales
+              </a>
+                    <a
+                    className={footerStyle}
+                href="https://up.coop/mentions-legales"
+                target="_blank"
+              >
+                Mentions légales
+              </a>
+            </UpBox>
+        )}
+        header={() => (
+          <>
+            <UpSvgIcon iconName={"confirm"} />
+            <UpLigne className={style({ color: colorMap.primary })}>
+              Acceptation de titre
+            </UpLigne>
+          </>
+        )}
+      />
+    );
 };
 
 storiesOf('Display/UpMenu', module)
