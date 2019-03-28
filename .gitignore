@@ -11,6 +11,7 @@ test/index.js.map
 
 npm-debug.log
 dist/
+public/
 
 
 test/*
