@@ -16,7 +16,7 @@ export default create({
 
     // UI
     appBg: 'white',
-    appContentBg: colorMap.primary,
+    appContentBg: colorMap.white3,
     appBorderColor: color(colorMap.primary)
         .darken(0.1)
         .toHexString(),
