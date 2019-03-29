@@ -4,12 +4,11 @@ import defaultTheme from '../../../Common/theming';
 import { isFunction, isEmpty } from "../../../Common/utils";
 
 import UpSvgIcon from "../SvgIcon";
-import { IconName } from "theming/icons";
+import { IconName } from "../../../Common/theming/icons";
 import { MenuStyles } from "./styles";
 import * as classnames from 'classnames';
 
 import { isEqual } from 'lodash' ;
-import { render } from "enzyme";
 
 const logo = require('./logo-up-square.svg');
 
@@ -60,28 +59,27 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
         let renderChildren = children;
 
         if (children != null && isFunction(children)) {
-            const childrenAsFunction = children as (state: UpMenuState) => JSX.Element;
-            renderChildren = childrenAsFunction(this.state);
+            renderChildren = (children as (state: UpMenuState) => JSX.Element)(this.state);
         }
+
         let renderHeader = header;
 
         if (header != null && isFunction(header)) {
-            const childrenAsFunction = children as (state: UpMenuState) => JSX.Element;
-            renderChildren = childrenAsFunction(this.state);
+            renderHeader = (header as (
+              state: UpMenuState
+            ) => JSX.Element)(this.state);
         }
 
         let renderFooter = footer
 
         if (footer != null && isFunction(footer)) {
-            const footerAsFunction = footer as (state: UpMenuState) => JSX.Element;
-            renderFooter = footerAsFunction(this.state);
+            renderFooter = (footer as (state: UpMenuState) => JSX.Element)(this.state);
         }
 
         let renderIcon = icon;
 
         if (icon != null && isFunction(icon)) {
-            const iconAsFunction = icon as (state: UpMenuState) => JSX.Element;
-            renderIcon = iconAsFunction(this.state);
+            renderIcon = (icon as (state: UpMenuState) => JSX.Element)(this.state);
         }
 
         return (

@@ -84,7 +84,7 @@ module.exports = async ({
 
             config.module.rules = [
                 ...rules,
-                ...config.module.rules,
+                //...config.module.rules,
             ] 
             return config;
         };

@@ -161,7 +161,15 @@ export const MenuStyles = (
                },
                "&.up-menu .up-menu-toggle.colored:hover svg, .up-menu .up-menu-toggle.colored:hover svg path, .up-menu .up-menu-toggle.colored:hover svg polygon, .up-menu .up-menu-toggle.colored:hover svg polyline": {
                  fill: props.theme.colorMap.primary
-               }
+               },
+               "& .up-menu-footer": {
+                 position: "absolute",
+                 bottom: "8px",
+                 width: 'calc(100% - 28px)',
+               },
+               "& .up-menu-header": {
+                 width: '100%',
+               },
              }
            },
            media(DeviceLRTablets, {

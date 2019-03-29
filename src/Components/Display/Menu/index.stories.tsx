@@ -13,6 +13,7 @@ import UpSvgIcon from '../SvgIcon';
 import UpLigne from '../../Display/Ligne';
 import colorMap from "../../../Common/theming/colorMap";
 import UpBox from "../../Containers/Box";
+import UpTooltip from '../Tooltip';
 
 const resetMenuSelection = (menu: Array<MenuItemData>): Array<MenuItemData>  =>  {
     if (isEmpty(menu)) {
@@ -68,8 +69,11 @@ const HookedMenu = (props) => {
           return false;
         }}
         menuItems={menu}
-        footer={() => (
-            <UpBox style={{ width: "100%", height: "100%;" }}>
+        footer={(props:UpMenuState) => {
+           return (
+            <>
+            {!props.minified &&
+            <UpBox alignItems={'center'} justifyContent={'center'} style={{ width: "100%", height: "100%" }}>
                 <div
                     className={footerStyle}>
                 Copyright. Tous droits réservés Up 2019
@@ -89,15 +93,29 @@ const HookedMenu = (props) => {
                 Mentions légales
               </a>
             </UpBox>
-        )}
-        header={() => (
-          <>
-            <UpSvgIcon iconName={"confirm"} />
-            <UpLigne className={style({ color: colorMap.primary })}>
-              Acceptation de titre
-            </UpLigne>
-          </>
-        )}
+            }
+            {props.minified &&
+                <UpTooltip place={'top'} content={'Copyright.Tous droits réservés Up 2019'} >
+                    <UpBox alignItems={'center'} justifyContent={'center'} style={{ width: "100%", height: "100%" }}>
+                        <UpSvgIcon color={colorMap.disabledFg} iconName={"info-sign"} />
+                    </UpBox>
+                </UpTooltip>
+            }
+            </>
+           );
+        }}
+        header={(props) => {
+          return ( 
+            <UpBox flexDirection={"row"} alignItems={'center'} justifyContent={'center'} style={{ width: "100%", height: "100%" }}>
+                <UpSvgIcon color={colorMap.primary} iconName={"checkmark"} />
+                {!props.minified &&
+                    <UpLigne color={colorMap.primary} className={style({ marginLeft : '8px' })}>
+                    Acceptation de titre
+                </UpLigne>
+                }
+            </UpBox>
+          );
+        }}
       />
     );
 };

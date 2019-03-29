@@ -113,7 +113,7 @@ stories
     ), { info :  "Utilisation du composant en lui passant les données à afficher"}
 )
   .add(
-    "Multi Button",
+    "Multi Button avec espacement",
     () => (
       <div style={{ margin: "30px", width:"200px", padding:"10px" }}>
         <UpButtonGroup gutter={17} align={"v"}>
