@@ -10,7 +10,7 @@ export const MenuStyles = (
            {
              $nest: {
                "&.up-menu": {
-                 width: props.minified ? "76px" : "275px",
+                 width: props.minified ? "76px" : props.width,
                  minWidth: "76px",
                  zIndex: 1000,
                  position: "relative",

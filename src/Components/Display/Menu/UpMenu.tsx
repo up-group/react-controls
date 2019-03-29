@@ -21,6 +21,7 @@ export interface UpMenuProps {
     menuItems: MenuItemData[];
     footer?: RenderCallback | JSX.Element;
     children?: RenderCallback | React.ReactNode;
+    width?: string;
     onClick?: (uri: string) => boolean | void;
 }
 
@@ -32,7 +33,8 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
 
     static defaultProps = {
         theme: defaultTheme,
-        icon: (props) => <UpSvgIcon width={48} height={48} iconHtml={logo}></UpSvgIcon>
+        icon: (props) => <UpSvgIcon width={48} height={48} iconHtml={logo}></UpSvgIcon>,
+        width: '275px',
     }
 
     constructor(p, c) {
