@@ -2,7 +2,7 @@ import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions';
 
-import UpMenu, { UpMenuState } from './UpMenu'
+import UpMenu, { UpMenuState, UpMenuProps } from "./UpMenu";
 import UpMenuOH from './UpMenuOH'
 import { MenuItemData } from './UpMenu';
 import { isEmpty } from '../../../Common/utils';
@@ -26,7 +26,7 @@ const hasItemSelected = (uri: string, menu: Array<MenuItemData>): boolean => {
     return !isEmpty(menu) && menu.find(i => (i.uri != null && uri === i.uri) || hasItemSelected(uri, i.childMenuItems)) != null ;
 }
 
-const setMenuSelection = (uri: string, menu: Array<MenuItemData>): Array<MenuItemData> => {
+export const setMenuSelection = (uri: string, menu: Array<MenuItemData>): Array<MenuItemData> => {
     if (isEmpty(menu)) {
         return [] ;
     }
@@ -69,10 +69,10 @@ const HookedMenu = (props) => {
           return false;
         }}
         menuItems={menu}
-        footer={(props:UpMenuState) => {
+        footer={(props: Partial<UpMenuProps>, state : UpMenuState) => {
            return (
             <>
-            {!props.minified &&
+            {!state.minified &&
             <UpBox alignItems={'center'} justifyContent={'center'} style={{ width: "100%", height: "100%" }}>
                 <div
                     className={footerStyle}>
@@ -94,7 +94,7 @@ const HookedMenu = (props) => {
               </a>
             </UpBox>
             }
-            {props.minified &&
+            {state.minified &&
                 <UpTooltip place={'top'} content={'Copyright.Tous droits réservés Up 2019'} >
                     <UpBox alignItems={'center'} justifyContent={'center'} style={{ width: "100%", height: "100%" }}>
                         <UpSvgIcon color={colorMap.disabledFg} iconName={"info-sign"} />
@@ -104,11 +104,11 @@ const HookedMenu = (props) => {
             </>
            );
         }}
-        header={(props) => {
+        header={(props: Partial<UpMenuProps>, state: UpMenuState) => {
           return ( 
             <UpBox flexDirection={"row"} alignItems={'center'} justifyContent={'center'} style={{ width: "100%", height: "100%" }}>
                 <UpSvgIcon color={colorMap.primary} iconName={"checkmark"} />
-                {!props.minified &&
+                {!state.minified &&
                     <UpLigne color={colorMap.primary} className={style({ marginLeft : '8px' })}>
                     Acceptation de titre
                 </UpLigne>

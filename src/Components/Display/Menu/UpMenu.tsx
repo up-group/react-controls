@@ -12,7 +12,7 @@ import { isEqual } from 'lodash' ;
 
 const logo = require('./logo-up-square.svg');
 
-type RenderCallback = (state: UpMenuState) => JSX.Element;
+type RenderCallback = (props: Partial<UpMenuProps>, state: UpMenuState) => JSX.Element;
 
 export interface UpMenuProps {
     title?:string;
@@ -49,11 +49,15 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
     }
 
     render() {
-        const { header, icon, footer, menuItems, children } = this.props;
+        const { header, icon, footer, menuItems, children, ...others } = this.props;
 
         var menu = menuItems.map((v, i) => {
             if(v.render != null) {
-                return v.render({ ...v, ...this.state });
+                return v.render(
+                    v,
+                    others,
+                    this.state,
+                );
             }
             return <MenuItem onClick={this.props.onClick} key={i} title={v.title} icon={v.icon} uri={v.uri} isSelected={v.isSelected} isVisible={v.isVisible} childMenuItems={v.childMenuItems} isSeparator={v.isSeparator} />
         });
@@ -61,27 +65,31 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
         let renderChildren = children;
 
         if (children != null && isFunction(children)) {
-            renderChildren = (children as (state: UpMenuState) => JSX.Element)(this.state);
+            renderChildren = (children as RenderCallback)(
+              this.props,
+              this.state
+            );
         }
 
         let renderHeader = header;
 
         if (header != null && isFunction(header)) {
-            renderHeader = (header as (
-              state: UpMenuState
-            ) => JSX.Element)(this.state);
+            renderHeader = (header as RenderCallback) (this.props, this.state);
         }
 
         let renderFooter = footer
 
         if (footer != null && isFunction(footer)) {
-            renderFooter = (footer as (state: UpMenuState) => JSX.Element)(this.state);
+            renderFooter = (footer as RenderCallback)(this.props, this.state);
         }
 
         let renderIcon = icon;
 
         if (icon != null && isFunction(icon)) {
-            renderIcon = (icon as (state: UpMenuState) => JSX.Element)(this.state);
+            renderIcon = (icon as RenderCallback)(
+              this.props,
+              this.state
+            );
         }
 
         return (
@@ -124,15 +132,15 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
 }
 
 export interface MenuItemData {
-    title?: string;
-    uri?: string;
-    icon?: string;
-    isSelected?: boolean;
-    isVisible?: boolean;
-    childMenuItems?: MenuItemData[];
-    isSeparator? : boolean;
-    render?: (props: MenuItemData & UpMenuState) => JSX.Element;
- }
+  title?: string;
+  uri?: string;
+  icon?: string;
+  isSelected?: boolean;
+  isVisible?: boolean;
+  childMenuItems?: MenuItemData[];
+  isSeparator?: boolean;
+  render?: (item: MenuItemData, props?: Partial<UpMenuProps>, state?: UpMenuState) => JSX.Element;
+}
 
 export interface MenuItemProps extends MenuItemData {
     onClick?: (uri: string) => boolean | void;
