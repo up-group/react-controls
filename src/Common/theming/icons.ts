@@ -24,6 +24,7 @@ export const IconNames: IconName[] = ['menu', 'previous', 'list', 'gift', 'attac
 'window', 'world', 'caret-left', 'fullscreen', 'justified-text', 'eye-open', 'eye-close', 'cancel', 'enterprise', 'card', 'purchase', 'notification', 'stats',
 'acceptation', 'check','file'] ;
 
+
 let dictionary = {};
 
 for (let i = 0; i < IconNames.length; i++) {
