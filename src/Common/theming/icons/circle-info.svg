@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 23 23" version="1.1">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Icone/Foncé/info</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="06_01-Compte-modif-coordonnées-champs-manquant-Copy" transform="translate(-704.000000, -353.000000)">
+            <g id="Identifiant" transform="translate(356.000000, 168.000000)">
+                <g id="info-mid" transform="translate(349.000000, 186.000000)">
+                    <g id="Icone/Foncé/info">
+                        <circle id="Oval" stroke="#4E5B59" stroke-width="1" cx="10.5" cy="10.5" r="10.5"/>
+                        <text id="i" font-family="Roboto-Regular, Roboto" font-size="17" font-weight="normal" fill="#4E5B59">
+                            <tspan x="8.35839844" y="17">i</tspan>
+                        </text>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
