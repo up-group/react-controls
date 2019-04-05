@@ -22,6 +22,8 @@ export interface UpMenuProps {
     footer?: RenderCallback | JSX.Element;
     children?: RenderCallback | React.ReactNode;
     width?: string;
+    minified?: boolean,
+    blocked?: boolean,
     onClick?: (uri: string) => boolean | void;
 }
 
@@ -40,7 +42,7 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
     constructor(p, c) {
         super(p, c);
         this.state = {
-            minified: true,
+            minified: this.props.minified,
         };
     }
 
@@ -106,9 +108,9 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
                 }
                 <section className="up-menu-nav" >
                     <div className="up-menu-actions">
-                        <UpSvgIcon iconName={'burger-menu'} 
+                        {!this.props.blocked && <UpSvgIcon iconName={'burger-menu'} 
                             className="up-menu-toggle" onClick={this.toggleMinification}>
-                        </UpSvgIcon>
+                        </UpSvgIcon>}
                     </div>
                     <nav>
                         <ul>
