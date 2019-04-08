@@ -73,7 +73,7 @@ export interface UpPaginationProps {
   nextLabel?: string;
   /** Label pour le lien 'Précédent' */
   previousLabel?: string;
-  /** Afficher la pagination de façon flexible ou avec des colonnes */
+  /** Taille de la colonne pour le composant de navigation */
   paginationNumberSpanSize?: number;
   /** generate the pages navigation */
   generatePagesNavigation?: (page, total, take) => Array<number>;
