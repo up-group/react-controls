@@ -75,6 +75,8 @@ export interface UpPaginationProps {
   previousLabel?: string;
   /** Taille de la colonne pour le composant de navigation */
   paginationNumberSpanSize?: number;
+  /** chaine de caractères utilisées comme séparateur dans la pagination*/
+  paginationNavigationSeparator?: string;
   /** generate the pages navigation */
   generatePagesNavigation?: (page, total, take) => Array<number>;
   /** Affihage du nombre de résultats */
@@ -366,7 +368,9 @@ class UpPagination extends React.Component<
               className={classnames(paginationItemClass, "disabled")}
             >
               <a onClick={e => e.preventDefault()} href="#">
-                ..
+                {this.props.paginationNavigationSeparator
+                  ? this.props.paginationNavigationSeparator
+                  : ".."}
               </a>
             </li>
           );
