@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as classnames from 'classnames' ;
+import * as classnames from "classnames";
 
 import { storiesOf } from "@storybook/react";
 
@@ -54,25 +54,27 @@ storiesPagination.add(
         console.log(page, take, skip);
       }}
     />
-  ), { info : 'Utilisation du composant en lui passant les données à afficher'}
+  ),
+  { info: "Utilisation du composant en lui passant les données à afficher" }
 );
 
 const stories = storiesOf("Containers/UpDataGrid", module);
 stories.addDecorator(withKnobs);
 stories.addDecorator(getRootContainer("UpDataGrid"));
 
-const paginationCounterStyle = (props: WithThemeProps) => style({
-  margin: "0px 0px",
-  color: props.theme.colorMap.primary,
-  backgroundColor: props.theme.colorMap.primaryFg,
-  borderRadius: "4px",
-  padding: "6px 12px",
-  lineHeight: "1.43",
-  textDecoration: "none",
-  border: `1px solid ${props.theme.colorMap.primary}`,
-  float: "right",
-  cursor: "pointer",
-});
+const paginationCounterStyle = (props: WithThemeProps) =>
+  style({
+    margin: "0px 0px",
+    color: props.theme.colorMap.primary,
+    backgroundColor: props.theme.colorMap.primaryFg,
+    borderRadius: "4px",
+    padding: "6px 12px",
+    lineHeight: "1.43",
+    textDecoration: "none",
+    border: `1px solid ${props.theme.colorMap.primary}`,
+    float: "right",
+    cursor: "pointer"
+  });
 
 stories
   .add(
@@ -377,6 +379,7 @@ stories
           }
         })}
         paginationProps={{
+          isPaginationDisplayInFlex: true,
           previousLabel: "Précédent",
           nextLabel: "Suivant",
           renderResultMessage: (
@@ -609,10 +612,10 @@ export class Test extends React.Component<testProps, testState> {
           isPaginationEnabled={true}
           isSelectionEnabled={true}
           paginationProps={{
-            page : this.state.page,
-            skip : this.state.skip,
-            take : 50,
-            total: this.state.total,
+            page: this.state.page,
+            skip: this.state.skip,
+            take: 50,
+            total: this.state.total
           }}
           columns={[
             {
