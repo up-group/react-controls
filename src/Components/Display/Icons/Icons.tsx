@@ -689,6 +689,19 @@ export class IconAide extends React.Component<IconProps, IconState> {
         return <MaterialinearIcon {...this.props} IconName="help_outline" />;
     }
 }
+export class IconMail extends React.Component<IconProps, IconState> {
+    static defaultProps = {
+        IconSize: "14px",
+        AvecCercle: false,
+        Color: "#4a4a4a",
+    }
+    constructor(p, c) {
+        super(p, c);
+    }
+    render() {
+        return <MaterialinearIcon {...this.props} IconName="mail_outline" />;
+    }
+}
 
 
 export class IconLswaLink extends React.Component<IconProps, IconState> {
