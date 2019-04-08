@@ -2,13 +2,15 @@ export type IllustrationName =
     | "email-expired"
     | "email-validation"
     | "email-verification"
-    | "user-succes";
+    | "user-succes"
+    | "attachment-succes";
 
 export const IllustrationNames: IllustrationName[] = [
          "email-expired",
          "email-validation",
          "email-verification",
          "user-succes",
+         "attachment-succes"
        ];
 
 let dictionary = {};

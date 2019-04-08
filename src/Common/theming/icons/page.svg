@@ -1,18 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 23 26" version="1.1">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 22 26" version="1.1">
     <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
     <title>Icone/Foncé/Page</title>
     <desc>Created with Sketch.</desc>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
-        <g id="04_01-Dashboard--Dej-Factu" transform="translate(-26.000000, -476.000000)" stroke="#4E5B59">
-            <g id="Nav-Bar" transform="translate(-8.000000, -5.000000)">
-                <g id="condition-com" transform="translate(34.000000, 481.000000)">
-                    <g id="Icone/Foncé/Page">
-                        <g id="Page-1">
-                            <path d="M21.63035,7.70731 L21.63035,22.99791 C21.63035,24.29141 20.2947071,25.34961 18.6567786,25.34961 L3.79385,25.34961 C2.15920714,25.34961 0.820278571,24.29141 0.820278571,22.99791 L0.820278571,3.00261 C0.820278571,1.70911 2.15920714,0.64961 3.79385,0.64961 L12.7129214,0.64961" id="Stroke-1"/>
-                            <polygon id="Stroke-3" points="12.7125929 7.70731 21.6300214 7.70731 12.7125929 0.64961"/>
-                        </g>
-                    </g>
+    <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="iPhone-8" transform="translate(-187.000000, -281.000000)">
+            <g id="Icone/Foncé/Page" transform="translate(187.000000, 281.000000)">
+                <g id="Plan-de-travail-4">
+                    <path d="M18.34,25.7 L3.47,25.7 C1.56,25.7 0,24.42 0,22.85 L0,2.85 C0,1.28 1.56,0 3.47,0 L12.39,0 C12.6661424,1.69088438e-17 12.89,0.223857625 12.89,0.5 C12.89,0.776142375 12.6661424,1 12.39,1 L3.47,1 C2.13,1 1,1.85 1,2.85 L1,22.85 C1,23.85 2.13,24.7 3.47,24.7 L18.34,24.7 C19.68,24.7 20.81,23.85 20.81,22.85 L20.81,7.56 C20.81,7.28385763 21.0338576,7.06 21.31,7.06 C21.5861424,7.06 21.81,7.28385763 21.81,7.56 L21.81,22.85 C21.81,24.42 20.25,25.7 18.34,25.7 Z" id="Path" fill-rule="nonzero"/>
+                    <path d="M21.31,8.06 L12.39,8.06 C12.1160915,8.05467989 11.8953201,7.83390845 11.89,7.56 L11.89,0.5 C11.8896174,0.308802448 11.9983045,0.134126709 12.17,0.05 C12.3438795,-0.0313400026 12.5487045,-0.00815226257 12.7,0.11 L21.62,7.16 C21.7814595,7.29577961 21.842655,7.51695462 21.7739514,7.7164166 C21.7052479,7.91587859 21.5208277,8.05245262 21.31,8.06 L21.31,8.06 Z M12.89,7.06 L19.89,7.06 L12.89,1.53 L12.89,7.06 Z" id="Shape" fill-rule="nonzero"/>
                 </g>
             </g>
         </g>
