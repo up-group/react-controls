@@ -1,19 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 23 23" version="1.1">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 22 24" version="1.1">
     <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
     <title>Icone/Foncé/Facture</title>
     <desc>Created with Sketch.</desc>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="04_01-Dashboard--Dej-Factu" transform="translate(-25.000000, -341.000000)" stroke="#4E5B59">
-            <g id="Nav-Bar" transform="translate(-8.000000, -5.000000)">
-                <g id="Icone/Foncé/Facture" transform="translate(34.000000, 346.000000)">
-                    <g id="Fact-reg">
-                        <path d="M7.5,6.5 L17.5,6.5" id="Line-5" stroke-linecap="square"/>
-                        <path d="M7.5,9.5 L15.5,9.5" id="Line-5" stroke-linecap="square"/>
-                        <path d="M7.5,12.5 L13.5,12.5" id="Line-5" stroke-linecap="square"/>
-                        <path d="M5.04718494,3.97201251 L5.04718494,17.0035077 L0.313218165,17.0035077 C0.310421899,20.2791657 2.36221016,21.9169947 6.46858295,21.9169947 C10.5749557,21.9169947 14.1306878,21.9169947 17.1357791,21.9169947 C19.7846261,21.8712478 21.1090497,20.2334188 21.1090497,17.0035077 C21.1090497,13.7735965 21.1090497,8.41259503 21.1090497,0.920503164 L18.5387218,4.50017126 L15.6622028,0.440328337 L12.8345066,4.1906246 L10.1435741,0.440328337 L7.29404073,4.1906246 L5.04718494,0.920503164 L5.04718494,3.97201251 Z" id="Path-3"/>
-                        <path d="M5.0027243,17.023473 L15.3360463,17.023473 C15.5840192,20.0517174 16.7763471,21.5658396 18.91303,21.5658396" id="Path-4"/>
-                    </g>
+    <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="iPhone-8" transform="translate(-113.000000, -283.000000)">
+            <g id="Icone/Foncé/Facture" transform="translate(112.000000, 283.000000)">
+                <g id="Plan-de-travail-10">
+                    <rect id="Rectangle" fill-rule="nonzero" x="8.19" y="6.69" width="11" height="1"/>
+                    <rect id="Rectangle" fill-rule="nonzero" x="8.19" y="9.69" width="9" height="1"/>
+                    <rect id="Rectangle" fill-rule="nonzero" x="8.19" y="12.69" width="7" height="1"/>
+                    <path d="M7.66,23.11 C5.909792,23.2285812 4.17037949,22.7567567 2.72,21.77 C1.54292361,20.7518115 0.907097087,19.2435719 1,17.69 L1,17.19 L5.73,17.19 L5.73,0 L8.5,4 L11.34,0.29 L14,4 L16.86,0.28 L19.73,4.33 L22.8,0.06 L22.8,17.69 C22.8,22.1 20.37,23.07 18.33,23.11 L7.66,23.11 Z M2,18.19 C2.01281182,19.2801007 2.50699994,20.3087442 3.35,21 C4.62340021,21.8394145 6.13903483,22.2332685 7.66,22.12 L18.32,22.12 C20.69,22.12 21.8,20.67 21.8,17.7 L21.8,3.16 L19.72,6.05 L16.84,2 L14,5.73 L11.32,2 L8.46,5.73 L6.73,3.22 L6.73,18.22 L2,18.19 Z" id="Shape" fill-rule="nonzero"/>
+                    <path d="M20.1,22.76 C18.49,22.76 16.52,21.95 16.1,18.21 L6.19,18.21 L6.19,17.21 L17,17.21 L17,17.67 C17.34,21.76 19.4,21.76 20.08,21.76 L20.1,22.76 Z" id="Path" fill-rule="nonzero"/>
                 </g>
             </g>
         </g>
