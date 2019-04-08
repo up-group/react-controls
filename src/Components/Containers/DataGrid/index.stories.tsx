@@ -375,11 +375,15 @@ stories
             "& .up-pagination-page.active a": {
               background: "transparent",
               color: UpDefaultTheme.colorMap.primary
+            },
+            "& .up-row-flex": {
+              textAlign: "end",
+              flexDirection: "row-reverse"
             }
           }
         })}
         paginationProps={{
-          isPaginationDisplayInFlex: true,
+          paginationNumberSpanSize: 5,
           previousLabel: "Précédent",
           nextLabel: "Suivant",
           renderResultMessage: (

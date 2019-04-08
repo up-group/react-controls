@@ -9,7 +9,6 @@ import withTheme, { WithThemeProps } from "../../../Common/theming/withTheme";
 import defaultTheme, { UpThemeInterface } from "../../../Common/theming";
 import UpBox from "../Box";
 import { isEmpty } from "../../../Common/utils";
-import { emptyString } from "react-select/lib/utils";
 
 const getMaxPage = (take, total): number => {
   if (isEmpty(take)) {
@@ -75,7 +74,7 @@ export interface UpPaginationProps {
   /** Label pour le lien 'Précédent' */
   previousLabel?: string;
   /** Afficher la pagination de façon flexible ou avec des colonnes */
-  isPaginationDisplayInFlex?: boolean;
+  paginationNumberSpanSize?: number;
   /** generate the pages navigation */
   generatePagesNavigation?: (page, total, take) => Array<number>;
   /** Affihage du nombre de résultats */
@@ -465,19 +464,27 @@ class UpPagination extends React.Component<
 
     return (
       <UpGrid className={"up-pagination-wrapper"}>
-        {!this.props.isPaginationDisplayInFlex && (
-          <UpRow>
-            <UpCol span={14}>{pageNumberNavigation}</UpCol>
-            <UpCol span={1} />
-            <UpCol span={9}>{paginationTakes}</UpCol>
-          </UpRow>
-        )}
-        {this.props.isPaginationDisplayInFlex && (
-          <UpRow justify="end">
+        <UpRow>
+          <UpCol
+            span={
+              this.props.paginationNumberSpanSize
+                ? this.props.paginationNumberSpanSize
+                : 14
+            }
+          >
+            {pageNumberNavigation}
+          </UpCol>
+          <UpCol span={1} />
+          <UpCol
+            span={
+              this.props.paginationNumberSpanSize
+                ? 21 - this.props.paginationNumberSpanSize
+                : 9
+            }
+          >
             {paginationTakes}
-            <div style={{ marginLeft: "50px" }}>{pageNumberNavigation}</div>
-          </UpRow>
-        )}
+          </UpCol>
+        </UpRow>
       </UpGrid>
     );
   }
