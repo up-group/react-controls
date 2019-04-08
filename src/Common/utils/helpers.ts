@@ -217,6 +217,7 @@ export function jourDuMois(mois: number, annee: number, moisBase0: boolean = fal
         case 11: return moisBase0 ? 31 : 30;
         case 12: return moisBase0 ? -1 : 31;
     }
+    return 0;
 }
 
 export function incrementJour(date: Date, increment: number): Date {
@@ -275,17 +276,14 @@ export function ConvertToDate(date: string): Date {
             } else {
                 nbPas++;
             }
+        } else if (["/", "-", ".", " "].indexOf(car) >= 0) {
+            nbPas = 0;
         } else {
-            if (["/", "-", ".", " "].indexOf(car) >= 0) {
-                nbPas = 0;
-            } else {
-                return null;
-            }
+            return null;
         }
     }
 
     if (jourMoisAnnee.length !== 3 
-            // || jourMoisAnnee[2] < 1000
             || (jourMoisAnnee[2] > 99 && jourMoisAnnee[2] < 1850)
             || jourMoisAnnee[1] < 1 || jourMoisAnnee[1] > 12 
             || jourMoisAnnee[0] < 1 || jourMoisAnnee[0] > jourDuMois(jourMoisAnnee[1], jourMoisAnnee[2])) {
