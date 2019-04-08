@@ -7,6 +7,9 @@ import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/themed
 
 import UpMenu from './UpMenu'
 import UpMenuOH from './UpMenuOH'
+import { formatDateTime, isNullOrUndef } from '../../../Common/utils/helpers';
+import { IconVerrou, IconAlertes } from '../Icons/Icons';
+import { style } from 'typestyle';
 
 storiesOf('UpMenu', module)
     .addWithInfo('Simple usage', 'Utilisation du composant en lui passant les données à afficher',
@@ -45,8 +48,18 @@ storiesOf('UpMenu', module)
                 <UpMenuOH onDeconnexionClick={() => { }} onMenuClick={action("Menu clicked")}
                     Antennes={null} Recherche={null}
                     Utilisateur={{
-                        Nom: "Master Web", DerniereConnexion: new Date(), NomBinome: "Bînomot Hop", onChangeMdpClick: () => { },
-                        Alertes: { NonLues: 36, onClick: () => { }, },
+                        Nom: "Master Web", 
+                        Links: [
+                            "Dernière connexion : " + formatDateTime(new Date()),
+                            "Votre binôme : Bînomot Hop",
+                            <IconVerrou onMouseDown={() => { }} >
+                                    <span className={style({ cursor: "pointer", marginLeft: "8px", })} > Changer votre mot de passe</span>
+                                </IconVerrou>,
+                            <IconAlertes AlertNumber={36} AlertCircle={{ Active: true, Color: "#f44336" }}
+                                        AlertFont={{ fontSize: "8px", color: "#ffffff" }} onMouseDown={() => { }} >
+                                    <span className={style({ cursor: "pointer", marginLeft: "8px", })} > Alertes utilisateur</span>
+                                </IconAlertes>
+                        ],
                     }}
                     // topMenuItems={[
                     //     { title: "Recherche", icon: "up up-dossier", action: "https://www.google.fr" },
@@ -124,8 +137,18 @@ storiesOf('UpMenu', module)
             <UpThemeProvider theme={UpDefaultTheme}>
                 <UpMenuOH
                     Antennes={null} Recherche={null} Utilisateur={{
-                        Nom: "Master Web", DerniereConnexion: new Date(), NomBinome: "Bînomot Hop", onChangeMdpClick: () => { },
-                        Alertes: { NonLues: 36, onClick: () => { }, },
+                        Nom: "Master Web", 
+                        Links: [
+                            "Dernière connexion : " + formatDateTime(new Date()),
+                            "Votre binôme : Bînomot Hop",
+                            <IconVerrou onMouseDown={() => { }} >
+                                    <span className={style({ cursor: "pointer", marginLeft: "8px", })} > Changer votre mot de passe</span>
+                                </IconVerrou>,
+                            <IconAlertes AlertNumber={36} AlertCircle={{ Active: true, Color: "#f44336" }}
+                                        AlertFont={{ fontSize: "8px", color: "#ffffff" }} onMouseDown={() => { }} >
+                                    <span className={style({ cursor: "pointer", marginLeft: "8px", })} > Alertes utilisateur</span>
+                                </IconAlertes>
+                        ],
                     }}
 
                     onDeconnexionClick={() => { }}

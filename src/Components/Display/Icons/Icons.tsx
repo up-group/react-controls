@@ -170,6 +170,20 @@ export class IconInfos extends React.Component<IconProps, IconState> {
         return <MaterialinearIcon {...this.props} IconName="info" />;
     }
 }
+export class IconInfosWhite extends React.Component<IconProps, IconState> {
+    static defaultProps = {
+        IconSize: "12px",
+        AvecCercle: false,
+        backgroundColor: "#ffffff",
+        Color: "#4a4a4a",
+    }
+    constructor(p, c) {
+        super(p, c);
+    }
+    render() {
+        return <MaterialinearIcon {...this.props} IconName="info_outline" />;
+    }
+}
 export class IconSuccess extends React.Component<IconProps, IconState> {
     static defaultProps = {
         IconSize: "12px",
@@ -647,6 +661,32 @@ export class IconRenouveler extends React.Component<IconProps, IconState> {
     }
     render() {
         return <MaterialinearIcon {...this.props} IconName="sync" />;
+    }
+}
+export class IconLivreOuvert extends React.Component<IconProps, IconState> {
+    static defaultProps = {
+        IconSize: "14px",
+        AvecCercle: false,
+        Color: "#4a4a4a",
+    }
+    constructor(p, c) {
+        super(p, c);
+    }
+    render() {
+        return <MaterialinearIcon {...this.props} IconName="Lbook" />;
+    }
+}
+export class IconAide extends React.Component<IconProps, IconState> {
+    static defaultProps = {
+        IconSize: "14px",
+        AvecCercle: false,
+        Color: "#4a4a4a",
+    }
+    constructor(p, c) {
+        super(p, c);
+    }
+    render() {
+        return <MaterialinearIcon {...this.props} IconName="help_outline" />;
     }
 }
 

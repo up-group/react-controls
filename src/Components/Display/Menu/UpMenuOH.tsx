@@ -2,7 +2,7 @@
 import { style } from "typestyle"
 import { Scrollbars } from 'react-custom-scrollbars';
 
-import { getFontClassName, stringIsNullOrEmpty, isNullOrUndef, addZeroBeforeNumber } from "../../../Common/utils/helpers";
+import { getFontClassName, stringIsNullOrEmpty, isNullOrUndef, addZeroBeforeNumber, arrayIsNullOrEmpty, formatDateTime } from "../../../Common/utils/helpers";
 import UpHover from '../../Containers/Hover/UpHover';
 import { IconChevron, IconUtilisateur, IconDeconnexion, DirectionEnum, IconVerrou, IconAlertes } from "../Icons/Icons";
 
@@ -29,13 +29,7 @@ class branchIdHelper {
 
 export interface Utilisateur {
     Nom: string;
-    DerniereConnexion: Date;
-    NomBinome: string;
-    onChangeMdpClick: () => void;
-    Alertes: {
-        NonLues: number;
-        onClick: () => void
-    }
+    Links: (string | JSX.Element)[];
 }
 
 
@@ -318,22 +312,13 @@ export interface TopMenuProps {
 }
 
 export interface TopMenuState {
-    UserExpand: boolean;
 }
 
 export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
     constructor(p, c) {
         super(p, c);
         this.state = {
-            UserExpand: false,
         };
-    }
-
-    onUserClick = () => {
-        this.setState({ UserExpand: true, });
-    }
-    onUserBlur = () => {
-        this.setState({ UserExpand: false, });
     }
 
     render() {
@@ -350,18 +335,6 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
             marginRight: "60px",
             display: "inline-block",
         });
-        var styleInfosTexte = style({
-            marginRight: "48px",
-            $nest: {
-                "& > i": {
-                    fontStyle: "normal",
-                    margin: "0 8px",
-                },
-                "& *:focus": {
-                    outline: "none",
-                },
-            },
-        });
 
         return <div className={styleTopbar} >
             {isNullOrUndef(this.props.Recherche) ? null :
@@ -376,15 +349,7 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
                 }
 
                 {isNullOrUndef(this.props.Utilisateur) ? null :
-                    <IconUtilisateur IconSize="14px" lineHeight={1.14} AvecCercle={false} Color="#4a4a4a" BackgroundColor="#ffffff" >
-                        <span className={styleInfosTexte} >
-                            <i>{this.props.Utilisateur.Nom}</i>
-                            <IconChevron Direction={DirectionEnum.Bas} Color="#4a4a4a" BackgroundColor="#ffffff" IconSize="14px"
-                                onClick={this.onUserClick} tabIndex={-1} onBlur={this.onUserBlur} />
-
-                            {this.state.UserExpand ? <UserExpand Utilisateur={this.props.Utilisateur} /> : null}
-                        </span>
-                    </IconUtilisateur>
+                    <UserExpand Utilisateur={this.props.Utilisateur} />
                 }
 
                 <IconDeconnexion onClick={this.props.onDeconnexionClick} />
@@ -399,27 +364,38 @@ export interface UserExpandProps {
 }
 
 export interface UserExpandState {
+    UserExpand: boolean;
 }
 
 export class UserExpand extends React.Component<UserExpandProps, UserExpandState> {
     constructor(p, c) {
         super(p, c);
+        this.state = {
+            UserExpand: false,
+        };
     }
 
-    private writeDateTime = (dateTime: Date): string => {
-        if (isNullOrUndef(dateTime)) {
-            return null;
-        }
-        return addZeroBeforeNumber(dateTime.getDate(), 2) + "/"
-            + addZeroBeforeNumber(dateTime.getMonth() + 1, 2) + "/"
-            + addZeroBeforeNumber(dateTime.getFullYear(), 4) + " "
-            + addZeroBeforeNumber(dateTime.getHours(), 2) + ":"
-            + addZeroBeforeNumber(dateTime.getMinutes(), 2) + ":"
-            + addZeroBeforeNumber(dateTime.getSeconds(), 2);
+    onUserClick = () => {
+        this.setState({ UserExpand: true, });
+    }
+    onUserBlur = () => {
+        this.setState({ UserExpand: false, });
     }
 
     render() {
-        var styleG = style({
+        var styleInfosTexte = style({
+            marginRight: "48px",
+            $nest: {
+                "& > i": {
+                    fontStyle: "normal",
+                    margin: "0 8px",
+                },
+                "& *:focus": {
+                    outline: "none",
+                },
+            },
+        });
+        var styleComboUser = style({
             padding: "16px 16px 6px",
             zIndex: 9998,
             backgroundColor: "#ffffff",
@@ -428,46 +404,26 @@ export class UserExpand extends React.Component<UserExpandProps, UserExpandState
             border: "1px solid #eaeae9",
             textAlign: "left",
         });
-        var styleChangeMdp = style({
-            cursor: "pointer",
-            marginLeft: "8px",
-        });
-        var styleAlertes = style({
-            cursor: isNullOrUndef(this.props.Utilisateur.Alertes) || isNullOrUndef(this.props.Utilisateur.Alertes.onClick) ? "auto" : "pointer",
-            marginLeft: "8px",
-        });
 
-        var derniereCo: string = this.writeDateTime(this.props.Utilisateur.DerniereConnexion);
-        var nbAlerte: string = isNullOrUndef(this.props.Utilisateur.Alertes.NonLues) ? null :
-            isNaN(this.props.Utilisateur.Alertes.NonLues) ? null :
-                this.props.Utilisateur.Alertes.NonLues <= 0 ? null :
-                    this.props.Utilisateur.Alertes.NonLues > 99 ? "99+" :
-                        this.props.Utilisateur.Alertes.NonLues.toString();
+        return <IconUtilisateur IconSize="14px" lineHeight={1.14} AvecCercle={false} Color="#4a4a4a" BackgroundColor="#ffffff" >
+            <span className={styleInfosTexte} >
+                <i>{this.props.Utilisateur.Nom}</i>
+                { arrayIsNullOrEmpty(this.props.Utilisateur.Links) ? null :
+                    <span>
+                        <IconChevron Direction={DirectionEnum.Bas} Color="#4a4a4a" BackgroundColor="#ffffff" IconSize="14px"
+                            onClick={this.onUserClick} tabIndex={-1} onBlur={this.onUserBlur} />
 
-        return <div className={styleUserExpand + " " + styleG} >
-            {derniereCo === null ? null :
-                <p>Dernière connexion : {derniereCo}</p>
-            }
-            {stringIsNullOrEmpty(this.props.Utilisateur.NomBinome) ? null :
-                <p>Votre binôme : {this.props.Utilisateur.NomBinome}</p>
-            }
-            {isNullOrUndef(this.props.Utilisateur.onChangeMdpClick) ? null :
-                <p >
-                    <IconVerrou onMouseDown={this.props.Utilisateur.onChangeMdpClick} >
-                        <span className={styleChangeMdp} > Changer votre mot de passe</span>
-                    </IconVerrou>
-                </p>
-            }
-            {isNullOrUndef(this.props.Utilisateur.Alertes) ? null :
-                <p>
-                    <IconAlertes AlertNumber={nbAlerte} AlertCircle={{ Active: true, Color: "#f44336" }}
-                        AlertFont={{ fontSize: "8px", color: "#ffffff" }} // la taille de la police va ici être écrasée par l'alerte
-                        onMouseDown={this.props.Utilisateur.Alertes.onClick} >
-                        <span className={styleAlertes} > Alertes utilisateur</span>
-                    </IconAlertes>
-                </p>
-            }
-        </div>;
+                        { !this.state.UserExpand ? null : 
+                            <div className={styleUserExpand + " " + styleComboUser} >
+                                { this.props.Utilisateur.Links.map((link: string | JSX.Element, idx: number): JSX.Element => {
+                                    return <p key={idx} >{link}</p>;
+                                }) }
+                            </div>
+                        }
+                    </span>
+                }
+            </span>
+        </IconUtilisateur>;
     }
 }
 

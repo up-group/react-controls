@@ -187,6 +187,18 @@ export function formatDate(date: Date): string {
     return isNullOrUndef(date) ? null : moment(date).format('DD/MM/YYYY');
 }
 
+export function formatDateTime(dateTime: Date): string {
+    if (isNullOrUndef(dateTime)) {
+        return null;
+    }
+    return addZeroBeforeNumber(dateTime.getDate(), 2) + "/"
+        + addZeroBeforeNumber(dateTime.getMonth() + 1, 2) + "/"
+        + addZeroBeforeNumber(dateTime.getFullYear(), 4) + " "
+        + addZeroBeforeNumber(dateTime.getHours(), 2) + ":"
+        + addZeroBeforeNumber(dateTime.getMinutes(), 2) + ":"
+        + addZeroBeforeNumber(dateTime.getSeconds(), 2);
+}
+
 export function isBissextile(annee: number): boolean {
     if (annee % 400 === 0) {
         return true;
