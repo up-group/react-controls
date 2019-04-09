@@ -3,6 +3,7 @@ export type IllustrationName =
     | "email-validation"
     | "email-verification"
     | "user-succes"
+    | "user-creation"
     | "attachment-succes";
 
 export const IllustrationNames: IllustrationName[] = [
@@ -10,6 +11,7 @@ export const IllustrationNames: IllustrationName[] = [
          "email-validation",
          "email-verification",
          "user-succes",
+         "user-creation",
          "attachment-succes"
        ];
 
