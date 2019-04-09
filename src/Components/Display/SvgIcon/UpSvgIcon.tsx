@@ -116,4 +116,13 @@ const UpSvgIcon : React.StatelessComponent<UpSvgIconProps> = ({
   }
 }
 
+export const UpSvgIconSparkles : React.StatelessComponent<UpSvgIconProps> = (props: UpSvgIconProps) => {
+  return(
+    <div style={{position:"relative",width:props.width,height:props.height}}>
+      <UpSvgIcon width={Number(props.width)+12} height={props.height} iconName={"sparkles"} style={{position:"absolute",top:-Number(props.height)/3,left:-Number(props.width)/5}}></UpSvgIcon>
+      <UpSvgIcon {...props} style={{position:"absolute"}}></UpSvgIcon>
+    </div>
+  )
+}
+
 export default UpSvgIcon
