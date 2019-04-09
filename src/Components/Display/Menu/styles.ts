@@ -65,7 +65,7 @@ export const MenuStyles = (
                },
                "&.up-menu nav > ul > li": {
                  position: "relative",
-                 width: "247px",
+                 maxWidth: "247px",
                  overflow: "hidden"
                },
                "&.up-menu nav > ul > li:hover": {
@@ -152,8 +152,8 @@ export const MenuStyles = (
                },
                "&.up-menu .up-menu-actions": {
                  width: "16px",
-                 height: "16px",
-                 margin: "30px 14px"
+                 minHeight: "16px",
+                 margin: "20px 14px"
                },
                "&.up-menu .up-menu-toggle.colored svg, .up-menu .up-menu-toggle.colored svg path, .up-menu .up-menu-toggle.colored svg polygon, .up-menu .up-menu-toggle.colored svg polyline": {
                  fill: "#ffffff",
@@ -169,6 +169,8 @@ export const MenuStyles = (
                },
                "& .up-menu-header": {
                  width: '100%',
+                 marginTop:'15px',
+                 marginBottom:'15px'
                },
              }
            },

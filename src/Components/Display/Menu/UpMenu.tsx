@@ -101,17 +101,17 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
                         {renderIcon}
                     </section>
                 }
-                {renderHeader && 
-                    <section className="up-menu-header">
-                        {renderHeader}
-                    </section>
-                }
                 <section className="up-menu-nav" >
-                    <div className="up-menu-actions">
-                        {!this.props.blocked && <UpSvgIcon iconName={'burger-menu'} 
+                {!this.props.blocked && <div className="up-menu-actions">
+                        <UpSvgIcon iconName={'burger-menu'} 
                             className="up-menu-toggle" onClick={this.toggleMinification}>
-                        </UpSvgIcon>}
-                    </div>
+                        </UpSvgIcon>
+                    </div>}
+                    {renderHeader && 
+                        <section className="up-menu-header">
+                            {renderHeader}
+                        </section>
+                    }
                     <nav>
                         <ul>
                             {menu}
