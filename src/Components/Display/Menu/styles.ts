@@ -65,7 +65,7 @@ export const MenuStyles = (
         },
         "&.up-menu nav > ul > li": {
           position: "relative",
-          width: props.minified ? 48 : 247,
+          width: "247px",
           overflow: "hidden"
         },
         "&.up-menu nav > ul > li:hover": {
