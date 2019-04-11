@@ -63,7 +63,7 @@ const HookedMenu = (props) => {
 
     return (
       <UpMenu
-        minifyHandler={(minified)=>console.log("Menu minified: "+minified)}
+        onMinifiedChange={(minified)=>console.log("Menu minified: "+minified)}
         onClick={uri => {
           const newMenu = setMenuSelection(uri, menu);
           setMenu(newMenu);
