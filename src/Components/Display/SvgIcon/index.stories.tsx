@@ -6,7 +6,7 @@ import UpDefaultTheme from '../../../Common/theming'
 import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
 
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
-import UpButton from './UpSvgIcon'
+import { UpSvgIconSparkles } from './UpSvgIcon'
 import UpBox from '../../Containers/Box';
 import UpNotification from '../../Display/Notification';
 import UpParagraph from '../../Display/Paragraph';
@@ -69,6 +69,24 @@ stories.add('Simple usage',
                   </dd>
                 </dl>
               ))}
+            </UpBox>
+            <UpHeading tag={"h2"}>Mentors with Sparkles</UpHeading>
+            <UpBox flexDirection={"row"} flexWrap={true}>
+              {MentorNames.map(icon => {if(icon!="sparkles") return(
+                <dl style={{ margin: "10px" }}>
+                  <dt
+                    style={{ color: color, marginBottom: "15px" }}
+                  >{`${icon}`}</dt>
+                  <dd>
+                    <UpSvgIconSparkles
+                      iconName={icon}
+                      color={color}
+                      width={48}
+                      height={48}
+                    />
+                  </dd>
+                </dl>
+              )})}
             </UpBox>
             <UpHeading tag={"h2"}>Illustrations</UpHeading>
             <UpBox flexDirection={"row"} flexWrap={true}>
