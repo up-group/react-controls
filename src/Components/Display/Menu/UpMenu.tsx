@@ -25,6 +25,7 @@ export interface UpMenuProps {
     minified?: boolean,
     blocked?: boolean,
     onClick?: (uri: string) => boolean | void;
+    onMinifiedChange?:(minified?:boolean)=>void;
 }
 
 export interface UpMenuState {
@@ -37,6 +38,7 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
         theme: defaultTheme,
         icon: (props) => <UpSvgIcon width={48} height={48} iconHtml={logo}></UpSvgIcon>,
         width: '275px',
+        minified:false
     }
 
     constructor(p, c) {
@@ -47,7 +49,11 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
     }
 
     toggleMinification = () => {
-        this.setState({ minified: !this.state.minified });
+        this.setState({ minified: !this.state.minified },()=>{
+            if(this.props.onMinifiedChange){
+                this.props.onMinifiedChange(this.state.minified);
+            }
+        });
     }
 
     render() {
