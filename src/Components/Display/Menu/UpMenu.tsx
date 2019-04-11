@@ -25,6 +25,7 @@ export interface UpMenuProps {
     minified?: boolean,
     blocked?: boolean,
     onClick?: (uri: string) => boolean | void;
+    minifyHandler?:(minified?:boolean)=>void;
 }
 
 export interface UpMenuState {
@@ -42,11 +43,14 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
     constructor(p, c) {
         super(p, c);
         this.state = {
-            minified: this.props.minified,
+            minified: this.props.minified || false,
         };
     }
 
     toggleMinification = () => {
+        if(this.props.minifyHandler){
+            this.props.minifyHandler(!this.state.minified);
+        }
         this.setState({ minified: !this.state.minified });
     }
 
