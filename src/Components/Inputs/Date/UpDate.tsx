@@ -9,6 +9,8 @@ import defaultTheme from "../../../Common/theming";
 import withTheme, { WithThemeProps } from "../../../Common/theming/withTheme";
 import { eventFactory } from "../../../Common/utils/eventListener";
 
+import * as update from "react-addons-update";
+
 // Exports
 const MIN_DATE = new Date(-8640000000000);
 const MAX_DATE = new Date(+8640000000000);
@@ -52,9 +54,9 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Date> {
   }
 
   showSuccess() {
-    return this.props.showSuccess
+    return this.props.showSuccess;
   }
-
+  
   renderControl() {
     const {
       format,
@@ -64,6 +66,8 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Date> {
       readonly,
       theme,
       hasError,
+      floatingLabel,
+      placeholder,
       ...others
     } = this.props;
     return (
@@ -73,6 +77,8 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Date> {
         value={this.state.value}
         hasError={this.hasError}
         onChange={this.onChange}
+        floatingLabel={floatingLabel}
+        placeholder={placeholder}
         disabled={disabled}
         minDate={minDate ? minDate : MIN_DATE}
         maxDate={maxDate ? maxDate : MAX_DATE}
