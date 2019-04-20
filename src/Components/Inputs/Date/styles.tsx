@@ -126,13 +126,17 @@ const BaseDate: React.StatelessComponent<UpDateStyledProps & WithThemeProps> = (
           showClearDate={true}
           showDefaultInputIcon={true}
           noBorder={false}
-          screenReaderInputMessage={"Date"}
+          screenReaderInputMessage={
+            floatingLabel ? floatingLabel : placeholder ? placeholder : "Date"
+          }
           ref={innerRef}
           keepOpenOnDateSelect={false}
           hideKeyboardShortcutsPanel={true}
           phrases={defaultPhrases}
-          isOutsideRange={(day) => ((maxDate && day > maxDate) || (minDate && day < minDate))}
-          isDayBlocked={(day) => false}
+          isOutsideRange={day =>
+            (maxDate && day > maxDate) || (minDate && day < minDate)
+          }
+          isDayBlocked={day => false}
           // isDayHighlighted={(day: any) => day == new Date()}
         />
       </div>
