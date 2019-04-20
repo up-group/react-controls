@@ -33,7 +33,7 @@ const getStyles = (props: UpDateStyledProps & WithThemeProps) =>
         transform: "translate(0, 16px) scale(1)",
         transition: "all .1s ease-in-out",
         cursor: "text",
-        zIndex: 1000,
+        zIndex: 1,
         marginLeft: "36px"
       },
       "& .SingleDatePickerInput, & .SingleDatePickerInput input, & .SingleDatePickerInput .DateInput": {
@@ -107,13 +107,19 @@ const BaseDate: React.StatelessComponent<UpDateStyledProps & WithThemeProps> = (
     const {value, placeholder, floatingLabel, focused, onFocusChange, className, format, disabled, minDate, maxDate, innerRef, onChange, ...others} = props;
     const id = generateUniqueId() ;
     return (
-      <div className={classnames(getStyles(props), focused ? "up-input-focused":null, !isEmpty(value) ? "up-input-valued" : null)}>
+      <div
+        className={classnames(
+          getStyles(props),
+          focused ? "up-input-focused" : null,
+          !isEmpty(value) ? "up-input-valued" : null
+        )}
+      >
         {floatingLabel && <label htmlFor={id}>{floatingLabel}</label>}
         <SingleDatePicker
           placeholder={floatingLabel ? "" : placeholder}
           focused={focused}
           onFocusChange={onFocusChange}
-          date={value ? moment(value) : null}
+          date={value}
           onDateChange={onChange}
           id={id}
           disabled={disabled}
@@ -125,6 +131,9 @@ const BaseDate: React.StatelessComponent<UpDateStyledProps & WithThemeProps> = (
           keepOpenOnDateSelect={false}
           hideKeyboardShortcutsPanel={true}
           phrases={defaultPhrases}
+          isOutsideRange={(day) => ((maxDate && day > maxDate) || (minDate && day < minDate))}
+          isDayBlocked={(day) => false}
+          // isDayHighlighted={(day: any) => day == new Date()}
         />
       </div>
     );

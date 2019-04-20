@@ -36,6 +36,7 @@ const DateForm = (props) => {
         value={values.startDate}
         isRequired={true}
         onChange={handleChange}
+        maxDate={values.endDate}
       />
       <UpDate
         name={"endDate"}
@@ -43,6 +44,7 @@ const DateForm = (props) => {
         value={values.endDate}
         isRequired={true}
         onChange={handleChange}
+        minDate={values.startDate}
       />
     </form>
   );

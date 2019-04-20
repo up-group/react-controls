@@ -8,14 +8,16 @@ import UpDateStyle from "./styles";
 import defaultTheme from "../../../Common/theming";
 import withTheme, { WithThemeProps } from "../../../Common/theming/withTheme";
 import { eventFactory } from "../../../Common/utils/eventListener";
-
-import * as update from "react-addons-update";
+import { Moment } from "moment";
 
 // Exports
 const MIN_DATE = new Date(-8640000000000);
 const MAX_DATE = new Date(+8640000000000);
 
-class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Date> {
+class UpDate extends BaseControlComponent<
+  UpDateProps & WithThemeProps,
+  Moment
+> {
   public static defaultProps: UpDateProps = {
     format: "DD/MM/YYYY",
     showError: true,
@@ -27,25 +29,18 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Date> {
     this.state = { value: this.props.value };
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    var shouldUpdate: boolean =
-      nextState.value != this.state.value ||
-      nextState.error != this.state.error;
-    if (shouldUpdate === false) {
-      shouldUpdate =
-        this.props.disabled != nextProps.disabled ||
-        this.props.format != nextProps.format ||
-        this.props.maxDate != nextProps.maxDate ||
-        this.props.minDate != nextProps.minDate ||
-        this.props.readonly != nextProps.readonly;
-      //|| this.props.theme !== nextProps.theme
-    }
-    return shouldUpdate;
-  }
-
-  onChange = (startDate: Date, endDate?: Date) => {
+  onChange = (startDate: Moment, endDate?: Moment) => {
+    console.log("onChange", startDate);
     this.handleChangeEvent(eventFactory(this.props.name, startDate), startDate);
   };
+
+  get isControlled() {
+    return this.props.value !== undefined;
+  }
+
+  get currentValue() {
+    return this.isControlled ? this.props.value : this.state.value;
+  }
 
   showError() {
     return this.props.showError !== undefined
@@ -56,7 +51,7 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Date> {
   showSuccess() {
     return this.props.showSuccess;
   }
-  
+
   renderControl() {
     const {
       format,
@@ -74,7 +69,7 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Date> {
       <UpDateStyle
         format={format}
         theme={theme}
-        value={this.state.value}
+        value={this.currentValue}
         hasError={this.hasError}
         onChange={this.onChange}
         floatingLabel={floatingLabel}
