@@ -107,8 +107,10 @@ const HookedMenu = (props) => {
         }}
         header={(props: Partial<UpMenuProps>, state: UpMenuState) => {
           return ( 
-            <UpBox flexDirection={"row"} alignItems={'center'} justifyContent={'center'} style={{ width: "100%", height: "100%" }}>
-                <UpSvgIcon color={colorMap.primary} iconName={"checkmark"} />
+                <UpBox flexDirection={"row"} alignItems={'center'} justifyContent={'center'} style={{ width: "100%", height: "100%"}}>
+                {!state.minified &&
+                    <UpSvgIcon color={colorMap.primary} iconName={"checkmark"} />
+                }
                 {!state.minified &&
                     <UpLigne color={colorMap.primary} className={style({ marginLeft : '8px' })}>
                     Acceptation de titre
