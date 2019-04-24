@@ -102,22 +102,20 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
 
         return (
             <aside className={classnames("up-menu", MenuStyles({ ...this.props, ...this.state }))}>
-                {renderIcon &&
-                    <section className="up-app-icon-wrapper">
-                        {renderIcon}
-                    </section>
-                }
+                <section className="up-menu-header">
+                    {renderIcon &&
+                        <section className="up-app-icon-wrapper">
+                            {renderIcon}
+                        </section>
+                    }
+                    {renderHeader}
+                </section>
                 <section className="up-menu-nav" >
                 {!this.props.blocked && <div className="up-menu-actions">
-                        <UpSvgIcon iconName={'burger-menu'} 
+                        <UpSvgIcon width={16} height={16} iconName={'burger-menu'} 
                             className="up-menu-toggle" onClick={this.toggleMinification}>
                         </UpSvgIcon>
                     </div>}
-                    {renderHeader && 
-                        <section className="up-menu-header">
-                            {renderHeader}
-                        </section>
-                    }
                     <nav>
                         <ul>
                             {menu}
@@ -173,7 +171,7 @@ export class MenuItem extends React.Component<MenuItemProps>{
         return <li className={classnames("treeview", { "hide": hide, "active": active, 'hasChildren': hasChilren, 'separator': isSeparator })}>
             {this.props.uri && 
             <a onClick={this.onItemClick} href={this.props.uri}>
-                <UpSvgIcon title={this.props.title} width={24} height={24} iconName={this.props.icon as IconName}></UpSvgIcon>
+                <UpSvgIcon title={this.props.title} width={22} height={22} iconName={this.props.icon as IconName}></UpSvgIcon>
                 <span className={'up-menu-item-title'}>{this.props.title}</span>
             </a>
             }
