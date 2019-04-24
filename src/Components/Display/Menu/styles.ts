@@ -69,7 +69,7 @@ export const MenuStyles = (
                  overflow: "hidden"
                },
                "&.up-menu nav > ul > li:first-child": {
-                 marginTop: "65px",
+                 marginTop: "83px",
                },
                "&.up-menu nav > ul > li:hover": {
                  overflow: "visible"
@@ -86,7 +86,9 @@ export const MenuStyles = (
                  padding: "12px"
                },
                "&.up-menu nav > ul > li > ul > li a": {
-                 padding: "0px"
+                 padding: "0px",
+                 paddingLeft:'12px',
+                 width:'213px'
                },
                "&.up-menu nav > ul > li > a": {
                  width: props.minified ? "48px" : "247px"
@@ -99,7 +101,7 @@ export const MenuStyles = (
                },
                "&.up-menu nav > ul > li:hover .up-sub-menu-title": {
                  display: props.minified ? "inline-block" : "none",
-                 marginBottom: "15px"
+                 marginBottom: "20px"
                },
                "&.up-menu nav > ul > li:not(:last-child)": {
                  marginBottom: "6px"
@@ -154,7 +156,7 @@ export const MenuStyles = (
                  display: "block"
                },
                "&.up-menu nav > ul > li ul li:not(:last-child)": {
-                 marginBottom: "12px"
+                 marginBottom: "25px"
                },
                "&.up-menu .up-menu-actions": {
                  minHeight: "16px",
