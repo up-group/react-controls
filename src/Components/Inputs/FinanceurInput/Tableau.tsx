@@ -237,7 +237,7 @@ export default class Tableau extends React.Component<TableauProps, TableauState>
                         <tr className={styleEnTete} >
                             { this.props.EnTetes.map((enTete: EnTete, idx: number): JSX.Element => {
                                 var icon: JSX.Element = null;
-                                if (this.props.OrderActif && enTete.OrderActif !== false) {
+                                if (this.props.OrderActif && !isNullOrUndef(enTete) && enTete.OrderActif !== false) {
                                     var direction: DirectionEnum = DirectionEnum.Bas;
                                     if (!arrayIsNullOrEmpty(this.state.Order)) {
                                         var ordre: Ordre[] = this.state.Order.filter((item) => { return item.IdxCol === idx; });
