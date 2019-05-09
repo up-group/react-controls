@@ -36,24 +36,31 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
 
     static defaultProps = {
         theme: defaultTheme,
-        icon: (props) => <UpSvgIcon width={48} height={48} iconHtml={logo}></UpSvgIcon>,
+        icon: () => <UpSvgIcon width={48} height={48} iconHtml={logo}></UpSvgIcon>,
         width: '275px',
-        minified:false
     }
 
     constructor(p, c) {
         super(p, c);
         this.state = {
-            minified: this.props.minified,
+            minified: false,
         };
     }
 
     toggleMinification = () => {
-        this.setState({ minified: !this.state.minified },()=>{
+        this.setState(!this.isMinifiedControlled?{ minified: !this.currentMinifiedValue }:null,()=>{
             if(this.props.onMinifiedChange){
-                this.props.onMinifiedChange(this.state.minified);
+                this.props.onMinifiedChange(this.currentMinifiedValue);
             }
         });
+    }
+    
+    get isMinifiedControlled() {
+        return this.props.minified !== undefined;
+    }
+
+    get currentMinifiedValue() {
+        return this.isMinifiedControlled ? this.props.minified : this.state.minified;
     }
 
     render() {
@@ -101,7 +108,7 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
         }
 
         return (
-            <aside className={classnames("up-menu", MenuStyles({ ...this.props, ...this.state }))}>
+            <aside className={classnames("up-menu", MenuStyles({...this.props, minified:this.currentMinifiedValue }))}>
                 <section className="up-menu-header">
                     {renderIcon &&
                         <section className="up-app-icon-wrapper">
