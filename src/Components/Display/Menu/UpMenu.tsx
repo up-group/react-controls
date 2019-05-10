@@ -48,11 +48,17 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
     }
 
     toggleMinification = () => {
-        this.setState(!this.isMinifiedControlled?{ minified: !this.currentMinifiedValue }:null,()=>{
-            if(this.props.onMinifiedChange){
-                this.props.onMinifiedChange(this.currentMinifiedValue);
-            }
-        });
+        if(this.isMinifiedControlled && this.props.onMinifiedChange)
+        {
+            this.props.onMinifiedChange(!this.currentMinifiedValue);
+        }
+        else {
+            this.setState({ minified: !this.currentMinifiedValue },()=>{
+                if(this.props.onMinifiedChange){
+                    this.props.onMinifiedChange(this.currentMinifiedValue);
+                }
+            });
+        }
     }
     
     get isMinifiedControlled() {
