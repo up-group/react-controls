@@ -65,11 +65,8 @@ export const MenuStyles = (
                },
                "&.up-menu nav > ul > li": {
                  position: "relative",
-                 maxWidth: "247px",
+                 maxWidth: props.width-28,
                  overflow: "hidden"
-               },
-               "&.up-menu nav > ul > li:first-child": {
-                 marginTop: "83px",
                },
                "&.up-menu nav > ul > li:hover": {
                  overflow: "visible"
@@ -91,7 +88,7 @@ export const MenuStyles = (
                  width:'213px'
                },
                "&.up-menu nav > ul > li > a": {
-                 width: props.minified ? "48px" : "247px"
+                 width: props.minified ? 48 : props.width-28
                },
                "&.up-menu nav > ul > li .up-sub-menu-title": {
                  display: "none",
@@ -159,8 +156,8 @@ export const MenuStyles = (
                  marginBottom: "25px"
                },
                "&.up-menu .up-menu-actions": {
-                 minHeight: "16px",
-                 margin: "25px 15px 6px 15px"
+                 minHeight: "21px",
+                 margin: "30px 15px"
                },
                "&.up-menu .up-menu-toggle.colored svg, .up-menu .up-menu-toggle.colored svg path, .up-menu .up-menu-toggle.colored svg polygon, .up-menu .up-menu-toggle.colored svg polyline": {
                  fill: "#ffffff",
@@ -176,6 +173,7 @@ export const MenuStyles = (
                },
                "& .up-menu-header": {
                  display: 'flex',
+                 justifyContent:'space-between',
                  alignItems: 'center'
                },
              }

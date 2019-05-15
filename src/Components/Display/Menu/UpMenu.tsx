@@ -21,7 +21,7 @@ export interface UpMenuProps {
     menuItems: MenuItemData[];
     footer?: RenderCallback | JSX.Element;
     children?: RenderCallback | React.ReactNode;
-    width?: string;
+    width?: number;
     minified?: boolean,
     blocked?: boolean,
     onClick?: (uri: string) => boolean | void;
@@ -37,7 +37,7 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
     static defaultProps = {
         theme: defaultTheme,
         icon: () => <UpSvgIcon width={48} height={48} iconHtml={logo}></UpSvgIcon>,
-        width: '275px',
+        width: 300,
     }
 
     constructor(p, c) {
@@ -122,13 +122,20 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
                         </section>
                     }
                     {renderHeader}
+                    <div>
+                    {!this.props.blocked && !this.currentMinifiedValue && 
+                        <UpSvgIcon width={20} height={20} iconName={'burger'} 
+                            className="up-menu-toggle" onClick={this.toggleMinification}>
+                        </UpSvgIcon>}
+                    </div>
                 </section>
                 <section className="up-menu-nav" >
-                {!this.props.blocked && <div className="up-menu-actions">
-                        <UpSvgIcon width={16} height={16} iconName={'burger-menu'} 
+                    <div className="up-menu-actions">
+                    {!this.props.blocked && this.currentMinifiedValue && 
+                        <UpSvgIcon width={16} height={16} iconName={'burger'} 
                             className="up-menu-toggle" onClick={this.toggleMinification}>
-                        </UpSvgIcon>
-                    </div>}
+                        </UpSvgIcon>}
+                    </div>
                     <nav>
                         <ul>
                             {menu}
