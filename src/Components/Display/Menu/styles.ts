@@ -90,6 +90,9 @@ export const MenuStyles = (
                "&.up-menu nav > ul > li > a": {
                  width: props.minified ? 48 : props.width-28
                },
+               "&.up-menu nav > ul > li:first-child": {
+                 marginTop: props.minified ? 0 : 83
+               },
                "&.up-menu nav > ul > li .up-sub-menu-title": {
                  display: "none",
                  color: "#FFF",
@@ -156,8 +159,8 @@ export const MenuStyles = (
                  marginBottom: "25px"
                },
                "&.up-menu .up-menu-actions": {
-                 minHeight: "21px",
-                 margin: "30px 15px"
+                 minHeight: "23px",
+                 margin: props.minified?"30px 15px":"0"
                },
                "&.up-menu .up-menu-toggle.colored svg, .up-menu .up-menu-toggle.colored svg path, .up-menu .up-menu-toggle.colored svg polygon, .up-menu .up-menu-toggle.colored svg polyline": {
                  fill: "#ffffff",
@@ -173,8 +176,9 @@ export const MenuStyles = (
                },
                "& .up-menu-header": {
                  display: 'flex',
+                 flexDirection: props.minified?'column':'row',
                  justifyContent:'space-between',
-                 alignItems: 'center'
+                 alignItems: props.minified?'safe flex-start':'center'
                },
              }
            },
