@@ -178,7 +178,7 @@ export const MenuStyles = (
                  display: 'flex',
                  flexDirection: props.minified?'column':'row',
                  justifyContent:'space-between',
-                 alignItems: props.minified?'safe flex-start':'center'
+                 alignItems: props.minified?'flex-start':'center'
                },
              }
            },
