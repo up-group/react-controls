@@ -162,6 +162,9 @@ export const MenuStyles = (
                  minHeight: "23px",
                  margin: props.minified?"30px 15px":"0"
                },
+               "&.up-menu .up-menu-toggle" : {
+                 cursor: "pointer",
+               },
                "&.up-menu .up-menu-toggle.colored svg, .up-menu .up-menu-toggle.colored svg path, .up-menu .up-menu-toggle.colored svg polygon, .up-menu .up-menu-toggle.colored svg polyline": {
                  fill: "#ffffff",
                  cursor: "pointer"
