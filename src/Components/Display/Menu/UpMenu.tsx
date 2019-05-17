@@ -122,20 +122,14 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
                         </section>
                     }
                     {renderHeader}
-                    <div>
-                    {!this.props.blocked && !this.currentMinifiedValue && 
-                        <UpSvgIcon width={20} height={20} iconName={'burger'} 
+                    <div className="up-menu-actions">
+                    {!this.props.blocked &&
+                        <UpSvgIcon width={18} height={18} iconName={'burger-menu2'} 
                             className="up-menu-toggle" onClick={this.toggleMinification}>
                         </UpSvgIcon>}
                     </div>
                 </section>
                 <section className="up-menu-nav" >
-                    <div className="up-menu-actions">
-                    {!this.props.blocked && this.currentMinifiedValue && 
-                        <UpSvgIcon width={16} height={16} iconName={'burger'} 
-                            className="up-menu-toggle" onClick={this.toggleMinification}>
-                        </UpSvgIcon>}
-                    </div>
                     <nav>
                         <ul>
                             {menu}
