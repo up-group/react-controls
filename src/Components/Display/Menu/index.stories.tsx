@@ -47,7 +47,7 @@ const HookedMenu = (props) => {
         { title: "Settings", icon: "settings", isSelected: false, isVisible: true, uri: "/settings", childMenuItems: [] },
         { isSeparator: true },
         { render  : (item : MenuItemData, props : UpMenuProps, state: UpMenuState) => {
-            return <UpButton intent={'primary'} onClick={() => action('Command')} width={state.minified ? 'icon' : 'full'} height={'large'} actionType={'briefcase'}>{'Commander'}</UpButton>
+            return <UpButton intent={'primary'} onClick={(e) =>  { action('Command') }} width={state.minified ? 'icon' : 'full'} height={'large'} actionType={'briefcase'}>{'Commander'}</UpButton>
         }},
     ];
     const [menu, setMenu] = React.useState(defaultMenu);
