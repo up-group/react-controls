@@ -64,7 +64,8 @@
     "publishLocalToApp": "copyfiles dist/src/*.* dist/src/**/* src/theming/icons/* ../../loopback/revolution-digitale/client/node_modules/@up-group/react-controls/dist",
     "test": "jest --notify --coverage",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -o ./public"
+    "build-storybook": "build-storybook -o ./public",
+    "upgrade": "npx npm-check-updates '/storybook/' -u && npm install"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -73,12 +74,12 @@
     "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-stage-0": "^7.0.0",
-    "@storybook/addon-actions": "^5.1.3",
-    "@storybook/addon-info": "^5.1.3",
-    "@storybook/addon-knobs": "^5.1.3",
-    "@storybook/addon-links": "^5.1.3",
-    "@storybook/addon-options": "^5.1.3",
-    "@storybook/react": "^5.1.3",
+    "@storybook/addon-actions": "^5.1.9",
+    "@storybook/addon-info": "^5.1.9",
+    "@storybook/addon-knobs": "^5.1.9",
+    "@storybook/addon-links": "^5.1.9",
+    "@storybook/addon-options": "^5.1.9",
+    "@storybook/react": "^5.1.9",
     "@types/chai": "^3.5.2",
     "@types/chai-enzyme": "^0.6.1",
     "@types/enzyme": "*",
