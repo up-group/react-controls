@@ -45,7 +45,7 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> =
         }
     }
 
-    const id = generateId() ;
+    const id = props.id || generateId() ;
 
     return (
       <div className={classnames(getStyles(props), className)}>
@@ -136,7 +136,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
     }
 
     renderControl() {
-        const { name, autocomplete, touched, type, onChange, value, validation, errorDisplayMode, hasError, iconName, iconPosition, width, disabled, readonly, tooltip, maxLength, placeholder, floatingLabel, theme, ...others } = this.props;
+      const { id, name, autocomplete, touched, type, onChange, value, validation, errorDisplayMode, hasError, iconName, iconPosition, width, disabled, readonly, tooltip, maxLength, placeholder, floatingLabel, theme, ...others } = this.props;
         var realIconName = iconName;
         if (realIconName == null && type != null && IconNames.indexOf(type as IconName) != -1) {
             realIconName = type as IconName;
@@ -145,6 +145,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
         return (
           <BaseInput
             name={name}
+            id={id}
             rounded={this.props.rounded}
             value={this.currentValue == null ? "" : this.currentValue}
             iconName={realIconName}
