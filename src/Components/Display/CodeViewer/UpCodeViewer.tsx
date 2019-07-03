@@ -71,7 +71,7 @@ const UpCodeViewer = (props: UpCodeViewerProps) => {
                 margin:'0px',
                 textAlign: 'left',
                 fontSize: '14px',
-                width: '97%'
+                flex:1
             }
         }
     })}>
