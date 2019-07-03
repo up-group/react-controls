@@ -14,6 +14,7 @@ steps:
 - script: |
     npm i
     npm build
+    npm test
     npm run build-storybook
   displayName: 'npm install and publish static site'
 - task: CopyFiles@2
