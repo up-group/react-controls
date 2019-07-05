@@ -95,7 +95,6 @@ class UpPDFViewer extends React.PureComponent<UpPDFViewerProps & WithThemeProps,
       <div ref={(ref) => { this.pdfWrapper = ref ; this.setDivSize() ; }}
         className={this.props.className}>
         <Document
-          className={FullWidth}
           file={base64PDFOrUrl}
           loading={
             <div style={{ margin: 'auto' }}>
