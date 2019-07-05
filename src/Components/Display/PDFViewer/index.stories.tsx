@@ -34,7 +34,7 @@ stories.add('Simple usage',
       <UpBox style={{margin:"40px 30px"}}>
         <UpParagraph>
           <UpBox flexDirection={'row'} flexWrap={true}>
-            <UpPDFViewer isProcessingPrint={false} onLoadSuccess={() => { }} base64PDF={`data:application/pdf;base64,${sample}`} />
+            <UpPDFViewer isProcessingPrint={false} onLoadSuccess={() => { }} base64PDFOrUrl={`data:application/pdf;base64,${sample}`} />
           </UpBox>
         </UpParagraph>
       </UpBox>
