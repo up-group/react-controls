@@ -4,6 +4,7 @@ export type MentorName =
   | "mouth-straight-orange"
   | "wink-grey"
   | "happy-orange"
+  | "confused-orange"
   | "sparkles";
 
 export const MentorNames: MentorName[] = [
@@ -12,6 +13,7 @@ export const MentorNames: MentorName[] = [
          "mouth-straight-orange",
          "wink-grey",
          "happy-orange",
+         "confused-orange",
          "sparkles"
        ];
 

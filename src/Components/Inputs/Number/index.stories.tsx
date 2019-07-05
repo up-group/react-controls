@@ -5,7 +5,7 @@ import UpDefaultTheme from '../../../Common/theming'
 import {IntentType} from '../../../Common/theming/types'
 import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
 
-import UpNumber from './UpNumber'
+import UpNumber, { UpNumberProps } from './UpNumber'
 import UpLabel from '../../Display/Label'
 
 import { getRootContainer } from '../../../Common/stories';
@@ -16,12 +16,22 @@ const stories = storiesOf('Inputs/UpNumber', module) ;
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpNumber'));
 
+const NumberWrapper = (props: UpNumberProps) => {
+  const [number, setNumber] = React.useState(0) ;
+  return <UpLabel textAlign={"left"} inline={true} width="small" text="Number :">
+    <UpNumber min={0} value={number} onChange={ (e, value) => {
+      console.log(value);
+      setNumber(value as number)
+    }} />
+  </UpLabel>
+}
+
 stories.add('Simple usage',
    () => (
     <UpThemeProvider theme={UpDefaultTheme}>
         <UpLabel textAlign={"left"} inline={false} width="small" text="Number :">
             <UpNumber />
-            </UpLabel>
+        </UpLabel>
     </UpThemeProvider>
   ), { info: 'Utilisation avec plusieurs options' }
 ).add('Integer',
@@ -34,9 +44,7 @@ stories.add('Simple usage',
    </UpThemeProvider>
    
    <UpThemeProvider theme={UpDefaultTheme}>
-       <UpLabel textAlign={"left"} inline={true} width="small" text="Number :">
-           <UpNumber min={0} />
-        </UpLabel>
+       <NumberWrapper />
    </UpThemeProvider>
    </>
     ), {info :  'Only greather than 0'}

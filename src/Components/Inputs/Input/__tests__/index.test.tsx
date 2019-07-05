@@ -1,11 +1,10 @@
 // Imports
 import * as React from 'react';
-import UpInput from '../';
+import UpInput from '../UpInput';
+
 import * as chai from 'chai';
 import * as chaiEnzyme from 'chai-enzyme';
 import { shallow, mount, render } from 'enzyme';
-import * as renderer from 'react-test-renderer'
-//import 'jest-styled-components'
 
 chai.use(chaiEnzyme());
 
@@ -23,8 +22,7 @@ describe('UpInput', () => {
   });
 
   it('should have a width', function() {
-    var _render = renderer.create(<UpInput width="medium" />).toJSON() ;
-    //expect(_render).toMatchStyledComponentsSnapshot();
+    var _render = render(<UpInput width="medium" id={"MyId"} />) ;
     expect(_render).toMatchSnapshot();
   });
 });

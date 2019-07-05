@@ -33,11 +33,9 @@ export interface Action {
     tooltip?: string | Tooltip;
     libelle:string;
 }
-
 export interface Separator {
     size?:number;
 }
-
 export interface CommonProps extends WithThemeProps {
     /** Surcharge la couleur définit par le type d'intent */
     color?: string;
@@ -80,12 +78,10 @@ export interface CommonProps extends WithThemeProps {
     /** Tye type of the button  */
     type?: 'button' | 'submit' | 'reset';
 }
-
 // This is so that the onClick handler is accepted without type interferance
 export interface UpButtonProps extends CommonProps {
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void | Promise<any>;
 }
-
 export interface UpButtonStyledProps extends UpButtonProps {
     className?: string; // Needed by styled components to set the created className to a complex element
     dataFor?: string; // Use for tooltip

@@ -31,6 +31,9 @@ const wrapperNumberStyles = (props : UpNumberProps) => style({
         },
         '.up-btn-wrapper' : {
             height: '16px',
+        },
+        '.up-input-group > .up-icon-wrapper:last-child' : {
+            right:'-14px'
         }
     }
 })
@@ -100,7 +103,7 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
    }
 
    increment = () => {
-        let newValue = parseFloat(this.state.value as string);
+        let newValue = parseFloat(this.currentValue as string);
         if(isNaN(newValue)) {
             newValue = 0 ;
         }
@@ -116,7 +119,7 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
    }
 
    decrement = () => {
-        let newValue = parseFloat(this.state.value as string) ;
+        let newValue = parseFloat(this.currentValue as string) ;
         if(isNaN(newValue)) {
             newValue = 0 ;
         }
@@ -126,6 +129,7 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
         if(this.props.max && newValue < this.props.min) {
             newValue == this.props.max
         }
+
         this.setState({ value: newValue}, () => {
             this.handleChangeEvent(eventFactory(this.props.name, this.state.value), this.state.value);
         }); 
@@ -151,7 +155,7 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
                     tooltip={tooltip}
                     readonly={readonly}
                     isRequired={isRequired}
-                    value={ this.state.value ? this.state.value.toString() : "" } 
+                    value={this.currentValue ? this.currentValue.toString() : "" } 
                     onChange={(event, value) => { event.persist() ; this.handleNumericChange(event, parseFloat(value), value) }} />
              <UpBox className={wrapperNumberButtonsStyles(this.props)} flexDirection={theme.inputBorderLess ? 'row' : 'column-reverse'}>
                 <UpButton intent={'primary'} width={'icon'} iconSize={9} height={'xsmall'} onClick={this.decrement} iconName={'arrow-down'}></UpButton>
