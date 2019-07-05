@@ -21,7 +21,7 @@ const codeStoryPDFViewer =
   width={450} 
   isProcessingPrint={false} 
   onLoadSuccess={action} 
-  base64PDFOrUrl={base64PDFOrUrl} />`
+  base64PDFOrUrl={"base64PDFOrUrl"} />`
 
 const sample = 'JVBERi0xLjcKCjEgMCBvYmogICUgZW50cnkgcG9pbnQKPDwKICAvVHlwZSAvQ2F0YWxvZwog' +
   'IC9QYWdlcyAyIDAgUgo+PgplbmRvYmoKCjIgMCBvYmoKPDwKICAvVHlwZSAvUGFnZXMKICAv' +
