@@ -15,6 +15,7 @@ import UpSvgIcon from '../../Display/SvgIcon';
 import { getStyles, getWrapperStyles } from './styles';
 
 import withTheme from '../../../Common/theming/withTheme';
+import { NestedCSSProperties } from 'typestyle/lib/types';
 
 export interface UpButtonState {
     isToggled?: boolean;
@@ -77,6 +78,8 @@ export class BaseButton extends React.Component<UpButtonStyledProps> {
 
 // Exports
 class UpButton extends React.Component<UpButtonProps, UpButtonState> {
+
+    dropDownContainer : HTMLDivElement ;
 
     constructor(props) {
         super(props);
@@ -151,10 +154,12 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
 
     disabled = () => this.props.disabled || this.state.isProcessing ;
     
-    render() {
-        const { children, tooltip, onClick, iconName, iconPosition, disabled, isProcessing, ...others } = this.props;
+    setReference = (e) => {
+        this.dropDownContainer = e;
+    }
 
-        const BtnList = style({
+    getDropDownStyles = () => {
+        const styles : NestedCSSProperties = {
             display: this.getValue('isToggled') ? "block" : "none",
             position: "absolute",
             top: "35px",
@@ -173,7 +178,20 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
             transition: this.getValue('isToggled') ? "height 2s ease-in" : "height 2s ease-out",
             transform: this.getValue('isToggled') ? "scaleY(1)" : "scaleY(0)",
             transformOrigin: "top"
-        });
+        };
+
+        var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+
+        if (this.dropDownContainer && (this.dropDownContainer.getBoundingClientRect().right + this.dropDownContainer.offsetWidth + 20) >= viewportWidth) {
+            styles.right = '10px'
+        } else if (this.dropDownContainer && this.dropDownContainer.offsetLeft <= 10) {
+            styles.left = '10px'
+        }
+        return styles ;
+    };
+
+    render() {
+        const { children, tooltip, onClick, iconName, iconPosition, disabled, isProcessing, ...others } = this.props;
 
         const buttonElement = style({
             cursor: "pointer",
@@ -191,7 +209,6 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
             overflow: "hidden",
             backgroundColor: '#e5e5e5'
         });
-
 
         let icon: boolean | IconName = iconName;
         if (icon == null && this.props.dropDown != 'none') {
@@ -228,7 +245,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         </BaseButton>
 
         return (
-            <div className={classnames('up-btn-wrapper', getWrapperStyles(this.props))}>
+            <div ref={this.setReference} className={classnames('up-btn-wrapper', getWrapperStyles(this.props))}>
                 {
                     tooltip === null ?
                         renderButton
@@ -238,7 +255,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
                         </UpTooltip>
                 }
                 {this.props.dropDown != 'none' && this.getValue('isToggled') &&
-                    <ul tabIndex={0} className={BtnList}>
+                    <ul tabIndex={0} className={style(this.getDropDownStyles())}>
                         {
                             this.props.extraActions.map((v, i) => {
                                 const isSeparator = this.isSeparator(v);
@@ -257,4 +274,4 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
     }
 }
 
-export default withTheme<UpButtonProps>(UpButton)
+export default withTheme<UpButtonProps>(UpButton) 

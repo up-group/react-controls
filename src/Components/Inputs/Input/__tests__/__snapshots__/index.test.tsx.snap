@@ -2,26 +2,21 @@
 
 exports[`UpInput should have a width 1`] = `
 <div
-  className="fx9mkvh"
+  class="f1tixqa4"
 >
   <div
-    className="krogLN"
+    class="faftrne fieymse f1smlmue fxjnd2r"
   >
     <div
-      className="up-input-group"
+      class="up-input-group"
     >
       <input
-        className="up-input"
+        class="up-input"
         dir="auto"
-        disabled={undefined}
-        maxLength={undefined}
-        onChange={[Function]}
-        placeholder={undefined}
-        readOnly={undefined}
+        id="MyId"
         type="text"
         value=""
       />
-      
     </div>
   </div>
 </div>

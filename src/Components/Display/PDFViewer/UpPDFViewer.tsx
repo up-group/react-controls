@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { style } from 'typestyle'; 
 import { Document, Page } from 'react-pdf';
-import { throttle } from 'lodash' ;
 import { WithThemeProps, withTheme } from '../../../Common/theming';
 import UpLoadingIndicator from '../LoadingIndicator';
-import { UpButton } from 'Components';
 
 const FullWidth = style({
   width: '100%',
@@ -13,21 +11,26 @@ const FullWidth = style({
 
 export interface UpPDFViewerProps {
   isProcessingPrint?: boolean;
-  base64PDF: string;
+  base64PDFOrUrl: string;
   fileName?: string;
-  scale?:number;
+  scale?: number;
+  width?: number;
+  showAllPages?: boolean;
   onLoadSuccess?:() => void;
+  className?: string;
+  children?: Array<React.ReactNode> | React.ReactNode;
 }
 
 export interface UpPDFViewerState {
   wrapperWidth? : number;
-  pageNumber?:number;
+  pagesNumber?: number;
 }
 
 class UpPDFViewer extends React.PureComponent<UpPDFViewerProps & WithThemeProps, UpPDFViewerState> {
 
   static defaultProps = {
     scale: 1.1,
+    className: FullWidth
   };
 
   // The wrapper block of the PDF Viewer
@@ -37,31 +40,47 @@ class UpPDFViewer extends React.PureComponent<UpPDFViewerProps & WithThemeProps,
     super(props, context);
     // Initialize state
     this.state = {
-      pageNumber: 1
     } ;
   }
 
   componentDidMount () {
     this.setDivSize();
-    window.addEventListener('resize', throttle(this.setDivSize, 500));
+    //window.addEventListener('resize', throttle(this.setDivSize, 500));
   }
 
   componentWillUnmount () {
-    window.removeEventListener('resize', throttle(this.setDivSize, 500));
+    //window.removeEventListener('resize', throttle(this.setDivSize, 500));
   }
 
   onLoadSuccess = (data) => {
-    this.setState({ pageNumber: data.numPages });
+    this.setState({ pagesNumber: data.numPages });
+    if(this.props.onLoadSuccess){
+        this.props.onLoadSuccess();
+    }
   }
 
   setDivSize = () => {
-    if (this.pdfWrapper != null) {
+    if(this.props.width){
+      this.setState({ wrapperWidth: this.props.width });
+    }
+    else if (this.pdfWrapper != null) {
       this.setState({ wrapperWidth: this.pdfWrapper.getBoundingClientRect().width });
     }
   }
 
+  displayAllPages = numPages => {
+    let pages = [];
+    for (let page = 1; page <= numPages; page++) {
+      pages.push(
+      <Page key={page} pageNumber={page} scale={this.props.scale} 
+      width={this.state.wrapperWidth?this.state.wrapperWidth:'100%'} />
+      );
+    }
+    return pages;
+  };
+
   render() {
-    const { isProcessingPrint, base64PDF } = this.props;
+    const { isProcessingPrint, base64PDFOrUrl } = this.props;
 
     if (isProcessingPrint === true) {
       return (
@@ -73,22 +92,31 @@ class UpPDFViewer extends React.PureComponent<UpPDFViewerProps & WithThemeProps,
     }
 
     return (
-      <div ref={(ref) => { this.pdfWrapper = ref ; this.setDivSize() ; }}>
+      <div ref={(ref) => { this.pdfWrapper = ref ; this.setDivSize() ; }}
+        className={this.props.className}>
         <Document
-          className={FullWidth}
-          file={base64PDF}
+          file={base64PDFOrUrl}
           loading={
-            <UpLoadingIndicator
-              message={"Chargement en cours..."}
-              isLoading={true}
-            />
+            <div style={{ margin: 'auto' }}>
+              <UpLoadingIndicator
+                message={"Chargement en cours..."}
+                isLoading={true}
+              />
+            </div>
           }
           onLoadSuccess={this.onLoadSuccess}
           noData={''}>
-          <Page
+          {this.props.showAllPages && 
+            this.state.pagesNumber && 
+            this.displayAllPages(this.state.pagesNumber)
+            }
+          {!this.props.showAllPages &&
+            <Page
             width={this.state.wrapperWidth ? this.state.wrapperWidth : '100%'}
-            pageNumber={this.state.pageNumber}
+            pageNumber={1}
             scale={this.props.scale} />
+            }
+            {this.props.children}
         </Document>
       </div>
     );

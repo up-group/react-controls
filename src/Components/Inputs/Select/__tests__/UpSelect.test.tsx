@@ -1,11 +1,9 @@
 // Imports
 import * as React from 'react';
-import UpSelect from './';
+import UpSelect from '../UpSelect';
 import * as chai from 'chai';
 import * as chaiEnzyme from 'chai-enzyme';
-import { shallow, mount, render } from 'enzyme';
-import toJson from 'enzyme-to-json';
-import * as renderer from 'react-test-renderer'
+import { mount } from 'enzyme';
 
 chai.use(chaiEnzyme());
 
@@ -21,9 +19,7 @@ describe('UpSelect', () => {
         text:'option 2'
       },
     ]} />) ;
-    _render.find('.Select-arrow-zone').simulate('click') ;
-    console.log(_render.find('.Select-arrow-zone'));
-    var _options = _render.find("option");
-    expect(_options.length).toBe(2);
+    
+    expect(_render.find('.up-select-wrapper').length).toBe(1);
   });
 });

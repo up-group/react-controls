@@ -10,9 +10,18 @@ import UpParagraph from '../../Display/Paragraph';
 import UpPDFViewer from './UpPDFViewer';
 
 import { getRootContainer } from '../../../Common/stories';
+import UpCodeViewer from '../CodeViewer';
 const stories = storiesOf('Display/UpPDFViewer', module) ;
 stories.addDecorator(withKnobs);
 stories.addDecorator(getRootContainer('UpPDFViewer'));
+
+const codeStoryPDFViewer = 
+`const action = {() => { console.log("PDF Loaded Successfully") }};
+<UpPDFViewer 
+  width={450} 
+  isProcessingPrint={false} 
+  onLoadSuccess={action} 
+  base64PDFOrUrl={"base64PDFOrUrl"} />`
 
 const sample = 'JVBERi0xLjcKCjEgMCBvYmogICUgZW50cnkgcG9pbnQKPDwKICAvVHlwZSAvQ2F0YWxvZwog' +
   'IC9QYWdlcyAyIDAgUgo+PgplbmRvYmoKCjIgMCBvYmoKPDwKICAvVHlwZSAvUGFnZXMKICAv' +
@@ -34,9 +43,11 @@ stories.add('Simple usage',
       <UpBox style={{margin:"40px 30px"}}>
         <UpParagraph>
           <UpBox flexDirection={'row'} flexWrap={true}>
-            <UpPDFViewer isProcessingPrint={false} onLoadSuccess={() => { }} base64PDF={`data:application/pdf;base64,${sample}`} />
+            <UpPDFViewer width={450} isProcessingPrint={false} onLoadSuccess={() => { console.log("PDF Loaded Successfully") }} base64PDFOrUrl={`data:application/pdf;base64,${sample}`} />
           </UpBox>
         </UpParagraph>
+        <UpCodeViewer code={codeStoryPDFViewer} language={'jsx'}>
+        </UpCodeViewer>
       </UpBox>
     </UpThemeProvider>
    }, {info: 'Utilisation du composant en lui passant les données à afficher'}
