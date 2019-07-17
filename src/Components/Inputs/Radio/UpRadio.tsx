@@ -9,9 +9,9 @@ import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import defaultTheme from '../../../Common/theming';
 import {BaseControlProps} from '../_Common/BaseControl/BaseControl' 
 import { IntentType } from '../../../Common/theming/types';
-import { number } from 'prop-types';
 import UpSvgIcon from '../../Display/SvgIcon';
 import { IconName } from '../../../Common/theming/icons';
+import { ReactNode } from 'react';
 
 // Exports
 export type Position = 'left' | 'right' ;
@@ -25,6 +25,7 @@ export interface Option {
     name?:string;
     checked?:boolean;
     intent?: IntentType;
+    toggledElement?: Array<ReactNode> | ReactNode;
 }
 
 export interface UpRadioStyledProps extends Option {
@@ -64,19 +65,24 @@ const RadioGroup: React.StatelessComponent<RadioGroupProps & WithThemeProps> = (
   }
 
 const BaseRadioButton: React.StatelessComponent<UpRadioStyledProps & WithThemeProps> = (props : UpRadioStyledProps & WithThemeProps) => {
-    const { checked, iconName, className, name, text, value, onChange, intent } = props;
+    const { checked, iconName, className, name, text, value, onChange, intent, toggledElement: field } = props;
     return (
-      <label className={classnames("up-control", "up-radio", getStyles(props), intent ? `up-intent-${intent}` : null, className)}>
-        <input checked={checked} onChange={(e) => {e.persist(); onChange(e)}} name={name} type="radio" value={value} />
-        <span className="up-control-wrapper">
-            <span className="up-control-indicator"></span>
-        </span>
-        <span className="up-control-text">
-        {iconName &&
-            <UpSvgIcon iconName={iconName} />
-        }
-        <span>{text}</span></span>
-      </label>
+        <>
+        <label className={classnames("up-control", "up-radio", getStyles(props), intent ? `up-intent-${intent}` : null, className)}>
+            
+            <input checked={checked} onChange={(e) => {e.persist(); onChange(e)}} name={name} type="radio" value={value} />
+            <span className="up-control-wrapper">
+                <span className="up-control-indicator"></span>
+            </span>
+            <span className="up-control-text">
+            {iconName &&
+                <UpSvgIcon iconName={iconName} />
+            }
+            <span>{text}</span>
+            </span>
+        </label>
+        {checked && field}
+      </>
     )
 }
 
@@ -149,7 +155,8 @@ class UpRadio extends BaseControlComponent<UpRadioProps, any> {
                             text={option.text}
                             iconName={option.iconName}
                             theme={this.props.theme}
-                            value={option.value}>
+                            value={option.value}
+                            toggledElement={option.toggledElement}>
                         </BaseRadioButton>
                     )
                 })}
