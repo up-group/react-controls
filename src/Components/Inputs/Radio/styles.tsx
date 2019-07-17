@@ -60,8 +60,11 @@ export const RadioGroupStyles = (props: RadioGroupProps & WithThemeProps) => {
         textAlign: "center",
         color: "#4e5b59"
       },
-      "&.upContainer__groupradio-horizontal label.up-radio": {
-        marginRight: `${props.gutter ? props.gutter : 0}px`
+      "&.upContainer__groupradio-horizontal label.up-radio:not(:first-child)": {
+        marginLeft: `${props.gutter ? props.gutter : 0}px`
+      },
+      "&.upContainer__groupradio-vertical label.up-radio:not(:first-child)": {
+        marginTop: `${props.gutter ? props.gutter : 0}px`
       },
       "&.upContainer__groupradio-horizontal": {
         display: "flex",
