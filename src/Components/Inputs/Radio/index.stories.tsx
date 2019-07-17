@@ -14,6 +14,9 @@ import { getRootContainer } from '../../../Common/stories';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup'; 
+import UpInput from '../Input';
+import UpNumber from '../Number/UpNumber';
+import UpCheckBox from '../Checkbox';
 const stories = storiesOf('Inputs/UpRadio', module) ;
 
 
@@ -80,6 +83,12 @@ stories.add('Multiple usage',
         </>
     )}
 , {info : 'Affichage des radio comme button'}
+).add('Display with toggled element',
+    () => (
+            <div style={{ padding: "30px" }}>
+                <UpRadio gutter={30} defaultValue={"option1"} alignMode="vertical" name={"modeAdresse"} options={[{ text: "Option 1", value: "option1",toggledElement:<UpInput placeholder={"Saisir votre message"}/> }, { text: "Option 2", value: "option2",toggledElement:<UpNumber/> }, { text: "Option 3", value: "option3", toggledElement:<UpCheckBox options={[{name:"case",text:"Cocher la case suivante"}]} /> }]} />
+            </div>
+    ), {info : 'Affichage des radio en ligne'}
 ).add('Form',
     () => (
         <div style={{ padding: "30px" }}>
