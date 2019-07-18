@@ -48,11 +48,13 @@ export interface UpRadioProps extends BaseControlProps<any> {
     displayMode?: DisplayMode,
     gutter?:number,
     onChange?: (arg: any, event: any, error?: string) => void;
+    flexWrap?: boolean;
 }
 
 export type RadioGroupProps = {
     className?:string;
     gutter?:number;
+    flexWrap?: boolean;
 }
 
 const RadioGroup: React.StatelessComponent<RadioGroupProps & WithThemeProps> = (props) => {
@@ -141,7 +143,7 @@ class UpRadio extends BaseControlComponent<UpRadioProps, any> {
         var radioGroupClass = `upContainer__groupradio upContainer__groupradio-${this.props.displayMode} upContainer__groupradio-${this.props.alignMode}`;
 
         return (
-            <RadioGroup className={radioGroupClass} gutter={this.props.gutter} theme={this.props.theme}>
+            <RadioGroup className={radioGroupClass} gutter={this.props.gutter} flexWrap={this.props.flexWrap} theme={this.props.theme}>
                 {/* Avoid set active element when using the component inside a label */}
                 <label style={{ display: "none" }}><input type="radio" /></label>
                 {options.map((option, i) => {
