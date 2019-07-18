@@ -17,6 +17,7 @@ export interface ErrorDisplayProps {
 const ErrorDisplayStyle = (props: WithThemeProps) => style({
     position:"relative", 
     cursor:"help",
+    height:"100%",
     $nest: {
         "& .up-wrapper-error-tooltip" : {
             display:"inline-block",
