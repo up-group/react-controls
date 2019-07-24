@@ -4,7 +4,8 @@ export type IllustrationName =
     | "email-verification"
     | "user-succes"
     | "user-creation"
-    | "attachment-succes";
+    | "attachment-succes"
+    | "product-order";
 
 export const IllustrationNames: IllustrationName[] = [
          "email-expired",
@@ -12,7 +13,8 @@ export const IllustrationNames: IllustrationName[] = [
          "email-verification",
          "user-succes",
          "user-creation",
-         "attachment-succes"
+         "attachment-succes",
+         "product-order"
        ];
 
 let dictionary = {};
