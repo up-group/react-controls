@@ -147,7 +147,7 @@
     "inputmask-core": "^2.2.0",
     "interact.js": "^1.2.8",
     "jquery": "^3.2.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.15",
     "moment": "^2.22.2",
     "normalize.css": "^4.1.1",
     "object-assign": "^4.1.1",
