@@ -31,6 +31,7 @@ export interface BaseControlProps<_BaseType> extends WithThemeProps {
   errorDisplayMode?: ErrorDisplayMode;
   error?: string;
   touched?: boolean;
+  hideErrorMessage?:boolean;
 }
 export interface BaseControlState<_BaseType> {
     error?: string;
@@ -197,6 +198,7 @@ export abstract class BaseControlComponent<
         showError={this.showError()}
         hasError={this.hasError}
         error={this.error}
+        hideErrorMessage={this.props.hideErrorMessage}
       >
         {_tooltip === null ? (
           RenderControl
