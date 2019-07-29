@@ -9,7 +9,6 @@ import withTheme, { WithThemeProps } from "../../../Common/theming/withTheme";
 import defaultTheme, { UpThemeInterface } from "../../../Common/theming";
 import UpBox from "../Box";
 import { isEmpty } from "../../../Common/utils";
-import { emptyString } from "react-select/lib/utils";
 
 const getMaxPage = (take, total): number => {
   if (isEmpty(take)) {
@@ -26,7 +25,7 @@ const generatePagesNavigation = (page, total, take): Array<number> => {
 
   if (maxPage >= 2) {
     if (maxPage <= 8) {
-        pages = Array.from({ length: maxPage }, (_, i) => i + 1);
+      pages = Array.from({ length: maxPage }, (_, i) => i + 1);
     } else {
       // Get the 4 first pages, the last 3 pages and the current one
       [1, 2, 3, 4].map(v => pages.push(v));
@@ -74,6 +73,10 @@ export interface UpPaginationProps {
   nextLabel?: string;
   /** Label pour le lien 'Précédent' */
   previousLabel?: string;
+  /** Taille de la colonne pour le composant de navigation */
+  paginationNumberSpanSize?: number;
+  /** chaine de caractères utilisées comme séparateur dans la pagination*/
+  paginationNavigationSeparator?: string;
   /** generate the pages navigation */
   generatePagesNavigation?: (page, total, take) => Array<number>;
   /** Affihage du nombre de résultats */
@@ -179,8 +182,7 @@ const paginationCounterStyle = (props: WithThemeProps) =>
     lineHeight: "1.43",
     textDecoration: "none",
     border: `1px solid ${props.theme.colorMap.primary}`,
-    float: "right",
-    cursor: "pointer"
+    float: "right"
   });
 
 class UpPagination extends React.Component<
@@ -366,7 +368,9 @@ class UpPagination extends React.Component<
               className={classnames(paginationItemClass, "disabled")}
             >
               <a onClick={e => e.preventDefault()} href="#">
-                ..
+                {this.props.paginationNavigationSeparator
+                  ? this.props.paginationNavigationSeparator
+                  : ".."}
               </a>
             </li>
           );
@@ -433,38 +437,56 @@ class UpPagination extends React.Component<
       );
     }
 
+    const paginationTakes = (
+      <UpBox
+        flexDirection={"row"}
+        alignItems={"baseline"}
+        justifyContent={"flex-end"}
+      >
+        <div
+          className={"up-pagination-takes"}
+          style={{ width: "120px", marginRight: "12px" }}
+        >
+          <UpSelect
+            placeholder={this.props.nbByPageMessage}
+            default={{
+              id: this.props.take,
+              text: this.props.take
+            }}
+            data={takes}
+            onChange={this.onTakeChange}
+          />
+        </div>
+        {this.props.renderResultMessage(
+          this.props.theme,
+          from,
+          to,
+          this.props.total
+        )}
+      </UpBox>
+    );
+
     return (
       <UpGrid className={"up-pagination-wrapper"}>
         <UpRow>
-          <UpCol span={14}>{pageNumberNavigation}</UpCol>
+          <UpCol
+            span={
+              this.props.paginationNumberSpanSize
+                ? this.props.paginationNumberSpanSize
+                : 14
+            }
+          >
+            {pageNumberNavigation}
+          </UpCol>
           <UpCol span={1} />
-          <UpCol span={9}>
-            <UpBox
-              flexDirection={"row"}
-              alignItems={"baseline"}
-              justifyContent={"flex-end"}
-            >
-              <div
-                className={"up-pagination-takes"}
-                style={{ width: "120px", marginRight: "12px" }}
-              >
-                <UpSelect
-                  placeholder={this.props.nbByPageMessage}
-                  default={{
-                    id: this.props.take,
-                    text: this.props.take
-                  }}
-                  data={takes}
-                  onChange={this.onTakeChange}
-                />
-              </div>
-              {this.props.renderResultMessage(
-                this.props.theme,
-                from,
-                to,
-                this.props.total
-              )}
-            </UpBox>
+          <UpCol
+            span={
+              this.props.paginationNumberSpanSize
+                ? 21 - this.props.paginationNumberSpanSize
+                : 9
+            }
+          >
+            {paginationTakes}
           </UpCol>
         </UpRow>
       </UpGrid>

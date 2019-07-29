@@ -36,7 +36,6 @@ const positions = (props: UpButtonProps): NestedCSSProperties => {
   return positions;
 }
 
-
 const base = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
   return {
     $nest: {
@@ -56,6 +55,7 @@ const base = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
         alignItems: 'center',
         flexDirection: 'row',
         position: 'relative',
+        minWidth: props.dropDown && props.width != 'icon' ? '44px' : 'inherit',
       },
       '&.up-btn .up-icon-wrapper': {
         ...positions(props),

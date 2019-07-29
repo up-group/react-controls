@@ -41,6 +41,7 @@ export interface CommonProps<VT> extends CommonInputTextProps<VT> {
   iconPosition?: InputIconPosition;
   rounded?: boolean;
   autocomplete?: string;
+  id?:string;
 }
 
 export interface UpInputProps extends CommonProps<string> {

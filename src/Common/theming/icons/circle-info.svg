@@ -1,18 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 23 23" version="1.1">
     <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
     <title>Icone/Foncé/info</title>
     <desc>Created with Sketch.</desc>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="06_01-Compte-modif-coordonnées-champs-manquant-Copy" transform="translate(-704.000000, -353.000000)">
-            <g id="Identifiant" transform="translate(356.000000, 168.000000)">
-                <g id="info-mid" transform="translate(349.000000, 186.000000)">
-                    <g id="Icone/Foncé/info">
-                        <circle id="Oval" stroke="#4E5B59" stroke-width="1" cx="10.5" cy="10.5" r="10.5"/>
-                        <text id="i" font-family="Roboto-Regular, Roboto" font-size="17" font-weight="normal" fill="#4E5B59">
-                            <tspan x="8.35839844" y="17">i</tspan>
-                        </text>
-                    </g>
+    <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="iPhone-8" transform="translate(-250.000000, -174.000000)">
+            <g id="Icone/Foncé/info" transform="translate(250.000000, 174.000000)">
+                <g id="Plan-de-travail-17">
+                    <path d="M11.13,22.45 C5.05486775,22.45 0.13,17.5251322 0.13,11.45 C0.13,5.37486775 5.05486775,0.45 11.13,0.45 C17.2051322,0.45 22.13,5.37486775 22.13,11.45 C22.13,14.3673814 20.9710748,17.1652744 18.9081746,19.2281746 C16.8452744,21.2910748 14.0473814,22.45 11.13,22.45 Z M11.13,1.45 C5.6071525,1.45 1.13,5.9271525 1.13,11.45 C1.13,16.9728475 5.6071525,21.45 11.13,21.45 C16.6528475,21.45 21.13,16.9728475 21.13,11.45 C21.13,8.7978351 20.0764316,6.25429597 18.2010678,4.37893219 C16.325704,2.5035684 13.7821649,1.45 11.13,1.45 Z" id="Shape" fill-rule="nonzero"/>
+                    <text id="i" font-family="Roboto-Regular, Roboto" font-size="17" font-weight="normal">
+                        <tspan x="8.99" y="17.95">i</tspan>
+                    </text>
                 </g>
             </g>
         </g>

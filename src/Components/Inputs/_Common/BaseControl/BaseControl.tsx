@@ -10,8 +10,11 @@ import { WithThemeProps } from "../../../../Common/theming/withTheme";
 import defaultTheme from "../../../../Common/theming";
 import { eventFactory } from "../../../../Common/utils/eventListener";
 
+import * as update from "react-addons-update";
+
 // Exports
 const ONCHANGE_MUST_BE_SPECIFIED = "La méthode onChange doit être spécifié dans le cas où la valeur du composant est défini dans les props";
+
 export interface BaseControlProps<_BaseType> extends WithThemeProps {
   name?: string;
   onChange?: (
@@ -139,14 +142,6 @@ export abstract class BaseControlComponent<
     }
   };
 
-  private equal = (v1, v2) => {
-    if (v1 === v2) {
-      return v1 !== 0 || 1 / v1 === 1 / v2;
-    } else {
-      return v1 !== v1 && v2 !== v2;
-    }
-  };
-
   validateProps(nextProps) {
     if (nextProps.value !== undefined && nextProps.onChange === undefined) {
       throw new Error(ONCHANGE_MUST_BE_SPECIFIED);
@@ -170,12 +165,63 @@ export abstract class BaseControlComponent<
       : this.error != null;
   }
 
-  abstract showError() ;
+  abstract showError();
 
   abstract showSuccess();
 
   get error() {
     return this.props.error !== undefined ? this.props.error : this.state.error;
+  }
+
+  onFocus = event => {
+    event.persist();
+    const handleOnFocus = event => {
+      if (this.props['onFocus']) this.props['onFocus'](event);
+    };
+
+    if (this.state.extra === undefined) {
+      this.setState(
+        { extra: { focused: true } },
+        handleOnFocus.bind(null, event)
+      );
+    } else {
+      this.setState(
+        update(this.state, { extra: { focused: { $set: true } } }),
+        handleOnFocus.bind(null, event)
+      );
+    }
+  };
+
+  onBlur = event => {
+    event.persist();
+    const handleOnBlur = event => {
+      if (this.props['onBlur']) this.props['onBlur'](event);
+    };
+
+    if (this.state.extra === undefined) {
+      this.setState(
+        { extra: { focused: false, touched: true } },
+        handleOnBlur.bind(null, event)
+      );
+    } else {
+      this.setState(
+        update(this.state, {
+          extra: {
+            focused: { $set: false },
+            touched: { $set: true }
+          }
+        }),
+        handleOnBlur.bind(null, event)
+      );
+    }
+  };
+
+  get isFocused() {
+    return this.state.extra ? this.state.extra.focused === true : false;
+  }
+
+  get isTouched() {
+    return this.state.extra ? this.state.extra.touched === true : false;
   }
 
   public render() {

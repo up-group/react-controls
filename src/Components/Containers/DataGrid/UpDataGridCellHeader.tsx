@@ -42,9 +42,9 @@ export default class UpDataGridCellHeader extends React.Component<UpDataGridCell
         };
     }
 
-    onCellClick = () => {
-        if(this.props.column.isSortable===true) {
-            this.setState({isSorted: true, sortDirection : this.state.sortDirection == "ASC" ?  "DESC" : "ASC" }, () => {
+    onCellClick = (sortDirection: SortDirection) => {
+        if(this.props.column.isSortable===true  && this.state.sortDirection!= sortDirection) {
+            this.setState({isSorted: true, sortDirection : sortDirection}, () => {
                 this.props.onSortChange(this.props.column, this.state.sortDirection);
             }) ;
         }  
@@ -74,10 +74,10 @@ export default class UpDataGridCellHeader extends React.Component<UpDataGridCell
                     ? "up-data-grid-sortable"
                     : ""
             )}
-            onClick={this.onCellClick}
           >
             <UpBox flexDirection={"row"} justifyContent={'flex-start'} alignItems={'center'}>
                 <span className={"up-data-grid-header-cell-label"}>{this.props.column.label}</span>
+                {this.props.column.isSortable && 
                 <UpBox className={"up-data-grid-header-cell-icons"} flexDirection={"column"} style={{width:'auto'}}>
                     <UpSvgIcon
                         width={8}
@@ -88,14 +88,17 @@ export default class UpDataGridCellHeader extends React.Component<UpDataGridCell
                             ? "black"
                             : "#D7D7D7"
                         }
+                        onClick={()=>this.onCellClick("DESC")}
                     />
                     <UpSvgIcon width={8} iconName={sortAscIcon} color={
                         this.state.isSorted &&
                             this.state.sortDirection == "ASC"
                             ? "black"
                             : "#D7D7D7"
-                    }/>
-                </UpBox></UpBox>
+                        }
+                        onClick={()=>this.onCellClick("ASC")}/>
+                </UpBox>}
+                </UpBox>
           </th>
         );
     }
