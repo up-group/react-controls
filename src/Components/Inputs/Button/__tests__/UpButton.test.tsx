@@ -3,9 +3,7 @@ import * as React from 'react';
 import UpButton from '../UpButton';
 import * as chai from 'chai';
 import * as chaiEnzyme from 'chai-enzyme';
-import { shallow, mount, render } from 'enzyme';
-import toJson from 'enzyme-to-json';
-import * as renderer from 'react-test-renderer'
+import { render,   } from 'enzyme';
 
 chai.use(chaiEnzyme());
 
@@ -15,4 +13,10 @@ describe('UpButton', () => {
     var _input = _render.find("button");
     expect(_input.length).toBe(1);
   });
+
+  it('should render an icon with a label', function() {
+    var _render = render(<UpButton actionType={'edit'} onClick={() => { }}>Edit</UpButton>);
+    var _input = _render.find("span.up-btn-label");
+    expect(_input.length).toBe(1);
+  })
 });

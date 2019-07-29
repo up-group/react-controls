@@ -1,12 +1,20 @@
 export type MentorName =
   | "glasses-orange"
+  | "glasses-brown"
   | "mouth-straight-orange"
-  | "wink-grey";
+  | "wink-grey"
+  | "happy-orange"
+  | "confused-orange"
+  | "sparkles";
 
 export const MentorNames: MentorName[] = [
          "glasses-orange",
+         "glasses-brown",
          "mouth-straight-orange",
          "wink-grey",
+         "happy-orange",
+         "confused-orange",
+         "sparkles"
        ];
 
 let dictionary = {};

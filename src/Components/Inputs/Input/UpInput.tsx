@@ -2,8 +2,6 @@
 import * as React from 'react'
 import * as classnames from 'classnames'
 
-import * as update from 'react-addons-update'
-
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import { UpInputProps, Validation, UpInputStyledProps } from './types'
 import TypeStringControl from '../_Common/Validation/TypeStringControl'
@@ -46,7 +44,9 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> =
             "data-for": dataFor
         }
     }
-    const id = generateId() ;
+
+    const id = props.id || generateId() ;
+
     return (
       <div className={classnames(getStyles(props), className)}>
         <div
@@ -123,50 +123,6 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
         this.handleChangeEvent(event, undefined);
     }
 
-    onFocus = (event) => {
-        event.persist();
-        const handleOnFocus = (event) => {
-            if (this.props.onFocus)
-                this.props.onFocus(event);
-        }
-
-        if (this.state.extra === undefined) {
-            this.setState({ extra: { focused: true } }, handleOnFocus.bind(null, event));
-        } else {
-            this.setState(update(this.state, { extra: { focused: { $set: true } } }), handleOnFocus.bind(null, event));
-        }
-    }
-
-    onBlur = (event) => {
-        event.persist();
-        const handleOnBlur = (event) => {
-            if (this.props.onBlur)
-                this.props.onBlur(event);
-        }
-
-        if (this.state.extra === undefined) {
-            this.setState({ extra: { focused: false, touched: true } }, handleOnBlur.bind(null, event));
-        } else {
-          this.setState(
-            update(this.state, {
-              extra: {
-                focused: { $set: false },
-                touched: { $set: true }
-              }
-            }),
-            handleOnBlur.bind(null, event)
-          );
-        }
-    }
-
-    get isFocused() {
-      return this.state.extra ? this.state.extra.focused === true : false;
-    }
-
-    get isTouched() {
-      return this.state.extra ? this.state.extra.touched === true : false;
-    }
-
     public showError() {
       return this.props.showError !== undefined
         ? this.props.showError
@@ -180,7 +136,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
     }
 
     renderControl() {
-        const { name, autocomplete, touched, type, onChange, value, validation, errorDisplayMode, hasError, iconName, iconPosition, width, disabled, readonly, tooltip, maxLength, placeholder, floatingLabel, theme, ...others } = this.props;
+      const { id, name, autocomplete, touched, type, onChange, value, validation, errorDisplayMode, hasError, iconName, iconPosition, width, disabled, readonly, tooltip, maxLength, placeholder, floatingLabel, theme, ...others } = this.props;
         var realIconName = iconName;
         if (realIconName == null && type != null && IconNames.indexOf(type as IconName) != -1) {
             realIconName = type as IconName;
@@ -189,6 +145,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
         return (
           <BaseInput
             name={name}
+            id={id}
             rounded={this.props.rounded}
             value={this.currentValue == null ? "" : this.currentValue}
             iconName={realIconName}

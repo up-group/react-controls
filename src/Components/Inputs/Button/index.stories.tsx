@@ -6,12 +6,23 @@ import UpDefaultTheme from '../../../Common/theming'
 import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
 
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+import UpCodeViewer from '../../Display/CodeViewer';
 import UpButton from './UpButton'
 import UpBox from '../../Containers/Box';
 import UpNotification from '../../Display/Notification';
 import UpParagraph from '../../Display/Paragraph';
 import UpHeading from '../../Display/Heading';
 import UpButtonGroup from '../../Containers/ButtonGroup';
+import { style } from 'typestyle';
+
+const codeStoryADroite = 
+`const actions = [{libelle: "Option 1", onClick: action("Option 1")}, {libelle: "Option 2", onClick: action("Option 2")},{size: 2,},{libelle: "Option 3",onClick: action("Option 3")}];
+<UpButton 
+  intent="primary" 
+  onClick={e => action("Main")} 
+  dropDown={'down'}
+  extraActions={actions}>
+</UpButton>`
 
 const stories = storiesOf('Inputs/UpButton', module);
 stories.addDecorator(withKnobs);
@@ -88,14 +99,14 @@ stories.add('Simple usage',
             })
           }}>
             Add
-              </UpButton>
+          </UpButton>
           <UpButton actionType="delete" disabled={true} width={"icon"} intent="danger" onClick={(event) => {
             return new Promise(function (resolve, reject) {
               setTimeout(() => resolve(true), 5000)
             })
           }}>
             Delete
-              </UpButton>
+          </UpButton>
         </UpParagraph>
       </UpBox>
     </UpThemeProvider>
@@ -152,7 +163,46 @@ stories.add('Simple usage',
       </UpBox>
     </UpThemeProvider>
   ), { info: 'Utilisation du composant en mode DropDown' }
-).add('DropDown avex text',
+).add('DropDown à droite',
+  () => (
+    <UpThemeProvider theme={UpDefaultTheme}>
+      <UpBox style={{ margin: "40px 30px" }}>
+        <UpHeading tag={'h1'}><code>UpButton</code></UpHeading>
+        <UpNotification intent={"info"}>
+          <UpParagraph>
+            Le composant <code>UpButton</code> en définissant un menu d'actions associées
+          </UpParagraph>
+        </UpNotification>
+        <UpParagraph className={style({
+          position: "absolute",
+          right: '20px',
+        })}>
+          <UpButton intent="primary" onClick={(event) => { action("Main") }} dropDown={'down'}
+            extraActions={[
+              {
+                libelle: "Option 1",
+                onClick: action("Option 1")
+              },
+              {
+                libelle: "Option 2",
+                onClick: action("Option 2")
+              },
+              {
+                size: 2,
+              },
+              {
+                libelle: "Option 3",
+                onClick: action("Option 3")
+              }
+            ]}>
+          </UpButton>
+        </UpParagraph>
+        <UpCodeViewer code={codeStoryADroite} language={'jsx'}>
+        </UpCodeViewer>
+      </UpBox>
+    </UpThemeProvider>
+  ), { info: 'Utilisation du composant en mode DropDown' }
+).add('DropDown avec text',
   () => (
     <UpThemeProvider theme={UpDefaultTheme}>
       <UpBox style={{ margin: "40px 30px" }}>
@@ -235,7 +285,6 @@ stories.add('Simple usage',
           <UpButton intent={'primary'} iconName={'edit'} iconPosition={'left'} onClick={null} width={"normal"} isProcessing={isProcessing}>Save</UpButton>
         </UpParagraph>
       </UpBox>
-
     </UpThemeProvider>
   }, { info: 'Utilisation du composant avec activation de l\'indication dd\'un processus en cours' },
 ).add('Arrondi',

@@ -65,7 +65,7 @@ export const MenuStyles = (
                },
                "&.up-menu nav > ul > li": {
                  position: "relative",
-                 width: "247px",
+                 maxWidth: props.width-28,
                  overflow: "hidden"
                },
                "&.up-menu nav > ul > li:hover": {
@@ -83,10 +83,15 @@ export const MenuStyles = (
                  padding: "12px"
                },
                "&.up-menu nav > ul > li > ul > li a": {
-                 padding: "0px"
+                 padding: "0px",
+                 paddingLeft:'12px',
+                 width:'213px'
                },
                "&.up-menu nav > ul > li > a": {
-                 width: props.minified ? "48px" : "auto"
+                 width: props.minified ? 48 : props.width-28
+               },
+               "&.up-menu nav > ul > li:first-child": {
+                 marginTop: props.minified ? 0 : 83
                },
                "&.up-menu nav > ul > li .up-sub-menu-title": {
                  display: "none",
@@ -96,7 +101,7 @@ export const MenuStyles = (
                },
                "&.up-menu nav > ul > li:hover .up-sub-menu-title": {
                  display: props.minified ? "inline-block" : "none",
-                 marginBottom: "8px"
+                 marginBottom: "20px"
                },
                "&.up-menu nav > ul > li:not(:last-child)": {
                  marginBottom: "6px"
@@ -123,9 +128,9 @@ export const MenuStyles = (
                  display: props.minified ? "block" : "none",
                  backgroundColor: "#4E5B59",
                  top: props.minified ? "0px" : "inherit",
-                 left: props.minified ? "62px" : "inherit",
+                 left: props.minified ? "48px" : "inherit",
                  position: props.minified ? "absolute" : "inherit",
-                 padding: "16px 9px 8px 9px",
+                 padding: "16px 5px 30px 35px",
                  width: "auto",
                  opacity: 1,
                  transform: "scaleY(1)",
@@ -137,7 +142,7 @@ export const MenuStyles = (
                },
                "&.up-menu nav > ul > li.active:not(:hover) > ul": {
                  display: props.minified ? "none" : "block",
-                 padding: "16px 9px 8px 9px",
+                 padding: "16px 5px 30px 35px",
                  width: "auto",
                  opacity: 1,
                  transform: "scaleY(1)",
@@ -147,13 +152,18 @@ export const MenuStyles = (
                "&.up-menu nav > ul > li.active:hover > ul": {
                  display: "block"
                },
-               "&.up-menu nav > ul > li ul li:not(last-child)": {
-                 marginBottom: "8px"
+               "&.up-menu nav > ul > li > ul.active:hover": {
+                 display: "block"
+               },
+               "&.up-menu nav > ul > li ul li:not(:last-child)": {
+                 marginBottom: "25px"
                },
                "&.up-menu .up-menu-actions": {
-                 width: "16px",
-                 height: "16px",
-                 margin: "30px 14px"
+                 minHeight: "23px",
+                 margin: props.minified?"30px 15px":"0"
+               },
+               "&.up-menu .up-menu-toggle" : {
+                 cursor: "pointer",
                },
                "&.up-menu .up-menu-toggle.colored svg, .up-menu .up-menu-toggle.colored svg path, .up-menu .up-menu-toggle.colored svg polygon, .up-menu .up-menu-toggle.colored svg polyline": {
                  fill: "#ffffff",
@@ -168,7 +178,10 @@ export const MenuStyles = (
                  width: 'calc(100% - 28px)',
                },
                "& .up-menu-header": {
-                 width: '100%',
+                 display: 'flex',
+                 flexDirection: props.minified?'column':'row',
+                 justifyContent:'space-between',
+                 alignItems: props.minified?'flex-start':'center'
                },
              }
            },

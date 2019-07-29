@@ -724,7 +724,7 @@ class UpDropFile extends React.Component<
               </UpNotification>
             )}
             {this.props.showPreview && this.isPDF && (
-              <UpPDFViewer onLoadSuccess={() => {}} base64PDF={this.preview} />
+              <UpPDFViewer onLoadSuccess={() => {}} base64PDFOrUrl={this.preview} />
             )}
             {(this.state.showOptions === true || isFileSelected === false) && (
               <div className={wrapperActionStyle(this.props)}>

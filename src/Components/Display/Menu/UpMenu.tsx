@@ -21,10 +21,11 @@ export interface UpMenuProps {
     menuItems: MenuItemData[];
     footer?: RenderCallback | JSX.Element;
     children?: RenderCallback | React.ReactNode;
-    width?: string;
+    width?: number;
     minified?: boolean,
     blocked?: boolean,
     onClick?: (uri: string) => boolean | void;
+    onMinifiedChange?:(minified?:boolean)=>void;
 }
 
 export interface UpMenuState {
@@ -35,19 +36,37 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
 
     static defaultProps = {
         theme: defaultTheme,
-        icon: (props) => <UpSvgIcon width={48} height={48} iconHtml={logo}></UpSvgIcon>,
-        width: '275px',
+        icon: () => <UpSvgIcon width={48} height={48} iconHtml={logo}></UpSvgIcon>,
+        width: 300,
     }
 
     constructor(p, c) {
         super(p, c);
         this.state = {
-            minified: this.props.minified,
+            minified: false,
         };
     }
 
     toggleMinification = () => {
-        this.setState({ minified: !this.state.minified });
+        if(this.isMinifiedControlled && this.props.onMinifiedChange)
+        {
+            this.props.onMinifiedChange(!this.currentMinifiedValue);
+        }
+        else {
+            this.setState({ minified: !this.currentMinifiedValue },()=>{
+                if(this.props.onMinifiedChange){
+                    this.props.onMinifiedChange(this.currentMinifiedValue);
+                }
+            });
+        }
+    }
+    
+    get isMinifiedControlled() {
+        return this.props.minified !== undefined;
+    }
+
+    get currentMinifiedValue() {
+        return this.isMinifiedControlled ? this.props.minified : this.state.minified;
     }
 
     render() {
@@ -95,23 +114,22 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
         }
 
         return (
-            <aside className={classnames("up-menu", MenuStyles({ ...this.props, ...this.state }))}>
-                {renderIcon &&
-                    <section className="up-app-icon-wrapper">
-                        {renderIcon}
-                    </section>
-                }
-                {renderHeader && 
-                    <section className="up-menu-header">
-                        {renderHeader}
-                    </section>
-                }
-                <section className="up-menu-nav" >
+            <aside className={classnames("up-menu", MenuStyles({...this.props, minified:this.currentMinifiedValue }))}>
+                <section className="up-menu-header">
+                    {renderIcon &&
+                        <section className="up-app-icon-wrapper">
+                            {renderIcon}
+                        </section>
+                    }
+                    {renderHeader}
                     <div className="up-menu-actions">
-                        {!this.props.blocked && <UpSvgIcon iconName={'burger-menu'} 
+                    {!this.props.blocked &&
+                        <UpSvgIcon width={18} height={18} iconName={'burger-menu2'} 
                             className="up-menu-toggle" onClick={this.toggleMinification}>
                         </UpSvgIcon>}
                     </div>
+                </section>
+                <section className="up-menu-nav" >
                     <nav>
                         <ul>
                             {menu}
@@ -167,7 +185,7 @@ export class MenuItem extends React.Component<MenuItemProps>{
         return <li className={classnames("treeview", { "hide": hide, "active": active, 'hasChildren': hasChilren, 'separator': isSeparator })}>
             {this.props.uri && 
             <a onClick={this.onItemClick} href={this.props.uri}>
-                <UpSvgIcon title={this.props.title} width={24} height={24} iconName={this.props.icon as IconName}></UpSvgIcon>
+                <UpSvgIcon title={this.props.title} width={22} height={22} iconName={this.props.icon as IconName}></UpSvgIcon>
                 <span className={'up-menu-item-title'}>{this.props.title}</span>
             </a>
             }

@@ -46,8 +46,8 @@ const HookedMenu = (props) => {
         { isSeparator: true},
         { title: "Settings", icon: "settings", isSelected: false, isVisible: true, uri: "/settings", childMenuItems: [] },
         { isSeparator: true },
-        { render  : (props : MenuItemData & UpMenuState ) => {
-            return <UpButton intent={'primary'} onClick={() => action('Command')} width={props.minified ? 'icon' : 'full'} height={'large'} actionType={'briefcase'}>{'Commander'}</UpButton>
+        { render  : (item : MenuItemData, props : UpMenuProps, state: UpMenuState) => {
+            return <UpButton intent={'primary'} onClick={(e) =>  { action('Command') }} width={state.minified ? 'icon' : 'full'} height={'large'} actionType={'briefcase'}>{'Commander'}</UpButton>
         }},
     ];
     const [menu, setMenu] = React.useState(defaultMenu);
@@ -63,6 +63,7 @@ const HookedMenu = (props) => {
 
     return (
       <UpMenu
+        onMinifiedChange={(minified)=>action(`Menu minified: ${minified}`)}
         onClick={uri => {
           const newMenu = setMenuSelection(uri, menu);
           setMenu(newMenu);
@@ -74,8 +75,7 @@ const HookedMenu = (props) => {
             <>
             {!state.minified &&
             <UpBox alignItems={'center'} justifyContent={'center'} style={{ width: "100%", height: "100%" }}>
-                <div
-                    className={footerStyle}>
+                <div className={footerStyle}>
                 Copyright. Tous droits réservés Up 2019
               </div>
               <a
@@ -106,8 +106,10 @@ const HookedMenu = (props) => {
         }}
         header={(props: Partial<UpMenuProps>, state: UpMenuState) => {
           return ( 
-            <UpBox flexDirection={"row"} alignItems={'center'} justifyContent={'center'} style={{ width: "100%", height: "100%" }}>
-                <UpSvgIcon color={colorMap.primary} iconName={"checkmark"} />
+                <UpBox flexDirection={"row"} alignItems={'center'} justifyContent={'center'} style={{ height: "100%"}}>
+                {!state.minified &&
+                    <UpSvgIcon color={colorMap.primary} iconName={"checkmark"} />
+                }
                 {!state.minified &&
                     <UpLigne color={colorMap.primary} className={style({ marginLeft : '8px' })}>
                     Acceptation de titre
