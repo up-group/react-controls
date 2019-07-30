@@ -65,6 +65,7 @@ const EmailForm = (props) => {
         autocomplete={"off"}
         iconPosition={"right"}
         placeholder={"Renseignez votre email"}
+        rule={"Vous devez renseigner un email valide"}
       />
       <UpPassword
         name={"password"}

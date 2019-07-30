@@ -11,6 +11,7 @@ import defaultTheme from "../../../../Common/theming";
 import { eventFactory } from "../../../../Common/utils/eventListener";
 
 import * as update from "react-addons-update";
+import RuleDisplay from "../Validation/RuleDisplay";
 
 // Exports
 const ONCHANGE_MUST_BE_SPECIFIED = "La méthode onChange doit être spécifié dans le cas où la valeur du composant est défini dans les props";
@@ -34,7 +35,7 @@ export interface BaseControlProps<_BaseType> extends WithThemeProps {
   errorDisplayMode?: ErrorDisplayMode;
   error?: string;
   touched?: boolean;
-  hideErrorMessage?:boolean;
+  rule?:string;
 }
 export interface BaseControlState<_BaseType> {
     error?: string;
@@ -238,20 +239,32 @@ export abstract class BaseControlComponent<
     const RenderControl = this.renderControl();
 
     return (
-      <ErrorDisplay
-        theme={this.props.theme}
-        displayMode={this.props.errorDisplayMode}
-        showError={this.showError()}
-        hasError={this.hasError}
-        error={this.error}
-        hideErrorMessage={this.props.hideErrorMessage}
-      >
-        {_tooltip === null ? (
-          RenderControl
-        ) : (
-          <UpTooltip {..._tooltip}>{RenderControl}</UpTooltip>
-        )}
-      </ErrorDisplay>
+      <>
+      {this.props.rule == null &&
+        <ErrorDisplay
+          theme={this.props.theme}
+          displayMode={this.props.errorDisplayMode}
+          showError={this.showError()}
+          hasError={this.hasError}
+          error={this.error}
+        >
+          {_tooltip === null ? (
+            RenderControl
+          ) : (
+            <UpTooltip {..._tooltip}>{RenderControl}</UpTooltip>
+          )}
+        </ErrorDisplay>
+      }
+      {this.props.rule != null &&
+        <RuleDisplay
+          theme={this.props.theme}
+          hasError={this.hasError}
+          rule={this.props.rule}
+        >
+          {RenderControl}
+        </RuleDisplay>
+        }
+      </>
     );
   }
 

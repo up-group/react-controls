@@ -10,7 +10,6 @@ export type ErrorDisplayMode = 'inline' | 'tooltip';
 export interface ErrorDisplayProps {
     error: string;
     showError: boolean;
-    hideErrorMessage?:boolean;
     hasError: boolean;
     displayMode?: ErrorDisplayMode;
 }
@@ -67,8 +66,5 @@ const ErrorTooltip = (props: ErrorDisplayProps) => {
 }
 
 const ErrorInline = (props: ErrorDisplayProps) => {
-    if(!props.hideErrorMessage){
-        return (<div className={"up-wrapper-error-inline"}>{props.error}</div> );
-    }
-    return null;
+    return (<div className={"up-wrapper-error-inline"}>{props.error}</div> );
 }
