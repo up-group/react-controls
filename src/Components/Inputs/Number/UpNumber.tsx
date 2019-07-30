@@ -80,14 +80,12 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
     }
 
    applyDecimalPlace = (value: string) =>{
-    //replace , by . to convert correctly the string with parseFloat
-    let _value: string | number = value.replace(',','.');
-    _value = parseFloat(_value);
     if (this.props.decimalPlace != null) {
-       _value = _value.toFixed(this.props.decimalPlace)
+        //replace , by . to convert correctly the string with parseFloat
+       let _value: number = parseFloat(value.replace(',','.'));
+       return _value.toFixed(this.props.decimalPlace)
     }
-    _value = _value.toString();
-    return _value;
+    return value;
    }
 
    handleNumericChange = (event: React.ChangeEvent<any>, valueAsString: string) => {
