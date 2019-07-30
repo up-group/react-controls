@@ -73,13 +73,9 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
        this._validationManager.addControl(new TypeNumberControl(this.props.decimalPlace === 0, this.props.min, this.props.max));
    }
 
-   handleNumericChange = (event: React.ChangeEvent<any>, valueAsString: string) => {
-    if ( valueAsString.match(/^(\d+([,.]\d*)?)?$/)) {
-           this.handleChangeEvent(event, valueAsString);
-       }
-    }
+   isValueMatched = (value:string) => value && value.match(/^(\d+([,.]\d*)?)?$/);
 
-    displayDecimalWithComma = (numberAsString: string) =>{
+   displayDecimalWithComma = (numberAsString: string) =>{
         return numberAsString.replace('.',',');
     }
 
@@ -91,13 +87,21 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
        _value = _value.toFixed(this.props.decimalPlace)
     }
     _value = _value.toString();
-    return this.displayDecimalWithComma(_value);
+    return _value;
    }
+
+   handleNumericChange = (event: React.ChangeEvent<any>, valueAsString: string) => {
+    if ( this.isValueMatched(valueAsString) ) {
+           this.handleChangeEvent(event, valueAsString);
+       }
+    }
 
    handleNumericBlur = (event: React.ChangeEvent<any>) => {
     let value = event.target.value.replace(',','.');
-    if (value && value.match(/^(\d+([,.]\d*)?)?$/)) {
-        this.handleChangeEvent(event, this.applyDecimalPlace(value));
+    if ( this.isValueMatched(value) ) {
+        value = this.displayDecimalWithComma(this.applyDecimalPlace(value));
+        event.target.value = value
+        this.handleChangeEvent(event, value);
      }
    }
 
@@ -106,7 +110,8 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
    }
 
    increment = () => {
-        let newValue: string | number = parseFloat((this.currentValue || 0).toString().replace(',','.'));
+        let newValue: number = parseFloat((this.currentValue || 0).toString().replace(',','.'));
+        let newValueAsString: string = newValue.toString();
         if(isNaN(newValue)) {
             newValue = 0 ;
         }
@@ -117,15 +122,17 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
             newValue = this.props.max
         }
         if(this.props.decimalPlace != null)
-            newValue = this.applyDecimalPlace(newValue.toString());
-        else newValue = newValue.toFixed(0).toString();
-        this.setState({ value: newValue}, () => {
+            newValueAsString = this.applyDecimalPlace(newValue.toString());
+        else newValueAsString = Number(newValue.toFixed(10)).toString();
+        newValueAsString = this.displayDecimalWithComma(newValueAsString);
+        this.setState({ value: newValueAsString}, () => {
             this.handleChangeEvent(eventFactory(this.props.name, this.state.value), this.state.value);
         }) 
    }
 
    decrement = () => {
-        let newValue: string | number = parseFloat((this.currentValue || 0).toString().replace(',','.'));
+        let newValue: number = parseFloat((this.currentValue || 0).toString().replace(',','.'));
+        let newValueAsString: string = newValue.toString();
         if(isNaN(newValue)) {
             newValue = 0 ;
         }
@@ -136,9 +143,10 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
             newValue = this.props.min
         }
         if(this.props.decimalPlace != null)
-            newValue = this.applyDecimalPlace(newValue.toString());
-        else newValue = newValue.toFixed(0).toString();
-        this.setState({ value: newValue}, () => {
+            newValueAsString = this.applyDecimalPlace(newValue.toString());
+        else newValueAsString = Number(newValue.toFixed(10)).toString();
+        newValueAsString = this.displayDecimalWithComma(newValueAsString);
+        this.setState({ value: newValueAsString}, () => {
             this.handleChangeEvent(eventFactory(this.props.name, this.state.value), this.state.value);
         }); 
    }
