@@ -15,6 +15,7 @@ export interface UpNumberProps extends CommonProps<number | string> {
    stepSize?: number;
    decimalPlace?: number;
    value?: number | string;
+   hideButtons?: boolean;
 }
 
 export interface UpNumberStyledProps extends UpNumberProps {
@@ -58,7 +59,6 @@ const wrapperNumberButtonsStyles = (props : UpNumberProps) => style({
 class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
    
     public static defaultProps : UpNumberProps = {
-       decimalPlace: 2,
        showError: true,
        max: Infinity,
        min: -Infinity,
@@ -73,29 +73,34 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
        this._validationManager.addControl(new TypeNumberControl(this.props.decimalPlace === 0, this.props.min, this.props.max));
    }
 
-   round = (value, decimals) => {
-       decimals = Math.abs(parseInt(decimals)) || 0;
-       var multiplier = Math.pow(10, decimals);
-       return Math.round(value * multiplier) / multiplier;
+   isValueMatched = (value:string) => value && value.match(/^(\d+([,.]\d*)?)?$/);
+
+   displayDecimalWithComma = (numberAsString: string) =>{
+        return numberAsString.replace('.',',');
+    }
+
+   applyDecimalPlace = (value: string) =>{
+    if (this.props.decimalPlace != null) {
+        //replace , by . to convert correctly the string with parseFloat
+       let _value: number = parseFloat(value.replace(',','.'));
+       return _value.toFixed(this.props.decimalPlace)
+    }
+    return value;
    }
 
-   handleNumericChange = (event: React.ChangeEvent<any>, valueAsNumber: number, valueAsString: string) => {
-        if (this.props.decimalPlace != null) {
-            var _newValue = this.round(valueAsNumber, this.props.decimalPlace);
-            // Update event value 
-            event.target.value  = _newValue ;
-            if (isNaN(valueAsNumber)) {
-               this.handleChangeEvent(event, this.state.value);
-           } else if (_newValue === valueAsNumber && _newValue.toString() !== valueAsString) {
-               this.handleChangeEvent(event, valueAsString);
-           } else {
-               this.handleChangeEvent(event, valueAsNumber);
-           }
-       } else {
-           // Update event value 
-           event.target.value  = valueAsNumber ;
-           this.handleChangeEvent(event, valueAsNumber);
+   handleNumericChange = (event: React.ChangeEvent<any>, valueAsString: string) => {
+    if ( this.isValueMatched(valueAsString) ) {
+           this.handleChangeEvent(event, valueAsString);
        }
+    }
+
+   handleNumericBlur = (event: React.ChangeEvent<any>) => {
+    let value = event.target.value.replace(',','.');
+    if ( this.isValueMatched(value) ) {
+        value = this.displayDecimalWithComma(this.applyDecimalPlace(value));
+        event.target.value = value
+        this.handleChangeEvent(event, value);
+     }
    }
 
    getValue(value) {
@@ -103,34 +108,43 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
    }
 
    increment = () => {
-        let newValue = parseFloat(this.currentValue as string);
+        let newValue: number = parseFloat((this.currentValue || 0).toString().replace(',','.'));
+        let newValueAsString: string = newValue.toString();
         if(isNaN(newValue)) {
             newValue = 0 ;
         }
 
         newValue += this.props.stepSize ? this.props.stepSize : 1 ;
 
-        if(this.props.max && newValue > this.props.max) {
-            newValue == this.props.max
+        if(this.props.max != null && newValue > this.props.max) {
+            newValue = this.props.max
         }
-        this.setState({ value: newValue}, () => {
+        if(this.props.decimalPlace != null)
+            newValueAsString = this.applyDecimalPlace(newValue.toString());
+        else newValueAsString = Number(newValue.toFixed(10)).toString();
+        newValueAsString = this.displayDecimalWithComma(newValueAsString);
+        this.setState({ value: newValueAsString}, () => {
             this.handleChangeEvent(eventFactory(this.props.name, this.state.value), this.state.value);
         }) 
    }
 
    decrement = () => {
-        let newValue = parseFloat(this.currentValue as string) ;
+        let newValue: number = parseFloat((this.currentValue || 0).toString().replace(',','.'));
+        let newValueAsString: string = newValue.toString();
         if(isNaN(newValue)) {
             newValue = 0 ;
         }
         
         newValue -= this.props.stepSize ? this.props.stepSize : 1 ;
       
-        if(this.props.max && newValue < this.props.min) {
-            newValue == this.props.max
+        if(this.props.min != null && newValue < this.props.min) {
+            newValue = this.props.min
         }
-
-        this.setState({ value: newValue}, () => {
+        if(this.props.decimalPlace != null)
+            newValueAsString = this.applyDecimalPlace(newValue.toString());
+        else newValueAsString = Number(newValue.toFixed(10)).toString();
+        newValueAsString = this.displayDecimalWithComma(newValueAsString);
+        this.setState({ value: newValueAsString}, () => {
             this.handleChangeEvent(eventFactory(this.props.name, this.state.value), this.state.value);
         }); 
    }
@@ -146,21 +160,23 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
     }
 
    renderControl() {
-       const { isRequired, theme, readonly, tooltip, name } = this.props;
+       const { isRequired, theme, readonly, tooltip, placeholder, name } = this.props;
     
        return (
            <div className={wrapperNumberStyles(this.props)}>
             <UpInput  
+                    placeholder={placeholder}
                     name={name}
                     tooltip={tooltip}
                     readonly={readonly}
                     isRequired={isRequired}
-                    value={this.currentValue ? this.currentValue.toString() : "" } 
-                    onChange={(event, value) => { event.persist() ; this.handleNumericChange(event, parseFloat(value), value) }} />
-             <UpBox className={wrapperNumberButtonsStyles(this.props)} flexDirection={theme.inputBorderLess ? 'row' : 'column-reverse'}>
+                    value={this.currentValue != null ? this.currentValue.toString() : "" } 
+                    onChange={(event, value) => { event.persist() ; this.handleNumericChange(event, value) }}
+                    onBlur={(event) => { event.persist() ; this.handleNumericBlur(event) }}/>
+             {!this.props.hideButtons && <UpBox className={wrapperNumberButtonsStyles(this.props)} flexDirection={theme.inputBorderLess ? 'row' : 'column-reverse'}>
                 <UpButton intent={'primary'} width={'icon'} iconSize={9} height={'xsmall'} onClick={this.decrement} iconName={'arrow-down'}></UpButton>
                 <UpButton intent={'primary'} width={'icon'} iconSize={9} height={'xsmall'} onClick={this.increment} iconName={'arrow-up'}></UpButton>
-             </UpBox>
+             </UpBox>}
            </div>
        );
    }
