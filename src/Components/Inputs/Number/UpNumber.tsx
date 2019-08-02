@@ -74,7 +74,7 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
        this._validationManager.addControl(new TypeNumberControl(this.props.decimalPlace === 0, this.props.min, this.props.max));
    }
 
-   isValueMatched = (value:string) => value && value.match(/^(\d+([,.]\d*)?)?$/);
+   isValueMatched = (value:string) => value!=null && value.match(/^(\d+([,.]\d*)?)?$/);
 
    displayDecimalWithComma = (numberAsString: string) =>{
         return numberAsString.replace('.',',');
@@ -90,10 +90,8 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
    }
 
    handleNumericChange = (event: React.ChangeEvent<any>, valueAsString: string) => {
-    let valueNotNull = valueAsString || "0";
-    if ( this.isValueMatched(valueNotNull) ) {
-        event.target.value = valueNotNull;
-        this.handleChangeEvent(event, valueNotNull);
+    if ( this.isValueMatched(valueAsString) ) {
+        this.handleChangeEvent(event, valueAsString);
       }
     }
 
