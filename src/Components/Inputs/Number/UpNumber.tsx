@@ -81,7 +81,7 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
     }
 
    applyDecimalPlace = (value: string) =>{
-    if (!value) {
+    if (value === "") {
       return "";
     }
     if (this.props.decimalPlace != null) {
