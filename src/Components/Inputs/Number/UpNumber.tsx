@@ -8,6 +8,7 @@ import withTheme from '../../../Common/theming/withTheme';
 import defaultTheme from '../../../Common/theming';
 import UpButton from '../Button/UpButton';
 import { eventFactory } from '../../../Common/utils/eventListener';
+import * as classnames from 'classnames';
 
 export interface UpNumberProps extends CommonProps<number | string> {
    max?: number;
@@ -17,7 +18,6 @@ export interface UpNumberProps extends CommonProps<number | string> {
    value?: number | string;
    hideButtons?: boolean;
 }
-
 export interface UpNumberStyledProps extends UpNumberProps {
    dataFor?: string; // For tooltip
    handleNumericChange?: (valueAsNumber: number, valueAsString: string) => void;
@@ -164,7 +164,7 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
        const { isRequired, theme, readonly, tooltip, placeholder, name } = this.props;
     
        return (
-           <div className={wrapperNumberStyles(this.props)}>
+           <div className={classnames(wrapperNumberStyles(this.props), 'up-number')}>
             <UpInput  
                     placeholder={placeholder}
                     name={name}
