@@ -28,7 +28,8 @@ const wrapperNumberStyles = (props : UpNumberProps) => style({
     $nest : {
         'input' : {
             textAlign: 'right',
-            paddingRight : props.theme.inputBorderLess ? '42px !important' : '26px !important',
+            paddingRight : props.hideButtons ? '0px !important' : 
+                            props.theme.inputBorderLess ? '42px !important' : '26px !important',
         },
         '.up-btn-wrapper' : {
             height: '16px',
@@ -73,7 +74,7 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
        this._validationManager.addControl(new TypeNumberControl(this.props.decimalPlace === 0, this.props.min, this.props.max));
    }
 
-   isValueMatched = (value:string) => value && value.match(/^(\d+([,.]\d*)?)?$/);
+   isValueMatched = (value:string) => value!=null && value.match(/^(\d+([,.]\d*)?)?$/);
 
    displayDecimalWithComma = (numberAsString: string) =>{
         return numberAsString.replace('.',',');
@@ -90,8 +91,8 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
 
    handleNumericChange = (event: React.ChangeEvent<any>, valueAsString: string) => {
     if ( this.isValueMatched(valueAsString) ) {
-           this.handleChangeEvent(event, valueAsString);
-       }
+        this.handleChangeEvent(event, valueAsString);
+      }
     }
 
    handleNumericBlur = (event: React.ChangeEvent<any>) => {
