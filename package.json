@@ -116,7 +116,7 @@
     "fs": "0.0.1-security",
     "jest": "^24.5.0",
     "json-loader": "^0.5.7",
-    "markdown-loader": "^5.0.0",
+    "markdown-loader": "^5.1.0",
     "node-sass": "^4.11.0",
     "path": "^0.12.7",
     "plop": "^2.4.0",
