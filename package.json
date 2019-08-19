@@ -70,7 +70,7 @@
     "build-test-watch": "npm run clean && webpack --watch",
     "publishLocalToSchemaForm": "copyfiles dist/*.* dist/**/* package.json src/*.* src/**/* src/theming/icons/* ../react-schemaform/node_modules/@up-group/react-controls/",
     "publishLocalToApp": "copyfiles dist/src/*.* dist/src/**/* src/theming/icons/* ../../loopback/revolution-digitale/client/node_modules/@up-group/react-controls/dist",
-    "test": "jest --notify --coverage",
+    "test": "jest --notify --coverage --detectOpenHandles",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -o ./public",
     "upgrade": "npx npm-check-updates '/storybook/' -u && npm install",
