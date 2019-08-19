@@ -10,7 +10,7 @@ chai.use(chaiEnzyme());
 describe(UpNumber, () => {
   it('should render without throwing an error', function() {
     const _render = render(<UpNumber />) ;
-    const _component = _render.find("up-number");
+    const _component = _render.find(".up-number");
     expect(_component.length).toBe(1);
   });
 });

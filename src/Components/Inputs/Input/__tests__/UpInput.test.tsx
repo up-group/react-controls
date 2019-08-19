@@ -20,9 +20,4 @@ describe('UpInput', () => {
     var _input = _render.find("div.up-input-group").parent();
     expect(_input.length).toBe(1);
   });
-
-  it('should have a width', function() {
-    var _render = render(<UpInput width="medium" id={"MyId"} />) ;
-    expect(_render).toMatchSnapshot();
-  });
 });
