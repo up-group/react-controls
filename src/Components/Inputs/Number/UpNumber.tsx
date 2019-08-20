@@ -81,6 +81,9 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
     }
 
    applyDecimalPlace = (value: string) =>{
+    if(value == null || isNaN(parseFloat(value.replace(',','.')))) {
+      return "";
+    }
     if (this.props.decimalPlace != null) {
         //replace , by . to convert correctly the string with parseFloat
        let _value: number = parseFloat(value.replace(',','.'));
