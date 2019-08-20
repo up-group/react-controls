@@ -81,7 +81,7 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
     }
 
    applyDecimalPlace = (value: string) =>{
-    if (value === "") {
+    if(value == null || isNaN(parseFloat(value.replace(',','.')))) {
       return "";
     }
     if (this.props.decimalPlace != null) {
