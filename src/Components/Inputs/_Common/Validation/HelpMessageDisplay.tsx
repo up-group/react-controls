@@ -2,29 +2,26 @@ import * as React from "react";
 import { style } from "typestyle";
 import defaultTheme, { WithThemeProps } from "../../../../Common/theming";
 
-export interface RuleDisplayProps {
-  rule: string;
-  hasError: boolean;
+export interface HelpMessageDisplayProps {
+  helpMessageText: string;
 }
 
-const RuleDisplayStyle = props =>
+const HelpMessageDisplayStyle = props =>
   style({
     position: "relative",
     cursor: "help",
     height: "100%",
     $nest: {
-      "& .up-wrapper-rule-inline": {
+      "& .up-wrapper-help-message-inline": {
         display: "inline-block",
-        color: props.hasError
-          ? props.theme.colorMap.error
-          : props.theme.colorMap.default,
+        color: props.theme.colorMap.default,
         fontSize: "8pt"
       }
     }
   });
 
-export default class RuleDisplay extends React.Component<
-  RuleDisplayProps & WithThemeProps
+export default class HelpMessageDisplay extends React.Component<
+  HelpMessageDisplayProps & WithThemeProps
 > {
   static defaultProps = {
     theme: defaultTheme
@@ -36,9 +33,9 @@ export default class RuleDisplay extends React.Component<
 
   render() {
     return (
-      <div className={RuleDisplayStyle(this.props)}>
+      <div className={HelpMessageDisplayStyle(this.props)}>
         {this.props.children}
-        <div className={"up-wrapper-rule-inline"}>{this.props.rule}</div>
+        <div className={"up-wrapper-help-message-inline"}>{this.props.helpMessageText}</div>
       </div>
     );
   }

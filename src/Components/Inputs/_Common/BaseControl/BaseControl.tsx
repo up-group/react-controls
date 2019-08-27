@@ -1,20 +1,21 @@
-// Imports 
+// Imports
 import * as React from "react";
-import ValidationManager from "../Validation/ValidationManager"
-import ErrorDisplay, { ErrorDisplayMode } from "../Validation/ErrorDisplay"
+import ValidationManager from "../Validation/ValidationManager";
+import ErrorDisplay, { ErrorDisplayMode } from "../Validation/ErrorDisplay";
 // Importation des règles CSS de bases -> à transformer en styled-components
-import UpTooltip, { Tooltip } from '../../../Display/Tooltip'
-import TypeNullControl from "../Validation/TypeNullControl"
-import { isString } from '../../../../Common/utils'
+import UpTooltip, { Tooltip } from "../../../Display/Tooltip";
+import TypeNullControl from "../Validation/TypeNullControl";
+import { isString } from "../../../../Common/utils";
 import { WithThemeProps } from "../../../../Common/theming/withTheme";
 import defaultTheme from "../../../../Common/theming";
 import { eventFactory } from "../../../../Common/utils/eventListener";
 
 import * as update from "react-addons-update";
-import RuleDisplay from "../Validation/RuleDisplay";
+import HelpMessageDisplay from "../Validation/HelpMessageDisplay";
 
 // Exports
-const ONCHANGE_MUST_BE_SPECIFIED = "La méthode onChange doit être spécifié dans le cas où la valeur du composant est défini dans les props";
+const ONCHANGE_MUST_BE_SPECIFIED =
+  "La méthode onChange doit être spécifié dans le cas où la valeur du composant est défini dans les props";
 
 export interface BaseControlProps<_BaseType> extends WithThemeProps {
   name?: string;
@@ -35,12 +36,13 @@ export interface BaseControlProps<_BaseType> extends WithThemeProps {
   errorDisplayMode?: ErrorDisplayMode;
   error?: string;
   touched?: boolean;
-  rule?:string;
+  helpMessage?: (children: React.ReactNode) => JSX.Element;
+  helpMessageText?: string;
 }
 export interface BaseControlState<_BaseType> {
-    error?: string;
-    value?: _BaseType;
-    extra?: any;
+  error?: string;
+  value?: _BaseType;
+  extra?: any;
 }
 export abstract class BaseControlComponent<
   _Props,
@@ -177,7 +179,7 @@ export abstract class BaseControlComponent<
   onFocus = event => {
     event.persist();
     const handleOnFocus = event => {
-      if (this.props['onFocus']) this.props['onFocus'](event);
+      if (this.props["onFocus"]) this.props["onFocus"](event);
     };
 
     if (this.state.extra === undefined) {
@@ -196,7 +198,7 @@ export abstract class BaseControlComponent<
   onBlur = event => {
     event.persist();
     const handleOnBlur = event => {
-      if (this.props['onBlur']) this.props['onBlur'](event);
+      if (this.props["onBlur"]) this.props["onBlur"](event);
     };
 
     if (this.state.extra === undefined) {
@@ -238,9 +240,9 @@ export abstract class BaseControlComponent<
     }
     const RenderControl = this.renderControl();
 
-    return (
-      <>
-      {this.props.rule == null &&
+    var content = null;
+    if (this.props.helpMessage == null && this.props.helpMessageText == null) {
+      content = (
         <ErrorDisplay
           theme={this.props.theme}
           displayMode={this.props.errorDisplayMode}
@@ -254,18 +256,27 @@ export abstract class BaseControlComponent<
             <UpTooltip {..._tooltip}>{RenderControl}</UpTooltip>
           )}
         </ErrorDisplay>
-      }
-      {this.props.rule != null &&
-        <RuleDisplay
+      );
+    } else if (
+      this.props.helpMessageText != null &&
+      this.props.helpMessageText.trim() !== ""
+    ) {
+      content = (
+        <HelpMessageDisplay
           theme={this.props.theme}
-          hasError={this.hasError}
-          rule={this.props.rule}
+          helpMessageText={this.props.helpMessageText}
         >
           {RenderControl}
-        </RuleDisplay>
-        }
-      </>
-    );
+        </HelpMessageDisplay>
+      );
+    } else {
+      var temp = this.props.helpMessage(RenderControl);
+      if (React.isValidElement(temp)) {
+        content = temp;
+      }
+    }
+
+    return content;
   }
 
   public dispatchOnChange = (

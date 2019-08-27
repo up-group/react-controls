@@ -11,6 +11,7 @@ import { UpGrid, UpRow, UpCol } from '../../Containers/Grid'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import UpPassword from '../Password';
+import { style } from 'typestyle';
 
 const stories = storiesOf('Inputs/UpInput', module);
 
@@ -30,6 +31,20 @@ const SimpleInput = (props) => {
 const EmailForm = (props) => {
   const [onBlurState, setOnBlurState] = React.useState({} as any);
 
+  const HelpMessageDisplayStyle = error =>
+    style({
+      position: "relative",
+      cursor: "help",
+      height: "100%",
+      $nest: {
+        "& .up-wrapper-help-message-inline": {
+          display: "inline-block",
+          color: error ? "red" : "black",
+          fontSize: "8pt"
+        }
+      }
+    });
+
   const {
     values,
     touched,
@@ -39,7 +54,7 @@ const EmailForm = (props) => {
     handleChange,
     handleBlur,
     handleSubmit,
-    handleReset,
+    handleReset
   } = props;
 
   return (
@@ -65,7 +80,15 @@ const EmailForm = (props) => {
         autocomplete={"off"}
         iconPosition={"right"}
         placeholder={"Renseignez votre email"}
-        rule={"Vous devez renseigner un email valide"}
+        //helpMessageText={"Vous devez renseigner un email valide"}
+        helpMessage={children => (
+          <div className={HelpMessageDisplayStyle(errors.email)}>
+            {children}
+            <div className={"up-wrapper-help-message-inline"}>
+              Vous devez renseigner un email valide
+            </div>
+          </div>
+        )}
       />
       <UpPassword
         name={"password"}
