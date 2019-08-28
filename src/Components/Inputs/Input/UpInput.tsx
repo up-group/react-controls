@@ -13,7 +13,7 @@ import defaultTheme from '../../../Common/theming/';
 import { generateId, isEmpty } from '../../../Common/utils';
 
 const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> = (props: UpInputStyledProps & WithThemeProps) => {
-    const { name, autocomplete, className, type, iconPosition, placeholder, disabled, readonly, maxLength, dataFor, onChange, onFocus, onBlur } = props;
+    const { name, autocomplete, className, type, iconPosition, placeholder, disabled, readonly, maxLength, dataFor, onChange, onFocus, onBlur, autoFocus } = props;
     let iconName = props.iconName ;
     let icon: any = null;
     let size = 20 ;
@@ -78,6 +78,7 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> =
             readOnly={readonly}
             maxLength={maxLength}
             {...tooltipProps}
+            autoFocus={autoFocus}
           />
           {iconPosition === "right" && props.floatingLabel && (
             <label htmlFor={id}>{props.floatingLabel}</label>
@@ -168,6 +169,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
             touched={touched}
             onChange={this.inputHandleChangeEvent}
             onBlur={this.onBlur}
+            autoFocus={this.props.autoFocus}
           >
             {this.props.children}
           </BaseInput>
