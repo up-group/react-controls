@@ -164,7 +164,7 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
     }
 
    renderControl() {
-       const { isRequired, theme, readonly, tooltip, placeholder, name } = this.props;
+       const { isRequired, theme, readonly, tooltip,placeholder, name, autoFocus } = this.props;
     
        return (
            <div className={classnames(wrapperNumberStyles(this.props), 'up-number')}>
@@ -174,6 +174,7 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
                     tooltip={tooltip}
                     readonly={readonly}
                     isRequired={isRequired}
+                    autoFocus={autoFocus}
                     value={this.currentValue != null ? this.currentValue.toString() : "" } 
                     onChange={(event, value) => { event.persist() ; this.handleNumericChange(event, value) }}
                     onBlur={(event) => { event.persist() ; this.handleNumericBlur(event) }}/>
