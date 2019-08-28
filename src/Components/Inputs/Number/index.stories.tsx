@@ -39,7 +39,7 @@ stories.add('Simple usage',
     <>
     <UpThemeProvider theme={{...UpDefaultTheme, inputBorderLess: false}}>
        <UpLabel textAlign={"left"} inline={true} width="small" text="Number :">
-           <UpNumber min={0} />
+           <UpNumber min={0} decimalPlace={2} placeholder={'0,00'}/>
         </UpLabel>
    </UpThemeProvider>
    
