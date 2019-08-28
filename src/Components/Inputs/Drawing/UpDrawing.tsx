@@ -1,4 +1,6 @@
 import * as React from "react"
+import * as classnames from 'classnames'
+
 import {UpDrawingProps} from "./"
 import {style} from 'typestyle'
 import CanvasState from "./CanvasState"
@@ -72,11 +74,6 @@ export default class UpDrawing extends React.Component<UpDrawingProps, UpDrawing
         if (nextProps.src !== this.props.src) {
             _newState.src == nextProps.src ;
         }
-        // if (nextProps.shapes !== this.canvasState.shapes) {
-        //     this.canvasState.shapes = nextProps.shapes ;
-        //     this.canvasState.valid = false;
-        // }
-        // this.setState(_newState);
     }
 
     zoomIn = (event:any) => {
@@ -102,6 +99,7 @@ export default class UpDrawing extends React.Component<UpDrawingProps, UpDrawing
             self.canvasState.valid = false;
         }) ;
     }
+
     rotate = (event:any) => {
         var self = this ;
         if (typeof (this.props.onRotate) == "function") {
@@ -184,18 +182,6 @@ export default class UpDrawing extends React.Component<UpDrawingProps, UpDrawing
         });
     }
 
-    componentDidUpdate() {
-        console.log("Update") ;
-    }
-
-    componentDidMount() {
-        console.log("Mount") ;
-    }
-
-    componentWillUnmount() {
-        console.log("Unmount") ;
-    }
-
     render() {
         const WrapperStyle = style({}) ;
         const CanvasStyle = style({
@@ -206,7 +192,7 @@ export default class UpDrawing extends React.Component<UpDrawingProps, UpDrawing
         const {onChange, src, shapes, ...others} = this.props ;
         
         return (
-            <div className={WrapperStyle}>
+            <div className={classnames(WrapperStyle, 'up-drawing')}>
                 {this.props.displayActions &&
                     <div className="up-canvas-actions">
                         <UpLabel text="Zones : ">
@@ -239,9 +225,5 @@ export default class UpDrawing extends React.Component<UpDrawingProps, UpDrawing
                 </UpContextMenu>
         </div>
         )
-    }
-
-    onChange = (event) => {
-
     }
 }

@@ -155,7 +155,7 @@
     "object-assign": "^4.1.1",
     "prism-react-renderer": "^0.1.7",
     "prop-types": "^15.6.2",
-    "query-string": "^5.0.0",
+    "query-string": "^5.1.1",
     "react": "^16.8.0",
     "react-addons-css-transition-group": "^15.5.2",
     "react-addons-update": "^15.6.0",

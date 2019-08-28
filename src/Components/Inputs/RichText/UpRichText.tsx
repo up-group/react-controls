@@ -12,7 +12,7 @@ import * as FontFamily from '@ckeditor/ckeditor5-font/src/fontfamily';
 import { eventFactory } from "../../../Common/utils/eventListener";
 
 // Exports
-export default class UpText extends BaseControlComponent<UpRichTextProps, string> {
+export default class UpRichText extends BaseControlComponent<UpRichTextProps, string> {
     public static defaultProps:UpRichTextProps = {
         width: 'xlarge',
         showError: true,

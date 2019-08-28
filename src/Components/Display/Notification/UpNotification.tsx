@@ -63,7 +63,7 @@ class UpNotification extends React.Component<UpNotificationProps & WithThemeProp
     let NotificationRender ;
     
     NotificationRender =  () => (
-        <div className={classnames(getStyles(this.props), className)}>
+        <div className={classnames(getStyles(this.props), className, 'up-notification')}>
             <UpGrid className={'up-notification'}>
                 {this.props.displayMode !== "modal" && title && 
                     <UpRow>

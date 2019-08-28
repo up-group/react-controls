@@ -641,7 +641,7 @@ class UpDropFile extends React.Component<
     return (
       <>
       <div
-        className={wrapperDropStyle}
+        className={classnames(wrapperDropStyle, "up-dropfile")}
         ref={wrapperUpDropFile => {
           this.wrapperUpDropFile = wrapperUpDropFile;
         }}

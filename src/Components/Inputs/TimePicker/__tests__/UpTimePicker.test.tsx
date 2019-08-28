@@ -1,16 +1,15 @@
 // Imports
 import * as React from 'react';
-import {{name}} from '../{{name}}';
+import UpTimePicker from '../UpTimePicker';
 import * as chai from 'chai';
 import * as chaiEnzyme from 'chai-enzyme';
 import { render,   } from 'enzyme';
 
 chai.use(chaiEnzyme());
 
-describe({{name}}, () => {
+describe(UpTimePicker, () => {
   it('should render without throwing an error', function() {
-    const _render = render(<{{name}} />) ;
-    const _component = _render.find(".{{className}}");
-    expect(_component.length).toBe(1);
+    const _render = render(<UpTimePicker />) ;
+    expect(_render.hasClass("up-timepicker")).toBeTruthy();
   });
 });

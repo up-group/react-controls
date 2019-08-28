@@ -27,11 +27,9 @@ export interface UpMenuProps {
     onClick?: (uri: string) => boolean | void;
     onMinifiedChange?:(minified?:boolean)=>void;
 }
-
 export interface UpMenuState {
     minified: boolean;
 }
-
 class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
 
     static defaultProps = {

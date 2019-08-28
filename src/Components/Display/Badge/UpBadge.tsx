@@ -1,4 +1,6 @@
 import * as React from 'react';
+import * as classnames from 'classnames';
+
 import {style} from 'typestyle';
 import {IntentType} from '../../../Common/theming/types'
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
@@ -50,7 +52,7 @@ class UpBadge extends React.Component<UpBadgeProps & WithThemeProps> {
       }) ;
 
       return (
-        <span className={BadgeStyle}>
+        <span className={classnames(BadgeStyle, 'up-badge')}>
           {text}
           {children}
         </span>
