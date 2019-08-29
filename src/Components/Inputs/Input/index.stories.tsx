@@ -1,34 +1,34 @@
-import * as React from 'react'
-import { storiesOf } from '@storybook/react'
+import * as React from "react";
+import { storiesOf } from "@storybook/react";
 
-import UpInput from './UpInput'
+import UpInput from "./UpInput";
 
-import { getRootContainer } from '../../../Common/stories';
-import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
-import UpLabel from '../../Display/Label';
-import { UpGrid, UpRow, UpCol } from '../../Containers/Grid'
+import { getRootContainer } from "../../../Common/stories";
+import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
+import UpLabel from "../../Display/Label";
+import { UpGrid, UpRow, UpCol } from "../../Containers/Grid";
 
-import { Formik } from 'formik';
-import * as Yup from 'yup';
-import UpPassword from '../Password';
-import { style } from 'typestyle';
+import { Formik } from "formik";
+import * as Yup from "yup";
+import UpPassword from "../Password";
+import { style } from "typestyle";
 
-const stories = storiesOf('Inputs/UpInput', module);
+const stories = storiesOf("Inputs/UpInput", module);
 
-stories.addDecorator(withKnobs)
-stories.addDecorator(getRootContainer('UpInput'));
+stories.addDecorator(withKnobs);
+stories.addDecorator(getRootContainer("UpInput"));
 
-const SimpleInput = (props) => {
+const SimpleInput = props => {
   let [selectedValue, setValue] = React.useState(null);
 
   const onChange = (event, value) => {
     setValue(value);
-  }
+  };
 
   return <UpInput value={selectedValue} onChange={onChange} type={"text"} />;
-}
+};
 
-const EmailForm = (props) => {
+const EmailForm = props => {
   const [onBlurState, setOnBlurState] = React.useState({} as any);
 
   const HelpMessageDisplayStyle = error =>
@@ -138,15 +138,16 @@ const EmailForm = (props) => {
       />
     </form>
   );
-}
+};
 
-const PhoneInput = (props) => {
+const PhoneInput = props => {
   const [phoneValue, setPhoneValue] = React.useState("");
   const [error, setError] = React.useState("");
-  const validation = [{
-    pattern: /^0[67][\d]+$/,
-    errorMessage: "Phone erroné"
-  }
+  const validation = [
+    {
+      pattern: /^0[67][\d]+$/,
+      errorMessage: "Phone erroné"
+    }
   ];
   return (
     <UpInput
@@ -161,7 +162,7 @@ const PhoneInput = (props) => {
       errorDisplayMode={"inline"}
     />
   );
-}
+};
 
 
 stories.add('Text input',
