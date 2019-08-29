@@ -260,4 +260,22 @@ stories.add('Text input',
       </UpRow>
     </UpGrid>
   ), { info: 'Champ requis' }
+).add('AutoFocus input',
+() => (
+  <UpGrid>
+      <UpRow>
+        <UpCol span={6}>
+          <UpLabel text={'Adresse :'}>
+            <UpInput autoFocus isRequired={true} />
+          </UpLabel>
+          <UpLabel text={'Adresse 2 :'}>
+            <UpInput isRequired={true}/>
+          </UpLabel>
+          <UpLabel text={'Adresse 3 :'}>
+            <UpInput isRequired={true} />
+          </UpLabel>
+        </UpCol>
+      </UpRow>
+    </UpGrid>
+), { info: 'Champ phone' }
 );

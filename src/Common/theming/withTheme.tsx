@@ -35,6 +35,6 @@ const withTheme =  function withTheme<P extends object>(WrappedComponent: React.
 
 function getDisplayName(WrappedComponent) {
     return WrappedComponent.displayName || WrappedComponent.name || 'Component';
-  }
+}
 
 export default withTheme ;

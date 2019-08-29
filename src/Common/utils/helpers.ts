@@ -44,31 +44,31 @@ export function getFontSizeNumber(size: number | string): number {
         return 0;
     }
 
-    var taille: number = parseFloat(regex[1]);
+    var sizeParsed: number = parseFloat(regex[1]);
     var unite: string = regex[2];
 
-    if (isNullOrUndef(taille)) {
+    if (isNullOrUndef(sizeParsed)) {
         return 0;
     }
     if (stringIsNullOrEmpty(unite)) {
-        return taille;
+        return sizeParsed;
     }
 
     switch (unite) {
         // static units
         // 1in = 96px = 2.54cm = 72pt = 6pc
         case "px":
-            return taille;
+            return sizeParsed;
         case "in": 
-            return taille * 96;
+            return sizeParsed * 96;
         case "cm": 
-            return taille * 96 / 2.54;
+            return sizeParsed * 96 / 2.54;
         case "mm":
-            return taille * 96 / 0.254;
+            return sizeParsed * 96 / 0.254;
         case "pt":
-            return taille * 96 / 72;
+            return sizeParsed * 96 / 72;
         case "pc": 
-            return taille * 96 / 6;
+            return sizeParsed * 96 / 6;
 
         // relative units
         case "em":
@@ -85,7 +85,7 @@ export function getFontSizeNumber(size: number | string): number {
             break;
     }
 
-    return taille;
+    return sizeParsed;
 }
 
 export function isNullOrUndef(objet: any): boolean {

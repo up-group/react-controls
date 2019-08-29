@@ -17,7 +17,7 @@ const getStyles = (props: UpInputProps) =>
     cursor: "pointer",
     zIndex: 10,
     $nest: {
-      "&.up-password:hover svg, &.up-password:hover svg polygon, &.up-password:hover svg path, &.up-password:hover svg polyline": {
+      "&.up-password-icon:hover svg, &.up-password-icon:hover svg polygon, &.up-password-icon:hover svg path, &.up-password-icon:hover svg polyline": {
         fill: props.theme.colorMap.primary
       }
     }
@@ -148,7 +148,7 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
     const { showSuccess, onBlur, onFocus, ...others } = this.props;
 
     return (
-      <div className={style(themeStyles)} style={{ position: "relative" }}>
+      <div className={classnames(style(themeStyles), "up-password")} style={{ position: "relative" }}>
         <UpInput
           {...others}
           showSuccess={this.showSuccess()}
@@ -160,7 +160,7 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
 
         {!this.showStatus && (
           <UpSvgIcon
-            className={classnames(getStyles(this.props), "up-password")}
+            className={classnames(getStyles(this.props), "up-password-icon")}
             onMouseOver={this.show}
             onMouseOut={this.hide}
             iconName={

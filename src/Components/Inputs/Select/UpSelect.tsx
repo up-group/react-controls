@@ -195,12 +195,12 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             if (isPairArray === true) {
                 const extra = this.state.extra === undefined || this.state.extra === null ? {} : {...this.state.extra};
                 extra.fullObject = receiveValue;
-                newState = { extra } ;
+                newState = { ...this.state, extra } ;
             } else if (isPairArray == false && Array.isArray(receiveValue) === true && this.props.data != null) {
                 const extra = this.state.extra === undefined || this.state.extra === null ? {} : {...this.state.extra};
                 let data = this.makePairFromIds(receiveValue);
                 extra.fullObject = data;
-                newState = { extra } ;
+                newState = { ...this.state, extra } 
                 return this.parseValue(data)
             } else if (receiveValue == null) {
                 newState = update(this.state, { extra: { fullObject: { $set: null } } });
@@ -520,8 +520,11 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             specProps.createOptionPosition = this.props.createOptionPosition ;
         }
 
+        const value = this.isControlled ? this.props.value : this.state.extra.fullObject ;
+
         const selectComponentProps : Props = {
             ...specProps,
+           value,
             color: '#354052',
             name: this.props.name,
             placeholder: this.props.placeholder,
@@ -531,7 +534,6 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             },
             allowCreate:this.props.allowCreate,
             promptTextCreator:this.props.promptTextCreator,
-            value: this.state.extra.fullObject,
             autoBlur:false,
             isLoading:this.props.isLoading,
             loadingMessage:(input: string) => this.state.extra.loadingPlaceholder,

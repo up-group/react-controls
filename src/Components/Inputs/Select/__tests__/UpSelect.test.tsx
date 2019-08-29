@@ -22,4 +22,51 @@ describe('UpSelect', () => {
     
     expect(_render.find('.up-select-wrapper').length).toBe(1);
   });
+
+  it('should render an empty option', function () {
+    var _render = mount(<UpSelect default={null}
+      onChange={() => { }} data={[
+        {
+          id: 1,
+          text: 'option 1'
+        }, {
+          id: 2,
+          text: 'option 2'
+        },
+      ]} value={{
+        id: 1,
+        text: 'option 1'
+      }} />);
+
+    expect(_render.containsMatchingElement(<div>-- Sélectionner</div>)).toEqual(false);
+    
+    // Reset the value
+    _render.setProps({value : null}) ;
+
+    expect(_render.containsMatchingElement(<div>-- Sélectionner</div>)).toEqual(true);
+  });
+
+  it('should render the selected option', function () {
+    var _render = mount(<UpSelect default={null}
+      onChange={() => { }} data={[
+        {
+          id: 1,
+          text: 'option 1'
+        }, {
+          id: 2,
+          text: 'option 2'
+        },
+      ]} />);
+
+    expect(_render.containsMatchingElement(<div>-- Sélectionner</div>)).toEqual(true);
+
+    // Set the value
+    _render.setProps({
+      value: {
+        id: 1,
+        text: 'option 1'
+      } });
+
+    expect(_render.containsMatchingElement(<div>option 1</div>)).toEqual(true);
+  });
 });

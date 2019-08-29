@@ -73,15 +73,14 @@ export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeSta
               color: "#354052"
             },
             "& svg,  & svg g, & svg path, & svg polygon, & svg polyline": {
-              fill: "#354052",
-              strok: "#354052"
+              fill: "#354052"
             }
           }
         });
 
         return (
             <>
-            <UpBox className={classnames(wrapperStyles, 'up-form-control')} flexDirection={'row'} alignItems={'flex-start'} justifyContent={'flex-end'} 
+            <UpBox className={classnames(wrapperStyles, 'up-timepicker up-form-control')} flexDirection={'row'} alignItems={'flex-start'} justifyContent={'flex-end'} 
             style={{
                 borderColor: this.props.hasError === true ? 'red' : 'inherit',
                 borderBottomWidth: '1px',
@@ -126,13 +125,13 @@ export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeSta
                 }}/>
             </UpBox>
             <UpContextMenu id={this.minuteContextMenuId}>
-                {minuteSteps.map(step => {
-                    return <UpContextMenuItem onClick={this.setMinute} data={{value: step}}>{step}</UpContextMenuItem>
+                {minuteSteps.map((step, i) => {
+                    return <UpContextMenuItem key={i} onClick={this.setMinute} data={{value: step}}>{step}</UpContextMenuItem>
                 })}
             </UpContextMenu>
             <UpContextMenu id={this.hourContextMenuId}>
-                {hourSteps.map(step => {
-                    return <UpContextMenuItem onClick={this.setHour} data={{value: step}}>{step}</UpContextMenuItem>
+                {hourSteps.map((step, i) => {
+                    return <UpContextMenuItem key={i} onClick={this.setHour} data={{value: step}}>{step}</UpContextMenuItem>
                 })}
             </UpContextMenu>
         </>

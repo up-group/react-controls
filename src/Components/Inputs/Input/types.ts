@@ -26,6 +26,7 @@ export interface UpInputStyledProps extends CommonProps<string> {
     maxLength?:number;
     focused?:boolean;
     dataFor?:string; // Use for tooltip
+    autoFocus?: boolean;
 }
 
 export interface CommonProps<VT> extends CommonInputTextProps<VT> {
@@ -42,6 +43,7 @@ export interface CommonProps<VT> extends CommonInputTextProps<VT> {
   rounded?: boolean;
   autocomplete?: string;
   id?:string;
+  autoFocus?: boolean;
 }
 
 export interface UpInputProps extends CommonProps<string> {

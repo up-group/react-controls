@@ -1,20 +1,20 @@
 ﻿import { ErrorControl, ErrorControlType } from "./error"
 
 export default class ValidationManager {
-    private ErrorControl: ErrorControl<any>[] = [];
+    private errorControl: ErrorControl<any>[] = [];
 
     constructor() {
 
     }
 
     addControl(control: ErrorControl<any>) {
-        this.ErrorControl.push(control);
+        this.errorControl.push(control);
     }
 
     isValidValue(value: any): ErrorControlType<any> {
         var newValue = value;
         let firstError = null ;
-        this.ErrorControl.forEach( (handler) => {
+        this.errorControl.forEach( (handler) => {
             if(firstError == null) {
                 var result = handler.isValidValue(value);
                 if (result.hasError) {
@@ -28,9 +28,11 @@ export default class ValidationManager {
         if(firstError != null) {
             return firstError ;   
         }
-        if(this.ErrorControl.length) {
+
+        if(this.errorControl.length) {
             return { hasError: false, errorMessage: null, correctValue: newValue }
-        }    
+        }
+            
         return null;
     }
 }
