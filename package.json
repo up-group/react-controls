@@ -89,7 +89,7 @@
     "@storybook/addon-links": "^5.1.10",
     "@storybook/addon-options": "^5.1.10",
     "@storybook/react": "^5.1.10",
-    "@types/chai": "^4.1.7",
+    "@types/chai": "^4.2.1",
     "@types/chai-enzyme": "^0.6.6",
     "@types/enzyme": "^3.10.1",
     "@types/es6-promise": "0.0.33",
