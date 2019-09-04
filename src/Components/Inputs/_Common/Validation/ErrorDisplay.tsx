@@ -66,7 +66,5 @@ const ErrorTooltip = (props: ErrorDisplayProps) => {
 }
 
 const ErrorInline = (props: ErrorDisplayProps) => {
-    return (<div className={"up-wrapper-error-inline"}>
-        {props.error}
-    </div>);
+    return (<div className={"up-wrapper-error-inline"}>{props.error}</div> );
 }
