@@ -187,6 +187,7 @@ export class MenuItem extends React.Component<MenuItemProps>{
             <a onClick={this.onItemClick} href={this.props.uri}>
                 <UpSvgIcon title={this.props.title} width={22} height={22} iconName={this.props.icon as IconName}></UpSvgIcon>
                 <span className={'up-menu-item-title'}>{this.props.title}</span>
+                {!isEmpty(this.props.childMenuItems) && <UpSvgIcon width={15} height={15} style={{marginLeft:'auto'}} iconName={'arrow-right'}></UpSvgIcon>}
             </a>
             }
             {!isEmpty(this.props.childMenuItems) &&
