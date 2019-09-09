@@ -41,11 +41,27 @@ export const MenuStyles = (
                  fill: "#ffffff",
                  cursor: "pointer"
                },
-               "&.up-menu ul li.active .up-icon-wrapper.colored svg, .up-menu ul li.active .up-icon-wrapper.colored svg path, .up-menu ul li.active .up-icon-wrapper.colored svg polygon, .up-menu ul li.active .up-icon-wrapper.colored svg polyline": {
+               "&.up-menu ul li.active .up-icon-wrapper.colored:first-of-type svg, .up-menu ul li.active .up-icon-wrapper.colored:first-of-type svg path, .up-menu ul li.active .up-icon-wrapper.colored:first-of-type svg polygon, .up-menu ul li.active .up-icon-wrapper.colored:first-of-type svg polyline": {
+                 fill: props.theme.colorMap.primary,
+               },
+               "&.up-menu ul li .up-icon-wrapper.colored:not(:first-of-type)": {
+                '-webkit-transition-property': 'transform',
+                '-webkit-transition-duration': '.3s', 
+                 transitionProperty: 'transform',
+                 transitionDuration: '.3s'
+
+               },
+               "&.up-menu ul li:hover .up-icon-wrapper.colored:not(:first-of-type)": {
+                 transform: 'rotate(90deg)'
+               },
+               "&.up-menu ul li.active .up-icon-wrapper.colored:not(:first-of-type)": {
+                 transform: 'rotate(90deg)'
+               },
+               "&.up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg, .up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg path, .up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg polygon, .up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg polyline": {
                  fill: props.theme.colorMap.primary
                },
-               "&.up-menu ul li:hover .up-icon-wrapper.colored svg, .up-menu ul li:hover .up-icon-wrapper.colored svg path, .up-menu ul li:hover .up-icon-wrapper.colored svg polygon, .up-menu ul li:hover .up-icon-wrapper.colored svg polyline": {
-                 fill: props.theme.colorMap.primary
+               "&.up-menu nav > ul > li .up-icon-wrapper.colored:not(:first-of-type)": {
+                 display: props.minified ? "none" : "initial"
                },
                "&.up-menu nav > ul > li .up-menu-item-title": {
                  display: props.minified ? "none" : "inherit",
