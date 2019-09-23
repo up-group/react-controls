@@ -542,7 +542,7 @@ export const focusStyles = (props: StyledProps) =>
                fill: props.theme.colorMap.primary
              },
              "& .up-input-group.up-input-focused label, & .up-input-group.up-input-valued label": {
-               transform: "translate(0, 4px) scale(.75)",
+               transform: "translate(0, 2px) scale(.75)",
                fontSize: "12px",
                color: props.theme.colorMap.primary
              }
