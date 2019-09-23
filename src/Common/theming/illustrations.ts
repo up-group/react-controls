@@ -3,6 +3,7 @@ export type IllustrationName =
     | "email-validation"
     | "email-verification"
     | "user-succes"
+    | "user-remove"
     | "user-creation"
     | "attachment-succes"
     | "product-order"
@@ -16,6 +17,7 @@ export const IllustrationNames: IllustrationName[] = [
          "email-validation",
          "email-verification",
          "user-succes",
+         "user-remove",
          "user-creation",
          "attachment-succes",
          "product-order",
