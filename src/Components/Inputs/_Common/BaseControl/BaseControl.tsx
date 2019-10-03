@@ -1,19 +1,25 @@
-// Imports 
+// Imports
 import * as React from "react";
-import ValidationManager from "../Validation/ValidationManager"
-import ErrorDisplay, { ErrorDisplayMode } from "../Validation/ErrorDisplay"
+import ValidationManager from "../Validation/ValidationManager";
+import ErrorDisplay, { ErrorDisplayMode } from "../Validation/ErrorDisplay";
 // Importation des règles CSS de bases -> à transformer en styled-components
-import UpTooltip, { Tooltip } from '../../../Display/Tooltip'
-import TypeNullControl from "../Validation/TypeNullControl"
-import { isString } from '../../../../Common/utils'
+import UpTooltip, { Tooltip } from "../../../Display/Tooltip";
+import TypeNullControl from "../Validation/TypeNullControl";
+import { isString } from "../../../../Common/utils";
 import { WithThemeProps } from "../../../../Common/theming/withTheme";
 import defaultTheme from "../../../../Common/theming";
 import { eventFactory } from "../../../../Common/utils/eventListener";
 
 import * as update from "react-addons-update";
+import HelpMessageDisplay from "../Validation/HelpMessageDisplay";
+import { string } from "prop-types";
+import { isFunction } from "util";
 
 // Exports
-const ONCHANGE_MUST_BE_SPECIFIED = "La méthode onChange doit être spécifié dans le cas où la valeur du composant est défini dans les props";
+const ONCHANGE_MUST_BE_SPECIFIED =
+  "La méthode onChange doit être spécifié dans le cas où la valeur du composant est défini dans les props";
+
+type RenderHelp = (children: React.ReactNode) => JSX.Element;
 
 export interface BaseControlProps<_BaseType> extends WithThemeProps {
   name?: string;
@@ -34,11 +40,12 @@ export interface BaseControlProps<_BaseType> extends WithThemeProps {
   errorDisplayMode?: ErrorDisplayMode;
   error?: string;
   touched?: boolean;
+  helpMessage?: string | RenderHelp;
 }
 export interface BaseControlState<_BaseType> {
-    error?: string;
-    value?: _BaseType;
-    extra?: any;
+  error?: string;
+  value?: _BaseType;
+  extra?: any;
 }
 export abstract class BaseControlComponent<
   _Props,
@@ -175,7 +182,7 @@ export abstract class BaseControlComponent<
   onFocus = event => {
     event.persist();
     const handleOnFocus = event => {
-      if (this.props['onFocus']) this.props['onFocus'](event);
+      if (this.props["onFocus"]) this.props["onFocus"](event);
     };
 
     if (this.state.extra === undefined) {
@@ -194,7 +201,7 @@ export abstract class BaseControlComponent<
   onBlur = event => {
     event.persist();
     const handleOnBlur = event => {
-      if (this.props['onBlur']) this.props['onBlur'](event);
+      if (this.props["onBlur"]) this.props["onBlur"](event);
     };
 
     if (this.state.extra === undefined) {
@@ -236,21 +243,46 @@ export abstract class BaseControlComponent<
     }
     const RenderControl = this.renderControl();
 
-    return (
-      <ErrorDisplay
-        theme={this.props.theme}
-        displayMode={this.props.errorDisplayMode}
-        showError={this.showError()}
-        hasError={this.hasError}
-        error={this.error}
-      >
-        {_tooltip === null ? (
-          RenderControl
-        ) : (
-          <UpTooltip {..._tooltip}>{RenderControl}</UpTooltip>
-        )}
-      </ErrorDisplay>
-    );
+    var content = null;
+    if (this.props.helpMessage == null) {
+      content = (
+        <ErrorDisplay
+          theme={this.props.theme}
+          displayMode={this.props.errorDisplayMode}
+          showError={this.showError()}
+          hasError={this.hasError}
+          error={this.error}
+        >
+          {_tooltip === null ? (
+            RenderControl
+          ) : (
+            <UpTooltip {..._tooltip}>{RenderControl}</UpTooltip>
+          )}
+        </ErrorDisplay>
+      );
+    } else if (
+      this.props.helpMessage != null &&
+      typeof this.props.helpMessage === "string"
+    ) {
+      content = (
+        <HelpMessageDisplay
+          theme={this.props.theme}
+          helpMessageText={this.props.helpMessage}
+        >
+          {RenderControl}
+        </HelpMessageDisplay>
+      );
+    } else if (
+      this.props.helpMessage != null &&
+      isFunction(this.props.helpMessage)
+    ) {
+      var temp = (this.props.helpMessage as RenderHelp)(RenderControl);
+      if (React.isValidElement(temp)) {
+        content = temp;
+      }
+    }
+
+    return content;
   }
 
   public dispatchOnChange = (

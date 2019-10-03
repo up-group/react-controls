@@ -1,0 +1,13 @@
+// Imports
+import * as React from 'react';
+import * as classnames from 'classnames';
+
+export interface {{name}}Props {
+
+}
+
+const {{name}} = (props: {{name}}Props) => {
+  return <div className="{{className}}"></div>
+}
+
+export default {{name}};

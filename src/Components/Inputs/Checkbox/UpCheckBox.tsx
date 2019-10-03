@@ -95,7 +95,7 @@ class UpCheckbox extends React.Component<UpCheckboxProps & WithThemeProps, UpChe
           height={props.iconSize}
           color={props.color} /> ;*/
     return (
-      <div onClick={this.stopPropagation} style={this.props.styles}>
+      <div className="up-checkbox" onClick={this.stopPropagation} style={this.props.styles}>
         {/* Avoid set active element when using the component inside a label */}
         <label style={{display:"none"}}><input type="checkbox" /></label>
         {

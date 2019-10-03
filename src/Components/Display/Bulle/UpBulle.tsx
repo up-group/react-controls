@@ -29,7 +29,7 @@ class UpBulle extends React.Component<UpBulleProps & WithThemeProps>{
 
     render() { 
         return (
-            <div className={cn(BulleStyle(this.props), this.props.className)} style={{ backgroundImage: this.props.backgroundImage }}>
+            <div className={cn(BulleStyle(this.props), this.props.className, 'up-bulle')} style={{ backgroundImage: this.props.backgroundImage }}>
                 <UpBox flexDirection={'row'} justifyContent={'flex-start'} alignItems={'center'}>
                     {this.props.icon &&
                         <SvgIcon className={IconStyle} iconName={this.props.icon} color={"white"} />

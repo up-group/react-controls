@@ -158,7 +158,6 @@ stories.add('Simple usage',
                 multiple={false}
                 tooltip="Votre ville de naissance"
                 minimumInputLength={3}
-                value
                 returnType="id"
                 labelKey={"title"}
                 dataSource={{
@@ -207,8 +206,7 @@ stories.add('Simple usage',
             <div style={{ margin: "30px" }}>
                 <UpSelect isRequired={true}
                     allowClear={true}
-                    default={null}
-                    value={2}
+                    default={2}
                     multiple={false}
                     returnType={"id"}
                     valueKey={"id"}

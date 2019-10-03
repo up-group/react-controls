@@ -1,6 +1,7 @@
 import * as React from 'react' ;
-import Highlight, { defaultProps, PrismTheme, Language } from "prism-react-renderer";
+import * as classnames from 'classnames';
 import { style } from 'typestyle';
+import Highlight, { defaultProps, PrismTheme, Language } from "prism-react-renderer";
 
 import UpParagraph from '../Paragraph';
 import UpBox from '../../Containers/Box';
@@ -8,14 +9,13 @@ import UpButtonGroup from '../../Containers/ButtonGroup';
 import UpButton from '../../Inputs/Button/UpButton';
 import UpHeading from '../../Display/Heading';
 
-export interface UpCodeViewerProps {
-    theme?: PrismTheme;
-    language: Language;
+export interface UpCodeViewerProps extends React.HTMLProps<HTMLDivElement> {
     code: string;
-    children?: React.ReactNode;
+    theme?: PrismTheme;
+    language?: Language;
 }
 
-const UpCodeViewer = (props: UpCodeViewerProps) => {
+const UpCodeViewer = ({ language = 'jsx', code, theme, ...divProps } : UpCodeViewerProps ) => {
     const [copySuccess, setCopySuccess] = React.useState('');
     const textAreaRef = React.useRef(null);
 
@@ -34,7 +34,7 @@ const UpCodeViewer = (props: UpCodeViewerProps) => {
         }
     })
 
-    return <UpParagraph className={style({
+    return <UpParagraph className={classnames('up-code-viewer', style({
         maxWidth: '100%',
         $nest: {
             '.prism-code': {
@@ -74,14 +74,14 @@ const UpCodeViewer = (props: UpCodeViewerProps) => {
                 flex:1
             }
         }
-    })}>
+    }))}>
         <UpBox flexDirection={'row'} justifyContent={'flex-end'} alignItems={'flex-end'} className={'up-codeviewer-toolbar'}>
             <UpHeading className={'up-codeviewer-toolbar-title'} tag={'h3'}>Code</UpHeading>
             <UpButtonGroup>
                 <UpButton intent={'primary'} onClick={copyToClipboard} width={'icon'} actionType={'cake'}></UpButton>
             </UpButtonGroup>
         </UpBox>
-        <Highlight {...defaultProps} {...props}>
+        <Highlight {...defaultProps} language={language} theme={theme} code={code}>
             {({ className, style, tokens, getLineProps, getTokenProps }) => (
                 <pre className={className} style={style}>
                     {tokens.map((line, i) => (
@@ -97,7 +97,8 @@ const UpCodeViewer = (props: UpCodeViewerProps) => {
         <form style={{ position: 'absolute', left : '-9999px'}}>
             <textarea
                 ref={textAreaRef}
-                value={props.code}
+                value={code}
+                onChange={(e) => null}
             />
         </form>
     </UpParagraph> ;

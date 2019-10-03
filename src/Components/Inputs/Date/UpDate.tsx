@@ -105,6 +105,7 @@ class UpDate extends BaseControlComponent<
             focused: this.isFocused,
             ...(this.props as Omit<UpDateProps, "children">)
           }),
+          "up-date",
           this.isFocused ? "up-input-focused" : null,
           !isEmpty(this.currentValue) ? "up-input-valued" : null
         )}

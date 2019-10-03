@@ -289,7 +289,6 @@ An UpSelectOption is defined as :
 - UpTimePicker
 
 
-
 ## Resources
 - [JavaScript Code Quality with Free Tools](https://dev-blog.apollodata.com/javascript-code-quality-with-free-tools-9a6d80e29f2d#.1unvvh8vw)
 - [Working with React & TypeScript](http://blog.wolksoftware.com/working-with-react-and-typescript)

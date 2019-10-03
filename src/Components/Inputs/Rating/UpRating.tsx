@@ -141,11 +141,11 @@ class UpRating extends React.PureComponent<RatingProps & WithThemeProps, RatingS
     render() {
         const { className, value, numberOfStars, max, dataFor, theme} = this.props
         return (
-            <div className={classnames(RatingWrapperStyle, className)} data-for={dataFor} data-tip={"tooltip"}>
+            <div className={classnames(RatingWrapperStyle, className, 'up-rating')} data-for={dataFor} data-tip={"tooltip"}>
                 {
                     Array(numberOfStars).fill(0).map( (element, index) => {
                         const fillMode = getStarFill(index+1, numberOfStars, this.state.editedValue != null ? this.state.editedValue : value, max)
-                        return <span onMouseOver={this.setEditedValue.bind(this, index+1)} 
+                        return <span key={index} onMouseOver={this.setEditedValue.bind(this, index+1)} 
                                 onMouseOut={this.unsetEditedValue.bind(this, index+1)} onClick={this.validEditedValue.bind(this, index+1)} >
                             <UpSvgIcon iconName={fillMode == 'empty' ? 'star-outline' : 'star-filled'} 
                                     key={index} className={classnames('up-star', style(CommonStartCSS(this.props)))}>

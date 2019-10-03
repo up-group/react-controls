@@ -14,9 +14,9 @@ export interface ErrorDisplayProps {
     displayMode?: ErrorDisplayMode;
 }
 
-const ErrorDisplayStyle = (props: WithThemeProps) => style({
+const ErrorDisplayStyle = (props: ErrorDisplayProps & WithThemeProps) => style({
     position:"relative", 
-    cursor:"help",
+    cursor: (props.displayMode==="tooltip" && props.hasError)?"help":"default",
     height:"100%",
     $nest: {
         "& .up-wrapper-error-tooltip" : {
@@ -66,7 +66,5 @@ const ErrorTooltip = (props: ErrorDisplayProps) => {
 }
 
 const ErrorInline = (props: ErrorDisplayProps) => {
-    return (<div className={"up-wrapper-error-inline"}>
-        {props.error}
-    </div>);
+    return (<div className={"up-wrapper-error-inline"}>{props.error}</div> );
 }

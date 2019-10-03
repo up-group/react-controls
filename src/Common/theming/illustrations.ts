@@ -3,18 +3,28 @@ export type IllustrationName =
     | "email-validation"
     | "email-verification"
     | "user-succes"
+    | "user-remove"
     | "user-creation"
     | "attachment-succes"
-    | "product-order";
+    | "product-order"
+    | "cadhoc-card"
+    | "cadhoc-check"
+    | "cadhoc-success"
+    | "gift-opened";
 
 export const IllustrationNames: IllustrationName[] = [
          "email-expired",
          "email-validation",
          "email-verification",
          "user-succes",
+         "user-remove",
          "user-creation",
          "attachment-succes",
-         "product-order"
+         "product-order",
+         "cadhoc-card",
+         "cadhoc-check",
+         "cadhoc-success",
+         "gift-opened"
        ];
 
 let dictionary = {};

@@ -19,7 +19,15 @@ export default class TypeNumberControl implements ErrorControl<any> {
             return { hasError: false, correctValue: null }
         }
 
-        var nbValue = Number(value);
+        var nbValue: number;
+
+        if(typeof value === 'string')
+        {
+            nbValue = Number(value.replace(',','.'));
+        }
+        else{            
+            nbValue = Number(value);
+        }
 
         if (isNaN(nbValue)) {
             return { hasError: true, errorMessage: "Doit être un nombre" }

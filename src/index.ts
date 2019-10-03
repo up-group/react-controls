@@ -61,6 +61,8 @@ import UpDefaultTheme, { UpThemeProvider, UpThemeInterface, UpThemeColorMap, Wit
 
 import { IconName as UpIconName } from './Common/theming/icons'
 
+import { eventFactory } from './Common/utils/eventListener'
+
 export {
     UpBaseControlComponent,
     UpBadge,
@@ -126,4 +128,5 @@ export {
     UpDropFile,
     UpPDFViewer,
     UpRating,
+    eventFactory
 };
