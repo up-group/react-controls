@@ -81,7 +81,7 @@ const UpCodeViewer = ({ language = 'jsx', code, theme, ...divProps } : UpCodeVie
                 <UpButton intent={'primary'} onClick={copyToClipboard} width={'icon'} actionType={'cake'}></UpButton>
             </UpButtonGroup>
         </UpBox>
-        <Highlight {...defaultProps} language={language} theme={theme} code={code}>
+        <Highlight {...defaultProps} language={language} code={code}>
             {({ className, style, tokens, getLineProps, getTokenProps }) => (
                 <pre className={className} style={style}>
                     {tokens.map((line, i) => (

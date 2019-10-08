@@ -153,7 +153,7 @@
     "moment": "^2.22.2",
     "normalize.css": "^4.1.1",
     "object-assign": "^4.1.1",
-    "prism-react-renderer": "^0.1.7",
+    "prism-react-renderer": "^1.0.1",
     "prop-types": "^15.6.2",
     "query-string": "^5.1.1",
     "react": "^16.8.0",
