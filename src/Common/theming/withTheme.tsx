@@ -7,7 +7,9 @@ export type WithThemeProps = {
  theme?:ThemeInterface;
 }
 
-const withTheme =  function withTheme<P extends object>(WrappedComponent: React.ComponentType<P & WithThemeProps>) {
+type HTMLElementProps = WithThemeProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> ;
+// Temp fix any
+const withTheme = function <P extends object>(WrappedComponent: React.ComponentType<P & any>) {
     return class ComponentWithTheme extends React.Component<P & WithThemeProps> {
         
         // static displayName = `WithTheme(${getDisplayName(WrappedComponent)})`;
@@ -27,7 +29,7 @@ const withTheme =  function withTheme<P extends object>(WrappedComponent: React.
 
         render() {
             const {theme} = this.context ;
-            const {children, ...others} = this.props as WithThemeProps & {children: Array<React.ReactNode>} ;
+            const {children, ...others} = this.props ;
             return <WrappedComponent theme={theme} {...others}>{children}</WrappedComponent>
         }
     }

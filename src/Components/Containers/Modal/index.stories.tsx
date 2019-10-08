@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { storiesOf, ReactiveVar } from '@storybook/react'
+import { storiesOf } from '@storybook/react'
 
 import UpDefaultTheme from '../../../Common/theming'
 import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'

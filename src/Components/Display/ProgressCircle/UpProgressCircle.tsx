@@ -72,7 +72,7 @@ const WrapperCircularProgressStyle = style({
       transform: 'rotate(-90deg)',
     },
     '& svg > circle': {
-      strokeDashArray :'0',
+      strokeDasharray :[0],
       //filter: 'url(#dropshadow)',
       transition : 'all 1s linear',
     },

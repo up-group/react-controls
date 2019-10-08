@@ -55,16 +55,14 @@ const ModalStyle = (props: WithThemeProps) =>
           visibility: "hidden",
           transition: ".5s ease-in-out",
           "-webkit-transition": ".5s ease-in-out",
-          "-moz-transition": ".5s ease-in-out",
-          "-o-transition": ".5s ease-in-out",
+          "-ms-transition": ".5s ease-in-out",
           opacity: 0
         },
         "& .up-modal.in": {
           visibility: "visible",
           transition: ".5s ease-in-out",
           "-webkit-transition": ".5s ease-in-out",
-          "-moz-transition": ".5s ease-in-out",
-          "-o-transition": ".5s ease-in-out",
+          "-ms-transition": ".5s ease-in-out",
           opacity: 1,
           animationDuration: "1s",
           animationName: appearFromTop

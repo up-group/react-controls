@@ -41,10 +41,8 @@ const wrapperStyle = (props: UpToggleProps & WithThemeProps) => style({
       "-webkit-user-select": "none",
       "-moz-user-select": "none",
       "-ms-user-select": "none",
-      "user-select": "none",
       "-webkit-tap-highlight-color": "transparent"
     },
-
     ".up-toggle-screenreader-only" : {
       border: 0,
       clip: "rect(0 0 0 0)",
@@ -66,7 +64,7 @@ const wrapperStyle = (props: UpToggleProps & WithThemeProps) => style({
     ".up-toggle-track" : {
       backgroundColor: "#4D4D4D",
       "-webkit-transition": "all 0.2s ease",
-      "-moz-transition": "all 0.2s ease",
+      "-ms-transition": "all 0.2s ease",
       transition: "all 0.2s ease"
     },
 
@@ -94,13 +92,13 @@ const wrapperStyle = (props: UpToggleProps & WithThemeProps) => style({
       left: "8px",
       opacity: 0,
       "-webkit-transition": "opacity 0.25s ease",
-      "-moz-transition": "opacity 0.25s ease",
+      "-ms-transition": "opacity 0.25s ease",
       transition: "opacity 0.25s ease"
     },
     ".up-toggle--checked .up-toggle-track-check" : {
       opacity: 1,
       "-webkit-transition": "opacity 0.25s ease",
-      "-moz-transition": "opacity 0.25s ease",
+      "-ms-transition": "opacity 0.25s ease",
       transition: "opacity 0.25s ease",
     },
     ".up-toggle-track-x" : {
@@ -112,7 +110,7 @@ const wrapperStyle = (props: UpToggleProps & WithThemeProps) => style({
       lineHeight: 0,
       opacity: 1,
       "-webkit-transition": "opacity 0.25s ease",
-      "-moz-transition": "opacity 0.25s ease",
+      "-ms-transition": "opacity 0.25s ease",
       transition: "opacity 0.25s ease"
     },
     ".up-toggle--checked .up-toggle-track-x" : {
@@ -126,7 +124,7 @@ const wrapperStyle = (props: UpToggleProps & WithThemeProps) => style({
       "-moz-box-sizing": 'border-box',
       boxSizing: 'border-box',
       "-webkit-transition": "all 0.25s ease",
-      "-moz-transition": "all 0.25s ease"
+      "-ms-transition": "all 0.25s ease"
     },
     ".up-toggle--checked .up-toggle-thumb" : {
       left: props.size === 'normal' ? "30px" : "24px",
@@ -134,12 +132,10 @@ const wrapperStyle = (props: UpToggleProps & WithThemeProps) => style({
     },
     ".up-toggle--focus .up-toggle-thumb" : {
       "-webkit-box-shadow": "0px 0px 3px 2px #0099E0",
-      "-moz-box-shadow": "0px 0px 3px 2px #0099E0",
       boxShadow: "0px 0px 2px 3px #0099E0"
     },
     ".up-toggle:active:not(.up-toggle--disabled) .up-toggle-thumb" : {
       "-webkit-box-shadow": "0px 0px 5px 5px #0099E0",
-      "-moz-box-shadow": "0px 0px 5px 5px #0099E0",
       boxShadow: '0px 0px 5px 5px #0099E0'
     }
   }
