@@ -65,7 +65,7 @@ export const GridStyles : string = style(
       '& .up-row-flex-space-around' : {
         '-webkit-justify-content': 'space-around',
         '-ms-flex-pack': 'distribute',
-        justifycontent: 'space-around',
+        justifyContent: 'space-around',
       },
       '& .up-row-flex-top' : {
         '-webkit-box-align': 'start',

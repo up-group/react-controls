@@ -15,7 +15,7 @@ type InjectedProps = {
 export const withTogglleable = <OriginalProps extends object>(UnwrappedComponent : React.ComponentType<OriginalProps & InjectedProps>) => {
   type Props = Omit<OriginalProps, keyof InjectedProps> & OwnProps
   class WithToggle extends React.Component<Props, State> {
-    static displayName : string = getHocComponentName(WithToggle.displayName, UnwrappedComponent)
+    static displayName : string = getHocComponentName(WithToggle.name, UnwrappedComponent)
     static WrappedComponent = UnwrappedComponent
     state = { show: false }
     render() {

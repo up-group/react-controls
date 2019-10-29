@@ -2,9 +2,10 @@
 import UpDate from './UpDate'
 import { BaseControlProps } from '../_Common/BaseControl/BaseControl'
 import { WithThemeProps } from '../../../Common/theming/withTheme';
+import { Moment } from "moment";
 
 // Exports
-export interface UpDateProps extends BaseControlProps<Date> {
+export interface UpDateProps extends BaseControlProps<Moment> {
   hasError?: boolean;
   format?: string;
   minDate?: Date;

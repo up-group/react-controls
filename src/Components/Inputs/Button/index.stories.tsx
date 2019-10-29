@@ -14,6 +14,8 @@ import UpParagraph from '../../Display/Paragraph';
 import UpHeading from '../../Display/Heading';
 import UpButtonGroup from '../../Containers/ButtonGroup';
 import { style } from 'typestyle';
+import { IntentType } from 'theming/types';
+import { ActionType } from 'actions';
 
 const codeStoryADroite = 
 `const actions = [{libelle: "Option 1", onClick: action("Option 1")}, {libelle: "Option 2", onClick: action("Option 2")},{size: 2,},{libelle: "Option 3",onClick: action("Option 3")}];
@@ -54,7 +56,7 @@ stories.add('Simple usage',
         </UpNotification>
         <UpParagraph>
           <UpButtonGroup gutter={17}>
-            <UpButton actionType={actionType} intent={intent} onClick={(event) => {
+            <UpButton actionType={actionType as ActionType} intent={intent as IntentType} onClick={(event) => {
               return new Promise(function (resolve, reject) {
                 setTimeout(() => resolve(true), 5000)
               })

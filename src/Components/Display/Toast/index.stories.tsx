@@ -9,6 +9,7 @@ import UpToast from './'
 
 import { getRootContainer } from '../../../Common/stories';
 import UpParagraph from '../Paragraph';
+import { IntentType } from 'theming/types';
 const stories = storiesOf('Display/UpToast', module) ;
 stories.addDecorator(withKnobs);
 stories.addDecorator(getRootContainer('UpToast'));
@@ -19,7 +20,7 @@ stories.add('Simple usage',
     const message = text('message', 'Succès');
 
     return <UpThemeProvider theme={UpDefaultTheme}>
-      <UpToast intent={intent}>
+      <UpToast intent={intent as IntentType}>
         <UpParagraph>{message}</UpParagraph>
       </UpToast>
     </UpThemeProvider>

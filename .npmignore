@@ -1,5 +1,7 @@
 
 test/
+.cache/
+coverage/
 .vs/
 .vscode/
 .storybook/
@@ -9,3 +11,16 @@ etc/
 src/
 stories/
 test/
+infrastructure/
+public/
+Dockerfile
+azure-pipelines.*
+DEV*.md
+webpack*
+yarn.lock
+dist/**/*.map
+tslint.json
+tsconfig.json
+generators/
+.babelrc
+.docker*

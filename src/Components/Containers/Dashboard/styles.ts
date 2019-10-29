@@ -47,7 +47,7 @@ export const TitleStyles = style({
         },
         '& .small-box .icon' : {
             '-webkit-transition': 'all .3s linear',
-            '-o-transition': 'all .3s linear',
+            '-ms-transition': 'all .3s linear',
             transition: 'all .3s linear',
             position: 'absolute',
             top: "-10px",

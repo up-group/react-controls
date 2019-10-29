@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { storiesOf, ReactiveVar} from '@storybook/react'
+import { storiesOf } from '@storybook/react'
 
 import UpNavTap from './UpNavTap'
 import UpPanel from '../../Containers/Panel'
