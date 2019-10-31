@@ -39,7 +39,7 @@ class BaseTextArea extends React.Component<UpTextProps> {
             name={name}
             ref={this.setInput}
             className={classnames(className, 'up-text')}
-            onChange={onChange}></Textarea>;
+            onChange={e => onChange(e, null)}></Textarea>;
     }
 }
 
