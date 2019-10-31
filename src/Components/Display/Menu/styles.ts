@@ -48,7 +48,8 @@ export const MenuStyles = (
                 '-webkit-transition-property': 'transform',
                 '-webkit-transition-duration': '.3s', 
                  transitionProperty: 'transform',
-                 transitionDuration: '.3s'
+                 transitionDuration: '.3s',
+                 display: props.minified ? "none" : "initial"
 
                },
                "&.up-menu ul li:hover .up-icon-wrapper.colored:not(:first-of-type)": {
@@ -59,9 +60,6 @@ export const MenuStyles = (
                },
                "&.up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg, .up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg path, .up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg polygon, .up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg polyline": {
                  fill: props.theme.colorMap.primary
-               },
-               "&.up-menu nav > ul > li .up-icon-wrapper.colored:not(:first-of-type)": {
-                 display: props.minified ? "none" : "initial"
                },
                "&.up-menu nav > ul > li .up-menu-item-title": {
                  display: props.minified ? "none" : "inherit",
