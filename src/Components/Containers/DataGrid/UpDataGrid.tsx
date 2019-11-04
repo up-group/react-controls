@@ -213,18 +213,18 @@ class UpDataGrid extends React.Component<
     this.fetchData = this.fetchData.bind(this);
     this.handleData = this.handleData.bind(this);
 
-    const data = props.data as Array<any>;
+    const data = this.props.data as Array<any>;
     const columns: Array<Column> = this.props.columns;
     const _state = {
       data: [],
       isDataFetching: false,
       columns: columns, //this.prepareColumns(columns),
-      skip: props.skip || 0,
-      take: props.take || 50,
-      page: props.page || 1,
-      total: props.total
+      skip: this.props.paginationProps.skip || 0,
+      take: this.props.paginationProps.take || 50,
+      page: this.props.paginationProps.page || 1,
+      total: this.props.paginationProps.total
     };
-    if (props.data != null) {
+    if (this.props.data != null) {
       _state.data = this.mapDataToRow(data);
     }
     this.state = _state;
