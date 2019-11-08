@@ -74,7 +74,10 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
                     <UpDataGridCell key={"cell-actions"} value={this.props.value} column={{ label: "", isSortable: false }}>
                         {
                             finalActions.map((value, index) => {
-                                return <UpButton key={`action-${index}`} tooltip={value.description} actionType={value.type} width="icon" intent={value.intent} onClick={
+                                return <UpButton key={`action-${index}`} tooltip={{
+                                    content : value.description,
+                                    title : null
+                                }} actionType={value.type} width="icon" intent={value.intent} onClick={
                                     () => {
                                         if (value.action != null) {
                                             value.action({ isSelected: this.props.isSelected, value: this.props.value });
