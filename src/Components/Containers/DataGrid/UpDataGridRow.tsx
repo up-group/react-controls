@@ -10,7 +10,7 @@ import UpDefaultCellFormatter from './UpDefaultCellFormatter'
 
 import shallowEqual from '../../../Common/utils/shallowEqual'
 import { isEmpty } from '../../../Common/utils';
-import UpButtonGroup from "Components/Containers/ButtonGroup";
+import UpButtonGroup from "../../Containers/ButtonGroup";
 
 export interface UpDataGridRowState {
 }
