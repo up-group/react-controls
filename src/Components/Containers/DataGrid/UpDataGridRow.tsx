@@ -10,6 +10,7 @@ import UpDefaultCellFormatter from './UpDefaultCellFormatter'
 
 import shallowEqual from '../../../Common/utils/shallowEqual'
 import { isEmpty } from '../../../Common/utils';
+import UpButtonGroup from "Components/Containers/ButtonGroup";
 
 export interface UpDataGridRowState {
 }
@@ -72,20 +73,29 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
                 })}
                 {!isEmpty(finalActions) &&
                     <UpDataGridCell key={"cell-actions"} value={this.props.value} column={{ label: "", isSortable: false }}>
-                        {
-                            finalActions.map((value, index) => {
-                                return <UpButton key={`action-${index}`} tooltip={{
-                                    content : value.description,
-                                    title : null
-                                }} actionType={value.type} width="icon" intent={value.intent} onClick={
-                                    () => {
-                                        if (value.action != null) {
-                                            value.action({ isSelected: this.props.isSelected, value: this.props.value });
+                        <UpButtonGroup gutter={8}>
+                            {
+                                finalActions.map((value, index) => {
+                                    return <UpButton
+                                        key={`action-${index}`}
+                                        tooltip={{
+                                            content : value.description,
+                                            title : null
+                                        }}
+                                        actionType={value.type}
+                                        width="icon"
+                                        intent={value.intent}
+                                        onClick={
+                                            () => {
+                                                if (value.action != null) {
+                                                    value.action({ isSelected: this.props.isSelected, value: this.props.value });
+                                                }
+                                            }
                                         }
-                                    }
-                                } />
-                            })
-                        }
+                                    />
+                                })
+                            }
+                        </UpButtonGroup>
                     </UpDataGridCell>
                 }
             </tr>
