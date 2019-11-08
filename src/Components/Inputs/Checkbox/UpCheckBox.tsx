@@ -69,15 +69,20 @@ class UpCheckbox extends React.Component<UpCheckboxProps & WithThemeProps, UpChe
   }
 
   handleChangeEvent = (event: React.ChangeEvent<any>, optionChange: Option) => {
-    const options = [...this.state.options] ;
+    const options = [...this.currentOptions] ;
     for (let propKey in options) {
         const option = options[propKey] ;
         if(option.name == optionChange.name && option.onOptionChange!=undefined) {
           option.onOptionChange(event, optionChange.checked);
-          option.checked = optionChange.checked;
+          if (!this.isControlled) {
+            option.checked = optionChange.checked;
+          }
         }
     }
-    this.setState({options}) ;
+
+    if(!this.isControlled) {
+      this.setState({options}) ;
+    }
   }
 
   get isControlled() {
