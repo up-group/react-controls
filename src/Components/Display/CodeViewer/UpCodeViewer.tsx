@@ -78,7 +78,7 @@ const UpCodeViewer = ({ language = 'jsx', code, theme, ...divProps } : UpCodeVie
         <UpBox flexDirection={'row'} justifyContent={'flex-end'} alignItems={'flex-end'} className={'up-codeviewer-toolbar'}>
             <UpHeading className={'up-codeviewer-toolbar-title'} tag={'h3'}>Code</UpHeading>
             <UpButtonGroup>
-                <UpButton intent={'primary'} onClick={copyToClipboard} width={'icon'} actionType={'cake'}></UpButton>
+                <UpButton intent={'primary'} onClick={copyToClipboard} width={'icon'} actionType={'copy'}></UpButton>
             </UpButtonGroup>
         </UpBox>
         <Highlight {...defaultProps} language={language} code={code}>
