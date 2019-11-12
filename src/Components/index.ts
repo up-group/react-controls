@@ -1,5 +1,3 @@
-import "./Common/theming/style.css"
-
 import {BaseControlComponent as UpBaseControlComponent} from './Inputs/_Common/BaseControl/BaseControl'
 
 import UpPanel from './Containers/Panel'
@@ -53,6 +51,7 @@ import UpProgressCircle from './Display/ProgressCircle'
 import UpDropFile from './Inputs/DropFile/UpDropFile'
 import UpPDFViewer from './Display/PDFViewer/UpPDFViewer'
 import UpRating from './Inputs/Rating/UpRating'
+import UpCodeViewer from './Display/CodeViewer/UpCodeViewer'
 
 import * as UpIcons from "./Display/Icons/materialinear";
 
@@ -114,4 +113,5 @@ export {
     UpPDFViewer,
     UpDropFile,
     UpRating,
+    UpCodeViewer,
 };
