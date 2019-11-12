@@ -482,7 +482,7 @@ class UpPagination extends React.Component<
           <UpCol
             span={
               this.props.paginationNumberSpanSize
-                ? 21 - this.props.paginationNumberSpanSize
+                ? 24 - this.props.paginationNumberSpanSize
                 : 9
             }
           >
