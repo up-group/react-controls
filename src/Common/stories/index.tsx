@@ -6,7 +6,7 @@ export const getRootContainer = (componentName : string) => (storyFn) => (
     <UpThemeProvider theme={UpDefaultTheme}>
       <div style={storybookMainBodyStyles}>
         <UpNotification>
-          Présentation du composant <code>{componentName}</code>
+          Présentation du composant <code style={{ marginLeft : "8px"}}><strong>{componentName}</strong></code>
         </UpNotification>
         { storyFn() }
       </div>
