@@ -1,13 +1,12 @@
 import * as React from "react";
 import * as classnames from "classnames";
 
-import { UpGrid, UpRow, UpCol } from "../../Containers/Grid";
-import UpSelect, { UpSelectOption } from "../../Inputs/Select";
+import { UpGrid, UpRow } from "../../Containers/Grid";
+import { UpSelectOption } from "../../Inputs/Select";
 
 import { style } from "typestyle";
 import withTheme, { WithThemeProps } from "../../../Common/theming/withTheme";
 import defaultTheme, { UpThemeInterface } from "../../../Common/theming";
-import UpBox from "../Box";
 import { isEmpty } from "../../../Common/utils";
 
 const getMaxPage = (take, total): number => {
@@ -18,32 +17,47 @@ const getMaxPage = (take, total): number => {
 };
 
 const generatePagesNavigation = (page, total, take): Array<number> => {
-  let pages: Array<number> = [];
-
-  // Get the max page
-  const maxPage = getMaxPage(take, total);
-
-  if (maxPage >= 2) {
-    if (maxPage <= 8) {
-      pages = Array.from({ length: maxPage }, (_, i) => i + 1);
-    } else {
-      // Get the 4 first pages, the last 3 pages and the current one
-      [1, 2, 3, 4].map(v => pages.push(v));
-
-      // push an empty link if only at least 2 steps after
-      if (page != 5) pages.push(0);
-
-      if (page > 4 && page < maxPage - 2) {
-        pages.push(page);
+  {
+    // Get the max page
+    let maxPage = 0;
+    maxPage = Math.ceil(total / take);
+    let pages: Array<number> = [];
+    if (maxPage >= 1) {
+      if (maxPage <= 8) {
+        pages = Array.from({ length: maxPage }, (_, i) => i + 1);
+      } else {
+        [1, 2].map(v => pages.push(v));
+        if (page - 3 > 1 && !pages.includes(page - 3)) {
+          pages.push(0);
+        }
+        if (page - 2 > 1 && !pages.includes(page - 2)) {
+          pages.push(page - 2);
+        }
+        if (page - 1 > 1 && !pages.includes(page - 1)) {
+          pages.push(page - 1);
+        }
+        if (page < maxPage - 1 && !pages.includes(page)) {
+          pages.push(page);
+        }
+        if (page + 1 < maxPage - 1 && !pages.includes(page + 1)) {
+          pages.push(page + 1);
+        }
+        if (page + 2 < maxPage - 1 && !pages.includes(page + 2)) {
+          pages.push(page + 2);
+        }
+        if (page + 3 < maxPage - 1) {
+          pages.push(0);
+        }
+        if (!pages.includes(maxPage - 1)) {
+          pages.push(maxPage - 1);
+        }
+        if (!pages.includes(maxPage)) {
+          pages.push(maxPage);
+        }
       }
-
-      if (page != maxPage - 3) pages.push(0);
-
-      // and the last 3 pages
-      [maxPage - 2, maxPage - 1, maxPage].map(v => pages.push(v));
     }
+    return pages;
   }
-  return pages;
 };
 
 export interface UpPaginationState {
@@ -95,63 +109,57 @@ const paginationStyle = style({
   listStyle: "none",
   display: "inline-block",
   paddingLeft: "0",
-  borderRadius: "4px"
 });
 
-const firstChild = {
-  marginLeft: 0,
-  borderTopLeftRadius: "4px",
-  borderBottomLeftRadius: "4px"
-};
-const lastChild = {
-  borderTopRightRadius: "4px",
-  borderBottomRightRadius: "4px"
-};
+const firstChild = (props: WithThemeProps) => ({
+  textDecoration: 'underline',
+  fontSize: '15px'
+});
+
+const lastChild = (props: WithThemeProps) => ({
+  textDecoration: 'underline',
+  fontSize: '15px'
+});
+
 const itemHover = (props: WithThemeProps) => ({
-  color: props.theme.colorMap.primaryFg,
-  backgroundColor: props.theme.colorMap.primary,
-  borderColor: props.theme.colorMap.primaryDark
+  color: props.theme.colorMap.primary,
 });
 
 const itemActive = (props: WithThemeProps) => ({
-  color: props.theme.colorMap.primaryFg,
-  backgroundColor: props.theme.colorMap.primary,
-  borderColor: props.theme.colorMap.primary,
-  cursor: "not-allowed"
+  color: props.theme.colorMap.primary,
 });
 
 const itemDisabled = (props: WithThemeProps) => ({
   color: "#777",
   cursor: "not-allowed",
-  backgroundColor: "#fff",
-  borderColor: props.theme.colorMap.defaultBorder
 });
 
 const paginationItemStyle = (props: WithThemeProps) => {
   const itemHoverStyle = itemHover(props);
   const itemActiveStyle = itemActive(props);
   const itemDisabledStyle = itemDisabled(props);
+  const firstChildStyle = firstChild(props);
+  const lastChildStyle = lastChild(props);
 
   return style({
     display: "inline",
+    color: "#4E5B59",
     $nest: {
       "& > a": {
-        minWidth: 41,
+        minWidth: '1rem',
         textAlign: "center",
         position: "relative",
         float: "left",
         padding: "6px 3px",
         marginLeft: "-1px",
         lineHeight: "1.43",
-        color: props.theme.colorMap.primary,
+        color: "#4E5B59",
         textDecoration: "none",
-        backgroundColor: props.theme.colorMap.primaryFg,
-        border: `1px solid ${props.theme.colorMap.primary}`
       },
-      "&:first-child a": firstChild,
-      "&:first-child span": firstChild,
-      "&:last-child a": lastChild,
-      "&:last-child span": lastChild,
+      "&:first-child a": firstChildStyle,
+      "&:first-child span": firstChildStyle,
+      "&:last-child a": lastChildStyle,
+      "&:last-child span": lastChildStyle,
       "& a:hover": itemHoverStyle,
       "& a:focus": itemHoverStyle,
       "& span:hover": itemHoverStyle,
@@ -162,28 +170,17 @@ const paginationItemStyle = (props: WithThemeProps) => {
       "&.active > span:hover": itemActiveStyle,
       "&.active > a:focus": itemActiveStyle,
       "&.active > span:focus": itemActiveStyle,
+      "&.active > a > span": itemActiveStyle,
       "&.disabled > a": itemDisabledStyle,
       "&.disabled > span": itemDisabledStyle,
       "&.disabled > a:hover": itemDisabledStyle,
       "&.disabled > span:hover": itemDisabledStyle,
       "&.disabled > a:focus": itemDisabledStyle,
-      "&.disabled > span:focus": itemDisabledStyle
+      "&.disabled > span:focus": itemDisabledStyle,
+      "&.disabled > a > span": itemDisabledStyle,
     }
   });
 };
-
-const paginationCounterStyle = (props: WithThemeProps) =>
-  style({
-    margin: "0px 0px",
-    color: props.theme.colorMap.primary,
-    backgroundColor: props.theme.colorMap.primaryFg,
-    borderRadius: "4px",
-    padding: "6px 12px",
-    lineHeight: "1.43",
-    textDecoration: "none",
-    border: `1px solid ${props.theme.colorMap.primary}`,
-    float: "right"
-  });
 
 class UpPagination extends React.Component<
   UpPaginationProps & WithThemeProps,
@@ -201,8 +198,8 @@ class UpPagination extends React.Component<
     ],
     total: 0,
     theme: defaultTheme,
-    previousLabel: "&laquo;",
-    nextLabel: "&raquo;",
+    previousLabel: "Précédent",
+    nextLabel: "Suivant",
     generatePagesNavigation: generatePagesNavigation,
     onPageChange: (page: number, take: number, skip: number) => {},
     renderResultMessage: (
@@ -211,26 +208,21 @@ class UpPagination extends React.Component<
       to: number,
       total: number
     ) => (
-      <span
-        className={classnames(
-          "up-pagination-result-message",
-          paginationCounterStyle({ theme })
+      <span style={{
+        lineHeight: '1.43',
+        padding: '6px 16px'
+      }}>
+        {total === 0 && (
+          <span>Aucun résultat</span>
         )}
-      >
-        {total == 0 && <span>Aucun résultat</span>}
-        {total != 0 && (
+        {total !== 0 && (
           <span>
-            <span>R&eacute;sultat(s)&nbsp;</span>
-            <span>{from}</span>
-            <span> &agrave; </span>
-            <span>{to}</span>
-            <span> sur </span>
-            <span>{total}</span>
+            {`${total} résultat${total > 1 ? 's': ''}`}
           </span>
         )}
       </span>
-    )
-  };
+      )
+    };
 
   constructor(props, context) {
     super(props);
@@ -399,7 +391,7 @@ class UpPagination extends React.Component<
               key={`page-prev`}
               className={classnames(
                 "up-pagination-page-prev",
-                this.state.page == 1 ? "disabled" : "",
+                this.state.page == 1 ? "disabled" : "active",
                 paginationItemClass
               )}
               onClick={this.goToPreviousPage}
@@ -420,7 +412,7 @@ class UpPagination extends React.Component<
               key={`page-next`}
               className={classnames(
                 "up-pagination-page-next",
-                this.state.page == maxPage ? "disabled" : "",
+                this.state.page == maxPage ? "disabled" : "active",
                 paginationItemClass
               )}
               onClick={this.goToNextPage}
@@ -437,57 +429,16 @@ class UpPagination extends React.Component<
       );
     }
 
-    const paginationTakes = (
-      <UpBox
-        flexDirection={"row"}
-        alignItems={"baseline"}
-        justifyContent={"flex-end"}
-      >
-        <div
-          className={"up-pagination-takes"}
-          style={{ width: "120px", marginRight: "12px" }}
-        >
-          <UpSelect
-            placeholder={this.props.nbByPageMessage}
-            default={{
-              id: this.props.take,
-              text: this.props.take
-            }}
-            data={takes}
-            onChange={this.onTakeChange}
-          />
-        </div>
-        {this.props.renderResultMessage(
-          this.props.theme,
-          from,
-          to,
-          this.props.total
-        )}
-      </UpBox>
-    );
-
     return (
-      <UpGrid className={"up-pagination-wrapper"}>
+      <UpGrid style={{ display: 'flex', justifyContent: 'end', alignItems: 'center' }} className={"up-pagination-wrapper"}>
         <UpRow>
-          <UpCol
-            span={
-              this.props.paginationNumberSpanSize
-                ? this.props.paginationNumberSpanSize
-                : 14
-            }
-          >
+          {this.props.renderResultMessage(
+            this.props.theme,
+            from,
+            to,
+            this.props.total
+          )}
             {pageNumberNavigation}
-          </UpCol>
-          <UpCol span={1} />
-          <UpCol
-            span={
-              this.props.paginationNumberSpanSize
-                ? 21 - this.props.paginationNumberSpanSize
-                : 9
-            }
-          >
-            {paginationTakes}
-          </UpCol>
         </UpRow>
       </UpGrid>
     );
