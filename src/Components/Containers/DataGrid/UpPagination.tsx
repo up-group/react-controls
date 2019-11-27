@@ -87,8 +87,6 @@ export interface UpPaginationProps {
   nextLabel?: string;
   /** Label pour le lien 'Précédent' */
   previousLabel?: string;
-  /** Taille de la colonne pour le composant de navigation */
-  paginationNumberSpanSize?: number;
   /** chaine de caractères utilisées comme séparateur dans la pagination*/
   paginationNavigationSeparator?: string;
   /** generate the pages navigation */
