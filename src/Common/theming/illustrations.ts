@@ -7,10 +7,15 @@ export type IllustrationName =
     | "user-creation"
     | "attachment-succes"
     | "product-order"
+    | "card-new"
     | "cadhoc-card"
     | "cadhoc-check"
     | "cadhoc-success"
-    | "gift-opened";
+    | "gift-opened"
+    | "up-dej-card"
+    | "up-dej-card-add"
+    | "up-dej-card-transaction"
+    | "user-avatar";
 
 export const IllustrationNames: IllustrationName[] = [
          "email-expired",
@@ -21,10 +26,15 @@ export const IllustrationNames: IllustrationName[] = [
          "user-creation",
          "attachment-succes",
          "product-order",
+         "card-new",
          "cadhoc-card",
          "cadhoc-check",
          "cadhoc-success",
-         "gift-opened"
+         "gift-opened",
+         "up-dej-card",
+         "up-dej-card-add",
+         "up-dej-card-transaction",
+         "user-avatar"
        ];
 
 let dictionary = {};
