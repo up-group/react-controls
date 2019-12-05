@@ -135,7 +135,7 @@ export class TabHeads extends React.Component<TabHeadsProps, TabHeadsState>{
     }
 
     render() {
-        var heads = this.props.heads.map((v, i) => { return <TabHead md={Math.round(24 / this.props.heads.length)} selectTabKey={this.props.selectTabKey} tab={v} key={i} tabKey={i} selectedTabKey={this.props.selectedTabKey} /> });
+        var heads = this.props.heads.map((v, i) => { return <TabHead md={Math.floor(24 / this.props.heads.length)} selectTabKey={this.props.selectTabKey} tab={v} key={i} tabKey={i} selectedTabKey={this.props.selectedTabKey} /> });
 
         return <UpGrid gutter={0}>
             <UpRow>
