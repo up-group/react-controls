@@ -436,7 +436,7 @@ class UpPagination extends React.Component<
             to,
             this.props.total
           )}
-            {pageNumberNavigation}
+          {pageNumberNavigation}
         </UpRow>
       </UpGrid>
     );
