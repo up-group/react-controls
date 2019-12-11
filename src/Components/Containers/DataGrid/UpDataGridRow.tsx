@@ -25,7 +25,7 @@ export interface UpDataGridRowProps {
     actions: Array<Action> | ActionFactory<any>;
     isSelectionEnabled: boolean;
     onSelectionChange?: (rowIndex: number, row: any) => void;
-    onRowClick?: (rowIndex: number, row: any) => void;
+    onClick?: (rowIndex: number, row: any) => void;
 }
 
 export default class UpDataGridRow extends React.Component<UpDataGridRowProps, UpDataGridRowState> {

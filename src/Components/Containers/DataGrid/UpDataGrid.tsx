@@ -568,7 +568,7 @@ class UpDataGrid extends React.Component<
             value={value.value}
             isSelected={value.isSelected}
             onSelectionChange={this.onRowSelectionChange}
-            onRowClick={this.props.onRowClick}
+            onClick={this.props.onRowClick}
           />
         );
       }
