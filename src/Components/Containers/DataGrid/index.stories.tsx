@@ -443,7 +443,6 @@ stories
           }
         })}
         paginationProps={{
-          paginationNumberSpanSize: 5,
           paginationNavigationSeparator: "...",
           previousLabel: "Précédent",
           nextLabel: "Suivant",
