@@ -428,7 +428,7 @@ class UpPagination extends React.Component<
     }
 
     return (
-      <UpGrid style={{ display: 'flex', justifyContent: 'end', alignItems: 'center' }} className={"up-pagination-wrapper"}>
+      <UpGrid style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }} className={"up-pagination-wrapper"}>
         <UpRow>
           {this.props.renderResultMessage(
             this.props.theme,

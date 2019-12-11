@@ -25,6 +25,7 @@ export interface UpDataGridRowProps {
     actions: Array<Action> | ActionFactory<any>;
     isSelectionEnabled: boolean;
     onSelectionChange?: (rowIndex: number, row: any) => void;
+    onRowClick?: (rowIndex: number, row: any) => void;
 }
 
 export default class UpDataGridRow extends React.Component<UpDataGridRowProps, UpDataGridRowState> {
@@ -64,7 +65,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
         }
 
         return (
-            <tr className="up-data-grid-row up-data-grid-row-bordered">
+            <tr className="up-data-grid-row up-data-grid-row-bordered" style={{ cursor: this.props.onRowClick ? 'pointer' : ''}} onClick={() => this.props.onRowClick && this.props.onRowClick(this.props.rowIndex, { value: this.props.value })}>
                 {this.props.isSelectionEnabled &&
                     <UpDataGridCell key={"cell-selection"} value={selection} column={{ label: "", formatter: formatter }} />
                 }
