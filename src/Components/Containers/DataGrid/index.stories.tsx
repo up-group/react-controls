@@ -232,6 +232,7 @@ stories
     "Avec actions",
     () => (
       <UpDataGrid
+        onRowClick={(i, row) => console.log(i, row)}
         actions={[
           {
             action: () => {},

@@ -167,6 +167,7 @@ export interface UpDataGridProps {
   // Event Handler
   onSortChange?: (c: Column, dir: SortDirection) => void;
   onSelectionChange?: (lastChangeRow: Row, seletectedRow: Row[]) => void;
+  onRowClick?: (rowIndex: number, row: any) => void;
 }
 
 export interface UpDataGridState {
@@ -567,6 +568,7 @@ class UpDataGrid extends React.Component<
             value={value.value}
             isSelected={value.isSelected}
             onSelectionChange={this.onRowSelectionChange}
+            onClick={this.props.onRowClick}
           />
         );
       }
@@ -606,6 +608,8 @@ class UpDataGrid extends React.Component<
           displayMode={"zone"}
           message={this.props.loadingMessage}
           isLoading={this.state.isDataFetching}
+          width={320} 
+          height={240}
         >
         <>
           <table
