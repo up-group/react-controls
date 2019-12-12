@@ -103,7 +103,7 @@ class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithTheme
                             boxSize={"auto"}
                             pad={"none"}
                             margin={"none"}
-                            flexDirection={"row"}
+                            flexDirection={"column"}
                             alignItems="center"
                             justifyContent="center"
                             className={classnames(
@@ -122,6 +122,9 @@ class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithTheme
                                 fill="none"
                                 />
                             </SvgIcon>
+                            {this.props.message &&
+                                <p>{this.props.message}</p>
+                            }
                         </Box>
                     </div>
                 </div>
