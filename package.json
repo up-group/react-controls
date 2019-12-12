@@ -1,6 +1,6 @@
 {
   "name": "@up-group/react-controls",
-  "version": "0.1.238",
+  "version": "0.1.239",
   "description": "",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -154,7 +154,7 @@
     "hoist-non-react-statics": "^3.1.0",
     "inputmask-core": "^2.2.0",
     "interact.js": "^1.2.8",
-    "jquery": "^3.2.1",
+    "jquery": "^3.4.1",
     "lodash": "^4.17.15",
     "moment": "^2.22.2",
     "normalize.css": "^4.1.1",
