@@ -39,6 +39,7 @@ class UpDate extends BaseControlComponent<
     minDate: MIN_DATE,
     maxDate: MAX_DATE,
     iconPosition: 'right',
+    numberOfMonths: 2
   };
 
   dateInput: any;
@@ -85,6 +86,33 @@ class UpDate extends BaseControlComponent<
       this.dateInput.inputRef.setAttribute("data-for", this.props["dataFor"]);
     }
   }
+  
+  returnYears = () => {
+    let years = []
+    for(let i = moment().year() - 100; i <= moment().year(); i++) {
+        years.push(<option value={i}>{i}</option>);
+    }
+    return years;
+}
+
+  renderMonthElement = ({ month, onMonthSelect, onYearSelect }) =>
+  <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div>
+          <select
+              value={month.month()}
+              onChange={(e) => onMonthSelect(month, e.target.value)}
+          >
+              {moment.months().map((label, value) => (
+                  <option value={value}>{label}</option>
+              ))}
+          </select>
+      </div>
+      <div>
+          <select value={month.year()} onChange={(e) => onYearSelect(month, e.target.value)}>
+              {this.returnYears()}
+          </select>
+      </div>
+  </div>
 
   renderControl() {
     const {
@@ -112,6 +140,8 @@ class UpDate extends BaseControlComponent<
       >
         {floatingLabel && <label htmlFor={id}>{floatingLabel}</label>}
         <SingleDatePicker
+          renderMonthElement={this.props.numberOfMonths == 1 ? this.renderMonthElement : null}
+          numberOfMonths={this.props.numberOfMonths}
           focused={this.isFocused}
           onFocusChange={this.onFocusChange}
           placeholder={floatingLabel ? "" : placeholder}

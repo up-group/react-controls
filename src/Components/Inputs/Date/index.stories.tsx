@@ -64,6 +64,18 @@ stories
     { info: "Utilisation simple" }
   )
   .add(
+    "Selectable months and years",
+    () => (
+      <UpDate
+        numberOfMonths={1}
+        onChange={(value, event) => {
+          console.log(event);
+          console.log(value);
+        }}
+      />
+    ),
+  )
+  .add(
     "Date requise",
     () => (
       <UpDate

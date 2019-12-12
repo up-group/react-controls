@@ -4,16 +4,55 @@ import * as classnames from "classnames";
 import { storiesOf } from "@storybook/react";
 
 import UpDefaultTheme, { UpThemeInterface } from "../../../Common/theming";
-import { IntentType, WithThemeProps } from "../../../Common/theming/types";
-import { ThemeProvider as UpThemeProvider } from "../../../Common/theming/ThemeProvider";
+import { WithThemeProps } from "../../../Common/theming/types";
 
 import UpPagination from "./UpPagination";
 import UpDataGrid from "./UpDataGrid";
-import { ICellFormatter } from "./UpDefaultCellFormatter";
 import { getRootContainer } from "../../../Common/stories";
 
-import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
+import { withKnobs } from "@storybook/addon-knobs";
 import { style } from "typestyle";
+import { UpParagraph, UpBox, UpHeading, UpCodeViewer  } from "../../../Components";
+
+const simpleDataGrid = 
+  `const data = [];
+  for (var i = 0; i < 50; i++) {
+        data.push({
+        c1: "Value " + i,
+        c2: false,
+        c3: "Value 3",
+        c4: { Libelle: "Suivi", Couleur: "#369" }
+      });
+  }
+<UpDataGrid  
+isPaginationEnabled = { false } 
+isSelectionEnabled = { false } 
+isSortEnabled = { false } 
+columns = { 
+    [
+    {
+      label: "Col 1",
+      field: "c1",
+      isSortable: true
+    },
+    {
+      label: "Col 2",
+      field: "c2",
+      type: "boolean",
+      isSortable: true
+    },
+    {
+      label: "Col 3",
+      field: "c3",
+      isSortable: true
+    },
+    {
+      label: "Col 4",
+      field: "c4",
+      isSortable: true
+    }
+  ]}
+  data = { data } />`;
 
 var data = [];
 var data2 = [];
@@ -46,7 +85,7 @@ const storiesPagination = storiesOf("Containers/UpPagination", module);
 storiesPagination.addDecorator(withKnobs);
 storiesPagination.addDecorator(getRootContainer("UpPagination"));
 storiesPagination.add(
-  "Simple usage",
+  "Général",
   () => (
     <UpPagination
       total={100}
@@ -78,37 +117,58 @@ const paginationCounterStyle = (props: WithThemeProps) =>
 
 stories
   .add(
-    "Simple usage",
+    "Général",
     () => (
-      <UpDataGrid
-        isPaginationEnabled={false}
-        isSelectionEnabled={false}
-        isSortEnabled={false}
-        columns={[
-          {
-            label: "Col 1",
-            field: "c1",
-            isSortable: true
-          },
-          {
-            label: "Col 2",
-            field: "c2",
-            type: "boolean",
-            isSortable: true
-          },
-          {
-            label: "Col 3",
-            field: "c3",
-            isSortable: true
-          },
-          {
-            label: "Col 4",
-            field: "c4",
-            isSortable: true
-          }
-        ]}
-        data={data}
-      />
+      <>
+      <UpParagraph className={style({
+        borderLeft: '4px solid #F59100',
+        padding : '10px',
+      })} textAlign={'left'} color={'#111'}>
+        Le composant <code>UpDataGrid</code> fournit un ensemble de fonctionnalités telles la pagination, le tri ou le filtre des données parmi tant d'autres. 
+      </UpParagraph>
+      <UpBox className={style({
+        margin: '10px'
+      })}>
+        <UpHeading>Liste des ...</UpHeading>
+        <UpDataGrid
+          isPaginationEnabled={false}
+          isSelectionEnabled={false}
+          isSortEnabled={false}
+          columns={[
+            {
+              label: "Col 1",
+              field: "c1",
+              isSortable: true
+            },
+            {
+              label: "Col 2",
+              field: "c2",
+              type: "boolean",
+              isSortable: true
+            },
+            {
+              label: "Col 3",
+              field: "c3",
+              isSortable: true
+            },
+            {
+              label: "Col 4",
+              field: "c4",
+              isSortable: true
+            }
+          ]}
+          data={data}
+            />
+          <UpHeading>Code</UpHeading>
+          <UpParagraph className={style({
+                borderLeft: '4px solid #F59100',
+                padding: '10px',
+              })} textAlign={'left'} color={'#111'}>
+                Pour afficher le composant <code>UpDataGrid</code> en lui injectant les données à afficher sans modifier les autres props :
+          </UpParagraph>
+          <UpCodeViewer code={simpleDataGrid}></UpCodeViewer>
+        </UpBox>
+      </>
     ),
     {
       info: "Utilisation du composant de grid sans pagination et sans sélection"
@@ -172,6 +232,7 @@ stories
     "Avec actions",
     () => (
       <UpDataGrid
+        onRowClick={(i, row) => console.log(i, row)}
         actions={[
           {
             action: () => {},
@@ -383,7 +444,6 @@ stories
           }
         })}
         paginationProps={{
-          paginationNumberSpanSize: 5,
           paginationNavigationSeparator: "...",
           previousLabel: "Précédent",
           nextLabel: "Suivant",

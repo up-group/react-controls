@@ -12,7 +12,8 @@ export interface UpDateProps extends BaseControlProps<Moment> {
   maxDate?: Date;
   floatingLabel?: string;
   placeholder?: string;
-  iconPosition?: 'left' | 'right'
+  iconPosition?: 'left' | 'right';
+  numberOfMonths?: number;
 }
 
 export default UpDate ;

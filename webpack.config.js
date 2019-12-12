@@ -1,6 +1,7 @@
 const path = require('path');
 const ROOT_PATH = path.resolve(__dirname);
 var webpack = require('webpack');
+var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 module.exports = {
     devtool: 'cheap-module-source-map',
@@ -60,6 +61,7 @@ module.exports = {
         ]
     },
     plugins: [
+        new CaseSensitivePathsPlugin(),
         new webpack.ProvidePlugin({
             jQuery: 'jquery',
             $: 'jquery',

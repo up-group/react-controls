@@ -7,8 +7,6 @@ import * as classNames from 'classnames'
 import * as ReactTooltip from 'react-tooltip'
 import { generateId, isFunction, isEmpty } from '../../../Common/utils'
 
-import {UpTooltipProps} from './'
-
 import { style } from 'typestyle' 
 import UpDefaultTheme, { withTheme, WithThemeProps } from "../../../Common/theming";
 import { IntentType } from '../../../Common/theming/types';

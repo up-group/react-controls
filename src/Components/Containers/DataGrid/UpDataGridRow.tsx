@@ -10,6 +10,7 @@ import UpDefaultCellFormatter from './UpDefaultCellFormatter'
 
 import shallowEqual from '../../../Common/utils/shallowEqual'
 import { isEmpty } from '../../../Common/utils';
+import UpButtonGroup from "../../Containers/ButtonGroup";
 
 export interface UpDataGridRowState {
 }
@@ -24,6 +25,7 @@ export interface UpDataGridRowProps {
     actions: Array<Action> | ActionFactory<any>;
     isSelectionEnabled: boolean;
     onSelectionChange?: (rowIndex: number, row: any) => void;
+    onClick?: (rowIndex: number, row: any) => void;
 }
 
 export default class UpDataGridRow extends React.Component<UpDataGridRowProps, UpDataGridRowState> {
@@ -63,7 +65,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
         }
 
         return (
-            <tr className="up-data-grid-row up-data-grid-row-bordered">
+            <tr className="up-data-grid-row up-data-grid-row-bordered" style={{ cursor: this.props.onClick ? 'pointer' : ''}} onClick={() => this.props.onClick && this.props.onClick(this.props.rowIndex, { value: this.props.value })}>
                 {this.props.isSelectionEnabled &&
                     <UpDataGridCell key={"cell-selection"} value={selection} column={{ label: "", formatter: formatter }} />
                 }
@@ -72,17 +74,29 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
                 })}
                 {!isEmpty(finalActions) &&
                     <UpDataGridCell key={"cell-actions"} value={this.props.value} column={{ label: "", isSortable: false }}>
-                        {
-                            finalActions.map((value, index) => {
-                                return <UpButton key={`action-${index}`} tooltip={value.description} actionType={value.type} width="icon" intent={value.intent} onClick={
-                                    () => {
-                                        if (value.action != null) {
-                                            value.action({ isSelected: this.props.isSelected, value: this.props.value });
+                        <UpButtonGroup gutter={4}>
+                            {
+                                finalActions.map((value, index) => {
+                                    return <UpButton
+                                        key={`action-${index}`}
+                                        tooltip={{
+                                            content : value.description,
+                                            title : null
+                                        }}
+                                        actionType={value.type}
+                                        width="icon"
+                                        intent={value.intent}
+                                        onClick={
+                                            () => {
+                                                if (value.action != null) {
+                                                    value.action({ isSelected: this.props.isSelected, value: this.props.value });
+                                                }
+                                            }
                                         }
-                                    }
-                                } />
-                            })
-                        }
+                                    />
+                                })
+                            }
+                        </UpButtonGroup>
                     </UpDataGridCell>
                 }
             </tr>
