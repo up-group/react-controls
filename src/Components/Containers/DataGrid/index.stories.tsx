@@ -224,6 +224,7 @@ stories
           }
         ]}
         data={data}
+        selectedArrowColor={UpDefaultTheme.colorMap.primary}
       />
     ),
     { info: "Utilisation du composant de grid avec sélection" }

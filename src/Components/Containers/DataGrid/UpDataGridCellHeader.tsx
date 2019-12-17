@@ -19,6 +19,7 @@ export interface UpDataGridCellHeaderProps {
   onSortChange?: (c: Column, d: SortDirection) => void;
   column?: Column;
   width?: string;
+  selectedArrowColor?:string;
 }
 
 const headerCellStyles = style({
@@ -78,6 +79,7 @@ export default class UpDataGridCellHeader extends React.Component<
   render() {
     const sortAscIcon = "arrow-down";
     const sortDescIcon = "arrow-up";
+    const arrowColor= this.props.selectedArrowColor || 'black';
 
     var width = "auto";
     if (this.props.width) {
@@ -114,7 +116,7 @@ export default class UpDataGridCellHeader extends React.Component<
                 iconName={sortDescIcon}
                 color={
                   this.state.isSorted && this.state.sortDirection == "DESC"
-                    ? "black"
+                    ? arrowColor
                     : "#D7D7D7"
                 }
                 onClick={() => this.onCellClick("DESC")}
@@ -124,7 +126,7 @@ export default class UpDataGridCellHeader extends React.Component<
                 iconName={sortAscIcon}
                 color={
                   this.state.isSorted && this.state.sortDirection == "ASC"
-                    ? "black"
+                    ? arrowColor
                     : "#D7D7D7"
                 }
                 onClick={() => this.onCellClick("ASC")}

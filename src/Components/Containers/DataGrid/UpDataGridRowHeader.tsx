@@ -18,6 +18,7 @@ export interface UpDataGridRowHeaderProps {
     actions: Array<Action>;
     onSortChange?: (c: Column, d: SortDirection) => void;
     onSelectionChange?: (isSelected: boolean) => void;
+    selectedArrowColor?:string;
 }
 
 export default class UpDataGridRowHeader extends React.Component<UpDataGridRowHeaderProps, UpDataGridRowHeaderState> {
@@ -79,7 +80,7 @@ export default class UpDataGridRowHeader extends React.Component<UpDataGridRowHe
                         <UpDataGridCellHeader key={`header-selection`} column={{ label: selection, isSortable: false }} />
                     }
                     {this.props.columns.map((value, index) => {
-                        return <UpDataGridCellHeader key={`header-${index}`} onSortChange={this.onSortChange.bind(this)} column={value} />
+                        return <UpDataGridCellHeader key={`header-${index}`} onSortChange={this.onSortChange.bind(this)} column={value} selectedArrowColor={this.props.selectedArrowColor} />
                     })}
                     {isActionEnabled && !isEmpty(this.props.actions) && 
                         <UpDataGridCellHeader key={`header-actions`} width={`${this.props.actions.length * 46}px`} column={{ label: "", isSortable: false }} />
