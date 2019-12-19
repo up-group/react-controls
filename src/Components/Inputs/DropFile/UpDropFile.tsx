@@ -32,6 +32,7 @@ import UpLabel from '../../Display/Label';
 import UpSvgIcon from '../../Display/SvgIcon';
 import { eventFactory } from '../../../Common/utils/eventListener';
 import UpBox from '../../Containers/Box';
+import { flexibleCompare } from '@fullcalendar/core';
 
 export interface IFile {
     type?: IFileType;
@@ -66,6 +67,7 @@ export interface IFile {
   }
 
 interface UpDropFileProps extends WithThemeProps {
+  showOptions?: boolean;
   label?: string;
   name: string;
   required?: boolean;
@@ -87,20 +89,32 @@ interface UpDropFileProps extends WithThemeProps {
   deleteFileLabel?:string;
   selectFileLabel?:string;
   resizeImageLabel?:string;
+  dropLabel?:string;
+  separatorLabel?:string;
   allowExtensionsLabel?:string;
+  displaySelectFile?: boolean;
   onChange?: (event: React.ChangeEvent<any>, value: IFile) => void;
   loadFile?:(id:string) => Promise<IFile>;
   source?: () => Promise<IFile>;
 }
 
 const boxUpload = style({
-  border: 'solid 1px #f39100',
-  borderStyle: 'dashed',
+  border: '2px dashed #d7d7d7',
+  $nest: {
+    '&:hover': {
+      borderColor: "#f39100",
+    }
+  }
 });
 
-const boxUploaded = style({
-  border: 'solid 1px #5cb85c',
-  borderStyle: 'solid',
+const boxUploaded = style({	
+  border: '1px solid',
+  borderTopColor: '#d7d7d7',
+  borderRightColor: '#d7d7d7',
+  borderLeftColor: '#d7d7d7',
+  borderBottomColor: '#F5F5F5',
+  backgroundColor: '#F5F5F5',
+  borderRadius: '4px 0x',
 });
 
 const base: NestedCSSProperties = {
@@ -108,7 +122,8 @@ const base: NestedCSSProperties = {
   textAlign: 'center',
   cursor: 'pointer',
   width: '100%',
-  borderRadius: '4px',
+  borderTopRightRadius: '4px',
+  borderTopLeftRadius: '4px',
   minHeight: '64px',
   height: 'auto',
   marginTop: '8px',
@@ -170,20 +185,22 @@ const wrapperErrorsStyle = style({
 });
 
 const wrapperFileNameStyle = (props: WithThemeProps) => style({
-  padding: '4px',
+  display: 'flex',
+  justifyContent: 'space-between',
   borderRadius: '4px',
-  borderLeft: `1px solid ${props.theme.colorMap.primary}`,
-  borderBottom: `1px solid ${props.theme.colorMap.primary}`,
-  borderRight: `1px solid ${props.theme.colorMap.primary}`,
+  borderLeft: `1px solid ${props.theme.colorMap.disabledFg}`,
+  borderBottom: `1px solid ${props.theme.colorMap.disabledFg}`,
+  borderRight: `1px solid ${props.theme.colorMap.disabledFg}`,
   borderTopLeftRadius: '0px',
   borderTopRightRadius: '0px',
   background: props.theme.colorMap.white,
+  padding: '5px 15px',
   $nest: {
     span: {
       marginRight: '4px',
       textOverflow: 'ellipsis',
-      fontSize: '10px',
-      color: props.theme.colorMap.primaryDark,
+      fontSize: '15px',
+      color: '#4A4A4A',
     },
   },
 });
@@ -238,8 +255,12 @@ class UpDropFile extends React.Component<
     openFileLabel: "Ouvrir le fichier",
     deleteFileLabel: "Supprimer le fichier",
     selectFileLabel: "Choisir un fichier",
+    dropLabel: "Déposez ici votre fichier",
+    separatorLabel: "ou",
     resizeImageLabel: "Redimensionner l'image",
-    allowExtensionsLabel: "Formats autorisés"
+    allowExtensionsLabel: "Formats autorisés",
+    showOptions: true,
+    displaySelectFile: false
   };
 
   constructor(props, context) {
@@ -683,25 +704,24 @@ class UpDropFile extends React.Component<
             disableClick
             onDrop={this.onFileDrop.bind(this)}
           >
-            {isFileSelected && !this.isPDF && !this.isImage && (
-              <UpNotification intent={"info"} displayMode={"text"}>
-                <UpBox
-                  onClick={e => e.stopPropagation()}
-                  flexDirection={"column"}
+          {!isFileSelected && this.props.displaySelectFile && (
+            <div style={{ padding: '3rem'}}>
+              <p>{this.props.dropLabel}</p>
+              <p>{this.props.separatorLabel}</p>
+              <p>
+                <UpButton 
+                  intent='primary' 
+                  onClick={e => this.onZoneClick(e)}
                 >
-                  <UpParagraph>
-                    {this.props.noPreviewMessage}
-                    <br />
-                    <UpLink
-                      onClick={() => {
-                        this.openFile(null);
-                      }}
-                    >
-                      {this.props.openFileLabel}
-                    </UpLink>
-                  </UpParagraph>
-                </UpBox>
-              </UpNotification>
+                    {this.props.selectFileLabel}
+                </UpButton>
+              </p>
+            </div>
+          )}
+            {isFileSelected && !this.isPDF && !this.isImage && this.props.showPreview && (
+              <div style={{ display: 'flex', placeContent: 'center', padding: '3rem' }}>
+                <UpSvgIcon iconName='file2' height={61} width={43} />
+              </div>
             )}
             {isFileSelected && !this.props.showPreview && (
               <UpNotification intent={"info"} displayMode={"text"}>
@@ -726,7 +746,7 @@ class UpDropFile extends React.Component<
             {this.props.showPreview && this.isPDF && (
               <UpPDFViewer onLoadSuccess={() => {}} base64PDFOrUrl={this.preview} />
             )}
-            {(this.state.showOptions === true || isFileSelected === false) && (
+            {this.props.showOptions === true && (this.state.showOptions === true || isFileSelected === false) && (
               <div className={wrapperActionStyle(this.props)}>
                 {isFileSelected === true && (
                   <>
@@ -807,6 +827,14 @@ class UpDropFile extends React.Component<
         {isFileSelected && this.fileName && (
           <div className={wrapperFileNameStyle(this.props)}>
             <span>{this.fileName}</span>
+            <span style={{ cursor: 'pointer'}}>
+              <UpSvgIcon
+                width={15}
+                height={15}
+                iconName={"delete"}
+                onClick={this.deleteFile}
+              />
+            </span>
           </div>
         )}
         {this.props.allowedExtensions &&
