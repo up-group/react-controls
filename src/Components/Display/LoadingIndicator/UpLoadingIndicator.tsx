@@ -19,6 +19,8 @@ export interface LoadingIndicatorProps {
     message?: string;
     title?: string;
     className?: string;
+    width?: number;
+    height?: number;
 }
 type SVGProps = React.SVGAttributes<SVGSVGElement> ;
 type CircleProps = React.SVGAttributes<SVGCircleElement>;
@@ -74,7 +76,8 @@ class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithTheme
             loadingIndicatorStyle.top = 'calc(50% - 42px)';
             loadingIndicatorStyle.padding= 40;
             loadingIndicatorStyle.textAlign = "center";
-            loadingIndicatorStyle.width = '84px';
+            loadingIndicatorStyle.width = this.props.width ? this.props.width : '84px';
+            loadingIndicatorStyle.height = this.props.height ? this.props.height : 'auto';
             loadingIndicatorStyle.margin = 'auto';
             loadingIndicatorStyle.zIndex = 9999;
             loadingIndicatorStyle.backgroundColor = "white";
@@ -82,6 +85,8 @@ class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithTheme
             loadingIndicatorStyle.padding = 10;
             loadingIndicatorStyle.borderRadius = this.props.theme.borderRadius;
             loadingIndicatorStyle.boxShadow = "1px 1px 3px 2px #111";
+            loadingIndicatorStyle.display = "flex";
+            loadingIndicatorStyle.justifyContent = "center";
             
             return (
               <div
@@ -98,7 +103,7 @@ class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithTheme
                             boxSize={"auto"}
                             pad={"none"}
                             margin={"none"}
-                            flexDirection={"row"}
+                            flexDirection={"column"}
                             alignItems="center"
                             justifyContent="center"
                             className={classnames(
@@ -117,6 +122,9 @@ class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithTheme
                                 fill="none"
                                 />
                             </SvgIcon>
+                            {this.props.message &&
+                                <p>{this.props.message}</p>
+                            }
                         </Box>
                     </div>
                 </div>

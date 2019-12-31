@@ -1,4 +1,6 @@
 import * as React from "react"
+import { style } from 'typestyle';
+import { UpGrid, UpRow, UpCol } from "../Grid";
 
 export interface Tab {
     head: string | JSX.Element;
@@ -105,7 +107,7 @@ export class TabContent extends React.Component<TabContentProps, TabContentState
     }
 
     render() {
-        var style: any = {};
+        var style: any = { paddingTop: "7px" };
 
         if (this.props.selectedTabKey != this.props.tabKey) {
             style.display = "none"
@@ -133,13 +135,14 @@ export class TabHeads extends React.Component<TabHeadsProps, TabHeadsState>{
     }
 
     render() {
-        var heads = this.props.heads.map((v, i) => { return <TabHead selectTabKey={this.props.selectTabKey} tab={v} key={i} tabKey={i} selectedTabKey={this.props.selectedTabKey} /> });
+        var heads = this.props.heads.map((v, i) => { return <TabHead md={Math.floor(24 / this.props.heads.length)} selectTabKey={this.props.selectTabKey} tab={v} key={i} tabKey={i} selectedTabKey={this.props.selectedTabKey} /> });
 
-        var headsStyle: React.CSSProperties = { marginBottom: 10, display: "flex", borderBottom: "1px solid #ddd" }
+        return <UpGrid gutter={0}>
+            <UpRow>
+                {heads}
+            </UpRow>
+        </UpGrid>
 
-        return <div style={headsStyle}>
-            {heads}
-        </div>
     }
 }
 
@@ -147,6 +150,7 @@ export interface TabHeadProps {
     tab: Tab;
     tabKey: number;
     selectedTabKey: number;
+    md: number;
     selectTabKey: (tabkey: number) => void;
 }
 
@@ -162,28 +166,56 @@ export class TabHead extends React.Component<TabHeadProps, TabHeadState>{
     }
 
     render() {
-        var style: React.CSSProperties = {
+        var commonStyle = style({
             marginRight: 2,
             position: "relative",
             display: "block",
             padding: "10px 15px",
             float: "left",
             cursor: "pointer",
-            borderRadius : "4px 4px 0 0",
-            backgroundColor: "white"
+            borderRadius: "4px 4px 0 0",
+            backgroundColor: "white",
+            textAlign: "center",
+            width: "100%",
+            height: "45px",
+            color: "#4E5B59",
+            fontFamily: "Roboto",
+            fontSize: '14px'
+        });
 
-        }
-
-        if (this.props.selectedTabKey == this.props.tabKey) {
-            style.borderTop = "1px solid #ddd";
-            style.borderLeft = "1px solid #ddd";
-            style.borderRight = "1px solid #ddd";
-            style.borderBottom = "1px solid white";
-            style.top = "1px";
-        }
-
-        return <div onClick={() => { this.props.selectTabKey(this.props.tabKey); }} style={style}>
+        var selectedTabStyle = style({
+            fontWeight: 'bold',
+            $nest: {
+                '&::before': {
+                    content: `''`,
+                    color: "transparent",
+                    position: "absolute",
+                    bottom: "-11px",
+                    left: "0",
+                    right: "0",
+                    margin: "auto",
+                    borderWidth: "11px 12px 0px 12px",
+                    borderColor: "#F59100 transparent",
+                    borderStyle: "solid",
+                    "-ms-background-position-x": "-100px",
+                    width: 0,
+                },
+                '&::after': {
+                    background: "#F59100",
+                    display: "block",
+                    width: "100%",
+                    height: "5px",
+                    content: `''`,
+                    left: 0,
+                    position: "absolute",
+                    bottom: "0px"
+                }
+            }
+        })
+        let selectedTabClass = (this.props.selectedTabKey == this.props.tabKey) ? selectedTabStyle : "";
+        return <UpCol md={this.props.md}  ><div onClick={() => { this.props.selectTabKey(this.props.tabKey); }} className={`${commonStyle} ${selectedTabClass}`}>
             {this.props.tab.head}
         </div>
+        </UpCol>
     }
 }
