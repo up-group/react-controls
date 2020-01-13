@@ -708,14 +708,14 @@ class UpDropFile extends React.Component<
             <div style={{ padding: '3rem'}}>
               <p>{this.props.dropLabel}</p>
               <p>{this.props.separatorLabel}</p>
-              <p>
+              <div>
                 <UpButton 
                   intent='primary' 
                   onClick={e => this.onZoneClick(e)}
                 >
                     {this.props.selectFileLabel}
                 </UpButton>
-              </p>
+              </div>
             </div>
           )}
             {isFileSelected && !this.isPDF && !this.isImage && this.props.showPreview && (
@@ -758,7 +758,7 @@ class UpDropFile extends React.Component<
                           place={"top"}
                         >
                           <UpSvgIcon
-                            iconName={"delete"}
+                            iconName={"trash-can"}
                             onClick={this.deleteFile}
                             color={this.props.theme.colorMap.primary}
                             className={classnames(
@@ -831,7 +831,7 @@ class UpDropFile extends React.Component<
               <UpSvgIcon
                 width={15}
                 height={15}
-                iconName={"delete"}
+                iconName={"trash-can"}
                 onClick={this.deleteFile}
               />
             </span>
