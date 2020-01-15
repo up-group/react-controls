@@ -60,7 +60,7 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
         paddingLeft: "14px",
         borderCollapse: "collapse",
         borderColor: "transparent",
-        borderRadius: props.theme.borderRadius,
+        borderRadius: props.theme.borderRadius
       },
       "& .up-data-grid-cell": {
         padding: "14px"
@@ -69,17 +69,17 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
         $nest: {
           ".up-data-grid-cell": {
             borderTop: `1px solid ${props.theme.colorMap.defaultBorder}`,
-            borderCollapse: "collapse",
+            borderCollapse: "collapse"
           }
         }
       },
       "& .up-data-grid-row-bordered:last-child": {
-          $nest: {
-              ".up-data-grid-cell": {
-                  border: "0",
-                  borderRadius: props.theme.borderRadius,
-              }
+        $nest: {
+          ".up-data-grid-cell": {
+            border: "0",
+            borderRadius: props.theme.borderRadius
           }
+        }
       },
       "& .up-data-grid-row-borderless": {
         $nest: {
@@ -333,13 +333,9 @@ class UpDataGrid extends React.Component<
           this.setState({ isDataFetching: false });
         });
     } else {
-      var query = `${this.props.dataSource.query}?${takeParamName}=${
-        this.state.take
-      }&${skipParamName}=${this.state.skip}`;
+      var query = `${this.props.dataSource.query}?${takeParamName}=${this.state.take}&${skipParamName}=${this.state.skip}`;
       if (sortedColumn != null) {
-        query = `${query}&${orderParamName}=${
-          sortedColumn.field
-        }&${dirParamName}=${sortedColumn.sortDir}`;
+        query = `${query}&${orderParamName}=${sortedColumn.field}&${dirParamName}=${sortedColumn.sortDir}`;
       }
       axios
         .get(query)
@@ -600,41 +596,45 @@ class UpDataGrid extends React.Component<
           this.props.className
         )}
       >
-        {this.props.isPaginationEnabled && this.props.paginationPosition != "bottom" &&
-          pagination
-        }
+        {this.props.isPaginationEnabled &&
+          this.props.paginationPosition != "bottom" &&
+          pagination}
         {this.btnExportCsv}
         <UpLoadingIndicator
           displayMode={"zone"}
           message={this.props.loadingMessage}
           isLoading={this.state.isDataFetching}
-          width={320} 
+          width={320}
           height={240}
         >
-        <>
-          <table
-            ref={r => {
-              this.refTable = r;
-            }}
-            className={classnames("up-data-grid-main", DataGridStyle(this.props))}
-          >
-            <UpDataGridRowHeader
-              isSelectionEnabled={this.props.isSelectionEnabled}
-              onSelectionChange={this.onSelectionAllChange.bind(this)}
-              onSortChange={this.onSortChange.bind(this)}
-              actions={this.props.actions}
-              columns={columns}
-            />
-            <tbody className={classnames("up-data-grid-body", oddEvenStyle)}>
-              {rows}
-            </tbody>
-          </table>
-        </>
+          <>
+            <table
+              ref={r => {
+                this.refTable = r;
+              }}
+              className={classnames(
+                "up-data-grid-main",
+                DataGridStyle(this.props)
+              )}
+            >
+              <UpDataGridRowHeader
+                isSelectionEnabled={this.props.isSelectionEnabled}
+                onSelectionChange={this.onSelectionAllChange.bind(this)}
+                onSortChange={this.onSortChange.bind(this)}
+                actions={this.props.actions}
+                columns={columns}
+
+              />
+              <tbody className={classnames("up-data-grid-body", oddEvenStyle)}>
+                {rows}
+              </tbody>
+            </table>
+          </>
         </UpLoadingIndicator>
-        {this.props.isPaginationEnabled && this.props.paginationPosition != "top" && (
-          <div style={{ marginTop: "10px" }}>{pagination}</div>
-        )
-        }
+        {this.props.isPaginationEnabled &&
+          this.props.paginationPosition != "top" && (
+            <div style={{ marginTop: "10px" }}>{pagination}</div>
+          )}
       </div>
     );
   }
