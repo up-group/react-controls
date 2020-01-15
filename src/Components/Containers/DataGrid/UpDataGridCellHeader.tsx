@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import UpSvgIcon from "../../Display/SvgIcon";
-
+import UpDefaultTheme from "../../../Common/theming";
 import { SortDirection, Column } from "./UpDataGrid";
 
 import * as classnames from "classnames";
@@ -19,7 +19,6 @@ export interface UpDataGridCellHeaderProps {
   onSortChange?: (c: Column, d: SortDirection) => void;
   column?: Column;
   width?: string;
-  selectedArrowColor?:string;
 }
 
 const headerCellStyles = style({
@@ -79,7 +78,7 @@ export default class UpDataGridCellHeader extends React.Component<
   render() {
     const sortAscIcon = "arrow-down";
     const sortDescIcon = "arrow-up";
-    const arrowColor= this.props.selectedArrowColor || 'black';
+    const arrowColor = UpDefaultTheme.colorMap.primary;
 
     var width = "auto";
     if (this.props.width) {

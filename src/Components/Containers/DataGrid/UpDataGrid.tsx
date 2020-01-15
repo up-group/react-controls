@@ -168,7 +168,6 @@ export interface UpDataGridProps {
   onSortChange?: (c: Column, dir: SortDirection) => void;
   onSelectionChange?: (lastChangeRow: Row, seletectedRow: Row[]) => void;
   onRowClick?: (rowIndex: number, row: any) => void;
-  selectedArrowColor?: string;
 }
 
 export interface UpDataGridState {
@@ -624,7 +623,7 @@ class UpDataGrid extends React.Component<
                 onSortChange={this.onSortChange.bind(this)}
                 actions={this.props.actions}
                 columns={columns}
-                selectedArrowColor={this.props.selectedArrowColor}
+
               />
               <tbody className={classnames("up-data-grid-body", oddEvenStyle)}>
                 {rows}
