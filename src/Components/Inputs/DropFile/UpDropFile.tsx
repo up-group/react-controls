@@ -832,6 +832,7 @@ class UpDropFile extends React.Component<
                 width={15}
                 height={15}
                 iconName={"trash-can"}
+                color='#4E5B59'
                 onClick={this.deleteFile}
               />
             </span>
