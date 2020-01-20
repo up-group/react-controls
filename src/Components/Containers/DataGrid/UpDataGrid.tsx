@@ -471,7 +471,7 @@ class UpDataGrid extends React.Component<
       data: data,
       columns: nextProps.columns, //(nextProps.columns != null) ? this.prepareColumns(nextProps.columns) : nextProps.columns,
       total: nextProps.paginationProps.total,
-      isDataFetching: nextProps.isDataFetching
+      isDataFetching: nextProps.isDataFetching,
     };
 
     if (nextProps.paginationProps.skip != null) {
@@ -481,7 +481,7 @@ class UpDataGrid extends React.Component<
           : nextProps.paginationProps.skip;
       newState.take = nextProps.paginationProps.take;
       newState.page =
-        (nextProps.paginationProps.page - 1) * nextProps.paginationProps.skip >
+        (nextProps.paginationProps.page - 1) * nextProps.paginationProps.take >
         nextProps.paginationProps.total
           ? 1
           : nextProps.paginationProps.page;
