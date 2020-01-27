@@ -274,8 +274,8 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         if (arr === null) {
             return obj.hasOwnProperty(this.keyId) && obj.hasOwnProperty(this.keyText);
         } else {
-            for (let i = 0; i < arr.length; i++) {
-                const sourceText = arr[i].replace("{", "").replace("}", "");
+            for(let text in arr) {
+                const sourceText = text.replace("{", "").replace("}", "");
                 if (obj.hasOwnProperty(sourceText) == false) {
                     return false
                 }
@@ -324,7 +324,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         }
 
         if (this.props.returnType === "id") {
-            const fullobject = this.state.extra.fullObject;
+            const fullobject = data;
             if (this.props.multiple && fullobject != null) {
                 return fullobject
                     .map((v) => {
@@ -348,7 +348,6 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     }
 
     getOptionRenderer = (option) => {
-
         if (this.props.optionRenderer) {
             const OptionRenderer = this.props.optionRenderer;
             return (<OptionRenderer {...option}></OptionRenderer>)
@@ -597,7 +596,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     }
 
     onChange = (name: string, value: ValueType<object>, action: ActionMeta) => {
-        const data = this.setValue(value);
-        this.handleChangeEvent(eventFactory(name, value), data);
+       this.setValue(value);
+       this.handleChangeEvent(eventFactory(name || this.props.name, value), value);
     }
 }
