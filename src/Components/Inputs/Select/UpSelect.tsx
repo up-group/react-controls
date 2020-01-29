@@ -464,8 +464,8 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                     this.axiosSource.cancel('Next request in progress');
                 }
 
-                if (this.props.dataSource.getOptions) {
-                    return this.props.dataSource.getOptions(input)
+                if (this.props.dataSource.fetchData) {
+                    return this.props.dataSource.fetchData(input)
                         .then((data) => {
                             if (dataSource.handleResponse) {
                                 data = dataSource.handleResponse(data);

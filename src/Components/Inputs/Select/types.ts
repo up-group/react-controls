@@ -20,7 +20,7 @@ interface DataSource {
     getExtraParams?: () => any;
     delay?: number;
     handleResponse?: (response: any) => Array<any>;
-    getOptions?: (input: string) => Promise<any>;
+    fetchData?: (input: string) => Promise<any>;
 }
 
 export interface UpSelectProps extends BaseControlProps<any> {
