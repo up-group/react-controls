@@ -11,6 +11,18 @@ export interface UpSelectOption {
     icon?: string
 }
 
+interface DataSource {
+    id?: string;
+    text?: string;
+    endPoint?: string;
+    query: string;
+    queryParameterName?: string;
+    getExtraParams?: () => any;
+    delay?: number;
+    handleResponse?: (response: any) => Array<any>;
+    fetchData?: (input: string) => Promise<any>;
+}
+
 export interface UpSelectProps extends BaseControlProps<any> {
     default: any;
     multiple?: boolean;
@@ -21,16 +33,7 @@ export interface UpSelectProps extends BaseControlProps<any> {
     allowClear?: boolean;
     allowCreate?:boolean;
     minimumInputLength?: number;
-    dataSource?: {
-        id?: string;
-        text?: string;
-        endPoint?:string;
-        query: string;
-        queryParameterName?: string;
-        getExtraParams?:() => any;
-        delay?:number;
-        handleResponse?:(response:any) => Array<any>;
-    },
+    dataSource?: DataSource,
     filterOptions?:(option: object, filter: string) => boolean;
     valueKey?: string;
     labelKey?: string;

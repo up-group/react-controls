@@ -20,9 +20,9 @@ const groupStyles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-  };
+};
 
-const groupBadgeStyles : React.CSSProperties = {
+const groupBadgeStyles: React.CSSProperties = {
     backgroundColor: '#EBECF0',
     borderRadius: '2em',
     color: '#172B4D',
@@ -33,8 +33,8 @@ const groupBadgeStyles : React.CSSProperties = {
     minWidth: 1,
     padding: '0.16666666666667em 0.5em',
     textAlign: 'center',
-  };
-  
+};
+
 const formatGroupLabel = data => (
     <div style={groupStyles}>
         <span>{data.label}</span>
@@ -44,75 +44,75 @@ const formatGroupLabel = data => (
 
 const customStyles = {
     option: (provided, state) => ({
-      ...provided,
-      color: state.isSelected ? 'white' :  provided.color,
-      fontWeight :  state.isSelected ? 700 : provided.fontWeight || 'inherit',
-      backgroundColor : state.isSelected ? '#EE7F2D' : 'transparent',
-      padding: 10,
-      fontSize: '14px',
-      cursor: 'pointer',
-      ':active' : {
-        color: 'white',
-        fontWeight : 700,
-        backgroundColor : state.isSelected ? '#EE7F2D' : `${color('#EE7F2D').lighten(0.1).toRGBA().toString()} !important` ,
-      },
-      ':hover' : {
-        color: 'white',
-        fontWeight : 700,
-        backgroundColor : state.isSelected ? '#EE7F2D' : `${color('#EE7F2D').lighten(0.2).toRGBA().toString()} !important` ,
-      }
+        ...provided,
+        color: state.isSelected ? 'white' : provided.color,
+        fontWeight: state.isSelected ? 700 : provided.fontWeight || 'inherit',
+        backgroundColor: state.isSelected ? '#EE7F2D' : 'transparent',
+        padding: 10,
+        fontSize: '14px',
+        cursor: 'pointer',
+        ':active': {
+            color: 'white',
+            fontWeight: 700,
+            backgroundColor: state.isSelected ? '#EE7F2D' : `${color('#EE7F2D').lighten(0.1).toRGBA().toString()} !important`,
+        },
+        ':hover': {
+            color: 'white',
+            fontWeight: 700,
+            backgroundColor: state.isSelected ? '#EE7F2D' : `${color('#EE7F2D').lighten(0.2).toRGBA().toString()} !important`,
+        }
     }),
     control: (provided, state) => ({
-        ...provided, 
+        ...provided,
         outline: 'none',
-        borderRadius:0,
+        borderRadius: 0,
         color: provided.color,
         fontSize: '14px',
         border: state.isFocused ? 0 : 0,
         // This line disable the blue border
         boxShadow: state.isFocused ? 0 : 0,
         '&:hover': {
-           border: state.isFocused ? 0 : 0,
-           borderBottom : '1px solid orange',
+            border: state.isFocused ? 0 : 0,
+            borderBottom: '1px solid orange',
         },
-        borderBottom : '1px solid orange',
+        borderBottom: '1px solid orange',
     }),
-    dropdownIndicator :  (provided, state) => ({
-        ...provided, 
-        color :  '#EE7F2D',
+    dropdownIndicator: (provided, state) => ({
+        ...provided,
+        color: '#EE7F2D',
         'svg, svg path': {
-            fill : '#EE7F2D',
+            fill: '#EE7F2D',
         }
     }),
     multiValueLabel: (provided, state) => ({
-        ...provided, 
-        backgroundColor :  '#EE7F2D',
-        color :  'white',
+        ...provided,
+        backgroundColor: '#EE7F2D',
+        color: 'white',
     }),
     multiValueRemove: (provided, state) => ({
-        ...provided, 
-        backgroundColor :  '#EE7F2D',
-        color :  'white',
+        ...provided,
+        backgroundColor: '#EE7F2D',
+        color: 'white',
     }),
     clearIndicator: (provided, state) => ({
-        ...provided, 
-        color :  '#EE7F2D',
+        ...provided,
+        color: '#EE7F2D',
         'svg, svg path': {
-            fill : '#EE7F2D',
+            fill: '#EE7F2D',
         }
     }),
     container: (provided, state) => ({
-        border:0,
+        border: 0,
         outline: 'none',
     }),
     singleValue: (provided, state) => {
-      const opacity = state.isDisabled ? 0.5 : 1;
-      const transition = 'opacity 300ms';
+        const opacity = state.isDisabled ? 0.5 : 1;
+        const transition = 'opacity 300ms';
 
-      return { ...provided, opacity, transition };
+        return { ...provided, opacity, transition };
     }
-  }
-  
+}
+
 // Exports
 export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     timeOutLoadOptions: any;
@@ -132,11 +132,11 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         isLoading: false,
         allowCreate: false,
         returnType: "full",
-        formatGroupLabel : formatGroupLabel,
+        formatGroupLabel: formatGroupLabel,
         isRtl: false,
         isSearchable: true,
-        minMenuHeight : 140,
-        maxMenuHeight : 300,
+        minMenuHeight: 140,
+        maxMenuHeight: 300,
         menuPlacement: 'auto',
         menuShouldBlockScroll: false,
         menuShouldScrollIntoView: true,
@@ -188,26 +188,26 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     }
 
     setValue = (receiveValue: any) => {
-        let valueToParse = Array.isArray(receiveValue) ? [...receiveValue] : {...receiveValue};
+        let valueToParse = Array.isArray(receiveValue) ? [...receiveValue] : { ...receiveValue };
         if (this.props.multiple === true) {
             let isPairArray = this.isPairArray(receiveValue);
             let newState = null;
             if (isPairArray === true) {
-                const extra = this.state.extra === undefined || this.state.extra === null ? {} : {...this.state.extra};
+                const extra = this.state.extra === undefined || this.state.extra === null ? {} : { ...this.state.extra };
                 extra.fullObject = receiveValue;
-                newState = { ...this.state, extra } ;
+                newState = { ...this.state, extra };
             } else if (isPairArray == false && Array.isArray(receiveValue) === true && this.props.data != null) {
-                const extra = this.state.extra === undefined || this.state.extra === null ? {} : {...this.state.extra};
+                const extra = this.state.extra === undefined || this.state.extra === null ? {} : { ...this.state.extra };
                 let data = this.makePairFromIds(receiveValue);
                 extra.fullObject = data;
-                newState = { ...this.state, extra } 
+                newState = { ...this.state, extra }
                 return this.parseValue(data)
             } else if (receiveValue == null) {
                 newState = update(this.state, { extra: { fullObject: { $set: null } } });
             }
 
-            if(newState != null && this.props.closeMenuOnSelect) {
-                newState.extra.menuIsOpen = false ;
+            if (newState != null && this.props.closeMenuOnSelect) {
+                newState.extra.menuIsOpen = false;
             }
 
             this.setState(newState);
@@ -215,21 +215,21 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             let isPair = this.isPair(receiveValue);
             let newState = null;
             if (isPair === true) {
-                const extra = this.state.extra === undefined || this.state.extra === null ? {} : {...this.state.extra};
+                const extra = this.state.extra === undefined || this.state.extra === null ? {} : { ...this.state.extra };
                 extra.fullObject = receiveValue;
                 newState = { extra: extra };
             } else if (isPair === false && this.props.data != null) {
                 let data = this.makePairFromId(receiveValue);
-                const extra = this.state.extra === undefined || this.state.extra === null ? {} : {...this.state.extra};
+                const extra = this.state.extra === undefined || this.state.extra === null ? {} : { ...this.state.extra };
                 extra.fullObject = data;
                 newState = { extra: extra };
-                valueToParse = data ;
+                valueToParse = data;
             } else if (receiveValue == null) {
                 newState = update(this.state, { extra: { fullObject: { $set: null } } });
             }
-            
-            if(newState != null && this.props.closeMenuOnSelect) {
-                newState.extra.menuIsOpen = false ;
+
+            if (newState != null && this.props.closeMenuOnSelect) {
+                newState.extra.menuIsOpen = false;
             }
 
             this.setState(newState);
@@ -274,7 +274,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         if (arr === null) {
             return obj.hasOwnProperty(this.keyId) && obj.hasOwnProperty(this.keyText);
         } else {
-            for(let text in arr) {
+            for (let text in arr) {
                 const sourceText = text.replace("{", "").replace("}", "");
                 if (obj.hasOwnProperty(sourceText) == false) {
                     return false
@@ -295,26 +295,26 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
 
         return receiveValue;
     }
-    
-    getOptionLabel  = (option: object) => option[this.keyText];
+
+    getOptionLabel = (option: object) => option[this.keyText];
 
     formatOptionLabel = (option) => {
-        const { color } = option ;
-        const text = this.getOptionLabel(option) ;
+        const { color } = option;
+        const text = this.getOptionLabel(option);
         return (
-        <div style={{ display: "flex", alignItems: "center", cursor: 'pointer' }}>
-          {color && <div
-            style={{
-              background: color,
-              borderRadius: 6,
-              height: 6,
-              width: 6,
-              marginRight: 6
-            }}
-          />
-          }
-          {text}
-        </div>
+            <div style={{ display: "flex", alignItems: "center", cursor: 'pointer' }}>
+                {color && <div
+                    style={{
+                        background: color,
+                        borderRadius: 6,
+                        height: 6,
+                        width: 6,
+                        marginRight: 6
+                    }}
+                />
+                }
+                {text}
+            </div>
         )
     }
 
@@ -387,7 +387,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     }
 
     filterOptions = (option, filter) => {
-        return !filter || (option.label != null && (option.label.toLowerCase == null || option.label.toLowerCase().includes(filter.toLowerCase()))) ;
+        return !filter || (option.label != null && (option.label.toLowerCase == null || option.label.toLowerCase().includes(filter.toLowerCase())));
     }
 
     private findInObject = (object, path: string[]) => {
@@ -401,30 +401,30 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     }
 
     /** Retourne le label pour "Créer ..." option dans le menu */
-    formatCreateLabel = (inputValue : string) => {
-       if(this.props.formatCreateLabel != null) {
-           return this.props.formatCreateLabel(inputValue) ;
-       }
-       return <p>{`Créer "${inputValue}"`}</p> ;
-    } ;
+    formatCreateLabel = (inputValue: string) => {
+        if (this.props.formatCreateLabel != null) {
+            return this.props.formatCreateLabel(inputValue);
+        }
+        return <p>{`Créer "${inputValue}"`}</p>;
+    };
 
     /** Retourne si l'option  "Créer ..." doit être affichée */
     isValidNewOption = (inputValue, selectValue, selectOptions) => {
-        if(this.props.isValidNewOption != null) {
-            return this.props.isValidNewOption(inputValue, selectValue, selectOptions) ;
+        if (this.props.isValidNewOption != null) {
+            return this.props.isValidNewOption(inputValue, selectValue, selectOptions);
         }
-        
+
         return inputValue != null && inputValue != "" && (selectValue == null || selectValue.filter(option => option[this.keyText].toLowerCase() == inputValue.toLowerCase()).length == 0) && (selectOptions == null || selectOptions.filter(option => option[this.keyText].toLowerCase() == inputValue.toLowerCase()).length == 0);
     };
 
     /** Retourne le nouvel objet */
     getNewOptionData = (inputValue, optionLabel) => {
-        if(this.props.getNewOptionData != null) {
-            return this.props.getNewOptionData(inputValue, optionLabel) ;
+        if (this.props.getNewOptionData != null) {
+            return this.props.getNewOptionData(inputValue, optionLabel);
         }
-        return { [this.keyText] : optionLabel, [this.keyId] : inputValue, __isNew__ : true };
+        return { [this.keyText]: optionLabel, [this.keyId]: inputValue, __isNew__: true };
     };
-    
+
     showError() {
         return this.props.showError !== undefined
             ? this.props.showError === true
@@ -463,6 +463,19 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                 if (this.axiosSource) {
                     this.axiosSource.cancel('Next request in progress');
                 }
+
+                if (this.props.dataSource.fetchData) {
+                    return this.props.dataSource.fetchData(input)
+                        .then((data) => {
+                            if (dataSource.handleResponse) {
+                                data = dataSource.handleResponse(data);
+                            }
+                            return data;
+                        }).catch(function (thrown) {
+                            throw thrown;
+                        });
+                }
+
                 let qs = `${queryParam}=${input}`;
                 if (dataSource.getExtraParams) {
                     const params = dataSource.getExtraParams();
@@ -491,7 +504,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                         console.log('Request canceled', thrown.message);
                     }
                     this.axiosSource = null;
-                    throw thrown ;
+                    throw thrown;
                 });
             };
             loadOptions = loadOptions.bind(this);
@@ -510,62 +523,62 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             }
         }
 
-        if(this.props.allowCreate) {
+        if (this.props.allowCreate) {
             specProps.allowCreateWhileLoading = this.props.allowCreateWhileLoading;
-            specProps.formatCreateLabel = this.formatCreateLabel ;
-            specProps.isValidNewOption = this.isValidNewOption ;
-            specProps.getNewOptionData = this.getNewOptionData ;
-            specProps.onCreateOption = this.props.onCreateOption ;
-            specProps.createOptionPosition = this.props.createOptionPosition ;
+            specProps.formatCreateLabel = this.formatCreateLabel;
+            specProps.isValidNewOption = this.isValidNewOption;
+            specProps.getNewOptionData = this.getNewOptionData;
+            specProps.onCreateOption = this.props.onCreateOption;
+            specProps.createOptionPosition = this.props.createOptionPosition;
         }
 
-        const value = this.isControlled ? this.props.value : this.state.extra.fullObject ;
+        const value = this.isControlled ? this.props.value : this.state.extra.fullObject;
 
-        const selectComponentProps : Props = {
+        const selectComponentProps: Props = {
             ...specProps,
-           value,
+            value,
             color: '#354052',
             name: this.props.name,
             placeholder: this.props.placeholder,
             filterOption: (option, filter) => {
-                const filterHandler = this.props.filterOptions || this.filterOptions ;
-                return filterHandler(option, filter) ;
+                const filterHandler = this.props.filterOptions || this.filterOptions;
+                return filterHandler(option, filter);
             },
-            allowCreate:this.props.allowCreate,
-            promptTextCreator:this.props.promptTextCreator,
-            autoBlur:false,
-            isLoading:this.props.isLoading,
-            loadingMessage:(input: string) => this.state.extra.loadingPlaceholder,
-            isMulti:this.props.multiple,
-            isClearable:this.props.allowClear,
-            isDisabled:this.props.disabled,
-            noOptionsMessage: (inputValue:string) => this.props.noResultsText,
-            clearAllText:this.props.clearAllText,
-            clearValueText:this.props.clearValueText,
-            addLabelText:this.props.addLabelText,
-            searchPromptText:this.props.searchPromptText,
-            optionRenderer:this.getOptionRenderer,
-            valueRenderer:this.getValueRenderer,
-            onChange:this.onChange.bind(this, this.props.name),
+            allowCreate: this.props.allowCreate,
+            promptTextCreator: this.props.promptTextCreator,
+            autoBlur: false,
+            isLoading: this.props.isLoading,
+            loadingMessage: (input: string) => this.state.extra.loadingPlaceholder,
+            isMulti: this.props.multiple,
+            isClearable: this.props.allowClear,
+            isDisabled: this.props.disabled,
+            noOptionsMessage: (inputValue: string) => this.props.noResultsText,
+            clearAllText: this.props.clearAllText,
+            clearValueText: this.props.clearValueText,
+            addLabelText: this.props.addLabelText,
+            searchPromptText: this.props.searchPromptText,
+            optionRenderer: this.getOptionRenderer,
+            valueRenderer: this.getValueRenderer,
+            onChange: this.onChange.bind(this, this.props.name),
             menuIsOpen: this.state.extra.menuIsOpen,
-            onMenuOpen: () => this.setState(update(this.state, {extra : { menuIsOpen : { $set  : true }}})),
-            onMenuClose: () => this.setState(update(this.state, {extra : { menuIsOpen : { $set  : false }}})),
-            onInputChange: (inputValue:string) => this.setState(update(this.state, {extra : { inputValue : { $set  : inputValue }}})),
-            getOptionLabel : this.getOptionLabel,
-            getOptionValue : (option:object) => this.parseValue(option),
+            onMenuOpen: () => this.setState(update(this.state, { extra: { menuIsOpen: { $set: true } } })),
+            onMenuClose: () => this.setState(update(this.state, { extra: { menuIsOpen: { $set: false } } })),
+            onInputChange: (inputValue: string) => this.setState(update(this.state, { extra: { inputValue: { $set: inputValue } } })),
+            getOptionLabel: this.getOptionLabel,
+            getOptionValue: (option: object) => this.parseValue(option),
             inputValue: this.state.extra.inputValue,
             defaultInputValue: "",
             formatGroupLabel: this.props.formatGroupLabel,
             formatOptionLabel: this.props.formatOptionLabel,
             isOptionDisabled: this.props.isOptionDisabled,
             isOptionSelected: this.props.isOptionSelected,
-            isRtl : this.props.isRtl,
-            isSearchable : this.props.isSearchable,
-            minMenuHeight : this.props.minMenuHeight,
-            maxMenuHeight : this.props.maxMenuHeight,
-            menuPlacement : this.props.menuPlacement,
-            menuShouldBlockScroll : this.props.menuShouldBlockScroll,
-            menuShouldScrollIntoView : this.props.menuShouldScrollIntoView,
+            isRtl: this.props.isRtl,
+            isSearchable: this.props.isSearchable,
+            minMenuHeight: this.props.minMenuHeight,
+            maxMenuHeight: this.props.maxMenuHeight,
+            menuPlacement: this.props.menuPlacement,
+            menuShouldBlockScroll: this.props.menuShouldBlockScroll,
+            menuShouldScrollIntoView: this.props.menuShouldScrollIntoView,
             onBlur: this.props.onBlur,
             onFocus: this.props.onFocus,
             onKeyDown: this.props.onKeyDown,
@@ -576,7 +589,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             closeMenuOnSelect: this.props.closeMenuOnSelect,
             styles: customStyles,
         }
-       
+
         return (
             <div className={classnames('up-select-wrapper', getStyles(this.props))}>
                 {dataSource != null && this.props.allowCreate === true &&
@@ -596,7 +609,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     }
 
     onChange = (name: string, value: ValueType<object>, action: ActionMeta) => {
-       this.setValue(value);
-       this.handleChangeEvent(eventFactory(name || this.props.name, value), value);
+        this.setValue(value);
+        this.handleChangeEvent(eventFactory(name || this.props.name, value), value);
     }
 }
