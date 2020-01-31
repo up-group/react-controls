@@ -7,7 +7,7 @@
     </defs>
     <g id="Asset-Artboard-Page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Icone/Foncé/CopyBas" transform="translate(0.043478, 0.000000)">
-            <mask id="mask-ca-2" fill="none">
+            <mask id="mask-ca-2" fill="white">
                 <use xlink:href="#path-ca-1"/>
             </mask>
             <g/>

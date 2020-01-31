@@ -5,8 +5,7 @@ import { style } from 'typestyle';
 var getHeight = (props: UpSelectStyledProps) => {
     return {
       $nest : {
-        '.Select-input' : { height: '32px' },
-        '.Select-control' : { height: '32px' },
+        '& > div > div': { minHeight: '35px' },
       }
     }
 }

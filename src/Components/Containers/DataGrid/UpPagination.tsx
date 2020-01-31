@@ -224,9 +224,8 @@ class UpPagination extends React.Component<
 
   constructor(props, context) {
     super(props);
-
     this.state = {
-      page: this.getPage(this.props.take || 50, this.props.skip || 0),
+      page: this.getPage(this.props.take || 50, this.props.skip || 0, this.props.total || 0),
       skip: this.props.skip || 0,
       take: this.props.take || 50
     };
@@ -284,7 +283,7 @@ class UpPagination extends React.Component<
   onTakeChange = (event, data: any) => {
     if (data && data.id != this.state.take) {
       const newTake = data.id;
-      const newPage = this.getPage(newTake, this.state.skip);
+      const newPage = this.getPage(newTake, this.state.skip, this.props.total);
       const newSkip = newTake * (newPage - 1);
 
       const newState = { take: newTake, page: newPage, skip: newSkip };
@@ -298,8 +297,8 @@ class UpPagination extends React.Component<
     }
   };
 
-  getPage = (take: number, skip: number) => {
-    if (this.props.total != null && take >= this.props.total) {
+  getPage = (take: number, skip: number, total: number) => {
+    if (total != null && take >= total) {
       return 1; // Set the page to 1
     }
     return Math.floor((skip + take) / take);
@@ -310,7 +309,7 @@ class UpPagination extends React.Component<
       const newState = {
         take: nextProps.take,
         skip: nextProps.skip,
-        page: this.getPage(nextProps.take, nextProps.skip)
+        page: this.getPage(nextProps.take, nextProps.skip, nextProps.total)
       };
       this.setState(newState);
     }

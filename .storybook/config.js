@@ -1,20 +1,6 @@
 import { configure, addDecorator, addParameters} from '@storybook/react'
-import {
-  withInfo
-} from '@storybook/addon-info';
 
 import UpTheme from './theme' 
-
-addDecorator(
-  withInfo({
-    header: false, // Global configuration for the info addon across all of your stories.
-    inline: false,
-    maxPropsIntoLine: 1,
-    maxPropObjectKeys: 10,
-    maxPropArrayLength: 10,
-    maxPropStringLength: 100,
-  })
-);
 
 addParameters({
   options : {

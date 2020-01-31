@@ -458,19 +458,22 @@ class UpDataGrid extends React.Component<
     var curentState = data.map(v => {
       return v.value;
     });
-    var arrayEqualResult = this.arraysEqual(curentState, nextProps.data);
-    if (this.props.dataSource == null && arrayEqualResult === false) {
+
+    var hasSameData = this.state.data === nextProps.data;
+    if (this.props.dataSource == null && hasSameData === false) {
       data =
         nextProps.data != null
           ? this.mapDataToRow(nextProps.data)
           : nextProps.data;
     }
+
     const newState: UpDataGridState = {
       data: data,
       columns: nextProps.columns, //(nextProps.columns != null) ? this.prepareColumns(nextProps.columns) : nextProps.columns,
       total: nextProps.paginationProps.total,
-      isDataFetching: nextProps.isDataFetching
+      isDataFetching: nextProps.isDataFetching,
     };
+
     if (nextProps.paginationProps.skip != null) {
       newState.skip =
         nextProps.paginationProps.skip > nextProps.paginationProps.total
@@ -478,13 +481,13 @@ class UpDataGrid extends React.Component<
           : nextProps.paginationProps.skip;
       newState.take = nextProps.paginationProps.take;
       newState.page =
-        (nextProps.paginationProps.page - 1) * nextProps.paginationProps.skip >
+        (nextProps.paginationProps.page - 1) * nextProps.paginationProps.take >
         nextProps.paginationProps.total
           ? 1
           : nextProps.paginationProps.page;
     }
     this.setState(newState, () => {
-      if (arrayEqualResult === false) {
+      if (hasSameData === false) {
         if (this.props.onSelectionChange) {
           this.props.onSelectionChange(null, []);
         }
