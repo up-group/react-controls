@@ -79,7 +79,7 @@ class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithTheme
             loadingIndicatorStyle.width = this.props.width ? this.props.width : '84px';
             loadingIndicatorStyle.height = this.props.height ? this.props.height : 'auto';
             loadingIndicatorStyle.margin = 'auto';
-            loadingIndicatorStyle.zIndex = 9999;
+            loadingIndicatorStyle.zIndex = 1000;
             loadingIndicatorStyle.backgroundColor = "white";
             loadingIndicatorStyle.opacity = 1;
             loadingIndicatorStyle.padding = 10;
