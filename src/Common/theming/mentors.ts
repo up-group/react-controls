@@ -16,9 +16,9 @@ export const MentorNames: MentorName[] = [
   "wink-grey",
   "happy-orange",
   "confused-orange",
-  "sparkles",
   "cry",
-   "mentor-surprised"
+  "mentor-surprised",
+  "sparkles"
 ];
 
 let dictionary = {};
