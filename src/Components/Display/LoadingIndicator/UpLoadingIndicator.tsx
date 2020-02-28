@@ -72,8 +72,8 @@ class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithTheme
 
             const loadingIndicatorStyle: NestedCSSProperties = {};
             loadingIndicatorStyle.position = "absolute";
-            loadingIndicatorStyle.left = this.props.width ? `calc(50% - ${this.props.width}` : 'calc(50% - 42px)';
-            loadingIndicatorStyle.top = this.props.height ? `calc(50% - ${this.props.height}`:'calc(50% - 42px)';
+            loadingIndicatorStyle.left = this.props.width ? `calc(50% - ${this.props.width})` : 'calc(50% - 42px)';
+            loadingIndicatorStyle.top = this.props.height ? `calc(50% - ${this.props.height})`:'calc(50% - 42px)';
             loadingIndicatorStyle.padding= 40;
             loadingIndicatorStyle.textAlign = "center";
             loadingIndicatorStyle.width = this.props.width ? this.props.width : '84px';
