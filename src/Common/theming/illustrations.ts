@@ -16,7 +16,10 @@ export type IllustrationName =
     | "up-dej-card-add"
     | "up-dej-card-transaction"
     | "user-avatar"
-    | "card-4c";
+    | "card-4c"
+    | "visa"
+    | "mastercard"
+    | "maestro";
 
 export const IllustrationNames: IllustrationName[] = [
          "email-expired",
@@ -36,7 +39,10 @@ export const IllustrationNames: IllustrationName[] = [
          "up-dej-card-add",
          "up-dej-card-transaction",
          "user-avatar",
-         "card-4c"
+         "card-4c",
+         "visa",
+         "mastercard",
+         "maestro"
        ];
 
 let dictionary = {};
