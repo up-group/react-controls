@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="31px" height="18px" viewBox="0 0 31 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 61 (101010) - https://sketch.com -->
+    <title>3C6EC017-2D5F-49BF-ADD2-4A1EECFA3CCB@1,5x</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M29.1900011,-1.52411417e-13 L29.1900011,17.5040995 L3.62053821e-13,17.5040995 L3.62053821e-13,-1.52411417e-13 L29.1900011,-1.52411417e-13 Z M27.9672722,1.37699997 L1.50181814,1.37699997 L1.50181814,16.1837997 L27.9672722,16.1837997 L27.9672722,1.37699997 Z M19.9609089,11.3391 L19.9609089,12.6603 L9.50818149,12.6603 L9.50818149,11.3391 L19.9609089,11.3391 Z M21.6290907,8.53199959 L21.6290907,9.85319964 L7.72909078,9.85319964 L7.72909078,8.53199959 L21.6290907,8.53199959 Z M19.9609089,5.83560019 L19.9609089,7.15680023 L9.50818149,7.15680023 L9.50818149,5.83560019 L19.9609089,5.83560019 Z M27.1890909,1.92690003 L27.1890909,4.01849992 L22.9636366,4.01849992 L22.9636366,1.92690003 L27.1890909,1.92690003 Z" id="post-path-1"></path>
+    </defs>
+    <g id="Asset-Artboard-Page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icone/Foncé/colis-Copy-3-Icone/Up/post" transform="translate(0.043478, 0.000000)">
+            <mask id="post-mask-2" fill="white">
+                <use xlink:href="#post-path-1"></use>
+            </mask>
+            <g id="Icone/Up/post"></g>
+            <g id="🎨-color-couleur/Gris-Up" mask="url(#post-mask-2)" fill="#4E5B59" fill-rule="nonzero">
+                <polygon id="Rectangle" points="0 0 30 0 30 18 0 18"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
