@@ -11,7 +11,6 @@ export type LoadingIndicatorDisplayMode = "inline" | "layer" | "modal" | "zone"
 import defaultTheme from '../../../Common/theming' ;
 import UpBox from '../../Containers/Box';
 import { NestedCSSProperties } from 'typestyle/lib/types';
-import { color } from 'csx';
 
 export interface LoadingIndicatorProps {
     isLoading: boolean;
@@ -39,6 +38,7 @@ class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithTheme
     
     public static defaultProps: Partial<LoadingIndicatorProps> & WithThemeProps = {
         theme: defaultTheme,
+        width: 84
     }
     
     constructor(p, c) {
@@ -72,11 +72,11 @@ class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithTheme
 
             const loadingIndicatorStyle: NestedCSSProperties = {};
             loadingIndicatorStyle.position = "absolute";
-            loadingIndicatorStyle.left = this.props.width ? `calc(50% - ${this.props.width})` : 'calc(50% - 42px)';
-            loadingIndicatorStyle.top = this.props.height ? `calc(50% - ${this.props.height})`:'calc(50% - 42px)';
+            loadingIndicatorStyle.left = `calc(50% - ${this.props.width/2}px)`;
+            loadingIndicatorStyle.top = `calc(50% - ${this.props.height?this.props.height/2:42}px)`;
             loadingIndicatorStyle.padding= 40;
             loadingIndicatorStyle.textAlign = "center";
-            loadingIndicatorStyle.width = this.props.width ? this.props.width : '84px';
+            loadingIndicatorStyle.width = this.props.width;
             loadingIndicatorStyle.height = this.props.height ? this.props.height : 'auto';
             loadingIndicatorStyle.margin = 'auto';
             loadingIndicatorStyle.zIndex = 1000;

@@ -19,7 +19,10 @@ export const colors = {
          turquoiseDark: "#0e8c9b",
          paleYellow: "#f8f1ad",
          social: "#507cc0",
-         socialDark: "#4c70a7"
+         socialDark: "#4c70a7",
+         grey: "#4E5B59",
+         green: '#6DBD8E',
+         tangerine2: "#FCC865"
        };
 
 const colorMap: ThemeColorMap = {
