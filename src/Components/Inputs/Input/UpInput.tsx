@@ -10,7 +10,7 @@ import { IconName, IconNames } from '../../../Common/theming/icons';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import { getStyles } from '../_Common/Styled/Input/styles';
 import defaultTheme from '../../../Common/theming/';
-import { generateId, isEmpty } from '../../../Common/utils';
+import { generateId, isEmpty, shallowEqual } from '../../../Common/utils';
 
 const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> = (props: UpInputStyledProps & WithThemeProps) => {
     const { name, autocomplete, className, type, iconPosition, placeholder, disabled, readonly, maxLength, dataFor, onChange, onFocus, onBlur, autoFocus } = props;
@@ -134,6 +134,32 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
       return this.props.showSuccess !== undefined
         ? this.props.showSuccess
         : !this.hasError && !this.isFocused && this.isTouched && !isEmpty(this.currentValue);
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+      const shouldUpdate =  this.props.value !== nextProps.value
+      ||  this.props.error !== nextProps.error
+      ||  this.props.errorDisplayMode !== nextProps.errorDisplayMode
+      ||  this.props.floatingLabel !== nextProps.floatingLabel
+      ||  this.props.iconName !== nextProps.iconName
+      ||  this.props.iconPosition !== nextProps.iconPosition
+      ||  this.props.isRequired !== nextProps.isRequired
+      ||  this.props.placeholder !== nextProps.placeholder
+      ||  this.props.readonly !== nextProps.readonly
+      ||  this.props.rounded !== nextProps.rounded
+      ||  this.props.showError !== nextProps.showError
+      ||  this.props.showSuccess !== nextProps.showSuccess
+      ||  this.props.touched !== nextProps.touched
+      ||  this.props.tooltip !== nextProps.tooltip
+      ||  this.props.hasError !== nextProps.hasError
+      ||  this.props.maxLength !== nextProps.maxLength
+      ||  this.props.name !== nextProps.name
+      ||  this.props.theme !== nextProps.theme
+      ||  this.state.error !== nextState.error 
+      ||  this.state.value !== nextState.value
+      ||  !shallowEqual(this.state.extra, nextState.extra);
+
+      return shouldUpdate ;
     }
 
     renderControl() {

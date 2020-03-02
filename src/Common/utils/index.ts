@@ -1,6 +1,7 @@
 import { Children, ReactNode, ComponentType } from 'react'
 
 import remStringFromPx from './remStringFromPx';
+import shallowEqual from './shallowEqual';
 
 export default remStringFromPx;
 
@@ -200,3 +201,4 @@ const open = (url : string, title : string, onClose : () => void, name? : string
     }
   };
   
+  export {shallowEqual} ;
