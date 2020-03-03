@@ -12,8 +12,8 @@ import { isEmpty } from "../../../Common/utils";
 const getStyles = (props: UpInputProps) =>
   style({
     position: "absolute",
-    top: 0,
-    right: "0",
+    top: 4,
+    right: "12px",
     cursor: "pointer",
     zIndex: 10,
     $nest: {
@@ -23,7 +23,9 @@ const getStyles = (props: UpInputProps) =>
     }
   });
 
-export interface UpPasswordProps extends UpInputProps {}
+export interface UpPasswordProps extends UpInputProps {
+  onClickBehaviour?: boolean;
+}
 
 export interface UpPasswordState {
   isVisible: boolean;
@@ -47,9 +49,9 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
   }
 
   toggleVisible = e => {
-    this.setState({
-      isVisible: !this.state.isVisible
-    });
+    this.setState(prevState => ({
+      isVisible: !prevState.isVisible
+    }));
   };
 
   get isHidden() {
@@ -94,71 +96,41 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
     );
   };
 
-  get showStatus() {
-    return (
-      (this.props.hasError && this.props.showError) ||
-      (this.showSuccess())
-    );
-  }
-
-  onFocus = event => {
-    event.persist();
-    const handleOnFocus = event => {
-      if (this.props.onFocus) this.props.onFocus(event);
-    };
-
-    this.setState({ focused: true }, handleOnFocus.bind(null, event));
-  };
-
-  onBlur = event => {
-    event.persist();
-    const handleOnBlur = event => {
-      if (this.props.onBlur) this.props.onBlur(event);
-    };
-
-    this.setState(
-      { focused: false, touched: true },
-      handleOnBlur.bind(null, event)
-    );
-  };
-
-  get isFocused() {
-    return this.state.focused === true;
-  }
-
-  get isTouched() {
-    return this.state.touched === true;
-  }
-
-  showSuccess() {
-    return this.props.showSuccess !== undefined
-      ? this.props.showSuccess
-      : (this.props.hasError === undefined || this.props.hasError === false) &&
-          !this.isFocused &&
-          this.isTouched &&
-          !isEmpty(this.props.value);
-  }
-
   render() {
     const iconEyeOpen: IconName = "eye-open";
     const iconEyeClose: IconName = "eye-close";
     const type = this.state.isVisible === true ? this.props.type : "password";
 
     const themeStyles = this.props.theme.styles.get("input") || {};
-    const { showSuccess, onBlur, onFocus, ...others } = this.props;
+    const {
+      showSuccess,
+      onBlur,
+      onFocus,
+      onClickBehaviour,
+      ...others
+    } = this.props;
 
     return (
-      <div className={classnames(style(themeStyles), "up-password")} style={{ position: "relative" }}>
-        <UpInput
-          {...others}
-          showSuccess={this.showSuccess()}
-          onBlur={this.onBlur}
-          onFocus={this.onFocus}
-          type={type}
-          iconName={this.props.iconPosition === "left" ? "lock-closed" : null}
-        />
+      <div
+        className={classnames(
+          style(themeStyles),
+          "up-password",
+          onClickBehaviour ? onSide : ""
+        )}
+        style={{ position: "relative" }}
+      >
+        <div style={{ width: "100%" }}>
+          <UpInput
+            {...others}
+            showSuccess={showSuccess}
+            onBlur={onBlur}
+            onFocus={onFocus}
+            type={type}
+            iconName={this.props.iconPosition === "left" ? "lock-closed" : null}
+          />
+        </div>
 
-        {!this.showStatus && (
+        {!onClickBehaviour && (
           <UpSvgIcon
             className={classnames(getStyles(this.props), "up-password-icon")}
             onMouseOver={this.show}
@@ -168,9 +140,30 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
             }
           />
         )}
+        {onClickBehaviour && (
+          <div
+            style={{
+              alignItems: "center",
+              display: "flex",
+              cursor: "pointer",
+              margin: "0px 0px 0px 8px"
+            }}
+          >
+            <UpSvgIcon
+              color={defaultTheme.colorMap.primary}
+              className={classnames("up-password-icon")}
+              onClick={this.toggleVisible}
+              iconName={this.state.isVisible ? iconEyeOpen : iconEyeClose}
+            />
+          </div>
+        )}
       </div>
     );
   }
 }
 
-export default withTheme<UpInputProps>(UpPassword);
+export default withTheme<UpPasswordProps>(UpPassword);
+
+const onSide = style({
+  display: "flex"
+});
