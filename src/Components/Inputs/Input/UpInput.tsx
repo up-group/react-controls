@@ -155,6 +155,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
       ||  this.props.maxLength !== nextProps.maxLength
       ||  this.props.name !== nextProps.name
       ||  this.props.theme !== nextProps.theme
+      ||  this.props.type !== nextProps.type
       ||  this.state.error !== nextState.error 
       ||  this.state.value !== nextState.value
       ||  !shallowEqual(this.state.extra, nextState.extra);
