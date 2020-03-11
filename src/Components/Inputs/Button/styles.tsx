@@ -73,6 +73,8 @@ const base = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
         width:'100%',
         textAlign: 'center',
         textTransform: 'uppercase',
+        fontWeight: 700,
+        fontSize: '14px',
       },
       '&.up-btn:focus': {
         outline: 'transparent auto 0px',

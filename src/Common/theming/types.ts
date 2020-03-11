@@ -40,6 +40,8 @@ export interface ThemeColorMap {
     gray3: string,
     gray4: string,
     gray5: string,
+    gray6: string,
+
 
     lightGray1: string,
     lightGray2: string,
@@ -174,6 +176,8 @@ export interface ThemeColorMap {
     red3: string,
     red4: string,
     red5: string,
+
+    grey1: string,
 
     // Extended colors
     vermilion1: string,

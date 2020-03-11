@@ -25,8 +25,18 @@ const SimpleInput = props => {
     setValue(value);
   };
 
-  return <UpInput value={selectedValue} onChange={onChange} type={"text"} />;
+  return <UpInput value={selectedValue}  onChange={onChange} type={"text"} />;
 };
+
+const ReadOnlyInputs = () => (
+  <React.Fragment>
+    <UpInput floatingLabel={text('Floating Label','Floating Name')} readonly={boolean('Floating ReadOnly', true)} defaultValue="read only" />
+    <UpLabel text={text('Label','Label')}  >
+      <UpInput readonly={boolean('ReadOnly', true)} defaultValue="read only"/>
+    </UpLabel>
+  </React.Fragment>
+  
+)
 
 const EmailForm = props => {
   const [onBlurState, setOnBlurState] = React.useState({} as any);
@@ -177,7 +187,15 @@ stories.add('Text input',
       </UpRow>
     </UpGrid>
   ), { info: 'Utilisation simple' }
-).add('Search Input',
+).add('ReadOnly input',()=> (
+  <UpGrid>
+      <UpRow>
+        <UpCol span={6}>
+          <ReadOnlyInputs/>
+        </UpCol>
+      </UpRow>
+    </UpGrid>
+)).add('Search Input',
   () => (
     <UpGrid>
       <UpRow>

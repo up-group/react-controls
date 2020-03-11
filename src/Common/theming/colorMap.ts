@@ -14,7 +14,7 @@ export const colors = {
          turquoiseBlue: "#039eb2",
          oceanBlue: "#0360a8",
          paleRed: "#d9534f",
-         boringGreen: "#05C591", //'#5cb85c',
+         boringGreen: "#6DBD8E",
          tangerine10: "#f39100",
          turquoiseDark: "#0e8c9b",
          paleYellow: "#f8f1ad",
@@ -41,6 +41,7 @@ const colorMap: ThemeColorMap = {
   gray3: "#8a9ba8",
   gray4: "#a7b6c2",
   gray5: "#bfccd6",
+  gray6: "#979797",
 
   lightGray1: "#ced9e0",
   lightGray2: "#d8e1e8",
@@ -218,6 +219,8 @@ const colorMap: ThemeColorMap = {
   white2: "#f3f3f3",
   white3: "#e6e8ec",
   offwhite: "#f5f5f5",
+
+  grey1: colors.grey,
 
   black1: "#0a0a0a",
   black2: "#2d2d2d",
