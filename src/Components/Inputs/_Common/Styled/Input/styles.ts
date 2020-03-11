@@ -64,7 +64,7 @@ export const statusStyles = (props : StyledProps) => {
           fill: props.theme
             ? props.theme.colorMap.success
             : defaultTheme.colorMap.success
-        }
+        },
       }
     });
   }
@@ -132,8 +132,8 @@ export const inputStyles = (props: UpInputProps & WithThemeProps) : NestedCSSPro
         boxSizing: "border-box",
         paddingLeft: "10px"
       },
-      ".up-input[readonly]": {
-        boxShadow: "inset 0 0 0 1px rgba(16, 22, 26, 0.15)"
+      ".up-input[readonly] ": {
+        border: 'unset',
       },
       ".up-input:disabled, .up-input.up-disabled": {
         boxShadow: "none",
@@ -545,7 +545,11 @@ export const focusStyles = (props: StyledProps) =>
                transform: "translate(0, 2px) scale(.75)",
                fontSize: "12px",
                color: props.theme.colorMap.primary
-             }
+             },
+             "& .up-input-group.up-input-readonly label": {
+              color: props.theme.colorMap.gray1,
+            },
+
            }
          });
 

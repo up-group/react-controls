@@ -24,7 +24,7 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> =
         iconName = "checkmark";
         size = 8;
     }
-    
+      
     if (iconName) {
         icon = (
           <SvgIcon
@@ -52,10 +52,11 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> =
         <div
           className={classnames(
             "up-input-group",
-            props.focused === true ? "up-input-focused" : null,
-            props.value != null && props.value != ""
-              ? "up-input-valued"
-              : null
+            {
+              'up-input-focused': props.focused,
+              'up-input-valued': props.value !=null && props.value != "",
+              'up-input-readonly': readonly,
+            },
           )}
         >
           {iconPosition === "left" && iconName && icon}
@@ -83,7 +84,7 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> =
           {iconPosition === "right" && props.floatingLabel && (
             <label htmlFor={id}>{props.floatingLabel}</label>
           )}
-          {iconPosition === "right" &&
+          {iconPosition === "right" && !readonly &&
             iconName &&
             icon
           }
