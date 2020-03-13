@@ -26,10 +26,6 @@ addParameters({
          layoutMargin: 10, // applied to space panels
          overlayBackground: 'rgb(245, 145, 0)' // 'linear-gradient(to bottom right, rgba(233, 233, 233, 0.6), rgba(255, 255, 255, 0.8))', // applied to overlay `background`,
        }*/
-  },
-  docs: {
-    container: DocsContainer,
-    page: DocsPage
   }
 })
 

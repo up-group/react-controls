@@ -1,5 +1,6 @@
 const path = require('path');
 const ROOT_PATH = path.resolve(__dirname);
+const createCompiler = require('@storybook/addon-docs/mdx-compiler-plugin');
 
 // Export a function. Accept the base config as the only param.
 module.exports = async ({
@@ -26,6 +27,26 @@ module.exports = async ({
             // Clean rules
             config.module.rules = config.module.rules.filter(r => r.test.toString() !== /\.css$/.toString());
             const rules = []
+            rules.push({
+                test: /\.(stories|story)\.mdx$/,
+                use: [
+                    {
+                      loader: 'babel-loader',
+                      // may or may not need this line depending on your app's setup
+                      options: {
+                        plugins: ['@babel/plugin-transform-react-jsx'],
+                      },
+                    },
+                    {
+                      loader: '@mdx-js/loader',
+                      options: {
+                        compilers: [createCompiler({})],
+                      },
+                    },
+                ],
+                include: path.resolve(__dirname, '../'),
+                exclude: /node_modules/,
+            });
             rules.push({
                 test: /\.jsx?/,
                 use: ['babel-loader'],

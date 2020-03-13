@@ -9,7 +9,7 @@ storiesOf("INTRO|Up", module).add("default", () => {
   return <Welcome />;
 });
 
-const req = require.context('../src/Components', true, /\.stories\.(js|ts)x$/)
+const req = require.context('../src/Components', true, /\.stories\.(js|ts|md)x$/)
 
 function loadStories() {
   req.keys().forEach((filename) => req(filename))

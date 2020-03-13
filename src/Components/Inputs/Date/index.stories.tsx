@@ -8,6 +8,7 @@ import { getRootContainer } from '../../../Common/stories';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import UpPassword from '../Password';
 
 const stories = storiesOf('Inputs/UpDate', module) ;
 
@@ -66,13 +67,20 @@ stories
   .add(
     "Selectable months and years",
     () => (
-      <UpDate
-        numberOfMonths={1}
-        onChange={(value, event) => {
-          console.log(event);
-          console.log(value);
-        }}
-      />
+      <>
+        <UpDate
+          numberOfMonths={1}
+          onChange={(value, event) => {
+            console.log(event);
+            console.log(value);
+          }}
+        />
+        <div style={{margin: "50px", width : '100px'}} >
+        <UpPassword
+          value={""}
+        />
+        </div>
+      </>
     ),
   )
   .add(
