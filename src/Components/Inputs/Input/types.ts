@@ -14,6 +14,7 @@ export interface Validation {
     errorMessage: string;
 }
 
+
 export interface UpInputStyledProps extends CommonProps<string> {
     color?: string;
     backgroundColor?: string;
@@ -27,6 +28,9 @@ export interface UpInputStyledProps extends CommonProps<string> {
     focused?:boolean;
     dataFor?:string; // Use for tooltip
     autoFocus?: boolean;
+    hasClearOption: boolean;
+    onClear?: ()=> void;
+    isLoading?: boolean;
 }
 
 export interface CommonProps<VT> extends CommonInputTextProps<VT> {
@@ -52,4 +56,7 @@ export interface UpInputProps extends CommonProps<string> {
     value?:string;
     validation?:Array<Validation>;
     maxLength?:number;
+    hasClearOption?: boolean;
+    onClear?: ()=> void;
+    isLoading?: boolean;
 }

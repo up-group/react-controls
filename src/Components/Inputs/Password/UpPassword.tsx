@@ -73,7 +73,6 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
           {
             isVisible: false
           },
-          () => (this.updatingHide = null)
         ),
       500
     );
@@ -95,6 +94,12 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
       0
     );
   };
+
+  hasError = () => {
+    const value = this.props.value
+    const matchValue = value.match('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/')
+    return matchValue && matchValue.length 
+  }
 
   render() {
     const iconEyeOpen: IconName = "eye-open";

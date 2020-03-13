@@ -174,6 +174,33 @@ const PhoneInput = props => {
   );
 };
 
+const ControlledSeacrhInput = props => {
+  const [value,setValue] = React.useState('')
+  const [isLoading,setIsLoading] = React.useState(false);
+  
+  return (
+    <UpInput
+      type='search' 
+      value={value} 
+      onChange={(event,value)=>{
+        setIsLoading(true)
+        setValue(value)
+        setTimeout(() => {
+          setIsLoading(false)
+        }, 2000);
+      }} 
+      onClear={()=>setValue('')} 
+      placeholder='placeholder ...'   
+      iconPosition={'left'} 
+      hasClearOption
+      isLoading={isLoading}
+     />
+  )
+}
+
+const UncontrolledSearchInput = () =>  <UpInput type='search' iconPosition={'left'} hasClearOption isLoading/>
+
+
 
 stories.add('Text input',
   () => (
@@ -199,9 +226,12 @@ stories.add('Text input',
   () => (
     <UpGrid>
       <UpRow>
-        <UpCol span={6}>
-          <UpLabel text={'Recherche :'} required={true} inline={true}>
-            <UpInput type={"search"} />
+        <UpCol span={12}>
+          <UpLabel text={'Controlled Recherche :'} required={true} inline={true}>
+            <ControlledSeacrhInput/>
+          </UpLabel>
+          <UpLabel text={'Uncontrolled Recherche :'} required={true} inline={true}>
+            <UncontrolledSearchInput/>
           </UpLabel>
         </UpCol>
       </UpRow>
