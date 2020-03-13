@@ -72,8 +72,10 @@ export interface UpSelectProps extends BaseControlProps<any> {
    escapeClearsValue? : boolean;
    /** Retourne le composant à utiliser pour représenter le label d'un groupe d'options */
    formatGroupLabel? : (group) => React.ReactNode;
-   /** Retourne le composant à utiliser pour afficher le lable d'une option */
-   formatOptionLabel? : (option : Object, optionContext : FormatOptionContext) => React.ReactNode
+   /** Retourne le composant à utiliser pour afficher le label d'une option */
+   formatOptionLabel? : (option : Object, optionContext : FormatOptionContext) => React.ReactNode;
+   /** Retourne le message dans le cas d'une saisie insufisante */
+   formatMinimumInputLenghMessage? : (minimumInputLength : number) => string;
    /** Cache les options sélectionnées du menu */
    hideSelectedOptions?:boolean;
    /** L'identifiant du composant SelectContainer */
@@ -136,6 +138,8 @@ export interface UpSelectProps extends BaseControlProps<any> {
      * Définit la position de l'option "Créer  ..." dans la liste.
      */
     createOptionPosition? : 'first' | 'last';
+    /** Autorise la définition du class pour le composant */
+    className? : string;
 }
 
 export type MenuPlacement = "auto" | "bottom" | "top" ;

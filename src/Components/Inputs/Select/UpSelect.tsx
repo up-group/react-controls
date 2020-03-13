@@ -13,6 +13,7 @@ import { Props } from 'react-select/lib/Select';
 import { color } from 'csx';
 import { ValueType, ActionMeta } from 'react-select/lib/types';
 import { eventFactory } from '../../../Common/utils/eventListener';
+import { isEmpty } from '../../../Common/utils'
 
 const CancelToken = axios.CancelToken;
 
@@ -41,6 +42,9 @@ const formatGroupLabel = data => (
         <span style={groupBadgeStyles}>{data.options.length}</span>
     </div>
 );
+
+
+const formatMinimumInputLenghMessage = (minimumInputLength:number) => `Veuillez renseigner au minimum ${minimumInputLength} caractères`;
 
 const customStyles = {
     option: (provided, state) => ({
@@ -133,6 +137,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         allowCreate: false,
         returnType: "full",
         formatGroupLabel: formatGroupLabel,
+        formatMinimumInputLenghMessage: formatMinimumInputLenghMessage,
         isRtl: false,
         isSearchable: true,
         minMenuHeight: 140,
@@ -387,7 +392,8 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     }
 
     filterOptions = (option, filter) => {
-        return !filter || (option.label != null && (option.label.toLowerCase == null || option.label.toLowerCase().includes(filter.toLowerCase())));
+        const filterMatched = !filter || (option.label != null && (typeof option.label == "object" || `${option.label}`.toLowerCase().includes(filter.toLowerCase())));
+        return filterMatched ;
     }
 
     private findInObject = (object, path: string[]) => {
@@ -408,13 +414,21 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         return <p>{`Créer "${inputValue}"`}</p>;
     };
 
+    private inputDoesntMatchSelectValue = (inputValue : string, selectValue :  any[]) : boolean => (selectValue == null || selectValue.filter(option => option[this.keyText] && option[this.keyText].toLowerCase() == inputValue.toLowerCase()).length == 0) ;
+    
+    private inputDoesntMatchOneOfSelectOptions = (inputValue : string, selectOptions : any[]) : boolean => (selectOptions == null || selectOptions.filter(option => option[this.keyText] && option[this.keyText].toLowerCase() == inputValue.toLowerCase()).length == 0) ;
+
     /** Retourne si l'option  "Créer ..." doit être affichée */
     isValidNewOption = (inputValue, selectValue, selectOptions) => {
         if (this.props.isValidNewOption != null) {
             return this.props.isValidNewOption(inputValue, selectValue, selectOptions);
         }
 
-        return inputValue != null && inputValue != "" && (selectValue == null || selectValue.filter(option => option[this.keyText].toLowerCase() == inputValue.toLowerCase()).length == 0) && (selectOptions == null || selectOptions.filter(option => option[this.keyText].toLowerCase() == inputValue.toLowerCase()).length == 0);
+        const isValidNewOption = !isEmpty(inputValue)
+        && this.inputDoesntMatchSelectValue(inputValue, selectValue)
+        && this.inputDoesntMatchOneOfSelectOptions(inputValue, selectOptions);
+        
+        return isValidNewOption;
     };
 
     /** Retourne le nouvel objet */
@@ -445,7 +459,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             loadOptions = (input: string) => {
                 if (minimumInputLength && input.length < minimumInputLength) {
                     if (input.length !== 0) {
-                        const newState = update(this.state, { extra: { loadingPlaceholder: { $set: `Veuillez renseigner au minimum ${minimumInputLength} caractères` } } });
+                        const newState = update(this.state, { extra: { loadingPlaceholder: { $set: this.props.formatMinimumInputLenghMessage(minimumInputLength)}}});
                         this.setState(newState);
                     } else {
                         const newState = update(this.state, { extra: { loadingPlaceholder: { $set: this.props.loadingPlaceholder } } });
@@ -522,11 +536,23 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                 autoload: this.props.autoload
             }
         }
+        let allowCreate = this.props.allowCreate ;
 
-        if (this.props.allowCreate) {
+        let formatCreateLabel = undefined ;
+        let isValidNewOption = undefined ;
+
+        if(this.props.isSearchable && !allowCreate) {
+            const emptyFormatCreateLabel = s => "" ;
+            const emptyIsValidNewOption = () => false ;
+            allowCreate = true;
+            formatCreateLabel= emptyFormatCreateLabel ;
+            isValidNewOption = emptyIsValidNewOption ;
+        }
+
+        if (allowCreate) {
             specProps.allowCreateWhileLoading = this.props.allowCreateWhileLoading;
-            specProps.formatCreateLabel = this.formatCreateLabel;
-            specProps.isValidNewOption = this.isValidNewOption;
+            specProps.formatCreateLabel = formatCreateLabel || this.formatCreateLabel;
+            specProps.isValidNewOption = isValidNewOption  || this.isValidNewOption;
             specProps.getNewOptionData = this.getNewOptionData;
             specProps.onCreateOption = this.props.onCreateOption;
             specProps.createOptionPosition = this.props.createOptionPosition;
@@ -544,7 +570,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                 const filterHandler = this.props.filterOptions || this.filterOptions;
                 return filterHandler(option, filter);
             },
-            allowCreate: this.props.allowCreate,
+            allowCreate: allowCreate,
             promptTextCreator: this.props.promptTextCreator,
             autoBlur: false,
             isLoading: this.props.isLoading,
@@ -587,21 +613,21 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             openMenuOnFocus: this.props.openMenuOnFocus,
             openMenuOnClick: this.props.openMenuOnClick,
             closeMenuOnSelect: this.props.closeMenuOnSelect,
-            styles: customStyles,
+            styles: customStyles
         }
-
+           
         return (
-            <div className={classnames('up-select-wrapper', getStyles(this.props))}>
-                {dataSource != null && this.props.allowCreate === true &&
+            <div className={classnames(this.props.className, 'up-select-wrapper', getStyles(this.props))}>
+                {dataSource != null && allowCreate === true &&
                     <Select.AsyncCreatable {...selectComponentProps as any} />
                 }
-                {dataSource != null && this.props.allowCreate === false &&
+                {dataSource != null && allowCreate === false &&
                     <Select.Async {...selectComponentProps as any} />
                 }
-                {dataSource == null && this.props.allowCreate === true &&
+                {dataSource == null && allowCreate === true &&
                     <Select.Creatable {...selectComponentProps} />
                 }
-                {dataSource == null && this.props.allowCreate === false &&
+                {dataSource == null && allowCreate === false &&
                     <Select.SelectBase {...selectComponentProps} />
                 }
             </div>
