@@ -21,12 +21,48 @@ import { isEmpty } from "../../../Common/utils";
 import * as moment from "moment";
 import getStyles from "./styles";
 import { DateInputProps } from "../FinanceurInput";
+import { style } from "typestyle";
+import UpSelect from "../Select";
 
 moment.locale("fr");
 
 // Exports
 const MIN_DATE = new Date(-8640000000000);
 const MAX_DATE = new Date(+8640000000000);
+
+const selectStyle = style({
+  $nest: {
+     '& > select' : {
+        display: 'inline-block',
+        padding: '0.5em',
+        backgroundImage: 'linear-gradient(45deg, transparent 50%, gray 50%),linear-gradient(135deg, gray 50%, transparent 50%),linear-gradient(to right, #ccc, #ccc)',
+        backgroundPosition: 'calc(100% - 4px) calc(0.25em + 0.5px), calc(100% - 3.3px) calc(0.25em + 0.5px), calc(100% - 0.6em) 0.13em',
+        backgroundSize: '5px 5px, 5px 5px, 1px 1.5em',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor: 'transparent',
+        border: 0,
+        margin: 0,      
+        '-webkit-box-sizing': 'border-box',
+        '-moz-box-sizing': 'border-box',
+        boxSizing: 'border-box',
+        '-webkit-appearance': 'none',
+        '-moz-appearance': 'none'
+    },
+    '& > select:focus' : {
+      backgroundImage: 'linear-gradient(45deg, green 50%, transparent 50%),linear-gradient(135deg, transparent 50%, green 50%),linear-gradient(to right, #ccc, #ccc)',
+      backgroundPosition: 'calc(100% - 3.3px) 0.25em, calc(100% - 5px) 0.25em, calc(100% - 0.6em) 0.13em;',
+      backgroundSize: '5px 5px, 5px 5px, 1px 1.5em',
+      backgroundRepeat: 'no-repeat',
+      border: 0,
+      borderColor: 'green',
+      zIndex: 99
+    },
+    '& > select:-moz-focusring' : {
+      color: 'transparent',
+      textShadow: '0 0 0 #000',
+    }
+  }
+})
 
 class UpDate extends BaseControlComponent<
   UpDateProps & WithThemeProps,
@@ -90,29 +126,46 @@ class UpDate extends BaseControlComponent<
   returnYears = () => {
     let years = []
     for(let i = moment().year() - 100; i <= moment().year(); i++) {
-        years.push(<option value={i}>{i}</option>);
+        years.push({
+          id: i,
+          text: i
+        });
     }
+    years = years.sort((a, b) => b.id - a.id);
     return years;
-}
+  }
+
+  formatMonth = (month) => (month+1) < 10 ? `0${month+1}` : `${month+1}`;
 
   renderMonthElement = ({ month, onMonthSelect, onYearSelect }) =>
-  <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <div>
-          <select
-              value={month.month()}
-              onChange={(e) => onMonthSelect(month, e.target.value)}
-          >
-              {moment.months().map((label, value) => (
-                  <option value={value}>{label}</option>
+      <div style={{ width: '100%', display: 'flex', justifyContent: 'center', flexShrink: 2 }}>
+        <div style={{ width: '30%' }}>
+          <UpSelect
+              value={{ id: month.month(), text : this.formatMonth(month.month())}}
+              menuPlacement='bottom'
+              data={moment.months().map((label, value) => (
+                {
+                  id: value,
+                  text: label
+                }
               ))}
-          </select>
-      </div>
-      <div>
-          <select value={month.year()} onChange={(e) => onYearSelect(month, e.target.value)}>
-              {this.returnYears()}
-          </select>
-      </div>
-  </div>
+              tooltip={moment.months().find((label, value) => value == month.month())}
+              onChange={(e) => {
+                onMonthSelect(month, e.target.value.id)
+              }}
+          >
+          </UpSelect>
+        </div>
+        <div className={style({ width: '40%' })}>
+          <UpSelect
+              data={this.returnYears()}
+              menuPlacement='bottom'
+              value={{ id : month.year(), text : month.year()}}
+              isSearchable={true}
+              onChange={(e) => onYearSelect(month, e.target.value.id)}>
+          </UpSelect>
+        </div>
+    </div>
 
   renderControl() {
     const {

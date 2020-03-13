@@ -93,6 +93,9 @@ const getStyles = (
       },
       "& .DayPickerNavigation_button:hover": {
         borderColor: props.theme.colorMap.primary
+      }, 
+      "& .SingleDatePicker_picker" : {
+        zIndex : 20
       }
     }
   });
