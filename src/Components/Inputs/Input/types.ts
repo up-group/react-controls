@@ -59,4 +59,5 @@ export interface UpInputProps extends CommonProps<string> {
     hasClearOption?: boolean;
     onClear?: ()=> void;
     isLoading?: boolean;
+    focused?:boolean;
 }

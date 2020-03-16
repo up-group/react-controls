@@ -40,10 +40,10 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> =
   let icon: any = null;
   let RightIcon: any = null;
   let size = 20;
-  if (props.hasError && props.showError && type !== 'search') {
+  if (props.hasError && props.showError && type !== 'search' && type !== 'password') {
     iconName = "close";
     size = 8;
-  } else if (!props.hasError && !isEmpty(value) && props.showSuccess && type !== 'search') {
+  } else if (!props.hasError && !isEmpty(value) && props.showSuccess && type !== 'search' && type !== 'password') {
     iconName = "checkmark";
     size = 8;
   }

@@ -178,6 +178,7 @@ export interface ThemeColorMap {
     red5: string,
 
     grey1: string,
+    lightGrey1: string,
 
     // Extended colors
     vermilion1: string,

@@ -7,29 +7,69 @@ import { style } from "typestyle";
 import withTheme from "../../../Common/theming/withTheme";
 import defaultTheme from "../../../Common/theming";
 import * as classnames from "classnames";
-import { isEmpty } from "../../../Common/utils";
-
+import { isEmpty,ruleIsValid } from "../../../Common/utils";
+const fillColor = (props:UpInputProps) => {
+  let color: string
+  if(!props.touched) color= props.theme.colorMap.default
+  if(!!props.value) color= props.theme.colorMap.success
+  if(props.showError && props.hasError) color = props.theme.colorMap.error
+  
+  return color
+}
 const getStyles = (props: UpInputProps) =>
   style({
     position: "absolute",
     top: 4,
-    right: "12px",
+    right: 0,
     cursor: "pointer",
     zIndex: 10,
     $nest: {
-      "&.up-password-icon:hover svg, &.up-password-icon:hover svg polygon, &.up-password-icon:hover svg path, &.up-password-icon:hover svg polyline": {
-        fill: props.theme.colorMap.primary
+      "&.up-password-icon svg, &.up-password-icon svg polygon, &.up-password-icon svg path, &.up-password-icon svg polyline": {
+        fill: `${fillColor(props)} !important`
       }
     }
   });
 
+  const getRulesStyle = (props: UpInputProps) => 
+    style({
+      display:'block',
+      zIndex:1000,
+      width:'100%',
+      border:`0 1px 1px solid ${props.theme.colorMap.lightGrey1}`,
+      borderTop:'unset',
+      boxShadow:'0 0 5px 0 rgba(0,0,0,0.11)',
+      fontSize: '12px',
+      color: '#4E5B59',
+      lineHeight:'18px',
+      fontWeight: 400,
+      marginTop: '0.5px'
+    })
+  
+const getRuleStatus = (props: UpInputProps, regex: RegExp) =>
+  style({
+    height: '8px',
+    width: '8px',
+    backgroundColor: `${ruleIsValid(props.value, regex) ?
+      props.theme.colorMap.success :
+      props.theme.colorMap.lightGrey1
+      }`,
+    borderRadius: '50%',
+    display: 'inline-block',
+    margin: '0 10px',
+  })
+
+  interface Item {
+      text: string;
+      regex: RegExp;
+  }
+
 export interface UpPasswordProps extends UpInputProps {
   onClickBehaviour?: boolean;
+  rules?: Array<Item>
 }
 
 export interface UpPasswordState {
   isVisible: boolean;
-  focused?: boolean;
   touched?: boolean;
 }
 
@@ -93,29 +133,28 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
         ),
       0
     );
-  };
-
-  hasError = () => {
-    const value = this.props.value
-    const matchValue = value.match('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/')
-    return matchValue && matchValue.length 
-  }
+  };  
 
   render() {
     const iconEyeOpen: IconName = "eye-open";
     const iconEyeClose: IconName = "eye-close";
-    const type = this.state.isVisible === true ? this.props.type : "password";
+    const type = this.props.type || "password";
 
     const themeStyles = this.props.theme.styles.get("input") || {};
     const {
       showSuccess,
       onBlur,
+      showError,
       onFocus,
       onClickBehaviour,
+      rules,
+      value,
+      focused,
       ...others
     } = this.props;
 
     return (
+      <React.Fragment>
       <div
         className={classnames(
           style(themeStyles),
@@ -163,6 +202,19 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
           </div>
         )}
       </div>
+        { focused && !isEmpty(rules) && (
+          <div className={classnames(getRulesStyle(this.props),'password-rules')}>
+            {rules.map(({ text, regex }) =>
+              (
+                <div key={text} style={{ display: 'flex', alignItems: 'center' }}>
+                  <span className={getRuleStatus(this.props, regex)} />
+                  <p>{text}</p>
+                </div>
+              )
+            )}
+          </div>
+        )}
+      </React.Fragment>
     );
   }
 }
