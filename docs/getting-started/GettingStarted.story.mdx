@@ -1,0 +1,41 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Docs|Getting Started/Quick Start" />
+
+# Getting Started
+
+## Installing
+
+You can install Up! React-Controls with [NPM](https://www.npmjs.com/package/react-controls) or Yarn.
+
+- NPM: `npm install @up-group/react-controls --save`
+- YARN: `yarn add @up-group/react-controls`
+
+#### Development Builds
+Our continuous integration server runs all tests on every commit to master and
+if they pass it will publish a new development build to NPM and tag it with the `@dev` tag.
+This means that if you want the bleeding edge of `react-controls` you can simply do:
+
+```bash
+yarn add @up-group/react-controls@dev
+```
+
+This will install the version currently tagged as `@dev`. Your `package.json` file will be
+locked to that specific version.
+
+```js
+{
+  "dependencies": {
+    "reaviz": "3.0.0-dev-master.a0d076d"
+  }
+}
+```
+
+If you later want to again update to the bleeding edge, you will have to run the above command again.
+
+## Configuration
+
+
+## Compatibility
+
+ `react-controls` is compatible with React v16+ and works with ReactDOM. React Native is not supported at this time.

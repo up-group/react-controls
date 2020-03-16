@@ -100,6 +100,7 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps, UpTooltipStat
   render() {
     const {id, children, content, ...others} = this.props ;
     let tooltipId = id ;
+    
     if(!tooltipId) {
       tooltipId = generateId() ;
     }
@@ -109,7 +110,7 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps, UpTooltipStat
     if(children != null && isFunction(children)) {
       childrenAsFunction = children as (value : UpTooltipProps) => JSX.Element ;
     } else {
-      childrenWithProps = React.Children.map(this.props.children, function(child) {
+      childrenWithProps = React.Children.map(children, function(child) {
           if (React.isValidElement(child)) {
             return React.cloneElement(child as React.ReactElement<any>, { "dataFor" : tooltipId  });
           } else {

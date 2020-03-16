@@ -42,7 +42,6 @@ export interface ThemeColorMap {
     gray5: string,
     gray6: string,
 
-
     lightGray1: string,
     lightGray2: string,
     lightGray3: string,

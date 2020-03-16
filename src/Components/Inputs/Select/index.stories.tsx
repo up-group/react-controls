@@ -139,12 +139,18 @@ const SimpleSelect = (props) => {
     }
 
     return (
-        <UpSelect tooltip="Civilité" default={null} data={[
-            { id: 1, text: 'M.' },
-            { id: 2, text: 'Mme' },
-            { id: 3, text: 'Mlle' },
-            { id: 4, text: 'Dr' },
-        ]} value={selectedValue} onChange={onChange} />
+        <UpSelect 
+            tooltip={"Civilité"} 
+            isRequired={true} 
+            default={null} 
+            data={[
+                { id: 1, text: 'M.' },
+                { id: 2, text: 'Mme' },
+                { id: 3, text: 'Mlle' },
+                { id: 4, text: 'Dr' },
+            ]}
+            value={selectedValue} 
+            onChange={onChange} />
 )}
 
 stories.add('Simple usage',
