@@ -6,10 +6,7 @@ import UpTheme from './theme'
 
 // Customize the UI a bit
 addParameters({
-   docs: {
-    container: DocsContainer,
-    page: DocsPage
-  },
+  docs: DocsPage,
   options: {
     theme: UpTheme,
     showPanel: false,
@@ -40,14 +37,18 @@ addDecorator((...args) => {
   return args[0](); // return centered(...args);
 });
 
-const req = [
-  require.context('../docs', true, /Intro.story.mdx/),
-  require.context('../docs', true, /GettingStarted.story.mdx/),
-  require.context('../src/Components', true, /\.stories\.(js|ts|md)x$/)
-]
+const loadStories = () => {
 
-function loadStories() {
-  req.forEach((v) => v.keys().forEach((filename) => v(filename)));
+  const req = require.context('../src/Components', true, /\.stories\.(js|ts)x$/)
+  req.keys().forEach(req);
+  return [
+    // Ensure we load Welcome First
+    require.context('../docs', true, /Intro.story.mdx/),
+    require.context('../docs', true, /GettingStarted.story.mdx/),
+    require.context('../docs', true, /Developing.story.mdx/),
+    require.context('../docs', true, /Why.story.mdx/),
+    require.context('../src/Components', true, /index.stories.mdx/),
+  ];
 }
 
 configure(loadStories(), module);
