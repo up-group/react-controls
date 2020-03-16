@@ -10,8 +10,9 @@ storiesOf("INTRO|Up", module).add("default", () => {
 });
 
 const req = [
-  require.context('../src/Components', true, /\.stories\.(js|ts|md)x$/),
-  require.context('../docs/', true, /\.story\.(js|ts|md)x$/)
+  require.context('../docs', true, /Intro.story.mdx/),
+  require.context('../docs', true, /GettingStarted.story.mdx/),
+  require.context('../src/Components', true, /\.stories\.(js|ts|md)x$/)
 ]
 
 function loadStories() {

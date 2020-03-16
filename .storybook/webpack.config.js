@@ -1,6 +1,8 @@
 const path = require('path');
+const {resolve} = require('path');
 const ROOT_PATH = path.resolve(__dirname);
 const createCompiler = require('@storybook/addon-docs/mdx-compiler-plugin');
+const codesandbox = require('remark-codesandbox');
 
 // Export a function. Accept the base config as the only param.
 module.exports = async ({
@@ -28,24 +30,47 @@ module.exports = async ({
             config.module.rules = config.module.rules.filter(r => r.test.toString() !== /\.css$/.toString());
             const rules = []
             rules.push({
-                test: /\.(stories|story)\.mdx$/,
-                use: [
-                    {
-                      loader: 'babel-loader',
-                      // may or may not need this line depending on your app's setup
-                      options: {
-                        plugins: ['@babel/plugin-transform-react-jsx'],
-                      },
-                    },
-                    {
-                      loader: '@mdx-js/loader',
-                      options: {
-                        compilers: [createCompiler({})],
-                      },
-                    },
+                test: /\.stor(ies|y)\.mdx$/,
+                exclude: [/node_modules/],
+                include: [
+                  resolve(__dirname, '../src'),
+                  resolve(__dirname, '../docs')
                 ],
-                include: path.resolve(__dirname, '../'),
-                exclude: /node_modules/,
+                use: [
+                  {
+                    loader: 'babel-loader',
+                    options: {
+                      plugins: ['@babel/plugin-transform-react-jsx']
+                    }
+                  },
+                  {
+                    loader: '@mdx-js/loader',
+                    options: {
+                      compilers: [createCompiler({})],
+                      remarkPlugins: [
+                        [
+                          codesandbox,
+                          {
+                            mode: 'iframe',
+                            query: {
+                              fontsize: 14
+                            },
+                            customTemplates: {
+                              'react-controls': {
+                                extends: `file:${resolve(
+                                  __dirname,
+                                  '../docs/tools/templates/react-controls-codesandbox-template'
+                                )}`,
+                                entry: 'src/App.js'
+                              }
+                            },
+                            autoDeploy: true
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                ]
             });
             rules.push({
                 test: /\.jsx?/,
@@ -54,14 +79,22 @@ module.exports = async ({
                 exclude: /node_modules/,
             });
             rules.push({
-                test: /\.tsx?/,
-                use: [{
-                    loader: 'babel-loader'
-                }, 'ts-loader'],
-                include: path.resolve(__dirname, '../'),
-                exclude: /node_modules/,
+                test: /\.(ts|tsx)$/,
+                  exclude: [/node_modules/],
+                  include: [
+                    resolve(__dirname, '../src')
+                  ],
+                  use: [
+                      require.resolve('babel-loader'),
+                      require.resolve('ts-loader'),
+                    //   {
+                    //     loader: 'react-docgen-typescript-loader',
+                    //     options: {
+                    //       tsconfigPath: path.resolve(__dirname, '../tsconfig.json'),
+                    //     },
+                    //   }
+                  ]
             });
-
             rules.push({
                 test: /\.css$/,
                 loader: ['style-loader', 'css-loader'],

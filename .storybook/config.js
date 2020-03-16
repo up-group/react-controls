@@ -6,6 +6,10 @@ import UpTheme from './theme'
 
 // Customize the UI a bit
 addParameters({
+   docs: {
+    container: DocsContainer,
+    page: DocsPage
+  },
   options: {
     theme: UpTheme,
     showPanel: false,
@@ -36,8 +40,14 @@ addDecorator((...args) => {
   return args[0](); // return centered(...args);
 });
 
+const req = [
+  require.context('../docs', true, /Intro.story.mdx/),
+  require.context('../docs', true, /GettingStarted.story.mdx/),
+  require.context('../src/Components', true, /\.stories\.(js|ts|md)x$/)
+]
+
 function loadStories() {
-  require('../stories/index.jsx');
+  req.forEach((v) => v.keys().forEach((filename) => v(filename)));
 }
 
-configure(loadStories, module);
+configure(loadStories(), module);
