@@ -15,9 +15,9 @@ const draw = keyframes({
 });
 
 
-export const svgStyle = (props: WithThemeProps): NestedCSSProperties => ({
-  width: '48px',
-  height: '48px',
+export const svgStyle = (props: WithThemeProps & LoadingIndicatorProps): NestedCSSProperties => ({
+  width: `${props.loaderSize || 48}px`,
+  height: `${props.loaderSize || 48}px`,
   borderRadius: "24px",
   border: `5px solid rgba(245,145,0,0.60)`,
   borderTop: `5px solid ${props.theme.colorMap.primary}`,

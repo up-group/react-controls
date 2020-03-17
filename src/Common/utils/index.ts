@@ -200,5 +200,16 @@ const open = (url : string, title : string, onClose : () => void, name? : string
       el.detachEvent(evt, fn);
     }
   };
+
+  export const ruleIsValid = (value: string ,givenRegex: RegExp) => new RegExp(givenRegex).test(value) 
+
+  interface Rule {
+    text: string,
+    regex: RegExp
+  }
+  export const rulesMatch = (value: string,rules: Array<Rule>) =>
+     isEmpty(rules) ? false : rules.every(({regex})=> ruleIsValid(value,regex))
+
+
   
   export {shallowEqual} ;

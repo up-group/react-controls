@@ -14,6 +14,7 @@ import { color } from 'csx';
 import { ValueType, ActionMeta } from 'react-select/lib/types';
 import { eventFactory } from '../../../Common/utils/eventListener';
 import { isEmpty } from '../../../Common/utils'
+import defaultTheme from '../../../Common/theming/'
 
 const CancelToken = axios.CancelToken;
 
@@ -24,9 +25,9 @@ const groupStyles = {
 };
 
 const groupBadgeStyles: React.CSSProperties = {
-    backgroundColor: '#EBECF0',
+   // backgroundColor: '#EBECF0',
     borderRadius: '2em',
-    color: '#172B4D',
+    //color: '#172B4D',
     display: 'inline-block',
     fontSize: '12px',
     fontWeight: 500,
@@ -46,10 +47,9 @@ const formatGroupLabel = data => (
 
 const formatMinimumInputLenghMessage = (minimumInputLength:number) => `Veuillez renseigner au minimum ${minimumInputLength} caractères`;
 
-const customStyles = {
+const customStyles = (theme,value)  => ({
     option: (provided, state) => ({
         ...provided,
-        color: state.isSelected ? 'white' : provided.color,
         fontWeight: state.isSelected ? 700 : provided.fontWeight || 'inherit',
         backgroundColor: state.isSelected ? '#EE7F2D' : 'transparent',
         padding: 10,
@@ -74,20 +74,25 @@ const customStyles = {
         fontSize: '14px',
         border: state.isFocused ? 0 : 0,
         // This line disable the blue border
-        boxShadow: state.isFocused ? 0 : 0,
+         boxShadow: state.isFocused ? 0 : 0,
         '&:hover': {
             border: state.isFocused ? 0 : 0,
-            borderBottom: '1px solid orange',
+            borderBottom: `1px solid ${theme.colorMap.gray1}`,
         },
-        borderBottom: '1px solid orange',
+        
+        height:'29px !important',
+        minHeight:'unset !important',    
+        borderBottom: `1px solid ${theme.colorMap.gray1}`,
     }),
     dropdownIndicator: (provided, state) => ({
         ...provided,
-        color: '#EE7F2D',
+        color: theme.colorMap.grey1,
         'svg, svg path': {
-            fill: '#EE7F2D',
-        }
+            fill: theme.colorMap.grey1,
+        },
+        paddingRight: 0,
     }),
+    indicatorSeparator: () => null,// this line remove the separator
     multiValueLabel: (provided, state) => ({
         ...provided,
         backgroundColor: '#EE7F2D',
@@ -97,7 +102,13 @@ const customStyles = {
         ...provided,
         backgroundColor: '#EE7F2D',
         color: 'white',
+        
     }),
+    menuList:(provided,state)=> {
+        return ({
+        ...provided,
+        color: state.isSelected && 'red'
+    })},
     clearIndicator: (provided, state) => ({
         ...provided,
         color: '#EE7F2D',
@@ -113,9 +124,10 @@ const customStyles = {
         const opacity = state.isDisabled ? 0.5 : 1;
         const transition = 'opacity 300ms';
 
-        return { ...provided, opacity, transition };
-    }
-}
+
+        return { ...provided, opacity, transition};
+    },
+})
 
 // Exports
 export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
@@ -150,6 +162,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         tabIndex: "0",
         closeMenuOnSelect: true,
         createOptionPosition: 'last',
+        theme: defaultTheme
     }
 
     constructor(p, c) {
@@ -554,6 +567,14 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             specProps.formatCreateLabel = formatCreateLabel || this.formatCreateLabel;
             specProps.isValidNewOption = isValidNewOption  || this.isValidNewOption;
             specProps.getNewOptionData = this.getNewOptionData;
+            specProps.onCreateOptio
+        }
+
+        if (this.props.allowCreate) {
+            specProps.allowCreateWhileLoading = this.props.allowCreateWhileLoading;
+            specProps.formatCreateLabel = this.formatCreateLabel;
+            specProps.isValidNewOption = this.isValidNewOption;
+            specProps.getNewOptionData = this.getNewOptionData;
             specProps.onCreateOption = this.props.onCreateOption;
             specProps.createOptionPosition = this.props.createOptionPosition;
         }
@@ -613,7 +634,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             openMenuOnFocus: this.props.openMenuOnFocus,
             openMenuOnClick: this.props.openMenuOnClick,
             closeMenuOnSelect: this.props.closeMenuOnSelect,
-            styles: customStyles
+            styles: customStyles(this.props.theme,this.state.value),
         }
            
         return (

@@ -7,29 +7,72 @@ import { style } from "typestyle";
 import withTheme from "../../../Common/theming/withTheme";
 import defaultTheme from "../../../Common/theming";
 import * as classnames from "classnames";
-import { isEmpty } from "../../../Common/utils";
-
+import { isEmpty,ruleIsValid } from "../../../Common/utils";
+const fillColor = (props:UpInputProps) => {
+  let color: string
+  if(!props.touched) color= props.theme.colorMap.default
+  if(!!props.value) color= props.theme.colorMap.success
+  if(props.showError && props.hasError) color = props.theme.colorMap.error
+  
+  return color
+}
 const getStyles = (props: UpInputProps) =>
   style({
-    position: "absolute",
-    top: 4,
-    right: "12px",
-    cursor: "pointer",
-    zIndex: 10,
+    position: "relative",
     $nest: {
-      "&.up-password-icon:hover svg, &.up-password-icon:hover svg polygon, &.up-password-icon:hover svg path, &.up-password-icon:hover svg polyline": {
-        fill: props.theme.colorMap.primary
-      }
+      "&.up-password .up-icon-wrapper": {
+        position: 'absolute',
+        top: 4,
+        right: 0,
+        cursor: "pointer",
+        zIndex: 10,
+      },
+      "&.up-password .up-icon-wrapper svg, &.up-password .up-icon-wrapper svg polygon, &.up-password .up-icon-wrapper svg path, &.up-password .up-icon-wrapper svg polyline": {
+        fill: `${fillColor(props)} !important`,
+      },
     }
   });
 
+  const getRulesStyle = (props: UpInputProps) => 
+    style({
+      display:'block',
+      zIndex:1000,
+      width:'100%',
+      border:`0 1px 1px solid ${props.theme.colorMap.lightGrey1}`,
+      borderTop:'unset',
+      boxShadow:'0 0 5px 0 rgba(0,0,0,0.11)',
+      fontSize: '12px',
+      color: '#4E5B59',
+      lineHeight:'0px',
+      fontWeight: 400,
+      marginTop: '0.5px'
+    })
+  
+const getRuleStatus = (props: UpInputProps, regex: RegExp) =>
+  style({
+    height: '8px',
+    width: '8px',
+    backgroundColor: `${ruleIsValid(props.value, regex) ?
+      props.theme.colorMap.success :
+      props.theme.colorMap.lightGrey1
+      }`,
+    borderRadius: '50%',
+    display: 'inline-block',
+    margin: '0 10px',
+  })
+
+  interface Item {
+      text: string;
+      regex: RegExp;
+  }
+
 export interface UpPasswordProps extends UpInputProps {
   onClickBehaviour?: boolean;
+  rules?: Array<Item>
 }
 
 export interface UpPasswordState {
   isVisible: boolean;
-  focused?: boolean;
   touched?: boolean;
 }
 
@@ -94,7 +137,7 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
         ),
       0
     );
-  };
+  };  
 
   render() {
     const iconEyeOpen: IconName = "eye-open";
@@ -105,19 +148,24 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
     const {
       showSuccess,
       onBlur,
+      showError,
       onFocus,
       onClickBehaviour,
+      rules,
+      value,
+      focused,
       ...others
     } = this.props;
 
     return (
+      <React.Fragment>
       <div
         className={classnames(
           style(themeStyles),
+          getStyles(this.props),
           "up-password",
           onClickBehaviour ? onSide : ""
         )}
-        style={{ position: "relative" }}
       >
         <div style={{ width: "100%" }}>
           <UpInput
@@ -126,38 +174,32 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
             onBlur={onBlur}
             onFocus={onFocus}
             type={type}
-            iconName={this.props.iconPosition === "left" ? "lock-closed" : null}
+            showValidationStatus={false}
           />
         </div>
 
-        {!onClickBehaviour && (
           <UpSvgIcon
-            className={classnames(getStyles(this.props), "up-password-icon")}
-            onMouseOver={this.show}
-            onMouseOut={this.hide}
+            onMouseOver={!onClickBehaviour ? this.show : null}
+            onMouseOut={!onClickBehaviour ? this.hide : null}
+            onClick={onClickBehaviour ?this.toggleVisible : null}
             iconName={
-              this.state.isVisible === true ? iconEyeOpen : iconEyeClose
+              !!this.state.isVisible  ? iconEyeOpen : iconEyeClose
             }
           />
-        )}
-        {onClickBehaviour && (
-          <div
-            style={{
-              alignItems: "center",
-              display: "flex",
-              cursor: "pointer",
-              margin: "0px 0px 0px 8px"
-            }}
-          >
-            <UpSvgIcon
-              color={defaultTheme.colorMap.primary}
-              className={classnames("up-password-icon")}
-              onClick={this.toggleVisible}
-              iconName={this.state.isVisible ? iconEyeOpen : iconEyeClose}
-            />
+      </div>
+        { focused && !isEmpty(rules) && (
+          <div className={classnames(getRulesStyle(this.props),'password-rules')}>
+            {rules.map(({ text, regex }) =>
+              (
+                <div key={text} style={{ display: 'flex', alignItems: 'center' }}>
+                  <span className={getRuleStatus(this.props, regex)} />
+                  <p>{text}</p>
+                </div>
+              )
+            )}
           </div>
         )}
-      </div>
+      </React.Fragment>
     );
   }
 }

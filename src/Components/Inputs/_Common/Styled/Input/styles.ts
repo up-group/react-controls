@@ -52,7 +52,7 @@ const sizeMap = {
 };
 
 export const statusStyles = (props : StyledProps) => {
-  if (!props.hasError && props.showSuccess && !isEmpty(props.value)) {
+  if (!props.hasError && props.showSuccess && !isEmpty(props.value) && props.type !=='search') {
     return style({
       $nest: {
         "& .up-input-group .up-input": {
@@ -83,7 +83,7 @@ export const statusStyles = (props : StyledProps) => {
           fill: props.theme
             ? props.theme.colorMap.danger
             : defaultTheme.colorMap.danger
-        }
+        },
       }
     });
   }
@@ -134,6 +134,16 @@ export const inputStyles = (props: UpInputProps & WithThemeProps) : NestedCSSPro
       },
       ".up-input[readonly] ": {
         border: 'unset',
+      },
+      '.up-input[type="search"]': {
+        backgroundColor: '#F2F2F2',
+        borderBottom: 'unset',
+        borderRadius: '25px',
+        height: '44px',
+        paddingRight: '45px !important',
+        paddingLeft: '45px !important',
+        fontWeight: 'bold',
+        color: props.theme.colorMap.grey1
       },
       ".up-input:disabled, .up-input.up-disabled": {
         boxShadow: "none",
@@ -363,6 +373,26 @@ export const inputStyles = (props: UpInputProps & WithThemeProps) : NestedCSSPro
         margin: props.theme.inputBorderLess ? "6px 0px" : "6px",
         color: "#5c7080"
       },
+      "& .up-input-group.up-input-search .up-icon-wrapper": {
+        left:"15px",
+        top: '16px',
+        color: "#5c7080",
+        margin: 'unset',
+        width:'15px'
+      },
+      "& .up-input-group.up-input-search .up-icon-wrapper.clear-icon": {
+        right:"10px",
+        left: 'unset',
+        cursor: 'pointer',
+        top: '16px',
+      },
+      "& .up-input-group.up-input-search .up-loading-indicator": {
+        position: 'absolute',
+        right:"10px",
+        left: 'unset',
+        top:"8px",
+        cursor: 'unset'
+      },
       ".up-input-group .up-spinner": {
         margin: "3px"
       },
@@ -530,7 +560,10 @@ export const inputStyles = (props: UpInputProps & WithThemeProps) : NestedCSSPro
       },
       ".up-dark .up-input-group.up-intent-danger .up-icon-wrapper": {
         color: "#ff7373"
-      }
+      },
+      "& .up-input-group.up-input-search .up-icon-wrapper.clear-icon svg path": {
+        fill: 'transparent'
+      },
     }
   };
 };
@@ -544,12 +577,8 @@ export const focusStyles = (props: StyledProps) =>
              "& .up-input-group.up-input-focused label, & .up-input-group.up-input-valued label": {
                transform: "translate(0, 2px) scale(.75)",
                fontSize: "12px",
-               color: props.theme.colorMap.primary
+               color: props.theme.colorMap.gray1
              },
-             "& .up-input-group.up-input-readonly label": {
-              color: props.theme.colorMap.gray1,
-            },
-
            }
          });
 

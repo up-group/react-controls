@@ -41,6 +41,7 @@ export interface BaseControlProps<_BaseType> extends WithThemeProps {
   error?: string;
   touched?: boolean;
   helpMessage?: string | RenderHelp;
+  onClear?: () => void
 }
 export interface BaseControlState<_BaseType> {
   error?: string;
@@ -160,6 +161,14 @@ export abstract class BaseControlComponent<
   ) => {
     this.checkAndDispatch(event, value);
   };
+
+  public handleClearEvent = () => {
+    if (this.isControlled) {
+      this.props.onClear()
+    } else {
+      this.setState({value: undefined})
+    }
+  }
 
   private checkData = (value?: any) => {
     return this._validationManager.isValidValue(value);
@@ -294,4 +303,6 @@ export abstract class BaseControlComponent<
       this.props.onChange(event, data, error);
     }
   };
+  
 }
+

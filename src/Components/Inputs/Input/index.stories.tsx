@@ -12,6 +12,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import UpPassword from "../Password";
 import { style } from "typestyle";
+import UpSelect from "../../Inputs/Select";
 
 const stories = storiesOf("Inputs/UpInput", module);
 
@@ -174,6 +175,65 @@ const PhoneInput = props => {
   );
 };
 
+const ControlledSeacrhInput = props => {
+  const [value,setValue] = React.useState('')
+  const [isLoading,setIsLoading] = React.useState(false);
+  
+  return (
+    <UpInput
+      type='search' 
+      value={value} 
+      onChange={(event,value)=>{
+        setIsLoading(true)
+        setValue(value)
+        setTimeout(() => {
+          setIsLoading(false)
+        }, 2000);
+      }} 
+      onClear={()=>setValue('')} 
+      placeholder='placeholder ...'   
+      iconPosition={'left'} 
+      hasClearOption
+      isLoading={isLoading}
+     />
+  )
+}
+
+const UncontrolledSearchInput = () =>  <UpInput type='search' iconPosition={'left'} hasClearOption isLoading/>
+
+const SimpleSelect = (props) => {
+  let [selectedValue, setValue] = React.useState({ id: 1, text: 'M.' });
+  
+  const onChange = (event, value) => {
+      setValue(value);
+  }
+
+  return (
+      <UpSelect 
+          className={style({width:'220px'})}
+          tooltip={"Civilité"} 
+          isRequired={true} 
+          default={null} 
+          data={[
+              { id: 1, text: 'M.' },
+              { id: 2, text: 'Mme' },
+              { id: 3, text: 'Mlle' },
+              { id: 4, text: 'Dr' },
+          ]}
+          value={selectedValue} 
+          onChange={onChange} />
+)}
+
+const FormWithSelect = (props)=> {
+  return (
+    <div style={{width:'100%'}}>
+  <form style={{display:'flex',justifyContent:'space-between' ,marginTop:'25px'}}>
+    <SimpleSelect/>
+    <SimpleInput/>
+  </form>
+</div>
+  )
+}
 
 stories.add('Text input',
   () => (
@@ -199,9 +259,12 @@ stories.add('Text input',
   () => (
     <UpGrid>
       <UpRow>
-        <UpCol span={6}>
-          <UpLabel text={'Recherche :'} required={true} inline={true}>
-            <UpInput type={"search"} />
+        <UpCol span={12}>
+          <UpLabel text={'Controlled Recherche :'} required={true} inline={true}>
+            <ControlledSeacrhInput/>
+          </UpLabel>
+          <UpLabel text={'Uncontrolled Recherche :'} required={true} inline={true}>
+            <UncontrolledSearchInput/>
           </UpLabel>
         </UpCol>
       </UpRow>
@@ -297,4 +360,4 @@ stories.add('Text input',
       </UpRow>
     </UpGrid>
 ), { info: 'Champ phone' }
-);
+).add('FormWithSelect',()=> <FormWithSelect/>);

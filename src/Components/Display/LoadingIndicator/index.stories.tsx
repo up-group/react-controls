@@ -48,7 +48,7 @@ stories.addDecorator(getRootContainer('UpLoadingIndicator'));
 
 stories.add('Simple usage',
    () => (
-      <UpLoadingIndicator isLoading={true} message="Chargement en cours"></UpLoadingIndicator>
+      <UpLoadingIndicator  isLoading={true} message="Chargement en cours"></UpLoadingIndicator>
   ), { info : 'Utilisation du composant en lui passant les données à afficher'}
 ).add('Modal',
  () => (

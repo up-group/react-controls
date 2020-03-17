@@ -221,6 +221,8 @@ const colorMap: ThemeColorMap = {
   offwhite: "#f5f5f5",
 
   grey1: colors.grey,
+  lightGrey1: "#F2F2F2",
+  
 
   black1: "#0a0a0a",
   black2: "#2d2d2d",
