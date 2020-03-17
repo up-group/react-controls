@@ -26,7 +26,7 @@ function onButtonClick() {
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
-const stories = storiesOf('Inputs/FinanceurInput', module) ;
+const stories = storiesOf('Components|Inputs/FinanceurInput', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('FinanceurInput'));

@@ -37,7 +37,7 @@ class ToggleWrapper extends React.Component<ToggleWrapperProps, ToggleWrapperSta
     }
 }
 
-const stories = storiesOf('Inputs/UpToggle', module) ;
+const stories = storiesOf('Components|Inputs/UpToggle', module) ;
 
 stories.addDecorator(withKnobs)
 stories.add('Simple usage',

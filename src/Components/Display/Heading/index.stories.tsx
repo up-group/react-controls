@@ -7,7 +7,7 @@ import { UpHeading } from '../../..';
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
-const stories = storiesOf('Display/UpHeading', module) ;
+const stories = storiesOf('Components|Display/UpHeading', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpHeading'));

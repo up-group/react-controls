@@ -126,7 +126,7 @@ export class Test extends React.Component<testProps, testState>{
     }
 }
 
-const stories = storiesOf('Inputs/UpSelect', module) ;
+const stories = storiesOf('Components|Inputs/UpSelect', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpSelect'));

@@ -16,7 +16,7 @@ import * as Yup from "yup";
 
 import { style } from 'typestyle';
 
-const stories = storiesOf('Inputs/UpDropFile', module) ;
+const stories = storiesOf('Components|Inputs/UpDropFile', module) ;
 
 const FileForm = props => {
   const {

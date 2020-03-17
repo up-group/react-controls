@@ -13,7 +13,7 @@ const Title = (
     <div style={{ borderBottom: "1px dotted white" }}>Mon JSX Panel</div>
 );
 
-const stories = storiesOf('Containers/UpPanel', module) ;
+const stories = storiesOf('Components|Containers/UpPanel', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpPanel'));

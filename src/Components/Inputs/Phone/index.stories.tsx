@@ -9,7 +9,7 @@ import UpPhone from './UpPhone'
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
-const stories = storiesOf('Inputs/UpPhone', module) ;
+const stories = storiesOf('Components|Inputs/UpPhone', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpPhone'));

@@ -10,7 +10,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import UpPassword from '../Password';
 
-const stories = storiesOf('Inputs/UpDate', module) ;
+const stories = storiesOf('Components|Inputs/UpDate', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpDate'));

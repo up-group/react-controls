@@ -17,7 +17,7 @@ import * as Yup from 'yup';
 import UpInput from '../Input';
 import UpNumber from '../Number/UpNumber';
 import UpCheckBox from '../Checkbox';
-const stories = storiesOf('Inputs/UpRadio', module) ;
+const stories = storiesOf('Components|Inputs/UpRadio', module) ;
 
 
 const SimpleRadio = (props) => {

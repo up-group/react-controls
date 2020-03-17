@@ -6,7 +6,7 @@ import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import { style } from 'typestyle';
 
-const stories = storiesOf('Display/UpBulle', module) ;
+const stories = storiesOf('Components|Display/UpBulle', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpBulle'));

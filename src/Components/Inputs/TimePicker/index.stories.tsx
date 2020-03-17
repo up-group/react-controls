@@ -8,7 +8,7 @@ import UpBox from '../../Containers/Box'
 
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
-const stories = storiesOf('Inputs/UpTimePicker', module) ;
+const stories = storiesOf('Components|Inputs/UpTimePicker', module) ;
 
 stories.addDecorator(withKnobs)
 stories.add('Simple usage',

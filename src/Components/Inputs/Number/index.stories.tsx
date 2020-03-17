@@ -11,7 +11,7 @@ import UpLabel from '../../Display/Label'
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
-const stories = storiesOf('Inputs/UpNumber', module) ;
+const stories = storiesOf('Components|Inputs/UpNumber', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpNumber'));

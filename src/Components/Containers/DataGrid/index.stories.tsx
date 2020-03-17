@@ -80,7 +80,7 @@ class SpecifiqueCellFormatter {
   }
 }
 
-const storiesPagination = storiesOf("Containers/UpPagination", module);
+const storiesPagination = storiesOf("Components|Containers/UpPagination", module);
 
 storiesPagination.addDecorator(withKnobs);
 storiesPagination.addDecorator(getRootContainer("UpPagination"));

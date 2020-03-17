@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import UpBox from './'
 import { getRootContainer } from '../../../Common/stories';
 
-const stories = storiesOf('Containers/UpBox', module) ;
+const stories = storiesOf('Components|Containers/UpBox', module) ;
 
 stories.addDecorator(getRootContainer('UpBox'));
 

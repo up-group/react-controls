@@ -11,7 +11,7 @@ import UpPDFViewer from './UpPDFViewer';
 
 import { getRootContainer } from '../../../Common/stories';
 import UpCodeViewer from '../CodeViewer';
-const stories = storiesOf('Display/UpPDFViewer', module) ;
+const stories = storiesOf('Components|Display/UpPDFViewer', module) ;
 stories.addDecorator(withKnobs);
 stories.addDecorator(getRootContainer('UpPDFViewer'));
 

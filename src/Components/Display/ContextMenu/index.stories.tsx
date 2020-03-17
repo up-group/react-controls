@@ -53,7 +53,7 @@ export default class SimpleMenu extends React.PureComponent<any, SimpleMenuState
     }
 }
 
-const stories = storiesOf('Display/UpContextMenu', module) ;
+const stories = storiesOf('Components|Display/UpContextMenu', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpContextMenu'));

@@ -19,7 +19,7 @@ import UpHeading from '../Heading';
 import { MentorNames } from "../../../Common/theming/mentors";
 import { IllustrationNames } from "../../../Common/theming/illustrations";
 
-const stories = storiesOf('Display/UpSvgIcon', module) ;
+const stories = storiesOf('Components|Display/UpSvgIcon', module) ;
 stories.addDecorator(withKnobs);
 stories.addDecorator(getRootContainer('UpSvgIcon'));
 

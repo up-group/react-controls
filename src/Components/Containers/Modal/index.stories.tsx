@@ -59,7 +59,7 @@ class ModalWrapper extends React.Component<ModalWrapperProps, ModalWrapperState>
 
 const HTML = `<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> <html> <head> <title>Mon titre</title> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="UTF-8"> </head> <body text="#000000" vlink="#990000" alink="#990000" link="#990000" bgcolor="#ffffff"><p>Mon message</p></body></html>`;
 
-const stories = storiesOf('Containers/UpModal', module) ;
+const stories = storiesOf('Components|Containers/UpModal', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpModal'));

@@ -122,7 +122,7 @@ const HookedMenu = (props) => {
     );
 };
 
-storiesOf('Display/UpMenu', module)
+storiesOf('Components|Display/UpMenu', module)
     .add('Simple usage',
         () => (<HookedMenu />), { info : 'Utilisation du composant en lui passant les données à afficher'}
 ).add('Simple usage 2',

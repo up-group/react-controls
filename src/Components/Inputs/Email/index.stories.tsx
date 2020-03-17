@@ -9,7 +9,7 @@ import UpEmail from './UpEmail'
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs } from '@storybook/addon-knobs';
 
-const stories = storiesOf('Inputs/UpEmail', module) ;
+const stories = storiesOf('Components|Inputs/UpEmail', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpEmail'));

@@ -8,7 +8,7 @@ import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
 const alertFont = { fontSize: "36px", color: "green", }
 
-const stories = storiesOf('Display/UpIcons', module);
+const stories = storiesOf('Components|Display/UpIcons', module);
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpIcons'));

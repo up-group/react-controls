@@ -41,7 +41,7 @@ const styles : {[key : string] : React.CSSProperties} = {
   },
 };
 
-const stories = storiesOf('Display/UpLoadingIndicator', module) ;
+const stories = storiesOf('Components|Display/UpLoadingIndicator', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpLoadingIndicator'));

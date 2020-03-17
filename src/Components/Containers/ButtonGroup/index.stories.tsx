@@ -8,7 +8,7 @@ import { getRootContainer } from "../../../Common/stories";
 import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
 import { UpButton } from "../../..";
 
-const stories = storiesOf("Containers/UpButtonGroup", module);
+const stories = storiesOf("Components|Containers/UpButtonGroup", module);
 
 stories.addDecorator(withKnobs);
 stories.addDecorator(getRootContainer("UpButtonGroup"));

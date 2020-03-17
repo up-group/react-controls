@@ -12,7 +12,7 @@ import UpBox from '../../Containers/Box'
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
-const stories = storiesOf('Containers/UpBadge', module) ;
+const stories = storiesOf('Components|Containers/UpBadge', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpBadge'));

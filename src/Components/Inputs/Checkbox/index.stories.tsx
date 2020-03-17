@@ -157,7 +157,7 @@ const MultipleCheckbox = (props) => {
     }]} />
 }
 
-const stories = storiesOf('Inputs/UpCheckbox', module) ;
+const stories = storiesOf('Components|Inputs/UpCheckbox', module) ;
 stories.addDecorator(getRootContainer('UpCheckbox'));
 stories.addDecorator(withKnobs)
 stories.add('Simple usage',

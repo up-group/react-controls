@@ -8,7 +8,7 @@ import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import UpLoadingIndicator from '../LoadingIndicator';
 import { style } from 'typestyle';
 
-const stories = storiesOf('Display/UpNotification', module) ;
+const stories = storiesOf('Components|Display/UpNotification', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpNotification'));

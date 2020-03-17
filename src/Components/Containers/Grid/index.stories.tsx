@@ -11,7 +11,7 @@ import UpPanel from '../../Containers/Panel'
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
-const stories = storiesOf('Containers/UpGrid', module) ;
+const stories = storiesOf('Components|Containers/UpGrid', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpGrid'));

@@ -13,7 +13,7 @@ import { Formik } from 'formik';
 
 import * as Yup from 'yup';
 
-const stories = storiesOf('Inputs/UpRichText', module) ;
+const stories = storiesOf('Components|Inputs/UpRichText', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpRichText'));

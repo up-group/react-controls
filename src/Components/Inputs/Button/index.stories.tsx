@@ -26,7 +26,7 @@ const codeStoryADroite =
   extraActions={actions}>
 </UpButton>`
 
-const stories = storiesOf('Inputs/UpButton', module);
+const stories = storiesOf('Components|Inputs/UpButton', module);
 stories.addDecorator(withKnobs);
 stories.add('Simple usage',
   () => {

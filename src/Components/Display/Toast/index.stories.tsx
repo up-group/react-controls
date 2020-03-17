@@ -10,7 +10,7 @@ import UpToast from './'
 import { getRootContainer } from '../../../Common/stories';
 import UpParagraph from '../Paragraph';
 import { IntentType } from 'theming/types';
-const stories = storiesOf('Display/UpToast', module) ;
+const stories = storiesOf('Components|Display/UpToast', module) ;
 stories.addDecorator(withKnobs);
 stories.addDecorator(getRootContainer('UpToast'));
 

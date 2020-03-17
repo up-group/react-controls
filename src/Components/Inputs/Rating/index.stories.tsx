@@ -6,7 +6,7 @@ import UpRating from './UpRating'
 import { withKnobs } from '@storybook/addon-knobs';
 import { getRootContainer } from '../../../Common/stories';
 
-const stories = storiesOf('Inputs/UpRating', module) ;
+const stories = storiesOf('Components|Inputs/UpRating', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpRating'));

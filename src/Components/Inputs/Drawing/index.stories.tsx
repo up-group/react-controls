@@ -79,7 +79,7 @@ export default class SimpleDrawing extends React.PureComponent<any, SimpleDrawin
     }
 }
 
-const stories = storiesOf('Inputs/UpDrawing', module) ;
+const stories = storiesOf('Components|Inputs/UpDrawing', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpDrawing'));

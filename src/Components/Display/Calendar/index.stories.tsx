@@ -13,7 +13,7 @@ import UpParagraph from '../../Display/Paragraph';
 import UpCodeViewer from '../CodeViewer';
 import UpLink from '../Link';
 
-const stories = storiesOf('Display/UpCalendar', module) ;
+const stories = storiesOf('Components|Display/UpCalendar', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpCalendar'));

@@ -9,7 +9,7 @@ import UpLigne from './'
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
-const stories = storiesOf('Display/UpLigne', module) ;
+const stories = storiesOf('Components|Display/UpLigne', module) ;
 
 stories.addDecorator(withKnobs)
 stories.addDecorator(getRootContainer('UpLigne'));

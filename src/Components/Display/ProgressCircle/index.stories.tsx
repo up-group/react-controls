@@ -14,7 +14,7 @@ import { IconNames } from '../../../Common/theming/icons';
 import { getRootContainer } from '../../../Common/stories';
 import UpProgessCircle from '.';
 import { bool } from 'prop-types';
-const stories = storiesOf('Display/UpProgessCircle', module) ;
+const stories = storiesOf('Components|Display/UpProgessCircle', module) ;
 stories.addDecorator(withKnobs);
 stories.addDecorator(getRootContainer('UpProgessCircle'));
 
