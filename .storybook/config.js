@@ -11,7 +11,7 @@ addParameters({
     theme: UpTheme,
     showPanel: false,
     panelPosition: 'right',
-    /*storySort: (a, b) => {
+    storySort: (a, b) => {
       if (a[0].includes('docs-')) {
         if (a[0].includes('intro-')) {
           return -1;
@@ -21,7 +21,7 @@ addParameters({
       }
 
       return 1;
-    }*/
+    }
   }
 });
 

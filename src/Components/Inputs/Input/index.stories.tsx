@@ -14,7 +14,7 @@ import UpPassword from "../Password";
 import { style } from "typestyle";
 import UpSelect from "../../Inputs/Select";
 
-const stories = storiesOf("Inputs/UpInput", module);
+const stories = storiesOf("Components|Inputs/UpInput", module);
 
 stories.addDecorator(withKnobs);
 stories.addDecorator(getRootContainer("UpInput"));

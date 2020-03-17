@@ -10,7 +10,7 @@ import { getRootContainer } from "../../../Common/stories";
 import { withKnobs } from "@storybook/addon-knobs";
 import {  rulesMatch } from "../../../Common/utils";
 
-const stories = storiesOf("Inputs/UpPassword", module);
+const stories = storiesOf("Components|Inputs/UpPassword", module);
 
 stories.addDecorator(withKnobs);
 stories.addDecorator(getRootContainer("UpPassword"));

@@ -97,7 +97,7 @@ storiesPagination.add(
   { info: "Utilisation du composant en lui passant les données à afficher" }
 );
 
-const stories = storiesOf("Containers/UpDataGrid", module);
+const stories = storiesOf("Components|Containers/UpDataGrid", module);
 stories.addDecorator(withKnobs);
 stories.addDecorator(getRootContainer("UpDataGrid"));
 

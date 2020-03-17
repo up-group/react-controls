@@ -22,7 +22,7 @@ const TooltipRenderer = (
   </div>
 );
 
-const stories = storiesOf("Display/UpTooltip", module);
+const stories = storiesOf("Components|Display/UpTooltip", module);
 
 stories.addDecorator(withKnobs);
 stories.addDecorator(getRootContainer("UpTooltip"));
