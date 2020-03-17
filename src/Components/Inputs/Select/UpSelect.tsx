@@ -50,7 +50,6 @@ const formatMinimumInputLenghMessage = (minimumInputLength:number) => `Veuillez 
 const customStyles = (theme,value)  => ({
     option: (provided, state) => ({
         ...provided,
-        color: state.isSelected && 'red',
         fontWeight: state.isSelected ? 700 : provided.fontWeight || 'inherit',
         backgroundColor: state.isSelected ? '#EE7F2D' : 'transparent',
         padding: 10,
@@ -80,14 +79,18 @@ const customStyles = (theme,value)  => ({
             border: state.isFocused ? 0 : 0,
             borderBottom: `1px solid ${theme.colorMap.gray1}`,
         },
+        
+        height:'29px !important',
+        minHeight:'unset !important',    
         borderBottom: `1px solid ${theme.colorMap.gray1}`,
     }),
     dropdownIndicator: (provided, state) => ({
         ...provided,
-        color: theme.colorMap.gray1,
+        color: theme.colorMap.grey1,
         'svg, svg path': {
-            fill: theme.colorMap.gray1,
-        }
+            fill: theme.colorMap.grey1,
+        },
+        paddingRight: 0,
     }),
     indicatorSeparator: () => null,// this line remove the separator
     multiValueLabel: (provided, state) => ({
@@ -102,7 +105,6 @@ const customStyles = (theme,value)  => ({
         
     }),
     menuList:(provided,state)=> {
-        console.log(value)
         return ({
         ...provided,
         color: state.isSelected && 'red'
@@ -122,8 +124,9 @@ const customStyles = (theme,value)  => ({
         const opacity = state.isDisabled ? 0.5 : 1;
         const transition = 'opacity 300ms';
 
+
         return { ...provided, opacity, transition};
-    }
+    },
 })
 
 // Exports

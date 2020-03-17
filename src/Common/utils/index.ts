@@ -201,15 +201,13 @@ const open = (url : string, title : string, onClose : () => void, name? : string
     }
   };
 
-  export const ruleIsValid = (value: string ,givenRegex: RegExp) => {
-    const regex = new RegExp(givenRegex);
-    return regex.test(value)
-  }
-  interface items {
+  export const ruleIsValid = (value: string ,givenRegex: RegExp) => new RegExp(givenRegex).test(value) 
+
+  interface Rule {
     text: string,
     regex: RegExp
   }
-  export const rulesMatch = (value: string,rules: Array<items>) =>
+  export const rulesMatch = (value: string,rules: Array<Rule>) =>
      isEmpty(rules) ? false : rules.every(({regex})=> ruleIsValid(value,regex))
 
 

@@ -23,7 +23,7 @@ const ControlledPassword = props => {
     <UpPassword
       value={value}
       onChange={(e, v) => setValue(v)}
-      onClickBehaviour={false}
+      onClickBehaviour={true}
     />
   );
 };

@@ -1,6 +1,6 @@
 import { keyframes } from 'typestyle';
 import { NestedCSSProperties } from 'typestyle/lib/types';
-import { LoadingIndicatorProps,LoaderSize } from './UpLoadingIndicator';
+import { LoadingIndicatorProps } from './UpLoadingIndicator';
 import { WithThemeProps } from '../../../Common/theming/withTheme';
 import { CSSProperties } from 'react';
 
@@ -15,7 +15,7 @@ const draw = keyframes({
 });
 
 
-export const svgStyle = (props: WithThemeProps & LoaderSize): NestedCSSProperties => ({
+export const svgStyle = (props: WithThemeProps & LoadingIndicatorProps): NestedCSSProperties => ({
   width: `${props.loaderSize || 48}px`,
   height: `${props.loaderSize || 48}px`,
   borderRadius: "24px",

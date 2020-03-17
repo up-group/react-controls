@@ -13,7 +13,7 @@ import defaultTheme from '../../../Common/theming/';
 import { generateId, isEmpty, shallowEqual } from '../../../Common/utils';
 import UpLoadingIndicator from '../../Display/LoadingIndicator'
 
-const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> = (props: UpInputStyledProps & WithThemeProps) => {
+const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps & UpInputProps> = (props: UpInputStyledProps & WithThemeProps & UpInputProps) => {
 
   const {
     name,
@@ -33,17 +33,18 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps> =
     hasClearOption,
     onClear,
     value,
-    isLoading
+    isLoading,
+    hasValidationStatus
   } = props;
 
   let iconName = props.iconName;
   let icon: any = null;
   let RightIcon: any = null;
   let size = 20;
-  if (props.hasError && props.showError && type !== 'search' && type !== 'password') {
+  if (props.hasError && props.showError && type !== 'search' && hasValidationStatus) {
     iconName = "close";
     size = 8;
-  } else if (!props.hasError && !isEmpty(value) && props.showSuccess && type !== 'search' && type !== 'password') {
+  } else if (!props.hasError && !isEmpty(value) && props.showSuccess && type !== 'search' && hasValidationStatus) {
     iconName = "checkmark";
     size = 8;
   }
@@ -140,6 +141,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
     width: "fill",
     iconPosition: 'right',
     hasClearOption: false,
+    hasValidationStatus: true,
   };
 
   constructor(p, c) {
@@ -246,6 +248,8 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
         autoFocus={this.props.autoFocus}
         onClear={this.clearValue}
         isLoading={this.props.isLoading}
+        className={this.props.className}
+        hasValidationStatus={this.props.hasValidationStatus}
       >
         {this.props.children}
       </BaseInput>

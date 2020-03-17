@@ -10,27 +10,25 @@ export type LoadingIndicatorDisplayMode = "inline" | "layer" | "modal" | "zone"
 
 import defaultTheme from '../../../Common/theming';
 import UpBox from '../../Containers/Box';
-export type LoaderSize ={
-    loaderSize?:number
-} 
+
 export interface LoadingIndicatorProps {
-    isLoading: boolean;
+    isLoading?: boolean;
     displayMode?: LoadingIndicatorDisplayMode;
     message?: string;
     title?: string;
     className?: string;
     width?: number;
     height?: number;
-    loaderSize?:number;
+    loaderSize?: number;
 }
 type SVGProps = React.SVGAttributes<SVGSVGElement>;
 
-const SvgIcon: React.StatelessComponent<SVGProps & WithThemeProps & LoaderSize> = (props: SVGProps & WithThemeProps & LoaderSize ) => {
+const SvgIcon: React.StatelessComponent<SVGProps & WithThemeProps & LoadingIndicatorProps> = (props: SVGProps & WithThemeProps & LoadingIndicatorProps ) => {
     const { children, className, loaderSize, ...others } = props;
     return <svg className={classnames(style(svgStyle(props)), className)} {...others}>{children}</svg>;
 }
 
-class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithThemeProps & LoaderSize>{
+class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithThemeProps>{
 
     public static defaultProps: Partial<LoadingIndicatorProps> & WithThemeProps = {
         theme: defaultTheme,

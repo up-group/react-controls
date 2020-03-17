@@ -60,4 +60,6 @@ export interface UpInputProps extends CommonProps<string> {
     onClear?: ()=> void;
     isLoading?: boolean;
     focused?:boolean;
+    className?: string;
+    hasValidationStatus?: boolean;
 }

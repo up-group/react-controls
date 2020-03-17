@@ -83,7 +83,7 @@ export const statusStyles = (props : StyledProps) => {
           fill: props.theme
             ? props.theme.colorMap.danger
             : defaultTheme.colorMap.danger
-        }
+        },
       }
     });
   }

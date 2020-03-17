@@ -287,4 +287,4 @@ stories.add('Simple usage',
                 onChange={console.log} />
         </div>
 ), { info : 'Utilisation du composant avec autorisation de création de nouvelle option'}
-);
+)
