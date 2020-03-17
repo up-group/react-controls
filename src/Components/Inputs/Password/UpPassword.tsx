@@ -113,6 +113,7 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
           {
             isVisible: false
           },
+          () => (this.updatingHide = null)
         ),
       500
     );
