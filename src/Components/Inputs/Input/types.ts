@@ -61,5 +61,5 @@ export interface UpInputProps extends CommonProps<string> {
     isLoading?: boolean;
     focused?:boolean;
     className?: string;
-    hasValidationStatus?: boolean;
+    showValidationStatus?: boolean;
 }

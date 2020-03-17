@@ -174,7 +174,7 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
             onBlur={onBlur}
             onFocus={onFocus}
             type={type}
-            hasValidationStatus={false}
+            showValidationStatus={false}
           />
         </div>
 

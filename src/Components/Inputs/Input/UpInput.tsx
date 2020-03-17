@@ -34,17 +34,17 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps & 
     onClear,
     value,
     isLoading,
-    hasValidationStatus
+    showValidationStatus
   } = props;
 
   let iconName = props.iconName;
   let icon: any = null;
   let RightIcon: any = null;
   let size = 20;
-  if (props.hasError && props.showError && type !== 'search' && hasValidationStatus) {
+  if (props.hasError && props.showError && type !== 'search' && showValidationStatus) {
     iconName = "close";
     size = 8;
-  } else if (!props.hasError && !isEmpty(value) && props.showSuccess && type !== 'search' && hasValidationStatus) {
+  } else if (!props.hasError && !isEmpty(value) && props.showSuccess && type !== 'search' && showValidationStatus) {
     iconName = "checkmark";
     size = 8;
   }
@@ -141,7 +141,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
     width: "fill",
     iconPosition: 'right',
     hasClearOption: false,
-    hasValidationStatus: true,
+    showValidationStatus: true,
   };
 
   constructor(p, c) {
@@ -249,7 +249,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
         onClear={this.clearValue}
         isLoading={this.props.isLoading}
         className={this.props.className}
-        hasValidationStatus={this.props.hasValidationStatus}
+        showValidationStatus={this.props.showValidationStatus}
       >
         {this.props.children}
       </BaseInput>
