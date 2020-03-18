@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { storiesOf } from '@storybook/react'
 
 import UpDefaultTheme from '../../../Common/theming'
 import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
@@ -13,12 +12,12 @@ import { Formik } from 'formik';
 
 import * as Yup from 'yup';
 
-const stories = storiesOf('Components|Inputs/UpRichText', module) ;
+export default { 
+  title: 'Components|Inputs/UpRating',
+  decorators : [withKnobs, getRootContainer('UpRating')]
+};
 
-stories.addDecorator(withKnobs)
-stories.addDecorator(getRootContainer('UpRichText'));
-
-stories.add('Simple usage',
+export const General =
     () => (
         <UpThemeProvider theme={UpDefaultTheme}>
             <div style={{ padding: "30px" }}>
@@ -27,9 +26,9 @@ stories.add('Simple usage',
                 </UpLabel>
             </div>
         </UpThemeProvider>
-    ), { info :  'Utilisation avec plusieurs options'}
-).add('Form',
-() => (
+    )
+
+export const IntegrationInForm = () => (
     <Formik initialValues={{ description: ''}}
             onSubmit={(values, { setSubmitting }) => {
               setTimeout(() => {
@@ -65,4 +64,4 @@ stories.add('Simple usage',
               );
             }}
     </Formik>
-), { info : 'Utilisation dans Formik'});
+)

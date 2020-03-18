@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { storiesOf } from '@storybook/react'
 
 import UpDefaultTheme from '../../../Common/theming'
 import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
@@ -11,9 +10,11 @@ import UpPDFViewer from './UpPDFViewer';
 
 import { getRootContainer } from '../../../Common/stories';
 import UpCodeViewer from '../CodeViewer';
-const stories = storiesOf('Components|Display/UpPDFViewer', module) ;
-stories.addDecorator(withKnobs);
-stories.addDecorator(getRootContainer('UpPDFViewer'));
+
+export default { 
+  title: 'Components|Display/UpPDFViewer',
+  decorators : [withKnobs, getRootContainer('UpPDFViewer')]
+};
 
 const codeStoryPDFViewer = 
 `const action = {() => { console.log("PDF Loaded Successfully") }};
@@ -37,7 +38,7 @@ const sample = 'JVBERi0xLjcKCjEgMCBvYmogICUgZW50cnkgcG9pbnQKPDwKICAvVHlwZSAvQ2F0
   'MDAwIG4gCjAwMDAwMDAzODAgMDAwMDAgbiAKdHJhaWxlcgo8PAogIC9TaXplIDYKICAvUm9v' +
   'dCAxIDAgUgo+PgpzdGFydHhyZWYKNDkyCiUlRU9G';
 
-stories.add('Simple usage',
+export const General =
    () => {
     return <UpThemeProvider theme={UpDefaultTheme}>
       <UpBox style={{margin:"40px 30px"}}>
@@ -50,5 +51,4 @@ stories.add('Simple usage',
         </UpCodeViewer>
       </UpBox>
     </UpThemeProvider>
-   }, {info: 'Utilisation du composant en lui passant les données à afficher'}
-);
+   }

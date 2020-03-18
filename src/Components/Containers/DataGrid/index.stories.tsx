@@ -1,8 +1,6 @@
 import * as React from "react";
 import * as classnames from "classnames";
 
-import { storiesOf } from "@storybook/react";
-
 import UpDefaultTheme, { UpThemeInterface } from "../../../Common/theming";
 import { WithThemeProps } from "../../../Common/theming/types";
 
@@ -13,6 +11,11 @@ import { getRootContainer } from "../../../Common/stories";
 import { withKnobs } from "@storybook/addon-knobs";
 import { style } from "typestyle";
 import { UpParagraph, UpBox, UpHeading, UpCodeViewer  } from "../../../Components";
+
+export default { 
+  title: 'Components|Containers/UpDataGrid',
+  decorators : [withKnobs, getRootContainer('UpDataGrid')]
+};
 
 const simpleDataGrid = 
   `const data = [];
@@ -80,27 +83,6 @@ class SpecifiqueCellFormatter {
   }
 }
 
-const storiesPagination = storiesOf("Components|Containers/UpPagination", module);
-
-storiesPagination.addDecorator(withKnobs);
-storiesPagination.addDecorator(getRootContainer("UpPagination"));
-storiesPagination.add(
-  "Général",
-  () => (
-    <UpPagination
-      total={100}
-      onPageChange={(page, take, skip) => {
-        console.log(page, take, skip);
-      }}
-    />
-  ),
-  { info: "Utilisation du composant en lui passant les données à afficher" }
-);
-
-const stories = storiesOf("Components|Containers/UpDataGrid", module);
-stories.addDecorator(withKnobs);
-stories.addDecorator(getRootContainer("UpDataGrid"));
-
 const paginationCounterStyle = (props: WithThemeProps) =>
   style({
     margin: "0px 0px",
@@ -115,9 +97,8 @@ const paginationCounterStyle = (props: WithThemeProps) =>
     cursor: "pointer"
   });
 
-stories
-  .add(
-    "Général",
+
+export const General =
     () => (
       <>
       <UpParagraph className={style({
@@ -169,31 +150,9 @@ stories
           <UpCodeViewer code={simpleDataGrid}></UpCodeViewer>
         </UpBox>
       </>
-    ),
-    {
-      info: "Utilisation du composant de grid sans pagination et sans sélection"
-    }
-  )
-  .add(
-    "Export csv",
-    () => (
-      <UpDataGrid
-        exportCsv={{ fileName: "export.csv", textButton: "Exporter" }}
-        columns={[
-          { label: "Col 1", field: "c1", isSortable: true },
-          { label: "Col 2", field: "c2", type: "boolean", isSortable: true },
-          { label: "Col 3", field: "c3", isSortable: true },
-          { label: "Col 4", field: "c4", isSortable: true }
-        ]}
-        data={data}
-      />
-    ),
-    {
-      info: "Utilisation du composant de grid sans pagination et sans sélection"
-    }
-  )
-  .add(
-    "Avec sélection",
+    )
+
+export const WithSelection = 
     () => (
       <UpDataGrid
         onSelectionChange={(a, b) => {
@@ -225,11 +184,9 @@ stories
         ]}
         data={data}
       />
-    ),
-    { info: "Utilisation du composant de grid avec sélection" }
-  )
-  .add(
-    "Avec actions",
+    )
+
+export const WithActions =
     () => (
       <UpDataGrid
         onRowClick={(i, row) => console.log(i, row)}
@@ -274,60 +231,9 @@ stories
         ]}
         data={data}
       />
-    ),
-    { info: "Utilisation d'un jeux d'action commun à toutes les lignes" }
-  )
-  /*.add(
-    "Avec template",
-    "Utilisation d'un template spécifique pour les lignes",
-    () => (
-      <UpDataGrid
-        rowTemplate={RowTemplate}
-        actions={[
-          {
-            action: () => {},
-            type: "add",
-            description: "Ajouter un lien"
-          },
-          {
-            action: () => {},
-            type: "edit",
-            description: "Modifier"
-          },
-          {
-            action: () => {},
-            type: "delete",
-            description: "Supprimer"
-          }
-        ]}
-        columns={[
-          {
-            label: "Col 1",
-            field: "c1",
-            isSortable: true
-          },
-          {
-            label: "Col 2",
-            field: "c2",
-            isSortable: true
-          },
-          {
-            label: "Col 3",
-            field: "c3",
-            isSortable: true
-          },
-          {
-            label: "Col 4",
-            field: "c4",
-            isSortable: true
-          }
-        ]}
-        data={data}
-      />
     )
-  )*/
-  .add(
-    "Avec source externe",
+
+export const WithExternalSource =
     () => (
       <UpDataGrid
         dataSource={{
@@ -356,11 +262,9 @@ stories
           }
         ]}
       />
-    ),
-    { info: "Utilisation d'une source externe spécifique pour les lignes" }
-  )
-  .add(
-    "Avec source externe et pagination",
+    )
+
+export const WithExternalSourceAndpaginationTop =
     () => (
       <UpDataGrid
         dataSource={{
@@ -390,14 +294,9 @@ stories
           }
         ]}
       />
-    ),
-    {
-      info:
-        "Utilisation d'une source externe spécifique pour les lignes avec activation de la pagination"
-    }
-  )
-  .add(
-    "Avec source externe et pagination en bas",
+    )
+
+export const WithExternalSourceAndpaginationBottom =
     () => (
       <UpDataGrid
         dataSource={{
@@ -498,14 +397,9 @@ stories
           }
         ]}
       />
-    ),
-    {
-      info:
-        "Utilisation d'une source externe spécifique pour les lignes avec activation de la pagination"
-    }
-  )
-  .add(
-    "Avec source externe et pagination haut et bas",
+    )
+
+export const WithExternalSourceAndpaginationTopAndBottom =
     () => (
       <UpDataGrid
         paginationPosition="both"
@@ -536,14 +430,9 @@ stories
           }
         ]}
       />
-    ),
-    {
-      info:
-        "Utilisation d'une source externe spécifique pour les lignes avec activation de la pagination"
-    }
-  )
-  .add(
-    "Avec cell formatter",
+    )
+
+export const WithCellFormatter =
     () => (
       <UpDataGrid
         paginationPosition="both"
@@ -575,14 +464,9 @@ stories
           }
         ]}
       />
-    ),
-    {
-      info:
-        "Utilisation d'une source externe spécifique pour les lignes avec formattage spécifique des cellules"
-    }
-  )
-  .add(
-    "Injection de ligne",
+    )
+  
+  export const  WithRowInsertion =
     () => (
       <UpDataGrid
         injectRow={(previous, next, col) => {
@@ -625,16 +509,11 @@ stories
         ]}
         data={data}
       />
-    ),
-    { info: "Injection de lignes" }
-  )
-  .add("Test props modification", () => <Test />, {
-    info: "With test de modification de props"
-  });
+    )
 
-export interface testProps {}
+export interface TestProps {}
 
-export interface testState {
+interface TestState {
   val: any;
   page: number;
   skip: number;
@@ -642,8 +521,8 @@ export interface testState {
   lastChange?: any;
 }
 
-export class Test extends React.Component<testProps, testState> {
-  public static defaultProps: testProps = {};
+class Test extends React.Component<TestProps, TestState> {
+  public static defaultProps: TestProps = {};
 
   constructor(p, c) {
     super(p, c);

@@ -1,15 +1,10 @@
 import * as React from "react";
 import * as update from "react-addons-update";
 
-import { storiesOf } from "@storybook/react";
-
 import UpTooltip from "./";
 
 import UpLigne from "../Ligne";
 import UpPanel from "../../Containers/Panel";
-
-import UpDefaultTheme from "../../../Common/theming";
-import { ThemeProvider as UpThemeProvider } from "../../../Common/theming/ThemeProvider";
 
 import { getRootContainer } from "../../../Common/stories";
 import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
@@ -22,13 +17,12 @@ const TooltipRenderer = (
   </div>
 );
 
-const stories = storiesOf("Components|Display/UpTooltip", module);
+export default { 
+  title: 'Components|Display/UpTooltip',
+  decorators : [withKnobs, getRootContainer('UpTooltip')]
+};
 
-stories.addDecorator(withKnobs);
-stories.addDecorator(getRootContainer("UpTooltip"));
-
-stories.add(
-    "Simple usage",
+export const General =
     () => (
       <UpPanel type={"primary"}>
         Exemple d'utilisation du composant
@@ -41,11 +35,9 @@ stories.add(
         </UpTooltip>{" "}
         sur du texte.
       </UpPanel>
-    ), { info : "Utilisation du composant en lui passant les données à afficher" }
-  )
-  .add(
-    "Sur un lien",
-    () => (
+    )
+
+export const OnALink = () => (
       <UpPanel>
         Exemple d'utilisation du composant
         <UpTooltip id={"Tooltip"} title={"Détails"} content={TooltipRenderer}>
@@ -55,5 +47,4 @@ stories.add(
         </UpTooltip>{" "}
         sur du texte.
       </UpPanel>
-    ), { info : "Utilisation du composant en lui passant les données à afficher" }
-  );
+    )

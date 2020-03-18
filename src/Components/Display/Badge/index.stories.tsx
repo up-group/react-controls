@@ -1,23 +1,17 @@
 import * as React from 'react'
-import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions';
-
-import UpDefaultTheme from '../../../Common/theming'
-import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
 
 import UpBadge from './'
-
 import UpBox from '../../Containers/Box'
 
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
-const stories = storiesOf('Components|Containers/UpBadge', module) ;
+export default { 
+  title: 'Components|Display/UpBadge',
+  decorators : [withKnobs, getRootContainer('UpBadge')]
+};
 
-stories.addDecorator(withKnobs)
-stories.addDecorator(getRootContainer('UpBadge'));
-
-stories.add('Simple usage',
+export const General =
    () => (
       <UpBox style={{margin:'30px'}}>
       <dl>
@@ -51,5 +45,4 @@ stories.add('Simple usage',
         </dd>
       </dl>
       </UpBox>
-  ), { info : 'Utilisation du composant en lui passant les données à afficher'}
-) ;
+  )

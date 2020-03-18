@@ -4,6 +4,8 @@ import centered from '@storybook/addon-centered/react';
 
 import UpTheme from './theme' 
 
+import './default.css'
+
 // Customize the UI a bit
 addParameters({
   docs: DocsPage,
@@ -12,6 +14,12 @@ addParameters({
     showPanel: false,
     panelPosition: 'right',
     storySort: (a, b) => {
+      
+      if (a[0].includes('--general')) 
+      {
+        return -1;
+      }
+
       if (a[0].includes('docs-')) {
         if (a[0].includes('intro-')) {
           return -1;
@@ -39,16 +47,17 @@ addDecorator((...args) => {
 
 const loadStories = () => {
 
-  const req = require.context('../src/Components', true, /\.stories\.(js|ts)x$/)
-  req.keys().forEach(req);
-  return [
+  const requireContexts = [
     // Ensure we load Welcome First
     require.context('../docs', true, /Intro.story.mdx/),
     require.context('../docs', true, /GettingStarted.story.mdx/),
     require.context('../docs', true, /Developing.story.mdx/),
     require.context('../docs', true, /Why.story.mdx/),
     require.context('../src/Components', true, /index.stories.mdx/),
+    require.context('../src/Components', true, /\.stories\.(js|ts)x$/)
   ];
+
+  return requireContexts ;
 }
 
 configure(loadStories(), module);

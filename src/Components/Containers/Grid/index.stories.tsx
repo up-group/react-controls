@@ -1,6 +1,4 @@
 import * as React from 'react'
-import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions';
 
 import UpDefaultTheme from '../../../Common/theming'
 import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
@@ -11,12 +9,12 @@ import UpPanel from '../../Containers/Panel'
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
-const stories = storiesOf('Components|Containers/UpGrid', module) ;
+export default { 
+  title: 'Components|Containers/UpGrid',
+  decorators : [withKnobs, getRootContainer('UpGrid')]
+};
 
-stories.addDecorator(withKnobs)
-stories.addDecorator(getRootContainer('UpGrid'));
-
-stories.add('Simple usage',
+export const General =
    () => {
     const gutter = number('gutter', 0);
 
@@ -48,5 +46,4 @@ stories.add('Simple usage',
       </UpGrid>
       </div>
     </UpThemeProvider>
-   }, { info : 'Utilisation du composant en lui passant les données à afficher'}
-);
+   }

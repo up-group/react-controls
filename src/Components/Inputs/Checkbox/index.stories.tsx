@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { storiesOf } from '@storybook/react'
 
 import UpCheckbox from './UpCheckBox'
 import UpLabel from '../../Display/Label'
@@ -157,25 +156,26 @@ const MultipleCheckbox = (props) => {
     }]} />
 }
 
-const stories = storiesOf('Components|Inputs/UpCheckbox', module) ;
-stories.addDecorator(getRootContainer('UpCheckbox'));
-stories.addDecorator(withKnobs)
-stories.add('Simple usage',
+export default { 
+    title: 'Components|Inputs/UpCheckbox',
+    decorators : [withKnobs, getRootContainer('UpCheckbox')]
+};
+
+export const General =
     () => (
         <UpLabel textAlign={"left"} inline={true} width="medium" text="Activation de ... :">
             <SimpleCheckbox />
         </UpLabel>
-), { info : 'Utilisation avec plusieurs options' }
-).add('Multiple usage',
+    );
+export const Multiple =
    () => (
         <UpLabel inline={true} width="small" text="Choix :">
            <MultipleCheckbox />
         </UpLabel>
-  ), { info : 'Utilisation avec plusieurs options' }
-).add('Dynamic usage',
+    );
+export const Dynamic =
     () => (
         <UpLabel inline={true} width="small" text="Choix :">
             <DynamicOptions />
         </UpLabel>
-    ), { info: 'Utilisation avec options dynamiques' }
-);
+    ) ;

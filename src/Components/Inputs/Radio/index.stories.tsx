@@ -1,12 +1,6 @@
 import * as React from 'react'
-import { storiesOf } from '@storybook/react'
-
-import UpDefaultTheme from '../../../Common/theming'
-import { IntentType } from '../../../Common/theming/types'
-import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
 
 import UpRadio from './UpRadio'
-import UpLabel from '../../Display/Label'
 import UpHeading from '../../Display/Heading'
 
 import { withKnobs, text, boolean, number, array} from '@storybook/addon-knobs';
@@ -17,8 +11,12 @@ import * as Yup from 'yup';
 import UpInput from '../Input';
 import UpNumber from '../Number/UpNumber';
 import UpCheckBox from '../Checkbox';
-const stories = storiesOf('Components|Inputs/UpRadio', module) ;
 
+
+export default { 
+    title: 'Components|Inputs/UpRadio',
+    decorators : [withKnobs, getRootContainer('UpRadio')]
+  };
 
 const SimpleRadio = (props) => {
     let [selectedValue, setValue] = React.useState(null);
@@ -36,24 +34,21 @@ const SimpleRadio = (props) => {
     )
 }
 
-stories.addDecorator(withKnobs)
-stories.addDecorator(getRootContainer('UpRadio'));
-stories.add('Multiple usage',
-    () => <SimpleRadio />, 
-    {info : 'Utilisation avec plusieurs options'}
-).add('Display horizontally',
+export const General = () => <SimpleRadio /> ;
+
+export const DisplayHorizontally =
     () => (
             <div style={{ padding: "30px" }}>
                 <UpRadio defaultValue={"option1"} name={"modeAdresse"} alignMode="horizontal" gutter={8} options={[{ text: "Option 1", value: "option1" }, { text: "Option 2", value: "option2" }, { text: "Option 3", value: "option3" }]} />
             </div>
-    ), {info : 'Affichage des radio en ligne'}
-).add('Display as Button',
+    )
+export const DisplayAsButton =
     () => (
             <div style={{ padding: "30px" }}>
                 <UpRadio name={"modeAdresse"} displayMode="button" options={[{ text: "Option 1", value: "option1" }, { text: "Option 2", value: "option2" }, { text: "Option 3", value: "option3" }]} />
             </div>
-    ), {info : 'Affichage des radio comme button'}
-).add('Display as Button with required',
+    )
+export const DisplayAsButtonWithRequired =
     () => (
             <div style={{ padding: "30px" }}>
                 <UpRadio name={"modeAdresse"} 
@@ -64,10 +59,9 @@ stories.add('Multiple usage',
                     { text: "Option 2", value: "option2", intent: 'success' }, 
                     { text: "Option 3", value: "option3", intent: 'danger' }]} />
             </div>
-), {info : 'Affichage des radio comme button marqué comme requis'} 
-).add('Display as Large',
+);
+export const DisplayAsLarge =
 () => {
-    
     return (
         <>
             <div style={{ marginTop: "10px" }}>
@@ -84,14 +78,13 @@ stories.add('Multiple usage',
             </div>
         </>
     )}
-, {info : 'Affichage des radio comme button'}
-).add('Display with toggled element',
+export const DisplayWithToggledElement =
     () => (
             <div style={{ padding: "30px" }}>
                 <UpRadio gutter={30} defaultValue={"option1"} alignMode="vertical" name={"modeAdresse"} options={[{ text: "Option 1", value: "option1",toggledElement:<UpInput placeholder={"Saisir votre message"}/> }, { text: "Option 2", value: "option2",toggledElement:<UpNumber/> }, { text: "Option 3", value: "option3", toggledElement:<UpCheckBox options={[{name:"case",text:"Cocher la case suivante"}]} /> }]} />
             </div>
-    ), {info : 'Affichage des radio en ligne'}
-).add('Form',
+    )
+export const IntegrationInForm =
     () => (
         <div style={{ padding: "30px" }}>
             <Formik initialValues={{ modeAdresse: null }}
@@ -109,9 +102,7 @@ stories.add('Multiple usage',
                 {(props) => <RadioForm {...props} />}
             </Formik>
         </div>
-    ), { info: 'Affichage des radio en ligne' }
-);
-
+    )
 
 const RadioForm = (props) => {
     const [onBlurState, setOnBlurState] = React.useState({} as any);

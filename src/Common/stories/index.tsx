@@ -1,6 +1,9 @@
 import * as React from 'react'
 import { UpThemeProvider, UpDefaultTheme, UpNotification } from "../..";
-import { storybookMainBodyStyles } from "../../../stories/styles";
+
+export const storybookMainBodyStyles = {
+  padding : '30px'
+}
 
 export const getRootContainer = (componentName : string) => (storyFn) => (
     <UpThemeProvider theme={UpDefaultTheme}>

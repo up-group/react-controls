@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { storiesOf } from '@storybook/react'
 
 import UpDefaultTheme from '../../../Common/theming'
 import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
@@ -15,8 +14,12 @@ import { Formik } from "formik";
 import * as Yup from "yup"; 
 
 import { style } from 'typestyle';
+import { getRootContainer } from '../../../Common/stories';
 
-const stories = storiesOf('Components|Inputs/UpDropFile', module) ;
+export default { 
+  title: 'Components|Inputs/UpDropFile',
+  decorators : [withKnobs, getRootContainer('UpDropFile')]
+};
 
 const FileForm = props => {
   const {
@@ -49,10 +52,8 @@ const FileForm = props => {
   );
 };
 
-stories.addDecorator(withKnobs);
-stories.add('Simple usage',
+export const General =
 () => {
-
  return (
    <UpThemeProvider theme={UpDefaultTheme}>
      <UpBox style={{ margin: "40px 30px" }}>
@@ -78,9 +79,9 @@ stories.add('Simple usage',
      </UpBox>
    </UpThemeProvider>
  );
- 
-}, { info : "Utilisation du composant en lui passant les données à afficher" }
-).add('Form',
+} ;
+
+export const IntegrationInForm =
   () => {
     return (
       <UpThemeProvider theme={UpDefaultTheme}>
@@ -108,6 +109,4 @@ stories.add('Simple usage',
         </UpBox>
       </UpThemeProvider>
     );
-
-  }, { info: "Utilisation du composant en lui passant les données à afficher" }
-)
+  };

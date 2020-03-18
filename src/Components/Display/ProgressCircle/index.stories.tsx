@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { storiesOf } from '@storybook/react'
 
 import UpDefaultTheme from '../../../Common/theming'
 import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
@@ -14,11 +13,13 @@ import { IconNames } from '../../../Common/theming/icons';
 import { getRootContainer } from '../../../Common/stories';
 import UpProgessCircle from '.';
 import { bool } from 'prop-types';
-const stories = storiesOf('Components|Display/UpProgessCircle', module) ;
-stories.addDecorator(withKnobs);
-stories.addDecorator(getRootContainer('UpProgessCircle'));
 
-stories.add('Index',
+export default { 
+  title: 'Components|Display/UpProgessCircle',
+  decorators : [withKnobs, getRootContainer('UpProgessCircle')]
+};
+
+export const General =
    () => {
     const color = text('color', '#369');
     const value = number('value', 32);
@@ -42,5 +43,4 @@ stories.add('Index',
         </UpParagraph>
       </UpBox>
     </UpThemeProvider>
-   }, {info: 'Utilisation du composant en lui passant les données à afficher'}
-);
+   }

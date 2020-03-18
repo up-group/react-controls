@@ -1,23 +1,21 @@
 import * as React from 'react'
-import { storiesOf } from '@storybook/react'
 import UpBulle from './UpBulle'
 
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import { style } from 'typestyle';
 
-const stories = storiesOf('Components|Display/UpBulle', module) ;
-
-stories.addDecorator(withKnobs)
-stories.addDecorator(getRootContainer('UpBulle'));
+export default { 
+    title: 'Components|Display/UpBulle',
+    decorators : [withKnobs, getRootContainer('UpBulle')]
+  };
 
 const defaultBulle = style({
         margin: "0px 25px 25px 0px",
         width: '228px',
 })
 
-stories.add('Simple usage',
-    () => (
+export const General = () => (
         <div>
             <UpBulle 
                 backgroundImage={"linear-gradient(102deg, #cd0649, #ff54a0)"}
@@ -70,5 +68,4 @@ stories.add('Simple usage',
                 value={7} >
             </UpBulle>
           </div>
-    ), { info : 'Utilisation du composant en lui passant les données à afficher'}
-);
+    )

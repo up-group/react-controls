@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { storiesOf } from '@storybook/react'
 
 import UpNotification from './UpNotification'
 
@@ -8,10 +7,10 @@ import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import UpLoadingIndicator from '../LoadingIndicator';
 import { style } from 'typestyle';
 
-const stories = storiesOf('Components|Display/UpNotification', module) ;
-
-stories.addDecorator(withKnobs)
-stories.addDecorator(getRootContainer('UpNotification'));
+export default { 
+  title: 'Components|Display/UpNotification',
+  decorators : [withKnobs, getRootContainer('UpNotification')]
+};
 
 const wrapperBoxesStyle = style({
   $nest : {
@@ -21,7 +20,7 @@ const wrapperBoxesStyle = style({
   },
 });
 
-stories.add('Simple usage',
+export const General =
    () => (
       <div className={wrapperBoxesStyle}>
       <UpNotification intent="info">
@@ -43,24 +42,25 @@ stories.add('Simple usage',
         <p>Bonjour !</p>
       </UpNotification>
       </div>
-  ), {info: 'Utilisation du composant en lui passant les données à afficher'}
-).add('Activation Close',
+  )
+export const ActivationClose =
   () => (
      <UpNotification dismissable={true} intent="info">
         <UpLoadingIndicator isLoading={true} displayMode={'inline'} />
      </UpNotification>
- ), {info:'Utilisation du composant en autorisant la fermeture de la notification'}
-).add('Modal',
+  )
+
+export const Modal =
  () => (
     <UpNotification title={"Erreur"} dismissable={true} displayMode={"modal"} intent="danger">
         <p>Un problème est survenu !!</p>
     </UpNotification>
-), {info: 'Utilisation du composant modal'}
-).add('Text',
+ )
+
+export const Text =
   () => (
     <UpNotification dismissable={true} displayMode={"text"} intent="danger">
       <p>Un problème est survenu !!</p>
     </UpNotification>
-  ), { info: 'Utilisation du composant en mode <code>text</code>' }
-);
+  )
 

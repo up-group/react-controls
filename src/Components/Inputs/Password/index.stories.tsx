@@ -1,8 +1,4 @@
 import * as React from "react";
-import { storiesOf } from "@storybook/react";
-
-import UpDefaultTheme from "../../../Common/theming";
-import { ThemeProvider as UpThemeProvider } from "../../../Common/theming/ThemeProvider";
 
 import UpPassword from "./UpPassword";
 
@@ -10,10 +6,10 @@ import { getRootContainer } from "../../../Common/stories";
 import { withKnobs } from "@storybook/addon-knobs";
 import {  rulesMatch } from "../../../Common/utils";
 
-const stories = storiesOf("Components|Inputs/UpPassword", module);
-
-stories.addDecorator(withKnobs);
-stories.addDecorator(getRootContainer("UpPassword"));
+export default { 
+  title: 'Components|Inputs/UpPassword',
+  decorators : [withKnobs, getRootContainer('UpPassword')]
+};
 
 const ControlledPassword = props => {
   const [value, setValue] = React.useState("");
@@ -59,16 +55,15 @@ const PasswordWithRules = props => {
     />
   );
 }
-stories.add(
-  "Password input",
+
+export const General =
   () => (
     <div style={{ padding: "30px" }}>
       <ControlledPassword />
     </div>
-  ),
-  { info: "Utilisation simple" }
-).add("Password with rules", () => (
+  )
+
+export const WithRules = () =>
   <div style={{ padding: "30px" }}>
     <PasswordWithRules />
-  </div>
-));
+  </div>;

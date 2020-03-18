@@ -1,5 +1,4 @@
 import * as React from "react";
-import { storiesOf } from "@storybook/react";
 
 import UpInput from "./UpInput";
 
@@ -14,10 +13,10 @@ import UpPassword from "../Password";
 import { style } from "typestyle";
 import UpSelect from "../../Inputs/Select";
 
-const stories = storiesOf("Components|Inputs/UpInput", module);
-
-stories.addDecorator(withKnobs);
-stories.addDecorator(getRootContainer("UpInput"));
+export default { 
+  title: 'Components|Inputs/UpInput',
+  decorators : [withKnobs, getRootContainer('UpInput')]
+};
 
 const SimpleInput = props => {
   let [selectedValue, setValue] = React.useState(null);
@@ -235,7 +234,7 @@ const FormWithSelect = (props)=> {
   )
 }
 
-stories.add('Text input',
+export const General =
   () => (
     <UpGrid>
       <UpRow>
@@ -246,8 +245,8 @@ stories.add('Text input',
         </UpCol>
       </UpRow>
     </UpGrid>
-  ), { info: 'Utilisation simple' }
-).add('ReadOnly input',()=> (
+  )
+export const IsReadOnly = () => (
   <UpGrid>
       <UpRow>
         <UpCol span={6}>
@@ -255,8 +254,9 @@ stories.add('Text input',
         </UpCol>
       </UpRow>
     </UpGrid>
-)).add('Search Input',
-  () => (
+);
+
+export const Search = () => (
     <UpGrid>
       <UpRow>
         <UpCol span={12}>
@@ -269,9 +269,8 @@ stories.add('Text input',
         </UpCol>
       </UpRow>
     </UpGrid>
-  ), { info: 'Champ de recherche' }
-).add('Email Input',
-  () => (
+  )
+export const Email = () => (
     <UpGrid>
       <UpRow>
         <UpCol span={6}>
@@ -284,8 +283,8 @@ stories.add('Text input',
         </UpCol>
       </UpRow>
     </UpGrid>
-  ), { info: 'Champ email' }
-).add('Phone Input',
+  ) ;
+export const Phone =
   () => (
     <UpGrid>
       <UpRow>
@@ -296,8 +295,8 @@ stories.add('Text input',
         </UpCol>
       </UpRow>
     </UpGrid>
-  ), { info: 'Champ phone' }
-).add('Required Input',
+  )
+export const IsRequired = 
   () => (
     <UpGrid>
       <UpRow>
@@ -317,8 +316,8 @@ stories.add('Text input',
         </UpCol>
       </UpRow>
     </UpGrid>
-  ), { info: 'Champ requis' }
-).add('Form',
+  )
+export const IntegrationInForm =
   () => (
     <UpGrid>
       <UpRow>
@@ -341,8 +340,8 @@ stories.add('Text input',
         </UpCol>
       </UpRow>
     </UpGrid>
-  ), { info: 'Champ requis' }
-).add('AutoFocus input',
+  )
+export const AutoFocus = 
 () => (
   <UpGrid>
       <UpRow>
@@ -359,5 +358,6 @@ stories.add('Text input',
         </UpCol>
       </UpRow>
     </UpGrid>
-), { info: 'Champ phone' }
-).add('FormWithSelect',()=> <FormWithSelect/>);
+);
+
+export const ComplexForm = ()=> <FormWithSelect/>

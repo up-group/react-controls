@@ -1,20 +1,17 @@
 import * as React from 'react'
-import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions';
-
-import UpDefaultTheme from '../../../Common/theming'
-import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
 
 import UpSelect from './'
 
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
-export interface testProps {
+import { mdx } from '@storybook/addon-docs/blocks';
+
+interface TestProps {
 
 }
 
-export interface testState {
+interface TestState {
     valM: any[],
     val: any,
     lastChange?: any,
@@ -22,8 +19,8 @@ export interface testState {
     valEM: any[];
 }
 
-export class Test extends React.Component<testProps, testState>{
-    public static defaultProps: testProps = {};
+class Test extends React.Component<TestProps, TestState>{
+    public static defaultProps: TestProps = {};
 
     constructor(p, c) {
         super(p, c);
@@ -126,10 +123,15 @@ export class Test extends React.Component<testProps, testState>{
     }
 }
 
-const stories = storiesOf('Components|Inputs/UpSelect', module) ;
-
-stories.addDecorator(withKnobs)
-stories.addDecorator(getRootContainer('UpSelect'));
+export default { 
+    title: 'Components|Inputs/UpSelect',
+    decorators : [withKnobs,getRootContainer('UpSelect')],
+    parameters: {
+        docs: {
+            page: mdx
+        }
+    }
+};
 
 const SimpleSelect = (props) => {
     let [selectedValue, setValue] = React.useState({ id: 1, text: 'M.' });
@@ -153,44 +155,43 @@ const SimpleSelect = (props) => {
             onChange={onChange} />
 )}
 
-stories.add('Simple usage',
-    () => <SimpleSelect />, { info : 'Utilisation du composant en lui passant les données à afficher'}
-).add('Ajax',
-    () => (
-            <UpSelect autoload={false}
-                isRequired={false}
-                allowClear={true}
-                default={null}
-                multiple={false}
-                tooltip="Votre ville de naissance"
-                minimumInputLength={3}
-                returnType="id"
-                labelKey={"title"}
-                dataSource={{
-                    query: "https://jsonplaceholder.typicode.com/todos",
-                    text: "title"
-                }}
-                onChange={console.log} />
-    ), { info : 'Utilisation du composant lié à une source de donnée' }
-).add('Ajax avec modification des réponses',
-    () => (
-            <UpSelect autoload={false}
-                isRequired={false}
-                allowClear={true}
-                default={null}
-                multiple={false}
-                tooltip="Votre ville de naissance"
-                minimumInputLength={3}
-                dataSource={{
-                    query: "https://jsonplaceholder.typicode.com/todos",
-                    text: "title",
-                    handleResponse: (response) => {
-                        return [{ id: 100, title: 'Data proxied' }];
-                    }
-                }}
-                onChange={console.log} />
-    ), { info :  'Utilisation du composant lié à une source de donnée' }
-).add('Required',
+export const General = () => <SimpleSelect />;
+
+export const FetchingData =  () => (
+    <UpSelect autoload={false}
+        isRequired={false}
+        allowClear={true}
+        default={null}
+        multiple={false}
+        tooltip="Votre ville de naissance"
+        minimumInputLength={3}
+        returnType="id"
+        labelKey={"title"}
+        dataSource={{
+            query: "https://jsonplaceholder.typicode.com/todos",
+            text: "title"
+        }}
+        onChange={console.log} />
+);
+export const FetchingDataWithProxy =  () => (
+    <UpSelect autoload={false}
+        isRequired={false}
+        allowClear={true}
+        default={null}
+        multiple={false}
+        tooltip="Votre ville de naissance"
+        minimumInputLength={3}
+        dataSource={{
+            query: "https://jsonplaceholder.typicode.com/todos",
+            text: "title",
+            handleResponse: (response) => {
+                return [{ id: 100, title: 'Data proxied' }];
+            }
+        }}
+        onChange={console.log} />
+) ;
+
+export const IsRequired =
     () => (
             <div style={{ margin: "30px" }}>
                 <UpSelect isRequired={true}
@@ -206,49 +207,49 @@ stories.add('Simple usage',
                     ]}
                     onChange={console.log} />
             </div>
-    ), { info : 'Utilisation du composant avec valeur requise'}
-).add('Return Id Value',
+    ); 
+
+export const ReturnId =
     () => (
-            <div style={{ margin: "30px" }}>
-                <UpSelect isRequired={true}
-                    allowClear={true}
-                    default={2}
-                    multiple={false}
-                    returnType={"id"}
-                    valueKey={"id"}
-                    tooltip="Votre ville de naissance"
-                    data={[
-                        { id: 1, text: 'M.' },
-                        { id: 2, text: 'Mme' },
-                        { id: 3, text: 'Mlle' },
-                        { id: 4, text: 'Dr' },
-                    ]}
-                    onChange={console.log} />
-            </div>
-    ), { info :  'Utilisation du composant en retournant la valeur de l\'identifiant et non plus l\'objet sélectionné' }
-).add('Creatable',
-    () => (
-            <div style={{ margin: "30px" }}>
-                <UpSelect autoload={false}
-                    isRequired={false}
-                    allowClear={true}
-                    allowCreate={true}
-                    default={null}
-                    multiple={false}
-                    tooltip="Votre civilité"
-                    minimumInputLength={3}
-                    createOptionPosition={'first'}
-                    data={[
-                        { id: 1, text: 'M.' },
-                        { id: 2, text: 'Mme' },
-                        { id: 3, text: 'Mlle' },
-                        { id: 4, text: 'Dr' },
-                    ]}
-                    onChange={console.log} />
-            </div>
-    ), { info : 'Utilisation du composant avec autorisation de création de nouvelle option'}
-).add('Async Creatable',
-() => (
+        <div style={{ margin: "30px" }}>
+            <UpSelect isRequired={true}
+                allowClear={true}
+                default={2}
+                multiple={false}
+                returnType={"id"}
+                valueKey={"id"}
+                tooltip="Votre ville de naissance"
+                data={[
+                    { id: 1, text: 'M.' },
+                    { id: 2, text: 'Mme' },
+                    { id: 3, text: 'Mlle' },
+                    { id: 4, text: 'Dr' },
+                ]}
+                onChange={console.log} />
+        </div>
+    ) ;
+
+export const Creatable = () => (
+        <div style={{ margin: "30px" }}>
+            <UpSelect autoload={false}
+                isRequired={false}
+                allowClear={true}
+                allowCreate={true}
+                default={null}
+                multiple={false}
+                tooltip="Votre civilité"
+                minimumInputLength={3}
+                createOptionPosition={'first'}
+                data={[
+                    { id: 1, text: 'M.' },
+                    { id: 2, text: 'Mme' },
+                    { id: 3, text: 'Mlle' },
+                    { id: 4, text: 'Dr' },
+                ]}
+                onChange={console.log} />
+        </div>
+)
+export const AsyncCreatable = () => (
         <div style={{ margin: "30px" }}>
             <UpSelect autoload={false}
                 isRequired={false}
@@ -265,8 +266,8 @@ stories.add('Simple usage',
                 }}
                 onChange={console.log} />
         </div>
-), { info : 'Utilisation du composant avec autorisation de création de nouvelle option'}
-).add('Multi Creatable',
+)
+export const MultiCreatable =
 () => (
         <div style={{ margin: "30px" }}>
             <UpSelect autoload={false}
@@ -286,5 +287,4 @@ stories.add('Simple usage',
                 ]}
                 onChange={console.log} />
         </div>
-), { info : 'Utilisation du composant avec autorisation de création de nouvelle option'}
-)
+);

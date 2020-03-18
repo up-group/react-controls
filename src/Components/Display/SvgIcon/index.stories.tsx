@@ -1,6 +1,4 @@
 import * as React from 'react'
-import { storiesOf } from '@storybook/react'
-import { action } from '@storybook/addon-actions';
 
 import UpDefaultTheme from '../../../Common/theming'
 import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
@@ -8,10 +6,8 @@ import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeP
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import { UpSvgIconSparkles } from './UpSvgIcon'
 import UpBox from '../../Containers/Box';
-import UpNotification from '../../Display/Notification';
 import UpParagraph from '../../Display/Paragraph';
 import UpSvgIcon from './UpSvgIcon';
-import { icon } from '../Notification/styles';
 import { IconNames } from '../../../Common/theming/icons';
 
 import { getRootContainer } from '../../../Common/stories';
@@ -19,13 +15,14 @@ import UpHeading from '../Heading';
 import { MentorNames } from "../../../Common/theming/mentors";
 import { IllustrationNames } from "../../../Common/theming/illustrations";
 
-const stories = storiesOf('Components|Display/UpSvgIcon', module) ;
-stories.addDecorator(withKnobs);
-stories.addDecorator(getRootContainer('UpSvgIcon'));
+export default { 
+  title: 'Components|Display/UpSvgIcon',
+  decorators : [withKnobs, getRootContainer('UpSvgIcon')]
+};
 
 const logoPng = require('./logo-up-square.svg');
 
-stories.add('Simple usage',
+export const General =
    () => {
     const color = text('color', '#369');
     const width = number('width', 32);
@@ -109,21 +106,21 @@ stories.add('Simple usage',
         </UpBox>
       </UpThemeProvider>
     );
-   }, {info: 'Utilisation du composant en lui passant les données à afficher'}
-).add('Set html directly',
-() => {
- const color = text('color', '#369');
- const width = number('width', 32);
- const height = number('height', 32);
+}
 
- return <UpThemeProvider theme={UpDefaultTheme}>
-   <UpBox style={{margin:"40px 30px"}}>
-     <UpParagraph>
-        <UpBox flexDirection={'row'} flexWrap={true}>
-          <UpSvgIcon iconHtml={logoPng} width={width} height={height} />
-       </UpBox>
-     </UpParagraph>
-   </UpBox>
- </UpThemeProvider>
-}, {info: 'Utilisation du composant en lui passant les données à afficher'}
-)
+export const SetHtmlDirectly =
+  () => {
+  const color = text('color', '#369');
+  const width = number('width', 32);
+  const height = number('height', 32);
+
+  return <UpThemeProvider theme={UpDefaultTheme}>
+    <UpBox style={{margin:"40px 30px"}}>
+      <UpParagraph>
+          <UpBox flexDirection={'row'} flexWrap={true}>
+            <UpSvgIcon iconHtml={logoPng} width={width} height={height} />
+        </UpBox>
+      </UpParagraph>
+    </UpBox>
+  </UpThemeProvider>
+  }

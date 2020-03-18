@@ -1,8 +1,6 @@
 import * as React from 'react'
 import * as update from 'react-addons-update'
 
-import { storiesOf } from '@storybook/react'
-
 import UpContextMenuTrigger from './UpContextMenuTrigger'
 import UpContextMenu from './UpContextMenu'
 import UpContextMenuItem from './UpContextMenuItem'
@@ -13,11 +11,11 @@ import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
 const MENU_TYPE = 'SIMPLE';
 
-export interface SimpleMenuState {
+interface SimpleMenuState {
     logs:Array<string> 
 }
 
-export default class SimpleMenu extends React.PureComponent<any, SimpleMenuState> {
+class SimpleMenu extends React.PureComponent<any, SimpleMenuState> {
     
     constructor(props) {
         super(props);
@@ -53,13 +51,12 @@ export default class SimpleMenu extends React.PureComponent<any, SimpleMenuState
     }
 }
 
-const stories = storiesOf('Components|Display/UpContextMenu', module) ;
+export default { 
+    title: 'Components|Display/UpContextMenu',
+    decorators : [withKnobs, getRootContainer('UpContextMenu')]
+};
 
-stories.addDecorator(withKnobs)
-stories.addDecorator(getRootContainer('UpContextMenu'));
-
-stories.add('Simple usage',
- () => (
-  <SimpleMenu />
-), { info : 'Utilisation du composant en lui passant les données à afficher'}
-)
+export const General =
+    () => (
+        <SimpleMenu />
+    )

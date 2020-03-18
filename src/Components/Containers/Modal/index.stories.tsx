@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { storiesOf } from '@storybook/react'
 
 import UpDefaultTheme from '../../../Common/theming'
 import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
@@ -59,18 +58,20 @@ class ModalWrapper extends React.Component<ModalWrapperProps, ModalWrapperState>
 
 const HTML = `<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> <html> <head> <title>Mon titre</title> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="UTF-8"> </head> <body text="#000000" vlink="#990000" alink="#990000" link="#990000" bgcolor="#ffffff"><p>Mon message</p></body></html>`;
 
-const stories = storiesOf('Components|Containers/UpModal', module) ;
+export default { 
+    title: 'Components|Containers/UpModal',
+    decorators : [withKnobs, getRootContainer('UpModal')]
+  };
 
-stories.addDecorator(withKnobs)
-stories.addDecorator(getRootContainer('UpModal'));
-
-stories.add('Simple usage',
-    () => (<UpThemeProvider theme={UpDefaultTheme}>
-        <ModalWrapper />
-    </UpThemeProvider>), { info : 'Utilisation du composant en lui passant les données à afficher'}
-    ).add('Html',
-        () => (
+export const General =
+    () => (
+        <UpThemeProvider theme={UpDefaultTheme}>
+            <ModalWrapper />
+        </UpThemeProvider>
+    )
+export const Html =
+    () => (
+        <UpThemeProvider theme={UpDefaultTheme}>
             <ModalWrapper html={HTML} />
-
-        ), { info : 'Set the content using HTML'}
-    );
+        </UpThemeProvider>
+    )

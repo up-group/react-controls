@@ -1,17 +1,16 @@
 import * as React from 'react'
-import { storiesOf } from '@storybook/react'
 
 import UpTreeView from './UpTreeView'
 
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
-const stories = storiesOf('Components|Display/UpTreeView', module) ;
+export default { 
+    title: 'Components|Display/UpTreeView',
+    decorators : [withKnobs, getRootContainer('UpTreeView')]
+  };
 
-stories.addDecorator(withKnobs)
-stories.addDecorator(getRootContainer('UpTreeView'));
-
-stories.add('Simple usage', 
+  export const General =
     () => {
         return <UpTreeView
             onBranchClick={console.log}
@@ -35,11 +34,8 @@ stories.add('Simple usage',
                 ]
             }
         ]} />
-    }, {
-        info:
-            'Utilisation du composant en lui passant les données à afficher'
     }
-).add('Show invisible',
+export const ShowInvisible =
     () => {
         return <UpTreeView
             onBranchClick={console.log}
@@ -65,5 +61,4 @@ stories.add('Simple usage',
                     ]
                 }
             ]} />
-    }, { info : "Utilisation du composant en lui passant les données à afficher" }
-);
+    }

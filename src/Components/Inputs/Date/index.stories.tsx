@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { storiesOf } from '@storybook/react'
 
 import UpDate from './UpDate'
 
@@ -10,11 +9,10 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import UpPassword from '../Password';
 
-const stories = storiesOf('Components|Inputs/UpDate', module) ;
-
-stories.addDecorator(withKnobs)
-stories.addDecorator(getRootContainer('UpDate'));
-
+export default { 
+  title: 'Components|Inputs/UpDate',
+  decorators : [withKnobs, getRootContainer('UpDate')]
+};
 
 const DateForm = (props) => {
   const {
@@ -51,9 +49,7 @@ const DateForm = (props) => {
   );
 }
 
-stories
-  .add(
-    "Simple usage",
+export const General =
     () => (
       <UpDate
         onChange={(value, event) => {
@@ -61,11 +57,9 @@ stories
           console.log(value);
         }}
       />
-    ),
-    { info: "Utilisation simple" }
-  )
-  .add(
-    "Selectable months and years",
+    )
+
+export const MonthsAndYearsSelectable =
     () => (
       <>
         <UpDate
@@ -81,10 +75,9 @@ stories
         />
         </div>
       </>
-    ),
-  )
-  .add(
-    "Date requise",
+    )
+
+  export const IsRequired =
     () => (
       <UpDate
         isRequired={true}
@@ -93,11 +86,9 @@ stories
           console.log(value);
         }}
       />
-    ),
-    { info: "La date est requise" }
-  )
-  .add(
-    "Form",
+    )
+
+  export const IntegrationInForm =
     () => (
       <Formik
         initialValues={{ startDate: null, endDate: null }}
@@ -111,6 +102,4 @@ stories
       >
         {props => <DateForm {...props} />}
       </Formik>
-    ),
-    { info: "La date est requise" }
-  );
+    )

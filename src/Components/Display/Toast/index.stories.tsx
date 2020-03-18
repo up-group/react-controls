@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { storiesOf } from '@storybook/react'
 
 import UpDefaultTheme from '../../../Common/theming'
 import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
@@ -10,11 +9,13 @@ import UpToast from './'
 import { getRootContainer } from '../../../Common/stories';
 import UpParagraph from '../Paragraph';
 import { IntentType } from 'theming/types';
-const stories = storiesOf('Components|Display/UpToast', module) ;
-stories.addDecorator(withKnobs);
-stories.addDecorator(getRootContainer('UpToast'));
 
-stories.add('Simple usage',
+export default { 
+  title: 'Components|Display/UpToast',
+  decorators : [withKnobs, getRootContainer('UpToast')]
+};
+
+export const General =
    () => {
     const intent = text('intent', 'success');
     const message = text('message', 'Succès');
@@ -24,5 +25,4 @@ stories.add('Simple usage',
         <UpParagraph>{message}</UpParagraph>
       </UpToast>
     </UpThemeProvider>
-   }, {info: 'Utilisation du composant en lui passant les données à afficher'}
-);
+   }

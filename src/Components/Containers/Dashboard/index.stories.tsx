@@ -1,15 +1,14 @@
 import * as React from 'react'
-import { storiesOf } from '@storybook/react'
 import UpTile from './UpTile'
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import { getRootContainer } from '../../../Common/stories';
 
-const stories = storiesOf('Components|Containers/UpTile', module) ;
+export default { 
+    title: 'Components|Containers/UpTile',
+    decorators : [withKnobs, getRootContainer('UpTile')]
+};
 
-stories.addDecorator(withKnobs)
-stories.addDecorator(getRootContainer('UpTile'));
-
-stories.add('Simple usage 1',
+export const General =
     () => (
         <div>
             <br />
@@ -21,5 +20,4 @@ stories.add('Simple usage 1',
             <UpTile Title="INFOS">Test </UpTile>
             <UpTile Title="INFOS">Test </UpTile>
         </div>
-    ), { info : 'Utilisation du composant en lui passant les données à afficher'}
-    );
+    )

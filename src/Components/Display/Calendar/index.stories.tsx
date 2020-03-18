@@ -1,6 +1,4 @@
 import * as React from 'react'
-
-import { storiesOf } from '@storybook/react';
 import UpDefaultTheme from '../../../Common/theming'
 import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
 
@@ -13,14 +11,14 @@ import UpParagraph from '../../Display/Paragraph';
 import UpCodeViewer from '../CodeViewer';
 import UpLink from '../Link';
 
-const stories = storiesOf('Components|Display/UpCalendar', module) ;
-
-stories.addDecorator(withKnobs)
-stories.addDecorator(getRootContainer('UpCalendar'));
+export default { 
+    title: 'Components|Display/UpCalendar',
+    decorators : [withKnobs, getRootContainer('UpCalendar')]
+};
 
 const codeStoryViewer = `<UpCalendar />`
 
-stories.add('Général',
+export const General =
  () => (
      <UpThemeProvider theme={UpDefaultTheme}>
          <UpBox style={{ margin: "40px 30px" }}>
@@ -49,7 +47,5 @@ stories.add('Général',
              </UpParagraph>
              
          </UpBox>
-     </UpThemeProvider>
-     
-), { info : 'Utilisation du composant en lui passant les données à afficher'}
+     </UpThemeProvider>    
 )

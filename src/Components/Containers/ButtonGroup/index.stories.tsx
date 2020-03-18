@@ -1,5 +1,4 @@
 import * as React from "react";
-import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
 import UpButtonGroup from "./";
@@ -8,14 +7,12 @@ import { getRootContainer } from "../../../Common/stories";
 import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
 import { UpButton } from "../../..";
 
-const stories = storiesOf("Components|Containers/UpButtonGroup", module);
+export default { 
+  title: 'Components|Containers/UpButtonGroup',
+  decorators : [withKnobs, getRootContainer('UpButtonGroup')]
+};
 
-stories.addDecorator(withKnobs);
-stories.addDecorator(getRootContainer("UpButtonGroup"));
-
-stories
-  .add(
-    "DropDown",
+export const DropDown =
     () => (
       <div>
         <UpButtonGroup gutter={0} align={"h"}>
@@ -42,11 +39,9 @@ stories
           />
         </UpButtonGroup>
       </div>
-    ), { info :  "Utilisation du composant en lui passant les données à afficher"}
-  )
-  .add(
-    "Multi Button",
-    () => (
+    )
+
+export const MultiButton = () => (
       <div style={{ margin: "30px" }}>
         <UpButtonGroup gutter={0} align={"h"}>
           <UpButton onClick={action("Add")} width={"normal"} actionType={"add"}>
@@ -110,10 +105,9 @@ stories
           </UpButton>
         </UpButtonGroup>
       </div>
-    ), { info :  "Utilisation du composant en lui passant les données à afficher"}
-)
-  .add(
-    "Multi Button avec espacement",
+    )
+
+  export const MultiButtonWithGutter =
     () => (
       <div style={{ margin: "30px", width:"200px", padding:"10px" }}>
         <UpButtonGroup gutter={17} align={"v"}>
@@ -138,5 +132,4 @@ stories
           </UpButton>
         </UpButtonGroup>
       </div>
-    ), { info: "Utilisation du composant en lui passant les données à afficher" }
-  );
+    )

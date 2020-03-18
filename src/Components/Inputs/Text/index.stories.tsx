@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { storiesOf } from '@storybook/react'
 
 import UpText from './'
 import UpLabel from '../../Display/Label'
@@ -7,22 +6,23 @@ import UpLabel from '../../Display/Label'
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
-const stories = storiesOf('Components|Inputs/UpText', module) ;
-
-stories.addDecorator(withKnobs)
-stories.addDecorator(getRootContainer('UpText'));
-
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-stories.add('Simple usage',
-    () => (
-        <UpLabel text={"Observation : "}>
-             <UpText width={'fill'} />
-        </UpLabel>
-    ), { info : 'Utilisation avec plusieurs options'}
-).add('Form',
-() => (
+export default { 
+  title: 'Components|Inputs/UpText',
+  decorators : [withKnobs, getRootContainer('UpText')]
+};
+
+export const General =
+  () => (
+    <UpLabel text={"Observation : "}>
+          <UpText width={'fill'} />
+    </UpLabel>
+  )
+
+export const IntegrationInForm =
+  () => (
     <Formik initialValues={{ description: ''}}
             onSubmit={(values, { setSubmitting }) => {
               setTimeout(() => {
@@ -58,5 +58,4 @@ stories.add('Simple usage',
               );
             }}
     </Formik>
-), { info : 'Utilisation dans Formik'}
-);
+)

@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions';
 
 import UpDefaultTheme from '../../../Common/theming'
@@ -26,9 +25,12 @@ const codeStoryADroite =
   extraActions={actions}>
 </UpButton>`
 
-const stories = storiesOf('Components|Inputs/UpButton', module);
-stories.addDecorator(withKnobs);
-stories.add('Simple usage',
+export default { 
+  title: 'Components|Inputs/UpButton',
+  decorators : [withKnobs]
+};
+
+export const General =
   () => {
     const actionType = text('actionType', 'add');
     const intent = text('intent', 'primary');
@@ -83,8 +85,9 @@ stories.add('Simple usage',
         </UpParagraph>
       </UpBox>
     </UpThemeProvider>
-  }, { info: "Utilisation du composant en lui passant les données à afficher" }
-).add('Icon',
+  } ;
+
+export const Icon =
   () => (
     <UpThemeProvider theme={UpDefaultTheme}>
       <UpBox style={{ margin: "40px 30px" }}>
@@ -112,8 +115,9 @@ stories.add('Simple usage',
         </UpParagraph>
       </UpBox>
     </UpThemeProvider>
-  ), { info: "Utilisation du composant en lui passant les données à afficher" }
-).add('Icon à droite',
+  )
+
+export const IconToRight =
   () => (
     <UpThemeProvider theme={UpDefaultTheme}>
       <UpBox style={{ margin: "40px 30px" }}>
@@ -130,8 +134,8 @@ stories.add('Simple usage',
         </UpParagraph>
       </UpBox>
     </UpThemeProvider>
-  ), { info: "Utilisation du composant en lui passant les données à afficher" }
-).add('DropDown',
+  )
+export const DropDown =
   () => (
     <UpThemeProvider theme={UpDefaultTheme}>
       <UpBox style={{ margin: "40px 30px" }}>
@@ -164,8 +168,9 @@ stories.add('Simple usage',
         </UpParagraph>
       </UpBox>
     </UpThemeProvider>
-  ), { info: 'Utilisation du composant en mode DropDown' }
-).add('DropDown à droite',
+  )
+
+export const DropDownToRight =
   () => (
     <UpThemeProvider theme={UpDefaultTheme}>
       <UpBox style={{ margin: "40px 30px" }}>
@@ -203,8 +208,9 @@ stories.add('Simple usage',
         </UpCodeViewer>
       </UpBox>
     </UpThemeProvider>
-  ), { info: 'Utilisation du composant en mode DropDown' }
-).add('DropDown avec text',
+  )
+
+export const DropDownWithText =
   () => (
     <UpThemeProvider theme={UpDefaultTheme}>
       <UpBox style={{ margin: "40px 30px" }}>
@@ -237,8 +243,9 @@ stories.add('Simple usage',
         </UpParagraph>
       </UpBox>
     </UpThemeProvider>
-  ), { info: 'Utilisation du composant en mode DropDown' }
-).add('DropDown avec text et icône à gauche',
+  )
+
+export const DropDownWithTextAndIconToLeft =
   () => (
     <UpThemeProvider theme={UpDefaultTheme}>
       <UpBox style={{ margin: "40px 30px" }}>
@@ -271,8 +278,8 @@ stories.add('Simple usage',
         </UpParagraph>
       </UpBox>
     </UpThemeProvider>
-  ), { info: 'Utilisation du composant en mode DropDown' }
-).add('Avec indication d\'opération',
+  )
+export const WithLoadingStatus =
   () => {
     const isProcessing = boolean('isProcessing', true);
     return <UpThemeProvider theme={UpDefaultTheme}>
@@ -288,8 +295,9 @@ stories.add('Simple usage',
         </UpParagraph>
       </UpBox>
     </UpThemeProvider>
-  }, { info: 'Utilisation du composant avec activation de l\'indication dd\'un processus en cours' },
-).add('Arrondi',
+  }
+
+export const Rounded =
   () => {
     const isProcessing = boolean('isProcessing', false);
     return <UpThemeProvider theme={UpDefaultTheme}>
@@ -305,5 +313,4 @@ stories.add('Simple usage',
         </UpParagraph>
       </UpBox>
     </UpThemeProvider>;
-  }, { info: 'Utilisation du composant avec activation de l\'indication dd\'un processus en cours' }
-);
+  }

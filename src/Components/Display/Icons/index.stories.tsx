@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { storiesOf } from '@storybook/react'
 import * as Icons from "./Icons"
 import * as IconsM from "./materialinear"
 
@@ -8,12 +7,12 @@ import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
 const alertFont = { fontSize: "36px", color: "green", }
 
-const stories = storiesOf('Components|Display/UpIcons', module);
+export default { 
+    title: 'Components|Display/UpIcons',
+    decorators : [withKnobs, getRootContainer('UpIcons')]
+};
 
-stories.addDecorator(withKnobs)
-stories.addDecorator(getRootContainer('UpIcons'));
-
-stories.add('materialinear',
+export const Materialinear =
     () => (
         <div style={{ padding: "16px" }} >
 
@@ -1966,12 +1965,9 @@ stories.add('materialinear',
             <IconsM.ZoomIn />
             <IconsM.ZoomOut />
             <IconsM.ZoomOutMap />
-
-
         </div>
-    ), { info: 'Utilisation du composant en lui passant les données à afficher' }
-)
-    .add('IconLoading',
+    )
+export const Loading =
         () => (
             <div style={{ padding: "16px" }} >
                 <Icons.IconLoading AlertNumber={9} />
@@ -1990,9 +1986,9 @@ stories.add('materialinear',
                 <br /><br />
                 <Icons.IconLoading IconSize="8cm" BackgroundColor="grey" > 8cm</Icons.IconLoading>
             </div>
-        ), { info: 'Utilisation du composant en lui passant les données à afficher' }
-    )
-    .add('IconAlertes',
+        )
+
+export const Alertes =
         () => (
             <div>
                 <Icons.IconAlertes />
@@ -2030,23 +2026,4 @@ stories.add('materialinear',
                 <br /><br />
                 <Icons.IconAlertes AlertNumber={36} AlertCircle={{ Active: true, Color: "#f44336" }} AlertFont={alertFont} BackgroundColor="gray" Color="red" IconSize="40px" />
             </div>
-        ), { info: 'Utilisation du composant en lui passant les données à afficher' }
-    )
-    .add('Icone LSWA - Perceval',
-        () => (
-            <div style={{ padding: "16px" }} >
-                <Icons.IconLswaLink IconSize="20" AlertNumber={3} AlertCircle={{ Active: true, Color: "red" }} />
-                <br />
-                <Icons.IconLswaLink IconSize="32" AlertNumber={3} AlertCircle={{ Active: true, Color: "red" }} />
-                <br />
-                <Icons.IconLswaLink IconSize="150" AlertNumber={3} AlertCircle={{ Active: true, Color: "red" }} />
-
-                <br /><br />
-                <Icons.IconPercevalLink IconSize="20" AlertNumber={3} AlertCircle={{ Active: true, Color: "red" }} />
-                <br />
-                <Icons.IconPercevalLink IconSize="32" AlertNumber={3} AlertCircle={{ Active: true, Color: "red" }} />
-                <br />
-                <Icons.IconPercevalLink IconSize="150" AlertNumber={3} AlertCircle={{ Active: true, Color: "red" }} />
-            </div>
-        ), { info: 'Utilisation du composant en lui passant les données à afficher' }
-    ) 
+        )

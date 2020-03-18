@@ -1,9 +1,4 @@
 import * as React from 'react'
-import { storiesOf } from '@storybook/react'
-
-import UpDefaultTheme from '../../../Common/theming'
-import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
-
 import UpLoadingIndicator from './'
 
 import { getRootContainer } from '../../../Common/stories';
@@ -41,16 +36,16 @@ const styles : {[key : string] : React.CSSProperties} = {
   },
 };
 
-const stories = storiesOf('Components|Display/UpLoadingIndicator', module) ;
+export default { 
+  title: 'Components|Display/UpLoadingIndicator',
+  decorators : [withKnobs, getRootContainer('UpLoadingIndicator')]
+};
 
-stories.addDecorator(withKnobs)
-stories.addDecorator(getRootContainer('UpLoadingIndicator'));
-
-stories.add('Simple usage',
+export const General =
    () => (
       <UpLoadingIndicator  isLoading={true} message="Chargement en cours"></UpLoadingIndicator>
-  ), { info : 'Utilisation du composant en lui passant les données à afficher'}
-).add('Modal',
+  )
+export const Modal =
  () => (
     <div style={styles.main}>
         <UpLoadingIndicator isLoading={true} displayMode={"modal"} message="Chargement en cours"></UpLoadingIndicator>
@@ -109,9 +104,8 @@ stories.add('Simple usage',
           loaders and plugins you are using in this project.
         </p>
       </div>
-), {info:  'Utilisation du composant modal'}
-).add('Layer',
-() => (
+)
+export const Layer = () => (
    <div style={styles.main}>
        <UpLoadingIndicator isLoading={true} displayMode={"layer"} message="Chargement en cours"></UpLoadingIndicator>
        <h1>Welcome to STORYBOOK</h1>
@@ -169,8 +163,9 @@ stories.add('Simple usage',
          loaders and plugins you are using in this project.
        </p>
      </div>
-), {info:  'Utilisation du composant modal'}
-).add('Modal sur une zone',
+)
+
+export const Zone = 
 () => (
    <div style={styles.main}>
        <h1>Welcome to STORYBOOK</h1>
@@ -231,4 +226,4 @@ stories.add('Simple usage',
         </p>
         </div>
      </div>
-), {info:  'Utilisation du composant modal'});
+)

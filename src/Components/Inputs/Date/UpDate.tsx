@@ -20,7 +20,6 @@ import { isEmpty } from "../../../Common/utils";
 
 import * as moment from "moment";
 import getStyles from "./styles";
-import { DateInputProps } from "../FinanceurInput";
 import { style } from "typestyle";
 import UpSelect from "../Select";
 

@@ -1,9 +1,5 @@
 import * as React from 'react'
 import * as update from 'react-addons-update'
-import { storiesOf } from '@storybook/react'
-
-import UpDefaultTheme from '../../../Common/theming'
-import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
 
 import UpDrawing , {CropedShape} from './'
 import Shape from './Shape'
@@ -12,13 +8,13 @@ import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import { getRootContainer } from '../../../Common/stories';
 import { DATAURL } from './image';
 
-export interface SimpleDrawingState {
+interface SimpleDrawingState {
     src : string ;
     shapes? : Array<Shape>;
     images? : Array<string>;
 }
 
-export default class SimpleDrawing extends React.PureComponent<any, SimpleDrawingState> {
+class SimpleDrawing extends React.PureComponent<any, SimpleDrawingState> {
     constructor(props) {
         super(props);
         this.state = { src : DATAURL, shapes : [], images : []};
@@ -79,14 +75,14 @@ export default class SimpleDrawing extends React.PureComponent<any, SimpleDrawin
     }
 }
 
-const stories = storiesOf('Components|Inputs/UpDrawing', module) ;
+export default { 
+    title: 'Components|Inputs/UpDrawing',
+    decorators : [withKnobs, getRootContainer('UpDrawing')]
+};
 
-stories.addDecorator(withKnobs)
-stories.addDecorator(getRootContainer('UpDrawing'));
-stories.add('Simple usage',
+export const General = 
    () => (
         <div style={{margin:"30px"}}>
            <SimpleDrawing />
         </div>
-  ), { info : 'Utilisation simple' }
-) ;
+  )
