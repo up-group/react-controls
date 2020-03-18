@@ -14,6 +14,8 @@ export interface UpDateProps extends BaseControlProps<Moment> {
   placeholder?: string;
   iconPosition?: 'left' | 'right';
   numberOfMonths?: number;
+  enableOutsideDays?: boolean;
+  daySize?: number;
 }
 
 export default UpDate ;

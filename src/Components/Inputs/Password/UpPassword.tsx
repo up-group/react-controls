@@ -43,7 +43,7 @@ const getStyles = (props: UpInputProps) =>
       boxShadow:'0 0 5px 0 rgba(0,0,0,0.11)',
       fontSize: '12px',
       color: '#4E5B59',
-      lineHeight:'0px',
+      lineHeight:'18px',
       fontWeight: 400,
       marginTop: '0.5px'
     })

@@ -74,7 +74,9 @@ class UpDate extends BaseControlComponent<
     minDate: MIN_DATE,
     maxDate: MAX_DATE,
     iconPosition: 'right',
-    numberOfMonths: 2
+    numberOfMonths: 2,
+    enableOutsideDays: true,
+    daySize: 30,
   };
 
   dateInput: any;
@@ -177,7 +179,6 @@ class UpDate extends BaseControlComponent<
     } = this.props;
 
     const id = generateUniqueId();
-
     return (
       <div
         className={classnames(
@@ -192,6 +193,7 @@ class UpDate extends BaseControlComponent<
       >
         {floatingLabel && <label htmlFor={id}>{floatingLabel}</label>}
         <SingleDatePicker
+          enableOutsideDays={this.props.enableOutsideDays}
           renderMonthElement={this.props.numberOfMonths == 1 ? this.renderMonthElement : null}
           numberOfMonths={this.props.numberOfMonths}
           focused={this.isFocused}
@@ -217,6 +219,7 @@ class UpDate extends BaseControlComponent<
           isDayBlocked={day => false}
           inputIconPosition={iconPosition == "right" ? "after" : "before"}
           // isDayHighlighted={(day: any) => day == new Date()}
+          daySize={this.props.daySize}
         />
       </div>
     );

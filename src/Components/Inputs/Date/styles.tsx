@@ -83,10 +83,19 @@ const getStyles = (
       "& .SingleDatePickerInput_clearDate:hover svg, & .SingleDatePickerInput_clearDate:hover svg path": {
         fill: props.theme.colorMap.primary
       },
-      "& .CalendarDay:hover, & .CalendarDay__selected": {
+      "& .CalendarDay" :{
+        borderRadius: '50%',
+        border: 'unset',
+      },
+      "& .CalendarDay:hover":{
+        backgroundColor: props.theme.colorMap.lightGrey1,
+        color: props.theme.colorMap.grey1,
+        borderColor: props.theme.colorMap.lightGrey1,
+      },
+      "& .CalendarDay__selected": {
         backgroundColor: props.theme.colorMap.primary,
         color: props.theme.colorMap.primaryFg,
-        borderColor: props.theme.colorMap.primaryDark
+        borderColor: props.theme.colorMap.primary,
       },
       "& .DayPickerNavigation_button svg, & .DayPickerNavigation_button svg path": {
         fill: props.theme.colorMap.primary
@@ -95,8 +104,17 @@ const getStyles = (
         borderColor: props.theme.colorMap.primary
       }, 
       "& .SingleDatePicker_picker" : {
-        zIndex : 20
-      }
+        zIndex : 20,
+        top: '32px !important'
+      },
+      "& .DateInput_fang": {
+        display: 'none',
+      },
+      "& .CalendarDay__outside, & .CalendarDay__outside:hover": {
+        backgroundColor: props.theme.colorMap.primaryFg,
+        color: props.theme.colorMap.disabledFg,
+      },
+     
     }
   });
 
