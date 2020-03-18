@@ -4,10 +4,11 @@ import UpDate from './UpDate'
 
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import { getRootContainer } from '../../../Common/stories';
-
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import * as moment from 'moment' 
 import UpPassword from '../Password';
+
 
 export default { 
   title: 'Components|Inputs/UpDate',
@@ -50,14 +51,19 @@ const DateForm = (props) => {
 }
 
 export const General =
-    () => (
+    () => {
+    const [value,setDate] = React.useState(moment() as any)      
+      return   (
       <UpDate
-        onChange={(value, event) => {
+        onChange={(event,value) => {
           console.log(event);
           console.log(value);
+          setDate(value)
         }}
+        value={ value && moment(value)}
+        
       />
-    )
+    )}
 
 export const MonthsAndYearsSelectable =
     () => (
