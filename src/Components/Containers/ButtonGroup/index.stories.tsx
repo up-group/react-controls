@@ -15,19 +15,15 @@ export default {
 export const DropDown =
     () => (
       <div>
-        <UpButtonGroup gutter={0} align={"h"}>
-          <UpButton
-            onClick={action("Main")}
-            actionType={"add"}
-            intent={"primary"}
-          >
-            Add
-          </UpButton>
+        <UpButtonGroup isAddOn='right' gutter={1} align={"h"}>
           <UpButton
             onClick={action("OnClick")}
             dropDown="down"
-            extraActions={[{ libelle: "Option 1", onClick: action('Option 1') }, { libelle: "Option 2", onClick: action('Option 2') }, { size: 2 }, { libelle: "Option 3", onClick: action("Option 3") }]}
-          />
+            intent="primary"
+            extraActions={[{ libelle: "Option 1", onClick: action('Option 1') }, { libelle: "Option 2", onClick: action('Option 2') }, { libelle: "Option 3", onClick: action("Option 3") }]}
+          >
+            BOUTON 3
+          </UpButton>
         </UpButtonGroup>
 
         <UpButtonGroup gutter={0} align={"h"}>
