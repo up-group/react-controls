@@ -93,6 +93,10 @@ const base = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
       '&.up-btn .up-loading-indicator-wrapper > div': {
         width: '100%',
         height: calc('100%'),
+      },
+      "&.up-btn svg, &.up-btn svg path, &.up-btn svg polygon, &.up-btn svg polyline": {
+        fill:`${props.backgroundColor ||
+          props.theme.colorMap[`${props.intent}`]} !important`,          
       }
     }
   }
@@ -112,6 +116,7 @@ const disabled = (props: UpButtonProps & WithThemeProps): NestedCSSProperties =>
 };
 
 const toggle = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
+
   return {
     color:
       props.color ||
@@ -121,10 +126,23 @@ const toggle = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
       props.color || props.theme.colorMap[`${props.intent}Active`] || "white",
     boxShadow: "inset 5px 5px 5px rgba(16, 22, 26, 0.2)",
     $nest: {
+      "&.up-btn": {
+        backgroundColor: 'white',
+        boxShadow: 'unset',
+        color: `${props.theme.colorMap[props.intent]}`,
+        borderBottom: 'unset',
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius:0,
+        borderTopRightRadius:'4px',
+        borderTopLeftRadius:'4px !important'
+
+      },
       "&.up-btn svg, &.up-btn svg path, &.up-btn svg polygon, &.up-btn svg polyline": {
-        fill:
-          props.backgroundColor ||
-          props.theme.colorMap[`${props.intent}HoverFg`]
+        fill:`${props.backgroundColor ||
+          props.theme.colorMap[`${props.intent}HoverFg`]} !important`,
+
+        stroke: props.theme.colorMap[`${props.intent}`]
+
       }
     }
   };

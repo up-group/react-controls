@@ -161,23 +161,23 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
     getDropDownStyles = () => {
         const styles : NestedCSSProperties = {
             display: this.getValue('isToggled') ? "block" : "none",
-            position: "absolute",
-            top: "35px",
+            position: 'unset',
             zIndex: 1000,
             listStyle: "none",
             backgroundColor: "#ffffff",
             color: '#111',
-            minWidth: 160,
             margin: 0,
             paddingTop: 10,
             paddingBottom: 10,
             paddingLeft: 0,
-            borderRadius: 4,
-            boxShadow: "0 6px 12px rgba(0, 0, 0, .175)",
+           // borderRadius: 4,
             height: this.getValue('isToggled') ? 'auto' : '0px',
             transition: this.getValue('isToggled') ? "height 2s ease-in" : "height 2s ease-out",
             transform: this.getValue('isToggled') ? "scaleY(1)" : "scaleY(0)",
-            transformOrigin: "top"
+            transformOrigin: "top",
+            border:`1px solid ${this.props.theme.colorMap[this.props.intent]}`,
+            borderTop:0,
+            borderRadius: '0px 0px 4px 4px'
         };
 
         var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
