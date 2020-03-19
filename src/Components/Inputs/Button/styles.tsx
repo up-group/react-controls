@@ -94,10 +94,6 @@ const base = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
         width: '100%',
         height: calc('100%'),
       },
-      "&.up-btn svg, &.up-btn svg path, &.up-btn svg polygon, &.up-btn svg polyline": {
-        fill:`${props.backgroundColor ||
-          props.theme.colorMap[`${props.intent}`]} !important`,          
-      }
     }
   }
 };
@@ -137,13 +133,14 @@ const toggle = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
         borderTopLeftRadius:'4px !important'
 
       },
+      "&.up-btn svg": {
+        transform: 'rotate(180deg)'
+      },
       "&.up-btn svg, &.up-btn svg path, &.up-btn svg polygon, &.up-btn svg polyline": {
-        fill:`${props.backgroundColor ||
-          props.theme.colorMap[`${props.intent}HoverFg`]} !important`,
-
-        stroke: props.theme.colorMap[`${props.intent}`]
-
-      }
+        fill:`${props.backgroundColor || 
+          props.theme.colorMap[`${props.intent}${props.isToggled && 'HoverFg'}`]} !important`,
+        stroke: props.theme.colorMap[`${props.intent}`],
+      },
     }
   };
 };
@@ -172,7 +169,7 @@ const active = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
       "&.up-btn:hover .colored svg, &.up-btn:hover .colored svg path, &.up-btn:hover .colored svg polygon, &.up-btn:hover .colored svg polyline": {
         fill:
           props.backgroundColor ||
-          props.theme.colorMap[`${props.intent}HoverFg`]
+          props.theme.colorMap[`${props.intent}${props.dropDown === 'none' ? 'HoverFg':''}`]
       },
       "&:hover:active": {
         color:
@@ -207,11 +204,11 @@ const active = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
       },
       "&.up-btn .colored svg, &.up-btn .colored svg path, &.up-btn .colored svg polygon, &.up-btn .colored svg polyline": {
         fill:
-          props.color || props.theme.colorMap[`${props.intent}Fg`] || "white"
+          props.color || props.theme.colorMap[`${props.intent}${props.dropDown === 'none' ? 'Fg':''}`] || "white"
       },
       "&.up-btn": {
         cursor: "pointer"
-      }
+      },
     }
   };
 };
