@@ -184,7 +184,7 @@ export interface UpDataGridState {
   take?: number;
   total?: number;
   isDataFetching?: boolean;
-  rowsSelected?: boolean;
+  allRowSelected ?: boolean;
 }
 
 export type SortDirection = "ASC" | "DESC";
@@ -231,7 +231,7 @@ class UpDataGrid extends React.Component<
       take: this.props.paginationProps.take || 50,
       page: this.props.paginationProps.page || 1,
       total: this.props.paginationProps.total,
-      rowsSelected: false,
+      allRowSelected : false,
     };
     if (this.props.data != null) {
       _state.data = this.mapDataToRow(data);
@@ -407,12 +407,12 @@ class UpDataGrid extends React.Component<
   onSelectionAllChange = (isSelected: boolean) => {
     let rows: Array<Row> = this.state.data.map((row, index) => {
       return {
-        isSelected: this.state.rowsSelected ? !isSelected : isSelected,
+        isSelected: this.state.allRowSelected  ? !isSelected : isSelected,
         value: row.value
       };
     });
 
-    this.setState({ data: rows,rowsSelected: !this.state.rowsSelected  }, () => {
+    this.setState({ data: rows,allRowSelected : !this.state.allRowSelected   }, () => {
       if (this.props.onSelectionChange) {
         this.props.onSelectionChange(null, this.seletectedRow);
       }
