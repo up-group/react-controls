@@ -22,6 +22,8 @@ import UpDefaultTheme, { withTheme } from "../../../Common/theming";
 import { borderColor } from "csx";
 import { borderRadius } from "react-select/lib/theme";
 import UpDataGridFooter,{FooterProps} from './UpDataGridFooter';
+import UpDataGridHeader,{HeaderProps} from './UpDataGridHeader';
+
 
 const WrapperDataGridStyle = style({
   position: "relative"
@@ -170,7 +172,8 @@ export interface UpDataGridProps {
   onSortChange?: (c: Column, dir: SortDirection) => void;
   onSelectionChange?: (lastChangeRow: Row, seletectedRow: Row[]) => void;
   onRowClick?: (rowIndex: number, row: any) => void;
-  footerProps?: Partial<FooterProps>
+  footerProps?: Partial<FooterProps>;
+  headerProps?: Partial<HeaderProps>;
 }
 
 export interface UpDataGridState {
@@ -602,10 +605,10 @@ class UpDataGrid extends React.Component<
           this.props.className
         )}
       >
-        {this.props.isPaginationEnabled &&
-          this.props.paginationPosition != "bottom" &&
-          pagination}
-        {this.btnExportCsv}
+        <UpDataGridHeader 
+            {...this.props.headerProps}
+            buttonExport={this.btnExportCsv}
+          />           
         <UpLoadingIndicator
           displayMode={"zone"}
           message={this.props.loadingMessage}

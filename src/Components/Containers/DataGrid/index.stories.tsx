@@ -10,8 +10,7 @@ import { getRootContainer } from "../../../Common/stories";
 
 import { withKnobs } from "@storybook/addon-knobs";
 import { style } from "typestyle";
-import { UpParagraph, UpBox, UpHeading, UpCodeViewer  } from "../../../Components";
-
+import { UpParagraph, UpBox, UpHeading, UpCodeViewer,UpButton  } from "../../../Components";
 export default { 
   title: 'Components|Containers/UpDataGrid',
   decorators : [withKnobs, getRootContainer('UpDataGrid')]
@@ -418,6 +417,10 @@ export const WithExternalSourceAndpaginationBottom =
           actionsButtonText: 'Groupe actions',
           showActionsButtons: true,
           validationButtonText: 'Validate'
+        }}
+        headerProps={{
+          title: 'Titre du tableau',
+          buttons: <><UpButton intent='secondary'>hello</UpButton><UpButton intent='secondary'>hello</UpButton></>
         }}
       />
     )
