@@ -420,7 +420,7 @@ export const WithExternalSourceAndpaginationBottom =
         }}
         headerProps={{
           title: 'Titre du tableau',
-          buttons: <><UpButton intent='secondary'>hello</UpButton><UpButton intent='secondary'>hello</UpButton></>
+          buttons: <><UpButton intent='secondary'>Bouton 1</UpButton><UpButton intent='secondary'>Bouton 2</UpButton></>
         }}
       />
     )
