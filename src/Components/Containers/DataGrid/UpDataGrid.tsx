@@ -21,6 +21,7 @@ import { ActionType } from "../../../Common/actions";
 import UpDefaultTheme, { withTheme } from "../../../Common/theming";
 import { borderColor } from "csx";
 import { borderRadius } from "react-select/lib/theme";
+import UpDataGridFooter,{FooterProps} from './UpDataGridFooter';
 
 const WrapperDataGridStyle = style({
   position: "relative"
@@ -109,6 +110,7 @@ export interface Action {
   intent?: IntentType;
   description: string;
   action: (row: Row) => void;
+  libelle?: string;
 }
 
 export interface Column {
@@ -168,6 +170,7 @@ export interface UpDataGridProps {
   onSortChange?: (c: Column, dir: SortDirection) => void;
   onSelectionChange?: (lastChangeRow: Row, seletectedRow: Row[]) => void;
   onRowClick?: (rowIndex: number, row: any) => void;
+  footerProps?: Partial<FooterProps>
 }
 
 export interface UpDataGridState {
@@ -505,7 +508,7 @@ class UpDataGrid extends React.Component<
     } = this.props.paginationProps;
 
     const pagination = (
-      <div style={{ margin: "10px 0px" }}>
+      <div className={classnames('pagination-container')}>
         <UpPagination
           skip={this.state.skip}
           take={this.state.take}
@@ -634,10 +637,11 @@ class UpDataGrid extends React.Component<
             </table>
           </>
         </UpLoadingIndicator>
-        {this.props.isPaginationEnabled &&
-          this.props.paginationPosition != "top" && (
-            <div style={{ marginTop: "10px" }}>{pagination}</div>
-          )}
+          <UpDataGridFooter 
+            {...this.props.footerProps}
+            pagination={pagination} 
+            actions={this.props.actions}
+          />
       </div>
     );
   }

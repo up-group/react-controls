@@ -372,6 +372,23 @@ export const WithExternalSourceAndpaginationBottom =
             </span>
           )
         }}
+        actions={[
+          {
+            action: () => {},
+            type: "add",
+            description: "Ajouter un lien"
+          },
+          {
+            action: () => {},
+            type: "edit",
+            description: "Modifier"
+          },
+          {
+            action: () => {},
+            type: "delete",
+            description: "Supprimer"
+          }
+        ]}
         paginationPosition="bottom"
         isPaginationEnabled={true}
         columns={[
@@ -396,6 +413,12 @@ export const WithExternalSourceAndpaginationBottom =
             isSortable: true
           }
         ]}
+        footerProps={{
+          isPaginationEnabled: true,
+          actionsButtonText: 'Groupe actions',
+          showActionsButtons: true,
+          validationButtonText: 'Validate'
+        }}
       />
     )
 

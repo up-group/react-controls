@@ -132,7 +132,7 @@ const setWidth = (props:UpButtonGroupProps) : NestedCSSProperties => {
 }
 
 export const getStyles =  (props: UpButtonGroupProps) => {
-  return classnames(style(setGutter(props)), style(setAlignment(props)), style(noGutterStyle(props)), style(setWidth(props))) ; 
+  return classnames('up-buttons-wrapper',style(setGutter(props)), style(setAlignment(props)), style(noGutterStyle(props)), style(setWidth(props))) ; 
 };
 
 export default class UpButtonGroup extends React.Component<UpButtonGroupProps, undefined> {
