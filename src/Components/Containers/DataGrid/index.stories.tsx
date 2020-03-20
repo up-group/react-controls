@@ -59,7 +59,7 @@ columns = {
 var data = [];
 var data2 = [];
 
-for (var i = 0; i < 50; i++) {
+for (var i = 0; i < 5; i++) {
   data.push({
     c1: "Value " + i,
     c2: false,

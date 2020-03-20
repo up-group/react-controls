@@ -37,12 +37,10 @@ export const getCheckableStyles = (props: WithThemeProps) : NestedCSSProperties 
         fontSize:'14px',
       },
       '& .up-control-indicator' : {
-        ...boxShadow,
         fontFamily: '"Icons16", sans-serif',
         fontSize: '16px',
         fontWeight: 400,
         fontStyle: 'normal',
-        background: 'linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0)) left no-repeat, center no-repeat #f5f8fa',
         position: 'absolute',
         top: 0,
         left: 0,
@@ -59,11 +57,16 @@ export const getCheckableStyles = (props: WithThemeProps) : NestedCSSProperties 
                 userSelect: 'none', 
       },
       '&.up-checkbox .up-control-indicator' : {
-        borderRadius: props.theme.borderRadius,  
+        height:'20px',
+        width:'20px' ,
+        border: `2px solid ${props.theme.colorMap.disabledFg}`,
+        borderRadius: '3px',
       },
      '& .up-control-indicator::before' : {
         position: 'relative',
         content: '""', 
+        top:'2px',
+        left: '2px',
       },
       '& input' : {
         position: 'absolute',
@@ -74,12 +77,12 @@ export const getCheckableStyles = (props: WithThemeProps) : NestedCSSProperties 
         visibility:'hidden',
       },
       '& input:checked ~ .up-control-indicator, & input:checked ~ .up-control-wrapper .up-control-indicator' : {
-        ...boxShadow,
-        background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat  ${props.theme.colorMap.primary}`,
+        backgroundColor: props.theme.colorMap.primary,
         color: props.theme.colorMap.primaryFg,
+        border: 'none'
       },
       '&:hover .up-control-indicator' : {
-        background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ${props.theme.colorMap.primaryDark}`, 
+        borderColor: props.theme.colorMap.primary
       },
       '&:hover input:checked ~ .up-control-indicator, &:hover input:indeterminate ~ .up-control-indicator,&:hover input:checked ~ .up-control-wrapper .up-control-indicator, &:hover input:indeterminate ~ .up-control-wrapper .up-control-indicator' : {
         background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ${props.theme.colorMap.primaryDark}`,
