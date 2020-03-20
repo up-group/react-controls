@@ -37,7 +37,7 @@ export default class UpDataGridRowHeader extends React.Component<UpDataGridRowHe
         }
     }
 
-    onSelectionChange = (isSelected) => {
+    onSelectionChange = (event, isSelected) => {
         if (this.props.onSelectionChange)
             this.props.onSelectionChange(isSelected);
     }
