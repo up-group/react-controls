@@ -598,6 +598,7 @@ class UpDataGrid extends React.Component<
         }
       }
     }
+    const oneRowIsSelected = this.state.data.some(e=> e.isSelected )
 
     return (
       <div
@@ -645,7 +646,7 @@ class UpDataGrid extends React.Component<
           <UpDataGridFooter 
             {...this.props.footerProps}
             pagination={pagination} 
-            actions={this.props.actions}
+            actions={oneRowIsSelected && this.props.actions}
           />
       </div>
     );

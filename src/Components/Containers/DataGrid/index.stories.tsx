@@ -301,6 +301,10 @@ export const WithExternalSourceAndpaginationBottom =
         dataSource={{
           query: "https://jsonplaceholder.typicode.com/posts"
         }}
+        isSelectionEnabled={true}
+        onSelectionChange={(a, b) => {
+          console.log(a, b);
+        }}
         className={style({
           $nest: {
             "&.up-data-grid-container .up-pagination-nav li a": {

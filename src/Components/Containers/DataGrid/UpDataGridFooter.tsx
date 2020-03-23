@@ -47,7 +47,7 @@ const UpDataGridFooter = (props: FooterProps) => {
         isPaginationEnabled,
     } = props
 
-    const buttonAction = !isEmpty(actions) && actions.map(({ description, action }) => ({
+    const buttonAction = actions && !isEmpty(actions) && actions.map(({ description, action }) => ({
         libelle: description,
         onClick: action,
     }))
@@ -55,17 +55,19 @@ const UpDataGridFooter = (props: FooterProps) => {
     return (
         <div className={classnames('up-data-grid-footer', getStyle({ showActionsButtons }))}>
             {showActionsButtons &&
-                <UpButtonGroup isAddOn='right' gutter={1} align={"h"}>
+                <UpButtonGroup  isAddOn='right' gutter={1} align={"h"}>
                     <UpButton
                         dropDown="down"
                         intent="primary"
                         extraActions={buttonAction || []}
+                        disabled={!actions}
                     >
                         {actionsButtonText}
                     </UpButton>
                     <UpButton
                         onClick={() => {/* to discuss */ }}
-                        intent="primary"
+                        intent="secondary"
+                        disabled={!actions}
                     >
                         {validationButtonText}
                     </UpButton>
