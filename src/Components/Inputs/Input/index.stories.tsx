@@ -38,6 +38,28 @@ const ReadOnlyInputs = () => (
   
 )
 
+const InputWithClearOption = () => {
+  const [value,setValue] = React.useState('')
+
+  return (
+  <React.Fragment>
+  <UpInput 
+      floatingLabel="ControlledInput" 
+      hasClearOption={boolean('hasClearOption', true)} 
+      iconPosition="right"
+      value={value}
+      onChange={(e,value)=>setValue(value)}
+      onClear={()=>setValue('')} 
+      />
+       <UpInput 
+      floatingLabel="UnControlledInput"
+      hasClearOption={boolean('hasClearOption', true)} 
+      iconPosition="right"
+      />
+  </React.Fragment>
+
+)}
+
 const EmailForm = props => {
   const [onBlurState, setOnBlurState] = React.useState({} as any);
 
@@ -361,3 +383,6 @@ export const AutoFocus =
 );
 
 export const ComplexForm = ()=> <FormWithSelect/>
+
+
+export const ClearOption = () => <InputWithClearOption />

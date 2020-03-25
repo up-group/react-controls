@@ -41,6 +41,8 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps & 
   let icon: any = null;
   let RightIcon: any = null;
   let size = 20;
+  const showClearIcon = hasClearOption && !!value && (type === 'search' || props.focused)
+
   if (props.hasError && props.showError && type !== 'search' && showValidationStatus) {
     iconName = "close";
     size = 8;
@@ -60,7 +62,7 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps & 
     );
   }
 
-  if (hasClearOption && !!value) {
+  if (showClearIcon) {
     RightIcon = <SvgIcon
       iconName='clear'
       width={size}
@@ -109,7 +111,11 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps & 
           value={value}
           onChange={onChange}
           onFocus={onFocus}
-          onBlur={(event) => setTimeout(onBlur.bind(this, event), 100)}
+          onBlur={(event) => {
+              event.persist()
+              setTimeout(onBlur.bind(this, event), 100)
+            }
+          }
           className="up-input"
           type={type}
           placeholder={props.floatingLabel ? "" : placeholder}
@@ -244,7 +250,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
         focused={this.isFocused}
         touched={touched}
         onChange={this.inputHandleChangeEvent}
-        onBlur={this.onBlur}
+        onBlur={e => setTimeout(this.onBlur.bind(null, e), 200)}
         autoFocus={this.props.autoFocus}
         onClear={this.clearValue}
         isLoading={this.props.isLoading}

@@ -13,7 +13,7 @@ export const colors = {
          white: "#ffffff",
          turquoiseBlue: "#039eb2",
          oceanBlue: "#0360a8",
-         paleRed: "#d9534f",
+         paleRed: "#D0021B",
          boringGreen: "#6DBD8E",
          tangerine10: "#f39100",
          turquoiseDark: "#0e8c9b",
