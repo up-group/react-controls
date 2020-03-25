@@ -263,7 +263,7 @@ export const WithExternalSource =
       />
     )
 
-export const WithExternalSourceAndpaginationTop =
+export const WithExternalSourceAndPaginationTop =
     () => (
       <UpDataGrid
         dataSource={{
@@ -295,7 +295,7 @@ export const WithExternalSourceAndpaginationTop =
       />
     )
 
-export const WithExternalSourceAndpaginationBottom =
+export const WithExternalSourceAndPaginationBottom =
     () => (
       <UpDataGrid
         dataSource={{
@@ -429,7 +429,7 @@ export const WithExternalSourceAndpaginationBottom =
       />
     )
 
-export const WithExternalSourceAndpaginationTopAndBottom =
+export const WithExternalSourceAndPaginationTopAndBottom =
     () => (
       <UpDataGrid
         paginationPosition="both"
