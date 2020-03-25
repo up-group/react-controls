@@ -5,6 +5,9 @@ import UpLabel from '../../Display/Label'
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import UpDefaultTheme, { UpThemeProvider } from '../../../Common/theming';
+import UpButton from '../Button/UpButton';
+import UpInput from '../Input';
+import UpBox from '../../Containers/Box';
 
 const randomName = (n = 12) => {
     const alphabet: string = "azertyuiopmlkjhgfdsqwxcvbn";
@@ -30,6 +33,8 @@ interface iCbOption {
 
 const DynamicOptions = () => {
     const name = randomName();
+    let [currentName, setCurrentName] = React.useState('')
+
     let [options, setOptions] = React.useState([{
         name,
         value: name,
@@ -37,13 +42,13 @@ const DynamicOptions = () => {
         onOptionChange: (event, checked) => handleToggle(name, checked),
         checked: false
     }] as Array<iCbOption>);
-
+    
     const handleToggle = (cbName, checked) => {
         console.group("handleToggle");
         console.log("name", cbName);
         console.log("checked", checked);
         console.groupEnd();
-        const newOptions = options.map((option: iCbOption) => {
+        setOptions(prevOptions => prevOptions.map((option: iCbOption) => {
             if (option.name !== cbName) {
                 return option;
             }
@@ -51,53 +56,45 @@ const DynamicOptions = () => {
                 ...option,
                 checked
             };
-        });
-        options = newOptions ;
-        setOptions(options);
+        }));
     }
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        const newName = randomName();
+        const newName = currentName || randomName();
         console.group("handleClick");
         console.log("Add option", newName);
         console.groupEnd();
-        const newOptions: iCbOption[] = [
-            ...options,
-            {
-                name: newName,
-                value: newName,
-                text: newName,
-                onOptionChange: (event, checked) => handleToggle(newName, checked),
-                checked: false
-            }
-        ];
-        options = newOptions;
-        setOptions(options);
+
+        setOptions(prevOptions => [...prevOptions, {
+            name: newName,
+            value: newName,
+            text: newName,
+            onOptionChange: (event, checked) => handleToggle(newName, checked),
+            checked: false
+        }]);
     };
+
     return (
         <UpThemeProvider theme={UpDefaultTheme}>
-            <div
+            <UpBox
                 style={{
                     margin: "1em"
                 }}
             >
-                <div>
-                    <div>
-                        <button type="button" onClick={handleClick}>
-                            Ajouter un checkbox
-              </button>
-                    </div>
-                    <div>
+                <UpBox style={{marginBottom : "20px"}}>
+                    <UpButton actionType={'add'} intent={'primary'} onClick={(e) => handleClick(e)}>
+                        Ajouter un checkbox
+                    </UpButton>
+                    <UpBox style={{width : "200px"}}>
+                        <UpInput value={currentName} onChange={e => setCurrentName(e.target.value)}></UpInput>
+                    </UpBox>
+                </UpBox>
+                <UpBox>
+                    <UpLabel inline={true} width="small" text="Choix :">
                         <UpCheckbox options={options}></UpCheckbox>
-                    </div>
-                </div>
-                <div>
-                    <h2>scénario :</h2>
-                    <ul>
-                        <li>Ajouter 1 element checkbox</li>
-                    </ul>
-                </div>
-            </div>
+                    </UpLabel>
+                </UpBox>
+            </UpBox>
         </UpThemeProvider>
     );
 }
@@ -175,7 +172,5 @@ export const Multiple =
     );
 export const Dynamic =
     () => (
-        <UpLabel inline={true} width="small" text="Choix :">
-            <DynamicOptions />
-        </UpLabel>
+        <DynamicOptions />
     ) ;

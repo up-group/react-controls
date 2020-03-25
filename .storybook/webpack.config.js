@@ -82,7 +82,8 @@ module.exports = async ({
                 test: /\.(ts|tsx)$/,
                   exclude: [/node_modules/],
                   include: [
-                    resolve(__dirname, '../src')
+                    resolve(__dirname, '../src'),
+                    resolve(__dirname, '../docs')
                   ],
                   use: [
                       require.resolve('babel-loader'),

@@ -4,6 +4,7 @@ import * as ReactDOM from 'react-dom'
 import { Column } from './UpDataGrid'
 import { ICellFormatter, UpCellFormatter } from './UpDefaultCellFormatter'
 import { isFunction } from '../../../Common/utils';
+import { Action } from './UpDataGrid';
 
 export interface UpDataGridCellState {
     isSelected: boolean;
@@ -19,6 +20,7 @@ export interface UpDataGridCellProps {
     children?: RenderCallback | React.ReactNode;
     render?: RenderCallback;
     component?: React.ComponentType<UpDataGridCellProps>;
+    actions?: Array<Action>
 }
 
 export default class UpDataGridCell extends React.Component<UpDataGridCellProps, UpDataGridCellState> {
@@ -52,6 +54,7 @@ export default class UpDataGridCell extends React.Component<UpDataGridCellProps,
               </InjectedComponent>
             )
         } else if(render) {
+
             renderInnercell = render(renderProps);
         } else if(children != null && isFunction(children)) {
             const childrenAsFunction = children as (value : UpDataGridCellProps) => JSX.Element ;
@@ -64,7 +67,20 @@ export default class UpDataGridCell extends React.Component<UpDataGridCellProps,
         
         return (
             <td className="up-data-grid-cell">
+                <div  style={{marginBottom:'8px'}}>
                 {renderInnercell}
+                </div>
+                <div className="row-actions" >
+                { this.props.actions && this.props.actions.map(e => {
+                    return <p
+                        key={e.type}
+                        className={`row-action${e.type === 'delete' ? '-delete' : ''}`}
+                        onClick={event => e.action(this.props.value)}
+                    >
+                        {e.description}
+                    </p>
+                })}
+                </div>
             </td>
         )
     }

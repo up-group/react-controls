@@ -25,3 +25,6 @@ coverage/*
 package-lock.json
 
 src/Others
+
+e2e/cypress/
+e2e/node_modules/

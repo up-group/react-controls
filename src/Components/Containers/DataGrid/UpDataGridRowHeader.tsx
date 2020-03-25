@@ -18,6 +18,7 @@ export interface UpDataGridRowHeaderProps {
     actions: Array<Action>;
     onSortChange?: (c: Column, d: SortDirection) => void;
     onSelectionChange?: (isSelected: boolean) => void;
+    displayRowActionsWithinCell?: boolean
 }
 
 export default class UpDataGridRowHeader extends React.Component<UpDataGridRowHeaderProps, UpDataGridRowHeaderState> {
@@ -71,7 +72,8 @@ export default class UpDataGridRowHeader extends React.Component<UpDataGridRowHe
 
     render() {
         const selection = <UpCheckbox options={[{ name: "", value: "", onOptionChange: this.onSelectionChange }]} />;
-        const isActionEnabled = this.props.actions && this.props.actions.length > 0;
+        const isActionEnabled = !this.props.displayRowActionsWithinCell && this.props.actions && this.props.actions.length > 0;
+       
         return (
             <thead className="up-data-grid-header">
                 <tr>

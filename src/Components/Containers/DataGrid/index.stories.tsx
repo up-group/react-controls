@@ -189,7 +189,7 @@ export const WithActions =
     () => (
       <UpDataGrid
         onRowClick={(i, row) => console.log(i, row)}
-        actions={[
+        rowActions={[
           {
             action: () => {},
             type: "add",
@@ -263,7 +263,7 @@ export const WithExternalSource =
       />
     )
 
-export const WithExternalSourceAndpaginationTop =
+export const WithExternalSourceAndPaginationTop =
     () => (
       <UpDataGrid
         dataSource={{
@@ -295,16 +295,18 @@ export const WithExternalSourceAndpaginationTop =
       />
     )
 
-export const WithExternalSourceAndpaginationBottom =
+export const WithExternalSourceAndPaginationBottom =
     () => (
       <UpDataGrid
         dataSource={{
           query: "https://jsonplaceholder.typicode.com/posts"
         }}
+        displayRowActionsWithinCell
         isSelectionEnabled={true}
         onSelectionChange={(a, b) => {
           console.log(a, b);
         }}
+        
         className={style({
           $nest: {
             "&.up-data-grid-container .up-pagination-nav li a": {
@@ -375,9 +377,11 @@ export const WithExternalSourceAndpaginationBottom =
             </span>
           )
         }}
-        actions={[
+        rowActions={[
           {
-            action: () => {},
+            action: (values) => {
+              console.log(values)
+            },
             type: "add",
             description: "Ajouter un lien"
           },
@@ -392,14 +396,10 @@ export const WithExternalSourceAndpaginationBottom =
             description: "Supprimer"
           }
         ]}
+       
         paginationPosition="bottom"
         isPaginationEnabled={true}
         columns={[
-          {
-            label: "Id",
-            field: "id",
-            isSortable: true
-          },
           {
             label: "Titre",
             field: "title",
@@ -429,7 +429,7 @@ export const WithExternalSourceAndpaginationBottom =
       />
     )
 
-export const WithExternalSourceAndpaginationTopAndBottom =
+export const WithExternalSourceAndPaginationTopAndBottom =
     () => (
       <UpDataGrid
         paginationPosition="both"

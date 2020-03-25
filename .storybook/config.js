@@ -14,6 +14,10 @@ addParameters({
     showPanel: false,
     panelPosition: 'right',
     storySort: (a, b) => {
+      if (a[0].includes('intro')) 
+      {
+        return 1;
+      }
       
       if (a[0].includes('--general')) 
       {
@@ -49,7 +53,7 @@ const loadStories = () => {
 
   const requireContexts = [
     // Ensure we load Welcome First
-    require.context('../docs', true, /Intro.story.mdx/),
+    require.context('../docs', true, /\.story\.tsx$/),
     require.context('../docs', true, /GettingStarted.story.mdx/),
     require.context('../docs', true, /Developing.story.mdx/),
     require.context('../docs', true, /Why.story.mdx/),
