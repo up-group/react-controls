@@ -6,6 +6,8 @@ import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import UpDefaultTheme, { UpThemeProvider } from '../../../Common/theming';
 import UpButton from '../Button/UpButton';
+import UpInput from '../Input';
+import UpBox from '../../Containers/Box';
 
 const randomName = (n = 12) => {
     const alphabet: string = "azertyuiopmlkjhgfdsqwxcvbn";
@@ -31,6 +33,8 @@ interface iCbOption {
 
 const DynamicOptions = () => {
     const name = randomName();
+    let [currentName, setCurrentName] = React.useState('')
+
     let [options, setOptions] = React.useState([{
         name,
         value: name,
@@ -56,7 +60,7 @@ const DynamicOptions = () => {
     }
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        const newName = randomName();
+        const newName = currentName || randomName();
         console.group("handleClick");
         console.log("Add option", newName);
         console.groupEnd();
@@ -72,22 +76,25 @@ const DynamicOptions = () => {
 
     return (
         <UpThemeProvider theme={UpDefaultTheme}>
-            <div
+            <UpBox
                 style={{
                     margin: "1em"
                 }}
             >
-                <div>
-                    <div>
-                        <UpButton actionType={'add'} intent={'primary'} onClick={(e) => handleClick(e)}>
-                            Ajouter un checkbox
-                        </UpButton>
-                    </div>
-                    <div>
+                <UpBox style={{marginBottom : "20px"}}>
+                    <UpButton actionType={'add'} intent={'primary'} onClick={(e) => handleClick(e)}>
+                        Ajouter un checkbox
+                    </UpButton>
+                    <UpBox style={{width : "200px"}}>
+                        <UpInput value={currentName} onChange={e => setCurrentName(e.target.value)}></UpInput>
+                    </UpBox>
+                </UpBox>
+                <UpBox>
+                    <UpLabel inline={true} width="small" text="Choix :">
                         <UpCheckbox options={options}></UpCheckbox>
-                    </div>
-                </div>
-            </div>
+                    </UpLabel>
+                </UpBox>
+            </UpBox>
         </UpThemeProvider>
     );
 }
@@ -165,7 +172,5 @@ export const Multiple =
     );
 export const Dynamic =
     () => (
-        <UpLabel inline={true} width="small" text="Choix :">
-            <DynamicOptions />
-        </UpLabel>
+        <DynamicOptions />
     ) ;
