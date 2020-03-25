@@ -23,6 +23,7 @@ import { borderColor } from "csx";
 import { borderRadius } from "react-select/lib/theme";
 import UpDataGridFooter,{FooterProps} from './UpDataGridFooter';
 import UpDataGridHeader,{HeaderProps} from './UpDataGridHeader';
+import {UpDataGridProvider} from './UpDataGridContext'
 
 
 const WrapperDataGridStyle = style({
@@ -32,6 +33,7 @@ const WrapperDataGridStyle = style({
 const CellInnerElementStyle = {
   marginTop: "0.3em"
 };
+
 
 const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
   style({
@@ -66,7 +68,36 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
         borderRadius: props.theme.borderRadius
       },
       "& .up-data-grid-cell": {
-        padding: "14px"
+        padding: "16px",
+        position: 'relative',
+        //width:'100%'
+      },
+      "& .up-data-grid-cell .up-checkbox": {
+        marginTop:'0 !important'
+      },
+      "& .up-data-grid-cell .row-actions": {
+        position: 'absolute',
+        display: 'none',
+        width: '300px',
+        bottom: '3px',
+        justifyContent: 'space-between',
+        zIndex:1
+      },
+      "& .up-data-grid-cell .row-action": {
+        color: props.theme.colorMap.primary,
+        textDecoration: 'underline',
+        cursor:'pointer'
+      },
+      "& .up-data-grid-cell .row-action-delete": {
+        color: props.theme.colorMap.errorActive,
+        textDecoration: 'underline',
+        cursor:'pointer'
+      },
+      "& .up-data-grid-row": {
+        verticalAlign: 'top',
+      },
+      "& .up-data-grid-row:hover .row-actions":{
+        display: 'flex',
       },
       "& .up-data-grid-row-bordered": {
         $nest: {
@@ -142,7 +173,8 @@ export interface exportCsv {
 export interface UpDataGridProps {
   className?: string;
   columns: Array<Column>;
-  actions?: Array<Action>;
+  rowActions?:Array<Action>;
+  labelToDisplayRowActionsInCell?: string;
   isSelectionEnabled?: boolean;
   isPaginationEnabled?: boolean;
   paginationPosition?: PaginationPosition;
@@ -174,6 +206,7 @@ export interface UpDataGridProps {
   onRowClick?: (rowIndex: number, row: any) => void;
   footerProps?: Partial<FooterProps>;
   headerProps?: Partial<HeaderProps>;
+  displayRowActionsWithinCell?: boolean;
 }
 
 export interface UpDataGridState {
@@ -195,8 +228,9 @@ class UpDataGrid extends React.Component<
 > {
   static defaultProps: UpDataGridProps & WithThemeProps = {
     columns: [],
-    actions: [],
+    rowActions: [],
     dataKey: "Entity",
+    labelToDisplayRowActionsInCell: '',
     paginationPosition: "top",
     isSelectionEnabled: false,
     isPaginationEnabled: false,
@@ -559,7 +593,7 @@ class UpDataGrid extends React.Component<
           <RowTemplate
             key={`row-${index}`}
             isSelectionEnabled={this.props.isSelectionEnabled}
-            actions={this.props.actions}
+            actions={this.props.rowActions}
             columns={columns}
             item={value}
           />
@@ -570,7 +604,7 @@ class UpDataGrid extends React.Component<
             key={`row-${index}`}
             rowIndex={index}
             isSelectionEnabled={this.props.isSelectionEnabled}
-            actions={this.props.actions}
+            actions={this.props.rowActions}
             columns={columns}
             value={value.value}
             isSelected={value.isSelected}
@@ -600,7 +634,14 @@ class UpDataGrid extends React.Component<
     }
     const oneRowIsSelected = this.state.data.some(e=> e.isSelected )
 
+    const providerValues = {
+      displayRowActionsWithinCell: this.props.displayRowActionsWithinCell ,
+      rowActions: this.props.rowActions ,
+      labelToDisplayRowActionsInCell: this.props.labelToDisplayRowActionsInCell,
+    }
+    
     return (
+      <UpDataGridProvider value={providerValues} >
       <div
         className={classnames(
           "up-data-grid-container",
@@ -633,8 +674,9 @@ class UpDataGrid extends React.Component<
                 isSelectionEnabled={this.props.isSelectionEnabled}
                 onSelectionChange={this.onSelectionAllChange.bind(this)}
                 onSortChange={this.onSortChange.bind(this)}
-                actions={this.props.actions}
+                actions={this.props.rowActions}
                 columns={columns}
+                displayRowActionsWithinCell={this.props.displayRowActionsWithinCell}
 
               />
               <tbody className={classnames("up-data-grid-body", oddEvenStyle)}>
@@ -646,9 +688,11 @@ class UpDataGrid extends React.Component<
           <UpDataGridFooter 
             {...this.props.footerProps}
             pagination={pagination} 
-            actions={oneRowIsSelected && this.props.actions}
+            actions={oneRowIsSelected && this.props.rowActions}
+            data={this.state.data}
           />
       </div>
+      </UpDataGridProvider>
     );
   }
 
