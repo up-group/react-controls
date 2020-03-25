@@ -442,26 +442,6 @@ class UpDataGrid extends React.Component<
     });
   };
 
-  arraysEqual(arr1: any[], arr2: any[]) {
-    if (arr2 == arr1) {
-      return true;
-    }
-
-    if (arr1 == null || arr2 == null) {
-      return false;
-    }
-
-    if (arr1.length !== arr2.length) {
-      return false;
-    }
-    for (var i = arr1.length; i--; ) {
-      if (shallowEqual(arr1[i], arr2[i]) === false) {
-        return false;
-      }
-    }
-    return true;
-  }
-
   componentWillReceiveProps(nextProps: UpDataGridProps) {
     var data = this.state.data;
     var curentState = data.map(v => {
