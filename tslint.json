@@ -1,7 +1,11 @@
 {
   "defaultSeverity": "error",
   "extends": [
-    "tslint-config-airbnb"
+    "tslint-config-airbnb",
+    "tslint-eslint-rules"
+  ],
+  "plugins": [
+    "react-hooks"
   ],
   "jsRules": {},
   "rules": {
@@ -11,7 +15,9 @@
     "align": [false, "arguments"],
     "no-increment-decrement": false,
     "import-name": false,
-    "prefer-array-literal": false
+    "prefer-array-literal": false,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   },
   "rulesDirectory": []
 }

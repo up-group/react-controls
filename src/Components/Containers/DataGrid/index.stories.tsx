@@ -301,7 +301,7 @@ export const WithExternalSourceAndPaginationBottom =
         dataSource={{
           query: "https://jsonplaceholder.typicode.com/posts"
         }}
-        displayRowActionsWithinCell
+        displayRowActionsWithinCell={true}
         isSelectionEnabled={true}
         onSelectionChange={(a, b) => {
           console.log(a, b);
