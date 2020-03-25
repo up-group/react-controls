@@ -1,4 +1,3 @@
-// Adapted from https://grommet.github.io/docs/spinning
 import * as React from 'react';
 import * as classnames from 'classnames';
 import Box from '../../Containers/Box';

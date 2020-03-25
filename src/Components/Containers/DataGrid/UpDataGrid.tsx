@@ -23,6 +23,7 @@ import { borderColor } from "csx";
 import { borderRadius } from "react-select/lib/theme";
 import UpDataGridFooter,{FooterProps} from './UpDataGridFooter';
 import UpDataGridHeader,{HeaderProps} from './UpDataGridHeader';
+import _ = require('lodash');
 
 
 const WrapperDataGridStyle = style({
@@ -467,7 +468,8 @@ class UpDataGrid extends React.Component<
       return v.value;
     });
 
-    var hasSameData = this.state.data === nextProps.data;
+    var hasSameData = _.isEqual(curentState, nextProps.data);
+    
     if (this.props.dataSource == null && hasSameData === false) {
       data =
         nextProps.data != null
