@@ -386,6 +386,9 @@ export const inputStyles = (props: UpInputProps & WithThemeProps) : NestedCSSPro
         cursor: 'pointer',
         top: '16px',
       },
+      "& .up-input-group.up-input-focused .up-icon-wrapper.clear-icon": {
+        cursor: 'pointer',
+      },
       "& .up-input-group.up-input-search .up-loading-indicator": {
         position: 'absolute',
         right:"10px",
@@ -561,9 +564,10 @@ export const inputStyles = (props: UpInputProps & WithThemeProps) : NestedCSSPro
       ".up-dark .up-input-group.up-intent-danger .up-icon-wrapper": {
         color: "#ff7373"
       },
-      "& .up-input-group.up-input-search .up-icon-wrapper.clear-icon svg path": {
+      "& .up-input-group.up-input-search .up-icon-wrapper.clear-icon svg path, & .up-input-group.up-input-focused .up-icon-wrapper.clear-icon svg path": {
         fill: 'transparent'
       },
+      
     }
   };
 };
