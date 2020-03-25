@@ -5,6 +5,7 @@ import UpLabel from '../../Display/Label'
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import UpDefaultTheme, { UpThemeProvider } from '../../../Common/theming';
+import UpButton from '../Button/UpButton';
 
 const randomName = (n = 12) => {
     const alphabet: string = "azertyuiopmlkjhgfdsqwxcvbn";
@@ -37,13 +38,13 @@ const DynamicOptions = () => {
         onOptionChange: (event, checked) => handleToggle(name, checked),
         checked: false
     }] as Array<iCbOption>);
-
+    
     const handleToggle = (cbName, checked) => {
         console.group("handleToggle");
         console.log("name", cbName);
         console.log("checked", checked);
         console.groupEnd();
-        const newOptions = options.map((option: iCbOption) => {
+        setOptions(prevOptions => prevOptions.map((option: iCbOption) => {
             if (option.name !== cbName) {
                 return option;
             }
@@ -51,9 +52,7 @@ const DynamicOptions = () => {
                 ...option,
                 checked
             };
-        });
-        options = newOptions ;
-        setOptions(options);
+        }));
     }
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -61,19 +60,16 @@ const DynamicOptions = () => {
         console.group("handleClick");
         console.log("Add option", newName);
         console.groupEnd();
-        const newOptions: iCbOption[] = [
-            ...options,
-            {
-                name: newName,
-                value: newName,
-                text: newName,
-                onOptionChange: (event, checked) => handleToggle(newName, checked),
-                checked: false
-            }
-        ];
-        options = newOptions;
-        setOptions(options);
+
+        setOptions(prevOptions => [...prevOptions, {
+            name: newName,
+            value: newName,
+            text: newName,
+            onOptionChange: (event, checked) => handleToggle(newName, checked),
+            checked: false
+        }]);
     };
+
     return (
         <UpThemeProvider theme={UpDefaultTheme}>
             <div
@@ -83,19 +79,13 @@ const DynamicOptions = () => {
             >
                 <div>
                     <div>
-                        <button type="button" onClick={handleClick}>
+                        <UpButton actionType={'add'} intent={'primary'} onClick={(e) => handleClick(e)}>
                             Ajouter un checkbox
-              </button>
+                        </UpButton>
                     </div>
                     <div>
                         <UpCheckbox options={options}></UpCheckbox>
                     </div>
-                </div>
-                <div>
-                    <h2>scénario :</h2>
-                    <ul>
-                        <li>Ajouter 1 element checkbox</li>
-                    </ul>
                 </div>
             </div>
         </UpThemeProvider>
