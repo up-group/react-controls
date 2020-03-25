@@ -54,12 +54,14 @@ const Heading = style({
 })
 
 export default class Welcome extends React.Component {
+  
   showApp(e) {
     e.preventDefault();
     if (this.props.showApp) this.props.showApp();
   }
 
   render() {
+    const { children } = this.props ;
     return (
       <div style={styles.main}>
         <h1 className={Heading}>Design System by Up</h1>
@@ -84,6 +86,7 @@ export default class Welcome extends React.Component {
             <li><code>Inputs</code> components</li>
           </ul>
         </p>
+        {children}
       </div>
     );
   }
