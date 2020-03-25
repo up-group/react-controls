@@ -11,6 +11,7 @@ import UpDefaultCellFormatter from './UpDefaultCellFormatter'
 import shallowEqual from '../../../Common/utils/shallowEqual'
 import { isEmpty } from '../../../Common/utils';
 import UpButtonGroup from "../../Containers/ButtonGroup";
+import { UpDataGridConsumer } from './UpDataGridContext'
 
 export interface UpDataGridRowState {
 }
@@ -63,16 +64,43 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
         } else if(this.props.actions != null) {
             finalActions = this.props.actions as Array<Action> ;
         }
+        // render action in the first element of the array
+        const renderActions = ({
+            rowActions,
+            labelToDisplayRowActionsInCell,
+            index,
+            value
+        }) => {            
+            if( labelToDisplayRowActionsInCell && value.label === labelToDisplayRowActionsInCell){
+                return rowActions
+            }
+            if(!labelToDisplayRowActionsInCell && index === 0){
+                return rowActions
+            }
+        }
 
         return (
-            <tr className="up-data-grid-row up-data-grid-row-bordered" style={{ cursor: this.props.onClick ? 'pointer' : ''}} onClick={() => this.props.onClick && this.props.onClick(this.props.rowIndex, { value: this.props.value })}>
+            <UpDataGridConsumer>
+          { ({displayRowActionsWithinCell,rowActions,labelToDisplayRowActionsInCell}) => <tr className="up-data-grid-row up-data-grid-row-bordered" style={{ cursor: this.props.onClick ? 'pointer' : ''}} onClick={() => this.props.onClick && this.props.onClick(this.props.rowIndex, { value: this.props.value })}>
                 {this.props.isSelectionEnabled &&
                     <UpDataGridCell key={"cell-selection"} value={selection} column={{ label: "", formatter: formatter }} />
                 }
                 {this.props.columns.map((value, index) => {
-                    return <UpDataGridCell key={`cell-${index}`} value={this.props.value} column={value} render={value.render} />
+                   
+                    return <UpDataGridCell 
+                                actions={displayRowActionsWithinCell && renderActions({ 
+                                    rowActions,
+                                    labelToDisplayRowActionsInCell,
+                                    index,
+                                    value,
+                                })} 
+                                key={`cell-${index}`} 
+                                value={this.props.value} 
+                                column={value} 
+                                render={value.render} 
+                            />
                 })}
-                {!isEmpty(finalActions) &&
+                {!isEmpty(finalActions) && !displayRowActionsWithinCell &&
                     <UpDataGridCell key={"cell-actions"} value={this.props.value} column={{ label: "", isSortable: false }}>
                         <UpButtonGroup gutter={4}>
                             {
@@ -99,7 +127,8 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
                         </UpButtonGroup>
                     </UpDataGridCell>
                 }
-            </tr>
+            </tr>}
+            </UpDataGridConsumer>
         )
     }
 }

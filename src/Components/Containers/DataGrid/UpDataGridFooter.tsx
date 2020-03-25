@@ -12,7 +12,8 @@ export interface FooterProps {
     validationButtonText?: string,
     pagination?: React.ReactElement,
     actions?: any
-    isPaginationEnabled?: boolean
+    isPaginationEnabled?: boolean,
+    data?: Array<any>,
 }
 
 const getStyle = props => {
@@ -45,7 +46,10 @@ const UpDataGridFooter = (props: FooterProps) => {
         validationButtonText,
         actionsButtonText,
         isPaginationEnabled,
+        data,
     } = props
+
+    const selectedData = data.filter(element => element.isSelected)
 
     const buttonAction = actions && !isEmpty(actions) && actions.map(({ description, action }) => ({
         libelle: description,
@@ -60,14 +64,14 @@ const UpDataGridFooter = (props: FooterProps) => {
                         dropDown="down"
                         intent="primary"
                         extraActions={buttonAction || []}
-                        disabled={!actions}
+                        disabled={!(selectedData.length >= 2)}
                     >
                         {actionsButtonText}
                     </UpButton>
                     <UpButton
                         onClick={() => {/* to discuss */ }}
                         intent="secondary"
-                        disabled={!actions}
+                        disabled={!(selectedData.length >= 2)}
                     >
                         {validationButtonText}
                     </UpButton>
