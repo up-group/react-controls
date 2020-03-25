@@ -23,8 +23,9 @@ import { borderColor } from "csx";
 import { borderRadius } from "react-select/lib/theme";
 import UpDataGridFooter,{FooterProps} from './UpDataGridFooter';
 import UpDataGridHeader,{HeaderProps} from './UpDataGridHeader';
-import {UpDataGridProvider} from './UpDataGridContext'
 
+import _ = require('lodash');
+import {UpDataGridProvider} from './UpDataGridContext'
 
 const WrapperDataGridStyle = style({
   position: "relative"
@@ -475,33 +476,14 @@ class UpDataGrid extends React.Component<
     });
   };
 
-  arraysEqual(arr1: any[], arr2: any[]) {
-    if (arr2 == arr1) {
-      return true;
-    }
-
-    if (arr1 == null || arr2 == null) {
-      return false;
-    }
-
-    if (arr1.length !== arr2.length) {
-      return false;
-    }
-    for (var i = arr1.length; i--; ) {
-      if (shallowEqual(arr1[i], arr2[i]) === false) {
-        return false;
-      }
-    }
-    return true;
-  }
-
   componentWillReceiveProps(nextProps: UpDataGridProps) {
     var data = this.state.data;
     var curentState = data.map(v => {
       return v.value;
     });
 
-    var hasSameData = this.state.data === nextProps.data;
+    var hasSameData = _.isEqual(curentState, nextProps.data);
+    
     if (this.props.dataSource == null && hasSameData === false) {
       data =
         nextProps.data != null
