@@ -9,6 +9,9 @@ import UpButton from '../Button/UpButton';
 import UpInput from '../Input';
 import UpBox from '../../Containers/Box';
 
+/// HOOKS
+import useSafeSate from '../../../Common/hooks/useSafeState'
+
 const randomName = (n = 12) => {
     const alphabet: string = "azertyuiopmlkjhgfdsqwxcvbn";
     const randomInt = (max: number): number =>
@@ -33,9 +36,9 @@ interface iCbOption {
 
 const DynamicOptions = () => {
     const name = randomName();
-    let [currentName, setCurrentName] = React.useState('')
+    let [currentName, setCurrentName] = useSafeSate('')
 
-    let [options, setOptions] = React.useState([{
+    let [options, setOptions] = useSafeSate([{
         name,
         value: name,
         text: name,
@@ -86,7 +89,7 @@ const DynamicOptions = () => {
                         Ajouter un checkbox
                     </UpButton>
                     <UpBox style={{width : "200px"}}>
-                        <UpInput value={currentName} onChange={e => setCurrentName(e.target.value)}></UpInput>
+                        <UpInput hasClearOption={true} onClear={() => setCurrentName('')} value={currentName} onChange={e => setCurrentName(e.target.value)}></UpInput>
                     </UpBox>
                 </UpBox>
                 <UpBox>

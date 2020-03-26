@@ -5,9 +5,10 @@
     "tslint-eslint-rules"
   ],
   "plugins": [
-    "react-hooks"
+    "tslint-react-hooks"
   ],
-  "jsRules": {},
+  "jsRules": {
+  },
   "rules": {
     "max-line-length": [false, 80],
     "variable-name": [true, "ban-keywords", "check-format", "allow-pascal-case"],
@@ -16,8 +17,7 @@
     "no-increment-decrement": false,
     "import-name": false,
     "prefer-array-literal": false,
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+    "react-hooks-nesting": "error"
   },
   "rulesDirectory": []
 }
