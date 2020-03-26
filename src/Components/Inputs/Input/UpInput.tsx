@@ -199,6 +199,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
       || this.props.isRequired !== nextProps.isRequired
       || this.props.placeholder !== nextProps.placeholder
       || this.props.readonly !== nextProps.readonly
+      || this.props.disabled !== nextProps.disabled
       || this.props.rounded !== nextProps.rounded
       || this.props.showError !== nextProps.showError
       || this.props.showSuccess !== nextProps.showSuccess
