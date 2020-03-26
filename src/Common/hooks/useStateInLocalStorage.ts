@@ -11,3 +11,5 @@ const useSateInLocalStorage : (key: string, defaultValue:string) => Array<any> =
 
     return [state, setState] ;
 }
+
+export default useSateInLocalStorage
