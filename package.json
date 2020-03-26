@@ -41,7 +41,7 @@
       "\\.(css|less)$": "<rootDir>/config/testing/__mocks__/styleMock.js"
     },
     "testPathIgnorePatterns": [
-      "<rootDir>/(build|docs|node_modules)/",
+      "<rootDir>/(build|docs|node_modules|e2e|dist|generators)/",
       "/__mocks__/"
     ],
     "transform": {
@@ -97,6 +97,7 @@
     "@storybook/addon-options": "5.3.17",
     "@storybook/addon-storysource": "^5.3.17",
     "@storybook/react": "5.3.17",
+    "@testing-library/react-hooks": "^3.2.1",
     "@types/chai": "^4.2.1",
     "@types/chai-enzyme": "^0.6.6",
     "@types/enzyme": "^3.10.1",
@@ -134,7 +135,7 @@
     "react-addons-test-utils": "^15.5.1",
     "react-docgen-typescript-loader": "^3.7.1",
     "react-hooks-testing-library": "^0.6.0",
-    "react-test-renderer": "^16.12.0",
+    "react-test-renderer": "^16.13.1",
     "remark-codesandbox": "^0.5.2",
     "rimraf": "^2.6.1",
     "sass-loader": "^7.1.0",
