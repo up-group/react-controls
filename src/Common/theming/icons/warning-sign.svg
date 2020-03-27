@@ -1,13 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 17.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
-<g id="warning_2_">
-	<g>
-		<path fill-rule="evenodd" clip-rule="evenodd" d="M19.86,17.52c0,0,0.01-0.01,0.01-0.01l-9-16c0,0-0.01,0.01-0.01,0.01
-			C10.69,1.21,10.37,1,10,1S9.31,1.21,9.14,1.52L9.13,1.51l-9,16l0.01,0.01C0.06,17.66,0,17.82,0,18c0,0.55,0.45,1,1,1h18
-			c0.55,0,1-0.45,1-1C20,17.82,19.94,17.66,19.86,17.52z M11,17H9v-2h2V17z M11,14H9V6h2V14z"/>
-	</g>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30px" height="30px" viewBox="0 0 30 30" version="1.1" style="background: #4E5B59;">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Icone / V1 / Blanc / attention</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Icone-/-V1-/-Blanc-/-attention" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect  x="0" y="0" width="30" height="30"/>
+        <g id="Group-3" transform="translate(12.000000, 1.000000)" fill="#FFFFFF">
+            <path d="M3,21.6047601 C1.34338462,21.6047601 0,23.0372939 0,24.8023801 C0,26.5687781 1.34338462,28 3,28 C4.65661538,28 6,26.5687781 6,24.8023801 C6,23.0372939 4.65661538,21.6047601 3,21.6047601 M2,19.3497001 L4,19.3497001 C4.34030769,19.3497001 4.61538462,19.0571589 4.61538462,18.6937781 L5.84615385,0.655922039 C5.84615385,0.293853073 5.57107692,0 5.23076923,0 L0.769230769,0 C0.428923077,0 0.153846154,0.293853073 0.153846154,0.655922039 L1.38461538,18.6937781 C1.38461538,19.0571589 1.65969231,19.3497001 2,19.3497001" id="Fill-1"/>
+        </g>
+    </g>
 </svg>

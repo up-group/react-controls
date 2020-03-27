@@ -6,7 +6,7 @@ import * as classnames from 'classnames';
 import {UpGrid, UpRow, UpCol} from '../../Containers/Grid'
 import UpModal from '../../Containers/Modal/UpModal'
 import UpHeading from '../../Display/Heading'
-
+import {setTimeOutWithPause} from '../../../Common/utils/helpers'
 import iconMap from '../../../Common/theming/iconMap'
 import SvgIcon from '../SvgIcon'
 import defaultTheme from '../../../Common/theming'
@@ -24,34 +24,51 @@ export interface CommonProps  {
   dismissable?:boolean;
   title?:string;
   displayMode? : NotificationDisplayMode;
+  children?: any;
 }
 
 export interface UpNotificationProps extends CommonProps  {
   message?: JSX.Element | string;
   className?: string;
   iconSize?: string;
+  duration?: number;
+  withCancelIcon?: boolean;
 }
 
-class UpNotification extends React.Component<UpNotificationProps & WithThemeProps> {
-  
-   static defaultProps : UpNotificationProps & WithThemeProps = {
-    message:"",
-    theme:defaultTheme,
-    displayMode:"inline",
-    intent:'info',
-    iconSize: "48px",
-  }
 
-  constructor(props) {
-    super(props) ;
-  }
-  
-  render() {
-    const {children, message, intent, theme, title, className} = this.props ;
+
+const  UpNotification = (props: UpNotificationProps & WithThemeProps ) => {
+    const {children, message, intent, theme, title, className,duration, withCancelIcon} = props ;
+    const [showNotification, displayNotification] = React.useState(true)
+    let timer;
+      
+      
+    
+    React.useEffect(() => {
+        if (duration) {
+            //start the timer
+            timer = new setTimeOutWithPause(()=> {
+               displayNotification(false)
+              }, duration * 1000);
+        }
+
+    }, [duration])
+
+    
+
+
+    const onMouseOver = () => {
+        if (timer) timer.pause()
+    }
+
+    const onMouseLeave = () => {
+        if (timer) timer.resume()
+    }
 
     let icon = null ;
-    
-    const iconSize = this.props.iconSize || theme && theme.notificationIconSize != null ? theme.notificationIconSize : 60;
+    let cancelIcon = null;
+    const iconSize = props.iconSize || (theme && theme.notificationIconSize != null ? theme.notificationIconSize : 60);
+
     
     if (intent && iconMap[intent]) {
         icon = <SvgIcon iconName={iconMap[intent]}
@@ -59,41 +76,62 @@ class UpNotification extends React.Component<UpNotificationProps & WithThemeProp
             height={iconSize}   
         /> ;
     }
+    if (withCancelIcon) {
+        cancelIcon = <SvgIcon  iconName={iconMap['error']}
+        width={'10px'}
+        height={'10px'}   
+    />
+    }
     
     let NotificationRender ;
     
     NotificationRender =  () => (
-        <div className={classnames(getStyles(this.props), className, 'up-notification')}>
-            <UpGrid className={'up-notification'}>
-                {this.props.displayMode !== "modal" && title && 
+        <>
+        <div  onMouseEnter={onMouseOver} onMouseLeave={onMouseLeave} className={classnames(getStyles({...props}), className, 'up-notification-container')}>
+            <UpGrid className={'up-notification'} >
+                {props.displayMode !== "modal" && title && 
                     <UpRow>
                         <UpCol span={24}>
                             <UpHeading tag={'h2'} textAlign={'left'}>{title}</UpHeading>
                         </UpCol>
                     </UpRow>
                 }
-                <UpRow>
-                    <UpBox flexDirection={'row'} alignContent={'flex-start'} justifyContent={'center'} alignItems={'center'}>
-                        {icon}
-                        {message && 
-                            <p>{message}</p>
-                        }
-                        {children}
-                    </UpBox>
-                </UpRow>
+                    <UpRow >
+                        <UpBox  flexDirection={'row'} alignContent={'flex-start'} justifyContent={'center'} alignItems={'center'}>
+                            <div className="up-notification-icon-container">{icon}</div>
+                            {(message || children) && <div className='up-notification-message'>{message || children}</div>}
+                        </UpBox>
+                    </UpRow>
+                    <div className="cancel-icon" onClick={()=>displayNotification(false)}>
+                        {cancelIcon}
+                    </div>
             </UpGrid>
-        </div>);
+            { duration && <div className="up-notification-progress-bar-container" >
+            <div className="up-notification-progress-bar"/>
+        </div>}
 
-    if(this.props.displayMode=="modal") {
+        </div>
+        
+
+        </>
+        );
+
+    if(props.displayMode=="modal") {
         return <UpModal header={title} showModal={true}>
                 <NotificationRender />
             </UpModal>;
     }
 
-    return (
+    return showNotification && (
         <NotificationRender />
     );
-  }
-};
-
+  
+    }
+UpNotification.defaultProps = {
+    message: "",
+    theme: defaultTheme,
+    displayMode: "inline",
+    intent: 'info',
+    iconSize: "15px",
+} as UpNotificationProps & WithThemeProps
 export default withTheme<UpNotificationProps>(UpNotification)

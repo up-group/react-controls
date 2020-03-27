@@ -11,8 +11,8 @@ export interface IconMap {
 
 const iconMap : IconMap = {
   success: 'ok-sign',
-  danger: 'error-sign',
-  error: 'error-sign',
+  danger: 'close',
+  error: 'close',
   warning: 'warning-sign',
   info:'info-sign',
   none: 'none'
