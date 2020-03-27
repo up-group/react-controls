@@ -300,3 +300,22 @@ export function ConvertToDate(date: string): Date {
 
     return new Date(jourMoisAnnee[2], jourMoisAnnee[1] - 1, jourMoisAnnee[0]);
 }
+
+export const  setTimeOutWithPause = function(callback, delay) {
+    let timerId, start, remaining = delay;
+   
+    this.pause = function() {
+        window.clearTimeout(timerId); // stop the setTimout and waitb for the resume to create a new one
+        remaining -= Date.now() - start; // update the remaing time depending on the starting time of the firt timer
+    };
+    
+    this.resume = function() {
+        start = Date.now();
+        window.clearTimeout(timerId); // stop the previous setTimeOutId 
+        timerId = window.setTimeout(callback, remaining); // create a new one with the remaining time
+    };
+
+    // start the timer for the first time
+    this.resume();
+  };
+  

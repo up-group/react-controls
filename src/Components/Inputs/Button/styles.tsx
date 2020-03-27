@@ -204,7 +204,8 @@ const active = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
       },
       "&.up-btn .colored svg, &.up-btn .colored svg path, &.up-btn .colored svg polygon, &.up-btn .colored svg polyline": {
         fill:
-          props.color || props.theme.colorMap[`${props.intent}${props.dropDown === 'none' ? 'Fg':''}`] || "white"
+          props.color || props.theme.colorMap[`${props.intent}${props.dropDown === 'none' ? 'Fg':''}`] || "white",
+          background: 'unset !important'
       },
       "&.up-btn": {
         cursor: "pointer"
