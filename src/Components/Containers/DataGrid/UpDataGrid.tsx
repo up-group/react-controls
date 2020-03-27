@@ -672,6 +672,7 @@ class UpDataGrid extends React.Component<
             pagination={pagination} 
             actions={oneRowIsSelected && this.props.rowActions}
             data={this.state.data}
+            theme={this.props.theme}
           />
       </div>
       </UpDataGridProvider>

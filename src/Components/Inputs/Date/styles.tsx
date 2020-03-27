@@ -46,7 +46,7 @@ const getStyles = (
       },
       "& .SingleDatePickerInput_calendarIcon": {
         margin: props.theme.inputBorderLess ? `0 ${props.iconPosition === "left" ? '5px' : '0px'} 0 0` : "0 5px 0 10px",
-        padding: "6px"
+        paddingBottom: "4px"
       },
       "& .SingleDatePickerInput_calendarIcon svg, & .SingleDatePickerInput_calendarIcon svg path": {
         fill: props.focused

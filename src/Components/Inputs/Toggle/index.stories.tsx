@@ -32,7 +32,7 @@ class ToggleWrapper extends React.Component<ToggleWrapperProps, ToggleWrapperSta
     }
     render() {
         return (
-            <UpToggle size={this.props.size} value={true} checked={this.state.checked === true} onChange={this.onChange} />);
+            <UpToggle size={this.props.size} value={true} disabled={boolean('disabled',false)} checked={this.state.checked === true} onChange={this.onChange} />);
     }
 }
 
@@ -54,7 +54,7 @@ export const General =
                         <ToggleWrapper size={'small'} />
                     </UpLabel>
                     <UpLabel textAlign={"left"} inline={true} width="medium" text="Activation de ... :">
-                        <ToggleWrapper size={'normal'} />
+                        <ToggleWrapper size={'normal'}  />
                     </UpLabel>
                     <UpLabel textAlign={"left"} inline={true} width="medium" text="Activation de ... :">
                         <ToggleWrapper size={'large'} />

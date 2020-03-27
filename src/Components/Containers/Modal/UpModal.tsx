@@ -121,13 +121,15 @@ const ModalStyle = (props: WithThemeProps) =>
         },
         "& .up-modal-title": {
           margin: 0,
-          lineHeight: 1.42857143
+          lineHeight: 1.42857143,
+          fontWeight: 400,
+          color: props.theme.colorMap.grey1
         },
         "& .up-modal-body": {
           position: "relative",
           padding: "15px",
           width: "100%",
-          height: "100%"
+          height: "100%",
         },
         "& .up-modal-footer": {
           padding: "15px",
@@ -153,8 +155,13 @@ const ModalStyle = (props: WithThemeProps) =>
           lineHeight: 1,
           color: "#000"
         },
-        "& .up-modal-close.colored svg, & .up-modal-close.colored svg path, & .up-modal-close.colored svg polygon, & .up-modal-close.colored svg polyline": {
-          fill: props.theme.colorMap.primary
+        "& .up-modal-close .up-icon-wrapper": {
+          width:'12px',
+          height:'12px'
+        },
+        "& .up-modal-close .colored svg, & .up-modal-close .colored svg path, & .up-modal-close .colored svg polygon, & .up-modal-close .colored svg polyline": {
+          fill: props.theme.colorMap.grey1,
+          
         },
         "& .up-modal-close:hover, & .up-modal-close:focus": {
           color: props.theme.colorMap.primaryDark,
