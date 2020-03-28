@@ -74,6 +74,7 @@ export const MonthsAndYearsSelectable =
             console.log(event);
             console.log(value);
           }}
+          daySize={40}
         />
         <div style={{margin: "50px", width : '100px'}} >
         <UpPassword
