@@ -62,14 +62,10 @@ const wrapperStyle = (props: UpToggleProps & WithThemeProps) => style({
     },
 
     ".up-toggle-track" : {
-      backgroundColor: "#4D4D4D",
+      backgroundColor: props.theme.colorMap.disabledFg,
       "-webkit-transition": "all 0.2s ease",
       "-ms-transition": "all 0.2s ease",
       transition: "all 0.2s ease"
-    },
-
-    ".up-toggle:hover:not(.up-toggle--disabled) .up-toggle-track" : {
-      backgroundColor: "#000000"
     },
 
     ".up-toggle--checked .up-toggle-track" : {
@@ -472,7 +468,7 @@ class UpToggle extends React.PureComponent<UpToggleProps & WithThemeProps, UpTog
     
     const classes = classNames('up-toggle', {
       'up-toggle--checked': this.state.checked,
-      'up-toggle--focus': this.state.hasFocus,
+      
       'up-toggle--disabled': this.props.disabled,
     }, className)
 
@@ -487,7 +483,7 @@ class UpToggle extends React.PureComponent<UpToggleProps & WithThemeProps, UpTog
         "& .up-toggle-thumb" : {
           width: this.getThumbWidth(), 
           height: this.getThumbHeight(),
-          border: "1px solid #4D4D4D",
+          border: size === 'small' && '1px solid #4D4D4D',
           borderRadius: this.getThumbBorder(),
           ...this.getThumbPosition()
         },
@@ -511,12 +507,7 @@ class UpToggle extends React.PureComponent<UpToggleProps & WithThemeProps, UpTog
           onTouchMove={this.handleTouchMove}
           onTouchEnd={this.handleTouchEnd}>
           <div className='up-toggle-track'>
-            <div className='up-toggle-track-check'>
-              {size != 'small' ? this.getIcon('checked') : null}
-            </div>
-            <div className='up-toggle-track-x'>
-              {size != 'small' ? this.getIcon('unchecked'): null}
-            </div>
+           
           </div>
           <div className='up-toggle-thumb' />
         </div>

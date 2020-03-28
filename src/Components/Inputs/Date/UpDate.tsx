@@ -8,6 +8,7 @@ import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import defaultTheme from "../../../Common/theming";
 import withTheme, { WithThemeProps } from "../../../Common/theming/withTheme";
 import { eventFactory } from "../../../Common/utils/eventListener";
+import SvgIcon from '../../Display/SvgIcon'
 import { Moment } from "moment";
 
 import { SingleDatePicker } from "react-dates";
@@ -193,6 +194,7 @@ class UpDate extends BaseControlComponent<
       >
         {floatingLabel && <label htmlFor={id}>{floatingLabel}</label>}
         <SingleDatePicker
+          customInputIcon={<SvgIcon iconName='calendar' width="15px" height="15px" />}
           enableOutsideDays={this.props.enableOutsideDays}
           renderMonthElement={this.props.numberOfMonths == 1 ? this.renderMonthElement : null}
           numberOfMonths={this.props.numberOfMonths}

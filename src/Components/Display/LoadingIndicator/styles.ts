@@ -63,9 +63,11 @@ export const getStyleByMode = (props: WithThemeProps & LoadingIndicatorProps , d
       backgroundColor: 'white',
       opacity: 1,
       borderRadius: theme.borderRadius,
-      boxShadow: "1px 1px 3px 2px #111",
       display: 'flex',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.099)',
+      border : `1px solid ${props.theme.colorMap.disabledFg}`
+
     };
 
   } else {
@@ -87,6 +89,7 @@ export const getStyleByMode = (props: WithThemeProps & LoadingIndicatorProps , d
         ...container,
         backgroundColor :'transparent',
         opacity : 1,
+        
       }
       loadingIndicatorStyle = {
         ...loadingIndicatorStyle,
@@ -95,8 +98,8 @@ export const getStyleByMode = (props: WithThemeProps & LoadingIndicatorProps , d
         opacity : 0.8 ,
         padding : 10,
         borderRadius : theme.borderRadius,
-        boxShadow : '1px 1px 3px 2px #111',
-
+        boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.099)',
+        border : `1px solid ${props.theme.colorMap.disabledFg}`
       }
     }
   }

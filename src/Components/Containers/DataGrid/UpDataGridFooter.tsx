@@ -5,6 +5,7 @@ import UpButtonGroup from '../ButtonGroup'
 import UpButton from '../../Inputs/Button/UpButton'
 import { NestedCSSProperties } from 'typestyle/lib/types'
 import { isEmpty } from '../../../Common/utils'
+import {WithThemeProps}  from '../../../Common/theming/withTheme'
 
 export interface FooterProps {
     showActionsButtons?: boolean,
@@ -14,6 +15,7 @@ export interface FooterProps {
     actions?: any
     isPaginationEnabled?: boolean,
     data?: Array<any>,
+    theme?: WithThemeProps
 }
 
 const getStyle = props => {
@@ -32,13 +34,16 @@ const getStyle = props => {
             },
             '&.up-data-grid-footer .pagination-container': {
                 ...position
+            },
+            '&.up-data-grid-footer .up-icon-wrapper svg path': {
+                fill: props.showActionsButtons && props.theme.colorMap.disabledFg
             }
         }
     })
 }
 
 
-const UpDataGridFooter = (props: FooterProps) => {
+const UpDataGridFooter = (props: FooterProps & WithThemeProps) => {
     const {
         showActionsButtons,
         pagination,
@@ -57,7 +62,7 @@ const UpDataGridFooter = (props: FooterProps) => {
     }))
 
     return (
-        <div className={classnames('up-data-grid-footer', getStyle({ showActionsButtons }))}>
+        <div className={classnames('up-data-grid-footer', getStyle(props))}>
             {showActionsButtons &&
                 <UpButtonGroup  isAddOn='right' gutter={1} align={"h"}>
                     <UpButton

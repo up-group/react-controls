@@ -138,8 +138,7 @@ const toggle = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
       },
       "&.up-btn svg, &.up-btn svg path, &.up-btn svg polygon, &.up-btn svg polyline": {
         fill:`${props.backgroundColor || 
-          props.theme.colorMap[`${props.intent}${props.isToggled && 'HoverFg'}`]} !important`,
-        stroke: props.theme.colorMap[`${props.intent}`],
+          props.theme.colorMap[`${props.intent}`]} !important`,
       },
     }
   };
@@ -204,8 +203,8 @@ const active = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
       },
       "&.up-btn .colored svg, &.up-btn .colored svg path, &.up-btn .colored svg polygon, &.up-btn .colored svg polyline": {
         fill:
-          props.color || props.theme.colorMap[`${props.intent}${props.dropDown === 'none' ? 'Fg':''}`] || "white",
-          background: 'unset !important'
+          props.color || props.theme.colorMap[`${props.intent}Fg`] || "white",
+          //background: 'unset !important'
       },
       "&.up-btn": {
         cursor: "pointer"

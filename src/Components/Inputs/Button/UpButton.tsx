@@ -192,6 +192,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
 
     render() {
         const { children, tooltip, onClick, iconName, iconPosition, disabled, isProcessing, ...others } = this.props;
+        console.log(iconName)
         
         const buttonElement = style({
             cursor: "pointer",
@@ -213,9 +214,9 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         let icon: boolean | IconName = iconName;
         if (icon == null && this.props.dropDown != 'none') {
             if (this.props.dropDown == 'up') {
-                icon = 'caret-up';
+                icon = 'arrow-up';
             } else if (this.props.dropDown == 'down') {
-                icon = 'caret-down';
+                icon = 'arrow-down';
             }
         }
 
