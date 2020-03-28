@@ -5,7 +5,7 @@ import UpButtonGroup from '../ButtonGroup'
 import UpButton from '../../Inputs/Button/UpButton'
 import { NestedCSSProperties } from 'typestyle/lib/types'
 import { isEmpty } from '../../../Common/utils'
-import {WithThemeProps}  from '../../../Common/theming/withTheme'
+import { WithThemeProps }  from '../../../Common/theming/withTheme'
 
 export interface FooterProps {
     showActionsButtons?: boolean,
@@ -14,11 +14,10 @@ export interface FooterProps {
     pagination?: React.ReactElement,
     actions?: any
     isPaginationEnabled?: boolean,
-    data?: Array<any>,
-    theme?: WithThemeProps
+    data?: Array<any>
 }
 
-const getStyle = props => {
+const getStyle = (props : FooterProps & WithThemeProps) => {
     const position: NestedCSSProperties = props.showActionsButtons ? {} : { position: 'absolute', right: 0 }
     return style({
         display: 'flex',
@@ -44,6 +43,7 @@ const getStyle = props => {
 
 
 const UpDataGridFooter = (props: FooterProps & WithThemeProps) => {
+    
     const {
         showActionsButtons,
         pagination,
