@@ -133,9 +133,14 @@ export const getStyles = (
   notificationIsClosing: boolean
 ): string => {
    
-  const animation = !notificationIsClosing
-    ? { ...animateFromRight(2, 'ease', 'fadeIn') }
-    : { ...animateFromLeft(1, 'ease', 'fadeOut') };
+  let animation = {} ;
+  
+  if(props.duration || props.withCancelIcon) {
+    animation = !notificationIsClosing
+      ? { ...animateFromRight(2, 'ease', 'fadeIn') }
+      : { ...animateFromLeft(1, 'ease', 'fadeOut') };
+  }
+
   return classnames(
     style(colors(props)),
     style(icon(props)),
