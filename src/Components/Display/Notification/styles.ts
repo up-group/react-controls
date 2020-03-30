@@ -4,7 +4,6 @@ import { NestedCSSProperties } from 'typestyle/lib/types';
 import * as classnames from 'classnames';
 import { style, keyframes } from 'typestyle';
 import { WithThemeProps } from '../../../Common/theming/withTheme';
-import { MutableRefObject } from 'react';
 import { animateFromLeft, animateFromRight } from '../../../Common/theming/animations';
 
 export const colors = (
@@ -135,7 +134,7 @@ export const getStyles = (
 ): string => {
    
   const animation = !notificationIsClosing
-    ? { ...animateFromRight(1, 'ease', 'fadeIn') }
+    ? { ...animateFromRight(2, 'ease', 'fadeIn') }
     : { ...animateFromLeft(1, 'ease', 'fadeOut') };
   return classnames(
     style(colors(props)),

@@ -1,19 +1,20 @@
 import { keyframes, style } from 'typestyle';
 
+export type FadeType = 'fadeIn' | 'fadeOut'
 
-const getFromOpacity = (fadeType: string) => fadeType === 'fadeIn'
+const getFromOpacity = (fadeType: FadeType) => fadeType === 'fadeIn'
     ? { opacity: 0 }
     : fadeType === 'fadeOut'
         ? { opacity: 1 }
         : {};
 
-const getToOpacity = (fadeType: string) => fadeType === 'fadeIn'
+const getToOpacity = (fadeType: FadeType) => fadeType === 'fadeIn'
     ? { opacity: 1 }
     : fadeType === 'fadeOut'
         ? { opacity: 0 }
         : {};
 
-const fromBottomAnimation = (fadeType?: string) => keyframes({
+const fromBottomAnimation = (fadeType?: FadeType) => keyframes({
     from: {
         marginTop: '100%',
         ...getFromOpacity(fadeType)
@@ -24,7 +25,7 @@ const fromBottomAnimation = (fadeType?: string) => keyframes({
     }
 });
 
-const fromTopAnimation = (fadeType?: string) => keyframes({
+const fromTopAnimation = (fadeType?: FadeType) => keyframes({
     from: {
         marginTop: '-100%',
         ...getFromOpacity(fadeType)
@@ -35,7 +36,7 @@ const fromTopAnimation = (fadeType?: string) => keyframes({
     }
 });
 
-const fromRightAnimation = (fadeType?: string) => keyframes({
+const fromRightAnimation = (fadeType?: FadeType) => keyframes({
     from: {
         marginLeft: '100%',
         ...getFromOpacity(fadeType),
@@ -49,7 +50,7 @@ const fromRightAnimation = (fadeType?: string) => keyframes({
 
 
 
-const fromLeftAnimation = (fadeType?: string) => keyframes({
+const fromLeftAnimation = (fadeType?: FadeType) => keyframes({
     from: {
         marginLeft: '0%',
         ...getFromOpacity(fadeType),
@@ -93,7 +94,7 @@ export const fadeOut = (
 export const animateFromBottom = (
     duration: number = 1,
     mode: string = 'ease',
-    fadeType?: string
+    fadeType?: FadeType
 ) => ({
     animation: `${fromBottomAnimation(
         fadeType
@@ -102,7 +103,7 @@ export const animateFromBottom = (
 export const animateFromTop = (
     duration: number = 1,
     mode: string = 'ease',
-    fadeType?: string
+    fadeType?: FadeType
 ) => ({
     animation: `${fromTopAnimation(
         fadeType
@@ -111,14 +112,15 @@ export const animateFromTop = (
 
 export const animateFromRight = (duration: number = 1,
     mode: string = 'ease',
-    fadeType?: string) => ({
+    fadeType?: FadeType) => ({
         animation: `${fromRightAnimation(
             fadeType
         )} ${duration}s ${mode}`
     });
+
 export const animateFromLeft = (duration: number = 1,
     mode: string = 'ease',
-    fadeType?: string) => ({
+    fadeType?: FadeType) => ({
         animation: `${fromLeftAnimation(
             fadeType
         )} ${duration}s ${mode}`

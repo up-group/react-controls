@@ -17,7 +17,6 @@ import withTheme, {
   WithThemeProps
 } from '../../../Common/theming/withTheme';
 import UpBox from '../../Containers/Box';
-import StateManager from 'react-select';
 
 export type NotificationDisplayMode = 'inline' | 'modal' | 'text';
 
