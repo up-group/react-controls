@@ -19,7 +19,7 @@ const ControlledPassword = props => {
     <UpPassword
       value={value}
       onChange={(e, v) => setValue(v)}
-      onClickBehaviour={true}
+      showPasswordOnClick={true}
     />
   );
 };
@@ -41,7 +41,7 @@ const PasswordWithRules = props => {
     <UpPassword
       value={value}
       onChange={(e, v) => setValue(v)}
-      onClickBehaviour={false}
+      showPasswordOnClick={false}
       rules={rules}
       onFocus={(e)=>{
         setFocused(true)

@@ -75,7 +75,6 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps & 
   if(hasClearOption && !!value && isLoading) {
     RightIcon= <UpLoadingIndicator isLoading={isLoading} loaderSize={30}  ></UpLoadingIndicator>
   }
-  
 
   // Tooltip
   var tooltipProps = {};

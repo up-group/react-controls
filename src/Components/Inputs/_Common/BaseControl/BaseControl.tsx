@@ -302,7 +302,5 @@ export abstract class BaseControlComponent<
     if (this.props.onChange !== undefined && event != null) {
       this.props.onChange(event, data, error);
     }
-  };
-  
+  };  
 }
-

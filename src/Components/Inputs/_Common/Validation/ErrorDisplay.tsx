@@ -18,6 +18,7 @@ const ErrorDisplayStyle = (props: ErrorDisplayProps & WithThemeProps) => style({
     position:"relative", 
     cursor: (props.displayMode==="tooltip" && props.hasError)?"help":"default",
     height:"100%",
+    width: "100%",
     $nest: {
         "& .up-wrapper-error-tooltip" : {
             display:"inline-block",

@@ -16,7 +16,7 @@ const getStyles = (
         position: "absolute",
         top: "-10px",
         left: "0px",
-        color: "#979797",
+        color: props.theme.colorMap.gray6,
         transformOrigin: "top left",
         transform: "translate(0, 16px) scale(1)",
         transition: "all .1s ease-in-out",

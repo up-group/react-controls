@@ -6,122 +6,14 @@ import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
 import { mdx } from '@storybook/addon-docs/blocks';
+import { UpGrid, UpRow, UpCol } from '../../Containers/Grid';
 
-interface TestProps {
-
-}
-
-interface TestState {
-    valM: any[],
-    val: any,
-    lastChange?: any,
-    valE: any;
-    valEM: any[];
-}
-
-class Test extends React.Component<TestProps, TestState>{
-    public static defaultProps: TestProps = {};
-
-    constructor(p, c) {
-        super(p, c);
-        this.state = {
-            val: { id: 555, name: "tesdzadzt" },
-            valM: null,
-            valE: 1,
-            valEM: [1, 2],
-
-        };
-    }
-
-    render() {
-        return  <div>
-                <div>
-                    <button onClick={() => {
-                        this.setState({
-                            val: { id: 5, name: "test" },
-                            valM: [{ id: 1111, name: "test 1" }, { id: 11122, name: "test 2" }],
-                            valE: 3,
-                            valEM: [3, 4],
-                        });
-                    }}>set test</button>
-                    <UpSelect autoload={false}
-                        isRequired={false}
-                        allowClear={true}
-                        default={null}
-                        multiple={false}
-                        tooltip="Votre ville de naissance"
-                        minimumInputLength={3}
-                        value={this.state.val}
-                        returnType="id"
-
-                        dataSource={{
-                            query: "https://jsonplaceholder.typicode.com/users",
-                            text: "name"
-                        }}
-                        onChange={(a) => { this.setState({ val: a, lastChange: a }); }} />
-                    <div>
-                        {JSON.stringify(this.state.val)}
-                    </div>
-
-                    <UpSelect autoload={false}
-                        isRequired={false}
-                        allowClear={true}
-                        default={null}
-                        multiple={true}
-                        tooltip="Votre ville de naissance"
-                        minimumInputLength={3}
-                        value={this.state.valM}
-                        returnType="id"
-                        dataSource={{
-                            query: "https://jsonplaceholder.typicode.com/users",
-                            text: "name"
-                        }}
-                        onChange={(event, a) => { this.setState({ valM: a, lastChange: a }); }} />
-                </div>
-                <div>
-                    {JSON.stringify(this.state.valM)}
-                </div>
-
-                <div >
-
-                    <UpSelect
-                        value={this.state.valE}
-                        returnType="id"
-                        tooltip="Civilité" default={null}
-                        data={[
-                            { id: 1, text: 'M.' },
-                            { id: 2, text: 'Mme' },
-                            { id: 3, text: 'Mlle' },
-                            { id: 4, text: 'Dr' },
-                        ]}
-                        onChange={(a) => { this.setState({ valE: a, lastChange: a }); }} />
-                    <div>
-                        {JSON.stringify(this.state.valE)}
-                    </div>
-                    <UpSelect
-                        value={this.state.valEM}
-                        returnType="id"
-                        multiple={true}
-                        tooltip="Civilité" default={null} data={[
-                            { id: 1, text: 'M.' },
-                            { id: 2, text: 'Mme' },
-                            { id: 3, text: 'Mlle' },
-                            { id: 4, text: 'Dr' },
-                        ]}
-                        onChange={(event, value) => { this.setState({ valEM: value, lastChange: value }); }} />
-                </div>
-
-            <div>
-                {JSON.stringify(this.state.valEM)}
-            </div>
-            <div>
-                lastChange
-               <br />
-                {JSON.stringify(this.state.lastChange)}
-            </div>
-            </div>
-    }
-}
+import { Formik } from "formik";
+import * as Yup from "yup";
+import { style } from 'typestyle';
+import UpInput from '../Input';
+import UpBox from '../../Containers/Box';
+import UpPassword from '../Password';
 
 export default { 
     title: 'Components|Inputs/UpSelect',
@@ -132,6 +24,149 @@ export default {
         }
     }
 };
+
+const UserCreationForm = props => {
+    const [onBlurState, setOnBlurState] = React.useState({} as any);
+  
+    const HelpMessageDisplayStyle = error =>
+      style({
+        position: "relative",
+        cursor: "help",
+        height: "100%",
+        $nest: {
+          "& .up-wrapper-help-message-inline": {
+            display: "inline-block",
+            color: error ? "red" : "black",
+            fontSize: "8pt"
+          }
+        }
+      });
+  
+    const {
+      values,
+      touched,
+      errors,
+      dirty,
+      isSubmitting,
+      handleChange,
+      handleBlur,
+      handleSubmit,
+      handleReset
+    } = props;
+  
+    return (
+      <form onSubmit={handleSubmit}>
+        <UpBox flexDirection={'row'} >
+            <UpBox className={'up-form-field'} style={{width: '200px', marginTop: "14px", marginRight:'16px'}}>
+                <UpSelect autoload={false}
+                        isRequired={false}
+                        allowClear={true}
+                        allowCreate={true}
+                        default={null}
+                        multiple={false}
+                        placeholder="Civilité"
+                        tooltip="Votre civilité"
+                        minimumInputLength={3}
+                        createOptionPosition={'first'}
+                        data={[
+                            { id: 1, text: 'M.' },
+                            { id: 2, text: 'Mme' },
+                            { id: 3, text: 'Mlle' },
+                            { id: 4, text: 'Dr' },
+                        ]}
+                        onChange={console.log} />
+            </UpBox>
+            <UpBox className={'up-form-field'} style={{ marginRight:'16px' }}>
+                <UpInput
+                    name={"firstName"}
+                    floatingLabel={"First Name"}
+                    onBlur={e => {
+                        handleBlur(e);
+                        setOnBlurState({ ...onBlurState, firstName: true });
+                    }}
+                    onFocus={e => {
+                        setOnBlurState({ ...onBlurState, firstName: false });
+                    }}
+                    value={values.firstName}
+                    showSuccess={dirty && onBlurState.firstName}
+                    autocomplete={"off"}
+                    onChange={handleChange}
+                    />
+            </UpBox>
+            <UpBox className={'up-form-field'} style={{ marginRight:'16px' }}>
+                <UpInput
+                    name={"lastName"}
+                    floatingLabel={"Last Name"}
+                    onBlur={e => {
+                        handleBlur(e);
+                        setOnBlurState({ ...onBlurState, lastName: true });
+                    }}
+                    onFocus={e => {
+                        setOnBlurState({ ...onBlurState, lastName: false });
+                    }}
+                    value={values.lastName}
+                    showSuccess={dirty && onBlurState.lastName}
+                    autocomplete={"off"}
+                    onChange={handleChange}
+                />
+            </UpBox>
+        </UpBox>
+        <UpBox flexDirection={'row'}>
+            <UpBox className={'up-form-field'} style={{ marginRight:'16px' }}>
+                <UpInput
+                    name={"email"}
+                    type={"email"}
+                    onBlur={e => {
+                        handleBlur(e);
+                        setOnBlurState({ ...onBlurState, email: true });
+                    }}
+                    floatingLabel={"Email"}
+                    errorDisplayMode={"inline"}
+                    showError={dirty && onBlurState.email}
+                    showSuccess={dirty && onBlurState.email}
+                    error={errors.email === undefined ? null : errors.email}
+                    hasError={errors.email != null}
+                    value={values.email}
+                    onChange={handleChange}
+                    onFocus={e => {
+                        setOnBlurState({ ...onBlurState, email: false });
+                    }}
+                    autocomplete={"off"}
+                    iconPosition={"right"}
+                    placeholder={"Renseignez votre email"}
+                    helpMessage={children => (
+                        <div className={HelpMessageDisplayStyle(errors.email)}>
+                            {children}
+                            <div className={"up-wrapper-help-message-inline"}>
+                                Vous devez renseigner un email valide
+                            </div>
+                        </div>
+                    )}
+                />
+            </UpBox>
+            <UpBox className={'up-form-field'} style={{ marginRight:'16px' }}>
+                <UpPassword
+                    name={"password"}
+                    floatingLabel={"Password"}
+                    onBlur={e => {
+                        handleBlur(e);
+                        setOnBlurState({ ...onBlurState, password: true });
+                    }}
+                    iconPosition={"right"}
+                    autocomplete={"off"}
+                    onFocus={e => {
+                        setOnBlurState({ ...onBlurState, password: false });
+                    }}
+                    showPasswordOnClick={true}
+                    showSuccess={dirty && onBlurState.password}
+                    value={values.password}
+                    onChange={handleChange}
+                />
+            </UpBox>
+        </UpBox>
+      </form>
+    );
+  };
 
 const SimpleSelect = (props) => {
     let [selectedValue, setValue] = React.useState({ id: 1, text: 'M.' });
@@ -288,3 +323,28 @@ export const MultiCreatable =
                 onChange={console.log} />
         </div>
 );
+
+export const IntegrationInForm =
+  () => (
+    <UpGrid>
+      <UpRow>
+        <UpCol span={12}>
+          <Formik initialValues={{ email: '', password: '' }}
+            onSubmit={(values, { setSubmitting }) => {
+              setTimeout(() => {
+                alert(JSON.stringify(values, null, 2));
+                setSubmitting(false);
+              }, 500);
+            }}
+            validateOnBlur={true}
+            validationSchema={Yup.object().shape({
+              email: Yup.string()
+                .email("Vous devez renseigner un email valide")
+                .required('L\'email est requis'),
+            })}>
+            {(props) => <UserCreationForm {...props} />}
+          </Formik>
+        </UpCol>
+      </UpRow>
+    </UpGrid>
+  )

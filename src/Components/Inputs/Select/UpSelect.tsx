@@ -15,6 +15,7 @@ import { ValueType, ActionMeta } from 'react-select/lib/types';
 import { eventFactory } from '../../../Common/utils/eventListener';
 import { isEmpty } from '../../../Common/utils'
 import defaultTheme from '../../../Common/theming/'
+import { ThemeInterface } from 'theming/types'
 
 const CancelToken = axios.CancelToken;
 
@@ -47,7 +48,7 @@ const formatGroupLabel = data => (
 
 const formatMinimumInputLenghMessage = (minimumInputLength:number) => `Veuillez renseigner au minimum ${minimumInputLength} caractères`;
 
-const customStyles = (theme,value)  => ({
+const customStyles = (theme : ThemeInterface, value)  => ({
     option: (provided, state) => ({
         ...provided,
         fontWeight: state.isSelected ? 700 : provided.fontWeight || 'inherit',
@@ -77,12 +78,11 @@ const customStyles = (theme,value)  => ({
          boxShadow: state.isFocused ? 0 : 0,
         '&:hover': {
             border: state.isFocused ? 0 : 0,
-            borderBottom: `1px solid ${theme.colorMap.gray1}`,
+            borderBottom: `1px solid ${theme.colorMap.gray6}`,
         },
-        
         height:'29px !important',
         minHeight:'unset !important',    
-        borderBottom: `1px solid ${theme.colorMap.gray1}`,
+        borderBottom: `1px solid ${theme.colorMap.gray6}`
     }),
     dropdownIndicator: (provided, state) => ({
         ...provided,
@@ -90,19 +90,29 @@ const customStyles = (theme,value)  => ({
         'svg, svg path': {
             fill: theme.colorMap.grey1,
         },
-        paddingRight: 0,
+        '&:hover': {
+            cursor : 'pointer'
+        },
+        padding: 0,
     }),
     indicatorSeparator: () => null,// this line remove the separator
+    valueContainer : (provided, state) => ({
+        ...provided,
+        padding: '0px',
+        paddingBottom:'6px',
+        '&:hover': {
+            cursor : 'pointer'
+        }
+    }),
     multiValueLabel: (provided, state) => ({
         ...provided,
-        backgroundColor: '#EE7F2D',
+        backgroundColor: theme.colorMap.primary,
         color: 'white',
     }),
     multiValueRemove: (provided, state) => ({
         ...provided,
-        backgroundColor: '#EE7F2D',
+        backgroundColor: theme.colorMap.primary,
         color: 'white',
-        
     }),
     menuList:(provided,state)=> {
         return ({
@@ -111,20 +121,23 @@ const customStyles = (theme,value)  => ({
     })},
     clearIndicator: (provided, state) => ({
         ...provided,
-        color: '#EE7F2D',
+        color: theme.colorMap.primary,
         'svg, svg path': {
-            fill: '#EE7F2D',
-        }
+            fill: theme.colorMap.primary,
+        },
+        '&:hover': {
+            cursor : 'pointer'
+        },
+        padding: '0px'
     }),
     container: (provided, state) => ({
+        ...provided,
         border: 0,
-        outline: 'none',
+        outline: 'none'
     }),
     singleValue: (provided, state) => {
         const opacity = state.isDisabled ? 0.5 : 1;
         const transition = 'opacity 300ms';
-
-
         return { ...provided, opacity, transition};
     },
 })
@@ -638,7 +651,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         }
            
         return (
-            <div className={classnames(this.props.className, 'up-select-wrapper', getStyles(this.props))}>
+            <div className={classnames(this.props.className, 'up-select-wrapper')}>
                 {dataSource != null && allowCreate === true &&
                     <Select.AsyncCreatable {...selectComponentProps as any} />
                 }

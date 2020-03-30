@@ -339,6 +339,7 @@ export const IsRequired =
       </UpRow>
     </UpGrid>
   )
+
 export const IntegrationInForm =
   () => (
     <UpGrid>
@@ -363,6 +364,7 @@ export const IntegrationInForm =
       </UpRow>
     </UpGrid>
   )
+  
 export const AutoFocus = 
 () => (
   <UpGrid>

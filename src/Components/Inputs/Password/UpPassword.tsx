@@ -22,7 +22,7 @@ const getStyles = (props: UpInputProps) =>
     $nest: {
       "&.up-password .up-icon-wrapper": {
         position: 'absolute',
-        top: 4,
+        top: props.floatingLabel ? 18 : 4,
         right: 0,
         cursor: "pointer",
         zIndex: 10,
@@ -67,7 +67,7 @@ const getRuleStatus = (props: UpInputProps, regex: RegExp) =>
   }
 
 export interface UpPasswordProps extends UpInputProps {
-  onClickBehaviour?: boolean;
+  showPasswordOnClick?: boolean;
   rules?: Array<Item>
 }
 
@@ -150,7 +150,7 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
       onBlur,
       showError,
       onFocus,
-      onClickBehaviour,
+      showPasswordOnClick: onClickBehaviour,
       rules,
       value,
       focused,
@@ -177,7 +177,6 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
             showValidationStatus={false}
           />
         </div>
-
           <UpSvgIcon
             onMouseOver={!onClickBehaviour ? this.show : null}
             onMouseOut={!onClickBehaviour ? this.hide : null}
