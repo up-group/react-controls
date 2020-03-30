@@ -107,9 +107,7 @@ const UpNotification = (
     );
   }
 
-  let NotificationRender;
-
-  NotificationRender = () => (
+  const NotificationRender = () => (
     <div style={{overflow: 'hidden'}}>
       <div
         onMouseEnter={onMouseOver}
