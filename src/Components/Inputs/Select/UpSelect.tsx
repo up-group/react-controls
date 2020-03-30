@@ -7,7 +7,6 @@ import axios from 'axios'
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import * as queryString from 'query-string';
 import { UpSelectProps } from './types';
-import { getStyles } from './styles';
 import { Props } from 'react-select/lib/Select';
 
 import { color } from 'csx';
