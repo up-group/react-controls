@@ -78,11 +78,11 @@ const customStyles = (theme : ThemeInterface, value)  => ({
          boxShadow: state.isFocused ? 0 : 0,
         '&:hover': {
             border: state.isFocused ? 0 : 0,
-            borderBottom: `1px solid ${theme.colorMap.gray6}`,
+            borderBottom: `1px solid ${state.isFocused ? theme.colorMap.primary : theme.colorMap.gray6}`,
         },
         height:'29px !important',
         minHeight:'unset !important',    
-        borderBottom: `1px solid ${theme.colorMap.gray6}`
+        borderBottom: `1px solid ${state.isFocused ? theme.colorMap.primary : theme.colorMap.gray6}`
     }),
     dropdownIndicator: (provided, state) => ({
         ...provided,
