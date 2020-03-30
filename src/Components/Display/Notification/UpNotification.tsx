@@ -56,14 +56,18 @@ const UpNotification = (
   const [isClosing, setIsClosing] = React.useState(false);
   let timer;
 
+  const close = React.useCallback(() => {
+    setIsClosing(true);
+    setTimeout(() => {
+      displayNotification(false);
+    }, 1000);
+  }, [])
+
   React.useEffect(() => {
     if (duration) {
       //start the timer
       timer = new setTimeOutWithPause(() => {
-        setIsClosing(true);
-        setTimeout(() => {
-          displayNotification(false);
-        }, 1000);
+        close()
       }, duration * 1000);
     }
   }, [duration]);
@@ -143,7 +147,7 @@ const UpNotification = (
           </UpRow>
           <div
             className="cancel-icon"
-            onClick={() => displayNotification(false)}>
+            onClick={close}>
             {cancelIcon}
           </div>
         </UpGrid>
