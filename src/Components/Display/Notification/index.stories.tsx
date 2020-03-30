@@ -25,11 +25,11 @@ export const General =
       <div className={wrapperBoxesStyle}>
       <UpNotification intent="info">
         <UpLoadingIndicator isLoading={true} displayMode={'inline'} />
-      </UpNotification>
+   </UpNotification>
       <UpNotification intent="success" duration={5} withCancelIcon={boolean('showCancelIcon',true)}>
         <p>Votre opération a été enregistré avec succès !</p>
       </UpNotification>
-      <UpNotification intent="danger" duration={10} withCancelIcon={boolean('showCancelIcon',true)}>
+      <UpNotification intent="danger" duration={8} withCancelIcon={boolean('showCancelIcon',true)}>
         <p>Une erreur est survenue dans le traitement de votre demande !</p>
       </UpNotification>
       <UpNotification intent="error" withCancelIcon={boolean('showCancelIcon',true)}>
