@@ -14,7 +14,7 @@ export const sizeMap = {
 };
 
 const boxShadow = {
-  boxShadow: 'inset 0 0 0 1px rgba(245, 145, 0, 0.4), inset 0 -1px 0 rgba(245, 145, 0, 0.2)',
+  boxShadow: 'inset 0 0 0 2px rgba(245, 145, 0, 0.4), inset 0 -1px 0 rgba(245, 145, 0, 0.2)',
 }
 
 export const getCheckableStyles = (props: WithThemeProps) : NestedCSSProperties => {
@@ -36,7 +36,8 @@ export const getCheckableStyles = (props: WithThemeProps) : NestedCSSProperties 
         color: '#7f8fa4',
         fontSize:'14px',
       },
-      '& .up-control-indicator' : {
+      '& .up-control-indicator' : { 
+        background: '#fff',
         fontFamily: '"Icons16", sans-serif',
         fontSize: '16px',
         fontWeight: 400,
@@ -62,7 +63,10 @@ export const getCheckableStyles = (props: WithThemeProps) : NestedCSSProperties 
         border: `2px solid ${props.theme.colorMap.disabledFg}`,
         borderRadius: '3px',
       },
-     '& .up-control-indicator::before' : {
+      '&.up-radio .up-control-indicator' : {
+        ...boxShadow,
+      },
+      '& .up-control-indicator::before' : {
         position: 'relative',
         content: '""', 
         top:'2px',
