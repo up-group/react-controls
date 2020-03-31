@@ -111,7 +111,8 @@ export default class UpDataGridCellHeader extends React.Component<
               style={{ width: "auto" }}
             >
               <UpSvgIcon
-                width={8}
+                width={10}
+                height={10}
                 iconName={sortDescIcon}
                 color={
                   this.state.isSorted && this.state.sortDirection == "DESC"
@@ -121,7 +122,8 @@ export default class UpDataGridCellHeader extends React.Component<
                 onClick={() => this.onCellClick("DESC")}
               />
               <UpSvgIcon
-                width={8}
+                width={10}
+                height={10}
                 iconName={sortAscIcon}
                 color={
                   this.state.isSorted && this.state.sortDirection == "ASC"

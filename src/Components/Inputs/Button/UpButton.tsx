@@ -192,7 +192,6 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
 
     render() {
         const { children, tooltip, onClick, iconName, iconPosition, disabled, isProcessing, ...others } = this.props;
-        console.log(iconName)
         
         const buttonElement = style({
             cursor: "pointer",

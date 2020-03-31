@@ -54,7 +54,6 @@ class UpCheckbox extends React.Component<UpCheckboxProps & WithThemeProps, UpChe
   
   static defaultProps : Partial<UpCheckboxProps> & WithThemeProps = {
     theme:defaultTheme,
-    styles: { marginTop: '8px' },
   }
 
   constructor(props) {
