@@ -13,7 +13,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 export default { 
-  title: 'Components|Inputs/UpRating',
+  title: 'Components|Inputs/UpRichText',
   decorators : [withKnobs, getRootContainer('UpRating')]
 };
 
