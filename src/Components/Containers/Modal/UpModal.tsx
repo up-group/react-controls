@@ -114,7 +114,9 @@ const ModalStyle = (props: WithThemeProps) =>
           padding: "15px",
           minHeight: "40px",
           borderBottom: "1px solid #e5e5e5",
-          position: "relative"
+          position: "relative",
+          display:'flex',
+          justifyContent: 'space-between'
         },
         "& .up-modal-header .close": {
           marginTop: "-2px"
@@ -147,9 +149,6 @@ const ModalStyle = (props: WithThemeProps) =>
           marginLeft: 0
         },
         "& .up-modal-close": {
-          position: "absolute",
-          top: "8px",
-          right: "8px",
           fontSize: "21px",
           fontWeight: "bold",
           lineHeight: 1,

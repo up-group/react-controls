@@ -57,6 +57,24 @@ const base = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
         position: 'relative',
         minWidth: props.dropDown && props.width != 'icon' ? '44px' : 'inherit',
       },
+      '&.up-btn.up-btn-drop-down' :{
+        paddingLeft: '0px',
+        paddingRight: '0px',
+        display: 'flex',
+        flexDirection: 'row-reverse'
+        
+      },
+      '&.up-btn.up-btn-drop-down .up-btn-label' :{
+        paddingRight:'0px',
+        paddingLeft:'0px',
+        marginRight: '28px',
+        marginLeft:'28px'
+      },
+      '&.up-btn.up-btn-drop-down .up-icon-wrapper' :{
+        position: 'unset',
+        marginRight: '14px'
+        
+      },      
       '&.up-btn .up-icon-wrapper': {
         ...positions(props),
       },

@@ -55,15 +55,15 @@ const customStyles = (theme : ThemeInterface, value)  => ({
         padding: 10,
         fontSize: '14px',
         cursor: 'pointer',
+        color: theme.colorMap.grey1,
         ':active': {
-            color: 'white',
-            fontWeight: 700,
-            backgroundColor: state.isSelected ? '#EE7F2D' : `${color('#EE7F2D').lighten(0.1).toRGBA().toString()} !important`,
+            color: theme.colorMap.primary,
+            fontWeight: 400,
+            backgroundColor: state.isSelected ? '#EE7F2D' : `${theme.colorMap.lightGrey1} !important`,
         },
         ':hover': {
-            color: 'white',
-            fontWeight: 700,
-            backgroundColor: state.isSelected ? '#EE7F2D' : `${color('#EE7F2D').lighten(0.2).toRGBA().toString()} !important`,
+            fontWeight: 400,
+            backgroundColor: state.isSelected ? '#EE7F2D' : `${theme.colorMap.lightGrey1} !important`,
         }
     }),
     control: (provided, state) => ({

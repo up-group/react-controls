@@ -369,7 +369,6 @@ export const inputStyles = (props: UpInputProps & WithThemeProps) : NestedCSSPro
         fontSize: "16px",
         fontWeight: 400,
         fontStyle: "normal",
-        zIndex: 1,
         margin: props.theme.inputBorderLess ? "6px 0px" : "6px",
         color: "#5c7080"
       },
@@ -598,6 +597,7 @@ export const getStyles = (props: StyledProps) : string => {
       $nest : {
         '& .up-input' : {
           width: sizeMap[props.width],
+          color: props.theme.colorMap.grey1,
           ...heightStyle,
         }
       }

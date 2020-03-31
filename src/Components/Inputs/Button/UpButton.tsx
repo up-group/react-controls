@@ -32,7 +32,7 @@ for (var i = 0; i < IconNames.length; i++) {
 export class BaseButton extends React.Component<UpButtonStyledProps> {
     
     render() {
-        let { children, className, onClick, dataFor, width, iconPosition, isProcessing, type, disabled } = this.props;
+        let { children, className, onClick, dataFor, width, iconPosition, isProcessing, type, disabled,dropDown } = this.props;
         const actionType = this.props.actionType;
         let iconName: IconName = null;
         if (actionType && ActionIconMap.containsKey(actionType)) {           
@@ -59,19 +59,31 @@ export class BaseButton extends React.Component<UpButtonStyledProps> {
         }
 
         const MainButton = (
-        <button type={type} disabled={disabled} onClick={onClick} className={classnames('up-btn', getStyles(this.props), className)} {...tooltipProps} >
-            {icon != null && isProcessing !== true &&
-                icon
-            }
-            {width !== 'icon' &&
-               children
-            }
-            {isProcessing === true &&
-                <div className='up-loading-indicator-wrapper'>
-                    <UpLoadingIndicator displayMode={"inline"} isLoading={true} /> 
-                </div>
-            }
-        </button>) ;
+          <button
+            type={type}
+            disabled={disabled}
+            onClick={onClick}
+            className={classnames(
+              'up-btn',
+              dropDown !== 'none' && children
+                ? 'up-btn-drop-down'
+                : '',
+              getStyles(this.props),
+              className
+            )}
+            {...tooltipProps}>
+            {icon != null && isProcessing !== true && icon}
+            {width !== 'icon' && children}
+            {isProcessing === true && (
+              <div className="up-loading-indicator-wrapper">
+                <UpLoadingIndicator
+                  displayMode={'inline'}
+                  isLoading={true}
+                />
+              </div>
+            )}
+          </button>
+        );
 
         return MainButton ;
     }
@@ -196,7 +208,12 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         const buttonElement = style({
             cursor: "pointer",
             padding: "8px",
-            color: this.props.theme.colorMap.grey1
+            color: this.props.theme.colorMap.grey1,
+            $nest: {
+                '&:hover' : {
+                    color: this.props.theme.colorMap[this.props.intent]
+                }
+            }
         });
 
         const separatorElement = style({
