@@ -130,10 +130,6 @@ const wrapperStyle = (props: UpToggleProps & WithThemeProps) => style({
       "-webkit-box-shadow": "0px 0px 3px 2px #0099E0",
       boxShadow: "0px 0px 2px 3px #0099E0"
     },
-    ".up-toggle:active:not(.up-toggle--disabled) .up-toggle-thumb" : {
-      "-webkit-box-shadow": "0px 0px 5px 5px #0099E0",
-      boxShadow: '0px 0px 5px 5px #0099E0'
-    }
   }
 }) ;
 

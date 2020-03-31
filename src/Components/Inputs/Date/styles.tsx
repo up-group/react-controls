@@ -25,7 +25,9 @@ const getStyles = (
         marginLeft: props.iconPosition == "left" ? "36px" : "0px"
       },
       "& .SingleDatePickerInput, & .SingleDatePickerInput input, & .SingleDatePickerInput .DateInput": {
-        backgroundColor: "transparent"
+        backgroundColor: "transparent",
+        color: props.theme.colorMap.grey1,
+        paddingBottom: '0px'
       },
       "&.up-input-focused svg, &.up-input-focused svg path, &.up-input-focused svg polygon, &.up-input-focused svg polyline": {
         fill: props.theme.colorMap.primary

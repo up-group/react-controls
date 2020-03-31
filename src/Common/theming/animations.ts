@@ -57,7 +57,7 @@ const fromLeftAnimation = (fadeType?: FadeType) => keyframes({
     },
 
     to: {
-        marginLeft: '-100%',
+        marginLeft: '100%',
         ...getToOpacity(fadeType)
     }
 });

@@ -8,6 +8,7 @@ import withTheme from "../../../Common/theming/withTheme";
 import defaultTheme from "../../../Common/theming";
 import * as classnames from "classnames";
 import { isEmpty,ruleIsValid } from "../../../Common/utils";
+import { NestedCSSProperties,CSSProperties } from 'typestyle/lib/types';
 const fillColor = (props:UpInputProps) => {
   let color: string
   if(!props.touched) color= props.theme.colorMap.default
@@ -30,6 +31,10 @@ const getStyles = (props: UpInputProps) =>
       "&.up-password .up-icon-wrapper svg, &.up-password .up-icon-wrapper svg polygon, &.up-password .up-icon-wrapper svg path, &.up-password .up-icon-wrapper svg polyline": {
         fill: `${fillColor(props)} !important`,
       },
+      "&.up-password .up-wrapper-error-tooltip":{
+        display: 'none',
+        background: 'transparent'
+      }
     }
   });
 

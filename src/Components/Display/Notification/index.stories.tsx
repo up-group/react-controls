@@ -26,7 +26,7 @@ export const General =
       <UpNotification intent="info">
         <UpLoadingIndicator isLoading={true} displayMode={'inline'} />
    </UpNotification>
-      <UpNotification intent="success" duration={5} withCancelIcon={boolean('showCancelIcon',true)}>
+      <UpNotification intent="success" duration={6} withCancelIcon={boolean('showCancelIcon',true)}>
         <p>Votre opération a été enregistré avec succès !</p>
       </UpNotification>
       <UpNotification intent="danger" duration={8} withCancelIcon={boolean('showCancelIcon',true)}>

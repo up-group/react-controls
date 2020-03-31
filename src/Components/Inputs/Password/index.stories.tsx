@@ -31,7 +31,7 @@ const PasswordWithRules = props => {
   const [touched, setTouched] = React.useState(false)
   const rules = [
     { text: 'Au moins 8 caractères', regex: /^.{8,}$/ },
-    { text: 'Au moins une majiscule', regex: /.*[A-Z]/ },
+    { text: 'Au moins une majuscule', regex: /.*[A-Z]/ },
     { text: 'Au moins une miniscule', regex: /.*[a-z]/ },
     { text: 'Au moins 1 chiffre', regex: /.*[0-9].*/ }
   ]
