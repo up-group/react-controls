@@ -506,9 +506,7 @@ class UpToggle extends React.PureComponent<UpToggleProps & WithThemeProps, UpTog
           onTouchStart={this.handleTouchStart}
           onTouchMove={this.handleTouchMove}
           onTouchEnd={this.handleTouchEnd}>
-          <div className='up-toggle-track'>
-           
-          </div>
+          <div className='up-toggle-track' />
           <div className='up-toggle-thumb' />
         </div>
         <input

@@ -56,114 +56,116 @@ const UserCreationForm = props => {
   
     return (
       <form onSubmit={handleSubmit}>
-        <UpBox flexDirection={'row'} >
-            <UpBox className={'up-form-field'} style={{width: '200px', marginTop: "14px", marginRight:'16px'}}>
-                <UpSelect autoload={false}
-                        isRequired={false}
-                        allowClear={true}
-                        allowCreate={true}
-                        default={null}
-                        multiple={false}
-                        placeholder="Civilité"
-                        tooltip="Votre civilité"
-                        minimumInputLength={3}
-                        createOptionPosition={'first'}
-                        data={[
-                            { id: 1, text: 'M.' },
-                            { id: 2, text: 'Mme' },
-                            { id: 3, text: 'Mlle' },
-                            { id: 4, text: 'Dr' },
-                        ]}
-                        onChange={console.log} />
-            </UpBox>
-            <UpBox className={'up-form-field'} style={{ marginRight:'16px' }}>
-                <UpInput
-                    name={"firstName"}
-                    floatingLabel={"First Name"}
-                    onBlur={e => {
-                        handleBlur(e);
-                        setOnBlurState({ ...onBlurState, firstName: true });
-                    }}
-                    onFocus={e => {
-                        setOnBlurState({ ...onBlurState, firstName: false });
-                    }}
-                    value={values.firstName}
-                    showSuccess={dirty && onBlurState.firstName}
-                    autocomplete={"off"}
-                    onChange={handleChange}
+          <UpGrid className={'up-form'} gutter={16}>
+            <UpRow>
+                <UpCol className={'up-form-field'} xs={24} sm={12} md={8} lg={6} >
+                    <UpSelect autoload={false}
+                            isRequired={false}
+                            allowClear={true}
+                            allowCreate={true}
+                            default={null}
+                            multiple={false}
+                            placeholder="Civilité"
+                            tooltip="Votre civilité"
+                            minimumInputLength={3}
+                            createOptionPosition={'first'}
+                            data={[
+                                { id: 1, text: 'M.' },
+                                { id: 2, text: 'Mme' },
+                                { id: 3, text: 'Mlle' },
+                                { id: 4, text: 'Dr' },
+                            ]}
+                            onChange={console.log} />
+                </UpCol>
+                <UpCol xs={24} sm={12} md={8} lg={6}>
+                    <UpInput
+                            name={"firstName"}
+                            floatingLabel={"First Name"}
+                            onBlur={e => {
+                                handleBlur(e);
+                                setOnBlurState({ ...onBlurState, firstName: true });
+                            }}
+                            onFocus={e => {
+                                setOnBlurState({ ...onBlurState, firstName: false });
+                            }}
+                            value={values.firstName}
+                            showSuccess={dirty && onBlurState.firstName}
+                            autocomplete={"off"}
+                            onChange={handleChange}
+                            />
+                </UpCol>
+                <UpCol xs={24} sm={12} md={8} lg={6}>
+                    <UpInput
+                            name={"lastName"}
+                            floatingLabel={"Last Name"}
+                            onBlur={e => {
+                                handleBlur(e);
+                                setOnBlurState({ ...onBlurState, lastName: true });
+                            }}
+                            onFocus={e => {
+                                setOnBlurState({ ...onBlurState, lastName: false });
+                            }}
+                            value={values.lastName}
+                            showSuccess={dirty && onBlurState.lastName}
+                            autocomplete={"off"}
+                            onChange={handleChange}
+                        />
+                </UpCol>
+            </UpRow>
+            <UpRow>
+                <UpCol xs={24} sm={12} md={8} lg={6}>
+                    <UpInput
+                            name={"email"}
+                            type={"email"}
+                            onBlur={e => {
+                                handleBlur(e);
+                                setOnBlurState({ ...onBlurState, email: true });
+                            }}
+                            floatingLabel={"Email"}
+                            errorDisplayMode={"inline"}
+                            showError={dirty && onBlurState.email}
+                            showSuccess={dirty && onBlurState.email}
+                            error={errors.email === undefined ? null : errors.email}
+                            hasError={errors.email != null}
+                            value={values.email}
+                            onChange={handleChange}
+                            onFocus={e => {
+                                setOnBlurState({ ...onBlurState, email: false });
+                            }}
+                            autocomplete={"off"}
+                            iconPosition={"right"}
+                            placeholder={"Renseignez votre email"}
+                            helpMessage={children => (
+                                <div className={HelpMessageDisplayStyle(errors.email)}>
+                                    {children}
+                                    <div className={"up-wrapper-help-message-inline"}>
+                                        Vous devez renseigner un email valide
+                                    </div>
+                                </div>
+                            )}
+                        />
+                </UpCol>
+                <UpCol xs={24} sm={12} md={8} lg={6}>
+                    <UpPassword
+                        name={"password"}
+                        floatingLabel={"Password"}
+                        onBlur={e => {
+                            handleBlur(e);
+                            setOnBlurState({ ...onBlurState, password: true });
+                        }}
+                        iconPosition={"right"}
+                        autocomplete={"off"}
+                        onFocus={e => {
+                            setOnBlurState({ ...onBlurState, password: false });
+                        }}
+                        showPasswordOnClick={true}
+                        showSuccess={dirty && onBlurState.password}
+                        value={values.password}
+                        onChange={handleChange}
                     />
-            </UpBox>
-            <UpBox className={'up-form-field'} style={{ marginRight:'16px' }}>
-                <UpInput
-                    name={"lastName"}
-                    floatingLabel={"Last Name"}
-                    onBlur={e => {
-                        handleBlur(e);
-                        setOnBlurState({ ...onBlurState, lastName: true });
-                    }}
-                    onFocus={e => {
-                        setOnBlurState({ ...onBlurState, lastName: false });
-                    }}
-                    value={values.lastName}
-                    showSuccess={dirty && onBlurState.lastName}
-                    autocomplete={"off"}
-                    onChange={handleChange}
-                />
-            </UpBox>
-        </UpBox>
-        <UpBox flexDirection={'row'}>
-            <UpBox className={'up-form-field'} style={{ marginRight:'16px' }}>
-                <UpInput
-                    name={"email"}
-                    type={"email"}
-                    onBlur={e => {
-                        handleBlur(e);
-                        setOnBlurState({ ...onBlurState, email: true });
-                    }}
-                    floatingLabel={"Email"}
-                    errorDisplayMode={"inline"}
-                    showError={dirty && onBlurState.email}
-                    showSuccess={dirty && onBlurState.email}
-                    error={errors.email === undefined ? null : errors.email}
-                    hasError={errors.email != null}
-                    value={values.email}
-                    onChange={handleChange}
-                    onFocus={e => {
-                        setOnBlurState({ ...onBlurState, email: false });
-                    }}
-                    autocomplete={"off"}
-                    iconPosition={"right"}
-                    placeholder={"Renseignez votre email"}
-                    helpMessage={children => (
-                        <div className={HelpMessageDisplayStyle(errors.email)}>
-                            {children}
-                            <div className={"up-wrapper-help-message-inline"}>
-                                Vous devez renseigner un email valide
-                            </div>
-                        </div>
-                    )}
-                />
-            </UpBox>
-            <UpBox className={'up-form-field'} style={{ marginRight:'16px' }}>
-                <UpPassword
-                    name={"password"}
-                    floatingLabel={"Password"}
-                    onBlur={e => {
-                        handleBlur(e);
-                        setOnBlurState({ ...onBlurState, password: true });
-                    }}
-                    iconPosition={"right"}
-                    autocomplete={"off"}
-                    onFocus={e => {
-                        setOnBlurState({ ...onBlurState, password: false });
-                    }}
-                    showPasswordOnClick={true}
-                    showSuccess={dirty && onBlurState.password}
-                    value={values.password}
-                    onChange={handleChange}
-                />
-            </UpBox>
-        </UpBox>
+                </UpCol>
+            </UpRow>
+        </UpGrid>
       </form>
     );
   };

@@ -57,6 +57,7 @@ export class BaseButton extends React.Component<UpButtonStyledProps> {
                 "data-for": dataFor
             }
         }
+
         const MainButton = (
         <button type={type} disabled={disabled} onClick={onClick} className={classnames('up-btn', getStyles(this.props), className)} {...tooltipProps} >
             {icon != null && isProcessing !== true &&
@@ -170,7 +171,6 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
             paddingTop: 10,
             paddingBottom: 10,
             paddingLeft: 0,
-           // borderRadius: 4,
             height: this.getValue('isToggled') ? 'auto' : '0px',
             transition: this.getValue('isToggled') ? "height 2s ease-in" : "height 2s ease-out",
             transform: this.getValue('isToggled') ? "scaleY(1)" : "scaleY(0)",

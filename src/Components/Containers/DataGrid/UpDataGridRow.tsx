@@ -85,8 +85,8 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
                 {this.props.isSelectionEnabled &&
                     <UpDataGridCell key={"cell-selection"} value={selection} column={{ label: "", formatter: formatter }} />
                 }
+
                 {this.props.columns.map((value, index) => {
-                   
                     return <UpDataGridCell 
                                 actions={displayRowActionsWithinCell && renderActions({ 
                                     rowActions,
@@ -100,6 +100,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
                                 render={value.render} 
                             />
                 })}
+                
                 {!isEmpty(finalActions) && !displayRowActionsWithinCell &&
                     <UpDataGridCell key={"cell-actions"} value={this.props.value} column={{ label: "", isSortable: false }}>
                         <UpButtonGroup gutter={4}>

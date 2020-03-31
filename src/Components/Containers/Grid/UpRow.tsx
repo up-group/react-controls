@@ -3,43 +3,33 @@ import * as classNames from 'classnames';
 import * as assign from 'object-assign';
 
 import {UpRowProps} from './types'
+import { UpGridConsumer } from './UpGridContext';
+import { j } from 'Components/Display/Icons/materialinear';
 
-export default class UpRow extends React.Component<UpRowProps, any> {
-  static defaultProps = {
-    gutter: 0,
-    type:'flex'
-  };
-
-  render() {
-    const { type, justify, align, className, gutter, style, children,
-      prefixCls = 'up-row', ...others } = this.props;
-    
-    const classes = classNames({
+const UpRow : React.FunctionComponent<UpRowProps> = ({ gutter = 0, type = "flex", prefixCls = 'up-row', ...rest}) => {
+  const { justify, align, className, style, children, ...others } = rest;
+  
+  const getRowStyle = React.useCallback((gutter, style) => {
+    return  (gutter as number) > 0 ? assign({}, {
+      marginLeft: (gutter as number) / -2,
+      marginRight: (gutter as number) / -2,
+    }, style) : style;
+  }, [gutter, style]) ;
+  
+  const getClasses = React.useCallback((type, align, justify) => {
+    return classNames({
       [prefixCls]: type=='float',
       [`${prefixCls}-flex`]: type=='flex',
       [`${prefixCls}-flex-${justify}`]: type=='flex' && justify,
       [`${prefixCls}-flex-${align}`]: type=='flex' && align,
     }, className);
-    
-    const rowStyle = (gutter as number) > 0 ? assign({}, {
-      marginLeft: (gutter as number) / -2,
-      marginRight: (gutter as number) / -2,
-    }, style) : style;
+  }, [type,align, justify]);
 
-    const cols = React.Children.map(children, (col: React.ReactElement<any>) => {
-      if (!col) {
-        return null;
-      }
-      if (col.props && (gutter as number) > 0) {
-        return React.cloneElement(col, {
-          style: assign({}, {
-            paddingLeft: (gutter as number) / 2,
-            paddingRight: (gutter as number) / 2,
-          }, col.props.style),
-        });
-      }
-      return col;
-    });
-    return <div {...others} className={classes} style={rowStyle}>{cols}</div>;
-  }
+  return <UpGridConsumer>
+      {(value) => {
+        return <div {...others} className={getClasses(type || value.type, align, justify)} style={getRowStyle(gutter || value.gutter, style)}>{children}</div>
+      }}
+      </UpGridConsumer>
 }
+
+export default UpRow ;

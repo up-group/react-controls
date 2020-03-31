@@ -20,30 +20,30 @@ export const General =
 
     return <UpThemeProvider theme={UpDefaultTheme}>
       <div style={{"margin": "30px"}}>
-      <UpGrid gutter={gutter}>
-        <UpRow>
-          <UpCol xs={24} sm={12} md={8} lg={6} >
-            <UpPanel type={"primary"} title={"Mon Panel"} />
-          </UpCol>
-          <UpCol xs={24} sm={12} md={8} lg={6}>
-            <UpPanel type={"default"} title={"Mon Panel"} />
-          </UpCol>
-          <UpCol xs={24} sm={12} md={8} lg={6}>
-            <UpPanel type={"info"} title={"Mon Panel"} />
-          </UpCol>
-        </UpRow>
-        <UpRow>
-          <UpCol xs={24} sm={12} md={8} lg={6}>
-            <UpPanel type={"primary"} title={"Mon Panel"} />
-          </UpCol>
-          <UpCol xs={24} sm={12} md={8} lg={6}>
-            <UpPanel type={"default"} title={"Mon Panel"} />
-          </UpCol>
-          <UpCol xs={24} sm={12} md={8} lg={6}>
-            <UpPanel type={"info"} title={"Mon Panel"} />
-          </UpCol>
-        </UpRow>
-      </UpGrid>
+        <UpGrid gutter={gutter}>
+          <UpRow>
+            <UpCol xs={24} sm={12} md={8} lg={6} >
+              <UpPanel type={"primary"} title={"Mon Panel"} />
+            </UpCol>
+            <UpCol xs={24} sm={12} md={8} lg={6}>
+              <UpPanel type={"default"} title={"Mon Panel"} />
+            </UpCol>
+            <UpCol xs={24} sm={12} md={8} lg={6}>
+              <UpPanel type={"info"} title={"Mon Panel"} />
+            </UpCol>
+          </UpRow>
+          <UpRow>
+            <UpCol xs={24} sm={12} md={8} lg={6}>
+              <UpPanel type={"primary"} title={"Mon Panel"} />
+            </UpCol>
+            <UpCol xs={24} sm={12} md={8} lg={6}>
+              <UpPanel type={"default"} title={"Mon Panel"} />
+            </UpCol>
+            <UpCol xs={24} sm={12} md={8} lg={6}>
+              <UpPanel type={"info"} title={"Mon Panel"} />
+            </UpCol>
+          </UpRow>
+        </UpGrid>
       </div>
     </UpThemeProvider>
    }

@@ -4,6 +4,9 @@ import { media, style } from "typestyle";
 export const GridStyles : string = style(
   {
     $nest : {
+      '&.up-form .up-form-field .up-select-wrapper' : {
+        marginTop: '14px', // TOFO : Moce to a Form component
+      },
       '& .up-row' : {
         position: 'relative',
         marginLeft: 0,

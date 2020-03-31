@@ -1,44 +1,38 @@
 // Imports 
 import * as React from 'react';
-import {UpGridProps} from './types'
+import { UpGridProps, UpRowProps } from './types'
 import defaultTheme from '../../../Common/theming'
 import { GridStyles } from './styles';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
-
 import * as classnames from 'classnames'
+import { UpGridProvider } from './UpGridContext';
 
-class UpGrid extends React.Component<UpGridProps & WithThemeProps> {
-  
-  public static defaultProps : UpGridProps & WithThemeProps = {
-      gutter:0,
-      theme:defaultTheme
-  }
-
-  render() {
-    const { children, type, gutter, className } = this.props;
+const UpGrid : React.FunctionComponent<UpGridProps & WithThemeProps> = ({ gutter = 0, type = "flex", theme = defaultTheme, ...rest}) => {
+    const { children, className, style} = rest;
     var rows = children ;
-    const _gutter = gutter != null ? gutter : (this.props.theme.gridGutter != null ? this.props.theme.gridGutter : 0) ;
+    const _gutter = gutter != null ? gutter : (theme.gridGutter != null ? theme.gridGutter : 0) ;
     if(_gutter > 0 || type != 'float') {
-       rows = React.Children.map(children, (row: React.ReactElement<any>) => {
-       if (!row) {
-           return null;
-       }
-       if (row.props) {
-           return React.cloneElement(row, {
-               gutter: row.props.gutter==0 ? _gutter : row.props.gutter,
-               type: row.props.type? row.props.type : row.props.type
-           });
-       }
-       return row;
+       rows = React.Children.map(children, (row: React.ReactElement<UpRowProps>) => {
+        if (!row) {
+            return null;
+        }
+        if (row.props) {
+            return React.cloneElement(row, {
+                gutter: row.props.gutter==0 ? _gutter : row.props.gutter,
+                type: row.props.type? row.props.type : row.props.type
+            });
+        }
+        return row;
        });
     }
 
     return (
-        <div style={this.props.style} className={classnames(className, GridStyles)}>
-            {rows}
-        </div>
+        <UpGridProvider value={{gutter: _gutter, type}} >
+            <div style={style} className={classnames(className, GridStyles)}>
+                {rows}
+            </div>
+        </UpGridProvider>
     );
-  }
 }
 
 export default withTheme<UpGridProps>(UpGrid) 
