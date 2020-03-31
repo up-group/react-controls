@@ -500,5 +500,11 @@ export const getWrapperStyles = (props: UpButtonStyledProps): string => {
     display: "inline-block",
     position: "relative",
     width: props.dropDown != 'none' ? "auto" : buttonSizeMap[props.width] || 'inherit',
+    $nest: {
+      "& .up-btn-missing-border": {
+        width: '100%',
+        borderBottom: `1px solid ${props.theme.colorMap[props.intent]}`,
+      }
+    }
   }); 
 }

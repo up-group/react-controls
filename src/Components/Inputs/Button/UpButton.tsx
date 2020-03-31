@@ -196,18 +196,14 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         const buttonElement = style({
             cursor: "pointer",
             padding: "8px",
-            $nest: {
-                '&:hover': { 
-                    backgroundColor: "#f5f5f5",
-                },
-            }
+            color: this.props.theme.colorMap.grey1
         });
 
         const separatorElement = style({
             height: "1px",
             margin: "9px 0",
             overflow: "hidden",
-            backgroundColor: '#e5e5e5'
+            backgroundColor: '#e5e5e5',
         });
 
         let icon: boolean | IconName = iconName;
@@ -238,11 +234,23 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         }
         let handleClickProps = this.props.type === 'submit' ? {} : { onClick : this.handleClick } ;
         
-        const renderButton = <BaseButton iconName={icon} iconPosition={position} isToggled={this.getValue('isToggled')} {...handleClickProps} isProcessing={this.getValue('isProcessing')} disabled={this.disabled()} {...others}>
-            {children != null &&
+        const renderButton = (
+          <div style={{ display: 'flex' }}>
+            <BaseButton
+              iconName={icon}
+              iconPosition={position}
+              isToggled={this.getValue('isToggled')}
+              {...handleClickProps}
+              isProcessing={this.getValue('isProcessing')}
+              disabled={this.disabled()}
+              {...others}>
+              {children != null && (
                 <span className={'up-btn-label'}>{children}</span>
-            }
-        </BaseButton>
+              )}
+            </BaseButton>
+            {!children && <span className="up-btn-missing-border" />}
+          </div>
+        );
 
         return (
             <div ref={this.setReference} className={classnames('up-btn-wrapper', getWrapperStyles(this.props))}>
