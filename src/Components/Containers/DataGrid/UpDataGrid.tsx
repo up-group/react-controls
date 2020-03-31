@@ -53,6 +53,11 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
         fontWeight: 700,
         fontSize: "12px"
       },
+      "& .up-data-grid-header .up-checkbox": {
+        marginTop: '8px',
+        marginBottom: '8px',
+        marginLeft:'7px',
+      },
       "& .up-data-grid-body": {
         background: "white"
       },
@@ -67,6 +72,10 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
         borderCollapse: "collapse",
         borderColor: "transparent",
         borderRadius: props.theme.borderRadius
+      },
+      "& .up-data-grid-header-cell-label": {
+        fontSize: '14px',
+        color: props.theme.colorMap.grey1
       },
       "& .up-data-grid-cell": {
         padding: "16px",
@@ -86,12 +95,13 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
       },
       "& .up-data-grid-cell .row-action": {
         color: props.theme.colorMap.primary,
-        textDecoration: 'underline',
         cursor:'pointer'
+      },
+      "& .up-data-grid-cell .row-action:hover, & .up-data-grid-cell .row-action-delete:hover" :{
+        textDecoration: 'underline',
       },
       "& .up-data-grid-cell .row-action-delete": {
         color: props.theme.colorMap.errorActive,
-        textDecoration: 'underline',
         cursor:'pointer'
       },
       "& .up-data-grid-row": {

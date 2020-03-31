@@ -112,8 +112,8 @@ export const General =
         <UpHeading>Liste des ...</UpHeading>
         <UpDataGrid
           isPaginationEnabled={false}
-          isSelectionEnabled={false}
-          isSortEnabled={false}
+          isSelectionEnabled={true}
+          isSortEnabled={true}
           columns={[
             {
               label: "Col 1",
