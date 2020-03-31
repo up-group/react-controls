@@ -1,6 +1,10 @@
 import * as React from "react";
+import { LayoutMode } from './types';
 
-const UpGridContext = React.createContext({
+const UpGridContext = React.createContext<{
+    gutter:number,
+    type: LayoutMode
+}>({
     gutter : 0,
     type: "flex"
 });

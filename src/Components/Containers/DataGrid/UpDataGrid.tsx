@@ -16,11 +16,8 @@ import UpLoadingIndicator from "../../Display/LoadingIndicator";
 import UpButton from "../../Inputs/Button/UpButton";
 
 import { IntentType, WithThemeProps } from "../../../Common/theming/types";
-import shallowEqual from "../../../Common/utils/shallowEqual";
 import { ActionType } from "../../../Common/actions";
 import UpDefaultTheme, { withTheme } from "../../../Common/theming";
-import { borderColor } from "csx";
-import { borderRadius } from "react-select/lib/theme";
 import UpDataGridFooter,{FooterProps} from './UpDataGridFooter';
 import UpDataGridHeader,{HeaderProps} from './UpDataGridHeader';
 

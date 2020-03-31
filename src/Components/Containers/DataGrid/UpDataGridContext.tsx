@@ -1,6 +1,11 @@
 import * as React from "react";
+import { Action } from "./UpDataGrid"  
 
-const UpDataGridContext = React.createContext({
+const UpDataGridContext = React.createContext<{
+    displayRowActionsWithinCell: boolean;
+    rowActions: Array<Action>,
+    labelToDisplayRowActionsInCell: string
+}>({
     displayRowActionsWithinCell : false,
     rowActions: [],
     labelToDisplayRowActionsInCell : undefined 
