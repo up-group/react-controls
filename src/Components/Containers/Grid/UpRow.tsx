@@ -7,17 +7,14 @@ import { UpGridConsumer } from './UpGridContext';
 import { j } from 'Components/Display/Icons/materialinear';
 import { isPropsEqual } from '@fullcalendar/core';
 
-
-const RowRenderer : React.FunctionComponent<UpRowProps>  = (props) => {
+const RowRenderer : React.FunctionComponent<UpRowProps> = (props) => {
   const { prefixCls, justify, align, className, style, children, type, gutter, ...others } = props;
-  
   const getRowStyle = React.useCallback(() => {
     return  (gutter as number) > 0 ? assign({}, {
       marginLeft: (gutter as number) / -2,
       marginRight: (gutter as number) / -2,
     }, style) : style;
   }, [gutter, style]) ;
-  
   const getClasses = React.useCallback(() => {
     return classNames({
       [prefixCls]: type=='float',
