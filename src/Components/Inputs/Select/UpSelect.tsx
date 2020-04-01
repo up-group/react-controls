@@ -314,6 +314,8 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         }
     }
 
+    private defaultIsOptionIsSelected = (option, selectedOptions) => selectedOptions.find(o => o[this.keyId] === option[this.keyId]) != null
+
     parseValue = (receiveValue: any) => {
         if (this.props.returnType === "id" && typeof (receiveValue) === "object" && receiveValue != null) {
             if (this.props.multiple === true && Array.isArray(receiveValue)) {
@@ -594,7 +596,6 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         }
 
         const value = this.isControlled ? this.props.value : this.state.extra.fullObject;
-        const defaultIsOptionIsSelected = ( option, selectedOptions) => selectedOptions.find(o => o[this.keyId] === option[this.keyId]) != null
         const selectComponentProps: Props = {
             ...specProps,
             value,
@@ -632,7 +633,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             formatGroupLabel: this.props.formatGroupLabel,
             formatOptionLabel: this.props.formatOptionLabel,
             isOptionDisabled: this.props.isOptionDisabled,
-            isOptionSelected: this.props.isOptionSelected || defaultIsOptionIsSelected,
+            isOptionSelected: this.props.isOptionSelected || this.defaultIsOptionIsSelected,
             isRtl: this.props.isRtl,
             isSearchable: this.props.isSearchable,
             minMenuHeight: this.props.minMenuHeight,
