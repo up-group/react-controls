@@ -521,7 +521,7 @@ export const getWrapperStyles = (props: UpButtonStyledProps): string => {
     $nest: {
       "& .up-btn-missing-border": {
         width: '100%',
-        borderBottom: `1px solid ${props.theme.colorMap[props.intent]}`,
+        borderBottom: `1px solid ${props.theme.colorMap[props.intent]}`
       }
     }
   }); 

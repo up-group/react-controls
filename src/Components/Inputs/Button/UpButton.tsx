@@ -265,7 +265,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
                 <span className={'up-btn-label'}>{children}</span>
               )}
             </BaseButton>
-            {!children && <span className="up-btn-missing-border" />}
+            {!children && this.props.dropDown != 'none' && this.getValue('isToggled') && <span className="up-btn-missing-border" />}
           </div>
         );
 
