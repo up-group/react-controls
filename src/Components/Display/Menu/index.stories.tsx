@@ -21,7 +21,7 @@ const resetMenuSelection = (menu: Array<MenuItemData>): Array<MenuItemData>  => 
 }
 
 const hasItemSelected = (uri: string, menu: Array<MenuItemData>): boolean => {
-    return !isEmpty(menu) && menu.find(i => i.uri != null && uri === i.uri || hasItemSelected(uri, i.childMenuItems)) != null ;
+    return !isEmpty(menu) && menu.find(i => (i.uri != null && uri === i.uri) || hasItemSelected(uri, i.childMenuItems)) != null ;
 }
 
 export const setMenuSelection = (
