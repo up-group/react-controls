@@ -24,29 +24,94 @@ const hasItemSelected = (uri: string, menu: Array<MenuItemData>): boolean => {
     return !isEmpty(menu) && menu.find(i => (i.uri != null && uri === i.uri) || hasItemSelected(uri, i.childMenuItems)) != null ;
 }
 
-export const setMenuSelection = (uri: string, menu: Array<MenuItemData>): Array<MenuItemData> => {
-    if (isEmpty(menu)) {
-        return [] ;
-    }
-    return  menu.map(m => ({ ...m, childMenuItems: setMenuSelection(uri, m.childMenuItems), isSelected: m.uri !== null && m.uri === uri || hasItemSelected(uri, m.childMenuItems)}));
-}
+export const setMenuSelection = (
+  uri: string,
+  menu: Array<MenuItemData>,
+  prev?:Array<MenuItemData>
+): Array<MenuItemData> => {
+  if (isEmpty(menu)) {
+    return [];
+  }
+  return menu.map((m,index) => ({
+    ...m,
+    childMenuItems: setMenuSelection(uri, m.childMenuItems),
+    isSelected: prev && m.uri === uri && !prev[index].isSelected
+  }));
+};
 
 const HookedMenu = (props) => {
     const defaultMenu: Array<MenuItemData> = [
-        {
-            title: "Stack", icon: "stack", isSelected: false, isVisible: true, uri: "/stack", childMenuItems: [
-                { title: "Option 1", icon: "weather-rain", isSelected: false, isVisible: true, uri: "/stack/option1", childMenuItems: [] },
-                { title: "Option 2", icon: "weather-snow", isSelected: false, isVisible: true, uri: "/stack/option2", childMenuItems: [] },
-                { title: "Option 3", icon: "weather-sunset", isSelected: false, isVisible: true, uri: "/stack/option3", childMenuItems: [] }
-            ]
-        },
-        { title: "Smart", icon: "smartphone", isSelected: false, isVisible: true, uri: "/smart", childMenuItems: [] },
-        { isSeparator: true},
-        { title: "Settings", icon: "settings", isSelected: false, isVisible: true, uri: "/settings", childMenuItems: [] },
-        { isSeparator: true },
-        { render  : (item : MenuItemData, props : UpMenuProps, state: UpMenuState) => {
-            return <UpButton intent={'primary'} onClick={(e) =>  { action('Command') }} width={state.minified ? 'icon' : 'full'} height={'large'} actionType={'briefcase'}>{'Commander'}</UpButton>
-        }},
+      {
+        title: 'Stack',
+        icon: 'stack',
+        isSelected: false,
+        isVisible: true,
+        uri: '/stack',
+        childMenuItems: [
+          {
+            title: 'Option 1',
+            icon: 'weather-rain',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option1',
+            childMenuItems: []
+          },
+          {
+            title: 'Option 2',
+            icon: 'weather-snow',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option2',
+            childMenuItems: []
+          },
+          {
+            title: 'Option 3',
+            icon: 'weather-sunset',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option3',
+            childMenuItems: []
+          }
+        ]
+      },
+      {
+        title: 'Smart',
+        icon: 'smartphone',
+        isSelected: false,
+        isVisible: true,
+        uri: '/smart',
+        childMenuItems: []
+      },
+      { isSeparator: true },
+      {
+        title: 'Settings',
+        icon: 'settings',
+        isSelected: false,
+        isVisible: true,
+        uri: '/settings',
+        childMenuItems: []
+      },
+      { isSeparator: true },
+      {
+        render: (
+          item: MenuItemData,
+          props: UpMenuProps,
+          state: UpMenuState
+        ) => {
+          return (
+            <UpButton
+              intent={'primary'}
+              onClick={e => {
+                action('Command');
+              }}
+              width={state.minified ? 'icon' : 'full'}
+              height={'large'}
+              actionType={'briefcase'}>
+              {'Commander'}
+            </UpButton>
+          );
+        }
+      }
     ];
     const [menu, setMenu] = React.useState(defaultMenu);
 
@@ -63,8 +128,8 @@ const HookedMenu = (props) => {
       <UpMenu
         onMinifiedChange={(minified)=>action(`Menu minified: ${minified}`)}
         onClick={uri => {
-          const newMenu = setMenuSelection(uri, menu);
-          setMenu(newMenu);
+          const newMenu= prev => setMenuSelection(uri, menu, prev);
+          setMenu(previousMenu => newMenu(previousMenu));
           return false;
         }}
         menuItems={menu}

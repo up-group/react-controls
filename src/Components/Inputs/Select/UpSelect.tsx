@@ -50,20 +50,20 @@ const formatMinimumInputLenghMessage = (minimumInputLength:number) => `Veuillez 
 const customStyles = (theme : ThemeInterface, value)  => ({
     option: (provided, state) => ({
         ...provided,
-        fontWeight: state.isSelected ? 700 : provided.fontWeight || 'inherit',
-        backgroundColor: state.isSelected ? '#EE7F2D' : 'transparent',
+        fontWeight: state.isSelected ? 400 : provided.fontWeight || 'inherit',
+        backgroundColor: 'transparent',
         padding: 10,
         fontSize: '14px',
         cursor: 'pointer',
-        color: theme.colorMap.grey1,
+        color: state.isSelected ? theme.colorMap.primary :theme.colorMap.grey1,
         ':active': {
             color: theme.colorMap.primary,
             fontWeight: 400,
-            backgroundColor: state.isSelected ? '#EE7F2D' : `${theme.colorMap.lightGrey1} !important`,
+            backgroundColor: state.isSelected ? 'transparent' : `${theme.colorMap.lightGrey1} !important`,
         },
         ':hover': {
             fontWeight: 400,
-            backgroundColor: state.isSelected ? '#EE7F2D' : `${theme.colorMap.lightGrey1} !important`,
+            backgroundColor: state.isSelected ? 'transparent' : `${theme.colorMap.lightGrey1} !important`,
         }
     }),
     control: (provided, state) => ({
@@ -137,7 +137,7 @@ const customStyles = (theme : ThemeInterface, value)  => ({
     singleValue: (provided, state) => {
         const opacity = state.isDisabled ? 0.5 : 1;
         const transition = 'opacity 300ms';
-        return { ...provided, opacity, transition};
+        return { ...provided, opacity, transition, color: theme.colorMap.grey1};
     },
 })
 
@@ -401,6 +401,8 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         }
     }
 
+
+
     private format(object, strFormat: string) {
         const regexp = /{-?[\w]+}/gi;
         const arr = strFormat.match(regexp);
@@ -592,7 +594,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         }
 
         const value = this.isControlled ? this.props.value : this.state.extra.fullObject;
-
+        const defaultIsOptionIsSelected = ( option, selectedOptions) => selectedOptions.find(o => o[this.keyId] === option[this.keyId]) != null
         const selectComponentProps: Props = {
             ...specProps,
             value,
@@ -630,7 +632,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             formatGroupLabel: this.props.formatGroupLabel,
             formatOptionLabel: this.props.formatOptionLabel,
             isOptionDisabled: this.props.isOptionDisabled,
-            isOptionSelected: this.props.isOptionSelected,
+            isOptionSelected: this.props.isOptionSelected || defaultIsOptionIsSelected,
             isRtl: this.props.isRtl,
             isSearchable: this.props.isSearchable,
             minMenuHeight: this.props.minMenuHeight,
