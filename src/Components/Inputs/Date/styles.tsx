@@ -116,7 +116,9 @@ const getStyles = (
         backgroundColor: props.theme.colorMap.primaryFg,
         color: props.theme.colorMap.disabledFg,
       },
-     
+      "& button:focus" : {
+          outline:"none !important"
+      }
     }
   });
 

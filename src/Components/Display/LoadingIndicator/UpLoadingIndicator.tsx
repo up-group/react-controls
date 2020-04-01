@@ -50,9 +50,6 @@ class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithTheme
         const { container, overlay, loadingIndicatorStyle } = getStyleByMode(this.props, _displayMode)
 
         if (_displayMode == "zone") {
-
-
-
             return (
                 <div
                     style={container}
