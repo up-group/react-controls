@@ -113,10 +113,10 @@ const customStyles = (theme : ThemeInterface, value)  => ({
         backgroundColor: theme.colorMap.primary,
         color: 'white',
     }),
-    menuList:(provided,state)=> {
+    menu:(provided,state)=> {
         return ({
         ...provided,
-        color: state.isSelected && 'red'
+        marginTop: '0px'
     })},
     clearIndicator: (provided, state) => ({
         ...provided,
