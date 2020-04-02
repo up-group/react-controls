@@ -116,7 +116,8 @@ const customStyles = (theme : ThemeInterface, value)  => ({
     menu:(provided,state)=> {
         return ({
         ...provided,
-        marginTop: '0px'
+        marginTop: '0px',
+        borderRadius:'0px',
     })},
     clearIndicator: (provided, state) => ({
         ...provided,
