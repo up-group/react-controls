@@ -81,10 +81,13 @@ class UpDate extends BaseControlComponent<
   };
 
   dateInput: any;
+  id: string;
+  datePicker : HTMLInputElement;
 
   constructor(p, c) {
     super(p, c);
     this.state = { value: this.props.value };
+    this.id = generateUniqueId();
   }
 
   onChange = (startDate: Moment, endDate?: Moment) => {
@@ -119,9 +122,11 @@ class UpDate extends BaseControlComponent<
   };
 
   componentDidMount() {
-    if (this.props["dataFor"] && this.dateInput) {
-      this.dateInput.inputRef.setAttribute("data-tip", "tooltip");
-      this.dateInput.inputRef.setAttribute("data-for", this.props["dataFor"]);
+    this.datePicker = document.getElementById(this.id) as HTMLInputElement;
+    
+    if (this.props["dataFor"] && this.datePicker) {
+      this.datePicker.setAttribute("data-tip", "tooltip");
+      this.datePicker.setAttribute("data-for", this.props["dataFor"]);
     }
   }
   
@@ -179,7 +184,7 @@ class UpDate extends BaseControlComponent<
       iconPosition
     } = this.props;
 
-    const id = generateUniqueId();
+    
     return (
       <div
         className={classnames(
@@ -192,7 +197,7 @@ class UpDate extends BaseControlComponent<
           !isEmpty(this.currentValue) ? "up-input-valued" : null
         )}
       >
-        {floatingLabel && <label htmlFor={id}>{floatingLabel}</label>}
+        {floatingLabel && <label htmlFor={this.id}>{floatingLabel}</label>}
         <SingleDatePicker
           customInputIcon={<SvgIcon iconName='calendar' width="15px" height="15px" />}
           enableOutsideDays={this.props.enableOutsideDays}
@@ -203,7 +208,7 @@ class UpDate extends BaseControlComponent<
           placeholder={floatingLabel ? "" : placeholder}
           date={this.currentValue}
           onDateChange={this.onChange}
-          id={id}
+          id={this.id}
           disabled={disabled}
           showClearDate={true}
           showDefaultInputIcon={true}
