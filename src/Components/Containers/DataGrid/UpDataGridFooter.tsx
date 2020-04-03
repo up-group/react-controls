@@ -80,8 +80,9 @@ const UpDataGridFooter = (props: FooterProps & WithThemeProps) => {
                     >
                         {validationButtonText}
                     </UpButton>
-                </UpButtonGroup>}
-            {isPaginationEnabled && pagination && pagination}
+                </UpButtonGroup>
+            }
+            {isPaginationEnabled && pagination}
         </div>
     )
 }

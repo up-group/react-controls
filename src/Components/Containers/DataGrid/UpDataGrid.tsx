@@ -641,7 +641,10 @@ class UpDataGrid extends React.Component<
         <UpDataGridHeader 
             {...this.props.headerProps}
             buttonExport={this.btnExportCsv}
-          />           
+          />  
+        {this.props.isPaginationEnabled &&
+          this.props.paginationPosition != "bottom" &&
+          pagination}         
         <UpLoadingIndicator
           displayMode={"zone"}
           message={this.props.loadingMessage}
@@ -676,6 +679,7 @@ class UpDataGrid extends React.Component<
         </UpLoadingIndicator>
           <UpDataGridFooter 
             {...this.props.footerProps}
+            isPaginationEnabled={this.props.isPaginationEnabled && this.props.paginationPosition != "bottom"}
             pagination={pagination} 
             actions={oneRowIsSelected && this.props.rowActions}
             data={this.state.data}
