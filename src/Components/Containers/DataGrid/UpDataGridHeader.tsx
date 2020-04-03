@@ -33,7 +33,6 @@ const getStyle = (props : WithThemeProps) => {
     })
 }
 
-
 const UpDataGridHeader = (props: HeaderProps & WithThemeProps) => {
     const { title, theme, buttons, buttonExport } = props
 

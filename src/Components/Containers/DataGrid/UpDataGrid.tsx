@@ -679,7 +679,7 @@ class UpDataGrid extends React.Component<
         </UpLoadingIndicator>
           <UpDataGridFooter 
             {...this.props.footerProps}
-            isPaginationEnabled={this.props.isPaginationEnabled && this.props.paginationPosition != "bottom"}
+            isPaginationEnabled={this.props.isPaginationEnabled && this.props.paginationPosition != "top"}
             pagination={pagination} 
             actions={oneRowIsSelected && this.props.rowActions}
             data={this.state.data}
