@@ -118,6 +118,7 @@ const customStyles = (theme : ThemeInterface, value)  => ({
         ...provided,
         marginTop: '0px',
         borderRadius:'0px',
+        border: `1px solid ${theme.colorMap.lightGrey1}`
     })},
     clearIndicator: (provided, state) => ({
         ...provided,
