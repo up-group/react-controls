@@ -1,4 +1,4 @@
-# React-Controls (version: 0.1.264 )
+# React-Controls (version: 0.2.0)
 
 ## Background Info
 
