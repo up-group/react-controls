@@ -5,6 +5,7 @@ import { getHocComponentName } from 'utils';
 import { ToggleableComponentProps } from './Toggleable';
 
 type OwnProps = Pick<ToggleableComponentProps, 'show'>
+
 type State = {
     show: boolean
 }

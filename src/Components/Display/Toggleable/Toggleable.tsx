@@ -1,9 +1,7 @@
 import * as React from 'react'
-import { isFunction, callAll } from 'utils';
+import { isFunction } from 'utils';
 
 type DefaultProps<P extends object = object> = { props : P }
-
-const defaultProps : DefaultProps = { props: {} }
 
 type RenderCallback = (args : ToggleableComponentProps ) => JSX.Element;
 
@@ -28,9 +26,7 @@ export type ToggleableComponentProps<P extends object = object> = ReturnType<Tog
 export class Toggleable<T extends object = object> extends React.Component<ToggleableProps<T>, ToggleableState> {
     readonly state : ToggleableState = initialState ;
     
-    reset = () => this.internalSetState(initialState, () => {
-        
-    })
+    reset = () => this.internalSetState(initialState, () => {})
 
     private getApi = () => {
         return { show : this.state.show, toggle: this.toggle };
