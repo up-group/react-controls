@@ -52,7 +52,7 @@ import UpDropFile from './Inputs/DropFile/UpDropFile'
 import UpPDFViewer from './Display/PDFViewer/UpPDFViewer'
 import UpRating from './Inputs/Rating/UpRating'
 import UpCodeViewer from './Display/CodeViewer/UpCodeViewer'
-
+import UpInformation  from './Display/Information/UpInformation'
 import * as UpIcons from "./Display/Icons/materialinear";
 
 export {
@@ -114,4 +114,5 @@ export {
     UpDropFile,
     UpRating,
     UpCodeViewer,
+    UpInformation
 };

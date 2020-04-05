@@ -55,7 +55,7 @@ import UpPDFViewer from './Components/Display/PDFViewer/UpPDFViewer';
 import UpDropFile from './Components/Inputs/DropFile/UpDropFile';
 import UpRating from './Components/Inputs/Rating/UpRating';
 import UpCodeViewer from './Components/Display/CodeViewer';
-
+import UpInformation from './Components/Display/Information';
 
 import * as UpIcons from "./Components/Display/Icons/materialinear";
 
@@ -131,5 +131,6 @@ export {
     UpPDFViewer,
     UpRating,
     UpCodeViewer,
-    eventFactory
+    eventFactory,
+    UpInformation
 };
