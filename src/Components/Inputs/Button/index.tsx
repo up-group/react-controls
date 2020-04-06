@@ -32,6 +32,8 @@ export interface Action {
     iconName?: any;
     tooltip?: string | Tooltip;
     libelle:string;
+    actionType?: ActionType;
+    intent?: IntentType;
 }
 export interface Separator {
     size?:number;

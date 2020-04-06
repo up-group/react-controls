@@ -156,7 +156,8 @@ const UpInformation : React.FunctionComponent<UpInformationProps> = (props) => {
                     fontSize={'small'}
                     tooltip={action.tooltip}
                     iconName={action.iconName}
-                    intent={'primary'}
+                    intent={action.intent}
+                    actionType={action.actionType}
                     onClick={action.onClick}
                     width={'full'}>
                     <span>{action.libelle}</span>
