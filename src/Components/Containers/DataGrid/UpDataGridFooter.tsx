@@ -6,7 +6,7 @@ import UpButton from '../../Inputs/Button/UpButton'
 import { NestedCSSProperties } from 'typestyle/lib/types'
 import { isEmpty } from '../../../Common/utils'
 import { WithThemeProps }  from '../../../Common/theming/withTheme'
-import { IntentType } from '../../../common/theming/types'
+import {IntentType} from "../../../Common/theming/types"
 import { ActionType } from '../../Inputs/Button'
 
 interface ActionDataGrid {

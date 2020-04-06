@@ -2,7 +2,6 @@
 import UpPanel from './UpPanel'
 import {IntentType} from "../../../Common/theming/types"
 import { IconName } from '../../../Common/theming/icons';
-import { WithThemeProps } from '../../../Common/theming/withTheme';
 
 // Exports
 export interface UpPanelProps  {
