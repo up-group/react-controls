@@ -621,8 +621,7 @@ class UpDataGrid extends React.Component<
         }
       }
     }
-    const oneRowIsSelected = this.state.data.some(e=> e.isSelected )
-
+  
     const providerValues = {
       displayRowActionsWithinCell: this.props.displayRowActionsWithinCell ,
       rowActions: this.props.rowActions ,
@@ -681,7 +680,6 @@ class UpDataGrid extends React.Component<
             {...this.props.footerProps}
             isPaginationEnabled={this.props.isPaginationEnabled && this.props.paginationPosition != "top"}
             pagination={pagination} 
-            actions={oneRowIsSelected && this.props.rowActions}
             data={this.state.data}
             theme={this.props.theme}
           />

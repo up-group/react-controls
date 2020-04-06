@@ -6,19 +6,31 @@ import UpButton from '../../Inputs/Button/UpButton'
 import { NestedCSSProperties } from 'typestyle/lib/types'
 import { isEmpty } from '../../../Common/utils'
 import { WithThemeProps }  from '../../../Common/theming/withTheme'
+import { IntentType } from '../../../common/theming/types'
+import { ActionType } from '../../Inputs/Button'
+
+interface ActionDataGrid {
+    label : string;
+    actionType?: ActionType;
+    onClick?: (rows:[]) => Promise<any>;
+}
+
+interface ActionsDataGrid {
+    label : string;
+    intent?: IntentType;
+    actions?: ActionDataGrid[] ;
+}
 
 export interface FooterProps {
-    showActionsButtons?: boolean,
-    actionsButtonText?: string,
-    validationButtonText?: string,
-    pagination?: React.ReactElement,
-    actions?: any
-    isPaginationEnabled?: boolean,
-    data?: Array<any>
+  actionsButtonText?: string;
+  pagination?: React.ReactElement;
+  actionsDataGrid?: ActionsDataGrid;
+  isPaginationEnabled?: boolean;
+  data?: Array<any>;
 }
 
 const getStyle = (props : FooterProps & WithThemeProps) => {
-    const position: NestedCSSProperties = props.showActionsButtons ? {} : { position: 'absolute', right: 0 }
+    const position: NestedCSSProperties = props.actionsDataGrid ? {} : { position: 'absolute', right: 0 }
     return style({
         display: 'flex',
         marginTop: '5px',
@@ -35,8 +47,8 @@ const getStyle = (props : FooterProps & WithThemeProps) => {
                 ...position
             },
             '&.up-data-grid-footer .up-icon-wrapper svg path': {
-                fill: props.showActionsButtons && props.theme.colorMap.disabledFg
-            }
+               fill: props.actionsDataGrid && props.theme.colorMap.disabledFg
+            },
         }
     })
 }
@@ -45,25 +57,42 @@ const getStyle = (props : FooterProps & WithThemeProps) => {
 const UpDataGridFooter = (props: FooterProps & WithThemeProps) => {
     
     const {
-        showActionsButtons,
         pagination,
-        actions,
-        validationButtonText,
+        actionsDataGrid: {actions,label,intent},
         actionsButtonText,
         isPaginationEnabled,
         data,
     } = props
 
+    const [selectedAction ,selectAction] = React.useState(null)
     const selectedData = data.filter(element => element.isSelected)
 
-    const buttonAction = actions && !isEmpty(actions) && actions.map(({ description, action }) => ({
-        libelle: description,
-        onClick: action,
-    }))
+
+    React.useEffect(() => {
+      if (selectedData.length < 2) {
+        selectAction(null);
+      }
+    }, [selectedData]);
+
+
+    const buttonAction =
+      actions &&
+      !isEmpty(actions) &&
+      actions.map(({ label, ...rest}) => ({
+        libelle: label,
+        onClick: () => {
+          selectAction({label,...rest});
+        },
+      }));
+
+      const handleValidation = () => {
+        selectedAction.onClick(selectedData) 
+      }
+
 
     return (
         <div className={classnames('up-data-grid-footer', getStyle(props))}>
-            {showActionsButtons &&
+            {actions &&
                 <UpButtonGroup  isAddOn='right' gutter={1} align={"h"}>
                     <UpButton
                         dropDown="down"
@@ -71,14 +100,14 @@ const UpDataGridFooter = (props: FooterProps & WithThemeProps) => {
                         extraActions={buttonAction || []}
                         disabled={!(selectedData.length >= 2)}
                     >
-                        {actionsButtonText}
+                        {(selectedAction && selectedAction.label) || actionsButtonText}
                     </UpButton>
                     <UpButton
-                        onClick={() => {/* to discuss */ }}
-                        intent="secondary"
-                        disabled={!(selectedData.length >= 2)}
+                        onClick={handleValidation}
+                        intent={intent}
+                        disabled={!selectedAction}
                     >
-                        {validationButtonText}
+                        {label}
                     </UpButton>
                 </UpButtonGroup>
             }
