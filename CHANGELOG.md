@@ -97,8 +97,14 @@ const rules = [
     - ``footerProps?:objectOf`` : 
         - `isPaginationEnabled?:boolean` a props to display the pagination in the footer
         - `actionsButtonText?:string` the text of the button that group all the actions
-        - `showActionsButtonsText?:boolean` a props to display the button that group all the actions
-        - `validationButtonText?:string` the text of the validation button
+        - `actionsDataGrid?:objectOf`:
+          - `label:string`: label of the validation button
+          - `intent?:string`: intent of the validation button
+          - `actions?:ArrayOf`:
+            - `action:ObjectOf`: 
+              - `label:string`: label of the selected action
+              - `actionType:string`: the actionType of the selected action
+              - `onClick:function`: a function that takes an array of the selected rows and return a promise
     - ``headerProps?:objectOf``: 
         - `title:?string` : title of the DataGrid
         - `buttons:?ReactElement`: it could be anything you want to diplay on the right of the header
@@ -224,11 +230,39 @@ const rules = [
           }
         ]}
         footerProps={{
-          isPaginationEnabled: true,
-          actionsButtonText: 'Groupe actions',
-          showActionsButtons: true,
-          validationButtonText: 'Validate'
-        }}
+             isPaginationEnabled: true,
+             actionsButtonText: 'Groupe actions',
+             actionsDataGrid: {
+               label: 'Valider',
+               intent: 'secondary',
+               actions: [
+                 {
+                   actionType: 'add',
+                   label: 'Ajouter un lien',
+                   onClick: rows => {
+                     console.log('add', rows);
+                     return new Promise(() => {});
+                   },
+                 },
+                 {
+                   actionType: 'edit',
+                   label: 'Mofifier',
+                   onClick: rows => {
+                     console.log('edit', rows);
+                     return new Promise(() => {});
+                   },
+                 },
+                 {
+                   actionType: 'delete',
+                   label: 'Supprimer',
+                   onClick: rows => {
+                     console.log('delete', rows);
+                     return new Promise(() => {});
+                   },
+                 },
+               ],
+             },
+           }}
         headerProps={{
           title: 'Titre du tableau',
           buttons: <><UpButton intent='secondary'>Bouton 1</UpButton><UpButton intent='secondary'>Bouton 2</UpButton></>

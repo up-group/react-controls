@@ -295,139 +295,168 @@ export const WithExternalSourceAndPaginationTop =
       />
     )
 
-export const WithExternalSourceAndPaginationBottom =
-    () => (
-      <UpDataGrid
-        dataSource={{
-          query: "https://jsonplaceholder.typicode.com/posts"
-        }}
-        displayRowActionsWithinCell={true}
-        isSelectionEnabled={true}
-        onSelectionChange={(a, b) => {
-          console.log(a, b);
-        }}
-        
-        className={style({
-          $nest: {
-            "&.up-data-grid-container .up-pagination-nav li a": {
-              border: 0,
-              fontSize: "10pt"
-            },
-            "&.up-data-grid-container .up-pagination-result-message": {
-              border: 0,
-              color: "black",
-              fontSize: "10pt"
-            },
-            "& .up-pagination-takes": {
-              display: "none"
-            },
-            "& .up-pagination-page a": {
-              textDecoration: "underline",
-              color: "black",
-              minWidth: "auto",
-              padding: "4px"
-            },
-            "& .up-pagination-page:hover a, & .up-pagination-page.active:hover a, & .up-pagination-page:hover span": {
-              background: "transparent",
-              color: UpDefaultTheme.colorMap.primary
-            },
-            "& .up-pagination-page.disabled a": {
-              textDecoration: "none"
-            },
-            "& .up-pagination-page.disabled:hover a, & .up-pagination-page.disabled:hover span": {
-              color: UpDefaultTheme.colorMap.disabledFg
-            },
-            "& .up-pagination-page.active a": {
-              background: "transparent",
-              color: UpDefaultTheme.colorMap.primary
-            },
-            "& .up-row-flex": {
-              textAlign: "end",
-              flexDirection: "row-reverse"
-            }
-          }
-        })}
-        paginationProps={{
-          paginationNavigationSeparator: "...",
-          previousLabel: "Précédent",
-          nextLabel: "Suivant",
-          renderResultMessage: (
-            theme: UpThemeInterface,
-            from: number,
-            to: number,
-            total: number
-          ) => (
-            <span
-              className={classnames(
-                "up-pagination-result-message",
-                paginationCounterStyle({ theme })
-              )}
-            >
-              {total == 0 && <span>Aucun résultat</span>}
-              {total != 0 && (
-                <span>
-                  <span>R&eacute;sultat(s)&nbsp;</span>
-                  <span>{from}</span>
-                  <span> &agrave; </span>
-                  <span>{to}</span>
-                  <span> sur </span>
-                  <span>{total}</span>
-                </span>
-              )}
-            </span>
-          )
-        }}
-        rowActions={[
-          {
-            action: (values) => {
-              console.log(values)
-            },
-            type: "add",
-            description: "Ajouter un lien"
-          },
-          {
-            action: () => {},
-            type: "edit",
-            description: "Modifier"
-          },
-          {
-            action: () => {},
-            type: "delete",
-            description: "Supprimer"
-          }
-        ]}
-       
-        paginationPosition="bottom"
-        isPaginationEnabled={true}
-        columns={[
-          {
-            label: "Titre",
-            field: "title",
-            isSortable: true
-          },
-          {
-            label: "Texte",
-            field: "body",
-            isSortable: true
-          },
-          {
-            label: "Auteur",
-            field: "userId",
-            isSortable: true
-          }
-        ]}
-        footerProps={{
-          isPaginationEnabled: true,
-          actionsButtonText: 'Groupe actions',
-          showActionsButtons: true,
-          validationButtonText: 'Validate'
-        }}
-        headerProps={{
-          title: 'Titre du tableau',
-          buttons: <><UpButton intent='secondary'>Bouton 1</UpButton><UpButton intent='secondary'>Bouton 2</UpButton></>
-        }}
-      />
-    )
+export const WithExternalSourceAndPaginationBottom = () => (
+         <UpDataGrid
+           dataSource={{
+             query: 'https://jsonplaceholder.typicode.com/posts',
+           }}
+           displayRowActionsWithinCell={true}
+           isSelectionEnabled={true}
+           onSelectionChange={(a, b) => {
+             console.log(a, b);
+           }}
+           className={style({
+             $nest: {
+               '&.up-data-grid-container .up-pagination-nav li a': {
+                 border: 0,
+                 fontSize: '10pt',
+               },
+               '&.up-data-grid-container .up-pagination-result-message': {
+                 border: 0,
+                 color: 'black',
+                 fontSize: '10pt',
+               },
+               '& .up-pagination-takes': {
+                 display: 'none',
+               },
+               '& .up-pagination-page a': {
+                 textDecoration: 'underline',
+                 color: 'black',
+                 minWidth: 'auto',
+                 padding: '4px',
+               },
+               '& .up-pagination-page:hover a, & .up-pagination-page.active:hover a, & .up-pagination-page:hover span': {
+                 background: 'transparent',
+                 color: UpDefaultTheme.colorMap.primary,
+               },
+               '& .up-pagination-page.disabled a': {
+                 textDecoration: 'none',
+               },
+               '& .up-pagination-page.disabled:hover a, & .up-pagination-page.disabled:hover span': {
+                 color: UpDefaultTheme.colorMap.disabledFg,
+               },
+               '& .up-pagination-page.active a': {
+                 background: 'transparent',
+                 color: UpDefaultTheme.colorMap.primary,
+               },
+               '& .up-row-flex': {
+                 textAlign: 'end',
+                 flexDirection: 'row-reverse',
+               },
+             },
+           })}
+           paginationProps={{
+             paginationNavigationSeparator: '...',
+             previousLabel: 'Précédent',
+             nextLabel: 'Suivant',
+             renderResultMessage: (
+               theme: UpThemeInterface,
+               from: number,
+               to: number,
+               total: number
+             ) => (
+               <span
+                 className={classnames(
+                   'up-pagination-result-message',
+                   paginationCounterStyle({ theme })
+                 )}>
+                 {total == 0 && <span>Aucun résultat</span>}
+                 {total != 0 && (
+                   <span>
+                     <span>R&eacute;sultat(s)&nbsp;</span>
+                     <span>{from}</span>
+                     <span> &agrave; </span>
+                     <span>{to}</span>
+                     <span> sur </span>
+                     <span>{total}</span>
+                   </span>
+                 )}
+               </span>
+             ),
+           }}
+           rowActions={[
+             {
+               action: values => {
+                 console.log(values);
+               },
+               type: 'add',
+               description: 'Ajouter un lien',
+             },
+             {
+               action: () => {},
+               type: 'edit',
+               description: 'Modifier',
+             },
+             {
+               action: () => {},
+               type: 'delete',
+               description: 'Supprimer',
+             },
+           ]}
+           paginationPosition="bottom"
+           isPaginationEnabled={true}
+           columns={[
+             {
+               label: 'Titre',
+               field: 'title',
+               isSortable: true,
+             },
+             {
+               label: 'Texte',
+               field: 'body',
+               isSortable: true,
+             },
+             {
+               label: 'Auteur',
+               field: 'userId',
+               isSortable: true,
+             },
+           ]}
+           footerProps={{
+             isPaginationEnabled: true,
+             actionsButtonText: 'Groupe actions',
+             actionsDataGrid: {
+               label: 'Valider',
+               intent: 'secondary',
+               actions: [
+                 {
+                   actionType: 'add',
+                   label: 'Ajouter un lien',
+                   onClick: rows => {
+                     console.log('add', rows);
+                     return new Promise(() => {});
+                   },
+                 },
+                 {
+                   actionType: 'edit',
+                   label: 'Modifier',
+                   onClick: rows => {
+                     console.log('edit', rows);
+                     return new Promise(() => {});
+                   },
+                 },
+                 {
+                   actionType: 'delete',
+                   label: 'Supprimer',
+                   onClick: rows => {
+                     console.log('delete', rows);
+                     return new Promise(() => {});
+                   },
+                 },
+               ],
+             },
+           }}
+           headerProps={{
+             title: 'Titre du tableau',
+             buttons: (
+               <>
+                 <UpButton intent="secondary">Bouton 1</UpButton>
+                 <UpButton intent="secondary">Bouton 2</UpButton>
+               </>
+             ),
+           }}
+         />
+       );
 
 export const WithExternalSourceAndPaginationTopAndBottom =
     () => (
