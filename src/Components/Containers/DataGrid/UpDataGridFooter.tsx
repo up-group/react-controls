@@ -16,13 +16,13 @@ interface ActionDataGrid {
 }
 
 interface ActionsDataGrid {
-    label : string;
+    groupLabel : string;
+    validationLabel: string;
     intent?: IntentType;
     actions?: ActionDataGrid[] ;
 }
 
 export interface FooterProps {
-  actionsButtonText?: string;
   pagination?: React.ReactElement;
   actionsDataGrid?: ActionsDataGrid;
   isPaginationEnabled?: boolean;
@@ -55,18 +55,18 @@ const getStyle = (props : FooterProps & WithThemeProps) => {
 
 
 const UpDataGridFooter = (props: FooterProps & WithThemeProps) => {
-    
+
     const {
         pagination,
-        actionsDataGrid: {actions,label,intent},
-        actionsButtonText,
+        actionsDataGrid,
         isPaginationEnabled,
         data,
     } = props
 
+    const {actions, validationLabel, groupLabel, intent} = actionsDataGrid || {}
+
     const [selectedAction ,selectAction] = React.useState(null)
     const selectedData = data.filter(element => element.isSelected)
-
 
     React.useEffect(() => {
       if (selectedData.length < 2) {
@@ -75,20 +75,16 @@ const UpDataGridFooter = (props: FooterProps & WithThemeProps) => {
     }, [selectedData]);
 
 
-    const buttonAction =
-      actions &&
-      !isEmpty(actions) &&
-      actions.map(({ label, ...rest}) => ({
+    const buttonAction = !isEmpty(actions) && actions.map(({ label, ...rest}) => ({
         libelle: label,
         onClick: () => {
           selectAction({label,...rest});
         },
-      }));
+    }));
 
-      const handleValidation = () => {
+    const handleValidation = () => {
         selectedAction.onClick(selectedData) 
-      }
-
+    }
 
     return (
         <div className={classnames('up-data-grid-footer', getStyle(props))}>
@@ -100,14 +96,14 @@ const UpDataGridFooter = (props: FooterProps & WithThemeProps) => {
                         extraActions={buttonAction || []}
                         disabled={!(selectedData.length >= 2)}
                     >
-                        {(selectedAction && selectedAction.label) || actionsButtonText}
+                        {(selectedAction && selectedAction.label) || groupLabel}
                     </UpButton>
                     <UpButton
                         onClick={handleValidation}
                         intent={intent}
                         disabled={!selectedAction}
                     >
-                        {label}
+                        {validationLabel}
                     </UpButton>
                 </UpButtonGroup>
             }

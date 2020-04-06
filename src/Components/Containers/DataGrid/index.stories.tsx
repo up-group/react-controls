@@ -414,9 +414,9 @@ export const WithExternalSourceAndPaginationBottom = () => (
            ]}
            footerProps={{
              isPaginationEnabled: true,
-             actionsButtonText: 'Groupe actions',
              actionsDataGrid: {
-               label: 'Valider',
+               validationLabel: 'Valider',
+               groupLabel: 'Action ?',
                intent: 'secondary',
                actions: [
                  {
