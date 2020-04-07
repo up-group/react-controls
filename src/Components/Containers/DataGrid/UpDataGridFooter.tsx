@@ -8,6 +8,7 @@ import { isEmpty } from '../../../Common/utils'
 import { WithThemeProps }  from '../../../Common/theming/withTheme'
 import {IntentType} from "../../../Common/theming/types"
 import { ActionType } from '../../Inputs/Button'
+import UpLoadingIndicator from '../../Display/LoadingIndicator'
 
 interface ActionDataGrid {
     label : string;
@@ -22,14 +23,15 @@ interface ActionsDataGrid {
     actions?: ActionDataGrid[] ;
 }
 
-export interface FooterProps {
+export interface UpDataGridFooterProps {
   pagination?: React.ReactElement;
   actionsDataGrid?: ActionsDataGrid;
   isPaginationEnabled?: boolean;
   data?: Array<any>;
+  isDataFetching?:boolean;
 }
 
-const getStyle = (props : FooterProps & WithThemeProps) => {
+const getStyle = (props : UpDataGridFooterProps & WithThemeProps) => {
     const position: NestedCSSProperties = props.actionsDataGrid ? {} : { position: 'absolute', right: 0 }
     return style({
         display: 'flex',
@@ -54,13 +56,14 @@ const getStyle = (props : FooterProps & WithThemeProps) => {
 }
 
 
-const UpDataGridFooter = (props: FooterProps & WithThemeProps) => {
+const UpDataGridFooter = (props: UpDataGridFooterProps & WithThemeProps) => {
 
     const {
         pagination,
         actionsDataGrid,
         isPaginationEnabled,
         data,
+        isDataFetching,
     } = props
 
     const {actions, validationLabel, groupLabel, intent} = actionsDataGrid || {}
@@ -107,7 +110,8 @@ const UpDataGridFooter = (props: FooterProps & WithThemeProps) => {
                     </UpButton>
                 </UpButtonGroup>
             }
-            {isPaginationEnabled && pagination}
+            {isDataFetching && <UpLoadingIndicator />}
+            {isPaginationEnabled && !isDataFetching && pagination}
         </div>
     )
 }

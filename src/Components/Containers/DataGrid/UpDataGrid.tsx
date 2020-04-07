@@ -18,8 +18,8 @@ import UpButton from "../../Inputs/Button/UpButton";
 import { IntentType, WithThemeProps } from "../../../Common/theming/types";
 import { ActionType } from "../../../Common/actions";
 import UpDefaultTheme, { withTheme } from "../../../Common/theming";
-import UpDataGridFooter,{FooterProps} from './UpDataGridFooter';
-import UpDataGridHeader,{HeaderProps} from './UpDataGridHeader';
+import UpDataGridFooter,{UpDataGridFooterProps} from './UpDataGridFooter';
+import UpDataGridHeader,{UpDataGridHeaderProps} from './UpDataGridHeader';
 
 import _ = require('lodash');
 import {UpDataGridProvider} from './UpDataGridContext'
@@ -212,8 +212,8 @@ export interface UpDataGridProps {
   onSortChange?: (c: Column, dir: SortDirection) => void;
   onSelectionChange?: (lastChangeRow: Row, seletectedRow: Row[]) => void;
   onRowClick?: (rowIndex: number, row: any) => void;
-  footerProps?: Partial<FooterProps>;
-  headerProps?: Partial<HeaderProps>;
+  footerProps?: Partial<UpDataGridFooterProps>;
+  headerProps?: Partial<UpDataGridHeaderProps>;
   displayRowActionsWithinCell?: boolean;
 }
 
@@ -642,7 +642,7 @@ class UpDataGrid extends React.Component<
             buttonExport={this.btnExportCsv}
           />  
         {this.props.isPaginationEnabled &&
-          this.props.paginationPosition != "bottom" &&
+          this.props.paginationPosition != "bottom" && !this.state.isDataFetching &&
           pagination}         
         <UpLoadingIndicator
           displayMode={"zone"}

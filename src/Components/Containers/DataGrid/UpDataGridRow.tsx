@@ -118,7 +118,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
                                         onClick={
                                             () => {
                                                 if (value.action != null) {
-                                                    value.action({ isSelected: this.props.isSelected, value: this.props.value });
+                                                    return value.action({ isSelected: this.props.isSelected, value: this.props.value });
                                                 }
                                             }
                                         }

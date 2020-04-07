@@ -5,10 +5,11 @@ import UpButtonGroup from '../ButtonGroup'
 import {  WithThemeProps } from "../../../Common/theming/types";
 import defaultTheme from '../../../Common/theming'
 
-export interface HeaderProps {
-    title?: string,
-    buttons?: any,
-    buttonExport?: any
+export interface UpDataGridHeaderProps {
+    title?: string;
+    buttons?: any;
+    buttonExport?: any;
+    isDataFetching?:boolean;
 }
 
 const getStyle = (props : WithThemeProps) => {
@@ -33,7 +34,7 @@ const getStyle = (props : WithThemeProps) => {
     })
 }
 
-const UpDataGridHeader = (props: HeaderProps & WithThemeProps) => {
+const UpDataGridHeader = (props: UpDataGridHeaderProps & WithThemeProps) => {
     const { title, theme, buttons, buttonExport } = props
 
     return (
