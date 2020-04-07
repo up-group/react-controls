@@ -77,16 +77,12 @@ export class Test extends React.Component<TestProps, TestState>{
     constructor(p, c) {
         super(p, c);
         this.state = {};
-        console.log("ctor", this.props.t);
     }
 
     render() {
-        console.log("render", this.props.t);
         return <div>{this.props.t}</div>
     }
 }
-
-
 
 
 export class Test2 extends React.Component<TestProps, TestState>{

@@ -64,6 +64,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
         } else if(this.props.actions != null) {
             finalActions = this.props.actions as Array<Action> ;
         }
+        
         // render action in the first element of the array
         const renderActions = ({
             rowActions,

@@ -23,7 +23,7 @@ export interface LoadingIndicatorProps {
 type SVGProps = React.SVGAttributes<SVGSVGElement>;
 
 const SvgIcon: React.StatelessComponent<SVGProps & WithThemeProps & LoadingIndicatorProps> = (props: SVGProps & WithThemeProps & LoadingIndicatorProps ) => {
-    const { children, className, loaderSize, ...others } = props;
+    const { children, className, loaderSize, theme, ...others } = props;
     return <svg className={classnames(style(svgStyle(props)), className)} {...others}>{children}</svg>;
 }
 
@@ -49,7 +49,7 @@ class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithTheme
 
         const { container, overlay, loadingIndicatorStyle } = getStyleByMode(this.props, _displayMode)
 
-        if (_displayMode == "zone") {
+        if (_displayMode === "zone") {
             return (
                 <div
                     style={container}
@@ -83,18 +83,14 @@ class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithTheme
                 </div>
             );
 
-        } else if (_displayMode == "inline") {
+        } else if (_displayMode === "inline") {
             return <Box boxSize={"auto"} pad={"none"} margin={'none'} alignItems="center" justifyContent="center" className={classnames('up-loading-indicator', this.props.className)}>
-                <SvgIcon viewBox="0 0 48 48" loaderSize={this.props.loaderSize}   theme={theme} />
+                <SvgIcon viewBox={`0 0 ${this.props.width || 48} ${this.props.width || 48}`} loaderSize={this.props.loaderSize} theme={theme} />
                 {this.props.message &&
                     <p style={{ color: theme.colorMap.grey1 }}>{this.props.message}</p>
                 }
             </Box >;
         } else {
-
-
-
-
             return <aside
                 className={classnames('up-loading-screen', this.props.className)} style={container}>
                 <UpBox boxSize={'full'} justifyContent={'center'} alignItems={'center'}>
@@ -102,7 +98,7 @@ class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithTheme
                         <UpGrid>
                             <UpRow>
                                 <UpCol span={6}>
-                                    <SvgIcon theme={theme} loaderSize={this.props.loaderSize}  viewBox="0 0 48 48" />
+                                    <SvgIcon theme={theme} loaderSize={this.props.loaderSize} viewBox="0 0 48 48" />
                                 </UpCol>
                                 <UpCol span={18}>
                                     <UpGrid>

@@ -90,7 +90,6 @@ export default class UpCalendarWeekDay extends React.Component<UpCalendarWeekDay
         while (firstDay.getDay() != 1) {
             firstDay = moment(firstDay).subtract('days', 1).toDate();
         }
-        console.log(firstDay)
         var week = [firstDay];
         for (var i = 1; i < 7; i++) {
             week.push(moment(firstDay).add('days', i).toDate())

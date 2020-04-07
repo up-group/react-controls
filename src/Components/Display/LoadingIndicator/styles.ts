@@ -67,7 +67,6 @@ export const getStyleByMode = (props: WithThemeProps & LoadingIndicatorProps , d
       justifyContent: 'center',
       boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.099)',
       border : `1px solid ${props.theme.colorMap.disabledFg}`
-
     };
 
   } else {

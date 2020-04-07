@@ -6,6 +6,7 @@ import Illustrations, { IllustrationName } from "../../../Common/theming/illustr
 import * as classnames from 'classnames' ;
 import { isString } from '../../../Common/utils';
 import { NestedCSSProperties } from 'typestyle/lib/types';
+import { WithThemeProps } from 'theming';
 
 export interface SvgProps extends React.SVGProps<{}> {
   iconName?: IconName | MentorName | IllustrationName;
@@ -64,7 +65,7 @@ const SvgIconWrapper : React.StatelessComponent<SvgIconWrapperProps> = (props : 
 
 export type UpSvgIconProps = SvgProps & React.HTMLProps<SVGSVGElement>;
 
-const UpSvgIcon : React.StatelessComponent<UpSvgIconProps> = ({
+const UpSvgIcon : React.StatelessComponent<UpSvgIconProps & WithThemeProps> = ({
   children,
   viewBox,
   iconName,
@@ -74,8 +75,9 @@ const UpSvgIcon : React.StatelessComponent<UpSvgIconProps> = ({
   dataFor,
   width,
   height,
+  theme,
   ...others
-}: UpSvgIconProps) => {
+}) => {
 
   const finalHeight = height && !isString(height) ? `${height}px` : height || '20px' ;
   const finalWidth = width && !isString(width) ? `${width}px` : width || '20px' ;

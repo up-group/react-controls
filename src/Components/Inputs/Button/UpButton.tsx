@@ -79,6 +79,8 @@ export class BaseButton extends React.Component<UpButtonStyledProps> {
                 <UpLoadingIndicator
                   displayMode={'inline'}
                   isLoading={true}
+                  width={width === 'icon' ? 24 : 48}
+                  height={width === 'icon' ? 24 : 48}
                 />
               </div>
             )}

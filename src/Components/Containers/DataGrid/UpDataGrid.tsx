@@ -627,7 +627,6 @@ class UpDataGrid extends React.Component<
       rowActions: this.props.rowActions ,
       labelToDisplayRowActionsInCell: this.props.labelToDisplayRowActionsInCell,
     }
-    
     return (
       <UpDataGridProvider value={providerValues} >
       <div

@@ -191,7 +191,10 @@ export const WithActions =
         onRowClick={(i, row) => console.log(i, row)}
         rowActions={[
           {
-            action: () => {},
+            action: () => {
+              console.log('test')
+              return new Promise((resolve, reject) => setTimeout(() => resolve(true), 5000));
+            },
             type: "add",
             description: "Ajouter un lien"
           },

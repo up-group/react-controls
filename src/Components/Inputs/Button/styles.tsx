@@ -326,7 +326,6 @@ const icon = (props: UpButtonProps): NestedCSSProperties => {
         margin: '0px !important',
         width: props.iconSize ? props.iconSize : '15px',
         height: props.iconSize ? props.iconSize : '15px',
-        border: '0px',
         padding: '3px',
       }
     }
