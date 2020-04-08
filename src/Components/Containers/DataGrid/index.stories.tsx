@@ -196,17 +196,20 @@ export const WithActions =
               return new Promise((resolve, reject) => setTimeout(() => resolve(true), 5000));
             },
             type: "add",
-            description: "Ajouter un lien"
+            description: "Ajouter un lien",
+            intent: 'secondary'
           },
           {
             action: () => {},
             type: "edit",
-            description: "Modifier"
+            description: "Modifier",
+            intent: 'primary'
           },
           {
             action: () => {},
             type: "delete",
-            description: "Supprimer"
+            description: "Supprimer",
+            intent: 'danger'
           }
         ]}
         columns={[
