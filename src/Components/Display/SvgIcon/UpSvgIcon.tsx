@@ -6,7 +6,7 @@ import Illustrations, { IllustrationName } from "../../../Common/theming/illustr
 import * as classnames from 'classnames' ;
 import { isString } from '../../../Common/utils';
 import { NestedCSSProperties } from 'typestyle/lib/types';
-import { WithThemeProps } from 'theming';
+import { WithThemeProps } from '../../../Common/theming';
 
 export interface SvgProps extends React.SVGProps<{}> {
   iconName?: IconName | MentorName | IllustrationName;
