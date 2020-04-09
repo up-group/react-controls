@@ -11,6 +11,7 @@ export default {
 }
 
 const wrapperBoxesStyle = style({
+  margin: '80px',
   $nest : {
     '& > div' : {
       margin : '10px 0px',
