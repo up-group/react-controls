@@ -23,7 +23,7 @@ const getStyles = (props: UpInputProps) =>
     $nest: {
       "&.up-password .up-icon-wrapper": {
         position: 'absolute',
-        top: props.floatingLabel ? 18 : 4,
+        top:  4,
         right: 0,
         cursor: "pointer",
         zIndex: 10,

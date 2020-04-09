@@ -6,6 +6,7 @@ import { getRootContainer } from "../../../Common/stories";
 import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
 import UpLabel from "../../Display/Label";
 import { UpGrid, UpRow, UpCol } from "../../Containers/Grid";
+import UpForm from '../../Containers/Form/UpForm';
 
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -347,6 +348,7 @@ export const IntegrationInForm =
         <UpCol span={12}>
           <Formik initialValues={{ email: '', password: '' }}
             onSubmit={(values, { setSubmitting }) => {
+              console.log('heyy')
               setTimeout(() => {
                 alert(JSON.stringify(values, null, 2));
                 setSubmitting(false);
@@ -388,3 +390,31 @@ export const ComplexForm = ()=> <FormWithSelect/>
 
 
 export const ClearOption = () => <InputWithClearOption />
+
+
+export const FormikForm = () => {
+  return (
+    <UpForm style={{
+      flexDirection: 'row',
+      justifyContent: 'space-evenly',
+      flexWrap: 'wrap'
+    }}>
+      {formik => {
+        return (
+          <>
+            {' '}
+            <UpLabel text={'Adresse :'}>
+              <UpInput autoFocus isRequired={true} />
+            </UpLabel>
+            <UpLabel text={'Adresse 2 :'}>
+              <UpInput isRequired={true} />
+            </UpLabel>
+            <UpLabel text={'Adresse 3 :'}>
+              <UpInput isRequired={true} />
+            </UpLabel>
+          </>
+        );
+      }}
+    </UpForm>
+  );
+};
