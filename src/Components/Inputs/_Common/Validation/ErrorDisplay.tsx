@@ -14,11 +14,13 @@ export interface ErrorDisplayProps {
     displayMode?: ErrorDisplayMode;
 }
 
-const ErrorDisplayStyle = (props: ErrorDisplayProps & WithThemeProps) => style({
+const getErrorDisplayStyle = (props: ErrorDisplayProps & WithThemeProps) => style({
     position:"relative", 
     cursor: (props.displayMode==="tooltip" && props.hasError)?"help":"default",
     height:"100%",
     width: "100%",
+    display: 'flex',
+    flexDirection: 'column',
     $nest: {
         "& .up-wrapper-error-tooltip" : {
             display:"inline-block",
@@ -51,7 +53,7 @@ export default class ErrorDisplay extends React.Component<ErrorDisplayProps & Wi
         if(this.props.displayMode==='inline') {
             Error = ErrorInline ;
         }
-        return (<div className={ErrorDisplayStyle(this.props)}>
+        return (<div className={getErrorDisplayStyle(this.props)}>
             {this.props.children}
             {this.props.showError === true && this.props.hasError === true ? 
                 (<Error {...this.props} />) : null}

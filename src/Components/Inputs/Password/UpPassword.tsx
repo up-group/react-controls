@@ -19,8 +19,10 @@ const fillColor = (props:UpInputProps) => {
 }
 const getStyles = (props: UpInputProps) =>
   style({
-    position: "relative",
     $nest: {
+      "&.up-password" : {
+        position: "relative",
+      },
       "&.up-password .up-icon-wrapper": {
         position: 'absolute',
         top: props.floatingLabel ? 18 : 4,

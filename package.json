@@ -72,7 +72,7 @@
     "publishLocalToApp": "copyfiles dist/src/*.* dist/src/**/* src/theming/icons/* ../../loopback/revolution-digitale/client/node_modules/@up-group/react-controls/dist",
     "test": "jest --notify --coverage --detectOpenHandles",
     "start": "start-storybook -p 6006 -s public",
-    "storybook": "start-storybook -p 6006 -s public",
+    "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -o ./public",
     "upgrade": "npx npm-check-updates '/storybook/' -u && npm install",
     "plop": "plop --plopfile ./generators/plopfile.js"

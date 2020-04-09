@@ -5,6 +5,7 @@ import UpPassword from "./UpPassword";
 import { getRootContainer } from "../../../Common/stories";
 import { withKnobs } from "@storybook/addon-knobs";
 import {  rulesMatch } from "../../../Common/utils";
+import UpLabel from '../../Display/Label';
 
 export default { 
   title: 'Components|Inputs/UpPassword',
@@ -13,14 +14,30 @@ export default {
 
 const ControlledPassword = props => {
   const [value, setValue] = React.useState("");
-  
 
   return (
-    <UpPassword
-      value={value}
-      onChange={(e, v) => setValue(v)}
-      showPasswordOnClick={true}
-    />
+    <UpLabel text="Password">
+        <UpPassword
+        value={value}
+        onChange={(e, v) => setValue(v)}
+        showPasswordOnClick={true}
+      />
+    </UpLabel>
+  );
+};
+
+const PasswordWithFloatingLabelComponent = props => {
+  const [value, setValue] = React.useState("");
+  
+  return (
+    <div>
+      <UpPassword
+        value={value}
+        floatingLabel={"Password"}
+        onChange={(e, v) => setValue(v)}
+        showPasswordOnClick={true}
+      />
+    </div>
   );
 };
 
@@ -67,3 +84,9 @@ export const WithRules = () =>
   <div style={{ padding: "30px" }}>
     <PasswordWithRules />
   </div>;
+
+export const PasswordWithFloatingLabel = () =>
+  <div style={{ padding: "30px" }}>
+    <PasswordWithFloatingLabelComponent />
+  </div>;
+
