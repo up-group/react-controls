@@ -348,7 +348,6 @@ export const IntegrationInForm =
         <UpCol span={12}>
           <Formik initialValues={{ email: '', password: '' }}
             onSubmit={(values, { setSubmitting }) => {
-              console.log('heyy')
               setTimeout(() => {
                 alert(JSON.stringify(values, null, 2));
                 setSubmitting(false);
