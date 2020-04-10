@@ -9,7 +9,7 @@ import UpDataGrid from './Containers/DataGrid/UpDataGrid'
 import UpModal from './Containers/Modal/UpModal'
 import UpDashboard from './Containers/Dashboard/UpDashboard'
 import UpTile from './Containers/Dashboard/UpTile'
-import UpNavTab from './Containers/NavTab/UpNavTap'
+import UpNavTab from './Containers/NavTab/UpNavTab'
 
 import UpBadge from './Display/Badge'
 import UpHeading from './Display/Heading'

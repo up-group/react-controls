@@ -11,7 +11,7 @@ import UpDataGrid from './Components/Containers/DataGrid/UpDataGrid'
 import UpModal from './Components/Containers/Modal/UpModal'
 import UpDashboard from './Components/Containers/Dashboard/UpDashboard'
 import UpTile from './Components/Containers/Dashboard/UpTile'
-import UpNavTab from './Components/Containers/NavTab/UpNavTap'
+import UpNavTab from './Components/Containers/NavTab/UpNavTab'
 import * as UpHelper from "./Common/utils/helpers"
 
 import UpBadge from './Components/Display/Badge'

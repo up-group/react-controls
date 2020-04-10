@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import UpNavTap from './UpNavTap'
+import UpNavTab from './UpNavTab'
 import UpPanel from '../../Containers/Panel'
 
 import { getRootContainer } from '../../../Common/stories';
@@ -11,13 +11,13 @@ const tab2 = <UpPanel type="warning" disableAutoIntentIcon={false} message="Atte
 const tab3 = <UpPanel type="danger" disableAutoIntentIcon={false} message="Erreur sur ..." />
 
 export default { 
-  title: 'Components|Containers/UpNavTap',
-  decorators : [withKnobs, getRootContainer('UpNavTap')]
+  title: 'Components|Containers/UpNavTab',
+  decorators : [withKnobs, getRootContainer('UpNavTab')]
 };
 
 export const General =
    () =>  (
-      <UpNavTap tabs={[{
+      <UpNavTab tabs={[{
         content: tab1,
         head:"Tab 1"
       },{

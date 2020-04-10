@@ -246,3 +246,13 @@ export type IntentType = 'primary' | 'secondary' | 'danger' | 'warning' | 'succe
 export interface WithThemeProps {
     theme?: ThemeInterface
 }
+
+export type GetterStyle<P, S> = (props: P, state?: S) => NestedCSSProperties
+export type CustomStyles<K extends string | number | symbol, P, S> = {[ key in K]? : GetterStyle<P, S>}
+
+export function getCustomStyles<K extends string | number | symbol, P, S>(key : K, customStyles : CustomStyles<K, P, S>, props : P, state? : S) : NestedCSSProperties  {
+    if(customStyles && customStyles[key]) {
+        return customStyles[key](props, state) ;
+    }
+    return {}
+}
