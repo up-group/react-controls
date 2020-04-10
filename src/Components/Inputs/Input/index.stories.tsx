@@ -6,6 +6,7 @@ import { getRootContainer } from "../../../Common/stories";
 import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
 import UpLabel from "../../Display/Label";
 import { UpGrid, UpRow, UpCol } from "../../Containers/Grid";
+import UpForm from '../../Containers/Form/UpForm';
 
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -86,7 +87,7 @@ const EmailForm = props => {
     handleChange,
     handleBlur,
     handleSubmit,
-    handleReset
+    handleReset,
   } = props;
 
   return (
@@ -388,3 +389,39 @@ export const ComplexForm = ()=> <FormWithSelect/>
 
 
 export const ClearOption = () => <InputWithClearOption />
+
+
+export const FormikForm = () => {
+  return (
+    <UpForm
+      style={{
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+      }}
+      initialValues={{ email: '', password: '' }}>
+      {formikBag => {
+        const { errors, values, handleChange } = formikBag;
+        return (
+          <>
+            {' '}
+            <UpLabel text={'Adresse :'}>
+              <UpInput
+                onChange={handleChange}
+                name={'email'}
+                autoFocus
+                isRequired={true}
+              />
+            </UpLabel>
+            <UpLabel text={'Password :'}>
+              <UpPassword onChange={handleChange} name={'password'} />
+            </UpLabel>
+            <UpLabel text={'Adresse 3 :'}>
+              <UpInput isRequired={true} />
+            </UpLabel>
+          </>
+        );
+      }}
+    </UpForm>
+  );
+};
