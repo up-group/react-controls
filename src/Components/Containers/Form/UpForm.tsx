@@ -2,20 +2,18 @@ import * as React from 'react';
 import classnames from 'classnames';
 import { Formik } from 'formik';
 import { getStyles } from './styles';
-import { JustifyContent, AlignItems, CSSProperties } from 'typestyle/lib/types';
-export type styleObjectProps = {
-  flexDirection?: string;
-  justifyContent?: JustifyContent;
-  alignItems?: AlignItems;
-  flexWrap?: string;
-};
+import { CSSProperties } from 'typestyle/lib/types';
+
 interface UpFormProps {
-  children;
+  children?: (formikBag) => React.ReactElement;
   initialValues?: Object;
-  onValidate?: () => void;
+  onValidate?: (values) => void | Promise<any>;
   className?: string;
-  onSubmit?: () => void;
-  style?: styleObjectProps & CSSProperties;
+  onSubmit?: (values, formikBag: Object) => void | Promise<any>;
+  validateOnBlur?: boolean;
+  validationSchema?: any;
+  onReset?: (values, formikBag: Object) => void;
+  style?: CSSProperties;
 }
 const UpForm = ({
   children,
@@ -23,6 +21,9 @@ const UpForm = ({
   onSubmit = () => {},
   onValidate = () => {},
   className,
+  validateOnBlur,
+  validationSchema,
+  onReset,
   style = {},
   ...rest
 }: UpFormProps) => {
@@ -31,16 +32,19 @@ const UpForm = ({
       initialValues={initialValues}
       onSubmit={onSubmit}
       validate={onValidate}
-      validateOnBlur={true}>
-      {({ handleSubmit, ...restFormikBox }) => (
+      validateOnBlur={validateOnBlur}
+      validationSchema={validationSchema}
+      onReset={onReset}
+      {...rest}>
+      {({ handleSubmit, ...restFormikBag }) => (
         <form
           onSubmit={handleSubmit}
           className={classnames(
-            className,
             'up-form',
-            getStyles(style)
+            getStyles(style),
+            className
           )}>
-          {children(restFormikBox)}
+          {children(restFormikBag)}
         </form>
       )}
     </Formik>

@@ -87,7 +87,7 @@ const EmailForm = props => {
     handleChange,
     handleBlur,
     handleSubmit,
-    handleReset
+    handleReset,
   } = props;
 
   return (
@@ -394,20 +394,28 @@ export const ClearOption = () => <InputWithClearOption />
 
 export const FormikForm = () => {
   return (
-    <UpForm style={{
-      flexDirection: 'row',
-      justifyContent: 'space-evenly',
-      flexWrap: 'wrap'
-    }}>
-      {formik => {
+    <UpForm
+      style={{
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+      }}
+      initialValues={{ email: '', password: '' }}>
+      {formikBag => {
+        const { errors, values, handleChange } = formikBag;
         return (
           <>
             {' '}
             <UpLabel text={'Adresse :'}>
-              <UpInput autoFocus isRequired={true} />
+              <UpInput
+                onChange={handleChange}
+                name={'email'}
+                autoFocus
+                isRequired={true}
+              />
             </UpLabel>
-            <UpLabel text={'Adresse 2 :'}>
-              <UpInput isRequired={true} />
+            <UpLabel text={'Password :'}>
+              <UpPassword onChange={handleChange} name={'password'} />
             </UpLabel>
             <UpLabel text={'Adresse 3 :'}>
               <UpInput isRequired={true} />
