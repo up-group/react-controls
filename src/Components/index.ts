@@ -12,6 +12,7 @@ import UpTile from './Containers/Dashboard/UpTile'
 import UpNavTab from './Containers/NavTab/UpNavTab'
 
 import UpBadge from './Display/Badge'
+import UpCarousel from './Display/Carousel'
 import UpHeading from './Display/Heading'
 import UpLink from './Display/Link'
 import UpNotification from './Display/Notification'
@@ -114,5 +115,6 @@ export {
     UpDropFile,
     UpRating,
     UpCodeViewer,
-    UpInformation
+    UpInformation,
+    UpCarousel
 };

@@ -1,3 +1,44 @@
+# React-Controls (version: 0.2.13)
+
+## Main changes
+
+- UpCarousel
+- Add new props className to UpButton 
+
+## UpCarousel
+
+Add new component built with framer in order to dipslay a carousel layout
+
+### General usage
+```
+ <div className={wrapperBoxesStyle}>
+        <UpCarousel items={["#22cc88", "#ffcc00", "#0099ff", "#ff0055"].map(color => ({key: color, title: 'Title', color}))} />
+ </div>
+```
+
+### With render item
+```
+   <div className={wrapperBoxesStyle}>
+     <UpCarousel renderItem={(isOpen, item) => {
+       return <div style={{display: 'flex', height : '100%', 
+        flexDirection: 'column', 
+        alignItems: 'center', 
+        justifyContent: 'space-between'}}>
+          <em style={{ fontWeight : isOpen ? 700 : 500}}>{item.title}</em>
+          <UpButton intent={'secondary'} className={style({$nest : {'& .up-btn' : {
+            border: '0 !important', color : 'white !important', background: 'transparent'
+          }
+        }})} onClick={(e) => item.action(item) }>...</UpButton>
+         </div>
+     }} items={["#22cc88", "#ffcc00", "#0099ff", "#ff0055"].map(color => (
+        { key: color,
+          action: (item) => new Promise((resolve, reject) => resolve(console.log(item))), 
+          title: 'Title',
+          color}))
+        } />
+   </div>
+```
+
 # React-Controls (version: 0.2.0)
 
 ## Background Info

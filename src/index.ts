@@ -56,6 +56,7 @@ import UpDropFile from './Components/Inputs/DropFile/UpDropFile';
 import UpRating from './Components/Inputs/Rating/UpRating';
 import UpCodeViewer from './Components/Display/CodeViewer';
 import UpInformation from './Components/Display/Information';
+import UpCarousel from './Components/Display/Carousel';
 
 import * as UpIcons from "./Components/Display/Icons/materialinear";
 
@@ -132,5 +133,6 @@ export {
     UpRating,
     UpCodeViewer,
     eventFactory,
-    UpInformation
+    UpInformation,
+    UpCarousel
 };
