@@ -6,26 +6,36 @@ import { motion } from "framer-motion";
 import { NestedCSSProperties } from 'typestyle/lib/types';
 import { style } from 'typestyle';
 
-function getCustomStyle(key : keyof UpCarouselCustomStyles, props : Partial<UpCarouselProps>, selectedItem: CarouselItempProps, item?: CarouselItempProps) : NestedCSSProperties {
+function getCustomStyle(key : keyof UpCarouselCustomStyles, props : Partial<UpCarouselProps>, selectedItem: CarouselItemProps, item?: CarouselItemProps) : NestedCSSProperties {
   if(props.customStyles && props.customStyles[key]) {
       return props.customStyles[key](props, selectedItem) ;
   }
   return {}
 }
 
+ export interface UpCarouselItem {
+   key: string;
+   title: string;
+   logo?: string;
+   color?: string;
+   description?: string;
+   action?: (item : UpCarouselItem) => Promise<unknown>;
+ }
+
 export interface UpCarouselProps {
   customStyles?: UpCarouselCustomStyles;
-  items: CarouselItempProps[];
+  items: UpCarouselItem[];
+  renderItem? : (isOpen:boolean, item: UpCarouselItem) => JSX.Element;
 }
 
-export interface CarouselItempProps {
-  color: string;
-  currentItem?:CarouselItempProps;
-  setCurrentItem?: (item:CarouselItempProps) => void;
+export interface CarouselItemProps {
+  item: UpCarouselItem;
+  currentItem?:UpCarouselItem;
+  setCurrentItem?: (item:UpCarouselItem) => void;
   customStyles?: UpCarouselCustomStyles;
 }
 
-const getListStyles = (props: Partial<UpCarouselProps>, selectedItem: CarouselItempProps, item? :CarouselItempProps) : NestedCSSProperties => ({
+const getListStyles = (props: Partial<UpCarouselProps>, selectedItem: CarouselItemProps, item? :CarouselItemProps) : NestedCSSProperties => ({
   borderRadius: "25px",
   display: "flex",
   flexDirection: "row",
@@ -41,7 +51,7 @@ const getListStyles = (props: Partial<UpCarouselProps>, selectedItem: CarouselIt
   }
 });
 
-const getItemStyles = (props: Partial<UpCarouselProps>, selectedItem: CarouselItempProps, item : CarouselItempProps) : NestedCSSProperties => ({
+const getItemStyles = (props: Partial<UpCarouselProps>, selectedItem: UpCarouselItem, item : UpCarouselItem) : NestedCSSProperties => ({
     backgroundColor: item.color,
     opacity:1,
     borderRadius: "10px",
@@ -49,10 +59,10 @@ const getItemStyles = (props: Partial<UpCarouselProps>, selectedItem: CarouselIt
     overflow: "hidden",
     cursor: "pointer",
     width: "225px",
-    height:`${selectedItem && selectedItem.color === item.color ? "250px" : "126px"}`,
-    flex: `${selectedItem && selectedItem.color === item.color ? "440px" : "225px"} 0 0`,
+    height:`${selectedItem && selectedItem.key === item.key ? "250px" : "126px"}`,
+    flex: `${selectedItem && selectedItem.key === item.key ? "440px" : "225px"} 0 0`,
     marginRight: "5px",
-    marginTop: `${selectedItem && selectedItem.color === item.color ? "-62px" : "0px"}`,
+    marginTop: `${selectedItem && selectedItem.key === item.key ? "-62px" : "0px"}`,
     $nest : {
       "li:lastChild" : {
         marginRight: "0px",  
@@ -61,7 +71,16 @@ const getItemStyles = (props: Partial<UpCarouselProps>, selectedItem: CarouselIt
 });
 
 
-export type GetterStyle = (props: Partial<UpCarouselProps>, currentItem: CarouselItempProps) => NestedCSSProperties
+export type GetterStyle = (props: Partial<UpCarouselProps>, currentItem: CarouselItemProps) => NestedCSSProperties
+
+const defaultRenderItem = (isOpen : boolean, item: UpCarouselItem) => {
+  return <div>
+    <h3>{item.title}</h3>
+    {isOpen &&
+      <p>{item.description}</p>
+    }
+  </div>
+}
 
 export interface UpCarouselCustomStyles {
   list? : GetterStyle;
@@ -69,38 +88,43 @@ export interface UpCarouselCustomStyles {
   item? : GetterStyle;
 }
 
-const Item = ({ color, currentItem, setCurrentItem, customStyles, ...props }) => {
-  const isOpen = currentItem && color === currentItem.color;
+const Item = ({ item, currentItem, setCurrentItem, customStyles, renderItem, ...props }) => {
+  const isOpen = currentItem && item.key === currentItem.key;
 
   const handlers = useHoverIntent(
-    () => setCurrentItem({ color }),
+    () => setCurrentItem(item),
     () => isOpen && setCurrentItem(null),
     !currentItem
   );
+
+  const currentRenderItem = renderItem || defaultRenderItem ;
 
   return (
     <motion.li
       animate
       transition={{ duration: 0.4, ease: [0.37, 0.04, 0.2, 1] }}
-      className={classnames("up-carousel-item", style({...getItemStyles({customStyles}, currentItem, {color}), ...getCustomStyle('item', {customStyles},  currentItem, {color})}))}
+      className={classnames("up-carousel-item", style({...getItemStyles({customStyles}, currentItem, item), ...getCustomStyle('item', {customStyles},  currentItem, item)}))}
       {...props}
       {...handlers}
-    />
+      onClick={(e) => item.action(item)}
+    >{currentRenderItem(isOpen, item)}
+    </motion.li>
   );
 }   
 
 const UpCarousel = (props: UpCarouselProps) => {
-  const [currentItem, setCurrentItem] = React.useState<CarouselItempProps>(null);
+  const [currentItem, setCurrentItem] = React.useState<CarouselItemProps>(null);
 
   return (
     <ul className={classnames("up-carousel", style({...getListStyles(props, currentItem), ...getCustomStyle('list', props,  currentItem)}))}>
       {props.items.map(item => (
         <Item
           key={item.color}
-          {...item}
+          item={item}
           currentItem={currentItem}
           customStyles={props.customStyles}
           setCurrentItem={setCurrentItem}
+          renderItem={props.renderItem}
         />
       ))}
     </ul>

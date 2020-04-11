@@ -83,6 +83,7 @@ export interface CommonProps extends WithThemeProps {
 // This is so that the onClick handler is accepted without type interferance
 export interface UpButtonProps extends CommonProps {
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void | Promise<any>;
+    className?: string;
 }
 export interface UpButtonStyledProps extends UpButtonProps {
     className?: string; // Needed by styled components to set the created className to a complex element

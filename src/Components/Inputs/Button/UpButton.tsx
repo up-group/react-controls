@@ -272,7 +272,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         );
 
         return (
-            <div ref={this.setReference} className={classnames('up-btn-wrapper', getWrapperStyles(this.props))}>
+            <div ref={this.setReference} className={classnames('up-btn-wrapper', getWrapperStyles(this.props), this.props.className)}>
                 {
                     tooltip === null ?
                         renderButton
