@@ -16,10 +16,11 @@ function getCustomStyle(key : keyof UpCarouselCustomStyles, props : Partial<UpCa
  export interface UpCarouselItem {
    key: string;
    title: string;
-   logo?: string;
+   logo?: string | unknown;
    color?: string;
    description?: string;
    action?: (item : UpCarouselItem) => Promise<unknown>;
+   parameters?: unknown;
  }
 
 export interface UpCarouselProps {
