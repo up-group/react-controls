@@ -37,7 +37,9 @@ export const getStyleByMode = (props: WithThemeProps & LoadingIndicatorProps , d
   if (displayMode === 'zone') {
     container = {
       position: "relative",
-      display: "block"
+      display: "flex",
+      flexDirection: 'column',
+      width: "100%",
     };
 
     overlay = {
