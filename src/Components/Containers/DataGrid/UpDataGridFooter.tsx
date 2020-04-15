@@ -37,6 +37,7 @@ const getStyle = (props : UpDataGridFooterProps & WithThemeProps) => {
         display: 'flex',
         marginTop: '5px',
         width: '100%',
+        minHeight: '40px',
         $nest: {
             '&.up-data-grid-footer .up-buttons-wrapper': {
                 alignItems: 'normal',
