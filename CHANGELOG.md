@@ -1,5 +1,11 @@
 # React-Controls (version: 0.2.16)
 
+## Bug Fixes
+
+- In case of using the floating label, the select get now the focus when click on the label
+  
+# React-Controls (version: 0.2.16)
+
 ## Main changes
 
 - Add floating label to UpSelect
