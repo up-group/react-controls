@@ -8,6 +8,7 @@ import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import * as queryString from 'query-string';
 import { UpSelectProps } from './types';
 import { Props } from 'react-select/lib/Select';
+import { style } from 'typestyle';
 
 import { color } from 'csx';
 import { ValueType, ActionMeta } from 'react-select/lib/types';
@@ -44,7 +45,35 @@ const formatGroupLabel = data => (
     </div>
 );
 
-
+const getLabelStyle = props => {
+    const floatLabel = {
+      transform: 'translate(0, 2px) scale(.75) !important',
+      fontSize: '12px !important',
+    };
+    return style({
+        marginTop: props.floatingLabel ? '16px' : '0px' ,
+        position: 'relative',
+        $nest: {
+            '&.up-select-wrapper .up-select-label' : {
+                position: 'absolute',
+                left: 0,
+                top: '-10px',
+                zIndex: 1,
+                fontSize: "14px",
+                color: props.theme.colorMap.gray6,
+                transformOrigin: "top left",
+                transform: "translate(0, 16px) scale(1)",
+                transition: "all .1s ease-in-out",
+            },
+            '& .up-select-label-focused': {
+               ...floatLabel
+            },
+            '& .up-select-label-valued': {
+                ...floatLabel
+             }
+        }
+    })
+}
 const formatMinimumInputLenghMessage = (minimumInputLength:number) => `Veuillez renseigner au minimum ${minimumInputLength} caractères`;
 
 const customStyles = (theme : ThemeInterface, value)  => ({
@@ -603,7 +632,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             value,
             color: '#354052',
             name: this.props.name,
-            placeholder: this.props.placeholder,
+            placeholder: this.props.floatingLabel ? '': this.props.placeholder,
             filterOption: (option, filter) => {
                 const filterHandler = this.props.filterOptions || this.filterOptions;
                 return filterHandler(option, filter);
@@ -653,22 +682,53 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             closeMenuOnSelect: this.props.closeMenuOnSelect,
             styles: customStyles(this.props.theme,this.state.value),
         }
-           
+        const { floatingLabel } = this.props;
+        const FloatingLable = floatingLabel && (
+          <label
+            className={classnames('up-select-label', {
+              'up-select-label-focused': !!this.state.extra
+                .menuIsOpen,
+              'up-select-label-valued': !!this.state.extra
+                .fullObject,
+            })}>
+            {floatingLabel}
+          </label>
+        );
+
         return (
-            <div className={classnames(this.props.className, 'up-select-wrapper')}>
-                {dataSource != null && allowCreate === true &&
-                    <Select.AsyncCreatable {...selectComponentProps as any} />
-                }
-                {dataSource != null && allowCreate === false &&
-                    <Select.Async {...selectComponentProps as any} />
-                }
-                {dataSource == null && allowCreate === true &&
-                    <Select.Creatable {...selectComponentProps} />
-                }
-                {dataSource == null && allowCreate === false &&
-                    <Select.SelectBase {...selectComponentProps} />
-                }
-            </div>
+          <div
+            className={classnames(
+              this.props.className,
+              getLabelStyle(this.props),
+              'up-select-wrapper'
+            )}>
+            {dataSource != null && allowCreate === true && (
+              <>
+                {FloatingLable}
+                <Select.AsyncCreatable
+                  {...(selectComponentProps as any)}
+                />
+              </>
+            )}
+            {dataSource != null && allowCreate === false && (
+              <>
+                {FloatingLable}
+                <Select.Async {...(selectComponentProps as any)} />
+              </>
+            )}
+            {dataSource == null && allowCreate === true && (
+              <>
+                {FloatingLable}
+                <Select.Creatable {...selectComponentProps} />
+              </>
+            )}
+            {dataSource == null && allowCreate === false && (
+              <>
+                {FloatingLable}
+                <Select.SelectBase {...selectComponentProps} />
+              </>
+            )}
+          </div>
         );
     }
 

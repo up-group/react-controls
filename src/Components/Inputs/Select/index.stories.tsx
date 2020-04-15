@@ -171,7 +171,7 @@ const UserCreationForm = props => {
   };
 
 const SimpleSelect = (props) => {
-    let [selectedValue, setValue] = React.useState({ id: 1, text: 'M.' });
+    let [selectedValue, setValue] = React.useState(null);
     
     const onChange = (event, value) => {
         setValue(value);
@@ -189,6 +189,7 @@ const SimpleSelect = (props) => {
                 { id: 4, text: 'Dr' },
             ]}
             value={selectedValue} 
+            floatingLabel="Floating Label"
             onChange={onChange} />
 )}
 

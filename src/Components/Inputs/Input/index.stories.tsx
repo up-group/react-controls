@@ -404,7 +404,6 @@ export const FormikForm = () => {
         const { errors, values, handleChange } = formikBag;
         return (
           <>
-            {' '}
             <UpLabel text={'Adresse :'}>
               <UpInput
                 onChange={handleChange}
