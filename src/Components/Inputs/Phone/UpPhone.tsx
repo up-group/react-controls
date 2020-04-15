@@ -1,10 +1,11 @@
 ﻿// Imports
 import * as React from 'react'
-import { BaseControlComponent, BaseControlState } from '../_Common/BaseControl/BaseControl'
+import { BaseControlState } from '../_Common/BaseControl/BaseControl'
 import UpInput from '../Input'
 
 import { CommonInputTextProps } from "../_Common/BaseControl/BaseInput"
 import { Validation } from '../Input/types';
+import * as _ from 'lodash';
 
 // Exports
 export interface UpPhoneProps extends CommonInputTextProps<string> {
@@ -18,7 +19,7 @@ export default class UpPhone extends React.Component<UpPhoneProps, BaseControlSt
         width: "medium",
         defaultValue: "",
         validation: [{
-            pattern: /^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/,
+            pattern: /^(0|\+33)[1-9]([-. ]*[0-9]{2}){4}$/,
             errorMessage: "Le champ doit être un numéro de téléphone"
         }]
     };
@@ -29,7 +30,7 @@ export default class UpPhone extends React.Component<UpPhoneProps, BaseControlSt
     }
     
     phoneHandleChangeEvent = (event, value, error) => {
-        this.setState({ value }, () => {
+        this.setState({ value, error }, () => {
             if(this.props.onChange) {
                 this.props.onChange(event, value, error) ;
             }
@@ -44,6 +45,10 @@ export default class UpPhone extends React.Component<UpPhoneProps, BaseControlSt
         return this.isControlled ? this.props.value : this.state.value;
     }
 
+    get currentError() {
+        return this.isControlled ? this.props.error : this.state.error;
+    }
+
     render() {
         return (
             <UpInput iconName="phone" 
@@ -51,6 +56,8 @@ export default class UpPhone extends React.Component<UpPhoneProps, BaseControlSt
                 value={this.currentValue} 
                 onChange={this.phoneHandleChangeEvent} 
                 isRequired={this.props.isRequired}
+                error={this.currentError}
+                hasError={!_.isEmpty(this.currentError)}
                 showError={this.props.showError} />
         );
     }
