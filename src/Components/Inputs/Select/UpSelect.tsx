@@ -176,6 +176,7 @@ const customStyles = (theme : ThemeInterface, value)  => ({
 export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     timeOutLoadOptions: any;
     axiosSource: any;
+    input : HTMLInputElement
 
     public static defaultProps: UpSelectProps = {
         noResultsText: "Aucun résultat trouvé",
@@ -680,11 +681,17 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             openMenuOnFocus: this.props.openMenuOnFocus,
             openMenuOnClick: this.props.openMenuOnClick,
             closeMenuOnSelect: this.props.closeMenuOnSelect,
+            ref: (input) => this.input = input,
             styles: customStyles(this.props.theme,this.state.value),
         }
         const { floatingLabel } = this.props;
         const FloatingLable = floatingLabel && (
           <label
+            onClick={() => {
+                 this.input?.focus();
+                 this.setState(update(this.state, { extra: { menuIsOpen: { $set: true } } }))}
+            }
+            style={{cursor : 'pointer'}}
             className={classnames('up-select-label', {
               'up-select-label-focused': !!this.state.extra
                 .menuIsOpen,
