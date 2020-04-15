@@ -140,6 +140,7 @@ export interface UpSelectProps extends BaseControlProps<any> {
     createOptionPosition? : 'first' | 'last';
     /** Autorise la définition du class pour le composant */
     className? : string;
+    floatingLabel?: string;
 }
 
 export type MenuPlacement = "auto" | "bottom" | "top" ;
