@@ -1,3 +1,15 @@
+# React-Controls (version: 0.2.16)
+
+## Main changes
+
+- Add floating label to UpSelect
+- Add new props disabled to UpCheckbox
+- Improve animation UpNavTab
+
+## Bug Fixes
+
+- Validation phone number of UpPhone
+
 # React-Controls (version: 0.2.13)
 
 ## Main changes
