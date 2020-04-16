@@ -25,7 +25,7 @@ const getStyles = (props: UpInputProps) =>
       },
       "&.up-password .up-icon-wrapper": {
         position: 'absolute',
-        top:  4,
+        top: props.floatingLabel ? 18 : 4,
         right: 0,
         cursor: "pointer",
         zIndex: 10,
