@@ -1,3 +1,8 @@
+# React-Controls (version: 0.2.18)
+
+## Bug Fixes
+- Fix icon position for UpPaswword with floating label
+
 # React-Controls (version: 0.2.16)
 
 ## Bug Fixes
