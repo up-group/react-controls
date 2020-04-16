@@ -65,7 +65,7 @@ const UserCreationForm = props => {
                             allowCreate={true}
                             default={null}
                             multiple={false}
-                            placeholder="Civilité"
+                            floatingLabel="Civilité"
                             tooltip="Votre civilité"
                             minimumInputLength={3}
                             createOptionPosition={'first'}
