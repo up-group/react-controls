@@ -14,6 +14,7 @@ import { style } from 'typestyle';
 import UpInput from '../Input';
 import UpBox from '../../Containers/Box';
 import UpPassword from '../Password';
+import UpDate from '../Date';
 
 export default { 
     title: 'Components|Inputs/UpSelect',
@@ -140,6 +141,104 @@ const UserCreationForm = props => {
                                     {children}
                                     <div className={"up-wrapper-help-message-inline"}>
                                         Vous devez renseigner un email valide
+                                    </div>
+                                </div>
+                            )}
+                        />
+                </UpCol>
+                <UpCol xs={24} sm={12} md={8} lg={6}>
+                    <UpPassword
+                        name={"password"}
+                        floatingLabel={"Password"}
+                        onBlur={e => {
+                            handleBlur(e);
+                            setOnBlurState({ ...onBlurState, password: true });
+                        }}
+                        iconPosition={"right"}
+                        autocomplete={"off"}
+                        onFocus={e => {
+                            setOnBlurState({ ...onBlurState, password: false });
+                        }}
+                        showPasswordOnClick={true}
+                        showSuccess={dirty && onBlurState.password}
+                        value={values.password}
+                        onChange={handleChange}
+                    />
+                </UpCol>
+            </UpRow>
+            <UpRow>
+                <UpCol className={'up-form-field'} xs={24} sm={12} md={8} lg={6} >
+                    <UpSelect autoload={false}
+                            isRequired={false}
+                            allowClear={true}
+                            allowCreate={true}
+                            default={null}
+                            multiple={false}
+                            floatingLabel="Civilité"
+                            tooltip="Votre civilité"
+                            minimumInputLength={3}
+                            createOptionPosition={'first'}
+                            data={[
+                                { id: 1, text: 'M.' },
+                                { id: 2, text: 'Mme' },
+                                { id: 3, text: 'Mlle' },
+                                { id: 4, text: 'Dr' },
+                            ]}
+                            onChange={console.log} />
+                </UpCol>
+                <UpCol xs={24} sm={12} md={8} lg={6}>
+                    <UpInput
+                            name={"firstName"}
+                            floatingLabel={"First Name"}
+                            onBlur={e => {
+                                handleBlur(e);
+                                setOnBlurState({ ...onBlurState, firstName: true });
+                            }}
+                            onFocus={e => {
+                                setOnBlurState({ ...onBlurState, firstName: false });
+                            }}
+                            value={values.firstName}
+                            showSuccess={dirty && onBlurState.firstName}
+                            autocomplete={"off"}
+                            onChange={handleChange}
+                            />
+                </UpCol>
+                <UpCol xs={24} sm={12} md={8} lg={6}>
+                    <UpInput
+                            name={"lastName"}
+                            floatingLabel={"Last Name"}
+                            onBlur={e => {
+                                handleBlur(e);
+                                setOnBlurState({ ...onBlurState, lastName: true });
+                            }}
+                            onFocus={e => {
+                                setOnBlurState({ ...onBlurState, lastName: false });
+                            }}
+                            value={values.lastName}
+                            showSuccess={dirty && onBlurState.lastName}
+                            autocomplete={"off"}
+                            onChange={handleChange}
+                        />
+                </UpCol>
+            </UpRow>
+            <UpRow>
+                <UpCol xs={24} sm={12} md={8} lg={6}>
+                    <UpDate
+                            name={"birthdate"}
+                            floatingLabel={"Date de naissance"}
+                            errorDisplayMode={"inline"}
+                            showError={dirty && onBlurState.email}
+                            showSuccess={dirty && onBlurState.email}
+                            error={errors.email === undefined ? null : errors.email}
+                            hasError={errors.email != null}
+                            value={values.email}
+                            onChange={handleChange}
+                            placeholder={"Date de naissance"}
+                            helpMessage={children => (
+                                <div className={HelpMessageDisplayStyle(errors.email)}>
+                                    {children}
+                                    <div className={"up-wrapper-help-message-inline"}>
+                                        Vous devez renseigner votre date de naissance
                                     </div>
                                 </div>
                             )}

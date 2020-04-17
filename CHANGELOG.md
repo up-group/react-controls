@@ -1,20 +1,17 @@
-# React-Controls (version: 0.2.18)
+# React-Controls (version: 0.2.19)
+
+## Main changes
+- Add new props disabled to UpCheckbox
 
 ## Bug Fixes
 - Fix icon position for UpPaswword with floating label
-
-# React-Controls (version: 0.2.16)
-
-## Bug Fixes
-
 - In case of using the floating label, the select get now the focus when click on the label
-  
+
 # React-Controls (version: 0.2.16)
 
 ## Main changes
 
 - Add floating label to UpSelect
-- Add new props disabled to UpCheckbox
 - Improve animation UpNavTab
 
 ## Bug Fixes

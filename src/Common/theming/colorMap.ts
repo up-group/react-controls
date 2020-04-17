@@ -33,7 +33,7 @@ const colorMap: ThemeColorMap = {
   darkGray1: "#182026",
   darkGray2: "#202b33",
   darkGray3: "#293742",
-  darkGray4: "#30404d",
+  darkGray4: "#979797",
   darkGray5: "#394b59",
 
   gray1: "#5c7080",

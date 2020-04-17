@@ -19,6 +19,7 @@ export interface Option {
   iconName?: string;
   onOptionChange?: (event: React.ChangeEvent<any>, value: boolean) => void;
   checked?: boolean;
+  disabled?:boolean;
 }
 
 export interface UpCheckboxStyledProps extends WithThemeProps {
@@ -31,14 +32,14 @@ export interface UpCheckboxProps {
 }
 
 const BaseCheckBox: React.StatelessComponent<UpCheckboxStyledProps & Option> = (props: UpCheckboxStyledProps & Option & WithThemeProps) => {
-  const { checked, className, text, name, value, onChange } = props;
+  const { checked, disabled, className, text, name, value, onChange } = props;
 
   return (
     <label className={classNames("up-control", "up-checkbox", style(getCheckableStyles(props)), className)}>
       <input onClick={(e) => {
         e.stopPropagation();
         e.persist() ;
-        onChange(e, { name, checked:!checked })}} onChange={(e) => {}} checked={checked} name={name} type="checkbox" value={value} />
+        onChange(e, { name, checked:!checked })}} onChange={(e) => {}} checked={checked} disabled={disabled} name={name} type="checkbox" value={value} />
       <span className="up-control-indicator"></span>
       <span className="up-control-label">{text}</span>
     </label>
@@ -105,13 +106,10 @@ class UpCheckbox extends React.Component<UpCheckboxProps & WithThemeProps, UpChe
         {
           options.map((option) => {
             return <BaseCheckBox 
+                {...option}
                 onChange={this.handleChangeEvent} 
-                key={`Key_${option.name}_${option.value}`} 
-                text={option.text} 
-                name={option.name} 
-                value={option.value}
-                theme={this.props.theme}
-                checked={option.checked}>
+                key={`Key_${option.name}_${option.value}`}
+                theme={this.props.theme}>
               </BaseCheckBox>
           })
         }

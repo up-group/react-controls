@@ -184,7 +184,6 @@ class UpDate extends BaseControlComponent<
       iconPosition
     } = this.props;
 
-    
     return (
       <div
         className={classnames(

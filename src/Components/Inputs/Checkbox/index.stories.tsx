@@ -120,7 +120,7 @@ const SimpleCheckbox = (props) => {
 }
 
 
-const MultipleCheckbox = (props) => {
+const MultipleCheckbox = () => {
     let [selectedOption1, setOption1Value] = React.useState(null);
     let [selectedOption2, setOption2Value] = React.useState(null);
     let [selectedOption3, setOption3Value] = React.useState(null);
@@ -156,6 +156,44 @@ const MultipleCheckbox = (props) => {
     }]} />
 }
 
+
+const MultipleCheckboxWithSomeDisabled = () => {
+    let [selectedOption1, setOption1Value] = React.useState(null);
+    let [selectedOption2, setOption2Value] = React.useState(null);
+    let [selectedOption3, setOption3Value] = React.useState(null);
+
+    const onChangeOption1 = (event, value) => {
+        setOption1Value(value);
+    }
+    const onChangeOption2 = (event, value) => {
+        setOption2Value(value);
+    }
+    const onChangeOption3 = (event, value) => {
+        setOption3Value(value);
+    }
+
+    return <UpCheckbox options={[{
+        text: "Vous êtes majeur ?",
+        name: "Option1",
+        onOptionChange: onChangeOption1,
+        value: true,
+        checked: selectedOption1 === true
+    }, {
+        text: "Vous êtes Homme ?",
+        name: "Option2",
+        onOptionChange: onChangeOption2,
+        value: true,
+        checked: selectedOption2 === true,
+        disabled: true
+    }, {
+        text: "Vous êtes grand ?",
+        name: "Option3",
+        onOptionChange: onChangeOption3,
+        value: true,
+        checked: selectedOption3 === true
+    }]} />
+}
+
 export default { 
     title: 'Components|Inputs/UpCheckbox',
     decorators : [withKnobs, getRootContainer('UpCheckbox')]
@@ -172,6 +210,12 @@ export const Multiple =
         <UpLabel inline={true} width="small" text="Choix :">
            <MultipleCheckbox />
         </UpLabel>
+    );
+export const MultipleWithSomeDisabled =
+       () => (
+            <UpLabel inline={true} width="small" text="Choix :">
+               <MultipleCheckboxWithSomeDisabled />
+            </UpLabel>
     );
 export const Dynamic =
     () => (

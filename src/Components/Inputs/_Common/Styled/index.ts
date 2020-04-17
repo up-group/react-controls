@@ -86,7 +86,7 @@ export const getCheckableStyles = (props: WithThemeProps) : NestedCSSProperties 
         color: props.theme.colorMap.primaryFg,
         border: 'none'
       },
-      '&:hover .up-control-indicator' : {
+      '&:hover input:not(:disabled) ~ .up-control-indicator' : {
         borderColor: props.theme.colorMap.primary
       },
       '&:hover input:checked ~ .up-control-indicator, &:hover input:indeterminate ~ .up-control-indicator,&:hover input:checked ~ .up-control-wrapper .up-control-indicator, &:hover input:indeterminate ~ .up-control-wrapper .up-control-indicator' : {
@@ -163,7 +163,7 @@ export const getCheckableStyles = (props: WithThemeProps) : NestedCSSProperties 
       '& input:disabled ~ .up-control-indicator, & input:disabled ~ .up-control-wrapper .up-control-indicator' : {
         boxShadow: 'none',
         background: 'rgba(206, 217, 224, 0.5)',
-        cursor: 'notAllowed', 
+        cursor: 'not-allowed', 
       },
       '& input:disabled:checked ~ .up-control-indicator, & input:disabled:checked ~ .up-control-wrapper .up-control-indicator' : {
         boxShadow: 'none',

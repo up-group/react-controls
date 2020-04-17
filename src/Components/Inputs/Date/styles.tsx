@@ -21,8 +21,10 @@ const getStyles = (
         transform: "translate(0, 16px) scale(1)",
         transition: "all .1s ease-in-out",
         cursor: "text",
-        zIndex: 1,
         marginLeft: props.iconPosition == "left" ? "36px" : "0px"
+      },
+      "& .DateInput" : {
+        width: "auto",
       },
       "& .SingleDatePickerInput, & .SingleDatePickerInput input, & .SingleDatePickerInput .DateInput": {
         backgroundColor: "transparent",
@@ -40,7 +42,7 @@ const getStyles = (
       },
       "& .SingleDatePickerInput__withBorder": {
         borderWidth: props.theme.inputBorderLess ? "0 0 1px 0" : "1px",
-        borderColor: props.focused ? props.theme.colorMap.primary : "inherit",
+        borderColor: props.focused ? props.theme.colorMap.primary :props.theme.colorMap.darkGray4,
         borderRadius: props.theme.inputBorderLess ? 0 : props.theme.borderRadius
       },
       "& .SingleDatePickerInput__withBorder:hover": {
@@ -48,7 +50,7 @@ const getStyles = (
       },
       "& .SingleDatePickerInput_calendarIcon": {
         margin: props.theme.inputBorderLess ? `0 ${props.iconPosition === "left" ? '5px' : '0px'} 0 0` : "0 5px 0 10px",
-        paddingBottom: "4px"
+        padding: "4px"
       },
       "& .SingleDatePickerInput_calendarIcon svg, & .SingleDatePickerInput_calendarIcon svg path": {
         fill: props.focused
