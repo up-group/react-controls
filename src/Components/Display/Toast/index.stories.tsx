@@ -26,3 +26,15 @@ export const General =
       </UpToast>
     </UpThemeProvider>
    }
+
+export const ToastWithTitle =
+() => {
+ const intent = text('intent', 'success');
+ const message = text('message', 'Succès');
+
+ return <UpThemeProvider theme={UpDefaultTheme}>
+   <UpToast intent={intent as IntentType} title={"Opération"}>
+     <UpParagraph>{message}</UpParagraph>
+   </UpToast>
+ </UpThemeProvider>
+}

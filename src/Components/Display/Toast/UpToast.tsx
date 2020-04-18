@@ -27,7 +27,8 @@ export const getIntentStyle = (intent, theme) : any => {
     backgroundColor: intentColors.bg,
     $nest: {
       "& p, & .up-toast-title": {
-        color: intentColors.fg
+        color: intentColors.fg,
+        backgroundColor: intentColors.bg,
       },
       "& .up-toast-close .colored svg, & .up-toast-close .colored svg path, & .up-toast-close .colored svg polygon, & .up-toast-close .colored svg polyline": {
         fill: intentColors.fg
@@ -59,7 +60,7 @@ const mount = keyframes({
   },
 });
 
-export const buttonStyle = style({
+const buttonStyle = style({
   fontFamily:'materialinear',
   backgroundColor: 'transparent',
   border: '0px',
@@ -114,7 +115,7 @@ const toastTitleStyle = style({
   }
 });
 
-export interface IToastProps {
+export interface UpToastProps {
   message?: JSX.Element | string ;
   children?: JSX.Element;
   onClose?: () => void;
@@ -126,17 +127,17 @@ export interface IToastProps {
   icon?: JSX.Element;
 }
 
-export interface IToastState {
+export interface UpToastState {
   isVisible: boolean;
   isUnmounting: boolean;
 }
 
-class UpToast extends React.Component<IToastProps & WithThemeProps, IToastState> {
+class UpToast extends React.Component<UpToastProps & WithThemeProps, UpToastState> {
 
   manualClosingTimeout ;
   autoClosingTimeout ;
 
-  public static defaultProps : IToastProps & WithThemeProps = {
+  public static defaultProps : UpToastProps & WithThemeProps = {
     intent: 'default',
     title: 'Notification',
     duration : 5000,
@@ -228,4 +229,4 @@ class UpToast extends React.Component<IToastProps & WithThemeProps, IToastState>
     );
   }
 }
-export default withTheme<IToastProps>(UpToast) ;
+export default withTheme<UpToastProps>(UpToast) ;
