@@ -223,7 +223,7 @@ class UpToast extends React.Component<UpToastProps & WithThemeProps, UpToastStat
         </div>
         <div className={'up-toast-body'}>
           {(message != null || children != null)  &&
-            <UpNotification iconSize={"32px"} className={'up-toast-message'} duration={convertDurationFromMsToSecond(duration)} message={message} intent={intent}>
+            <UpNotification iconSize={"32px"} className={'up-toast-message'} durationBeforeClosing={convertDurationFromMsToSecond(duration)} durationOfAnimation={1} message={message} intent={intent}>
               {children}
             </UpNotification>
           }

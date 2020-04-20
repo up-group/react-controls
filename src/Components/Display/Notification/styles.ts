@@ -135,10 +135,10 @@ export const getStyles = (
    
   let animation = {} ;
   
-  if(props.duration || props.withCancelIcon) {
+  if(props.durationBeforeClosing || props.withCancelIcon) {
     animation = !notificationIsClosing
-      ? { ...animateFromRight(2, 'ease', 'fadeIn') }
-      : { ...animateFromLeft(1, 'ease', 'fadeOut') };
+      ? { ...animateFromRight(props.durationOfAnimation || 2, 'ease', 'fadeIn') }
+      : { ...animateFromLeft(props.durationOfAnimation || 1, 'ease', 'fadeOut') };
   }
 
   return classnames(

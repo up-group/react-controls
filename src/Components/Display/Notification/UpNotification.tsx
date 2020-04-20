@@ -33,7 +33,8 @@ export interface UpNotificationProps extends CommonProps {
   message?: JSX.Element | string;
   className?: string;
   iconSize?: string;
-  duration?: number;
+  durationBeforeClosing?: number;
+  durationOfAnimation?: number;
   withCancelIcon?: boolean;
 }
 
@@ -47,7 +48,7 @@ const UpNotification = (
     theme,
     title,
     className,
-    duration,
+    durationBeforeClosing,
     withCancelIcon
   } = props;
   const [showNotification, displayNotification] = React.useState(
@@ -64,13 +65,13 @@ const UpNotification = (
   }, [])
 
   React.useEffect(() => {
-    if (duration) {
+    if (durationBeforeClosing) {
       //start the timer
       timer = new setTimeOutWithPause(() => {
         close()
-      }, duration * 1000);
+      }, durationBeforeClosing * 1000);
     }
-  }, [duration]);
+  }, [durationBeforeClosing]);
 
   const onMouseOver = () => {
     if (timer) timer.pause();
@@ -149,7 +150,7 @@ const UpNotification = (
             {cancelIcon}
           </div>
         </UpGrid>
-        {duration && (
+        {durationBeforeClosing && (
           <div className="up-notification-progress-bar-container">
             <div className="up-notification-progress-bar" />
           </div>
