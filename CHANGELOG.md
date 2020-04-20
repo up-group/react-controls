@@ -1,3 +1,8 @@
+# React-Controls (version: 0.2.20)
+
+## Main changes
+- Add new prop to UpNotification to definie the duration of the animation
+
 # React-Controls (version: 0.2.19)
 
 ## Main changes
