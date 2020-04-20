@@ -13,6 +13,10 @@ import defaultTheme, { withTheme } from '../../../Common/theming';
 import UpNotification from '../Notification';
 import UpSvgIcon from '../SvgIcon';
 
+function convertDurationFromMsToSecond(duration: number | undefined) : number | undefined {
+  return duration && duration / 1000 ;
+}
+
 export const getIntentColor = (intent, theme) => {
   return { 
     fg : theme.colorMap[`${intent}Dark`] ||  theme.colorMap.darkGray5, 
@@ -197,10 +201,9 @@ class UpToast extends React.Component<UpToastProps & WithThemeProps, UpToastStat
       clearTimeout(this.manualClosingTimeout);
     }
   }
-
   render() {
     const { isVisible, isUnmounting } = this.state;
-    const { message, children, intent, title, theme } = this.props;
+    const { message, children, intent, title, duration, theme } = this.props;
 
     if (!isVisible) {
       return null;
@@ -220,7 +223,7 @@ class UpToast extends React.Component<UpToastProps & WithThemeProps, UpToastStat
         </div>
         <div className={'up-toast-body'}>
           {(message != null || children != null)  &&
-            <UpNotification iconSize={"32px"} className={'up-toast-message'} message={message} intent={intent}>
+            <UpNotification iconSize={"32px"} className={'up-toast-message'} duration={convertDurationFromMsToSecond(duration)} message={message} intent={intent}>
               {children}
             </UpNotification>
           }

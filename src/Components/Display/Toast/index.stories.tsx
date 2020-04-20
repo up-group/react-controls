@@ -21,9 +21,7 @@ export const General =
     const message = text('message', 'Succès');
 
     return <UpThemeProvider theme={UpDefaultTheme}>
-      <UpToast intent={intent as IntentType}>
-        <UpParagraph>{message}</UpParagraph>
-      </UpToast>
+      <UpToast intent={intent as IntentType} message={message} />
     </UpThemeProvider>
    }
 
@@ -33,8 +31,6 @@ export const ToastWithTitle =
  const message = text('message', 'Succès');
 
  return <UpThemeProvider theme={UpDefaultTheme}>
-   <UpToast intent={intent as IntentType} title={"Opération"}>
-     <UpParagraph>{message}</UpParagraph>
-   </UpToast>
+   <UpToast intent={intent as IntentType} title={"Opération"}  message={message} />
  </UpThemeProvider>
 }
