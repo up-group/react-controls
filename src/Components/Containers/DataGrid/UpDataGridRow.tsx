@@ -27,6 +27,7 @@ export interface UpDataGridRowProps {
     isSelectionEnabled: boolean;
     onSelectionChange?: (rowIndex: number, row: any) => void;
     onClick?: (rowIndex: number, row: any) => void;
+    getRowCustomClassName? : (rowIndex: number, row: any) => string;
 }
 
 export default class UpDataGridRow extends React.Component<UpDataGridRowProps, UpDataGridRowState> {
@@ -79,12 +80,12 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
                 return rowActions
             }
         }
-
+        const customClassName = this.props.getRowCustomClassName && this.props.getRowCustomClassName(this.props.rowIndex, this.props.value) ||  '';
         return (
             <UpDataGridConsumer>
-          { ({displayRowActionsWithinCell,rowActions,labelToDisplayRowActionsInCell}) => <tr className="up-data-grid-row up-data-grid-row-bordered" style={{ cursor: this.props.onClick ? 'pointer' : ''}} onClick={() => this.props.onClick && this.props.onClick(this.props.rowIndex, { value: this.props.value })}>
+          { ({ displayRowActionsWithinCell, rowActions, labelToDisplayRowActionsInCell }) => <tr className={`up-data-grid-row up-data-grid-row-bordered ${ customClassName }`} style={{ cursor: this.props.onClick ? 'pointer' : ''}} onClick={() => this.props.onClick && this.props.onClick(this.props.rowIndex, { value: this.props.value })}>
                 {this.props.isSelectionEnabled &&
-                    <UpDataGridCell key={"cell-selection"} value={selection} column={{ label: "", formatter: formatter }} />
+                    <UpDataGridCell key={ "cell-selection" } value={selection} column={{ formatter, label: '' }} />
                 }
 
                 {this.props.columns.map((value, index) => {
