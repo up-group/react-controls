@@ -212,6 +212,7 @@ export interface UpDataGridProps {
   onSortChange?: (c: Column, dir: SortDirection) => void;
   onSelectionChange?: (lastChangeRow: Row, seletectedRow: Row[]) => void;
   onRowClick?: (rowIndex: number, row: any) => void;
+  getRowCustomClassName?: (rowIndex: number, row: any) => string;
   footerProps?: Partial<UpDataGridFooterProps>;
   headerProps?: Partial<UpDataGridHeaderProps>;
   displayRowActionsWithinCell?: boolean;
@@ -599,6 +600,7 @@ class UpDataGrid extends React.Component<
             isSelected={value.isSelected}
             onSelectionChange={this.onRowSelectionChange}
             onClick={this.props.onRowClick}
+            getRowCustomClassName={this.props.getRowCustomClassName}
           />
         );
       }

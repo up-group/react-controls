@@ -497,6 +497,39 @@ export const WithExternalSourceAndPaginationTopAndBottom =
       />
     )
 
+  export const WithCustomRowStyles = () => (
+    <UpDataGrid
+      paginationPosition="bottom"
+      dataSource={{
+        query: "https://jsonplaceholder.typicode.com/posts"
+      }}
+      isPaginationEnabled={true}
+      columns={[
+        {
+          label: "Titre",
+          field: "title",
+          isSortable: true
+        },
+        {
+          label: "Texte",
+          field: "body",
+          isSortable: true
+        },
+        {
+          label: "Auteur",
+          field: "userId",
+          isSortable: true
+        }
+      ]}
+      getRowCustomClassName={(index, row) => {
+        if (index === 1) return style({ background: 'red !important' });
+        if (index === 4) return style({ background: 'green !important' });
+      }}
+    />
+  )
+
+
+
 export const WithCellFormatter =
     () => (
       <UpDataGrid
