@@ -1,3 +1,8 @@
+# React-Controls (version: 0.2.21)
+
+## Main changes
+- Add new prop to UpDataGrid in order to customize the style of a row
+
 # React-Controls (version: 0.2.20)
 
 ## Main changes
