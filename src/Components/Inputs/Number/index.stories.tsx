@@ -34,6 +34,13 @@ export const General =
     </UpThemeProvider>
   )
 
+  export const WithFloatingLabel =
+     () => (
+      <UpThemeProvider theme={UpDefaultTheme}>
+            <UpNumber floatingLabel={"Number"} />
+      </UpThemeProvider>
+    )
+
 export const Integer =
   () => (
     <>

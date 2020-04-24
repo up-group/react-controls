@@ -1,3 +1,11 @@
+# React-Controls (version: 0.2.22)
+
+## Bug Fixes
+- Fix floating label prop on UpNumber
+
+## Main changes
+- Add new prop to UpDataGrid in order to customize the style of a row
+
 # React-Controls (version: 0.2.21)
 
 ## Main changes
@@ -6,7 +14,7 @@
 # React-Controls (version: 0.2.20)
 
 ## Main changes
-- Add new prop to UpNotification to definie the duration of the animation
+- Add new prop to UpNotification to define the duration of the animation
 
 # React-Controls (version: 0.2.19)
 
