@@ -165,11 +165,12 @@ showError() {
  }
 
 renderControl() {
-    const { isRequired, theme, readonly, tooltip,placeholder, name, autoFocus } = this.props;
+    const { isRequired, theme, readonly, tooltip,placeholder, name, autoFocus, floatingLabel } = this.props;
  
     return (
       <div className={classnames(wrapperNumberStyles(this.props), 'up-number')}>
        <UpInput  
+          floatingLabel={floatingLabel}
           placeholder={placeholder}
           name={name}
           tooltip={tooltip}
