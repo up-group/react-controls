@@ -6,10 +6,10 @@ import { motion, AnimateSharedLayout } from 'framer-motion';
 import { NestedCSSProperties } from 'typestyle/lib/types';
 import { CustomStyles, getCustomStyles } from '../../../Common/theming/types';
 
-export type UpUpNavTabCustomStylesKeys = 'navTabWrapper' | 'headWrapper' | 'headItem' | 'content' | 'contentWrapper' ;
-export type UpUpNavTabCustomStyles = CustomStyles<UpUpNavTabCustomStylesKeys, Partial<UpNavTabProps & TabHeadProps>, UpNavTabState> ;
-function getNavTabCustomStyle(key : UpUpNavTabCustomStylesKeys, customStyles: UpUpNavTabCustomStyles, props: Partial<UpNavTabProps & TabHeadProps>, state? : UpNavTabState) {
-    return getCustomStyles<UpUpNavTabCustomStylesKeys, Partial<UpNavTabProps & TabHeadProps>, UpNavTabState>(key, customStyles, props, state) ;
+export type UpNavTabCustomStylesKeys = 'navTabWrapper' | 'headWrapper' | 'headItem' | 'content' | 'contentWrapper' ;
+export type UpNavTabCustomStyles = CustomStyles<UpNavTabCustomStylesKeys, Partial<UpNavTabProps & TabHeadProps>, UpNavTabState> ;
+function getNavTabCustomStyle(key : UpNavTabCustomStylesKeys, customStyles: UpNavTabCustomStyles, props: Partial<UpNavTabProps & TabHeadProps>, state? : UpNavTabState) {
+    return getCustomStyles<UpNavTabCustomStylesKeys, Partial<UpNavTabProps & TabHeadProps>, UpNavTabState>(key, customStyles, props, state) ;
 }
 
 
@@ -25,7 +25,7 @@ export type LoadType = "onShow" | "onLoad";
 export interface UpNavTabProps {
     tabs: Tab[],
     loadType?: LoadType;
-    customStyles?: UpUpNavTabCustomStyles;
+    customStyles?: UpNavTabCustomStyles;
 }
 
 export interface UpNavTabState {
@@ -101,7 +101,7 @@ export interface TabContentsProps {
     contents: Tab[];
     selectedTabKey: number;
     loadType: LoadType;
-    customStyles?: UpUpNavTabCustomStyles;
+    customStyles?: UpNavTabCustomStyles;
 }
 
 export function TabContents(props: TabContentsProps) {
@@ -118,7 +118,7 @@ export interface TabContentProps {
     tabKey: number;
     selectedTabKey: number;
     loadType: LoadType;
-    customStyles?: UpUpNavTabCustomStyles;
+    customStyles?: UpNavTabCustomStyles;
 }
 
 export function TabContent( props : TabContentProps) {
@@ -140,7 +140,7 @@ export interface TabHeadsProps {
     heads: Tab[];
     selectedTabKey: number;
     selectTabKey: (tabkey: number) => void;
-    customStyles?: UpUpNavTabCustomStyles;
+    customStyles?: UpNavTabCustomStyles;
 }
 
 export function TabHeads(props: TabHeadsProps) {
@@ -165,7 +165,7 @@ export interface TabHeadProps {
     tabKey: number;
     selectedTabKey: number;
     selectTabKey: (tabkey: number) => void;
-    customStyles?: UpUpNavTabCustomStyles;
+    customStyles?: UpNavTabCustomStyles;
 }
 
 const layoutClass = style({
