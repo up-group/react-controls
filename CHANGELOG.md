@@ -1,3 +1,8 @@
+# React-Controls (version: 0.2.23)
+
+## Main changes
+- Add new component UpPicture
+
 # React-Controls (version: 0.2.22)
 
 ## Bug Fixes
