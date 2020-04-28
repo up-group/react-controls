@@ -125,6 +125,9 @@ const disabled = (props: UpButtonProps & WithThemeProps): NestedCSSProperties =>
         color: props.theme.colorMap.disabledFg,
         borderColor: props.theme.colorMap.disabledBg,
       },
+      '&.up-btn[disabled] svg, &.up-btn[disabled] svg path, &.up-btn[disabled] svg polygon' : {
+        fill :props.theme.colorMap.disabledFg
+      }
     }
   }
 };
