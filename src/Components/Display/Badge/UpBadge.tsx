@@ -37,20 +37,24 @@ const UpBadge : React.FunctionComponent<UpBadgeProps & WithThemeProps> = functio
     }
 
     const BadgeStyle = style({
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
       borderRadius: (rounded===true)? '18px':'6px',
-      padding:(rounded===true)? "7px 11px" : '6px;',
+      padding:'0',
       fontWeight : 700,
       color: fontColor,
-      display:'inline-block',
       width:(rounded===true)? '32px':'auto',
+      height:(rounded===true)? '32px':'auto',
       backgroundColor:backgroundColor
     }) ;
 
     return (
-      <span className={classnames(BadgeStyle, 'up-badge', className)}>
+      <div className={classnames(BadgeStyle, 'up-badge', className)}>
         {text}
         {children}
-      </span>
+      </div>
     ) ;
 }
 
