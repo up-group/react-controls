@@ -1,3 +1,8 @@
+# React-Controls (version: 0.2.26)
+
+## Bug Fixes
+Clean UpBadge
+
 # React-Controls (version: 0.2.25)
 
 ## Bug Fixes
