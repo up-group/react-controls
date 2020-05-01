@@ -15,49 +15,43 @@ export interface UpBadgeProps {
   background?:string;
   rounded?:boolean;
   intent?: IntentType;
+  className?:string;
 };
  
-class UpBadge extends React.Component<UpBadgeProps & WithThemeProps> {
-  
-  public static defaultProps: UpBadgeProps & WithThemeProps = {
-    text:'',
-    color:'#FFF',
-    background:"black",
-    rounded:false,
-    theme: defaultTheme,
-  }
+const UpBadge : React.FunctionComponent<UpBadgeProps & WithThemeProps> = function({
+  text = '',
+  color = '#FFF',
+  background = "black",
+  rounded = false,
+  theme = defaultTheme,
+  intent,
+  className,
+  children})  {
 
-  constructor(props) {
-    super(props) ;
-  }
+    var fontColor = color ;
+    var backgroundColor = background ;
 
-  render() {
-      const {children, text, color, background, ...others} = this.props ; 
-      var fontColor = color ;
-      var backgroundColor = background ;
+    if(intent !== null) {
+        fontColor = theme.colorMap[`${intent}Fg`] ;
+        backgroundColor = theme.colorMap[`${intent}`] ;
+    }
 
-      if(this.props.intent !== null) {
-          fontColor = this.props.theme.colorMap[`${this.props.intent}Fg`] ;
-          backgroundColor = this.props.theme.colorMap[`${this.props.intent}`] ;
-      }
+    const BadgeStyle = style({
+      borderRadius: (rounded===true)? '18px':'6px',
+      padding:(rounded===true)? "7px 11px" : '6px;',
+      fontWeight : 700,
+      color: fontColor,
+      display:'inline-block',
+      width:(rounded===true)? '32px':'auto',
+      backgroundColor:backgroundColor
+    }) ;
 
-      const BadgeStyle = style({
-        borderRadius: (this.props.rounded===true)? '18px':'6px',
-        padding:(this.props.rounded===true)? "7px 11px" : '6px;',
-        fontWeight : 700,
-        color: fontColor,
-        display:'inline-block',
-        width:(this.props.rounded===true)? '32px':'auto',
-        backgroundColor:backgroundColor
-      }) ;
-
-      return (
-        <span className={classnames(BadgeStyle, 'up-badge')}>
-          {text}
-          {children}
-        </span>
-      ) ;
-  }
+    return (
+      <span className={classnames(BadgeStyle, 'up-badge', className)}>
+        {text}
+        {children}
+      </span>
+    ) ;
 }
 
 export default withTheme<UpBadgeProps>(UpBadge)
