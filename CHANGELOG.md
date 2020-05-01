@@ -1,7 +1,12 @@
+# React-Controls (version: 0.2.25)
+
+## Bug Fixes
+Fix svg icon notification
+
 # React-Controls (version: 0.2.24)
 
 ## Bug Fixes
-Fix icon color when upbuton is disabled
+Fix icon color when UpButon is disabled
 
 # React-Controls (version: 0.2.23)
 
