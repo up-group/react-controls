@@ -45,12 +45,13 @@ export const General =
     const width = number('width', 32);
     const height = number('height', 32);
 
+
     return (
       <UpThemeProvider theme={UpDefaultTheme}>
         <UpBox style={{ margin: "40px 30px" }}>
             <UpHeading tag={"h2"}>Icons</UpHeading>
             <UpBox flexDirection={"row"} flexWrap={true}>
-                {IconNames.map(icon => (
+                {IconNames.sort().map(icon => (
                   <dl key={icon} style={{ margin: "10px", display:'inline-block' }}>
                     <Item  color={color} height={height} width={width} icon={icon} />
                   </dl>
@@ -58,7 +59,7 @@ export const General =
             </UpBox>
             <UpHeading tag={"h2"}>Mentors</UpHeading>
             <UpBox flexDirection={"row"} flexWrap={true}>
-              {MentorNames.map(icon => (
+              {MentorNames.sort().map(icon => (
                 <dl style={{ margin: "10px" }}>
                   <dt
                     style={{ color: color, marginBottom: "10px" }}
@@ -76,7 +77,7 @@ export const General =
             </UpBox>
             <UpHeading tag={"h2"}>Mentors with Sparkles</UpHeading>
             <UpBox flexDirection={"row"} flexWrap={true}>
-              {MentorNames.map(icon => {if(icon!="sparkles") return(
+              {MentorNames.sort().map(icon => {if(icon!="sparkles") return(
                 <dl style={{ margin: "10px" }}>
                   <dt
                     style={{ color: color, marginBottom: "15px" }}
@@ -94,7 +95,7 @@ export const General =
             </UpBox>
             <UpHeading tag={"h2"}>Illustrations</UpHeading>
             <UpBox flexDirection={"row"} flexWrap={true}>
-              {IllustrationNames.map(icon => (
+              {IllustrationNames.sort().map(icon => (
                 <dl style={{ margin: "10px" }}>
                   <dt
                     style={{ color: color, marginBottom: "10px" }}

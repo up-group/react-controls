@@ -1,3 +1,9 @@
+# ReactControls (version: 0.2.30)
+
+## Bug Fixes
+
+Fix ok-sign icon
+  
 # ReactControls (version: 0.2.29)
 
 ## Main changes
