@@ -22,6 +22,23 @@ export default {
 
 const logoPng = require('./logo-up-square.svg');
 
+const Item = ({color, icon, width, height}) => {
+    return <>
+      <dt
+        style={{ color: color, marginBottom: "10px" }}
+      >{`${icon}`}</dt>
+      <dd>
+        <UpSvgIcon
+          iconName={icon}
+          color={color}
+          width={width}
+          height={height}
+          onClick={console.log}
+        />
+      </dd>
+    </>
+}
+
 export const General =
    () => {
     const color = text('color', '#369');
@@ -33,21 +50,11 @@ export const General =
         <UpBox style={{ margin: "40px 30px" }}>
             <UpHeading tag={"h2"}>Icons</UpHeading>
             <UpBox flexDirection={"row"} flexWrap={true}>
-              {IconNames.map(icon => (
-                <dl style={{ margin: "10px" }}>
-                  <dt
-                    style={{ color: color, marginBottom: "10px" }}
-                  >{`${icon}`}</dt>
-                  <dd>
-                    <UpSvgIcon
-                      iconName={icon}
-                      color={color}
-                      width={width}
-                      height={height}
-                    />
-                  </dd>
-                </dl>
-              ))}
+                {IconNames.map(icon => (
+                  <dl key={icon} style={{ margin: "10px", display:'inline-block' }}>
+                    <Item  color={color} height={height} width={width} icon={icon} />
+                  </dl>
+                ))}
             </UpBox>
             <UpHeading tag={"h2"}>Mentors</UpHeading>
             <UpBox flexDirection={"row"} flexWrap={true}>

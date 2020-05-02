@@ -16,6 +16,9 @@ export interface UpBadgeProps {
   rounded?:boolean;
   intent?: IntentType;
   className?:string;
+  onClick?: (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  onMouseLeave?: (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  onMouseEnter?: (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
  
 const UpBadge : React.FunctionComponent<UpBadgeProps & WithThemeProps> = function({
@@ -26,6 +29,9 @@ const UpBadge : React.FunctionComponent<UpBadgeProps & WithThemeProps> = functio
   theme = defaultTheme,
   intent,
   className,
+  onClick,
+  onMouseEnter,
+  onMouseLeave,
   children})  {
 
     var fontColor = color ;
@@ -51,7 +57,7 @@ const UpBadge : React.FunctionComponent<UpBadgeProps & WithThemeProps> = functio
     }) ;
 
     return (
-      <div className={classnames(BadgeStyle, 'up-badge', className)}>
+      <div onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} className={classnames(BadgeStyle, 'up-badge', className)}>
         {text}
         {children}
       </div>

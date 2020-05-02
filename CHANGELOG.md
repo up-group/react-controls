@@ -1,3 +1,9 @@
+# ReactControls (version: 0.2.28)
+
+## Main changes
+
+Add props onClick, onMouseEnter and onMouseLeave for UpBadge
+
 # React-Controls (version: 0.2.26)
 
 ## Bug Fixes
