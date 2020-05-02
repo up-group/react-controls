@@ -1,3 +1,12 @@
+# ReactControls (version: 0.2.29)
+
+## Main changes
+
+Export custom hooks :
+- useMountedRef : keep mount and unmount reference
+- useSafeState : avoid setState after unmount
+- useHoverIntent : enable mouse enter and leave logic
+
 # ReactControls (version: 0.2.28)
 
 ## Main changes

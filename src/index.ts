@@ -69,6 +69,10 @@ import { IconName as UpIconName } from './Common/theming/icons'
 
 import { eventFactory } from './Common/utils/eventListener'
 
+import useHoverIntent from './Common/hooks/useHoverIntent';
+import useMountedRef from './Common/hooks/useMountedRef';
+import useSafeState from './Common/hooks/useSafeState';
+
 export {
     UpBaseControlComponent,
     UpBadge,
@@ -138,5 +142,9 @@ export {
     eventFactory,
     UpInformation,
     UpCarousel,
-    UpPicture
+    UpPicture,
+    // Hooks
+    useMountedRef,
+    useHoverIntent,
+    useSafeState,
 };
