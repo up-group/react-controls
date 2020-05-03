@@ -45,7 +45,6 @@ export const General =
     const width = number('width', 32);
     const height = number('height', 32);
 
-
     return (
       <UpThemeProvider theme={UpDefaultTheme}>
         <UpBox style={{ margin: "40px 30px" }}>

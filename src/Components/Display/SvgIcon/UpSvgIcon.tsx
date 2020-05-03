@@ -89,8 +89,8 @@ const UpSvgIcon : React.StatelessComponent<UpSvgIconProps & WithThemeProps> = ({
   }
   if(iconData) {
     const SvgIconElement = () => <SvgIconWrapper className={classnames(className, mentorOrIllustrationStyles)} color={color} height={finalHeight} width={finalWidth}
-      {...others}
       dangerouslySetInnerHTML={{__html: iconData}}
+      {...others}
     ></SvgIconWrapper> ;
 
     if(dataFor != null) {
