@@ -1,3 +1,9 @@
+# ReactControls (version: 0.2.31)
+
+## Bug Fixes
+
+Fix UpRadio layout in display mode button
+
 # ReactControls (version: 0.2.30)
 
 ## Bug Fixes
