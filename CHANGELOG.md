@@ -1,3 +1,9 @@
+# ReactControls (version: 0.2.32)
+
+## Bug Fixes
+
+Fix UpRadio background color when display as button
+
 # ReactControls (version: 0.2.31)
 
 ## Bug Fixes
