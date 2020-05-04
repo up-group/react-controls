@@ -131,14 +131,15 @@ export const RadioGroupStyles = (props: RadioGroupProps & WithThemeProps) => {
         left: 0,
         borderRadius: isEmpty(props.gutter) ? 0 : props.theme.borderRadius,
         display: "inline-block",
-        boxShadow: "unset"
-      },
-      "&.upContainer__groupradio-button label.up-radio input:indeterminate ~ .up-control-wrapper .up-control-indicator": {
+        boxShadow: "unset",
         background: "#EFEFEF"
+      },
+      "&.upContainer__groupradio-button label.up-radio input:checked ~ .up-control-wrapper .up-control-indicator": {
+        backgroundColor: props.theme.colorMap.primary
       },
       "&.upContainer__groupradio-button label.up-radio input:checked ~ .up-control-wrapper .up-control-indicator ~ *": {
         color: "white",
-        fontWeight: 500
+        fontWeight: 500,
       },
       "&.upContainer__groupradio-large label.up-radio": {
         display: "flex",
