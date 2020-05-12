@@ -1,3 +1,9 @@
+# ReactControls (version: 0.2.33)
+
+## Bug Fixes
+
+Fix props passed to UpPhone and UpEmail
+
 # ReactControls (version: 0.2.32)
 
 ## Bug Fixes

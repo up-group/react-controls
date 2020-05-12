@@ -16,7 +16,6 @@ export interface UpPhoneProps extends CommonInputTextProps<string> {
 export default class UpPhone extends React.Component<UpPhoneProps, BaseControlState<string>> {
     public static defaultProps: UpPhoneProps = {
         showError: true,
-        width: "medium",
         defaultValue: "",
         validation: [{
             pattern: /^(0|\+33)[1-9]([-. ]*[0-9]{2}){4}$/,
@@ -52,13 +51,11 @@ export default class UpPhone extends React.Component<UpPhoneProps, BaseControlSt
     render() {
         return (
             <UpInput iconName="phone" 
-                validation={this.props.validation} 
+                {...this.props}
                 value={this.currentValue} 
                 onChange={this.phoneHandleChangeEvent} 
-                isRequired={this.props.isRequired}
                 error={this.currentError}
-                hasError={!_.isEmpty(this.currentError)}
-                showError={this.props.showError} />
+                hasError={!_.isEmpty(this.currentError)} />
         );
     }
 }
