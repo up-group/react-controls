@@ -50,8 +50,8 @@ export default class UpPhone extends React.Component<UpPhoneProps, BaseControlSt
 
     render() {
         return (
-            <UpInput iconName="phone" 
-                {...this.props}
+            <UpInput {...this.props}
+                iconName="phone" 
                 value={this.currentValue} 
                 onChange={this.phoneHandleChangeEvent} 
                 error={this.currentError}

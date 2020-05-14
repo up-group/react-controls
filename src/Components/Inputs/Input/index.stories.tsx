@@ -26,7 +26,7 @@ const SimpleInput = props => {
     setValue(value);
   };
 
-  return <UpInput value={selectedValue}  onChange={onChange} type={"text"} />;
+  return <UpInput value={selectedValue} showValidationStatus={false} onChange={onChange} type={"text"} />;
 };
 
 const ReadOnlyInputs = () => (

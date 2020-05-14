@@ -15,7 +15,7 @@ interface DataSource {
     id?: string;
     text?: string;
     endPoint?: string;
-    query: string;
+    query?: string;
     queryParameterName?: string;
     getExtraParams?: () => any;
     delay?: number;

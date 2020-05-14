@@ -16,6 +16,7 @@ import { eventFactory } from '../../../Common/utils/eventListener';
 import { isEmpty } from '../../../Common/utils'
 import defaultTheme from '../../../Common/theming/'
 import { ThemeInterface } from 'theming/types'
+import _ = require('lodash')
 
 const CancelToken = axios.CancelToken;
 
@@ -147,7 +148,8 @@ const customStyles = (theme : ThemeInterface, value)  => ({
         ...provided,
         marginTop: '0px',
         borderRadius:'0px',
-        border: `1px solid ${theme.colorMap.lightGrey1}`
+        border: `1px solid ${theme.colorMap.lightGrey1}`,
+        zIndex : 10000,
     })},
     clearIndicator: (provided, state) => ({
         ...provided,
@@ -218,6 +220,21 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                 fullObject: (p.value) ? p.value : p.default,
             }
         };
+    }
+
+    componentDidMount() {
+        const loadOptions = this.getLoadOptions();
+        if(this.props.autoload && loadOptions != null) {
+            this.setState(update(this.state, { extra: { isDataFetching: { $set: true } } }));
+            loadOptions("").then((data) => {
+                this.setState(update(this.state, { extra: { isDataFetching: { $set: false }, loadedData: { $set: data }} }), () => {
+                    if(!_.isEmpty(this.state.extra.loadedData) && this.state.extra.loadedData.length == 1) 
+                    {
+                        this.onChange(this.props.name, this.state.extra.loadedData[0], null) ;
+                    }
+                });
+            }).catch(e => this.setState(update(this.state, { extra: { isDataFetching: { $set: false }}})))
+        }
     }
 
     get keyId() {
@@ -435,8 +452,6 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         }
     }
 
-
-
     private format(object, strFormat: string) {
         const regexp = /{-?[\w]+}/gi;
         const arr = strFormat.match(regexp);
@@ -510,13 +525,12 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         return this.props.showSuccess
     }
 
-    renderControl() {
-        const dataSource = this.props.dataSource;
-        let loadOptions: any = false;
-
-        if (dataSource !== undefined) {
-            const queryParam = dataSource.queryParameterName || 'search';
-            const minimumInputLength = this.props.minimumInputLength;
+    private getLoadOptions = () => {
+        let loadOptions = null ;
+        if (this.props.dataSource !== undefined) {
+            const dataSource = this.props.dataSource ;
+            const queryParam = this.props.dataSource.queryParameterName || 'search';
+            const minimumInputLength = this.props.autoload ? 0 : this.props.minimumInputLength;
             loadOptions = (input: string) => {
                 if (minimumInputLength && input.length < minimumInputLength) {
                     if (input.length !== 0) {
@@ -538,7 +552,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                 if (this.axiosSource) {
                     this.axiosSource.cancel('Next request in progress');
                 }
-                
+
                 // TODO : Clean
                 if (this.props.dataSource.fetchData) {
                     return this.props.dataSource.fetchData(input, this.props.dataSource.defaultParameters)
@@ -585,19 +599,29 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             };
             loadOptions = loadOptions.bind(this);
         }
+        return loadOptions ;
+    }
 
-        const data = this.props.data;
+    renderControl() {
+        let dataSource = this.props.dataSource;
+        let loadOptions: any = this.getLoadOptions();
+
+        const data = this.props.data || this.state.extra.loadedData;
+
         let specProps: any = {
             options: data,
             loadOptions: false,
         }
 
-        if (loadOptions !== false) {
+        if (this.state.extra.loadedData == null && loadOptions != null) {
             specProps = {
                 loadOptions,
                 autoload: this.props.autoload
             }
+        } else {
+            dataSource = null;
         }
+
         let allowCreate = this.props.allowCreate ;
 
         let formatCreateLabel = undefined ;
@@ -611,15 +635,14 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             isValidNewOption = emptyIsValidNewOption ;
         }
 
-        if (allowCreate) {
+        if (this.props.isSearchable) {
             specProps.allowCreateWhileLoading = this.props.allowCreateWhileLoading;
             specProps.formatCreateLabel = formatCreateLabel || this.formatCreateLabel;
             specProps.isValidNewOption = isValidNewOption  || this.isValidNewOption;
             specProps.getNewOptionData = this.getNewOptionData;
-            specProps.onCreateOptio
-        }
-
-        if (this.props.allowCreate) {
+            specProps.onCreateOption = this.props.onCreateOption;
+            specProps.createOptionPosition = this.props.createOptionPosition;
+        } else if (this.props.allowCreate) {
             specProps.allowCreateWhileLoading = this.props.allowCreateWhileLoading;
             specProps.formatCreateLabel = this.formatCreateLabel;
             specProps.isValidNewOption = this.isValidNewOption;
@@ -628,7 +651,11 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             specProps.createOptionPosition = this.props.createOptionPosition;
         }
 
-        const value = this.isControlled ? this.props.value : this.state.extra.fullObject;
+        let value = this.isControlled ? this.props.value : this.state.extra.fullObject;
+        if(this.props.returnType == 'id') {
+            value = data && data.find(item => item.id == value) ;
+        }
+
         const selectComponentProps: Props = {
             ...specProps,
             value,
@@ -642,7 +669,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             allowCreate: allowCreate,
             promptTextCreator: this.props.promptTextCreator,
             autoBlur: false,
-            isLoading: this.props.isLoading,
+            isLoading: this.state.extra.isDataFetching || this.props.isLoading,
             loadingMessage: (input: string) => this.state.extra.loadingPlaceholder,
             isMulti: this.props.multiple,
             isClearable: this.props.allowClear,

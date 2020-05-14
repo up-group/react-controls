@@ -42,8 +42,8 @@ export default class UpEmail extends React.Component<UpInputProps, BaseControlSt
 
     render() {
         return <UpInput {...this.props}
-            value={this.currentValue} 
             iconName="email"
+            value={this.currentValue} 
             onChange={this.emailHandleChangeEvent} 
             error={this.currentError}
             hasError={!_.isEmpty(this.currentError)}  />

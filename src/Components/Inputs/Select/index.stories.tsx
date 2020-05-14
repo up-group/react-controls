@@ -15,6 +15,15 @@ import UpInput from '../Input';
 import UpBox from '../../Containers/Box';
 import UpPassword from '../Password';
 import UpDate from '../Date';
+import * as randomSentence from 'random-sentence'
+
+const data = []
+for(let i = 1 ; i < 1000 ; i++ ) {
+    data.push({
+        id: i,
+        title:  randomSentence({words: 5})
+    })
+}
 
 export default { 
     title: 'Components|Inputs/UpSelect',
@@ -294,7 +303,7 @@ const SimpleSelect = (props) => {
 
 export const General = () => <SimpleSelect />;
 
-export const FetchingData =  () => (
+export const FetchingDataWithQuery =  () => (
     <UpSelect autoload={false}
         isRequired={false}
         allowClear={true}
@@ -310,6 +319,91 @@ export const FetchingData =  () => (
         }}
         onChange={console.log} />
 );
+
+export const FetchingDataWithFucntion =  () => {
+    let [selectedValue, setValue] = React.useState(null);
+    
+    const onChange = (event, value) => {
+        setValue(value);
+    }
+
+    return <UpSelect
+        isRequired={false}
+        allowClear={true}
+        default={null}
+        multiple={false}
+        tooltip="Votre ville de naissance"
+        minimumInputLength={3}
+        returnType="id"
+        labelKey={"title"}
+        dataSource={{
+            fetchData: (input: string, defaultParameters) => {
+                return Promise.resolve(data.filter(item => item.title.indexOf(input) != -1))
+            },
+            text: "title"
+        }}
+        autoload={false}
+        value={selectedValue}
+        floatingLabel={"Rechercher"}
+        onChange={onChange} />
+    };
+
+    export const FetchingDataWithFucntionAndAutload =  () => {
+        let [selectedValue, setValue] = React.useState(null);
+        
+        const onChange = (event, value) => {
+            setValue(value);
+        }
+    
+        return <UpSelect
+            isRequired={false}
+            allowClear={true}
+            default={null}
+            multiple={false}
+            tooltip="Votre ville de naissance"
+            minimumInputLength={3}
+            returnType="id"
+            labelKey={"title"}
+            dataSource={{
+                fetchData: (input: string, defaultParameters) => {
+                    return Promise.resolve(data.filter(item => item.title.indexOf(input) != -1))
+                },
+                text: "title"
+            }}
+            autoload={true}
+            value={selectedValue}
+            floatingLabel={"Rechercher"}
+            onChange={onChange} />
+        };
+
+        export const FetchingDataWithFucntionAndAutloadAndOneItem =  () => {
+            let [selectedValue, setValue] = React.useState(null);
+            
+            const onChange = (event, value) => {
+                setValue(value);
+            }
+        
+            return <UpSelect
+                isRequired={false}
+                allowClear={true}
+                default={null}
+                multiple={false}
+                tooltip="Votre ville de naissance"
+                minimumInputLength={3}
+                returnType="id"
+                labelKey={"title"}
+                dataSource={{
+                    fetchData: (input: string, defaultParameters) => {
+                        return Promise.resolve([{title : 'Auto-selected item', id: 1}])
+                    },
+                    text: "title"
+                }}
+                autoload={true}
+                value={selectedValue}
+                floatingLabel={"Rechercher"}
+                onChange={onChange} />
+            };
+        
 export const FetchingDataWithProxy =  () => (
     <UpSelect autoload={false}
         isRequired={false}
