@@ -1,3 +1,9 @@
+# ReactControls (version: 0.2.35)
+
+## Bug Fixes
+
+Fix props autoload for UpSelect
+
 # ReactControls (version: 0.2.33)
 
 ## Bug Fixes
