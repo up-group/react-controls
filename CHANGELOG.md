@@ -1,3 +1,9 @@
+# ReactControls (version: 0.2.36)
+
+## Bug Fixes
+
+Fix setting value in case of using mode returntype "id" UpSelect
+
 # ReactControls (version: 0.2.35)
 
 ## Bug Fixes
