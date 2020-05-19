@@ -652,7 +652,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         }
 
         let value = this.isControlled ? this.props.value : this.state.extra.fullObject;
-        if(this.props.returnType == 'id') {
+        if(this.props.returnType == 'id' && typeof value !== 'object') {
             value = data && data.find(item => item.id == value) ;
         }
 
@@ -723,8 +723,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             className={classnames('up-select-label', {
               'up-select-label-focused': !!this.state.extra
                 .menuIsOpen,
-              'up-select-label-valued': !!this.state.extra
-                .fullObject,
+              'up-select-label-valued': !!value,
             })}>
             {floatingLabel}
           </label>

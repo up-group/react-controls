@@ -279,7 +279,7 @@ const UserCreationForm = props => {
   };
 
 const SimpleSelect = (props) => {
-    let [selectedValue, setValue] = React.useState(null);
+    let [selectedValue, setValue] = React.useState({ id: 1, text: 'M.' });
     
     const onChange = (event, value) => {
         setValue(value);
