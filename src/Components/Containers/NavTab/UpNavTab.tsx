@@ -1,6 +1,5 @@
 import * as React from "react"
 import { style } from 'typestyle';
-import { UpGrid, UpRow, UpCol } from "../Grid";
 import * as classnames from 'classnames';
 import { motion, AnimateSharedLayout } from 'framer-motion';
 import { NestedCSSProperties } from 'typestyle/lib/types';
@@ -12,9 +11,7 @@ function getNavTabCustomStyle(key : UpNavTabCustomStylesKeys, customStyles: UpNa
     return getCustomStyles<UpNavTabCustomStylesKeys, Partial<UpNavTabProps & TabHeadProps>, UpNavTabState>(key, customStyles, props, state) ;
 }
 
-
 /// NavTab
-
 export interface Tab {
     head: string | JSX.Element;
     content: JSX.Element;
