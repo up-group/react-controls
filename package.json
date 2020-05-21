@@ -57,7 +57,7 @@
     "tsc": "./node_modules/typescript/bin/tsc",
     "version": "tsc -v",
     "clean": "rimraf dist && rimraf test/dist",
-    "build": "tsc && copyfiles -u 1 src/Common/theming/icons/*.* dist/ && npm run copyCSS && npm run copyFont && npm run copyImg && npm run copySvg",
+    "build": "tsc -v && tsc && copyfiles -u 1 src/Common/theming/icons/*.* dist/ && npm run copyCSS && npm run copyFont && npm run copyImg && npm run copySvg",
     "copyCSS": "copyfiles -u 1 src/**/*.css dist/",
     "copyFont": "copyfiles -u 1 src/**/*.ttf dist/ && copyfiles -u 1 src/**/*.woff dist/ && copyfiles -u 1 src/**/*.eot dist/",
     "copyImg": " copyfiles -u 1 src/**/*.png dist/",
@@ -147,7 +147,7 @@
     "tslint-config-airbnb": "^5.11.0",
     "tslint-eslint-rules": "^5.4.0",
     "tslint-react-hooks": "^2.2.2",
-    "typescript": "^3.6.0",
+    "typescript": "3.8.3",
     "url-loader": "^1.1.2",
     "webpack": "^4.41.0",
     "yarn": "^1.12.1"
