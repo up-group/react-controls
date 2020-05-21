@@ -118,7 +118,7 @@ const UpCarousel = (props: UpCarouselProps) => {
 
   return (
     <ul className={classnames("up-carousel", style({...getListStyles(props, currentItem), ...getCustomStyle('list', props,  currentItem)}))}>
-      {props.items.map(item => (
+      {props.items && props.items.map(item => (
         <Item
           key={item.color}
           item={item}

@@ -109,7 +109,7 @@ const UpNotification = (
   }
 
   const NotificationRender = () => (
-    <div style={{overflow: 'hidden'}}>
+    <div className={'up-notification'} style={{overflow: 'hidden'}}>
       <div
         onMouseEnter={onMouseOver}
         onMouseLeave={onMouseLeave}

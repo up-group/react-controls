@@ -9,8 +9,7 @@ chai.use(chaiEnzyme());
 
 describe(UpCarousel, () => {
   it('should render without throwing an error', function() {
-    const _render = render(<UpCarousel />) ;
-    const _component = _render.find(".up-carousel");
-    expect(_component.length).toBe(1);
+    const _render = render(<UpCarousel items={[]} />) ;
+    expect(_render.hasClass("up-carousel")).toBeTruthy();
   });
 });
