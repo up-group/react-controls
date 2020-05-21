@@ -1,3 +1,10 @@
+# ReactControls (version: 0.2.37)
+
+## Main changes
+
+Improve UpIcon stories
+- enable to change color and size
+
 # ReactControls (version: 0.2.36)
 
 ## Bug Fixes
