@@ -1,3 +1,10 @@
+# ReactControls (version: 0.2.38)
+
+## Main changes
+
+UpNavTab 
+- add onSelectedTabChanged handler
+
 # ReactControls (version: 0.2.37)
 
 ## Main changes
