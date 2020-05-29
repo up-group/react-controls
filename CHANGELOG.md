@@ -1,3 +1,10 @@
+# ReactControls (version: 0.2.41)
+
+## Main changes
+
+UpText 
+- set full border
+
 # ReactControls (version: 0.2.40)
 
 ## Main changes
