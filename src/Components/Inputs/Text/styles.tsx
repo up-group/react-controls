@@ -20,6 +20,7 @@ const base = (props: UpTextProps) : NestedCSSProperties => (
         minHeight:'80px',
         width: sizeMap[props.width] || "500px",
         padding:'10px',
+        border: '1px solid'
     }
 );
 

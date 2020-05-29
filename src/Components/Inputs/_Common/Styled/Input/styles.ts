@@ -571,19 +571,32 @@ export const inputStyles = (props: UpInputProps & WithThemeProps) : NestedCSSPro
   };
 };
 
-export const focusStyles = (props: StyledProps) =>
-         style({
-           $nest: {
-             "& .up-input-group.up-input-focused .up-icon-wrapper svg, & .up-input-group.up-input-focused .up-icon-wrapper svg path, & .up-input-group.up-input-focused .up-icon-wrapper svg polygon, & .up-input-group.up-input-focused .up-icon-wrapper svg polyline": {
-               fill: props.theme.colorMap.primary
-             },
-             "& .up-input-group.up-input-focused label, & .up-input-group.up-input-valued label": {
-               transform: "translate(0, 2px) scale(.75)",
-               fontSize: "12px",
-               color: props.theme.colorMap.gray1
-             },
-           }
-         });
+export const focusStyles = (props: StyledProps) => {
+  const getFocusLabelStyle = props => {
+    const focusLabelStyle = {
+      transform: 'translate(0, 2px) scale(.75)',
+      fontSize: '12px',
+      color: props.theme.colorMap.gray1
+    };
+    const { value, readonly } = props;
+    if (value || (!value && !readonly)) {
+      return focusLabelStyle;
+    } else {
+      return {};
+    }
+  };
+
+  return style({
+    $nest: {
+      '& .up-input-group.up-input-focused .up-icon-wrapper svg, & .up-input-group.up-input-focused .up-icon-wrapper svg path, & .up-input-group.up-input-focused .up-icon-wrapper svg polygon, & .up-input-group.up-input-focused .up-icon-wrapper svg polyline': {
+        fill: props.theme.colorMap.primary
+      },
+      '& .up-input-group.up-input-focused label, & .up-input-group.up-input-valued label': {
+        ...getFocusLabelStyle(props)
+      }
+    }
+  });
+};
 
 export const getStyles = (props: StyledProps) : string => {
   const heightStyle = props.height == "large" ? HeightLarge : {};
