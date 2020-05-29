@@ -23,7 +23,7 @@ export const defaultStyles = (props: WithThemeProps) : NestedCSSProperties => {
     outline: 'none',
     position: 'relative',
     borderWidth: props.theme.inputBorderLess ? '0 0 1px 0' : '1px',
-    borderRadius: props.theme.inputBorderLess ? 0 : '3px',
+    borderRadius: props.theme.inputBorderLess ? 0 : props.theme.borderRadius,
     borderStyle: 'solid',
     boxShadow:  props.theme.inputBorderLess ? 'inherit' : '0 0 0 0 rgba(19, 124, 189, 0), 0 0 0 0 rgba(19, 124, 189, 0), inset 0 0 0 1px rgba(16, 22, 26, 0.15), inset 0 1px 1px rgba(16, 22, 26, 0.2)',
     background: 'transparent',
@@ -92,7 +92,6 @@ export const statusStyles = (props : StyledProps) => {
 
 
 export const successStyles = (props: StyledProps) => {
-  
 };
 
 export const inputStyles = (props: UpInputProps & WithThemeProps) : NestedCSSProperties => {
