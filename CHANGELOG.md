@@ -1,3 +1,10 @@
+# ReactControls (version: 0.2.42)
+
+## Bug Fixes
+
+UpText 
+- fix style conflict with UpInput
+
 # ReactControls (version: 0.2.41)
 
 ## Main changes
