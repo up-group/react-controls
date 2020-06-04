@@ -8,6 +8,7 @@ import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import UpInput from '../Input';
 
 export default { 
   title: 'Components|Inputs/UpText',
@@ -17,13 +18,13 @@ export default {
 export const General =
   () => (
     <UpLabel text={"Observation : "}>
-          <UpText width={'fill'} />
+      <UpText width={'fill'} />
     </UpLabel>
   )
 
 export const IntegrationInForm =
   () => (
-    <Formik initialValues={{ description: ''}}
+    <Formik initialValues={{ description: '', firstName: '' }}
             onSubmit={(values, { setSubmitting }) => {
               setTimeout(() => {
                 alert(JSON.stringify(values, null, 2));
@@ -47,13 +48,22 @@ export const IntegrationInForm =
               } = props;
               return (
                 <form onSubmit={handleSubmit}>
-                 <UpLabel text={"Observation : "}>
+                  <UpLabel text={"Firstname : "}>
+                    <UpInput
+                        name={"firstName"}
+                        floatingLabel={"First Name"}
+                        value={values.firstName}
+                        autocomplete={"off"}
+                        onChange={handleChange}
+                      />
+                  </UpLabel>
+                  <UpLabel text={"Observation : "}>
                     <UpText width={'fill'} 
                       name={'description'}
                       value={values.description}
                       onChange={handleChange}
                     />
-                </UpLabel>
+                  </UpLabel>
                 </form>
               );
             }}

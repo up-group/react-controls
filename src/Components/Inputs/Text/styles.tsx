@@ -16,12 +16,16 @@ const sizeMap = {
 };
 
 const base = (props: UpTextProps) : NestedCSSProperties => (
-    { 
-        minHeight:'80px',
-        width: sizeMap[props.width] || "500px",
-        padding:'10px',
-        border: `1px solid ${props.theme.colorMap.darkGray4}`,
-        borderRadius: props.theme.borderRadius
+    {
+        $nest : {
+            "&.up-text" : { 
+                minHeight:'80px',
+                width: sizeMap[props.width] || "500px",
+                padding:'10px',
+                border: `1px solid ${props.theme.colorMap.darkGray4}`,
+                borderRadius: props.theme.borderRadius
+            }
+        }
     }
 );
 
