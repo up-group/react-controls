@@ -1,3 +1,10 @@
+# ReactControls (version: 0.2.43)
+
+## Bug Fixes
+
+UpSelect 
+- fix min height in multiselect mode
+
 # ReactControls (version: 0.2.42)
 
 ## Bug Fixes
