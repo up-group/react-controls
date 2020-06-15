@@ -109,8 +109,7 @@ const customStyles = (theme : ThemeInterface, value)  => ({
             border: state.isFocused ? 0 : 0,
             borderBottom: `1px solid ${state.isFocused ? theme.colorMap.primary : theme.colorMap.gray6}`,
         },
-        height:'29px !important',
-        minHeight:'unset !important',    
+        minHeight:'29px !important',    
         borderBottom: `1px solid ${state.isFocused ? theme.colorMap.primary : theme.colorMap.gray6}`
     }),
     dropdownIndicator: (provided, state) => ({
