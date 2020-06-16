@@ -154,6 +154,11 @@ export interface Action {
   libelle?: string;
 }
 
+export interface ToolTip {
+  title: JSX.Element | string,
+  content: JSX.Element | string
+}
+
 export interface Column {
   label: string | JSX.Element;
   field?: string;
@@ -163,6 +168,7 @@ export interface Column {
   isSortable?: boolean;
   isSorted?: boolean;
   sortDir?: SortDirection;
+  tooltip?: ToolTip
 }
 
 export interface Row {
