@@ -9,7 +9,7 @@ import * as moment from "moment"
 import { IconName } from '../../../Common/theming/icons';
 
 export interface ICellFormatter {
-    format: (item: any, column: Column) => React.ReactElement<any>
+    format: (item: any, column: Column, additionalProps?: any) => React.ReactElement<any>
 }
 
 export default class UpDefaultCellFormatter implements ICellFormatter {
@@ -122,6 +122,11 @@ export class UpCellFormatter extends React.Component<UpCellFormatterProps, {}>{
 
     render() {
         if (this.props.column.formatter != null) {
+            if(this.props.column.getFormatterProps != null)
+            {
+                const additionalProps = this.props.column.getFormatterProps(this.props.value[this.props.column.field]);
+                return this.props.column.formatter.format(this.props.value, this.props.column, additionalProps);                
+            }
             return this.props.column.formatter.format(this.props.value, this.props.column);
         }
         let valueExtracted =  null ;
