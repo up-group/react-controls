@@ -1,3 +1,10 @@
+# ReactControls (version: 0.2.44)
+
+## Main Changes
+
+UpDataGrid
+- Add props for tooltip for Header
+
 # ReactControls (version: 0.2.43)
 
 ## Bug Fixes
