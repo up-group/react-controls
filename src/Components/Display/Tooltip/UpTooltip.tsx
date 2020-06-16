@@ -162,7 +162,7 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps, UpTooltipStat
       return renderChildren ;
     }
     return (
-      <div style={{display:"inline-block", width:'100%'}}>
+      <div style={{display:"inline-block"}}>
         {renderChildren}
         <ReactTooltip className={classNames('up-tooltip', getStyles(this.props), custom)} id={tooltipId} getContent={this.getContent} {...others} />
       </div>

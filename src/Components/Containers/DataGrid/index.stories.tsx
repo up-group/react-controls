@@ -124,7 +124,8 @@ export const General =
               label: "Col 2",
               field: "c2",
               type: "boolean",
-              isSortable: true
+              isSortable: true,
+              tooltip: {title: 'title',content: 'content content content '}
             },
             {
               label: "Col 3",
@@ -163,12 +164,13 @@ export const WithSelection =
           {
             label: "Col 1",
             field: "c1",
-            isSortable: true
+            isSortable: true,
           },
           {
             label: "Col 2",
             field: "c2",
-            isSortable: true
+            isSortable: true,
+            tooltip: {title: 'title',content: 'content content content '}
           },
           {
             label: "Col 3",
