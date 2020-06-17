@@ -1,3 +1,10 @@
+# ReactControls (version: 0.2.45)
+
+## Main Changes
+
+UpDataGrid CellFormatter
+- Add getter props for cell formatter
+
 # ReactControls (version: 0.2.44)
 
 ## Main Changes
