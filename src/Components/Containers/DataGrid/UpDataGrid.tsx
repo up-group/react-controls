@@ -158,7 +158,7 @@ export interface Column {
   label: string | JSX.Element;
   field?: string;
   formatter?: ICellFormatter;
-  getFormatterProps?: (field: string) => any;
+  getFormatterProps?: (value: string) => any;
   render?: ({ value: any, column: Column }) => JSX.Element;
   type?: any;
   isSortable?: boolean;
