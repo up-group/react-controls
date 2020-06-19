@@ -55,6 +55,7 @@ import UpPDFViewer from './Display/PDFViewer/UpPDFViewer'
 import UpRating from './Inputs/Rating/UpRating'
 import UpCodeViewer from './Display/CodeViewer/UpCodeViewer'
 import UpInformation  from './Display/Information/UpInformation'
+import UpDataPanel  from './Containers/DataPanel/UpDataPanel'
 import * as UpIcons from "./Display/Icons/materialinear";
 
 export {
@@ -118,5 +119,6 @@ export {
     UpInformation,
     UpCarousel,
     UpPicture,
-    UpRichText
+    UpRichText,
+    UpDataPanel
 };

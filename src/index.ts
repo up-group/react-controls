@@ -58,7 +58,8 @@ import { UpPanel,
     UpRating,
     UpCodeViewer,
     UpInformation,
-    UpCarousel
+    UpCarousel,
+    UpDataPanel
 } from './Components/'
 
 import * as UpIcons from "./Components/Display/Icons/materialinear";
@@ -143,6 +144,7 @@ export {
     UpInformation,
     UpCarousel,
     UpPicture,
+    UpDataPanel,
     // Hooks
     useMountedRef,
     useHoverIntent,
