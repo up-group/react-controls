@@ -21,7 +21,7 @@ import UpDefaultTheme, { withTheme } from "../../../Common/theming";
 import UpDataGridFooter,{UpDataGridFooterProps} from './UpDataGridFooter';
 import UpDataGridHeader,{UpDataGridHeaderProps} from './UpDataGridHeader';
 
-import _ = require('lodash');
+import * as _ from 'lodash';
 import {UpDataGridProvider} from './UpDataGridContext'
 
 const WrapperDataGridStyle = style({
