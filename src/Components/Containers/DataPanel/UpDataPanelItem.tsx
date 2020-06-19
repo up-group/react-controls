@@ -8,13 +8,19 @@ import { style } from 'typestyle';
 
 import { CSSProperties } from 'typestyle/lib/types';
 
-import { DisplayType, Action, Column } from './UpDataPanel';
+import {
+  DisplayType,
+  Action,
+  Column,
+  TitleFormatter
+} from './UpDataPanel';
 
 export interface PanelItemProps {
   className?: string;
   title?: {
-    general?: string;
+    general: string;
     specific?: string;
+    formatter?: TitleFormatter;
   };
   displayMode?: DisplayType;
   actions?: Array<Action>;
@@ -114,9 +120,13 @@ const UpDataPanelItem = (props: PanelItemProps) => {
       {title && (
         <div className="panel-title">
           <span className="panel-title-general">{title.general}</span>
-          <span className="panel-title-specific">
-            {title.specific}
-          </span>
+          {title.formatter ? (
+            title.formatter.format(title.specific)
+          ) : (
+            <span className="panel-title-specific">
+              {title.specific}
+            </span>
+          )}
         </div>
       )}
       <div className="panel-body">
@@ -130,9 +140,13 @@ const UpDataPanelItem = (props: PanelItemProps) => {
                   {displayMode === 'row' ? ': ' : null}
                 </span>
               ) : null}
-              <span className="panel-col-value">
-                {panelData && panelData[element.field]}
-              </span>
+              {element.formatter ? (
+                element.formatter.format(panelData, element)
+              ) : (
+                <span className="panel-col-value">
+                  {panelData && panelData[element.field]}
+                </span>
+              )}
               {element.tooltip && (
                 <Tooltip tooltip={element.tooltip} />
               )}

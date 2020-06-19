@@ -36,7 +36,7 @@ export const DisplayRowMode = () => (
   <UpDataPanel
     data={data}
     columns={columns}
-    title={{ general: 'Tire généric', specific: ' specific' }}
+    title={{ general: 'Tire généric', specific: 'specific' }}
     showOnlyNotEmptyValue={true}
     displayMode="row"
     className={style({
@@ -73,3 +73,72 @@ export const DisplayColumnMode = () => (
     })}
   />
 );
+
+export const DisplayColumnModeWithFormatter = () => {
+  const formatter = {
+    format: (item, column) => (
+      <span style={{ color: 'orange' }}>{item[column.field]}</span>
+    )
+  };
+  return (
+    <UpDataPanel
+      data={data}
+      columns={columns.map((e, i) =>
+        i === 0 ? { ...e, formatter } : { ...e }
+      )}
+      showOnlyNotEmptyValue={boolean('showOnlyNotEmptyValue', false)}
+      displayMode="column"
+      className={style({
+        $nest: {
+          '&.panel-container': {
+            marginTop: '25px'
+          }
+        }
+      })}
+    />
+  );
+};
+
+export const DisplayRowModeWithTitleFormatter = () => {
+  const formatter = {
+    format: title => (
+      <span
+        style={{
+          color: 'orange',
+          fontWeight: 'bold',
+          marginLeft: '4px'
+        }}>
+        {title}
+      </span>
+    )
+  };
+  return (
+    <UpDataPanel
+      data={data}
+      columns={columns}
+      title={{
+        general: 'Tire généric',
+        specific: 'Specific',
+        formatter
+      }}
+      showOnlyNotEmptyValue={true}
+      displayMode="row"
+      className={style({
+        $nest: {
+          '&.panel-container': {
+            marginTop: '25px'
+          }
+        }
+      })}
+      actions={[
+        {
+          action: e => {
+            console.log(e);
+          },
+          type: 'arrow-right',
+          intent: 'primary'
+        }
+      ]}
+    />
+  );
+};

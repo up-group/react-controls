@@ -7,10 +7,13 @@ import UpDataPanelItem from './UpDataPanelItem';
 import withTheme, {
   
 } from '../../../Common/theming/withTheme';
+import { ICellFormatter } from '../DataGrid/UpDefaultCellFormatter';
 
 export interface Column {
   label: string;
   field: string;
+  formatter?: ICellFormatter;
+  getFormatterProps?: (value: string) => any;
   tooltip?: {
     title: JSX.Element | string;
     content: JSX.Element | string;
@@ -24,7 +27,9 @@ export interface Action {
   libelle?: string;
 }
 export type DisplayType = 'row' | 'column';
-
+export interface TitleFormatter {
+    format: (title) => React.ReactElement<any>;
+  }
 export interface UpDataPanelProps {
   columns: Array<Column>;
   data: Array<any>;
@@ -33,10 +38,12 @@ export interface UpDataPanelProps {
   displayMode?: DisplayType;
   className?: string;
   title?: {
-    general?: string;
+    general: string;
     specific?: string;
+    formatter?: TitleFormatter
   };
 }
+
 
 export const UpDataPanel = props => {
   const { data, ...rest } = props;
