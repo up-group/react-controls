@@ -1,3 +1,131 @@
+# ReactControls (version: 0.2.45)
+
+## Main Changes
+
+UpDataGrid CellFormatter
+- Add getter props for cell formatter
+
+# ReactControls (version: 0.2.44)
+
+## Main Changes
+
+UpDataGrid
+- Add props for tooltip for Header
+
+# ReactControls (version: 0.2.43)
+
+## Bug Fixes
+
+UpSelect 
+- fix min height in multiselect mode
+
+# ReactControls (version: 0.2.42)
+
+## Bug Fixes
+
+UpText 
+- fix style conflict with UpInput
+
+# ReactControls (version: 0.2.41)
+
+## Main changes
+
+UpText 
+- set full border
+
+# ReactControls (version: 0.2.40)
+
+## Main changes
+
+UpNavTab 
+- add onSelectedTabChanged handler
+
+# ReactControls (version: 0.2.37)
+
+## Main changes
+
+Improve UpIcon stories
+- enable to change color and size
+
+# ReactControls (version: 0.2.36)
+
+## Bug Fixes
+
+Fix setting value in case of using mode returntype "id" UpSelect
+
+# ReactControls (version: 0.2.35)
+
+## Bug Fixes
+
+Fix props autoload for UpSelect
+
+# ReactControls (version: 0.2.33)
+
+## Bug Fixes
+
+Fix props passed to UpPhone and UpEmail
+
+# ReactControls (version: 0.2.32)
+
+## Bug Fixes
+
+Fix UpRadio background color when display as button
+
+# ReactControls (version: 0.2.31)
+
+## Bug Fixes
+
+Fix UpRadio layout in display mode button
+
+# ReactControls (version: 0.2.30)
+
+## Bug Fixes
+
+Fix ok-sign icon
+  
+# ReactControls (version: 0.2.29)
+
+## Main changes
+
+Export custom hooks :
+- useMountedRef : keep mount and unmount reference
+- useSafeState : avoid setState after unmount
+- useHoverIntent : enable mouse enter and leave logic
+
+# ReactControls (version: 0.2.28)
+
+## Main changes
+
+Add props onClick, onMouseEnter and onMouseLeave for UpBadge
+
+# React-Controls (version: 0.2.26)
+
+## Bug Fixes
+Clean UpBadge
+
+# React-Controls (version: 0.2.25)
+
+## Bug Fixes
+Fix svg icon notification
+
+# React-Controls (version: 0.2.24)
+
+## Bug Fixes
+Fix icon color when UpButon is disabled
+
+# React-Controls (version: 0.2.23)
+
+## Main changes
+- Add new component UpPicture
+
+# React-Controls (version: 0.2.22)
+
+## Bug Fixes
+- Fix floating label prop on UpNumber
+
+## Main changes
+- Add new prop to UpDataGrid in order to customize the style of a row
+
 # React-Controls (version: 0.2.21)
 
 ## Main changes
@@ -6,7 +134,7 @@
 # React-Controls (version: 0.2.20)
 
 ## Main changes
-- Add new prop to UpNotification to definie the duration of the animation
+- Add new prop to UpNotification to define the duration of the animation
 
 # React-Controls (version: 0.2.19)
 

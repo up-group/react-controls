@@ -53,7 +53,7 @@ const getStyles = (props : SvgIconWrapperProps) : string => {
     }
     if(props.color) {
       styles["$nest"] = {
-        "&.colored svg :not(.uncolored), &.colored svg path :not(.uncolored), &.colored svg polygon :not(.uncolored), &.colored svg polyline :not(.uncolored)": {
+        "&.colored svg:not(.uncolored), &.colored svg path:not(.uncolored), &.colored svg polygon:not(.uncolored), &.colored svg polyline:not(.uncolored)": {
           fill: props.color
         }
       };
@@ -94,8 +94,8 @@ const UpSvgIcon : React.StatelessComponent<UpSvgIconProps & WithThemeProps> = ({
   }
   if(iconData) {
     const SvgIconElement = () => <SvgIconWrapper className={classnames(className, mentorOrIllustrationStyles)} color={color} height={finalHeight} width={finalWidth}
-      {...others}
       dangerouslySetInnerHTML={{__html: iconData}}
+      {...others}
     ></SvgIconWrapper> ;
 
     if(dataFor != null) {

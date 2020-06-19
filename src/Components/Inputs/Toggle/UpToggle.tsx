@@ -6,6 +6,7 @@ import {style} from 'typestyle'
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 
 import defaultTheme from '../../../Common/theming'
+import UpLabel from '../../Display/Label';
 
 export type Size = 'small' | 'normal' | 'large'
 
@@ -23,11 +24,18 @@ export interface UpToggleProps {
 }
 
 const wrapperStyle = (props: UpToggleProps & WithThemeProps) => style({
-  display:"inline-block",
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'left',
+  alignItems: 'center',
   $nest : {
     "svg path" : {
        margin:"0px",
        fill: props.theme.colorMap.primaryFg,
+    },
+    ".up-label-text" : {
+      color : '#7f8fa4',
+      marginRight: "12px"
     },
     ".up-toggle" : {
       touchAction: "pan-x",
@@ -115,6 +123,7 @@ const wrapperStyle = (props: UpToggleProps & WithThemeProps) => style({
     ".up-toggle-thumb" : {
       transition: "all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0ms",
       position: "absolute",
+      borderColor: '#D7D7D7',
       backgroundColor: '#FAFAFA',
       "-webkit-box-sizing": 'border-box',
       "-moz-box-sizing": 'border-box',
@@ -460,7 +469,7 @@ class UpToggle extends React.PureComponent<UpToggleProps & WithThemeProps, UpTog
   }
   
   render () {
-    const { className, onChange, size, icons: _icons, ...inputProps } = this.props
+    const { className, onChange, size, icons: _icons, children, ...inputProps } = this.props
     
     const classes = classNames('up-toggle', {
       'up-toggle--checked': this.state.checked,
@@ -497,6 +506,9 @@ class UpToggle extends React.PureComponent<UpToggleProps & WithThemeProps, UpTog
 
     return (
       <div className={classNames(wrapperStyle(this.props), SizeStyle)}>
+        {children && 
+          <UpLabel className={style({display: 'inline-block'})} text={children as string}></UpLabel>
+        }
         <div className={classes} 
           onClick={this.handleClick}
           onTouchStart={this.handleTouchStart}
@@ -514,6 +526,7 @@ class UpToggle extends React.PureComponent<UpToggleProps & WithThemeProps, UpTog
             onClick = {(event) => event.stopPropagation()}
             className='up-toggle-screenreader-only'
             type='checkbox' />
+        
       </div>
     )
   }

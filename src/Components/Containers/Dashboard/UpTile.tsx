@@ -3,7 +3,6 @@ import * as React from "react"
 import * as classnames from 'classnames' ;
 
 import './bootstrap-grid.css'
-import * as $ from 'jquery'
 import SvgIcon from "../../Display/SvgIcon/index";
 
 import UpPanel from "../Panel/index"

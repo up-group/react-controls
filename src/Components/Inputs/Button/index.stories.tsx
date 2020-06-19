@@ -75,12 +75,13 @@ export const General =
               }} width={"normal"}>Test</UpButton>
             <UpButton
               intent={'primary'}
+              actionType={'save'}
               disabled={true}
               onClick={(event) => {
                 return new Promise(function (resolve, reject) {
                   setTimeout(() => resolve(true), 5000)
                 })
-              }} width={"normal"}>Disabled</UpButton>
+              }}>Disabled</UpButton>
           </UpButtonGroup>
         </UpParagraph>
       </UpBox>

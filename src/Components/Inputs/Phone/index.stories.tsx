@@ -17,7 +17,7 @@ export const General =
    () => (
     <UpThemeProvider theme={UpDefaultTheme}> 
         <div style={{padding:"30px"}}>
-          <UpPhone />
+          <UpPhone floatingLabel={"Phone"} />
         </div>
     </UpThemeProvider>
   );
@@ -26,7 +26,7 @@ export const IsRequired =
    () => (
     <UpThemeProvider theme={UpDefaultTheme}> 
         <div style={{padding:"30px"}}>
-          <UpPhone isRequired={true} />
+          <UpPhone floatingLabel={"Phone"} isRequired={true} />
         </div>
     </UpThemeProvider>
   );

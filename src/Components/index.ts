@@ -40,13 +40,14 @@ import UpFile from './Inputs/File'
 import UpDate from './Inputs/Date'
 import UpTimePicker from './Inputs/TimePicker'
 import UpText from './Inputs/Text'
-import UpRichext from './Inputs/RichText'
+import UpRichText from './Inputs/RichText'
 import UpNumber from "./Inputs/Number/UpNumber"
 import UpPhone from './Inputs/Phone/UpPhone'
 import UpEmail from "./Inputs/Email/UpEmail"
 import UpCheckbox from './Inputs/Checkbox/UpCheckBox'
 import UpToggle from './Inputs/Toggle'
 import UpRadio from './Inputs/Radio'
+import UpPicture from './Inputs/Picture'
 import UpPassword from './Inputs/Password'
 import UpProgressCircle from './Display/ProgressCircle'
 import UpDropFile from './Inputs/DropFile/UpDropFile'
@@ -77,7 +78,6 @@ export {
     UpDate,
     UpTimePicker,
     UpText,
-    UpRichext,
     UpNumber,
     UpEmail,
     UpPassword,
@@ -116,5 +116,7 @@ export {
     UpRating,
     UpCodeViewer,
     UpInformation,
-    UpCarousel
+    UpCarousel,
+    UpPicture,
+    UpRichText
 };

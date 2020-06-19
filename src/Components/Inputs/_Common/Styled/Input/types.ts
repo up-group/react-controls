@@ -2,7 +2,7 @@ import { CommonInputTextWithIconProps } from '../../BaseControl/BaseInput'
 import { IconName } from '../../../../../Common/theming/icons';
 
 // Exports
-export type InputType = 'text' | 'email' | 'number' | 'integer' | 'phone' | 'search';
+export type InputType = 'text' | 'email' | 'number' | 'integer' | 'phone' | 'search' | 'password';
 export type InputIconPosition = 'left' | 'right' | 'none';
 
 export interface StyledProps extends CommonInputTextWithIconProps<string> {
