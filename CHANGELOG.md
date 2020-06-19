@@ -1,3 +1,9 @@
+# ReactControls (version: 0.2.46)
+
+## Main Changes
+
+- Add component UpDataPanel
+
 # ReactControls (version: 0.2.45)
 
 ## Main Changes
