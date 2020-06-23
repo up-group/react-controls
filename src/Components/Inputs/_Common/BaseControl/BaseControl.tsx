@@ -41,6 +41,7 @@ export interface BaseControlProps<_BaseType> extends WithThemeProps {
   error?: string;
   touched?: boolean;
   helpMessage?: string | RenderHelp;
+  tabIndex?: number;
   onClear?: () => void
 }
 export interface BaseControlState<_BaseType> {

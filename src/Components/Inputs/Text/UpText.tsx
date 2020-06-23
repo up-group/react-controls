@@ -33,11 +33,12 @@ class BaseTextArea extends React.Component<UpTextProps> {
     }
 
     render() {
-        const {className, value, onChange, name} = this.props;
+        const {className, value, onChange, name, tabIndex} = this.props;
 
         return <Textarea value={value}
             name={name}
             ref={this.setInput}
+            tabIndex={tabIndex}
             className={classnames(className, 'up-text')}
             onChange={e => onChange(e, null)}></Textarea>;
     }

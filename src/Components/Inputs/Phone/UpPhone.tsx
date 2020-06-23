@@ -55,7 +55,8 @@ export default class UpPhone extends React.Component<UpPhoneProps, BaseControlSt
                 value={this.currentValue} 
                 onChange={this.phoneHandleChangeEvent} 
                 error={this.currentError}
-                hasError={!_.isEmpty(this.currentError)} />
+                hasError={!_.isEmpty(this.currentError)}
+                tabIndex={this.props.tabIndex} />
         );
     }
 }

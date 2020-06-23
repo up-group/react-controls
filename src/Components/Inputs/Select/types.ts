@@ -117,9 +117,6 @@ export interface UpSelectProps extends BaseControlProps<any> {
     openMenuOnFocus? : boolean;
     /** Activation de l'ouverture automatique du menu lorsque l'utilisateur click sur le composant */
     openMenuOnClick? : boolean;
-    /** Définit le tabIndex attribute sur l'input */
-    tabIndex?:string;
-
     /** CREATABLE PROPS */
     /** Activation de la création d'option alors que isLoading est à true. 
      *  Permet de prévenir "Créer ..." option d'être affiché alors que l'appel à une API asynchrone

@@ -93,6 +93,7 @@ interface UpDropFileProps extends WithThemeProps {
   separatorLabel?:string;
   allowExtensionsLabel?:string;
   displaySelectFile?: boolean;
+  tabIndex?:number;
   onChange?: (event: React.ChangeEvent<any>, value: IFile) => void;
   loadFile?:(id:string) => Promise<IFile>;
   source?: () => Promise<IFile>;
@@ -686,6 +687,7 @@ class UpDropFile extends React.Component<
             ref={node => {
               this.dropZoneRef = node;
             }}
+            tabIndex={this.props.tabIndex}
             style={{
               backgroundSize: "100%",
               maxWidth: "100%",

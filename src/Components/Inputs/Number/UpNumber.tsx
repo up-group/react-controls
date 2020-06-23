@@ -173,6 +173,7 @@ renderControl() {
           floatingLabel={floatingLabel}
           placeholder={placeholder}
           name={name}
+          tabIndex={this.props.tabIndex}
           tooltip={tooltip}
           readonly={readonly}
           isRequired={isRequired}

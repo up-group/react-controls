@@ -31,6 +31,7 @@ export interface Option {
 export interface UpRadioStyledProps extends Option {
     className?:string;
     gutter?:number;
+    tabIndex?: number;
     onChange?:(e:any) => void;
 }
 
@@ -67,12 +68,11 @@ const RadioGroup: React.StatelessComponent<RadioGroupProps & WithThemeProps> = (
   }
 
 const BaseRadioButton: React.StatelessComponent<UpRadioStyledProps & WithThemeProps> = (props : UpRadioStyledProps & WithThemeProps) => {
-    const { checked, iconName, className, name, text, value, onChange, intent, toggledElement: field } = props;
+    const { checked, iconName, className, name, text, value, onChange, intent, toggledElement: field, tabIndex } = props;
     return (
         <>
         <label className={classnames("up-control", "up-radio", getStyles(props), intent ? `up-intent-${intent}` : null, className)}>
-            
-            <input checked={checked} onChange={(e) => {e.persist(); onChange(e)}} name={name} type="radio" value={value} />
+            <input checked={checked} onChange={(e) => {e.persist(); onChange(e)}} name={name} type="radio" value={value} tabIndex={this.props.tabIndex} />
             <span className="up-control-wrapper">
                 <span className="up-control-indicator"></span>
             </span>
@@ -158,7 +158,8 @@ class UpRadio extends BaseControlComponent<UpRadioProps, any> {
                             iconName={option.iconName}
                             theme={this.props.theme}
                             value={option.value}
-                            toggledElement={option.toggledElement}>
+                            toggledElement={option.toggledElement}
+                            tabIndex={this.props.tabIndex}>
                         </BaseRadioButton>
                     )
                 })}

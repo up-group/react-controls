@@ -16,6 +16,7 @@ export interface UpTimeProps {
     onChange?:(event, value: string) => void;
     minuteStep? : number;
     withIcon?: boolean;
+    tabIndex? : number;
 }
 
 export interface UpTimeState {
@@ -110,6 +111,7 @@ export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeSta
                     onKeyDown={this.onKeyDownMin}
                     onChange={this.onchangeMinEvent}
                     onFocus={this.onFocusMinute}
+                    tabIndex={this.props.tabIndex}
                     style={{
                         "border": "none",
                         "width": "2em",

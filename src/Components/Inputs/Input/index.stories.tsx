@@ -406,6 +406,7 @@ export const FormikForm = () => {
           <>
             <UpLabel text={'Adresse :'}>
               <UpInput
+                tabIndex={2}
                 onChange={handleChange}
                 name={'email'}
                 autoFocus
@@ -413,10 +414,12 @@ export const FormikForm = () => {
               />
             </UpLabel>
             <UpLabel text={'Password :'}>
-              <UpPassword onChange={handleChange} name={'password'} />
+              <UpPassword onChange={handleChange} name={'password'} 
+                tabIndex={1} />
             </UpLabel>
             <UpLabel text={'Adresse 3 :'}>
-              <UpInput isRequired={true} />
+              <UpInput isRequired={true} 
+                tabIndex={0}/>
             </UpLabel>
           </>
         );

@@ -110,6 +110,9 @@ class UpDate extends BaseControlComponent<
     // and the second one with the DOM node instance
     if (this.dateInput == undefined) {
       this.dateInput = input;
+      if(this.props.tabIndex) {
+        this.dateInput.setAttribute('tavbindex', this.props.tabIndex);
+      }
     }
   };
 

@@ -34,7 +34,8 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps & 
     onClear,
     value,
     isLoading,
-    showValidationStatus
+    showValidationStatus,
+    tabIndex: tabindex
   } = props;
 
   let iconName = props.iconName;
@@ -115,6 +116,7 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps & 
               setTimeout(onBlur.bind(this, event), 100)
             }
           }
+          tabIndex={tabindex}
           className="up-input"
           type={type}
           placeholder={props.floatingLabel ? "" : placeholder}
@@ -256,6 +258,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
         isLoading={this.props.isLoading}
         className={this.props.className}
         showValidationStatus={this.props.showValidationStatus}
+        tabIndex={this.props.tabIndex}
       >
         {this.props.children}
       </BaseInput>

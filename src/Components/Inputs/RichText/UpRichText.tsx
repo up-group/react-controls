@@ -57,6 +57,7 @@ export default class UpRichText extends BaseControlComponent<UpRichTextProps, st
                     // You can store the "editor" and use when it is needed.
                     console.log( 'Editor is ready to use!', editor );
                 }}
+                tabIndex={this.props.tabIndex}
                 onChange={ ( event, editor ) => {
                     const data = editor.getData();
                     this.handleChangeEvent(eventFactory(this.props.name, data), data) ;

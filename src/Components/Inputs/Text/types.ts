@@ -15,5 +15,6 @@ export interface UpTextProps extends WithThemeProps {
     name?: string;
     className?: string;
     dataFor?:string; // For tooltip
+    tabIndex?:number;
     onChange?: (event: React.ChangeEvent<any>, data: string) => void;
 }

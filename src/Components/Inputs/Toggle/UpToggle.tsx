@@ -18,6 +18,7 @@ export interface UpToggleProps {
     icons?:any;
     size?:Size;
     className?:string;
+    tabIndex?:number;
     onChange?:(event, value) =>void;
     onFocus?:(event) =>void;
     onBlur?:(event) =>void;

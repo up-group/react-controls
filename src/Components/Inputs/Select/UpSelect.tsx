@@ -204,7 +204,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         menuShouldScrollIntoView: true,
         openMenuOnFocus: false,
         openMenuOnClick: true,
-        tabIndex: "0",
+        tabIndex: 0,
         closeMenuOnSelect: true,
         createOptionPosition: 'last',
         theme: defaultTheme
