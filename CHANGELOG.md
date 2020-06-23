@@ -1,3 +1,9 @@
+# ReactControls (version: 0.2.48)
+
+## Main Changes
+
+- Add tabIndex on all "Input"
+
 # ReactControls (version: 0.2.46)
 
 ## Main Changes
