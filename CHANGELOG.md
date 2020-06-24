@@ -1,3 +1,9 @@
+# ReactControls (version: 0.2.50)
+
+## Main Changes
+
+- Add UpButton borderless prop
+
 # ReactControls (version: 0.2.49)
 
 ## Main Changes
