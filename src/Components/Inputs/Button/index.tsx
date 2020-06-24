@@ -79,6 +79,7 @@ export interface CommonProps extends WithThemeProps {
     isToggled?: boolean;
     /** Tye type of the button  */
     type?: 'button' | 'submit' | 'reset';
+    borderless?: boolean;
 }
 // This is so that the onClick handler is accepted without type interferance
 export interface UpButtonProps extends CommonProps {

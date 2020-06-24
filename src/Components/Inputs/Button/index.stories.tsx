@@ -99,7 +99,7 @@ export const Icon =
           </UpParagraph>
         </UpNotification>
         <UpParagraph>
-          <UpButton actionType="add" width={"icon"} intent="primary" onClick={(event) => {
+          <UpButton actionType="arrow-right" width={"icon"} intent="primary" borderless onClick={(event) => {
             return new Promise(function (resolve, reject) {
               setTimeout(() => resolve(true), 5000)
             })
