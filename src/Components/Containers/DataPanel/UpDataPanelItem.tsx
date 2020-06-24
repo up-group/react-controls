@@ -37,7 +37,7 @@ const getStyle = props => {
   return style({
     border: '1px solid #DEDDDD',
     borderRadius: '4px',
-    padding: '25px 29.15px 13.5px 50px',
+    padding: '25px 30px 13.5px 50px',
     $nest: {
       '& .panel-body': {
         display: 'flex',
@@ -81,7 +81,9 @@ const getStyle = props => {
         position: 'absolute',
         right: 0,
         display: 'flex',
-        justifyContent: 'space-evenly'
+        justifyContent: 'space-evenly',
+        alignSelf: 'center',
+        bottom: 4
       }
     }
   });
@@ -164,6 +166,14 @@ const UpDataPanelItem = (props: PanelItemProps) => {
                 intent={element.intent}
                 width='icon'
                 borderless
+                className={style({
+                  $nest: {
+                    '& .up-btn ,& .up-btn svg': {
+                      width: '44px !important',
+                      height:'44px !important'
+                    }
+                  }
+                })}
                 onClick={() => element.action(panelData)}></UpButton>
             ))}
           </div>
