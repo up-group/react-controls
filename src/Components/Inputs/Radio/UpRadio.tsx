@@ -72,7 +72,7 @@ const BaseRadioButton: React.StatelessComponent<UpRadioStyledProps & WithThemePr
     return (
         <>
         <label className={classnames("up-control", "up-radio", getStyles(props), intent ? `up-intent-${intent}` : null, className)}>
-            <input checked={checked} onChange={(e) => {e.persist(); onChange(e)}} name={name} type="radio" value={value} tabIndex={this.props.tabIndex} />
+            <input checked={checked} onChange={(e) => {e.persist(); onChange(e)}} name={name} type="radio" value={value} tabIndex={tabIndex} />
             <span className="up-control-wrapper">
                 <span className="up-control-indicator"></span>
             </span>
