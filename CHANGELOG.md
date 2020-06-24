@@ -1,3 +1,9 @@
+# ReactControls (version: 0.2.51)
+
+## Bug Fixes
+
+- Fix tabindex on RadioButton
+  
 # ReactControls (version: 0.2.50)
 
 ## Main Changes
