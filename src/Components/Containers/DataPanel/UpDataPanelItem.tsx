@@ -50,14 +50,15 @@ const getStyle = props => {
         flexDirection: `${props.displayMode}`,
         marginRight: '37px',
         marginBottom: '8px',
-        position: 'relative'
+        position: 'relative',
+        alignItems: props.displayMode === 'row' ? 'center' : 'normal',
       },
       '& .panel-col-label': {
         color: props.theme.colorMap.gray6
       },
       '& .panel-col-value': {
         color: props.theme.colorMap.grey,
-        marginLeft: props.displayMode === 'row' ? '2px' : ''
+        marginLeft: props.displayMode === 'row' ? '4px' : ''
       },
       '& .panel-title': {
         marginBottom: '30px'
@@ -79,7 +80,8 @@ const getStyle = props => {
       '& .panel-actions': {
         position: 'absolute',
         right: 0,
-        alignSelf: 'center'
+        display: 'flex',
+        justifyContent: 'space-evenly'
       }
     }
   });
@@ -160,6 +162,8 @@ const UpDataPanelItem = (props: PanelItemProps) => {
                 key={`panel-action-${index}`}
                 actionType={element.type}
                 intent={element.intent}
+                width='icon'
+                borderless
                 onClick={() => element.action(panelData)}></UpButton>
             ))}
           </div>

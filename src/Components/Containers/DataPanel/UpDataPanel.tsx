@@ -10,8 +10,8 @@ import withTheme, {
 import { ICellFormatter } from '../DataGrid/UpDefaultCellFormatter';
 
 export interface Column {
-  label: string;
-  field: string;
+  label: string  | JSX.Element;
+  field?: string ;
   formatter?: ICellFormatter;
   getFormatterProps?: (value: string) => any;
   tooltip?: {

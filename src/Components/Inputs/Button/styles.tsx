@@ -475,6 +475,26 @@ const rounded = (props: UpButtonProps): NestedCSSProperties => {
   }
 };
 
+const borderless = (props: UpButtonProps): NestedCSSProperties => {
+  return {
+    $nest: {
+      '&.up-btn': {
+        border: 'unset !important',
+        backgroundColor: 'white'
+      },
+      '&.up-btn svg, &.up-btn svg path, &.up-btn svg polygon, &.up-btn svg polyline': {
+        fill: ` ${props.theme.colorMap[props.intent]} !important`
+      },
+      '&.up-btn:hover .colored svg, &.up-btn:hover .colored svg path, &.up-btn:hover .colored svg polygon, &.up-btn:hover .colored svg polyline': {
+        fill:'white !important'
+      },
+      '&.up-btn:hover':{
+        backgroundColor: `${!props.isProcessing && props.theme.colorMap[props.intent]}`
+      },
+    }
+  };
+};
+
 const rotatingAnimation = keyframes({
   from: {
     '-ms-transform': 'rotate(0deg)',
@@ -512,7 +532,9 @@ export const getStyles = (props: UpButtonStyledProps): string => {
     props.rounded ? style(rounded(props)) : null,
     props.disabled ? style(disabled(props)) : style(active(props)),
     props.rotate ? style(rotate(props)) : null,
-    props.isToggled ? style(toggle(props)) : null);
+    props.isToggled ? style(toggle(props)) : null,
+    props.borderless && props.width === 'icon' ? style(borderless(props)): null
+    )
 }
 
 export const getWrapperStyles = (props: UpButtonStyledProps): string => {

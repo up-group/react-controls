@@ -3,6 +3,7 @@ import { withKnobs, boolean } from '@storybook/addon-knobs';
 import UpDataPanel from './UpDataPanel';
 import { getRootContainer } from '../../../Common/stories';
 import { style } from 'typestyle';
+import UpBadge from '../../Display/Badge/UpBadge';
 
 export default {
   title: 'Components|Containers/UpDataPanel',
@@ -14,7 +15,7 @@ const data = [
     first_label: 'value 1',
     second_label: 'value 2',
     third_label: 'value 3',
-    //fourth_label: 'Value 4',
+    fourth_label: 'Value 4',
     fifth_label: 'value 5',
     sixth_label: 'value6'
   }
@@ -22,10 +23,13 @@ const data = [
 const columns = [
   {
     field: 'first_label',
-    label: 'First Label',
+    label: 'First Label'
+  },
+  {
+    field: 'second_label',
+    label: 'Second Label',
     tooltip: { title: 'Titre', content: 'message' }
   },
-  { field: 'second_label', label: 'Second Label' },
   { field: 'third_label', label: 'Third Label' },
   { field: 'fourth_label', label: 'Forth Label' },
   { field: 'fifth_label', label: 'Fifth Label' },
@@ -77,7 +81,12 @@ export const DisplayColumnMode = () => (
 export const DisplayColumnModeWithFormatter = () => {
   const formatter = {
     format: (item, column) => (
-      <span style={{ color: 'orange' }}>{item[column.field]}</span>
+      <span
+        className={style({
+          color: 'orange',
+        })}>
+        {item[column.field]}
+      </span>
     )
   };
   return (
@@ -112,10 +121,54 @@ export const DisplayRowModeWithTitleFormatter = () => {
       </span>
     )
   };
+  const secondformatter = {
+    format: (item, column) => (
+      <UpBadge
+        text={item[column.field]}
+        className={style({
+          $nest: {
+            '&.up-badge': {
+              padding: '2px 15px',
+              fontWeight: 'normal',
+              marginLeft: '10px'
+            }
+          }
+        })}
+        intent="success"
+      />
+    )
+  };
+  const thirdformatter = {
+    format: (item, column) => (
+      <UpBadge
+        text=""
+        className={style({
+          $nest: {
+            '&.up-badge': {
+              height: '20px',
+              width: '20px',
+              marginLeft: '10px'
+            }
+          }
+        })}
+        intent="success"
+        rounded
+      />
+    )
+  };
+
   return (
     <UpDataPanel
       data={data}
-      columns={columns}
+      columns={columns.map((e, i) =>
+        i === 0
+          ? { ...e, formatter: secondformatter }
+          : i === 1
+          ? { ...e, formatter: thirdformatter }
+          : i === 2
+          ? { ...e, formatter: secondformatter }
+          : { ...e }
+      )}
       title={{
         general: 'Tire généric',
         specific: 'Specific',
