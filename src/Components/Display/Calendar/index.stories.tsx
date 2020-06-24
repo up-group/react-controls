@@ -35,8 +35,8 @@ export const General =
                     initialView="dayGridMonth"
                     weekends={false}
                     events={[
-                        { title: 'event 1', date: '2019-04-01' },
-                        { title: 'event 2', date: '2019-04-02' }
+                        { title: 'event 1', date: '2020-06-31' },
+                        { title: 'event 2', date: '2020-07-02' }
                     ]}
                 />
             </UpBox>

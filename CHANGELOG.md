@@ -1,3 +1,9 @@
+# ReactControls (version: 0.2.49)
+
+## Main Changes
+
+- Upgrade Fullcalendar to v5
+
 # ReactControls (version: 0.2.48)
 
 ## Main Changes
