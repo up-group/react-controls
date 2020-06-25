@@ -488,6 +488,13 @@ const borderless = (props: UpButtonProps): NestedCSSProperties => {
       '&.up-btn:hover .colored svg, &.up-btn:hover .colored svg path, &.up-btn:hover .colored svg polygon, &.up-btn:hover .colored svg polyline': {
         fill:'#C47400 !important'
       },
+      "&:hover:active": {
+        color:'unset',
+        backgroundColor:'unset'
+      },
+      "&:active": {
+        boxShadow: "unset"
+      },
     }
   };
 };
