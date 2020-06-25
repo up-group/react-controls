@@ -54,11 +54,15 @@ const getStyle = props => {
         alignItems: props.displayMode === 'row' ? 'center' : 'normal',
       },
       '& .panel-col-label': {
-        color: props.theme.colorMap.gray6
+        color: props.theme.colorMap.gray6,
+        fontSize:'14px',
+        lineHeight:'16px'
       },
       '& .panel-col-value': {
-        color: props.theme.colorMap.grey,
-        marginLeft: props.displayMode === 'row' ? '4px' : ''
+        color: props.theme.colorMap.grey1,
+        marginLeft: props.displayMode === 'row' ? '4px' : '',
+        fontSize:'14px',
+        lineHeight:'16px'
       },
       '& .panel-title': {
         marginBottom: '30px'
@@ -102,6 +106,7 @@ const UpDataPanelItem = (props: PanelItemProps) => {
   const Tooltip = props => (
     <UpTooltip
       title={props.tooltip.title}
+      place="bottom"
       content={props.tooltip.content}>
       <UpLigne>
         <UpSvgIcon
