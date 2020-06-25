@@ -1,3 +1,10 @@
+# ReactControls (version: 0.2.52)
+
+## Main Changes
+
+- Improve UI tooltip display
+- Improve UpButton borderless display mode
+
 # ReactControls (version: 0.2.51)
 
 ## Bug Fixes
