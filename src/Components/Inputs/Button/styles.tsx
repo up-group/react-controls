@@ -486,10 +486,7 @@ const borderless = (props: UpButtonProps): NestedCSSProperties => {
         fill: ` ${props.theme.colorMap[props.intent]} !important`
       },
       '&.up-btn:hover .colored svg, &.up-btn:hover .colored svg path, &.up-btn:hover .colored svg polygon, &.up-btn:hover .colored svg polyline': {
-        fill:'white !important'
-      },
-      '&.up-btn:hover':{
-        backgroundColor: `${!props.isProcessing && props.theme.colorMap[props.intent]}`
+        fill:'#C47400 !important'
       },
     }
   };

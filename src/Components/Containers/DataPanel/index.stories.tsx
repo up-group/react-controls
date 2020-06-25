@@ -28,7 +28,7 @@ const columns = [
   {
     field: 'second_label',
     label: 'Second Label',
-    tooltip: { title: 'Titre', content: 'message' }
+    tooltip: { content: 'Explication status activation monétique quand on clique sur le picto' }
   },
   { field: 'third_label', label: 'Third Label' },
   { field: 'fourth_label', label: 'Forth Label' },

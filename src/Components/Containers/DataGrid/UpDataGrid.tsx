@@ -155,7 +155,7 @@ export interface Action {
 }
 
 export interface ToolTip {
-  title: JSX.Element | string,
+  title?: JSX.Element | string,
   content: JSX.Element | string
 }
 

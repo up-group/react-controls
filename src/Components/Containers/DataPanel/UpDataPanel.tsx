@@ -15,7 +15,7 @@ export interface Column {
   formatter?: ICellFormatter;
   getFormatterProps?: (value: string) => any;
   tooltip?: {
-    title: JSX.Element | string;
+    title?: JSX.Element | string;
     content: JSX.Element | string;
   };
 }

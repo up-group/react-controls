@@ -39,6 +39,8 @@ const getStyles = (props : UpTooltipProps & WithThemeProps) => style({
     '& .up-tooltip-content' : {
       padding: '0px',
       margin: '0px',
+      color:'white',
+      width: '215px',
     },
     '& .up-tooltip-header' : {
       padding: '8px 14px',
@@ -52,6 +54,8 @@ const getStyles = (props : UpTooltipProps & WithThemeProps) => style({
     },
     '& .up-tooltip-body' : {
       padding:'8px',
+      fontSize:'14px',
+      lineHeight:'16px'
     },
     '&:hover' : {
       visibility: 'visible',
@@ -66,7 +70,7 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps, UpTooltipStat
 
    public static defaultProps : UpTooltipProps & WithThemeProps = {
        content : '',
-       title: 'Note',
+      // title: 'Note',
        place : 'right',
        effect: 'float',
        type: 'light',
@@ -123,7 +127,7 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps, UpTooltipStat
 
     if(this.props.type == 'light') {
      custom = style({
-       background: "white !important",
+       background: "#4E5B59 !important",
        border: "1px #ebebeb solid",
        borderRadius: this.props.theme.borderRadius,
        $nest : {
@@ -143,10 +147,11 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps, UpTooltipStat
            borderRightWidth: "6px !important"
          },
          '&.place-bottom:after' : {
-           borderBottomColor: "#ebebeb !important",
+           borderBottomColor: "#4E5B59 !important",
            borderBottomStyle: "solid !important",
-           borderBottomWidth: "6px !important"
-         }
+           borderBottomWidth: "6px !important",
+           left:'10% !important'
+         },
        }
      });
     }
@@ -162,9 +167,21 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps, UpTooltipStat
       return renderChildren ;
     }
     return (
-      <div style={{display:"inline-block"}}>
+      <div style={{ display: 'inline-block' }}>
         {renderChildren}
-        <ReactTooltip className={classNames('up-tooltip', getStyles(this.props), custom)} id={tooltipId} getContent={this.getContent} {...others} />
+        <ReactTooltip
+          offset={
+            this.props.place === 'bottom' ? { right: 85, top: 5 } : {}
+          }
+          className={classNames(
+            'up-tooltip',
+            getStyles(this.props),
+            custom
+          )}
+          id={tooltipId}
+          getContent={this.getContent}
+          {...others}
+        />
       </div>
     );
   }
