@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { getStyles } from './styles';
 import * as classnames from 'classnames' ;
+import withTheme from '../../../Common/theming/withTheme';
 
 export interface UpLigneProps {
     color?: string;
@@ -24,4 +25,4 @@ export interface UpLigneProps {
         </span>)
   };
 
-export default UpLigne 
+export default withTheme<UpLigneProps>(UpLigne)

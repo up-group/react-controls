@@ -12,6 +12,9 @@ import { getStyles } from '../_Common/Styled/Input/styles';
 import defaultTheme from '../../../Common/theming/';
 import { generateId, isEmpty, shallowEqual } from '../../../Common/utils';
 import UpLoadingIndicator from '../../Display/LoadingIndicator'
+import UpLigne from '../../Display/Ligne/UpLigne'
+import {style} from 'typestyle'
+import { CSSProperties } from 'typestyle/lib/types'
 
 const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps & UpInputProps> = (props: UpInputStyledProps & WithThemeProps & UpInputProps) => {
 
@@ -87,22 +90,34 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps & 
   }
 
   const id = props.id || generateId();
+  let starStyle: CSSProperties = props.isRequired && {
+    position: 'absolute',
+    top: '4px',
+    right: '-10px'
+  };
 
   return (
     <div className={classnames(getStyles(props), className)}>
       <div
-        className={classnames(
-          "up-input-group",
-          {
-            'up-input-focused': props.focused && type !== 'search',
-            'up-input-valued': value != null && value != "" && type !== 'search',
-            'up-input-search': type === 'search',
-          },
-        )}
-      >
-        {iconPosition === "left" && iconName && icon}
-        {iconPosition === "left" && props.floatingLabel && (
-          <label htmlFor={id}>{props.floatingLabel}</label>
+        className={classnames('up-input-group', {
+          'up-input-focused': props.focused && type !== 'search',
+          'up-input-valued':
+            value != null && value != '' && type !== 'search',
+          'up-input-search': type === 'search'
+        })}>
+        {iconPosition === 'left' && iconName && icon}
+        {iconPosition === 'left' && props.floatingLabel && (
+          <label htmlFor={id}>
+            {props.floatingLabel}
+            {props.isRequired ? (
+              <UpLigne
+                className={style(starStyle)}>
+                *
+              </UpLigne>
+            ) : (
+              ''
+            )}
+          </label>
         )}
         <input
           id={id}
@@ -111,15 +126,14 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps & 
           value={value}
           onChange={onChange}
           onFocus={onFocus}
-          onBlur={(event) => {
-              event.persist()
-              setTimeout(onBlur.bind(this, event), 100)
-            }
-          }
+          onBlur={event => {
+            event.persist();
+            setTimeout(onBlur.bind(this, event), 100);
+          }}
           tabIndex={tabindex}
           className="up-input"
           type={type}
-          placeholder={props.floatingLabel ? "" : placeholder}
+          placeholder={props.floatingLabel ? '' : placeholder}
           dir="auto"
           disabled={disabled}
           readOnly={readonly}
@@ -127,13 +141,20 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps & 
           {...tooltipProps}
           autoFocus={autoFocus}
         />
-        {iconPosition === "right" && props.floatingLabel && (
-          <label htmlFor={id}>{props.floatingLabel}</label>
+        {iconPosition === 'right' && props.floatingLabel && (
+          <label htmlFor={id}>
+            {props.floatingLabel}
+            {props.isRequired ? (
+              <UpLigne
+                className={style(starStyle)}>
+                *
+              </UpLigne>
+            ) : (
+              ''
+            )}
+          </label>
         )}
-        {iconPosition === "right" && !readonly &&
-          iconName &&
-          icon
-        }
+        {iconPosition === 'right' && !readonly && iconName && icon}
         {RightIcon}
       </div>
     </div>
@@ -220,7 +241,30 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
   }
 
   renderControl() {
-    const { id, name, autocomplete, touched, hasClearOption, type, onChange, value, validation, errorDisplayMode, hasError, iconName, iconPosition, width, disabled, readonly, tooltip, maxLength, placeholder, floatingLabel, theme, ...others } = this.props;
+    const {
+      id,
+      name,
+      autocomplete,
+      touched,
+      hasClearOption,
+      type,
+      onChange,
+      value,
+      validation,
+      errorDisplayMode,
+      hasError,
+      iconName,
+      iconPosition,
+      width,
+      disabled,
+      readonly,
+      tooltip,
+      maxLength,
+      placeholder,
+      floatingLabel,
+      theme,
+      ...others
+    } = this.props;
     var realIconName = iconName;
     if (realIconName == null && type != null && IconNames.indexOf(type as IconName) != -1) {
       realIconName = type as IconName;
@@ -259,6 +303,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
         className={this.props.className}
         showValidationStatus={this.props.showValidationStatus}
         tabIndex={this.props.tabIndex}
+        isRequired={this.props.isRequired}
       >
         {this.props.children}
       </BaseInput>
