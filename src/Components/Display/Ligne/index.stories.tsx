@@ -11,7 +11,7 @@ export default {
 
 export const General =
    () => (
-      <UpLigne className={"up-indication"} color={"red"}>
+      <UpLigne className={"up-indication"} >
         Mon message
       </UpLigne>
   )

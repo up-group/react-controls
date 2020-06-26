@@ -15,6 +15,7 @@ import { ValueType, ActionMeta } from 'react-select/lib/types';
 import { eventFactory } from '../../../Common/utils/eventListener';
 import { isEmpty } from '../../../Common/utils'
 import defaultTheme from '../../../Common/theming/'
+import UpLigne from '../../Display/Ligne/UpLigne'
 import { ThemeInterface } from 'theming/types'
 import _ = require('lodash')
 
@@ -65,6 +66,11 @@ const getLabelStyle = props => {
                 transformOrigin: "top left",
                 transform: "translate(0, 16px) scale(1)",
                 transition: "all .1s ease-in-out",
+            },
+            '&.up-select-wrapper .up-select-label-star' : {
+                position:'absolute',
+                top: '4px',
+                right:'-10px'
             },
             '& .up-select-label-focused': {
                ...floatLabel
@@ -715,16 +721,25 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         const FloatingLable = floatingLabel && (
           <label
             onClick={() => {
-                 this.input?.focus();
-                 this.setState(update(this.state, { extra: { menuIsOpen: { $set: true } } }))}
-            }
-            style={{cursor : 'pointer'}}
+              this.input?.focus();
+              this.setState(
+                update(this.state, {
+                  extra: { menuIsOpen: { $set: true } }
+                })
+              );
+            }}
+            style={{ cursor: 'pointer' }}
             className={classnames('up-select-label', {
               'up-select-label-focused': !!this.state.extra
                 .menuIsOpen,
-              'up-select-label-valued': !!value,
+              'up-select-label-valued': !!value
             })}>
             {floatingLabel}
+            {this.props.isRequired ? (
+              <UpLigne className="up-select-label-star">*</UpLigne>
+            ) : (
+              ''
+            )}
           </label>
         );
 
