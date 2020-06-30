@@ -24,7 +24,14 @@ const base = (props: UpTextProps) : NestedCSSProperties => (
                 padding:'10px',
                 border: `1px solid ${props.theme.colorMap.darkGray4}`,
                 borderRadius: props.theme.borderRadius
+            },
+            "&.up-text::placeholder": {
+                color: props.theme.colorMap.grey1,
+                fontStyle: 'italic',
+                fontSize:'14px',
+                fontWeight: 500
             }
+            
         }
     }
 );
