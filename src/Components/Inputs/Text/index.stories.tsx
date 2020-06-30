@@ -69,3 +69,51 @@ export const IntegrationInForm =
             }}
     </Formik>
 )
+
+
+export const WithPlaceHolder =
+  () => (
+    <Formik initialValues={{ description: '', firstName: '' }}
+            onSubmit={(values, { setSubmitting }) => {
+              setTimeout(() => {
+                alert(JSON.stringify(values, null, 2));
+                setSubmitting(false);
+              }, 500);
+            }}
+            validationSchema={Yup.object().shape({
+              
+            })}>
+            {(props) => {
+              const {
+                values,
+                touched,
+                errors,
+                dirty,
+                isSubmitting,
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                handleReset,
+              } = props;
+              return (
+                <form onSubmit={handleSubmit}>
+                  <UpLabel text={"Firstname : "}>
+                    <UpInput
+                        name={"firstName"}
+                        floatingLabel={"First Name"}
+                        value={values.firstName}
+                        autocomplete={"off"}
+                        onChange={handleChange}
+                      />
+                  </UpLabel>
+                  <UpText width={'fill'} 
+                    name={'description'}
+                    placeholder={"Les observation de votre compte"}
+                    value={values.description}
+                    onChange={handleChange}
+                  />
+                </form>
+              );
+            }}
+    </Formik>
+)
