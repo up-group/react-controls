@@ -1,3 +1,9 @@
+# ReactControls (version: 0.2.53)
+
+## Main Changes
+
+- Add placeholder to Textarea
+
 # ReactControls (version: 0.2.52)
 
 ## Main Changes
