@@ -13,6 +13,8 @@ import * as Yup from "yup";
 import UpPassword from "../Password";
 import { style } from "typestyle";
 import UpSelect from "../../Inputs/Select";
+import UpText from "../../Inputs/Text";
+import UpNumber from "../../Inputs/Number/UpNumber";
 
 export default { 
   title: 'Components|Inputs/UpInput',
@@ -173,6 +175,166 @@ const EmailForm = props => {
   );
 };
 
+const ComplexForImpl = props => {
+  const [onBlurState, setOnBlurState] = React.useState({} as any);
+
+  const HelpMessageDisplayStyle = error =>
+    style({
+      position: "relative",
+      cursor: "help",
+      height: "100%",
+      $nest: {
+        "& .up-wrapper-help-message-inline": {
+          display: "inline-block",
+          color: error ? "red" : "black",
+          fontSize: "8pt"
+        }
+      }
+    });
+
+  const {
+    values,
+    touched,
+    errors,
+    dirty,
+    isSubmitting,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    handleReset,
+  } = props;
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <UpGrid gutter={12} rowSpacing={12}>
+        <UpRow>
+          <UpCol xs={24} sm={12} md={8} lg={6}>
+          <UpInput
+              name={"email"}
+              type={"email"}
+              onBlur={e => {
+                handleBlur(e);
+                setOnBlurState({ ...onBlurState, email: true });
+              }}
+              floatingLabel={"Email"}
+              errorDisplayMode={"inline"}
+              showError={dirty && onBlurState.email}
+              showSuccess={dirty && onBlurState.email}
+              error={errors.email === undefined ? null : errors.email}
+              hasError={errors.email != null}
+              value={values.email}
+              onChange={handleChange}
+              onFocus={e => {
+                setOnBlurState({ ...onBlurState, email: false });
+              }}
+              autocomplete={"off"}
+              iconPosition={"right"}
+              placeholder={"Renseignez votre email"}
+              //helpMessageText={"Vous devez renseigner un email valide"}
+              helpMessage={children => (
+                <div className={HelpMessageDisplayStyle(errors.email)}>
+                  {children}
+                  <div className={"up-wrapper-help-message-inline"}>
+                    Vous devez renseigner un email valide
+                  </div>
+                </div>
+              )}
+            />
+          </UpCol>
+
+          <UpCol xs={24} sm={12} md={8} lg={6}>
+            <UpPassword
+              name={"password"}
+              floatingLabel={"Password"}
+              onBlur={e => {
+                handleBlur(e);
+                setOnBlurState({ ...onBlurState, password: true });
+              }}
+              iconPosition={"right"}
+              autocomplete={"off"}
+              onFocus={e => {
+                setOnBlurState({ ...onBlurState, password: false });
+              }}
+              showSuccess={dirty && onBlurState.password}
+              value={values.password}
+              onChange={handleChange}
+            />
+          </UpCol>
+
+          <UpCol xs={24} sm={12} md={8} lg={6}>
+            <UpInput
+                name={"firstName"}
+                floatingLabel={"First Name"}
+                onBlur={e => {
+                  handleBlur(e);
+                  setOnBlurState({ ...onBlurState, firstName: true });
+                }}
+                onFocus={e => {
+                  setOnBlurState({ ...onBlurState, firstName: false });
+                }}
+                value={values.firstName}
+                showSuccess={dirty && onBlurState.firstName}
+                autocomplete={"off"}
+                onChange={handleChange}
+              />
+          </UpCol>
+          <UpCol xs={24} sm={12} md={8} lg={6}>
+            <UpInput
+              name={"lastName"}
+              floatingLabel={"Last Name"}
+              onBlur={e => {
+                handleBlur(e);
+                setOnBlurState({ ...onBlurState, lastName: true });
+              }}
+              onFocus={e => {
+                setOnBlurState({ ...onBlurState, lastName: false });
+              }}
+              value={values.lastName}
+              showSuccess={dirty && onBlurState.lastName}
+              autocomplete={"off"}
+              onChange={handleChange}
+            />
+          </UpCol>
+          <UpCol xs={24} sm={12} md={8} lg={6}>
+            <UpSelect 
+              floatingLabel={"Civilité"} 
+              name={"civility"}
+              isRequired={true} 
+              default={null}
+              data={[
+                  { id: 1, text: 'M.' },
+                  { id: 2, text: 'Mme' },
+                  { id: 3, text: 'Mlle' },
+                  { id: 4, text: 'Dr' },
+              ]}
+              value={values.civility} 
+              onChange={handleChange} />
+          </UpCol>
+          <UpCol xs={24} sm={12} md={8} lg={6}>
+            <UpNumber 
+              floatingLabel={"Age"} 
+              name={"age"}
+              isRequired={true} 
+              value={values.age}
+              onChange={handleChange} />
+          </UpCol>
+          <UpCol xs={24} sm={12} md={12} lg={12}>
+            <UpInput 
+              floatingLabel={"Profession"} 
+              name={"function"}
+              value={values.function}
+              onChange={handleChange} />
+          </UpCol>
+          <UpCol xs={24} sm={24} md={24} lg={24}>
+            <UpText name={"note"} value={values.note} onChange={handleChange} width={'fill'} placeholder={"Mes notes"} />
+          </UpCol>
+        </UpRow>
+      </UpGrid>
+    </form>
+  );
+};
+
+
 const PhoneInput = props => {
   const [phoneValue, setPhoneValue] = React.useState("");
   const [error, setError] = React.useState("");
@@ -324,17 +486,10 @@ export const IsRequired =
     <UpGrid>
       <UpRow>
         <UpCol span={6}>
+          <UpInput floatingLabel={"Email"} isRequired={true} type={"email"} />
+
           <UpLabel text={'Email :'} required={true} inline={true}>
             <UpInput isRequired={true} type={"email"} />
-          </UpLabel>
-          <UpLabel text={'Email :'} required={true} inline={true}>
-            <UpInput isRequired={true} type={"email"} iconPosition={'right'} />
-          </UpLabel>
-          <UpLabel text={'Email :'}>
-            <UpInput isRequired={true} type={"email"} />
-          </UpLabel>
-          <UpLabel text={'Email :'}>
-            <UpInput isRequired={true} type={"email"} iconPosition={'right'} />
           </UpLabel>
         </UpCol>
       </UpRow>
@@ -385,7 +540,27 @@ export const AutoFocus =
     </UpGrid>
 );
 
-export const ComplexForm = ()=> <FormWithSelect/>
+export const ComplexForm = ()=>  <UpGrid>
+<UpRow>
+  <UpCol span={24}>
+    <Formik initialValues={{ email: '', password: '' }}
+      onSubmit={(values, { setSubmitting }) => {
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2));
+          setSubmitting(false);
+        }, 500);
+      }}
+      validateOnBlur={true}
+      validationSchema={Yup.object().shape({
+        email: Yup.string()
+          .email("Vous devez renseigner un email valide")
+          .required('L\'email est requis'),
+      })}>
+      {(props) => <ComplexForImpl {...props} />}
+    </Formik>
+  </UpCol>
+</UpRow>
+</UpGrid>
 
 
 export const ClearOption = () => <InputWithClearOption />

@@ -115,7 +115,7 @@ const customStyles = (theme : ThemeInterface, value)  => ({
             border: state.isFocused ? 0 : 0,
             borderBottom: `1px solid ${state.isFocused ? theme.colorMap.primary : theme.colorMap.gray6}`,
         },
-        minHeight:'29px !important',    
+        minHeight:'27px !important',    
         borderBottom: `1px solid ${state.isFocused ? theme.colorMap.primary : theme.colorMap.gray6}`
     }),
     dropdownIndicator: (provided, state) => ({
@@ -133,7 +133,7 @@ const customStyles = (theme : ThemeInterface, value)  => ({
     valueContainer : (provided, state) => ({
         ...provided,
         padding: '0px',
-        paddingBottom:'6px',
+        paddingBottom:'2px',
         '&:hover': {
             cursor : 'pointer'
         }

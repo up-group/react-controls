@@ -16,6 +16,17 @@ import UpLigne from '../../Display/Ligne/UpLigne'
 import {style} from 'typestyle'
 import { CSSProperties } from 'typestyle/lib/types'
 
+let starStyle: CSSProperties = {
+  position: 'absolute',
+  top: '4px',
+  right: '-10px'
+};
+
+export const RequiredMark = ({markStyle}) => <UpLigne
+className={style(markStyle)}>
+*
+</UpLigne>
+
 const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps & UpInputProps> = (props: UpInputStyledProps & WithThemeProps & UpInputProps) => {
 
   const {
@@ -90,12 +101,7 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps & 
   }
 
   const id = props.id || generateId();
-  let starStyle: CSSProperties = props.isRequired && {
-    position: 'absolute',
-    top: '4px',
-    right: '-10px'
-  };
-
+  
   return (
     <div className={classnames(getStyles(props), className)}>
       <div
@@ -109,14 +115,7 @@ const BaseInput: React.StatelessComponent<UpInputStyledProps & WithThemeProps & 
         {iconPosition === 'left' && props.floatingLabel && (
           <label htmlFor={id}>
             {props.floatingLabel}
-            {props.isRequired ? (
-              <UpLigne
-                className={style(starStyle)}>
-                *
-              </UpLigne>
-            ) : (
-              ''
-            )}
+            {props.isRequired && <RequiredMark markStyle={starStyle} /> }
           </label>
         )}
         <input

@@ -30,6 +30,7 @@ const base = (props: UpLabelProps) : NestedCSSProperties => (
   {
     display: 'block',
     margin: '0 0 8px',
+    position: 'relative',
     $nest : {
       '& .up-label-text' : {
         textAlign: props.textAlign,

@@ -9,6 +9,7 @@ export interface ThemeInterface {
     minButtonSize?: number;
     notificationIconSize?: string | number;
     gridGutter?: number;
+    gridRowSpacing?: number;
     intentTypeIcons?: IconMap;
     typography?: Typography;
     styles?: Dictionary<string, NestedCSSProperties>;

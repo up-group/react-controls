@@ -2,6 +2,7 @@ import * as React from 'react';
 import { getStyles } from './styles';
 import * as classnames from 'classnames' ;
 import withTheme from '../../../Common/theming/withTheme';
+import { WithThemeProps } from '../../../Common/theming';
 
 export interface UpLigneProps {
     color?: string;
@@ -10,8 +11,8 @@ export interface UpLigneProps {
     dataFor?:string; // for tooltip
   }
 
-  const UpLigne: React.StatelessComponent<UpLigneProps> = (props) => {
-    const {dataFor, className, children, ...others} = props ;
+  const UpLigne: React.StatelessComponent<UpLigneProps & WithThemeProps> = (props) => {
+    const {dataFor, className, children, theme, ...others} = props ;
     var tooltipProps = {} ;
     if (dataFor) {
         tooltipProps = {

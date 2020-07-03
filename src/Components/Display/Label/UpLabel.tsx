@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { UpLabelProps } from './types';
 import { getStyles } from './styles';
+import { RequiredMark } from '../../Inputs/Input/UpInput';
 
 export default class UpLabel extends React.Component<UpLabelProps, {}> {
   
@@ -32,10 +33,13 @@ export default class UpLabel extends React.Component<UpLabelProps, {}> {
 
       return (
         <label className={getStyles(this.props)} onFocus={this.onFocus} onClick={this.onClick} {...others}>
-          <span className="up-label-text">{text}</span>
-          {required && 
-            <span className="up-label-required"></span>
-          }
+          <span className="up-label-text">{text}{required && 
+            <RequiredMark markStyle={{
+              position: "absolute",
+              top: "4px",
+              marginLeft: "4px"
+            }} />
+          }</span>
           {children}
         </label>
       ) ;

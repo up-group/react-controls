@@ -8,6 +8,7 @@ export type Justification = 'start' | 'end' | 'center' | 'space-around' | 'space
 export interface UpGridProps {
     className?:string;
     gutter?: number;
+    rowSpacing?: number;
     type?: LayoutMode;
     style?: React.CSSProperties; // In order to set margin for example
 }
@@ -29,6 +30,7 @@ export interface UpColProps {
   span?: number;
   order?: number;
   offset?: number;
+  rowSpacing?: number;
   push?: number;
   pull?: number;
   xs?: number | ColSize;
@@ -43,6 +45,7 @@ export interface UpColProps {
 export interface UpRowProps {
   className?: string;
   gutter?: number;
+  rowSpacing?: number;
   type?: LayoutMode;
   align?: Alignment,
   justify?: Justification;

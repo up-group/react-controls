@@ -6,7 +6,7 @@ import { UpColProps, ColSize } from './types'
 import { UpGridConsumer } from './UpGridContext';
 
 const ColRenderer : React.FunctionComponent<UpColProps  & {gutter : number}> = (props) => {
-  const { gutter, xs, sm, md, lg, xl, prefixCls, span, order, offset, push, pull, className, style, children, ...others } = props;
+  const { gutter, xs, sm, md, lg, xl, prefixCls, span, order, offset, push, pull, className, style, children, rowSpacing, ...others } = props;
   
   const getClasses = /*React.useCallback(*/() => {
       let sizeClassObj = {};
@@ -38,10 +38,11 @@ const ColRenderer : React.FunctionComponent<UpColProps  & {gutter : number}> = (
   }/*, [xs, sm, md, lg, xl, className, pull, push, offset, order, span])*/
 
   const getStyle = /*React.useCallback(*/() => {
-    if ((gutter as number) > 0) {
+    if ((gutter as number) > 0 || (rowSpacing as number) > 0) {
       return  {
           paddingLeft: (gutter as number) / 2,
           paddingRight: (gutter as number) / 2,
+          marginBottom : rowSpacing,
           ...style
         }
     }
@@ -51,10 +52,10 @@ const ColRenderer : React.FunctionComponent<UpColProps  & {gutter : number}> = (
   return <div style={getStyle()} {...others} className={getClasses()}>{children}</div>
 }
 
-const UpCol : React.FunctionComponent<UpColProps> = ({prefixCls = 'up-col', ...rest}) => {
+const UpCol : React.FunctionComponent<UpColProps> = ({prefixCls = 'up-col', rowSpacing, ...rest}) => {
   return (
     <UpGridConsumer>
-      {(value) => <ColRenderer gutter={value.gutter} prefixCls={prefixCls} {...rest} />}
+      {(value) => <ColRenderer gutter={value.gutter} rowSpacing={rowSpacing || value.rowSpacing} prefixCls={prefixCls} {...rest} />}
     </UpGridConsumer>
   )
 }
