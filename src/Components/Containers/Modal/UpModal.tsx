@@ -124,10 +124,9 @@ const ModalStyle = (props: WithThemeProps & UpModalProps) =>
           borderBottom: `${props.withHeaderSeparator ? "1px solid #e5e5e5":0 }`,
           position: "relative",
           display:'flex',
-          justifyContent: 'space-between'
         },
         "& .up-modal-header .close": {
-          marginTop: "-2px"
+          marginTop: "-2px",
         },
         "& .up-modal-title": {
           margin: 0,
@@ -160,11 +159,13 @@ const ModalStyle = (props: WithThemeProps & UpModalProps) =>
           fontSize: "21px",
           fontWeight: "bold",
           lineHeight: 1,
-          color: "#000"
+          color: "#000",
+          position:'absolute',
+          right:'50px'
         },
         "& .up-modal-close .up-icon-wrapper": {
-          width:'12px',
-          height:'12px'
+          width: `${props.closeIconSize}px`,
+          height: `${props.closeIconSize}px`
         },
         "& .up-modal-close .colored svg, & .up-modal-close .colored svg path, & .up-modal-close .colored svg polygon, & .up-modal-close .colored svg polyline": {
           fill: props.theme.colorMap.grey1,
@@ -389,10 +390,7 @@ class UpModal extends React.Component<UpModalProps & WithThemeProps, UpModalStat
                   onClick={this.closeModal}
                   className="up-modal-close">
                   <UpSvgIcon
-                    className={style({
-                      width: `${this.props.closeIconSize}px !important`,
-                      height: `${this.props.closeIconSize}px !important`
-                    })}
+                  
                     iconName={'close'}></UpSvgIcon>
                 </span>
               </div>
@@ -401,7 +399,7 @@ class UpModal extends React.Component<UpModalProps & WithThemeProps, UpModalStat
             header = <div className="up-modal-header">
                 {this.props.header}
                 <span onClick={this.closeModal} className="up-modal-close">
-                    <UpSvgIcon iconName={'close'}></UpSvgIcon>
+                    <UpSvgIcon  iconName={'close'}></UpSvgIcon>
                 </span>
             </div>
         }
