@@ -1,3 +1,10 @@
+# ReactControls (version: 0.2.55)
+
+## Main Changes
+
+- Add new UpModal display mode
+
+
 # ReactControls (version: 0.2.54)
 
 ## Main Changes
