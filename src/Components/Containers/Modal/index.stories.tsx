@@ -9,9 +9,12 @@ import UpPanel from '../../Containers/Panel'
 
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
-
+import {DsiplayMode,ModalPosition} from './UpModal'
 export interface ModalWrapperProps {
     html?: string;
+    displayMode?:  DsiplayMode;
+    fullHeight?: boolean;
+    modalWidth?: ModalPosition;
 }
 
 interface ModalWrapperState {
@@ -45,7 +48,7 @@ class ModalWrapper extends React.Component<ModalWrapperProps, ModalWrapperState>
 
         return (
         <div>
-            <UpModal onClose={this.onClose} footer={<CloseAction />}
+            <UpModal modalWidth={this.props.modalWidth} fullHeight={this.props.fullHeight} displayMode={this.props.displayMode} onClose={this.onClose} footer={<CloseAction />}
                 header={'Header'} showModal={this.state.showModal} html={this.props.html}>
                 {this.props.html == null &&
                     <Info />
@@ -63,15 +66,51 @@ export default {
     decorators : [withKnobs, getRootContainer('UpModal')]
   };
 
-export const General =
-    () => (
-        <UpThemeProvider theme={UpDefaultTheme}>
-            <ModalWrapper />
-        </UpThemeProvider>
-    )
-export const Html =
-    () => (
-        <UpThemeProvider theme={UpDefaultTheme}>
-            <ModalWrapper html={HTML} />
-        </UpThemeProvider>
-    )
+export const General = () => (
+  <UpThemeProvider theme={UpDefaultTheme}>
+    <ModalWrapper />
+  </UpThemeProvider>
+);
+export const Html = () => (
+  <UpThemeProvider theme={UpDefaultTheme}>
+    <ModalWrapper html={HTML} />
+  </UpThemeProvider>
+);
+
+export const FromTop = () => (
+  <UpThemeProvider theme={UpDefaultTheme}>
+    <ModalWrapper
+      displayMode="fromTop"
+      fullHeight
+      modalWidth="full"
+    />
+  </UpThemeProvider>
+);
+export const FromBottom = () => (
+  <UpThemeProvider theme={UpDefaultTheme}>
+    <ModalWrapper
+      displayMode="fromBottom"
+      fullHeight
+      modalWidth="full"
+    />
+  </UpThemeProvider>
+);
+export const FromRight = () => (
+  <UpThemeProvider theme={UpDefaultTheme}>
+    <ModalWrapper
+      displayMode="fromRight"
+      fullHeight
+      modalWidth="half"
+    />
+  </UpThemeProvider>
+);
+export const FromLeft = () => (
+  <UpThemeProvider theme={UpDefaultTheme}>
+    <ModalWrapper
+      displayMode="fromLeft"
+      fullHeight
+      modalWidth="half"
+    />
+  </UpThemeProvider>
+);
+    
