@@ -15,6 +15,8 @@ export interface ModalWrapperProps {
     displayMode?:  DsiplayMode;
     fullHeight?: boolean;
     modalWidth?: ModalPosition;
+    closeIconSize?: number;
+    withHeaderSeparator?:boolean;
 }
 
 interface ModalWrapperState {
@@ -48,7 +50,7 @@ class ModalWrapper extends React.Component<ModalWrapperProps, ModalWrapperState>
 
         return (
         <div>
-            <UpModal modalWidth={this.props.modalWidth} fullHeight={this.props.fullHeight} displayMode={this.props.displayMode} onClose={this.onClose} footer={<CloseAction />}
+            <UpModal withHeaderSeparator={this.props.withHeaderSeparator} modalWidth={this.props.modalWidth} fullHeight={this.props.fullHeight} displayMode={this.props.displayMode} closeIconSize={this.props.closeIconSize} onClose={this.onClose} 
                 header={'Header'} showModal={this.state.showModal} html={this.props.html}>
                 {this.props.html == null &&
                     <Info />
@@ -101,6 +103,9 @@ export const FromRight = () => (
       displayMode="fromRight"
       fullHeight
       modalWidth="half"
+      closeIconSize={21}
+      withHeaderSeparator={false}
+
     />
   </UpThemeProvider>
 );
