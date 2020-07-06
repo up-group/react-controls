@@ -5,13 +5,19 @@ import {style, media, keyframes} from 'typestyle'
 
 import UpSvgIcon from '../../Display/SvgIcon'
 import UpDefaultTheme, { withTheme, WithThemeProps,  } from "../../../Common/theming";
-
+import {animateFromRight,animateFromLeft,animateFromTop, animateFromBottom}from '../../../Common/theming/animations'
+type DsiplayMode = 'fromTop' | 'fromBottom' | 'fromRight' | 'fromLeft'
+type ModalPosition = 'half' | 'full' | 'default'
 export interface UpModalProps {
     showModal?: boolean;
     header?: string | JSX.Element;
     footer?: JSX.Element;
     html?:string;
-    onClose?: () => void
+    onClose?: () => void;
+    displayMode?:  DsiplayMode;
+    fullHeight?: boolean;
+    modalWidth?: ModalPosition;
+
 }
 
 export interface UpModalState {
@@ -32,7 +38,7 @@ const appearFromTop = keyframes({
     }
 })
 
-const ModalStyle = (props: WithThemeProps) =>
+const ModalStyle = (props: WithThemeProps & UpModalProps) =>
   style(
     {
       $nest: {
@@ -136,7 +142,7 @@ const ModalStyle = (props: WithThemeProps) =>
         "& .up-modal-footer": {
           padding: "15px",
           textAlign: "right",
-          borderTop: "1px solid #e5e5e5"
+          borderTop: "1px solid #e5e5e5",
         },
         "& .up-modal-footer .btn + .btn": {
           marginBottom: 0,
@@ -207,7 +213,7 @@ const ModalStyle = (props: WithThemeProps) =>
         }
       }
     },
-    media(
+   props.modalWidth === 'default' ? media(
       { minWidth: 768 },
       {
         $nest: {
@@ -225,25 +231,113 @@ const ModalStyle = (props: WithThemeProps) =>
           }
         }
       }
-    ),
-    media(
+    ):null,
+    props.modalWidth === 'default' ? media(
       { minWidth: 992 },
-      {
-        $nest: {
-          "& .up-modal-lg": {
-            width: "auto",
-            minWidth: "900px",
-            maxWidth: "80%"
-          }
-        }
-      }
-    )
+     
+    ):null
   );
+
+  const customModalStyle = (props:UpModalProps & WithThemeProps) => {
+    
+    const animation = (fade) =>{
+      if(fade ==='fadeIn') {
+        return  props.displayMode === 'fromRight'
+        ? {
+            ...animateFromRight(
+              0.5,
+              'ease',
+              fade,
+            )
+          }
+        : props.displayMode === 'fromLeft'
+        ? {
+            ...animateFromLeft(1, 'ease', fade)
+          }
+        : props.displayMode === 'fromTop'
+        ? { ...animateFromTop(0.5, 'ease', fade) }
+        : props.displayMode === 'fromBottom'
+        ? { ...animateFromBottom(0.5, 'ease', fade) }
+        : {};
+      }
+    }
+     
+    return style({
+      $nest: {
+        '& .up-modal-dialog': {
+          width: 'auto',
+          minWidth: 'unset',
+          maxWidth: `${props.modalWidth === 'half' ? 50: 100}%`,
+          marginTop: props.fullHeight && '0',
+          marginLeft: props.fullHeight && '0'
+        },
+        '& .up-modal-content': {
+          display: 'flex',
+          flexDirection: 'column',
+          height: props.fullHeight && '100vh'
+        },
+        '& .up-modal-footer': {
+          width: '100%'
+        },
+        '& .up-modal.in': {
+          visibility: 'visible',
+
+          ...animation('fadeIn'),
+          transition: "unest",
+          transform: "unset"
+        },
+        '& .up-modal.in .up-modal-dialog': {
+          margin: 0,
+          marginLeft:
+            props.displayMode === 'fromRight' &&
+            (props.modalWidth === 'full'
+              ? '0px'
+              : props.modalWidth === 'half'
+              ? '50%'
+              : 'unset'),
+          marginRight:
+            props.displayMode === 'fromLeft' &&
+            (props.modalWidth === 'full'
+              ? '0px'
+              : props.modalWidth === 'half'
+              ? '50%'
+              : 'unset'),
+          overflowY: 'hidden',
+           transition: "unset",
+           transform: "unset",
+        },
+        '& .up-modal.fade': {
+          margin: 0
+        },
+        '& .up-modal.fade .up-modal-dialog': {
+          margin: 0,
+          overflowY: 'hidden',
+          maxWidth: props.modalWidth === 'half' && '50%',
+          marginLeft: props.displayMode === 'fromRight' &&
+          (props.modalWidth === 'full'
+            ? '0px'
+            : props.modalWidth === 'half'
+            ? '50%'
+            : 'unset'),
+            transition: "unset",
+            transform: "unset",
+        },
+        
+      }
+    });
+}
+
+const getStyle = (props: UpModalProps & WithThemeProps)=> {
+  return classnames(ModalStyle(props),props.modalWidth !== 'default' && customModalStyle(props))
+}
 
 class UpModal extends React.Component<UpModalProps & WithThemeProps, UpModalState>{
     public static defaultProps: UpModalProps & WithThemeProps = {
         showModal: true,
         theme: UpDefaultTheme,
+        modalWidth: 'default',
+        displayMode: 'fromTop',
+        fullHeight: false
     };
 
     constructor(p, c) {
@@ -303,7 +397,7 @@ class UpModal extends React.Component<UpModalProps & WithThemeProps, UpModalStat
         }
 
         return (
-            <div className={ModalStyle(this.props)}> 
+            <div className={getStyle(this.props)}> 
                 <div className={classnames("up-modal", (this.state.showModal===true) ? "in" : "fade", appearFromTop)}  id="myModal" role="dialog" aria-labelledby="myModalLabel">
                     <div className="up-modal-dialog" role="document">
                         <div className="up-modal-content">

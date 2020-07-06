@@ -38,26 +38,25 @@ const fromTopAnimation = (fadeType?: FadeType) => keyframes({
 
 const fromRightAnimation = (fadeType?: FadeType) => keyframes({
     from: {
-        marginLeft: '100%',
+        marginLeft: `${100}%`,
         ...getFromOpacity(fadeType),
     },
 
     to: {
-        marginLeft: '0%',
+        marginLeft: `${0}%`,
         ...getToOpacity(fadeType)
     }
 });
 
 
-
 const fromLeftAnimation = (fadeType?: FadeType) => keyframes({
     from: {
-        marginLeft: '0%',
+        marginRight: '100%',
         ...getFromOpacity(fadeType),
     },
 
     to: {
-        marginLeft: '100%',
+        marginRight:'0%',
         ...getToOpacity(fadeType)
     }
 });
@@ -114,7 +113,7 @@ export const animateFromRight = (duration: number = 1,
     mode: string = 'ease',
     fadeType?: FadeType) => ({
         animation: `${fromRightAnimation(
-            fadeType
+            fadeType,
         )} ${duration}s ${mode}`
     });
 
