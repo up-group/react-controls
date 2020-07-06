@@ -6,8 +6,8 @@ import {style, media, keyframes} from 'typestyle'
 import UpSvgIcon from '../../Display/SvgIcon'
 import UpDefaultTheme, { withTheme, WithThemeProps,  } from "../../../Common/theming";
 import {animateFromRight,animateFromLeft,animateFromTop, animateFromBottom}from '../../../Common/theming/animations'
-type DsiplayMode = 'fromTop' | 'fromBottom' | 'fromRight' | 'fromLeft'
-type ModalPosition = 'half' | 'full' | 'default'
+export type DsiplayMode = 'fromTop' | 'fromBottom' | 'fromRight' | 'fromLeft'
+export type ModalPosition = 'half' | 'full' | 'default'
 export interface UpModalProps {
     showModal?: boolean;
     header?: string | JSX.Element;
