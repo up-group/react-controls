@@ -64,10 +64,15 @@ export default class UpDataGridCell extends React.Component<UpDataGridCellProps,
                 {this.props.children}
             </UpCellFormatter>
         }
+
+        let cellStyle = {} ;
+        if(this.props.actions && this.props.actions.length > 0) {
+            cellStyle = {marginBottom:'8px'} ;
+        }
         
         return (
             <td className="up-data-grid-cell">
-                <div  style={{marginBottom:'8px'}}>
+                <div style={cellStyle}>
                 {renderInnercell}
                 </div>
                 <div className="row-actions" >

@@ -1,3 +1,11 @@
+# ReactControls (version: 0.2.54)
+
+## Main Changes
+
+- Fix form fields alignment
+- Add stories for complex form layout
+- Fix margin bottom for DataGrid
+
 # ReactControls (version: 0.2.53)
 
 ## Main Changes

@@ -209,39 +209,38 @@ const ComplexForImpl = props => {
       <UpGrid gutter={12} rowSpacing={12}>
         <UpRow>
           <UpCol xs={24} sm={12} md={8} lg={6}>
-          <UpInput
-              name={"email"}
-              type={"email"}
-              onBlur={e => {
-                handleBlur(e);
-                setOnBlurState({ ...onBlurState, email: true });
-              }}
-              floatingLabel={"Email"}
-              errorDisplayMode={"inline"}
-              showError={dirty && onBlurState.email}
-              showSuccess={dirty && onBlurState.email}
-              error={errors.email === undefined ? null : errors.email}
-              hasError={errors.email != null}
-              value={values.email}
-              onChange={handleChange}
-              onFocus={e => {
-                setOnBlurState({ ...onBlurState, email: false });
-              }}
-              autocomplete={"off"}
-              iconPosition={"right"}
-              placeholder={"Renseignez votre email"}
-              //helpMessageText={"Vous devez renseigner un email valide"}
-              helpMessage={children => (
-                <div className={HelpMessageDisplayStyle(errors.email)}>
-                  {children}
-                  <div className={"up-wrapper-help-message-inline"}>
-                    Vous devez renseigner un email valide
+            <UpInput
+                name={"email"}
+                type={"email"}
+                onBlur={e => {
+                  handleBlur(e);
+                  setOnBlurState({ ...onBlurState, email: true });
+                }}
+                floatingLabel={"Email"}
+                errorDisplayMode={"inline"}
+                showError={dirty && onBlurState.email}
+                showSuccess={dirty && onBlurState.email}
+                error={errors.email === undefined ? null : errors.email}
+                hasError={errors.email != null}
+                value={values.email}
+                onChange={handleChange}
+                onFocus={e => {
+                  setOnBlurState({ ...onBlurState, email: false });
+                }}
+                autocomplete={"off"}
+                iconPosition={"right"}
+                placeholder={"Renseignez votre email"}
+                //helpMessageText={"Vous devez renseigner un email valide"}
+                helpMessage={children => (
+                  <div className={HelpMessageDisplayStyle(errors.email)}>
+                    {children}
+                    <div className={"up-wrapper-help-message-inline"}>
+                      Vous devez renseigner un email valide
+                    </div>
                   </div>
-                </div>
-              )}
-            />
+                )}
+              />
           </UpCol>
-
           <UpCol xs={24} sm={12} md={8} lg={6}>
             <UpPassword
               name={"password"}
@@ -272,6 +271,10 @@ const ComplexForImpl = props => {
                 onFocus={e => {
                   setOnBlurState({ ...onBlurState, firstName: false });
                 }}
+                validation={[{ 
+                  pattern: /sdqs/,
+                  errorMessage: "Veuillez renseigner..."
+                }]}
                 value={values.firstName}
                 showSuccess={dirty && onBlurState.firstName}
                 autocomplete={"off"}
