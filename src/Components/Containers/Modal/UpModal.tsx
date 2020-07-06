@@ -17,6 +17,8 @@ export interface UpModalProps {
     displayMode?:  DsiplayMode;
     fullHeight?: boolean;
     modalWidth?: ModalPosition;
+    closeIconSize?: number;
+    withHeaderSeparator?: boolean
 
 }
 
@@ -119,7 +121,7 @@ const ModalStyle = (props: WithThemeProps & UpModalProps) =>
         "& .up-modal-header": {
           padding: "15px",
           minHeight: "40px",
-          borderBottom: "1px solid #e5e5e5",
+          borderBottom: `${props.withHeaderSeparator ? "1px solid #e5e5e5":0 }`,
           position: "relative",
           display:'flex',
           justifyContent: 'space-between'
@@ -267,14 +269,15 @@ const ModalStyle = (props: WithThemeProps & UpModalProps) =>
         '& .up-modal-dialog': {
           width: 'auto',
           minWidth: 'unset',
-          maxWidth: `${props.modalWidth === 'half' ? 50: 100}%`,
+          maxWidth: `${props.modalWidth === 'half' ? 50 : 100}%`,
           marginTop: props.fullHeight && '0',
           marginLeft: props.fullHeight && '0'
         },
         '& .up-modal-content': {
           display: 'flex',
           flexDirection: 'column',
-          height: props.fullHeight && '100vh'
+          height: props.fullHeight && '100vh',
+          borderRadius: '0px'
         },
         '& .up-modal-footer': {
           width: '100%'
@@ -283,8 +286,8 @@ const ModalStyle = (props: WithThemeProps & UpModalProps) =>
           visibility: 'visible',
 
           ...animation('fadeIn'),
-          transition: "unest",
-          transform: "unset"
+          transition: 'unest',
+          transform: 'unset'
         },
         '& .up-modal.in .up-modal-dialog': {
           margin: 0,
@@ -303,8 +306,8 @@ const ModalStyle = (props: WithThemeProps & UpModalProps) =>
               ? '50%'
               : 'unset'),
           overflowY: 'hidden',
-           transition: "unset",
-           transform: "unset",
+          transition: 'unset',
+          transform: 'unset'
         },
         '& .up-modal.fade': {
           margin: 0
@@ -313,16 +316,16 @@ const ModalStyle = (props: WithThemeProps & UpModalProps) =>
           margin: 0,
           overflowY: 'hidden',
           maxWidth: props.modalWidth === 'half' && '50%',
-          marginLeft: props.displayMode === 'fromRight' &&
-          (props.modalWidth === 'full'
-            ? '0px'
-            : props.modalWidth === 'half'
-            ? '50%'
-            : 'unset'),
-            transition: "unset",
-            transform: "unset",
-        },
-        
+          marginLeft:
+            props.displayMode === 'fromRight' &&
+            (props.modalWidth === 'full'
+              ? '0px'
+              : props.modalWidth === 'half'
+              ? '50%'
+              : 'unset'),
+          transition: 'unset',
+          transform: 'unset'
+        }
       }
     });
 }
@@ -337,7 +340,8 @@ class UpModal extends React.Component<UpModalProps & WithThemeProps, UpModalStat
         theme: UpDefaultTheme,
         modalWidth: 'default',
         displayMode: 'fromTop',
-        fullHeight: false
+        fullHeight: false,
+        withHeaderSeparator: true,
     };
 
     constructor(p, c) {
@@ -376,10 +380,23 @@ class UpModal extends React.Component<UpModalProps & WithThemeProps, UpModalStat
         }
 
         if (typeof (this.props.header) === "string") {
-            header = <div className="up-modal-header">
-                <h4 className="up-modal-title">{this.props.header}</h4>
-                <span onClick={this.closeModal} className="up-modal-close"><UpSvgIcon iconName={'close'}></UpSvgIcon></span>
-            </div>
+            header = (
+              <div className="up-modal-header">
+                <h4 className="up-modal-title">
+                  {this.props.header}
+                </h4>
+                <span
+                  onClick={this.closeModal}
+                  className="up-modal-close">
+                  <UpSvgIcon
+                    className={style({
+                      width: `${this.props.closeIconSize}px !important`,
+                      height: `${this.props.closeIconSize}px !important`
+                    })}
+                    iconName={'close'}></UpSvgIcon>
+                </span>
+              </div>
+            );
         } else {
             header = <div className="up-modal-header">
                 {this.props.header}
