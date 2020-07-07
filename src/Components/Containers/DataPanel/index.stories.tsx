@@ -89,11 +89,12 @@ export const DisplayColumnModeWithFormatter = () => {
       </span>
     )
   };
+  const getFormatterProps = (value)=> console.log(value)
   return (
     <UpDataPanel
       data={data}
       columns={columns.map((e, i) =>
-        i === 0 ? { ...e, formatter } : { ...e }
+        i === 0 ? { ...e, formatter,getFormatterProps } : { ...e }
       )}
       showOnlyNotEmptyValue={boolean('showOnlyNotEmptyValue', false)}
       displayMode="column"

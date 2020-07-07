@@ -150,7 +150,15 @@ const UpDataPanelItem = (props: PanelItemProps) => {
                 </span>
               ) : null}
               {element.formatter ? (
-                element.formatter.format(panelData, element)
+                element.formatter.format(
+                  panelData,
+                  element,
+                  element.getFormatterProps
+                    ? element.getFormatterProps(
+                        panelData[element.field]
+                      )
+                    : {}
+                )
               ) : (
                 <span className="panel-col-value">
                   {panelData && panelData[element.field]}
@@ -169,13 +177,13 @@ const UpDataPanelItem = (props: PanelItemProps) => {
                 key={`panel-action-${index}`}
                 actionType={element.type}
                 intent={element.intent}
-                width='icon'
+                width="icon"
                 borderless
                 className={style({
                   $nest: {
                     '& .up-btn ,& .up-btn svg': {
                       width: '44px !important',
-                      height:'44px !important'
+                      height: '44px !important'
                     }
                   }
                 })}
