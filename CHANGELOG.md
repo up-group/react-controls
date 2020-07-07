@@ -1,3 +1,10 @@
+# ReactControls (version: 0.2.56)
+
+## Main Changes
+
+- Fix close button on UpModal
+
+
 # ReactControls (version: 0.2.55)
 
 ## Main Changes
