@@ -13,7 +13,7 @@ export interface Column {
   label: string  | JSX.Element;
   field?: string ;
   formatter?: ICellFormatter;
-  getFormatterProps?: (value: string) => any;
+  getFormatterProps?: (value: any) => any;
   tooltip?: {
     title?: JSX.Element | string;
     content: JSX.Element | string;
