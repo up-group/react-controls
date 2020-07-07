@@ -1,3 +1,10 @@
+# ReactControls (version: 0.2.57)
+
+## Main Changes
+
+- Add get formatter pros on UpDataPanel
+
+
 # ReactControls (version: 0.2.56)
 
 ## Main Changes
