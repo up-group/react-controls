@@ -17,13 +17,21 @@ const data = [
     third_label: 'value 3',
     fourth_label: 'Value 4',
     fifth_label: 'value 5',
-    sixth_label: 'value6'
+    sixth_label: 'value6',
+  },
+  {
+    first_label: 'second value 1',
+    second_label: 'second value 2',
+    third_label: ' second value 3',
+    fourth_label: 'second Value 4',
+    fifth_label: 'second value 5',
+    sixth_label: 'second value6',
   }
 ];
 const columns = [
   {
     field: 'first_label',
-    label: 'First Label'
+    label: 'First Label',
   },
   {
     field: 'second_label',
@@ -34,13 +42,13 @@ const columns = [
   { field: 'fourth_label', label: 'Forth Label' },
   { field: 'fifth_label', label: 'Fifth Label' },
   { field: 'sixth_label', label: 'Sixth Label' },
-  { field: 'seventh_mabem', label: 'Seventh Label' }
+  { field: 'seventh_mabem', label: 'Seventh Label' },
 ];
 export const DisplayRowMode = () => (
   <UpDataPanel
     data={data}
     columns={columns}
-    title={{ general: 'Tire généric', specific: 'specific' }}
+    title={{ general:()=> 'general_title', specific: ()=> 'specific_title' }}
     showOnlyNotEmptyValue={true}
     displayMode="row"
     className={style({
@@ -96,7 +104,7 @@ export const DisplayColumnModeWithFormatter = () => {
       columns={columns.map((e, i) =>
         i === 0 ? { ...e, formatter,getFormatterProps } : { ...e }
       )}
-      showOnlyNotEmptyValue={boolean('showOnlyNotEmptyValue', false)}
+      showOnlyNotEmptyValue={boolean('showOnlyNotEmptyValue', true)}
       displayMode="column"
       className={style({
         $nest: {
@@ -111,14 +119,14 @@ export const DisplayColumnModeWithFormatter = () => {
 
 export const DisplayRowModeWithTitleFormatter = () => {
   const formatter = {
-    format: title => (
+    format: (data) => (
       <span
         style={{
           color: 'orange',
           fontWeight: 'bold',
           marginLeft: '4px'
         }}>
-        {title}
+        {'value'}
       </span>
     )
   };
@@ -171,8 +179,8 @@ export const DisplayRowModeWithTitleFormatter = () => {
           : { ...e }
       )}
       title={{
-        general: 'Tire généric',
-        specific: 'Specific',
+        general: ()=> 'general_title',
+        specific: ()=>'specific_title',
         formatter
       }}
       showOnlyNotEmptyValue={true}

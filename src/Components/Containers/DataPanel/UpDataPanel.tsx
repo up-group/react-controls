@@ -28,7 +28,7 @@ export interface Action {
 }
 export type DisplayType = 'row' | 'column';
 export interface TitleFormatter {
-    format: (title) => React.ReactElement<any>;
+    format: (row:{},additionalProps?:any) => React.ReactElement<any>;
   }
 export interface UpDataPanelProps {
   columns: Array<Column>;
@@ -38,9 +38,9 @@ export interface UpDataPanelProps {
   displayMode?: DisplayType;
   className?: string;
   title?: {
-    general: string;
-    specific?: string;
-    formatter?: TitleFormatter
+    general: (row: {}) => string | JSX.Element;
+    specific?: (row: {}) => string | JSX.Element;
+    formatter?: TitleFormatter;
   };
 }
 
@@ -50,8 +50,12 @@ export const UpDataPanel = props => {
 
   return (
     data &&
-    data.map(panelElement => {
-      return <UpDataPanelItem  panelData={panelElement} {...rest} />;
+    data.map((panelElement, index) => {
+      return (
+        <React.Fragment key={index}>
+          <UpDataPanelItem panelData={panelElement} {...rest} />
+        </React.Fragment>
+      );
     })
   );
 };
