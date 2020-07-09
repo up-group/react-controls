@@ -18,8 +18,8 @@ export interface UpModalProps {
     fullHeight?: boolean;
     modalWidth?: ModalPosition;
     closeIconSize?: number;
-    withHeaderSeparator?: boolean
-
+    withHeaderSeparator?: boolean;
+    closeOnClickOutside?: boolean
 }
 
 export interface UpModalState {
@@ -344,11 +344,29 @@ class UpModal extends React.Component<UpModalProps & WithThemeProps, UpModalStat
         fullHeight: false,
         withHeaderSeparator: true,
     };
+  wrapperRef: any
 
     constructor(p, c) {
         super(p, c);
         this.state = {showModal: this.props.showModal};
+        this.wrapperRef = React.createRef();
     }
+  componentDidMount() {
+      if(this.props.closeOnClickOutside) document.addEventListener('mousedown', this.handleClickOutside);
+  }
+  componentWillUnmount () {
+      if(this.props.closeOnClickOutside)  document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+  handleClickOutside= (event)=> {
+      if (
+        this.props.closeOnClickOutside &&
+        this.wrapperRef &&
+        !this.wrapperRef.current.contains(event.target)
+      ) {
+        this.closeModal();
+      }
+  }
+    
 
     closeModal = () => {
         this.setState({showModal:false}) ;
@@ -412,9 +430,9 @@ class UpModal extends React.Component<UpModalProps & WithThemeProps, UpModalStat
         }
 
         return (
-            <div className={getStyle(this.props)}> 
+            <div  className={getStyle(this.props)}> 
                 <div className={classnames("up-modal", (this.state.showModal===true) ? "in" : "fade", appearFromTop)}  id="myModal" role="dialog" aria-labelledby="myModalLabel">
-                    <div className="up-modal-dialog" role="document">
+                    <div ref={this.wrapperRef}  className="up-modal-dialog" role="document">
                         <div className="up-modal-content">
                             {header}
                             <div className="up-modal-body">
