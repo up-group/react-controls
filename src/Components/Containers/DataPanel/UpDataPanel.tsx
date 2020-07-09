@@ -26,9 +26,10 @@ export interface Action {
   action: (panelValue) => void;
   libelle?: string;
 }
+
 export type DisplayType = 'row' | 'column';
 export interface TitleFormatter {
-    format: (row:{},additionalProps?:any) => React.ReactElement<any>;
+    format: (row:{}, additionalProps?:any) => React.ReactElement<any>;
   }
 export interface UpDataPanelProps {
   columns: Array<Column>;
@@ -38,9 +39,8 @@ export interface UpDataPanelProps {
   displayMode?: DisplayType;
   className?: string;
   title?: {
-    general: (row: {}) => string | JSX.Element;
-    specific?: (row: {}) => string | JSX.Element;
-    formatter?: TitleFormatter;
+    general: TitleFormatter | JSX.Element | string;
+    specific?: TitleFormatter | JSX.Element | string;
   };
 }
 

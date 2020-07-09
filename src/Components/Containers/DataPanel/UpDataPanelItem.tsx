@@ -14,13 +14,13 @@ import {
   Column,
   TitleFormatter
 } from './UpDataPanel';
+import _ = require('lodash');
 
 export interface PanelItemProps {
   className?: string;
   title?: {
-    general: (row: {}) => string | JSX.Element;
-    specific?: (row: {}) => string | JSX.Element;
-    formatter?: TitleFormatter;
+    general: TitleFormatter | JSX.Element | string;
+    specific?: TitleFormatter | JSX.Element | string;
   };
   displayMode?: DisplayType;
   actions?: Array<Action>;
@@ -128,14 +128,16 @@ const UpDataPanelItem = (props: PanelItemProps) => {
       )}>
       {title && (
         <div className="panel-title">
-          <span className="panel-title-general">{title.general(panelData)}</span>
-          {title.formatter ? (
-            title.formatter.format(panelData)
-          ) : (
+          <span className="panel-title-general">
+            {_.isFunction((title.general as TitleFormatter).format) && (title.general as TitleFormatter).format(panelData)}
+            {_.isString(title.general) && title.general}
+          </span>
+          {title.specific && 
             <span className="panel-title-specific">
-              {title.specific(panelData)}
+              {_.isFunction((title.specific as TitleFormatter).format) && (title.specific as TitleFormatter).format(panelData)}
+              {_.isString(title.specific) && title.specific}
             </span>
-          )}
+          }
         </div>
       )}
       <div className="panel-body">

@@ -10,6 +10,19 @@ export default {
   decorators: [withKnobs, getRootContainer('UpDataPanel')]
 };
 
+const titleFormatter = {
+  format: (data) => (
+    <span
+      style={{
+        color: data['first_label'] == "value 1" ? 'orange' : 'red',
+        fontWeight: 'bold',
+        marginLeft: '4px'
+      }}>
+      {data['first_label']}
+    </span>
+  )
+};
+
 const data = [
   {
     first_label: 'value 1',
@@ -48,7 +61,7 @@ export const DisplayRowMode = () => (
   <UpDataPanel
     data={data}
     columns={columns}
-    title={{ general:()=> 'general_title', specific: ()=> 'specific_title' }}
+    title={{ general: 'Gestion technique', specific: titleFormatter }}
     showOnlyNotEmptyValue={true}
     displayMode="row"
     className={style({
@@ -97,12 +110,11 @@ export const DisplayColumnModeWithFormatter = () => {
       </span>
     )
   };
-  const getFormatterProps = (value)=> console.log(value)
   return (
     <UpDataPanel
       data={data}
       columns={columns.map((e, i) =>
-        i === 0 ? { ...e, formatter,getFormatterProps } : { ...e }
+        i === 0 ? { ...e, formatter } : { ...e }
       )}
       showOnlyNotEmptyValue={boolean('showOnlyNotEmptyValue', true)}
       displayMode="column"
@@ -118,18 +130,7 @@ export const DisplayColumnModeWithFormatter = () => {
 };
 
 export const DisplayRowModeWithTitleFormatter = () => {
-  const formatter = {
-    format: (data) => (
-      <span
-        style={{
-          color: 'orange',
-          fontWeight: 'bold',
-          marginLeft: '4px'
-        }}>
-        {'value'}
-      </span>
-    )
-  };
+  
   const secondformatter = {
     format: (item, column) => (
       <UpBadge
@@ -179,9 +180,8 @@ export const DisplayRowModeWithTitleFormatter = () => {
           : { ...e }
       )}
       title={{
-        general: ()=> 'general_title',
-        specific: ()=>'specific_title',
-        formatter
+        general: "Gestion Technique",
+        specific: titleFormatter,
       }}
       showOnlyNotEmptyValue={true}
       displayMode="row"
