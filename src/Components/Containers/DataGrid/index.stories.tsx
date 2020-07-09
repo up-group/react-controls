@@ -203,9 +203,10 @@ export const WithActions =
           },
           {
             action: () => {},
-            type: "edit",
+            type: "arrow-right",
             description: "Modifier",
-            intent: 'primary'
+            intent: 'primary',
+            borderless: true,
           },
           {
             action: () => {},
