@@ -1,3 +1,10 @@
+# ReactControls (version: 0.2.58)
+
+## Main Changes
+
+- Fix title handling for UpDataPanel
+
+
 # ReactControls (version: 0.2.57)
 
 ## Main Changes
