@@ -33,9 +33,10 @@ class BaseTextArea extends React.Component<UpTextProps> {
     }
 
     render() {
-        const {className, value, onChange, name, tabIndex,placeholder} = this.props;
+        const {className, value, onChange, name, tabIndex,placeholder, readonly } = this.props;
 
         return <Textarea value={value}
+            readOnly={readonly}
             name={name}
             placeholder={placeholder}
             ref={this.setInput}
@@ -51,7 +52,8 @@ export default class UpText extends BaseControlComponent<UpTextProps, string> {
     public static defaultProps:UpTextProps = {
         width: 'fill',
         showError: true,
-        theme:defaultTheme
+        theme:defaultTheme,
+        readonly: false,
     }
     
     constructor(p, c) {
@@ -78,10 +80,10 @@ export default class UpText extends BaseControlComponent<UpTextProps, string> {
     }
 
     renderControl(): JSX.Element {
-        const {onChange, className, readonly, tooltip, value, ...others} = this.props ;
+        const {onChange, className, tooltip, value, ...others} = this.props ;
         return <BaseTextArea className={classnames(getStyles(this.props), className)} 
             value={this.currentValue} 
-            onChange={this.onChange} {...others} />
+            onChange={this.onChange} {...others}  />
     }
 
     getValue(event: any) {

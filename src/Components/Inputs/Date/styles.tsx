@@ -75,6 +75,11 @@ const getStyles = (
       "& .DateInput_input__focused": {
         borderWidth: 0
       },
+      "& .DateInput_input__disabled": {
+        fontSize: "14px",
+        lineHeight: "18px",
+        fontStyle:'normal'
+      },
       "& .SingleDatePickerInput__showClearDate": {
         paddingRight: props.iconPosition == "left" ? "30px" : "0px"
       },

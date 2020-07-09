@@ -26,6 +26,7 @@ export interface Option {
     checked?:boolean;
     intent?: IntentType;
     toggledElement?: Array<ReactNode> | ReactNode;
+    readonly?:boolean;
 }
 
 export interface UpRadioStyledProps extends Option {
@@ -56,6 +57,7 @@ export type RadioGroupProps = {
     className?:string;
     gutter?:number;
     flexWrap?: boolean;
+    readonly?:boolean
 }
 
 const RadioGroup: React.StatelessComponent<RadioGroupProps & WithThemeProps> = (props) => {
@@ -68,11 +70,11 @@ const RadioGroup: React.StatelessComponent<RadioGroupProps & WithThemeProps> = (
   }
 
 const BaseRadioButton: React.StatelessComponent<UpRadioStyledProps & WithThemeProps> = (props : UpRadioStyledProps & WithThemeProps) => {
-    const { checked, iconName, className, name, text, value, onChange, intent, toggledElement: field, tabIndex } = props;
+    const { checked, iconName, className, name, text, value, onChange, intent, toggledElement: field, tabIndex,readonly } = props;
     return (
         <>
         <label className={classnames("up-control", "up-radio", getStyles(props), intent ? `up-intent-${intent}` : null, className)}>
-            <input checked={checked} onChange={(e) => {e.persist(); onChange(e)}} name={name} type="radio" value={value} tabIndex={tabIndex} />
+            <input checked={checked} onChange={(e) => {e.persist(); !readonly && onChange(e)}}  name={name} type="radio" value={value} tabIndex={tabIndex} />
             <span className="up-control-wrapper">
                 <span className="up-control-indicator"></span>
             </span>
@@ -143,7 +145,7 @@ class UpRadio extends BaseControlComponent<UpRadioProps, any> {
         var radioGroupClass = `upContainer__groupradio upContainer__groupradio-${this.props.displayMode} upContainer__groupradio-${this.props.alignMode}`;
 
         return (
-            <RadioGroup className={radioGroupClass} gutter={this.props.gutter} flexWrap={this.props.flexWrap} theme={this.props.theme}>
+            <RadioGroup readonly={this.props.readonly} className={radioGroupClass} gutter={this.props.gutter} flexWrap={this.props.flexWrap} theme={this.props.theme}>
                 {/* Avoid set active element when using the component inside a label */}
                 <label style={{ display: "none" }}><input type="radio" /></label>
                 {options.map((option, i) => {
@@ -155,6 +157,7 @@ class UpRadio extends BaseControlComponent<UpRadioProps, any> {
                             name={this.props.name}
                             checked={this.currentValue != null && this.currentValue === option.value}
                             text={option.text}
+                            readonly={this.props.readonly}
                             iconName={option.iconName}
                             theme={this.props.theme}
                             value={option.value}

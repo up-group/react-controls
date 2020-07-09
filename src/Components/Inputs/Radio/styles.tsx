@@ -15,6 +15,7 @@ const baseStyles = (props: UpRadioStyledProps) : NestedCSSProperties => (
     '& .up-control-indicator' : {
       borderRadius: '50%',
       fontSize: '6px',
+      cursor: props.readonly && 'unset'
     },
     '& .up-control-text' : {
       zIndex:100,
@@ -64,16 +65,20 @@ export const RadioGroupStyles = (props: RadioGroupProps & WithThemeProps) => {
         marginRight: `${props.gutter ? props.gutter : 0}px`
       },
       "&.upContainer__groupradio-vertical label.up-radio": {
-        marginTop: `${props.gutter ? props.gutter : 0}px`
+        marginTop: `${props.gutter ? props.gutter : 0}px`,
+        cursor: props.readonly && 'unset'
       },
       "&.upContainer__groupradio-button.upContainer__groupradio-horizontal label.up-radio": {
-        marginLeft: `${props.gutter ? props.gutter : 0}px`
+        marginLeft: `${props.gutter ? props.gutter : 0}px`,
+        cursor: props.readonly && 'unset'
+
       },
       "&.upContainer__groupradio-horizontal": {
         display: "flex",
         flexDirection: "row",
         alignItems: "flex-start",
-        justifyContent: "flex-start"
+        justifyContent: "flex-start",
+
       },
       "&.upContainer__groupradio-vertical": {
         height: "100%",
@@ -81,7 +86,8 @@ export const RadioGroupStyles = (props: RadioGroupProps & WithThemeProps) => {
         flexDirection: "column",
         flexWrap: props.flexWrap?"wrap":"nowrap",
         alignItems: "flex-start",
-        justifyContent: "flex-start"
+        justifyContent: "flex-start",
+
       },
       "&.upContainer__groupradio-button input:checked ~ .up-control-wrapper .up-control-indicator::before": {
         visibility: "hidden"
@@ -145,6 +151,8 @@ export const RadioGroupStyles = (props: RadioGroupProps & WithThemeProps) => {
         display: "flex",
         flexDirection: "row",
         alignItems: "flex-start",
+        cursor: props.readonly && 'unset',
+
         justifyContent: "center"
       },
       "&.upContainer__groupradio-large .up-control-wrapper": {
@@ -158,10 +166,11 @@ export const RadioGroupStyles = (props: RadioGroupProps & WithThemeProps) => {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
       },
       "&.upContainer__groupradio-large .up-control-wrapper .up-control-indicator": {
-        position: "inherit"
+        position: "inherit",
+        cursor: props.readonly && 'unset',
       },
       "&.upContainer__groupradio-large .up-control-text": {
         height: "80px",
