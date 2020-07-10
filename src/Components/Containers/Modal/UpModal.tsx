@@ -24,6 +24,7 @@ export interface UpModalProps {
 
 export interface UpModalState {
     showModal?: boolean;
+    modalStatus: string
 }
 
 const HeaderFooterAfterBeforeStyle = {
@@ -54,7 +55,8 @@ const ModalStyle = (props: WithThemeProps & UpModalProps) =>
           overflowY: "auto",
           //-webkit-overflow-scrolling: touch,
           outline: 0,
-          opacity: 0
+          opacity: 0,
+          visibility: !props.showModal ?"hidden":'visible',
         },
         "& .up-modal-open": {
           overflow: "hidden"
@@ -337,7 +339,7 @@ const getStyle = (props: UpModalProps & WithThemeProps)=> {
 
 class UpModal extends React.Component<UpModalProps & WithThemeProps, UpModalState>{
     public static defaultProps: UpModalProps & WithThemeProps = {
-        showModal: true,
+        showModal: false,
         theme: UpDefaultTheme,
         modalWidth: 'default',
         displayMode: 'fromTop',
@@ -348,10 +350,11 @@ class UpModal extends React.Component<UpModalProps & WithThemeProps, UpModalStat
 
     constructor(p, c) {
         super(p, c);
-        this.state = {showModal: this.props.showModal};
+        this.state = {showModal: this.props.showModal,modalStatus: ''};
         this.wrapperRef = React.createRef();
     }
   componentDidMount() {
+    console.log('didMount')
       if(this.props.closeOnClickOutside) document.addEventListener('mousedown', this.handleClickOutside);
   }
   componentWillUnmount () {
@@ -369,7 +372,7 @@ class UpModal extends React.Component<UpModalProps & WithThemeProps, UpModalStat
     
 
     closeModal = () => {
-        this.setState({showModal:false}) ;
+        this.setState({showModal:false, modalStatus:'fade'}) ;
         if(this.props.onClose) {
             this.props.onClose() ;
         }
@@ -381,7 +384,7 @@ class UpModal extends React.Component<UpModalProps & WithThemeProps, UpModalStat
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({showModal:nextProps.showModal}) ;
+        this.setState({showModal:nextProps.showModal,modalStatus: nextProps.showModal ? 'in':'fade'}) ;
     }
 
     setHtml = (iframe) => {
@@ -431,7 +434,7 @@ class UpModal extends React.Component<UpModalProps & WithThemeProps, UpModalStat
 
         return (
             <div  className={getStyle(this.props)}> 
-                <div className={classnames("up-modal", (this.state.showModal===true) ? "in" : "fade", appearFromTop)}  id="myModal" role="dialog" aria-labelledby="myModalLabel">
+                <div className={classnames("up-modal", this.state.modalStatus , appearFromTop)}  id="myModal" role="dialog" aria-labelledby="myModalLabel">
                     <div ref={this.wrapperRef}  className="up-modal-dialog" role="document">
                         <div className="up-modal-content">
                             {header}
