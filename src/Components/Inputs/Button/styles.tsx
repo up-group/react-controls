@@ -480,7 +480,7 @@ const borderless = (props: UpButtonProps): NestedCSSProperties => {
     $nest: {
       '&.up-btn': {
         border: 'unset !important',
-        backgroundColor: 'white'
+        backgroundColor: 'transparent'
       },
       '&.up-btn svg, &.up-btn svg path, &.up-btn svg polygon, &.up-btn svg polyline': {
         fill: ` ${props.theme.colorMap[props.intent]} !important`

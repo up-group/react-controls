@@ -117,6 +117,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
                                         actionType={value.type}
                                         width="icon"
                                         intent={value.intent}
+                                        borderless={value.borderless}
                                         onClick={
                                             () => {
                                                 if (value.action != null) {

@@ -211,8 +211,8 @@ class UpDate extends BaseControlComponent<
           date={this.currentValue}
           onDateChange={this.onChange}
           id={this.id}
-          disabled={disabled}
-          showClearDate={true}
+          disabled={disabled || this.props.readonly}
+          showClearDate={!this.props.readonly}
           showDefaultInputIcon={true}
           noBorder={false}
           screenReaderInputMessage={
