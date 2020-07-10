@@ -7,7 +7,7 @@ import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
 import UpLabel from "../../Display/Label";
 import { UpGrid, UpRow, UpCol } from "../../Containers/Grid";
 import UpForm from '../../Containers/Form/UpForm';
-
+import UpModal from '../../../Components/Containers/Modal/UpModal'
 import { Formik } from "formik";
 import * as Yup from "yup";
 import UpPassword from "../Password";
@@ -23,6 +23,7 @@ export default {
 
 const SimpleInput = props => {
   let [selectedValue, setValue] = React.useState(null);
+  //const [show,handleModal] = React.useState(false)
 
   const onChange = (event, value) => {
     setValue(value);
@@ -423,7 +424,13 @@ const FormWithSelect = (props)=> {
 }
 
 export const General =
-  () => (
+  () => {
+    //const [show,handleModal] = React.useState(false)
+
+    return (<>
+ {/*<div onClick={()=> handleModal(!show)}>hello</div>
+  <UpModal showModal={show} onClose={()=>handleModal(!show)}>
+    */}
     <UpGrid>
       <UpRow>
         <UpCol span={6}>
@@ -433,7 +440,9 @@ export const General =
         </UpCol>
       </UpRow>
     </UpGrid>
-  )
+    {/*</UpModal>*/}
+    </>
+  )}
 export const IsReadOnly = () => (
   <UpGrid>
       <UpRow>
