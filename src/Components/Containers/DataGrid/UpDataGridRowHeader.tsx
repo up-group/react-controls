@@ -6,6 +6,7 @@ import UpCheckbox from '../../Inputs/Checkbox/UpCheckBox'
 import UpDataGridCellHeader from './UpDataGridCellHeader'
 import { Column, Action, SortDirection } from './UpDataGrid'
 import { isEmpty } from '../../../Common/utils';
+import { ActionFactory } from './UpDataGridRow'
 
 export interface UpDataGridRowHeaderState {
     isSelected: boolean;
@@ -15,7 +16,7 @@ export interface UpDataGridRowHeaderState {
 export interface UpDataGridRowHeaderProps {
     columns: Array<Column>;
     isSelectionEnabled: boolean;
-    actions: Array<Action>;
+    actions: ActionFactory<any> | Array<Action>;
     onSortChange?: (c: Column, d: SortDirection) => void;
     onSelectionChange?: (isSelected: boolean) => void;
     displayRowActionsWithinCell?: boolean
