@@ -9,7 +9,7 @@ class UpFormGroup extends React.Component<UpFormGroupProps & WithThemeProps> {
   
   public static defaultProps:UpFormGroupProps & WithThemeProps = {
      title:"",
-     theme:defaultTheme
+     theme:defaultTheme,
   }
 
   constructor(props) {

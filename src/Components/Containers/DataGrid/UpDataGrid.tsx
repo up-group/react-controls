@@ -77,6 +77,7 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
       "& .up-data-grid-cell": {
         padding: "16px",
         position: 'relative',
+        verticalAlign: props.alignCells
         //width:'100%'
       },
       "& .up-data-grid-cell .up-checkbox": {
@@ -200,7 +201,7 @@ export interface UpDataGridProps {
   data?: Array<any>;
   dataKey?: string;
   isDataFetching?: boolean;
-
+  alignCells?: 'top' | 'bottom' | 'middle' | 'initial'
   exportCsv?: exportCsv;
 
   dataSource?: {
@@ -254,6 +255,7 @@ class UpDataGrid extends React.Component<
     isOddEvenEnabled: true,
     isSortEnabled: true,
     theme: UpDefaultTheme,
+    alignCells: 'initial',
     loadingMessage: "Chargement en cours",
     paginationProps: {
       takes: [

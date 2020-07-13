@@ -130,6 +130,7 @@ export class UpCellFormatter extends React.Component<UpCellFormatterProps, {}>{
         if(this.props.column.field) {
             valueExtracted = this.props.value[this.props.column.field];
         }
+
         
         if (valueExtracted == null) {
             return <span>{this.props.children}</span>
@@ -191,7 +192,12 @@ export class UpCellFormatter extends React.Component<UpCellFormatterProps, {}>{
                        return <UpBadge text={_libelle} background={_couleur} />;
                    }
                 }
-                return <span>{valueExtracted == null ? "" : valueExtracted}</span>
+                if(Array.isArray(valueExtracted)) {
+                return <div style={{display:'flex',flexDirection:'column'}}>
+                    {valueExtracted.map((element,index)=> <p key={`-${index}`}>{element}</p>)}
+                </div>
+                }
+                return <p >{valueExtracted == null ? "" : valueExtracted}</p>
         }
 
         return <div></div>
