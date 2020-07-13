@@ -20,7 +20,7 @@ export default {
   decorators : [withKnobs, getRootContainer('UpSvgIcon')]
 };
 
-const logoPng = require('./logo-up-square.svg');
+const logoSvg = require('./logo-up-square.svg');
 
 const Item = ({color, icon, width, height}) => {
     return <>
@@ -125,7 +125,7 @@ export const SetHtmlDirectly =
     <UpBox style={{margin:"40px 30px"}}>
       <UpParagraph>
           <UpBox flexDirection={'row'} flexWrap={true}>
-            <UpSvgIcon iconHtml={logoPng} width={width} height={height} />
+            <UpSvgIcon iconHtml={logoSvg} width={width} height={height} />
         </UpBox>
       </UpParagraph>
     </UpBox>
