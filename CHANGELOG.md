@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.61)
+
+## Main Changes
+- Enable action factory on UpDataGrid
+
 # ReactControls (version: 0.2.60)
 
 ## Main Changes
