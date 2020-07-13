@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.60)
+
+## Main Changes
+- Enable to render icon in UpMenu
+
 # ReactControls (version: 0.2.59)
 
 ## Bug Fixes

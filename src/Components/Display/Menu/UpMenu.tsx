@@ -8,7 +8,7 @@ import { IconName } from "../../../Common/theming/icons";
 import { MenuStyles } from "./styles";
 import * as classnames from 'classnames';
 
-import { isEqual } from 'lodash' ;
+import { isEqual, isString } from 'lodash' ;
 
 const logo = require('./logo-up-square.svg');
 
@@ -149,10 +149,12 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
     }
 }
 
+export type RenderIcon = (props: Partial<MenuItemProps>) => JSX.Element;
+
 export interface MenuItemData {
   title?: string;
   uri?: string;
-  icon?: string;
+  icon?: string | RenderIcon ;
   isSelected?: boolean;
   isVisible?: boolean;
   childMenuItems?: MenuItemData[];
@@ -183,7 +185,8 @@ export class MenuItem extends React.Component<MenuItemProps>{
         return <li className={classnames("treeview", { "hide": hide, "active": active, 'hasChildren': hasChilren, 'separator': isSeparator })}>
             {this.props.uri && 
             <a onClick={this.onItemClick} href={this.props.uri}>
-                <UpSvgIcon title={this.props.title} width={22} height={22} iconName={this.props.icon as IconName}></UpSvgIcon>
+                {isString(this.props.icon) && <UpSvgIcon title={this.props.title} width={22} height={22} iconName={this.props.icon as IconName}></UpSvgIcon>}
+                {isFunction(this.props.icon) && this.props.icon(this.props)}
                 <span className={'up-menu-item-title'}>{this.props.title}</span>
                 {!isEmpty(this.props.childMenuItems) && <UpSvgIcon width={15} height={15} style={{marginLeft:'auto'}} iconName={'arrow-right'}></UpSvgIcon>}
             </a>
