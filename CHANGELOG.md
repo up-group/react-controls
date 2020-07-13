@@ -1,3 +1,11 @@
+# ReactControls (version: 0.2.59)
+
+## Bug Fixes
+
+- Avoid UpModal to appear during mount
+- Allow to close modal on outside click
+- Fix readonly on UpRadio, UpDate and UpText 
+
 # ReactControls (version: 0.2.58)
 
 ## Main Changes
