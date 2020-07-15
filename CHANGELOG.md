@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.63)
+
+## Bug Fixes
+- Fix UpModal showing
+
 # ReactControls (version: 0.2.62)
 
 ## Main Changes
