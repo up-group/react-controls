@@ -46,7 +46,9 @@ const getStyles = (props : UpTooltipProps & WithThemeProps) => style({
       padding: '8px 14px',
       margin: 0,
       borderBottom:'1px solid #ebebeb',
-      borderRadius: props.theme.borderRadius,
+      borderRadius: 0,
+      borderTopLeftRadius : props.theme.borderRadius,
+      borderTopRightRadius : props.theme.borderRadius,
       fontWeight:700,
       fontSize: '13px',
       color:'#4d4f5c',
@@ -129,21 +131,21 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps, UpTooltipStat
     if(this.props.type == 'light') {
      custom = style({
        background: "#4E5B59 !important",
-       border: "1px #ebebeb solid",
+       border: "1px #4E5B59 solid",
        borderRadius: this.props.theme.borderRadius,
        $nest : {
          '&.place-top:after' : {
-           borderTopColor: "#ebebeb !important",
+           borderTopColor: "#4E5B59 !important",
            borderTopStyle: "solid !important",
            borderTopWidth: "6px !important"
          },
          '&.place-left:after' : {
-           borderLeftColor: "#ebebeb !important",
+           borderLeftColor: "#4E5B59 !important",
            borderLeftStyle: "solid !important",
            borderLeftWidth: "6px !important"
          },
          '&.place-right:after' : {
-           borderRightColor: "#ebebeb !important",
+           borderRightColor: "#4E5B59 !important",
            borderRightStyle: "solid !important",
            borderRightWidth: "6px !important"
          },
