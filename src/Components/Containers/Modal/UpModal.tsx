@@ -350,11 +350,10 @@ class UpModal extends React.Component<UpModalProps & WithThemeProps, UpModalStat
 
     constructor(p, c) {
         super(p, c);
-        this.state = {showModal: this.props.showModal,modalStatus: ''};
+        this.state = {showModal: this.props.showModal,modalStatus: this.props.showModal ? 'in' : ''};
         this.wrapperRef = React.createRef();
     }
   componentDidMount() {
-    console.log('didMount')
       if(this.props.closeOnClickOutside) document.addEventListener('mousedown', this.handleClickOutside);
   }
   componentWillUnmount () {
