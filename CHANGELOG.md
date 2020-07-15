@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.62)
+
+## Main Changes
+- Improve UpTooltip closing behaviour
+
 # ReactControls (version: 0.2.61)
 
 ## Main Changes
