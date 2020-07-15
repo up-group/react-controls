@@ -60,7 +60,7 @@ const getStyles = (props : UpTooltipProps & WithThemeProps) => style({
     '&:hover' : {
       visibility: 'visible',
       opacity: 1,
-    }
+    },
   }
 }) ;
 
@@ -106,7 +106,7 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps, UpTooltipStat
     let tooltipId = id ;
     
     if(!tooltipId) {
-      tooltipId = generateId() ;
+      tooltipId = generateId();
     }
     let childrenWithProps = null ;
     let childrenAsFunction = null ;
@@ -116,7 +116,8 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps, UpTooltipStat
     } else {
       childrenWithProps = React.Children.map(children, function(child) {
           if (React.isValidElement(child)) {
-            return React.cloneElement(child as React.ReactElement<any>, { "dataFor" : tooltipId  });
+            return React.cloneElement(child as React.ReactElement<any>, { "dataFor" : tooltipId ,'data-event': 'click',
+            'data-event-off': 'dblclick' });
           } else {
             return child ;
           }
@@ -155,19 +156,28 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps, UpTooltipStat
        }
      });
     }
-    const renderChildren = <>
-        {childrenWithProps &&
-          childrenWithProps
-        }
+    const renderChildren = (
+      <>
+        {childrenWithProps && childrenWithProps}
         {childrenAsFunction &&
-           childrenAsFunction({id : tooltipId})
-        }
-    </>
+          childrenAsFunction({
+            id: tooltipId,
+          })}
+      </>
+    );
     if(isEmpty(content)) {
       return renderChildren ;
     }
     return (
-      <div style={{ display: 'inline-block' }}>
+      <div
+        className={style({
+          display: 'inline-block',
+          $nest: {
+            '& .up-icon-wrapper.colored:hover svg, & .up-icon-wrapper.colored:hover svg path,& .up-icon-wrapper.colored:hover svg polygon, & .up-icon-wrapper.colored:hover svg polyline': {
+              fill: '#C47400'
+            }
+          }
+        })}>
         {renderChildren}
         <ReactTooltip
           offset={
@@ -180,6 +190,7 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps, UpTooltipStat
           )}
           id={tooltipId}
           getContent={this.getContent}
+          globalEventOff="click"
           {...others}
         />
       </div>
