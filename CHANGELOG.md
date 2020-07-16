@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.64)
+
+## Bug Fixes
+- Fix null theme in UpLigne
+
 # ReactControls (version: 0.2.63)
 
 ## Bug Fixes
