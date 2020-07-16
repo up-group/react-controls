@@ -280,7 +280,25 @@ const ModalStyle = (props: WithThemeProps & UpModalProps) =>
           display: 'flex',
           flexDirection: 'column',
           height: props.fullHeight && '100vh',
-          borderRadius: '0px'
+          borderRadius: '0px',
+        },
+        '& .up-modal-body':{
+          padding: '99px 89px 20px 105px'
+        },
+        '& .up-modal-title': {
+          position: 'absolute',
+          left: '105px',
+          top:'100px',
+          fontSize:'18px',
+          lineHeight:'21px',
+          color: props.theme.colorMap.grey1,
+          fontWeight: 'bold'
+        },
+        '& .up-modal-close':{
+          position: 'absolute',
+          right: '50px',
+          top: '49px',
+          zIndex:1000,
         },
         '& .up-modal-footer': {
           width: '100%'
