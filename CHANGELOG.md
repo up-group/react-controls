@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.64)
+
+## Main changes
+- Change Header and CloseIcon position for UpModal
+
 # ReactControls (version: 0.2.64)
 
 ## Bug Fixes
