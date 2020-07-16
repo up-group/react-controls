@@ -13,6 +13,6 @@ const defaultProps: UpLigneProps = {
 export const getStyles = (props: UpLigneProps & WithThemeProps) : string => (
   style({
     textAlign: props.textAlign || defaultProps.textAlign,
-    color: props.color || props.theme.colorMap.primary || defaultProps.color,
+    color: props.color || props.theme?.colorMap.primary || defaultProps.color,
     display:'inline-block',
 } as NestedCSSProperties))
