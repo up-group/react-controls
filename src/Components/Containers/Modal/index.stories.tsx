@@ -10,6 +10,7 @@ import UpPanel from '../../Containers/Panel'
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import {DsiplayMode,ModalPosition} from './UpModal'
+import UpButtonGroup from '../ButtonGroup'
 export interface ModalWrapperProps {
     html?: string;
     displayMode?:  DsiplayMode;
@@ -45,20 +46,24 @@ class ModalWrapper extends React.Component<ModalWrapperProps, ModalWrapperState>
     }
     render() {
         const CloseAction = () => <UpButton intent={'secondary'} actionType={"close"} onClick={this.closeModal}>Close</UpButton>;
+        const OpenAction = () => <UpButton intent={'secondary'} actionType={"confirm"} onClick={this.openModal}>Open</UpButton>;
         const Info = () => <UpPanel type={"warning"} disableAutoIntentIcon={false}>
             <p>Bienvenue !!</p>
         </UpPanel>;
 
         return (
-        <div>
-            <UpModal closeOnClickOutside={this.props.closeOnClickOutside} withHeaderSeparator={this.props.withHeaderSeparator} modalWidth={this.props.modalWidth} fullHeight={this.props.fullHeight} displayMode={this.props.displayMode} closeIconSize={this.props.closeIconSize} onClose={this.onClose} 
-                header={'Header'} showModal={this.state.showModal} html={this.props.html}>
-                {this.props.html == null &&
-                    <Info />
-                }
-            </UpModal>
-            <UpButton intent={'secondary'} actionType={"confirm"} onClick={this.openModal}>Open</UpButton>
-        </div>);
+          <div style={{ margin: "30px 0px" }}>
+              <UpModal closeOnClickOutside={this.props.closeOnClickOutside} withHeaderSeparator={this.props.withHeaderSeparator} modalWidth={this.props.modalWidth} fullHeight={this.props.fullHeight} displayMode={this.props.displayMode} closeIconSize={this.props.closeIconSize} onClose={this.onClose} 
+                  header={'Header'} showModal={this.state.showModal} html={this.props.html}>
+                  {this.props.html == null &&
+                      <Info />
+                  }
+              </UpModal>
+              <UpButtonGroup gutter={10}>
+                <OpenAction />
+              </UpButtonGroup>
+          </div>
+        );
     }
 }
 
