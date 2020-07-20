@@ -63,8 +63,7 @@ export const icon = (
         fill:
           props.displayMode === 'text'
             ? props.theme.colorMap[`${props.intent}`]
-            : props.intent !== 'success' &&
-              props.theme.colorMap.white1,
+            : props.theme.colorMap.white1,
         //margin: "10px",
         display: 'inline-block',
         background: 'unset !important'
@@ -116,7 +115,7 @@ export const progressBar = (props): NestedCSSProperties => {
         width: '100%',
         height: '4px',
         animationPlayState: 'running',
-        animation: `${progress} ${props.duration}s`,
+        animation: `${progress} ${props.durationBeforeClosing}s`,
         backgroundColor: props.theme.colorMap.gray6,
         borderBottomRightRadius: '4px',
         borderBottomLeftRadius: '4px'
@@ -130,16 +129,10 @@ export const progressBar = (props): NestedCSSProperties => {
 
 export const getStyles = (
   props: UpNotificationProps,
-  notificationIsClosing: boolean
 ): string => {
    
-  let animation = {} ;
   
-  if(props.durationBeforeClosing || props.withCancelIcon) {
-    animation = !notificationIsClosing
-      ? { ...animateFromRight(props.durationOfAnimation || 2, 'ease', 'fadeIn') }
-      : { ...animateFromLeft(props.durationOfAnimation || 1, 'ease', 'fadeOut') };
-  }
+  
 
   return classnames(
     style(colors(props)),
@@ -155,7 +148,6 @@ export const getStyles = (
       overflow: 'hidden',
       display: 'flex',
       alignItems: 'center',
-      ...animation,
     })
   );
 };

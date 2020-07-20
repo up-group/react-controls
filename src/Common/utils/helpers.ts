@@ -315,6 +315,10 @@ export const  setTimeOutWithPause = function(callback, delay) {
         timerId = window.setTimeout(callback, remaining); // create a new one with the remaining time
     };
 
+    this.clearTimeout = function() {
+        window.clearTimeout(timerId)
+    }
+
     // start the timer for the first time
     this.resume();
   };
