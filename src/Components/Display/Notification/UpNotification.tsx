@@ -6,7 +6,6 @@ import * as classnames from 'classnames';
 import { UpGrid, UpRow, UpCol } from '../../Containers/Grid';
 import UpModal from '../../Containers/Modal/UpModal';
 import UpHeading from '../../Display/Heading';
-import { setTimeOutWithPause } from '../../../Common/utils/helpers';
 import iconMap from '../../../Common/theming/iconMap';
 import SvgIcon from '../SvgIcon';
 import defaultTheme from '../../../Common/theming';
@@ -51,36 +50,8 @@ const UpNotification = (
     durationBeforeClosing,
     withCancelIcon
   } = props;
-  const [showNotification, displayNotification] = React.useState(
-    true
-  );
-  const [isClosing, setIsClosing] = React.useState(false);
-  let timer;
-
-  const close = React.useCallback(() => {
-    setIsClosing(true);
-    setTimeout(() => {
-      displayNotification(false);
-    }, 1000);
-  }, [])
-
-  React.useEffect(() => {
-    if (durationBeforeClosing) {
-      //start the timer
-      timer = new setTimeOutWithPause(() => {
-        close()
-      }, durationBeforeClosing * 1000);
-    }
-  }, [durationBeforeClosing]);
-
-  const onMouseOver = () => {
-    if (timer) timer.pause();
-  };
-
-  const onMouseLeave = () => {
-    if (timer) timer.resume();
-  };
-
+ 
+  
   let icon = null;
   let cancelIcon = null;
   const iconSize =
@@ -111,10 +82,8 @@ const UpNotification = (
   const NotificationRender = () => (
     <div className={'up-notification'} style={{overflow: 'hidden'}}>
       <div
-        onMouseEnter={onMouseOver}
-        onMouseLeave={onMouseLeave}
         className={classnames(
-          getStyles({ ...props }, isClosing),
+          getStyles(props),
           className,
           'up-notification-container'
         )}>
@@ -167,7 +136,7 @@ const UpNotification = (
     );
   }
 
-  return showNotification && <NotificationRender />;
+  return <NotificationRender />;
 };
 UpNotification.defaultProps = {
   message: '',
