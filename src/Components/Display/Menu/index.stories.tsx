@@ -13,6 +13,8 @@ import colorMap from "../../../Common/theming/colorMap";
 import UpBox from "../../Containers/Box";
 import UpTooltip from '../Tooltip';
 
+const logoSvg = require('./logo-up-square.svg');
+
 const resetMenuSelection = (menu: Array<MenuItemData>): Array<MenuItemData>  =>  {
     if (isEmpty(menu)) {
         return [];
@@ -43,7 +45,7 @@ const HookedMenu = (props) => {
     const defaultMenu: Array<MenuItemData> = [
       {
         title: 'Stack',
-        icon: 'stack',
+        icon: (props)=> <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
         isSelected: false,
         isVisible: true,
         uri: '/stack',

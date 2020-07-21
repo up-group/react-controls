@@ -5,12 +5,13 @@ import UpDefaultTheme, { UpThemeInterface } from "../../../Common/theming";
 import { WithThemeProps } from "../../../Common/theming/types";
 
 import UpPagination from "./UpPagination";
-import UpDataGrid from "./UpDataGrid";
+import UpDataGrid, { Action } from "./UpDataGrid";
 import { getRootContainer } from "../../../Common/stories";
 
 import { withKnobs } from "@storybook/addon-knobs";
 import { style } from "typestyle";
 import { UpParagraph, UpBox, UpHeading, UpCodeViewer,UpButton ,UpToggle } from "../../../Components";
+import { UpDataGridRowProps, ActionFactory } from './UpDataGridRow';
 export default { 
   title: 'Components|Containers/UpDataGrid',
   decorators : [withKnobs, getRootContainer('UpDataGrid')]
@@ -187,34 +188,44 @@ export const WithSelection =
       />
     )
 
+const actionFactory : ActionFactory<any> = (rowValue : any) => {
+  let actions : Array<Action> = [
+    {
+      action: () => {
+        console.log('test')
+        return new Promise((resolve, reject) => setTimeout(() => resolve(true), 5000));
+      },
+      type: "add",
+      description: "Ajouter un lien",
+      intent: 'secondary'
+    },
+    {
+      action: () => {},
+      type: "arrow-right",
+      description: "Modifier",
+      intent: 'primary',
+      borderless: true,
+    },
+    {
+      action: () => {},
+      type: "delete",
+      description: "Supprimer",
+      intent: 'danger'
+    }
+  ];
+
+  if( rowValue["c1"] == "Value 1" ) {
+    actions.shift();
+  }
+
+  return actions;
+}
+
 export const WithActions =
     () => (
       <UpDataGrid
         onRowClick={(i, row) => console.log(i, row)}
-        rowActions={[
-          {
-            action: () => {
-              console.log('test')
-              return new Promise((resolve, reject) => setTimeout(() => resolve(true), 5000));
-            },
-            type: "add",
-            description: "Ajouter un lien",
-            intent: 'secondary'
-          },
-          {
-            action: () => {},
-            type: "arrow-right",
-            description: "Modifier",
-            intent: 'primary',
-            borderless: true,
-          },
-          {
-            action: () => {},
-            type: "delete",
-            description: "Supprimer",
-            intent: 'danger'
-          }
-        ]}
+        rowActions={actionFactory}
         columns={[
           {
             label: "Col 1",

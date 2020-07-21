@@ -1,3 +1,36 @@
+# ReactControls (version: 0.2.64)
+
+## Bug Fixes
+- Fix null theme in UpLigne
+
+# ReactControls (version: 0.2.63)
+
+## Bug Fixes
+- Fix UpModal showing
+
+# ReactControls (version: 0.2.62)
+
+## Main Changes
+- Improve UpTooltip closing behaviour
+
+# ReactControls (version: 0.2.61)
+
+## Main Changes
+- Enable action factory on UpDataGrid
+
+# ReactControls (version: 0.2.60)
+
+## Main Changes
+- Enable to render icon in UpMenu
+
+# ReactControls (version: 0.2.59)
+
+## Bug Fixes
+
+- Avoid UpModal to appear during mount
+- Allow to close modal on outside click
+- Fix readonly on UpRadio, UpDate and UpText 
+
 # ReactControls (version: 0.2.58)
 
 ## Main Changes

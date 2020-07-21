@@ -9,7 +9,7 @@ import axios from "axios";
 import UpPagination, { UpPaginationProps } from "./UpPagination";
 import UpUpDataGridToolbar from "./UpDataGridToolbar";
 import UpDataGridRowHeader from "./UpDataGridRowHeader";
-import UpDataGridRow from "./UpDataGridRow";
+import UpDataGridRow, { ActionFactory } from "./UpDataGridRow";
 import { ICellFormatter } from "./UpDefaultCellFormatter";
 
 import UpLoadingIndicator from "../../Display/LoadingIndicator";
@@ -31,7 +31,6 @@ const WrapperDataGridStyle = style({
 const CellInnerElementStyle = {
   marginTop: "0.3em"
 };
-
 
 const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
   style({
@@ -190,7 +189,7 @@ export interface exportCsv {
 export interface UpDataGridProps {
   className?: string;
   columns: Array<Column>;
-  rowActions?:Array<Action>;
+  rowActions?: ActionFactory<any> | Array<Action>;
   labelToDisplayRowActionsInCell?: string;
   isSelectionEnabled?: boolean;
   isPaginationEnabled?: boolean;

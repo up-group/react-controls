@@ -81,6 +81,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
             }
         }
         const customClassName = this.props.getRowCustomClassName && this.props.getRowCustomClassName(this.props.rowIndex, this.props.value) ||  '';
+        
         return (
             <UpDataGridConsumer>
           { ({ displayRowActionsWithinCell, rowActions, labelToDisplayRowActionsInCell }) => <tr className={`up-data-grid-row up-data-grid-row-bordered ${ customClassName }`} style={{ cursor: this.props.onClick ? 'pointer' : ''}} onClick={() => this.props.onClick && this.props.onClick(this.props.rowIndex, { value: this.props.value })}>
