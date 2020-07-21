@@ -25,7 +25,7 @@ module.exports = async ({
 
             config.resolve.alias.ui = path.resolve(ROOT_PATH, 'src/');
             config.resolve.alias.icons = path.resolve(ROOT_PATH, 'src/theming/icons')
-            
+         
             // Clean rules
             config.module.rules = config.module.rules.filter(r => r.test.toString() !== /\.css$/.toString());
             const rules = []
@@ -88,12 +88,20 @@ module.exports = async ({
                   use: [
                       require.resolve('babel-loader'),
                       require.resolve('ts-loader'),
-                    //   {
-                    //     loader: 'react-docgen-typescript-loader',
-                    //     options: {
-                    //       tsconfigPath: path.resolve(__dirname, '../tsconfig.json'),
-                    //     },
-                    //   }
+                    // {
+                    //   loader: 'react-docgen-typescript-loader',
+                    //   options: {
+                    //     tsconfigPath: path.resolve(__dirname, '../tsconfig.json'),
+                    //     skipPropsWithoutDoc: true,
+                    //     propFilter(prop) {
+                    //       if (prop.parent) {
+                    //         return !prop.parent.fileName.includes('@types/react');
+                    //       }
+                     
+                    //       return true;
+                    //     }
+                    //   },
+                    // }
                   ]
             });
             rules.push({

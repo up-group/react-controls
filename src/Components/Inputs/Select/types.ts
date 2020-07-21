@@ -26,6 +26,7 @@ interface DataSource {
 
 export interface UpSelectProps extends BaseControlProps<any> {
     default: any;
+    /** Mark UpSelect to allow multiple values */
     multiple?: boolean;
     data?: any;
     isLoading?:boolean;

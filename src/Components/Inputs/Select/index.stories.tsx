@@ -16,6 +16,7 @@ import UpBox from '../../Containers/Box';
 import UpPassword from '../Password';
 import UpDate from '../Date';
 import * as randomSentence from 'random-sentence'
+import UpDataGrid from '../../Containers/DataGrid';
 
 const data = []
 for(let i = 1 ; i < 1000 ; i++ ) {
@@ -23,6 +24,42 @@ for(let i = 1 ; i < 1000 ; i++ ) {
         id: i,
         title:  randomSentence({words: 5})
     })
+}
+
+type properties = Array<{
+    property: string, // The name of the prop
+    propType: Object | string, // The prop type. TODO: info about what this object is...
+    required: boolean, // True if the prop is required
+    description: string, // The description of the prop
+    defaultValue: any // The default value of the prop
+  }>
+
+export const CustomTableComponent = () => {
+    return <div style={{minHeight : '50px', width: '100%', border: '1px dashed #ccc', padding: '10px'}}>
+        <UpDataGrid data={[
+        {
+            property: "status",
+            description : "descriptiondescription",
+            required : false,
+            propType: "string",
+            defaultValue : ""
+        }
+    ] as properties} columns={[{ 
+        label: "Property",
+        field: 'property'
+     },{ 
+        label: "Description",
+        field: 'description'
+     },{ 
+        label: "Type",
+        field: 'propType'
+     },{ 
+        label: "Required ?",
+        field: 'required'
+     },{ 
+        label: "Default Value",
+        field: 'defaultValue'
+     }]} /></div>
 }
 
 export default { 
