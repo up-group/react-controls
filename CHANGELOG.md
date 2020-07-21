@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.65)
+
+## Bug Fixes
+- Fix values for UpDataPanel
+
 #  ReactControls (version: 0.2.64)
 
 ## Main changes
