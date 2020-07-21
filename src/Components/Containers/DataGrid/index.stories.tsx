@@ -738,7 +738,12 @@ export const WithCustomStyle = () => {
      },
      '&.up-data-grid-container .up-data-grid-footer .up-pagination-wrapper': {
       marginRight: '9px'
-    },
+      },
+      '&.up-data-grid-container table' : {
+        borderLeft: '0px',
+        borderRight: '0px',
+        borderRadius: '0px'
+      }
     }
   })
   return (

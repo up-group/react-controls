@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.66)
+
+## Main changes
+- Enable to pass JSX element as title of an UpDataGrid
+
 #  ReactControls (version: 0.2.65)
 
 ## Bug Fixes
