@@ -189,7 +189,7 @@ const UpDataPanelItem = (props: PanelItemProps) => {
                     }
                   }
                 })}
-                onClick={() => element.action(panelData)}></UpButton>
+                onClick={() => element.action({value:{...panelData}})}></UpButton>
             ))}
           </div>
         )}
