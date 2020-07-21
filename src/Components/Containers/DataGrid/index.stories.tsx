@@ -10,7 +10,7 @@ import { getRootContainer } from "../../../Common/stories";
 
 import { withKnobs } from "@storybook/addon-knobs";
 import { style } from "typestyle";
-import { UpParagraph, UpBox, UpHeading, UpCodeViewer,UpButton  } from "../../../Components";
+import { UpParagraph, UpBox, UpHeading, UpCodeViewer,UpButton ,UpToggle } from "../../../Components";
 export default { 
   title: 'Components|Containers/UpDataGrid',
   decorators : [withKnobs, getRootContainer('UpDataGrid')]
@@ -690,3 +690,179 @@ class Test extends React.Component<TestProps, TestState> {
     );
   }
 }
+export const WithCustomStyle = () => {
+  const [isCustomStyle, toggleStyle] = React.useState(true)
+
+  const customTitle = (
+    <div
+      style={{
+        color: 'orange',
+        lineHeight: '21px',
+        fontWeight: 'bold',
+        fontSize: '18px',
+        flexGrow: 1,
+        alignSelf: 'center',
+        marginLeft: '28px'
+      }}>
+      <span>Univers</span>
+      <span style={{color: '#4E5B59'}}> - 3C</span>
+
+    </div>
+  );
+  const customStyle = style({
+    $nest: {
+     '&.up-data-grid-container': {
+       border: '1px solid #DEDDDD',
+       borderRadius:'0 0 4px 4px',
+       padding: '9px 0px'
+     },
+     '&.up-data-grid-container .up-data-grid-header .header-title': {
+       marginLeft: '28px' // add this line in case you pass a title as string
+     },
+     '&.up-data-grid-container .up-data-grid-header .up-buttons-wrapper': {
+       marginRight: '14px'
+     },
+     '&.up-data-grid-container .up-data-grid-footer .up-buttons-wrapper': {
+       marginLeft: '9px'
+     },
+     '&.up-data-grid-container .up-data-grid-footer .up-pagination-wrapper': {
+      marginRight: '9px'
+    },
+    }
+  })
+  return (
+    <div style={{ marginTop: '30px' }}>
+      <div style={{ margin: '9px', display: 'flex' }}>
+        <p style={{marginRight:'9px'}}>Disable custom style</p>
+        <UpToggle
+          value={isCustomStyle}
+          onChange={() => {
+            toggleStyle(!isCustomStyle);
+          }}
+        />
+      </div>
+      <UpDataGrid
+        dataSource={{
+          query: 'https://jsonplaceholder.typicode.com/posts'
+        }}
+        displayRowActionsWithinCell={true}
+        isSelectionEnabled={true}
+        onSelectionChange={(a, b) => {
+          console.log(a, b);
+        }}
+        className={isCustomStyle ? customStyle : ''}
+        paginationProps={{
+          paginationNavigationSeparator: '...',
+          previousLabel: 'Précédent',
+          nextLabel: 'Suivant',
+          renderResultMessage: (
+            theme: UpThemeInterface,
+            from: number,
+            to: number,
+            total: number
+          ) => (
+            <span
+              className={classnames(
+                'up-pagination-result-message',
+                paginationCounterStyle({ theme })
+              )}>
+              {total == 0 && <span>Aucun résultat</span>}
+              {total != 0 && (
+                <span>
+                  <span>R&eacute;sultat(s)&nbsp;</span>
+                  <span>{from}</span>
+                  <span> &agrave; </span>
+                  <span>{to}</span>
+                  <span> sur </span>
+                  <span>{total}</span>
+                </span>
+              )}
+            </span>
+          )
+        }}
+        rowActions={[
+          {
+            action: values => {
+              console.log(values);
+            },
+            type: 'add',
+            description: 'Ajouter un lien'
+          },
+          {
+            action: () => {},
+            type: 'edit',
+            description: 'Modifier'
+          },
+          {
+            action: () => {},
+            type: 'delete',
+            description: 'Supprimer'
+          }
+        ]}
+        paginationPosition="bottom"
+        isPaginationEnabled={true}
+        columns={[
+          {
+            label: 'Titre',
+            field: 'title',
+            isSortable: true
+          },
+          {
+            label: 'Texte',
+            field: 'body',
+            isSortable: true
+          },
+          {
+            label: 'Auteur',
+            field: 'userId',
+            isSortable: true
+          }
+        ]}
+        footerProps={{
+          isPaginationEnabled: true,
+          actionsDataGrid: {
+            validationLabel: 'Valider',
+            groupLabel: 'Action ?',
+            intent: 'secondary',
+            actions: [
+              {
+                actionType: 'add',
+                label: 'Ajouter un lien',
+                onClick: rows => {
+                  console.log('add', rows);
+                  return new Promise(() => {});
+                }
+              },
+              {
+                actionType: 'edit',
+                label: 'Modifier',
+                onClick: rows => {
+                  console.log('edit', rows);
+                  return new Promise(() => {});
+                }
+              },
+              {
+                actionType: 'delete',
+                label: 'Supprimer',
+                onClick: rows => {
+                  console.log('delete', rows);
+                  return new Promise(() => {});
+                }
+              }
+            ]
+          }
+        }}
+        headerProps={{
+          title: isCustomStyle ? customTitle : 'Titre du tableau',
+          buttons: (
+            <>
+              <UpButton intent="secondary">Bouton 1</UpButton>
+              <UpButton intent="secondary">Bouton 2</UpButton>
+            </>
+          )
+        }}
+      />
+    </div>
+  );
+    }
+
