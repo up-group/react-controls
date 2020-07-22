@@ -109,24 +109,25 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
                         <UpButtonGroup gutter={4}>
                             {
                                 finalActions.map((value, index) => {
-                                    return <UpButton
-                                        key={`action-${index}`}
-                                        tooltip={{
-                                            content : value.description,
-                                            title : null
-                                        }}
-                                        actionType={value.type}
-                                        width="icon"
-                                        intent={value.intent}
-                                        borderless={value.borderless}
-                                        onClick={
-                                            () => {
-                                                if (value.action != null) {
-                                                    return value.action({ isSelected: this.props.isSelected, value: this.props.value });
+                                    if(value.display == null || value.display(this.props.value))
+                                        return <UpButton
+                                            key={`action-${index}`}
+                                            tooltip={{
+                                                content : value.description,
+                                                title : null
+                                            }}
+                                            actionType={value.type}
+                                            width="icon"
+                                            intent={value.intent}
+                                            borderless={value.borderless}
+                                            onClick={
+                                                () => {
+                                                    if (value.action != null) {
+                                                        return value.action({ isSelected: this.props.isSelected, value: this.props.value });
+                                                    }
                                                 }
                                             }
-                                        }
-                                    />
+                                        />
                                 })
                             }
                         </UpButtonGroup>

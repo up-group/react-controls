@@ -152,7 +152,8 @@ export interface Action {
   description: string;
   action: (row: Row) => void;
   libelle?: string;
-  borderless?: boolean
+  borderless?: boolean;
+  display?: (row: Row) => boolean;
 }
 
 export interface ToolTip {
