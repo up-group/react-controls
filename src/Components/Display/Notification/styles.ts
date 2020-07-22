@@ -122,6 +122,9 @@ export const progressBar = (props): NestedCSSProperties => {
       },
       '&.up-notification-container:hover .up-notification-progress-bar': {
         animationPlayState: 'paused'
+      },
+      '&.up-notification-container': {
+        borderRadius: '0 0 4px 4px'
       }
     }
   };

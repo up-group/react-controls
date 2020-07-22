@@ -221,3 +221,21 @@ export const Dynamic =
     () => (
         <DynamicOptions />
     ) ;
+
+export const ReadOnlyCheckBox = () => {
+    return <><UpCheckbox options={[{
+        text: "",
+        name: "Option1",
+        value: true,
+        checked: true,
+        readonly: true
+    }]}/>
+    <UpCheckbox options={[{
+        text: "",
+        name: "Option2",
+        value: true,
+        checked: false,
+        readonly: true
+    }]}/>
+    </>
+}

@@ -26,19 +26,19 @@ export const General =
       <UpNotification intent="info">
         <UpLoadingIndicator isLoading={true} displayMode={'inline'} />
    </UpNotification>
-      <UpNotification intent="success" durationBeforeClosing={6} withCancelIcon={boolean('showCancelIcon',true)}>
+      <UpNotification intent="success" durationBeforeClosing={6}  >
         <p>Votre opération a été enregistré avec succès !</p>
       </UpNotification>
-      <UpNotification intent="danger" durationBeforeClosing={8} withCancelIcon={boolean('showCancelIcon',true)}>
+      <UpNotification intent="danger" durationBeforeClosing={8} >
         <p>Une erreur est survenue dans le traitement de votre demande !</p>
       </UpNotification>
-      <UpNotification intent="error" withCancelIcon={boolean('showCancelIcon',true)}>
+      <UpNotification intent="error" onCloseClick={()=> {console.log('icon Clicked')}} >
         <p>Une erreur est survenue dans le traitement de votre demande !</p>
       </UpNotification>
-      <UpNotification intent="warning" withCancelIcon={boolean('showCancelIcon',true)}>
+      <UpNotification intent="warning">
         <p>Votre connexion se termine dans 10 minutes !</p>
       </UpNotification>
-      <UpNotification intent="default" withCancelIcon={boolean('showCancelIcon',true)}>
+      <UpNotification intent="default" >
         <p>Bonjour !</p>
       </UpNotification>
       </div>

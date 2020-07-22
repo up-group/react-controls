@@ -34,7 +34,7 @@ export interface UpNotificationProps extends CommonProps {
   iconSize?: string;
   durationBeforeClosing?: number;
   durationOfAnimation?: number;
-  withCancelIcon?: boolean;
+  onCloseClick?: ()=> void;
 }
 
 const UpNotification = (
@@ -48,7 +48,7 @@ const UpNotification = (
     title,
     className,
     durationBeforeClosing,
-    withCancelIcon
+    onCloseClick
   } = props;
  
   
@@ -69,7 +69,7 @@ const UpNotification = (
       />
     );
   }
-  if (withCancelIcon) {
+  if (onCloseClick) {
     cancelIcon = (
       <SvgIcon
         iconName={iconMap['error']}
@@ -77,6 +77,10 @@ const UpNotification = (
         height={'10px'}
       />
     );
+  }
+
+  const handleIconClick = () => {
+    if(onCloseClick) onCloseClick()
   }
 
   const NotificationRender = () => (
@@ -115,7 +119,7 @@ const UpNotification = (
           </UpRow>
           <div
             className="cancel-icon"
-            onClick={close}>
+            onClick={handleIconClick}>
             {cancelIcon}
           </div>
         </UpGrid>
