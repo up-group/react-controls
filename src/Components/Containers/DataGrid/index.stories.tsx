@@ -4,14 +4,14 @@ import * as classnames from "classnames";
 import UpDefaultTheme, { UpThemeInterface } from "../../../Common/theming";
 import { WithThemeProps } from "../../../Common/theming/types";
 
-import UpPagination from "./UpPagination";
 import UpDataGrid, { Action } from "./UpDataGrid";
 import { getRootContainer } from "../../../Common/stories";
 
 import { withKnobs } from "@storybook/addon-knobs";
 import { style } from "typestyle";
 import { UpParagraph, UpBox, UpHeading, UpCodeViewer,UpButton ,UpToggle } from "../../../Components";
-import { UpDataGridRowProps, ActionFactory } from './UpDataGridRow';
+import { ActionFactory } from './UpDataGridRow';
+
 export default { 
   title: 'Components|Containers/UpDataGrid',
   decorators : [withKnobs, getRootContainer('UpDataGrid')]
@@ -188,43 +188,46 @@ export const WithSelection =
       />
     )
 
-const actionFactory : ActionFactory<any> = (rowValue : any) => {
-  let actions : Array<Action> = [
-    {
-      action: () => {
-        console.log('test')
-        return new Promise((resolve, reject) => setTimeout(() => resolve(true), 5000));
-      },
-      type: "add",
-      description: "Ajouter un lien",
-      intent: 'secondary'
-    },
-    {
-      action: () => {},
-      type: "arrow-right",
-      description: "Modifier",
-      intent: 'primary',
-      borderless: true,
-    },
-    {
-      action: () => {},
-      type: "delete",
-      description: "Supprimer",
-      intent: 'danger'
-    }
-  ];
-
-  if( rowValue["c1"] == "Value 1" ) {
-    actions.shift();
-  }
-
-  return actions;
-}
 
 export const WithActions =
-    () => (
-      <UpDataGrid
-        onRowClick={(i, row) => console.log(i, row)}
+    () => {
+    
+    const [currentRow, setCurrentRow] = React.useState({}) ;
+
+    const actionFactory : ActionFactory<any> = (rowValue : any) => {
+      let actions : Array<Action> = [
+        {
+          action: () => {
+            setCurrentRow(rowValue);
+          },
+          type: "add",
+          description: "Ajouter un lien",
+          intent: 'secondary'
+        },
+        {
+          action: () => {},
+          type: "arrow-right",
+          description: "Modifier",
+          intent: 'primary',
+          borderless: true,
+        },
+        {
+          action: () => {},
+          type: "delete",
+          description: "Supprimer",
+          intent: 'danger'
+        }
+      ];
+    
+      if(currentRow && rowValue['c1'] == currentRow['c1'] ) {
+        actions.shift();
+      }
+    
+      return actions;
+    }
+
+    return <UpDataGrid
+        onRowClick={(i, row) => console.log("onRowClick", i, row)}
         rowActions={actionFactory}
         columns={[
           {
@@ -250,7 +253,7 @@ export const WithActions =
         ]}
         data={data}
       />
-    )
+  }
 
 export const WithExternalSource =
     () => (
