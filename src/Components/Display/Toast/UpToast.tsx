@@ -81,8 +81,8 @@ const buttonStyle = style({
   cursor: 'pointer',
   fontSize: '2rem',
   position: 'absolute',
-  top: '0px',
-  right: '2px'
+  top: '-4px',
+  right: '4px'
 });
 
 const wrapperToastCss: NestedCSSProperties = {
@@ -137,8 +137,6 @@ export interface UpToastProps {
   autoDismissable?: boolean;
   duration?: number;
   title?: JSX.Element | string;
-  subtitle?: string;
-  icon?: JSX.Element;
 }
 
 export interface UpToastState {
@@ -155,14 +153,16 @@ const UpToast = (props: UpToastProps & WithThemeProps) => {
   const [isUnmounting, setIsUnmounting] = React.useState(false);
   React.useEffect(() => {
     if (duration && autoDismissable) {
+      setIsUnmounting(false);
+      setIsVisible(true)
       //start the timer
       autoClosingTimeout = new setTimeOutWithPause(() => {
         handleClose();
       }, duration);
     }
     return () => {
-      autoClosingTimeout.clearTimeout();
-      clearTimeout(manualClosingTimeout);
+      autoClosingTimeout && autoClosingTimeout.clearTimeout();
+      manualClosingTimeout && clearTimeout(manualClosingTimeout);
     };
   }, [duration,autoDismissable]);
 
@@ -179,13 +179,12 @@ const UpToast = (props: UpToastProps & WithThemeProps) => {
   }
 
   const onMouseOver = () => {
-    if (autoClosingTimeout) autoClosingTimeout.pause();
+    if (autoClosingTimeout) autoClosingTimeout.pause()
   };
 
   const onMouseLeave = () => {
     if (autoClosingTimeout) autoClosingTimeout.resume();
   };
-
   if (!isVisible) {
     return null;
   }
@@ -204,7 +203,7 @@ const UpToast = (props: UpToastProps & WithThemeProps) => {
       )}
       onMouseEnter={onMouseOver}
       onMouseLeave={onMouseLeave}>
-      <UpHeading
+      {title &&<><UpHeading
         tag={'h4'}
         margin={'none'}
         className={classnames(toastTitleStyle, 'up-toast-title')}>
@@ -213,8 +212,9 @@ const UpToast = (props: UpToastProps & WithThemeProps) => {
       <div
         className={classnames(buttonStyle, 'up-toast-close')}
         onClick={handleClose}>
-        <UpSvgIcon iconName={'close'} />
-      </div>
+        <UpSvgIcon width={'15px'}
+        height={'15px'} iconName={'close'} />
+      </div></>}
       <div className={'up-toast-body'}>
         {(message != null || children != null) && (
           <UpNotification
@@ -222,6 +222,7 @@ const UpToast = (props: UpToastProps & WithThemeProps) => {
             className={'up-toast-message'}
             message={message}
             intent={intent}
+            onCloseClick={!title && handleClose}
             durationBeforeClosing={props.autoDismissable && convertDurationFromMsToSecond(duration) }
             >
             {children}
@@ -233,7 +234,6 @@ const UpToast = (props: UpToastProps & WithThemeProps) => {
 };
 UpToast.defaultProps = {
   intent: 'default',
-  title: 'Notification',
   duration: 3000,
   autoDismissable: true,
   theme: defaultTheme

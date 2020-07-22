@@ -17,11 +17,11 @@ const boxShadow = {
   boxShadow: 'inset 0 0 0 2px rgba(245, 145, 0, 0.4), inset 0 -1px 0 rgba(245, 145, 0, 0.2)',
 }
 
-export const getCheckableStyles = (props: WithThemeProps) : NestedCSSProperties => {
+export const getCheckableStyles = (props: WithThemeProps | any) : NestedCSSProperties => {
   return {
     position:'relative',
     display: 'block',
-    cursor: 'pointer',
+    cursor: !props.readonly && 'pointer',
     minHeight: '20px',
     paddingLeft: '26px',
     textTransform: 'none',
@@ -49,7 +49,7 @@ export const getCheckableStyles = (props: WithThemeProps) : NestedCSSProperties 
         margin: 0,
         border: 'none',
         backgroundClip: 'padding-box',
-        cursor: 'pointer',
+        cursor: !props.readonly && 'pointer',
         width: '16px',
         height: '16px',
         lineHeight: '16px',
@@ -82,9 +82,9 @@ export const getCheckableStyles = (props: WithThemeProps) : NestedCSSProperties 
         visibility:'hidden',
       },
       '& input:checked ~ .up-control-indicator, & input:checked ~ .up-control-wrapper .up-control-indicator' : {
-        backgroundColor: props.theme.colorMap.primary,
+        backgroundColor:  props.theme.colorMap.primary,
         color: props.theme.colorMap.primaryFg,
-        border: 'none'
+        border: 'none',
       },
       '&:hover input:not(:disabled) ~ .up-control-indicator' : {
         borderColor: props.theme.colorMap.primary
@@ -124,12 +124,12 @@ export const getCheckableStyles = (props: WithThemeProps) : NestedCSSProperties 
       '&.up-intent-success input:not(:disabled):active:checked ~ .up-control-indicator, &.up-intent-success input:not(:disabled):active:checked ~ .up-control-wrapper .up-control-indicator' : {
         ...boxShadow,
         background: props.theme.colorMap.success, 
-        color: props.theme.colorMap.successFg,
+        color:   props.theme.colorMap.successFg,
       },
       '&.up-intent-danger input:not(:disabled):active ~ .up-control-indicator, &.up-intent-danger input:not(:disabled):active ~ .up-control-wrapper .up-control-indicator' : {
         ...boxShadow,
         background: props.theme.colorMap.danger,
-        color: props.theme.colorMap.dangerFg,
+        color:  props.theme.colorMap.dangerFg,
       },
       '&.up-intent-danger input:not(:disabled):active:checked ~ .up-control-indicator, &.up-intent-danger input:not(:disabled):active:checked ~ .up-control-wrapper .up-control-indicator' : {
         ...boxShadow,
@@ -147,13 +147,14 @@ export const getCheckableStyles = (props: WithThemeProps) : NestedCSSProperties 
       },
       '& input:not(:disabled):active ~ .up-control-indicator, & input:not(:disabled):active ~ .up-control-wrapper .up-control-indicator' : {
         ...boxShadow,
-        background: props.theme.colorMap.primary,
-        color: props.theme.colorMap.successFg,
+        background: !props.readonly &&   props.theme.colorMap.primary,
+        color: !props.readonly && props.theme.colorMap.successFg,
+        boxShadow: !props.readonly && 'none'
       },
       '& input:not(:disabled):active:checked ~ .up-control-indicator,& input:not(:disabled):active:checked ~ .up-control-wrapper .up-control-indicator' : {
         ...boxShadow,
         background: props.theme.colorMap.primary, 
-        color: props.theme.colorMap.primaryFg,
+        color:  props.theme.colorMap.primaryFg,
       },
       '& input:focus ~ .up-control-indicator, & input:focus ~ .up-control-wrapper .up-control-indicator' : {
         outline: 'rgba(19, 124, 189, 0.5) auto 2px',
