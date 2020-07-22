@@ -1,3 +1,11 @@
+#  ReactControls (version: 0.2.67)
+
+## Main changes
+- Clean UpToast and UpNotification
+- Add readonly on UpCheckbox
+- Add documentation on UpToast
+- Add arrow back icon
+
 #  ReactControls (version: 0.2.66)
 
 ## Main changes
