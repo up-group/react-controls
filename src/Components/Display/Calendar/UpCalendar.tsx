@@ -16,6 +16,12 @@ import './UpCalendar.css'
 export interface UpCalendarProps extends CalendarOptions {}
 
 const UpCalendar = (props: UpCalendarProps) => {
+    const calendar = React.useRef(null) ;
+
+    React.useEffect(() => {
+        console.log(calendar.current._calendarApi);
+    });
+
     return <FullCalendar
                 initialView="dayGridMonth"
                 locale={'fr'}
@@ -25,6 +31,7 @@ const UpCalendar = (props: UpCalendarProps) => {
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 }}
+                ref={(element) => calendar.current = element}
                 plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                 {...props} />
 }

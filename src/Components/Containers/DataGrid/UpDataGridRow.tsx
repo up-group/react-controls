@@ -108,7 +108,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
                     <UpDataGridCell key={"cell-actions"} value={this.props.value} column={{ label: "", isSortable: false }}>
                         <UpButtonGroup gutter={4}>
                             {
-                                finalActions.map((value, index) => {
+                                finalActions.filter( v => v!==null ).map((value, index) => {
                                     return <UpButton
                                         key={`action-${index}`}
                                         tooltip={{
@@ -127,6 +127,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
                                             }
                                         }
                                     />
+                                    
                                 })
                             }
                         </UpButtonGroup>

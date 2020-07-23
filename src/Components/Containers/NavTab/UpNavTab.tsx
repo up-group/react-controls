@@ -205,7 +205,7 @@ export function TabHead(props: TabHeadProps) {
 
     return <motion.li
         animate
-        className={classnames('up-nav-tab-item', style({ ...navTabHeadsItemStyle(props), ...getNavTabCustomStyle('headItem', props.customStyles, props) }))}
+        className={classnames('up-nav-tab-item', selectedTabClass, style({ ...navTabHeadsItemStyle(props), ...getNavTabCustomStyle('headItem', props.customStyles, props) }))}
         onClick={() => { props.selectTabKey(props.tabKey); }}>
         {props.selectedTabKey == props.tabKey && (
             <>
