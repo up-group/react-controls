@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.68)
+
+## Bug Fixes
+- Fix null action in a UpDataGridRow
+
 #  ReactControls (version: 0.2.67)
 
 ## Main changes
