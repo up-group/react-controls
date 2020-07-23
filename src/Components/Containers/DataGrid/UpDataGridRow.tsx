@@ -108,27 +108,26 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
                     <UpDataGridCell key={"cell-actions"} value={this.props.value} column={{ label: "", isSortable: false }}>
                         <UpButtonGroup gutter={4}>
                             {
-                                finalActions.map((value, index) => {
-                                    if(value!==null){
-                                        return <UpButton
-                                            key={`action-${index}`}
-                                            tooltip={{
-                                                content : value.description,
-                                                title : null
-                                            }}
-                                            actionType={value.type}
-                                            width="icon"
-                                            intent={value.intent}
-                                            borderless={value.borderless}
-                                            onClick={
-                                                () => {
-                                                    if (value.action != null) {
-                                                        return value.action({ isSelected: this.props.isSelected, value: this.props.value });
-                                                    }
+                                finalActions.filter( v => v!==null ).map((value, index) => {
+                                    return <UpButton
+                                        key={`action-${index}`}
+                                        tooltip={{
+                                            content : value.description,
+                                            title : null
+                                        }}
+                                        actionType={value.type}
+                                        width="icon"
+                                        intent={value.intent}
+                                        borderless={value.borderless}
+                                        onClick={
+                                            () => {
+                                                if (value.action != null) {
+                                                    return value.action({ isSelected: this.props.isSelected, value: this.props.value });
                                                 }
                                             }
-                                        />
-                                    }
+                                        }
+                                    />
+                                    
                                 })
                             }
                         </UpButtonGroup>
