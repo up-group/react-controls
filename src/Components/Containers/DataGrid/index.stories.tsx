@@ -210,12 +210,18 @@ export const WithActions =
           description: "Modifier",
           intent: 'primary',
           borderless: true,
+          getProps : (row) => {
+            return {disabled : row['c1'] == "Value 1"};
+          }
         },
         {
           action: () => {},
           type: "delete",
           description: "Supprimer",
-          intent: 'danger'
+          intent: 'danger',
+          isVisible : (row) => {
+            return row['c1'] == "Value 1";
+          }
         }
       ];
     
