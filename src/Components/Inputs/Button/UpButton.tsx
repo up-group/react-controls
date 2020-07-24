@@ -251,34 +251,36 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
                 _tooltip = tooltip as Tooltip;
             }
         }
+
         let handleClickProps = this.props.type === 'submit' ? {} : { onClick : this.handleClick } ;
         
-        const renderButton = (
-          <div style={{ display: 'flex' }}>
+        const RenderButton = renderButtonProps => {
+          return <div style={{ display: 'flex' }}>
             <BaseButton
-              iconName={icon}
+              iconName={icon as IconName}
               iconPosition={position}
               isToggled={this.getValue('isToggled')}
               {...handleClickProps}
               isProcessing={this.getValue('isProcessing')}
               disabled={this.disabled()}
-              {...others}>
+              {...others} {...renderButtonProps}>
               {children != null && (
                 <span className={'up-btn-label'}>{children}</span>
               )}
+              
             </BaseButton>
             {!children && this.props.dropDown != 'none' && this.getValue('isToggled') && <span className="up-btn-missing-border" />}
-          </div>
-        );
+          </div>;
+        };
 
         return (
             <div ref={this.setReference} className={classnames('up-btn-wrapper', getWrapperStyles(this.props), this.props.className)}>
                 {
                     tooltip === null ?
-                        renderButton
+                        <RenderButton />
                         :
                         <UpTooltip {..._tooltip}>
-                            {renderButton}
+                            <RenderButton />
                         </UpTooltip>
                 }
                 {this.props.dropDown != 'none' && this.getValue('isToggled') &&
