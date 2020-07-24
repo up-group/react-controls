@@ -134,7 +134,10 @@ class UpContextMenu extends React.PureComponent<UpContextMenuProps & WithThemePr
     }
 
     handleOutsideClick = (e) => {
-        if (!this.menu.contains(e.target)) this.hideMenu({}, e.target);
+        if (this.state.isVisible && !this.menu.contains(e.target)) {
+            this.setState(prevState => ({ isVisible: !prevState.isVisible }));
+            this.hideMenu({}, e.target);
+        }
     }
 
     hideMenu = (opts = {}, target) => {
