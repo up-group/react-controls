@@ -1,3 +1,13 @@
+#  ReactControls (version: 0.2.69)
+
+## Main Changes
+- Add isVisble and getProps on row action of an UpDataGrid
+
+#  ReactControls (version: 0.2.68)
+
+## Bug Fixes
+- Fix null action in a UpDataGridRow
+
 #  ReactControls (version: 0.2.67)
 
 ## Main changes
