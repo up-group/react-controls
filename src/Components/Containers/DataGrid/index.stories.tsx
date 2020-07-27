@@ -441,6 +441,7 @@ export const WithExternalSourceAndPaginationBottom = () => (
                validationLabel: 'Valider',
                groupLabel: 'Action ?',
                intent: 'secondary',
+               msgConfirmation : 'Confirmer',
                actions: [
                  {
                    actionType: 'add',

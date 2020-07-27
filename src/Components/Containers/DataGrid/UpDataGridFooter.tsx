@@ -22,6 +22,7 @@ interface ActionsDataGrid {
     validationLabel: string;
     intent?: IntentType;
     actions?: ActionDataGrid[] ;
+    msgConfirmation?: string;
 }
 
 export interface UpDataGridFooterProps {
@@ -68,7 +69,7 @@ const UpDataGridFooter = (props: UpDataGridFooterProps & WithThemeProps) => {
         isDataFetching,
     } = props
 
-    const {actions, validationLabel, groupLabel, intent} = actionsDataGrid || {}
+    const {actions, validationLabel, groupLabel, intent, msgConfirmation} = actionsDataGrid || {}
 
     const [selectedAction ,selectAction] = React.useState(null)
     const selectedData = data.filter(element => element.isSelected)
@@ -111,7 +112,7 @@ const UpDataGridFooter = (props: UpDataGridFooterProps & WithThemeProps) => {
                 </UpButton>
                 <UpModal showModal={showModal} onClose={() => handleCloseModal()}>
                   <div style={{"textAlign": "center"}}>{/* A régler !!!! */}
-                    <UpButton intent="primary">Confirmer la suppression</UpButton>
+                  <UpButton intent="primary">{msgConfirmation}</UpButton>
                   </div>
                 </UpModal>
               </>
