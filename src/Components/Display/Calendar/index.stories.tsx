@@ -11,6 +11,8 @@ import UpParagraph from '../../Display/Paragraph';
 import UpCodeViewer from '../CodeViewer';
 import UpLink from '../Link';
 
+import { style } from "typestyle";
+
 export default { 
     title: 'Components|Display/UpCalendar',
     decorators : [withKnobs, getRootContainer('UpCalendar')]
@@ -34,6 +36,11 @@ export const General =
                 <UpCalendar
                     initialView="dayGridMonth"
                     weekends={false}
+                    className={style({$nest : {
+                        '&.fc-daygrid' : {
+                            backgroundColor:'white'
+                        }
+                    }})}
                     events={[
                         { title: 'event 1', date: '2020-06-31' },
                         { title: 'event 2', date: '2020-07-02' }

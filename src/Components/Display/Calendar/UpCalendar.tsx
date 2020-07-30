@@ -13,7 +13,9 @@ import '@fullcalendar/daygrid/main.css'
 import '@fullcalendar/timegrid/main.css'
 import './UpCalendar.css'
 
-export interface UpCalendarProps extends CalendarOptions {}
+export interface UpCalendarProps extends CalendarOptions {
+    className?: string;
+}
 
 const UpCalendar = (props: UpCalendarProps) => {
     const calendar = React.useRef(null) ;
@@ -33,6 +35,7 @@ const UpCalendar = (props: UpCalendarProps) => {
                 }}
                 ref={(element) => calendar.current = element}
                 plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+                viewClassNames={props.className}
                 {...props} />
 }
 

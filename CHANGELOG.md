@@ -1,3 +1,9 @@
+#  ReactControls (version: 0.2.70)
+
+## Main Changes
+- Improve UpContextMenu closing behaviour
+- Add className props to UpCalendar mapped to the viewClassName property of Fullcalendar
+
 #  ReactControls (version: 0.2.69)
 
 ## Main Changes
