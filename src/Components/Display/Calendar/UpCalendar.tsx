@@ -16,14 +16,16 @@ import { style } from 'typestyle';
 import * as classnames from 'classnames';
 import { usePopper } from "react-popper";
 
+export { EventInput }
+
 export interface UpCalendarProps extends CalendarOptions {
     className?: string;
     generateTooltipEvent? : (event: EventInput) => unknown;
-    renderTooltipHeader? : (event:unknown) => JSX.Element;
-    renderTooltipContent? : (event:unknown) => JSX.Element;
+    renderTooltipHeader? : (event: EventInput | unknown) => JSX.Element;
+    renderTooltipContent? : (event: EventInput | unknown) => JSX.Element;
 }
 
-const UpCalendar = (props: UpCalendarProps) => {
+const UpCalendar : React.FunctionComponent<UpCalendarProps> = (props) => {
     const calendar = React.useRef(null) ;
 
     React.useEffect(() => {
@@ -61,6 +63,8 @@ const UpCalendar = (props: UpCalendarProps) => {
         },
         ],
     });
+
+    const {generateTooltipEvent, renderTooltipContent, renderTooltipHeader, className, ...calendarProps} = props;
     
     return ( 
         <div className={'up-calendar'} style={{width: '100%'}}>
@@ -76,7 +80,7 @@ const UpCalendar = (props: UpCalendarProps) => {
                 eventMouseEnter={(e) => {
                   setReferenceElement(e.el);
                   setTooltipEvent(
-                    (props.generateTooltipEvent && props.generateTooltipEvent(e.event)) || e.event
+                    (generateTooltipEvent && generateTooltipEvent(e.event)) || e.event
                   );
                 }}
                 eventMouseLeave={(e) => {
@@ -85,8 +89,8 @@ const UpCalendar = (props: UpCalendarProps) => {
                 }}
                 ref={(element) => calendar.current = element}
                 plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-                viewClassNames={classnames(fullCalendarStyle, props.className)}
-                {...props} />
+                viewClassNames={classnames(fullCalendarStyle, className)}
+                {...calendarProps} />
             
             {referenceElement && tooltipEvent && (
                 <div
@@ -102,12 +106,12 @@ const UpCalendar = (props: UpCalendarProps) => {
                 />
                 {props.renderTooltipHeader &&
                     <div className="up-calendar__tooltip__header">
-                        {props.renderTooltipHeader(tooltipEvent)}
+                        {renderTooltipHeader(tooltipEvent)}
                     </div>
                 }
                 {props.renderTooltipContent &&
                     <div className="up-calendar__tooltip__content">
-                        {props.renderTooltipContent(tooltipEvent)}
+                        {renderTooltipContent(tooltipEvent)}
                     </div>
                 }
                 </div>
