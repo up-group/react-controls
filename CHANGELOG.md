@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.73)
+
+## Main Changes
+- UpCalendar : clean code and exports
+
 #  ReactControls (version: 0.2.72)
 
 ## Main Changes
