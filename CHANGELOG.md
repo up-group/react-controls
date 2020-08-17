@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.71)
+
+## Bug Fixes
+- UpDataGrid : fix error when action null
+
 #  ReactControls (version: 0.2.70)
 
 ## Main Changes
