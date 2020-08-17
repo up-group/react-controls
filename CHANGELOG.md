@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.72)
+
+## Main Changes
+- UpCalendar : improve design and add tooltip props
+
 #  ReactControls (version: 0.2.71)
 
 ## Bug Fixes
