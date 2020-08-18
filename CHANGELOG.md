@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.74)
+
+## Main Changes
+- UpCalendar : upgrade to FullCalendar 5.3.x
+
 #  ReactControls (version: 0.2.73)
 
 ## Main Changes
