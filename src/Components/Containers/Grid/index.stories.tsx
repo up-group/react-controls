@@ -10,7 +10,7 @@ import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
 export default { 
-  title: 'Components|Containers/UpGrid',
+  title: 'Components/Containers/UpGrid',
   decorators : [withKnobs, getRootContainer('UpGrid')]
 };
 

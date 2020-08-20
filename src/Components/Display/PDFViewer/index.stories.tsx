@@ -12,7 +12,7 @@ import { getRootContainer } from '../../../Common/stories';
 import UpCodeViewer from '../CodeViewer';
 
 export default { 
-  title: 'Components|Display/UpPDFViewer',
+  title: 'Components/Display/UpPDFViewer',
   decorators : [withKnobs, getRootContainer('UpPDFViewer')]
 };
 

@@ -1,3 +1,3 @@
-import UpBox from './UpBox'
+import UpBox from './UpBox';
 
-export default UpBox
+export default UpBox;

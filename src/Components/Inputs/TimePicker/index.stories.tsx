@@ -11,7 +11,7 @@ import { Formik } from 'formik'
 import * as Yup from 'yup';
 
 export default { 
-    title: 'Components|Inputs/UpTimePicker',
+    title: 'Components/Inputs/UpTimePicker',
     decorators : [withKnobs, getRootContainer('UpTimePicker')]
   };
   export const General =

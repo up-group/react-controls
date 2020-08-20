@@ -553,4 +553,4 @@ export const getWrapperStyles = (props: UpButtonStyledProps): string => {
       }
     }
   }); 
-}
+};

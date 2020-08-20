@@ -188,7 +188,7 @@ const HookedMenu = (props) => {
 };
 
 export default { 
-    title: 'Components|Display/UpMenu'
+    title: 'Components/Display/UpMenu'
 };
   
 export const General =  () => (<HookedMenu />)

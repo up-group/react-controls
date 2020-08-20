@@ -8,7 +8,7 @@ import UpLoadingIndicator from '../LoadingIndicator';
 import { style } from 'typestyle';
 
 export default { 
-  title: 'Components|Display/UpNotification',
+  title: 'Components/Display/UpNotification',
   decorators : [withKnobs, getRootContainer('UpNotification')]
 };
 

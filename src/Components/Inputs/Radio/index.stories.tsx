@@ -14,7 +14,7 @@ import UpCheckBox from '../Checkbox';
 
 
 export default { 
-    title: 'Components|Inputs/UpRadio',
+    title: 'Components/Inputs/UpRadio',
     decorators : [withKnobs, getRootContainer('UpRadio')]
   };
 

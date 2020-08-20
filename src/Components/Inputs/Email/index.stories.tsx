@@ -6,7 +6,7 @@ import { getRootContainer } from '../../../Common/stories';
 import { withKnobs } from '@storybook/addon-knobs';
 
 export default { 
-  title: 'Components|Inputs/UpEmail',
+  title: 'Components/Inputs/UpEmail',
   decorators : [withKnobs, getRootContainer('UpEmail')]
 };
 

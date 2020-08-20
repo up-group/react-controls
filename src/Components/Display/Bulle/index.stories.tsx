@@ -6,7 +6,7 @@ import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import { style } from 'typestyle';
 
 export default { 
-    title: 'Components|Display/UpBulle',
+    title: 'Components/Display/UpBulle',
     decorators : [withKnobs, getRootContainer('UpBulle')]
   };
 

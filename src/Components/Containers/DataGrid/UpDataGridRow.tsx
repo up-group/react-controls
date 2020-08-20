@@ -65,8 +65,6 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
         } else if(this.props.actions != null) {
             finalActions = this.props.actions as Array<Action> ;
         }
-
-        finalActions = finalActions.filter(action => action?.isVisible == null || typeof action.isVisible !== "function" || action.isVisible(this.props.value));
         
         // render action in the first element of the array
         const renderActions = ({
@@ -74,8 +72,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
             labelToDisplayRowActionsInCell,
             index,
             value
-        }) => {   
-                     
+        }) => {            
             if( labelToDisplayRowActionsInCell && value.label === labelToDisplayRowActionsInCell){
                 return rowActions
             }
@@ -112,7 +109,6 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
                         <UpButtonGroup gutter={4}>
                             {
                                 finalActions.filter( v => v!==null ).map((value, index) => {
-                                    let extraProps = (value.getProps != null &&  typeof value.getProps === "function" && value.getProps(this.props.value)) || {} 
                                     return <UpButton
                                         key={`action-${index}`}
                                         tooltip={{
@@ -130,7 +126,6 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
                                                 }
                                             }
                                         }
-                                        {...extraProps}
                                     />
                                     
                                 })

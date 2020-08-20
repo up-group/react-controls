@@ -5,7 +5,7 @@ import UpBox from '../../Containers/Box';
 import { getRootContainer } from "../../../Common/stories";
 
 export default { 
-    title: 'Components|Inputs/UpPicture',
+    title: 'Components/Inputs/UpPicture',
     decorators : [withKnobs, getRootContainer('UpPicture')]
   };
 

@@ -40,4 +40,4 @@ export const useSafeStateGeneric = <T>(initialValue:T) => {
     }]
 }
 
-export default useSafeState
+export default useSafeState;

@@ -153,8 +153,6 @@ export interface Action {
   action: (row: Row) => void;
   libelle?: string;
   borderless?: boolean
-  isVisible?: (value:unknown) => boolean;
-  getProps?: (value:unknown) => unknown;
 }
 
 export interface ToolTip {

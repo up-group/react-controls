@@ -6,7 +6,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { getRootContainer } from '../../../Common/stories';
 
 export default { 
-    title: 'Components|Inputs/UpRating',
+    title: 'Components/Inputs/UpRating',
     decorators : [withKnobs, getRootContainer('UpRating')]
   };
   

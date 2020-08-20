@@ -1,7 +1,7 @@
 import { style, media, keyframes} from "typestyle";
 import { UpBulleProps } from "./UpBulle";
 import { DeviceSmartphones, DeviceSmallSmartphones } from "../../../Common/utils/device";
-import { fadeOut, fadeIn } from "../../../Common/theming/animations";
+import { fadeOutAnimation, fadeInAnimation } from "../../../Common/theming/animations";
 import { NestedCSSProperties } from "typestyle/lib/types";
 
 export const AutoSizedComponent : NestedCSSProperties =
@@ -52,7 +52,7 @@ export const MessageStyle = style({
     margin: "0px 0px 0px 12px",
     color:"white",
     opacity:  1,
-    animation: `${fadeIn} 2s`,
+    animation: `${fadeInAnimation} 2s`,
 }, 
 media(DeviceSmartphones, HiddenMessage),
 media(DeviceSmallSmartphones, HiddenMessage));

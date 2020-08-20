@@ -11,11 +11,8 @@ import UpParagraph from '../../Display/Paragraph';
 import UpCodeViewer from '../CodeViewer';
 import UpLink from '../Link';
 
-import { style } from "typestyle";
-import * as moment from 'moment'
-
 export default { 
-    title: 'Components|Display/UpCalendar',
+    title: 'Components/Display/UpCalendar',
     decorators : [withKnobs, getRootContainer('UpCalendar')]
 };
 
@@ -30,20 +27,19 @@ export const General =
                  Basé sur <code><UpLink href={'https://fullcalendar.io'}>FullCalendar</UpLink></code>.
             </UpParagraph>
             <UpBox flexDirection={'row'} flexWrap={true}  full={true}>
-                <UpCalendar events={[
-                        { title: 'event 1', start: moment().toDate(), end: moment().add(1, 'hours').toDate(), description: 'Mon event 1' },
-                        { title: 'event 2', start: moment().add(1, 'days').toDate(), end: moment().add(1, 'days').add(1, 'hours').toDate(), description: 'Mon event 2'}
-                    ]}
-                    renderTooltipHeader={(event: InputEvent & { title: string, description: string}) => {
-                        console.log(event) ;
-                        return <div>{event.title}</div> 
-                    }}
-                    renderTooltipContent={(event: InputEvent) => {
-                        console.log(event) ;
-                        return <div>{event['extendedProps'].description}</div> }
-                    } />
+                <UpCalendar />
             </UpBox>
             <UpCodeViewer style={{ width : '100%'}} code={codeStoryViewer} language={'jsx'}></UpCodeViewer>
+            <UpBox flexDirection={'row'} flexWrap={true} full={true}>
+                <UpCalendar
+                    initialView="dayGridMonth"
+                    weekends={false}
+                    events={[
+                        { title: 'event 1', date: '2020-06-31' },
+                        { title: 'event 2', date: '2020-07-02' }
+                    ]}
+                />
+            </UpBox>
          </UpBox>
         </UpThemeProvider>    
 )

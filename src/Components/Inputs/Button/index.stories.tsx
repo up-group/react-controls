@@ -26,7 +26,7 @@ const codeStoryADroite =
 </UpButton>`
 
 export default { 
-  title: 'Components|Inputs/UpButton',
+  title: 'Components/Inputs/UpButton',
   decorators : [withKnobs]
 };
 
@@ -68,7 +68,6 @@ export const General =
             <UpButton 
               rounded={true}
               intent={'secondary'}
-              tooltip={"Cliquez sur moi !!"}
               onClick={(event) => {
               return new Promise(function (resolve, reject) {
                 setTimeout(() => resolve(true), 5000)

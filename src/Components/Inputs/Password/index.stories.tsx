@@ -8,7 +8,7 @@ import {  rulesMatch } from "../../../Common/utils";
 import UpLabel from '../../Display/Label';
 
 export default { 
-  title: 'Components|Inputs/UpPassword',
+  title: 'Components/Inputs/UpPassword',
   decorators : [withKnobs, getRootContainer('UpPassword')]
 };
 

@@ -1,128 +1,144 @@
-import * as React from 'react'
-
-import UpDefaultTheme from '../../../Common/theming'
-import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
-
-import UpModal from './UpModal'
-import UpButton from '../../Inputs/Button/UpButton'
-import UpPanel from '../../Containers/Panel'
-
+import * as React from 'react';
+import UpDefaultTheme from '../../../Common/theming';
+import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider';
+import UpModal, { UpModal as UpModalComponent } from './UpModal';
+import UpButton from '../../Inputs/Button/UpButton';
+import UpPanel from '../../Containers/Panel';
+import UpButtonGroup from '../ButtonGroup';
 import { getRootContainer } from '../../../Common/stories';
-import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
-import {DsiplayMode,ModalPosition} from './UpModal'
-import UpButtonGroup from '../ButtonGroup'
-export interface ModalWrapperProps {
-    html?: string;
-    displayMode?:  DsiplayMode;
-    fullHeight?: boolean;
-    modalWidth?: ModalPosition;
-    closeIconSize?: number;
-    withHeaderSeparator?:boolean;
-    closeOnClickOutside?:boolean
-}
+import { UpModalWrapperProps } from './types';
+import UpBox from '../Box/';
 
-interface ModalWrapperState {
-    showModal: boolean;
-}
+const ModalWrapper: React.FunctionComponent<UpModalWrapperProps> = props => {
 
-class ModalWrapper extends React.Component<ModalWrapperProps, ModalWrapperState>{
-    constructor(props, context) {
-        super(props, context);
-        this.state = {
-            showModal: true
-        }
-        this.openModal = this.openModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
-        this.onClose = this.onClose.bind(this);
-    }
-    openModal() {
-        this.setState({ showModal: true });
-    }
-    closeModal() {
-        this.setState({ showModal: false });
-    }
-    onClose() {
-        this.setState({ showModal: false });
-    }
-    render() {
-        const CloseAction = () => <UpButton intent={'secondary'} actionType={"close"} onClick={this.closeModal}>Close</UpButton>;
-        const OpenAction = () => <UpButton intent={'secondary'} actionType={"confirm"} onClick={this.openModal}>Open</UpButton>;
-        const Info = () => <UpPanel type={"warning"} disableAutoIntentIcon={false}>
+    const {
+        closeOnClickOutside,
+        displayMode,
+        fullHeight,
+        html,
+        modalWidth,
+        withHeaderSeparator,
+        footer
+    } = props;
+
+    const [showModal, setShowModal] = React.useState<boolean>(true);
+
+    const openModal = () => setShowModal(true);
+    const closeModal = () => setShowModal(false);
+
+    const openModalButton = () => (
+        <UpButton
+            intent={'secondary'}
+            actionType={'confirm'}
+            onClick={openModal}
+        >
+            Open
+        </UpButton>
+    );
+
+    const modalContent = () => (
+        <UpPanel type={'warning'}>
             <p>Bienvenue !!</p>
-        </UpPanel>;
+        </UpPanel>
+    );
 
-        return (
-          <div style={{ margin: "30px 0px" }}>
-              <UpModal closeOnClickOutside={this.props.closeOnClickOutside} withHeaderSeparator={this.props.withHeaderSeparator} modalWidth={this.props.modalWidth} fullHeight={this.props.fullHeight} displayMode={this.props.displayMode} closeIconSize={this.props.closeIconSize} onClose={this.onClose} 
-                  header={'Header'} showModal={this.state.showModal} html={this.props.html}>
-                  {this.props.html == null &&
-                      <Info />
-                  }
-              </UpModal>
-              <UpButtonGroup gutter={10}>
-                <OpenAction />
-              </UpButtonGroup>
-          </div>
-        );
-    }
+    return (
+        <>
+            <UpModal
+                closeOnClickOutside={closeOnClickOutside}
+                displayMode={displayMode}
+                fullHeight={fullHeight}
+                header={'Header'}
+                html={html}
+                modalWidth={modalWidth}
+                onClose={closeModal}
+                showModal={showModal}
+                withHeaderSeparator={withHeaderSeparator}
+                footer={footer !== null ? footer : null}
+            >
+                {html == null && modalContent()}
+            </UpModal>
+            <UpButtonGroup> {openModalButton()}</UpButtonGroup>
+        </>
+    );
 }
 
-const HTML = `<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> <html> <head> <title>Mon titre</title> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="UTF-8"> </head> <body text="#000000" vlink="#990000" alink="#990000" link="#990000" bgcolor="#ffffff"><p>Mon message</p></body></html>`;
-
-export default { 
+export default {
     title: 'Components|Containers/UpModal',
-    decorators : [withKnobs, getRootContainer('UpModal')]
-  };
+    decorators: [
+        getRootContainer('UpModal'),
+        (ModalWrapper) => (
+            <div style={{ height: "100vh" }}>
+                <UpThemeProvider theme={UpDefaultTheme}>
+                    <ModalWrapper />
+                </UpThemeProvider>
+            </div>
+        )
+    ],
+    component: UpModalComponent,
+};
 
-export const General = () => (
-  <UpThemeProvider theme={UpDefaultTheme}>
-    <ModalWrapper />
-  </UpThemeProvider>
-);
-export const Html = () => (
-  <UpThemeProvider theme={UpDefaultTheme}>
-    <ModalWrapper html={HTML} />
-  </UpThemeProvider>
-);
+const htmlFrame = `<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> <html> <head> <title>Mon titre</title> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="UTF-8"> </head> <body text="#000000" vlink="#990000" alink="#990000" link="#990000" bgcolor="#ffffff"><p>Mon message</p></body></html>`;
 
-export const FromTop = () => (
-  <UpThemeProvider theme={UpDefaultTheme}>
-    <ModalWrapper
-      displayMode="fromTop"
-      fullHeight
-      modalWidth="full"
-    />
-  </UpThemeProvider>
-);
-export const FromBottom = () => (
-  <UpThemeProvider theme={UpDefaultTheme}>
-    <ModalWrapper
-      displayMode="fromBottom"
-      fullHeight
-      modalWidth="full"
-    />
-  </UpThemeProvider>
-);
-export const FromRight = () => (
-  <UpThemeProvider theme={UpDefaultTheme}>
-    <ModalWrapper
-      displayMode="fromRight"
-      fullHeight
-      modalWidth="half"
-      closeIconSize={21}
-      withHeaderSeparator={false}
-      closeOnClickOutside={true}
+const customedFooter = (
+    <UpBox
+        flexDirection={'row'}
+        justifyContent={'center'}
+        backgroundColor={'#fff'}
+        pad={'small'}
+    >
+        <UpButton
+            intent={'secondary'}
+            actionType={'confirm'}
+        >
+            Button
+        </UpButton>
+    </UpBox>
+)
 
-    />
-  </UpThemeProvider>
-);
-export const FromLeft = () => (
-  <UpThemeProvider theme={UpDefaultTheme}>
-    <ModalWrapper
-      displayMode="fromLeft"
-      fullHeight
-      modalWidth="half"
-    />
-  </UpThemeProvider>
-);
-    
+export const GeneralUse =
+    () => (
+        <ModalWrapper />
+    );
+
+export const WithFooter =
+    () => (
+        <ModalWrapper footer={customedFooter} />
+    );
+
+export const WithHtmlContent =
+    () => (
+        <ModalWrapper html={htmlFrame} />
+    );
+
+export const showFromTop =
+    () => (
+        <ModalWrapper
+            displayMode="fromTop"
+            modalWidth="full"
+        />
+    );
+
+export const showFromBottom =
+    () => (
+        <ModalWrapper
+            displayMode="fromBottom"
+            modalWidth="full"
+        />
+    );
+
+export const showFromRight =
+    () => (
+        <ModalWrapper
+            displayMode="fromRight"
+            modalWidth="half"
+        />
+    );
+
+export const showFromLeft =
+    () => (
+        <ModalWrapper
+            displayMode="fromLeft"
+            modalWidth="half"
+        />
+    );

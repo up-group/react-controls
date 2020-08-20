@@ -76,13 +76,13 @@ export default class UpDataGridCell extends React.Component<UpDataGridCellProps,
                 {renderInnercell}
                 </div>
                 <div className="row-actions" >
-                { this.props.actions && this.props.actions.map(action => {
+                { this.props.actions && this.props.actions.map(e => {
                     return <p
-                        key={action.type}
-                        className={`row-action${action.type === 'delete' ? '-delete' : ''}`}
-                        onClick={event => action.action(this.props.value)}
+                        key={e.type}
+                        className={`row-action${e.type === 'delete' ? '-delete' : ''}`}
+                        onClick={event => e.action(this.props.value)}
                     >
-                        {action.description}
+                        {e.description}
                     </p>
                 })}
                 </div>

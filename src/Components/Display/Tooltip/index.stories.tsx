@@ -18,7 +18,7 @@ const TooltipRenderer = (
 );
 
 export default { 
-  title: 'Components|Display/UpTooltip',
+  title: 'Components/Display/UpTooltip',
   decorators : [withKnobs, getRootContainer('UpTooltip')]
 };
 

@@ -11,7 +11,7 @@ import UpPassword from '../Password';
 
 
 export default { 
-  title: 'Components|Inputs/UpDate',
+  title: 'Components/Inputs/UpDate',
   decorators : [withKnobs, getRootContainer('UpDate')]
 };
 
