@@ -1,3 +1,39 @@
+#  ReactControls (version: 0.2.74)
+
+## Main Changes
+- UpCalendar : upgrade to FullCalendar 5.3.x
+
+#  ReactControls (version: 0.2.73)
+
+## Main Changes
+- UpCalendar : clean code and exports
+
+#  ReactControls (version: 0.2.72)
+
+## Main Changes
+- UpCalendar : improve design and add tooltip props
+
+#  ReactControls (version: 0.2.71)
+
+## Bug Fixes
+- UpDataGrid : fix error when action null
+
+#  ReactControls (version: 0.2.70)
+
+## Main Changes
+- Improve UpContextMenu closing behaviour
+- Add className props to UpCalendar mapped to the viewClassName property of Fullcalendar
+
+#  ReactControls (version: 0.2.69)
+
+## Main Changes
+- Add isVisble and getProps on row action of an UpDataGrid
+
+#  ReactControls (version: 0.2.68)
+
+## Bug Fixes
+- Fix null action in a UpDataGridRow
+
 #  ReactControls (version: 0.2.67)
 
 ## Main changes

@@ -68,6 +68,7 @@ export const General =
             <UpButton 
               rounded={true}
               intent={'secondary'}
+              tooltip={"Cliquez sur moi !!"}
               onClick={(event) => {
               return new Promise(function (resolve, reject) {
                 setTimeout(() => resolve(true), 5000)

@@ -33,7 +33,7 @@ class SimpleMenu extends React.PureComponent<any, SimpleMenuState> {
             <div>
                 <h3>Simple Menu</h3>
                 <p>Mise en oeuvre d'un utilisation du menu contextuel sur un paragraphe :</p>
-                <UpContextMenuTrigger id={MENU_TYPE} holdToDisplay={1000}>
+                <UpContextMenuTrigger id={MENU_TYPE} holdToDisplay={1000} renderTag="p" attributes={{style : { color : "red"}}} >
                     <div className='well' style={{cursor: 'pointer', margin: "30px", padding: "10px", borderRadius: "6px",
                         border:"1px solid #369"}}>Cliquez avec le bouton droit de votre souris pour afficher le menu</div>
                 </UpContextMenuTrigger>
