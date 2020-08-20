@@ -9,7 +9,7 @@ import { withKnobs, select } from '@storybook/addon-knobs';
 const alertFont = { fontSize: "36px", color: "green", }
 
 export default { 
-    title: 'Components|Display/UpIcons',
+    title: 'Components/Display/UpIcons',
     decorators : [withKnobs, getRootContainer('UpIcons')]
 };
 

@@ -11,7 +11,7 @@ import * as Yup from 'yup';
 import UpInput from '../Input';
 
 export default { 
-  title: 'Components|Inputs/UpText',
+  title: 'Components/Inputs/UpText',
   decorators : [withKnobs, getRootContainer('UpText')]
 };
 

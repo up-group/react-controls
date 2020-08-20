@@ -76,7 +76,7 @@ class SimpleDrawing extends React.PureComponent<any, SimpleDrawingState> {
 }
 
 export default { 
-    title: 'Components|Inputs/UpDrawing',
+    title: 'Components/Inputs/UpDrawing',
     decorators : [withKnobs, getRootContainer('UpDrawing')]
 };
 

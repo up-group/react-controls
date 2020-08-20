@@ -13,7 +13,7 @@ import { UpParagraph, UpBox, UpHeading, UpCodeViewer,UpButton ,UpToggle } from "
 import { ActionFactory } from './UpDataGridRow';
 
 export default { 
-  title: 'Components|Containers/UpDataGrid',
+  title: 'Components/Containers/UpDataGrid',
   decorators : [withKnobs, getRootContainer('UpDataGrid')]
 };
 
@@ -107,7 +107,7 @@ export const General =
       })} textAlign={'left'} color={'#111'}>
         Le composant <code>UpDataGrid</code> fournit un ensemble de fonctionnalités telles la pagination, le tri ou le filtre des données parmi tant d'autres. 
       </UpParagraph>
-      <UpBox className={style({
+      <div className={style({
         margin: '10px'
       })}>
         <UpHeading>Liste des ...</UpHeading>
@@ -149,7 +149,7 @@ export const General =
                 Pour afficher le composant <code>UpDataGrid</code> en lui injectant les données à afficher sans modifier les autres props :
           </UpParagraph>
           <UpCodeViewer code={simpleDataGrid}></UpCodeViewer>
-        </UpBox>
+        </div>
       </>
     )
 
@@ -441,7 +441,6 @@ export const WithExternalSourceAndPaginationBottom = () => (
                validationLabel: 'Valider',
                groupLabel: 'Action ?',
                intent: 'secondary',
-               confirmationMessage : 'Confirmer',
                actions: [
                  {
                    actionType: 'add',

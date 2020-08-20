@@ -7,8 +7,7 @@ import UpFormGroup from './Containers/FormGroup'
 import UpButtonGroup from './Containers/ButtonGroup'
 import UpDataGrid from './Containers/DataGrid/UpDataGrid'
 import UpModal from './Containers/Modal/UpModal'
-import UpDashboard from './Containers/Dashboard/UpDashboard'
-import UpTile from './Containers/Dashboard/UpTile'
+import UpTile from './Containers/Tile/UpTile'
 import UpNavTab from './Containers/NavTab/UpNavTab'
 
 import UpBadge from './Display/Badge'
@@ -97,7 +96,6 @@ export {
     UpCalendarTimeline,
     UpDataGrid,
     UpModal,
-    UpDashboard,
     UpTile,
     UpLogoAlerte,
     UpCalendarWeekDay,

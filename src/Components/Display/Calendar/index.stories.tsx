@@ -12,7 +12,7 @@ import UpCodeViewer from '../CodeViewer';
 import UpLink from '../Link';
 
 export default { 
-    title: 'Components|Display/UpCalendar',
+    title: 'Components/Display/UpCalendar',
     decorators : [withKnobs, getRootContainer('UpCalendar')]
 };
 

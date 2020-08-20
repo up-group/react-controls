@@ -8,7 +8,7 @@ import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
 import { UpButton } from "../../..";
 
 export default { 
-  title: 'Components|Containers/UpButtonGroup',
+  title: 'Components/Containers/UpButtonGroup',
   decorators : [withKnobs, getRootContainer('UpButtonGroup')]
 };
 

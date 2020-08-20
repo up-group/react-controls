@@ -4,7 +4,7 @@ import FormGroup from './UpFormGroup';
 import { getRootContainer } from '../../../Common/stories';
 
 export default {
-  title: 'Components|Containers/FormGroup',
+  title: 'Components/Containers/FormGroup',
   decorators: [withKnobs, getRootContainer('FormGroup')]
 };
 export const FormGroupGeneric = () => (

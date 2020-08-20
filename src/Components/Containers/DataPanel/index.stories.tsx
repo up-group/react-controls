@@ -6,7 +6,7 @@ import { style } from 'typestyle';
 import UpBadge from '../../Display/Badge/UpBadge';
 
 export default {
-  title: 'Components|Containers/UpDataPanel',
+  title: 'Components/Containers/UpDataPanel',
   decorators: [withKnobs, getRootContainer('UpDataPanel')]
 };
 

@@ -3,7 +3,6 @@ import { style } from "typestyle"
 import classnames from 'classnames'
 import UpButtonGroup from '../ButtonGroup'
 import UpButton from '../../Inputs/Button/UpButton'
-import UpModal from '../../Containers/Modal/UpModal'
 import { NestedCSSProperties } from 'typestyle/lib/types'
 import { isEmpty } from '../../../Common/utils'
 import { WithThemeProps }  from '../../../Common/theming/withTheme'
@@ -22,7 +21,6 @@ interface ActionsDataGrid {
     validationLabel: string;
     intent?: IntentType;
     actions?: ActionDataGrid[] ;
-    confirmationMessage?: string;
 }
 
 export interface UpDataGridFooterProps {
@@ -69,7 +67,7 @@ const UpDataGridFooter = (props: UpDataGridFooterProps & WithThemeProps) => {
         isDataFetching,
     } = props
 
-    const {actions, validationLabel, groupLabel, intent, confirmationMessage} = actionsDataGrid || {}
+    const {actions, validationLabel, groupLabel, intent} = actionsDataGrid || {}
 
     const [selectedAction ,selectAction] = React.useState(null)
     const selectedData = data.filter(element => element.isSelected)
@@ -80,11 +78,6 @@ const UpDataGridFooter = (props: UpDataGridFooterProps & WithThemeProps) => {
       }
     }, [selectedData]);
 
-    const [showModal, setShowModal] = React.useState(false);
-
-    const handleShowModal = () => setShowModal(true);
-
-    const handleCloseModal = () => setShowModal(false);
 
     const buttonAction = !isEmpty(actions) && actions.map(({ label, ...rest}) => ({
         libelle: label,
@@ -99,44 +92,25 @@ const UpDataGridFooter = (props: UpDataGridFooterProps & WithThemeProps) => {
 
     return (
         <div className={classnames('up-data-grid-footer', getStyle(props))}>
-        {actions &&
-          <UpButtonGroup isAddOn='right' gutter={1} align={"h"}>
-            {actions.length === 1 ? (
-              <>
-                <UpButton
-                  intent="primary"
-                  disabled={!(selectedData.length >= 2)}
-                  onClick={() => handleShowModal()}
-                >
-                  {actions[0].actionType}
-                </UpButton>
-                <UpModal showModal={showModal} onClose={() => handleCloseModal()}>
-                  <div style={{"textAlign": "center"}}>{/* A régler !!!! */}
-                  <UpButton intent="primary">{confirmationMessage}</UpButton>
-                  </div>
-                </UpModal>
-              </>
-            ) : (
-                <>
-                  <UpButton
-                    dropDown="down"
-                    intent="primary"
-                    extraActions={buttonAction || []}
-                    disabled={!(selectedData.length >= 2)}
-                  >
-                    {(selectedAction && selectedAction.label) || groupLabel}
-                  </UpButton>
-                  <UpButton
-                    onClick={handleValidation}
-                    intent={intent}
-                    disabled={!selectedAction}
-                  >
-                    {validationLabel}
-                  </UpButton>
-                </>
-              )}
-          </UpButtonGroup>
-        }
+            {actions &&
+                <UpButtonGroup  isAddOn='right' gutter={1} align={"h"}>
+                    <UpButton
+                        dropDown="down"
+                        intent="primary"
+                        extraActions={buttonAction || []}
+                        disabled={!(selectedData.length >= 2)}
+                    >
+                        {(selectedAction && selectedAction.label) || groupLabel}
+                    </UpButton>
+                    <UpButton
+                        onClick={handleValidation}
+                        intent={intent}
+                        disabled={!selectedAction}
+                    >
+                        {validationLabel}
+                    </UpButton>
+                </UpButtonGroup>
+            }
             {isDataFetching && <UpLoadingIndicator />}
             {isPaginationEnabled && !isDataFetching && pagination}
         </div>

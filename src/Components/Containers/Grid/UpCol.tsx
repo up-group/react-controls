@@ -60,4 +60,4 @@ const UpCol : React.FunctionComponent<UpColProps> = ({prefixCls = 'up-col', rowS
   )
 }
 
-export default UpCol
+export default UpCol;

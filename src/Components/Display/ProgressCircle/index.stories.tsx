@@ -15,7 +15,7 @@ import UpProgessCircle from '.';
 import { bool } from 'prop-types';
 
 export default { 
-  title: 'Components|Display/UpProgessCircle',
+  title: 'Components/Display/UpProgessCircle',
   decorators : [withKnobs, getRootContainer('UpProgessCircle')]
 };
 

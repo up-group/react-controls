@@ -5,7 +5,7 @@ import UpSelect from './'
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
-import { mdx } from '@storybook/addon-docs/blocks';
+// import { mdx } from '@storybook/addon-docs/blocks';
 import { UpGrid, UpRow, UpCol } from '../../Containers/Grid';
 
 import { Formik } from "formik";
@@ -63,13 +63,8 @@ export const CustomTableComponent = () => {
 }
 
 export default { 
-    title: 'Components|Inputs/UpSelect',
+    title: 'Components/Inputs/UpSelect',
     decorators : [withKnobs,getRootContainer('UpSelect')],
-    parameters: {
-        docs: {
-            page: mdx
-        }
-    }
 };
 
 const UserCreationForm = props => {

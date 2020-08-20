@@ -1,126 +1,57 @@
-import { keyframes, style } from 'typestyle';
+import { keyframes } from 'typestyle';
 
-export type FadeType = 'fadeIn' | 'fadeOut'
+export type fadeType = 'fadeIn' | 'fadeOut';
+export type fadeDirection = 'fromTop' | 'fromRight' | 'fromBottom' | 'fromLeft';
+export type fadeMode = 'ease';
 
-const getFromOpacity = (fadeType: FadeType) => fadeType === 'fadeIn'
-    ? { opacity: 0 }
-    : fadeType === 'fadeOut'
-        ? { opacity: 1 }
-        : {};
+const fadeInKeyframes = keyframes({
+    from: { opacity: 0 },
+    to: { opacity: 1 }
+});
 
-const getToOpacity = (fadeType: FadeType) => fadeType === 'fadeIn'
-    ? { opacity: 1 }
-    : fadeType === 'fadeOut'
-        ? { opacity: 0 }
-        : {};
+const fadeOutKeyframes = keyframes({
+    from: { opacity: 1 },
+    to: { opacity: 0 }
+});
 
-const fromBottomAnimation = (fadeType?: FadeType) => keyframes({
+const getFromOpacity = (fadeType: fadeType) => {
+    return fadeType === 'fadeIn' ? { opacity: 0 } : fadeType === 'fadeOut' ? { opacity: 1 } : {};
+}
+
+const getToOpacity = (fadeType: fadeType) => {
+    return fadeType === 'fadeIn' ? { opacity: 1 } : fadeType === 'fadeOut' ? { opacity: 0 } : {};
+}
+
+enum FadeDirection {
+    fromTop = 'marginBottom',
+    fromBottom = 'marginTop',
+    fromLeft = 'marginRight',
+    fromRight = 'marginLeft'
+};
+
+const animationKeyframes = (fadeType?: fadeType, fadeDirection?: fadeDirection) => keyframes({
     from: {
-        marginTop: '100%',
+        [FadeDirection[fadeDirection]]: '100%',
         ...getFromOpacity(fadeType)
     },
     to: {
-        marginTop: '10px',
+        [FadeDirection[fadeDirection]]: '0',
         ...getToOpacity(fadeType)
     }
 });
 
-const fromTopAnimation = (fadeType?: FadeType) => keyframes({
-    from: {
-        marginTop: '-100%',
-        ...getFromOpacity(fadeType)
-    },
-    to: {
-        marginTop: '0px',
-        ...getToOpacity(fadeType)
-    }
-});
-
-const fromRightAnimation = (fadeType?: FadeType) => keyframes({
-    from: {
-        marginLeft: `${100}%`,
-        ...getFromOpacity(fadeType),
-    },
-
-    to: {
-        marginLeft: `${0}%`,
-        ...getToOpacity(fadeType)
-    }
-});
-
-
-const fromLeftAnimation = (fadeType?: FadeType) => keyframes({
-    from: {
-        marginRight: '100%',
-        ...getFromOpacity(fadeType),
-    },
-
-    to: {
-        marginRight:'0%',
-        ...getToOpacity(fadeType)
-    }
-});
-
-const fadeInAnimation = keyframes({
-    from: {
-        opacity: 0
-    },
-    to: {
-        opacity: 1
-    }
-});
-const fadeOutAnimation = keyframes({
-    from: {
-        opacity: 1
-    },
-    to: {
-        opacity: 0
-    }
-});
-
-export const fadeIn = (
+export const fullAnimationProp = (
     duration: number = 1,
-    mode: string = 'ease'
-) => ({
-    animation: `${fadeInAnimation} ${duration}s ${mode}`
-});
-export const fadeOut = (
-    duration: number = 1,
-    mode: string = 'ease'
-) => ({
-    animation: `${fadeOutAnimation} ${duration}s ${mode}`
-});
-export const animateFromBottom = (
-    duration: number = 1,
-    mode: string = 'ease',
-    fadeType?: FadeType
-) => ({
-    animation: `${fromBottomAnimation(
-        fadeType
-    )} ${duration}s ${mode}`
-});
-export const animateFromTop = (
-    duration: number = 1,
-    mode: string = 'ease',
-    fadeType?: FadeType
-) => ({
-    animation: `${fromTopAnimation(
-        fadeType
-    )} ${duration}s ${mode}`
-});
-
-export const animateFromRight = (duration: number = 1,
-    mode: string = 'ease',
-    fadeType?: FadeType) => ({
-        animation: `${fromRightAnimation(
-            fadeType,
-        )} ${duration}s ${mode}`
+    fadeMode: fadeMode = 'ease',
+    fadeType?: fadeType,
+    fadeDirection?: fadeDirection) => ({
+        animation: `${animationKeyframes(fadeType, fadeDirection)} ${duration}s ${fadeMode}`
     });
 
-export const animateFromLeft = (duration: number = 1,
-    mode: string = 'ease',
-    fadeType?: FadeType) => ({
-        animation: `${fromLeftAnimation(
-            fadeType
-        )} ${duration}s ${mode}`
-    });
+export const fadeInAnimation = (duration: number = 1, fadeMode: fadeMode = 'ease') => ({
+    animation: `${fadeInKeyframes} ${duration}s ${fadeMode}`
+});
+
+export const fadeOutAnimation = (duration: number = 1, fadeMode: fadeMode = 'ease') => ({
+    animation: `${fadeOutKeyframes} ${duration}s ${fadeMode}`
+});

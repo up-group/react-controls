@@ -5,7 +5,7 @@ import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
 export default { 
-  title: 'Components|Display/UpLigne',
+  title: 'Components/Display/UpLigne',
   decorators : [withKnobs, getRootContainer('UpLigne')]
 };
 

@@ -37,7 +37,7 @@ class ToggleWrapper extends React.Component<ToggleWrapperProps, ToggleWrapperSta
 }
 
 export default { 
-    title: 'Components|Inputs/UpToggle',
+    title: 'Components/Inputs/UpToggle',
     decorators : [withKnobs]
 };
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BaseHTMLAttributes } from 'react';
 import { fontFace, style } from 'typestyle';
-import materialinearTtfUrl = require('../../../Common/theming/materialinear/fonts/materialinear.ttf')
+import materialinearTtfUrl = require('../../../Common/theming/materialinear/fonts/materialinear.ttf');
 import { getFontClassName, isNullOrUndef, stringIsNullOrEmpty, AttributPolice, getFontSizeNumber } from "../../../Common/utils/helpers";
 
 fontFace({

@@ -4,7 +4,7 @@ import { getRootContainer } from "../../../Common/stories";
 import { withKnobs } from "@storybook/addon-knobs";
 
 export default { 
-    title: 'Components|Containers/UpPagination',
+    title: 'Components/Containers/UpPagination',
     decorators : [withKnobs, getRootContainer('UpPagination')]
   };
   

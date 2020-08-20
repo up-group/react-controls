@@ -16,7 +16,7 @@ import { MentorNames } from "../../../Common/theming/mentors";
 import { IllustrationNames } from "../../../Common/theming/illustrations";
 
 export default { 
-  title: 'Components|Display/UpSvgIcon',
+  title: 'Components/Display/UpSvgIcon',
   decorators : [withKnobs, getRootContainer('UpSvgIcon')]
 };
 

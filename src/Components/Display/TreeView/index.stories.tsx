@@ -6,7 +6,7 @@ import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
 export default { 
-    title: 'Components|Display/UpTreeView',
+    title: 'Components/Display/UpTreeView',
     decorators : [withKnobs, getRootContainer('UpTreeView')]
   };
 
