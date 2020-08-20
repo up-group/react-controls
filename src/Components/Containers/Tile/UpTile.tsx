@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as classnames from 'classnames';
-import * as Proptypes from 'prop-types';
 import './bootstrap-grid.css';
 import SvgIcon from '../../Display/SvgIcon/index';
 import { getStyles } from './styles';
@@ -49,15 +48,6 @@ UpTile.defaultProps = {
     title: null,
     footer: null,
     maxHeight: null
-};
-
-UpTile.propTypes = {
-    title: Proptypes.string,
-    footer: Proptypes.string,
-    maxHeight: Proptypes.oneOfType([
-        Proptypes.string,
-        Proptypes.number
-    ])
 };
 
 export default UpTile;

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { UpModalProps } from './types';
 import * as classnames from 'classnames';
-import * as Proptypes from 'prop-types';
 import UpSvgIcon from '../../Display/SvgIcon'
 import { withTheme } from '../../../Common/theming';
 import { getStyles } from './styles';
@@ -86,19 +85,6 @@ UpModal.defaultProps = {
     footer: null,
     html: null,
     onClose: null,
-};
-
-UpModal.propTypes = {
-    showModal: Proptypes.bool,
-    withHeaderSeparator: Proptypes.bool,
-    displayMode: Proptypes.oneOf(['fromTop', 'fromBottom', 'fromRight', 'fromLeft']),
-    modalWidth: Proptypes.oneOf(['half', 'full', 'default']),
-    fullHeight: Proptypes.bool,
-    closeOnClickOutside: Proptypes.bool,
-    header: Proptypes.oneOfType([Proptypes.element, Proptypes.string]),
-    footer: Proptypes.string,
-    html: Proptypes.string,
-    onClose: Proptypes.func,
 };
 
 export { UpModal };

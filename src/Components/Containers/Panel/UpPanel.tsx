@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as Proptypes from 'prop-types';
 import { UpPanelProps } from './types';
 import UpSvgIcon from '../../Display/SvgIcon';
 import * as classnames from 'classnames';
@@ -60,15 +59,6 @@ UpPanel.defaultProps = {
     message: null,
     iconName: null,
     iconSize: null
-};
-
-UpPanel.propTypes = {
-    title: Proptypes.oneOfType([Proptypes.element, Proptypes.string]),
-    footer: Proptypes.element,
-    type: Proptypes.oneOf(['primary', 'secondary', 'danger', 'warning', 'success', 'info', 'default', 'error', 'light']),
-    message: Proptypes.string,
-    // iconName: Proptypes.string,
-    iconSize: Proptypes.number
 };
 
 export { UpPanel };

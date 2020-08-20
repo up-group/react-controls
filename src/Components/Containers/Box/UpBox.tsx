@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { UpBoxProps } from './types';
-import * as Proptypes from 'prop-types';
 import * as cn from 'classnames';
 import { getBoxStyles, getSize } from './styles';
 import withTheme from '../../../Common/theming/withTheme';
@@ -36,25 +35,6 @@ UpBox.defaultProps = {
     reverse: false,
     full: false,
     boxSize: 'auto'
-};
-
-UpBox.propTypes = {
-    flexDirection: Proptypes.oneOf(['row', 'column', 'row-reverse', 'column-reverse']),
-    alignContent: Proptypes.oneOf(['flex-start', 'center', 'flex-end', 'space-between', 'space-around']),
-    justifyContent: Proptypes.oneOf(['flex-start', 'center', 'flex-end', 'space-between', 'space-around']),
-    alignItems: Proptypes.oneOf(['flex-start', 'center', 'flex-end', 'baseline', 'stretch']),
-    // padding
-    // margin
-    color: Proptypes.string,
-    backgroundColor: Proptypes.string,
-    backgroundImage: Proptypes.string,
-    style: Proptypes.object,
-    onClick: Proptypes.func,
-    selectable: Proptypes.oneOf(['none', 'auto']),
-    flexWrap: Proptypes.bool,
-    reverse: Proptypes.bool,
-    full: Proptypes.bool,
-    // boxSize
 };
 
 export { UpBox };
