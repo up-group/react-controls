@@ -3,5 +3,9 @@ module.exports = {
     '../docs/**/*.story.mdx',
     '../**/*.stories.tsx',
   ],
-  addons: ['@storybook/addon-docs'],
+  addons: [
+    '@storybook/addon-docs',
+    '@storybook/addon-knobs',
+    '@storybook/addon-storysource'
+  ],
 };
