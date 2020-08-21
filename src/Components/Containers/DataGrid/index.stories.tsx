@@ -107,7 +107,7 @@ export const General =
       })} textAlign={'left'} color={'#111'}>
         Le composant <code>UpDataGrid</code> fournit un ensemble de fonctionnalités telles la pagination, le tri ou le filtre des données parmi tant d'autres. 
       </UpParagraph>
-      <div className={style({
+      <UpBox className={style({
         margin: '10px'
       })}>
         <UpHeading>Liste des ...</UpHeading>
@@ -149,7 +149,7 @@ export const General =
                 Pour afficher le composant <code>UpDataGrid</code> en lui injectant les données à afficher sans modifier les autres props :
           </UpParagraph>
           <UpCodeViewer code={simpleDataGrid}></UpCodeViewer>
-        </div>
+        </UpBox>
       </>
     )
 
@@ -210,12 +210,18 @@ export const WithActions =
           description: "Modifier",
           intent: 'primary',
           borderless: true,
+          getProps : (row) => {
+            return {disabled : row['c1'] == "Value 1"};
+          }
         },
         {
           action: () => {},
           type: "delete",
           description: "Supprimer",
-          intent: 'danger'
+          intent: 'danger',
+          isVisible : (row) => {
+            return row['c1'] == "Value 1";
+          }
         }
       ];
     
@@ -441,6 +447,7 @@ export const WithExternalSourceAndPaginationBottom = () => (
                validationLabel: 'Valider',
                groupLabel: 'Action ?',
                intent: 'secondary',
+               confirmationMessage : 'Confirmer',
                actions: [
                  {
                    actionType: 'add',
