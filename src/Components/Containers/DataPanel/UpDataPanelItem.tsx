@@ -142,7 +142,7 @@ const UpDataPanelItem = (props: PanelItemProps) => {
       )}
       <div className="panel-body">
         {columns.map((element, index) =>
-          (panelData[element.field] && showOnlyNotEmptyValue) ||
+          (panelData && panelData[element.field] && showOnlyNotEmptyValue) ||
           !showOnlyNotEmptyValue ? (
             <React.Fragment key={index}>
               <div className="panel-col">
@@ -156,7 +156,7 @@ const UpDataPanelItem = (props: PanelItemProps) => {
                     element,
                     element.getFormatterProps
                       ? element.getFormatterProps(
-                          panelData[element.field]
+                          panelData?panelData[element.field]:null
                         )
                       : {}
                   )
