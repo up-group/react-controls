@@ -7,7 +7,7 @@ import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
 export default { 
-  title: 'Components|Display/UpHeading',
+  title: 'Components/Display/UpHeading',
   decorators : [withKnobs, getRootContainer('UpHeading')]
 };
 

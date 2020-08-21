@@ -52,7 +52,7 @@ class SimpleMenu extends React.PureComponent<any, SimpleMenuState> {
 }
 
 export default { 
-    title: 'Components|Display/UpContextMenu',
+    title: 'Components/Display/UpContextMenu',
     decorators : [withKnobs, getRootContainer('UpContextMenu')]
 };
 

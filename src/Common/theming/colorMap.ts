@@ -2,28 +2,28 @@ import { ThemeColorMap } from './types';
 import { color } from 'csx';
 
 export const colors = {
-         tangerine: "#F59100",
-         pumpkine: "#ee7f01",
-         greyishBrown: "#3f3b37",
-         QR: "#3f3b37",
-         brownGrey: "#D7D7D7",
-         pinkishGrey: "#ccc8c5",
-         lightGrey: "#eaeae9",
-         paleGrey: "#979797",
-         white: "#ffffff",
-         turquoiseBlue: "#039eb2",
-         oceanBlue: "#0360a8",
-         paleRed: "#D0021B",
-         boringGreen: "#6DBD8E",
-         tangerine10: "#f39100",
-         turquoiseDark: "#0e8c9b",
-         paleYellow: "#f8f1ad",
-         social: "#507cc0",
-         socialDark: "#4c70a7",
-         grey: "#4E5B59",
-         green: '#6DBD8E',
-         tangerine2: "#FCC865"
-       };
+  tangerine: "#F59100",
+  pumpkine: "#ee7f01",
+  greyishBrown: "#3f3b37",
+  QR: "#3f3b37",
+  brownGrey: "#D7D7D7",
+  pinkishGrey: "#ccc8c5",
+  lightGrey: "#eaeae9",
+  paleGrey: "#979797",
+  white: "#ffffff",
+  turquoiseBlue: "#039eb2",
+  oceanBlue: "#0360a8",
+  paleRed: "#D0021B",
+  boringGreen: "#6DBD8E",
+  tangerine10: "#f39100",
+  turquoiseDark: "#0e8c9b",
+  paleYellow: "#f8f1ad",
+  social: "#507cc0",
+  socialDark: "#4c70a7",
+  grey: "#4E5B59",
+  green: '#6DBD8E',
+  tangerine2: "#FCC865"
+};
 
 const colorMap: ThemeColorMap = {
   dark1: "#293953",
@@ -222,7 +222,7 @@ const colorMap: ThemeColorMap = {
 
   grey1: colors.grey,
   lightGrey1: "#F2F2F2",
-  
+
 
   black1: "#0a0a0a",
   black2: "#2d2d2d",

@@ -26,7 +26,7 @@ const codeStoryADroite =
 </UpButton>`
 
 export default { 
-  title: 'Components|Inputs/UpButton',
+  title: 'Components/Inputs/UpButton',
   decorators : [withKnobs]
 };
 

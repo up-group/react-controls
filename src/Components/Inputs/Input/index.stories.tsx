@@ -17,7 +17,7 @@ import UpText from "../../Inputs/Text";
 import UpNumber from "../../Inputs/Number/UpNumber";
 
 export default { 
-  title: 'Components|Inputs/UpInput',
+  title: 'Components/Inputs/UpInput',
   decorators : [withKnobs, getRootContainer('UpInput')]
 };
 

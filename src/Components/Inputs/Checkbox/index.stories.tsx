@@ -195,7 +195,7 @@ const MultipleCheckboxWithSomeDisabled = () => {
 }
 
 export default { 
-    title: 'Components|Inputs/UpCheckbox',
+    title: 'Components/Inputs/UpCheckbox',
     decorators : [withKnobs, getRootContainer('UpCheckbox')]
 };
 

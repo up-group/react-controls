@@ -303,4 +303,4 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
     }
 }
 
-export default withTheme<UpButtonProps>(UpButton)
+export default withTheme<UpButtonProps>(UpButton);

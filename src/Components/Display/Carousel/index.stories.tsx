@@ -7,7 +7,7 @@ import { style } from 'typestyle';
 import UpButton from '../../Inputs/Button/UpButton';
 
 export default { 
-  title: 'Components|Display/UpCarousel',
+  title: 'Components/Display/UpCarousel',
   decorators : [withKnobs, getRootContainer('UpCarousel')]
 }
 

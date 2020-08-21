@@ -15,7 +15,7 @@ import { style } from "typestyle";
 import * as moment from 'moment'
 
 export default { 
-    title: 'Components|Display/UpCalendar',
+    title: 'Components/Display/UpCalendar',
     decorators : [withKnobs, getRootContainer('UpCalendar')]
 };
 

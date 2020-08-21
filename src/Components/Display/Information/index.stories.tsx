@@ -7,7 +7,7 @@ import { style } from 'typestyle';
 import UpInformation from './';
 
 export default { 
-  title: 'Components|Display/UpInformation',
+  title: 'Components/Display/UpInformation',
   decorators : [withKnobs, getRootContainer('UpInformation')]
 }
 

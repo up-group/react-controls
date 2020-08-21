@@ -9,7 +9,7 @@ import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 
 export default { 
-  title: 'Components|Inputs/UpPhone',
+  title: 'Components/Inputs/UpPhone',
   decorators : [withKnobs, getRootContainer('UpPhone')]
 };
 

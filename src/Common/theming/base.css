@@ -27,6 +27,25 @@ html {
   visibility: hidden;
 }
 
-p {
-  margin:'0px';
+p, em, li, dt, dd {
+  margin: 0;
+}
+
+.sbdocs.sbdocs-wrapper {
+  background-color: #FAFAFA;
+}
+
+.sbdocs.sbdocs-content {
+  max-width: 100%;
+}
+
+/* Temporaire */
+.sbdocs.sbdocs-preview > div:last-child > div:first-child > div:first-child {
+  position: relative;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  -webkit-transform-origin: top left;
+  -ms-transform-origin: top left;
+  transform-origin: top left;
 }

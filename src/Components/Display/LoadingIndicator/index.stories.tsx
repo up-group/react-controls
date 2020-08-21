@@ -37,7 +37,7 @@ const styles : {[key : string] : React.CSSProperties} = {
 };
 
 export default { 
-  title: 'Components|Display/UpLoadingIndicator',
+  title: 'Components/Display/UpLoadingIndicator',
   decorators : [withKnobs, getRootContainer('UpLoadingIndicator')]
 };
 

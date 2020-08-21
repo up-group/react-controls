@@ -17,7 +17,7 @@ import { style } from 'typestyle';
 import { getRootContainer } from '../../../Common/stories';
 
 export default { 
-  title: 'Components|Inputs/UpDropFile',
+  title: 'Components/Inputs/UpDropFile',
   decorators : [withKnobs, getRootContainer('UpDropFile')]
 };
 

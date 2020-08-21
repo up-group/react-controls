@@ -13,7 +13,7 @@ import { UpParagraph, UpBox, UpHeading, UpCodeViewer,UpButton ,UpToggle } from "
 import { ActionFactory } from './UpDataGridRow';
 
 export default { 
-  title: 'Components|Containers/UpDataGrid',
+  title: 'Components/Containers/UpDataGrid',
   decorators : [withKnobs, getRootContainer('UpDataGrid')]
 };
 

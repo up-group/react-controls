@@ -11,7 +11,7 @@ import { IntentType } from 'theming/types';
 import UpDataGrid from '../../Containers/DataGrid';
 
 export default {
-  title: 'Components|Display/UpToast',
+  title: 'Components/Display/UpToast',
   decorators: [withKnobs, getRootContainer('UpToast')]
 };
 type properties = Array<{

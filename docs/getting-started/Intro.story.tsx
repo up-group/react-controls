@@ -3,7 +3,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 import Welcome from './Welcome' ;
 
 export default { 
-  title: 'Docs|Intro',
+  title: 'Docs/Intro',
 };
 
 export const Intro =
