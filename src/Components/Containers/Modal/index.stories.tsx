@@ -80,22 +80,6 @@ export default {
 
 const htmlFrame = `<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> <html> <head> <title>Mon titre</title> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="UTF-8"> </head> <body text="#000000" vlink="#990000" alink="#990000" link="#990000" bgcolor="#ffffff"><p>Mon message</p></body></html>`;
 
-const customedFooter = (
-    <UpBox
-        flexDirection={'row'}
-        justifyContent={'center'}
-        backgroundColor={'#fff'}
-        pad={'small'}
-    >
-        <UpButton
-            intent={'secondary'}
-            actionType={'confirm'}
-        >
-            Button
-        </UpButton>
-    </UpBox>
-)
-
 export const GeneralUse =
     () => (
         <ModalWrapper />
@@ -103,7 +87,20 @@ export const GeneralUse =
 
 export const WithFooter =
     () => (
-        <ModalWrapper footer={customedFooter} />
+        <ModalWrapper footer={
+            <UpBox
+                justifyContent={'center'}
+                backgroundColor={'#fff'}
+                pad={'small'}
+            >
+                <UpButton
+                    intent={'secondary'}
+                    actionType={'confirm'}
+                >
+                    Button
+                </UpButton>
+            </UpBox>
+        } />
     );
 
 export const WithHtmlContent =

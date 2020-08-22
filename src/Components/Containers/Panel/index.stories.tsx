@@ -5,10 +5,6 @@ import UpPanel, { UpPanel as UpPanelComponent } from './UpPanel';
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs } from '@storybook/addon-knobs';
 
-const customedTitle = (
-    <div style={{ borderBottom: "1px dotted white" }}>Mon JSX Panel</div>
-);
-
 export default {
     title: 'Components/Containers/UpPanel',
     decorators: [
@@ -53,7 +49,9 @@ export const successPanelWithDeleteIconAndCustomedTitle =
     () => (
         <UpPanel
             type={'success'}
-            title={customedTitle}
+            title={
+                <h3 style={{ borderBottom: "1px dotted white" }}>Mon JSX Panel</h3>
+            }
             message={'Success'}
             iconName={'delete'}
         />
