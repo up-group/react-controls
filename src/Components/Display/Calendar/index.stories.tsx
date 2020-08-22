@@ -31,8 +31,8 @@ export const General =
             </UpParagraph>
             <UpBox flexDirection={'row'} flexWrap={true}  full={true}>
                 <UpCalendar events={[
-                        { title: 'event 1', start: moment().toDate(), end: moment().add(1, 'hours').toDate(), description: 'Mon event 1' },
-                        { title: 'event 2', start: moment().add(1, 'days').toDate(), end: moment().add(1, 'days').add(1, 'hours').toDate(), description: 'Mon event 2'}
+                        { title: 'event 1', start: moment().toDate(), end: moment().add({ hours: 1 }).toDate(), description: 'Mon event 1' },
+                        { title: 'event 2', start: moment().add({ days: 1 }).toDate(), end: moment().add({ days: 1 }).add({ hours: 1 }).toDate(), description: 'Mon event 2' }
                     ]}
                     renderTooltipHeader={(event: InputEvent & { title: string, description: string}) => {
                         console.log(event) ;

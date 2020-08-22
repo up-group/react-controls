@@ -201,7 +201,7 @@
     "react-markdown": "^2.4.5",
     "react-maskedinput": "^3.3.4",
     "react-pdf": "^4.0.0",
-    "react-popper": "^2.2.3",
+    "react-popper-2": "npm:react-popper@^2.2.3",
     "react-pure-render": "^1.0.2",
     "react-select": "2.1.1",
     "react-sortable-hoc": "^0.6.1",
