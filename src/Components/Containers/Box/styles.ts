@@ -44,11 +44,6 @@ function stringBoxStyle(size: BoxSize): SizeStyle {
             width: '100vw',
             height: '100vh',
         };
-    } else if (size === 'auto') {
-        return {
-            width: 'auto',
-            height: 'auto',
-        };
     } else {
         return {
             width: size ? `${toRem(BOX_SIZE_MAP[size])}` : '',
@@ -58,8 +53,8 @@ function stringBoxStyle(size: BoxSize): SizeStyle {
 };
 
 function objectBoxStyle(size: BoxSizeObject): SizeStyle {
-    let width = 'auto';
-    let height = 'auto';
+    let width = null;
+    let height = null;
     if (size.vertical) {
         height = size.vertical === 'full'
             ? '100vh'
@@ -81,30 +76,20 @@ export function boxSizeToStyle(size: BoxSize | BoxSizeObject): SizeStyle {
         return stringBoxStyle(size);
     } else if (typeof size === 'object') {
         return objectBoxStyle(size);
-    } else {
-        return { width: 'auto', height: 'auto' };
     }
 };
 
 export function calculateFullStyle(full: Full, postFix: 'vw' | 'vh'): string {
     if (typeof full === 'object') {
         if (postFix === 'vw') {
-            return full.horizontal ? `100%` : 'auto';
+            return full.horizontal ? '100%' : 'auto';
         } else {
-            return full.vertical ? `100%` : 'auto';
+            return full.vertical ? '100%' : 'auto';
         }
     } else if (typeof full === 'boolean') {
-        return full ? `100%` : 'auto';
+        return '100%';
     }
-    return 'auto';
 };
-
-const FullSize = style({
-    flexGrow: 1,
-    flexShrink: 0,
-    flexBasis: '100%',
-    width: '100%'
-});
 
 export const getBoxStyles = (props: UpBoxProps) => {
     const BoxStyles = style({
@@ -125,14 +110,12 @@ export const getBoxStyles = (props: UpBoxProps) => {
 };
 
 export const getSize = (props: UpBoxProps) => {
-    const Sizes = style({
-        flexShrink: 1,
-        width: boxSizeToStyle(props.boxSize).width,
-        height: boxSizeToStyle(props.boxSize).height,
-        flexBasis: "auto",
-        minHeight: calculateFullStyle(props.full, 'vh'),
-        minWidth: calculateFullStyle(props.full, 'vw')
+    const sizes = style({
+        width: props.boxSize !== 'auto' ? boxSizeToStyle(props.boxSize).width : null,
+        height: props.boxSize !== 'auto' ? boxSizeToStyle(props.boxSize).height : null,
+        minHeight: props.full ? calculateFullStyle(props.full, 'vh') : null,
+        minWidth: props.full ? calculateFullStyle(props.full, 'vw') : null
     });
 
-    return (props.full || props.boxSize) ? Sizes : FullSize;
+    return (props.full || props.boxSize !== 'auto') ? sizes : null;
 };

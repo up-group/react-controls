@@ -36,7 +36,7 @@ export const General =
     const intent = text('intent', 'primary');
 
     return <UpThemeProvider theme={UpDefaultTheme}>
-      <UpBox style={{ margin: "40px 30px" }}>
+      <UpBox flexDirection={'column'} alignItems={'flex-start'} style={{ margin: "40px 30px" }}>
         <UpHeading tag={'h1'}><code>UpButton</code></UpHeading>
         <UpNotification intent={"info"}>
           <UpBox flexDirection={'column'}>
@@ -92,7 +92,7 @@ export const General =
 export const Icon =
   () => (
     <UpThemeProvider theme={UpDefaultTheme}>
-      <UpBox style={{ margin: "40px 30px" }}>
+      <UpBox flexDirection={'column'} alignItems={'flex-start'} style={{ margin: "40px 30px" }}>
         <UpHeading tag={'h1'}><code>UpButton</code></UpHeading>
         <UpNotification intent={"info"}>
           <UpParagraph>
@@ -122,7 +122,7 @@ export const Icon =
 export const IconToRight =
   () => (
     <UpThemeProvider theme={UpDefaultTheme}>
-      <UpBox style={{ margin: "40px 30px" }}>
+      <UpBox flexDirection={'column'} alignItems={'flex-start'} style={{ margin: "40px 30px" }}>
         <UpHeading tag={'h1'}><code>UpButton</code></UpHeading>
         <UpNotification intent={"info"}>
           <UpParagraph>
@@ -140,7 +140,7 @@ export const IconToRight =
 export const DropDown =
   () => (
     <UpThemeProvider theme={UpDefaultTheme}>
-      <UpBox style={{ margin: "40px 30px" }}>
+      <UpBox flexDirection={'column'} alignItems={'flex-start'} style={{ margin: "40px 30px" }}>
         <UpHeading tag={'h1'}><code>UpButton</code></UpHeading>
         <UpNotification intent={"info"}>
           <UpParagraph>
@@ -175,7 +175,7 @@ export const DropDown =
 export const DropDownToRight =
   () => (
     <UpThemeProvider theme={UpDefaultTheme}>
-      <UpBox style={{ margin: "40px 30px" }}>
+      <UpBox flexDirection={'column'} alignItems={'flex-start'} style={{ margin: "40px 30px" }}>
         <UpHeading tag={'h1'}><code>UpButton</code></UpHeading>
         <UpNotification intent={"info"}>
           <UpParagraph>
@@ -215,7 +215,7 @@ export const DropDownToRight =
 export const DropDownWithText =
   () => (
     <UpThemeProvider theme={UpDefaultTheme}>
-      <UpBox style={{ margin: "40px 30px" }}>
+      <UpBox flexDirection={'column'} alignItems={'flex-start'} style={{ margin: "40px 30px" }}>
         <UpHeading tag={'h1'}><code>UpButton</code></UpHeading>
         <UpNotification intent={"info"}>
           <UpParagraph>
@@ -250,7 +250,7 @@ export const DropDownWithText =
 export const DropDownWithTextAndIconToLeft =
   () => (
     <UpThemeProvider theme={UpDefaultTheme}>
-      <UpBox style={{ margin: "40px 30px" }}>
+      <UpBox flexDirection={'column'} alignItems={'flex-start'} style={{ margin: "40px 30px" }}>
         <UpHeading tag={'h1'}><code>UpButton</code></UpHeading>
         <UpNotification intent={"info"}>
           <UpParagraph>
@@ -285,7 +285,7 @@ export const WithLoadingStatus =
   () => {
     const isProcessing = boolean('isProcessing', true);
     return <UpThemeProvider theme={UpDefaultTheme}>
-      <UpBox style={{ margin: "40px 30px" }}>
+      <UpBox flexDirection={'column'} alignItems={'flex-start'} style={{ margin: "40px 30px" }}>
         <UpHeading tag={'h1'}><code>UpButton</code></UpHeading>
         <UpNotification intent={"info"}>
           <UpParagraph>
@@ -303,7 +303,7 @@ export const Rounded =
   () => {
     const isProcessing = boolean('isProcessing', false);
     return <UpThemeProvider theme={UpDefaultTheme}>
-      <UpBox style={{ margin: "40px 30px" }}>
+      <UpBox flexDirection={'column'} alignItems={'flex-start'} style={{ margin: "40px 30px" }}>
         <UpHeading tag={'h1'}><code>UpButton</code></UpHeading>
         <UpNotification intent={"info"}>
           <UpParagraph>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { UpBoxProps } from './types';
-import * as cn from 'classnames';
+import * as classnames from 'classnames';
 import { getBoxStyles, getSize } from './styles';
 import withTheme from '../../../Common/theming/withTheme';
 
@@ -11,7 +11,7 @@ const UpBox: React.FunctionComponent<UpBoxProps> = props => {
         <div
             onClick={onClick}
             style={style || {}}
-            className={cn(getBoxStyles(othersProps), getSize(othersProps), className)}
+            className={classnames(getBoxStyles(othersProps), getSize(othersProps), className)}
         >
             {children || null}
         </div>
@@ -19,10 +19,10 @@ const UpBox: React.FunctionComponent<UpBoxProps> = props => {
 }
 
 UpBox.defaultProps = {
-    flexDirection: 'column',
-    alignContent: 'flex-start',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    flexDirection: 'row',
+    alignContent: 'stretch',
+    justifyContent: 'normal',
+    alignItems: 'normal',
     pad: 'none',
     margin: 'none',
     color: 'black',
