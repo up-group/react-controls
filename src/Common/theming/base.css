@@ -27,8 +27,9 @@ html {
   visibility: hidden;
 }
 
-p, em, li, dt, dd {
+p, em, li, dt, dd, ul,ol {
   margin: 0;
+  padding: 0;
 }
 
 .sbdocs.sbdocs-wrapper {
