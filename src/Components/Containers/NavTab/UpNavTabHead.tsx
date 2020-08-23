@@ -3,7 +3,7 @@ import { style } from 'typestyle';
 import * as classnames from 'classnames';
 import { motion, AnimateSharedLayout } from 'framer-motion';
 import { tabItem, tabHeader, headTabArrow, headTabBorder } from './styles';
-import { TabHeadItemProps, TabHeadsProps, getNavTabCustomStyle } from './types';
+import { TabHeadItemProps, TabHeadsProps } from './types';
 
 export const TabHeads = (props: TabHeadsProps) => {
 
@@ -19,12 +19,10 @@ export const TabHeads = (props: TabHeadsProps) => {
         )
     });
 
-    const customStyles = getNavTabCustomStyle('headWrapper', props.customStyles, null, { selectedTabKey: props.selectedTabKey });
-
     return (
         <AnimateSharedLayout>
             <ul
-                className={classnames('up-nav-tab', style({ ...tabHeader, ...customStyles }))}
+                className={classnames('up-nav-tab', style({ ...tabHeader }))}
                 style={{ transform: "translateZ(0)" }}
             >
                 {heads}
@@ -40,16 +38,18 @@ const TabHeadItem = (props: TabHeadItemProps) => {
     return (
         <motion.li
             animate
-            className={classnames('up-nav-tab-item', selectedTabClass, style({ ...tabItem(props), ...getNavTabCustomStyle('headItem', props.customStyles, props) }))}
+            className={classnames('up-nav-tab-item', selectedTabClass, style({ ...tabItem(props) }))}
             onClick={() => { props.selectTabKey(props.tabKey); }}>
             {props.selectedTabKey == props.tabKey && (
                 <>
                     <motion.div
                         animate
+                        layoutId = {headTabBorder}
                         className={headTabBorder}
                     />
                     <motion.div
                         animate
+                        layoutId = {headTabArrow}
                         className={headTabArrow}
                     />
                 </>

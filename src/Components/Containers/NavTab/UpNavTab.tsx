@@ -1,11 +1,9 @@
 import * as React from 'react';
-import { style } from 'typestyle';
 import { TabHeads } from './UpNavTabHead';
 import { TabContentWrapper } from './UpNavTabContent'
-import { getNavTabCustomStyle, UpNavTabProps } from './types';
+import { UpNavTabProps } from './types';
 
-
-const UpNavTab = ({ loadType = 'onLoad', tabs = [], customStyles, onSelectedTabChanged }: UpNavTabProps) => {
+const UpNavTab = ({ loadType = 'onLoad', tabs = [], onSelectedTabChanged }: UpNavTabProps) => {
 
     const [selectedTabKey, selectTabKey] = React.useState<number>(tabs.length !== 0 ? 0 : -1);
 
@@ -32,24 +30,20 @@ const UpNavTab = ({ loadType = 'onLoad', tabs = [], customStyles, onSelectedTabC
     }
     else if (loadType === 'onLoad') {
         return (
-            <div className={style({ ...getNavTabCustomStyle('navTabWrapper', customStyles, { loadType, tabs }, { selectedTabKey }) })}>
+            <div>
                 <TabHeads
                     selectTabKey={selectTabKey}
                     heads={tabs}
                     selectedTabKey={selectedTabKey}
-                    // customStyles={customStyles}
                 />
                 <TabContentWrapper
                     loadType={loadType}
                     selectedTabKey={selectedTabKey}
                     contents={tabs}
-                    customStyles={customStyles}
                 />
             </div>
         )
     }
 };
-
-
 
 export default UpNavTab;
