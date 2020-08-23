@@ -3,24 +3,31 @@ import { UpPanelProps } from './types';
 import UpSvgIcon from '../../Display/SvgIcon';
 import * as classnames from 'classnames';
 import { getStyles } from './styles';
-import withTheme from '../../../Common/theming/withTheme';
+import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import { UpGrid, UpCol, UpRow } from '../Grid';
 
-const UpPanel: React.FunctionComponent<UpPanelProps> = props => {
+const UpPanel: React.FunctionComponent<UpPanelProps & WithThemeProps> = props => {
 
     const {
+        type,
         children,
         message,
         iconName,
         iconSize,
         title,
-        footer
+        footer,
+        disableAutoIntentIcon,
+        theme
     } = props;
 
+    const getIconName = (!iconName && !disableAutoIntentIcon && theme.intentTypeIcons) ? theme.intentTypeIcons[type] : iconName;
+    console.log(theme.intentTypeIcons)
+
     const icon = <UpSvgIcon
-        iconName={iconName}
+        iconName={getIconName}
         width={iconSize}
         height={iconSize}
+        color={(theme && theme.colorMap) ? theme.colorMap[type] : theme.colorMap.defaultDark}
     />;
 
     return (
@@ -30,12 +37,12 @@ const UpPanel: React.FunctionComponent<UpPanelProps> = props => {
             }
             <UpGrid className="up-panel_body">
                 <UpRow justify={'center'} align={'middle'}>
-                    {iconName &&
+                    {getIconName &&
                         <UpCol span={2}>
                             {icon}
                         </UpCol>
                     }
-                    <UpCol span={iconName ? 22 : 24}>
+                    <UpCol span={getIconName ? 22 : 24}>
                         <div className="up-panel_message">
                             {message &&
                                 <p>{message}</p>
@@ -58,7 +65,8 @@ UpPanel.defaultProps = {
     type: 'default',
     message: null,
     iconName: null,
-    iconSize: null
+    iconSize: null,
+    disableAutoIntentIcon: true,
 };
 
 export { UpPanel };

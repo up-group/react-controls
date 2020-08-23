@@ -27,16 +27,17 @@ export const GeneralUse =
         />
     );
 
-export const WarningMessage =
+export const WarningMessageWithFalsyDisableAutoIntentIcon =
     () => (
         <UpPanel
             type={'warning'}
+            disableAutoIntentIcon={false}
             title={'Mon Panel'}
             message={'Warning Message'}
         />
     );
 
-export const infoPanelWithFooter =
+export const InfoPanelWithFooter =
     () => (
         <UpPanel
             type={'info'}
@@ -45,7 +46,7 @@ export const infoPanelWithFooter =
         />
     );
 
-export const successPanelWithDeleteIconAndCustomedTitle =
+export const SuccessPanelWithDeleteIconAndCustomedTitle =
     () => (
         <UpPanel
             type={'success'}
