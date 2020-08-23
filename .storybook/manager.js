@@ -5,7 +5,7 @@ addons.setConfig({
     theme: UpTheme,
     showPanel: true,
     panelPosition: 'right',
-    isFullscreen: true,
+    isFullscreen: false,
     showNav: true,
     showPanel: true,
     panelPosition: 'bottom',
