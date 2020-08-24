@@ -10,26 +10,64 @@ export default {
     component: UpNavTab
 };
 
-const tab1 = <UpPanel type="info" message="Information sur ..." />;
-const tab2 = <UpPanel type="warning" message="Attention sur ..." />;
-const tab3 = <UpPanel type="danger" message="Erreur sur ..." />;
-
 export const GeneralUse =
     () => (
         <UpNavTab tabs={
-                [
-                    {
-                        content: tab1,
-                        head: "Tab 1"
-                    },
-                    {
-                        content: tab2,
-                        head: "Tab 2"
-                    }, {
-                        content: tab3,
-                        head: "Tab 3"
-                    }
-                ]
-            }
+            [
+                {
+                    content: <UpPanel type="info" disableAutoIntentIcon={false} message="Information sur ..." />,
+                    head: "Tab 1"
+                },
+                {
+                    content: <UpPanel type="warning" disableAutoIntentIcon={false} message="Attention sur ..." />,
+                    head: "Tab 2"
+                }, {
+                    content: <UpPanel type="danger" disableAutoIntentIcon={false} message="Erreur sur ..." />,
+                    head: "Tab 3"
+                }
+            ]
+        }
         />
-    )
+    );
+
+export const OnShowLoadType =
+    () => (
+        <UpNavTab tabs={
+            [
+                {
+                    content: <UpPanel type="info" disableAutoIntentIcon={false} message="Information sur ..." />,
+                    head: "Tab 1"
+                },
+                {
+                    content: <UpPanel type="warning" disableAutoIntentIcon={false} message="Attention sur ..." />,
+                    head: "Tab 2"
+                }, {
+                    content: <UpPanel type="danger" disableAutoIntentIcon={false} message="Erreur sur ..." />,
+                    head: "Tab 3"
+                }
+            ]
+        }
+            loadType={'onShow'}
+        />
+    );
+
+export const PassCallBackToUpNavTab =
+    () => (
+        <UpNavTab tabs={
+            [
+                {
+                    content: <UpPanel type="info" disableAutoIntentIcon={false} message="Information sur ..." />,
+                    head: "Tab 1"
+                },
+                {
+                    content: <UpPanel type="warning" disableAutoIntentIcon={false} message="Attention sur ..." />,
+                    head: "Tab 2"
+                }, {
+                    content: <UpPanel type="danger" disableAutoIntentIcon={false} message="Erreur sur ..." />,
+                    head: "Tab 3"
+                }
+            ]
+        }
+            onSelectedTabChanged={(selectTabKey, tab) => console.log(`You are in tab ${selectTabKey}`)}
+        />
+    );

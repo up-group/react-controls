@@ -27,10 +27,12 @@ html {
   visibility: hidden;
 }
 
-p, em, li, dt, dd {
+p, em, li, dt, dd, ul,ol {
   margin: 0;
+  padding: 0;
 }
 
+/** TODO : Move specific storybook styles in separate file */
 .sbdocs.sbdocs-wrapper {
   background-color: #FAFAFA;
 }

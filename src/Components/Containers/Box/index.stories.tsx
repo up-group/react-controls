@@ -15,7 +15,6 @@ export default {
 export const Center =
     () => (
         <UpBox
-            flexDirection={'row'}
             justifyContent={'center'}
             backgroundColor={'#369'}
             color={'white'}
@@ -116,7 +115,7 @@ export const StretchAndSpaceBetweenOnHorizontalAxis =
         </UpBox>
     );
 
-export const flexCenterAndSpaceAround =
+export const FlexCenterAndSpaceAround =
     () => (
         <UpBox
             flexDirection={'row'}
@@ -134,7 +133,7 @@ export const flexCenterAndSpaceAround =
         </UpBox>
     );
 
-export const flexWrap =
+export const FlexWrap =
     () => (
         <UpBox
             flexDirection={'row'}
@@ -151,7 +150,7 @@ export const flexWrap =
         </UpBox>
     );
 
-export const flexNoWrap =
+export const FlexNoWrap =
     () => (
         <UpBox
             flexDirection={'row'}
@@ -169,22 +168,8 @@ export const flexNoWrap =
 
 export const BoxFullSize =
     () => (
-        <div style={{ overflow: 'hidden' }}>
-            <UpBox
-                full={true}
-                backgroundColor={'#369'}
-                color={'white'}
-                pad={'medium'}
-            >
-                <p>Elément </p>
-            </UpBox>
-        </div>
-    );
-
-export const customedBoxSize =
-    () => (
         <UpBox
-            boxSize={'small'}
+            boxSize={'full'}
             backgroundColor={'#369'}
             color={'white'}
             pad={'medium'}
@@ -193,10 +178,12 @@ export const customedBoxSize =
         </UpBox>
     );
 
-export const customedBoxSizeWithSpecificHorizontalAndVerticalMeasures =
+BoxFullSize.decorators = [(BoxFullSize) => <div style={{ overflow: 'hidden' }}><BoxFullSize /></div>]
+
+export const CustomedBoxSizeWithSizeBoxProperty =
     () => (
         <UpBox
-            boxSize={{ horizontal: "xlarge", vertical: "xlarge" }}
+            boxSize={{ horizontal: 'xlarge', vertical: 'xlarge' }}
             backgroundColor={'#369'}
             color={'white'}
             pad={'medium'}
@@ -204,3 +191,17 @@ export const customedBoxSizeWithSpecificHorizontalAndVerticalMeasures =
             <p>Elément </p>
         </UpBox>
     );
+
+export const TakeHeightOfTheParent =
+    () => (
+        <UpBox
+            full={true}
+            backgroundColor={'#369'}
+            color={'white'}
+            pad={'medium'}
+        >
+            <p>Elément </p>
+        </UpBox>
+    );
+
+TakeHeightOfTheParent.decorators = [(TakeHeightOfTheParent) => <div style={{ height: '300px', width: '300px', border: '2px solid #000' }}><TakeHeightOfTheParent /></div>]

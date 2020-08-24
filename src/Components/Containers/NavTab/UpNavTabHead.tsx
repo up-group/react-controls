@@ -1,42 +1,60 @@
-// export function TabHeads(props: TabHeadsProps) {
+import * as React from 'react'
+import { style } from 'typestyle';
+import * as classnames from 'classnames';
+import { motion, AnimateSharedLayout } from 'framer-motion';
+import { tabItem, tabHeader, headTabArrow, headTabBorder } from './styles';
+import { TabHeadItemProps, TabHeadsProps } from './types';
 
-//     var heads = props.heads.map((v, i) => {
-//         return <TabHead selectTabKey={props.selectTabKey} tab={v} key={i} tabKey={i} selectedTabKey={props.selectedTabKey} />
-//     });
+export const TabHeads = (props: TabHeadsProps) => {
 
-//     const customStyles = getNavTabCustomStyle('headWrapper', props.customStyles, null, { selectedTabKey: props.selectedTabKey });
+    const heads = props.heads.map((v, i) => {
+        return (
+            <TabHeadItem
+                selectTabKey={props.selectTabKey}
+                tab={v}
+                key={i}
+                tabKey={i}
+                selectedTabKey={props.selectedTabKey}
+            />
+        )
+    });
 
-//     return <AnimateSharedLayout>
-//         <ol className={classnames('up-nav-tab', style({ ...navTabHeadsStyle, ...customStyles }))} style={{ transform: "translateZ(0)" }}>
-//             {heads}
-//         </ol>
-//     </AnimateSharedLayout>
-// }
+    return (
+        <AnimateSharedLayout>
+            <ul
+                className={classnames('up-nav-tab', style({ ...tabHeader }))}
+                style={{ transform: "translateZ(0)" }}
+            >
+                {heads}
+            </ul>
+        </AnimateSharedLayout>
+    )
+};
 
-// /// TabHead
+const TabHeadItem = (props: TabHeadItemProps) => {
 
-// export function TabHead(props: TabHeadProps) {
+    let selectedTabClass = (props.selectedTabKey == props.tabKey) ? 'up-nav-tab-item__selected' : '';
 
-//     let selectedTabClass = (props.selectedTabKey == props.tabKey) ? "up-nav-tab-item__selected" : "";
-
-//     return <motion.li
-//         animate
-//         className={classnames('up-nav-tab-item', selectedTabClass, style({ ...navTabHeadsItemStyle(props), ...getNavTabCustomStyle('headItem', props.customStyles, props) }))}
-//         onClick={() => { props.selectTabKey(props.tabKey); }}>
-//         {props.selectedTabKey == props.tabKey && (
-//             <>
-//                 <motion.div
-//                     animate
-//                     layoutId={layoutClass}
-//                     className={layoutClass}
-//                 />
-//                 <motion.div
-//                     animate
-//                     layoutId={arrowLayoutClass}
-//                     className={arrowLayoutClass}
-//                 />
-//             </>
-//         )}
-//         {props.tab.head}
-//     </motion.li>
-// }
+    return (
+        <motion.li
+            animate
+            className={classnames('up-nav-tab-item', selectedTabClass, style({ ...tabItem(props) }))}
+            onClick={() => { props.selectTabKey(props.tabKey); }}>
+            {props.selectedTabKey == props.tabKey && (
+                <>
+                    <motion.div
+                        animate
+                        layoutId = {headTabBorder}
+                        className={headTabBorder}
+                    />
+                    <motion.div
+                        animate
+                        layoutId = {headTabArrow}
+                        className={headTabArrow}
+                    />
+                </>
+            )}
+            {props.tab.head}
+        </motion.li>
+    )
+};

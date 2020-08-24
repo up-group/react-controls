@@ -53,11 +53,11 @@ export interface UpBoxProps {
     /** Direction of the items flow */
     flexDirection?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
     /** Alignment of the items flow inside the box on the main axe */
-    alignContent?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around';
+    alignContent?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'stretch';
     /** Alignment of the items flow inside the box on the main axe */
-    justifyContent?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around';
+    justifyContent?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'normal';
     /** Define the align-self property of all children */
-    alignItems?: 'flex-start' | 'center' | 'flex-end' | 'baseline' | 'stretch';
+    alignItems?: 'flex-start' | 'center' | 'flex-end' | 'baseline' | 'stretch'| 'normal';
     /** Sets whether flex items are forced onto one line or can wrap onto multiple lines  */
     flexWrap?: boolean;
     /** Apply the reverse alignment order  */

@@ -1,41 +1,38 @@
-import { CustomStyles, getCustomStyles } from '../../../Common/theming/types';
- 
- export type upNavTabCustomStylesKeys = 'navTabWrapper' | 'headWrapper' | 'headItem' | 'content' | 'contentWrapper';
- export type loadType = 'onShow' | 'onLoad';
+export type LoadType = 'onShow' | 'onLoad';
 
-// Nav Tab Element
 export interface Tab {
     head: string | JSX.Element;
     content: JSX.Element;
-}
+};
 
-// Tab 
 export interface UpNavTabProps {
     tabs: Tab[],
-    loadType?: loadType;
+    loadType?: LoadType;
     onSelectedTabChanged?: (selectTabKey: number, tab: Tab) => void;
 };
 
-// Tab Content
 export interface TabContentProps {
     tab: Tab;
     tabKey: number;
     selectedTabKey: number;
-    loadType: loadType;
+    loadType: LoadType;
 };
 
-// Tab Header
+export interface TabContentsProps {
+    contents: Tab[];
+    selectedTabKey: number;
+    loadType: LoadType;
+};
+
 export interface TabHeadsProps {
     heads: Tab[];
     selectedTabKey: number;
     selectTabKey: (tabkey: number) => void;
 };
 
-// Tab Header Item 
-export interface TabHeadProps {
+export interface TabHeadItemProps {
     tab: Tab;
     tabKey: number;
     selectedTabKey: number;
     selectTabKey: (tabkey: number) => void;
-    customStyles: any;
 };

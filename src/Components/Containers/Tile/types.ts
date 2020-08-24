@@ -1,7 +1,7 @@
 interface TileProps {
     title?: string;
     footer?: string | JSX.Element;
-    maxHeight?: number | string;
+    maxHeight?: string | number;
 };
 
 export default TileProps;

@@ -17,29 +17,27 @@ export default {
 };
 
 const codeStoryViewer = `<UpCalendar />`;
-let currentDate = moment() ;
-let startDate = currentDate.toDate();
-let endDate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate(), startDate.getHours()+1);
-
-let events = [
-    { title: 'event 1', start: startDate, end: endDate, description: 'Mon event 1' }
-];
-
-export const General = () => (
-    <UpBox style={{ margin: "40px 30px" }}>
-    <UpParagraph>
-         <code>UpCalendar</code> est composant permettant différents modes d'affichage de calendrier.
-         Basé sur <code><UpLink href={'https://fullcalendar.io'}>FullCalendar</UpLink></code>.
-    </UpParagraph>
-    <UpBox flexDirection={'row'} flexWrap={true}  full={true}>
-        <UpCalendar events={events}
-        renderTooltipHeader={(event: InputEvent & { title: string, description: string}) => {
-            return <div>{event.title}</div> 
-        }}
-        renderTooltipContent={(event: InputEvent) => {
-            return <div>{event['extendedProps'].description}</div> }
-        } />
-    </UpBox>
-    <UpCodeViewer style={{ width : '100%'}} code={codeStoryViewer} language={'jsx'}></UpCodeViewer>
- </UpBox>
+export const General =
+ () => (
+        <UpThemeProvider theme={UpDefaultTheme}>
+         <UpBox style={{ margin: "40px 30px" }}>
+            <UpParagraph>
+                 <code>UpCalendar</code> est composant permettant différents modes d'affichage de calendrier.
+                 Basé sur <code><UpLink href={'https://fullcalendar.io'}>FullCalendar</UpLink></code>.
+            </UpParagraph>
+            <UpBox flexDirection={'row'} flexWrap={true}  full={true}>
+                <UpCalendar events={[
+                        { title: 'event 1', start: moment().toDate(), end: moment().add({ hours: 1 }).toDate(), description: 'Mon event 1' },
+                        { title: 'event 2', start: moment().add({ days: 1 }).toDate(), end: moment().add({ days: 1 }).add({ hours: 1 }).toDate(), description: 'Mon event 2' }
+                    ]}
+                    renderTooltipHeader={(event: InputEvent & { title: string, description: string}) => {
+                        return <div>{event.title}</div> 
+                    }}
+                    renderTooltipContent={(event: InputEvent) => {
+                        return <div>{event['extendedProps'].description}</div> }
+                    } />
+            </UpBox>
+            <UpCodeViewer style={{ width : '100%'}} code={codeStoryViewer} language={'jsx'}></UpCodeViewer>
+         </UpBox>
+        </UpThemeProvider>    
 )
