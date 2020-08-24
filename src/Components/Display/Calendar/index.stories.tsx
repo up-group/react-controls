@@ -1,17 +1,14 @@
 import * as React from 'react'
-import UpDefaultTheme from '../../../Common/theming'
-import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider'
 
 import UpCalendar from './' ;
 
 import { getRootContainer } from '../../../Common/stories';
-import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
 import UpBox from '../../Containers/Box';
 import UpParagraph from '../../Display/Paragraph';
 import UpCodeViewer from '../CodeViewer';
 import UpLink from '../Link';
 
-import { style } from "typestyle";
 import * as moment from 'moment'
 
 export default { 
@@ -19,8 +16,7 @@ export default {
     decorators : [withKnobs, getRootContainer('UpCalendar')]
 };
 
-const codeStoryViewer = `<UpCalendar />`
-
+const codeStoryViewer = `<UpCalendar />`;
 export const General =
  () => (
         <UpThemeProvider theme={UpDefaultTheme}>

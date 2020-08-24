@@ -7,6 +7,7 @@ module.exports = async ({ config }) => {
 
     config.resolve.alias.ui = path.resolve(ROOT_PATH, 'src/');
     config.resolve.alias.icons = path.resolve(ROOT_PATH, 'src/theming/icons')
+   
     config.module.rules = config.module.rules.filter(r => r.test.toString() !== /\.css$/.toString());
     config.resolve.extensions.push('.ts', '.tsx', '.js', '.jsx');
 

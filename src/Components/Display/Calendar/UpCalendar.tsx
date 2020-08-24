@@ -51,18 +51,23 @@ const UpCalendar : React.FunctionComponent<UpCalendarProps> = (props) => {
     const [arrowElement, setArrowElement] = React.useState<HTMLElement | null>(null);
 
     const [popperElement, setPopperElement] = React.useState<HTMLElement | null>(null);
-    const { styles, attributes } = usePopper(referenceElement, popperElement, {
-        placement: "right",
-        modifiers: [
-        { name: "arrow", options: { element: arrowElement } },
-        {
-            name: "offset",
-            options: {
-            offset: [0, 10],
+
+    var styles = null ;
+    var attributes = null ;
+    if(usePopper) { 
+        ({ styles, attributes } = usePopper(referenceElement, popperElement, {
+            placement: "right",
+            modifiers: [
+            { name: "arrow", options: { element: arrowElement } },
+            {
+                name: "offset",
+                options: {
+                offset: [0, 10],
+                },
             },
-        },
-        ],
-    });
+            ],
+        }));
+    }
 
     const {generateTooltipEvent, renderTooltipContent, renderTooltipHeader, className, ...calendarProps} = props;
     
@@ -96,8 +101,8 @@ const UpCalendar : React.FunctionComponent<UpCalendarProps> = (props) => {
                 <div
                 className="up-calendar__tooltip"
                 ref={setPopperElement}
-                style={styles.popper}
-                {...attributes.popper}
+                style={styles && styles.popper}
+                {...(attributes?.popper || {})}
                 >
                 <div
                     className="up-calendar__tooltip__arrow"

@@ -1,6 +1,6 @@
 {
   "name": "@up-group-ui/react-controls",
-  "version": "0.2.73",
+  "version": "0.2.74",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -123,7 +123,6 @@
     "core-js": "^3.0.1",
     "crypto": "^1.0.1",
     "css-loader": "^2.1.0",
-    "cypress": "^4.12.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.3.5",
