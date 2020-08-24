@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.75)
+
+## Main Changes
+- Upgrade to storybook 6
+
 #  ReactControls (version: 0.2.74)
 
 ## Main Changes
