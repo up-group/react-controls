@@ -20,11 +20,10 @@ const UpPanel: React.FunctionComponent<UpPanelProps & WithThemeProps> = props =>
         theme
     } = props;
 
-    const getIconName = (!iconName && !disableAutoIntentIcon && theme.intentTypeIcons) ? theme.intentTypeIcons[type] : iconName;
-    console.log(theme.intentTypeIcons)
+    const resolvedIconName = (!iconName && !disableAutoIntentIcon && theme.intentTypeIcons) ? theme.intentTypeIcons[type] : iconName;
 
     const icon = <UpSvgIcon
-        iconName={getIconName}
+        iconName={resolvedIconName}
         width={iconSize}
         height={iconSize}
         color={(theme && theme.colorMap) ? theme.colorMap[type] : theme.colorMap.defaultDark}
@@ -37,12 +36,12 @@ const UpPanel: React.FunctionComponent<UpPanelProps & WithThemeProps> = props =>
             }
             <UpGrid className="up-panel_body">
                 <UpRow justify={'center'} align={'middle'}>
-                    {getIconName &&
+                    {resolvedIconName &&
                         <UpCol span={2}>
                             {icon}
                         </UpCol>
                     }
-                    <UpCol span={getIconName ? 22 : 24}>
+                    <UpCol span={resolvedIconName ? 22 : 24}>
                         <div className="up-panel_message">
                             {message &&
                                 <p>{message}</p>
