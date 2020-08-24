@@ -21,8 +21,7 @@ const UpPanel: React.FunctionComponent<UpPanelProps & WithThemeProps> = props =>
     } = props;
 
     const getIconName = (!iconName && !disableAutoIntentIcon && theme.intentTypeIcons) ? theme.intentTypeIcons[type] : iconName;
-    console.log(theme.intentTypeIcons)
-
+    
     const icon = <UpSvgIcon
         iconName={getIconName}
         width={iconSize}
