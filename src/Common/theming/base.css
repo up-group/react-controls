@@ -32,6 +32,7 @@ p, em, li, dt, dd, ul,ol {
   padding: 0;
 }
 
+/** TODO : Move specific storybook styles in separate file */
 .sbdocs.sbdocs-wrapper {
   background-color: #FAFAFA;
 }
