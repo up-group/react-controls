@@ -35,11 +35,9 @@ export const General =
                         { title: 'event 2', start: moment().add({ days: 1 }).toDate(), end: moment().add({ days: 1 }).add({ hours: 1 }).toDate(), description: 'Mon event 2' }
                     ]}
                     renderTooltipHeader={(event: InputEvent & { title: string, description: string}) => {
-                        console.log(event) ;
                         return <div>{event.title}</div> 
                     }}
                     renderTooltipContent={(event: InputEvent) => {
-                        console.log(event) ;
                         return <div>{event['extendedProps'].description}</div> }
                     } />
             </UpBox>
