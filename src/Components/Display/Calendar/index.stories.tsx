@@ -9,6 +9,9 @@ import UpParagraph from '../../Display/Paragraph';
 import UpCodeViewer from '../CodeViewer';
 import UpLink from '../Link';
 
+import UpDefaultTheme from '../../../Common/theming';
+import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider';
+
 import * as moment from 'moment'
 
 export default { 

@@ -15,6 +15,7 @@ import { style } from "typestyle";
 import UpSelect from "../../Inputs/Select";
 import UpText from "../../Inputs/Text";
 import UpNumber from "../../Inputs/Number/UpNumber";
+import UpDate from "../../Inputs/Date/UpDate";
 
 export default { 
   title: 'Components/Inputs/UpInput',
@@ -322,7 +323,15 @@ const ComplexForImpl = props => {
               value={values.age}
               onChange={handleChange} />
           </UpCol>
-          <UpCol xs={24} sm={12} md={12} lg={12}>
+          <UpCol xs={24} sm={12} md={6} lg={6}>
+            <UpDate 
+              floatingLabel={"Né(e) le"} 
+              name={"birthdate"}
+              isRequired={true} 
+              value={values.date} 
+              onChange={handleChange} />
+          </UpCol>
+          <UpCol xs={24} sm={12} md={6} lg={6}>
             <UpInput 
               floatingLabel={"Profession"} 
               name={"function"}

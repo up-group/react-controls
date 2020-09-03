@@ -7,7 +7,7 @@ const getStyles = (
   props: UpDateProps & WithThemeProps & { focused: boolean }
 ) =>
   style({
-    marginTop: props.floatingLabel ? "16px" : "0px",
+    marginTop: props.floatingLabel ? "14px" : "0px",
     position: "relative",
     backgroundColor: "transparent",
     $nest: {
@@ -82,7 +82,7 @@ const getStyles = (
       },
       "& .SingleDatePickerInput__showClearDate": {
         paddingRight: props.iconPosition == "left" ? "30px" : "0px",
-        minHeight: '31px'
+        minHeight: '29px'
       },
       "& .SingleDatePickerInput_clearDate": {
         right: props.iconPosition == "left" ? "0" : "12px"
