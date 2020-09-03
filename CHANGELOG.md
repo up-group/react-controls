@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.76)
+
+## Bugs Fixes
+- Fix alignement UpDate in form
+
 #  ReactControls (version: 0.2.75)
 
 ## Main Changes
