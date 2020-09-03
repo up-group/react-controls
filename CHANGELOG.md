@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.77)
+
+## Bugs Fixes
+- Fix removed prop className on UpPanel
+
 #  ReactControls (version: 0.2.76)
 
 ## Bugs Fixes

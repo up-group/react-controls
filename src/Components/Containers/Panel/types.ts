@@ -11,4 +11,5 @@ export interface UpPanelProps {
     iconSize?: number;
     /** If you set disableAutoIntentIcon to false, you get an icon that automatically corresponds to the chosen type*/
     disableAutoIntentIcon?: boolean;
+    className?:string;
 };

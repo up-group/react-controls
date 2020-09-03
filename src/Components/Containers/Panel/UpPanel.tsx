@@ -17,7 +17,8 @@ const UpPanel: React.FunctionComponent<UpPanelProps & WithThemeProps> = props =>
         title,
         footer,
         disableAutoIntentIcon,
-        theme
+        theme,
+        className
     } = props;
 
     const resolvedIconName = (!iconName && !disableAutoIntentIcon && theme.intentTypeIcons) ? theme.intentTypeIcons[type] : iconName;
@@ -30,7 +31,7 @@ const UpPanel: React.FunctionComponent<UpPanelProps & WithThemeProps> = props =>
     />;
 
     return (
-        <div className={classnames("up-panel", getStyles(props))}>
+        <div className={classnames("up-panel", className, getStyles(props))}>
             {title &&
                 <div className="up-panel_header">{title}</div>
             }
