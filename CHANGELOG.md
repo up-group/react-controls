@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.78)
+
+## Bugs Fixes
+- Fix default props for UpBox
+
 #  ReactControls (version: 0.2.77)
 
 ## Bugs Fixes
