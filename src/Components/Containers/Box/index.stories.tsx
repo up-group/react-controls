@@ -15,6 +15,8 @@ export default {
 export const Center =
     () => (
         <UpBox
+            flexDirection = {'row'}
+            alignContent = {'stretch'}
             justifyContent={'center'}
             backgroundColor={'#369'}
             color={'white'}
@@ -28,6 +30,8 @@ export const Center =
 export const AddMarginAsObjectToTheBox =
     () => (
         <UpBox
+            flexDirection = {'row'}
+            alignContent = {'stretch'}
             backgroundColor={'#369'}
             color={'white'}
             pad={'small'}

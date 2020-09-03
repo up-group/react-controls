@@ -19,10 +19,10 @@ const UpBox: React.FunctionComponent<UpBoxProps> = props => {
 }
 
 UpBox.defaultProps = {
-    flexDirection: 'row',
-    alignContent: 'stretch',
-    justifyContent: 'normal',
-    alignItems: 'normal',
+    flexDirection: 'column',
+    alignContent: 'flex-start',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
     pad: 'none',
     margin: 'none',
     color: 'black',
