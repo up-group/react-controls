@@ -108,7 +108,7 @@ const UpDataGridFooter = (props: UpDataGridFooterProps & WithThemeProps) => {
                   disabled={!(selectedData.length >= 2)}
                   onClick={() => handleShowModal()}
                 >
-                  {actions[0].actionType}
+                  {actions[0].label}
                 </UpButton>
                 <UpModal showModal={showModal} onClose={() => handleCloseModal()}>
                   <div style={{"textAlign": "center"}}>{/* A régler !!!! */}
