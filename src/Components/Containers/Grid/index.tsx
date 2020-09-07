@@ -1,7 +1,6 @@
-// Imports
-import UpGrid from './UpGrid'
-import UpRow from './UpRow'
-import UpCol from './UpCol'
+import UpGrid from './UpGrid';
+import UpRow from './UpRow';
+import UpCol from './UpCol';
 
 export {
   UpGrid,
