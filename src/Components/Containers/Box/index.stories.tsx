@@ -182,7 +182,7 @@ export const BoxFullSize =
         </UpBox>
     );
 
-BoxFullSize.decorators = [(BoxFullSize) => <div style={{ overflow: 'hidden' }}><BoxFullSize /></div>]
+BoxFullSize.decorators = [(BoxFullSize) => <div style={{ overflow: 'hidden' }}><BoxFullSize /></div>];
 
 export const CustomedBoxSizeWithSizeBoxProperty =
     () => (
@@ -208,4 +208,4 @@ export const TakeHeightOfTheParent =
         </UpBox>
     );
 
-TakeHeightOfTheParent.decorators = [(TakeHeightOfTheParent) => <div style={{ height: '300px', width: '300px', border: '2px solid #000' }}><TakeHeightOfTheParent /></div>]
+TakeHeightOfTheParent.decorators = [(TakeHeightOfTheParent) => <div style={{ height: '300px', width: '300px', border: '2px solid #000' }}><TakeHeightOfTheParent /></div>];

@@ -1,54 +1,53 @@
-import { WithThemeProps } from "../../../Common/theming/withTheme";
-
-// Exports
-export type LayoutMode = 'flex' | 'float'
-export type Alignment =  'top' | 'middle' | 'bottom'
-export type Justification = 'start' | 'end' | 'center' | 'space-around' | 'space-between'
+export type LayoutMode = 'flex' | 'float';
+export type Alignment = 'top' | 'middle' | 'bottom';
+export type Justification = 'start' | 'end' | 'center' | 'space-around' | 'space-between';
 
 export interface UpGridProps {
-    className?:string;
+    className?: string;
     gutter?: number;
     rowSpacing?: number;
     type?: LayoutMode;
-    style?: React.CSSProperties; // In order to set margin for example
-}
+    /** In order to set margin for example */
+    style?: React.CSSProperties;
+};
 
 export interface UpGridStyledProps {
-    style?: React.CSSProperties; // In order to set margin for example
-}
+    /** In order to set margin for example */
+    style?: React.CSSProperties;
+};
 
 export interface ColSize {
-  span?: number;
-  order?: number;
-  offset?: number;
-  push?: number;
-  pull?: number;
-}
+    span?: number;
+    order?: number;
+    offset?: number;
+    push?: number;
+    pull?: number;
+};
 
 export interface UpColProps {
-  className?: string;
-  span?: number;
-  order?: number;
-  offset?: number;
-  rowSpacing?: number;
-  push?: number;
-  pull?: number;
-  xs?: number | ColSize;
-  sm?: number | ColSize;
-  md?: number | ColSize;
-  lg?: number | ColSize;
-  xl?: number | ColSize;
-  prefixCls?: string;
-  style?: React.CSSProperties;
-}
+    className?: string;
+    span?: number;
+    order?: number;
+    offset?: number;
+    rowSpacing?: number;
+    push?: number;
+    pull?: number;
+    xs?: number | ColSize;
+    sm?: number | ColSize;
+    md?: number | ColSize;
+    lg?: number | ColSize;
+    xl?: number | ColSize;
+    prefixCls?: string;
+    style?: React.CSSProperties;
+};
 
 export interface UpRowProps {
-  className?: string;
-  gutter?: number;
-  rowSpacing?: number;
-  type?: LayoutMode;
-  align?: Alignment,
-  justify?: Justification;
-  style?: React.CSSProperties;
-  prefixCls?: string;
-}
+    className?: string;
+    gutter?: number;
+    rowSpacing?: number;
+    type?: LayoutMode;
+    align?: Alignment,
+    justify?: Justification;
+    style?: React.CSSProperties;
+    prefixCls?: string;
+};

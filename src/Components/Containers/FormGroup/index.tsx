@@ -1,9 +1,3 @@
-import UpFormGroup  from './UpFormGroup'
-import { WithThemeProps } from '../../../Common/theming/withTheme';
+import UpFormGroup  from './UpFormGroup';
 
-export interface UpFormGroupProps extends WithThemeProps {
-    title:string;
-    withTitleSeparator?: boolean;
-}
-
-export default UpFormGroup
+export default UpFormGroup;

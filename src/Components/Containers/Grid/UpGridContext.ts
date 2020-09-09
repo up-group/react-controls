@@ -1,14 +1,10 @@
-import * as React from "react";
+import * as React from 'react';
 import { LayoutMode } from './types';
 
-const UpGridContext = React.createContext<{
-    gutter:number,
-    rowSpacing?:number,
-    type: LayoutMode
-}>({
-    gutter : 0,
+const UpGridContext = React.createContext<{ gutter: number, rowSpacing?: number, type: LayoutMode }>({
+    gutter: 0,
     rowSpacing: 0,
-    type: "flex"
+    type: 'flex'
 });
 
 export const UpGridProvider = UpGridContext.Provider;
