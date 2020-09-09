@@ -1,3 +1,9 @@
+
+#  ReactControls (version: 0.2.79)
+
+## Main Changes
+- Add new props to UpRadio in order to provide better rendering of options
+
 #  ReactControls (version: 0.2.78)
 
 ## Bugs Fixes
