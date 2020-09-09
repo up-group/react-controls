@@ -1,94 +1,106 @@
 // Imports
 import * as React from 'react'
 import * as classnames from 'classnames'
-
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import { RadioGroupStyles, getStyles } from './styles';
 import { style } from 'typestyle';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import defaultTheme from '../../../Common/theming';
-import {BaseControlProps} from '../_Common/BaseControl/BaseControl' 
+import { BaseControlProps } from '../_Common/BaseControl/BaseControl'
 import { IntentType } from '../../../Common/theming/types';
 import UpSvgIcon from '../../Display/SvgIcon';
 import { IconName } from '../../../Common/theming/icons';
 import { ReactNode } from 'react';
 
 // Exports
-export type Position = 'left' | 'right' ;
-export type AlignMode = 'horizontal' | 'vertical' ; 
-export type DisplayMode = 'normal' | 'button' | 'large' ;
+export type Position = 'left' | 'right';
+export type AlignMode = 'horizontal' | 'vertical';
+export type DisplayMode = 'normal' | 'button' | 'large';
 
 export interface Option {
-    value:any;
-    text?:string;
-    iconName?:IconName;
-    name?:string;
-    checked?:boolean;
+    value: any;
+    text?: string | { [key: string]: any };
+    iconName?: IconName;
+    name?: string;
+    checked?: boolean;
     intent?: IntentType;
     toggledElement?: Array<ReactNode> | ReactNode;
-    readonly?:boolean;
-}
+    readonly?: boolean;
+    additionalData?: { [key: string]: any }
+};
 
 export interface UpRadioStyledProps extends Option {
-    className?:string;
-    gutter?:number;
+    className?: string;
+    gutter?: number;
     tabIndex?: number;
-    onChange?:(e:any) => void;
-}
+    onChange?: (e: any) => void;
+};
 
 export interface UpRadioState {
     options?: Array<Option>;
-    value?:any;
-}
+    value?: any;
+};
 
 export interface UpRadioProps extends BaseControlProps<any> {
     options: Array<Option>;
-    position?:Position;
-    name:string;
-    value?:any;
+    position?: Position;
+    name: string;
+    value?: any;
     alignMode?: AlignMode,
     displayMode?: DisplayMode,
-    gutter?:number,
+    gutter?: number,
     onChange?: (arg: any, event: any, error?: string) => void;
     flexWrap?: boolean;
-}
+    additionalData?: { [key: string]: any }
+};
 
 export type RadioGroupProps = {
-    className?:string;
-    gutter?:number;
+    className?: string;
+    gutter?: number;
     flexWrap?: boolean;
-    readonly?:boolean
-}
+    readonly?: boolean
+};
 
 const RadioGroup: React.StatelessComponent<RadioGroupProps & WithThemeProps> = (props) => {
     const { children, className } = props;
     return (
-      <div onClick={this.stopPropagation} className={classnames(className, style(RadioGroupStyles(props)))}>
-        {children}
-      </div>
+        <div onClick={this.stopPropagation} className={classnames(className, style(RadioGroupStyles(props)))}>
+            {children}
+        </div>
     )
-  }
+};
 
-const BaseRadioButton: React.StatelessComponent<UpRadioStyledProps & WithThemeProps> = (props : UpRadioStyledProps & WithThemeProps) => {
-    const { checked, iconName, className, name, text, value, onChange, intent, toggledElement: field, tabIndex,readonly } = props;
+const BaseRadioButton: React.StatelessComponent<UpRadioStyledProps & WithThemeProps> = (props: UpRadioStyledProps & WithThemeProps) => {
+    const { checked, iconName, className, name, text, value, onChange, intent, toggledElement: field, tabIndex, readonly, additionalData } = props;
+
+    const isTextArray = Array.isArray(text);
+    const radioContent = Array.isArray(text) ? (
+        text.map((currentElement, index) =>
+            <span key={index}>
+                <span><b>{currentElement.title} :{' '}</b></span>
+                <span>{currentElement.value}</span>
+                {(index === 0 && additionalData) && <span style={{ color: additionalData.color, marginLeft: '10px' }}><b>{additionalData.value}</b></span>}
+            </span>
+        )) : (
+            <span>{text}</span>
+        );
+
     return (
         <>
-        <label className={classnames("up-control", "up-radio", getStyles(props), intent ? `up-intent-${intent}` : null, className)}>
-            <input checked={checked} onChange={(e) => {e.persist(); !readonly && onChange(e)}}  name={name} type="radio" value={value} tabIndex={tabIndex} />
-            <span className="up-control-wrapper">
-                <span className="up-control-indicator"></span>
-            </span>
-            <span className="up-control-text">
-            {iconName &&
-                <UpSvgIcon iconName={iconName} />
-            }
-            <span>{text}</span>
-            </span>
-        </label>
-        {checked && field}
-      </>
+            <label className={classnames("up-control", "up-radio", getStyles(props), intent ? `up-intent-${intent}` : null, className)}>
+                <input checked={checked} onChange={(e) => { e.persist(); !readonly && onChange(e) }} name={name} type="radio" value={value} tabIndex={tabIndex} />
+                <span className={`up-control-wrapper ${isTextArray ? "up-control-wrapper--adaptive-height" : "up-control-wrapper--fixed-height"}`}>
+                    <span className="up-control-indicator"></span>
+                </span>
+                <span className={`up-control-text ${isTextArray ? "up-control-text--adaptive-height" : "up-control-text--fixed-height"}`}>
+                    {iconName && <UpSvgIcon iconName={iconName} />}
+                    {radioContent}
+                </span>
+            </label>
+            {checked && field}
+        </>
     )
-}
+};
 
 // Exports
 class UpRadio extends BaseControlComponent<UpRadioProps, any> {
@@ -99,7 +111,7 @@ class UpRadio extends BaseControlComponent<UpRadioProps, any> {
         options: [],
         name: "option",
         showError: true,
-        theme:defaultTheme,
+        theme: defaultTheme,
     }
 
     constructor(props) {
@@ -129,7 +141,7 @@ class UpRadio extends BaseControlComponent<UpRadioProps, any> {
     get currentValue() {
         return this.isControlled ? this.props.value : this.state.value;
     }
-    
+
     showError() {
         return this.props.showError !== undefined
             ? this.props.showError === true
@@ -142,21 +154,22 @@ class UpRadio extends BaseControlComponent<UpRadioProps, any> {
 
     renderControl() {
         const options = this.props.options;
-        var radioGroupClass = `upContainer__groupradio upContainer__groupradio-${this.props.displayMode} upContainer__groupradio-${this.props.alignMode}`;
+        const radioGroupClass = `upContainer__groupradio upContainer__groupradio-${this.props.displayMode} upContainer__groupradio-${this.props.alignMode}`;
 
         return (
             <RadioGroup readonly={this.props.readonly} className={radioGroupClass} gutter={this.props.gutter} flexWrap={this.props.flexWrap} theme={this.props.theme}>
                 {/* Avoid set active element when using the component inside a label */}
                 <label style={{ display: "none" }}><input type="radio" /></label>
-                {options.map((option, i) => {
+                {options.map((option) => {
                     return (
-                        <BaseRadioButton 
-                            intent={option.intent}
-                            onChange={this.handleChangeEvent} 
+                        <BaseRadioButton
                             key={`Key_${this.props.name}_${option.value}`}
+                            intent={option.intent}
+                            onChange={this.handleChangeEvent}
                             name={this.props.name}
                             checked={this.currentValue != null && this.currentValue === option.value}
                             text={option.text}
+                            additionalData={option.additionalData}
                             readonly={this.props.readonly}
                             iconName={option.iconName}
                             theme={this.props.theme}
