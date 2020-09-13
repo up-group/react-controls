@@ -55,6 +55,17 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
         return !shallowEqual(this.props, nextProps) || !shallowEqual(this.state, nextState);
     }
 
+    setRowClickAction = (finalActions) => {
+        const actionsLength = finalActions.length;
+        const actionTypes = ['read']; // actionType condition  
+
+        const rowAction = actionsLength === 1 && actionTypes.includes(finalActions[0].type) ?
+            () => finalActions[0].action({ isSelected: this.props.isSelected, value: this.props.value }) :
+            () => this.props.onClick && this.props.onClick(this.props.rowIndex, { value: this.props.value });
+
+        return rowAction;
+    }
+
     render() {
         const formatter = new UpDefaultCellFormatter();
         const selection = <UpCheckbox options={[{ name: "up-selection", checked: this.props.isSelected === true, value: true, onOptionChange: this.onSelectionChange }]} />;
@@ -87,7 +98,8 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
         
         return (
             <UpDataGridConsumer>
-          { ({ displayRowActionsWithinCell, rowActions, labelToDisplayRowActionsInCell }) => <tr className={`up-data-grid-row up-data-grid-row-bordered ${ customClassName }`} style={{ cursor: this.props.onClick ? 'pointer' : ''}} onClick={() => this.props.onClick && this.props.onClick(this.props.rowIndex, { value: this.props.value })}>
+          { ({ displayRowActionsWithinCell, rowActions, labelToDisplayRowActionsInCell }) => <tr className={`up-data-grid-row up-data-grid-row-bordered ${ customClassName }`} style={{ cursor: this.props.onClick ? 'pointer' : ''}} 
+                onClick={finalActions && this.setRowClickAction(finalActions)}>
                 {this.props.isSelectionEnabled &&
                     <UpDataGridCell key={ "cell-selection" } value={selection} column={{ formatter, label: '' }} />
                 }
