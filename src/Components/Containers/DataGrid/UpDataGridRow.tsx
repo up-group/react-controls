@@ -55,15 +55,17 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
         return !shallowEqual(this.props, nextProps) || !shallowEqual(this.state, nextState);
     }
 
-    setRowClickAction = (finalActions) => {
+    getRowClickAction = (finalActions) => {
         const actionsLength = finalActions.length;
         const actionTypes = ['read']; // actionType condition  
 
-        const rowAction = actionsLength === 1 && actionTypes.includes(finalActions[0].type) ?
-            () => finalActions[0].action({ isSelected: this.props.isSelected, value: this.props.value }) :
-            () => this.props.onClick && this.props.onClick(this.props.rowIndex, { value: this.props.value });
+        if (this.props.onClick) {
+            return () => this.props.onClick && this.props.onClick(this.props.rowIndex, { value: this.props.value });
+        }
 
-        return rowAction;
+        if (actionsLength === 1 && actionTypes.includes(finalActions[0].type)) {
+            return () => finalActions[0].action({ isSelected: this.props.isSelected, value: this.props.value });
+        }
     }
 
     render() {
@@ -99,7 +101,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
         return (
             <UpDataGridConsumer>
           { ({ displayRowActionsWithinCell, rowActions, labelToDisplayRowActionsInCell }) => <tr className={`up-data-grid-row up-data-grid-row-bordered ${ customClassName }`} style={{ cursor: this.props.onClick ? 'pointer' : ''}} 
-                onClick={finalActions && this.setRowClickAction(finalActions)}>
+                onClick={finalActions && this.getRowClickAction(finalActions)}>
                 {this.props.isSelectionEnabled &&
                     <UpDataGridCell key={ "cell-selection" } value={selection} column={{ formatter, label: '' }} />
                 }
