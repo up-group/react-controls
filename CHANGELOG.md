@@ -1,3 +1,7 @@
+#  ReactControls (version: 0.2.80)
+
+## Main Changes
+- Add auto read action bound to the row if none onClick specified and only one action defined
 
 #  ReactControls (version: 0.2.79)
 
