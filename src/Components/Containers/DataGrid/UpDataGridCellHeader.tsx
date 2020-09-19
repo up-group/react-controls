@@ -21,6 +21,7 @@ export interface UpDataGridCellHeaderProps {
   onSortChange?: (c: Column, d: SortDirection) => void;
   column?: Column;
   width?: string;
+  textAlignCells?: 'center' | 'left' | 'right' | 'initial';
 }
 
 const headerCellStyles =  style({
@@ -114,7 +115,11 @@ export default class UpDataGridCellHeader extends React.Component<
         )}>
         <UpBox
           flexDirection={'row'}
-          justifyContent={'flex-start'}
+          justifyContent={
+            this.props.textAlignCells === 'center' ? 'center' 
+            : this.props.textAlignCells === 'left' ? 'flex-start' 
+            : this.props.textAlignCells === 'right' ? 'flex-end' : 'normal'
+          }
           alignItems={'center'}>
           <span
             onClick={() => this.onCellClick()}

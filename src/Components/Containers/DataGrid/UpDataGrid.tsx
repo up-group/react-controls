@@ -81,7 +81,8 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
         //width:'100%'
       },
       "& .up-data-grid-cell .up-checkbox": {
-        marginTop:'0 !important'
+        marginTop:'0 !important',
+        display:'inline-block'
       },
       "& .up-data-grid-cell .row-actions": {
         position: 'absolute',
@@ -683,6 +684,7 @@ class UpDataGrid extends React.Component<
                 actions={this.props.rowActions}
                 columns={columns}
                 displayRowActionsWithinCell={this.props.displayRowActionsWithinCell}
+                textAlignCells= {this.props.textAlignCells}
 
               />
               <tbody className={classnames("up-data-grid-body", oddEvenStyle)}>
