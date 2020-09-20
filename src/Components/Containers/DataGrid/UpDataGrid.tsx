@@ -77,7 +77,14 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
         padding: "16px",
         position: 'relative',
         verticalAlign: props.alignCells,
-        textAlign: props.textAlignCells
+        textAlign: props.textAlignCells,
+        $nest: {
+          "& .up-buttons-wrapper" : {
+            justifyContent: props.textAlignCells === 'center' ? 'center' :
+            props.textAlignCells === 'left' ? 'flex-start' : 
+            props.textAlignCells === 'right' ? 'flex-end' : 'normal',
+          }
+        }
         //width:'100%'
       },
       "& .up-data-grid-cell .up-checkbox": {
@@ -677,6 +684,7 @@ class UpDataGrid extends React.Component<
                 DataGridStyle(this.props)
               )}
             >
+              {console.log(this.props.rowActions)}
               <UpDataGridRowHeader
                 isSelectionEnabled={this.props.isSelectionEnabled}
                 onSelectionChange={this.onSelectionAllChange.bind(this)}
