@@ -32,7 +32,7 @@ for (var i = 0; i < IconNames.length; i++) {
 export class BaseButton extends React.Component<UpButtonStyledProps> {
     
     render() {
-        let { children, className, onClick, dataFor, width, iconPosition, isProcessing, type, disabled,dropDown } = this.props;
+        let { children, className, onClick, dataFor, width, iconPosition, isProcessing, type, disabled,dropDown, name } = this.props;
         const actionType = this.props.actionType;
         let iconName: IconName = null;
         if (actionType && ActionIconMap.containsKey(actionType)) {           
@@ -61,6 +61,7 @@ export class BaseButton extends React.Component<UpButtonStyledProps> {
         const MainButton = (
           <button
             type={type}
+            name={name}
             disabled={disabled}
             onClick={onClick}
             className={classnames(
@@ -122,6 +123,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         onClick: (e: React.MouseEvent<HTMLButtonElement>) => { },
         theme: defaultTheme,
         type: 'button',
+        name:'button'
     };
 
     private handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
@@ -205,7 +207,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
     };
 
     render() {
-        const { children, tooltip, onClick, iconName, iconPosition, disabled, isProcessing, ...others } = this.props;
+        const { name, children, tooltip, onClick, iconName, iconPosition, disabled, isProcessing, ...others } = this.props;
         
         const buttonElement = style({
             cursor: "pointer",
@@ -257,6 +259,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         const RenderButton = renderButtonProps => {
           return <div style={{ display: 'flex' }}>
             <BaseButton
+              name={name}
               iconName={icon as IconName}
               iconPosition={position}
               isToggled={this.getValue('isToggled')}
