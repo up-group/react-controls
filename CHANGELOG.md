@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.81)
+
+## Main Changes
+- UpDataGrid : Add text-align left props
+
 #  ReactControls (version: 0.2.80)
 
 ## Main Changes
