@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.82)
+
+## Main Changes
+- UpSvgIcon : Add new SVG icon
+
 #  ReactControls (version: 0.2.81)
 
 ## Main Changes
