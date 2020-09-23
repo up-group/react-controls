@@ -161,6 +161,7 @@ export const WithSelection =
         }}
         isPaginationEnabled={false}
         isSelectionEnabled={true}
+        textAlignCells={'center'}
         columns={[
           {
             label: "Col 1",

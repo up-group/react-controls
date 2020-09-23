@@ -76,11 +76,20 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
       "& .up-data-grid-cell": {
         padding: "16px",
         position: 'relative',
-        verticalAlign: props.alignCells
+        verticalAlign: props.alignCells,
+        textAlign: props.textAlignCells,
+        $nest: {
+          "& .up-buttons-wrapper" : {
+            justifyContent: props.textAlignCells === 'center' ? 'center' :
+            props.textAlignCells === 'left' ? 'flex-start' : 
+            props.textAlignCells === 'right' ? 'flex-end' : 'normal',
+          }
+        }
         //width:'100%'
       },
       "& .up-data-grid-cell .up-checkbox": {
-        marginTop:'0 !important'
+        marginTop:'0 !important',
+        display:'inline-block'
       },
       "& .up-data-grid-cell .row-actions": {
         position: 'absolute',
@@ -202,7 +211,8 @@ export interface UpDataGridProps {
   data?: Array<any>;
   dataKey?: string;
   isDataFetching?: boolean;
-  alignCells?: 'top' | 'bottom' | 'middle' | 'initial'
+  alignCells?: 'top' | 'bottom' | 'middle' | 'initial';
+  textAlignCells?: 'center' | 'left' | 'right' | 'initial';
   exportCsv?: exportCsv;
 
   dataSource?: {
@@ -257,6 +267,7 @@ class UpDataGrid extends React.Component<
     isSortEnabled: true,
     theme: UpDefaultTheme,
     alignCells: 'initial',
+    textAlignCells: 'initial',
     loadingMessage: "Chargement en cours",
     paginationProps: {
       takes: [
@@ -673,6 +684,7 @@ class UpDataGrid extends React.Component<
                 DataGridStyle(this.props)
               )}
             >
+              {console.log(this.props.rowActions)}
               <UpDataGridRowHeader
                 isSelectionEnabled={this.props.isSelectionEnabled}
                 onSelectionChange={this.onSelectionAllChange.bind(this)}
@@ -680,6 +692,7 @@ class UpDataGrid extends React.Component<
                 actions={this.props.rowActions}
                 columns={columns}
                 displayRowActionsWithinCell={this.props.displayRowActionsWithinCell}
+                textAlignCells= {this.props.textAlignCells}
 
               />
               <tbody className={classnames("up-data-grid-body", oddEvenStyle)}>

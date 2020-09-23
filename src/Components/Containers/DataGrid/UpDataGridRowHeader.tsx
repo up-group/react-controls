@@ -19,7 +19,8 @@ export interface UpDataGridRowHeaderProps {
     actions: ActionFactory<any> | Array<Action>;
     onSortChange?: (c: Column, d: SortDirection) => void;
     onSelectionChange?: (isSelected: boolean) => void;
-    displayRowActionsWithinCell?: boolean
+    displayRowActionsWithinCell?: boolean;
+    textAlignCells?: 'center' | 'left' | 'right' | 'initial';
 }
 
 export default class UpDataGridRowHeader extends React.Component<UpDataGridRowHeaderProps, UpDataGridRowHeaderState> {
@@ -79,13 +80,13 @@ export default class UpDataGridRowHeader extends React.Component<UpDataGridRowHe
             <thead className="up-data-grid-header">
                 <tr>
                     {this.props.isSelectionEnabled &&
-                        <UpDataGridCellHeader key={`header-selection`} column={{ label: selection, isSortable: false }} />
+                        <UpDataGridCellHeader key={`header-selection`} column={{ label: selection, isSortable: false }} textAlignCells={this.props.textAlignCells}/>
                     }
                     {this.props.columns.map((value, index) => {
-                        return <UpDataGridCellHeader key={`header-${index}`} onSortChange={this.onSortChange.bind(this)} column={value} />
+                        return <UpDataGridCellHeader key={`header-${index}`} onSortChange={this.onSortChange.bind(this)} column={value} textAlignCells={this.props.textAlignCells}/>
                     })}
                     {isActionEnabled && !isEmpty(this.props.actions) && 
-                        <UpDataGridCellHeader key={`header-actions`} width={`${this.props.actions.length * 46}px`} column={{ label: "", isSortable: false }} />
+                        <UpDataGridCellHeader key={`header-actions`} width={`${this.props.actions.length * 46}px`} column={{ label: "", isSortable: false }} textAlignCells={this.props.textAlignCells}/>
                     }
                 </tr>
             </thead>
