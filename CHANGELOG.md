@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.84)
+
+## Bug Fixes
+- UpDataGrid : Fix getRowAction 
+
 #  ReactControls (version: 0.2.83)
 
 ## Main Changes

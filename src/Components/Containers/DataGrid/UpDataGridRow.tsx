@@ -56,16 +56,19 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
     }
 
     getRowClickAction = (finalActions) => {
-        const actionsLength = finalActions.length;
+        
+        const actions = (finalActions && finalActions.filter(a => a != null)) || [] ;
+        const actionsLength = actions.length;
         const actionTypes = ['read']; // actionType condition  
 
         if (this.props.onClick) {
             return () => this.props.onClick && this.props.onClick(this.props.rowIndex, { value: this.props.value });
         }
 
-        if (actionsLength === 1 && actionTypes.includes(finalActions[0].type)) {
-            return () => finalActions[0].action({ isSelected: this.props.isSelected, value: this.props.value });
+        if (actionsLength === 1 && actionTypes.includes(actions[0].type)) {
+            return () => actions[0].action({ isSelected: this.props.isSelected, value: this.props.value });
         }
+        
     }
 
     render() {
