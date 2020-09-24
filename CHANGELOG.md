@@ -1,3 +1,13 @@
+#  ReactControls (version: 0.2.82)
+
+## Main Changes
+- UpSvgIcon : Add new SVG icon
+
+#  ReactControls (version: 0.2.81)
+
+## Main Changes
+- UpDataGrid : Add text-align left props
+
 #  ReactControls (version: 0.2.80)
 
 ## Main Changes

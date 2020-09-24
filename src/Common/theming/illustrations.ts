@@ -1,5 +1,6 @@
 export type IllustrationName =
   | "logo-up"
+  | "logo-up-white"
   | "email-expired"
   | "email-validation"
   | "email-verification"
@@ -21,10 +22,14 @@ export type IllustrationName =
   | "card-4c"
   | "visa"
   | "mastercard"
-  | "maestro";
+  | "maestro"
+  | "user-zen"
+  | "idea"
+  | "404";
 
 export const IllustrationNames: IllustrationName[] = [
   "logo-up",
+  "logo-up-white",
   "email-expired",
   "email-validation",
   "email-verification",
@@ -46,7 +51,10 @@ export const IllustrationNames: IllustrationName[] = [
   "card-4c",
   "visa",
   "mastercard",
-  "maestro"
+  "maestro",
+  "user-zen",
+  "idea",
+  "404"
 ];
 
 let dictionary = {};
