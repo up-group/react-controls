@@ -380,7 +380,7 @@ export const FetchingDataWithFucntion =  () => {
         onChange={onChange} />
     };
 
-    export const FetchingDataWithFucntionAndAutload =  () => {
+    export const FetchingDataWithFunctionAndAutoload =  () => {
         let [selectedValue, setValue] = React.useState(null);
         
         const onChange = (event, value) => {
@@ -408,7 +408,7 @@ export const FetchingDataWithFucntion =  () => {
             onChange={onChange} />
         };
 
-        export const FetchingDataWithFucntionAndAutloadAndOneItem =  () => {
+        export const FetchingDataWithFunctionAndAutoloadAndOneItem =  () => {
             let [selectedValue, setValue] = React.useState(null);
             
             const onChange = (event, value) => {
@@ -448,7 +448,7 @@ export const FetchingDataWithProxy =  () => (
             query: "https://jsonplaceholder.typicode.com/todos",
             text: "title",
             handleResponse: (response) => {
-                return [{ id: 100, title: 'Data proxied' }];
+                return response && response.map(function getItem(item) { return { id: 100, title: `${item.title}-${item.id}`} }) ;
             }
         }}
         onChange={console.log} />
