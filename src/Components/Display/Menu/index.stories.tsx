@@ -12,6 +12,7 @@ import UpLigne from '../../Display/Ligne';
 import colorMap from "../../../Common/theming/colorMap";
 import UpBox from "../../Containers/Box";
 import UpTooltip from '../Tooltip';
+import * as IconsM from "../Icons/materialinear"
 
 const logoSvg = require('./logo-up-square.svg');
 
@@ -26,7 +27,7 @@ const hasItemSelected = (uri: string, menu: Array<MenuItemData>): boolean => {
     return !isEmpty(menu) && menu.find(i => (i.uri != null && uri === i.uri) || hasItemSelected(uri, i.childMenuItems)) != null ;
 }
 
-export const setMenuSelection = (
+const setMenuSelection = (
   uri: string,
   menu: Array<MenuItemData>,
   prev?:Array<MenuItemData>
@@ -37,7 +38,7 @@ export const setMenuSelection = (
   return menu.map((m,index) => ({
     ...m,
     childMenuItems: setMenuSelection(uri, m.childMenuItems),
-    isSelected: prev && m.uri === uri && !prev[index].isSelected
+    isSelected: m.uri === uri || hasItemSelected(uri, m.childMenuItems)
   }));
 };
 
@@ -45,7 +46,7 @@ const HookedMenu = (props) => {
     const defaultMenu: Array<MenuItemData> = [
       {
         title: 'Stack',
-        icon: (props)=> <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+        icon: (propsIcon)=> <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
         isSelected: false,
         isVisible: true,
         uri: '/stack',
@@ -83,8 +84,72 @@ const HookedMenu = (props) => {
         isVisible: true,
         uri: '/smart',
         childMenuItems: []
+      },{
+        title: 'Stack',
+        icon: (propsIcon)=> <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+        isSelected: false,
+        isVisible: true,
+        uri: '/stack',
+        childMenuItems: [
+          {
+            title: 'Option 1',
+            icon: 'weather-rain',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option1',
+            childMenuItems: []
+          },
+          {
+            title: 'Option 2',
+            icon: 'weather-snow',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option2',
+            childMenuItems: []
+          },
+          {
+            title: 'Option 3',
+            icon: 'weather-sunset',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option3',
+            childMenuItems: []
+          }
+        ]
       },
-      { isSeparator: true },
+      { isSeparator: true },{
+        title: 'Stack',
+        icon: (propsIcon)=> <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+        isSelected: false,
+        isVisible: true,
+        uri: '/stack',
+        childMenuItems: [
+          {
+            title: 'Option 1',
+            icon: 'weather-rain',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option1',
+            childMenuItems: []
+          },
+          {
+            title: 'Option 2',
+            icon: 'weather-snow',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option2',
+            childMenuItems: []
+          },
+          {
+            title: 'Option 3',
+            icon: 'weather-sunset',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option3',
+            childMenuItems: []
+          }
+        ]
+      },
       {
         title: 'Settings',
         icon: 'settings',
@@ -93,11 +158,43 @@ const HookedMenu = (props) => {
         uri: '/settings',
         childMenuItems: []
       },
-      { isSeparator: true },
+      { isSeparator: true },{
+        title: 'Stack',
+        icon: (propsIcon)=> <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+        isSelected: false,
+        isVisible: true,
+        uri: '/stack',
+        childMenuItems: [
+          {
+            title: 'Option 1',
+            icon: 'weather-rain',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option1',
+            childMenuItems: []
+          },
+          {
+            title: 'Option 2',
+            icon: 'weather-snow',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option2',
+            childMenuItems: []
+          },
+          {
+            title: 'Option 3',
+            icon: 'weather-sunset',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option3',
+            childMenuItems: []
+          }
+        ]
+      },
       {
         render: (
           item: MenuItemData,
-          props: UpMenuProps,
+          propsMenu: UpMenuProps,
           state: UpMenuState
         ) => {
           return (
@@ -113,8 +210,238 @@ const HookedMenu = (props) => {
             </UpButton>
           );
         }
+      },{
+        title: 'Stack',
+        icon: (propsIcon) => <IconsM.AssignmentLate color={colorMap.primary} />,
+        isSelected: false,
+        isVisible: true,
+        uri: '/stack',
+        childMenuItems: [
+          {
+            title: 'Option 1',
+            icon: 'weather-rain',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option1',
+            childMenuItems: []
+          },
+          {
+            title: 'Option 2',
+            icon: 'weather-snow',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option2',
+            childMenuItems: []
+          },
+          {
+            title: 'Option 3',
+            icon: 'weather-sunset',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option3',
+            childMenuItems: []
+          }
+        ]
+      },
+      {
+        title: 'Stack',
+        icon: (propsIcon)=> <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+        isSelected: false,
+        isVisible: true,
+        uri: '/stack',
+        childMenuItems: [
+          {
+            title: 'Option 1',
+            icon: 'weather-rain',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option1',
+            childMenuItems: []
+          },
+          {
+            title: 'Option 2',
+            icon: 'weather-snow',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option2',
+            childMenuItems: []
+          },
+          {
+            title: 'Option 3',
+            icon: 'weather-sunset',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option3',
+            childMenuItems: []
+          }
+        ]
+      },{
+        title: 'Stack',
+        icon: (propsIcon)=> <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+        isSelected: false,
+        isVisible: true,
+        uri: '/stack',
+        childMenuItems: [
+          {
+            title: 'Option 1',
+            icon: 'weather-rain',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option1',
+            childMenuItems: []
+          },
+          {
+            title: 'Option 2',
+            icon: 'weather-snow',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option2',
+            childMenuItems: []
+          },
+          {
+            title: 'Option 3',
+            icon: 'weather-sunset',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option3',
+            childMenuItems: []
+          }
+        ]
+      },
+      {
+        title: 'Stack',
+        icon: (propsIcon) =>  <IconsM.LcloudRain color={colorMap.primary} />,
+        isSelected: false,
+        isVisible: true,
+        uri: '/stack',
+        childMenuItems: [
+          {
+            title: 'Option 1',
+            icon: 'weather-rain',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option1',
+            childMenuItems: []
+          },
+          {
+            title: 'Option 2',
+            icon: 'weather-snow',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option2',
+            childMenuItems: []
+          },
+          {
+            title: 'Option 3',
+            icon: 'weather-sunset',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option3',
+            childMenuItems: []
+          }
+        ]
+      },
+      {
+        title: 'Stack',
+        icon: (propsIcon) =>  <IconsM.Accessible color={colorMap.primary} />,
+        isSelected: false,
+        isVisible: true,
+        uri: '/stack',
+        childMenuItems: [
+          {
+            title: 'Option 1',
+            icon: 'weather-rain',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option1',
+            childMenuItems: []
+          },
+          {
+            title: 'Option 2',
+            icon: 'weather-snow',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option2',
+            childMenuItems: []
+          },
+          {
+            title: 'Option 3',
+            icon: 'weather-sunset',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option3',
+            childMenuItems: []
+          }
+        ]
+      },
+      {
+        title: 'Stack',
+        icon: (propsIcon) =>  <IconsM.AccountBalance color={colorMap.primary} />,
+        isSelected: false,
+        isVisible: true,
+        uri: '/stack',
+        childMenuItems: [
+          {
+            title: 'Option 1',
+            icon: 'weather-rain',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option1',
+            childMenuItems: []
+          },
+          {
+            title: 'Option 2',
+            icon: 'weather-snow',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option2',
+            childMenuItems: []
+          },
+          {
+            title: 'Option 3',
+            icon: 'weather-sunset',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option3',
+            childMenuItems: []
+          }
+        ]
+      },
+      {
+        title: 'Stack',
+        icon: (propsIcon) =>  <IconsM.AccountBox color={colorMap.primary} />,
+        isSelected: false,
+        isVisible: true,
+        uri: '/stack',
+        childMenuItems: [
+          {
+            title: 'Option 1',
+            icon: 'weather-rain',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option1',
+            childMenuItems: []
+          },
+          {
+            title: 'Option 2',
+            icon: 'weather-snow',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option2',
+            childMenuItems: []
+          },
+          {
+            title: 'Option 3',
+            icon: 'weather-sunset',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option3',
+            childMenuItems: []
+          }
+        ]
       }
     ];
+
     const [menu, setMenu] = React.useState(defaultMenu);
 
     const footerStyle = style({
@@ -129,8 +456,27 @@ const HookedMenu = (props) => {
     return (
       <UpMenu
         onMinifiedChange={(minified)=>action(`Menu minified: ${minified}`)}
+        customStyles={{
+          menu : (props) => ({
+            $nest: {
+              "li.active ul.up-sub-menu:not(:hover), li.active ul.up-sub-menu:hover" : {
+                backgroundColor: `${colorMap.primary} !important`,
+                color : "colorMap.white !important",
+                borderRadius : "6px",
+                padding:"16px !important",
+                marginLeft:"32px !important",
+                marginTop:"8px !important"
+              },
+              "li.active .up-sub-menu li:hover a span.up-menu-item-title" : {
+                color : colorMap.white3,
+              },
+              "li.active .up-sub-menu li.active a span.up-menu-item-title" : {
+                color : colorMap.white3,
+              }
+            }
+          })}}
         onClick={uri => {
-          const newMenu= prev => setMenuSelection(uri, menu, prev);
+          const newMenu = prev => setMenuSelection(uri, menu, prev);
           setMenu(previousMenu => newMenu(previousMenu));
           return false;
         }}

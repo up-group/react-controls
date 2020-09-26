@@ -100,44 +100,38 @@ export interface OrientedIconState extends IconState {
 export interface MaterialIconProps extends IconProps {
     IconName: string;
 }
-export interface MaterialIconState extends IconState {
-}
-export class MaterialinearIcon extends React.Component<MaterialIconProps, MaterialIconState> {
-    constructor(p, c) {
-        super(p, c);
-    }
-    render() {
-        var styleFocus = style({
-            $nest: {
-                "&:focus": {
-                    outline: "none",
-                },
+
+export const MaterialinearIcon : React.FunctionComponent<MaterialIconProps> = (props) => {
+    var styleFocus = style({
+        $nest: {
+            "&:focus": {
+                outline: "none",
             },
-        });
-        var styleIcone = style({
-            backgroundColor: this.props.BackgroundColor ? this.props.BackgroundColor : "",
-            padding: this.props.AvecCercle ? "5px" : "0",
-            borderRadius: this.props.AvecCercle ? "50%" : "0",
-            cursor: this.props.onClick || this.props.onMouseDown ? "pointer" : "auto",
-        }) + (this.props.className ? " " + this.props.className : "") + " " 
-            + getFontClassName({ fontSize: this.props.IconSize.toString(), color: this.props.Color,
-                fontWeight: this.props.fontWeight, fontStyle: this.props.fontStyle, fontStrech: this.props.fontStrech,
-                lineHeight: this.props.lineHeight, letterSpacing: this.props.letterSpacing, });
+        },
+    });
+    var styleIcone = style({
+        backgroundColor: props.BackgroundColor ? props.BackgroundColor : "",
+        padding: props.AvecCercle ? "5px" : "0",
+        borderRadius: props.AvecCercle ? "50%" : "0",
+        cursor: props.onClick || props.onMouseDown ? "pointer" : "auto",
+    }) + (props.className ? " " + props.className : "") + " " 
+        + getFontClassName({ fontSize: props.IconSize.toString(), color: props.Color,
+            fontWeight: props.fontWeight, fontStyle: props.fontStyle, fontStrech: props.fontStrech,
+            lineHeight: props.lineHeight, letterSpacing: props.letterSpacing, });
 
-        var iconeName: string = "icon-" + this.props.IconName;
+    var iconeName: string = "icon-" + props.IconName;
 
-        return <span onClick={this.props.onClick} tabIndex={this.props.tabIndex} className={styleFocus}
-                onFocus={this.props.onFocus} onBlur={this.props.onBlur} onMouseDown={this.props.onMouseDown} >
-            { isNullOrUndef(this.props.AlertNumber) ?
-                <span className={iconeName + " " + styleIcone} /> :
-                <AlertIcon IconSize={this.props.IconSize} className={styleIcone}
-                        AlertNumber={this.props.AlertNumber} AlertCircle={this.props.AlertCircle} AlertFont={this.props.AlertFont} >
-                    <span className={iconeName} />
-                </AlertIcon>
-            }
-            {this.props.children}
-        </span>;
-    }
+    return <span onClick={props.onClick} tabIndex={props.tabIndex} className={styleFocus}
+            onFocus={props.onFocus} onBlur={props.onBlur} onMouseDown={props.onMouseDown} >
+        { isNullOrUndef(props.AlertNumber) ?
+            <span className={iconeName + " " + styleIcone} /> :
+            <AlertIcon IconSize={props.IconSize} className={styleIcone}
+                    AlertNumber={props.AlertNumber} AlertCircle={props.AlertCircle} AlertFont={props.AlertFont} >
+                <span className={iconeName} />
+            </AlertIcon>
+        }
+        {props.children}
+    </span>;
 }
 
 export class IconInformations extends React.Component<IconProps, IconState> {

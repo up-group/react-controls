@@ -5,7 +5,7 @@ import { isFunction, isEmpty } from "../../../Common/utils";
 
 import UpSvgIcon from "../SvgIcon";
 import { IconName } from "../../../Common/theming/icons";
-import { MenuStyles } from "./styles";
+import { MenuStyles as getMenuStyles, UpMenuCustomStyles } from "./styles";
 import * as classnames from 'classnames';
 
 import { isEqual, isString } from 'lodash' ;
@@ -26,7 +26,9 @@ export interface UpMenuProps {
     blocked?: boolean,
     onClick?: (uri: string) => boolean | void;
     onMinifiedChange?:(minified?:boolean)=>void;
+    customStyles? : UpMenuCustomStyles;
 }
+
 export interface UpMenuState {
     minified: boolean;
 }
@@ -112,7 +114,7 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
         }
 
         return (
-            <aside className={classnames("up-menu", MenuStyles({...this.props, minified:this.currentMinifiedValue }))}>
+            <aside className={classnames("up-menu", getMenuStyles({...this.props, minified:this.currentMinifiedValue }))}>
                 <section className="up-menu-header">
                     {renderIcon &&
                         <section className="up-app-icon-wrapper">

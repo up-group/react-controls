@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.85)
+
+## Main Changes
+- UpMenu : Add CustomStyles props
+
 #  ReactControls (version: 0.2.84)
 
 ## Bug Fixes

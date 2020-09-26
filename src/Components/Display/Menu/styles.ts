@@ -3,22 +3,68 @@ import { media, style } from "typestyle";
 import { UpMenuProps, UpMenuState } from "./UpMenu";
 import { WithThemeProps } from "../../../Common/theming";
 
+import { CustomStyles, getCustomStyles } from '../../../Common/theming/types';
+import { NestedCSSProperties } from 'typestyle/lib/types';
+
+export type UpMenuCustomStylesKeys = 'menu' | 'nav' | 'content' | 'header' | 'footer' ;
+
+export type UpMenuCustomStyles = CustomStyles<UpMenuCustomStylesKeys, Partial<UpMenuProps>, UpMenuState> ;
+
+function getMenuCustomStyle(key : UpMenuCustomStylesKeys, customStyles: UpMenuCustomStyles, props: Partial<UpMenuProps>, state? : UpMenuState) {
+    return getCustomStyles<UpMenuCustomStylesKeys, Partial<UpMenuProps>, UpMenuState>(key, customStyles, props, state) ;
+}
+
 export const MenuStyles = (
          props: UpMenuProps & WithThemeProps & UpMenuState
-       ): string =>
-         style(
+       ): string => {
+
+         let defaultMenuStyles : NestedCSSProperties = {
+          width: props.minified ? "76px" : props.width,
+          minWidth: "76px",
+          zIndex: 1000,
+          position: "relative",
+          height: "100vh",
+          backgroundColor: "#4E5B59",
+          transition: "width 0.5s",
+          padding: "14px"
+        };
+
+        let defaultFooterStyles : NestedCSSProperties =  {
+          position: "absolute",
+          bottom: "8px",
+          width: 'calc(100% - 28px)',
+        };
+
+        let defaultHeaderStyles : NestedCSSProperties = {
+          display: 'flex',
+          flexDirection: props.minified?'column':'row',
+          justifyContent:'space-between',
+          alignItems: props.minified?'flex-start':'center'
+        }
+        let defaultNavStyles : NestedCSSProperties  = {
+          overflowY: "auto",
+          height: props.minified ? "79vh" : "84vh"
+        }
+
+        let defaultContentStyles : NestedCSSProperties  = {
+        }
+
+        if(props.customStyles) {
+          defaultMenuStyles = {...defaultMenuStyles, ...getMenuCustomStyle('menu', props.customStyles, props)};
+          defaultHeaderStyles = {...defaultHeaderStyles, ...getMenuCustomStyle('header', props.customStyles, props)};
+          defaultFooterStyles = {...defaultFooterStyles, ...getMenuCustomStyle('footer', props.customStyles, props)};
+          defaultNavStyles = {...defaultNavStyles, ...getMenuCustomStyle('nav', props.customStyles, props)};
+          defaultContentStyles = {...defaultContentStyles, ...getMenuCustomStyle('content', props.customStyles, props)};
+        }
+
+        return style(
            {
              $nest: {
-               "&.up-menu": {
-                 width: props.minified ? "76px" : props.width,
-                 minWidth: "76px",
-                 zIndex: 1000,
-                 position: "relative",
-                 height: "100vh",
-                 backgroundColor: "#4E5B59",
-                 transition: "width 0.5s",
-                 padding: "14px"
-               },
+               "&.up-menu": defaultMenuStyles,
+               "&.up-menu .up-menu-cotent" :defaultContentStyles,
+               "&.up-menu .up-menu-nav" : defaultNavStyles,
+               "&.up-menu .up-menu-header" : defaultHeaderStyles,
+               "&.up-menu .up-menu-footer" : defaultFooterStyles,
                "&.up-menu li a": {
                  color: "#ffffff",
                  textDecoration: "none"
@@ -29,9 +75,6 @@ export const MenuStyles = (
                  listStyle: "none"
                },
                "&.up-menu nav > ul li.separator": {
-                 //borderBottom: `1px solid ${
-                 //  props.theme.colorMap.disabledFg
-                 //}`,
                  margin: "27px 0 !important",
                  padding: 0,
                  width: "auto",
@@ -185,18 +228,7 @@ export const MenuStyles = (
                },
                "&.up-menu .up-menu-toggle.colored:hover svg, .up-menu .up-menu-toggle.colored:hover svg path, .up-menu .up-menu-toggle.colored:hover svg polygon, .up-menu .up-menu-toggle.colored:hover svg polyline": {
                  fill: props.theme.colorMap.primary
-               },
-               "& .up-menu-footer": {
-                 position: "absolute",
-                 bottom: "8px",
-                 width: 'calc(100% - 28px)',
-               },
-               "& .up-menu-header": {
-                 display: 'flex',
-                 flexDirection: props.minified?'column':'row',
-                 justifyContent:'space-between',
-                 alignItems: props.minified?'flex-start':'center'
-               },
+               }
              }
            },
            media(DeviceLRTablets, {
@@ -212,4 +244,5 @@ export const MenuStyles = (
                }
              }
            })
-         );
+         )
+    };
