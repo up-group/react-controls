@@ -12,6 +12,7 @@ import SvgIcon from '../../Display/SvgIcon'
 import { Moment } from "moment";
 
 import { SingleDatePicker } from "react-dates";
+import isInclusivelyAfterDay from '../../../Common/utils/isInclusivelyAfterDay';
 import { generateUniqueId } from "../../../Common/utils/helpers";
 
 import defaultPhrases from "./i18n/fr";
@@ -78,6 +79,7 @@ class UpDate extends BaseControlComponent<
     numberOfMonths: 2,
     enableOutsideDays: true,
     daySize: 30,
+    // isOutsideRange: day => !isInclusivelyAfterDay(day, moment()),
   };
 
   dateInput: any;
@@ -222,11 +224,13 @@ class UpDate extends BaseControlComponent<
           keepOpenOnDateSelect={false}
           hideKeyboardShortcutsPanel={true}
           phrases={defaultPhrases}
-          isOutsideRange={day =>
-            (maxDate && day > maxDate) || (minDate && day < minDate)
-          }
           isDayBlocked={day => false}
           inputIconPosition={iconPosition == "right" ? "after" : "before"}
+          isOutsideRange={day => 
+            !isInclusivelyAfterDay(day, moment()) ||
+            (maxDate && day > maxDate) || 
+            (minDate && day < minDate)
+          }
           // isDayHighlighted={(day: any) => day == new Date()}
           daySize={this.props.daySize}
         />
