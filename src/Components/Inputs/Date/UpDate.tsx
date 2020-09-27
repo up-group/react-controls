@@ -79,7 +79,7 @@ class UpDate extends BaseControlComponent<
     numberOfMonths: 2,
     enableOutsideDays: true,
     daySize: 30,
-    // isOutsideRange: day => !isInclusivelyAfterDay(day, moment()),
+    isOutsideRange: day => !isInclusivelyAfterDay(day, moment()),
   };
 
   dateInput: any;

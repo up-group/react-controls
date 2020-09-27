@@ -16,7 +16,7 @@ export interface UpDateProps extends BaseControlProps<Moment> {
   numberOfMonths?: number;
   enableOutsideDays?: boolean;
   daySize?: number;
-  isOutsideRange?:  (aDay: Moment, bDAy: Moment) => boolean
+  isOutsideRange?:  (aDay: Date, bDAy: Date) => boolean
 }
 
 export default UpDate ;
