@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.86)
+
+## Bug Fixes
+- UpDate : isOutsideRange
+
 #  ReactControls (version: 0.2.85)
 
 ## Main Changes
