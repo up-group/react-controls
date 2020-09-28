@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.87)
+
+## Bug Fixes
+- UpNumber : fix button design to increase/decrease value
+
 #  ReactControls (version: 0.2.86)
 
 ## Bug Fixes
