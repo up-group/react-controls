@@ -9,6 +9,7 @@ import * as queryString from 'query-string';
 import { UpSelectProps } from './types';
 import { Props } from 'react-select/lib/Select';
 import { style } from 'typestyle';
+import { toRem } from '../../../Common/theming/utils';
 
 import { color } from 'csx';
 import { ValueType, ActionMeta } from 'react-select/lib/types';
@@ -49,8 +50,8 @@ const formatGroupLabel = data => (
 
 const getLabelStyle = props => {
     const floatLabel = {
-      transform: 'translate(0, 2px) scale(.75) !important',
-      fontSize: '12px !important',
+      transform: 'translate(0, 0) !important',
+      fontSize: `${toRem(12)} !important`,
     };
     return style({
         marginTop: props.floatingLabel ? '16px' : '0px' ,

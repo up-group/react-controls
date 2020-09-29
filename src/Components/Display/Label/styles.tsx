@@ -2,6 +2,7 @@ import { NestedCSSProperties } from "typestyle/lib/types";
 import { UpLabelProps } from "./types";
 import { style } from "typestyle";
 import * as classnames from 'classnames';
+import { toRem } from '../../../Common/theming/utils';
 
 export const sizeMap = {
  auto: "40px",
@@ -37,7 +38,7 @@ const base = (props: UpLabelProps) : NestedCSSProperties => (
         marginRight: props.inline ? '24px' : '8px',
         display: 'inline-block',
         color: props.color,
-        fontSize: '14px',
+        fontSize: toRem(12),
         width: '100%',
       },
       '& .up-input, & .up-select' : {

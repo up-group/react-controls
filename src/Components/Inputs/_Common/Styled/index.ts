@@ -26,7 +26,6 @@ export const getCheckableStyles = (props: WithThemeProps | any) : NestedCSSPrope
     paddingLeft: '26px',
     textTransform: 'none',
     lineHeight: '16px',  
-    margin:'12px',
     $nest : {
       '& svg' : {
         margin:'4px 4px 4px 0px',
