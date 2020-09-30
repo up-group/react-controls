@@ -36,7 +36,7 @@ const getStyles = (
         fill: props.theme.colorMap.primary
       },
       "&.up-input-focused label, &.up-input-valued label": {
-        transform: "translate(0, 0)",
+        transform: "translate(0, 2px)",
         fontSize: toRem(12),
         color: props.theme.colorMap.primary,
         marginLeft: "0px"
