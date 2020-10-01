@@ -1,6 +1,7 @@
 import { UpDateProps } from "./";
 import 'react-dates/lib/css/_datepicker.css'; 
 import { WithThemeProps } from '../../../Common/theming/withTheme';
+import { toRem } from '../../../Common/theming/utils';
 import { style } from 'typestyle';
 
 const getStyles = (
@@ -35,8 +36,8 @@ const getStyles = (
         fill: props.theme.colorMap.primary
       },
       "&.up-input-focused label, &.up-input-valued label": {
-        transform: "translate(0, 4px) scale(.75)",
-        fontSize: "12px",
+        transform: "translate(0, 2px)",
+        fontSize: toRem(12),
         color: props.theme.colorMap.primary,
         marginLeft: "0px"
       },
@@ -82,7 +83,7 @@ const getStyles = (
       },
       "& .SingleDatePickerInput__showClearDate": {
         paddingRight: props.iconPosition == "left" ? "30px" : "0px",
-        minHeight: '29px'
+        minHeight: '30px'
       },
       "& .SingleDatePickerInput_clearDate": {
         right: props.iconPosition == "left" ? "0" : "12px"

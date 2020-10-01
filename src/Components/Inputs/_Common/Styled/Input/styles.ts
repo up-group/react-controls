@@ -8,6 +8,7 @@ import * as classnames from 'classnames'
 import { WithThemeProps } from '../../../../../Common/theming/withTheme';
 import { UpInputProps } from 'Components/Inputs/Input/types';
 import { isEmpty } from "../../../../../Common/utils";
+import { toRem } from '../../../../../Common/theming/utils';
 
 export const HeightLarge = (props) : NestedCSSProperties => {
   return {
@@ -573,8 +574,8 @@ export const inputStyles = (props: UpInputProps & WithThemeProps) : NestedCSSPro
 export const focusStyles = (props: StyledProps) => {
   const getFocusLabelStyle = props => {
     const focusLabelStyle = {
-      transform: 'translate(0, 2px) scale(.75)',
-      fontSize: '12px',
+      transform: 'translate(0, 0)',
+      fontSize: toRem(12),
       color: props.theme.colorMap.gray1
     };
     const { value, readonly } = props;
