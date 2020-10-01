@@ -8,6 +8,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import * as moment from 'moment' 
 import UpPassword from '../Password';
+import { Moment } from 'moment';
 
 
 export default { 
@@ -62,6 +63,38 @@ export const General =
         }}
         value={ value && moment(value)}
         
+      />
+    )}
+
+export const DateOnlyAfterToday =
+    () => {
+    const [value,setDate] = React.useState(moment() as any)      
+      return   (
+      <UpDate
+        onChange={(event,value) => {
+          console.log(event);
+          console.log(value);
+          setDate(value)
+        }}
+        minDate={new Date()}
+        value={ value && moment(value)}
+      />
+    )}
+
+    export const OnlySomeDate =
+    () => {
+    const [value,setDate] = React.useState(moment() as any)      
+      return   (
+      <UpDate
+        onChange={(event,value) => {
+          console.log(event);
+          console.log(value);
+          setDate(value)
+        }}
+        isOutsideRange={(day : Moment)  => {
+          return day.day() % 2 > 0
+        }}
+        value={ value && moment(value)}
       />
     )}
 

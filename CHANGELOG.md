@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.89)
+
+## Main Changes
+- UpDate : Add date outside range check props
+
 #  ReactControls (version: 0.2.88)
 
 ## Main Changes
