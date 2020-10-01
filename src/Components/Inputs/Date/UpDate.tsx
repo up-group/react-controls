@@ -79,7 +79,7 @@ class UpDate extends BaseControlComponent<
     numberOfMonths: 2,
     enableOutsideDays: true,
     daySize: 30,
-    isOutsideRange: day => !isInclusivelyAfterDay(day, moment()),
+    fromToDay: false
   };
 
   dateInput: any;
@@ -186,7 +186,8 @@ class UpDate extends BaseControlComponent<
       maxDate,
       floatingLabel,
       placeholder,
-      iconPosition
+      iconPosition,
+      fromToDay
     } = this.props;
 
     return (
@@ -227,7 +228,7 @@ class UpDate extends BaseControlComponent<
           isDayBlocked={day => false}
           inputIconPosition={iconPosition == "right" ? "after" : "before"}
           isOutsideRange={day => 
-            !isInclusivelyAfterDay(day, moment()) ||
+            (fromToDay && !isInclusivelyAfterDay(day, moment())) ||
             (maxDate && day > maxDate) || 
             (minDate && day < minDate)
           }

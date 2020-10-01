@@ -61,7 +61,7 @@ export const General =
           setDate(value)
         }}
         value={ value && moment(value)}
-        
+        fromToDay = {true}
       />
     )}
 
