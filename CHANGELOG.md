@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.88)
+
+## Main Changes
+- Input : Increase floating label size
+
 #  ReactControls (version: 0.2.87)
 
 ## Bug Fixes
