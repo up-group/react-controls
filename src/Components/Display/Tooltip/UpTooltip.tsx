@@ -118,8 +118,10 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps, UpTooltipStat
     } else {
       childrenWithProps = React.Children.map(children, function(child) {
           if (React.isValidElement(child)) {
-            return React.cloneElement(child as React.ReactElement<any>, { "dataFor" : tooltipId ,'data-event': 'click',
-            'data-event-off': 'dblclick' });
+            return React.cloneElement(child as React.ReactElement<any>, { "dataFor" : tooltipId 
+            // ,'data-event': 'click',
+            // 'data-event-off': 'dblclick' 
+          });
           } else {
             return child ;
           }
@@ -192,6 +194,7 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps, UpTooltipStat
           )}
           id={tooltipId}
           getContent={this.getContent}
+          eventOff='click'
           globalEventOff="click"
           {...others}
         />
