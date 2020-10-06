@@ -1,3 +1,11 @@
+#  ReactControls (version: 0.2.90)
+
+## Main Changes
+- UpNavTab : Add selected tab props
+
+## Bug Fixes
+- UpTooltip : fix hover behaviour
+
 #  ReactControls (version: 0.2.89)
 
 ## Main Changes
