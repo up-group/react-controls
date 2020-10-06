@@ -27,6 +27,7 @@ export const GeneralUse =
                 }
             ]
         }
+            selectedTabOnLoad={2}
         />
     );
 

@@ -9,6 +9,7 @@ export interface UpNavTabProps {
     tabs: Tab[],
     loadType?: LoadType;
     onSelectedTabChanged?: (selectTabKey: number, tab: Tab) => void;
+    selectedTabOnLoad?: number
 };
 
 export interface TabContentProps {
