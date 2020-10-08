@@ -115,7 +115,6 @@ getValue(value) {
 
 increment = () => {
      let newValue: number = parseFloat((this.currentValue || 0).toString().replace(',','.'));
-     console.log('newValue', newValue)
      let newValueAsString: string = newValue.toString();
      if(isNaN(newValue)) {
          newValue = 0 ;
