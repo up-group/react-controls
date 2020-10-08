@@ -95,7 +95,8 @@ applyDecimalPlace = (value: string) =>{
 
 handleNumericChange = (event: React.ChangeEvent<any>, valueAsString: string) => {
  if ( this.isValueMatched(valueAsString) ) {
-     this.handleChangeEvent(event, valueAsString);
+     const currentValue = valueAsString.replace(',','.');
+     return parseFloat(currentValue) > this.props.max ? null : this.handleChangeEvent(event, valueAsString);
    }
  }
 
@@ -166,7 +167,7 @@ showError() {
 
 renderControl() {
     const { isRequired, theme, readonly, tooltip,placeholder, name, autoFocus, floatingLabel } = this.props;
- 
+
     return (
       <div className={classnames(wrapperNumberStyles(this.props), 'up-number')}>
        <UpInput  
