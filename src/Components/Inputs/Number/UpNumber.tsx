@@ -13,6 +13,7 @@ import * as classnames from 'classnames';
 export interface UpNumberProps extends CommonProps<number | string> {
   max?: number;
   min?: number;
+  maxLength?: number;
   stepSize?: number;
   decimalPlace?: number;
   value?: number | string;
@@ -165,7 +166,7 @@ showError() {
  }
 
 renderControl() {
-    const { isRequired, theme, readonly, tooltip,placeholder, name, autoFocus, floatingLabel } = this.props;
+    const { isRequired, theme, readonly, tooltip,placeholder, name, autoFocus, floatingLabel, maxLength } = this.props;
  
     return (
       <div className={classnames(wrapperNumberStyles(this.props), 'up-number')}>
@@ -175,6 +176,7 @@ renderControl() {
           name={name}
           tabIndex={this.props.tabIndex}
           tooltip={tooltip}
+          maxLength={maxLength}
           readonly={readonly}
           isRequired={isRequired}
           autoFocus={autoFocus}
