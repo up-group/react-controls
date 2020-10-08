@@ -60,9 +60,17 @@ const cssModal = ({ modalWidth, displayMode, showModal, theme }: UpModalProps & 
         },
         "& .up-modal_dialog": {
             position: 'relative',
-            ...(modalWidth !== 'default' && {
-                maxWidth: `${modalWidth === 'half' ? 50 : 100}%`,
-            })
+            ...(modalWidth === 'default' ?
+                {
+                    minWidth: '600px',
+                    maxWidth: '70%',
+                    margin: `${toRem(30)} auto`
+                }
+                :
+                {
+                    maxWidth: `${modalWidth === 'half' ? 50 : 100}%`,
+                }
+            )
         },
         "& .up-modal_content": {
             position: 'relative',
@@ -72,7 +80,7 @@ const cssModal = ({ modalWidth, displayMode, showModal, theme }: UpModalProps & 
             outline: 0,
             boxShadow: '0 3px 9px rgba(0, 0, 0, .5)',
             ...(modalWidth !== 'default' && {
-                padding :`${toRem(150)} ${toRem(105)} ${toRem(15)}`,
+                padding: `${toRem(150)} ${toRem(105)} ${toRem(15)}`,
                 display: 'flex',
                 flexDirection: 'column',
                 height: '100vh',
@@ -143,15 +151,7 @@ const cssModal = ({ modalWidth, displayMode, showModal, theme }: UpModalProps & 
             }
         }
     }
-}, modalWidth === 'default' ? media({ minWidth: 768 }, {
-    $nest: {
-        "& .up-modal_dialog": {
-            minWidth: '600px',
-            maxWidth: '70%',
-            margin: `${toRem(30)} auto`
-        }
-    }
-}) : null);
+});
 
 const animationProp: any = (fade: string, displayMode: DisplayMode) => {
     if (fade === 'fadeIn') return fullAnimationProp(0.5, 'ease', fade, displayMode);
