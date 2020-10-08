@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.91)
+
+## Main Changes
+- UpNumber : fix min and max handling
+
 #  ReactControls (version: 0.2.90)
 
 ## Main Changes
