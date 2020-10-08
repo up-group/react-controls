@@ -13,7 +13,6 @@ import * as classnames from 'classnames';
 export interface UpNumberProps extends CommonProps<number | string> {
   max?: number;
   min?: number;
-  maxLength?: number;
   stepSize?: number;
   decimalPlace?: number;
   value?: number | string;
@@ -96,7 +95,7 @@ applyDecimalPlace = (value: string) =>{
 
 handleNumericChange = (event: React.ChangeEvent<any>, valueAsString: string) => {
  if ( this.isValueMatched(valueAsString) ) {
-     this.handleChangeEvent(event, valueAsString);
+     return parseFloat(valueAsString) > this.props.max ? null : this.handleChangeEvent(event, valueAsString);
    }
  }
 
@@ -166,8 +165,8 @@ showError() {
  }
 
 renderControl() {
-    const { isRequired, theme, readonly, tooltip,placeholder, name, autoFocus, floatingLabel, maxLength } = this.props;
- 
+    const { isRequired, theme, readonly, tooltip,placeholder, name, autoFocus, floatingLabel } = this.props;
+
     return (
       <div className={classnames(wrapperNumberStyles(this.props), 'up-number')}>
        <UpInput  
@@ -176,7 +175,6 @@ renderControl() {
           name={name}
           tabIndex={this.props.tabIndex}
           tooltip={tooltip}
-          maxLength={maxLength}
           readonly={readonly}
           isRequired={isRequired}
           autoFocus={autoFocus}
