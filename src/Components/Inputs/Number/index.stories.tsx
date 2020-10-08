@@ -28,30 +28,30 @@ const NumberWrapper = (props: UpNumberProps) => {
 export const General =
    () => (
     <UpThemeProvider theme={UpDefaultTheme}>
-        <UpLabel textAlign={"left"} inline={false} width="small" text="Number :">
-            <UpNumber />
+        <UpLabel textAlign={"left"} inline={false} width="small" text="Number :" >
+            <UpNumber min={0} maxLength={2}/>
         </UpLabel>
     </UpThemeProvider>
   )
 
-  export const WithFloatingLabel =
-     () => (
-      <UpThemeProvider theme={UpDefaultTheme}>
-            <UpNumber floatingLabel={"Number"} />
-      </UpThemeProvider>
-    )
+  // export const WithFloatingLabel =
+  //    () => (
+  //     <UpThemeProvider theme={UpDefaultTheme}>
+  //           <UpNumber floatingLabel={"Number"} />
+  //     </UpThemeProvider>
+  //   )
 
-export const Integer =
-  () => (
-    <>
-    <UpThemeProvider theme={{...UpDefaultTheme, inputBorderLess: false}}>
-       <UpLabel textAlign={"left"} inline={true} width="small" text="Number :">
-           <UpNumber min={0} decimalPlace={2} placeholder={'0,00'}/>
-        </UpLabel>
-   </UpThemeProvider>
+// export const Integer =
+//   () => (
+//     <>
+//     <UpThemeProvider theme={{...UpDefaultTheme, inputBorderLess: false}}>
+//        <UpLabel textAlign={"left"} inline={true} width="small" text="Number :">
+//            <UpNumber min={0} decimalPlace={2} placeholder={'0,00'}/>
+//         </UpLabel>
+//    </UpThemeProvider>
    
-   <UpThemeProvider theme={UpDefaultTheme}>
-       <NumberWrapper />
-   </UpThemeProvider>
-   </>
-  );
+//    <UpThemeProvider theme={UpDefaultTheme}>
+//        <NumberWrapper />
+//    </UpThemeProvider>
+//    </>
+//   );
