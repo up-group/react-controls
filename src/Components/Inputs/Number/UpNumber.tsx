@@ -96,7 +96,8 @@ applyDecimalPlace = (value: string) =>{
 handleNumericChange = (event: React.ChangeEvent<any>, valueAsString: string) => {
  if ( this.isValueMatched(valueAsString) ) {
      const currentValue = valueAsString.replace(',','.');
-     return parseFloat(currentValue) > this.props.max ? null : this.handleChangeEvent(event, valueAsString);
+     if ((this.props.max && parseFloat(currentValue)) > this.props.max || (this.props.min && parseFloat(currentValue)) < this.props.min) return null;
+     this.handleChangeEvent(event, valueAsString);
    }
  }
 
