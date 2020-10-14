@@ -105,7 +105,7 @@ const UpDataGridFooter = (props: UpDataGridFooterProps & WithThemeProps) => {
               <>
                 <UpButton
                   intent="primary"
-                  disabled={!(selectedData.length >= 2)}
+                  disabled={!(selectedData.length >= 1)}
                   onClick={() => handleShowModal()}
                 >
                   {actions[0].label}
@@ -122,7 +122,7 @@ const UpDataGridFooter = (props: UpDataGridFooterProps & WithThemeProps) => {
                     dropDown="down"
                     intent="primary"
                     extraActions={buttonAction || []}
-                    disabled={!(selectedData.length >= 2)}
+                    disabled={!(selectedData.length >= 1)}
                   >
                     {(selectedAction && selectedAction.label) || groupLabel}
                   </UpButton>
