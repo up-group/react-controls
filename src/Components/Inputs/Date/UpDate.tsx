@@ -178,7 +178,9 @@ class UpDate extends BaseControlComponent<
         </div>
     </div>
 
-  defaultIsOutsideRange =  (day) : boolean => (this.props.maxDate && day > this.props.maxDate) || (this.props.minDate && day < this.props.minDate)
+  defaultIsOutsideRange =  (day) : boolean => 
+    (this.props.maxDate && day.toDate().setHours(0,0,0,0) > this.props.maxDate.setHours(0,0,0,0)) || 
+    (this.props.minDate && day.toDate().setHours(0,0,0,0) < this.props.minDate.setHours(0,0,0,0));
 
   renderControl() {
     const {
