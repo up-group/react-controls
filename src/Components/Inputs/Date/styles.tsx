@@ -12,6 +12,12 @@ const getStyles = (
     position: "relative",
     backgroundColor: "transparent",
     $nest: {
+      "& .SingleDatePicker": {
+        ...(props.fullWidth && {width: "100%"})
+      },
+      "& .SingleDatePickerInput": {
+        ...(props.fullWidth && {width: "100%"})
+      },
       "& label": {
         fontSize: "14px",
         position: "absolute",
@@ -25,7 +31,7 @@ const getStyles = (
         marginLeft: props.iconPosition == "left" ? "36px" : "0px"
       },
       "& .DateInput" : {
-        width: "auto",
+        ...(props.fullWidth ? {width: "100%"} : {width: 'auto'})
       },
       "& .SingleDatePickerInput, & .SingleDatePickerInput input, & .SingleDatePickerInput .DateInput": {
         backgroundColor: "transparent",
@@ -51,7 +57,10 @@ const getStyles = (
       },
       "& .SingleDatePickerInput_calendarIcon": {
         margin: props.theme.inputBorderLess ? `0 ${props.iconPosition === "left" ? '5px' : '0px'} 0 0` : "0 5px 0 10px",
-        padding: "4px"
+        padding: "4px",
+        position: 'absolute',
+        right: 0,
+        top: '2px'
       },
       "& .SingleDatePickerInput_calendarIcon svg, & .SingleDatePickerInput_calendarIcon svg path": {
         fill: props.focused
@@ -86,7 +95,7 @@ const getStyles = (
         minHeight: '30px'
       },
       "& .SingleDatePickerInput_clearDate": {
-        right: props.iconPosition == "left" ? "0" : "12px"
+        right: props.iconPosition == "left" ? "0" : "9px"
       },
       "& .SingleDatePickerInput_clearDate:hover": {
         backgroundColor: "transparent"
