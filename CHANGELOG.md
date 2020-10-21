@@ -1,3 +1,11 @@
+#  ReactControls (version: 0.2.92)
+
+## Main Changes
+- UpDate : Allow to set full width
+
+## Bug Fixes
+- UpDate : Compare only date without time
+
 #  ReactControls (version: 0.2.91)
 
 ## Main Changes
