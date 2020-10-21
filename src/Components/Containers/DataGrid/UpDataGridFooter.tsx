@@ -71,20 +71,16 @@ const UpDataGridFooter = (props: UpDataGridFooterProps & WithThemeProps) => {
 
     const {actions, validationLabel, groupLabel, intent, confirmationMessage} = actionsDataGrid || {}
 
-    const [selectedAction ,selectAction] = React.useState(null)
+    const [selectedAction, selectAction] = React.useState(null)
     const selectedData = data.filter(element => element.isSelected)
 
     React.useEffect(() => {
-      if (selectedData.length < 2) {
+      if(actions.length === 1) {
+        selectAction(actions[0]);
+      } else if (selectedData.length < 2) {
         selectAction(null);
       }
     }, [selectedData]);
-
-    const [showModal, setShowModal] = React.useState(false);
-
-    const handleShowModal = () => setShowModal(true);
-
-    const handleCloseModal = () => setShowModal(false);
 
     const buttonAction = !isEmpty(actions) && actions.map(({ label, ...rest}) => ({
         libelle: label,
@@ -106,15 +102,10 @@ const UpDataGridFooter = (props: UpDataGridFooterProps & WithThemeProps) => {
                 <UpButton
                   intent="primary"
                   disabled={!(selectedData.length >= 2)}
-                  onClick={() => handleShowModal()}
+                  onClick={handleValidation}
                 >
                   {actions[0].label}
                 </UpButton>
-                <UpModal showModal={showModal} onClose={() => handleCloseModal()}>
-                  <div style={{"textAlign": "center"}}>{/* A régler !!!! */}
-                  <UpButton intent="primary">{confirmationMessage}</UpButton>
-                  </div>
-                </UpModal>
               </>
             ) : (
                 <>
