@@ -246,7 +246,8 @@ export interface UpDataGridState {
   take?: number;
   total?: number;
   isDataFetching?: boolean;
-  allRowSelected ?: boolean;
+  allRowSelected?: boolean;
+  selectedData?: Array<Row>;
 }
 
 export type SortDirection = "ASC" | "DESC";
@@ -290,6 +291,7 @@ class UpDataGrid extends React.Component<
     const columns: Array<Column> = this.props.columns;
     const _state = {
       data: [],
+      selectedData:[],
       isDataFetching: false,
       columns: columns, //this.prepareColumns(columns),
       skip: this.props.paginationProps.skip || 0,
@@ -310,12 +312,16 @@ class UpDataGrid extends React.Component<
     }
   }
 
+  isSelectedRowData = (id) => {
+    const selectedData = this.state.selectedData;
+    return selectedData.some(data => data.value.id === id);
+  }
+
   mapDataToRow = (data: Array<any>): Array<Row> => {
     let rows: Array<Row> = [];
-
     data.map((value, index) => {
       rows.push({
-        isSelected: false,
+        isSelected: this.state.allRowSelected || this.isSelectedRowData(value.id),
         value: value
       });
     });
@@ -367,7 +373,10 @@ class UpDataGrid extends React.Component<
         rows = rows.slice(this.state.skip, this.state.skip + this.state.take);
       }
     }
-    this.setState({ data: rows, total: total, isDataFetching: false });
+
+    const addedRows =  rows.filter(r => r.isSelected).filter(r => !this.state.selectedData.map(d => d.value.id).includes(r.value.id));
+    const selectedData = [ ...this.state.selectedData, ...addedRows]
+    this.setState({ data: rows, selectedData, total: total, isDataFetching: false });
   };
   fetchData = () => {
     this.setState({ isDataFetching: true });
@@ -458,11 +467,21 @@ class UpDataGrid extends React.Component<
       });
   }
 
+  selectedRowsData = (r) => {
+    const idRow = r.value.id;
+    const isRowSelected = r.isSelected;
+    return isRowSelected ? [...this.state.selectedData, r] :  this.state.selectedData.filter(data => data.value.id !== idRow);
+  }
+
   onRowSelectionChange = (rowKey: number, r: Row) => {
     var rows = this.state.data;
     rows[rowKey] = r;
 
-    this.setState({ data: rows}, () => {
+    this.setState({
+      data: rows,
+      selectedData: this.selectedRowsData(r),
+      allRowSelected : this.selectedRowsData(r).length === this.state.data.length
+    }, () => {
       if (this.props.onSelectionChange) {
         this.props.onSelectionChange(r, this.seletectedRow);
       }
@@ -472,12 +491,16 @@ class UpDataGrid extends React.Component<
   onSelectionAllChange = (isSelected: boolean) => {
     let rows: Array<Row> = this.state.data.map((row, index) => {
       return {
-        isSelected: this.state.allRowSelected  ? !isSelected : isSelected,
+        isSelected: !this.state.allRowSelected,
         value: row.value
       };
     });
-
-    this.setState({ data: rows,allRowSelected : !this.state.allRowSelected   }, () => {
+    const selectedData = !this.state.allRowSelected ? rows : [];
+    this.setState({ 
+      data: rows, 
+      selectedData: selectedData,
+      allRowSelected: !this.state.allRowSelected 
+    }, () => {
       if (this.props.onSelectionChange) {
         this.props.onSelectionChange(null, this.seletectedRow);
       }
@@ -645,70 +668,69 @@ class UpDataGrid extends React.Component<
         }
       }
     }
-  
+
     const providerValues = {
-      displayRowActionsWithinCell: this.props.displayRowActionsWithinCell ,
-      rowActions: this.props.rowActions ,
+      displayRowActionsWithinCell: this.props.displayRowActionsWithinCell,
+      rowActions: this.props.rowActions,
       labelToDisplayRowActionsInCell: this.props.labelToDisplayRowActionsInCell,
     }
     return (
       <UpDataGridProvider value={providerValues} >
-      <div
-        className={classnames(
-          "up-data-grid-container",
-          WrapperDataGridStyle,
-          this.props.className
-        )}
-      >
-        <UpDataGridHeader 
+        <div
+          className={classnames(
+            "up-data-grid-container",
+            WrapperDataGridStyle,
+            this.props.className
+          )}
+        >
+          <UpDataGridHeader
             {...this.props.headerProps}
             buttonExport={this.btnExportCsv}
-          />  
-        {this.props.isPaginationEnabled &&
-          this.props.paginationPosition != "bottom" && !this.state.isDataFetching &&
-          pagination}         
-        <UpLoadingIndicator
-          displayMode={"zone"}
-          message={this.props.loadingMessage}
-          isLoading={this.state.isDataFetching}
-          width={320}
-          height={240}
-        >
-          <>
-            <table
-              ref={r => {
-                this.refTable = r;
-              }}
-              className={classnames(
-                "up-data-grid-main",
-                DataGridStyle(this.props)
-              )}
-            >
-              {console.log(this.props.rowActions)}
-              <UpDataGridRowHeader
-                isSelectionEnabled={this.props.isSelectionEnabled}
-                onSelectionChange={this.onSelectionAllChange.bind(this)}
-                onSortChange={this.onSortChange.bind(this)}
-                actions={this.props.rowActions}
-                columns={columns}
-                displayRowActionsWithinCell={this.props.displayRowActionsWithinCell}
-                textAlignCells= {this.props.textAlignCells}
-
-              />
-              <tbody className={classnames("up-data-grid-body", oddEvenStyle)}>
-                {rows}
-              </tbody>
-            </table>
-          </>
-        </UpLoadingIndicator>
-          <UpDataGridFooter 
+          />
+          {this.props.isPaginationEnabled &&
+            this.props.paginationPosition != "bottom" && !this.state.isDataFetching &&
+            pagination}
+          <UpLoadingIndicator
+            displayMode={"zone"}
+            message={this.props.loadingMessage}
+            isLoading={this.state.isDataFetching}
+            width={320}
+            height={240}
+          >
+            <>
+              <table
+                ref={r => {
+                  this.refTable = r;
+                }}
+                className={classnames(
+                  "up-data-grid-main",
+                  DataGridStyle(this.props)
+                )}
+              >
+                <UpDataGridRowHeader
+                  isSelectionEnabled={this.props.isSelectionEnabled}
+                  onSelectionChange={this.onSelectionAllChange.bind(this)}
+                  onSortChange={this.onSortChange.bind(this)}
+                  actions={this.props.rowActions}
+                  columns={columns}
+                  displayRowActionsWithinCell={this.props.displayRowActionsWithinCell}
+                  textAlignCells={this.props.textAlignCells}
+                  isAllDataChecked = {this.state.allRowSelected }
+                />
+                <tbody className={classnames("up-data-grid-body", oddEvenStyle)}>
+                  {rows}
+                </tbody>
+              </table>
+            </>
+          </UpLoadingIndicator>
+          <UpDataGridFooter
             {...this.props.footerProps}
             isPaginationEnabled={this.props.isPaginationEnabled && this.props.paginationPosition != "top"}
-            pagination={pagination} 
-            data={this.state.data}
+            pagination={pagination}
+            data={this.state.selectedData}
             theme={this.props.theme}
           />
-      </div>
+        </div>
       </UpDataGridProvider>
     );
   }
@@ -746,7 +768,7 @@ class UpDataGrid extends React.Component<
   private exportTableToCSV(table: HTMLTableElement, filename, header) {
     var csv = this.getCsvFromTable(table, header);
 
-    var ieVersion = (function() {
+    var ieVersion = (function () {
       var rv = -1;
       if (navigator.appName == "Microsoft Internet Explorer") {
         var ua = navigator.userAgent;
@@ -786,17 +808,17 @@ class UpDataGrid extends React.Component<
       colDelim = '";"',
       rowDelim = '"\r\n"',
       csv = "",
-      getRows = function(typeOfRow) {
+      getRows = function (typeOfRow) {
         var $rows = $(table).find("tr:has(" + typeOfRow + ")");
         return (csv =
           '"' +
           $rows
-            .map(function(i, row) {
+            .map(function (i, row) {
               var $row = $(row),
                 $cols = $row.find(typeOfRow);
 
               return $cols
-                .map(function(j, col) {
+                .map(function (j, col) {
                   var $col = $(col),
                     text = $col.text().trim();
                   return (
