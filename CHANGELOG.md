@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.93)
+
+## Main Changes
+- UpDataGrid : Manage selection multi-page
+
 #  ReactControls (version: 0.2.92)
 
 ## Main Changes
