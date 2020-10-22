@@ -75,7 +75,7 @@ const UpDataGridFooter = (props: UpDataGridFooterProps & WithThemeProps) => {
     const selectedData = data.filter(element => element.isSelected)
 
     React.useEffect(() => {
-      if(actions.length === 1) {
+      if(actions && actions.length === 1) {
         selectAction(actions[0]);
       } else if (selectedData.length < 2) {
         selectAction(null);
