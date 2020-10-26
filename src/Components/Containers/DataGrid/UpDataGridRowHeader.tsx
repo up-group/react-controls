@@ -75,8 +75,8 @@ export default class UpDataGridRowHeader extends React.Component<UpDataGridRowHe
 
     render() {
         const selection = <UpCheckbox options={[{ checked: this.props.isAllDataChecked, name: "", value: "", onOptionChange: this.onSelectionChange }]} />;
-        const isActionEnabled = !this.props.displayRowActionsWithinCell && this.props.actions && this.props.actions.length > 0;
-       
+        const isActionEnabled = !this.props.displayRowActionsWithinCell && this.props.actions != null;
+        
         return (
             <thead className="up-data-grid-header">
                 <tr>

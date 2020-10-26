@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.94)
+
+## Bug Fixes
+- UpDataGrid : Fix handling action cells
+
 #  ReactControls (version: 0.2.93)
 
 ## Main Changes
