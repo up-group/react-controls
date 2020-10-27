@@ -64,7 +64,7 @@ export type RadioGroupProps = {
 const RadioGroup: React.StatelessComponent<RadioGroupProps & WithThemeProps> = (props) => {
     const { children, className } = props;
     return (
-        <div onClick={this.stopPropagation} className={classnames(className, style(RadioGroupStyles(props)))}>
+        <div onClick={(e) => { e.stopPropagation()}} className={classnames(className, style(RadioGroupStyles(props)))}>
             {children}
         </div>
     )
@@ -118,10 +118,6 @@ class UpRadio extends BaseControlComponent<UpRadioProps, any> {
         super(props);
     }
 
-    stopPropagation = (event) => {
-        event.stopPropagation();
-    }
-
     getValue(data: any) {
         return (data == null) ? null :
             data.target != null ? data.target.value
@@ -151,7 +147,7 @@ class UpRadio extends BaseControlComponent<UpRadioProps, any> {
     showSuccess() {
         return this.props.showSuccess
     }
-
+    
     renderControl() {
         const options = this.props.options;
         const radioGroupClass = `upContainer__groupradio upContainer__groupradio-${this.props.displayMode} upContainer__groupradio-${this.props.alignMode}`;
