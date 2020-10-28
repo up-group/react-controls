@@ -62,7 +62,8 @@ export const RadioGroupStyles = (props: RadioGroupProps & WithThemeProps) => {
                 color: "#4e5b59"
             },
             "&.upContainer__groupradio-horizontal label.up-radio": {
-                marginRight: `${props.gutter ? props.gutter : 0}px`
+                marginRight: `${props.gutter ? props.gutter : 0}px`,
+                marginBottom : `${props.gutter ? props.gutter : 0}px`
             },
             "&.upContainer__groupradio-vertical label.up-radio": {
                 marginTop: `${props.gutter ? props.gutter : 0}px`,
@@ -71,14 +72,13 @@ export const RadioGroupStyles = (props: RadioGroupProps & WithThemeProps) => {
             "&.upContainer__groupradio-button.upContainer__groupradio-horizontal label.up-radio": {
                 marginLeft: `${props.gutter ? props.gutter : 0}px`,
                 cursor: props.readonly && 'unset'
-
             },
             "&.upContainer__groupradio-horizontal": {
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "flex-start",
                 justifyContent: "flex-start",
-
+                flexWrap: "wrap",
             },
             "&.upContainer__groupradio-vertical": {
                 height: "100%",
@@ -87,7 +87,6 @@ export const RadioGroupStyles = (props: RadioGroupProps & WithThemeProps) => {
                 flexWrap: props.flexWrap ? "wrap" : "nowrap",
                 alignItems: "flex-start",
                 justifyContent: "flex-start",
-
             },
             "&.upContainer__groupradio-button input:checked ~ .up-control-wrapper .up-control-indicator::before": {
                 visibility: "hidden"
