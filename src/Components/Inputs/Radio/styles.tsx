@@ -64,7 +64,7 @@ export const RadioGroupStyles = (props: RadioGroupProps & WithThemeProps) => {
             "&.upContainer__groupradio-horizontal label.up-radio": {
                 marginRight: `${props.gutter ? props.gutter : 0}px`,
                 marginBottom : `${props.gutter ? props.gutter : 0}px`,
-                width: props.nbItemsPerRow ? `${Math.floor(100/props.nbItemsPerRow) - Math.ceil(props.gutter/16)}%` : 'auto'
+                width: props.nbItemsPerRow ? `${Math.floor(100/props.nbItemsPerRow) - Math.ceil((props.gutter ?? 0)/16)}%` : 'auto'
             },
             "&.upContainer__groupradio-horizontal label.up-radio .up-control-text": {
                 flex : 2
