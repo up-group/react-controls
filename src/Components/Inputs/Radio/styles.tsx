@@ -77,6 +77,9 @@ export const RadioGroupStyles = (props: RadioGroupProps & WithThemeProps) => {
                 marginLeft: `${props.gutter ? props.gutter : 0}px`,
                 cursor: props.readonly && 'unset'
             },
+            "&.upContainer__groupradio-button.upContainer__groupradio-horizontal label.up-radio .up-control-text": {
+                textAlign: "left"
+            },
             "&.upContainer__groupradio-horizontal": {
                 display: "flex",
                 flexDirection: "row",
