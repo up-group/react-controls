@@ -232,6 +232,7 @@ export interface UpDataGridProps {
   onSortChange?: (c: Column, dir: SortDirection) => void;
   onSelectionChange?: (lastChangeRow: Row, seletectedRow: Row[]) => void;
   onRowClick?: (rowIndex: number, row: any) => void;
+  isRowClickable?: boolean;
   getRowCustomClassName?: (rowIndex: number, row: any) => string;
   footerProps?: Partial<UpDataGridFooterProps>;
   headerProps?: Partial<UpDataGridHeaderProps>;
@@ -646,6 +647,7 @@ class UpDataGrid extends React.Component<
             onSelectionChange={this.onRowSelectionChange}
             onClick={this.props.onRowClick}
             getRowCustomClassName={this.props.getRowCustomClassName}
+            isRowClickable= {this.props.isRowClickable}
           />
         );
       }
