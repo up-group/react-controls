@@ -18,7 +18,8 @@ const ModalWrapper: React.FunctionComponent<UpModalWrapperProps> = props => {
         html,
         modalWidth,
         withHeaderSeparator,
-        footer
+        footer,
+        screenPosition
     } = props;
 
     const [showModal, setShowModal] = React.useState<boolean>(true);
@@ -55,6 +56,7 @@ const ModalWrapper: React.FunctionComponent<UpModalWrapperProps> = props => {
                 showModal={showModal}
                 withHeaderSeparator={withHeaderSeparator}
                 footer={footer !== null ? footer : null}
+                screenPosition={screenPosition}
             >
                 {html == null && modalContent()}
             </UpModal>
@@ -82,7 +84,7 @@ const htmlFrame = `<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
 
 export const GeneralUse =
     () => (
-        <ModalWrapper />
+        <ModalWrapper screenPosition={'center'}/>
     );
 
 export const WithFooter =

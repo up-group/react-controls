@@ -5,7 +5,7 @@ import { WithThemeProps } from '../../../Common/theming';
 import { UpModalProps, DisplayMode } from './types';
 import { toRem } from '../../../Common/theming/utils';
 
-const cssModal = ({ modalWidth, displayMode, showModal, theme }: UpModalProps & WithThemeProps) => style({
+const cssModal = ({ modalWidth, displayMode, showModal, theme, screenPosition }: UpModalProps & WithThemeProps) => style({
     $nest: {
         "& .up-modal": {
             position: 'fixed',
@@ -59,7 +59,11 @@ const cssModal = ({ modalWidth, displayMode, showModal, theme }: UpModalProps & 
             }
         },
         "& .up-modal_dialog": {
-            position: 'relative',
+            position: 'relative', 
+            ...(screenPosition === 'center' && {
+                top: '40%',
+                transform: 'translateY(-100%) !important'
+            }),
             ...(modalWidth === 'default' ?
                 {
                     minWidth: '600px',
