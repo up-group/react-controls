@@ -85,6 +85,7 @@ UpModal.defaultProps = {
     footer: null,
     html: null,
     onClose: null,
+    screenPosition: 'top'
 };
 
 export { UpModal };

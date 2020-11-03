@@ -1,5 +1,6 @@
 export type DisplayMode = 'fromTop' | 'fromBottom' | 'fromRight' | 'fromLeft';
 export type ModalWidth = 'half' | 'full' | 'default';
+export type ScreenPosition = 'top' | 'center';
 
 export interface UpModalWrapperProps {
     children?: React.ReactNode,
@@ -13,6 +14,8 @@ export interface UpModalWrapperProps {
     withHeaderSeparator?: boolean;
     footer?: string | JSX.Element;
     header?: string | JSX.Element;
+    /** possible case : top | Center */
+    screenPosition?: ScreenPosition;
 };
 
 export interface UpModalProps extends UpModalWrapperProps {
