@@ -129,7 +129,7 @@ const useShowButton = () => {
 
 export const General = () => {
   const intent = text('intent', 'success');
-  const message = text('message', 'Succès');
+  const message = text('message', 'Message 1 \n Message 2' );
   const [duration, Button] = useShowButton();
   return (
     <div style={{ marginTop: '100px' }}>

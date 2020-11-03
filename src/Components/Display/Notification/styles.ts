@@ -81,11 +81,12 @@ export const icon = (
   };
 };
 
-export const text = props => {
+export const text = (props): NestedCSSProperties => {
   return {
     $nest: {
       '& .up-notification .up-notification-message': {
-        marginLeft: '25px'
+        marginLeft: '25px',
+        whiteSpace: 'pre-line'
       }
     }
   };
