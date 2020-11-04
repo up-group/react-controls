@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.98)
+
+## Main Changes
+- UpModal : Add prop to center the modal
+
 #  ReactControls (version: 0.2.94)
 
 ## Bug Fixes
