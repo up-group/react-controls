@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.99)
+
+## Main Changes
+- UpDataPanelItem : Not show column if field is null or undefined
+
 #  ReactControls (version: 0.2.98)
 
 ## Main Changes
