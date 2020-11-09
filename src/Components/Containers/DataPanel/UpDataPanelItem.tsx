@@ -100,7 +100,7 @@ const UpDataPanelItem = (props: PanelItemProps) => {
     title,
     displayMode,
     columns,
-    showOnlyNotEmptyValue
+    showOnlyNotEmptyValue,
   } = props;
 
   const Tooltip = props => (
@@ -124,7 +124,7 @@ const UpDataPanelItem = (props: PanelItemProps) => {
       className={classnames(
         'panel-container',
         className,
-        getStyle(props)
+        getStyle(props),
       )}>
       {title && (
         <div className="panel-title">
@@ -132,7 +132,7 @@ const UpDataPanelItem = (props: PanelItemProps) => {
             {_.isFunction((title.general as TitleFormatter).format) && (title.general as TitleFormatter).format(panelData)}
             {_.isString(title.general) && title.general}
           </span>
-          {title.specific && 
+          {title.specific &&
             <span className="panel-title-specific">
               {_.isFunction((title.specific as TitleFormatter).format) && (title.specific as TitleFormatter).format(panelData)}
               {_.isString(title.specific) && title.specific}
@@ -143,34 +143,34 @@ const UpDataPanelItem = (props: PanelItemProps) => {
       <div className="panel-body">
         {columns.map((element, index) =>
           (panelData && panelData[element.field] && showOnlyNotEmptyValue) ||
-          !showOnlyNotEmptyValue ? (
-            <React.Fragment key={index}>
-              <div className="panel-col">
-                <span className="panel-col-label">
-                  {element.label}
-                  {displayMode === 'row' ? ': ' : null}
-                </span>
-                {element.formatter ? (
-                  element.formatter.format(
-                    panelData,
-                    element,
-                    element.getFormatterProps
-                      ? element.getFormatterProps(
-                          panelData?panelData[element.field]:null
-                        )
-                      : {}
-                  )
-                ) : (
-                  <span className="panel-col-value">
-                    {panelData && panelData[element.field]}
+            element.field && !showOnlyNotEmptyValue ? (
+              <React.Fragment key={index}>
+                <div className="panel-col">
+                  <span className="panel-col-label">
+                    {element.label}
+                    {displayMode === 'row' ? ': ' : null}
                   </span>
-                )}
-                {element.tooltip && (
-                  <Tooltip tooltip={element.tooltip} />
-                )}
-              </div>
-            </React.Fragment>
-          ) : null
+                  {element.formatter ? (
+                    element.formatter.format(
+                      panelData,
+                      element,
+                      element.getFormatterProps
+                        ? element.getFormatterProps(
+                          panelData ? panelData[element.field] : null,
+                        )
+                        : {},
+                    )
+                  ) : (
+                      <span className="panel-col-value">
+                        {panelData && panelData[element.field]}
+                      </span>
+                    )}
+                  {element.tooltip && (
+                    <Tooltip tooltip={element.tooltip} />
+                  )}
+                </div>
+              </React.Fragment>
+            ) : null
         )}
         {props.actions && (
           <div className="panel-actions">
@@ -189,7 +189,7 @@ const UpDataPanelItem = (props: PanelItemProps) => {
                     }
                   }
                 })}
-                onClick={() => element.action({value:{...panelData}})}></UpButton>
+                onClick={() => element.action({ value: { ...panelData } })}></UpButton>
             ))}
           </div>
         )}
