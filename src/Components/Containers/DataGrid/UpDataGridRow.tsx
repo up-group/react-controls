@@ -7,7 +7,7 @@ import UpCheckbox from '../../Inputs/Checkbox/UpCheckBox'
 import UpButton from '../../Inputs/Button/UpButton'
 
 import UpDataGridCell from './UpDataGridCell'
-import { Column, Row, Action } from './UpDataGrid'
+import { Column, Row, Action, isActionEnabled } from './UpDataGrid'
 import UpDefaultCellFormatter from './UpDefaultCellFormatter'
 
 import shallowEqual from '../../../Common/utils/shallowEqual'
@@ -54,7 +54,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
         value: {},
         isSelected: false,
         columns: [],
-        actions: [],
+        actions: null,
         isRowClickable: false
     }
 
@@ -91,15 +91,14 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
         const selection = <UpCheckbox options={[{ name: "up-selection", checked: this.props.isSelected === true, value: true, onOptionChange: this.onSelectionChange }]} />;
         
         let finalActions : Array<Action> = null ;
-        let isActionEnabled = this.props.actions != null;
-
+       
         if(this.props.actions && !Array.isArray(this.props.actions)) {
             finalActions = this.props.actions(this.props.value) ;
         } else if(this.props.actions != null) {
             finalActions = this.props.actions as Array<Action> ;
         }
 
-        finalActions = finalActions.filter(action => action!==null && (action.isVisible == null || typeof action.isVisible !== "function" || action.isVisible(this.props.value)));
+        finalActions = finalActions?.filter(action => action!==null && (action.isVisible == null || typeof action.isVisible !== "function" || action.isVisible(this.props.value)));
 
         // render action in the first element of the array
         const renderActions = ({
@@ -142,7 +141,10 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
                             />
                 })}
                 
-                {isActionEnabled && !displayRowActionsWithinCell &&
+                {isActionEnabled({
+                    displayRowActionsWithinCell,
+                    actions: finalActions
+                }) &&
                     <UpDataGridCell key={"cell-actions"} value={this.props.value} column={{ label: "", isSortable: false }}>
                         <UpButtonGroup gutter={4}>
                             {

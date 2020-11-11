@@ -32,6 +32,13 @@ const CellInnerElementStyle = {
   marginTop: "0.3em"
 };
 
+export function isActionEnabled(props : {
+  actions?: ActionFactory<any> | Array<Action>;
+  displayRowActionsWithinCell?: boolean;
+}) : boolean {
+  return !props.displayRowActionsWithinCell && props.actions != null;
+}
+
 const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
   style({
     width: "100%",
@@ -72,6 +79,9 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
       "& .up-data-grid-header-cell-label": {
         fontSize: '14px',
         color: props.theme.colorMap.grey1
+      },
+      "& .up-data-grid-header-cell.up-data-grid-header-cell-selection .up-checkbox" : {
+        marginLeft: "1px"
       },
       "& .up-data-grid-cell": {
         padding: "16px",
@@ -259,7 +269,7 @@ class UpDataGrid extends React.Component<
   > {
   static defaultProps: UpDataGridProps & WithThemeProps = {
     columns: [],
-    rowActions: [],
+    rowActions: null,
     dataKey: "Entity",
     labelToDisplayRowActionsInCell: '',
     paginationPosition: "top",
@@ -693,6 +703,7 @@ class UpDataGrid extends React.Component<
       rowActions: this.props.rowActions,
       labelToDisplayRowActionsInCell: this.props.labelToDisplayRowActionsInCell,
     }
+
     return (
       <UpDataGridProvider value={providerValues} >
         <div

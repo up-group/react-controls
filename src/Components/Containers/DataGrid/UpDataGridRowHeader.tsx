@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom'
 import UpCheckbox from '../../Inputs/Checkbox/UpCheckBox'
 
 import UpDataGridCellHeader from './UpDataGridCellHeader'
-import { Column, Action, SortDirection } from './UpDataGrid'
+import { Column, Action, SortDirection, isActionEnabled } from './UpDataGrid'
 import { isEmpty } from '../../../Common/utils';
 import { ActionFactory } from './UpDataGridRow'
 
@@ -29,7 +29,7 @@ export default class UpDataGridRowHeader extends React.Component<UpDataGridRowHe
     static defaultProps: UpDataGridRowHeaderProps = {
         isSelectionEnabled: true,
         columns: [],
-        actions: []
+        actions: null
     }
 
     constructor(props, context) {
@@ -75,18 +75,17 @@ export default class UpDataGridRowHeader extends React.Component<UpDataGridRowHe
 
     render() {
         const selection = <UpCheckbox options={[{ checked: this.props.isAllDataChecked, name: "", value: "", onOptionChange: this.onSelectionChange }]} />;
-        const isActionEnabled = !this.props.displayRowActionsWithinCell && this.props.actions != null;
         
         return (
             <thead className="up-data-grid-header">
                 <tr>
                     {this.props.isSelectionEnabled &&
-                        <UpDataGridCellHeader key={`header-selection`} column={{ label: selection, isSortable: false }} textAlignCells={this.props.textAlignCells}/>
+                        <UpDataGridCellHeader key={`header-selection`} className="up-data-grid-header-cell-selection" column={{ label: selection, isSortable: false }} textAlignCells={this.props.textAlignCells}/>
                     }
                     {this.props.columns.map((value, index) => {
                         return <UpDataGridCellHeader key={`header-${index}`} onSortChange={this.onSortChange.bind(this)} column={value} textAlignCells={this.props.textAlignCells}/>
                     })}
-                    {isActionEnabled && !isEmpty(this.props.actions) && 
+                    {isActionEnabled(this.props) && 
                         <UpDataGridCellHeader key={`header-actions`} width={`${this.props.actions.length * 46}px`} column={{ label: "", isSortable: false }} textAlignCells={this.props.textAlignCells}/>
                     }
                 </tr>

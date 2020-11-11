@@ -22,6 +22,7 @@ export interface UpDataGridCellHeaderProps {
   column?: Column;
   width?: string;
   textAlignCells?: 'center' | 'left' | 'right' | 'initial';
+  className? : string;
 }
 
 const headerCellStyles =  style({
@@ -111,7 +112,8 @@ export default class UpDataGridCellHeader extends React.Component<
         className={classnames(
           headerCellStyles,
           'up-data-grid-header-cell',
-          this.props.column.isSortable ? 'up-data-grid-sortable' : ''
+          this.props.column.isSortable ? 'up-data-grid-sortable' : '', 
+          this.props.className
         )}>
         <UpBox
           flexDirection={'row'}
