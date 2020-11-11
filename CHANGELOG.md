@@ -1,3 +1,9 @@
+
+#  ReactControls (version: 0.2.101)
+
+## Bug Fixes
+- UpDataGrid : Fix selection trhough pages and align checkbox
+
 #  ReactControls (version: 0.2.100)
 
 ## Main Changes
