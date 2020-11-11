@@ -18,11 +18,11 @@ import UpButton from "../../Inputs/Button/UpButton";
 import { IntentType, WithThemeProps } from "../../../Common/theming/types";
 import { ActionType } from "../../../Common/actions";
 import UpDefaultTheme, { withTheme } from "../../../Common/theming";
-import UpDataGridFooter,{UpDataGridFooterProps} from './UpDataGridFooter';
-import UpDataGridHeader,{UpDataGridHeaderProps} from './UpDataGridHeader';
+import UpDataGridFooter, { UpDataGridFooterProps } from './UpDataGridFooter';
+import UpDataGridHeader, { UpDataGridHeaderProps } from './UpDataGridHeader';
 
 import * as _ from 'lodash';
-import {UpDataGridProvider} from './UpDataGridContext'
+import { UpDataGridProvider } from './UpDataGridContext'
 
 const WrapperDataGridStyle = style({
   position: "relative"
@@ -52,7 +52,7 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
       "& .up-data-grid-header .up-checkbox": {
         marginTop: '8px',
         marginBottom: '8px',
-        marginLeft:'7px',
+        marginLeft: '7px',
       },
       "& .up-data-grid-body": {
         background: "white"
@@ -79,17 +79,17 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
         verticalAlign: props.alignCells,
         textAlign: props.textAlignCells,
         $nest: {
-          "& .up-buttons-wrapper" : {
+          "& .up-buttons-wrapper": {
             justifyContent: props.textAlignCells === 'center' ? 'center' :
-            props.textAlignCells === 'left' ? 'flex-start' : 
-            props.textAlignCells === 'right' ? 'flex-end' : 'normal',
+              props.textAlignCells === 'left' ? 'flex-start' :
+                props.textAlignCells === 'right' ? 'flex-end' : 'normal',
           }
         }
         //width:'100%'
       },
       "& .up-data-grid-cell .up-checkbox": {
-        marginTop:'0 !important',
-        display:'inline-block'
+        marginTop: '0 !important',
+        display: 'inline-block'
       },
       "& .up-data-grid-cell .row-actions": {
         position: 'absolute',
@@ -97,23 +97,23 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
         width: '300px',
         bottom: '3px',
         justifyContent: 'space-between',
-        zIndex:1
+        zIndex: 1
       },
       "& .up-data-grid-cell .row-action": {
         color: props.theme.colorMap.primary,
-        cursor:'pointer'
+        cursor: 'pointer'
       },
-      "& .up-data-grid-cell .row-action:hover, & .up-data-grid-cell .row-action-delete:hover" :{
+      "& .up-data-grid-cell .row-action:hover, & .up-data-grid-cell .row-action-delete:hover": {
         textDecoration: 'underline',
       },
       "& .up-data-grid-cell .row-action-delete": {
         color: props.theme.colorMap.errorActive,
-        cursor:'pointer'
+        cursor: 'pointer'
       },
       "& .up-data-grid-row": {
         verticalAlign: 'top',
       },
-      "& .up-data-grid-row:hover .row-actions":{
+      "& .up-data-grid-row:hover .row-actions": {
         display: 'flex',
       },
       "& .up-data-grid-row-bordered": {
@@ -162,8 +162,8 @@ export interface Action {
   action: (row: Row) => void;
   libelle?: string;
   borderless?: boolean
-  isVisible?: (value:unknown) => boolean;
-  getProps?: (value:unknown) => unknown;
+  isVisible?: (value: unknown) => boolean;
+  getProps?: (value: unknown) => unknown;
 }
 
 export interface ToolTip {
@@ -256,7 +256,7 @@ export type SortDirection = "ASC" | "DESC";
 class UpDataGrid extends React.Component<
   UpDataGridProps & WithThemeProps,
   UpDataGridState
-> {
+  > {
   static defaultProps: UpDataGridProps & WithThemeProps = {
     columns: [],
     rowActions: [],
@@ -292,17 +292,19 @@ class UpDataGrid extends React.Component<
     const columns: Array<Column> = this.props.columns;
     const _state = {
       data: [],
-      selectedData:[],
+      selectedData: [],
       isDataFetching: false,
       columns: columns, //this.prepareColumns(columns),
       skip: this.props.paginationProps.skip || 0,
       take: this.props.paginationProps.take || 50,
       page: this.props.paginationProps.page || 1,
       total: this.props.paginationProps.total,
-      allRowSelected : false,
+      allRowSelected: false,
     };
     if (this.props.data != null) {
-      _state.data = this.mapDataToRow(data);
+      const rows = this.mapDataToRow(data);
+      _state.data = rows;
+      _state.selectedData = rows.filter(s => s.isSelected)
     }
     this.state = _state;
   }
@@ -355,19 +357,19 @@ class UpDataGrid extends React.Component<
       if (rows.length == total && this.state.take < total) {
         // Internal sort
         if (sortedColumn) {
-          rows.sort(function(x, y) {
+          rows.sort(function (x, y) {
             if (sortedColumn.sortDir == "ASC")
               return x.value[sortedColumn.field] === y.value[sortedColumn.field]
                 ? 0
                 : x.value[sortedColumn.field] > y.value[sortedColumn.field]
-                ? 1
-                : -1;
+                  ? 1
+                  : -1;
             else
               return x.value[sortedColumn.field] === y.value[sortedColumn.field]
                 ? 0
                 : x.value[sortedColumn.field] > y.value[sortedColumn.field]
-                ? -1
-                : 1;
+                  ? -1
+                  : 1;
           });
         }
         // Internal pagination
@@ -375,8 +377,9 @@ class UpDataGrid extends React.Component<
       }
     }
 
-    const addedRows =  rows.filter(r => r.isSelected).filter(r => !this.state.selectedData.map(d => d.value.id).includes(r.value.id));
-    const selectedData = [ ...this.state.selectedData, ...addedRows]
+    const addedRows = rows.filter(r => r.isSelected)
+      .filter(r => !this.state.selectedData.some(d => d.value.id === r.value.id));
+    const selectedData = [...this.state.selectedData, ...addedRows];
     this.setState({ data: rows, selectedData, total: total, isDataFetching: false });
   };
   fetchData = () => {
@@ -446,7 +449,7 @@ class UpDataGrid extends React.Component<
       this.props.paginationProps.onPageChange(page, take, skip);
 
     this.setState({ page, take, skip }, () => {
-      if (this.props.dataSource != undefined) {
+      if (this.props.dataSource !== undefined) {
         this.fetchData();
       }
     });
@@ -471,17 +474,17 @@ class UpDataGrid extends React.Component<
   selectedRowsData = (r) => {
     const idRow = r.value.id;
     const isRowSelected = r.isSelected;
-    return isRowSelected ? [...this.state.selectedData, r] :  this.state.selectedData.filter(data => data.value.id !== idRow);
+    return isRowSelected ? [...this.state.selectedData, r] : this.state.selectedData.filter(data => data.value.id !== idRow);
   }
 
   onRowSelectionChange = (rowKey: number, r: Row) => {
-    var rows = this.state.data;
+    const rows = this.state.data;
     rows[rowKey] = r;
 
     this.setState({
       data: rows,
       selectedData: this.selectedRowsData(r),
-      allRowSelected : this.selectedRowsData(r).length === this.state.data.length
+      allRowSelected: this.selectedRowsData(r).length === this.state.data.length,
     }, () => {
       if (this.props.onSelectionChange) {
         this.props.onSelectionChange(r, this.seletectedRow);
@@ -490,17 +493,24 @@ class UpDataGrid extends React.Component<
   };
 
   onSelectionAllChange = (isSelected: boolean) => {
-    let rows: Array<Row> = this.state.data.map((row, index) => {
+    const rows: Array<Row> = this.state.data.map((row, index) => {
       return {
         isSelected: !this.state.allRowSelected,
-        value: row.value
+        value: row.value,
       };
     });
-    const selectedData = !this.state.allRowSelected ? rows : [];
-    this.setState({ 
-      data: rows, 
-      selectedData: selectedData,
-      allRowSelected: !this.state.allRowSelected 
+
+    const addedRows = rows.filter(r => r.isSelected)
+      .filter(r => !this.state.selectedData.map(d => d.value.id).includes(r.value.id));
+
+    let selectedData = [...this.state.selectedData, ...addedRows];
+    if (this.state.allRowSelected) {
+      selectedData = selectedData.filter(s => !this.state.data.some(d => d.value.id === s.value.id));
+    }
+    this.setState({
+      selectedData,
+      data: rows,
+      allRowSelected: !this.state.allRowSelected,
     }, () => {
       if (this.props.onSelectionChange) {
         this.props.onSelectionChange(null, this.seletectedRow);
@@ -537,7 +547,7 @@ class UpDataGrid extends React.Component<
     });
 
     var hasSameData = _.isEqual(curentState, nextProps.data);
-    
+
     if (this.props.dataSource == null && hasSameData === false) {
       data =
         nextProps.data != null
@@ -545,11 +555,18 @@ class UpDataGrid extends React.Component<
           : nextProps.data;
     }
 
+    const addedRows = data.filter(r => r.isSelected)
+      .filter(r => !this.state.selectedData.some(d => d.value.id === r.value.id));
+
+    let selectedData = [...this.state.selectedData, ...addedRows];
+    
+
     const newState: UpDataGridState = {
       data: data,
       columns: nextProps.columns, //(nextProps.columns != null) ? this.prepareColumns(nextProps.columns) : nextProps.columns,
       total: nextProps.paginationProps.total,
       isDataFetching: nextProps.isDataFetching,
+      selectedData : selectedData
     };
 
     if (nextProps.paginationProps.skip != null) {
@@ -560,7 +577,7 @@ class UpDataGrid extends React.Component<
       newState.take = nextProps.paginationProps.take;
       newState.page =
         (nextProps.paginationProps.page - 1) * nextProps.paginationProps.take >
-        nextProps.paginationProps.total
+          nextProps.paginationProps.total
           ? 1
           : nextProps.paginationProps.page;
     }
@@ -647,7 +664,7 @@ class UpDataGrid extends React.Component<
             onSelectionChange={this.onRowSelectionChange}
             onClick={this.props.onRowClick}
             getRowCustomClassName={this.props.getRowCustomClassName}
-            isRowClickable= {this.props.isRowClickable}
+            isRowClickable={this.props.isRowClickable}
           />
         );
       }
@@ -717,7 +734,7 @@ class UpDataGrid extends React.Component<
                   columns={columns}
                   displayRowActionsWithinCell={this.props.displayRowActionsWithinCell}
                   textAlignCells={this.props.textAlignCells}
-                  isAllDataChecked = {this.state.allRowSelected }
+                  isAllDataChecked={this.state.allRowSelected}
                 />
                 <tbody className={classnames("up-data-grid-body", oddEvenStyle)}>
                   {rows}
