@@ -481,7 +481,7 @@ class UpDataGrid extends React.Component<
       });
   }
 
-  selectedRowsData = (r) => {
+  selectedRowsData = (r: Row) => {
     const idRow = r.value.id;
     const isRowSelected = r.isSelected;
     return isRowSelected ? [...this.state.selectedData, r] : this.state.selectedData.filter(data => data.value.id !== idRow);
