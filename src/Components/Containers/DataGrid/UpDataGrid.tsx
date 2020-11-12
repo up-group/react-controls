@@ -481,10 +481,17 @@ class UpDataGrid extends React.Component<
       });
   }
 
-  selectedRowsData = (r) => {
+  selectedRowsData = (r: Row) => {
     const idRow = r.value.id;
     const isRowSelected = r.isSelected;
     return isRowSelected ? [...this.state.selectedData, r] : this.state.selectedData.filter(data => data.value.id !== idRow);
+  }
+
+  isAllRowsSelected = (r: Row) => {
+    const dataLength = this.state.data.length;
+    const selectedRowsDataLength = this.selectedRowsData(r).length;
+
+    return selectedRowsDataLength === dataLength || selectedRowsDataLength !== 0 && (selectedRowsDataLength % dataLength) === 0;
   }
 
   onRowSelectionChange = (rowKey: number, r: Row) => {
@@ -494,7 +501,7 @@ class UpDataGrid extends React.Component<
     this.setState({
       data: rows,
       selectedData: this.selectedRowsData(r),
-      allRowSelected: this.selectedRowsData(r).length === this.state.data.length,
+      allRowSelected: this.isAllRowsSelected(r),
     }, () => {
       if (this.props.onSelectionChange) {
         this.props.onSelectionChange(r, this.seletectedRow);
