@@ -1,4 +1,9 @@
 
+#  ReactControls (version: 0.2.102)
+
+## Bug Fixes
+- UpDataGrid : Fix Select all through pages
+
 #  ReactControls (version: 0.2.101)
 
 ## Bug Fixes

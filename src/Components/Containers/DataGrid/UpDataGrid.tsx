@@ -481,32 +481,32 @@ class UpDataGrid extends React.Component<
       });
   }
 
-  selectedRowsData = (r: Row) => {
-    const idRow = r.value.id;
-    const isRowSelected = r.isSelected;
-    return isRowSelected ? [...this.state.selectedData, r] : this.state.selectedData.filter(data => data.value.id !== idRow);
+  selectedRowsDataWithAlsoTheCurrentOne = (currentRoww: Row) => {
+    const idRow = currentRoww.value.id;
+    const isRowSelected = currentRoww.isSelected;
+    return isRowSelected ? [...this.state.selectedData, currentRoww] : this.state.selectedData.filter(data => data.value.id !== idRow);
   }
 
-  isAllRowsSelected = (r: Row) => {
+  isAllRowsSelectedWithAlsoTheCurrentOne = (currentRow: Row) => {
     const dataLength = this.state.data.length;
-    const selectedRowsLength = this.selectedRowsData(r).length;
-    //Check if all rows that are selected, belong to the same page (pagination)
+    const selectedRowsLength = this.selectedRowsDataWithAlsoTheCurrentOne(currentRow).length;
+    // Check if all rows that are selected, belong to the same page (pagination)
     const notCheckedRowsLength = this.state.data.filter(data => !data.isSelected).length;
 
     return notCheckedRowsLength == 0 && (selectedRowsLength % dataLength) == 0;
   }
 
-  onRowSelectionChange = (rowKey: number, r: Row) => {
+  onRowSelectionChange = (rowKey: number, currentRow: Row) => {
     const rows = this.state.data;
-    rows[rowKey] = r;
+    rows[rowKey] = currentRow;
 
     this.setState({
       data: rows,
-      selectedData: this.selectedRowsData(r),
-      allRowSelected: this.isAllRowsSelected(r),
+      selectedData: this.selectedRowsDataWithAlsoTheCurrentOne(currentRow),
+      allRowSelected: this.isAllRowsSelectedWithAlsoTheCurrentOne(currentRow),
     }, () => {
       if (this.props.onSelectionChange) {
-        this.props.onSelectionChange(r, this.seletectedRow);
+        this.props.onSelectionChange(currentRow, this.seletectedRow);
       }
     });
   };
