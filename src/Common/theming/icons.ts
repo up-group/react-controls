@@ -24,7 +24,7 @@ export type IconName =
 | 'radio' | 'ragged-text' | 'repeat' | 'rewind' | 'sandclock' | 'scale_down' | 'scale' | 'scale-up' | 'send' | 'settings' 
 | 'share' | 'shrink' | 'shuffle' | 'smartphone' | 'sound' | 'sound-low' | 'sound-medium' | 'sound-high' | 'sound-mute' 
 | 'spoon' | 'stack' | 'star-filled' | 'star-outline' | 'step-back' | 'step-forward' | 'switch-off' | 'switch-on' | 'tag'
-| 'thumb' | 'timer' | 'top-aligned-text' | 'trash-can' | 'tv' | 'fax' | 'load-file' | 'video-camera' | 'weather-cloud' 
+| 'thumb' | 'timer' | 'top-aligned-text' | 'trash-can' | 'tv' | 'fax' | 'video-camera' | 'weather-cloud' 
 | 'weather-lightning' | 'weather-rain' | 'weather-snow' | 'weather-sunrise' | 'weather-sunset' | 'weather-sunshine' 
 | 'weather-wind' | 'weather-wind-force' | 'window' | 'world' | 'caret-left' | 'fullscreen' | 'justified-text' | 'eye-open' 
 | 'eye-close' | 'cancel' | 'enterprise' | 'card' | 'purchase' | 'notification' | 'stats' | 'acceptation' | 'check' 
@@ -33,7 +33,8 @@ export type IconName =
 | 'colored-card' | 'colored-card-inclined' | 'colored-list' | 'colored-summary' | 'pen' | 'bill-sheet' | 'copy' | 'duplicate' 
 | 'file2' | 'home' | 'up-password' | 'condition' | 'on-off' | 'box' | 'box-birth' | 'box-christmas' | 'box-christmas2' 
 | 'box-cross' | 'box-hat' | 'box-heart' | 'box-infinity' | 'box-mustache' | 'box-rings' | 'box-school' | 'box-smile' 
-| 'box-stars' | 'box-trophy' | 'price' | 'letter' | 'post' | 'clear' | 'info' | 'back-arrow' | 'stacking' | 'zendesk' | 'faq' | 'conecs' | 'moveup';
+| 'box-stars' | 'box-trophy' | 'price' | 'letter' | 'post' | 'clear' | 'info' | 'back-arrow' | 'stacking' | 'zendesk' 
+| 'faq' | 'moveup' | 'eye-open2' | 'file3' | 'invoice';
 
 export const IconNames: IconName[] = ['menu', 'previous', 'list', 'gift', 'attachment', 'add', 'asterisk', 'calendar', 'caret-down',
 'caret-right', 'caret-up', 'close', 'comment', 'confirm', 'cross', 'delete', 'download', 'edit', 'email', 'error-sign', 'export', 
@@ -50,14 +51,14 @@ export const IconNames: IconName[] = ['menu', 'previous', 'list', 'gift', 'attac
 'presentation', 'printer', 'purse', 'radio', 'ragged-text', 'repeat', 'rewind', 'sandclock', 'scale_down', 'scale', 'scale-up', 'send', 
 'settings', 'share', 'shrink', 'shuffle', 'smartphone', 'sound', 'sound-low', 'sound-medium', 'sound-high', 'sound-mute', 'spoon', 'stack', 
 'star-filled', 'star-outline', 'step-back', 'step-forward', 'switch-off', 'switch-on', 'tag', 'thumb', 'timer', 'top-aligned-text', 
-'trash-can', 'tv', 'fax', 'load-file', 'video-camera', 'weather-cloud', 'weather-lightning', 'weather-rain', 'weather-snow', 'weather-sunrise', 
+'trash-can', 'tv', 'fax', 'video-camera', 'weather-cloud', 'weather-lightning', 'weather-rain', 'weather-snow', 'weather-sunrise', 
 'weather-sunset', 'weather-sunshine', 'weather-wind', 'weather-wind-force', 'window', 'world', 'caret-left', 'fullscreen', 'justified-text', 
 'eye-open', 'eye-close', 'cancel', 'enterprise', 'card', 'purchase', 'notification', 'stats', 'acceptation', 'check', 'billing', 'page', 
 'circle-plus', 'circle-close', 'circle-info', 'file', 'enter', 'profile2', 'burger-menu2', 'mobile-up', 'delivery', 'parcel', 'store', 'group',
 'colored-calendar', 'colored-transaction', 'colored-equalizer', 'colored-card', 'colored-card-inclined', 'colored-list', 'colored-summary', 
 'pen', 'bill-sheet', 'copy', 'duplicate', 'file2', 'home', 'up-password', 'condition', 'on-off', 'box', 'box-birth', 'box-christmas', 'box-christmas2', 
 'box-cross', 'box-hat', 'box-heart', 'box-infinity', 'box-mustache', 'box-rings', 'box-school', 'box-smile', 'box-stars', 'box-trophy', 'price',
-'letter', 'post', 'clear','info','back-arrow','stacking', 'zendesk', 'faq', 'conecs', 'moveup'] ;
+'letter', 'post', 'clear','info','back-arrow','stacking', 'zendesk', 'faq', 'moveup', 'eye-open2', 'file3', 'invoice'] ;
 
 let dictionary = {};
 
