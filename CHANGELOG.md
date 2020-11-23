@@ -1,3 +1,7 @@
+#  ReactControls (version: 0.2.103)
+
+## Bug Fixes
+- SvgIcon : add icons eye-open2 file3 and invoice
 
 #  ReactControls (version: 0.2.102)
 
@@ -7,7 +11,7 @@
 #  ReactControls (version: 0.2.101)
 
 ## Bug Fixes
-- UpDataGrid : Fix selection trhough pages and align checkbox
+- UpDataGrid : Fix selection through pages and align checkbox
 
 #  ReactControls (version: 0.2.100)
 
