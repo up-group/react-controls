@@ -142,14 +142,14 @@ class UpDate extends BaseControlComponent<
 
   componentDidMount() {
     this.datePicker = document.getElementById(this.id) as HTMLInputElement;
+
+    if (this.datePicker) {
+      this.datePicker.addEventListener('input', this.checkDate);
+    }
     
     if (this.props["dataFor"] && this.datePicker) {
       this.datePicker.setAttribute("data-tip", "tooltip");
       this.datePicker.setAttribute("data-for", this.props["dataFor"]);
-    }
-
-    if (this.datePicker) {
-      this.datePicker.addEventListener('input', this.checkDate);
     }
   }
 
