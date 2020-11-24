@@ -25,6 +25,8 @@ import getStyles from "./styles";
 import { style } from "typestyle";
 import UpSelect from "../Select";
 
+import { isNumeric } from "../../../Common/utils/helpers";
+
 moment.locale("fr");
 
 // Exports
@@ -125,13 +127,34 @@ class UpDate extends BaseControlComponent<
     }
   };
 
+  checkDate (e: KeyboardEvent): void {
+    const event = e.target as HTMLInputElement;
+    
+    if (event && event.value) {
+      const value = event.value as string;
+      const stringsToNumerics = value.split('/').map(stringValue => isNumeric(stringValue));
+      //Check if the array has falsy values which means unwanted characters.
+      const unwantedCharacters = stringsToNumerics.some(booleanValue => !booleanValue);
+      //Two characters are acceptable : / and -
+      if(unwantedCharacters) event.value = event.value.replace(/[a-zA-Z!"'$%^&*()_+|~=`{}\[\]:\\;<>?,.@#]/, '');
+    }
+  }
+
   componentDidMount() {
     this.datePicker = document.getElementById(this.id) as HTMLInputElement;
+
+    if (this.datePicker) {
+      this.datePicker.addEventListener('input', this.checkDate);
+    }
     
     if (this.props["dataFor"] && this.datePicker) {
       this.datePicker.setAttribute("data-tip", "tooltip");
       this.datePicker.setAttribute("data-for", this.props["dataFor"]);
     }
+  }
+
+  componentWillUnmount(){
+    if (this.datePicker) this.datePicker.removeEventListener('input', this.checkDate);
   }
   
   returnYears = () => {
