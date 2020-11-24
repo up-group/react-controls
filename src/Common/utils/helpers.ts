@@ -323,3 +323,5 @@ export const  setTimeOutWithPause = function(callback, delay) {
     this.resume();
   };
   
+// Check if a String is Numeric
+export const isNumeric = (data : string) : Boolean => /^\d+$/.test(data);
