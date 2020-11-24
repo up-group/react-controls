@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.104)
+
+## Main Changes
+- UpDate : only allow valid characters
+
 #  ReactControls (version: 0.2.103)
 
 ## Bug Fixes
