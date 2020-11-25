@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.105)
+
+## Bug Fixes
+- UpDropFile : Reset error notification on change
+
 #  ReactControls (version: 0.2.104)
 
 ## Main Changes
