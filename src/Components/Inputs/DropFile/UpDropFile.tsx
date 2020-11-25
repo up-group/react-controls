@@ -463,6 +463,7 @@ class UpDropFile extends React.Component<
           if (onChange) {
             const file = { ...this.value, ...tmpUpload };
             onChange(eventFactory(this.props.name, file), file);
+            this.setState({ errors: null });
           } else {
             this.setState({ value: { ...this.value, ...tmpUpload }, errors: null });
           }
