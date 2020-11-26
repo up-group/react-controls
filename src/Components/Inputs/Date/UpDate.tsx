@@ -136,7 +136,7 @@ class UpDate extends BaseControlComponent<
       //Check if the array has falsy values which means unwanted characters.
       const unwantedCharacters = stringsToNumerics.some(booleanValue => !booleanValue);
       //Two characters are acceptable : / and -
-      if(unwantedCharacters) event.value = event.value.replace(/[a-zA-Z!"'$%^&*()_+|~=`{}\[\]:\\;<>?,.@#]/, '');
+      if(unwantedCharacters) event.value = event.value.replace(/[a-zA-Z\u00C0-\u024F\u1E00-\u1EFF!"'$%^&*()_+|~=`{}\[\]:\\;<>?,.@#§µ²°]/, '');
     }
   }
 
