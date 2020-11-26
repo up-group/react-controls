@@ -443,6 +443,9 @@ class UpDropFile extends React.Component<
 
       return this.setState({ errors });
     }
+    else {
+      this.setState({ errors: null })
+    }
 
     const reader = new FileReader();
     const onChange = this.props.onChange;
@@ -463,9 +466,8 @@ class UpDropFile extends React.Component<
           if (onChange) {
             const file = { ...this.value, ...tmpUpload };
             onChange(eventFactory(this.props.name, file), file);
-            this.setState({ errors: null });
           } else {
-            this.setState({ value: { ...this.value, ...tmpUpload }, errors: null });
+            this.setState({ value: { ...this.value, ...tmpUpload } });
           }
         }.bind(this);
         this.resizeImage(this.props.maxImgWidth, reader.result, handleResize);
