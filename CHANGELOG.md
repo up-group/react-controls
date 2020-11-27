@@ -1,3 +1,10 @@
+#  ReactControls (version: 0.2.106)
+
+## Main Changes
+- UpDate : add more denied characters
+## Bug Fixes
+- UpDropFile : Fix reset error notification on change
+
 #  ReactControls (version: 0.2.105)
 
 ## Bug Fixes
