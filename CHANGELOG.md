@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.107)
+
+## Bug Fixes
+- UpDataGrid : Fix selected data on group action
+
 #  ReactControls (version: 0.2.106)
 
 ## Main Changes
