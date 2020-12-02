@@ -471,7 +471,7 @@ export const WithExternalSourceAndPaginationBottom = () => (
                    label: 'Supprimer',
                    onClick: rows => {
                      console.log('delete', rows);
-                     return new Promise(() => {});
+                     return new Promise((resolve, reject) => resolve({}));
                    },
                  },
                ],

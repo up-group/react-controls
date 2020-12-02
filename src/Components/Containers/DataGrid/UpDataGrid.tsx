@@ -32,10 +32,10 @@ const CellInnerElementStyle = {
   marginTop: "0.3em"
 };
 
-export function isActionEnabled(props : {
+export function isActionEnabled(props: {
   actions?: ActionFactory<any> | Array<Action>;
   displayRowActionsWithinCell?: boolean;
-}) : boolean {
+}): boolean {
   return !props.displayRowActionsWithinCell && props.actions != null;
 }
 
@@ -80,7 +80,7 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
         fontSize: '14px',
         color: props.theme.colorMap.grey1
       },
-      "& .up-data-grid-header-cell.up-data-grid-header-cell-selection .up-checkbox" : {
+      "& .up-data-grid-header-cell.up-data-grid-header-cell-selection .up-checkbox": {
         marginLeft: "1px"
       },
       "& .up-data-grid-cell": {
@@ -392,6 +392,7 @@ class UpDataGrid extends React.Component<
     const selectedData = [...this.state.selectedData, ...addedRows];
     this.setState({ data: rows, selectedData, total: total, isDataFetching: false });
   };
+
   fetchData = () => {
     this.setState({ isDataFetching: true });
     var sortedColumn: Column = null;
@@ -578,14 +579,14 @@ class UpDataGrid extends React.Component<
       .filter(r => !this.state.selectedData.some(d => d.value.id === r.value.id));
 
     let selectedData = [...this.state.selectedData, ...addedRows];
-    
+
 
     const newState: UpDataGridState = {
       data: data,
       columns: nextProps.columns, //(nextProps.columns != null) ? this.prepareColumns(nextProps.columns) : nextProps.columns,
       total: nextProps.paginationProps.total,
       isDataFetching: nextProps.isDataFetching,
-      selectedData : selectedData
+      selectedData: selectedData
     };
 
     if (nextProps.paginationProps.skip != null) {
@@ -713,6 +714,22 @@ class UpDataGrid extends React.Component<
       labelToDisplayRowActionsInCell: this.props.labelToDisplayRowActionsInCell,
     }
 
+    let newFooterProps: UpDataGridFooterProps = {
+      ...this.props.footerProps,
+      ...(this.props.footerProps && this.props.footerProps.actionsDataGrid && {
+        actionsDataGrid: {
+          ...this.props.footerProps.actionsDataGrid,
+          actions: this.props.footerProps.actionsDataGrid.actions.map(action => ({
+            ...action,
+            onClick: rows => action.onClick(rows)
+              .then(data => {
+                this.setState({ selectedData: [] })
+              })
+          }))
+        }
+      })
+    }
+
     return (
       <UpDataGridProvider value={providerValues} >
         <div
@@ -763,7 +780,7 @@ class UpDataGrid extends React.Component<
             </>
           </UpLoadingIndicator>
           <UpDataGridFooter
-            {...this.props.footerProps}
+            {...newFooterProps}
             isPaginationEnabled={this.props.isPaginationEnabled && this.props.paginationPosition != "top"}
             pagination={pagination}
             data={this.state.selectedData}
