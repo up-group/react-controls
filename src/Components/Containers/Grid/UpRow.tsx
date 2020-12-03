@@ -5,7 +5,7 @@ import { UpRowProps } from './types'
 import { UpGridConsumer } from './UpGridContext';
 
 const RowRenderer: React.FunctionComponent<UpRowProps> = (props) => {
-    const { prefixCls, justify, align, className, style, children, type, gutter, rowSpacing, ...others } = props;
+    const { prefixCls, justify, align, className, style, children, type, gutter, rowSpacing, fullRowLayout, ...others } = props;
 
     const getRowStyle = /*React.useCallback(*/() => {
         return (gutter as number) > 0 ? assign({}, {
@@ -20,6 +20,7 @@ const RowRenderer: React.FunctionComponent<UpRowProps> = (props) => {
             [`${prefixCls}-flex`]: type == 'flex',
             [`${prefixCls}-flex-${justify}`]: type == 'flex' && justify,
             [`${prefixCls}-flex-${align}`]: type == 'flex' && align,
+            [`${prefixCls}-flex-full`] : fullRowLayout
         }, className);
     }/*, [type, align, justify]);*/
 
@@ -44,7 +45,7 @@ const RowRenderer: React.FunctionComponent<UpRowProps> = (props) => {
 
 const UpRow: React.FunctionComponent<UpRowProps> = ({ gutter = 0, rowSpacing = 0, type = 'flex', prefixCls = 'up-row', ...rest }) => (
     <UpGridConsumer>
-        {(value) => <RowRenderer gutter={gutter || value.gutter} rowSpacing={rowSpacing || value.rowSpacing} type={type || value.type} prefixCls={prefixCls} {...rest} />}
+        {(value) => <RowRenderer fullRowLayout={value.fullRowLayout} gutter={gutter || value.gutter} rowSpacing={rowSpacing || value.rowSpacing} type={type || value.type} prefixCls={prefixCls} {...rest} />}
     </UpGridConsumer>
 );
 

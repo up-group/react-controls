@@ -7,6 +7,7 @@ export interface UpGridProps {
     gutter?: number;
     rowSpacing?: number;
     type?: LayoutMode;
+    fullRowLayout?: boolean;
     /** In order to set margin for example */
     style?: React.CSSProperties;
 };
@@ -50,4 +51,5 @@ export interface UpRowProps {
     justify?: Justification;
     style?: React.CSSProperties;
     prefixCls?: string;
+    fullRowLayout?:boolean;
 };

@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.108)
+
+## Main Changes
+- UpDataGrid : Fix UpRow enable full width layout
+
 #  ReactControls (version: 0.2.107)
 
 ## Bug Fixes

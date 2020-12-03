@@ -19,7 +19,7 @@ export default {
 
 export const GeneralUse =
     () => (
-        <UpGrid gutter={30} rowSpacing={20}>
+        <UpGrid gutter={30} rowSpacing={20} fullRowLayout={true}>
             <UpRow>
                 <UpCol xs={24} sm={12} md={8} lg={12} xl={8}>
                     <UpPanel type={'primary'} title={'Mon Panel'} />
@@ -29,6 +29,14 @@ export const GeneralUse =
                 </UpCol>
                 <UpCol xs={24} sm={12} md={8} lg={6} xl={8}>
                     <UpPanel type={'info'} title={'Mon Panel'} />
+                </UpCol>
+            </UpRow>
+            <UpRow>
+                <UpCol xs={24} sm={12} md={8} lg={12} xl={8}>
+                    <UpPanel type={'primary'} title={'Mon Panel'} />
+                </UpCol>
+                <UpCol xs={24} sm={12} md={8} lg={6} xl={8}>
+                    <UpPanel type={'default'} title={'Mon Panel'} />
                 </UpCol>
             </UpRow>
         </UpGrid>

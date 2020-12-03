@@ -34,7 +34,10 @@ export const GridStyles: string = style({
             flexDirection: 'row',
             '-webkit-flex-wrap': 'wrap',
             '-ms-flex-wrap': 'wrap',
-            flexWrap: 'wrap',
+            flexWrap: 'wrap'
+        },
+        '& .up-row-flex-full': {
+            flex: "0 0 100%"
         },
         '& .up-row-flex:before,& .up-row-flex:after': {
             display: 'flex',

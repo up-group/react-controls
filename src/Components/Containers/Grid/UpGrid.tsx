@@ -6,7 +6,7 @@ import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import * as classnames from 'classnames'
 import { UpGridProvider } from './UpGridContext';
 
-const UpGrid: React.FunctionComponent<UpGridProps & WithThemeProps> = ({ gutter = 0, rowSpacing = 0, type = "flex", theme = defaultTheme, ...rest }) => {
+const UpGrid: React.FunctionComponent<UpGridProps & WithThemeProps> = ({ gutter = 0, fullRowLayout = false, rowSpacing = 0, type = "flex", theme = defaultTheme, ...rest }) => {
     const { children, className, style } = rest;
     let rows = children;
 
@@ -21,7 +21,7 @@ const UpGrid: React.FunctionComponent<UpGridProps & WithThemeProps> = ({ gutter 
             if (row.props) {
                 return React.cloneElement(row, {
                     gutter: row.props.gutter == 0 ? _gutter : row.props.gutter,
-                    type: row.props.type ? row.props.type : row.props.type
+                    type:  row.props.type
                 });
             }
             return row;
@@ -29,7 +29,7 @@ const UpGrid: React.FunctionComponent<UpGridProps & WithThemeProps> = ({ gutter 
     }
 
     return (
-        <UpGridProvider value={{ gutter: _gutter, rowSpacing: _rowSpacing, type }} >
+        <UpGridProvider value={{ gutter: _gutter, rowSpacing: _rowSpacing, type, fullRowLayout }} >
             <div style={style} className={classnames(className, GridStyles)}>
                 {rows}
             </div>
