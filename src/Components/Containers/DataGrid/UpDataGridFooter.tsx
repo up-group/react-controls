@@ -3,7 +3,6 @@ import { style } from "typestyle"
 import classnames from 'classnames'
 import UpButtonGroup from '../ButtonGroup'
 import UpButton from '../../Inputs/Button/UpButton'
-import UpModal from '../../Containers/Modal/UpModal'
 import { NestedCSSProperties } from 'typestyle/lib/types'
 import { isEmpty } from '../../../Common/utils'
 import { WithThemeProps }  from '../../../Common/theming/withTheme'
@@ -69,7 +68,7 @@ const UpDataGridFooter = (props: UpDataGridFooterProps & WithThemeProps) => {
         isDataFetching,
     } = props
 
-    const {actions, validationLabel, groupLabel, intent, confirmationMessage} = actionsDataGrid || {}
+    const {actions, validationLabel, groupLabel, intent} = actionsDataGrid || {}
 
     const [selectedAction, selectAction] = React.useState(null)
     const selectedData = data.filter(element => element.isSelected)
@@ -77,7 +76,7 @@ const UpDataGridFooter = (props: UpDataGridFooterProps & WithThemeProps) => {
     React.useEffect(() => {
       if(actions && actions.length === 1) {
         selectAction(actions[0]);
-      } else if (selectedData.length < 2) {
+      } else if (selectedData.length < 1) {
         selectAction(null);
       }
     }, [selectedData]);
