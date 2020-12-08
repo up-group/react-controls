@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.110)
+
+## Main Changes
+- UpDataGrid : onSelection change now return also all selected data
+
 #  ReactControls (version: 0.2.109)
 
 ## Bug Fixes

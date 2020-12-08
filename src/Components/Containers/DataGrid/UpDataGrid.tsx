@@ -240,7 +240,7 @@ export interface UpDataGridProps {
   injectRow?: (previous: any, next: any, colum: Column[]) => JSX.Element;
   // Event Handler
   onSortChange?: (c: Column, dir: SortDirection) => void;
-  onSelectionChange?: (lastChangeRow: Row, seletectedRow: Row[]) => void;
+  onSelectionChange?: (lastChangeRow: Row, seletectedRow: Row[], allSelectedRows?: Row[]) => void;
   onRowClick?: (rowIndex: number, row: any) => void;
   isRowClickable?: boolean;
   getRowCustomClassName?: (rowIndex: number, row: any) => string;
@@ -507,7 +507,7 @@ class UpDataGrid extends React.Component<
       allRowSelected: this.isAllRowsSelectedWithAlsoTheCurrentOne(currentRow),
     }, () => {
       if (this.props.onSelectionChange) {
-        this.props.onSelectionChange(currentRow, this.seletectedRow);
+        this.props.onSelectionChange(currentRow, this.seletectedRow, this.state.selectedData);
       }
     });
   };
@@ -533,7 +533,7 @@ class UpDataGrid extends React.Component<
       allRowSelected: !this.state.allRowSelected,
     }, () => {
       if (this.props.onSelectionChange) {
-        this.props.onSelectionChange(null, this.seletectedRow);
+        this.props.onSelectionChange(null, this.seletectedRow, this.state.selectedData );
       }
     });
   };
@@ -601,10 +601,11 @@ class UpDataGrid extends React.Component<
           ? 1
           : nextProps.paginationProps.page;
     }
+
     this.setState(newState, () => {
       if (hasSameData === false) {
         if (this.props.onSelectionChange) {
-          this.props.onSelectionChange(null, []);
+          this.props.onSelectionChange(null, [], this.state.selectedData);
         }
       }
     });
