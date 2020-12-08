@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.111)
+
+## Main Changes
+- UpMenu : display menu if minified and have children
+
 #  ReactControls (version: 0.2.110)
 
 ## Main Changes
