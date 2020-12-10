@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.112)
+
+## Main Changes
+- UpDataGrid : Allow select text even if row clickable
+
 #  ReactControls (version: 0.2.111)
 
 ## Main Changes

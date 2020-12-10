@@ -199,14 +199,20 @@ export const WithActions =
       let actions : Array<Action> = [
         {
           action: () => {
+            alert("Ajouter un lien")
             setCurrentRow(rowValue);
           },
           type: "add",
           description: "Ajouter un lien",
-          intent: 'secondary'
+          intent: 'secondary',
+          isVisible : (row) => {
+            return row['c1'] == "Value 1";
+          }
         },
         {
-          action: () => {},
+          action: () => {
+            alert("Modifier")
+          },
           type: "arrow-right",
           description: "Modifier",
           intent: 'primary',
@@ -216,7 +222,9 @@ export const WithActions =
           }
         },
         {
-          action: () => {},
+          action: () => {
+            alert("Supprimer")
+          },
           type: "delete",
           description: "Supprimer",
           intent: 'danger',
@@ -234,7 +242,6 @@ export const WithActions =
     }
 
     return <UpDataGrid
-        onRowClick={(i, row) => console.log("onRowClick", i, row)}
         rowActions={actionFactory}
         columns={[
           {
@@ -261,6 +268,56 @@ export const WithActions =
         data={data}
       />
   }
+
+export const WithSingleActionAndRowClickable =
+  () => {
+  
+  const [currentRow, setCurrentRow] = React.useState({}) ;
+
+  const actionFactory : ActionFactory<any> = (rowValue : any) => {
+    let actions : Array<Action> = [
+      {
+        action: () => {
+          alert("Ajouter un lien")
+          setCurrentRow(rowValue);
+        },
+        type: "add",
+        description: "Ajouter un lien",
+        intent: 'secondary'
+      }
+    ];
+  
+    return actions;
+  }
+
+  return <UpDataGrid
+      rowActions={actionFactory}
+      isRowClickable={true}
+      columns={[
+        {
+          label: "Col 1",
+          field: "c1",
+          isSortable: true
+        },
+        {
+          label: "Col 2",
+          field: "c2",
+          isSortable: true
+        },
+        {
+          label: "Col 3",
+          field: "c3",
+          isSortable: true
+        },
+        {
+          label: "Col 4",
+          field: "c4",
+          isSortable: true
+        }
+      ]}
+      data={data}
+    />
+}
 
 export const WithExternalSource =
     () => (
