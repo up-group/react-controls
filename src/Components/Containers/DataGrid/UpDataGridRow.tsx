@@ -82,7 +82,14 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
         }
 
         if (actionsLength === 1 && this.props.isRowClickable) {
-            return () => actions[0].action({ isSelected: this.props.isSelected, value: this.props.value });
+            return () => {
+                let selectedText = '';
+                if(window.getSelection) {
+                    //Return selected text by user.
+                    selectedText = window.getSelection().toString();
+                }
+                return selectedText.length ? false : actions[0].action({ isSelected: this.props.isSelected, value: this.props.value });
+            }
         }
     }
 
