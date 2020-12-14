@@ -58,7 +58,9 @@ import { UpPanel,
     UpCodeViewer,
     UpInformation,
     UpCarousel,
-    UpDataPanel
+    UpDataPanel,
+    UpEntityView,
+    UpVerticalTimeline
 } from './Components/'
 
 import * as UpIcons from "./Components/Display/Icons/materialinear";
@@ -147,4 +149,6 @@ export {
     useMountedRef,
     useHoverIntent,
     useSafeState,
+    UpEntityView,
+    UpVerticalTimeline
 };

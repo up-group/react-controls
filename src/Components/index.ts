@@ -56,6 +56,8 @@ import UpCodeViewer from './Display/CodeViewer/UpCodeViewer'
 import UpInformation  from './Display/Information/UpInformation'
 import UpDataPanel  from './Containers/DataPanel/UpDataPanel'
 import * as UpIcons from "./Display/Icons/materialinear";
+import UpEntityView from './Display/EntityView'
+import UpVerticalTimeline from './Display/VerticalTimeline'
 
 export {
     UpBaseControlComponent,
@@ -118,5 +120,7 @@ export {
     UpCarousel,
     UpPicture,
     UpRichText,
-    UpDataPanel
+    UpDataPanel,
+    UpEntityView,
+    UpVerticalTimeline
 };
