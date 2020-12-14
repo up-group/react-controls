@@ -1,3 +1,9 @@
+#  ReactControls (version: 0.2.113)
+
+## Main Changes
+- UpEntityView : Add new component for displaying data 
+- UpVerticalTimeLine : Add new component for displaying vertical timeline 
+
 #  ReactControls (version: 0.2.112)
 
 ## Main Changes
