@@ -109,7 +109,7 @@ export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
     //Width?: string;
 
 
-    Validate?: (value: string | string[] | number) => ValidationReturn;
+    Validate?: (value: string | readonly string[] | number) => ValidationReturn;
     onChangeValue?: (value: string | string[] | number) => void;
 
 
