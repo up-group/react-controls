@@ -214,7 +214,11 @@ export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
             <a onClick={(e) => {
               this.onItemClick(e);
               this.setSubMenuPosition(e);
-            }} href={this.props.uri} onMouseEnter={this.setSubMenuPosition}>
+            }}
+               onMouseEnter={this.setSubMenuPosition}
+               onTouchStart={this.setSubMenuPosition}
+               href={this.props.uri}
+            >
                 {isString(this.props.icon) && <UpSvgIcon title={this.props.title} width={22} height={22} iconName={this.props.icon as IconName}></UpSvgIcon>}
                 {isFunction(this.props.icon) && this.props.icon(this.props)}
                 <span className={'up-menu-item-title'}>{this.props.title}</span>
