@@ -182,18 +182,25 @@ export interface MenuItemData {
   render?: (item: MenuItemData, props?: Partial<UpMenuProps>, state?: UpMenuState) => JSX.Element;
 }
 
+export interface MenuItemState {
+  subMenuPosition: number
+}
+
 export interface MenuItemProps extends MenuItemData {
   onClick?: (uri: string, menuItem?: MenuItemData) => boolean | void;
 }
 
-export class MenuItem extends React.Component<MenuItemProps>{
-
+export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
   constructor(p, c) {
     super(p, c);
+
+    this.state = {
+      subMenuPosition: 0,
+    }
   }
 
-  shouldComponentUpdate(nextProps) {
-    return !isEqual(this.props, nextProps) ;
+  shouldComponentUpdate(nextProps: Readonly<MenuItemProps>, nextState: Readonly<MenuItemState>, nextContext: any): boolean {
+    return !isEqual(this.props, nextProps) || this.state.subMenuPosition !== nextState.subMenuPosition
   }
 
   render() {
@@ -204,7 +211,10 @@ export class MenuItem extends React.Component<MenuItemProps>{
 
     return <li className={classnames('treeview', { hide, active, hasChildren: hasChilren, separator: isSeparator })}>
             {this.props.uri &&
-            <a onClick={this.onItemClick} href={this.props.uri}>
+            <a onClick={(e) => {
+              this.onItemClick(e);
+              this.setSubMenuPosition(e);
+            }} href={this.props.uri} onMouseEnter={this.setSubMenuPosition}>
                 {isString(this.props.icon) && <UpSvgIcon title={this.props.title} width={22} height={22} iconName={this.props.icon as IconName}></UpSvgIcon>}
                 {isFunction(this.props.icon) && this.props.icon(this.props)}
                 <span className={'up-menu-item-title'}>{this.props.title}</span>
@@ -212,9 +222,17 @@ export class MenuItem extends React.Component<MenuItemProps>{
             </a>
             }
             {!isEmpty(this.props.childMenuItems) &&
-                <SubMenu title={this.props.title} onClick={this.props.onClick} childMenuItems={this.props.childMenuItems} />
+                <SubMenu title={this.props.title} onClick={this.props.onClick} childMenuItems={this.props.childMenuItems} position={this.state.subMenuPosition} />
             }
         </li>;
+  }
+
+  setSubMenuPosition = (e) => {
+    if (e.currentTarget) {
+      this.setState({
+        subMenuPosition: e.currentTarget.getBoundingClientRect().top + window.scrollY
+      })
+    }
   }
 
   onItemClick = (e) => {
@@ -230,17 +248,17 @@ export interface SubMenuProps {
   title?:string;
   childMenuItems?: MenuItemData[];
   onClick: (uri: string) => void;
+  position?: number;
 }
 
 export class SubMenu extends React.Component<SubMenuProps> {
-
   constructor(p, c) {
     super(p, c);
     this.state = {};
   }
 
-  shouldComponentUpdate(nextProps) {
-    return !isEqual(this.props, nextProps);
+  shouldComponentUpdate(nextProps: Readonly<SubMenuProps>, nextState: Readonly<{}>, nextContext: any): boolean {
+    return this.props.position !== nextProps.position
   }
 
   render() {
@@ -248,12 +266,16 @@ export class SubMenu extends React.Component<SubMenuProps> {
       return null;
     }
 
+    console.log(this.props.position)
+
     const items = this.props.childMenuItems.map((v, i) => {
       return <SubItems key={i} onClick={this.props.onClick} uri={v.uri} title={v.title} isVisible={v.isVisible} isSelected={v.isSelected} icon={v.icon} childMenuItems={v.childMenuItems} />;
     });
 
     return <>
-            <ul className="up-sub-menu">
+            <ul className="up-sub-menu" style={{
+              top: this.props.position
+            }}>
                 {this.props.title &&
                     <span className={'up-sub-menu-title'}>{this.props.title}</span>
                 }

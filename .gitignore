@@ -5,6 +5,7 @@
 .vs/
 node_modules/
 dist/
+.idea/
 
 test/index.js
 test/index.js.map

@@ -828,7 +828,7 @@ export const CustomStyles = (props) => {
   );
 };
 
-export const Mobile = (props) => {
+export const MobileAutoStretch = (props) => {
   const defaultMenu: Array<MenuItemData> = [
     {
       title: 'Stack',
@@ -957,6 +957,273 @@ export const Mobile = (props) => {
           }}
           menuItems={menu}
           minified={minified}
+          footer={(props: Partial<UpMenuProps>, state : UpMenuState) => {
+            return (
+                <>
+                  {!minified &&
+                  <UpBox alignItems={'center'} justifyContent={'center'} style={{ width: '100%', height: '100%' }}>
+                    <div className={footerStyle}>
+                      Copyright. Tous droits réservés Up 2019
+                    </div>
+                    <a
+                        className={footerStyle}
+                        href="https://up.coop/donnees-personnelles"
+                        target="_blank"
+                    >
+                      Conditions générales
+                    </a>
+                    <a
+                        className={footerStyle}
+                        href="https://up.coop/mentions-legales"
+                        target="_blank"
+                    >
+                      Mentions légales
+                    </a>
+                  </UpBox>
+                  }
+                  {minified &&
+                  <UpTooltip place={'top'} content={'Copyright.Tous droits réservés Up 2019'} >
+                    <UpBox alignItems={'center'} justifyContent={'center'} style={{ width: '100%', height: '100%' }}>
+                      <UpSvgIcon color={colorMap.disabledFg} iconName={'info-sign'} />
+                    </UpBox>
+                  </UpTooltip>
+                  }
+                </>
+            );
+          }}
+          header={(props: Partial<UpMenuProps>, state: UpMenuState) => {
+            return (
+                <UpBox flexDirection={'row'} alignItems={'center'} justifyContent={'center'} style={{ height: '100%' }}>
+                  {!minified &&
+                  <UpSvgIcon color={colorMap.primary} iconName={'checkmark'} />
+                  }
+                  {!minified &&
+                  <UpLigne color={colorMap.primary} className={style({ marginLeft : '8px' })}>
+                    Acceptation de titre
+                  </UpLigne>
+                  }
+                </UpBox>
+            );
+          }}
+      />
+  );
+};
+
+export const Mobile = (props) => {
+  const defaultMenu: Array<MenuItemData> = [
+    {
+      title: 'Stack',
+      icon: (propsIcon) => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+      isSelected: false,
+      isVisible: true,
+      uri: '/stack',
+      childMenuItems: [
+        {
+          title: 'Option 1',
+          icon: 'weather-rain',
+          isSelected: false,
+          isVisible: true,
+          uri: '/stack/option1',
+          childMenuItems: [],
+        },
+        {
+          title: 'Option 2',
+          icon: 'weather-snow',
+          isSelected: false,
+          isVisible: true,
+          uri: '/stack/option2',
+          childMenuItems: [],
+        },
+        {
+          title: 'Option 3',
+          icon: 'weather-sunset',
+          isSelected: false,
+          isVisible: true,
+          uri: '/stack/option3',
+          childMenuItems: [],
+        },
+      ],
+    },
+    {
+      title: 'Smart',
+      icon: 'smartphone',
+      isSelected: false,
+      isVisible: true,
+      uri: '/smart',
+      childMenuItems: [],
+    },
+    { isSeparator: true },
+    {
+      title: 'Stack',
+      icon: (propsIcon) => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+      isSelected: false,
+      isVisible: true,
+      uri: '/stack',
+      childMenuItems: [
+        {
+          title: 'Option 1',
+          icon: 'weather-rain',
+          isSelected: false,
+          isVisible: true,
+          uri: '/stack/option1',
+          childMenuItems: [],
+        },
+        {
+          title: 'Option 2',
+          icon: 'weather-snow',
+          isSelected: false,
+          isVisible: true,
+          uri: '/stack/option2',
+          childMenuItems: [],
+        },
+        {
+          title: 'Option 3',
+          icon: 'weather-sunset',
+          isSelected: false,
+          isVisible: true,
+          uri: '/stack/option3',
+          childMenuItems: [],
+        },
+      ],
+    },
+    {
+      title: 'Smart',
+      icon: 'smartphone',
+      isSelected: false,
+      isVisible: true,
+      uri: '/smart',
+      childMenuItems: [],
+    },
+    { isSeparator: true },
+    {
+      title: 'Stack',
+      icon: (propsIcon) => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+      isSelected: false,
+      isVisible: true,
+      uri: '/stack',
+      childMenuItems: [
+        {
+          title: 'Option 1',
+          icon: 'weather-rain',
+          isSelected: false,
+          isVisible: true,
+          uri: '/stack/option1',
+          childMenuItems: [],
+        },
+        {
+          title: 'Option 2',
+          icon: 'weather-snow',
+          isSelected: false,
+          isVisible: true,
+          uri: '/stack/option2',
+          childMenuItems: [],
+        },
+        {
+          title: 'Option 3',
+          icon: 'weather-sunset',
+          isSelected: false,
+          isVisible: true,
+          uri: '/stack/option3',
+          childMenuItems: [],
+        },
+      ],
+    },
+    {
+      title: 'Smart',
+      icon: 'smartphone',
+      isSelected: false,
+      isVisible: true,
+      uri: '/smart',
+      childMenuItems: [],
+    },
+    { isSeparator: true },
+    {
+      title: 'Up',
+      icon: (propsIcon) => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+      isSelected: false,
+      isVisible: true,
+      uri: '/Up',
+      childMenuItems: [
+        {
+          title: 'Option 1',
+          icon: 'weather-rain',
+          isSelected: false,
+          isVisible: true,
+          uri: '/Up/option1',
+          childMenuItems: [],
+        },
+        {
+          title: 'Option 2',
+          icon: 'weather-snow',
+          isSelected: false,
+          isVisible: true,
+          uri: '/Up/option2',
+          childMenuItems: [],
+        },
+        {
+          title: 'Option 3',
+          icon: 'weather-sunset',
+          isSelected: false,
+          isVisible: true,
+          uri: '/Up/option3',
+          childMenuItems: [],
+        },
+      ],
+    },
+    {
+      title: 'Settings',
+      icon: 'settings',
+      isSelected: false,
+      isVisible: true,
+      uri: '/settings',
+      childMenuItems: [],
+    },
+    { isSeparator: true },
+    {
+      render: (
+          item: MenuItemData,
+          propsMenu: UpMenuProps,
+          state: UpMenuState,
+      ) => {
+        return (
+            <UpButton
+                intent={'primary'}
+                onClick={e => {
+                  action('Command');
+                }}
+                width={state.minified ? 'icon' : 'full'}
+                height={'large'}
+                actionType={'briefcase'}>
+              {'Commander'}
+            </UpButton>
+        );
+      },
+    },
+  ];
+
+  const [menu, setMenu] = React.useState(defaultMenu);
+  const [minified, setMinified] = React.useState(true);
+
+  const footerStyle = style({
+    color: '#9B9B9B',
+    fontFamily: 'Roboto',
+    fontSize: '12px',
+    lineHeight: '18px',
+    textAlign: 'center',
+    whiteSpace: 'pre-line',
+  });
+
+  return (
+      <UpMenu
+          onMinifiedChange={(minified) => null}
+          onClick={uri => {
+            const newMenu = prev => setMenuSelection(uri, menu, prev);
+            setMenu(previousMenu => newMenu(previousMenu));
+            return false;
+          }}
+          menuItems={menu}
+          minified={minified}
+          blocked
           footer={(props: Partial<UpMenuProps>, state : UpMenuState) => {
             return (
                 <>

@@ -43,7 +43,7 @@ export const MenuStyles = (
   };
   let defaultNavStyles : NestedCSSProperties  = {
     overflowY: 'auto',
-    height: props.minified ? '79vh' : '84vh',
+    height: 'calc(100% - 165px)',
   };
 
   let defaultContentStyles : NestedCSSProperties  = {
@@ -171,9 +171,6 @@ export const MenuStyles = (
         '&.up-menu nav > ul > li > ul > li': {
           display: 'block',
         },
-        '&.up-menu nav > ul li.active > ul': {
-          display: props.minified ? 'block' : 'inherit',
-        },
         '&.up-menu nav > ul > li:hover .up-menu-item-title': {
           zIndex: 1001,
           display: props.minified ? 'none' : 'inline-block',
@@ -181,12 +178,11 @@ export const MenuStyles = (
         '&.up-menu nav > ul > li:hover ul li .up-menu-item-title': {
           display: 'inline-block',
         },
-        '&.up-menu nav > ul > li:hover > ul': {
+        '&.up-menu nav > ul > li:hover > ul, &.up-menu nav > ul > li > a:hover + ul': {
           display: props.minified ? 'block' : 'none',
           backgroundColor: '#4E5B59',
-          top: props.minified ? '0px' : 'inherit',
-          left: props.minified ? '48px' : 'inherit',
-          position: props.minified ? 'absolute' : 'inherit',
+          left: props.minified ? '62px' : 'inherit',
+          position: props.minified ? 'fixed' : 'inherit',
           padding: '16px 5px 30px 35px',
           width: 'auto',
           opacity: 1,
@@ -196,15 +192,7 @@ export const MenuStyles = (
           zIndex: 1000,
           borderBottomRightRadius: props.theme.borderRadius,
           borderTopRightRadius: props.theme.borderRadius,
-        },
-        '&.up-menu nav > ul > li.active:not(:hover) > ul': {
-          display: props.minified ? 'none' : 'block',
-          padding: '16px 5px 30px 35px',
-          width: 'auto',
-          opacity: 1,
-          transform: 'scaleY(1)',
-          transformOrigin: '50% 0',
-          transition: 'transform 0.5s ease',
+          top: props.minified ? 'inherit' : '0 !important',
         },
         '&.up-menu nav > ul > li.active:hover > ul': {
           display: 'block',
