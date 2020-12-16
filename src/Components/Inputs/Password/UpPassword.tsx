@@ -14,7 +14,7 @@ const fillColor = (props:UpInputProps) => {
   if(!props.touched) color= props.theme.colorMap.default
   if(!!props.value) color= props.theme.colorMap.success
   if(props.showError && props.hasError) color = props.theme.colorMap.error
-  
+
   return color
 }
 const getStyles = (props: UpInputProps) =>
@@ -23,7 +23,7 @@ const getStyles = (props: UpInputProps) =>
     $nest: {
       "&.up-password .up-icon-wrapper": {
         position: 'absolute',
-        top: props.floatingLabel ? 18 : 4,
+        top: 4,
         right: 0,
         cursor: "pointer",
         zIndex: 10,
@@ -38,7 +38,7 @@ const getStyles = (props: UpInputProps) =>
     }
   });
 
-  const getRulesStyle = (props: UpInputProps) => 
+  const getRulesStyle = (props: UpInputProps) =>
     style({
       display:'block',
       zIndex:1000,
@@ -52,7 +52,7 @@ const getStyles = (props: UpInputProps) =>
       fontWeight: 400,
       marginTop: '0.5px'
     })
-  
+
 const getRuleStatus = (props: UpInputProps, regex: RegExp) =>
   style({
     height: '8px',
@@ -142,7 +142,7 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
         ),
       0
     );
-  };  
+  };
 
   render() {
     const iconEyeOpen: IconName = "eye-open";
@@ -180,19 +180,20 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
             onFocus={onFocus}
             type={type}
             showValidationStatus={false}
+            value={value}
           />
         </div>
           <UpSvgIcon
             onMouseOver={!onClickBehaviour ? this.show : null}
             onMouseOut={!onClickBehaviour ? this.hide : null}
-            onClick={onClickBehaviour ?this.toggleVisible : null}
+            onClick={onClickBehaviour ? this.toggleVisible : null}
             iconName={
               !!this.state.isVisible  ? iconEyeOpen : iconEyeClose
             }
           />
       </div>
         { focused && !isEmpty(rules) && (
-          <div className={classnames(getRulesStyle(this.props),'password-rules')}>
+          <div className={classnames(getRulesStyle(this.props), 'password-rules')}>
             {rules.map(({ text, regex }) =>
               (
                 <div key={text} style={{ display: 'flex', alignItems: 'center' }}>

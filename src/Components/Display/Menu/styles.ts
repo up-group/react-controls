@@ -164,6 +164,9 @@ export const MenuStyles = (
         '&.up-menu nav > ul > li.active > ul > span': {
           display: props.minified ? 'block' : 'none',
         },
+        '&.up-menu nav > ul > li.active > ul:hover': {
+          display: props.minified ? 'block' : 'inherit',
+        },
         '&.up-menu nav > ul > li > ul.active': {
           display: 'block',
         },

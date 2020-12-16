@@ -35,7 +35,7 @@ export const setMenuSelection = (
   return menu.map((m, index) => ({
     ...m,
     childMenuItems: setMenuSelection(uri, m.childMenuItems),
-    isSelected: prev && m.uri === uri && !prev[index].isSelected,
+    isSelected: (m.uri !== null && uri.includes(m.uri)) || hasItemSelected(uri, m.childMenuItems)
   }));
 };
 
@@ -199,7 +199,7 @@ const MobileMenu = (props) => {
           icon: 'weather-rain',
           isSelected: false,
           isVisible: true,
-          uri: '/stack/option1',
+          uri: '/stack/option11',
           childMenuItems: [],
         },
         {
@@ -207,7 +207,7 @@ const MobileMenu = (props) => {
           icon: 'weather-snow',
           isSelected: false,
           isVisible: true,
-          uri: '/stack/option2',
+          uri: '/stack/option21',
           childMenuItems: [],
         },
         {
@@ -215,7 +215,7 @@ const MobileMenu = (props) => {
           icon: 'weather-sunset',
           isSelected: false,
           isVisible: true,
-          uri: '/stack/option3',
+          uri: '/stack/option31',
           childMenuItems: [],
         },
       ],
@@ -241,7 +241,7 @@ const MobileMenu = (props) => {
           icon: 'weather-rain',
           isSelected: false,
           isVisible: true,
-          uri: '/stack/option1',
+          uri: '/stack/option12',
           childMenuItems: [],
         },
         {
@@ -249,7 +249,7 @@ const MobileMenu = (props) => {
           icon: 'weather-snow',
           isSelected: false,
           isVisible: true,
-          uri: '/stack/option2',
+          uri: '/stack/option22',
           childMenuItems: [],
         },
         {
@@ -257,7 +257,7 @@ const MobileMenu = (props) => {
           icon: 'weather-sunset',
           isSelected: false,
           isVisible: true,
-          uri: '/stack/option3',
+          uri: '/stack/option32',
           childMenuItems: [],
         },
       ],
@@ -283,7 +283,7 @@ const MobileMenu = (props) => {
           icon: 'weather-rain',
           isSelected: false,
           isVisible: true,
-          uri: '/stack/option1',
+          uri: '/stack/option13',
           childMenuItems: [],
         },
         {
@@ -291,7 +291,7 @@ const MobileMenu = (props) => {
           icon: 'weather-snow',
           isSelected: false,
           isVisible: true,
-          uri: '/stack/option2',
+          uri: '/stack/option23',
           childMenuItems: [],
         },
         {
@@ -299,7 +299,7 @@ const MobileMenu = (props) => {
           icon: 'weather-sunset',
           isSelected: false,
           isVisible: true,
-          uri: '/stack/option3',
+          uri: '/stack/option33',
           childMenuItems: [],
         },
       ],
@@ -325,7 +325,7 @@ const MobileMenu = (props) => {
           icon: 'weather-rain',
           isSelected: false,
           isVisible: true,
-          uri: '/stack/option1',
+          uri: '/stack/option14',
           childMenuItems: [],
         },
         {
@@ -333,7 +333,7 @@ const MobileMenu = (props) => {
           icon: 'weather-snow',
           isSelected: false,
           isVisible: true,
-          uri: '/stack/option2',
+          uri: '/stack/option24',
           childMenuItems: [],
         },
         {
@@ -341,7 +341,7 @@ const MobileMenu = (props) => {
           icon: 'weather-sunset',
           isSelected: false,
           isVisible: true,
-          uri: '/stack/option3',
+          uri: '/stack/option34',
           childMenuItems: [],
         },
       ],
