@@ -133,7 +133,7 @@ export const MenuStyles = (
           display: 'block',
         },
         '&.up-menu nav > ul li.active > ul': {
-          display: props.minified ? 'block' : 'inherit',
+          display: !props.minified ? 'block' : 'inherit',
         },
         '&.up-menu nav > ul > li:hover .up-menu-item-title': {
           zIndex: 1001,
@@ -159,7 +159,7 @@ export const MenuStyles = (
           top: props.minified ? 'inherit' : '0 !important',
         },
         '&.up-menu nav > ul > li.active > ul, &.up-menu nav > ul > li.active > ul > li > a > span ': {
-          display: 'block',
+          display: !props.minified ? 'block' : 'none',
         },
         '&.up-menu nav > ul > li.active > ul > span': {
           display: props.minified ? 'block' : 'none',
