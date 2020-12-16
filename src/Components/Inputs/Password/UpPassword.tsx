@@ -1,44 +1,44 @@
-﻿import * as React from "react";
-import { UpInputProps } from "../Input/types";
-import UpInput from "../Input";
-import { IconName } from "../../../Common/theming/icons";
-import UpSvgIcon from "../../Display/SvgIcon";
-import { style } from "typestyle";
-import withTheme from "../../../Common/theming/withTheme";
-import defaultTheme from "../../../Common/theming";
-import * as classnames from "classnames";
-import { isEmpty,ruleIsValid } from "../../../Common/utils";
-import { NestedCSSProperties,CSSProperties } from 'typestyle/lib/types';
+﻿import * as React from 'react';
+import { UpInputProps } from '../Input/types';
+import UpInput from '../Input';
+import { IconName } from '../../../Common/theming/icons';
+import UpSvgIcon from '../../Display/SvgIcon';
+import { style } from 'typestyle';
+import withTheme from '../../../Common/theming/withTheme';
+import defaultTheme from '../../../Common/theming';
+import * as classnames from 'classnames';
+import { isEmpty, ruleIsValid } from '../../../Common/utils';
+import { NestedCSSProperties, CSSProperties } from 'typestyle/lib/types';
 const fillColor = (props:UpInputProps) => {
-  let color: string
-  if(!props.touched) color= props.theme.colorMap.default
-  if(!!props.value) color= props.theme.colorMap.success
-  if(props.showError && props.hasError) color = props.theme.colorMap.error
-  
-  return color
-}
+  let color: string;
+  if (!props.touched) color = props.theme.colorMap.default;
+  if (!!props.value) color = props.theme.colorMap.success;
+  if (props.showError && props.hasError) color = props.theme.colorMap.error;
+
+  return color;
+};
 const getStyles = (props: UpInputProps) =>
   style({
-    position: "relative",
+    position: 'relative',
     $nest: {
-      "&.up-password .up-icon-wrapper": {
+      '&.up-password .up-icon-wrapper': {
         position: 'absolute',
-        top: props.floatingLabel ? 18 : 4,
+        top: 4,
         right: 0,
-        cursor: "pointer",
+        cursor: 'pointer',
         zIndex: 10,
       },
-      "&.up-password .up-icon-wrapper svg, &.up-password .up-icon-wrapper svg polygon, &.up-password .up-icon-wrapper svg path, &.up-password .up-icon-wrapper svg polyline": {
+      '&.up-password .up-icon-wrapper svg, &.up-password .up-icon-wrapper svg polygon, &.up-password .up-icon-wrapper svg path, &.up-password .up-icon-wrapper svg polyline': {
         fill: `${fillColor(props)} !important`,
       },
-      "&.up-password .up-wrapper-error-tooltip":{
+      '&.up-password .up-wrapper-error-tooltip':{
         display: 'none',
-        background: 'transparent'
-      }
-    }
+        background: 'transparent',
+      },
+    },
   });
 
-  const getRulesStyle = (props: UpInputProps) => 
+const getRulesStyle = (props: UpInputProps) =>
     style({
       display:'block',
       zIndex:1000,
@@ -50,9 +50,9 @@ const getStyles = (props: UpInputProps) =>
       color: '#4E5B59',
       lineHeight:'18px',
       fontWeight: 400,
-      marginTop: '0.5px'
-    })
-  
+      marginTop: '0.5px',
+    });
+
 const getRuleStatus = (props: UpInputProps, regex: RegExp) =>
   style({
     height: '8px',
@@ -64,11 +64,11 @@ const getRuleStatus = (props: UpInputProps, regex: RegExp) =>
     borderRadius: '50%',
     display: 'inline-block',
     margin: '0 10px',
-  })
+  });
 
-  interface Item {
-      text: string;
-      regex: RegExp;
+interface Item {
+    text: string;
+    regex: RegExp;
   }
 
 export interface UpPasswordProps extends UpInputProps {
@@ -86,19 +86,21 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
   updatingHide;
 
   static defaultProps = {
-    theme: defaultTheme
+    theme: defaultTheme,
   };
 
   constructor(p, c) {
     super(p, c);
     this.state = {
-      isVisible: false
+      isVisible: false,
     };
   }
 
   toggleVisible = e => {
+    e.preventDefault();
+    e.stopPropagation();
     this.setState(prevState => ({
-      isVisible: !prevState.isVisible
+      isVisible: !prevState.isVisible,
     }));
   };
 
@@ -119,11 +121,11 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
       () =>
         this.setState(
           {
-            isVisible: false
+            isVisible: false,
           },
-          () => (this.updatingHide = null)
+          () => (this.updatingHide = null),
         ),
-      500
+      500,
     );
   };
 
@@ -136,20 +138,20 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
       () =>
         this.setState(
           {
-            isVisible: true
+            isVisible: true,
           },
-          () => (this.updatingShow = null)
+          () => (this.updatingShow = null),
         ),
-      0
+      0,
     );
-  };  
+  };
 
   render() {
-    const iconEyeOpen: IconName = "eye-open";
-    const iconEyeClose: IconName = "eye-close";
-    const type = this.state.isVisible === true ? this.props.type : "password";
+    const iconEyeOpen: IconName = 'eye-open';
+    const iconEyeClose: IconName = 'eye-close';
+    const type = this.state.isVisible === true ? this.props.type : 'password';
 
-    const themeStyles = this.props.theme.styles.get("input") || {};
+    const themeStyles = this.props.theme.styles.get('input') || {};
     const {
       showSuccess,
       onBlur,
@@ -168,11 +170,11 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
         className={classnames(
           style(themeStyles),
           getStyles(this.props),
-          "up-password",
-          onClickBehaviour ? onSide : ""
+          'up-password',
+          onClickBehaviour ? onSide : '',
         )}
       >
-        <div style={{ width: "100%" }}>
+        <div style={{ width: '100%' }}>
           <UpInput
             {...others}
             showSuccess={showSuccess}
@@ -180,26 +182,27 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
             onFocus={onFocus}
             type={type}
             showValidationStatus={false}
+            value={value}
           />
         </div>
           <UpSvgIcon
             onMouseOver={!onClickBehaviour ? this.show : null}
             onMouseOut={!onClickBehaviour ? this.hide : null}
-            onClick={onClickBehaviour ?this.toggleVisible : null}
+            onClick={onClickBehaviour ? this.toggleVisible : null}
             iconName={
               !!this.state.isVisible  ? iconEyeOpen : iconEyeClose
             }
           />
       </div>
         { focused && !isEmpty(rules) && (
-          <div className={classnames(getRulesStyle(this.props),'password-rules')}>
+          <div className={classnames(getRulesStyle(this.props), 'password-rules')}>
             {rules.map(({ text, regex }) =>
               (
                 <div key={text} style={{ display: 'flex', alignItems: 'center' }}>
                   <span className={getRuleStatus(this.props, regex)} />
                   <p>{text}</p>
                 </div>
-              )
+              ),
             )}
           </div>
         )}
@@ -211,5 +214,5 @@ class UpPassword extends React.Component<UpPasswordProps, UpPasswordState> {
 export default withTheme<UpPasswordProps>(UpPassword);
 
 const onSide = style({
-  display: "flex"
+  display: 'flex',
 });
