@@ -103,12 +103,12 @@ export default class UpDataGridCellHeader extends React.Component<
       </UpTooltip>
     );
     var width = "auto";
-    if (this.props.width) {
+    if (this.props.width != null) {
       width = this.props.width;
     }
     return (
       <th
-        style={{ width: width }}
+        style={width ? { width: width } : {}}
         className={classnames(
           headerCellStyles,
           'up-data-grid-header-cell',

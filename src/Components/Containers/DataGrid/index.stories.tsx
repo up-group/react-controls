@@ -948,16 +948,49 @@ export const WithCustomStyle = () => {
       />
     </div>
   );
-    }
+}
 
-    export const onlyOneRowCanBeSelected = 
+  export const onlyOneRowCanBeSelected = 
     () => (
       <UpDataGrid
         onlyOneRowCanBeSelected={true}
         onSelectionChange={(a, b) => {
           console.log(a, b);
         }}
-        isPaginationEnabled={false}
+        footerProps={{
+          isPaginationEnabled: true
+        }}
+        paginationPosition="top"
+        paginationProps={{
+          paginationNavigationSeparator: '...',
+          previousLabel: 'Précédent',
+          nextLabel: 'Suivant',
+          renderResultMessage: (
+            theme: UpThemeInterface,
+            from: number,
+            to: number,
+            total: number
+          ) => (
+            <span
+              className={classnames(
+                'up-pagination-result-message',
+                paginationCounterStyle({ theme })
+              )}>
+              {total == 0 && <span>Aucun résultat</span>}
+              {total != 0 && (
+                <span>
+                  <span>R&eacute;sultat(s)&nbsp;</span>
+                  <span>{from}</span>
+                  <span> &agrave; </span>
+                  <span>{to}</span>
+                  <span> sur </span>
+                  <span>{total}</span>
+                </span>
+              )}
+            </span>
+          )
+        }}
+        isPaginationEnabled={true}
         isSelectionEnabled={true}
         textAlignCells={'center'}
         columns={[
@@ -983,6 +1016,8 @@ export const WithCustomStyle = () => {
             isSortable: true
           }
         ]}
-        data={data}
+        dataSource={{
+          query: "https://jsonplaceholder.typicode.com/posts"
+        }}
       />
     )

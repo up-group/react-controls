@@ -87,7 +87,7 @@ export default class UpDataGridRowHeader extends React.Component<UpDataGridRowHe
             <thead className="up-data-grid-header">
                 <tr>
                     {this.props.isSelectionEnabled &&
-                        <UpDataGridCellHeader key={`header-selection`} className="up-data-grid-header-cell-selection" column={{ label: selection, isSortable: false }} textAlignCells={this.props.textAlignCells}/>
+                        <UpDataGridCellHeader key={`header-selection`} className="up-data-grid-header-cell-selection" column={{ label: selection, isSortable: false }} textAlignCells={this.props.textAlignCells} width={""} />
                     }
                     {this.props.columns.map((value, index) => {
                         return <UpDataGridCellHeader key={`header-${index}`} onSortChange={this.onSortChange.bind(this)} column={value} textAlignCells={this.props.textAlignCells}/>

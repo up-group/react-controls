@@ -80,6 +80,10 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
         fontSize: '14px',
         color: props.theme.colorMap.grey1
       },
+      "& .up-data-grid-header-cell.up-data-grid-header-cell-selection" : {
+        width:"32px",
+        paddingLeft : "8px"
+      },
       "& .up-data-grid-header-cell.up-data-grid-header-cell-selection .up-checkbox": {
         marginLeft: "1px"
       },
@@ -96,6 +100,9 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
           }
         }
         //width:'100%'
+      },
+      '& .up-data-grid-cell .up-checkbox .up-control-indicator::before' : {
+        left: '0px'
       },
       "& .up-data-grid-cell .up-checkbox": {
         marginTop: '0 !important',
