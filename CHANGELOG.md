@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.116)
+
+## Bug Fixes
+- UpDataGrid : Fix row clickable
+
 #  ReactControls (version: 0.2.113)
 
 ## Main Changes
