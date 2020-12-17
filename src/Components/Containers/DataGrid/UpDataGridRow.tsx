@@ -73,17 +73,16 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
     }
 
     getRowClickAction = (finalActions) => {
-        debugger;
-        const actions = (finalActions && finalActions.filter(a => a != null)) || [] ;
-        const actionsLength = actions.length;
-        
+
         if (this.props.onClick) {
             return () => this.props.onClick && this.props.onClick(this.props.rowIndex, { value: this.props.value });
         }
 
+        const actions = (finalActions && finalActions.filter(a => a != null)) || [] ;
+        const actionsLength = actions.length;
+
         if (actionsLength === 1 && this.props.isRowClickable) {
             return () => {
-                debugger;
                 let selectedText = '';
                 if(window.getSelection) {
                     //Return selected text by user.
@@ -129,7 +128,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
             <UpDataGridConsumer>
             {({ displayRowActionsWithinCell, rowActions, labelToDisplayRowActionsInCell }) => 
               <tr className={classnames(`up-data-grid-row up-data-grid-row-bordered ${ customClassName }`, DataGridRowStyle(this.props, (finalActions && finalActions.length)))}
-                onClick={finalActions && this.getRowClickAction(finalActions)}>
+                onClick={this.getRowClickAction(finalActions)}>
                 {this.props.isSelectionEnabled &&
                     <UpDataGridCell key={ "cell-selection" } value={selection} column={{ formatter, label: '' }} />
                 }
