@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.118)
+
+## Main Changes
+- UpDataGrid : allow to select only one row
+
 #  ReactControls (version: 0.2.116)
 
 ## Bug Fixes
