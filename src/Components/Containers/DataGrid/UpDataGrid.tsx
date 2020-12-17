@@ -247,6 +247,7 @@ export interface UpDataGridProps {
   footerProps?: Partial<UpDataGridFooterProps>;
   headerProps?: Partial<UpDataGridHeaderProps>;
   displayRowActionsWithinCell?: boolean;
+  onlyOneRowCanBeSelected?: boolean;
 }
 
 export interface UpDataGridState {
@@ -686,6 +687,7 @@ class UpDataGrid extends React.Component<
             onClick={this.props.onRowClick}
             getRowCustomClassName={this.props.getRowCustomClassName}
             isRowClickable={this.props.isRowClickable}
+            isOneRowSelected= {this.props.onlyOneRowCanBeSelected && this.state.selectedData.length === 1 ? true : false }
           />
         );
       }
@@ -773,6 +775,7 @@ class UpDataGrid extends React.Component<
                   displayRowActionsWithinCell={this.props.displayRowActionsWithinCell}
                   textAlignCells={this.props.textAlignCells}
                   isAllDataChecked={this.state.allRowSelected}
+                  isSelectionAllEnabled= {!this.props.onlyOneRowCanBeSelected}
                 />
                 <tbody className={classnames("up-data-grid-body", oddEvenStyle)}>
                   {rows}

@@ -950,3 +950,39 @@ export const WithCustomStyle = () => {
   );
     }
 
+    export const onlyOneRowCanBeSelected = 
+    () => (
+      <UpDataGrid
+        onlyOneRowCanBeSelected={true}
+        onSelectionChange={(a, b) => {
+          console.log(a, b);
+        }}
+        isPaginationEnabled={false}
+        isSelectionEnabled={true}
+        textAlignCells={'center'}
+        columns={[
+          {
+            label: "Col 1",
+            field: "c1",
+            isSortable: true,
+          },
+          {
+            label: "Col 2",
+            field: "c2",
+            isSortable: true,
+            tooltip: {title: 'title',content: 'content content content '}
+          },
+          {
+            label: "Col 3",
+            field: "c3",
+            isSortable: true
+          },
+          {
+            label: "Col 4",
+            field: "c4",
+            isSortable: true
+          }
+        ]}
+        data={data}
+      />
+    )
