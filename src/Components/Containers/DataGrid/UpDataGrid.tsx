@@ -775,7 +775,7 @@ class UpDataGrid extends React.Component<
                   displayRowActionsWithinCell={this.props.displayRowActionsWithinCell}
                   textAlignCells={this.props.textAlignCells}
                   isAllDataChecked={this.state.allRowSelected}
-                  isSelectionAllEnabled= {this.props.onlyOneRowCanBeSelected}
+                  isSelectionAllEnabled= {!this.props.onlyOneRowCanBeSelected}
                 />
                 <tbody className={classnames("up-data-grid-body", oddEvenStyle)}>
                   {rows}

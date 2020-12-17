@@ -80,7 +80,7 @@ export default class UpDataGridRowHeader extends React.Component<UpDataGridRowHe
             name: "", 
             value: "", 
             onOptionChange: this.onSelectionChange,
-            ...(this.props.isSelectionAllEnabled && { disabled: true })
+            ...(!this.props.isSelectionAllEnabled && { disabled: true })
         }]} />;
         
         return (
