@@ -3,7 +3,7 @@ import * as classnames from 'classnames';
 import { UpBadgeProps } from './types';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import defaultTheme from '../../../Common/theming';
-import { getStyle } from './style';
+import { getStyle } from './styles';
 
 const UpBadge: React.FunctionComponent<UpBadgeProps & WithThemeProps> = props => {
 
