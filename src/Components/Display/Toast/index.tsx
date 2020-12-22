@@ -1,3 +1,3 @@
-import UpToast from './UpToast'
+import UpToast from './UpToast';
 
-export default UpToast 
+export default UpToast ;
