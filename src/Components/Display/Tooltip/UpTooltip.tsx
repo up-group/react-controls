@@ -57,7 +57,8 @@ const getStyles = (props : UpTooltipProps & WithThemeProps) => style({
     '& .up-tooltip-body' : {
       padding:'8px',
       fontSize:'14px',
-      lineHeight:'16px'
+      lineHeight:'16px',
+      whiteSpace: 'pre-line'
     },
     '&:hover' : {
       visibility: 'visible',
