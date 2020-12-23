@@ -5,7 +5,14 @@ module.exports = {
     '../**/*.stories.tsx',
   ],
   addons: [
-    '@storybook/addon-docs',
+    {
+      name: '@storybook/addon-docs',
+      options: {
+        sourceLoaderOptions: {
+          injectStoryParameters: false,
+        },
+      },
+    },
     '@storybook/addon-knobs',
     '@storybook/addon-storysource'
   ],
