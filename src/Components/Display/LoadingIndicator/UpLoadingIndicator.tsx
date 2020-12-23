@@ -8,6 +8,7 @@ import { svgStyle, getStyleByMode } from './styles';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import defaultTheme from '../../../Common/theming';
 import UpBox from '../../Containers/Box';
+import { toRem } from '../../../Common/theming/utils';
 
 const SvgIcon: React.FunctionComponent<SVGProps & WithThemeProps & LoadingIndicatorProps> = (props: SVGProps & WithThemeProps & LoadingIndicatorProps) => {
     const { children, className, loaderSize, theme, ...others } = props;
@@ -75,8 +76,7 @@ class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithTheme
                 </Box >
             );
         } else {
-            return <aside
-                className={classnames('up-loading-screen', this.props.className)} style={container}>
+            return <aside className={classnames('up-loading-screen', this.props.className)} style={container}>
                 <UpBox boxSize={'full'} justifyContent={'center'} alignItems={'center'}>
                     <div style={loadingIndicatorStyle}>
                         <UpGrid>
@@ -89,7 +89,7 @@ class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithTheme
                                         <UpRow>
                                             <UpCol span={24}>
                                                 <hgroup style={{ "textShadow": "0px 0px 0.1ex" }}>
-                                                    <h3 style={{ "fontSize": "22px", 'margin': '0px' }}>
+                                                    <h3 style={{ "fontSize": toRem(22), 'margin': '0px' }}>
                                                         <span>{_title}</span>
                                                     </h3>
                                                 </hgroup>
