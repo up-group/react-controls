@@ -16,7 +16,7 @@ export default {
             </div>
         )
     ],
-    Component: UpButtonGroup
+    component: UpButtonGroup
 };
 
 export const DropDown =
