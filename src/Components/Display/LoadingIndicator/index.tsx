@@ -1,3 +1,2 @@
-import UpLoadingIndicator from './UpLoadingIndicator'
-
+import UpLoadingIndicator from './UpLoadingIndicator';
 export default UpLoadingIndicator;
