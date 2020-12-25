@@ -8,6 +8,7 @@ import UpPanel from "../../Containers/Panel";
 
 import { getRootContainer } from "../../../Common/stories";
 import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
+import { UpSvgIcon } from "../../..";
 
 const TooltipRenderer = (
   <div>
@@ -48,3 +49,20 @@ export const OnALink = () => (
         sur du texte.
       </UpPanel>
     )
+
+export const withFormatedText = () => {
+  const TooltipContent = 'Text that ends with a new line.\n Text that ends with a new line.\n Text that ends with a new line';
+
+  return (
+    <UpTooltip title={"Détails"} content={TooltipContent}>
+      Example of use of the Up Tooltip component
+      <UpSvgIcon
+        width={25}
+        height={25}
+        iconName={'warning-sign'}
+        color={'red'}
+        style={{cursor: 'pointer'}}
+      />
+  </UpTooltip>
+  )
+}
