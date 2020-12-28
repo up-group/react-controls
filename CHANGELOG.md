@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.120)
+
+## Bug Fixes
+- UpVerticalTimeLine : Fix checkmark alignment 
+
 #  ReactControls (version: 0.2.119)
 
 ## Bug Fixes
