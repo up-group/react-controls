@@ -28,6 +28,7 @@ export const getStyles = () => style({
       '&.up-vertical-align-circle.up-checkmark': {
         color: '#6DBD8E',
         textAlign: 'center',
+        padding:'1px',
         $nest:{
           '&::before': {
             content: '"✔"'
