@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.122)
+
+## Main Changes
+  - UpNavTab : Reduce selected item sizing
+
 #  ReactControls (version: 0.2.121)
 
 ## Bug Fixes
