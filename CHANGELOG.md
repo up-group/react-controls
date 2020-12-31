@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.121)
+
+## Bug Fixes
+  - UpSelect : Fix returnType id in multiple case
+
 #  ReactControls (version: 0.2.120)
 
 ## Bug Fixes
