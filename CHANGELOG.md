@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.123)
+
+## Bug Fixes
+  - UpToast : Fix IntentType import
+
 #  ReactControls (version: 0.2.122)
 
 ## Main Changes

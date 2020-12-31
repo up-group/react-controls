@@ -1,4 +1,4 @@
-import { IntentType } from 'theming/types';
+import { IntentType } from "../../../Common/theming/types";
 
 export interface UpToastProps {
     message?: JSX.Element | string;

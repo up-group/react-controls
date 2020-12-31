@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { style } from 'typestyle';
 import * as classnames from 'classnames';
 import UpHeading from '../Heading';
 import { WithThemeProps } from '../../../Common/theming/types';
