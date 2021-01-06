@@ -80,10 +80,9 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
   }
 
   handleClick = (uri: string, menuitem: MenuItemData) => {
-    if (this.currentMinifiedValue && menuitem.childMenuItems.length > 0) {
+    if (this.currentMinifiedValue && !isEmpty(menuitem.childMenuItems)) {
       this.setMinification(false);
     }
-
     return this.props.onClick(uri);
   }
 

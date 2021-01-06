@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.124)
+
+## Bug Fixes
+  - UpMenu : onClick throws error if no children
+
 #  ReactControls (version: 0.2.123)
 
 ## Bug Fixes
