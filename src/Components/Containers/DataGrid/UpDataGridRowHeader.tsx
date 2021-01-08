@@ -22,6 +22,7 @@ export interface UpDataGridRowHeaderProps {
     displayRowActionsWithinCell?: boolean;
     textAlignCells?: 'center' | 'left' | 'right' | 'initial';
     isAllDataChecked?: boolean;
+    isSelectionAllEnabled?: boolean;
 }
 
 export default class UpDataGridRowHeader extends React.Component<UpDataGridRowHeaderProps, UpDataGridRowHeaderState> {
@@ -74,13 +75,19 @@ export default class UpDataGridRowHeader extends React.Component<UpDataGridRowHe
     }
 
     render() {
-        const selection = <UpCheckbox options={[{ checked: this.props.isAllDataChecked, name: "", value: "", onOptionChange: this.onSelectionChange }]} />;
+        const selection = <UpCheckbox options={[{ 
+            checked: this.props.isAllDataChecked, 
+            name: "", 
+            value: "", 
+            onOptionChange: this.onSelectionChange,
+            ...(!this.props.isSelectionAllEnabled && { disabled: true })
+        }]} />;
         
         return (
             <thead className="up-data-grid-header">
                 <tr>
                     {this.props.isSelectionEnabled &&
-                        <UpDataGridCellHeader key={`header-selection`} className="up-data-grid-header-cell-selection" column={{ label: selection, isSortable: false }} textAlignCells={this.props.textAlignCells}/>
+                        <UpDataGridCellHeader key={`header-selection`} className="up-data-grid-header-cell-selection" column={{ label: selection, isSortable: false }} textAlignCells={this.props.textAlignCells} width={""} />
                     }
                     {this.props.columns.map((value, index) => {
                         return <UpDataGridCellHeader key={`header-${index}`} onSortChange={this.onSortChange.bind(this)} column={value} textAlignCells={this.props.textAlignCells}/>

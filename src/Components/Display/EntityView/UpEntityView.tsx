@@ -4,7 +4,7 @@ import { Component } from "react";
 import { withTheme, WithThemeProps } from "../../../Common/theming";
 import SvgIcon from "../SvgIcon";
 import { UpBox } from "../../..";
-import { IllustrationName } from "theming/illustrations";
+import { IllustrationName } from "../../../Common/theming/illustrations";
 import { style } from "typestyle";
 import * as classNames from 'classnames';
 

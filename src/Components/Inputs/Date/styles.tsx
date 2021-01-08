@@ -92,7 +92,7 @@ const getStyles = (
       },
       "& .SingleDatePickerInput__showClearDate": {
         paddingRight: props.iconPosition == "left" ? "30px" : "0px",
-        minHeight: '30px'
+        minHeight: '29px'
       },
       "& .SingleDatePickerInput_clearDate": {
         right: props.iconPosition == "left" ? "0" : "9px"

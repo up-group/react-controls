@@ -32,6 +32,7 @@ export interface UpDataGridRowProps {
     onClick?: (rowIndex: number, row: any) => void;
     getRowCustomClassName? : (rowIndex: number, row: any) => string;
     isRowClickable?: boolean;
+    isOneRowSelected?: boolean;
 }
 
 const DataGridRowStyle = (props: UpDataGridRowProps & WithThemeProps,  finalActionsLength : number) =>  style({
@@ -73,17 +74,16 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
     }
 
     getRowClickAction = (finalActions) => {
-        debugger;
-        const actions = (finalActions && finalActions.filter(a => a != null)) || [] ;
-        const actionsLength = actions.length;
-        
+
         if (this.props.onClick) {
             return () => this.props.onClick && this.props.onClick(this.props.rowIndex, { value: this.props.value });
         }
 
+        const actions = (finalActions && finalActions.filter(a => a != null)) || [] ;
+        const actionsLength = actions.length;
+
         if (actionsLength === 1 && this.props.isRowClickable) {
             return () => {
-                debugger;
                 let selectedText = '';
                 if(window.getSelection) {
                     //Return selected text by user.
@@ -96,7 +96,12 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
 
     render() {
         const formatter = new UpDefaultCellFormatter();
-        const selection = <UpCheckbox options={[{ name: "up-selection", checked: this.props.isSelected === true, value: true, onOptionChange: this.onSelectionChange }]} />;
+        const selection = <UpCheckbox options={[{ 
+            name: "up-selection", 
+            checked: this.props.isSelected === true, 
+            value: true, onOptionChange: this.onSelectionChange,
+            ...(this.props.isOneRowSelected && !this.props.isSelected && { disabled: true })
+        }]} />;
         
         let finalActions : Array<Action> = null ;
        
@@ -129,7 +134,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
             <UpDataGridConsumer>
             {({ displayRowActionsWithinCell, rowActions, labelToDisplayRowActionsInCell }) => 
               <tr className={classnames(`up-data-grid-row up-data-grid-row-bordered ${ customClassName }`, DataGridRowStyle(this.props, (finalActions && finalActions.length)))}
-                onClick={finalActions && this.getRowClickAction(finalActions)}>
+                onClick={this.getRowClickAction(finalActions)}>
                 {this.props.isSelectionEnabled &&
                     <UpDataGridCell key={ "cell-selection" } value={selection} column={{ formatter, label: '' }} />
                 }

@@ -80,6 +80,10 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
         fontSize: '14px',
         color: props.theme.colorMap.grey1
       },
+      "& .up-data-grid-header-cell.up-data-grid-header-cell-selection" : {
+        width:"32px",
+        paddingLeft : "8px"
+      },
       "& .up-data-grid-header-cell.up-data-grid-header-cell-selection .up-checkbox": {
         marginLeft: "1px"
       },
@@ -96,6 +100,9 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
           }
         }
         //width:'100%'
+      },
+      '& .up-data-grid-cell .up-checkbox .up-control-indicator::before' : {
+        left: '0px'
       },
       "& .up-data-grid-cell .up-checkbox": {
         marginTop: '0 !important',
@@ -247,6 +254,7 @@ export interface UpDataGridProps {
   footerProps?: Partial<UpDataGridFooterProps>;
   headerProps?: Partial<UpDataGridHeaderProps>;
   displayRowActionsWithinCell?: boolean;
+  onlyOneRowCanBeSelected?: boolean;
 }
 
 export interface UpDataGridState {
@@ -686,6 +694,7 @@ class UpDataGrid extends React.Component<
             onClick={this.props.onRowClick}
             getRowCustomClassName={this.props.getRowCustomClassName}
             isRowClickable={this.props.isRowClickable}
+            isOneRowSelected= {this.props.onlyOneRowCanBeSelected && this.state.selectedData.length === 1 ? true : false }
           />
         );
       }
@@ -773,6 +782,7 @@ class UpDataGrid extends React.Component<
                   displayRowActionsWithinCell={this.props.displayRowActionsWithinCell}
                   textAlignCells={this.props.textAlignCells}
                   isAllDataChecked={this.state.allRowSelected}
+                  isSelectionAllEnabled= {!this.props.onlyOneRowCanBeSelected}
                 />
                 <tbody className={classnames("up-data-grid-body", oddEvenStyle)}>
                   {rows}

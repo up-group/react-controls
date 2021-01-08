@@ -1,3 +1,42 @@
+#  ReactControls (version: 0.2.124)
+
+## Bug Fixes
+  - UpMenu : onClick throws error if no children
+
+#  ReactControls (version: 0.2.123)
+
+## Bug Fixes
+  - UpToast : Fix IntentType import
+
+#  ReactControls (version: 0.2.122)
+
+## Main Changes
+  - UpNavTab : Reduce selected item sizing
+
+#  ReactControls (version: 0.2.121)
+
+## Bug Fixes
+  - UpSelect : Fix returnType id in multiple case
+
+#  ReactControls (version: 0.2.120)
+
+## Bug Fixes
+- UpVerticalTimeLine : Fix checkmark alignment 
+
+#  ReactControls (version: 0.2.119)
+
+## Bug Fixes
+- UpDate : Fix height
+
+#  ReactControls (version: 0.2.118)
+## Main Changes
+- UpDataGrid : allow to select only one row
+
+#  ReactControls (version: 0.2.116)
+
+## Bug Fixes
+- UpDataGrid : Fix row clickable
+
 #  ReactControls (version: 0.2.113)
 
 ## Main Changes

@@ -1,3 +1,2 @@
-import UpButtonGroup from './UpButtonGroup'
-
-export default UpButtonGroup
+import UpButtonGroup from './UpButtonGroup';
+export default UpButtonGroup;

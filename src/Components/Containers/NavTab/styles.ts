@@ -39,7 +39,7 @@ export const tabHeader: NestedCSSProperties = {
 };
 
 export const tabItem = (props: TabHeadItemProps): NestedCSSProperties => ({
-    fontSize: props.tabKey === props.selectedTabKey ? toRem(24) : toRem(18),
+    fontSize: props.tabKey === props.selectedTabKey ? toRem(20) : toRem(18),
     marginLeft: toRem(20),
     position: 'relative',
     cursor: 'pointer',
@@ -47,7 +47,7 @@ export const tabItem = (props: TabHeadItemProps): NestedCSSProperties => ({
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 2,
-    padding: `${toRem(10)} ${toRem(15)}`,
+    padding: `${toRem(10)} ${toRem(12)}`,
     borderRadius: '4px 4px 0 0',
     backgroundColor: '#fff',
     width: '100%',

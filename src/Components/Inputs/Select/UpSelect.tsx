@@ -658,8 +658,15 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         }
 
         let value = this.isControlled ? this.props.value : this.state.extra.fullObject;
-        if(this.props.returnType == 'id' && typeof value !== 'object') {
-            value = data && data.find(item => item.id == value) ;
+        
+        if(this.props.returnType == 'id') {
+            if(this.props.multiple && value && typeof value[0] !== 'object') {
+                value = data && data.filter(item => value.indexOf(item.id) >= 0)
+            } else if(typeof value !== 'object' && data) {
+                value = data.find(item => item.id == value) ;
+            } else if(typeof value !== 'object' && this.state.extra.fullObject) {
+                value = this.state.extra.fullObject ;
+            }
         }
 
         const selectComponentProps: Props = {
@@ -680,7 +687,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             isMulti: this.props.multiple,
             isClearable: this.props.allowClear,
             isDisabled: this.props.disabled,
-            noOptionsMessage: (inputValue: string) => this.props.noResultsText,
+            noOptionsMessage: (inputValue: string) => (this.props.autoload && this.state.extra.isDataFetching) ? this.props.noResultsText : this.state.extra.loadingPlaceholder,
             clearAllText: this.props.clearAllText,
             clearValueText: this.props.clearValueText,
             addLabelText: this.props.addLabelText,
@@ -719,7 +726,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             styles: customStyles(this.props.theme,this.state.value),
         }
         const { floatingLabel } = this.props;
-        const FloatingLable = floatingLabel && (
+        const FloatingLabel = floatingLabel && (
           <label
             onClick={() => {
               this.input?.focus();
@@ -731,8 +738,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             }}
             style={{ cursor: 'pointer' }}
             className={classnames('up-select-label', {
-              'up-select-label-focused': !!this.state.extra
-                .menuIsOpen,
+              'up-select-label-focused': !!this.state.extra.menuIsOpen,
               'up-select-label-valued': !!value
             })}>
             {floatingLabel}
@@ -753,7 +759,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             )}>
             {dataSource != null && allowCreate === true && (
               <>
-                {FloatingLable}
+                {FloatingLabel}
                 <Select.AsyncCreatable
                   {...(selectComponentProps as any)}
                 />
@@ -761,19 +767,19 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             )}
             {dataSource != null && allowCreate === false && (
               <>
-                {FloatingLable}
+                {FloatingLabel}
                 <Select.Async {...(selectComponentProps as any)} />
               </>
             )}
             {dataSource == null && allowCreate === true && (
               <>
-                {FloatingLable}
+                {FloatingLabel}
                 <Select.Creatable {...selectComponentProps} />
               </>
             )}
             {dataSource == null && allowCreate === false && (
               <>
-                {FloatingLable}
+                {FloatingLabel}
                 <Select.SelectBase {...selectComponentProps} />
               </>
             )}
