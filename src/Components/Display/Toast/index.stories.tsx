@@ -9,30 +9,19 @@ import { IntentType } from 'theming/types';
 
 export default {
     title: 'Components/Display/UpToast',
-    decorators: [withKnobs, getRootContainer('UpToast')],
-    component: UpToastComponent
-};
-
-export const General =
-    () => {
-        const intent = text('intent', 'success');
-        const message = text('message', 'Message 1 \n Message 2');
-        const [duration, Button] = useShowButton();
-
-        return (
-            <div style={{ marginTop: '100px' }}>
-                {Button}
+    decorators: [
+        withKnobs,
+        getRootContainer('UpToast'),
+        (UpToast) => (
+            <div style={{ height: "40vh" }}>
                 <UpThemeProvider theme={UpDefaultTheme}>
-                    <UpToast
-                        intent={intent as IntentType}
-                        message={message}
-                        duration={duration as number}
-                        autoDismissable={true}
-                    />
+                    <UpToast />
                 </UpThemeProvider>
             </div>
-        );
-    };
+        )
+    ],
+    component: UpToastComponent
+};
 
 const useShowButton =
     () => {
@@ -51,6 +40,25 @@ const useShowButton =
         return [newDuration, Button];
     };
 
+export const General =
+    () => {
+        const intent = text('intent', 'success');
+        const message = text('message', 'Message 1 \n Message 2');
+        const [duration, Button] = useShowButton();
+
+        return (
+            <>
+                {Button}
+                <UpToast
+                    intent={intent as IntentType}
+                    message={message}
+                    duration={duration as number}
+                    autoDismissable={true}
+                />
+            </>
+        );
+    };
+
 export const ToastWithTitle =
     () => {
         const intent = text('intent', 'success');
@@ -58,17 +66,15 @@ export const ToastWithTitle =
         const [duration, Button] = useShowButton();
 
         return (
-            <div style={{ marginTop: '100px' }}>
+            <>
                 {Button}
-                <UpThemeProvider theme={UpDefaultTheme}>
-                    <UpToast
-                        intent={intent as IntentType}
-                        title={'Opération'}
-                        autoDismissable={true}
-                        message={message}
-                        duration={duration as number}
-                    />
-                </UpThemeProvider>
-            </div>
+                <UpToast
+                    intent={intent as IntentType}
+                    title={'Opération'}
+                    autoDismissable={true}
+                    message={message}
+                    duration={duration as number}
+                />
+            </>
         );
     };
