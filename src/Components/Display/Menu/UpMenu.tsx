@@ -24,7 +24,7 @@ export interface UpMenuProps {
   width?: number;
   minified?: boolean,
   blocked?: boolean,
-  onClick?: (uri: string) => boolean | void;
+  onClick?: (uri: string, menuItem?: MenuItemData ) => boolean | void;
   onMinifiedChange?:(minified?:boolean) => void;
   customStyles? : UpMenuCustomStyles;
 }
@@ -83,7 +83,7 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
     if (this.currentMinifiedValue && !isEmpty(menuitem.childMenuItems)) {
       this.setMinification(false);
     }
-    return this.props.onClick(menuitem.uri);
+    return this.props.onClick(menuitem.uri, menuitem);
   }
 
   render() {
