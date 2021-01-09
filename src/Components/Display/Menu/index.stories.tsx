@@ -52,7 +52,7 @@ export const General = (props) => {
       uri: '/stack',
       childMenuItems: [
         {
-          title: 'Option 1',
+          title: 'Stack Option 1',
           icon: 'weather-rain',
           isSelected: false,
           isVisible: true,
@@ -60,7 +60,7 @@ export const General = (props) => {
           childMenuItems: [],
         },
         {
-          title: 'Option 2',
+          title: 'Stack Option 2',
           icon: 'weather-snow',
           isSelected: false,
           isVisible: true,
@@ -68,7 +68,7 @@ export const General = (props) => {
           childMenuItems: [],
         },
         {
-          title: 'Option 3',
+          title: 'Stack Option 3',
           icon: 'weather-sunset',
           isSelected: false,
           isVisible: true,
@@ -93,7 +93,7 @@ export const General = (props) => {
         uri: '/Up',
         childMenuItems: [
           {
-            title: 'Option 1',
+            title: 'Up Option 1',
             icon: 'weather-rain',
             isSelected: false,
             isVisible: true,
@@ -101,7 +101,7 @@ export const General = (props) => {
             childMenuItems: [],
           },
           {
-            title: 'Option 2',
+            title: 'Up Option 2',
             icon: 'weather-snow',
             isSelected: false,
             isVisible: true,
@@ -109,7 +109,7 @@ export const General = (props) => {
             childMenuItems: [],
           },
           {
-            title: 'Option 3',
+            title: 'Up Option 3',
             icon: 'weather-sunset',
             isSelected: false,
             isVisible: true,
@@ -149,6 +149,7 @@ export const General = (props) => {
     },
   ];
 
+  const [uri, setUri] = React.useState(null);
   const [menu, setMenu] = React.useState(defaultMenu);
 
   const footerStyle = style({
@@ -161,11 +162,13 @@ export const General = (props) => {
   });
 
   return (
+      <>
+      <span data-testid="uri" style={{display: 'none'}}>{uri}</span>
       <UpMenu
         onMinifiedChange={(minified) => action(`Menu minified: ${minified}`)}
         onClick={uri => {
-          const newMenu = prev => setMenuSelection(uri, menu, prev);
-          setMenu(previousMenu => newMenu(previousMenu));
+          setMenu(previousMenu => setMenuSelection(uri, menu, previousMenu));
+          setUri(uri);
           return false;
         }}
         menuItems={menu}
@@ -218,6 +221,7 @@ export const General = (props) => {
           );
         }}
       />
+      </>
   );
 };
 
