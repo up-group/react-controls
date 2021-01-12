@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.125)
+
+## Bug Fixes
+  - UpMenu : onClick on sub menu items
+
 #  ReactControls (version: 0.2.124)
 
 ## Bug Fixes

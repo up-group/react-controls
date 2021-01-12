@@ -24,7 +24,7 @@ export interface UpMenuProps {
   width?: number;
   minified?: boolean,
   blocked?: boolean,
-  onClick?: (uri: string) => boolean | void;
+  onClick?: (uri: string, menuItem?: MenuItemData ) => boolean | void;
   onMinifiedChange?:(minified?:boolean) => void;
   customStyles? : UpMenuCustomStyles;
 }
@@ -79,11 +79,11 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
     return this.isMinifiedControlled ? this.props.minified : this.state.minified;
   }
 
-  handleClick = (uri: string, menuitem: MenuItemData) => {
+  handleClick = (menuitem: MenuItemData) => {
     if (this.currentMinifiedValue && !isEmpty(menuitem.childMenuItems)) {
       this.setMinification(false);
     }
-    return this.props.onClick(uri);
+    return this.props.onClick(menuitem.uri, menuitem);
   }
 
   render() {
@@ -91,13 +91,14 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
 
     const menu = menuItems.map((v, i) => {
       if (v.render != null) {
-        return v.render(
+        const e = v.render(
                     v,
                     others,
                     this.state,
                 );
+        return <React.Fragment key={i}>{e}</React.Fragment>;
       }
-      return <MenuItem onClick={() => this.handleClick(v.uri, v)} key={i} title={v.title} icon={v.icon} uri={v.uri} isSelected={v.isSelected} isVisible={v.isVisible} childMenuItems={v.childMenuItems} isSeparator={v.isSeparator} />;
+      return <MenuItem onClick={this.handleClick} key={i} title={v.title} icon={v.icon} uri={v.uri} isSelected={v.isSelected} isVisible={v.isVisible} childMenuItems={v.childMenuItems} isSeparator={v.isSeparator} />;
     });
 
     let renderChildren = children;
@@ -182,7 +183,7 @@ export interface MenuItemData {
 }
 
 export interface MenuItemProps extends MenuItemData {
-  onClick?: (uri: string, menuItem?: MenuItemData) => boolean | void;
+  onClick?: (menuItem: MenuItemData) => boolean | void;
 }
 
 export class MenuItem extends React.Component<MenuItemProps>{
@@ -217,7 +218,7 @@ export class MenuItem extends React.Component<MenuItemProps>{
   }
 
   onItemClick = (e) => {
-    const value = this.props.onClick(this.props.uri);
+    const value = this.props.onClick(this.props);
     if (value === false) {
       e.preventDefault();
       e.stopPropagation();
@@ -228,7 +229,7 @@ export class MenuItem extends React.Component<MenuItemProps>{
 export interface SubMenuProps {
   title?:string;
   childMenuItems?: MenuItemData[];
-  onClick: (uri: string) => void;
+  onClick: (menuItem: MenuItemData) => void;
 }
 
 export class SubMenu extends React.Component<SubMenuProps> {
@@ -263,7 +264,7 @@ export class SubMenu extends React.Component<SubMenuProps> {
 }
 
 export interface SubItemsProps extends MenuItemData {
-  onClick: (uri: string) => boolean | void;
+  onClick: (menuItem: MenuItemData) => boolean | void;
 }
 
 export interface SubItemsState {
@@ -307,9 +308,10 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
   }
 
   onClickA = (e) => {
-    const value = this.props.onClick(this.props.uri);
+    const value = this.props.onClick(this.props);
     if (value === false) {
       e.preventDefault();
+      e.stopPropagation();
     }
   }
 }

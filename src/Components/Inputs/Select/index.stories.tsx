@@ -461,12 +461,19 @@ export const IsRequired =
                     allowClear={true}
                     default={null}
                     multiple={false}
-                    tooltip="Votre ville de naissance"
+                    tooltip="Votre civilité"
+                    filterOptions={(option: any, filter) => {
+                        const filterMatched = !filter 
+                        || (option.label != null && `${option.label}`.toLowerCase().includes(filter.toLowerCase()))
+                        || (option.value.code != null && `${option.value.code}`.toLowerCase().includes(filter.toLowerCase()));
+                        
+                        return filterMatched;
+                    }}
                     data={[
-                        { id: 1, text: 'M.' },
-                        { id: 2, text: 'Mme' },
-                        { id: 3, text: 'Mlle' },
-                        { id: 4, text: 'Dr' },
+                        { id: 1, text: 'M.', code: '01' },
+                        { id: 2, text: 'Mme', code: '02' },
+                        { id: 3, text: 'Mlle', code: '03' },
+                        { id: 4, text: 'Dr', code: '04' },
                     ]}
                     onChange={console.log} />
             </div>
