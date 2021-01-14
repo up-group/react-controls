@@ -1,19 +1,13 @@
 ﻿// Imports
-import * as React from 'react'
-import { BaseControlState } from '../_Common/BaseControl/BaseControl'
-import UpInput from '../Input'
-
-import { CommonInputTextProps } from "../_Common/BaseControl/BaseInput"
-import { Validation } from '../Input/types';
+import * as React from 'react';
+import { BaseControlState } from '../_Common/BaseControl/BaseControl';
+import UpInput from '../Input';
 import * as _ from 'lodash';
-
-// Exports
-export interface UpPhoneProps extends CommonInputTextProps<string> {
-    validation?: Array<Validation>;
-}
+import { UpPhoneProps } from './types';
 
 // Exports
 export default class UpPhone extends React.Component<UpPhoneProps, BaseControlState<string>> {
+
     public static defaultProps: UpPhoneProps = {
         showError: true,
         defaultValue: "",
@@ -27,14 +21,14 @@ export default class UpPhone extends React.Component<UpPhoneProps, BaseControlSt
         super(p, c);
         this.state = {};
     }
-    
+
     phoneHandleChangeEvent = (event, value, error) => {
         this.setState({ value, error }, () => {
-            if(this.props.onChange) {
-                this.props.onChange(event, value, error) ;
+            if (this.props.onChange) {
+                this.props.onChange(event, value, error);
             }
-        }); 
-    }   
+        });
+    }
 
     get isControlled() {
         return this.props.value !== undefined;
@@ -50,13 +44,14 @@ export default class UpPhone extends React.Component<UpPhoneProps, BaseControlSt
 
     render() {
         return (
-            <UpInput {...this.props}
-                iconName="phone" 
-                value={this.currentValue} 
-                onChange={this.phoneHandleChangeEvent} 
+            <UpInput
+                {...this.props}
+                iconName="phone"
+                value={this.currentValue}
+                onChange={this.phoneHandleChangeEvent}
                 error={this.currentError}
                 hasError={!_.isEmpty(this.currentError)}
                 tabIndex={this.props.tabIndex} />
         );
     }
-}
+};
