@@ -31,6 +31,19 @@ const base = (props: UpTextProps): NestedCSSProperties => (
                 fontStyle: 'italic',
                 fontSize: toRem(14),
                 fontWeight: 500
+            },
+            "&.up-text-max-characters": {
+                color: props.theme.colorMap.grey1,
+                border: 'none',
+                display: 'flex',
+                justifyContent: 'flex-end',
+                alignItems: 'baseline'
+            },
+            "&.up-text-max-characters-msg": {
+                color: props.theme.colorMap.grey1,
+                fontWeight: 500,
+                paddingRight: '5px',
+                border: 'none'
             }
 
         }

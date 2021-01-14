@@ -32,17 +32,11 @@ class BaseTextArea extends React.Component<UpTextProps> {
     }
 
     render() {
-        const {
-            className,
-            value,
-            onChange,
-            name,
-            tabIndex,
-            placeholder,
-            readonly
-        } = this.props;
-
+        const {className, value,  onChange, name, tabIndex,placeholder, readonly, maxChar, maxCharMsg, maxCharMsgShowNumber } = this.props;
+        
+        const shouldDisplayMaxCharMsg = maxCharMsgShowNumber ? (value?.length > maxCharMsgShowNumber) : true
         return (
+        <>
             <Textarea value={value}
                 readOnly={readonly}
                 name={name}
@@ -50,11 +44,18 @@ class BaseTextArea extends React.Component<UpTextProps> {
                 ref={this.setInput}
                 tabIndex={tabIndex}
                 className={classnames(className, 'up-text')}
-                onChange={e => onChange(e, null)}>
-            </Textarea>);
+                onChange={e => onChange(e, null)}
+            />
+            {maxChar && shouldDisplayMaxCharMsg &&
+                <div className={classnames(className, 'up-text-max-characters')}>
+                    <span className={classnames(className, 'up-text-max-characters-msg')}>{maxCharMsg}</span>
+                    <span>{value ? maxChar - value?.length : maxChar}/{maxChar}</span>
+                </div>
+            }
+        </>
+        );
     }
-};
-
+}
 // Exports
 export default class UpText extends BaseControlComponent<UpTextProps, string> {
 
@@ -63,6 +64,7 @@ export default class UpText extends BaseControlComponent<UpTextProps, string> {
         showError: true,
         theme: defaultTheme,
         readonly: false,
+        maxCharMsg: "Le text doit contenir au maximum",
     }
 
     constructor(p, c) {

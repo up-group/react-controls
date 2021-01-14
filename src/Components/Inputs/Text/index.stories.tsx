@@ -115,5 +115,17 @@ export const WithPlaceHolder =
                     </form>
                 );
             }}
-        </Formik>
-    );
+    </Formik>
+)
+
+export const WithMaximumCharacter =
+  () => (
+    <UpLabel text={"Observation : "}>
+      <UpText
+        width={'fill'}
+        maxChar={number('maxChar', 500)}
+        maxCharMsgShowNumber={number('maxCharMsgShowNumber', 0)}
+        maxCharMsg={text('maxCharMsg', 'Le text doit contenir au maximum')}
+      />
+    </UpLabel>
+  )
