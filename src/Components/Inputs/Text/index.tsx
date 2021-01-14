@@ -1,4 +1,4 @@
-// Impprts
-import UpText from './UpText'
+// Imports
+import UpText from './UpText';
 
 export default UpText ;
