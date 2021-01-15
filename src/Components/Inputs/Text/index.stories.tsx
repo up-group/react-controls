@@ -123,9 +123,23 @@ export const WithMaximumCharacter =
     <UpLabel text={"Observation : "}>
       <UpText
         width={'fill'}
-        maxChar={number('maxChar', 500)}
+        maxChar={number('maxChar', 300)}
         maxCharMsgShowNumber={number('maxCharMsgShowNumber', 0)}
-        maxCharMsg={text('maxCharMsg', 'Le text doit contenir au maximum')}
+        maxCharMsg={text('maxCharMsg', 'Vous avez saisi {{numberOfChar}} sur un nombre maximal de {{maxChar}}')}
       />
     </UpLabel>
   )
+
+  export const ForceMaximumCharacter =
+  () => (
+    <UpLabel text={"Observation : "}>
+      <UpText
+        width={'fill'}
+        maxChar={100}
+        forceMaxChar
+        maxCharMsgShowNumber={number('maxCharMsgShowNumber', 0)}
+        maxCharMsg={text('maxCharMsg', 'Vous avez saisi {{numberOfChar}} sur un nombre maximal de {{maxChar}}')}
+      />
+    </UpLabel>
+  )
+

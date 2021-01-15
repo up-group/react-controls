@@ -44,6 +44,9 @@ const base = (props: UpTextProps): NestedCSSProperties => (
                 fontWeight: 500,
                 paddingRight: '5px',
                 border: 'none'
+            },
+            "&.up-text-error": {
+                borderColor: props.theme.colorMap.error
             }
 
         }

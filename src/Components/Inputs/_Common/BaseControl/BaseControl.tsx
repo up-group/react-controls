@@ -45,6 +45,7 @@ export interface BaseControlProps<_BaseType> extends WithThemeProps {
   onClear?: () => void;
   maxCharMsg?: string;
   maxCharMsgShowNumber?: number;
+  forceMaxChar?: boolean;
 }
 export interface BaseControlState<_BaseType> {
   error?: string;

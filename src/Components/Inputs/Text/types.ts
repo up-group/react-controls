@@ -21,4 +21,5 @@ export interface UpTextProps extends WithThemeProps {
     maxChar?: number;
     maxCharMsg?: string;
     maxCharMsgShowNumber?: number;
+    forceMaxChar?: boolean;
 }
