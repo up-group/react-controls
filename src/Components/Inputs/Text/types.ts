@@ -18,4 +18,8 @@ export interface UpTextProps extends WithThemeProps {
     tabIndex?: number;
     onChange?: (event: React.ChangeEvent<any>, data: string) => void;
     readonly?: boolean;
-};
+    maxChar?: number;
+    maxCharMsg?: string;
+    maxCharMsgShowNumber?: number;
+    forceMaxChar?: boolean;
+}

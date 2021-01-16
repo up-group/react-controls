@@ -42,7 +42,10 @@ export interface BaseControlProps<_BaseType> extends WithThemeProps {
   touched?: boolean;
   helpMessage?: string | RenderHelp;
   tabIndex?: number;
-  onClear?: () => void
+  onClear?: () => void;
+  maxCharMsg?: string;
+  maxCharMsgShowNumber?: number;
+  forceMaxChar?: boolean;
 }
 export interface BaseControlState<_BaseType> {
   error?: string;
