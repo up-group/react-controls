@@ -3,6 +3,8 @@ import { WithThemeProps } from "../../../Common/theming/withTheme";
 // Exports
 export type WidthSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'fill';
 
+export type EventHandler<T, D> =  (event: React.ChangeEvent<T>, data: D) => void;
+
 export interface UpTextProps extends WithThemeProps {
     width?: WidthSize;
     defaultValue?: string;

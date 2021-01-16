@@ -120,14 +120,16 @@ export const WithPlaceHolder =
 
 export const WithMaximumCharacter =
   () => (
-    <UpLabel text={"Observation : "}>
-      <UpText
-        width={'fill'}
-        maxChar={number('maxChar', 300)}
-        maxCharMsgShowNumber={number('maxCharMsgShowNumber', 0)}
-        maxCharMsg={text('maxCharMsg', 'Vous avez saisi {{numberOfChar}} sur un nombre maximal de {{maxChar}}')}
-      />
-    </UpLabel>
+    <div data-testid="UpText">
+        <UpLabel text={"Observation : "}>
+        <UpText
+            width={'fill'}
+            maxChar={number('maxChar', 300)}
+            maxCharMsgShowNumber={number('maxCharMsgShowNumber', 0)}
+            maxCharMsg={text('maxCharMsg', 'Vous avez saisi {{numberOfChar}} sur un nombre maximal de {{maxChar}}')}
+        />
+        </UpLabel>
+    </div>
   )
 
   export const ForceMaximumCharacter =
@@ -136,10 +138,9 @@ export const WithMaximumCharacter =
       <UpText
         width={'fill'}
         maxChar={100}
-        forceMaxChar
+        forceMaxChar={true}
         maxCharMsgShowNumber={number('maxCharMsgShowNumber', 0)}
         maxCharMsg={text('maxCharMsg', 'Vous avez saisi {{numberOfChar}} sur un nombre maximal de {{maxChar}}')}
       />
     </UpLabel>
   )
-

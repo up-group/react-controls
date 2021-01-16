@@ -4,6 +4,7 @@ import { defaultStyles } from '../_Common/Styled/Input/styles'
 import { NestedCSSProperties } from 'typestyle/lib/types';
 import { UpTextProps } from './types';
 import { style } from 'typestyle';
+import { color } from 'csx';
 import { toRem } from '../../../Common/theming/utils';
 
 const sizeMap = {
@@ -46,9 +47,9 @@ const base = (props: UpTextProps): NestedCSSProperties => (
                 border: 'none'
             },
             "&.up-text-error": {
-                borderColor: props.theme.colorMap.error
+                borderColor: props.theme.colorMap.error,
+                backgroundColor: color(props.theme.colorMap.error).lighten(0.55).toHexString()
             }
-
         }
     }
 );

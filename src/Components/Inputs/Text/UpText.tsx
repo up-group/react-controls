@@ -3,7 +3,7 @@ import * as React from 'react';
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl';
 import defaultTheme from '../../../Common/theming'
 import Textarea from 'react-textarea-autosize'
-import { UpTextProps } from './types';
+import { EventHandler, UpTextProps } from './types';
 import { getStyles } from './styles';
 import * as classnames from 'classnames';
 
@@ -16,18 +16,13 @@ class BaseTextArea extends React.Component<UpTextProps> {
     }
 
     setInput = (input) => {
-        const { forceMaxChar, maxChar } = this.props
         // The ref function is called twice, 
         // the first one with the component instance (as React) 
         // and the second one with the DOM node instance
         if (this.textArea == undefined) {
             this.textArea = input;
         }
-        if (forceMaxChar && this.textArea) {
-            this.textArea._ref.maxLength = maxChar
-        }
     }
-
 
     componentDidMount() {
         if (this.props.dataFor && this.textArea) {
@@ -40,9 +35,11 @@ class BaseTextArea extends React.Component<UpTextProps> {
         const {className, value,  onChange, name, tabIndex,placeholder, readonly, maxChar, maxCharMsg, maxCharMsgShowNumber } = this.props;
         
         const shouldDisplayMaxCharMsg = maxCharMsgShowNumber ? (value?.length > maxCharMsgShowNumber) : true
-        const templateMsg = maxCharMsg
-            .replace("{{numberOfChar}}", value ? value?.length?.toString() : "0")
-            .replace("{{maxChar}}", maxChar.toString())
+        
+        const templateMsg = maxCharMsg && maxCharMsg
+            .replace("{{numberOfChar}}", value?.length?.toString() || "0")
+            .replace("{{maxChar}}", maxChar?.toString() || "")
+
         return (
         <>
             <Textarea value={value}
@@ -52,7 +49,7 @@ class BaseTextArea extends React.Component<UpTextProps> {
                 ref={this.setInput}
                 tabIndex={tabIndex}
                 className={classnames(className, 'up-text', {'up-text-error' : value?.length > maxChar})}
-                onChange={e => onChange(e, null)}
+                onChange={e => onChange(e, e.target.value)}
             />
             {maxChar && shouldDisplayMaxCharMsg &&
                 <div className={classnames(className, 'up-text-max-characters')}>
@@ -72,7 +69,7 @@ export default class UpText extends BaseControlComponent<UpTextProps, string> {
         theme: defaultTheme,
         readonly: false,
         maxCharMsg: "Vous avez saisi {{numberOfChar}} sur un nombre maximal de {{maxChar}}",
-        forceMaxChar: true,
+        forceMaxChar: false,
     }
 
     constructor(p, c) {
@@ -83,9 +80,15 @@ export default class UpText extends BaseControlComponent<UpTextProps, string> {
         }
     }
 
-    onChange = (event) => {
+    onChange : EventHandler<any, string>  = (event, value) => {
         event.persist();
-        this.handleChangeEvent(event, event.target.value);
+        const { forceMaxChar, maxChar } = this.props
+        let _value = event.target.value as string; 
+        if (forceMaxChar && maxChar && _value && _value.length > maxChar) {
+            _value = _value.substr(0, maxChar)
+        }
+        event.target.value = _value
+        this.handleChangeEvent(event, _value)
     }
 
     showError() {
