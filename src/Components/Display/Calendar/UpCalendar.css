@@ -14,8 +14,8 @@ button.fc--button.fc-button.fc-button-primary
 .fc-toolbar-title
 {
     font-weight:normal;
-    font-size:16px !important;
-    margin-top:11px !important;
+    font-size:1rem !important;
+    margin-top:0.7rem !important;
 }
 button.fc-button.fc-prev-button, button.fc-button.fc-next-button
 {
@@ -133,7 +133,7 @@ td.fc-daygrid-day
 
 a.fc-daygrid-week-number
 {
-    font-size: 11px;
+    font-size: 0,68rem;
     font-style: italic;
 }
 
