@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.126)
+
+## Main Changes
+  - UpText : Add max xharacters handling.
+
 #  ReactControls (version: 0.2.125)
 
 ## Bug Fixes
