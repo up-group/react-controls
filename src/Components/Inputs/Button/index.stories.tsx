@@ -270,7 +270,7 @@ export const DropDownWithText =
                 </UpHeading>
                 <UpNotification intent={"info"}>
                     <UpParagraph>
-                        Le composant <code>UpButton</code> en définissant un menu d'actions associées, un label principal et l'icône à gauche
+                        Le composant <code>UpButton</code> en définissant un menu d'actions associées et un label principal et l'icône à gauche.
                     </UpParagraph>
                 </UpNotification>
                 <UpParagraph>
@@ -410,7 +410,8 @@ export const Rounded =
                         <UpButton
                             rotate={isProcessing}
                             intent="primary"
-                            rounded={true} width="icon"
+                            rounded={true} 
+                            width="icon"
                             onClick={null}
                             actionType="refresh"
                         ></UpButton>
