@@ -1,4 +1,4 @@
 // Imports 
-import UpNotification from './UpNotification'
+import UpNotification from './UpNotification';
 
-export default UpNotification
+export default UpNotification;
