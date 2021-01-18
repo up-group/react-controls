@@ -8,7 +8,7 @@ import { MentorName } from '../../../Common/theming/mentors';
 import UpBox from '../../Containers/Box';
 import UpSvgIcon from '../SvgIcon';
 import UpButton from '../../Inputs/Button/UpButton';
-import { Action } from '../../Inputs/Button'
+import { Action } from '../../Inputs/Button/types'
 
 export type GetterStyle = (props: UpInformationProps) => NestedCSSProperties
 
