@@ -1,63 +1,65 @@
-import { style, media, keyframes} from "typestyle";
-import { UpBulleProps } from "./UpBulle";
-import { DeviceSmartphones, DeviceSmallSmartphones } from "../../../Common/utils/device";
-import { fadeOutAnimation, fadeInAnimation } from "../../../Common/theming/animations";
-import { NestedCSSProperties } from "typestyle/lib/types";
+import { style, media, keyframes } from 'typestyle';
+import { UpBulleProps } from './types';
+import { DeviceSmartphones, DeviceSmallSmartphones } from '../../../Common/utils/device';
+import { fadeOutAnimation, fadeInAnimation } from '../../../Common/theming/animations';
+import { NestedCSSProperties } from 'typestyle/lib/types';
+import { toRem } from '../../../Common/theming/utils';
 
-export const AutoSizedComponent : NestedCSSProperties =
-{
-    padding : '6px',
-    fontSize: '11px',
-    width : 'auto',
-}
+export const AutoSizedComponent: NestedCSSProperties = {
+    padding: toRem(6),
+    fontSize: toRem(11),
+    width: 'auto',
+};
 
-export const BulleStyle = (props : UpBulleProps ) => style({
+export const BulleStyle = (props: UpBulleProps) => style({
     position: 'relative',
-    fontSize: "12px",
-    cursor: "pointer",
-    borderRadius: "4px",
-    boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
-    padding: "12px 16px",
-    opacity:  1,
-}, 
-media(DeviceSmartphones, AutoSizedComponent),
-media(DeviceSmallSmartphones, AutoSizedComponent));
+    fontSize: toRem(12),
+    cursor: 'pointer',
+    borderRadius: toRem(4),
+    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
+    padding: `${toRem(12)} ${toRem(16)}`,
+    opacity: 1,
+},
+    media(DeviceSmartphones, AutoSizedComponent),
+    media(DeviceSmallSmartphones, AutoSizedComponent)
+);
 
 export const IconStyle = style({
-    color:"white",
+    color: 'white',
 });
 
-const IconifiedValue : NestedCSSProperties = {
-    position:  'absolute',
-    fontSize: '10px',
-    top: '3px',
-    left: '20px',
-}
+const IconifiedValue: NestedCSSProperties = {
+    position: 'absolute',
+    fontSize: toRem(10),
+    top: toRem(3),
+    left: toRem(20),
+};
 
-const HiddenMessage : NestedCSSProperties = {
+const HiddenMessage: NestedCSSProperties = {
     display: 'none',
-    opacity:  0,
-}
+    opacity: 0,
+};
 
 export const ValueStyle = style({
-    marginLeft: "12px",
-    color:"white",
-    fontSize: '24px',
+    marginLeft: toRem(12),
+    color: 'white',
+    fontSize: toRem(24),
     fontWeight: 500,
-}, 
-media(DeviceSmartphones, IconifiedValue),
-media(DeviceSmallSmartphones, IconifiedValue));
+},
+    media(DeviceSmartphones, IconifiedValue),
+    media(DeviceSmallSmartphones, IconifiedValue));
 
 export const MessageStyle = style({
-    margin: "0px 0px 0px 12px",
-    color:"white",
-    opacity:  1,
+    margin: `0 0 0 ${toRem(12)}`,
+    color: 'white',
+    opacity: 1,
     animation: `${fadeInAnimation} 2s`,
-}, 
-media(DeviceSmartphones, HiddenMessage),
-media(DeviceSmallSmartphones, HiddenMessage));
+},
+    media(DeviceSmartphones, HiddenMessage),
+    media(DeviceSmallSmartphones, HiddenMessage)
+);
 
 export const ChildrenStyle = style({
-    margin: "5px",
-    color: "white",
+    margin: toRem(5),
+    color: 'white',
 });
