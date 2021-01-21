@@ -1,17 +1,13 @@
 ﻿import * as React from "react"
 import { style } from "typestyle"
 import { Scrollbars } from 'react-custom-scrollbars';
-
-import { getFontClassName, stringIsNullOrEmpty, isNullOrUndef, addZeroBeforeNumber } from "../../../Common/utils/helpers";
+import { getFontClassName, stringIsNullOrEmpty, isNullOrUndef, addZeroBeforeNumber } from '../../../Common/utils/helpers';
 import UpHover from '../../Containers/Hover/UpHover';
-import { IconChevron, IconUtilisateur, IconDeconnexion, DirectionEnum, IconVerrou, IconAlertes } from "../Icons/Icons";
+import { IconChevron, IconUtilisateur, IconDeconnexion, DirectionEnum, IconVerrou, IconAlertes } from '../Icons/Icons';
+import { imgHomelink, rightSpace, rightSpaceCollapse, styleContenu, styleLeftMenu, styleLeftMenuCollapse, styleMenuOh, styleTopbar, styleUserExpand } from './styles';
+import { toRem } from '../../../Common/theming/utils';
 
-
-const UP = require("./up.png");
-const heightTopBar: number = 60;
-const widthLeftMenuStandard: number = 300;
-const widthLeftMenuCollapse: number = 64;
-
+const UP = require("./sources/up.png");
 
 class branchIdHelper {
     static toArray(id: string) {
@@ -25,8 +21,9 @@ class branchIdHelper {
     static hasChild(id: string) {
         return id.substr(id.length - 1, 1) === "*";
     }
-}
+};
 
+//Types
 export interface Utilisateur {
     Nom: string;
     DerniereConnexion: Date;
@@ -36,84 +33,7 @@ export interface Utilisateur {
         NonLues: number;
         onClick: () => void
     }
-}
-
-
-var styleMenuOh = style({
-    backgroundColor: "#f5f5f5",
-    overflow: "hidden",
-    height: "100%",//window.innerHeight,
-    width: "100%",//window.innerWidth,
-});
-var styleLeftMenu = style({
-    zIndex: 1,
-    position: "absolute",
-    left: 0,
-    top: 0,
-    height: "100%",
-    width: widthLeftMenuStandard,
-    backgroundColor: "#4e5b59",
-    alignItems: "center",
-    transition: "width 0.5s",
-    overflow: "hidden",
-    $nest: {
-        '& i': {
-            cursor: "pointer",
-        },
-        '& a': {
-            textDecoration: "none",
-        },
-    },
-});
-var imgHomelink = style({ display: "inline" });
-
-var styleLeftMenuCollapse = style({
-    width: widthLeftMenuCollapse,
-    $nest: {
-        '& a': {
-            display: "none",
-        },
-        ['& .' + imgHomelink]: {
-            display : "inline"
-        }
-    },
-});
-var rightSpace = style({
-    position: "absolute",
-    top: 0,
-    right: 0,
-    left: widthLeftMenuStandard,
-    height: "100%",
-    transition: "left 0.5s",
-    overflow: "hidden",
-});
-var rightSpaceCollapse = style({
-    left: widthLeftMenuCollapse,
-});
-var styleTopbar = style({
-    width: "100%",
-    left: 0,
-    top: 0,
-    position: "absolute",
-    height: heightTopBar,
-    backgroundColor: "#ffffff",
-    textAlign: "right",
-});
-var styleContenu = style({
-    position: "absolute",
-    left: 0,
-    top: heightTopBar,
-    bottom: 0,
-    right: 0,
-    overflow: "hidden",
-});
-var styleUserExpand = style({
-    position: "absolute",
-    top: heightTopBar,
-    right: "128px",
-    overflow: "visible",
-});
-
+};
 
 export interface MenuItemData {
     icon?: string;
@@ -123,8 +43,7 @@ export interface MenuItemData {
     childMenuItems?: MenuItemData[];
     styleType?: "button";
     forceOpen?: boolean;
-}
-
+};
 
 export interface UpMenuProps {
     menuItems: MenuItemData[];
@@ -135,14 +54,15 @@ export interface UpMenuProps {
     Utilisateur: Utilisateur;
     onDeconnexionClick: () => void;
     selectMenu?: (menu: MenuItemData) => boolean;
-}
+};
 
 export interface UpMenuState {
     selectedBranchId?: string;
     collapseActive: boolean;
     collapse: boolean;
     hoverMenu: boolean;
-}
+};
+//Fin types
 
 export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> {
     constructor(p, c) {
@@ -153,26 +73,6 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
             hoverMenu: false,
             collapseActive: false,
         };
-    }
-
-    render() {
-        var right = rightSpace + (this.state.collapseActive ? " " + rightSpaceCollapse : "")
-
-        return <div className={styleMenuOh/*()*/} >
-            <LeftMenu
-                onHover={this.onHover}
-                onCollapseChange={this.onCollapseChange} collapse={this.state.collapse} selectedBranchId={this.state.selectedBranchId} onBranchClick={this.onBranchClick}
-                onHomeClick={this.props.onHomeClick} menuItems={this.props.menuItems} onMenuClick={this.props.onMenuClick} />
-
-            <div className={right}>
-                <TopMenu Recherche={this.props.Recherche} Antennes={this.props.Antennes}
-                    Utilisateur={this.props.Utilisateur} onDeconnexionClick={this.props.onDeconnexionClick} />
-
-                <div className={styleContenu/*()*/} >
-                    {this.props.children}
-                </div>
-            </div>
-        </div>;
     }
 
     onCollapseChange = () => {
@@ -194,7 +94,7 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
 
     componentDidUpdate() {
         if (this.props.selectMenu != null) {
-            var idSelected = this.findSelected(this.props.menuItems);
+            const idSelected = this.findSelected(this.props.menuItems);
             if (this.state.selectedBranchId !== idSelected && idSelected != null) {
                 this.setState({ selectedBranchId: idSelected });
             }
@@ -202,8 +102,8 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
     }
 
     private findSelected(MenuItemData: MenuItemData[]): string {
-        for (var i = 0; i < MenuItemData.length; i++) {
-            var localId = i + (MenuItemData[i].childMenuItems != null && MenuItemData[i].childMenuItems.length != 0 ? "*" : "-");
+        for (let i = 0; i < MenuItemData.length; i++) {
+            const localId = i + (MenuItemData[i].childMenuItems != null && MenuItemData[i].childMenuItems.length != 0 ? "*" : "-");
             if (this.props.selectMenu(MenuItemData[i]) == true) {
                 return localId;
             } else {
@@ -221,9 +121,39 @@ export default class UpMenuOH extends React.Component<UpMenuProps, UpMenuState> 
     private onBranchClick = (branchId: string) => {
         this.setState({ selectedBranchId: branchId, });
     }
-}
 
+    render() {
+        const right = rightSpace + (this.state.collapseActive ? " " + rightSpaceCollapse : "")
 
+        return (
+            <div className={styleMenuOh/*()*/} >
+                <LeftMenu
+                    onHover={this.onHover}
+                    onCollapseChange={this.onCollapseChange}
+                    collapse={this.state.collapse}
+                    selectedBranchId={this.state.selectedBranchId}
+                    onBranchClick={this.onBranchClick}
+                    onHomeClick={this.props.onHomeClick}
+                    menuItems={this.props.menuItems}
+                    onMenuClick={this.props.onMenuClick}
+                />
+                <div className={right}>
+                    <TopMenu
+                        Recherche={this.props.Recherche}
+                        Antennes={this.props.Antennes}
+                        Utilisateur={this.props.Utilisateur}
+                        onDeconnexionClick={this.props.onDeconnexionClick}
+                    />
+                    <div className={styleContenu/*()*/} >
+                        {this.props.children}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+};
+
+//types
 export interface LeftMenuProps {
     onBranchClick: (branchId: string) => void;
     menuItems: MenuItemData[];
@@ -233,10 +163,10 @@ export interface LeftMenuProps {
     onCollapseChange: () => void;
     onHover: (hover: boolean) => void;
     collapse: boolean;
-}
+};
 
-export interface LeftMenuState {
-}
+export interface LeftMenuState { };
+//Fin types
 
 export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
     constructor(p, c) {
@@ -247,31 +177,34 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
     }
 
     render() {
-        var img_space = style({
+        const img_space = style({
             //width: "100%",
-            height: 60,
-            margin: 24,
+            height: toRem(60),
+            margin: toRem(24),
         });
-        var img_style = style({
+
+        const img_style = style({
             //width: "100%",
             maxHeight: "100%",
             maxWidth: "100%"
             //width: this.props.collapse ? 30 : 60
         });
-        var div_style = style({
-            height: 45,
-            paddingLeft: 25,
+
+        const div_style = style({
+            height: toRem(45),
+            paddingLeft: toRem(25),
             color: "#FFF",
-            fontSize: 25,
+            fontSize: toRem(25),
         });
-        var firstSub = style({
+
+        const firstSub = style({
             // marginLeft: 24,
-            paddingLeft: "24px",
+            paddingLeft: toRem(24),
             position: "absolute",
-            top: "153px",
-            bottom: "0",
-            left: "0",
-            right: "0",
+            top: toRem(153),
+            bottom: 0,
+            left: 0,
+            right: 0,
             $nest: {
                 "& > *": {
                     height: "100%",
@@ -280,46 +213,49 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState> {
             },
         });
 
-        var left = styleLeftMenu + (this.props.collapse ? " " + styleLeftMenuCollapse : "");
+        const left = styleLeftMenu + (this.props.collapse ? " " + styleLeftMenuCollapse : "");
         // <input type="button" value="TTT" onClick={this.props.onCollapseChange} />
-        return <aside className={left} >
-            <div className={img_space}>
-                <a className={imgHomelink} onClick={this.props.onHomeClick} >
-                    <img className={img_style} src={UP} ></img>
-                </a>
-            </div>
-            <div className={div_style} >
-                <span className={"icon-Lmenu"} onClick={this.props.onCollapseChange} />
-            </div>
-            <div className={firstSub} >
-                <UpHover onHoverChange={this.props.onHover}>
-                    <SubMenu
-                        open={false}
-                        onBranchClick={this.props.onBranchClick}
-                        branchId={""}
-                        selectedBranchId={this.props.selectedBranchId}
-                        onMenuClick={this.props.onMenuClick}
-                        childMenuItems={this.props.menuItems}
-                        top={false}
-                        collapse={this.props.collapse}
-                    />
-                </UpHover>
-            </div>
-        </aside>
+        return (
+            <aside className={left} >
+                <div className={img_space}>
+                    <a className={imgHomelink} onClick={this.props.onHomeClick} >
+                        <img className={img_style} src={UP} ></img>
+                    </a>
+                </div>
+                <div className={div_style} >
+                    <span className={"icon-Lmenu"} onClick={this.props.onCollapseChange} />
+                </div>
+                <div className={firstSub} >
+                    <UpHover onHoverChange={this.props.onHover}>
+                        <SubMenu
+                            open={false}
+                            onBranchClick={this.props.onBranchClick}
+                            branchId={""}
+                            selectedBranchId={this.props.selectedBranchId}
+                            onMenuClick={this.props.onMenuClick}
+                            childMenuItems={this.props.menuItems}
+                            top={false}
+                            collapse={this.props.collapse}
+                        />
+                    </UpHover>
+                </div>
+            </aside>
+        )
     }
-}
+};
 
-
+//Types
 export interface TopMenuProps {
     Recherche: JSX.Element;
     Antennes: JSX.Element;
     Utilisateur: Utilisateur;
     onDeconnexionClick: () => void;
-}
+};
 
 export interface TopMenuState {
     UserExpand: boolean;
-}
+};
+//Fin types
 
 export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
     constructor(p, c) {
@@ -332,30 +268,33 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
     onUserClick = () => {
         this.setState({ UserExpand: true, });
     }
+
     onUserBlur = () => {
         this.setState({ UserExpand: false, });
     }
 
     render() {
-        var styleGauche = style({
+        const styleGauche = style({
             width: "20%",
-            minWidth: "250px",
+            minWidth: toRem(250),
             float: "left",
-            marginLeft: "60px",
-            marginTop: "16px",
+            marginLeft: toRem(60),
+            marginTop: toRem(16),
         });
-        var styleDroite = getFontClassName({ fontSize: "14px", color: "#4a4a4a", }) + " " + style({
-            marginTop: "16px",
+
+        const styleDroite = getFontClassName({ fontSize: `${toRem(14)}`, color: "#4a4a4a", }) + " " + style({
+            marginTop: toRem(16),
             height: "100%",
-            marginRight: "60px",
+            marginRight: toRem(60),
             display: "inline-block",
         });
-        var styleInfosTexte = style({
-            marginRight: "48px",
+
+        const styleInfosTexte = style({
+            marginRight: toRem(48),
             $nest: {
                 "& > i": {
                     fontStyle: "normal",
-                    margin: "0 8px",
+                    margin: `0 ${toRem(14)}`,
                 },
                 "& *:focus": {
                     outline: "none",
@@ -363,43 +302,41 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState> {
             },
         });
 
-        return <div className={styleTopbar} >
-            {isNullOrUndef(this.props.Recherche) ? null :
-                <div className={styleGauche} >
-                    {this.props.Recherche}
-                </div>
-            }
-
-            <span className={styleDroite} >
-                {isNullOrUndef(this.props.Antennes) ? null :
-                    this.props.Antennes
+        return (
+            <div className={styleTopbar} >
+                {isNullOrUndef(this.props.Recherche) ? null :
+                    <div className={styleGauche} >
+                        {this.props.Recherche}
+                    </div>
                 }
+                <span className={styleDroite} >
+                    {isNullOrUndef(this.props.Antennes) ? null : this.props.Antennes}
+                    {isNullOrUndef(this.props.Utilisateur) ? null :
+                        <IconUtilisateur IconSize="14px" lineHeight={1.14} AvecCercle={false} Color="#4a4a4a" BackgroundColor="#ffffff" >
+                            <span className={styleInfosTexte} >
+                                <i>{this.props.Utilisateur.Nom}</i>
+                                <IconChevron Direction={DirectionEnum.Bas} Color="#4a4a4a" BackgroundColor="#ffffff" IconSize="14px"
+                                    onClick={this.onUserClick} tabIndex={-1} onBlur={this.onUserBlur} />
 
-                {isNullOrUndef(this.props.Utilisateur) ? null :
-                    <IconUtilisateur IconSize="14px" lineHeight={1.14} AvecCercle={false} Color="#4a4a4a" BackgroundColor="#ffffff" >
-                        <span className={styleInfosTexte} >
-                            <i>{this.props.Utilisateur.Nom}</i>
-                            <IconChevron Direction={DirectionEnum.Bas} Color="#4a4a4a" BackgroundColor="#ffffff" IconSize="14px"
-                                onClick={this.onUserClick} tabIndex={-1} onBlur={this.onUserBlur} />
+                                {this.state.UserExpand ? <UserExpand Utilisateur={this.props.Utilisateur} /> : null}
+                            </span>
+                        </IconUtilisateur>
+                    }
 
-                            {this.state.UserExpand ? <UserExpand Utilisateur={this.props.Utilisateur} /> : null}
-                        </span>
-                    </IconUtilisateur>
-                }
-
-                <IconDeconnexion onClick={this.props.onDeconnexionClick} />
-            </span>
-        </div>
+                    <IconDeconnexion onClick={this.props.onDeconnexionClick} />
+                </span>
+            </div>
+        )
     }
-}
+};
 
-
+//Types
 export interface UserExpandProps {
     Utilisateur: Utilisateur;
-}
+};
 
-export interface UserExpandState {
-}
+export interface UserExpandState { };
+//Fin types
 
 export class UserExpand extends React.Component<UserExpandProps, UserExpandState> {
     constructor(p, c) {
@@ -419,59 +356,61 @@ export class UserExpand extends React.Component<UserExpandProps, UserExpandState
     }
 
     render() {
-        var styleG = style({
-            padding: "16px 16px 6px",
+        const styleG = style({
+            padding: `${toRem(16)} ${toRem(16)} ${toRem(6)}`,
             zIndex: 9998,
             backgroundColor: "#ffffff",
-            borderRadius: "4px",
+            borderRadius: toRem(4),
             boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
             border: "1px solid #eaeae9",
             textAlign: "left",
         });
-        var styleChangeMdp = style({
+
+        const styleChangeMdp = style({
             cursor: "pointer",
-            marginLeft: "8px",
-        });
-        var styleAlertes = style({
-            cursor: isNullOrUndef(this.props.Utilisateur.Alertes) || isNullOrUndef(this.props.Utilisateur.Alertes.onClick) ? "auto" : "pointer",
-            marginLeft: "8px",
+            marginLeft: toRem(8),
         });
 
-        var derniereCo: string = this.writeDateTime(this.props.Utilisateur.DerniereConnexion);
-        var nbAlerte: string = isNullOrUndef(this.props.Utilisateur.Alertes.NonLues) ? null :
+        const styleAlertes = style({
+            cursor: isNullOrUndef(this.props.Utilisateur.Alertes) || isNullOrUndef(this.props.Utilisateur.Alertes.onClick) ? "auto" : "pointer",
+            marginLeft: toRem(8),
+        });
+
+        const derniereCo: string = this.writeDateTime(this.props.Utilisateur.DerniereConnexion);
+        const nbAlerte: string = isNullOrUndef(this.props.Utilisateur.Alertes.NonLues) ? null :
             isNaN(this.props.Utilisateur.Alertes.NonLues) ? null :
                 this.props.Utilisateur.Alertes.NonLues <= 0 ? null :
                     this.props.Utilisateur.Alertes.NonLues > 99 ? "99+" :
                         this.props.Utilisateur.Alertes.NonLues.toString();
 
-        return <div className={styleUserExpand + " " + styleG} >
-            {derniereCo === null ? null :
-                <p>Dernière connexion : {derniereCo}</p>
-            }
-            {stringIsNullOrEmpty(this.props.Utilisateur.NomBinome) ? null :
-                <p>Votre binôme : {this.props.Utilisateur.NomBinome}</p>
-            }
-            {isNullOrUndef(this.props.Utilisateur.onChangeMdpClick) ? null :
-                <p >
-                    <IconVerrou onMouseDown={this.props.Utilisateur.onChangeMdpClick} >
-                        <span className={styleChangeMdp} > Changer votre mot de passe</span>
-                    </IconVerrou>
-                </p>
-            }
-            {isNullOrUndef(this.props.Utilisateur.Alertes) ? null :
-                <p>
-                    <IconAlertes AlertNumber={nbAlerte} AlertCircle={{ Active: true, Color: "#f44336" }}
-                        AlertFont={{ fontSize: "8px", color: "#ffffff" }} // la taille de la police va ici être écrasée par l'alerte
-                        onMouseDown={this.props.Utilisateur.Alertes.onClick} >
-                        <span className={styleAlertes} > Alertes utilisateur</span>
-                    </IconAlertes>
-                </p>
-            }
-        </div>;
+        return (
+            <div className={styleUserExpand + " " + styleG} >
+                {derniereCo === null ? null : <p>Dernière connexion : {derniereCo}</p>}
+                {stringIsNullOrEmpty(this.props.Utilisateur.NomBinome) ? null : <p>Votre binôme : {this.props.Utilisateur.NomBinome}</p>}
+                {
+                    isNullOrUndef(this.props.Utilisateur.onChangeMdpClick) ? null :
+                        <p >
+                            <IconVerrou onMouseDown={this.props.Utilisateur.onChangeMdpClick} >
+                                <span className={styleChangeMdp} > Changer votre mot de passe</span>
+                            </IconVerrou>
+                        </p>
+                }
+                {
+                    isNullOrUndef(this.props.Utilisateur.Alertes) ? null :
+                        <p>
+                            <IconAlertes AlertNumber={nbAlerte} AlertCircle={{ Active: true, Color: "#f44336" }}
+                                AlertFont={{ fontSize: "8px", color: "#ffffff" }} // la taille de la police va ici être écrasée par l'alerte
+                                onMouseDown={this.props.Utilisateur.Alertes.onClick} >
+                                <span className={styleAlertes} > Alertes utilisateur</span>
+                            </IconAlertes>
+                        </p>
+                }
+            </div >
+        );
     }
-}
+};
 
-
+//Types
 export interface SubMenuProps {
     childMenuItems?: MenuItemData[];
     onMenuClick: (uri: string) => void;
@@ -481,10 +420,10 @@ export interface SubMenuProps {
     selectedBranchId: string;
     top: boolean;
     collapse: boolean;
-}
+};
 
-export interface SubMenuState {
-}
+export interface SubMenuState { };
+//Fin types
 
 export class SubMenu extends React.Component<SubMenuProps, SubMenuState> {
     constructor(p, c) {
@@ -496,59 +435,18 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState> {
         return str.substr(0, search.length) === search;
     }
 
-    render() {
-        if (this.props.childMenuItems == null || this.props.childMenuItems.length == 0) {
-            return null;
-        }
-
-        var lis = this.props.childMenuItems.map((v, i, arr) => {
-            var localId = this.props.branchId + i + (v.childMenuItems != null && v.childMenuItems.length != 0 ? "*" : "-");
-
-            return <SubItems
-                forceOpen={v.forceOpen}
-                sibling={arr}
-                top={this.props.top}
-                icon={v.icon}
-                selectedBranchId={this.props.selectedBranchId}
-                branchId={localId}
-                onBranchClick={this.props.onBranchClick}
-                key={i}
-                open={this.props.open}
-                onMenuClick={this.props.onMenuClick}
-                uri={v.uri}
-                title={v.title}
-                isVisible={v.isVisible}
-                childMenuItems={v.childMenuItems}
-                collapse={this.props.collapse}
-                styleType={v.styleType}
-            />
-        });
-
-        if (this.props.branchId === "") {
-            return <Scrollbars style={{
-                height: "100%",//window.innerHeight - 150 
-            }} >
-                {lis}
-            </Scrollbars>;
-        } else {
-            return <div>
-                {lis}
-            </div>;
-        }
-    }
-
     private getMenuItemfromId(branchid: string, menu: MenuItemData[]) {
-        var first = branchid.substr(0, 2);
-        var rest = branchid.substr(2, branchid.length);
+        const first = branchid.substr(0, 2);
+        const rest = branchid.substr(2, branchid.length);
 
-        var find = menu.filter((x) => { return x.isVisible === true })[first.substr(0, 1)].childMenuItems;
+        const find = menu.filter((x) => { return x.isVisible === true })[first.substr(0, 1)].childMenuItems;
 
         if (find.length == 0) {
             return menu;
         }
 
         if (rest == "") {
-            return find
+            return find;
         }
         return this.getMenuItemfromId(rest, find);
     }
@@ -560,9 +458,56 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState> {
     get selectedBranchIdHasChild() {
         return branchIdHelper.hasChild(this.props.selectedBranchId);
     }
-}
 
+    render() {
+        if (this.props.childMenuItems == null || this.props.childMenuItems.length == 0) {
+            return null;
+        }
 
+        const lis = this.props.childMenuItems.map((v, i, arr) => {
+            const localId = this.props.branchId + i + (v.childMenuItems != null && v.childMenuItems.length != 0 ? "*" : "-");
+
+            return (
+                <SubItems
+                    forceOpen={v.forceOpen}
+                    sibling={arr}
+                    top={this.props.top}
+                    icon={v.icon}
+                    selectedBranchId={this.props.selectedBranchId}
+                    branchId={localId}
+                    onBranchClick={this.props.onBranchClick}
+                    key={i}
+                    open={this.props.open}
+                    onMenuClick={this.props.onMenuClick}
+                    uri={v.uri}
+                    title={v.title}
+                    isVisible={v.isVisible}
+                    childMenuItems={v.childMenuItems}
+                    collapse={this.props.collapse}
+                    styleType={v.styleType}
+                />
+            )
+        });
+
+        if (this.props.branchId === "") {
+            return (
+                <Scrollbars style={{
+                    height: "100%",//window.innerHeight - 150 
+                }} >
+                    {lis}
+                </Scrollbars>
+            );
+        } else {
+            return (
+                <div>
+                    {lis}
+                </div>
+            );
+        }
+    }
+};
+
+//Types
 export interface SubItemsProps extends MenuItemData {
     onMenuClick: (uri: string) => boolean | void;
     open: boolean;
@@ -572,10 +517,10 @@ export interface SubItemsProps extends MenuItemData {
     top: boolean;
     sibling: MenuItemData[];
     collapse: boolean;
-}
+};
 
-export interface SubItemsState {
-}
+export interface SubItemsState { };
+//Fin types
 
 export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
     constructor(p, c) {
@@ -599,21 +544,21 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
     }
 
     render() {
-        var branch = style({
+        const branch = style({
             paddingLeft: this.level == 1 ? 0 : this.level == 2 ? 60 : 20,// 20 + (this.hasIcon ? 0 : 0),/*+ (this.level * 10),*/
             display: this.props.isVisible === false ? "none" : "inherit",
             position: "relative",
-            // $nest: {
-            // }
         })
-        var link = style({
+
+        const link = style({
             color: this.isThisMenuSelected ? "#f39100" : this.props.top ? "#FFF" : "#FFF",
             display: this.props.collapse ? "none" : "initial",
             paddingLeft: this.level == 1 ? 15 : 0,
         });
-        var branchItem = style({
+
+        const branchItem = style({
             marginTop: this.props.styleType === "button" ? 15 : 0,
-            fontSize: 14,
+            fontSize: toRem(14),
             fontWeight: 500,
             fontStyle: "normal",
             fontStretch: "normal",
@@ -628,16 +573,18 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
                 },
             }
         });
-        var meunuIcon = style({
+
+        const meunuIcon = style({
             color: "#FFF",
-            marginTop: 3,
+            marginTop: toRem(3),
             //position: this.props.collapse ? "relative" : "absolute",
             position: "relative",
 
-            fontSize: 25,
+            fontSize: toRem(25),
             display: this.hasIcon ? "initial" : "none",
         });
-        var innnerSubmenu = style({
+
+        const innnerSubmenu = style({
             display: this.props.collapse ? "none" : "initial",
             $nest: {
                 ["& > div"]: {
@@ -649,7 +596,8 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
             }
 
         });
-        var innnerSubmenuOpen = style({
+
+        const innnerSubmenuOpen = style({
             $nest: {
                 ["& > div"]: {
                     maxHeight: 1000,
@@ -670,8 +618,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
             </div>
         }
 
-        var content = this.props.title
-
+        let content = this.props.title;
         if (this.props.styleType === "button") {
             content = <span
                 style={{
@@ -689,30 +636,32 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
             </span>
         }
 
-        return <div className={branch} data-branch={this.props.branchId} >
-            <div className={branchItem} onClick={this.onClick} >
-                <span className={meunuIcon} >
-                    <i className={this.props.icon} onClick={this.onClick} />
-                </span>
-                <a className={link} onClick={this.onClickA} href={this.props.uri} >
-                    {content}
-                </a>
-            </div>
-            {this.anyChild ?
-                <div className={innnerSubmenu + ((this.isMenuSelected === true || this.props.forceOpen === true) ? " " + innnerSubmenuOpen : "")} >
-                    <SubMenu
-                        top={this.props.top}
-                        onBranchClick={this.props.onBranchClick}
-                        branchId={this.props.branchId}
-                        selectedBranchId={this.props.selectedBranchId}
-                        open={this.props.open}
-                        onMenuClick={this.props.onMenuClick}
-                        childMenuItems={this.props.childMenuItems}
-                        collapse={this.props.collapse}
-                    />
+        return (
+            <div className={branch} data-branch={this.props.branchId} >
+                <div className={branchItem} onClick={this.onClick} >
+                    <span className={meunuIcon} >
+                        <i className={this.props.icon} onClick={this.onClick} />
+                    </span>
+                    <a className={link} onClick={this.onClickA} href={this.props.uri} >
+                        {content}
+                    </a>
                 </div>
-                : null}
-        </div>
+                {this.anyChild ?
+                    <div className={innnerSubmenu + ((this.isMenuSelected === true || this.props.forceOpen === true) ? " " + innnerSubmenuOpen : "")} >
+                        <SubMenu
+                            top={this.props.top}
+                            onBranchClick={this.props.onBranchClick}
+                            branchId={this.props.branchId}
+                            selectedBranchId={this.props.selectedBranchId}
+                            open={this.props.open}
+                            onMenuClick={this.props.onMenuClick}
+                            childMenuItems={this.props.childMenuItems}
+                            collapse={this.props.collapse}
+                        />
+                    </div>
+                    : null}
+            </div>
+        )
     }
 
     get textContentColapse() {
@@ -744,6 +693,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
     get hasIcon() {
         return this.props.icon != null && this.props.icon != "";
     }
+
     get level() {
         return branchIdHelper.getLevel(this.props.branchId);
     }
@@ -756,19 +706,19 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
             usePound = true;
         }
 
-        var num = parseInt(col, 16);
+        const num = parseInt(col, 16);
 
-        var r = (num >> 16) + amt;
+        let r = (num >> 16) + amt;
 
         if (r > 255) r = 255;
         else if (r < 0) r = 0;
 
-        var b = ((num >> 8) & 0x00FF) + amt;
+        let b = ((num >> 8) & 0x00FF) + amt;
 
         if (b > 255) b = 255;
         else if (b < 0) b = 0;
 
-        var g = (num & 0x0000FF) + amt;
+        let g = (num & 0x0000FF) + amt;
 
         if (g > 255) g = 255;
         else if (g < 0) g = 0;
@@ -777,7 +727,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
     }
 
     get anyChild() {
-        var child = this.props.childMenuItems == null ? [] : this.props.childMenuItems.filter(x => x.isVisible == true && x.title != null);
+        const child = this.props.childMenuItems == null ? [] : this.props.childMenuItems.filter(x => x.isVisible == true && x.title != null);
         return child.length != 0;
     }
 
@@ -790,7 +740,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
 
     get isThisMenuSelected() {
 
-        if (this.startsWith(this.props.selectedBranchId,this.props.branchId) && this.anyChild === false) {
+        if (this.startsWith(this.props.selectedBranchId, this.props.branchId) && this.anyChild === false) {
             return true
         }
 
@@ -812,7 +762,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
 
     onClickA = (e) => {
         this.SendBranchClick();
-        var value = this.props.onMenuClick(this.props.uri);
+        const value = this.props.onMenuClick(this.props.uri);
         e.preventDefault();
     }
 
@@ -824,4 +774,4 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
         var idParent = this.props.branchId.substr(0, this.props.branchId.length - 2);//this.props.branchId.substr(0, this.props.branchId.lastIndexOf("-"));
         this.props.onBranchClick(idParent);
     }
-}
+};
