@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.127)
+
+## Bug Fixes
+  - UpSelect : Fix No text message
+
 #  ReactControls (version: 0.2.126)
 
 ## Main Changes
