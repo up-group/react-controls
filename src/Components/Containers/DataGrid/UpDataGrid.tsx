@@ -490,10 +490,16 @@ class UpDataGrid extends React.Component<
       });
   }
 
-  selectedRowsDataWithAlsoTheCurrentOne = (currentRoww: Row) => {
-    const idRow = currentRoww.value.id;
-    const isRowSelected = currentRoww.isSelected;
-    return isRowSelected ? [...this.state.selectedData, currentRoww] : this.state.selectedData.filter(data => data.value.id !== idRow);
+  selectedRowsDataWithAlsoTheCurrentOne = (currentRow: Row) => {
+    const idRow = currentRow.value.id;
+    const isRowSelected = currentRow.isSelected;
+
+    //if onlyOneRowCanBeSelected, return just one element
+    if (this.props.onlyOneRowCanBeSelected) {
+      return isRowSelected ? [currentRow] : [];
+    }
+
+    return isRowSelected ? [...this.state.selectedData, currentRow] : this.state.selectedData.filter(data => data.value.id !== idRow);
   }
 
   isAllRowsSelectedWithAlsoTheCurrentOne = (currentRow: Row) => {
@@ -507,6 +513,12 @@ class UpDataGrid extends React.Component<
 
   onRowSelectionChange = (rowKey: number, currentRow: Row) => {
     const rows = this.state.data;
+
+    //Disable all items before choosing another
+    if (this.props.onlyOneRowCanBeSelected) {
+      rows.forEach(item => item.isSelected = false);
+    }
+
     rows[rowKey] = currentRow;
 
     this.setState({
