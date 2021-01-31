@@ -76,15 +76,17 @@ class UpRating extends React.PureComponent<RatingProps & WithThemeProps, RatingS
             numberOfStars,
             max,
             dataFor,
-            theme
+            theme,
+            onChange,
+            ...rest
         } = this.props;
-
 
         return (
             <div
-                className={classnames(RatingWrapperStyle, className, 'up-rating')}
+                className={classnames(RatingWrapperStyle(this.props), className, 'up-rating')}
                 data-for={dataFor}
                 data-tip={"tooltip"}
+                {...rest}
             >
                 {
                     Array(numberOfStars).fill(0).map((element, index) => {

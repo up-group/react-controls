@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { render, fireEvent, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import UpText from '../UpText';
 import { ThemeProvider as UpThemeProvider } from '../../../../Common/theming/ThemeProvider';
 import UpDefaultTheme from '../../../../Common/theming';
 
@@ -9,9 +8,9 @@ import { General, WithMaximumCharacter, ForceMaximumCharacter, WithPlaceHolder }
 
 const whithTheme = (component) => <UpThemeProvider theme={UpDefaultTheme}>{component}</UpThemeProvider>
 
-describe('Tests for UpText', () => {
+const renderComponent = component => render(whithTheme(component));
 
-    const renderComponent = component => render(whithTheme(component));
+describe('Tests for UpText', () => {
 
     it('should display UpText', async () => {
         const { container } = renderComponent(<General  />);

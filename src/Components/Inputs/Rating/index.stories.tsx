@@ -12,6 +12,7 @@ export default {
 export const General =
     () => (
         <UpRating
+            data-testid="UpRating"
             onChange={console.log}
             name={"rating"}
             numberOfStars={5}
@@ -28,6 +29,7 @@ export const DisabledStars =
             name={"rating"}
             numberOfStars={5}
             max={5}
+            value={2}
             disabled
         />
     );

@@ -8,7 +8,6 @@ export interface RatingProps {
     dataFor?: string; // Move to specific props
     onChange?: (event: React.ChangeEvent<any>, value: number) => void;
 };
-
 export interface RatingState {
     editedValue?: number;
     value: number;
