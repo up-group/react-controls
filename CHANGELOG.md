@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.129)
+
+## Main Changes
+  - UpDataGrid : Change the behaviour for the mode only one row selectable
+  - Storybook : Upgrade to 6.1.17 
 #  ReactControls (version: 0.2.127)
 
 ## Bug Fixes
