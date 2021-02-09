@@ -14,6 +14,7 @@ import * as update from "react-addons-update";
 import HelpMessageDisplay from "../Validation/HelpMessageDisplay";
 import { string } from "prop-types";
 import { isFunction } from "util";
+import { TestableComponentProps } from "utils/types";
 
 // Exports
 const ONCHANGE_MUST_BE_SPECIFIED =
@@ -21,7 +22,7 @@ const ONCHANGE_MUST_BE_SPECIFIED =
 
 type RenderHelp = (children: React.ReactNode) => JSX.Element;
 
-export interface BaseControlProps<_BaseType> extends WithThemeProps {
+export interface BaseControlProps<_BaseType> extends TestableComponentProps, WithThemeProps {
   name?: string;
   onChange?: (
     event: React.ChangeEvent<any>,

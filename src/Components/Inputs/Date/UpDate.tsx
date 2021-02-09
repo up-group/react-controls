@@ -18,6 +18,7 @@ import getStyles from './styles';
 import { style } from 'typestyle';
 import UpSelect from '../Select';
 import { isNumeric } from '../../../Common/utils/helpers';
+import { getTestableComponentProps } from '../../../Common/utils/types';
 
 moment.locale('fr');
 
@@ -172,7 +173,7 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Moment> 
             placeholder,
             iconPosition
         } = this.props;
-
+        console.log(this.props);
         return (
             <div
                 className={classnames(
@@ -184,6 +185,7 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Moment> 
                     this.isFocused ? 'up-input-focused' : null,
                     !isEmpty(this.currentValue) ? 'up-input-valued' : null
                 )}
+                {...getTestableComponentProps(this.props)}
             >
                 {floatingLabel && <label htmlFor={this.id}>{floatingLabel}</label>}
                 <SingleDatePicker

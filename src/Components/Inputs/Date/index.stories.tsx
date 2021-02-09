@@ -31,7 +31,7 @@ const DateForm = (props) => {
         handleChange,
         handleBlur,
         handleSubmit,
-        handleReset,
+        handleReset
     } = props;
 
     return (
@@ -62,6 +62,7 @@ export const General =
 
         return (
             <UpDate
+                dataTestId={"UpDate"}
                 onChange={(event, value) => {
                     console.log(event);
                     console.log(value);

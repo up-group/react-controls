@@ -1,13 +1,11 @@
 import * as $ from "jquery";
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import * as classnames from "classnames";
 import { style } from "typestyle";
 
 import axios from "axios";
 
 import UpPagination, { UpPaginationProps } from "./UpPagination";
-import UpUpDataGridToolbar from "./UpDataGridToolbar";
 import UpDataGridRowHeader from "./UpDataGridRowHeader";
 import UpDataGridRow, { ActionFactory } from "./UpDataGridRow";
 import { ICellFormatter } from "./UpDefaultCellFormatter";
@@ -23,6 +21,7 @@ import UpDataGridHeader, { UpDataGridHeaderProps } from './UpDataGridHeader';
 
 import * as _ from 'lodash';
 import { UpDataGridProvider } from './UpDataGridContext'
+import { getTestableComponentProps, TestableComponentProps } from "../../../Common/utils/types";
 
 const WrapperDataGridStyle = style({
   position: "relative"
@@ -214,7 +213,7 @@ export interface exportCsv {
   textButton?: string;
 }
 
-export interface UpDataGridProps {
+export interface UpDataGridProps extends TestableComponentProps {
   className?: string;
   columns: Array<Column>;
   rowActions?: ActionFactory<any> | Array<Action>;
@@ -751,7 +750,6 @@ class UpDataGrid extends React.Component<
         }
       })
     }
-
     return (
       <UpDataGridProvider value={providerValues} >
         <div
@@ -760,6 +758,7 @@ class UpDataGrid extends React.Component<
             WrapperDataGridStyle,
             this.props.className
           )}
+          {...getTestableComponentProps(this.props)}
         >
           <UpDataGridHeader
             {...this.props.headerProps}
