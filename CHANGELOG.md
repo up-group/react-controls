@@ -1,5 +1,7 @@
+#  ReactControls (version: 0.2.130)
+## Main Changes
+  - UpDataGrid : Change status of select all in case only one row can be selected
 #  ReactControls (version: 0.2.129)
-
 ## Main Changes
   - UpDataGrid : Change the behaviour for the mode only one row selectable
   - Storybook : Upgrade to 6.1.17 
