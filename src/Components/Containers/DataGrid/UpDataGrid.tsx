@@ -502,6 +502,9 @@ class UpDataGrid extends React.Component<
   }
 
   isAllRowsSelectedWithAlsoTheCurrentOne = (currentRow: Row) => {
+    //Do not check if the "all rows checkbox" must be selected in the case of a single selectable field.
+    if(this.props.onlyOneRowCanBeSelected) return;
+
     const dataLength = this.state.data.length;
     const selectedRowsLength = this.selectedRowsDataWithAlsoTheCurrentOne(currentRow).length;
     // Check if all rows that are selected, belong to the same page (pagination)
