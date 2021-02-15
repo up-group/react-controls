@@ -1,4 +1,4 @@
 // Imports
 import UpLigne from './UpLigne' ;
 
-export default UpLigne
+export default UpLigne;
