@@ -100,7 +100,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
             name: "up-selection", 
             checked: this.props.isSelected === true, 
             value: true, onOptionChange: this.onSelectionChange,
-            ...(this.props.isOneRowSelected && !this.props.isSelected && { disabled: true })
+            // ...(this.props.isOneRowSelected && !this.props.isSelected && { disabled: true })
         }]} />;
         
         let finalActions : Array<Action> = null ;

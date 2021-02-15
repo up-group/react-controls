@@ -1,3 +1,4 @@
 ﻿// Imports
-import UpPicture from './UpPicture'
-export default UpPicture
+import UpPicture from './UpPicture';
+
+export default UpPicture;

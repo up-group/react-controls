@@ -1,25 +1,4 @@
 // Imports
-import UpDrawing from './UpDrawing'
-
-import Shape from './Shape'
-
-export interface CropedShape {
-   dataURL : string;
-   shape : Shape
-}
-
-//Exports
-export interface UpDrawingProps {
-  src:string;
-  shapes?:Array<any>;
-  activationShape?:boolean;
-  displayActions?:boolean;
-  disabled?:boolean;
-  onChange?:(value:any, e:any) => void;
-  onDelAll?:(shapes:Array<any>) => void;
-  onDel?:(shape:any) => void;
-  onCrop?:(shape:CropedShape) => void;
-  onRotate?:(callback:(result:any) => void) => void;
-}
+import UpDrawing from './UpDrawing';
 
 export default UpDrawing ;

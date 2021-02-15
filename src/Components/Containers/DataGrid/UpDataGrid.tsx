@@ -1,13 +1,11 @@
 import * as $ from "jquery";
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import * as classnames from "classnames";
 import { style } from "typestyle";
 
 import axios from "axios";
 
 import UpPagination, { UpPaginationProps } from "./UpPagination";
-import UpUpDataGridToolbar from "./UpDataGridToolbar";
 import UpDataGridRowHeader from "./UpDataGridRowHeader";
 import UpDataGridRow, { ActionFactory } from "./UpDataGridRow";
 import { ICellFormatter } from "./UpDefaultCellFormatter";
@@ -23,6 +21,7 @@ import UpDataGridHeader, { UpDataGridHeaderProps } from './UpDataGridHeader';
 
 import * as _ from 'lodash';
 import { UpDataGridProvider } from './UpDataGridContext'
+import { getTestableComponentProps, TestableComponentProps } from "../../../Common/utils/types";
 
 const WrapperDataGridStyle = style({
   position: "relative"
@@ -214,7 +213,7 @@ export interface exportCsv {
   textButton?: string;
 }
 
-export interface UpDataGridProps {
+export interface UpDataGridProps extends TestableComponentProps {
   className?: string;
   columns: Array<Column>;
   rowActions?: ActionFactory<any> | Array<Action>;
@@ -490,13 +489,22 @@ class UpDataGrid extends React.Component<
       });
   }
 
-  selectedRowsDataWithAlsoTheCurrentOne = (currentRoww: Row) => {
-    const idRow = currentRoww.value.id;
-    const isRowSelected = currentRoww.isSelected;
-    return isRowSelected ? [...this.state.selectedData, currentRoww] : this.state.selectedData.filter(data => data.value.id !== idRow);
+  selectedRowsDataWithAlsoTheCurrentOne = (currentRow: Row) => {
+    const idRow = currentRow.value.id;
+    const isRowSelected = currentRow.isSelected;
+
+    //if onlyOneRowCanBeSelected, return just one element
+    if (this.props.onlyOneRowCanBeSelected) {
+      return isRowSelected ? [currentRow] : [];
+    }
+
+    return isRowSelected ? [...this.state.selectedData, currentRow] : this.state.selectedData.filter(data => data.value.id !== idRow);
   }
 
   isAllRowsSelectedWithAlsoTheCurrentOne = (currentRow: Row) => {
+    //Do not check if the "all rows checkbox" must be selected in the case of a single selectable field.
+    if(this.props.onlyOneRowCanBeSelected) return;
+
     const dataLength = this.state.data.length;
     const selectedRowsLength = this.selectedRowsDataWithAlsoTheCurrentOne(currentRow).length;
     // Check if all rows that are selected, belong to the same page (pagination)
@@ -507,6 +515,12 @@ class UpDataGrid extends React.Component<
 
   onRowSelectionChange = (rowKey: number, currentRow: Row) => {
     const rows = this.state.data;
+
+    //Disable all items before choosing another
+    if (this.props.onlyOneRowCanBeSelected) {
+      rows.forEach(item => item.isSelected = false);
+    }
+
     rows[rowKey] = currentRow;
 
     this.setState({
@@ -739,7 +753,6 @@ class UpDataGrid extends React.Component<
         }
       })
     }
-
     return (
       <UpDataGridProvider value={providerValues} >
         <div
@@ -748,6 +761,7 @@ class UpDataGrid extends React.Component<
             WrapperDataGridStyle,
             this.props.className
           )}
+          {...getTestableComponentProps(this.props)}
         >
           <UpDataGridHeader
             {...this.props.headerProps}

@@ -4,6 +4,7 @@ import { defaultStyles } from '../_Common/Styled/Input/styles'
 import { NestedCSSProperties } from 'typestyle/lib/types';
 import { UpTextProps } from './types';
 import { style } from 'typestyle';
+import { color } from 'csx';
 import { toRem } from '../../../Common/theming/utils';
 
 const sizeMap = {
@@ -31,8 +32,24 @@ const base = (props: UpTextProps): NestedCSSProperties => (
                 fontStyle: 'italic',
                 fontSize: toRem(14),
                 fontWeight: 500
+            },
+            "&.up-text-max-characters": {
+                color: props.theme.colorMap.grey1,
+                border: 'none',
+                display: 'flex',
+                justifyContent: 'flex-end',
+                alignItems: 'baseline'
+            },
+            "&.up-text-max-characters-msg": {
+                color: props.theme.colorMap.grey1,
+                fontWeight: 500,
+                paddingRight: '5px',
+                border: 'none'
+            },
+            "&.up-text-error": {
+                borderColor: props.theme.colorMap.error,
+                backgroundColor: color(props.theme.colorMap.error).lighten(0.55).toHexString()
             }
-
         }
     }
 );

@@ -115,5 +115,32 @@ export const WithPlaceHolder =
                     </form>
                 );
             }}
-        </Formik>
-    );
+    </Formik>
+)
+
+export const WithMaximumCharacter =
+  () => (
+    <div data-testid="UpText">
+        <UpLabel text={"Observation : "}>
+        <UpText
+            width={'fill'}
+            maxChar={number('maxChar', 300)}
+            maxCharMsgShowNumber={number('maxCharMsgShowNumber', 0)}
+            maxCharMsg={text('maxCharMsg', 'Vous avez saisi {{numberOfChar}} sur un nombre maximal de {{maxChar}}')}
+        />
+        </UpLabel>
+    </div>
+  )
+
+  export const ForceMaximumCharacter =
+  () => (
+    <UpLabel text={"Observation : "}>
+      <UpText
+        width={'fill'}
+        maxChar={100}
+        forceMaxChar={true}
+        maxCharMsgShowNumber={number('maxCharMsgShowNumber', 0)}
+        maxCharMsg={text('maxCharMsg', 'Vous avez saisi {{numberOfChar}} sur un nombre maximal de {{maxChar}}')}
+      />
+    </UpLabel>
+  )
