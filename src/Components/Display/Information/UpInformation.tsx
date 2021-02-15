@@ -4,6 +4,7 @@ import { style } from 'typestyle';
 import UpBox from '../../Containers/Box';
 import UpSvgIcon from '../SvgIcon';
 import UpButton from '../../Inputs/Button/UpButton';
+
 import { UpInformationProps } from './types';
 import { boxWrapperStyle, buttonStyle, contentStyle, contentWrapperStyle, getCustomStyle, titleStyle } from './styles';
 
