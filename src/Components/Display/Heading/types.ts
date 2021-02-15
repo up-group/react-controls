@@ -1,0 +1,13 @@
+import { Margin } from '../Paragraph';
+
+export type Tag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+
+export interface UpHeadingProps {
+    color?: string;
+    textAlign?: string;
+    tag?: Tag;
+    truncate?: boolean;
+    upcase?: boolean;
+    margin?: Margin;
+    className?: string;
+};
