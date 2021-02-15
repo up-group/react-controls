@@ -1,31 +1,29 @@
 ﻿
-import * as React from "react"
-import SvgIcon from "../SvgIcon/index"
-import { style } from "typestyle"
-import Text from "../../Inputs/Input/index"
+import * as React from "react";
+import SvgIcon from "../SvgIcon/index";
+import { style } from "typestyle";
+import Text from "../../Inputs/Input/index";
+import "./sources/up.png";
+import { toRem } from "../../../Common/theming/utils";
 
-import "./up.png"
-
+//Types
 export interface UpMenuProps {
     username?: string;
     menuItems: MenuItemData[];
     topMenuItems?: TopMenuItemProps[];
     onMenuClick?: (uri: string) => boolean | void;
-
-
     onDeconnexionClick?: () => void;
     onReglagesClick?: () => void;
     onUpClick?: () => void;
     onHomeClick?: () => void;
-}
+};
 
 export interface UpMenuState {
     open: boolean;
-}
+};
+//Fin types
 
 export default class UpMenuBeta extends React.Component<UpMenuProps, UpMenuState>{
-
-
     constructor(p, c) {
         super(p, c);
         this.state = {
@@ -38,50 +36,55 @@ export default class UpMenuBeta extends React.Component<UpMenuProps, UpMenuState
     }
 
     render() {
-
-        var styleContentWrapper = style({
-        
+        const styleContentWrapper = style({
             minHeight: 250
         });
 
-        var styleContent = style({
-
+        const styleContent = style({
             margin: "auto",
         });
 
-        return <div className="">
-            <div >
-                <TopMenu username={this.props.username} open={this.state.open} childMenuItems={this.props.topMenuItems} onUpClick={this.props.onUpClick} onHomeClick={this.props.onHomeClick} onReglagesClick={this.props.onReglagesClick} onDeconnexionClick={this.props.onDeconnexionClick} />
-
-                <LeftMenu clickCollapse={this.clickCollapse} open={this.state.open} menuItems={this.props.menuItems} onMenuClick={this.props.onMenuClick} />
-
-                <div className={styleContentWrapper} >
-                    <section className={styleContent} >
-                        {this.props.children}
-                    </section>
+        return (
+            <div className="">
+                <div >
+                    <TopMenu
+                        username={this.props.username}
+                        open={this.state.open}
+                        childMenuItems={this.props.topMenuItems}
+                        onUpClick={this.props.onUpClick}
+                        onHomeClick={this.props.onHomeClick}
+                        onReglagesClick={this.props.onReglagesClick}
+                        onDeconnexionClick={this.props.onDeconnexionClick}
+                    />
+                    <LeftMenu
+                        clickCollapse={this.clickCollapse}
+                        open={this.state.open}
+                        menuItems={this.props.menuItems}
+                        onMenuClick={this.props.onMenuClick}
+                    />
+                    <div className={styleContentWrapper} >
+                        <section className={styleContent} >
+                            {this.props.children}
+                        </section>
+                    </div>
                 </div>
             </div>
-        </div>
+        )
     }
+};
 
-}
-
-
-
-
+//Types
 export interface SubMenuProps {
     childMenuItems?: MenuItemData[];
     onMenuClick: (uri: string) => void;
     open: boolean;
-
-
     onBranchClick: (branchId: string) => void;
     branchId: string;
     selectedBranchId: string;
 }
 
-export interface SubMenuState {
-}
+export interface SubMenuState { };
+//Fin types
 
 export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
 
@@ -94,12 +97,13 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
         if (this.props.childMenuItems == null || this.props.childMenuItems.length == 0) {
             return null;
         }
-        var list = style({
+
+        const list = style({
             backgroundColor: "#003845",
             listStyle: "none",
             $nest: {
                 '& ul': {
-                    paddingLeft: 40,
+                    paddingLeft: toRem(40),
                 },
                 '& a': {
                     $nest: {
@@ -112,49 +116,50 @@ export class SubMenu extends React.Component<SubMenuProps, SubMenuState>{
             }
         })
 
-        var lis = this.props.childMenuItems
+        const lis = this.props.childMenuItems
             .filter((v) => {
                 return v.isVisible !== false
             })
             .map((v, i) => {
-                var localId = (this.props.branchId != null ? this.props.branchId + "-" : "") + i;
+                const localId = (this.props.branchId != null ? this.props.branchId + "-" : "") + i;
 
-                return <SubItems
-                    selectedBranchId={this.props.selectedBranchId}
-                    branchId={localId}
-                    onBranchClick={this.props.onBranchClick}
-                    key={i}
-                    open={this.props.open}
-                    onMenuClick={this.props.onMenuClick}
-                    uri={v.uri} title={v.title}
-                    isVisible={v.isVisible}
-                    isSelected={v.isSelected}
-                    icon={v.icon}
-                    childMenuItems={v.childMenuItems} />
+                return (
+                    <SubItems
+                        selectedBranchId={this.props.selectedBranchId}
+                        branchId={localId}
+                        onBranchClick={this.props.onBranchClick}
+                        key={i}
+                        open={this.props.open}
+                        onMenuClick={this.props.onMenuClick}
+                        uri={v.uri} title={v.title}
+                        isVisible={v.isVisible}
+                        isSelected={v.isSelected}
+                        icon={v.icon}
+                        childMenuItems={v.childMenuItems} />
+                )
             })
 
-        return <div className={list}>
-            {lis}
-        </div>
+        return (
+            <div className={list}>
+                {lis}
+            </div>
+        )
     }
+};
 
-}
-
+//Types
 export interface SubItemsProps extends MenuItemData {
     onMenuClick: (uri: string) => boolean | void;
     open: boolean;
-
-
-
-
     onBranchClick: (branchId: string) => void;
     branchId: string;
     selectedBranchId: string;
-}
+};
 
 export interface SubItemsState {
     active: boolean;
-}
+};
+//Fin types
 
 export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
 
@@ -163,39 +168,62 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
         this.state = { active: false };
     }
 
+    get anyChild() {
+        return this.props.childMenuItems != null && this.props.childMenuItems.length != 0;
+    }
+
+    get isMenuSelected() {
+        return this.props.isSelected || this.props.selectedBranchId.substr(0, this.props.branchId.length) === this.props.branchId;
+    }
+
+    onClick = (e) => {
+        this.props.onBranchClick(this.props.branchId);
+        this.setState({ active: !this.state.active });
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+    }
+
+    onClickA = (e) => {
+        this.props.onBranchClick(this.props.branchId);
+        const value = this.props.onMenuClick(this.props.uri);
+
+        if (value === false) {
+            e.preventDefault();
+        }
+    }
+
     render() {
-        var liElment = style({
-            paddingLeft: 20,
+        const liElment = style({
+            paddingLeft: toRem(20),
             position: "relative"
         })
 
-        var inlie = style({
+        const inlie = style({
             display: "inline-block",
             $nest: {
                 "i": {
                     display: "inline",
                     position: "absolute",
-                    fontSize: 25,
+                    fontSize: toRem(25),
                     fontWeight: 900,
                     cursor: "pointer"
                 }
             }
         })
 
-
-        var inliei = style({
-
+        const inliei = style({
             display: "inline",
             position: "absolute",
             top: 0,
             left: 0,
-            fontSize: 25,
+            fontSize: toRem(25),
             fontWeight: 900,
             cursor: "pointer"
         });
 
-        var liLine = style({
-            padding: 5,
+        const liLine = style({
+            padding: toRem(5),
             color: "#8aa4af",
             $nest: {
                 ["&:hover"]: {
@@ -218,49 +246,28 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
             }
         })
 
-        var hide = this.props.isVisible === false ? " hide" : "";
-        var active = this.state.active || this.props.isSelected ? "active" : "";
+        const hide = this.props.isVisible === false ? " hide" : "";
+        const active = this.state.active || this.props.isSelected ? "active" : "";
 
-        return <div className={liElment} >
-            <div className={liLine}>
-                {this.anyChild ?
-                    <i onClick={this.onClick} className={inliei + " " + ((this.state.active || this.isMenuSelected) ? "pe-7s-angle-down" : "pe-7s-angle-right")} ></i>
-                    :
-                    null
-                }
-                <a className={inlie} onClick={this.onClickA} href={this.props.uri}>
-                    {this.props.title}
-                </a>
+        return (
+            <div className={liElment} >
+                <div className={liLine}>
+                    {this.anyChild ?
+                        <i onClick={this.onClick} className={inliei + " " + ((this.state.active || this.isMenuSelected) ? "pe-7s-angle-down" : "pe-7s-angle-right")} ></i>
+                        :
+                        null
+                    }
+                    <a className={inlie} onClick={this.onClickA} href={this.props.uri}>
+                        {this.props.title}
+                    </a>
+                </div>
+                {this.anyChild && (this.state.active || this.isMenuSelected) ? <SubMenu onBranchClick={this.props.onBranchClick} branchId={this.props.branchId} selectedBranchId={this.props.selectedBranchId} open={this.props.open} onMenuClick={this.props.onMenuClick} childMenuItems={this.props.childMenuItems} /> : null}
             </div>
-            {this.anyChild && (this.state.active || this.isMenuSelected) ? <SubMenu onBranchClick={this.props.onBranchClick} branchId={this.props.branchId} selectedBranchId={this.props.selectedBranchId} open={this.props.open} onMenuClick={this.props.onMenuClick} childMenuItems={this.props.childMenuItems} /> : null}
-        </div>
-    }
-    get anyChild() {
-        return this.props.childMenuItems != null && this.props.childMenuItems.length != 0;
-    }
-
-    get isMenuSelected() {
-        return this.props.isSelected || this.props.selectedBranchId.substr(0, this.props.branchId.length) === this.props.branchId;
-    }
-
-    onClick = (e) => {
-        this.props.onBranchClick(this.props.branchId);
-        this.setState({ active: !this.state.active });
-        e.preventDefault();
-        e.stopPropagation();
-        return false;
-    }
-
-    onClickA = (e) => {
-        this.props.onBranchClick(this.props.branchId);
-        var value = this.props.onMenuClick(this.props.uri);
-
-        if (value === false) {
-            e.preventDefault();
-        }
+        )
     }
 }
 
+//Types
 export interface TopMenuProps {
     username: string;
     onDeconnexionClick: () => void;
@@ -269,11 +276,12 @@ export interface TopMenuProps {
     onHomeClick: () => void;
     childMenuItems: TopMenuItemProps[];
     open: boolean;
-}
+};
 
 export interface TopMenuState {
     strSearch: string
-}
+};
+//Fin types
 
 export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
 
@@ -289,21 +297,20 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
     }
 
     render() {
-
-        var topMenuItem = [];
+        let topMenuItem = [];
         if (this.props.childMenuItems && this.props.childMenuItems.length) {
             topMenuItem = this.props.childMenuItems.map((v, i) => {
                 return <TopMenuItem key={i} title={v.title} icon={v.icon} action={v.action} />
             });
         }
 
-        var iconBtn = style({
+        const iconBtn = style({
             cursor: "pointer",
-            padding: "0 10px",
-            minWidth: 50,
-            fontSize: 25,
+            padding: `${toRem(0)} ${toRem(10)}`,
+            minWidth: toRem(50),
+            fontSize: toRem(25),
             color: "white",
-            lineHeight: "50px",
+            lineHeight: 2,
             $nest: {
                 ["&:hover"]: {
                     backgroundColor: "#00AAD4"
@@ -315,11 +322,11 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
         });
 
 
-        var inputDiv = style({
-            padding: 5
+        const inputDiv = style({
+            padding: toRem(5)
         });
 
-        var floatLeft = style({
+        const floatLeft = style({
             float: "left",
             $nest: {
                 ["& > div"]: {
@@ -328,7 +335,7 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
             }
         });
 
-        var floatRight = style({
+        const floatRight = style({
             float: "right",
             $nest: {
                 ["& > div"]: {
@@ -337,58 +344,59 @@ export class TopMenu extends React.Component<TopMenuProps, TopMenuState>{
             }
         });
 
-        var main = style({
+        const main = style({
             backgroundColor: "#00BBD3",
             display: "block",
             zIndex: 1000,
-            height: 75
+            height: toRem(75)
         });
-        return <div className={main}>
-            <div className={floatLeft}>
-                <div className={iconBtn} onClick={this.props.onUpClick} >
-                    <img src="./up.png" alt="" /> 
-                    ONE HOME
-                </div>
-                <div className={inputDiv} >
-                </div>
-            </div>
 
-            <div className={floatRight}>
-                {
-                    this.props.username == null ? null :
-                        <div className={iconBtn} >
-                            <a id="imageProfil" data-toggle="dropdown" aria-expanded="true">
-                                <span >{this.props.username}</span>
-                            </a>
-                        </div>
-                }
-                {
-                    this.props.onReglagesClick == null ? null :
-                        <div className={iconBtn} onClick={this.props.onReglagesClick} >
-                            <i className="pe pe-7s-edit" />
-                        </div>
-                }
-                {
-                    this.props.onDeconnexionClick == null ? null :
-                        <div className={iconBtn} onClick={this.props.onDeconnexionClick} >
-                            <i className="pe pe-7s-power" />
-                        </div>
-                }
+        return (
+            <div className={main}>
+                <div className={floatLeft}>
+                    <div className={iconBtn} onClick={this.props.onUpClick} >
+                        <img src="./up.png" alt="" /> ONE HOME
+                </div>
+                    <div className={inputDiv} >
+                    </div>
+                </div>
+
+                <div className={floatRight}>
+                    {
+                        this.props.username == null ? null :
+                            <div className={iconBtn} >
+                                <a id="imageProfil" data-toggle="dropdown" aria-expanded="true">
+                                    <span >{this.props.username}</span>
+                                </a>
+                            </div>
+                    }
+                    {
+                        this.props.onReglagesClick == null ? null :
+                            <div className={iconBtn} onClick={this.props.onReglagesClick} >
+                                <i className="pe pe-7s-edit" />
+                            </div>
+                    }
+                    {
+                        this.props.onDeconnexionClick == null ? null :
+                            <div className={iconBtn} onClick={this.props.onDeconnexionClick} >
+                                <i className="pe pe-7s-power" />
+                            </div>
+                    }
+                </div>
             </div>
-        </div>
+        )
     }
-}
+};
 
-
+//Types
 export interface TopMenuItemProps {
     title: string;
     action: string | (() => void);
     icon: string;
-}
+};
 
-export interface TopMenuItemState {
-
-}
+export interface TopMenuItemState { };
+//Fin types
 
 export class TopMenuItem extends React.Component<TopMenuItemProps, TopMenuItemState>{
 
@@ -399,36 +407,37 @@ export class TopMenuItem extends React.Component<TopMenuItemProps, TopMenuItemSt
 
     render() {
         if (typeof (this.props.action) === "string") {
-            return <li title={this.props.title} data-toggle="tooltip" data-placement="bottom">
-                <a href={this.props.action}>
-                    <i className={this.props.icon}></i>
-                </a>
-            </li>
+            return (
+                <li title={this.props.title} data-toggle="tooltip" data-placement="bottom">
+                    <a href={this.props.action}>
+                        <i className={this.props.icon}></i>
+                    </a>
+                </li>
+            )
         } else {
-            return <li title={this.props.title} data-toggle="tooltip" data-placement="bottom">
-                <a onClick={this.props.action}>
-                    <i className={this.props.icon}></i>
-                </a>
-            </li>
+            return (
+                <li title={this.props.title} data-toggle="tooltip" data-placement="bottom">
+                    <a onClick={this.props.action}>
+                        <i className={this.props.icon}></i>
+                    </a>
+                </li>
+            )
         }
-
-
     }
-}
+};
 
-
-
-
+//Types
 export interface LeftMenuProps {
     menuItems: MenuItemData[];
     clickCollapse: () => void;
     onMenuClick?: (uri: string) => boolean | void;
     open: boolean
-}
+};
 
 export interface LeftMenuState {
     selectedBranchId: string;
-}
+};
+//Fin types
 
 export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState>{
 
@@ -439,10 +448,14 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState>{
         };
     }
 
+    onBranchClick = (branchId: string) => {
+        this.setState({ selectedBranchId: branchId })
+    }
+
     render() {
-        var mainSideBar = style({
-            backgroundColor:"#FAFAFA",
-            width:"15%",           
+        const mainSideBar = style({
+            backgroundColor: "#FAFAFA",
+            width: "15%",
             height: "10%",
             $nest: {
                 '& a': {
@@ -468,56 +481,51 @@ export class LeftMenu extends React.Component<LeftMenuProps, LeftMenuState>{
             }
         });
 
-        var expandIcon = style({
-            fontSize: 25,
-            padding: 10
+        const expandIcon = style({
+            fontSize: toRem(25),
+            padding: toRem(10)
         });
 
-        var menu = this.props.menuItems
+        const menu = this.props.menuItems
             .filter((v) => {
                 return v.isVisible !== false
             })
             .map((v, i) => {
-                return <MenuItem
-                    onBranchClick={this.onBranchClick}
-                    branchId={i.toString()}
-                    selectedBranchId={this.state.selectedBranchId}
-                    open={this.props.open}
-                    key={i}
-                    onMenuClick={this.props.onMenuClick}
-                    title={v.title}
-                    icon={v.icon}
-                    uri={v.uri}
-                    isSelected={v.isSelected}
-                    isVisible={v.isVisible}
-                    childMenuItems={v.childMenuItems} />
+                return (
+                    <MenuItem
+                        onBranchClick={this.onBranchClick}
+                        branchId={i.toString()}
+                        selectedBranchId={this.state.selectedBranchId}
+                        open={this.props.open}
+                        key={i}
+                        onMenuClick={this.props.onMenuClick}
+                        title={v.title}
+                        icon={v.icon}
+                        uri={v.uri}
+                        isSelected={v.isSelected}
+                        isVisible={v.isVisible}
+                        childMenuItems={v.childMenuItems} />
+                )
             });
 
-        return <aside className={mainSideBar}>
-
-            <section className="" >
-
-                <div className="">
-                    <div className={expandIcon} onClick={this.props.clickCollapse}>
-                        <i className="pe p7 pe-7s-menu"></i>
-                    </div>
+        return (
+            <aside className={mainSideBar}>
+                <section className="" >
                     <div className="">
-                        {menu}
+                        <div className={expandIcon} onClick={this.props.clickCollapse}>
+                            <i className="pe p7 pe-7s-menu"></i>
+                        </div>
+                        <div className="">
+                            {menu}
+                        </div>
                     </div>
-                </div>
-            </section>
-        </aside>
-
+                </section>
+            </aside>
+        )
     }
+};
 
-    onBranchClick = (branchId: string) => {
-        this.setState({ selectedBranchId: branchId })
-    }
-
-}
-
-
-
+//Types
 export interface MenuItemData {
     title: string;
     uri: string;
@@ -525,21 +533,20 @@ export interface MenuItemData {
     isSelected: boolean;
     isVisible: boolean;
     childMenuItems?: MenuItemData[];
-
-}
+};
 
 export interface MenuItemProps extends MenuItemData {
     onMenuClick?: (uri: string) => boolean | void;
     open: boolean;
-
     onBranchClick: (branchId: string) => void;
     branchId: string;
     selectedBranchId: string;
-}
+};
 
 export interface MenuItemState {
     active: boolean;
-}
+};
+//Fin types
 
 export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
 
@@ -548,13 +555,27 @@ export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
         this.state = { active: false };
     }
 
+    get isMenuSelected() {
+        return this.props.isSelected || this.props.selectedBranchId.substr(0, this.props.branchId.length) === this.props.branchId;
+    }
+
+    iconClick = (e) => {
+        this.props.onBranchClick(this.props.branchId);
+        this.setState({ active: !this.state.active });
+        e.stopPropagation();
+    }
+
+    onClickA = (e) => {
+        const value = this.props.onMenuClick(this.props.uri);
+        e.preventDefault();
+        if (value === false) { }
+    }
 
     render() {
+        const subMenu = style({});
 
-        var subMenu = style({
-        })
-        var menuItem = style({
-            borderTopRightRadius: 5,
+        const menuItem = style({
+            borderTopRightRadius: toRem(5),
             position: "relative",
             display: "list-item",
             overflow: "hidden",
@@ -581,91 +602,75 @@ export class MenuItem extends React.Component<MenuItemProps, MenuItemState>{
                 ['&:hover > .' + subMenu + " > div"]: this.props.open === false ?
                     {
                         paddingTop: 0,
-                        paddingBottom: 10
+                        paddingBottom: toRem(10)
                     }
                     : null
             },
         })
 
-        var meunuIcon = style({
-            fontSize: 25,
-            paddingBottom: 5,
-            paddingRight: 10,
+        const meunuIcon = style({
+            fontSize: toRem(25),
+            paddingBottom: toRem(5),
+            paddingRight: toRem(10),
             //display: "inline-block"
         });
 
-        var slectedMenu = {
+        const slectedMenu = {
             background: "rgba(0, 74, 92, 1) none repeat scroll 0 0",
             borderLeft: "3px solid #F39C12"
         }
 
-        var menuItemHover = style(
-            {
-                borderLeft: this.isMenuSelected ? "3px solid #F39C12" : "",
-                paddingLeft: 10,
-                borderTopRightRadius: 5,
-
-
-                $nest: {
-                    ["&:hover"]: slectedMenu,
-                    ['&:hover > .' + meunuIcon + " > i"]:
-                    {
-                        color: "white"
-                    },
-                    ["&:hover >  a"]:
-                    {
-                        color: "white"
-                    }
+        const menuItemHover = style({
+            borderLeft: this.isMenuSelected ? "3px solid #F39C12" : "",
+            paddingLeft: toRem(10),
+            borderTopRightRadius: toRem(5),
+            $nest: {
+                ["&:hover"]: slectedMenu,
+                ['&:hover > .' + meunuIcon + " > i"]:
+                {
+                    color: "white"
+                },
+                ["&:hover >  a"]:
+                {
+                    color: "white"
                 }
-            });
+            }
+        });
 
-        var menuLink = style(
+        const menuLink = style(
             {
                 minWidth: 200,
                 position: "absolute",
-                padding: 10,
-                left: 45,
-
+                padding: toRem(10),
+                left: toRem(45),
             }
-        )
+        );
 
+        const hide = this.props.isVisible === false ? "hide " : "";
+        const active = this.state.active || this.props.isSelected ? " active" : "";
 
-        var hide = this.props.isVisible === false ? "hide " : "";
-        var active = this.state.active || this.props.isSelected ? " active" : "";
-
-        return <div className={menuItem} >
-            <div className={menuItemHover}>
-                <span className={meunuIcon}>
-                    <i className={this.props.icon} onClick={this.iconClick} />
-                </span>
-                <a className={menuLink} onClick={this.onClickA} href={this.props.uri}>
-                    {this.props.title}
-                </a>
-            </div >
+        return (
+            <div className={menuItem} >
+                <div className={menuItemHover}>
+                    <span className={meunuIcon}>
+                        <i className={this.props.icon} onClick={this.iconClick} />
+                    </span>
+                    <a className={menuLink} onClick={this.onClickA} href={this.props.uri}>
+                        {this.props.title}
+                    </a>
+                </div >
                 <div className={subMenu}>
-                    <SubMenu selectedBranchId={this.props.selectedBranchId} onBranchClick={this.props.onBranchClick} branchId={this.props.branchId} open={this.props.open} onMenuClick={this.props.onMenuClick} childMenuItems={this.props.childMenuItems} />
+                    <SubMenu
+                        selectedBranchId={this.props.selectedBranchId}
+                        onBranchClick={this.props.onBranchClick}
+                        branchId={this.props.branchId}
+                        open={this.props.open}
+                        onMenuClick={this.props.onMenuClick}
+                        childMenuItems={this.props.childMenuItems}
+                    />
                 </div>
-        </div >
-
-
+            </div >
+        )
     }
-
-    get isMenuSelected() {
-        return this.props.isSelected || this.props.selectedBranchId.substr(0, this.props.branchId.length) === this.props.branchId;
-    }
-
-    iconClick = (e) => {
-        this.props.onBranchClick(this.props.branchId);
-        this.setState({ active: !this.state.active });
-        e.stopPropagation();
-    }
-
-    onClickA = (e) => {
-        var value = this.props.onMenuClick(this.props.uri);
-        e.preventDefault();
-        if (value === false) {
-
-        }
-    }
-}
+};
 
