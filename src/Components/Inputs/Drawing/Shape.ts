@@ -1,12 +1,12 @@
 export default class Shape {
-    x:number ;
-    y:number ;
-    w:number ;
-    h:number ;
-    ref:number ;
-    fill:string ;
-    temp:boolean;
-    hide:boolean;
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+    ref: number;
+    fill: string;
+    temp: boolean;
+    hide: boolean;
     // Constructor for Shape objects to hold data for all drawn objects.
     // For now they will just be defined as rectangles.
     constructor(x, y, w, h, fill, ref?) {
@@ -52,6 +52,6 @@ export default class Shape {
         // All we have to do is make sure the Mouse X,Y fall in the area between
         // the shape's X and (X + Width) and its Y and (Y + Height)
         return (this.x / scale <= mx) && (this.x / scale + this.w >= mx) &&
-                (this.y / scale <= my) && (this.y / scale + this.h >= my);
+            (this.y / scale <= my) && (this.y / scale + this.h >= my);
     }
-}
+};

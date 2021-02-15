@@ -1,109 +1,95 @@
-import * as React from "react"
-import * as classnames from 'classnames'
+import * as React from 'react';
+import * as classnames from 'classnames';
+import { UpDrawingProps, UpDrawingState } from './types';
+import { style } from 'typestyle';
+import CanvasState from './CanvasState';
+import UpButton from '../../Inputs/Button/UpButton';
+import UpButtonGroup from '../../Containers/ButtonGroup';
+import UpToggle from '../../Inputs/Toggle';
+import UpLabel from '../../Display/Label';
+import { UpContextMenu, UpContextMenuTrigger, UpContextMenuItem, UpContextMenuItemDivider } from '../../Display/ContextMenu';
+import { generateUniqueId } from '../../../Common/utils/helpers';
 
-import {UpDrawingProps} from "./"
-import {style} from 'typestyle'
-import CanvasState from "./CanvasState"
-
-import UpButton  from '../../Inputs/Button/UpButton'
-import UpButtonGroup  from '../../Containers/ButtonGroup'
-
-import UpToggle from '../../Inputs/Toggle'
-import UpLabel from '../../Display/Label'
-
-import {UpContextMenu, UpContextMenuTrigger, UpContextMenuItem, UpContextMenuItemDivider} from '../../Display/ContextMenu'
-
-import {generateUniqueId} from '../../../Common/utils/helpers' 
-
-const DRAWING_MENU_TYPE = 'DRAWING_MENU_TYPE' ;
-
-export interface UpDrawingState {
-    activationShape : boolean;
-    src:string;
-    zones?:Array<any>; 
-    selection?:any;
-    scale:number;
-}
+const DRAWING_MENU_TYPE = 'DRAWING_MENU_TYPE';
 
 export default class UpDrawing extends React.Component<UpDrawingProps, UpDrawingState> {
-    canvas:any;
+    canvas: any;
     canvasState: CanvasState;
-    contextKey:string;
+    contextKey: string;
 
-    public static defaultProps:UpDrawingProps = {
-        src:"",
-        activationShape:true,
-        displayActions:true,
-        disabled:false
+    public static defaultProps: UpDrawingProps = {
+        src: "",
+        activationShape: true,
+        displayActions: true,
+        disabled: false
     }
 
     constructor(p, c) {
         super(p, c);
         this.state = {
             src: p.src,
-            zones: p.zones || [] ,
+            zones: p.zones || [],
             activationShape: true,
-            scale:1
+            scale: 1
         }
 
-        this.contextKey = `${DRAWING_MENU_TYPE}_${generateUniqueId()}` ;
+        this.contextKey = `${DRAWING_MENU_TYPE}_${generateUniqueId()}`;
     }
 
     setCanvas = (canvas) => {
-        if(this.canvas == null) {
+        if (this.canvas == null) {
             this.canvas = canvas;
-            var ctx = this.canvas.getContext('2d');
+            const ctx = this.canvas.getContext('2d');
             this.canvasState = new CanvasState(canvas);
             if (this.state.src) {
-                this.canvasState.scale = this.state.scale ;
+                this.canvasState.scale = this.state.scale;
                 this.canvasState.imageObj = new Image();
                 this.canvasState.imageObj.crossOrigin = '';
-                var self = this ;
-                this.canvasState.imageObj.onload = function() {
-                    self.canvasState.valid = false ;
-                    self.canvasState.draw() ;
-                } ;
+                const self = this;
+                this.canvasState.imageObj.onload = function () {
+                    self.canvasState.valid = false;
+                    self.canvasState.draw();
+                };
                 this.canvasState.imageObj.src = this.state.src;
-                this.canvasState.registerListeners() ;
+                this.canvasState.registerListeners();
             }
         }
     }
 
     componentWillReceiveProps(nextProps: UpDrawingProps) {
-        var _newState : any  = {} ;
+        const _newState: any = {};
         if (nextProps.src !== this.props.src) {
-            _newState.src == nextProps.src ;
+            _newState.src == nextProps.src;
         }
     }
 
-    zoomIn = (event:any) => {
-        var self = this ;
-        this.setState({scale : this.state.scale + 0.2}, () => {
+    zoomIn = (event: any) => {
+        const self = this;
+        this.setState({ scale: this.state.scale + 0.2 }, () => {
             self.canvasState.scale = this.state.scale;
             self.canvasState.valid = false;
-        }) ;
+        });
     }
 
-    zoomOut = (event:any) => {
-        var self = this ;
-        this.setState({scale : this.state.scale - 0.2}, () => {
+    zoomOut = (event: any) => {
+        const self = this;
+        this.setState({ scale: this.state.scale - 0.2 }, () => {
             self.canvasState.scale = this.state.scale;
             self.canvasState.valid = false;
-        }) ;
+        });
     }
 
-    zoomNormal = (event:any) => {
-        var self = this ;
-        this.setState({scale : 1}, () => {
+    zoomNormal = (event: any) => {
+        const self = this;
+        this.setState({ scale: 1 }, () => {
             self.canvasState.scale = this.state.scale;
             self.canvasState.valid = false;
-        }) ;
+        });
     }
 
-    rotate = (event:any) => {
-        var self = this ;
+    rotate = (event: any) => {
         if (typeof (this.props.onRotate) == "function") {
-            var callback = function (result) {
+            const callback = function (result) {
                 //self.canvasState.src = ;
             }
             this.props.onRotate(callback);
@@ -111,86 +97,86 @@ export default class UpDrawing extends React.Component<UpDrawingProps, UpDrawing
     }
 
     open = () => {
-        var _windowWidth = this.canvas.width;
-        var _windowHeight = this.canvas.height;
-        var _windowArgs = 'scrollbars=yes,resizable=yes, width=' + _windowWidth + ', height=' + _windowHeight;
+        const _windowWidth = this.canvas.width;
+        const _windowHeight = this.canvas.height;
+        const _windowArgs = 'scrollbars=yes,resizable=yes, width=' + _windowWidth + ', height=' + _windowHeight;
 
-        var _html = "<p>"+
-            "<img style='height: auto;' class='img-rounded  thumb' src='" + this.state.src + "' />"+
-            "</p>" ;
+        const _html = "<p>" +
+            "<img style='height: auto;' class='img-rounded  thumb' src='" + this.state.src + "' />" +
+            "</p>";
 
-        var _window = window.open('', '', _windowArgs);
-        var _document = _window.document.open("text/html", "replace");
+        const _window = window.open('', '', _windowArgs);
+        const _document = _window.document.open("text/html", "replace");
         _document.write("<!DOCTYPE html><html><body>" + _html + "</body></html>");
         _document.close();
     }
 
-    crop = (event:any) => {
-        console.log(this.canvasState) ;
-        console.log(this.canvasState.selection) ;
+    crop = (event: any) => {
+        console.log(this.canvasState);
+        console.log(this.canvasState.selection);
         if (this.canvasState.selection) {
-            var _imageCropped = this.canvasState.cropShape(this.canvasState.selection);
+            const _imageCropped = this.canvasState.cropShape(this.canvasState.selection);
             if (_imageCropped != null) {
-                var _data = { dataURL: _imageCropped, shape: this.canvasState.selection };
-                if(this.props.onCrop) {
-                    this.props.onCrop(_data) ;
+                const _data = { dataURL: _imageCropped, shape: this.canvasState.selection };
+                if (this.props.onCrop) {
+                    this.props.onCrop(_data);
                 }
             }
         }
     }
 
-    cropAll = (event:any) => {
+    cropAll = (event: any) => {
         // Check all chapes 
-        var _shapesChecked = true;
-        for (var i in this.canvasState.shapes) {
-            var _shape = this.canvasState.shapes[i];
-            var _imageCropped = this.canvasState.cropShape(_shape);
+        let _shapesChecked = true;
+        for (let i in this.canvasState.shapes) {
+            const _shape = this.canvasState.shapes[i];
+            const _imageCropped = this.canvasState.cropShape(_shape);
             if (_imageCropped == null) {
                 _shapesChecked = false;
             }
         }
         if (_shapesChecked) {
-            for (var i in this.canvasState.shapes) {
-                var _shape = this.canvasState.shapes[i];
-                var _imageCropped = this.canvasState.cropShape(_shape);
+            for (let i in this.canvasState.shapes) {
+                const _shape = this.canvasState.shapes[i];
+                const _imageCropped = this.canvasState.cropShape(_shape);
                 if (_imageCropped != null) {
                     var _data = { dataURL: _imageCropped, shape: _shape };
-                    this.props.onCrop(_data) ;
+                    this.props.onCrop(_data);
                 }
             }
         }
     }
 
-    del = (event:any) => {
+    del = (event: any) => {
         if (this.canvasState.selection && this.props.onDel) {
-            this.props.onDel(this.canvasState.selection) ;
+            this.props.onDel(this.canvasState.selection);
         }
     }
 
     delAll = () => {
         if (this.canvasState.selection && this.props.onDelAll) {
-            this.props.onDelAll(this.canvasState.shapes) ;
-        }            
+            this.props.onDelAll(this.canvasState.shapes);
+        }
     }
 
     toggleActivationShape = (value) => {
-        this.setState({activationShape: value}, () => {
-            this.canvasState.shapes.map(function(shape) {
-                shape.hide = !value ;
+        this.setState({ activationShape: value }, () => {
+            this.canvasState.shapes.map(function (shape) {
+                shape.hide = !value;
             });
-            this.canvasState.valid = false ;
+            this.canvasState.valid = false;
         });
     }
 
     render() {
-        const WrapperStyle = style({}) ;
+        const WrapperStyle = style({});
         const CanvasStyle = style({
-            border:"1px solid #111",
-            borderRadius:"4px"
+            border: "1px solid #111",
+            borderRadius: "4px"
         });
 
-        const {onChange, src, shapes, ...others} = this.props ;
-        
+        const { onChange, src, shapes, ...others } = this.props;
+
         return (
             <div className={classnames(WrapperStyle, 'up-drawing')}>
                 {this.props.displayActions &&
@@ -198,11 +184,11 @@ export default class UpDrawing extends React.Component<UpDrawingProps, UpDrawing
                         <UpLabel text="Zones : ">
                             <UpToggle value={true} onChange={this.toggleActivationShape} checked={this.state.activationShape === true} />
                         </UpLabel>
-                        <UpButtonGroup> 
+                        <UpButtonGroup>
                             <UpButton onClick={this.zoomIn} width={'icon'} actionType={"zoom-in"} tooltip={"Zoom avant"} />
                             <UpButton onClick={this.zoomOut} width={'icon'} actionType={"zoom-out"} tooltip={"Zoom arrière"} />
                             <UpButton onClick={this.zoomNormal} width={'icon'} actionType={"zoom-normal"} tooltip={"Zoom normal"} />
-                            {this.props.onRotate && 
+                            {this.props.onRotate &&
                                 <UpButton onClick={this.rotate} width={'icon'} actionType={"image-rotate-right"} tooltip={"Appliquer une rotation de  l\'image de 90° vers la droite"} />
                             }
                             <UpButton onClick={this.open} width={'icon'} actionType={"open"} tooltip={"Ouvrir l\'image dans une nouvelle fenêtre"} />
@@ -217,13 +203,13 @@ export default class UpDrawing extends React.Component<UpDrawingProps, UpDrawing
                 </UpContextMenuTrigger>
 
                 <UpContextMenu key={`ContextMenu_${this.contextKey}`} id={this.contextKey}>
-                    <UpContextMenuItem onClick={this.crop} data={{action: 'up-crop'}}>Ajouter la sélection</UpContextMenuItem>
-                    <UpContextMenuItem onClick={this.cropAll} data={{action: 'up-crop-all'}}>Ajouter tous</UpContextMenuItem>
-                    <UpContextMenuItemDivider size= {2} />
-                    <UpContextMenuItem onClick={this.del} data={{action: 'up-del'}}>Supprimer</UpContextMenuItem>
-                    <UpContextMenuItem onClick={this.delAll} data={{action: 'up-del-all'}}>Tout supprimer</UpContextMenuItem>
+                    <UpContextMenuItem onClick={this.crop} data={{ action: 'up-crop' }}>Ajouter la sélection</UpContextMenuItem>
+                    <UpContextMenuItem onClick={this.cropAll} data={{ action: 'up-crop-all' }}>Ajouter tous</UpContextMenuItem>
+                    <UpContextMenuItemDivider size={2} />
+                    <UpContextMenuItem onClick={this.del} data={{ action: 'up-del' }}>Supprimer</UpContextMenuItem>
+                    <UpContextMenuItem onClick={this.delAll} data={{ action: 'up-del-all' }}>Tout supprimer</UpContextMenuItem>
                 </UpContextMenu>
-        </div>
+            </div>
         )
     }
-}
+};

@@ -1,35 +1,35 @@
-    import Shape from './Shape'
-    import * as $ from 'jquery'
+import Shape from './Shape'
+import * as $ from 'jquery'
 
-    export default class CanvasState {
-        canvas:any;
-        width:number;
-        height:number;
-        ctx:any;
-        stylePaddingLeft:number;
-        stylePaddingTop:number;
-        styleBorderLeft:number;
-        styleBorderTop:number;
-        htmlTop : number;
-        htmlLeft:number;
-        valid:boolean;
-        alert:boolean;
-        dragging:boolean;
-        drawing:boolean;
-        selection:  any;
-        dragoffx:number;
-        dragoffy:number;
-        drawingoffx:number;
-        drawingoffy:number;
-        shapes:Array<Shape>;
-        selectionColor:string;
-        selectionWidth:number;
-        interval:number;
-        imageObj:any;
-        border:number;
-        scale:number;
-        handleParentScroll:boolean;
-        onAddShape: (shape:Shape) => void;
+export default class CanvasState {
+    canvas: any;
+    width: number;
+    height: number;
+    ctx: any;
+    stylePaddingLeft: number;
+    stylePaddingTop: number;
+    styleBorderLeft: number;
+    styleBorderTop: number;
+    htmlTop: number;
+    htmlLeft: number;
+    valid: boolean;
+    alert: boolean;
+    dragging: boolean;
+    drawing: boolean;
+    selection: any;
+    dragoffx: number;
+    dragoffy: number;
+    drawingoffx: number;
+    drawingoffy: number;
+    shapes: Array<Shape>;
+    selectionColor: string;
+    selectionWidth: number;
+    interval: number;
+    imageObj: any;
+    border: number;
+    scale: number;
+    handleParentScroll: boolean;
+    onAddShape: (shape: Shape) => void;
 
     constructor(canvas) {
         // **** First some setup! ****
@@ -46,13 +46,13 @@
             this.styleBorderLeft = parseInt(document.defaultView.getComputedStyle(canvas, null)['borderLeftWidth'], 10) || 0;
             this.styleBorderTop = parseInt(document.defaultView.getComputedStyle(canvas, null)['borderTopWidth'], 10) || 0;
         }
-        this.border = 1 ;
+        this.border = 1;
         // Some pages have fixed-position bars (like the stumbleupon bar) at the top or left of the page
         // They will mess up mouse coordinates and this fixes that
         var html = document.body.parentElement;
         this.htmlTop = html.offsetTop;
         this.htmlLeft = html.offsetLeft;
-        this.handleParentScroll = false ;
+        this.handleParentScroll = false;
 
         // **** Keep track of state! ****
 
@@ -110,8 +110,8 @@
                         myState.dragoffy = my - mySel.y;
                         myState.dragging = true;
                         myState.selection = mySel;
-                        console.log('Selection  : ') ;
-                        console.log(myState.selection) ;
+                        console.log('Selection  : ');
+                        console.log(myState.selection);
                         myState.valid = false;
                         return;
                     }
@@ -120,8 +120,8 @@
                 // If there was an object selected, we deselect it
                 if (myState.selection) {
                     myState.selection = null;
-                    console.log('Selection  : ') ;
-                    console.log(myState.selection) ;
+                    console.log('Selection  : ');
+                    console.log(myState.selection);
                     myState.valid = false; // Need to clear the old selection border
                 }
                 myState.drawing = true;
@@ -148,7 +148,7 @@
                 myState.addShape(_shape);
             }
         }, true);
-        
+
         canvas.addEventListener('mouseup', function (e) {
             if (myState.drawing === true) {
                 var mouse = myState.getMouse(e);
@@ -177,7 +177,7 @@
         this.shapes = _shapes;
     }
 
-    addShape = (shape:Shape) => {
+    addShape = (shape: Shape) => {
         var _shapes = [];
         var _nextRef = 1;
 
@@ -211,8 +211,8 @@
         }
         this.shapes = _shapes;
         shape.ref = _nextRef;
-        if(this.onAddShape && shape.temp === false) {
-            this.onAddShape(shape) ;
+        if (this.onAddShape && shape.temp === false) {
+            this.onAddShape(shape);
         }
 
         this.shapes.push(shape);
@@ -220,12 +220,12 @@
             // -> binded shapes
         }
         this.selection = null;
-        console.log('On AddShape -> Selection  : ') ;
-        console.log(this.selection) ;
+        console.log('On AddShape -> Selection  : ');
+        console.log(this.selection);
         this.valid = false;
     }
 
-    cropShape = (shape:Shape) => {
+    cropShape = (shape: Shape) => {
         //Find the part of the image that is inside the crop box
         var crop_canvas,
             left = shape.x,
@@ -239,7 +239,7 @@
 
         try {
             crop_canvas.getContext('2d').drawImage(this.imageObj,
-            left - this.border, top - this.border, width, height, 0, 0, width, height);
+                left - this.border, top - this.border, width, height, 0, 0, width, height);
 
             return crop_canvas.toDataURL("image/png");
         } catch (error) {
@@ -248,7 +248,7 @@
         }
     }
 
-    removeShape = (shape:Shape) => {
+    removeShape = (shape: Shape) => {
         var _shapes = [];
         for (var i in this.shapes) {
             if (!(shape.x == this.shapes[i].x
@@ -261,8 +261,8 @@
         this.shapes = _shapes;
         // -> binde shapes
         this.selection = null;
-        console.log('On RemoveShape -> Selection  : ') ;
-        console.log(this.selection) ;
+        console.log('On RemoveShape -> Selection  : ');
+        console.log(this.selection);
         this.valid = false;
     }
 
@@ -279,14 +279,14 @@
         this.width = this.canvas.width;
         this.height = this.canvas.height;
     }
-    
+
     // While draw is called as often as the INTERVAL variable demands,
     // It only ever does something if the canvas gets invalidated by our code
     draw = () => {
         // if our state is invalid, redraw and validate!
         if (!this.valid) {
             var ctx = this.ctx;
-            this.drawImage() ;
+            this.drawImage();
             var shapes = this.shapes;
             this.clear();
             if (this.imageObj !== false && this.imageObj != undefined) {
@@ -348,11 +348,11 @@
         offsetX += this.stylePaddingLeft + this.styleBorderLeft + this.htmlLeft;
         offsetY += this.stylePaddingTop + this.styleBorderTop + this.htmlTop;
 
-        var scrollY = 0 ;
-        if(this.handleParentScroll === true) {
+        var scrollY = 0;
+        if (this.handleParentScroll === true) {
             element = this.canvas
             do {
-                scrollY =   $(element).scrollTop() ;
+                scrollY = $(element).scrollTop();
             } while (scrollY == 0 && (element = element.parentNode));
         }
         mx = e.pageX - offsetX;
@@ -361,4 +361,4 @@
         // We return a simple javascript object (a hash) with x and y defined
         return { x: mx, y: my };
     }
-}
+};
