@@ -32,7 +32,7 @@ class ToggleWrapper extends React.Component<ToggleWrapperProps, ToggleWrapperSta
     }
     render() {
         return (
-            <UpToggle size={this.props.size} value={true} disabled={boolean('disabled',false)} checked={this.state.checked === true} onChange={this.onChange} />);
+            <UpToggle dataTestId={'UpToggle'} size={this.props.size} value={true} disabled={boolean('disabled',false)} checked={this.state.checked === true} onChange={this.onChange} />);
     }
 }
 

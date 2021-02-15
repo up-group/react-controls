@@ -14,7 +14,10 @@ import { isEmpty } from '../../../Common/utils';
 import defaultTheme from '../../../Common/theming/';
 import UpLigne from '../../Display/Ligne/UpLigne';
 import { customStyles, getLabelStyle, groupBadgeStyles, groupStyles } from './styles';
+
 import _ = require('lodash');
+
+import { getTestableComponentProps } from '../../../Common/utils/types';
 
 const CancelToken = axios.CancelToken;
 
@@ -602,7 +605,9 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
                     this.props.className,
                     getLabelStyle(this.props),
                     'up-select-wrapper'
-                )}>
+                )}
+                {...getTestableComponentProps(this.props)}
+                >
                 {dataSource != null && allowCreate === true && (
                     <>
                         {FloatingLabel}

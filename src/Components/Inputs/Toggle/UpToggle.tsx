@@ -10,7 +10,9 @@ import UpLabel from '../../Display/Label';
 
 export type Size = 'small' | 'normal' | 'large'
 
-export interface UpToggleProps {
+import { getTestableComponentProps, TestableComponentProps } from '../../../Common/utils/types';
+
+export interface UpToggleProps extends TestableComponentProps {
     value: any;
     checked?:boolean;
     defaultChecked?:boolean;
@@ -506,7 +508,10 @@ class UpToggle extends React.PureComponent<UpToggleProps & WithThemeProps, UpTog
      });
 
     return (
-      <div className={classNames(wrapperStyle(this.props), SizeStyle)}>
+      <div 
+        className={classNames(wrapperStyle(this.props), SizeStyle, 'up-toggle')}
+        {...getTestableComponentProps(this.props)}
+        >
         {children && 
           <UpLabel className={style({display: 'inline-block'})} text={children as string}></UpLabel>
         }
@@ -527,7 +532,6 @@ class UpToggle extends React.PureComponent<UpToggleProps & WithThemeProps, UpTog
             onClick = {(event) => event.stopPropagation()}
             className='up-toggle-screenreader-only'
             type='checkbox' />
-        
       </div>
     )
   }

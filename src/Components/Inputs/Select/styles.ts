@@ -41,6 +41,9 @@ export const getLabelStyle = props => {
                 transform: `translate(0, ${toRem(16)}) scale(1)`,
                 transition: "all .1s ease-in-out",
             },
+            '&.up-select-wrapper label.up-select-label + div > div' : {
+                backgroundColor: 'transparent'
+            },
             '&.up-select-wrapper .up-select-label-star': {
                 position: 'absolute',
                 top: toRem(4),
@@ -60,7 +63,7 @@ export const customStyles = (theme: ThemeInterface, value) => ({
     option: (provided, state) => ({
         ...provided,
         fontWeight: state.isSelected ? 400 : provided.fontWeight || 'inherit',
-        backgroundColor: 'transparent',
+        backgroundColor: 'white',
         padding: toRem(10),
         fontSize: toRem(14),
         cursor: 'pointer',
@@ -88,7 +91,7 @@ export const customStyles = (theme: ThemeInterface, value) => ({
             border: state.isFocused ? 0 : 0,
             borderBottom: `1px solid ${state.isFocused ? theme.colorMap.primary : theme.colorMap.gray6}`,
         },
-        minHeight: `${toRem(27)} !important`,
+        minHeight: `1.8rem !important`,
         borderBottom: `1px solid ${state.isFocused ? theme.colorMap.primary : theme.colorMap.gray6}`
     }),
     dropdownIndicator: (provided, state) => ({

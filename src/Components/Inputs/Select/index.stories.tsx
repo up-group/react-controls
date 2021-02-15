@@ -289,6 +289,7 @@ export const General =
                 tooltip={"Civilité"}
                 isRequired={true}
                 default={null}
+                dataTestId={'UpSelect'}
                 data={[
                     { id: 1, text: 'M.' },
                     { id: 2, text: 'Mme' },
