@@ -1,8 +1,10 @@
+import { TestableComponentProps } from "../../../Common/utils/types";
+
 export type DisplayMode = 'fromTop' | 'fromBottom' | 'fromRight' | 'fromLeft';
 export type ModalWidth = 'half' | 'full' | 'default';
 export type ScreenPosition = 'top' | 'center';
 
-export interface UpModalWrapperProps {
+export interface UpModalWrapperProps extends TestableComponentProps {
     children?: React.ReactNode,
     closeOnClickOutside?: boolean;
     /** possible case : fromTop | fromBottom | fromRight | fromLeft */

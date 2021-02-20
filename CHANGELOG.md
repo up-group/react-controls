@@ -1,3 +1,7 @@
+#  ReactControls (version: 0.2.132)
+## Main Changes
+  - UpModal : Fix testable component props
+
 #  ReactControls (version: 0.2.131)
 ## Main Changes
   - UpSvgIcon : Add warning icon
