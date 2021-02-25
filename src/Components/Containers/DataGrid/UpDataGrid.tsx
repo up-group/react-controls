@@ -745,7 +745,11 @@ class UpDataGrid extends React.Component<
             ...action,
             onClick: rows => action.onClick(rows)
               .then(data => {
-                this.setState({ selectedData: [] })
+                //Empty the selectData and uncheck all checkboxes if the request is successful
+                this.setState({ 
+                  selectedData: [], 
+                  data: this.state.data.map(row =>  ({...row, isSelected : false})) 
+                })
               })
           }))
         }
