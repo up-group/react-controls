@@ -1,3 +1,6 @@
+#  ReactControls (version: 0.2.133)
+## Bug Fixes
+  - UpDataGrid : Fix selected row after fetching data
 #  ReactControls (version: 0.2.132)
 ## Main Changes
   - UpModal : Fix testable component props
