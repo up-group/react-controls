@@ -25,7 +25,9 @@ export type IllustrationName =
   | "maestro"
   | "user-zen"
   | "idea"
-  | "404";
+  | "404"
+  | "search-avatar"
+  | "search-avatar-sad";
 
 export const IllustrationNames: IllustrationName[] = [
   "logo-up",
@@ -54,7 +56,9 @@ export const IllustrationNames: IllustrationName[] = [
   "maestro",
   "user-zen",
   "idea",
-  "404"
+  "404",
+  "search-avatar",
+  "search-avatar-sad"
 ];
 
 let dictionary = {};
