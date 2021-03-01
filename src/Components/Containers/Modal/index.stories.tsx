@@ -66,7 +66,7 @@ const ModalWrapper: React.FunctionComponent<UpModalWrapperProps> = props => {
 }
 
 export default {
-    title: 'Components|Containers/UpModal',
+    title: 'Components/Containers/UpModal',
     decorators: [
         getRootContainer('UpModal'),
         (ModalWrapper) => (

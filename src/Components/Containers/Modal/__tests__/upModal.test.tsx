@@ -5,38 +5,34 @@ import UpModal from '../UpModal';
 import { ThemeProvider as UpThemeProvider } from '../../../../Common/theming/ThemeProvider';
 import UpDefaultTheme from '../../../../Common/theming';
 
-describe('Tests for upModal', () => {
+const whithTheme = (component) => <UpThemeProvider theme={UpDefaultTheme}>{component}</UpThemeProvider>
 
-    const getThemeProvider = ({ children }) => (
-        <UpThemeProvider theme={UpDefaultTheme}>
-            {children}
-        </UpThemeProvider>);
+const renderComponent = component => render(whithTheme(component));
 
-    const renderComponent = component => render(component, { wrapper: getThemeProvider });
+describe('Tests for UpModal', () => {
 
     it('should show modal when showModal prop change to true', () => {
-        const { getByTestId } = renderComponent(<UpModal showModal={true} />);
+        const { getByTestId } = renderComponent(<UpModal showModal={true} dataTestId={"UpModal"} />);
 
-        expect(getByTestId('upModal')).toHaveClass('in');
+        expect(getByTestId('UpModal')).toHaveClass('in');
     });
 
     it('should hide modal when showModal prop change to false', () => {
-        const { getByTestId } = renderComponent(<UpModal showModal={false} />);
+        const { getByTestId } = renderComponent(<UpModal showModal={false} dataTestId={"UpModal"} />);
 
-        expect(getByTestId('upModal')).toHaveClass('fade');
+        expect(getByTestId('UpModal')).toHaveClass('fade');
     });
 
     it('adds a header seperator', () => {
-        const { getByTestId } = renderComponent(<UpModal />);
-
-        expect(getByTestId('upModalHeader')).toHaveStyle('border-bottom: 1px solid #e5e5e5');
+        const { getByTestId } = renderComponent(<UpModal dataTestId={"UpModal"} />);
+        expect(getByTestId('UpModal').getElementsByClassName('up-modal_header')[0]).toHaveStyle('border-bottom: 1px solid #e5e5e5');
     });
 
     it("should call onClose when clicking on the close icon", () => {
         const onClose = jest.fn();
-        const { getByTestId } = renderComponent(<UpModal onClose={onClose} />);
+        const { getByTestId } = renderComponent(<UpModal onClose={onClose} dataTestId={"UpModal"} />);
 
-        fireEvent.click(getByTestId('upModalClose'));
+        fireEvent.click(getByTestId('UpModal').getElementsByClassName('up-modal_close')[0]);
         expect(onClose).toHaveBeenCalled();
     });
 
@@ -47,6 +43,7 @@ describe('Tests for upModal', () => {
                 showModal={true}
                 onClose={onClose}
                 closeOnClickOutside={true}
+                dataTestId={"UpModal"}
             />);
 
         fireEvent.mouseDown(document.body);
@@ -60,6 +57,7 @@ describe('Tests for upModal', () => {
                 showModal={true}
                 onClose={onClose}
                 closeOnClickOutside={false}
+                dataTestId={"UpModal"}
             />);
 
         fireEvent.mouseDown(document.body);
@@ -68,24 +66,21 @@ describe('Tests for upModal', () => {
 
     it('should show a header as string', () => {
         const header = 'Header';
-        const { getByTestId } = renderComponent(<UpModal header={header} />);
+        const { getByTestId } = renderComponent(<UpModal header={header}  dataTestId={"UpModal"} />);
 
-        expect(getByTestId('upModalHeader')).toContainHTML('<h3 class="up-modal_title">Header</h3>');
-        expect(getByTestId('upModalHeader').firstChild).toHaveTextContent('Header');
+        expect(getByTestId('UpModal').getElementsByClassName('up-modal_header')[0]).toContainHTML('<h3 class="up-modal_title">Header</h3>');
     });
 
     it('should show a header as React element', () => {
         const header = <h4 className="up-modal_title">Other Header</h4>;
-        const { getByTestId } = renderComponent(<UpModal header={header} />);
+        const { getByTestId } = renderComponent(<UpModal header={header}  dataTestId={"UpModal"} />);
 
-        expect(getByTestId('upModalHeader')).toContainHTML('<h4 class="up-modal_title">Other Header</h4>');
+        expect(getByTestId('UpModal').getElementsByClassName('up-modal_header')[0]).toContainHTML('<h4 class="up-modal_title">Other Header</h4>');
     });
 
     it('should show a footer', () => {
         const footer = 'Footer';
-        const { getByTestId } = renderComponent(<UpModal footer={footer} />);
-
-        expect(getByTestId('upModalContent')).toContainHTML('<div class="up-modal_footer">Footer</div>');
-        expect(getByTestId('upModalContent').lastChild).toHaveTextContent('Footer');
+        const { getByTestId } = renderComponent(<UpModal footer={footer} dataTestId={"UpModal"} />);
+        expect(getByTestId('UpModal').getElementsByClassName('up-modal_footer')[0]).toContainHTML('<div class="up-modal_footer">Footer</div>');
     });
 });

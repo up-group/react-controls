@@ -1,3 +1,3 @@
-import UpVerticalTimeline from './UpVerticalTimeline'
+import UpVerticalTimeline from './UpVerticalTimeline';
 
-export default UpVerticalTimeline
+export default UpVerticalTimeline;

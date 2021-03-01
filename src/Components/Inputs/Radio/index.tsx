@@ -1,4 +1,4 @@
 // Imports
-import UpRadio from './UpRadio'
+import UpRadio from './UpRadio';
 
-export default UpRadio ;
+export default UpRadio;

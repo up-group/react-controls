@@ -115,6 +115,7 @@ export const General =
           isPaginationEnabled={false}
           isSelectionEnabled={false}
           isSortEnabled={false}
+          dataTestId={"UpDataGrid"}
           columns={[
             {
               label: "Col 1",

@@ -5,8 +5,9 @@ import UpSvgIcon from '../../Display/SvgIcon'
 import { withTheme } from '../../../Common/theming';
 import { getStyles } from './styles';
 
-const UpModal: React.FunctionComponent<UpModalProps> = props => {
+import { getTestableComponentProps } from '../../../Common/utils/types';
 
+const UpModal: React.FunctionComponent<UpModalProps> = props => {
     const {
         children,
         closeOnClickOutside,
@@ -38,14 +39,12 @@ const UpModal: React.FunctionComponent<UpModalProps> = props => {
     const modalHeader = () => (
         <div
             className="up-modal_header"
-            data-testid="upModalHeader"
             style={withHeaderSeparator ? { borderBottom: '1px solid #e5e5e5' } : {}}
         >
             {typeof header === 'string' ? <h3 className="up-modal_title">{header}</h3> : header}
             <span
                 onClick={closeModal}
-                className="up-modal_close"
-                data-testid="upModalClose">
+                className="up-modal_close">
                 <UpSvgIcon iconName={"close"}></UpSvgIcon>
             </span>
         </div>
@@ -55,9 +54,9 @@ const UpModal: React.FunctionComponent<UpModalProps> = props => {
 
     return (
         <div className={getStyles(props)}>
-            <div className={classnames("up-modal", showModal ? 'in' : 'fade')} data-testid="upModal">
+            <div className={classnames("up-modal", showModal ? 'in' : 'fade')} {...getTestableComponentProps(props)}>
                 <div ref={wrapperModalRef} className="up-modal_dialog">
-                    <div className="up-modal_content" data-testid="upModalContent">
+                    <div className="up-modal_content">
                         {modalHeader()}
                         <div className="up-modal_body">
                             {children}
@@ -69,7 +68,7 @@ const UpModal: React.FunctionComponent<UpModalProps> = props => {
                     </div>
                 </div>
             </div>
-            <div style={{ display: showModal === true ? 'block' : 'none' }} className="up-modal_backdrop" data-testid="upModalBackdrop"></div>
+            <div style={{ display: showModal === true ? 'block' : 'none' }} className="up-modal_backdrop"></div>
         </div>
     )
 }
@@ -89,4 +88,5 @@ UpModal.defaultProps = {
 };
 
 export { UpModal };
+
 export default withTheme<UpModalProps>(UpModal);

@@ -1,7 +1,6 @@
 ﻿// Imports
-import UpInput from './UpInput'
+import UpInput from './UpInput';
+import { CommonProps } from './types';
 
-import {CommonProps} from './types'
-
-export {CommonProps}
-export default UpInput
+export { CommonProps };
+export default UpInput;

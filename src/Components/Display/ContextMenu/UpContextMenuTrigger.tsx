@@ -1,24 +1,13 @@
 import * as React from 'react';
-import * as classNames from 'classnames';
 import * as assign from 'object-assign';
-
 import { callIfExists } from '../../../Common/utils/helpers'
-
-import {MENU_HIDE, MENU_SHOW, hideMenu, showMenu} from './actions'
-
-export interface UpContextMenuTriggerProps {
-    id: string;
-    attributes?: object;
-    collect?: () => void;
-    holdToDisplay?: number;
-    renderTag?: any;
-    rightClick?: boolean;
-}
+import { MENU_HIDE, MENU_SHOW, hideMenu, showMenu } from './actions';
+import { UpContextMenuTriggerProps } from './types';
 
 export class UpContextMenuTrigger extends React.PureComponent<UpContextMenuTriggerProps> {
-    
-    element : HTMLElement;
-    mouseDown : boolean = false ;
+
+    element: HTMLElement;
+    mouseDown: boolean = false;
 
     public static defaultProps = {
         attributes: {},
@@ -28,19 +17,19 @@ export class UpContextMenuTrigger extends React.PureComponent<UpContextMenuTrigg
     };
 
     isHandledEvent = (event) => {
-        return (this.props.rightClick  && (event.which === 3 || event.button === 2))
-        ||  (!this.props.rightClick && event.button === 0) ;
+        return (this.props.rightClick && (event.which === 3 || event.button === 2))
+            || (!this.props.rightClick && event.button === 0);
     }
 
     handleMouseDown = (event) => {
-        if ( this.isHandledEvent(event) ) {
+        if (this.isHandledEvent(event)) {
             this.mouseDown = true;
             this.handleContextClick(event);
         }
     }
 
     handleMouseUp = (event) => {
-        if ( this.isHandledEvent(event) ) {
+        if (this.isHandledEvent(event)) {
             this.mouseDown = false;
         }
     }
@@ -51,11 +40,11 @@ export class UpContextMenuTrigger extends React.PureComponent<UpContextMenuTrigg
 
         const x = event.clientX;
         const y = event.clientY;
-        
-        hideMenu() ;
+
+        hideMenu();
 
         showMenu({
-            position: {x, y},
+            position: { x, y },
             target: this.element,
             id: this.props.id,
             data: callIfExists(this.props.collect, this.props)
@@ -78,11 +67,11 @@ export class UpContextMenuTrigger extends React.PureComponent<UpContextMenuTrigg
 
         return React.createElement(renderTag, newAttrs, children);
     }
-}
+};
 
 export class UpTouchContextMenuTrigger extends React.PureComponent<UpContextMenuTriggerProps> {
-    element : HTMLElement;
-    mouseDown : boolean = false ;
+    element: HTMLElement;
+    mouseDown: boolean = false;
 
     public static defaultProps = {
         attributes: {},
@@ -133,7 +122,7 @@ export class UpTouchContextMenuTrigger extends React.PureComponent<UpContextMenu
         hideMenu();
 
         showMenu({
-            position: {x, y},
+            position: { x, y },
             target: this.element,
             id: this.props.id,
             data: callIfExists(this.props.collect, this.props)
@@ -145,7 +134,12 @@ export class UpTouchContextMenuTrigger extends React.PureComponent<UpContextMenu
     }
 
     render() {
-        const { renderTag, attributes, children } = this.props;
+        const {
+            renderTag,
+            attributes,
+            children
+        } = this.props;
+
         const newAttrs = assign({}, attributes, {
             //className: classNames(cssClasses.menuWrapper, attributes.className),
             onContextMenu: this.handleContextClick,
@@ -159,13 +153,13 @@ export class UpTouchContextMenuTrigger extends React.PureComponent<UpContextMenu
 
         return React.createElement(renderTag, newAttrs, children);
     }
-}
+};
 
-var hasTouch = false;
+let hasTouch = false;
 try {
     document.createEvent('TouchStart');
     hasTouch = true;
 }
-catch (e) {}
+catch (e) { console.log(e); }
 
 export default !hasTouch ? UpContextMenuTrigger : UpTouchContextMenuTrigger;

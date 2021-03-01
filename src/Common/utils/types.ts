@@ -2,6 +2,18 @@ export interface StyledComponentProps {
   innerRef?: (comp: any) => void;
 }
 
+export interface TestableComponentProps {
+    dataTestId? : string;
+}
+
+export function getTestableComponentProps( props : TestableComponentProps ): { "data-testid"? : string} {
+    var testableComponentProps = {} ;
+    if(props.dataTestId) {
+        testableComponentProps["data-testid"] = props.dataTestId ;
+    }
+    return testableComponentProps ;
+}
+
 export function FilterProps<T>(refObject:any, propsObject:any) : T {
     let persistableO1 = {} as T;
     Object.keys(propsObject).forEach(key => {

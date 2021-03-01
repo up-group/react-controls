@@ -1,17 +1,16 @@
 // Imports
-import * as React from "react"
-import { BaseControlComponent } from "../_Common/BaseControl/BaseControl"
+import * as React from 'react';
+import { BaseControlComponent } from '../_Common/BaseControl/BaseControl';
 import defaultTheme from '../../../Common/theming'
-
 import Textarea from 'react-textarea-autosize'
-import { UpTextProps } from "./types";
-import { getStyles } from "./styles";
-
-import * as classnames from 'classnames'
+import { EventHandler, UpTextProps } from './types';
+import { getStyles } from './styles';
+import * as classnames from 'classnames';
 
 class BaseTextArea extends React.Component<UpTextProps> {
 
     textArea: any;
+
     constructor(p, c) {
         super(p, c);
     }
@@ -33,42 +32,65 @@ class BaseTextArea extends React.Component<UpTextProps> {
     }
 
     render() {
-        const {className, value, onChange, name, tabIndex,placeholder, readonly } = this.props;
+        const {className, value,  onChange, name, tabIndex,placeholder, readonly, maxChar, maxCharMsg, maxCharMsgShowNumber } = this.props;
+        
+        const shouldDisplayMaxCharMsg = maxCharMsgShowNumber ? (value?.length > maxCharMsgShowNumber) : true
+        
+        const templateMsg = maxCharMsg && maxCharMsg
+            .replace("{{numberOfChar}}", value?.length?.toString() || "0")
+            .replace("{{maxChar}}", maxChar?.toString() || "")
 
-        return <Textarea value={value}
-            readOnly={readonly}
-            name={name}
-            placeholder={placeholder}
-            ref={this.setInput}
-            tabIndex={tabIndex}
-            className={classnames(className, 'up-text')}
-            onChange={e => onChange(e, null)}></Textarea>;
+        return (
+        <>
+            <Textarea value={value}
+                readOnly={readonly}
+                name={name}
+                placeholder={placeholder}
+                ref={this.setInput}
+                tabIndex={tabIndex}
+                className={classnames(className, 'up-text', {'up-text-error' : value?.length > maxChar})}
+                onChange={e => onChange(e, e.target.value)}
+            />
+            {maxChar && shouldDisplayMaxCharMsg &&
+                <div className={classnames(className, 'up-text-max-characters')}>
+                    <span className={classnames(className, 'up-text-max-characters-msg')}>{templateMsg}</span>
+                </div>
+            }
+        </>
+        );
     }
 }
-
 // Exports
 export default class UpText extends BaseControlComponent<UpTextProps, string> {
-    
-    public static defaultProps:UpTextProps = {
+
+    public static defaultProps: UpTextProps = {
         width: 'fill',
         showError: true,
-        theme:defaultTheme,
+        theme: defaultTheme,
         readonly: false,
+        maxCharMsg: "Vous avez saisi {{numberOfChar}} sur un nombre maximal de {{maxChar}}",
+        forceMaxChar: false,
     }
-    
+
     constructor(p, c) {
         super(p, c);
-        this.getValue = this.getValue.bind(this) ;
+        this.getValue = this.getValue.bind(this);
         this.state = {
-            value:p.value
+            value: p.value
         }
     }
-    
-    onChange = (event) => {
-        event.persist() ;
-        this.handleChangeEvent(event, event.target.value);
+
+    onChange : EventHandler<any, string>  = (event, value) => {
+        event.persist();
+        const { forceMaxChar, maxChar } = this.props
+        let _value = event.target.value as string; 
+        if (forceMaxChar && maxChar && _value && _value.length > maxChar) {
+            _value = _value.substr(0, maxChar)
+        }
+        event.target.value = _value
+        this.handleChangeEvent(event, _value)
     }
-    
+
     showError() {
         return this.props.showError !== undefined
             ? this.props.showError === true
@@ -76,17 +98,20 @@ export default class UpText extends BaseControlComponent<UpTextProps, string> {
     }
 
     showSuccess() {
-        return this.props.showSuccess
-    }
-
-    renderControl(): JSX.Element {
-        const {onChange, className, tooltip, value, ...others} = this.props ;
-        return <BaseTextArea className={classnames(getStyles(this.props), className)} 
-            value={this.currentValue} 
-            onChange={this.onChange} {...others}  />
+        return this.props.showSuccess;
     }
 
     getValue(event: any) {
-        return (event != null && event.target != null) ? event.target.value : event ;
+        return (event != null && event.target != null) ? event.target.value : event;
     }
-}
+
+    renderControl(): JSX.Element {
+        const { onChange, className, tooltip, value, ...others } = this.props;
+
+        return (
+            <BaseTextArea className={classnames(getStyles(this.props), className)}
+                value={this.currentValue}
+                onChange={this.onChange} {...others} />
+        )
+    }
+};
