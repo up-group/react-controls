@@ -1,3 +1,6 @@
+#  ReactControls (version: 0.2.134)
+## Main Changes
+  - UpDataPanel : Add props to define custom class on column
 #  ReactControls (version: 0.2.133)
 ## Bug Fixes
   - UpDataGrid : Fix selected row after fetching data
