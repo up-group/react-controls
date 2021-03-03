@@ -60,7 +60,7 @@ const columns = [
         label: 'Sixth Label'
     },
     {
-        field: 'seventh_mabem',
+        field: 'seventh_label',
         label: 'Seventh Label'
     },
 ];
@@ -223,3 +223,17 @@ export const DisplayRowModeWithTitleFormatter =
             />
         );
     };
+
+export const AddCustomClassNameToColumnOfPanel =
+    () => (
+        <UpDataPanel
+            data={data}
+            columns={columns}
+            showOnlyNotEmptyValue={boolean('showOnlyNotEmptyValue', false)}
+            displayMode="column"
+            getColumnCustomClassName={(field) => {
+                if (field === "seventh_label") return style({ marginLeft:'auto', background: 'orange' });
+            }}
+        />
+    );
+ 

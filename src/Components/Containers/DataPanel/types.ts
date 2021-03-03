@@ -42,6 +42,8 @@ export interface UpDataPanelProps {
         general: TitleFormatter | JSX.Element | string;
         specific?: TitleFormatter | JSX.Element | string;
     };
+    /** To add specific style to a column */
+    getColumnCustomClassName?: (label: string) => string;
 };
 
 export interface PanelItemProps {
@@ -55,4 +57,5 @@ export interface PanelItemProps {
     panelData: {};
     columns: Array<Column>;
     showOnlyNotEmptyValue: boolean;
+    getColumnCustomClassName?: (label: string) => string;
 };
