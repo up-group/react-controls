@@ -17,6 +17,7 @@ const UpDataPanelItem = (props: PanelItemProps) => {
         displayMode,
         columns,
         showOnlyNotEmptyValue,
+        getColumnCustomClassName
     } = props;
 
     const Tooltip = props => (
@@ -53,10 +54,11 @@ const UpDataPanelItem = (props: PanelItemProps) => {
                 </div>
             )}
             <div className="panel-body">
-                {columns.map((element, index) =>
-                    (panelData && panelData[element.field] && showOnlyNotEmptyValue) || element.field && !showOnlyNotEmptyValue ? (
+                {columns.map((element, index) => {
+                    const customClassName = getColumnCustomClassName && getColumnCustomClassName(element.field) || '';
+                    return ((panelData && panelData[element.field] && showOnlyNotEmptyValue) || element.field && !showOnlyNotEmptyValue ? (
                         <React.Fragment key={index}>
-                            <div className="panel-col">
+                            <div className={classnames(`panel-col ${customClassName}`)}>
                                 <span className="panel-col-label">
                                     {element.label}
                                     {displayMode === 'row' ? ': ' : null}
@@ -81,8 +83,8 @@ const UpDataPanelItem = (props: PanelItemProps) => {
                                 )}
                             </div>
                         </React.Fragment>
-                    ) : null
-                )}
+                    ) : null)
+                })}
                 {props.actions && (
                     <div className="panel-actions">
                         {props.actions.map((element, index) => (
