@@ -38,37 +38,37 @@ const UpModal: React.FunctionComponent<UpModalProps> = props => {
 
     const modalHeader = () => (
         <div
-            className="up-modal_header"
+            className='up-modal_header'
             style={withHeaderSeparator ? { borderBottom: '1px solid #e5e5e5' } : {}}
         >
-            {typeof header === 'string' ? <h3 className="up-modal_title">{header}</h3> : header}
+            {typeof header === 'string' ? <h3 className='up-modal_title'>{header}</h3> : header}
             <span
                 onClick={closeModal}
-                className="up-modal_close">
-                <UpSvgIcon iconName={"close"}></UpSvgIcon>
+                className='up-modal_close'>
+                <UpSvgIcon iconName={'close'}></UpSvgIcon>
             </span>
         </div>
     )
 
-    const modalFooter = () => footer && (typeof footer === 'string' ? <div className="up-modal_footer">{footer}</div> : footer);
+    const modalFooter = () => footer && (typeof footer === 'string' ? <div className='up-modal_footer'>{footer}</div> : footer);
 
     return (
         <div className={getStyles(props)}>
-            <div className={classnames("up-modal", showModal ? 'in' : 'fade')} {...getTestableComponentProps(props)}>
-                <div ref={wrapperModalRef} className="up-modal_dialog">
-                    <div className="up-modal_content">
+            <div className={classnames('up-modal', showModal ? 'in' : 'fade')} {...getTestableComponentProps(props)}>
+                <div ref={wrapperModalRef} className='up-modal_dialog'>
+                    <div className='up-modal_content'>
                         {modalHeader()}
-                        <div className="up-modal_body">
+                        <div className='up-modal_body'>
                             {children}
                             {html != null &&
-                                <div dangerouslySetInnerHTML={{ __html: html }} style={{ width: "100%", minHeight: "800px", minWidth: "600px", border: "none" }} />
+                                <div dangerouslySetInnerHTML={{ __html: html }} style={{ width: '100%', minHeight: '800px', minWidth: '600px', border: 'none' }} />
                             }
                         </div>
                         {modalFooter()}
                     </div>
                 </div>
             </div>
-            <div style={{ display: showModal === true ? 'block' : 'none' }} className="up-modal_backdrop"></div>
+            <div style={{ display: showModal === true ? 'block' : 'none' }} className='up-modal_backdrop'></div>
         </div>
     )
 }
