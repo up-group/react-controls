@@ -22,7 +22,10 @@ export default {
 export const DropDown =
     () => (
         <>
-            <UpButtonGroup isAddOn='left' gutter={0} align={'h'}>
+            <UpButtonGroup
+                gutter={0}
+                align={'h'}
+            >
                 <UpButton
                     onClick={action('OnClick')}
                     dropDown='down'
@@ -36,7 +39,7 @@ export const DropDown =
                     BOUTON 3
                 </UpButton>
             </UpButtonGroup>
-            <br/>
+            <br />
             <UpButtonGroup gutter={10} align={'h'}>
                 <UpButton
                     onClick={action('Main')}
@@ -55,80 +58,88 @@ export const DropDown =
         </>
     );
 
-export const MultiButton =
+export const GluedMultiButton =
     () => (
-        <>
-            <UpButtonGroup gutter={0} align={'h'}>
-                <UpButton
-                    onClick={action('Add')}
-                    width={'normal'}
-                    actionType={'add'}>
-                    Add
-                </UpButton>
-                <UpButton
-                    onClick={action('Edit')}
-                    width={'normal'}
-                    intent={'primary'}
-                    actionType={'edit'}
-                >
-                    Edit
-                </UpButton>
-                <UpButton
-                    onClick={action('Delete')}
-                    width={'normal'}
-                    intent={'danger'}
-                    actionType={'delete'}
-                >
-                    Remove
-                </UpButton>
-            </UpButtonGroup>
-            <br />
-            <UpButtonGroup gutter={5} align={'h'}>
-                <UpButton
-                    intent={'primary'}
-                    onClick={action('Add')} width={'normal'} actionType={'add'}>
-                    Add
-                </UpButton>
-                <UpButton
-                    onClick={action('Edit')}
-                    width={'normal'}
-                    intent={'primary'}
-                    actionType={'edit'}
-                >
-                    Edit
-                </UpButton>
-                <UpButton
-                    onClick={action('Edit')}
-                    width={'normal'}
-                    intent={'info'}
-                    actionType={'info-sign'}
-                >
-                    Info
-                </UpButton>
-                <UpButton
-                    onClick={action('Edit')}
-                    width={'normal'}
-                    intent={'warning'}
-                    actionType={'help'}
-                >
-                    Aide
-                </UpButton>
-                <UpButton
-                    onClick={action('Delete')}
-                    width={'normal'}
-                    intent={'danger'}
-                    actionType={'delete'}
-                >
-                    Remove
-                </UpButton>
-            </UpButtonGroup>
-        </>
+        <UpButtonGroup isAddOn={'left'} gutter={0} align={'h'}>
+            <UpButton
+                onClick={action('Edit')}
+                width={'normal'}
+                intent={'info'}
+                actionType={'info-sign'}>
+                Info
+            </UpButton>
+            <UpButton
+                onClick={action('Edit')}
+                width={'normal'}
+                intent={'primary'}
+                actionType={'edit'}
+            >
+                Edit
+            </UpButton>
+            <UpButton
+                onClick={action('Delete')}
+                width={'normal'}
+                intent={'danger'}
+                actionType={'delete'}
+            >
+                Remove
+            </UpButton>
+        </UpButtonGroup>
     );
 
-export const MultiButtonWithGutter =
+export const VerticalMultiButtonWithGutter =
+    () => (
+        <UpButtonGroup gutter={5} align={'h'}>
+            <UpButton
+                intent={'primary'}
+                onClick={action('Add')}
+                width={'normal'}
+                actionType={'add'}
+            >
+                Add
+                </UpButton>
+            <UpButton
+                onClick={action('Edit')}
+                width={'normal'}
+                intent={'primary'}
+                actionType={'edit'}
+            >
+                Edit
+                </UpButton>
+            <UpButton
+                onClick={action('Edit')}
+                width={'normal'}
+                intent={'info'}
+                actionType={'info-sign'}
+            >
+                Info
+                </UpButton>
+            <UpButton
+                onClick={action('Edit')}
+                width={'normal'}
+                intent={'warning'}
+                actionType={'help'}
+            >
+                Aide
+                </UpButton>
+            <UpButton
+                onClick={action('Delete')}
+                width={'normal'}
+                intent={'danger'}
+                actionType={'delete'}
+            >
+                Remove
+                </UpButton>
+        </UpButtonGroup>
+    );
+
+export const HorizontalMultiButtonWithGutter =
     () => (
         <>
-            <UpButtonGroup gutter={20} align={'v'}>
+            <UpButtonGroup
+                gutter={20}
+                align={'v'}
+            >
                 <UpButton
                     intent={'secondary'}
                     onClick={action('Add')}
@@ -156,7 +167,7 @@ export const MultiButtonWithGutter =
         </>
     );
 
-MultiButtonWithGutter.decorators = [
+HorizontalMultiButtonWithGutter.decorators = [
     (MultiButtonWithGutter) =>
         <div style={{
             height: '300px', width: '300px', border: '2px solid #ffc83d', borderRadius: '6px'
