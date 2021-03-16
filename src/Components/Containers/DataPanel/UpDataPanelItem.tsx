@@ -23,14 +23,14 @@ const UpDataPanelItem = (props: PanelItemProps) => {
     const Tooltip = props => (
         <UpTooltip
             title={props.tooltip.title}
-            place="bottom"
+            place='bottom'
             content={props.tooltip.content}>
             <UpLigne>
                 <UpSvgIcon
                     width={16}
                     height={16}
-                    iconName="info"
-                    className="col-tooltip"
+                    iconName='info'
+                    className='col-tooltip'
                 />
             </UpLigne>
         </UpTooltip>
@@ -40,26 +40,26 @@ const UpDataPanelItem = (props: PanelItemProps) => {
         <div
             className={classnames('panel-container', className, getStyles(props))}>
             {title && (
-                <div className="panel-title">
-                    <span className="panel-title-general">
+                <div className='panel-title'>
+                    <span className='panel-title-general'>
                         {_.isFunction((title.general as TitleFormatter).format) && (title.general as TitleFormatter).format(panelData)}
                         {_.isString(title.general) && title.general}
                     </span>
                     {title.specific &&
-                        <span className="panel-title-specific">
+                        <span className='panel-title-specific'>
                             {_.isFunction((title.specific as TitleFormatter).format) && (title.specific as TitleFormatter).format(panelData)}
                             {_.isString(title.specific) && title.specific}
                         </span>
                     }
                 </div>
             )}
-            <div className="panel-body">
+            <div className='panel-body'>
                 {columns.map((element, index) => {
                     const customClassName = getColumnCustomClassName && getColumnCustomClassName(element.field) || '';
                     return ((panelData && panelData[element.field] && showOnlyNotEmptyValue) || element.field && !showOnlyNotEmptyValue ? (
                         <React.Fragment key={index}>
                             <div className={classnames(`panel-col ${customClassName}`)}>
-                                <span className="panel-col-label">
+                                <span className='panel-col-label'>
                                     {element.label}
                                     {displayMode === 'row' ? ': ' : null}
                                 </span>
@@ -74,7 +74,7 @@ const UpDataPanelItem = (props: PanelItemProps) => {
                                             : {},
                                     )
                                 ) : (
-                                        <span className="panel-col-value">
+                                        <span className='panel-col-value'>
                                             {panelData && panelData[element.field]}
                                         </span>
                                     )}
@@ -86,13 +86,13 @@ const UpDataPanelItem = (props: PanelItemProps) => {
                     ) : null)
                 })}
                 {props.actions && (
-                    <div className="panel-actions">
+                    <div className='panel-actions'>
                         {props.actions.map((element, index) => (
                             <UpButton
                                 key={`panel-action-${index}`}
                                 actionType={element.type}
                                 intent={element.intent}
-                                width="icon"
+                                width='icon'
                                 borderless
                                 onClick={() => element.action({ value: { ...panelData } })}>
                             </UpButton>

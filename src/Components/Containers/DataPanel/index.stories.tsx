@@ -29,7 +29,7 @@ const data = [
         third_label: ' second value 3',
         fourth_label: 'second Value 4',
         fifth_label: 'second value 5',
-        sixth_label: 'second value6',
+        sixth_label: 'second value 6',
     }
 ];
 
@@ -84,7 +84,6 @@ export const DisplayRowMode =
             data={data}
             columns={columns}
             title={{ general: 'Gestion technique', specific: titleFormatter }}
-            showOnlyNotEmptyValue={true}
             displayMode="row"
             className={style({
                 $nest: {
@@ -108,8 +107,24 @@ export const DisplayColumnMode =
         <UpDataPanel
             data={data}
             columns={columns}
-            showOnlyNotEmptyValue={boolean('showOnlyNotEmptyValue', false)}
             displayMode="column"
+            className={style({
+                $nest: {
+                    '&.panel-container': {
+                        marginTop: '25px'
+                    }
+                }
+            })}
+        />
+    );
+
+export const NotDisplayEmptyColumns =
+    () => (
+        <UpDataPanel
+            data={data}
+            columns={columns}
+            displayMode="column"
+            showOnlyNotEmptyValue={true}
             className={style({
                 $nest: {
                     '&.panel-container': {
@@ -138,7 +153,7 @@ export const DisplayColumnModeWithFormatter =
                 columns={columns.map((e, i) =>
                     i === 0 ? { ...e, formatter } : { ...e }
                 )}
-                showOnlyNotEmptyValue={boolean('showOnlyNotEmptyValue', true)}
+                showOnlyNotEmptyValue={true}
                 displayMode="column"
                 className={style({
                     $nest: {
@@ -229,11 +244,9 @@ export const AddCustomClassNameToColumnOfPanel =
         <UpDataPanel
             data={data}
             columns={columns}
-            showOnlyNotEmptyValue={boolean('showOnlyNotEmptyValue', false)}
             displayMode="column"
             getColumnCustomClassName={(field) => {
-                if (field === "seventh_label") return style({ marginLeft:'auto', background: 'orange' });
+                if (field === "seventh_label") return style({ marginLeft: 'auto', background: 'orange' });
             }}
         />
     );
- 
