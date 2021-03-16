@@ -87,7 +87,7 @@ export const GluedButtons =
         </UpButtonGroup>
     );
 
-GluedButtons.storyName = 'Show Glued buttons';
+GluedButtons.storyName = 'Show Glued Buttons';
 
 export const VerticalButtons =
     () => (
@@ -135,7 +135,7 @@ export const VerticalButtons =
         </UpButtonGroup>
     );
 
-VerticalButtons.storyName = 'Show multiple buttons vertically';
+VerticalButtons.storyName = 'Show Multiple Buttons Vertically';
 
 export const HorizontalButtons =
     () => (
@@ -171,7 +171,7 @@ export const HorizontalButtons =
         </>
     );
 
-HorizontalButtons.storyName = 'Show multiple buttons horizontally';
+HorizontalButtons.storyName = 'Show Multiple Buttons Horizontally';
 
 HorizontalButtons.decorators = [
     (MultiButtonWithGutter) =>
