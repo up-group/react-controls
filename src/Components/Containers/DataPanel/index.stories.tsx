@@ -78,7 +78,7 @@ const titleFormatter = {
     )
 };
 
-export const DisplayRowMode =
+export const RowDisplayMode =
     () => (
         <UpDataPanel
             data={data}
@@ -102,7 +102,7 @@ export const DisplayRowMode =
         />
     );
 
-export const DisplayColumnMode =
+export const ColumnDisplayMode =
     () => (
         <UpDataPanel
             data={data}
@@ -118,7 +118,7 @@ export const DisplayColumnMode =
         />
     );
 
-export const NotDisplayEmptyColumns =
+export const HideEmptyColumns =
     () => (
         <UpDataPanel
             data={data}
@@ -135,7 +135,7 @@ export const NotDisplayEmptyColumns =
         />
     );
 
-export const DisplayColumnModeWithFormatter =
+export const ColumnModeWithFormatter =
     () => {
         const formatter = {
             format: (item, column) => (
@@ -166,7 +166,9 @@ export const DisplayColumnModeWithFormatter =
         );
     };
 
-export const DisplayRowModeWithTitleFormatter =
+ColumnModeWithFormatter.storyName = 'Display Columns In Column Mode Display With Formatter';
+
+export const RowModeWithTitleFormatter =
     () => {
         const secondformatter = {
             format: (item, column) => (
@@ -239,7 +241,9 @@ export const DisplayRowModeWithTitleFormatter =
         );
     };
 
-export const AddCustomClassNameToColumnOfPanel =
+RowModeWithTitleFormatter.storyName = 'Display Columns In Row Mode Display With Title Formatter';
+
+export const CustomClassColumn =
     () => (
         <UpDataPanel
             data={data}
@@ -250,3 +254,5 @@ export const AddCustomClassNameToColumnOfPanel =
             }}
         />
     );
+
+CustomClassColumn.storyName = 'Add Custom ClassName To A Specific Column Of Panel';
