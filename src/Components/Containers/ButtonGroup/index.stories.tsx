@@ -58,7 +58,7 @@ export const DropDown =
         </>
     );
 
-export const GluedMultiButton =
+export const GluedButtons =
     () => (
         <UpButtonGroup isAddOn={'left'} gutter={0} align={'h'}>
             <UpButton
@@ -87,7 +87,9 @@ export const GluedMultiButton =
         </UpButtonGroup>
     );
 
-export const VerticalMultiButtonWithGutter =
+GluedButtons.storyName = 'Show Glued buttons';
+
+export const VerticalButtons =
     () => (
         <UpButtonGroup gutter={5} align={'h'}>
             <UpButton
@@ -133,7 +135,9 @@ export const VerticalMultiButtonWithGutter =
         </UpButtonGroup>
     );
 
-export const HorizontalMultiButtonWithGutter =
+VerticalButtons.storyName = 'Show multiple buttons vertically';
+
+export const HorizontalButtons =
     () => (
         <>
             <UpButtonGroup
@@ -167,7 +171,9 @@ export const HorizontalMultiButtonWithGutter =
         </>
     );
 
-HorizontalMultiButtonWithGutter.decorators = [
+HorizontalButtons.storyName = 'Show multiple buttons horizontally';
+
+HorizontalButtons.decorators = [
     (MultiButtonWithGutter) =>
         <div style={{
             height: '300px', width: '300px', border: '2px solid #ffc83d', borderRadius: '6px'
