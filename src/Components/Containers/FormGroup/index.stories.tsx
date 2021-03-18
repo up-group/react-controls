@@ -11,9 +11,22 @@ export default {
     ],
     component: FormGroupComponent,
 };
-export const FormGroupGeneralUse =
+
+export const GeneralUse =
     () => (
-        <UpFormGroup withTitleSeparator={true} title={'FormGroup title'}>
+        <UpFormGroup
+            title={'FormGroup title'}
+        >
+            <p>Content</p>
+        </UpFormGroup>
+    );
+
+export const WithSeperatorTitle =
+    () => (
+        <UpFormGroup
+            withTitleSeparator={true}
+            title={'FormGroup title'}
+        >
             <p>Content</p>
         </UpFormGroup>
     );
