@@ -1,4 +1,4 @@
-import { style, media } from 'typestyle';
+import { style } from 'typestyle';
 import * as classnames from 'classnames';
 import { fullAnimationProp } from '../../../Common/theming/animations';
 import { WithThemeProps } from '../../../Common/theming';
@@ -7,7 +7,7 @@ import { toRem } from '../../../Common/theming/utils';
 
 const cssModal = ({ modalWidth, displayMode, showModal, theme, screenPosition }: UpModalProps & WithThemeProps) => style({
     $nest: {
-        "& .up-modal": {
+        '& .up-modal': {
             position: 'fixed',
             top: 0,
             right: 0,
@@ -58,8 +58,8 @@ const cssModal = ({ modalWidth, displayMode, showModal, theme, screenPosition }:
                 }
             }
         },
-        "& .up-modal_dialog": {
-            position: 'relative', 
+        '& .up-modal_dialog': {
+            position: 'relative',
             ...(screenPosition === 'center' && {
                 top: '40%',
                 transform: 'translateY(-100%) !important'
@@ -76,7 +76,7 @@ const cssModal = ({ modalWidth, displayMode, showModal, theme, screenPosition }:
                 }
             )
         },
-        "& .up-modal_content": {
+        '& .up-modal_content': {
             position: 'relative',
             backgroundColor: '#fff',
             border: '1px solid #999',
@@ -91,12 +91,12 @@ const cssModal = ({ modalWidth, displayMode, showModal, theme, screenPosition }:
                 borderRadius: '0',
             })
         },
-        "& .up-modal_header": {
+        '& .up-modal_header': {
             display: 'flex',
             justifyContent: 'space-between',
             padding: toRem(15),
         },
-        "& .up-modal_title": {
+        '& .up-modal_title': {
             margin: 0,
             fontWeight: 400,
             color: theme ? theme.colorMap.grey1 : '#808080',
@@ -105,7 +105,7 @@ const cssModal = ({ modalWidth, displayMode, showModal, theme, screenPosition }:
                 fontWeight: 'bold',
             })
         },
-        "& .up-modal_close": {
+        '& .up-modal_close': {
             cursor: 'pointer',
             $nest: {
                 '& svg': {
@@ -125,15 +125,15 @@ const cssModal = ({ modalWidth, displayMode, showModal, theme, screenPosition }:
                 zIndex: 1000,
             })
         },
-        "& .up-modal_body": {
+        '& .up-modal_body': {
             padding: toRem(15)
         },
-        "& .up-modal_footer": {
+        '& .up-modal_footer': {
             padding: toRem(15),
-            textAlign: "right",
-            borderTop: "1px solid #e5e5e5",
+            textAlign: 'right',
+            borderTop: '1px solid #e5e5e5',
         },
-        "& .up-modal_backdrop": {
+        '& .up-modal_backdrop': {
             position: 'fixed',
             top: 0,
             left: 0,
