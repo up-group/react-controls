@@ -27,9 +27,30 @@ export const GeneralUse =
                 }
             ]
         }
+        />
+    );
+
+export const SelectedTabOnLoad =
+    () => (
+        <UpNavTab tabs={
+            [
+                {
+                    content: <UpPanel type='info' disableAutoIntentIcon={false} message='Information sur ...' />,
+                    head: 'Tab 1'
+                },
+                {
+                    content: <UpPanel type='warning' disableAutoIntentIcon={false} message='Attention sur ...' />,
+                    head: 'Tab 2'
+                }, {
+                    content: <UpPanel type='danger' disableAutoIntentIcon={false} message='Erreur sur ...' />,
+                    head: 'Tab 3'
+                }
+            ]
+        }
             selectedTabOnLoad={2}
         />
     );
+
 
 export const OnShowLoadType =
     () => (
@@ -52,7 +73,7 @@ export const OnShowLoadType =
         />
     );
 
-export const PassCallBackToUpNavTab =
+export const CallBackUpNavTab =
     () => (
         <UpNavTab tabs={
             [
@@ -72,3 +93,5 @@ export const PassCallBackToUpNavTab =
             onSelectedTabChanged={(selectTabKey, tab) => console.log(`You are in tab ${selectTabKey}`)}
         />
     );
+
+CallBackUpNavTab.storyName = 'Callback To Execute On Tab Changing';
