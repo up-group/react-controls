@@ -6,13 +6,17 @@ import { UpGrid as UpGridComponent } from './UpGrid';
 import UpPanel from '../../Containers/Panel';
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs } from '@storybook/addon-knobs';
-import { background } from 'csx';
 
 export default {
     title: 'Components/Containers/UpGrid',
     decorators: [
         withKnobs,
-        getRootContainer('UpGrid')
+        getRootContainer('UpGrid'),
+        (UpGrid) => (
+            <UpThemeProvider theme={UpDefaultTheme}>
+                <UpGrid />
+            </UpThemeProvider>
+        )
     ],
     component: UpGridComponent,
 };
@@ -42,12 +46,6 @@ export const GeneralUse =
         </UpGrid>
     );
 
-GeneralUse.decorators = [(GeneralUse) => (
-    <UpThemeProvider theme={UpDefaultTheme}>
-        <GeneralUse />
-    </UpThemeProvider>
-)];
-
 export const PushPullCol =
     () => (
         <UpGrid gutter={30} rowSpacing={20}>
@@ -63,12 +61,6 @@ export const PushPullCol =
     );
 
 PushPullCol.storyName = 'Change Order With Pull And Push Up Col Properties';
-
-PushPullCol.decorators = [(PushPullCol) => (
-    <UpThemeProvider theme={UpDefaultTheme}>
-        <PushPullCol />
-    </UpThemeProvider>
-)];
 
 export const OrderCol =
     () => (
@@ -89,13 +81,6 @@ export const OrderCol =
 
 OrderCol.storyName = 'Change Order With Order Property';
 
-OrderCol.decorators = [(OrderOffestCol) => (
-    <UpThemeProvider theme={UpDefaultTheme}>
-        <OrderOffestCol />
-    </UpThemeProvider>
-)];
-
-
 export const OffsetCol =
     () => (
         <UpGrid gutter={30} rowSpacing={20}>
@@ -112,11 +97,6 @@ export const OffsetCol =
 
 OffsetCol.storyName = 'Add Offset To Col';
 
-OffsetCol.decorators = [(OffsetCol) => (
-    <UpThemeProvider theme={UpDefaultTheme}>
-        <OffsetCol />
-    </UpThemeProvider>
-)];
 // align rowSpacing gutter justify
 export const RowProperties =
     () => (
@@ -134,9 +114,3 @@ export const RowProperties =
             </UpRow>
         </UpGrid>
     );
-
-OffsetCol.decorators = [(RowProperties) => (
-    <UpThemeProvider theme={UpDefaultTheme}>
-        <RowProperties />
-    </UpThemeProvider>
-)];

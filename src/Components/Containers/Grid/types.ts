@@ -3,12 +3,16 @@ export type Alignment = 'top' | 'middle' | 'bottom';
 export type Justification = 'start' | 'end' | 'center' | 'space-around' | 'space-between';
 
 export interface UpGridProps {
+    /** To add a className */
     className?: string;
+    /** To add space between Columns */
     gutter?: number;
+    /** To add space between Rows */
     rowSpacing?: number;
+    /** To choose to choose how to dispose columns */
     type?: LayoutMode;
     fullRowLayout?: boolean;
-    /** In order to set margin for example */
+    /** To add style, e.g : In order to set margin for example */
     style?: React.CSSProperties;
 };
 
