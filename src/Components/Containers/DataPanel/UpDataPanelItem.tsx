@@ -72,8 +72,8 @@ const UpDataPanelItem = (props: PanelItemProps) => {
                                                 panelData ? panelData[element.field] : null,
                                             )
                                             : {},
-                                    )
-                                ) : (
+                                        )
+                                    ) : (
                                         <span className='panel-col-value'>
                                             {panelData && panelData[element.field]}
                                         </span>

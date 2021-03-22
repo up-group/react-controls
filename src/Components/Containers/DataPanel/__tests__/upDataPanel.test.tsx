@@ -1,13 +1,20 @@
 import * as React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import UpDataPanel from '../UpDataPanel';
 import { ThemeProvider as UpThemeProvider } from '../../../../Common/theming/ThemeProvider';
 import UpDefaultTheme from '../../../../Common/theming';
 import { style } from 'typestyle';
 
-const whithTheme = component => <UpThemeProvider theme={UpDefaultTheme}>{component}</UpThemeProvider>
+const whithTheme = component => (
+    <UpThemeProvider
+        theme={UpDefaultTheme}>
+        {component}
+    </UpThemeProvider>
+);
 const renderComponent = component => render(whithTheme(component));
+
+afterEach(cleanup);
 
 const data = [
     {
@@ -54,7 +61,7 @@ const columns = [
 
 describe('Tests for UpPanel', () => {
 
-    it('should show seven columns', () => {
+    it('should show the expected number of columns', () => {
         const { container } = renderComponent(
             <UpDataPanel
                 data={data}
@@ -77,7 +84,7 @@ describe('Tests for UpPanel', () => {
         expect(container.querySelectorAll('.panel-col')).toHaveLength(6);
     });
 
-    it('should not show a title by default', () => {
+    it('should not show title by default', () => {
         const { container } = renderComponent(
             <UpDataPanel
                 data={data}
@@ -116,7 +123,7 @@ describe('Tests for UpPanel', () => {
     });
 
     it('should apply a customized style on specific column', () => {
-        const { getByText } = renderComponent(
+        renderComponent(
             <UpDataPanel
                 data={data}
                 columns={columns}
@@ -125,8 +132,8 @@ describe('Tests for UpPanel', () => {
                 }}
             />
         );
-        
-        const element = getByText('value 1').parentElement.className;
+
+        const element = screen.getByText('value 1').parentElement.className;
         const lengthOfClassName = element.split(' ').length;
         expect(lengthOfClassName).toBe(2);
     });
@@ -188,7 +195,7 @@ describe('Tests for UpPanel', () => {
             )
         };
 
-        const { getByText } = renderComponent(
+        renderComponent(
             <UpDataPanel
                 data={data}
                 columns={columns.map((e, i) =>
@@ -197,20 +204,20 @@ describe('Tests for UpPanel', () => {
             />
         );
 
-        const element = getByText('value 1');
+        const element = screen.getByText('value 1');
         expect(element.className).not.toBe('panel-col-value');
     });
 
     it('should display a tooltip for a specific column', () => {
         //Tooltip in column 2
-        const { getByText } = renderComponent(
+        renderComponent(
             <UpDataPanel
                 data={data}
                 columns={columns}
             />
         );
 
-        const element = getByText('value 2').parentNode;
+        const element = screen.getByText('value 2').parentNode;
         expect(element.querySelector('.col-tooltip')).toBeInTheDocument();
     });
 });

@@ -69,7 +69,7 @@ const titleFormatter = {
     format: (data) => (
         <span
             style={{
-                color: data['first_label'] == "value 1" ? 'orange' : 'red',
+                color: data['first_label'] == 'value 1' ? 'orange' : 'red',
                 fontWeight: 'bold',
                 marginLeft: '4px'
             }}>
@@ -84,7 +84,7 @@ export const RowDisplayMode =
             data={data}
             columns={columns}
             title={{ general: 'Gestion technique', specific: titleFormatter }}
-            displayMode="row"
+            displayMode='row'
             className={style({
                 $nest: {
                     '&.panel-container': {
@@ -107,7 +107,7 @@ export const ColumnDisplayMode =
         <UpDataPanel
             data={data}
             columns={columns}
-            displayMode="column"
+            displayMode='column'
             className={style({
                 $nest: {
                     '&.panel-container': {
@@ -123,7 +123,7 @@ export const HideEmptyColumns =
         <UpDataPanel
             data={data}
             columns={columns}
-            displayMode="column"
+            displayMode='column'
             showOnlyNotEmptyValue={true}
             className={style({
                 $nest: {
@@ -154,7 +154,7 @@ export const ColumnModeWithFormatter =
                     i === 0 ? { ...e, formatter } : { ...e }
                 )}
                 showOnlyNotEmptyValue={true}
-                displayMode="column"
+                displayMode='column'
                 className={style({
                     $nest: {
                         '&.panel-container': {
@@ -183,14 +183,14 @@ export const RowModeWithTitleFormatter =
                             }
                         }
                     })}
-                    intent="success"
+                    intent='success'
                 />
             )
         };
         const thirdformatter = {
             format: (item, column) => (
                 <UpBadge
-                    text=""
+                    text=''
                     className={style({
                         $nest: {
                             '&.up-badge': {
@@ -200,7 +200,7 @@ export const RowModeWithTitleFormatter =
                             }
                         }
                     })}
-                    intent="success"
+                    intent='success'
                     rounded
                 />
             )
@@ -218,11 +218,11 @@ export const RowModeWithTitleFormatter =
                                 : { ...e }
                 )}
                 title={{
-                    general: "Gestion Technique",
+                    general: 'Gestion Technique',
                     specific: titleFormatter,
                 }}
                 showOnlyNotEmptyValue={true}
-                displayMode="row"
+                displayMode='row'
                 className={style({
                     $nest: {
                         '&.panel-container': {
@@ -246,11 +246,11 @@ RowModeWithTitleFormatter.storyName = 'Display Columns In Row Mode Display With 
 export const CustomClassColumn =
     () => (
         <UpDataPanel
-            data={data}
+            data={[data[0]]}
             columns={columns}
-            displayMode="column"
+            displayMode='column'
             getColumnCustomClassName={(field) => {
-                if (field === "seventh_label") return style({ marginLeft: 'auto', background: 'orange' });
+                if (field === 'seventh_label') return style({ marginLeft: 'auto', background: 'orange' });
             }}
         />
     );
