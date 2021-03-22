@@ -15,4 +15,5 @@ export const getStyle = (props: UpBadgeProps & WithThemeProps) => style({
     width: (props.rounded === true) ? toRem(32) : 'auto',
     height: (props.rounded === true) ? toRem(32) : 'auto',
     backgroundColor: props.intent !== null ? props.theme.colorMap[`${props.intent}`] : props.background,
+    cursor: (props.onClick || props.onMouseEnter || props.onMouseLeave) ? 'pointer' : 'auto'
 });
