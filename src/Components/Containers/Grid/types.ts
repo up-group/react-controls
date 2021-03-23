@@ -9,8 +9,9 @@ export interface UpGridProps {
     gutter?: number;
     /** To add space between Rows */
     rowSpacing?: number;
-    /** To choose to choose how to dispose columns */
+    /** To choose how to dispose columns */
     type?: LayoutMode;
+    /** ??? */
     fullRowLayout?: boolean;
     /** To add style, e.g : In order to set margin for example */
     style?: React.CSSProperties;
