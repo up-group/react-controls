@@ -40,7 +40,6 @@ export const contentWrapperStyle: NestedCSSProperties = {
 };
 
 export const contentStyle = {
-    margin: 0,
     color: '#9B9B9B',
     fontFamily: 'Roboto, sans-serif',
     fontSize: toRem(14),
@@ -67,7 +66,11 @@ export const buttonStyle: NestedCSSProperties = {
 
 export const getCustomStyle = (key: keyof UpInformationCustomStyles, props: UpInformationProps): NestedCSSProperties => {
     if (props.customStyles && props.customStyles[key]) {
+        console.log('props',props)
+        console.log('key',key)
+        console.log('amine',props.customStyles[key])
+        console.log('allouti',props.customStyles[key](props))
         return props.customStyles[key](props);
     }
-    return {}
+    return {};
 };

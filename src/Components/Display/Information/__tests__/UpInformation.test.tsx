@@ -1,23 +1,23 @@
 import * as React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import UpInformation from '../UpInformation';
 
 describe('Tests for UpInformation', () => {
 
-    it('should render title in span tag', () => {
-        const { getByText } = render(
+    it('should render expected title in span tag', () => {
+        render(
             <UpInformation
                 title={'Informations'}
                 iconName={'wink-grey'}
             />
         );
 
-        expect(getByText('Informations').nodeName).toBe('SPAN');
-        expect(getByText('Informations')).toHaveClass('up-information-title');
+        expect(screen.getByText('Informations').nodeName).toBe('SPAN');
+        expect(screen.getByText('Informations')).toHaveClass('up-information-title');
     });
 
-    it('should not render title if title is not provided', () => {
+    it('should not render title if iconName is not provided', () => {
         const { container } = render(
             <UpInformation
                 title={'Informations'}
@@ -27,17 +27,17 @@ describe('Tests for UpInformation', () => {
         expect(container.querySelector('.up-information-title')).toBeNull();
     });
 
-    it('should not render title if iconName is not provided', () => {
+    it('should not render title if title is not provided', () => {
         const { container } = render(
             <UpInformation
-                content={'UpInformation content'}
+                iconName={'warning'}
             />
         );
 
         expect(container.querySelector('.up-information-title')).toBeNull();
     });
 
-    it('should render content', () => {
+    it('should render expected content', () => {
         const { container } = render(
             <UpInformation
                 title={'Informations'}
