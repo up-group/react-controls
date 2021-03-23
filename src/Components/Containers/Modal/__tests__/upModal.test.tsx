@@ -1,16 +1,24 @@
 import * as React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import UpModal from '../UpModal';
 import { ThemeProvider as UpThemeProvider } from '../../../../Common/theming/ThemeProvider';
 import UpDefaultTheme from '../../../../Common/theming';
 
-const whithTheme = (component) => <UpThemeProvider theme={UpDefaultTheme}>{component}</UpThemeProvider>;
+const whithTheme = (component) => (
+    <UpThemeProvider
+        theme={UpDefaultTheme}
+    >
+        {component}
+    </UpThemeProvider>
+);
 const renderComponent = component => render(whithTheme(component));
+
+afterEach(cleanup);
 
 describe('Tests for UpModal', () => {
 
-    it('should show modal when showModal prop change to true', () => {
+    it('should show modal when showModal is true', () => {
         const { container } = renderComponent(
             <UpModal
                 showModal={true}
