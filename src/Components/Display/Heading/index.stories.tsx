@@ -2,6 +2,8 @@ import * as React from 'react';
 import UpHeading from './';
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+import { UpBox } from '../../..';
+import { style } from 'typestyle';
 
 export default {
     title: 'Components/Display/UpHeading',
@@ -20,9 +22,12 @@ export const General =
         </>
     );
 
-export const UpHeadWithTruncateAndLeftTextAlign =
+export const TruncateAndTextAlignProperties =
     () => (
-        <div style={{ width: '350px' }}>
+        <UpBox
+            className={style({ width: '350px' })}
+            alignItems={'normal'}
+        >
             <UpHeading
                 tag='h1'
                 textAlign='left'
@@ -30,16 +35,30 @@ export const UpHeadWithTruncateAndLeftTextAlign =
             >
                 Présentation du composant UpHeading
             </UpHeading>
-        </div>
+        </UpBox>
     );
 
-export const UpHeadWithUpCaseAndRedColor =
+TruncateAndTextAlignProperties.storyName = 'Use Truncate And TextAlign Properties';
+
+export const UpCaseAndColorProperties =
     () => (
         <UpHeading
-            tag='h1'
+            tag='h2'
             upcase={true}
             color={'red'}
         >
-            Titre h1
+            Titre h2
+        </UpHeading>
+    );
+
+UpCaseAndColorProperties.storyName = 'Use UppCase And Color Properties';
+
+export const UseMarginProperties =
+    () => (
+        <UpHeading
+            tag='h1'
+            margin={'large'}
+        >
+            Titre H1
         </UpHeading>
     );
