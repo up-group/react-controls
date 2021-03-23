@@ -10,7 +10,8 @@ const UpFormGroup: React.FunctionComponent<UpFormGroupProps & WithThemeProps> = 
         children,
         theme,
         withTitleSeparator,
-        ...others } = props;
+        ...others
+    } = props;
 
     return (
         <fieldset

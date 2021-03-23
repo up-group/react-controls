@@ -1,24 +1,32 @@
 import * as React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, screen, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import UpTile from '../UpTile';
 import { ThemeProvider as UpThemeProvider } from '../../../../Common/theming/ThemeProvider';
 import UpDefaultTheme from '../../../../Common/theming';
 
-const whithTheme = (component) => <UpThemeProvider theme={UpDefaultTheme}>{component}</UpThemeProvider>;
+const whithTheme = (component) => (
+    <UpThemeProvider
+        theme={UpDefaultTheme}
+    >
+        {component}
+    </UpThemeProvider>
+);
 const renderComponent = component => render(whithTheme(component));
+
+afterEach(cleanup);
 
 describe('Tests for UpTile', () => {
 
     it('should render title in h3 tag', () => {
-        const { getByText } = renderComponent(
+        renderComponent(
             <UpTile
                 title={'UpTile title'}>
             </UpTile>
         );
 
-        expect(getByText('UpTile title').nodeName).toBe('H3');
-        expect(getByText('UpTile title')).toHaveClass('box-title');
+        expect(screen.getByText('UpTile title').nodeName).toBe('H3');
+        expect(screen.getByText('UpTile title')).toHaveClass('box-title');
     });
 
     it('should render a footer in div tag', () => {
