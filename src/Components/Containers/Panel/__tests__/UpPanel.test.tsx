@@ -1,12 +1,19 @@
 import * as React from 'react';
-import { render } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import UpPanel from '../UpPanel';
 import { ThemeProvider as UpThemeProvider } from '../../../../Common/theming/ThemeProvider';
 import UpDefaultTheme from '../../../../Common/theming';
 
-const whithTheme = (component) => <UpThemeProvider theme={UpDefaultTheme}>{component}</UpThemeProvider>;
+const whithTheme = (component) => (
+    <UpThemeProvider
+        theme={UpDefaultTheme}>
+        {component}
+    </UpThemeProvider>
+);
 const renderComponent = component => render(whithTheme(component));
+
+afterEach(cleanup);
 
 describe('Tests for UpPanel', () => {
 
@@ -21,14 +28,14 @@ describe('Tests for UpPanel', () => {
     });
 
     it('should render title as react element', () => {
-        const { getByText } = renderComponent(
+        renderComponent(
             <UpPanel
                 title={<h3>Mon JSX Panel</h3>}
             />
         );
 
-        expect(getByText('Mon JSX Panel').nodeName).toBe('H3');
-        expect(getByText('Mon JSX Panel').parentNode).toHaveClass('up-panel_header');
+        expect(screen.getByText('Mon JSX Panel').nodeName).toBe('H3');
+        expect(screen.getByText('Mon JSX Panel').parentNode).toHaveClass('up-panel_header');
     });
 
     it('should render a message body', () => {
@@ -68,7 +75,7 @@ describe('Tests for UpPanel', () => {
                 type={'default'}
                 title={'Mon Panel'}
                 message={'Mon panel text'}
-                disableAutoIntentIcon= {true}
+                disableAutoIntentIcon={true}
             />
         );
 
