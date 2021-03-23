@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import UpNavTab from '../UpNavTab';
 
@@ -17,17 +17,19 @@ const tabs = [
     }
 ];
 
+afterEach(cleanup);
+
 describe('Tests for UpNavTab', () => {
 
-    it('should render 3 tabs', () => {
-        const { container, getAllByText } = render(
+    it('should render the expected number of tabs', () => {
+        const { container } = render(
             <UpNavTab
                 tabs={tabs}
             />
         );
 
         expect(container.querySelectorAll('.up-nav-tab-item')).toHaveLength(3);
-        expect(getAllByText('UpNavTab content')).toHaveLength(3);
+        expect(screen.getAllByText('UpNavTab content')).toHaveLength(3);
     });
 
     it('should render titles', () => {
@@ -44,7 +46,7 @@ describe('Tests for UpNavTab', () => {
     });
 
     it('should display the wanted tab if selectedTabOnLoad is provided ', () => {
-        const { getByText } = render(
+        render(
             <UpNavTab
                 tabs={tabs}
                 selectedTabOnLoad={2}
@@ -52,13 +54,13 @@ describe('Tests for UpNavTab', () => {
         );
 
         const className = 'up-nav-tab-item__selected';
-        expect(getByText('Tab 3').classList).toContain(className);
-        expect(getByText('Tab 2').classList).not.toContain(className);
-        expect(getByText('Tab 1').classList).not.toContain(className);
+        expect(screen.getByText('Tab 3').classList).toContain(className);
+        expect(screen.getByText('Tab 2').classList).not.toContain(className);
+        expect(screen.getByText('Tab 1').classList).not.toContain(className);
     });
 
     it('should change tab after navTab click ', () => {
-        const { getByText, container } = render(
+        const { container } = render(
             <UpNavTab
                 tabs={tabs}
             />
@@ -66,10 +68,10 @@ describe('Tests for UpNavTab', () => {
 
         const className = 'up-nav-tab-item__selected';
         const upNavTab = container.querySelectorAll('.up-nav-tab-item');
-        expect(getByText('Tab 1').classList).toContain(className);
+        expect(screen.getByText('Tab 1').classList).toContain(className);
 
         fireEvent.click(upNavTab[2]);
-        expect(getByText('Tab 3').classList).toContain(className);
+        expect(screen.getByText('Tab 3').classList).toContain(className);
     });
 
     it('should call onSelectedTabChanged callback', () => {
@@ -93,7 +95,7 @@ describe('Tests for UpNavTab', () => {
                 tabs={tabs}
             />
         );
-        
+
         expect(container.querySelector('.up-nav-tab').parentNode.childElementCount).toBe(4);
     });
 
