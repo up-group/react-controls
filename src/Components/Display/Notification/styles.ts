@@ -105,8 +105,8 @@ export const progressBar = (props): NestedCSSProperties => {
                 width: '100%',
                 borderBottomRightRadius: '4px',
                 borderBottomLeftRadius: '4px',
-                bottom: '0px',
-                right: '0px'
+                bottom: 0,
+                right: 0
             },
             '& .up-notification-progress-bar': {
                 width: '100%',
@@ -135,7 +135,7 @@ export const getStyles = (props: UpNotificationProps): string => {
         style(progressBar(props)),
         style({
             width: '100%',
-            padding: toRem(8),
+            padding: props.title ? `${toRem(28)} ${toRem(8)}` : toRem(8),
             borderRadius: '4px',
             boxSizing: 'border-box',
             minHeight: toRem(100),

@@ -4,6 +4,9 @@ import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import UpLoadingIndicator from '../LoadingIndicator';
 import { style } from 'typestyle';
+import UpBox from '../../Containers/Box';
+import UpLine from '../../Display/Ligne';
+import { UpHeading } from '../../..';
 
 export default {
     title: 'Components/Display/UpNotification',
@@ -21,72 +24,105 @@ const wrapperBoxesStyle = style({
 
 export const General =
     () => (
-        <div className={wrapperBoxesStyle}>
-            <UpNotification intent="info">
+        <UpBox
+            alignItems={'normal'}
+            className={wrapperBoxesStyle}
+        >
+            <UpNotification intent='warning'>
+                <UpLine>Votre connexion se termine dans 10 minutes !</UpLine>
+            </UpNotification>
+
+            <UpNotification intent='success'>
+                <UpLine>Votre opération a été enregistré avec succès !</UpLine>
+            </UpNotification>
+
+            <UpNotification intent='danger'>
+                <UpLine>Une erreur est survenue dans le traitement de votre demande !</UpLine>
+            </UpNotification>
+
+            <UpNotification intent='error'>
+                <UpLine>Une erreur est survenue dans le traitement de votre demande !</UpLine>
+            </UpNotification>
+
+            <UpNotification intent='default'>
+                <UpLine>Bonjour !</UpLine>
+            </UpNotification>
+
+            <UpNotification intent='light'>
+                <UpLine>Hello !</UpLine>
+            </UpNotification>
+
+            <UpNotification intent='info'>
                 <UpLoadingIndicator
                     isLoading={true}
                     displayMode={'inline'}
                 />
             </UpNotification>
-
-            <UpNotification
-                intent="success"
-                durationBeforeClosing={6}
-            >
-                <p>Votre opération a été enregistré avec succès !</p>
-            </UpNotification>
-
-            <UpNotification
-                intent="danger"
-                durationBeforeClosing={8}
-            >
-                <p>Une erreur est survenue dans le traitement de votre demande !</p>
-            </UpNotification>
-
-            <UpNotification
-                intent="error"
-                onCloseClick={() => { console.log('icon Clicked') }}
-            >
-                <p>Une erreur est survenue dans le traitement de votre demande !</p>
-            </UpNotification>
-
-            <UpNotification intent="warning">
-                <p>Votre connexion se termine dans 10 minutes !</p>
-            </UpNotification>
-
-            <UpNotification intent="default" >
-                <p>Bonjour !</p>
-            </UpNotification>
-        </div>
+        </UpBox>
     );
 
-export const ActivationClose =
+export const DismissableNotification =
     () => (
         <UpNotification
+            intent='primary'
             dismissable={true}
-            intent="success"
+            onCloseClick={() => alert('icon Clicked, Notification is closing')}
         >
-            <UpLoadingIndicator
-                isLoading={true}
-                displayMode={'inline'}
-            />
+            <UpLine>Votre opération a été enregistré avec succès !</UpLine>
+        </UpNotification>
+    );
+
+export const AutoDismissableNotification =
+    () => (
+        <UpNotification
+            intent='success'
+            dismissable={true}
+            durationBeforeClosing={8}
+        >
+            <UpLine>Votre opération a été enregistré avec succès !</UpLine>
+        </UpNotification>
+    );
+
+export const WithTitle =
+    () => (
+        <UpNotification
+            intent='warning'
+            title={'UpNotification Title'}
+            className={style({
+                $nest: {
+                    '& h2': {
+                        color: '#fff'
+                    }
+                }
+            })}
+        >
+            <UpLine>Votre opération a été enregistré avec succès !</UpLine>
+        </UpNotification>
+    );
+
+export const WithBigIcon =
+    () => (
+        <UpNotification
+            intent='success'
+            iconSize={40}
+        >
+            <UpLine>Votre opération a été enregistré avec succès !</UpLine>
         </UpNotification>
     );
 
 export const ShowInModal =
     () => (
         <UpNotification
-            title={"Erreur"}
-            dismissable={true}
-            displayMode={"modal"}
-            intent="danger"
+            title={'Erreur'}
+            displayMode={'modal'}
+            intent='danger'
         >
             <p>Un problème est survenu !!</p>
         </UpNotification>
     );
 
 ShowInModal.decorators = [(ShowInModal) => (
-    <div style={{ height: "250px" }}>
+    <div style={{ height: '250px' }}>
         <ShowInModal />
     </div>
 )];
@@ -94,11 +130,10 @@ ShowInModal.decorators = [(ShowInModal) => (
 export const ShowInText =
     () => (
         <UpNotification
-            dismissable={true}
-            displayMode={"text"}
-            intent="danger"
+            displayMode={'text'}
+            intent='danger'
         >
-            <p>Un problème est survenu !!</p>
+            <UpLine>Un problème est survenu !!</UpLine>
         </UpNotification>
     );
 
