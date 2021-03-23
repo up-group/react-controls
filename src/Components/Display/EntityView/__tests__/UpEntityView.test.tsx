@@ -1,11 +1,17 @@
 import * as React from 'react';
-import { cleanup, render } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import UpEntityView from '../UpEntityView';
 import { ThemeProvider as UpThemeProvider } from '../../../../Common/theming/ThemeProvider';
 import UpDefaultTheme from '../../../../Common/theming';
 
-const whithTheme = (component) => <UpThemeProvider theme={UpDefaultTheme}>{component}</UpThemeProvider>;
+const whithTheme = (component) => (
+    <UpThemeProvider
+        theme={UpDefaultTheme}
+    >
+        {component}
+    </UpThemeProvider>
+);
 const renderComponent = component => render(whithTheme(component));
 
 const informations = [
@@ -46,7 +52,7 @@ describe('Tests for UpEntityView', () => {
         expect(container.querySelector('.up-icon-wrapper')).toBeInTheDocument();
     });
 
-    it('should render all informations', () => {
+    it('should render expected informations', () => {
         const { container } = renderComponent(
             <UpEntityView
                 title={'Informations'}
@@ -59,7 +65,7 @@ describe('Tests for UpEntityView', () => {
     });
 
     it('should render key informations in bold', () => {
-        const { getByText } = renderComponent(
+        renderComponent(
             <UpEntityView
                 title={'Informations'}
                 icon={'cadhoc-check'}
@@ -67,8 +73,8 @@ describe('Tests for UpEntityView', () => {
             />
         );
 
-        expect(getByText('Code Client :').nodeName).toBe('B');
-        expect(getByText('CLT23232323').nodeName).toBe('DIV');
-        expect(getByText('Code Client :').parentNode).toContainHTML('<div class="up-entity-view-content"><b>Code Client : </b>CLT23232323</div>');
+        expect(screen.getByText('Code Client :').nodeName).toBe('B');
+        expect(screen.getByText('CLT23232323').nodeName).toBe('DIV');
+        expect(screen.getByText('Code Client :').parentNode).toContainHTML('<div class="up-entity-view-content"><b>Code Client : </b>CLT23232323</div>');
     });
 });
