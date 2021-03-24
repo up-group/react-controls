@@ -6,7 +6,8 @@ import UpLoadingIndicator from '../LoadingIndicator';
 import { style } from 'typestyle';
 import UpBox from '../../Containers/Box';
 import UpLine from '../../Display/Ligne';
-import { UpHeading } from '../../..';
+import { UpButton, UpHeading } from '../../..';
+import { useEffect, useRef } from 'react';
 
 export default {
     title: 'Components/Display/UpNotification',
@@ -21,6 +22,21 @@ const wrapperBoxesStyle = style({
         },
     },
 });
+
+const useShowButton =
+    () => {
+        const [key, setKey] = React.useState(0);
+
+        const Button = (
+            <UpButton
+                intent={'primary'}
+                onClick={() => setKey(key + 1)}>
+                Show Notification
+            </UpButton>
+        );
+
+        return [key, Button];
+    };
 
 export const General =
     () => (
@@ -73,15 +89,26 @@ export const DismissableNotification =
     );
 
 export const AutoDismissableNotification =
-    () => (
-        <UpNotification
-            intent='success'
-            dismissable={true}
-            durationBeforeClosing={8}
-        >
-            <UpLine>Votre opération a été enregistré avec succès !</UpLine>
-        </UpNotification>
-    );
+    () => {
+        const [key, Button] = useShowButton();
+        
+        return (
+            <>
+                {Button}
+                <UpNotification
+                    key={key as number}
+                    intent='success'
+                    dismissable={true}
+                    durationBeforeClosing={8}
+                    className={style({
+                        marginTop: '20px'
+                    })}
+                >
+                    <UpLine>Votre opération a été enregistré avec succès !</UpLine>
+                </UpNotification>
+            </>
+        )
+    };
 
 export const WithTitle =
     () => (
