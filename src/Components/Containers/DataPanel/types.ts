@@ -28,7 +28,9 @@ export interface TitleFormatter {
 };
 
 export interface UpDataPanelProps {
+    /** Columns Panel */
     columns: Array<Column>;
+    /** Data Panel */
     data: Array<any>;
     /** To hide field if it is empty */
     showOnlyNotEmptyValue?: boolean;

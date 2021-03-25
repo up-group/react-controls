@@ -29,7 +29,7 @@ const data = [
         third_label: ' second value 3',
         fourth_label: 'second Value 4',
         fifth_label: 'second value 5',
-        sixth_label: 'second value6',
+        sixth_label: 'second value 6',
     }
 ];
 
@@ -69,7 +69,7 @@ const titleFormatter = {
     format: (data) => (
         <span
             style={{
-                color: data['first_label'] == "value 1" ? 'orange' : 'red',
+                color: data['first_label'] == 'value 1' ? 'orange' : 'red',
                 fontWeight: 'bold',
                 marginLeft: '4px'
             }}>
@@ -78,14 +78,13 @@ const titleFormatter = {
     )
 };
 
-export const DisplayRowMode =
+export const RowDisplayMode =
     () => (
         <UpDataPanel
             data={data}
             columns={columns}
             title={{ general: 'Gestion technique', specific: titleFormatter }}
-            showOnlyNotEmptyValue={true}
-            displayMode="row"
+            displayMode='row'
             className={style({
                 $nest: {
                     '&.panel-container': {
@@ -103,13 +102,12 @@ export const DisplayRowMode =
         />
     );
 
-export const DisplayColumnMode =
+export const ColumnDisplayMode =
     () => (
         <UpDataPanel
             data={data}
             columns={columns}
-            showOnlyNotEmptyValue={boolean('showOnlyNotEmptyValue', false)}
-            displayMode="column"
+            displayMode='column'
             className={style({
                 $nest: {
                     '&.panel-container': {
@@ -120,7 +118,24 @@ export const DisplayColumnMode =
         />
     );
 
-export const DisplayColumnModeWithFormatter =
+export const HideEmptyColumns =
+    () => (
+        <UpDataPanel
+            data={data}
+            columns={columns}
+            displayMode='column'
+            showOnlyNotEmptyValue={true}
+            className={style({
+                $nest: {
+                    '&.panel-container': {
+                        marginTop: '25px'
+                    }
+                }
+            })}
+        />
+    );
+
+export const ColumnModeWithFormatter =
     () => {
         const formatter = {
             format: (item, column) => (
@@ -138,8 +153,8 @@ export const DisplayColumnModeWithFormatter =
                 columns={columns.map((e, i) =>
                     i === 0 ? { ...e, formatter } : { ...e }
                 )}
-                showOnlyNotEmptyValue={boolean('showOnlyNotEmptyValue', true)}
-                displayMode="column"
+                showOnlyNotEmptyValue={true}
+                displayMode='column'
                 className={style({
                     $nest: {
                         '&.panel-container': {
@@ -151,7 +166,9 @@ export const DisplayColumnModeWithFormatter =
         );
     };
 
-export const DisplayRowModeWithTitleFormatter =
+ColumnModeWithFormatter.storyName = 'Display Columns In Column Mode Display With Formatter';
+
+export const RowModeWithTitleFormatter =
     () => {
         const secondformatter = {
             format: (item, column) => (
@@ -166,14 +183,14 @@ export const DisplayRowModeWithTitleFormatter =
                             }
                         }
                     })}
-                    intent="success"
+                    intent='success'
                 />
             )
         };
         const thirdformatter = {
             format: (item, column) => (
                 <UpBadge
-                    text=""
+                    text=''
                     className={style({
                         $nest: {
                             '&.up-badge': {
@@ -183,7 +200,7 @@ export const DisplayRowModeWithTitleFormatter =
                             }
                         }
                     })}
-                    intent="success"
+                    intent='success'
                     rounded
                 />
             )
@@ -201,11 +218,11 @@ export const DisplayRowModeWithTitleFormatter =
                                 : { ...e }
                 )}
                 title={{
-                    general: "Gestion Technique",
+                    general: 'Gestion Technique',
                     specific: titleFormatter,
                 }}
                 showOnlyNotEmptyValue={true}
-                displayMode="row"
+                displayMode='row'
                 className={style({
                     $nest: {
                         '&.panel-container': {
@@ -224,16 +241,18 @@ export const DisplayRowModeWithTitleFormatter =
         );
     };
 
-export const AddCustomClassNameToColumnOfPanel =
+RowModeWithTitleFormatter.storyName = 'Display Columns In Row Mode Display With Title Formatter';
+
+export const CustomClassColumn =
     () => (
         <UpDataPanel
-            data={data}
+            data={[data[0]]}
             columns={columns}
-            showOnlyNotEmptyValue={boolean('showOnlyNotEmptyValue', false)}
-            displayMode="column"
+            displayMode='column'
             getColumnCustomClassName={(field) => {
-                if (field === "seventh_label") return style({ marginLeft:'auto', background: 'orange' });
+                if (field === 'seventh_label') return style({ marginLeft: 'auto', background: 'orange' });
             }}
         />
     );
- 
+
+CustomClassColumn.storyName = 'Add Custom ClassName To A Specific Column Of Panel';
