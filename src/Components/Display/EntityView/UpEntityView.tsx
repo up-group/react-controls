@@ -15,11 +15,11 @@ const UpEntityView = (props: UpEntityViewProps & WithThemeProps & UpEntityViewSt
     } = props;
 
     return (
-        <div className={classNames("up-entity-view", getStyles())}>
-            <div className={classNames("up-entity-view-title")}>
+        <div className={classNames('up-entity-view', getStyles())}>
+            <div className={classNames('up-entity-view-title')}>
                 {title}
             </div>
-            <UpBox flexDirection={"row"}>
+            <UpBox flexDirection={'row'}>
                 {icon &&
                     <SvgIcon
                         iconName={icon}
@@ -27,13 +27,12 @@ const UpEntityView = (props: UpEntityViewProps & WithThemeProps & UpEntityViewSt
                     />
                 }
                 <div>
-                    {informations.map((item) => {
-                        return (
-                            <div className={classNames("up-entity-view-content")}>
-                                <b>{`${item.key} : `}</b>{item.value}
-                            </div>
-                        )
-                    })}
+                    {informations.map((item) => (
+                        <div key={item.key} className={classNames('up-entity-view-content')}>
+                            <b>{`${item.key} : `}</b>{item.value}
+                        </div>
+                    )
+                    )}
                 </div>
             </UpBox>
         </div>
