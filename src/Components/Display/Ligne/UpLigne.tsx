@@ -6,13 +6,19 @@ import { WithThemeProps } from '../../../Common/theming';
 import { UpLigneProps } from './types';
 
 const UpLigne: React.FunctionComponent<UpLigneProps & WithThemeProps> = (props) => {
-    const { dataFor, className, children, theme, ...others } = props;
+    const {
+        dataFor,
+        className,
+        children,
+        theme,
+        ...others
+    } = props;
     let tooltipProps = {};
 
     if (dataFor) {
         tooltipProps = {
-            "data-tip": "tooltip",
-            "data-for": dataFor
+            'data-tip': 'tooltip',
+            'data-for': dataFor
         }
     }
 
