@@ -17,7 +17,7 @@ describe('Tests for UpPanel', () => {
         expect(screen.getByText('UpParagraph Content').nodeName).toBe('P');
     });
 
-    it('should add default UpParagraph className', () => {
+    it('should add default className', () => {
         render(
             <UpParagraph>
                 UpParagraph Content
@@ -27,7 +27,7 @@ describe('Tests for UpPanel', () => {
         expect(screen.getByText('UpParagraph Content').classList.length).toBe(1);
     });
 
-    it('should add className by default', () => {
+    it('should pass className through props', () => {
         render(
             <UpParagraph
                 className={style({
