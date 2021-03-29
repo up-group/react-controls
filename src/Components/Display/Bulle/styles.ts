@@ -25,7 +25,7 @@ export const BulleStyle = (props: UpBulleProps) => style({
 );
 
 export const IconStyle = style({
-    color: 'white',
+    color: '#ffff',
 });
 
 const IconifiedValue: NestedCSSProperties = {
@@ -42,7 +42,7 @@ const HiddenMessage: NestedCSSProperties = {
 
 export const ValueStyle = style({
     marginLeft: toRem(12),
-    color: 'white',
+    color: '#ffff',
     fontSize: toRem(24),
     fontWeight: 500,
 },
@@ -51,9 +51,9 @@ export const ValueStyle = style({
 
 export const MessageStyle = style({
     margin: `0 0 0 ${toRem(12)}`,
-    color: 'white',
+    color: '#ffff',
     opacity: 1,
-    animation: `${fadeInAnimation} 2s`,
+    ...(fadeInAnimation(2)),
 },
     media(DeviceSmartphones, HiddenMessage),
     media(DeviceSmallSmartphones, HiddenMessage)
@@ -61,5 +61,5 @@ export const MessageStyle = style({
 
 export const ChildrenStyle = style({
     margin: toRem(5),
-    color: 'white',
+    color: '#ffff',
 });
