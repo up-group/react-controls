@@ -21,6 +21,6 @@ UpParagraph.defaultProps = {
     margin: 'small',
     paragraphSize: 'small',
     color: '#000'
-}
+};
 
 export default UpParagraph;

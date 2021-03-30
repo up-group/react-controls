@@ -17,16 +17,16 @@ export interface MarginSizeMap {
 };
 
 export interface UpParagraphProps {
-    /** To set Text color*/
+    /** To set text color */
     color?: string;
-    /** To set the horizontal alignment of Paragraph Element*/
+    /** To set the horizontal alignment of text */
     textAlign?: TextAlign;
-    /** To set Text Size*/
+    /** To set text size */
     paragraphSize?: ParagraphSize;
-    /** To Specify Text Margin*/
+    /** To Specify Text Margin */
     margin?: Margin;
-    /** To add customized className*/
+    /** To add className for text customization style */
     className?: string;
-    /** Paragraph content*/
+    /** To provide content */
     children?: string | JSX.Element | Array<React.ReactNode>;
 };
