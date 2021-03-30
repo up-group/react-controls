@@ -1,9 +1,9 @@
 export interface UpLigneProps {
-    /** To specify color text*/
+    /** To specify color of the text */
     color?: string;
-    /** To define horizontal alignment of the element*/
+    /** To set the horizontal alignment of the text */
     textAlign?: string;
-    /** To add class, style customization*/
+    /** To add className for text customization style */
     className?: string;
     /** To add Tooltip*/
     dataFor?: string;

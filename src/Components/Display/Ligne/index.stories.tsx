@@ -1,7 +1,7 @@
 import * as React from 'react';
 import UpLigne, { UpLigne as UpLigneComponent } from './UpLigne';
 import { getRootContainer } from '../../../Common/stories';
-import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
 import UpTooltip from '../../Display/Tooltip';
 import { style } from 'typestyle';
 
