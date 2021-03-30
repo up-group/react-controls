@@ -1,14 +1,14 @@
 import { IconName } from '../../../Common/theming/icons';
 
 export interface UpBulleProps {
-    /** To set Background Bulle*/
+    /** To set Background effects for UpBulle */
     backgroundImage: string;
-    /** Message content*/
+    /** To provide content */
     message: string;
-    /** To add illustration icon*/
+    /** To add illustration icon */
     icon: IconName;
-    /** To add illustration number*/
+    /** To add illustration number */
     value: number;
-    /** To add customized className*/
+    /** To add className for customization style*/
     className?: string;
 };
