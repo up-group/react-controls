@@ -31,7 +31,7 @@ export const WithKnowMore =
       cookieValue="authorised"
       closeButtonLabel="Accepter"
       cookiesConsentMessage="Des cookies strictement nécessaires à la délivrance du service peuvent être installés lors de votre navigation sur ce site. Nous n'utilisons pas de cookies publicitaires ou à des fins marketing."
-      moreDetailsPage="test"
+      moreDetailsPage="https://groupe.up.coop/fr/donnees-personnelles"
       knowMoreLabel="En savoir plus"
     >
       <div>
