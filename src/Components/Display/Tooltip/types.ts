@@ -5,19 +5,19 @@ export type Placement = 'top' | 'right' | 'bottom' | 'left';
 export type Effect = 'float' | 'solid';
 
 export interface Tooltip {
-    /** Tooltip content */
+    /** To provide content */
     content: JSX.Element | string;
-    /** To specify Tooltip placement */
+    /** To specify Tooltip position */
     place?: Placement;
     /** To specify Tooltip appearance */
     type?: IntentType;
-    /** To specify behaviour of tooltip */
+    /** To specify behaviour of tooltip, e.g : fixed tooltip ... */
     effect?: Effect;
     /** To Display Tooltip text on multiple lines, support \<br>, \<br /> */
     multiline?: boolean;
     /** To allow HTML in the tooltip */
     html?: boolean;
-    /** Tooltip Title */
+    /** To provide title */
     title?: JSX.Element | string;
     /** Delay hiding the tooltip */
     delayHide?: number;
