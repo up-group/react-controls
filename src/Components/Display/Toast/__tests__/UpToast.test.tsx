@@ -64,7 +64,7 @@ describe('Tests for UpToast', () => {
         expect(container.querySelector('.up-toast-body').childElementCount).toBe(0);
     });
 
-    it('should render content in UpNotification component if message property is provided', () => {
+    it('should render message if it is provided', () => {
         renderComponent(
             <UpToast
                 message={'operation is executed successfully'}
@@ -76,7 +76,7 @@ describe('Tests for UpToast', () => {
         expect(element).toHaveClass('up-notification-message');
     });
 
-    it('should render expected content in UpNotification component if it is passed as children', () => {
+    it('should render expected message if it is passed as children', () => {
         const { container } = renderComponent(
             <UpToast>
                 <p>

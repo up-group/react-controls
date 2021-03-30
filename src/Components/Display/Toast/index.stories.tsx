@@ -1,12 +1,11 @@
 import * as React from 'react';
 import UpDefaultTheme from '../../../Common/theming';
 import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider';
-import { withKnobs, text, number } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
 import UpToast, { UpToast as UpToastComponent } from './UpToast';
 import UpButton from '../../Inputs/Button/UpButton';
 import { getRootContainer } from '../../../Common/stories';
 import UpLigne from '../../Display/Ligne';
-import { IntentType } from 'theming/types';
 
 export default {
     title: 'Components/Display/UpToast',
@@ -113,7 +112,7 @@ export const OnCloseCallBack =
         );
     };
 
-OnCloseCallBack.storyName = 'Call OnClose CallBack';
+OnCloseCallBack.storyName = 'Call OnClose CallBack When UpToast Closed';
 
 export const MultiLines =
     () => {
