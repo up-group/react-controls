@@ -1,11 +1,10 @@
-import * as React from "react";
-import { Component } from "react";
-import { withTheme, WithThemeProps } from "../../../Common/theming";
-import { UpBox } from "../../..";
+import * as React from 'react';
+import { withTheme, WithThemeProps } from '../../../Common/theming';
+import { UpBox } from '../../..';
 import * as classNames from 'classnames';
-import { verticalAlignStyle } from "./styles";
-import { getStyles } from "./styles";
-import { UpVerticalTimelineProps, UpVerticalTimelineState } from "./types";
+import { verticalAlignStyle } from './styles';
+import { getStyles } from './styles';
+import { UpVerticalTimelineProps } from './types';
 
 export const dotOrderStep = (active?: boolean, first?: boolean) => (
     <>
@@ -28,46 +27,45 @@ export const dotOrderStep = (active?: boolean, first?: boolean) => (
     </>
 );
 
-class UpVerticalTimeline extends Component<UpVerticalTimelineProps & WithThemeProps, UpVerticalTimelineState> {
+const UpVerticalTimeline: React.FunctionComponent<UpVerticalTimelineProps & WithThemeProps> = props => {
 
-    constructor(props: UpVerticalTimelineProps) {
-        super(props);
-    }
+    const {
+        title,
+        timeline
+    } = props;
 
-    render() {
-        return (
-            <div
-                className={classNames(
-                    'up-vertical-align',
-                    getStyles()
-                )}>
-                <div className={classNames('up-vertical-align-title')}>{this.props.title}</div>
-                <UpBox flexDirection={'row'}>
-                    <UpBox>
-                        {this.props.timeline.map(
-                            (item, iter) =>
-                                item && (
-                                    <UpBox key={iter}>{dotOrderStep(item.isAchieved, iter == 0)}</UpBox>
-                                )
-                        )}
-                    </UpBox>
-                    <UpBox>
-                        {this.props.timeline.map(
-                            (item, iter) => (
-                                <div key={iter} className={classNames('up-vertical-align-content')}>
-                                    <div className={classNames('up-vertical-align-content-title')}>
-                                        {item.status}
-                                    </div>
-                                    <div className={classNames('up-vertical-align-content-subtitle')}>
-                                        {item.date}
-                                    </div>
-                                </div>
-                            ))}
-                    </UpBox>
-                </UpBox>
+    return (
+        <div className={classNames('up-vertical-align', getStyles())}>
+            <div className={classNames('up-vertical-align-title')}>
+                {title}
             </div>
-        );
-    }
+            <UpBox flexDirection={'row'}>
+                <UpBox>
+                    {timeline.map(
+                        (item, iter) =>
+                            item && (
+                                <UpBox key={iter}>
+                                    {dotOrderStep(item.isAchieved, iter == 0)}
+                                </UpBox>
+                            )
+                    )}
+                </UpBox>
+                <UpBox>
+                    {timeline.map(
+                        (item, iter) => (
+                            <div key={iter} className={classNames('up-vertical-align-content')}>
+                                <div className={classNames('up-vertical-align-content-title')}>
+                                    {item.status}
+                                </div>
+                                <div className={classNames('up-vertical-align-content-subtitle')}>
+                                    {item.date}
+                                </div>
+                            </div>
+                        ))}
+                </UpBox>
+            </UpBox>
+        </div>
+    );
 };
 
 export { UpVerticalTimeline };
