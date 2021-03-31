@@ -1,3 +1,16 @@
+#  ReactControls (version: 0.2.135)
+## Main Changes
+  - UpSvgIcon : Add new illustrations :
+  "search-glass",
+  "card-orange-add",
+  "card-orange-trans"
+
+  - UpSvgIcon : Add new mentors :
+   "sorry-orange"
+
+#  ReactControls (version: 0.2.134)
+## Main Changes
+  - UpDataPanel : Add props to define custom class on column
 #  ReactControls (version: 0.2.133)
 ## Bug Fixes
   - UpDataGrid : Fix selected row after fetching data

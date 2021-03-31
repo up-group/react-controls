@@ -9,6 +9,8 @@ import UpInput from '../Input';
 import UpBox from '../../Containers/Box';
 /// HOOKS
 import useSafeSate from '../../../Common/hooks/useSafeState';
+import { Align } from 'Components/Display/Label/types';
+import { useArgTypes } from '@storybook/api';
 
 export default {
     title: 'Components/Inputs/UpCheckbox',
@@ -38,8 +40,10 @@ interface iCbOption {
 };
 
 export const General =
-    () => {
+    (props : {text : string, label : string, inline: boolean, textAlign : Align} ) => {
         const [selectedValue, setValue] = React.useState(null);
+
+        // const { argTypes } = useArgTypes();
 
         const onChange = (event, value) => {
             setValue(value);
@@ -47,15 +51,15 @@ export const General =
 
         return (
             <UpLabel
-                textAlign={"left"}
-                inline={true}
+                textAlign={props.textAlign}
+                inline={props.inline}
                 width="medium"
-                text="Activation de ... :"
+                text={props.label}
             >
                 <UpCheckbox options={
                     [
                         {
-                            text: "",
+                            text: props.text,
                             name: "Option1",
                             onOptionChange: onChange,
                             value: true,
@@ -66,6 +70,13 @@ export const General =
             </UpLabel>
         )
     };
+
+General.args = { 
+    label: 'Activation de ... :', 
+    text: '',
+    inline: true,
+    textAlign : 'left'
+};
 
 export const MultipleCheckboxes =
     () => {

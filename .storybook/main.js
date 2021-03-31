@@ -13,7 +13,7 @@ module.exports = {
         },
       },
     },
-    '@storybook/addon-knobs',
-    '@storybook/addon-storysource'
+    '@storybook/addon-storysource',
+    '@storybook/addon-controls'
   ],
 };

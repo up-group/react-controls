@@ -3,7 +3,6 @@ import UpPanel from '../../Containers/Panel';
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import UpEntityView, { UpEntityView as UpEntityViewComponent } from './UpEntityView';
-import { UpBox } from '../../..';
 
 export default {
     title: 'Components/Display/UpEntityView',
@@ -14,7 +13,7 @@ export default {
 export const General =
     () => (
         <UpPanel type={'primary'}>
-            Exemple d'utilisation du composant entity view.
+            Example of using the entity view component.
             <UpEntityView
                 title={'Informations'}
                 icon={'cadhoc-check'}

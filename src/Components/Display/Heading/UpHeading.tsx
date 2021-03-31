@@ -3,22 +3,29 @@ import * as classnames from 'classnames';
 import { getStyles } from './styles';
 import { UpHeadingProps } from './types';
 
-export default class UpHeading extends React.Component<UpHeadingProps> {
+const UpHeading: React.FunctionComponent<UpHeadingProps> = props => {
+    const {
+        children,
+        tag,
+        className
+    } = props;
 
-    public static defaultProps: UpHeadingProps = {
-        color: 'rgba(0, 0, 0, 0.87)',
-        textAlign: 'center',
-        tag: 'h1',
-        truncate: false,
-        upcase: false,
-        margin: 'medium',
-    };
-
-    public render() {
-        const { children, tag, className } = this.props;
-
-        return React.createElement(tag, {
-            className: classnames(getStyles(this.props), className),
-        }, children);
-    }
+    return (
+        React.createElement(
+            tag,
+            { className: classnames(getStyles(props), className) },
+            children
+        )
+    )
 };
+
+UpHeading.defaultProps = {
+    color: 'rgba(0, 0, 0, 0.87)',
+    textAlign: 'center',
+    tag: 'h1',
+    truncate: false,
+    upcase: false,
+    margin: 'medium',
+};
+
+export default UpHeading;

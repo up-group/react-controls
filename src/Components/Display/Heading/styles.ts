@@ -4,6 +4,7 @@ import remStringFromPX from '../../../Common/utils';
 import { NestedCSSProperties } from 'typestyle/lib/types';
 import { Tag, UpHeadingProps } from './types';
 import { style } from 'typestyle';
+import { toRem } from '../../../Common/theming/utils';
 
 const sizeMap = {
     h1: 32, // 24 pt

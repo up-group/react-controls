@@ -46,12 +46,13 @@ const UpInformation: React.FunctionComponent<UpInformationProps> = (props) => {
                 flexDirection={'row'}
                 justifyContent={'space-between'}
                 alignItems={'flex-start'}
-                className={classnames('up-information-content-wrapper', style({ ...contentWrapperStyle, ...getCustomStyle('contentWrapper', props) }))}>
+                className={classnames('up-information-content-wrapper', style({ ...getCustomStyle('contentWrapper', props), ...contentWrapperStyle }))}>
                 {content && (
                     <UpBox
                         flexDirection={'column'}
                         justifyContent={'flex-start'}
-                        alignItems={'flex-start'}>
+                        alignItems={'flex-start'}
+                    >
                         <p className={contentClassStyle}>{content}</p>
                         {children && (
                             <p className={contentClassStyle}>{children}</p>
@@ -77,5 +78,9 @@ const UpInformation: React.FunctionComponent<UpInformationProps> = (props) => {
         </UpBox>
     );
 };
+
+UpInformation.defaultProps = {
+    iconSize: 40
+}
 
 export default UpInformation;

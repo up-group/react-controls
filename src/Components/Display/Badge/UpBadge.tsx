@@ -13,10 +13,16 @@ const UpBadge: React.FunctionComponent<UpBadgeProps & WithThemeProps> = props =>
         onClick,
         onMouseEnter,
         onMouseLeave,
-        children } = props
+        children
+    } = props
 
     return (
-        <div onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} className={classnames(getStyle(props), 'up-badge', className)}>
+        <div
+            className={classnames(getStyle(props), 'up-badge', className)}
+            onClick={onClick}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+        >
             {text}
             {children}
         </div>
@@ -29,6 +35,7 @@ UpBadge.defaultProps = {
     background: '#000',
     theme: defaultTheme,
     rounded: false,
+    intent: null
 };
 
 export { UpBadge };

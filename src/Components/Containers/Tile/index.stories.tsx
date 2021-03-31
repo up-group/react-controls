@@ -11,24 +11,30 @@ export default {
 
 export const GeneralUse =
     () => (
-        <UpTile title="UpTile title">Content</UpTile>
-    );
-
-export const ContentWithFooter =
-    () => (
         <UpTile
-            title="UpTile title"
-            footer="This is the footer"
+            title='UpTile title'
         >
             Content
         </UpTile>
     );
 
-export const ContentWithMaxHeight =
+export const WithFooter =
     () => (
         <UpTile
-            title="UpTile title"
-            maxHeight="200"
+            title='UpTile title'
+            footer='This is the footer'
+        >
+            Content
+        </UpTile>
+    );
+
+WithFooter.storyName = 'Show UpTile With Footer';
+
+export const MaxHeightContent =
+    () => (
+        <UpTile
+            title='UpTile title'
+            maxHeight='200'
         >
             <p>Content</p>
             <p>Content</p>
@@ -45,3 +51,5 @@ export const ContentWithMaxHeight =
             <p>Content</p>
         </UpTile>
     );
+
+MaxHeightContent.storyName = 'Add MaxHeight Property To UpTile Body';
