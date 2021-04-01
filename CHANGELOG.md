@@ -1,3 +1,9 @@
+#  ReactControls (version: 0.2.136)
+## Main Changes
+- Add new component UpCookiesConsent
+## Bug Fixes
+- UpDataGrid : Fix auto-hide menu af action if none checkbox selected
+
 #  ReactControls (version: 0.2.135)
 ## Main Changes
   - UpSvgIcon : Add new illustrations :
