@@ -154,7 +154,7 @@ const toggle = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
 
             },
             "&.up-btn svg": {
-                transform: 'rotate(180deg)'
+                transform: !props.disabled ? 'rotate(180deg)' : 'normal'
             },
             "&.up-btn svg, &.up-btn svg path, &.up-btn svg polygon, &.up-btn svg polyline": {
                 fill: `${props.backgroundColor ||
