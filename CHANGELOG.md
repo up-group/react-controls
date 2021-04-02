@@ -1,3 +1,91 @@
+#  ReactControls (version: 0.2.135)
+## Main Changes
+  - UpSvgIcon : Add new illustrations :
+  "search-glass",
+  "card-orange-add",
+  "card-orange-trans"
+
+  - UpSvgIcon : Add new mentors :
+   "sorry-orange"
+
+#  ReactControls (version: 0.2.134)
+## Main Changes
+  - UpDataPanel : Add props to define custom class on column
+#  ReactControls (version: 0.2.133)
+## Bug Fixes
+  - UpDataGrid : Fix selected row after fetching data
+#  ReactControls (version: 0.2.132)
+## Main Changes
+  - UpModal : Fix testable component props
+
+#  ReactControls (version: 0.2.131)
+## Main Changes
+  - UpSvgIcon : Add warning icon
+
+#  ReactControls (version: 0.2.130)
+
+## Main Changes
+  - UpDataGrid : Change status of select all in case only one row can be selected
+
+
+#  ReactControls (version: 0.2.129)
+## Main Changes
+  - UpDataGrid : Change the behaviour for the mode only one row selectable
+  - Storybook : Upgrade to 6.1.17 
+#  ReactControls (version: 0.2.127)
+
+## Bug Fixes
+  - UpSelect : Fix No text message
+
+#  ReactControls (version: 0.2.126)
+
+## Main Changes
+  - UpText : Add max xharacters handling.
+
+#  ReactControls (version: 0.2.125)
+
+## Bug Fixes
+  - UpMenu : onClick on sub menu items
+
+#  ReactControls (version: 0.2.124)
+
+## Bug Fixes
+  - UpMenu : onClick throws error if no children
+
+#  ReactControls (version: 0.2.123)
+
+## Bug Fixes
+  - UpToast : Fix IntentType import
+
+#  ReactControls (version: 0.2.122)
+
+## Main Changes
+  - UpNavTab : Reduce selected item sizing
+
+#  ReactControls (version: 0.2.121)
+
+## Bug Fixes
+  - UpSelect : Fix returnType id in multiple case
+
+#  ReactControls (version: 0.2.120)
+
+## Bug Fixes
+- UpVerticalTimeLine : Fix checkmark alignment 
+
+#  ReactControls (version: 0.2.119)
+
+## Bug Fixes
+- UpDate : Fix height
+
+#  ReactControls (version: 0.2.118)
+## Main Changes
+- UpDataGrid : allow to select only one row
+
+#  ReactControls (version: 0.2.116)
+
+## Bug Fixes
+- UpDataGrid : Fix row clickable
+
 #  ReactControls (version: 0.2.113)
 
 ## Main Changes

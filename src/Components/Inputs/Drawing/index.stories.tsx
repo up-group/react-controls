@@ -1,54 +1,57 @@
-import * as React from 'react'
-import * as update from 'react-addons-update'
-
-import UpDrawing , {CropedShape} from './'
-import Shape from './Shape'
-
+import * as React from 'react';
+import * as update from 'react-addons-update';
+import { CropedShape } from './types';
+import UpDrawing from './';
+import Shape from './Shape';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import { getRootContainer } from '../../../Common/stories';
 import { DATAURL } from './image';
 
+export default {
+    title: 'Components/Inputs/UpDrawing',
+    decorators: [withKnobs, getRootContainer('UpDrawing')],
+    component: UpDrawing
+};
+
 interface SimpleDrawingState {
-    src : string ;
-    shapes? : Array<Shape>;
-    images? : Array<string>;
-}
+    src: string;
+    shapes?: Array<Shape>;
+    images?: Array<string>;
+};
 
 class SimpleDrawing extends React.PureComponent<any, SimpleDrawingState> {
     constructor(props) {
         super(props);
-        this.state = { src : DATAURL, shapes : [], images : []};
+        this.state = { src: DATAURL, shapes: [], images: [] };
     }
 
-    onChange = (value:any, e:any) => {
-        
+    onChange = (value: any, e: any) => { }
+
+    onDelAll = (shapes: Array<any>) => {
+        this.setState({ shapes: [] });
     }
 
-    onDelAll = (shapes:Array<any>) => {
-        this.setState({shapes:[]}) ;
-    }
-
-    onDel = (shape:any) => {
-        var _shapes = [] ;
-        this.state.shapes.map(function(value) {
-            if(value.ref != shape.ref) {
-                _shapes.push(value) ;
+    onDel = (shape: any) => {
+        let _shapes = [];
+        this.state.shapes.map(function (value) {
+            if (value.ref != shape.ref) {
+                _shapes.push(value);
             }
-        }) ;
-        this.setState({shapes:_shapes}) ;
+        });
+        this.setState({ shapes: _shapes });
     }
 
-    onCrop = (cropedShape:CropedShape) => {
+    onCrop = (cropedShape: CropedShape) => {
 
-        var newState = update(this.state, {
+        const newState = update(this.state, {
             //shapes : {$push : [cropedShape.shape]},
-            images : {$push : [cropedShape.dataURL]}
-        }) ;
-        this.setState(newState) ;
+            images: { $push: [cropedShape.dataURL] }
+        });
+        this.setState(newState);
     }
 
-    onRotate = (callback:(result:any) => void) => {
-        
+    onRotate = (callback: (result: any) => void) => {
+
     }
 
     render() {
@@ -57,32 +60,33 @@ class SimpleDrawing extends React.PureComponent<any, SimpleDrawingState> {
                 <h3>Découpage d'une ordonnance</h3>
                 <p>Mise en oeuvre d'une utilisation du composant <code>UpDrawing</code> pour    découper une ordonnance :
                 </p>
-                <UpDrawing key={"Main Drawing"} src={this.state.src} shapes={this.state.shapes} 
+                <UpDrawing key={"Main Drawing"} src={this.state.src} shapes={this.state.shapes}
                     onCrop={this.onCrop}
                     onDel={this.onDel}
                     onDelAll={this.onDelAll}
                     onRotate={this.onRotate}
-                    onChange={(value, event) => {console.log(event);console.log(value)}} />
+                    onChange={(value, event) => { console.log(event); console.log(value) }} />
                 <p>
-                    {this.state.images && this.state.images.map(function(value, index) {
-                        return <UpDrawing displayActions={false} src={value} key={`Drawing_${index}`} />
+                    {this.state.images && this.state.images.map(function (value, index) {
+                        return (
+                            <UpDrawing
+                                displayActions={false}
+                                src={value}
+                                key={`Drawing_${index}`}
+                            />
+                        )
                     })
                     }
                 </p>
             </div>
-            
+
         );
     }
-}
-
-export default { 
-    title: 'Components/Inputs/UpDrawing',
-    decorators : [withKnobs, getRootContainer('UpDrawing')]
 };
 
-export const General = 
-   () => (
-        <div style={{margin:"30px"}}>
-           <SimpleDrawing />
+export const General =
+    () => (
+        <div style={{ margin: "30px" }}>
+            <SimpleDrawing />
         </div>
-  )
+    );

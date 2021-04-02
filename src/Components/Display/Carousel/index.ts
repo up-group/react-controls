@@ -1,2 +1,3 @@
-import UpCarousel from './UpCarousel'
-export default UpCarousel
+import UpCarousel from './UpCarousel';
+
+export default UpCarousel;

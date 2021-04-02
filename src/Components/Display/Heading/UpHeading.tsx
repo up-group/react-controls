@@ -1,37 +1,31 @@
-// Imports
 import * as React from 'react';
 import * as classnames from 'classnames';
-
-import { Margin } from '../Paragraph';
 import { getStyles } from './styles';
-// Exports
-export type Tag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' ;
+import { UpHeadingProps } from './types';
 
-export interface UpHeadingProps {
-  color?: string;
-  textAlign?: string;
-  tag?: Tag;
-  truncate?: boolean;
-  upcase?: boolean;
-  margin?: Margin;
-  className?: string;
-}
+const UpHeading: React.FunctionComponent<UpHeadingProps> = props => {
+    const {
+        children,
+        tag,
+        className
+    } = props;
 
-export default class UpHeading extends React.Component<UpHeadingProps> {
-  
-  public static defaultProps: UpHeadingProps = {
+    return (
+        React.createElement(
+            tag,
+            { className: classnames(getStyles(props), className) },
+            children
+        )
+    )
+};
+
+UpHeading.defaultProps = {
     color: 'rgba(0, 0, 0, 0.87)',
     textAlign: 'center',
     tag: 'h1',
     truncate: false,
     upcase: false,
     margin: 'medium',
-  };
+};
 
-  public render() {
-    const { children, tag, className } = this.props;
-    return React.createElement(tag, {
-      className: classnames(getStyles(this.props), className),
-    }, children) ;
-  }
-}
+export default UpHeading;

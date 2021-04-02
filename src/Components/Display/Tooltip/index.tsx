@@ -1,5 +1,5 @@
-import UpTooltip, { UpTooltipProps, Tooltip } from './UpTooltip'
+import UpTooltip from './UpTooltip';
+import { UpTooltipProps, Tooltip } from './types';
 
-export { UpTooltipProps, Tooltip } ;
-
-export default UpTooltip
+export { UpTooltipProps, Tooltip };
+export default UpTooltip;

@@ -12,8 +12,8 @@ type HTMLElementProps = WithThemeProps & React.DetailedHTMLProps<React.HTMLAttri
 const withTheme = function <P extends object>(WrappedComponent: React.ComponentType<P & any>) {
     return class ComponentWithTheme extends React.Component<P & WithThemeProps> {
         
-        // static displayName = `WithTheme(${getDisplayName(WrappedComponent)})`;
-        static displayName = `${getDisplayName(WrappedComponent)}`;
+        static displayName = `WithTheme(${getDisplayName(WrappedComponent)})`;
+        //static displayName = `${getDisplayName(WrappedComponent)}`;
     
         /* 
             contexTypes is a required static property to declare 

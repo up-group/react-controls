@@ -7,7 +7,7 @@ import { NestedCSSProperties } from 'typestyle/lib/types'
 import { isEmpty } from '../../../Common/utils'
 import { WithThemeProps }  from '../../../Common/theming/withTheme'
 import {IntentType} from "../../../Common/theming/types"
-import { ActionType } from '../../Inputs/Button'
+import { ActionType } from '../../Inputs/Button/types'
 import UpLoadingIndicator from '../../Display/LoadingIndicator'
 
 interface ActionDataGrid {

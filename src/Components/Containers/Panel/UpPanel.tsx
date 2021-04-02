@@ -23,27 +23,34 @@ const UpPanel: React.FunctionComponent<UpPanelProps & WithThemeProps> = props =>
 
     const resolvedIconName = (!iconName && !disableAutoIntentIcon && theme.intentTypeIcons) ? theme.intentTypeIcons[type] : iconName;
 
-    const icon = <UpSvgIcon
-        iconName={resolvedIconName}
-        width={iconSize}
-        height={iconSize}
-        color={(theme && theme.colorMap) ? theme.colorMap[type] : theme.colorMap.defaultDark}
-    />;
+    const icon = (
+        <UpSvgIcon
+            iconName={resolvedIconName}
+            width={iconSize}
+            height={iconSize}
+            color={(theme && theme.colorMap) ? theme.colorMap[type] : theme.colorMap.defaultDark}
+        />
+    );
 
     return (
-        <div className={classnames("up-panel", className, getStyles(props))}>
+        <div className={classnames('up-panel', className, getStyles(props))}>
             {title &&
-                <div className="up-panel_header">{title}</div>
+                <div className='up-panel_header'>{title}</div>
             }
-            <UpGrid className="up-panel_body">
-                <UpRow justify={'center'} align={'middle'}>
+            <UpGrid className='up-panel_body'>
+                <UpRow
+                    justify={'center'}
+                    align={'middle'}
+                >
                     {resolvedIconName &&
-                        <UpCol span={2}>
+                        <UpCol
+                            span={2}
+                        >
                             {icon}
                         </UpCol>
                     }
                     <UpCol span={resolvedIconName ? 22 : 24}>
-                        <div className="up-panel_message">
+                        <div className='up-panel_message'>
                             {message &&
                                 <p>{message}</p>
                             }
@@ -53,7 +60,7 @@ const UpPanel: React.FunctionComponent<UpPanelProps & WithThemeProps> = props =>
                 </UpRow>
             </UpGrid>
             {props.footer &&
-                <div className="up-panel_footer">{footer}</div>
+                <div className='up-panel_footer'>{footer}</div>
             }
         </div>
     );

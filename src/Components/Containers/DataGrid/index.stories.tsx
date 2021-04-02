@@ -115,6 +115,7 @@ export const General =
           isPaginationEnabled={false}
           isSelectionEnabled={false}
           isSortEnabled={false}
+          dataTestId={"UpDataGrid"}
           columns={[
             {
               label: "Col 1",
@@ -948,5 +949,76 @@ export const WithCustomStyle = () => {
       />
     </div>
   );
-    }
+}
 
+  export const onlyOneRowCanBeSelected = 
+    () => (
+      <UpDataGrid
+        onlyOneRowCanBeSelected={true}
+        onSelectionChange={(a, b) => {
+          console.log(a, b);
+        }}
+        footerProps={{
+          isPaginationEnabled: true
+        }}
+        paginationPosition="top"
+        paginationProps={{
+          paginationNavigationSeparator: '...',
+          previousLabel: 'Précédent',
+          nextLabel: 'Suivant',
+          renderResultMessage: (
+            theme: UpThemeInterface,
+            from: number,
+            to: number,
+            total: number
+          ) => (
+            <span
+              className={classnames(
+                'up-pagination-result-message',
+                paginationCounterStyle({ theme })
+              )}>
+              {total == 0 && <span>Aucun résultat</span>}
+              {total != 0 && (
+                <span>
+                  <span>R&eacute;sultat(s)&nbsp;</span>
+                  <span>{from}</span>
+                  <span> &agrave; </span>
+                  <span>{to}</span>
+                  <span> sur </span>
+                  <span>{total}</span>
+                </span>
+              )}
+            </span>
+          )
+        }}
+        isPaginationEnabled={true}
+        isSelectionEnabled={true}
+        textAlignCells={'center'}
+        columns={[
+          {
+            label: "Col 1",
+            field: "c1",
+            isSortable: true,
+          },
+          {
+            label: "Col 2",
+            field: "c2",
+            isSortable: true,
+            tooltip: {title: 'title',content: 'content content content '}
+          },
+          {
+            label: "Col 3",
+            field: "c3",
+            isSortable: true
+          },
+          {
+            label: "Col 4",
+            field: "c4",
+            isSortable: true
+          }
+        ]}
+        dataSource={{
+          query: "https://jsonplaceholder.typicode.com/posts"
+        }}
+      />
+    )

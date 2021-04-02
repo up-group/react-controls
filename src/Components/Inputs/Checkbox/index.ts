@@ -1,3 +1,3 @@
-import UpCheckBox from './UpCheckBox'
+import UpCheckBox from './UpCheckBox';
 
 export default UpCheckBox;

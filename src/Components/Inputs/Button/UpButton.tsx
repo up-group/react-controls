@@ -1,46 +1,54 @@
 // Imports
-import * as React from 'react'
-import * as classnames from 'classnames'
-import { UpButtonProps, Action, Separator, IconPosition, UpButtonStyledProps } from './'
-import UpTooltip, { Tooltip } from '../../Display/Tooltip'
-import defaultTheme from '../../../Common/theming'
-import { isString } from '../../../Common/utils'
-
-import { style } from "typestyle"
+import * as React from 'react';
+import * as classnames from 'classnames';
+import { UpButtonProps, Action, Separator, IconPosition, UpButtonStyledProps, UpButtonState } from './types';
+import UpTooltip, { Tooltip } from '../../Display/Tooltip';
+import defaultTheme from '../../../Common/theming';
+import { isString } from '../../../Common/utils';
+import { style } from 'typestyle';
 import UpLoadingIndicator from '../../Display/LoadingIndicator';
 import { Dictionary } from '../../../Common/utils/types';
 import { ActionType } from '../../../Common/actions';
 import { IconName, IconNames } from '../../../Common/theming/icons';
 import UpSvgIcon from '../../Display/SvgIcon';
 import { getStyles, getWrapperStyles } from './styles';
-
 import withTheme from '../../../Common/theming/withTheme';
 import { NestedCSSProperties } from 'typestyle/lib/types';
 
-export interface UpButtonState {
-    isToggled?: boolean;
-    isProcessing?:boolean;
-    prevProps?:UpButtonProps;
-}
-
 export var ActionIconMap = new Dictionary<ActionType, IconName>([]);
+
 for (var i = 0; i < IconNames.length; i++) {
     var iconName = IconNames[i];
     ActionIconMap.set(iconName, iconName);
-}
+};
 
 export class BaseButton extends React.Component<UpButtonStyledProps> {
-    
+
     render() {
-        let { children, className, onClick, dataFor, width, iconPosition, isProcessing, type, disabled,dropDown, name } = this.props;
+        const {
+            children,
+            className,
+            onClick,
+            dataFor,
+            width,
+            iconPosition,
+            isProcessing,
+            type,
+            disabled,
+            dropDown,
+            name
+        } = this.props;
+
         const actionType = this.props.actionType;
+
         let iconName: IconName = null;
-        if (actionType && ActionIconMap.containsKey(actionType)) {           
+        if (actionType && ActionIconMap.containsKey(actionType)) {
             iconName = ActionIconMap.get(actionType);
         } else if (this.props.iconName) {
             iconName = this.props.iconName;
         }
-        let icon = null ;
+
+        let icon = null;
         if (iconName) {
             // Our SVG Icon viewbx is 24*24 units
             icon = <UpSvgIcon iconName={iconName}
@@ -50,7 +58,7 @@ export class BaseButton extends React.Component<UpButtonStyledProps> {
                 color={this.props.color} />;
         }
 
-        var tooltipProps = {};
+        let tooltipProps = {};
         if (dataFor) {
             tooltipProps = {
                 "data-tip": "tooltip",
@@ -59,43 +67,43 @@ export class BaseButton extends React.Component<UpButtonStyledProps> {
         }
 
         const MainButton = (
-          <button
-            type={type}
-            name={name}
-            disabled={disabled}
-            onClick={onClick}
-            className={classnames(
-              'up-btn',
-              dropDown !== 'none' && children
-                ? 'up-btn-drop-down'
-                : '',
-              getStyles(this.props),
-              className
-            )}
-            {...tooltipProps}>
-            {icon != null && isProcessing !== true && icon}
-            {width !== 'icon' && children}
-            {isProcessing === true && (
-              <div className="up-loading-indicator-wrapper">
-                <UpLoadingIndicator
-                  displayMode={'inline'}
-                  isLoading={true}
-                  width={width === 'icon' ? 24 : 48}
-                  height={width === 'icon' ? 24 : 48}
-                />
-              </div>
-            )}
-          </button>
+            <button
+                type={type}
+                name={name}
+                disabled={disabled}
+                onClick={onClick}
+                className={classnames(
+                    'up-btn',
+                    dropDown !== 'none' && children
+                        ? 'up-btn-drop-down'
+                        : '',
+                    getStyles(this.props),
+                    className
+                )}
+                {...tooltipProps}>
+                {icon != null && isProcessing !== true && icon}
+                {width !== 'icon' && children}
+                {isProcessing === true && (
+                    <div className="up-loading-indicator-wrapper">
+                        <UpLoadingIndicator
+                            displayMode={'inline'}
+                            isLoading={true}
+                            width={width === 'icon' ? 24 : 48}
+                            height={width === 'icon' ? 24 : 48}
+                        />
+                    </div>
+                )}
+            </button>
         );
 
-        return MainButton ;
+        return MainButton;
     }
-}
+};
 
 // Exports
 class UpButton extends React.Component<UpButtonProps, UpButtonState> {
 
-    dropDownContainer : HTMLDivElement ;
+    dropDownContainer: HTMLDivElement;
 
     constructor(props) {
         super(props);
@@ -123,7 +131,13 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         onClick: (e: React.MouseEvent<HTMLButtonElement>) => { },
         theme: defaultTheme,
         type: 'button',
-        name:'button'
+        name: 'button'
+    };
+
+    componentWillReceiveProps(nextProps, prevState) {
+        if (nextProps.disabled) {
+            this.setState({ isToggled: false });
+        }
     };
 
     private handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
@@ -131,17 +145,17 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
             const returnValue = this.props.onClick(e);
 
             if (Promise.resolve(returnValue) === returnValue) {
-              this.setState({ isProcessing: true }, () => {
-                returnValue.then((result) => {
-                  this.setState({ isProcessing: false });
-                  return result ;
-                }).catch((errors) => {
-                  this.setState({ isProcessing: false });
-                  return errors ;
+                this.setState({ isProcessing: true }, () => {
+                    returnValue.then((result) => {
+                        this.setState({ isProcessing: false });
+                        return result;
+                    }).catch((errors) => {
+                        this.setState({ isProcessing: false });
+                        return errors;
+                    });
                 });
-              });
             }
-        
+
             if (this.props.dropDown !== 'none') {
                 this.setState({ isToggled: !this.state.isToggled });
             }
@@ -165,18 +179,18 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         return (element as Separator).size !== undefined;
     }
 
-    isControlled = (propName: string) => this.props[propName] !== undefined; 
+    isControlled = (propName: string) => this.props[propName] !== undefined;
 
-    getValue = (propName: string) => this.isControlled(propName) ? this.props[propName] : this.state[propName] ;
+    getValue = (propName: string) => this.isControlled(propName) ? this.props[propName] : this.state[propName];
 
-    disabled = () => this.props.disabled || this.state.isProcessing ;
-    
+    disabled = () => this.props.disabled || this.state.isProcessing;
+
     setReference = (e) => {
         this.dropDownContainer = e;
     }
 
     getDropDownStyles = () => {
-        const styles : NestedCSSProperties = {
+        const styles: NestedCSSProperties = {
             display: this.getValue('isToggled') ? "block" : "none",
             position: 'unset',
             zIndex: 1000,
@@ -191,8 +205,8 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
             transition: this.getValue('isToggled') ? "height 2s ease-in" : "height 2s ease-out",
             transform: this.getValue('isToggled') ? "scaleY(1)" : "scaleY(0)",
             transformOrigin: "top",
-            border:`1px solid ${this.props.theme.colorMap[this.props.intent]}`,
-            borderTop:0,
+            border: `1px solid ${this.props.theme.colorMap[this.props.intent]}`,
+            borderTop: 0,
             borderRadius: '0px 0px 4px 4px'
         };
 
@@ -203,18 +217,18 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         } else if (this.dropDownContainer && this.dropDownContainer.offsetLeft <= 10) {
             styles.left = '10px'
         }
-        return styles ;
+        return styles;
     };
 
     render() {
         const { name, children, tooltip, onClick, iconName, iconPosition, disabled, isProcessing, ...others } = this.props;
-        
+
         const buttonElement = style({
             cursor: "pointer",
             padding: "8px",
             color: this.props.theme.colorMap.grey1,
             $nest: {
-                '&:hover' : {
+                '&:hover': {
                     color: this.props.theme.colorMap[this.props.intent]
                 }
             }
@@ -242,7 +256,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         } else if (position === 'none' && icon == null) {
             position = 'left';
         }
-        
+
         let _tooltip: Tooltip = null;
         if (tooltip) {
             if (isString(tooltip)) {
@@ -254,26 +268,26 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
             }
         }
 
-        let handleClickProps = this.props.type === 'submit' ? {} : { onClick : this.handleClick } ;
-        
+        let handleClickProps = this.props.type === 'submit' ? {} : { onClick: this.handleClick };
+
         const RenderButton = renderButtonProps => {
-          return <div style={{ display: 'flex' }}>
-            <BaseButton
-              name={name}
-              iconName={icon as IconName}
-              iconPosition={position}
-              isToggled={this.getValue('isToggled')}
-              {...handleClickProps}
-              isProcessing={this.getValue('isProcessing')}
-              disabled={this.disabled()}
-              {...others} {...renderButtonProps}>
-              {children != null && (
-                <span className={'up-btn-label'}>{children}</span>
-              )}
-              
-            </BaseButton>
-            {!children && this.props.dropDown != 'none' && this.getValue('isToggled') && <span className="up-btn-missing-border" />}
-          </div>;
+            return <div style={{ display: 'flex' }}>
+                <BaseButton
+                    name={name}
+                    iconName={icon as IconName}
+                    iconPosition={position}
+                    isToggled={this.getValue('isToggled')}
+                    {...handleClickProps}
+                    isProcessing={this.getValue('isProcessing')}
+                    disabled={this.disabled()}
+                    {...others} {...renderButtonProps}>
+                    {children != null && (
+                        <span className={'up-btn-label'}>{children}</span>
+                    )}
+
+                </BaseButton>
+                {!children && this.props.dropDown != 'none' && this.getValue('isToggled') && <span className="up-btn-missing-border" />}
+            </div>;
         };
 
         return (
@@ -286,7 +300,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
                             <RenderButton />
                         </UpTooltip>
                 }
-                {this.props.dropDown != 'none' && this.getValue('isToggled') &&
+                {!this.props.disabled && this.props.dropDown != 'none' && this.getValue('isToggled') &&
                     <ul tabIndex={0} className={style(this.getDropDownStyles())}>
                         {
                             this.props.extraActions.map((v, i) => {
@@ -306,4 +320,6 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
     }
 }
 
+
+export { UpButton };
 export default withTheme<UpButtonProps>(UpButton);

@@ -66,11 +66,11 @@ const ModalWrapper: React.FunctionComponent<UpModalWrapperProps> = props => {
 }
 
 export default {
-    title: 'Components|Containers/UpModal',
+    title: 'Components/Containers/UpModal',
     decorators: [
         getRootContainer('UpModal'),
         (ModalWrapper) => (
-            <div style={{ height: "100vh" }}>
+            <div style={{ height: '100vh' }}>
                 <UpThemeProvider theme={UpDefaultTheme}>
                     <ModalWrapper />
                 </UpThemeProvider>
@@ -80,11 +80,11 @@ export default {
     component: UpModalComponent,
 };
 
-const htmlFrame = `<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd"> <html> <head> <title>Mon titre</title> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="UTF-8"> </head> <body text="#000000" vlink="#990000" alink="#990000" link="#990000" bgcolor="#ffffff"><p>Mon message</p></body></html>`;
+const htmlFrame = `<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.0 Transitional//EN' 'http://www.w3.org/TR/REC-html40/loose.dtd'> <html> <head> <title>Mon titre</title> <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'> <meta charset='UTF-8'> </head> <body text='#000000' vlink='#990000' alink='#990000' link='#990000' bgcolor='#ffffff'><p>Mon message</p></body></html>`;
 
 export const GeneralUse =
     () => (
-        <ModalWrapper screenPosition={'center'}/>
+        <ModalWrapper />
     );
 
 export const WithFooter =
@@ -113,31 +113,38 @@ export const WithHtmlContent =
 export const showFromTop =
     () => (
         <ModalWrapper
-            displayMode="fromTop"
-            modalWidth="full"
+            displayMode='fromTop'
+            modalWidth='full'
         />
     );
 
 export const showFromBottom =
     () => (
         <ModalWrapper
-            displayMode="fromBottom"
-            modalWidth="full"
+            displayMode='fromBottom'
+            modalWidth='full'
         />
     );
 
 export const showFromRight =
     () => (
         <ModalWrapper
-            displayMode="fromRight"
-            modalWidth="half"
+            displayMode='fromRight'
+            modalWidth='half'
         />
     );
 
 export const showFromLeft =
     () => (
         <ModalWrapper
-            displayMode="fromLeft"
-            modalWidth="half"
+            displayMode='fromLeft'
+            modalWidth='half'
+        />
+    );
+
+export const displayInCenter =
+    () => (
+        <ModalWrapper
+            screenPosition='center'
         />
     );

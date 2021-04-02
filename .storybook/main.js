@@ -5,8 +5,15 @@ module.exports = {
     '../src/Components/Display/**/*.stories.tsx',
   ],
   addons: [
-    '@storybook/addon-docs',
-    '@storybook/addon-knobs',
-    '@storybook/addon-storysource'
+    {
+      name: '@storybook/addon-docs',
+      options: {
+        sourceLoaderOptions: {
+          injectStoryParameters: false,
+        },
+      },
+    },
+    '@storybook/addon-storysource',
+    '@storybook/addon-controls'
   ],
 };

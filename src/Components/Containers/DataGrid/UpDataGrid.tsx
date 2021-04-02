@@ -1,13 +1,11 @@
 import * as $ from "jquery";
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import * as classnames from "classnames";
 import { style } from "typestyle";
 
 import axios from "axios";
 
 import UpPagination, { UpPaginationProps } from "./UpPagination";
-import UpUpDataGridToolbar from "./UpDataGridToolbar";
 import UpDataGridRowHeader from "./UpDataGridRowHeader";
 import UpDataGridRow, { ActionFactory } from "./UpDataGridRow";
 import { ICellFormatter } from "./UpDefaultCellFormatter";
@@ -23,6 +21,7 @@ import UpDataGridHeader, { UpDataGridHeaderProps } from './UpDataGridHeader';
 
 import * as _ from 'lodash';
 import { UpDataGridProvider } from './UpDataGridContext'
+import { getTestableComponentProps, TestableComponentProps } from "../../../Common/utils/types";
 
 const WrapperDataGridStyle = style({
   position: "relative"
@@ -80,6 +79,10 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
         fontSize: '14px',
         color: props.theme.colorMap.grey1
       },
+      "& .up-data-grid-header-cell.up-data-grid-header-cell-selection" : {
+        width:"32px",
+        paddingLeft : "8px"
+      },
       "& .up-data-grid-header-cell.up-data-grid-header-cell-selection .up-checkbox": {
         marginLeft: "1px"
       },
@@ -96,6 +99,9 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
           }
         }
         //width:'100%'
+      },
+      '& .up-data-grid-cell .up-checkbox .up-control-indicator::before' : {
+        left: '0px'
       },
       "& .up-data-grid-cell .up-checkbox": {
         marginTop: '0 !important',
@@ -207,7 +213,7 @@ export interface exportCsv {
   textButton?: string;
 }
 
-export interface UpDataGridProps {
+export interface UpDataGridProps extends TestableComponentProps {
   className?: string;
   columns: Array<Column>;
   rowActions?: ActionFactory<any> | Array<Action>;
@@ -247,6 +253,7 @@ export interface UpDataGridProps {
   footerProps?: Partial<UpDataGridFooterProps>;
   headerProps?: Partial<UpDataGridHeaderProps>;
   displayRowActionsWithinCell?: boolean;
+  onlyOneRowCanBeSelected?: boolean;
 }
 
 export interface UpDataGridState {
@@ -482,13 +489,22 @@ class UpDataGrid extends React.Component<
       });
   }
 
-  selectedRowsDataWithAlsoTheCurrentOne = (currentRoww: Row) => {
-    const idRow = currentRoww.value.id;
-    const isRowSelected = currentRoww.isSelected;
-    return isRowSelected ? [...this.state.selectedData, currentRoww] : this.state.selectedData.filter(data => data.value.id !== idRow);
+  selectedRowsDataWithAlsoTheCurrentOne = (currentRow: Row) => {
+    const idRow = currentRow.value.id;
+    const isRowSelected = currentRow.isSelected;
+
+    //if onlyOneRowCanBeSelected, return just one element
+    if (this.props.onlyOneRowCanBeSelected) {
+      return isRowSelected ? [currentRow] : [];
+    }
+
+    return isRowSelected ? [...this.state.selectedData, currentRow] : this.state.selectedData.filter(data => data.value.id !== idRow);
   }
 
   isAllRowsSelectedWithAlsoTheCurrentOne = (currentRow: Row) => {
+    //Do not check if the "all rows checkbox" must be selected in the case of a single selectable field.
+    if(this.props.onlyOneRowCanBeSelected) return;
+
     const dataLength = this.state.data.length;
     const selectedRowsLength = this.selectedRowsDataWithAlsoTheCurrentOne(currentRow).length;
     // Check if all rows that are selected, belong to the same page (pagination)
@@ -499,6 +515,12 @@ class UpDataGrid extends React.Component<
 
   onRowSelectionChange = (rowKey: number, currentRow: Row) => {
     const rows = this.state.data;
+
+    //Disable all items before choosing another
+    if (this.props.onlyOneRowCanBeSelected) {
+      rows.forEach(item => item.isSelected = false);
+    }
+
     rows[rowKey] = currentRow;
 
     this.setState({
@@ -686,6 +708,7 @@ class UpDataGrid extends React.Component<
             onClick={this.props.onRowClick}
             getRowCustomClassName={this.props.getRowCustomClassName}
             isRowClickable={this.props.isRowClickable}
+            isOneRowSelected= {this.props.onlyOneRowCanBeSelected && this.state.selectedData.length === 1 ? true : false }
           />
         );
       }
@@ -724,13 +747,16 @@ class UpDataGrid extends React.Component<
             ...action,
             onClick: rows => action.onClick(rows)
               .then(data => {
-                this.setState({ selectedData: [] })
+                //Empty the selectData and uncheck all checkboxes if the request is successful
+                this.setState({ 
+                  selectedData: [], 
+                  data: this.state.data.map(row =>  ({...row, isSelected : false})) 
+                })
               })
           }))
         }
       })
     }
-
     return (
       <UpDataGridProvider value={providerValues} >
         <div
@@ -739,6 +765,7 @@ class UpDataGrid extends React.Component<
             WrapperDataGridStyle,
             this.props.className
           )}
+          {...getTestableComponentProps(this.props)}
         >
           <UpDataGridHeader
             {...this.props.headerProps}
@@ -773,6 +800,7 @@ class UpDataGrid extends React.Component<
                   displayRowActionsWithinCell={this.props.displayRowActionsWithinCell}
                   textAlignCells={this.props.textAlignCells}
                   isAllDataChecked={this.state.allRowSelected}
+                  isSelectionAllEnabled= {!this.props.onlyOneRowCanBeSelected}
                 />
                 <tbody className={classnames("up-data-grid-body", oddEvenStyle)}>
                   {rows}

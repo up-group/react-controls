@@ -6,9 +6,13 @@ export interface Tab {
 };
 
 export interface UpNavTabProps {
+    /** Tabs  */
     tabs: Tab[],
+    /** To change the load mode : display tabs in the same or in different containers */
     loadType?: LoadType;
+    /** Callback to execute on tab changing  */
     onSelectedTabChanged?: (selectTabKey: number, tab: Tab) => void;
+    /** Tab to display when first displaying */
     selectedTabOnLoad?: number
 };
 

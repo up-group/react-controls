@@ -9,6 +9,7 @@ import UpDataGrid from './Containers/DataGrid/UpDataGrid';
 import UpModal from './Containers/Modal/UpModal';
 import UpTile from './Containers/Tile/UpTile';
 import UpNavTab from './Containers/NavTab/UpNavTab';
+import UpCookiesConsent from './Containers/CookiesConsent/UpCookiesConsent';
 
 import UpBadge from './Display/Badge';
 import UpCarousel from './Display/Carousel';
@@ -125,4 +126,5 @@ export {
     UpEntityView,
     UpVerticalTimeline,
     UpCookiesConsentManager,
+    UpCookiesConsent,
 };

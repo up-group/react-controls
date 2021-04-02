@@ -1,67 +1,42 @@
 import * as React from 'react';
 import * as classnames from 'classnames';
-
-import {style} from 'typestyle';
-import {IntentType} from '../../../Common/theming/types'
+import { UpBadgeProps } from './types';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import defaultTheme from '../../../Common/theming';
+import { getStyle } from './styles';
 
-export type WidthSize = 'auto' | 'small' | 'medium' | 'large' | 'xlarge' ;
-export type Align = 'left' | 'right'  ;
+const UpBadge: React.FunctionComponent<UpBadgeProps & WithThemeProps> = props => {
 
-export interface UpBadgeProps {
-  text:string;
-  color?:string;
-  background?:string;
-  rounded?:boolean;
-  intent?: IntentType;
-  className?:string;
-  onClick?: (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-  onMouseLeave?: (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-  onMouseEnter?: (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-};
- 
-const UpBadge : React.FunctionComponent<UpBadgeProps & WithThemeProps> = function({
-  text = '',
-  color = '#FFF',
-  background = "black",
-  rounded = false,
-  theme = defaultTheme,
-  intent,
-  className,
-  onClick,
-  onMouseEnter,
-  onMouseLeave,
-  children})  {
-
-    var fontColor = color ;
-    var backgroundColor = background ;
-
-    if(intent !== null) {
-        fontColor = theme.colorMap[`${intent}Fg`] ;
-        backgroundColor = theme.colorMap[`${intent}`] ;
-    }
-
-    const BadgeStyle = style({
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderRadius: (rounded===true)? '18px':'6px',
-      padding:'0',
-      fontWeight : 700,
-      color: fontColor,
-      width:(rounded===true)? '32px':'auto',
-      height:(rounded===true)? '32px':'auto',
-      backgroundColor:backgroundColor
-    }) ;
+    const {
+        text,
+        className,
+        onClick,
+        onMouseEnter,
+        onMouseLeave,
+        children
+    } = props
 
     return (
-      <div onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} className={classnames(BadgeStyle, 'up-badge', className)}>
-        {text}
-        {children}
-      </div>
-    ) ;
-}
+        <div
+            className={classnames(getStyle(props), 'up-badge', className)}
+            onClick={onClick}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+        >
+            {text}
+            {children}
+        </div>
+    );
+};
 
-export default withTheme<UpBadgeProps>(UpBadge)
+UpBadge.defaultProps = {
+    text: '',
+    color: '#FFF',
+    background: '#000',
+    theme: defaultTheme,
+    rounded: false,
+    intent: null
+};
+
+export { UpBadge };
+export default withTheme<UpBadgeProps>(UpBadge);

@@ -25,7 +25,12 @@ export type IllustrationName =
   | "maestro"
   | "user-zen"
   | "idea"
-  | "404";
+  | "404"
+  | "search-avatar"
+  | "search-avatar-sad"
+  | "search-glass"
+  | "card-orange-add"
+  | "card-orange-trans";
 
 export const IllustrationNames: IllustrationName[] = [
   "logo-up",
@@ -54,7 +59,12 @@ export const IllustrationNames: IllustrationName[] = [
   "maestro",
   "user-zen",
   "idea",
-  "404"
+  "404",
+  "search-avatar",
+  "search-avatar-sad",
+  "search-glass",
+  "card-orange-add",
+  "card-orange-trans"
 ];
 
 let dictionary = {};

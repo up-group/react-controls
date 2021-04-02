@@ -23,7 +23,7 @@ export const TabHeads = (props: TabHeadsProps) => {
         <AnimateSharedLayout>
             <ul
                 className={classnames('up-nav-tab', style({ ...tabHeader }))}
-                style={{ transform: "translateZ(0)" }}
+                style={{ transform: 'translateZ(0)' }}
             >
                 {heads}
             </ul>
