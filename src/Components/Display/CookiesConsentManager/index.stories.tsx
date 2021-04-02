@@ -1,14 +1,14 @@
 import * as React from 'react';
 
-import UpCookieConsent from './';
+import UpCookiesConsentManager from './';
 
 import { getRootContainer } from '../../../Common/stories';
-import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
-import { TranslationsProps } from 'Components/Display/CookieConsent/UpCookieConsent';
+import { withKnobs } from '@storybook/addon-knobs';
+import { TranslationsProps } from 'Components/Display/CookiesConsentManager/UpCookiesConsentManager';
 
 export default {
-  title: 'Components/Display/UpCookieConsent',
-  decorators : [withKnobs, getRootContainer('UpCookieConsent')],
+  title: 'Components/Display/UpCookiesConsentManager',
+  decorators : [withKnobs, getRootContainer('UpCookiesConsentManager')],
 };
 
 const defaultTranslation: TranslationsProps = {
@@ -68,9 +68,9 @@ const multipleApps = [
   },
 ];
 export const Default = () => (
-      <UpCookieConsent apps={apps} privacyPolicyUrl="https://groupe.up.coop/fr/donnees-personnelles" translations={defaultTranslation} />
+      <UpCookiesConsentManager apps={apps} privacyPolicyUrl="https://groupe.up.coop/fr/donnees-personnelles" translations={defaultTranslation} />
   );
 
 export const MultipleServices = () => (
-    <UpCookieConsent apps={multipleApps} privacyPolicyUrl="https://groupe.up.coop/fr/donnees-personnelles" />
+    <UpCookiesConsentManager apps={multipleApps} privacyPolicyUrl="https://groupe.up.coop/fr/donnees-personnelles" />
   );

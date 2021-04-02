@@ -1,5 +1,4 @@
 import * as React from 'react';
-import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import * as Klaro from 'klaro/dist/klaro-no-css';
 import './style.css';
 
@@ -63,9 +62,11 @@ export interface UpCookieConsentProps {
   apps: AppProps[]
   privacyPolicyUrl: string
   translations?: TranslationsProps
+  cookieName?: string,
+  cookieExpiresAfterDays?: number,
 }
 
-const UpCookieConsent : React.FunctionComponent<UpCookieConsentProps & WithThemeProps> = function ({ apps, privacyPolicyUrl, translations })  {
+const UpCookiesConsentManager : React.FunctionComponent<UpCookieConsentProps> = function ({ apps, privacyPolicyUrl, translations, cookieExpiresAfterDays = 120, cookieName = 'gdprConsent' })  {
   const defaultTranslations = {
     fr: {
       acceptAll: 'Tout accepter',
@@ -101,8 +102,8 @@ const UpCookieConsent : React.FunctionComponent<UpCookieConsentProps & WithTheme
   const config = {
     lang: 'fr',
     elementID: 'up-consent',
-    cookieName: 'gdprConsent',
-    cookieExpiresAfterDays: 120,
+    cookieName,
+    cookieExpiresAfterDays,
     disablePoweredBy: true,
     htmlTexts: true,
     acceptAll: true,
@@ -117,4 +118,4 @@ const UpCookieConsent : React.FunctionComponent<UpCookieConsentProps & WithTheme
   return null;
 };
 
-export default withTheme<UpCookieConsentProps>(UpCookieConsent);
+export default UpCookiesConsentManager;

@@ -32,7 +32,7 @@ import UpMenu from './Display/Menu/UpMenu';
 import UpMenuOH from './Display/Menu/UpMenuOH';
 import UpBulle from './Display/Bulle/UpBulle';
 import UpTreeView from './Display/TreeView/UpTreeView';
-import UpCookieConsent from './Display/CookieConsent/UpCookieConsent';
+import UpCookiesConsentManager from './Display/CookiesConsentManager/UpCookiesConsentManager';
 import UpButton from './Inputs/Button/UpButton';
 import UpInput from './Inputs/Input';
 import UpSelect from './Inputs/Select';
@@ -124,5 +124,5 @@ export {
     UpDataPanel,
     UpEntityView,
     UpVerticalTimeline,
-    UpCookieConsent,
+    UpCookiesConsentManager,
 };
