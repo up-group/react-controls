@@ -1,8 +1,8 @@
-import * as React from "react";
-import UpPanel from "../../Containers/Panel";
-import { getRootContainer } from "../../../Common/stories";
-import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
-import UpVerticalTimeline, { UpVerticalTimeline as UpVerticalTimelineComponent } from "./UpVerticalTimeline";
+import * as React from 'react';
+import UpPanel from '../../Containers/Panel';
+import { getRootContainer } from '../../../Common/stories';
+import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+import UpVerticalTimeline, { UpVerticalTimeline as UpVerticalTimelineComponent } from './UpVerticalTimeline';
 
 export default {
     title: 'Components/Display/UpVerticalTimeline',
@@ -12,9 +12,8 @@ export default {
 
 export const General =
     () => (
-        <UpPanel type={"primary"}>
-            Exemple d'utilisation du composant
-            vertical timeline.
+        <UpPanel type={'primary'}>
+            Exemple d'utilisation du composant vertical timeline.
             <UpVerticalTimeline
                 title={'Suivi de commandes'}
                 timeline={
