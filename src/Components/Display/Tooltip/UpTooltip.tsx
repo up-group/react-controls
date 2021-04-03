@@ -3,7 +3,6 @@ import { Component } from 'react';
 import * as classNames from 'classnames';
 import * as ReactTooltip from 'react-tooltip';
 import { generateId, isFunction, isEmpty } from '../../../Common/utils';
-import { style } from 'typestyle';
 import { getStyles, upToolTipWrapper } from './styles';
 import UpDefaultTheme, { withTheme, WithThemeProps } from '../../../Common/theming';
 import { UpTooltipProps } from './types';
@@ -25,30 +24,35 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps> {
 
     constructor(props: UpTooltipProps) {
         super(props);
-    }
+    };
 
     getContent = () => {
         return (
             <div className='up-tooltip-content'>
                 {this.props.title != null &&
-                    <p className='up-tooltip-header'>
+                    <div className='up-tooltip-header'>
                         {this.props.title}
-                    </p>
+                    </div>
                 }
-                <p className='up-tooltip-body'>
+                <div className='up-tooltip-body'>
                     {this.props.content}
-                </p>
+                </div>
             </div>
         )
-    }
+    };
 
     render() {
-        const { id, children, content, ...others } = this.props;
-        let tooltipId = id;
+        const {
+            id,
+            children,
+            content,
+            ...others
+        } = this.props;
 
+        let tooltipId = id;
         if (!tooltipId) {
             tooltipId = generateId();
-        }
+        };
 
         let childrenWithProps = null;
         let childrenAsFunction = null;
@@ -67,7 +71,7 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps> {
                     return child;
                 }
             });
-        }
+        };
 
         const renderChildren = (
             <>
@@ -81,7 +85,7 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps> {
 
         if (isEmpty(content)) {
             return renderChildren;
-        }
+        };
 
         return (
             <div className={upToolTipWrapper}>
@@ -97,8 +101,8 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps> {
                 />
             </div>
         );
-    }
-}
+    };
+};
 
 export { UpTooltip };
 export default withTheme<UpTooltipProps>(UpTooltip);
