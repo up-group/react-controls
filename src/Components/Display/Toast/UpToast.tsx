@@ -55,7 +55,7 @@ const UpToast = (props: UpToastProps & WithThemeProps) => {
 
     if (!isVisible) {
         return null;
-    }
+    };
 
     return (
         <div
@@ -72,7 +72,8 @@ const UpToast = (props: UpToastProps & WithThemeProps) => {
                     </UpHeading>
                     <div
                         className={classnames(buttonStyle, 'up-toast-close')}
-                        onClick={handleClose}>
+                        onClick={handleClose}
+                    >
                         <UpSvgIcon
                             width={'15px'}
                             height={'15px'}
