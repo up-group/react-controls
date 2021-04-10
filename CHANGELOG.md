@@ -1,3 +1,7 @@
+#  ReactControls (version: 0.2.137)
+## Bug Fixes
+- UpSelect : Remove the transparent background when hovering selected option, to prevent a text below from appearing
+
 #  ReactControls (version: 0.2.136)
 ## Main Changes
 - Add new component UpCookiesConsent
