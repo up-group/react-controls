@@ -54,6 +54,10 @@ export const getLabelStyle = props => {
             },
             '& .up-select-label-valued': {
                 ...floatLabel
+            },
+            '& div[id^="react-select-"]:hover': {
+                //To remove the transparent background when hovering selected option, to prevent a text below from appearing
+                backgroundColor: '#F2F2F2 !important'
             }
         }
     })
