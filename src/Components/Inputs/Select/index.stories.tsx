@@ -4,8 +4,6 @@ import UpSelect from './'
 
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
-
-import { mdx } from '@storybook/addon-docs/blocks';
 import { UpGrid, UpRow, UpCol } from '../../Containers/Grid';
 
 import { Formik } from "formik";
@@ -15,19 +13,14 @@ import UpInput from '../Input';
 import UpBox from '../../Containers/Box';
 import UpPassword from '../Password';
 
-export default { 
+export default {
     title: 'Components|Inputs/UpSelect',
     decorators : [withKnobs,getRootContainer('UpSelect')],
-    parameters: {
-        docs: {
-            page: mdx
-        }
-    }
 };
 
 const UserCreationForm = props => {
     const [onBlurState, setOnBlurState] = React.useState({} as any);
-  
+
     const HelpMessageDisplayStyle = error =>
       style({
         position: "relative",
@@ -41,7 +34,7 @@ const UserCreationForm = props => {
           }
         }
       });
-  
+
     const {
       values,
       touched,
@@ -53,7 +46,7 @@ const UserCreationForm = props => {
       handleSubmit,
       handleReset
     } = props;
-  
+
     return (
       <form onSubmit={handleSubmit}>
           <UpGrid className={'up-form'} gutter={16}>
@@ -172,23 +165,23 @@ const UserCreationForm = props => {
 
 const SimpleSelect = (props) => {
     let [selectedValue, setValue] = React.useState({ id: 1, text: 'M.' });
-    
+
     const onChange = (event, value) => {
         setValue(value);
     }
 
     return (
-        <UpSelect 
-            tooltip={"Civilité"} 
-            isRequired={true} 
-            default={null} 
+        <UpSelect
+            tooltip={"Civilité"}
+            isRequired={true}
+            default={null}
             data={[
                 { id: 1, text: 'M.' },
                 { id: 2, text: 'Mme' },
                 { id: 3, text: 'Mlle' },
                 { id: 4, text: 'Dr' },
             ]}
-            value={selectedValue} 
+            value={selectedValue}
             onChange={onChange} />
 )}
 
@@ -244,7 +237,7 @@ export const IsRequired =
                     ]}
                     onChange={console.log} />
             </div>
-    ); 
+    );
 
 export const ReturnId =
     () => (
