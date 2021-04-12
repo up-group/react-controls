@@ -171,6 +171,7 @@
     "inputmask-core": "^2.2.0",
     "interact.js": "^1.2.8",
     "jquery": "^3.4.1",
+    "klaro": "^0.7.18",
     "lodash": "^4.17.15",
     "moment": "^2.22.2",
     "normalize.css": "^4.1.1",
