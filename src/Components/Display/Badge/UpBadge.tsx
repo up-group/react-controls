@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 
 import {style} from 'typestyle';
 import {IntentType} from '../../../Common/theming/types'
@@ -16,9 +16,9 @@ export interface UpBadgeProps {
   rounded?:boolean;
   intent?: IntentType;
 };
- 
+
 class UpBadge extends React.Component<UpBadgeProps & WithThemeProps> {
-  
+
   public static defaultProps: UpBadgeProps & WithThemeProps = {
     text:'',
     color:'#FFF',
@@ -32,7 +32,7 @@ class UpBadge extends React.Component<UpBadgeProps & WithThemeProps> {
   }
 
   render() {
-      const {children, text, color, background, ...others} = this.props ; 
+      const {children, text, color, background, ...others} = this.props ;
       var fontColor = color ;
       var backgroundColor = background ;
 

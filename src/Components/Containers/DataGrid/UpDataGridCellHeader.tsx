@@ -5,7 +5,7 @@ import UpSvgIcon from "../../Display/SvgIcon";
 import UpDefaultTheme from "../../../Common/theming";
 import { SortDirection, Column } from "./UpDataGrid";
 
-import * as classnames from "classnames";
+import classnames from "classnames";
 import UpBox from "../Box";
 import { style } from "typestyle";
 

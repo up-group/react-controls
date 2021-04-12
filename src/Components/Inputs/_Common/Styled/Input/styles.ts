@@ -4,7 +4,7 @@ import { style } from 'typestyle';
 
 import defaultTheme from '../../../../../Common/theming'
 
-import * as classnames from 'classnames'
+import classnames from 'classnames'
 import { WithThemeProps } from '../../../../../Common/theming/withTheme';
 import { UpInputProps } from 'Components/Inputs/Input/types';
 import { isEmpty } from "../../../../../Common/utils";
@@ -18,7 +18,7 @@ export const HeightLarge = (props) : NestedCSSProperties => {
   }
 }
 
-export const defaultStyles = (props: WithThemeProps) : NestedCSSProperties => { 
+export const defaultStyles = (props: WithThemeProps) : NestedCSSProperties => {
   let styles : NestedCSSProperties = {
     outline: 'none',
     position: 'relative',
@@ -92,12 +92,12 @@ export const statusStyles = (props : StyledProps) => {
 
 
 export const successStyles = (props: StyledProps) => {
-  
+
 };
 
 export const inputStyles = (props: UpInputProps & WithThemeProps) : NestedCSSProperties => {
   return {
-    marginTop: props.floatingLabel ? "14px" : "0px", // TODO : Move this behaviour to a form component 
+    marginTop: props.floatingLabel ? "14px" : "0px", // TODO : Move this behaviour to a form component
     $nest: {
       "& .up-input": {
         ...defaultStyles(props)
@@ -566,7 +566,7 @@ export const inputStyles = (props: UpInputProps & WithThemeProps) : NestedCSSPro
       "& .up-input-group.up-input-search .up-icon-wrapper.clear-icon svg path, & .up-input-group.up-input-focused .up-icon-wrapper.clear-icon svg path": {
         fill: 'transparent'
       },
-      
+
     }
   };
 };

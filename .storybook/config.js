@@ -2,7 +2,7 @@ import { configure, addDecorator, addParameters} from '@storybook/react'
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
 import centered from '@storybook/addon-centered/react';
 
-import UpTheme from './theme' 
+import UpTheme from './theme'
 
 import './default.css'
 
@@ -14,12 +14,12 @@ addParameters({
     showPanel: false,
     panelPosition: 'right',
     storySort: (a, b) => {
-      if (a[0].includes('intro')) 
+      if (a[0].includes('intro'))
       {
         return 1;
       }
-      
-      if (a[0].includes('--general')) 
+
+      if (a[0].includes('--general'))
       {
         return -1;
       }

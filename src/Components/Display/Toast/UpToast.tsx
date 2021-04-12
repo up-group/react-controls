@@ -4,7 +4,7 @@ import { style, keyframes, media } from 'typestyle';
 
 import { color } from 'csx';
 import { NestedCSSProperties } from 'typestyle/lib/types';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import UpHeading from '../Heading';
 import { IntentType, WithThemeProps } from '../../../Common/theming/types';
 import { DeviceSmartphones } from '../../../Common/utils/device';
@@ -14,9 +14,9 @@ import UpNotification from '../Notification';
 import UpSvgIcon from '../SvgIcon';
 
 export const getIntentColor = (intent, theme) => {
-  return { 
-    fg : theme.colorMap[`${intent}Dark`] ||  theme.colorMap.darkGray5, 
-    bg : theme.colorMap[`${intent}Light`] || theme.colorMap.white3 
+  return {
+    fg : theme.colorMap[`${intent}Dark`] ||  theme.colorMap.darkGray5,
+    bg : theme.colorMap[`${intent}Light`] || theme.colorMap.white3
   }
 };
 

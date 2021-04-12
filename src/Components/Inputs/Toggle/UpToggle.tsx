@@ -1,6 +1,6 @@
 // Imports
 import * as React from 'react'
-import * as classNames from 'classnames'
+import classnames from 'classnames'
 
 import {style} from 'typestyle'
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
@@ -111,7 +111,7 @@ const wrapperStyle = (props: UpToggleProps & WithThemeProps) => style({
     },
     ".up-toggle--checked .up-toggle-track-x" : {
       opacity: 0
-    }, 
+    },
     ".up-toggle-thumb" : {
       transition: "all 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0ms",
       position: "absolute",
@@ -290,8 +290,8 @@ class UpToggle extends React.PureComponent<UpToggleProps & WithThemeProps, UpTog
       const checked =
       this.setState({checked : event.target.checked }) ;
     }
-    
-    if(this.props.onChange) 
+
+    if(this.props.onChange)
       this.props.onChange(event, event.target.checked) ;
   }
 
@@ -458,13 +458,13 @@ class UpToggle extends React.PureComponent<UpToggleProps & WithThemeProps, UpTog
 
     return position;
   }
-  
+
   render () {
     const { className, onChange, size, icons: _icons, ...inputProps } = this.props
-    
-    const classes = classNames('up-toggle', {
+
+    const classes = classnames('up-toggle', {
       'up-toggle--checked': this.state.checked,
-      
+
       'up-toggle--disabled': this.props.disabled,
     }, className)
 
@@ -477,7 +477,7 @@ class UpToggle extends React.PureComponent<UpToggleProps & WithThemeProps, UpTog
             borderRadius: this.getTrackBorder()
         },
         "& .up-toggle-thumb" : {
-          width: this.getThumbWidth(), 
+          width: this.getThumbWidth(),
           height: this.getThumbHeight(),
           border: size === 'small' && '1px solid #4D4D4D',
           borderRadius: this.getThumbBorder(),
@@ -496,8 +496,8 @@ class UpToggle extends React.PureComponent<UpToggleProps & WithThemeProps, UpTog
      });
 
     return (
-      <div className={classNames(wrapperStyle(this.props), SizeStyle)}>
-        <div className={classes} 
+      <div className={classnames(wrapperStyle(this.props), SizeStyle)}>
+        <div className={classes}
           onClick={this.handleClick}
           onTouchStart={this.handleTouchStart}
           onTouchMove={this.handleTouchMove}

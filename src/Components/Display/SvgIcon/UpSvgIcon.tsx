@@ -3,7 +3,7 @@ import { style, cssRaw } from 'typestyle';
 import Icons, { IconName } from '../../../Common/theming/icons';
 import Mentors, { MentorName } from "../../../Common/theming/mentors";
 import Illustrations, { IllustrationName } from "../../../Common/theming/illustrations";
-import * as classnames from 'classnames' ;
+import classnames from 'classnames' ;
 import { isString } from '../../../Common/utils';
 import { NestedCSSProperties } from 'typestyle/lib/types';
 
@@ -25,7 +25,7 @@ export interface SvgIconWrapperProps {
 const getIconData = (iconName: string): string => {
   if(Icons[iconName] !== undefined) {
     return Icons[iconName];
-  } 
+  }
   if (Illustrations[iconName] !== undefined) {
     return Illustrations[iconName];
   }
@@ -79,7 +79,7 @@ const UpSvgIcon : React.StatelessComponent<UpSvgIconProps> = ({
 
   const finalHeight = height && !isString(height) ? `${height}px` : height || '20px' ;
   const finalWidth = width && !isString(width) ? `${width}px` : width || '20px' ;
-   
+
   const iconData = iconName ? getIconData(iconName) : iconHtml ? iconHtml : null ;
   let mentorOrIllustrationStyles = null ;
   if (iconName && !isColorMustNotBeOverrided(iconName)) {

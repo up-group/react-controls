@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as classnames from "classnames";
+import classnames from "classnames";
 
 import UpDefaultTheme, { UpThemeInterface } from "../../../Common/theming";
 import { WithThemeProps } from "../../../Common/theming/types";
@@ -11,12 +11,12 @@ import { getRootContainer } from "../../../Common/stories";
 import { withKnobs } from "@storybook/addon-knobs";
 import { style } from "typestyle";
 import { UpParagraph, UpBox, UpHeading, UpCodeViewer,UpButton  } from "../../../Components";
-export default { 
+export default {
   title: 'Components|Containers/UpDataGrid',
   decorators : [withKnobs, getRootContainer('UpDataGrid')]
 };
 
-const simpleDataGrid = 
+const simpleDataGrid =
   `const data = [];
   for (var i = 0; i < 50; i++) {
         data.push({
@@ -104,7 +104,7 @@ export const General =
         borderLeft: '4px solid #F59100',
         padding : '10px',
       })} textAlign={'left'} color={'#111'}>
-        Le composant <code>UpDataGrid</code> fournit un ensemble de fonctionnalités telles la pagination, le tri ou le filtre des données parmi tant d'autres. 
+        Le composant <code>UpDataGrid</code> fournit un ensemble de fonctionnalités telles la pagination, le tri ou le filtre des données parmi tant d'autres.
       </UpParagraph>
       <UpBox className={style({
         margin: '10px'
@@ -151,7 +151,7 @@ export const General =
       </>
     )
 
-export const WithSelection = 
+export const WithSelection =
     () => (
       <UpDataGrid
         onSelectionChange={(a, b) => {
@@ -306,7 +306,7 @@ export const WithExternalSourceAndPaginationBottom =
         onSelectionChange={(a, b) => {
           console.log(a, b);
         }}
-        
+
         className={style({
           $nest: {
             "&.up-data-grid-container .up-pagination-nav li a": {
@@ -396,7 +396,7 @@ export const WithExternalSourceAndPaginationBottom =
             description: "Supprimer"
           }
         ]}
-       
+
         paginationPosition="bottom"
         isPaginationEnabled={true}
         columns={[
@@ -495,7 +495,7 @@ export const WithCellFormatter =
         ]}
       />
     )
-  
+
   export const  WithRowInsertion =
     () => (
       <UpDataGrid

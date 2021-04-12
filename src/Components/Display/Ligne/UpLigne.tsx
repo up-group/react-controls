@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { getStyles } from './styles';
-import * as classnames from 'classnames' ;
+import classnames from 'classnames' ;
 
 export interface UpLigneProps {
     color?: string;
@@ -18,10 +18,10 @@ export interface UpLigneProps {
             "data-for": dataFor
         }
     }
-    
+
     return (<span className={classnames(className, getStyles(props))} {...tooltipProps} {...others}>
         {children}
         </span>)
   };
 
-export default UpLigne 
+export default UpLigne

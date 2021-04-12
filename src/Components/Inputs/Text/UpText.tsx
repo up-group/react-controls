@@ -7,7 +7,7 @@ import Textarea from 'react-textarea-autosize'
 import { UpTextProps } from "./types";
 import { getStyles } from "./styles";
 
-import * as classnames from 'classnames'
+import classnames from 'classnames'
 
 class BaseTextArea extends React.Component<UpTextProps> {
 
@@ -17,8 +17,8 @@ class BaseTextArea extends React.Component<UpTextProps> {
     }
 
     setInput = (input) => {
-        // The ref function is called twice, 
-        // the first one with the component instance (as React) 
+        // The ref function is called twice,
+        // the first one with the component instance (as React)
         // and the second one with the DOM node instance
         if (this.textArea == undefined) {
             this.textArea = input;
@@ -45,13 +45,13 @@ class BaseTextArea extends React.Component<UpTextProps> {
 
 // Exports
 export default class UpText extends BaseControlComponent<UpTextProps, string> {
-    
+
     public static defaultProps:UpTextProps = {
         width: 'fill',
         showError: true,
         theme:defaultTheme
     }
-    
+
     constructor(p, c) {
         super(p, c);
         this.getValue = this.getValue.bind(this) ;
@@ -59,12 +59,12 @@ export default class UpText extends BaseControlComponent<UpTextProps, string> {
             value:p.value
         }
     }
-    
+
     onChange = (event) => {
         event.persist() ;
         this.handleChangeEvent(event, event.target.value);
     }
-    
+
     showError() {
         return this.props.showError !== undefined
             ? this.props.showError === true
@@ -77,8 +77,8 @@ export default class UpText extends BaseControlComponent<UpTextProps, string> {
 
     renderControl(): JSX.Element {
         const {onChange, className, readonly, tooltip, value, ...others} = this.props ;
-        return <BaseTextArea className={classnames(getStyles(this.props), className)} 
-            value={this.currentValue} 
+        return <BaseTextArea className={classnames(getStyles(this.props), className)}
+            value={this.currentValue}
             onChange={this.onChange} {...others} />
     }
 

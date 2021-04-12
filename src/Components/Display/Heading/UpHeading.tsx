@@ -1,6 +1,6 @@
 // Imports
 import * as React from 'react';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 
 import { Margin } from '../Paragraph';
 import { getStyles } from './styles';
@@ -18,7 +18,7 @@ export interface UpHeadingProps {
 }
 
 export default class UpHeading extends React.Component<UpHeadingProps> {
-  
+
   public static defaultProps: UpHeadingProps = {
     color: 'rgba(0, 0, 0, 0.87)',
     textAlign: 'center',

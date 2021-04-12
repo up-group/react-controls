@@ -1,5 +1,5 @@
 import * as React from "react"
-import * as classnames from 'classnames'
+import classnames from 'classnames'
 
 import {UpDrawingProps} from "./"
 import {style} from 'typestyle'
@@ -13,14 +13,14 @@ import UpLabel from '../../Display/Label'
 
 import {UpContextMenu, UpContextMenuTrigger, UpContextMenuItem, UpContextMenuItemDivider} from '../../Display/ContextMenu'
 
-import {generateUniqueId} from '../../../Common/utils/helpers' 
+import {generateUniqueId} from '../../../Common/utils/helpers'
 
 const DRAWING_MENU_TYPE = 'DRAWING_MENU_TYPE' ;
 
 export interface UpDrawingState {
     activationShape : boolean;
     src:string;
-    zones?:Array<any>; 
+    zones?:Array<any>;
     selection?:any;
     scale:number;
 }
@@ -140,7 +140,7 @@ export default class UpDrawing extends React.Component<UpDrawingProps, UpDrawing
     }
 
     cropAll = (event:any) => {
-        // Check all chapes 
+        // Check all chapes
         var _shapesChecked = true;
         for (var i in this.canvasState.shapes) {
             var _shape = this.canvasState.shapes[i];
@@ -170,7 +170,7 @@ export default class UpDrawing extends React.Component<UpDrawingProps, UpDrawing
     delAll = () => {
         if (this.canvasState.selection && this.props.onDelAll) {
             this.props.onDelAll(this.canvasState.shapes) ;
-        }            
+        }
     }
 
     toggleActivationShape = (value) => {
@@ -190,7 +190,7 @@ export default class UpDrawing extends React.Component<UpDrawingProps, UpDrawing
         });
 
         const {onChange, src, shapes, ...others} = this.props ;
-        
+
         return (
             <div className={classnames(WrapperStyle, 'up-drawing')}>
                 {this.props.displayActions &&
@@ -198,11 +198,11 @@ export default class UpDrawing extends React.Component<UpDrawingProps, UpDrawing
                         <UpLabel text="Zones : ">
                             <UpToggle value={true} onChange={this.toggleActivationShape} checked={this.state.activationShape === true} />
                         </UpLabel>
-                        <UpButtonGroup> 
+                        <UpButtonGroup>
                             <UpButton onClick={this.zoomIn} width={'icon'} actionType={"zoom-in"} tooltip={"Zoom avant"} />
                             <UpButton onClick={this.zoomOut} width={'icon'} actionType={"zoom-out"} tooltip={"Zoom arrière"} />
                             <UpButton onClick={this.zoomNormal} width={'icon'} actionType={"zoom-normal"} tooltip={"Zoom normal"} />
-                            {this.props.onRotate && 
+                            {this.props.onRotate &&
                                 <UpButton onClick={this.rotate} width={'icon'} actionType={"image-rotate-right"} tooltip={"Appliquer une rotation de  l\'image de 90° vers la droite"} />
                             }
                             <UpButton onClick={this.open} width={'icon'} actionType={"open"} tooltip={"Ouvrir l\'image dans une nouvelle fenêtre"} />

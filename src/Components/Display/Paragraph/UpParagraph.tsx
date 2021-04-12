@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { getStyles } from './styles';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 
 // Exports
 export type ParagraphSize = 'small' | 'medium' | 'large' | 'xlarge';
@@ -30,7 +30,7 @@ export interface UpParagraphProps {
 }
 
 const UpParagraph : React.StatelessComponent<UpParagraphProps> = (props : UpParagraphProps) => {
-    const { children, className } = props ;   
+    const { children, className } = props ;
     return <p className={classnames(getStyles(props), className)}>{children}</p>
 } ;
 

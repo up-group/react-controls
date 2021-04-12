@@ -1,4 +1,4 @@
-import * as classnames from 'classnames'
+import classnames from 'classnames'
 
 import { getCheckableStyles } from '../_Common/Styled'
 import { UpRadioStyledProps, UpRadioProps } from './UpRadio';
@@ -30,8 +30,8 @@ const baseStyles = (props: UpRadioStyledProps) : NestedCSSProperties => (
       background: '#ffffff',
       width: '6px',
       height: '6px',
-      content: "", 
-    }, 
+      content: "",
+    },
     '& input:indeterminate ~ .up-control-wrapper .up-control-indicator::before' : {
       display: 'inline-block',
       position: 'absolute',

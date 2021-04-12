@@ -1,7 +1,7 @@
 // Imports
 import * as React from 'react'
 import * as update from 'react-addons-update'
-import * as classnames from 'classnames'
+import classnames from 'classnames'
 import * as Select from 'react-select'
 import axios from 'axios'
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
@@ -80,7 +80,7 @@ const customStyles = (theme : ThemeInterface, value)  => ({
             borderBottom: `1px solid ${state.isFocused ? theme.colorMap.primary : theme.colorMap.gray6}`,
         },
         height:'29px !important',
-        minHeight:'unset !important',    
+        minHeight:'unset !important',
         borderBottom: `1px solid ${state.isFocused ? theme.colorMap.primary : theme.colorMap.gray6}`
     }),
     dropdownIndicator: (provided, state) => ({
@@ -207,8 +207,8 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     selectElement: any;
 
     setSelect = (input) => {
-        // The ref function is called twice, 
-        // the first one with the component instance (as React) 
+        // The ref function is called twice,
+        // the first one with the component instance (as React)
         // and the second one with the DOM node instance
         if (this.selectElement == undefined) {
             this.selectElement = input;
@@ -446,7 +446,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     };
 
     private inputDoesntMatchSelectValue = (inputValue : string, selectValue :  any[]) : boolean => (selectValue == null || selectValue.filter(option => option[this.keyText] && option[this.keyText].toLowerCase() == inputValue.toLowerCase()).length == 0) ;
-    
+
     private inputDoesntMatchOneOfSelectOptions = (inputValue : string, selectOptions : any[]) : boolean => (selectOptions == null || selectOptions.filter(option => option[this.keyText] && option[this.keyText].toLowerCase() == inputValue.toLowerCase()).length == 0) ;
 
     /** Retourne si l'option  "Créer ..." doit être affichée */
@@ -458,7 +458,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         const isValidNewOption = !isEmpty(inputValue)
         && this.inputDoesntMatchSelectValue(inputValue, selectValue)
         && this.inputDoesntMatchOneOfSelectOptions(inputValue, selectOptions);
-        
+
         return isValidNewOption;
     };
 
@@ -653,7 +653,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             closeMenuOnSelect: this.props.closeMenuOnSelect,
             styles: customStyles(this.props.theme,this.state.value),
         }
-           
+
         return (
             <div className={classnames(this.props.className, 'up-select-wrapper')}>
                 {dataSource != null && allowCreate === true &&

@@ -1,13 +1,13 @@
 // Imports
 import * as React from 'react'
-import * as classnames from 'classnames'
+import classnames from 'classnames'
 
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import { RadioGroupStyles, getStyles } from './styles';
 import { style } from 'typestyle';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import defaultTheme from '../../../Common/theming';
-import {BaseControlProps} from '../_Common/BaseControl/BaseControl' 
+import {BaseControlProps} from '../_Common/BaseControl/BaseControl'
 import { IntentType } from '../../../Common/theming/types';
 import UpSvgIcon from '../../Display/SvgIcon';
 import { IconName } from '../../../Common/theming/icons';
@@ -15,7 +15,7 @@ import { ReactNode } from 'react';
 
 // Exports
 export type Position = 'left' | 'right' ;
-export type AlignMode = 'horizontal' | 'vertical' ; 
+export type AlignMode = 'horizontal' | 'vertical' ;
 export type DisplayMode = 'normal' | 'button' | 'large' ;
 
 export interface Option {
@@ -71,7 +71,7 @@ const BaseRadioButton: React.StatelessComponent<UpRadioStyledProps & WithThemePr
     return (
         <>
         <label className={classnames("up-control", "up-radio", getStyles(props), intent ? `up-intent-${intent}` : null, className)}>
-            
+
             <input checked={checked} onChange={(e) => {e.persist(); onChange(e)}} name={name} type="radio" value={value} />
             <span className="up-control-wrapper">
                 <span className="up-control-indicator"></span>
@@ -127,7 +127,7 @@ class UpRadio extends BaseControlComponent<UpRadioProps, any> {
     get currentValue() {
         return this.isControlled ? this.props.value : this.state.value;
     }
-    
+
     showError() {
         return this.props.showError !== undefined
             ? this.props.showError === true
@@ -148,9 +148,9 @@ class UpRadio extends BaseControlComponent<UpRadioProps, any> {
                 <label style={{ display: "none" }}><input type="radio" /></label>
                 {options.map((option, i) => {
                     return (
-                        <BaseRadioButton 
+                        <BaseRadioButton
                             intent={option.intent}
-                            onChange={this.handleChangeEvent} 
+                            onChange={this.handleChangeEvent}
                             key={`Key_${this.props.name}_${option.value}`}
                             name={this.props.name}
                             checked={this.currentValue != null && this.currentValue === option.value}

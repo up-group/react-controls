@@ -4,7 +4,7 @@ import UpSvgIcon from "../../Display/SvgIcon";
 import UpBox from '../../Containers/Box';
 import { style } from "typestyle";
 
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { generateId } from "../../../Common/utils";
 import { eventFactory } from "../../../Common/utils/eventListener";
 
@@ -27,7 +27,7 @@ export interface UpTimeState {
 
 export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeState> {
     inputElement: HTMLInputElement;
-    
+
     hourContextMenuId = `hour-time-picker-${generateId()}`;
     minuteContextMenuId = `minute-time-picker-${generateId()}`;
 
@@ -45,7 +45,7 @@ export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeSta
     }
 
     render() {
-        
+
         const minuteSteps = [] ;
         let currentStep = 0 ;
         while(currentStep < 60) {
@@ -80,11 +80,11 @@ export default class UpTimePicker extends React.Component<UpTimeProps, UpTimeSta
 
         return (
             <>
-            <UpBox className={classnames(wrapperStyles, 'up-timepicker up-form-control')} flexDirection={'row'} alignItems={'flex-start'} justifyContent={'flex-end'} 
+            <UpBox className={classnames(wrapperStyles, 'up-timepicker up-form-control')} flexDirection={'row'} alignItems={'flex-start'} justifyContent={'flex-end'}
             style={{
                 borderColor: this.props.hasError === true ? 'red' : 'inherit',
                 borderBottomWidth: '1px',
-                borderBottomStyle: 'solid', 
+                borderBottomStyle: 'solid',
                 width: "160px", // Fix width
                 padding: "2px",
                 display: 'flex',

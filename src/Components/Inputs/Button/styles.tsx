@@ -2,7 +2,7 @@
 import remStringFromPX from '../../../Common/utils'
 import { NestedCSSProperties } from 'typestyle/lib/types';
 
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { style, keyframes } from 'typestyle';
 import { WithThemeProps } from '../../../Common/theming/withTheme';
 import { UpButtonProps, fontSizeMap, buttonSizeMap, UpButtonStyledProps } from '.';
@@ -62,7 +62,7 @@ const base = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
         paddingRight: '0px',
         display: 'flex',
         flexDirection: 'row-reverse'
-        
+
       },
       '&.up-btn.up-btn-drop-down .up-btn-label' :{
         paddingRight:'0px',
@@ -73,8 +73,8 @@ const base = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
       '&.up-btn.up-btn-drop-down .up-icon-wrapper' :{
         position: 'unset',
         marginRight: '14px'
-        
-      },      
+
+      },
       '&.up-btn .up-icon-wrapper': {
         ...positions(props),
       },
@@ -524,5 +524,5 @@ export const getWrapperStyles = (props: UpButtonStyledProps): string => {
         borderBottom: `1px solid ${props.theme.colorMap[props.intent]}`
       }
     }
-  }); 
+  });
 }

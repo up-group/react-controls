@@ -4,8 +4,8 @@ import * as React from 'react'
 import {BoxSize, BoxSizeObject, Size, SizeObject, Full} from './types'
 // Import the type style
 import {style} from 'typestyle'
-// Import classnames 
-import * as cn from 'classnames' ;
+// Import classnames
+import classnames from 'classnames' ;
 
 import {
     calculateFlexWrap,
@@ -60,13 +60,13 @@ export interface UpBoxProps {
   });
 
   class UpBox extends React.Component<UpBoxProps & WithThemeProps> {
-    
+
     static defaultProps : Partial<UpBoxProps & WithThemeProps> = {
         style : {},
         theme:defaultTheme,
         onClick: (e) => {},
     }
-    
+
     getBoxStyles = () => {
         const BoxStyles = style({
             display: 'flex',
@@ -100,9 +100,9 @@ export interface UpBoxProps {
 
     render() {
         const { children, style, onClick, ...others } = this.props ;
-        
+
         return (
-            <div onClick={onClick} style={style || {}} className={cn(this.getBoxStyles(), this.getSize(), this.props.className)}>
+            <div onClick={onClick} style={style || {}} className={classnames(this.getBoxStyles(), this.getSize(), this.props.className)}>
               {children || null}
             </div>
         );

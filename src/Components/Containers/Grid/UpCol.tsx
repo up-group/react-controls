@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as classNames from 'classnames';
+import classnames from 'classnames';
 import * as assign from 'object-assign';
 
 import { UpColProps, ColSize } from './types'
@@ -7,7 +7,7 @@ import { UpGridConsumer } from './UpGridContext';
 
 const ColRenderer : React.FunctionComponent<UpColProps  & {gutter : number}> = (props) => {
   const { gutter, xs, sm, md, lg, xl, prefixCls, span, order, offset, push, pull, className, style, children, ...others } = props;
-  
+
   const getClasses = /*React.useCallback(*/() => {
       let sizeClassObj = {};
 
@@ -27,8 +27,8 @@ const ColRenderer : React.FunctionComponent<UpColProps  & {gutter : number}> = (
           [`${prefixCls}-${size}-pull-${sizeProps.pull}`]: sizeProps.pull || sizeProps.pull === 0,
         });
       });
-      
-      return classNames({
+
+      return classnames({
         [`${prefixCls}-${span}`]: span !== undefined,
         [`${prefixCls}-order-${order}`]: order,
         [`${prefixCls}-offset-${offset}`]: offset,

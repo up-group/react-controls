@@ -1,7 +1,7 @@
 import { NestedCSSProperties } from "typestyle/lib/types";
 import { UpLabelProps } from "./types";
 import { style } from "typestyle";
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 
 export const sizeMap = {
  auto: "40px",
@@ -11,17 +11,17 @@ export const sizeMap = {
  xlarge: "350px"
 };
 
-const inline : NestedCSSProperties = { 
+const inline : NestedCSSProperties = {
   $nest :{
     '& .up-label-text' : {
       lineHeight: '30px',
     },
     '& >div,& .up-input,& .up-input-group,& .up-select' :  {
       display: 'inline-block',
-      verticalAlign: 'top', 
+      verticalAlign: 'top',
     },
     '& .up-input-group .up-input' : {
-      marginLeft: 0, 
+      marginLeft: 0,
     }
   }
 }
@@ -46,7 +46,7 @@ const base = (props: UpLabelProps) : NestedCSSProperties => (
       '& .up-select select' : {
         width: '100%',
         verticalAlign: 'top',
-        fontWeight: 400, 
+        fontWeight: 400,
       },
       '& .pt-button-group.pt-vertical' : {
         marginTop:'0px',

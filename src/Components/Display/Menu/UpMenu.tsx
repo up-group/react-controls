@@ -6,7 +6,7 @@ import {isFunction, isEmpty} from '../../../Common/utils';
 import UpSvgIcon from '../SvgIcon';
 import {IconName} from '../../../Common/theming/icons';
 import {MenuStyles} from './styles';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 
 import {isEqual} from 'lodash' ;
 

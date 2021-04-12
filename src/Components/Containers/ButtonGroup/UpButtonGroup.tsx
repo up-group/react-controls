@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { NestedCSSProperties } from 'typestyle/lib/types';
 import { style } from 'typestyle';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 
 export type Alignement = 'h' | 'v'
 export type AddOnMode = 'none' | 'left' | 'right'
-export type Width = 'auto' | 'full' 
+export type Width = 'auto' | 'full'
 
 export interface UpButtonGroupProps {
   gutter?:number;
@@ -78,7 +78,7 @@ const noGutterStyle = (props:UpButtonGroupProps) : NestedCSSProperties => {
         }
       };
   }
-} 
+}
 };
 
 const setGutter = (props:UpButtonGroupProps) : NestedCSSProperties => {
@@ -132,7 +132,7 @@ const setWidth = (props:UpButtonGroupProps) : NestedCSSProperties => {
 }
 
 export const getStyles =  (props: UpButtonGroupProps) => {
-  return classnames('up-buttons-wrapper',style(setGutter(props)), style(setAlignment(props)), style(noGutterStyle(props)), style(setWidth(props))) ; 
+  return classnames('up-buttons-wrapper',style(setGutter(props)), style(setAlignment(props)), style(noGutterStyle(props)), style(setWidth(props))) ;
 };
 
 export default class UpButtonGroup extends React.Component<UpButtonGroupProps, undefined> {

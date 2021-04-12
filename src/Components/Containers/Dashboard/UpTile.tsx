@@ -1,6 +1,6 @@
 
 import * as React from "react"
-import * as classnames from 'classnames' ;
+import classnames from 'classnames' ;
 
 import './bootstrap-grid.css'
 import * as $ from 'jquery'

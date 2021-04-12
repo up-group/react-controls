@@ -2,17 +2,17 @@
 import * as React from "react" ;
 import { Component } from "react";
 
-import * as classNames from 'classnames'
+import classnames from 'classnames'
 
 import * as ReactTooltip from 'react-tooltip'
 import { generateId, isFunction, isEmpty } from '../../../Common/utils'
 
-import { style } from 'typestyle' 
+import { style } from 'typestyle'
 import UpDefaultTheme, { withTheme, WithThemeProps } from "../../../Common/theming";
 import { IntentType } from '../../../Common/theming/types';
 
-export type Placement = "top" | "right" | "bottom" | "left" 
-export type Effect = "float" | "solid" 
+export type Placement = "top" | "right" | "bottom" | "left"
+export type Effect = "float" | "solid"
 
 export interface Tooltip {
   content: JSX.Element | string ;
@@ -20,7 +20,7 @@ export interface Tooltip {
   type?: IntentType;
   effect?: Effect;
   multiline?:boolean;
-  html?: boolean; 
+  html?: boolean;
   title?: JSX.Element | string;
   delayHide?:number;
   delayShow?:number;
@@ -85,7 +85,7 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps, UpTooltipStat
   getContent = () => {
     return (
       <div className="up-tooltip-content">
-        {this.props.title != null && 
+        {this.props.title != null &&
         <p className="up-tooltip-header">
           {this.props.title}
         </p>
@@ -100,13 +100,13 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps, UpTooltipStat
   render() {
     const {id, children, content, ...others} = this.props ;
     let tooltipId = id ;
-    
+
     if(!tooltipId) {
       tooltipId = generateId() ;
     }
     let childrenWithProps = null ;
     let childrenAsFunction = null ;
-    
+
     if(children != null && isFunction(children)) {
       childrenAsFunction = children as (value : UpTooltipProps) => JSX.Element ;
     } else {
@@ -164,7 +164,7 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps, UpTooltipStat
     return (
       <div style={{display:"inline-block", width:'100%'}}>
         {renderChildren}
-        <ReactTooltip className={classNames('up-tooltip', getStyles(this.props), custom)} id={tooltipId} getContent={this.getContent} {...others} />
+        <ReactTooltip className={classnames('up-tooltip', getStyles(this.props), custom)} id={tooltipId} getContent={this.getContent} {...others} />
       </div>
     );
   }

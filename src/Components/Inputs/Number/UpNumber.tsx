@@ -8,7 +8,7 @@ import withTheme from '../../../Common/theming/withTheme';
 import defaultTheme from '../../../Common/theming';
 import UpButton from '../Button/UpButton';
 import { eventFactory } from '../../../Common/utils/eventListener';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 
 export interface UpNumberProps extends CommonProps<number | string> {
   max?: number;
@@ -29,7 +29,7 @@ const wrapperNumberStyles = (props : UpNumberProps) => style({
   $nest : {
       'input' : {
           textAlign: 'right',
-          paddingRight : props.hideButtons ? '0px !important' : 
+          paddingRight : props.hideButtons ? '0px !important' :
                           props.theme.inputBorderLess ? '42px !important' : '26px !important',
       },
       '.up-btn-wrapper' : {
@@ -42,7 +42,7 @@ const wrapperNumberStyles = (props : UpNumberProps) => style({
 })
 
 const wrapperNumberButtonsStyles = (props : UpNumberProps) => style({
-  position: 'absolute', 
+  position: 'absolute',
   right: props.theme.inputBorderLess ? '0px' : '2px',
   bottom: props.theme.inputBorderLess ? '7px' : '2px',
   $nest : {
@@ -59,7 +59,7 @@ const wrapperNumberButtonsStyles = (props : UpNumberProps) => style({
 })
 
 class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
-   
+
   public static defaultProps : UpNumberProps = {
     showError: true,
     max: Infinity,
@@ -130,7 +130,7 @@ increment = () => {
      newValueAsString = this.displayDecimalWithComma(newValueAsString);
      this.setState({ value: newValueAsString}, () => {
          this.handleChangeEvent(eventFactory(this.props.name, this.state.value), this.state.value);
-     }) 
+     })
 }
 
 decrement = () => {
@@ -139,9 +139,9 @@ decrement = () => {
      if(isNaN(newValue)) {
          newValue = 0 ;
      }
-     
+
      newValue -= this.props.stepSize ? this.props.stepSize : 1 ;
-   
+
      if(this.props.min != null && newValue < this.props.min) {
          newValue = this.props.min
      }
@@ -151,39 +151,39 @@ decrement = () => {
      newValueAsString = this.displayDecimalWithComma(newValueAsString);
      this.setState({ value: newValueAsString}, () => {
          this.handleChangeEvent(eventFactory(this.props.name, this.state.value), this.state.value);
-     }); 
+     });
 }
- 
+
 showError() {
      return this.props.showError !== undefined
          ? this.props.showError === true
          : this.hasError;
  }
- 
+
  showSuccess() {
      return false
  }
 
 renderControl() {
     const { isRequired, theme, readonly, tooltip,placeholder, name, autoFocus } = this.props;
- 
+
     return (
       <div className={classnames(wrapperNumberStyles(this.props), 'up-number')}>
-       <UpInput  
+       <UpInput
           placeholder={placeholder}
           name={name}
           tooltip={tooltip}
           readonly={readonly}
           isRequired={isRequired}
           autoFocus={autoFocus}
-          value={this.currentValue != null ? this.currentValue.toString() : "" } 
+          value={this.currentValue != null ? this.currentValue.toString() : "" }
           onChange={(event, value) => { event.persist() ; this.handleNumericChange(event, value) }}
           onFocus={this.props.onFocus}
-          onBlur={(event) => { 
+          onBlur={(event) => {
             if(this.props.onBlur)
-              this.props.onBlur(event); 
-            event.persist(); 
-            this.handleNumericBlur(event) 
+              this.props.onBlur(event);
+            event.persist();
+            this.handleNumericBlur(event)
             }}/>
         {!this.props.hideButtons && <UpBox className={wrapperNumberButtonsStyles(this.props)} flexDirection={theme.inputBorderLess ? 'row' : 'column-reverse'}>
                 <UpButton intent={'primary'} width={'icon'} iconSize={9} height={'xsmall'} onClick={this.decrement} iconName={'arrow-down'}></UpButton>

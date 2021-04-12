@@ -4,7 +4,7 @@ import defaultTheme from '../../../Common/theming'
 import { isString } from '../../../Common/utils'
 import { UpPanelStyledProps } from './'
 import SvgIcon from "../../Display/SvgIcon/index";
-import * as classnames from 'classnames'
+import classnames from 'classnames'
 import { NestedCSSProperties } from 'typestyle/lib/types';
 import { style } from 'typestyle';
 import { WithThemeProps } from '../../../Common/theming/withTheme';
@@ -21,7 +21,7 @@ const base = (props:UpPanelStyledProps & WithThemeProps) : NestedCSSProperties =
   borderWidth: '1px',
   borderStyle: 'solid',
   width: '100%',
-  marginBottom:'10px', 
+  marginBottom:'10px',
   $nest : {
       '& .up-panel-header' : {
         width:'100%',
@@ -30,7 +30,7 @@ const base = (props:UpPanelStyledProps & WithThemeProps) : NestedCSSProperties =
         color:'white',
     },
     '& .up-panel-body' : {
-        background: 'linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0)) left no-repeat, center no-repeat' , 
+        background: 'linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0)) left no-repeat, center no-repeat' ,
         backgroundColor: '#fff',
         padding: '20px',
         borderRadius: props.theme.borderRadius || '6px',
@@ -40,7 +40,7 @@ const base = (props:UpPanelStyledProps & WithThemeProps) : NestedCSSProperties =
         display:'inline-block',
     },
     '& .up-panel-footer' : {
-        background: 'linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0)) left no-repeat, center no-repeat', 
+        background: 'linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0)) left no-repeat, center no-repeat',
         backgroundColor: props.theme.colorMap ? props.theme.colorMap.lightGray5 : defaultTheme.colorMap.lightGray5,
         borderColor: props.theme.colorMap ? props.theme.colorMap.lightGray1 : defaultTheme.colorMap.lightGray1,
         borderTopWidth:'1px',

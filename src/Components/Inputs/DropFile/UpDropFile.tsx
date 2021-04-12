@@ -13,7 +13,7 @@ if ("default" in Cropper) {
 import "cropperjs/dist/cropper.css";
 
 import { style } from 'typestyle/lib';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import UpDefaultTheme, { WithThemeProps, withTheme, UpThemeInterface } from '../../../Common/theming';
 import { ThemeInterface, IntentType } from "../../../Common/theming/types";
 
@@ -57,7 +57,7 @@ export interface IFile {
       webkitRelativePath: string;
     }
   }
-  
+
   export interface IFileType {
     id?: string;
     code?: string;
@@ -107,7 +107,7 @@ const boxUpload = style({
   }
 });
 
-const boxUploaded = style({	
+const boxUploaded = style({
   border: '1px solid',
   borderTopColor: '#d7d7d7',
   borderRightColor: '#d7d7d7',
@@ -709,8 +709,8 @@ class UpDropFile extends React.Component<
               <p>{this.props.dropLabel}</p>
               <p>{this.props.separatorLabel}</p>
               <div>
-                <UpButton 
-                  intent='primary' 
+                <UpButton
+                  intent='primary'
                   onClick={e => this.onZoneClick(e)}
                 >
                     {this.props.selectFileLabel}

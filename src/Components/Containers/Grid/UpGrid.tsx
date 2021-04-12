@@ -1,10 +1,10 @@
-// Imports 
+// Imports
 import * as React from 'react';
 import { UpGridProps, UpRowProps } from './types'
 import defaultTheme from '../../../Common/theming'
 import { GridStyles } from './styles';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
-import * as classnames from 'classnames'
+import classnames from 'classnames'
 import { UpGridProvider } from './UpGridContext';
 
 const UpGrid : React.FunctionComponent<UpGridProps & WithThemeProps> = ({ gutter = 0, type = "flex", theme = defaultTheme, ...rest}) => {
@@ -35,4 +35,4 @@ const UpGrid : React.FunctionComponent<UpGridProps & WithThemeProps> = ({ gutter
     );
 }
 
-export default withTheme<UpGridProps>(UpGrid) 
+export default withTheme<UpGridProps>(UpGrid)

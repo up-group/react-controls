@@ -3,7 +3,7 @@ import * as React from 'react'
 import { UpPanelProps, UpPanelStyledProps } from './'
 import { isString } from 'util';
 import UpSvgIcon from '../../Display/SvgIcon';
-import * as classnames from 'classnames'
+import classnames from 'classnames'
 import { getStyles } from './styles';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import { UpGrid, UpCol, UpRow } from '../Grid';
@@ -66,7 +66,7 @@ const BasePanel: React.StatelessComponent<UpPanelStyledProps & WithThemeProps> =
 
 // Exports
 class UpPanel extends React.Component<UpPanelProps, undefined> {
-  
+
   public static defaultProps: UpPanelProps & WithThemeProps = {
     footer: "",
     type:"default",

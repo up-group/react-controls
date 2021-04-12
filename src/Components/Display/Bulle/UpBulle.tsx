@@ -1,5 +1,5 @@
 import * as React from "react"
-import * as cn from 'classnames';
+import classnames from 'classnames';
 
 import SvgIcon from "../SvgIcon/index"
 import { IconName } from "../../../Common/theming/icons";
@@ -18,7 +18,7 @@ export interface UpBulleProps {
 }
 
 class UpBulle extends React.Component<UpBulleProps & WithThemeProps>{
-    
+
     public static defaultProps: Partial<UpBulleProps> & WithThemeProps = {
         theme: defaultTheme,
     }
@@ -27,9 +27,9 @@ class UpBulle extends React.Component<UpBulleProps & WithThemeProps>{
         super(p, c);
     }
 
-    render() { 
+    render() {
         return (
-            <div className={cn(BulleStyle(this.props), this.props.className, 'up-bulle')} style={{ backgroundImage: this.props.backgroundImage }}>
+            <div className={classnames(BulleStyle(this.props), this.props.className, 'up-bulle')} style={{ backgroundImage: this.props.backgroundImage }}>
                 <UpBox flexDirection={'row'} justifyContent={'flex-start'} alignItems={'center'}>
                     {this.props.icon &&
                         <SvgIcon className={IconStyle} iconName={this.props.icon} color={"white"} />

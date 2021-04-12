@@ -1,7 +1,7 @@
 import * as React from "react"
 import * as ReactDOM from "react-dom"
-import * as classnames from 'classnames'
-import {style, media, keyframes} from 'typestyle' 
+import classnames from 'classnames'
+import {style, media, keyframes} from 'typestyle'
 
 import UpSvgIcon from '../../Display/SvgIcon'
 import UpDefaultTheme, { withTheme, WithThemeProps,  } from "../../../Common/theming";
@@ -160,7 +160,7 @@ const ModalStyle = (props: WithThemeProps) =>
         },
         "& .up-modal-close .colored svg, & .up-modal-close .colored svg path, & .up-modal-close .colored svg polygon, & .up-modal-close .colored svg polyline": {
           fill: props.theme.colorMap.grey1,
-          
+
         },
         "& .up-modal-close:hover, & .up-modal-close:focus": {
           color: props.theme.colorMap.primaryDark,
@@ -276,7 +276,7 @@ class UpModal extends React.Component<UpModalProps & WithThemeProps, UpModalStat
 
     render() {
         var header = null;
-        var headerContent:any = "" 
+        var headerContent:any = ""
         if (this.props.header != null) {
             headerContent = this.props.header ;
         }
@@ -303,7 +303,7 @@ class UpModal extends React.Component<UpModalProps & WithThemeProps, UpModalStat
         }
 
         return (
-            <div className={ModalStyle(this.props)}> 
+            <div className={ModalStyle(this.props)}>
                 <div className={classnames("up-modal", (this.state.showModal===true) ? "in" : "fade", appearFromTop)}  id="myModal" role="dialog" aria-labelledby="myModalLabel">
                     <div className="up-modal-dialog" role="document">
                         <div className="up-modal-content">

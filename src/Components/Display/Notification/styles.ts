@@ -1,7 +1,7 @@
 // Imports
 import { UpNotificationProps } from './UpNotification';
 import { NestedCSSProperties } from 'typestyle/lib/types';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { style, keyframes } from 'typestyle';
 import { WithThemeProps } from '../../../Common/theming/withTheme';
 import { animateFromLeft, animateFromRight } from '../../../Common/theming/animations';
@@ -132,9 +132,9 @@ export const getStyles = (
   props: UpNotificationProps,
   notificationIsClosing: boolean
 ): string => {
-   
+
   let animation = {} ;
-  
+
   if(props.duration || props.withCancelIcon) {
     animation = !notificationIsClosing
       ? { ...animateFromRight(2, 'ease', 'fadeIn') }

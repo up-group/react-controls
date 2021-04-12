@@ -1,7 +1,7 @@
 import * as $ from "jquery";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as classnames from "classnames";
+import classnames from "classnames";
 import { style } from "typestyle";
 
 import axios from "axios";
@@ -490,7 +490,7 @@ class UpDataGrid extends React.Component<
     });
 
     var hasSameData = _.isEqual(curentState, nextProps.data);
-    
+
     if (this.props.dataSource == null && hasSameData === false) {
       data =
         nextProps.data != null
@@ -628,7 +628,7 @@ class UpDataGrid extends React.Component<
       rowActions: this.props.rowActions ,
       labelToDisplayRowActionsInCell: this.props.labelToDisplayRowActionsInCell,
     }
-    
+
     return (
       <UpDataGridProvider value={providerValues} >
       <div
@@ -638,13 +638,13 @@ class UpDataGrid extends React.Component<
           this.props.className
         )}
       >
-        <UpDataGridHeader 
+        <UpDataGridHeader
             {...this.props.headerProps}
             buttonExport={this.btnExportCsv}
-          />  
+          />
         {this.props.isPaginationEnabled &&
           this.props.paginationPosition != "bottom" &&
-          pagination}         
+          pagination}
         <UpLoadingIndicator
           displayMode={"zone"}
           message={this.props.loadingMessage}
@@ -677,10 +677,10 @@ class UpDataGrid extends React.Component<
             </table>
           </>
         </UpLoadingIndicator>
-          <UpDataGridFooter 
+          <UpDataGridFooter
             {...this.props.footerProps}
             isPaginationEnabled={this.props.isPaginationEnabled && this.props.paginationPosition != "top"}
-            pagination={pagination} 
+            pagination={pagination}
             actions={oneRowIsSelected && this.props.rowActions}
             data={this.state.data}
             theme={this.props.theme}

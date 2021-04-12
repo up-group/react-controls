@@ -3,7 +3,7 @@ import { callIfExists } from '../../../Common/utils/helpers'
 import GlobalEventListener from '../../../Common/utils/eventListener'
 import {style} from 'typestyle'
 import * as assign from 'object-assign'
-import * as classNames from 'classnames'
+import classnames from 'classnames'
 
 import {MENU_HIDE, MENU_SHOW} from './actions'
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
@@ -39,7 +39,7 @@ class UpContextMenu extends React.PureComponent<UpContextMenuProps & WithThemePr
         this.state = {
             x: 0,
             y: 0,
-            top:0, 
+            top:0,
             left:0,
             isVisible: false
         };
@@ -81,7 +81,7 @@ class UpContextMenu extends React.PureComponent<UpContextMenuProps & WithThemePr
         var callbacks = {} ;
         callbacks[MENU_SHOW] = this.handleShow ;
         callbacks[MENU_HIDE] = this.handleHide ;
-        
+
         this.listenerId = GlobalEventListener.register(callbacks);
     }
 
@@ -144,10 +144,10 @@ class UpContextMenu extends React.PureComponent<UpContextMenuProps & WithThemePr
     render() {
         const { children, theme } = this.props;
         const { top, left } = this.state;
-        
+
         const MenuStyle = style({
-                position: "fixed", 
-                top: top, 
+                position: "fixed",
+                top: top,
                 left: left,
                 padding: '5px 0',
                 margin: '2px 0 0',

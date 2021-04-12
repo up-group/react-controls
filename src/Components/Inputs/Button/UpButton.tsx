@@ -1,6 +1,6 @@
 // Imports
 import * as React from 'react'
-import * as classnames from 'classnames'
+import classnames from 'classnames'
 import { UpButtonProps, Action, Separator, IconPosition, UpButtonStyledProps } from './'
 import UpTooltip, { Tooltip } from '../../Display/Tooltip'
 import defaultTheme from '../../../Common/theming'
@@ -30,12 +30,12 @@ for (var i = 0; i < IconNames.length; i++) {
 }
 
 export class BaseButton extends React.Component<UpButtonStyledProps> {
-    
+
     render() {
         let { children, className, onClick, dataFor, width, iconPosition, isProcessing, type, disabled,dropDown } = this.props;
         const actionType = this.props.actionType;
         let iconName: IconName = null;
-        if (actionType && ActionIconMap.containsKey(actionType)) {           
+        if (actionType && ActionIconMap.containsKey(actionType)) {
             iconName = ActionIconMap.get(actionType);
         } else if (this.props.iconName) {
             iconName = this.props.iconName;
@@ -137,7 +137,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
                 });
               });
             }
-        
+
             if (this.props.dropDown !== 'none') {
                 this.setState({ isToggled: !this.state.isToggled });
             }
@@ -161,12 +161,12 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         return (element as Separator).size !== undefined;
     }
 
-    isControlled = (propName: string) => this.props[propName] !== undefined; 
+    isControlled = (propName: string) => this.props[propName] !== undefined;
 
     getValue = (propName: string) => this.isControlled(propName) ? this.props[propName] : this.state[propName] ;
 
     disabled = () => this.props.disabled || this.state.isProcessing ;
-    
+
     setReference = (e) => {
         this.dropDownContainer = e;
     }
@@ -204,7 +204,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
 
     render() {
         const { children, tooltip, onClick, iconName, iconPosition, disabled, isProcessing, ...others } = this.props;
-        
+
         const buttonElement = style({
             cursor: "pointer",
             padding: "8px",
@@ -238,7 +238,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         } else if (position === 'none' && icon == null) {
             position = 'left';
         }
-        
+
         let _tooltip: Tooltip = null;
         if (tooltip) {
             if (isString(tooltip)) {
@@ -250,7 +250,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
             }
         }
         let handleClickProps = this.props.type === 'submit' ? {} : { onClick : this.handleClick } ;
-        
+
         const renderButton = (
           <div style={{ display: 'flex' }}>
             <BaseButton
@@ -299,4 +299,4 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
     }
 }
 
-export default withTheme<UpButtonProps>(UpButton) 
+export default withTheme<UpButtonProps>(UpButton)

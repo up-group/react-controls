@@ -6,7 +6,7 @@ import UpSvgIcon from '../../Display/SvgIcon';
 import { style } from 'typestyle';
 import withTheme from '../../../Common/theming/withTheme';
 import defaultTheme from '../../../Common/theming';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { isEmpty, ruleIsValid } from '../../../Common/utils';
 import { NestedCSSProperties, CSSProperties } from 'typestyle/lib/types';
 const fillColor = (props:UpInputProps) => {

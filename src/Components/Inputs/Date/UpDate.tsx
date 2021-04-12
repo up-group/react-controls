@@ -16,7 +16,7 @@ import { generateUniqueId } from "../../../Common/utils/helpers";
 
 import defaultPhrases from "./i18n/fr";
 
-import * as classnames from "classnames";
+import classnames from "classnames";
 import { isEmpty } from "../../../Common/utils";
 
 import * as moment from "moment";
@@ -41,7 +41,7 @@ const selectStyle = style({
         backgroundRepeat: 'no-repeat',
         backgroundColor: 'transparent',
         border: 0,
-        margin: 0,      
+        margin: 0,
         '-webkit-box-sizing': 'border-box',
         '-moz-box-sizing': 'border-box',
         boxSizing: 'border-box',
@@ -124,7 +124,7 @@ class UpDate extends BaseControlComponent<
       this.dateInput.inputRef.setAttribute("data-for", this.props["dataFor"]);
     }
   }
-  
+
   returnYears = () => {
     let years = []
     for(let i = moment().year() - 100; i <= moment().year(); i++) {
@@ -232,4 +232,4 @@ class UpDate extends BaseControlComponent<
   }
 }
 
-export default withTheme<UpDateProps>(UpDate) 
+export default withTheme<UpDateProps>(UpDate)

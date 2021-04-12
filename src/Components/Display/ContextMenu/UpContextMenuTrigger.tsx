@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as classNames from 'classnames';
+import classnames from 'classnames';
 import * as assign from 'object-assign';
 
 import { callIfExists } from '../../../Common/utils/helpers'
@@ -16,7 +16,7 @@ export interface UpContextMenuTriggerProps {
 }
 
 export class UpContextMenuTrigger extends React.PureComponent<UpContextMenuTriggerProps> {
-    
+
     element : HTMLElement;
     mouseDown : boolean = false ;
 
@@ -51,7 +51,7 @@ export class UpContextMenuTrigger extends React.PureComponent<UpContextMenuTrigg
 
         const x = event.clientX;
         const y = event.clientY;
-        
+
         hideMenu() ;
 
         showMenu({
@@ -69,7 +69,7 @@ export class UpContextMenuTrigger extends React.PureComponent<UpContextMenuTrigg
     render() {
         const { renderTag, attributes, children } = this.props;
         const newAttrs = assign({}, attributes, {
-            //className: classNames(cssClasses.menuWrapper, attributes.className),
+            //className: classnames(cssClasses.menuWrapper, attributes.className),
             onContextMenu: this.handleContextClick,
             onMouseDown: this.handleMouseDown,
             onMouseUp: this.handleMouseUp,
@@ -147,7 +147,7 @@ export class UpTouchContextMenuTrigger extends React.PureComponent<UpContextMenu
     render() {
         const { renderTag, attributes, children } = this.props;
         const newAttrs = assign({}, attributes, {
-            //className: classNames(cssClasses.menuWrapper, attributes.className),
+            //className: classnames(cssClasses.menuWrapper, attributes.className),
             onContextMenu: this.handleContextClick,
             onMouseDown: this.handleMouseDown,
             onMouseUp: this.handleMouseUp,

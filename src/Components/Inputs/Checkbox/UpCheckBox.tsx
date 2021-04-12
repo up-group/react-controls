@@ -1,6 +1,6 @@
 // Imports
 import * as React from 'react'
-import * as classNames from 'classnames'
+import classnames from 'classnames'
 
 import { getCheckableStyles } from '../_Common/Styled';
 import { style } from 'typestyle';
@@ -34,7 +34,7 @@ const BaseCheckBox: React.StatelessComponent<UpCheckboxStyledProps & Option> = (
   const { checked, className, text, name, value, onChange } = props;
 
   return (
-    <label className={classNames("up-control", "up-checkbox", style(getCheckableStyles(props)), className)}>
+    <label className={classnames("up-control", "up-checkbox", style(getCheckableStyles(props)), className)}>
       <input onClick={(e) => {
         e.stopPropagation();
         e.persist() ;
@@ -51,7 +51,7 @@ export interface UpCheckboxState {
 
 // Exports
 class UpCheckbox extends React.Component<UpCheckboxProps & WithThemeProps, UpCheckboxState> {
-  
+
   static defaultProps : Partial<UpCheckboxProps> & WithThemeProps = {
     theme:defaultTheme,
   }
@@ -104,11 +104,11 @@ class UpCheckbox extends React.Component<UpCheckboxProps & WithThemeProps, UpChe
         <label style={{display:"none"}}><input type="checkbox" /></label>
         {
           options.map((option) => {
-            return <BaseCheckBox 
-                onChange={this.handleChangeEvent} 
-                key={`Key_${option.name}_${option.value}`} 
-                text={option.text} 
-                name={option.name} 
+            return <BaseCheckBox
+                onChange={this.handleChangeEvent}
+                key={`Key_${option.name}_${option.value}`}
+                text={option.text}
+                name={option.name}
                 value={option.value}
                 theme={this.props.theme}
                 checked={option.checked}>
