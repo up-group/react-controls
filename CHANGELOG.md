@@ -1,3 +1,8 @@
+# React-Controls (version: 0.1.285 )
+
+## Main changes
+- Add consent component
+
 # React-Controls (version: 0.1.264 )
 
 ## Background Info
