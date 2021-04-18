@@ -44,6 +44,9 @@ export const getLabelStyle = props => {
             '&.up-select-wrapper label.up-select-label + div > div' : {
                 backgroundColor: 'transparent'
             },
+            '&.up-select-wrapper label.up-select-label + div > div:last-child' : {
+                backgroundColor: '#FFF'
+            },
             '&.up-select-wrapper .up-select-label-star': {
                 position: 'absolute',
                 top: toRem(4),
@@ -54,10 +57,6 @@ export const getLabelStyle = props => {
             },
             '& .up-select-label-valued': {
                 ...floatLabel
-            },
-            '& div[id^="react-select-"]:hover': {
-                //To remove the transparent background when hovering selected option, to prevent a text below from appearing
-                backgroundColor: '#F2F2F2 !important'
             }
         }
     })
