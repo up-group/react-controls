@@ -14,6 +14,7 @@
     font-size: 14px;
     line-height: 16px;
     font-family: 'Roboto', sans-serif;
+    justify-content: center;
 }
 
 #up-consent .cookie-notice .cn-body .privacy-policy {
@@ -361,6 +362,14 @@
 
     #up-consent .cookie-notice .cn-body {
         flex-direction: column;
+    }
+
+    #up-consent .cookie-notice .cn-body > p {
+        margin: 0;
+    }
+
+    #up-consent .cookie-notice .cn-body .cn-learn-more{
+        margin-left: 0;
     }
 
     #up-consent .cookie-notice .cn-body .cn-ok {
