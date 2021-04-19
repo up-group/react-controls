@@ -81,6 +81,8 @@ const UpCookiesConsentManager : React.FunctionComponent<UpCookieConsentProps> = 
   cursor: 'pointer',
   outline: 'none',
 } })  {
+  const [displayEditButton, setDisplayEditButton] = useState(false);
+
   const defaultTranslations = {
     fr: {
       acceptAll: 'Tout accepter',
@@ -123,36 +125,24 @@ const UpCookiesConsentManager : React.FunctionComponent<UpCookieConsentProps> = 
     acceptAll: true,
     translations: translations || defaultTranslations,
     apps,
+    callback: () => {
+      setTimeout(() => {
+        if (!document.querySelector('.cookie-notice') && !document.querySelector('.cookie-modal')) {
+          setDisplayEditButton(true);
+        }
+      }, 0.1);
+    },
   };
 
   window.klaro = Klaro;
   window.klaroConfig = config;
   Klaro.setup(config);
 
-  const [display, setDisplay] = useState(!document.querySelector('.cookie-notice'));
-
-  if (document.querySelector('.cookie-notice')) {
-    const observer = new MutationObserver((mutationRecord, observer) => {
-      mutationRecord.forEach((mutationRecord) => {
-        if (mutationRecord.attributeName === 'class') {
-          const target = mutationRecord.target as HTMLElement;
-          if (!target.classList.contains('cookie-notice')) {
-            setDisplay(true);
-          }
-        }
-      });
-    });
-
-    observer.observe(document.querySelector('.cookie-notice'), {
-      attributes: true,
-    });
-  }
-
   return (
     <button
       style={{
         ...editButtonStyle,
-        display: display ? 'block' : 'none',
+        display: displayEditButton ? 'block' : 'none',
       }}
       onClick={() => Klaro.show()}
     >
@@ -165,4 +155,4 @@ const UpCookiesConsentManager : React.FunctionComponent<UpCookieConsentProps> = 
     </button>
   );
 };
-export default UpCookiesConsentManager
+export default UpCookiesConsentManager;
