@@ -1,6 +1,8 @@
 import * as React from 'react';
 import * as Klaro from 'klaro/dist/klaro-no-css';
 import './style.css';
+import UpSvgIcon from '../SvgIcon';
+import { CSSProperties, useEffect, useState } from 'react';
 
 declare global {
   interface Window {
@@ -64,9 +66,21 @@ export interface UpCookieConsentProps {
   translations?: TranslationsProps
   cookieName?: string,
   cookieExpiresAfterDays?: number,
+  editButtonStyle?: CSSProperties
 }
 
-const UpCookiesConsentManager : React.FunctionComponent<UpCookieConsentProps> = function ({ apps, privacyPolicyUrl, translations, cookieExpiresAfterDays = 120, cookieName = 'gdprConsent' })  {
+const UpCookiesConsentManager : React.FunctionComponent<UpCookieConsentProps> = function ({ apps, privacyPolicyUrl, translations, cookieExpiresAfterDays = 120, cookieName = 'gdprConsent', editButtonStyle = {
+  position: 'fixed',
+  bottom: 0,
+  right: 0,
+  border: 'none',
+  background: 'none',
+  padding: 14,
+  borderRadius: '4px 0 0 0',
+  boxShadow: '0 2px 4px 0 rgba(0,0,0,0.15)',
+  cursor: 'pointer',
+  outline: 'none',
+} })  {
   const defaultTranslations = {
     fr: {
       acceptAll: 'Tout accepter',
@@ -115,7 +129,40 @@ const UpCookiesConsentManager : React.FunctionComponent<UpCookieConsentProps> = 
   window.klaroConfig = config;
   Klaro.setup(config);
 
-  return null;
-};
+  const [display, setDisplay] = useState(!document.querySelector('.cookie-notice'));
 
-export default UpCookiesConsentManager;
+  if (document.querySelector('.cookie-notice')) {
+    const observer = new MutationObserver((mutationRecord, observer) => {
+      mutationRecord.forEach((mutationRecord) => {
+        if (mutationRecord.attributeName === 'class') {
+          const target = mutationRecord.target as HTMLElement;
+          if (!target.classList.contains('cookie-notice')) {
+            setDisplay(true);
+          }
+        }
+      });
+    });
+
+    observer.observe(document.querySelector('.cookie-notice'), {
+      attributes: true,
+    });
+  }
+
+  return (
+    <button
+      style={{
+        ...editButtonStyle,
+        display: display ? 'block' : 'none',
+      }}
+      onClick={() => Klaro.show()}
+    >
+      <UpSvgIcon
+        iconName="settings"
+        color="#F39219"
+        width={20}
+        height={20}
+      />
+    </button>
+  );
+};
+export default UpCookiesConsentManager

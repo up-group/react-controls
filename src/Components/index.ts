@@ -52,6 +52,7 @@ import UpDropFile from './Inputs/DropFile/UpDropFile'
 import UpPDFViewer from './Display/PDFViewer/UpPDFViewer'
 import UpRating from './Inputs/Rating/UpRating'
 import UpCodeViewer from './Display/CodeViewer/UpCodeViewer'
+import UpCookiesConsentManager from './Display/CookiesConsentManager'
 
 import * as UpIcons from "./Display/Icons/materialinear";
 
@@ -99,8 +100,8 @@ export {
     UpTile,
     UpLogoAlerte,
     UpCalendarWeekDay,
-    UpContextMenu, 
-    UpContextMenuItem, 
+    UpContextMenu,
+    UpContextMenuItem,
     UpContextMenuItemDivider,
     UpContextMenuTrigger,
     UpMenu,
@@ -114,4 +115,5 @@ export {
     UpDropFile,
     UpRating,
     UpCodeViewer,
+    UpCookiesConsentManager,
 };
