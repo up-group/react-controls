@@ -30,7 +30,8 @@ export type IllustrationName =
   | "search-avatar-sad"
   | "search-glass"
   | "card-orange-add"
-  | "card-orange-trans";
+  | "card-orange-trans"
+  | "user-fail" ;
 
 export const IllustrationNames: IllustrationName[] = [
   "logo-up",
@@ -64,7 +65,8 @@ export const IllustrationNames: IllustrationName[] = [
   "search-avatar-sad",
   "search-glass",
   "card-orange-add",
-  "card-orange-trans"
+  "card-orange-trans",
+  "user-fail"
 ];
 
 let dictionary = {};

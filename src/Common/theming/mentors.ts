@@ -8,7 +8,8 @@ export type MentorName =
   | "sparkles"
   | "cry"
   | "mentor-surprised"
-  | "sorry-orange";
+  | "sorry-orange"
+  | "confused-grey" ;
 
 export const MentorNames: MentorName[] = [
   "glasses-orange",
@@ -17,10 +18,11 @@ export const MentorNames: MentorName[] = [
   "wink-grey",
   "happy-orange",
   "confused-orange",
+  "sparkles",
   "cry",
   "mentor-surprised",
   "sorry-orange",
-  "sparkles"
+  "confused-grey"
 ];
 
 let dictionary = {};
