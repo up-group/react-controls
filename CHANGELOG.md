@@ -1,3 +1,6 @@
+#  ReactControls (version: 0.2.145)
+## Main Changes
+- UpSvgIcon : Add profile3 | group2 | padlock icons
 #  ReactControls (version: 0.2.140)
 ## Main Changes
 - UpSvgIcon : Add nfc icon
