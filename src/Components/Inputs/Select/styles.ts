@@ -44,6 +44,9 @@ export const getLabelStyle = props => {
             '&.up-select-wrapper label.up-select-label + div > div' : {
                 backgroundColor: 'transparent'
             },
+            '&.up-select-wrapper label.up-select-label + div > div + div:last-of-type' : {
+                backgroundColor: '#FFF'
+            },
             '&.up-select-wrapper .up-select-label-star': {
                 position: 'absolute',
                 top: toRem(4),

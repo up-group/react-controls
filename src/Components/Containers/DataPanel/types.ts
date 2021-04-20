@@ -30,14 +30,15 @@ export interface TitleFormatter {
 export interface UpDataPanelProps {
     /** Columns Panel */
     columns: Array<Column>;
-    /** Data Panel */
+    /** Data Columns Panel */
     data: Array<any>;
     /** To hide field if it is empty */
     showOnlyNotEmptyValue?: boolean;
+    /** To display actions buttons */
     actions?: Array<Action>;
     /** To display fields horizontally or vertically */ 
     displayMode?: DisplayType;
-    /** To specify a specific className for the UpDataPanel */
+    /** To add className for customization panel style */
     className?: string;
     /** To show Generic and Specific title */
     title?: {

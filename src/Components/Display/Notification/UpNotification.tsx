@@ -1,4 +1,3 @@
-// Imports
 import * as React from 'react';
 import * as classnames from 'classnames';
 import { UpGrid, UpRow, UpCol } from '../../Containers/Grid';
@@ -11,6 +10,9 @@ import { getStyles } from './styles';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import UpBox from '../../Containers/Box';
 import { UpNotificationProps } from './types';
+import { setTimeOutWithPause } from '../../../Common/utils/helpers';
+import { style } from 'typestyle';
+import { toRem } from '../../../Common/theming/utils';
 
 const UpNotification = (props: UpNotificationProps & WithThemeProps) => {
 
@@ -22,13 +24,27 @@ const UpNotification = (props: UpNotificationProps & WithThemeProps) => {
         title,
         className,
         durationBeforeClosing,
+        dismissable,
         onCloseClick
     } = props;
 
-
     let icon = null;
     let cancelIcon = null;
+    let autoClosingTimeout;
     const iconSize = props.iconSize || (theme && theme.notificationIconSize != null ? theme.notificationIconSize : 60);
+
+    const [isVisible, setIsVisible] = React.useState(true);
+
+    React.useEffect(() => {
+        if (durationBeforeClosing && dismissable) {
+            autoClosingTimeout = new setTimeOutWithPause(() => {
+                setIsVisible(false);
+            }, (durationBeforeClosing * 1000));
+        }
+        return () => {
+            autoClosingTimeout && autoClosingTimeout.clearTimeout();
+        };
+    }, [durationBeforeClosing, dismissable]);
 
     if (intent && iconMap[intent]) {
         icon = (
@@ -39,7 +55,8 @@ const UpNotification = (props: UpNotificationProps & WithThemeProps) => {
             />
         );
     }
-    if (onCloseClick) {
+
+    if (onCloseClick || dismissable) {
         cancelIcon = (
             <SvgIcon
                 iconName={iconMap['error']}
@@ -50,7 +67,8 @@ const UpNotification = (props: UpNotificationProps & WithThemeProps) => {
     }
 
     const handleIconClick = () => {
-        if (onCloseClick) onCloseClick()
+        setIsVisible(false);
+        if (onCloseClick) onCloseClick();
     }
 
     const NotificationRender = () => (
@@ -68,6 +86,7 @@ const UpNotification = (props: UpNotificationProps & WithThemeProps) => {
                                 <UpHeading
                                     tag={'h2'}
                                     textAlign={'left'}
+                                    className={style({marginLeft: toRem(25)})}
                                 >
                                     {title}
                                 </UpHeading>
@@ -79,31 +98,36 @@ const UpNotification = (props: UpNotificationProps & WithThemeProps) => {
                             flexDirection={'row'}
                             alignContent={'flex-start'}
                             justifyContent={'center'}
-                            alignItems={'center'}>
-                            <div className="up-notification-icon-container">
+                            alignItems={'center'}
+                        >
+                            <div className='up-notification-icon-container'>
                                 {icon}
                             </div>
                             {(message || children) && (
-                                <div className="up-notification-message">
+                                <div className='up-notification-message'>
                                     {message || children}
                                 </div>
                             )}
                         </UpBox>
                     </UpRow>
                     <div
-                        className="cancel-icon"
+                        className='cancel-icon'
                         onClick={handleIconClick}>
                         {cancelIcon}
                     </div>
                 </UpGrid>
                 {durationBeforeClosing && (
-                    <div className="up-notification-progress-bar-container">
-                        <div className="up-notification-progress-bar" />
+                    <div className='up-notification-progress-bar-container'>
+                        <div className='up-notification-progress-bar' />
                     </div>
                 )}
             </div>
         </div>
     );
+
+    if (!isVisible) {
+        return null;
+    }
 
     if (props.displayMode == 'modal') {
         return (

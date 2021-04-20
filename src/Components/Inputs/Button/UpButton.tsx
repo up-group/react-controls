@@ -134,6 +134,12 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         name: 'button'
     };
 
+    componentWillReceiveProps(nextProps, prevState) {
+        if (nextProps.disabled) {
+            this.setState({ isToggled: false });
+        }
+    };
+
     private handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
         if (this.props.disabled !== true) {
             const returnValue = this.props.onClick(e);
@@ -294,7 +300,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
                             <RenderButton />
                         </UpTooltip>
                 }
-                {this.props.dropDown != 'none' && this.getValue('isToggled') &&
+                {!this.props.disabled && this.props.dropDown != 'none' && this.getValue('isToggled') &&
                     <ul tabIndex={0} className={style(this.getDropDownStyles())}>
                         {
                             this.props.extraActions.map((v, i) => {

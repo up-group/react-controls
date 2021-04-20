@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as cn from 'classnames';
+import * as classnames from 'classnames';
 import SvgIcon from '../SvgIcon/index'
 import { BulleStyle, IconStyle, ValueStyle, MessageStyle, ChildrenStyle } from './styles';
 import UpBox from '../../Containers/Box';
@@ -20,16 +20,20 @@ const UpBulle: React.FunctionComponent<UpBulleProps & WithThemeProps> = props =>
 
     return (
         <div
-            className={cn(BulleStyle(props), className, "up-bulle")}
+            className={classnames(BulleStyle(props), className, 'up-bulle')}
             style={{ backgroundImage: backgroundImage }}
         >
             <UpBox
-                flexDirection={"row"}
-                justifyContent={"flex-start"}
-                alignItems={"center"}
+                flexDirection={'row'}
+                justifyContent={'flex-start'}
+                alignItems={'center'}
             >
                 {icon &&
-                    <SvgIcon className={IconStyle} iconName={icon} color={'white'} />
+                    <SvgIcon
+                        className={IconStyle}
+                        iconName={icon}
+                        color={'white'}
+                    />
                 }
                 {value &&
                     <div className={ValueStyle}>{value}</div>

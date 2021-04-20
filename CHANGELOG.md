@@ -1,3 +1,17 @@
+#  ReactControls (version: 0.2.140)
+## Main Changes
+- UpSvgIcon : Add nfc icon
+
+#  ReactControls (version: 0.2.137)
+## Bug Fixes
+- UpSelect : Remove the transparent background when hovering selected option, to prevent a text below from appearing
+
+#  ReactControls (version: 0.2.136)
+## Main Changes
+- Add new component UpCookiesConsent
+## Bug Fixes
+- UpDataGrid : Fix auto-hide menu af action if none checkbox selected
+
 #  ReactControls (version: 0.2.135)
 ## Main Changes
   - UpSvgIcon : Add new illustrations :

@@ -1,6 +1,10 @@
 export interface UpVerticalTimelineProps {
+    /** To provide title */
     title: string;
-    timeline: { status: string; date?: string; isAchieved: boolean }[];
+    /** To provide the events to be represented graphically */
+    timeline: {
+        status: string;
+        date?: string;
+        isAchieved: boolean
+    }[];
 };
-
-export interface UpVerticalTimelineState { };

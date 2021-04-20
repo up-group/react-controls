@@ -16,17 +16,19 @@ export const getStyles = (props: UpTooltipProps & WithThemeProps) => style({
     pointerEvents: 'auto',
     opacity: 0.95,
     padding: 0,
-    ...(props.type == 'light' ? {
-        background: '#4E5B59 !important',
-        border: '1px #4E5B59 solid',
-        borderRadius: props.theme.borderRadius ? props.theme.borderRadius : 'initial',
-    } : {}),
+    background: '#4E5B59 !important',
+    border: '1px #4E5B59 solid',
+    borderRadius: props.theme.borderRadius ? props.theme.borderRadius : 'initial',
+    ...(props.type && props.type !== 'light' && {
+        background: `${props.theme.colorMap[`${props.type}`]} !important`,
+        border: props.theme.colorMap[`${props.type}`]
+    }),
     $nest: {
         '& .up-tooltip-content': {
             padding: 0,
             margin: 0,
             color: 'white',
-            width: toRem(215),
+            width: toRem(215)
         },
         '& .up-tooltip-header': {
             padding: `${toRem(8)} ${toRem(14)}`,
@@ -38,7 +40,7 @@ export const getStyles = (props: UpTooltipProps & WithThemeProps) => style({
             fontWeight: 700,
             fontSize: toRem(13),
             color: '#4d4f5c',
-            background: '#f7f7f7',
+            background: '#f7f7f7'
         },
         '& .up-tooltip-body': {
             padding: toRem(8),
@@ -48,30 +50,40 @@ export const getStyles = (props: UpTooltipProps & WithThemeProps) => style({
         },
         '&:hover': {
             visibility: 'visible',
-            opacity: 1,
+            opacity: 1
         },
-        ...(props.type == 'light' ? {
-            '&.place-top:after': {
-                borderTopColor: '#4E5B59 !important',
-                borderTopStyle: 'solid !important',
-                borderTopWidth: '6px !important'
-            },
-            '&.place-left:after': {
-                borderLeftColor: '#4E5B59 !important',
-                borderLeftStyle: 'solid !important',
-                borderLeftWidth: '6px !important'
-            },
-            '&.place-right:after': {
-                borderRightColor: '#4E5B59 !important',
-                borderRightStyle: 'solid !important',
-                borderRightWidth: '6px !important'
-            },
-            '&.place-bottom:after': {
-                borderBottomColor: '#4E5B59 !important',
-                borderBottomStyle: 'solid !important',
-                borderBottomWidth: '6px !important',
-                left: '10% !important'
-            },
-        } : {}),
+        '&.place-top:after': {
+            borderTopColor: '#4E5B59 !important',
+            ...(props.type && props.type !== 'light' && {
+                borderTopColor: `${props.theme.colorMap[`${props.type}`]} !important`
+            }),
+            borderTopStyle: 'solid !important',
+            borderTopWidth: '6px !important'
+        },
+        '&.place-left:after': {
+            borderLeftColor: '#4E5B59 !important',
+            ...(props.type && props.type !== 'light' && {
+                borderLeftColor: `${props.theme.colorMap[`${props.type}`]} !important`
+            }),
+            borderLeftStyle: 'solid !important',
+            borderLeftWidth: '6px !important'
+        },
+        '&.place-right:after': {
+            borderRightColor: '#4E5B59 !important',
+            ...(props.type && props.type !== 'light' && {
+                borderRightColor: `${props.theme.colorMap[`${props.type}`]} !important`
+            }),
+            borderRightStyle: 'solid !important',
+            borderRightWidth: '6px !important'
+        },
+        '&.place-bottom:after': {
+            borderBottomColor: '#4E5B59 !important',
+            ...(props.type && props.type !== 'light' && {
+                borderBottomColor: `${props.theme.colorMap[`${props.type}`]} !important`
+            }),
+            borderBottomStyle: 'solid !important',
+            borderBottomWidth: '6px !important',
+            left: '10% !important'
+        }
     }
 });

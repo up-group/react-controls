@@ -71,17 +71,17 @@ export const wrapperToastCss: NestedCSSProperties = {
     flexDirection: 'column',
     $nest: {
         '& .up-toast-body': {
-            padding: '0px'
+            padding: 0
         },
         '& .up-toast-message': {
-            border: '0px',
-            marginBottom: '0px'
+            border: 0,
+            marginBottom: 0
         },
         '& .up-toast-message p': {
             margin: toRem(6)
         },
         '& .up-toast-title': {
-            marginBottom: '0px'
+            marginBottom: 0
         }
     }
 };

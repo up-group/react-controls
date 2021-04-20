@@ -1,5 +1,6 @@
 // Imports
-import UpParagraph, {Margin} from './UpParagraph' ;
+import UpParagraph from './UpParagraph';
+import { Margin } from './types';
 
-export {Margin}
-export default UpParagraph
+export { Margin };
+export default UpParagraph;

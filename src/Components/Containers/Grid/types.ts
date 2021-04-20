@@ -3,7 +3,7 @@ export type Alignment = 'top' | 'middle' | 'bottom';
 export type Justification = 'start' | 'end' | 'center' | 'space-around' | 'space-between';
 
 export interface UpGridProps {
-    /** To add a className */
+    /** To add className for grid customization style */
     className?: string;
     /** To add space between Columns */
     gutter?: number;
@@ -13,7 +13,7 @@ export interface UpGridProps {
     type?: LayoutMode;
     /** ??? */
     fullRowLayout?: boolean;
-    /** To add style, e.g : In order to set margin for example */
+    /** Style global attribute which contains CSS styling declarations to be applied to the grid, e.g : In order to set margin for example */
     style?: React.CSSProperties;
 };
 

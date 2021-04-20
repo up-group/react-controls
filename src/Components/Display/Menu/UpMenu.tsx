@@ -3,10 +3,15 @@ import { WithThemeProps, withTheme } from '../../../Common/theming';
 import defaultTheme from '../../../Common/theming';
 import { isFunction, isEmpty } from '../../../Common/utils';
 import UpSvgIcon from '../SvgIcon';
+import UpBox from '../../Containers/Box';
 import { IconName } from '../../../Common/theming/icons';
 import { MenuStyles as getMenuStyles, UpMenuCustomStyles } from './styles';
 import * as classnames from 'classnames';
 import { isEqual, isString } from 'lodash';
+import UpLigne from '../Ligne';
+import colorMap from '../../../Common/theming/colorMap';
+
+import { style } from 'typestyle';
 
 const logo = require('./sources/logo-up-square.svg');
 
@@ -117,6 +122,8 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
 
         if (header != null && isFunction(header)) {
             renderHeader = (header as RenderCallback)(this.props, this.state);
+        } else if(this.props.title) {
+            renderHeader = UpMenuDefaultHeader({title : this.props.title}, this.state)
         }
 
         let renderFooter = footer;
@@ -326,5 +333,14 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
     }
 };
 
-export { UpMenu };
+const UpMenuDefaultHeader = (props : { title : string }, state : {minified : boolean}) => 
+        <UpBox flexDirection={'row'} alignItems={'center'} justifyContent={'center'} style={{ height: '100%' }}>
+            {!state.minified &&
+                <UpLigne color={colorMap.primary} className={style({ marginLeft: '8px' })}>
+                    {props.title}
+                </UpLigne>
+            }
+        </UpBox>
+
+export { UpMenu, UpMenuDefaultHeader };
 export default withTheme<UpMenuProps>(UpMenu);

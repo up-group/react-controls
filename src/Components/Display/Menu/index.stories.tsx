@@ -41,9 +41,7 @@ const setMenuSelection = (uri: string, menu: Array<MenuItemData>, prev?: Array<M
         isSelected: m.uri === uri || hasItemSelected(uri, m.childMenuItems),
     }));
 };
-
-export const General = (props) => {
-    const defaultMenu: Array<MenuItemData> = [
+const defaultMenu: Array<MenuItemData> = [
         {
             title: 'Stack',
             icon: (propsIcon) => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
@@ -148,7 +146,89 @@ export const General = (props) => {
             },
         },
     ];
+    
+const _General = (props: UpMenuProps) => {
+    
+    const [uri, setUri] = React.useState(null);
+    const [menu, setMenu] = React.useState(defaultMenu);
 
+    const footerStyle = style({
+        color: '#9B9B9B',
+        fontFamily: 'Roboto',
+        fontSize: '12px',
+        lineHeight: '18px',
+        textAlign: 'center',
+        whiteSpace: 'pre-line',
+    });
+
+    return (
+        <>
+            <span data-testid="uri" style={{ display: 'none' }}>{uri}</span>
+            <UpMenu
+                onMinifiedChange={(minified) => action(`Menu minified: ${minified}`)}
+                onClick={uri => {
+                    setMenu(previousMenu => setMenuSelection(uri, menu, previousMenu));
+                    setUri(uri);
+                    return false;
+                }}
+                minified={props.minified}
+                title={props.title}
+                blocked={props.blocked}
+                menuItems={menu}
+                width={props.width}
+                footer={(props: Partial<UpMenuProps>, state: UpMenuState) => {
+                    return (
+                        <>
+                            {!state.minified &&
+                                <UpBox alignItems={'center'} justifyContent={'center'} style={{ width: '100%', height: '100%' }}>
+                                    <div className={footerStyle}>
+                                        Copyright. Tous droits réservés @Up 2021
+                                    </div>
+                                    <a
+                                        className={footerStyle}
+                                        href="https://up.coop/donnees-personnelles"
+                                        target="_blank"
+                                    >
+                                        Conditions générales
+                                    </a>
+                                    <a
+                                        className={footerStyle}
+                                        href="https://up.coop/mentions-legales"
+                                        target="_blank"
+                                    >
+                                        Mentions légales
+                                    </a>
+                                </UpBox>
+                            }
+                            {state.minified &&
+                                <UpTooltip place={'top'} content={'Copyright.Tous droits réservés Up 2019'} >
+                                    <UpBox alignItems={'center'} justifyContent={'center'} style={{ width: '100%', height: '100%' }}>
+                                        <UpSvgIcon color={colorMap.disabledFg} iconName={'info-sign'} />
+                                    </UpBox>
+                                </UpTooltip>
+                            }
+                        </>
+                    );
+                }}
+            />
+        </>
+    );
+};
+
+export const General = _General.bind({}) ;
+
+General.args = {
+  //👇 This arg is for the story component
+  title: "Title",
+  //👇 The remaining args get passed to the `Table` component
+  minified: false,
+  //👇 
+  blocked: false,
+  width : 300
+}
+
+export const GeneralWithCustomHeader = (props) => {
+    
     const [uri, setUri] = React.useState(null);
     const [menu, setMenu] = React.useState(defaultMenu);
 
