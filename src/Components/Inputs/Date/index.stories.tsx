@@ -68,7 +68,6 @@ export const General =
                     console.log(value);
                     setDate(value)
                 }}
-                value={value && moment(value)}
             />
         )
     };

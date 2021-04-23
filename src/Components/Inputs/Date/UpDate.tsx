@@ -173,7 +173,6 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Moment> 
             placeholder,
             iconPosition
         } = this.props;
-        console.log(this.props);
         return (
             <div
                 className={classnames(

@@ -138,14 +138,10 @@ export abstract class BaseControlComponent<
         result ? result.errorMessage : null
       );
     } else {
-      this.setState(
-        {
-          value: cleanData,
-          error: result != null && result.hasError ? result.errorMessage : null
-        },
+      this.setState({ value: cleanData, error: result != null && result.hasError ? result.errorMessage : null },
         () => {
           this.dispatchOnChange(
-            this.state.value,
+            cleanData,
             cloneEvent,
             result != null && result.errorMessage
           );
@@ -171,6 +167,7 @@ export abstract class BaseControlComponent<
     if (this.isControlled) {
       this.props.onClear()
     } else {
+      debugger;
       this.setState({value: undefined})
     }
   }
@@ -217,23 +214,23 @@ export abstract class BaseControlComponent<
     const handleOnBlur = event => {
       if (this.props["onBlur"]) this.props["onBlur"](event);
     };
-
-    if (this.state.extra === undefined) {
-      this.setState(
-        { extra: { focused: false, touched: true } },
-        handleOnBlur.bind(null, event)
-      );
-    } else {
-      this.setState(
-        update(this.state, {
-          extra: {
-            focused: { $set: false },
-            touched: { $set: true }
-          }
-        }),
-        handleOnBlur.bind(null, event)
-      );
-    }
+    setTimeout(() => {
+      if (this.state.extra === undefined) {
+        this.setState({ extra: { focused: false, touched: true }},
+          handleOnBlur.bind(null, event)
+        );
+      } else {
+        this.setState(
+          update(this.state, {
+            extra: {
+              focused: { $set: false },
+              touched: { $set: true }
+            }
+          }),
+          handleOnBlur.bind(null, event)
+        );
+      }
+    }, 300);
   };
 
   get isFocused() {
