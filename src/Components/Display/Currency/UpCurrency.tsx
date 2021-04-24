@@ -1,32 +1,79 @@
-import * as React from 'react';
+import * as React from "react";
+import { style } from "typestyle";
+import { Color } from "csstype";
+import { getIntegerValue, getDecimalValue } from "../../../Common/utils/currency";
+import * as classnames from 'classnames';
+import { useCountUp } from "react-countup";
+import UpBox from "../../Containers/Box";
 
-interface CurrencyProps {
-  locale?: string;
-  currency?: string;
-  showSymbol?: boolean;
+export interface UpCurrencyProps extends React.Props<any> {
   value: number;
+  integerFontSize?: number;
+  decimalFontSize?: number;
+  integerLineHeight?: number;
+  decimalLineHeight?: number;
+  integerFontWeight?: number;
+  color?: Color;
+  secondColor?: Color;
+  unit?: string;
+  animate?: boolean;
+  delay?: number;
 }
 
-export const toCurrencyString = (
-  value: number,
-  locale: string = 'fr-FR',
-  currency: string = 'EUR',
-  showSymbol: boolean = false,
-) => {
-  const digits = Number.isInteger(value) ? 0 : 2;
-  return value != null ? value.toLocaleString(locale, { currency, minimumFractionDigits: digits }) : '';
+const UpCurrency = (props: UpCurrencyProps) => {
+  const bigNumber = style({
+    $nest: {
+      "&.up-number-integer": {
+        fontSize: (props.integerFontSize ? props.integerFontSize : 40) + "px",
+        lineHeight:
+          (props.integerLineHeight
+            ? props.integerLineHeight
+            : (props.integerFontSize ? props.integerFontSize : 40) + 8) + "px",
+        fontWeight: props.integerFontWeight
+          ? props.integerFontWeight
+          : "normal",
+        color: props.color && props.value > 0 ? props.color : "#D7D7D7"
+      }
+    }
+  });
+
+  const smallNumber = style({
+    $nest: {
+      "&.up-number-decimal": {
+        marginTop: "8px",
+        fontSize: (props.decimalFontSize ? props.decimalFontSize : 14) + "px",
+        fontWeight: 500,
+        lineHeight:
+          (props.decimalLineHeight
+            ? props.decimalLineHeight
+            : (props.decimalFontSize ? props.decimalFontSize : 14) + 2) + "px",
+        color: props.value > 0 ? props.secondColor || "#9B9B9B" : "#D7D7D7"
+      }
+    }
+  });
+
+  const { countUp } = props.animate
+    ? useCountUp({
+        start: 0,
+        decimals: 2,
+        delay: props.delay || 0,
+        end: props.value
+      })
+    : { countUp: 0};
+
+  return (
+    <UpBox justifyContent={"center"} style={{ height: "100%" }}>
+      <UpBox flexDirection={"row"} justifyContent={"center"}>
+        <span className={classnames("up-number-integer", bigNumber)}>
+          {getIntegerValue((props.animate ? countUp : props.value) as number, " ")}
+        </span>
+        <span className={classnames("up-number-decimal", smallNumber)}>
+          {getDecimalValue((props.animate ? countUp : props.value) as number, 2)}
+          {props.unit ? props.unit : ""}
+        </span>
+      </UpBox>
+    </UpBox>
+  );
 };
 
-const Currency: React.SFC<CurrencyProps> = (props) => {
-  const { locale, currency, showSymbol, value } = props;
-  return <>{toCurrencyString(value, locale, currency, showSymbol)}</>;
-};
-
-Currency.defaultProps = {
-  locale: 'fr-FR',
-  currency: 'EUR',
-  showSymbol: false,
-  value: 0,
-};
-
-export default Currency;
+export default UpCurrency;
