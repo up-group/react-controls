@@ -1,4 +1,8 @@
-#  ReactControls (version: 0.2.147)
+#  ReactControls (version: 0.2.148)
+## Main Changes
+- UpCurrency : update behaviour adding animation and style props
+
+  #  ReactControls (version: 0.2.147)
 ## Bug Fixes
 - UpDate : Fix uncontrolled value
 
