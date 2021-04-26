@@ -60,7 +60,9 @@ import { UpPanel,
     UpCarousel,
     UpDataPanel,
     UpEntityView,
-    UpVerticalTimeline
+    UpVerticalTimeline,
+    UpCurrency,
+    UpCookiesConsentManager
 } from './Components/'
 
 import * as UpIcons from "./Components/Display/Icons/materialinear";
@@ -150,5 +152,7 @@ export {
     useHoverIntent,
     useSafeState,
     UpEntityView,
-    UpVerticalTimeline
+    UpVerticalTimeline,
+    UpCurrency,
+    UpCookiesConsentManager
 };

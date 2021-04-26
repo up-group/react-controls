@@ -60,6 +60,7 @@ import UpDataPanel  from './Containers/DataPanel/UpDataPanel';
 import * as UpIcons from './Display/Icons/materialinear';
 import UpEntityView from './Display/EntityView';
 import UpVerticalTimeline from './Display/VerticalTimeline';
+import UpCurrency from './Display/Currency';
 
 export {
     UpBaseControlComponent,
@@ -127,4 +128,5 @@ export {
     UpVerticalTimeline,
     UpCookiesConsentManager,
     UpCookiesConsent,
+    UpCurrency
 };
