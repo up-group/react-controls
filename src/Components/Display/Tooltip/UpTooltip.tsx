@@ -26,6 +26,10 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps> {
         super(props);
     };
 
+    componentDidUpdate(){
+        ReactTooltip.rebuild();
+    };
+
     getContent = () => {
         return (
             <div className='up-tooltip-content'>
