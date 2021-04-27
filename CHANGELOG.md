@@ -1,3 +1,7 @@
+#  ReactControls (version: 0.2.151)
+## Bugs Fixes
+- UpTooltip : fix re-render
+
 #  ReactControls (version: 0.2.148)
 ## Main Changes
 - UpCurrency : update behaviour adding animation and style props
