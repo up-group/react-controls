@@ -163,12 +163,12 @@ export abstract class BaseControlComponent<
     this.checkAndDispatch(event, value);
   };
 
-  public handleClearEvent = () => {
+  public handleClearEvent = (value: _BaseType) => {
     if (this.isControlled) {
-      this.props.onClear()
+      this.dispatchOnChange(value, eventFactory(this.props.name, ""), null)
+      this.props.onClear && this.props.onClear()
     } else {
-      debugger;
-      this.setState({value: undefined})
+      this.setState({value})
     }
   }
 

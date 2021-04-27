@@ -1,6 +1,7 @@
 #  ReactControls (version: 0.2.151)
 ## Bugs Fixes
 - UpTooltip : fix re-render
+- UpInput : fix clear action
 
 #  ReactControls (version: 0.2.148)
 ## Main Changes

@@ -189,7 +189,8 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
     }
 
     clearValue = () => {
-        this.handleClearEvent()
+        debugger;
+        this.handleClearEvent("")
     }
 
     public showError() {

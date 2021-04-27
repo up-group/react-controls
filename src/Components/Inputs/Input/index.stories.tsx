@@ -69,6 +69,7 @@ const EmailForm = props => {
                 hasError={errors.email != null}
                 value={values.email}
                 onChange={handleChange}
+                hasClearOption={true}
                 onFocus={e => {
                     setOnBlurState({ ...onBlurState, email: false });
                 }}
@@ -332,6 +333,7 @@ export const General =
                                 showValidationStatus={false}
                                 onChange={onChange}
                                 type={'text'}
+                                hasClearOption
                             />
                         </UpLabel>
                     </UpCol>
