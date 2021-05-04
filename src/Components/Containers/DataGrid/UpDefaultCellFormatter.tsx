@@ -164,7 +164,7 @@ export class UpCellFormatter extends React.Component<UpCellFormatterProps, {}>{
             case 'time':
                 return <span>{moment(valueExtracted).format("HH:mm")}</span>
             case "multilineText":
-                return <span style={{ "whiteSpace": "pre" }}>{valueExtracted}</span>
+                return <span>{valueExtracted}</span>
             case "boolean":
                 switch (valueExtracted) {
                     case true:
