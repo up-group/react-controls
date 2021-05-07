@@ -14,6 +14,7 @@
     font-size: 14px;
     line-height: 16px;
     font-family: 'Roboto', sans-serif;
+    justify-content: center;
 }
 
 #up-consent .cookie-notice .cn-body .privacy-policy {
@@ -39,17 +40,6 @@
     margin-right: 10px;
     margin-left: 40px;
     position: relative;
-    width: 140px;
-}
-
-#up-consent .cookie-notice .cn-body .cn-learn-more::after{
-    content: '';
-    width: 12px;
-    background: #424C4A;
-    position: absolute;
-    height: 16px;
-    right: 1px;
-    top: 14px;
 }
 
 #up-consent .cookie-notice .cn-body .cn-ok .cn-buttons .cm-btn-success {
@@ -171,6 +161,7 @@
     background: #FFFFFF;
     color: #F59100;
     top: 0;
+    left: 0;
     font-size: 14px;
     line-height: 16px;
 }
@@ -180,7 +171,7 @@
 }
 
 #up-consent .cookie-modal .cm-purposes .cm-purpose {
-    margin-left: 55px;
+    margin-left: 60px;
 }
 
 #up-consent .cookie-modal .cm-purposes .cm-purpose + .cm-purpose  {
@@ -361,4 +352,63 @@
 #up-consent .cookie-modal .cm-list-input:checked+.cm-list-label .slider::before{
     -ms-transform:translateX(16px);
     transform:translateX(16px)
+}
+
+@media (max-width: 768px) {
+    #up-consent .cookie-notice {
+        padding: 10px;
+    }
+
+    #up-consent .cookie-notice .cn-body {
+        flex-direction: column;
+    }
+
+    #up-consent .cookie-notice .cn-body > p {
+        margin: 0;
+    }
+
+    #up-consent .cookie-notice .cn-body .cn-learn-more{
+        margin-left: 0;
+    }
+
+    #up-consent .cookie-notice .cn-body .cn-ok {
+        margin-top: 15px;
+    }
+
+    #up-consent .cookie-modal .cm-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        transform: unset;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    #up-consent .cookie-modal .cm-modal .cm-header {
+        padding: 15px !important;
+    }
+
+    #up-consent .cookie-modal .cm-modal .cm-body {
+        padding: 15px !important;
+    }
+
+    #up-consent .cookie-modal .cm-modal .cm-footer {
+        padding: 15px !important;
+    }
+
+    #up-consent .cookie-modal .cm-modal .cm-header {
+        margin: 0;
+    }
+
+    #up-consent .cookie-modal .cm-modal .cm-footer .cm-footer-buttons {
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    #up-consent .cookie-modal .cm-modal .cm-footer .cm-footer-buttons .cm-btn-accept-all {
+        margin-top: 10px;
+    }
 }

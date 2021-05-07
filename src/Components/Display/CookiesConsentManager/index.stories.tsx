@@ -11,7 +11,7 @@ export default {
   decorators : [withKnobs, getRootContainer('UpCookiesConsentManager')],
 };
 
-const defaultTranslation: TranslationsProps = {
+const translations: TranslationsProps = {
   fr: {
     acceptAll: 'Tout accepter',
     acceptSelected: 'Accepter la sélection',
@@ -68,7 +68,7 @@ const multipleApps = [
   },
 ];
 export const Default = () => (
-      <UpCookiesConsentManager apps={apps} privacyPolicyUrl="https://groupe.up.coop/fr/donnees-personnelles" translations={defaultTranslation} />
+      <UpCookiesConsentManager apps={apps} privacyPolicyUrl="https://groupe.up.coop/fr/donnees-personnelles" translations={translations} />
   );
 
 export const MultipleServices = () => (
