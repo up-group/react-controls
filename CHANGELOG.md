@@ -1,3 +1,7 @@
+#  ReactControls (version: 0.2.155)
+## Main Changes
+- Update cookies consent manager
+
 #  ReactControls (version: 0.2.151)
 ## Bugs Fixes
 - UpTooltip : fix re-render
