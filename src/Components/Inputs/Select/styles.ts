@@ -27,7 +27,8 @@ export const getLabelStyle = props => {
         fontSize: `${toRem(12)} !important`,
     };
     return style({
-        marginTop: props.floatingLabel ? toRem(16) : 0,
+        marginTop: props.floatingLabel ? toRem(14) : 0,
+        minHeight:  toRem(29),
         position: 'relative',
         $nest: {
             '&.up-select-wrapper .up-select-label': {

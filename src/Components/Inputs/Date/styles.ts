@@ -13,7 +13,8 @@ const getStyles = (props: UpDateProps & WithThemeProps & { focused: boolean }) =
             ...(props.fullWidth && { width: "100%" })
         },
         "& .SingleDatePickerInput": {
-            ...(props.fullWidth && { width: "100%" })
+            ...(props.fullWidth && { width: "100%" }),
+            minHeight: toRem(29)
         },
         "& label": {
             fontSize: toRem(14),
@@ -88,8 +89,7 @@ const getStyles = (props: UpDateProps & WithThemeProps & { focused: boolean }) =
             fontStyle: 'normal'
         },
         "& .SingleDatePickerInput__showClearDate": {
-            paddingRight: props.iconPosition == "left" ? toRem(30) : 0,
-            minHeight: toRem(29)
+            paddingRight: props.iconPosition == "left" ? toRem(30) : 0
         },
         "& .SingleDatePickerInput_clearDate": {
             right: props.iconPosition == "left" ? 0 : toRem(9)
