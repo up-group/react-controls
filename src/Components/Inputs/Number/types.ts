@@ -7,6 +7,7 @@ export interface UpNumberProps extends CommonProps<number | string> {
     decimalPlace?: number;
     value?: number | string;
     hideButtons?: boolean;
+    seperatorForDecimalNumbers?: 'comma' | 'point';
 };
 
 export interface UpNumberStyledProps extends UpNumberProps {

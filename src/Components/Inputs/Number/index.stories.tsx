@@ -89,3 +89,25 @@ export const Integer =
             <NumberWrapper />
         </>
     );
+
+export const WithSeparator =
+() => (
+    <>
+        <UpThemeProvider theme={{ ...UpDefaultTheme, inputBorderLess: false }}>
+            <UpLabel
+                textAlign={"left"}
+                inline={true}
+                width="small"
+                text="Number :"
+            >
+                <UpNumber
+                    seperatorForDecimalNumbers={'comma'}
+                />
+            </UpLabel>
+        </UpThemeProvider>
+        <br />
+        <NumberWrapper />
+    </>
+);
+
+WithSeparator.storyName = 'Only Comma Is Accepted As Separator';

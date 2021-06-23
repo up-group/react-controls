@@ -28,7 +28,19 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
         this._validationManager.addControl(new TypeNumberControl(this.props.decimalPlace === 0, this.props.min, this.props.max));
     }
 
-    isValueMatched = (value: string) => value != null && value.match(/^(\d+([,.]\d*)?)?$/);
+    isValueMatched = (value: string) => {
+        const { seperatorForDecimalNumbers } = this.props;
+        if(value != null) {
+          switch (seperatorForDecimalNumbers) {
+            case 'comma':
+              return value.match(/^(\d+([,]\d*)?)?$/);
+            case 'point' : 
+              return value.match(/^(\d+([.]\d*)?)?$/);  
+            default:
+              return value.match(/^(\d+([,.]\d*)?)?$/);  
+          }
+        }
+    };
 
     displayDecimalWithComma = (numberAsString: string) => {
         return numberAsString.replace('.', ',');
