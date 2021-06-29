@@ -1,7 +1,7 @@
 import * as $ from "jquery";
 import * as React from "react";
 import * as classnames from "classnames";
-import { style } from "typestyle";
+import {media, style} from "typestyle";
 
 import axios from "axios";
 
@@ -22,10 +22,17 @@ import UpDataGridHeader, { UpDataGridHeaderProps } from './UpDataGridHeader';
 import * as _ from 'lodash';
 import { UpDataGridProvider } from './UpDataGridContext'
 import { getTestableComponentProps, TestableComponentProps } from "../../../Common/utils/types";
+import {DeviceSmartphones} from "../../../Common/utils/device";
 
 const WrapperDataGridStyle = style({
   position: "relative"
-});
+}, media(DeviceSmartphones, {
+  $nest: {
+    '& .up-loading-indicator': {
+      overflowX: 'auto',
+    },
+  },
+}));
 
 const CellInnerElementStyle = {
   marginTop: "0.3em"
@@ -96,8 +103,11 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
             justifyContent: props.textAlignCells === 'center' ? 'center' :
               props.textAlignCells === 'left' ? 'flex-start' :
                 props.textAlignCells === 'right' ? 'flex-end' : 'normal',
-          }
-        }
+          },
+          "& .up-badge": {
+            padding: '4px 6px',
+          },
+        },
         //width:'100%'
       },
       '& .up-data-grid-cell .up-checkbox .up-control-indicator::before' : {
@@ -167,9 +177,15 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
       },
       "& .up-data-grid-sortable": {
         cursor: "pointer"
-      }
-    }
-  });
+      },
+    },
+  }, media(DeviceSmartphones, {
+    $nest: {
+      "& .up-data-grid-header-cell-label": {
+        whiteSpace: 'nowrap',
+      },
+    },
+  }));
 
 export interface Action {
   type: ActionType;
@@ -748,9 +764,9 @@ class UpDataGrid extends React.Component<
             onClick: rows => action.onClick(rows)
               .then(data => {
                 //Empty the selectData and uncheck all checkboxes if the request is successful
-                this.setState({ 
-                  selectedData: [], 
-                  data: this.state.data.map(row =>  ({...row, isSelected : false})) 
+                this.setState({
+                  selectedData: [],
+                  data: this.state.data.map(row =>  ({...row, isSelected : false}))
                 })
               })
           }))
