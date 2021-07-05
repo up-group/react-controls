@@ -107,7 +107,10 @@ const BaseInput: React.FunctionComponent<UpInputStyledProps & WithThemeProps & U
                 })}>
                 {iconPosition === 'left' && iconName && icon}
                 {iconPosition === 'left' && props.floatingLabel && (
-                    <label htmlFor={id}>
+                    <label
+                        className={className}  
+                        htmlFor={id}
+                    >
                         {props.floatingLabel}
                         {props.isRequired && <RequiredMark markStyle={starStyle} />}
                     </label>
@@ -124,10 +127,10 @@ const BaseInput: React.FunctionComponent<UpInputStyledProps & WithThemeProps & U
                         setTimeout(onBlur.bind(this, event), 100);
                     }}
                     tabIndex={tabindex}
-                    className="up-input"
+                    className={classnames('up-input', className)}
                     type={type}
                     placeholder={props.floatingLabel ? '' : placeholder}
-                    dir="auto"
+                    dir='auto'
                     disabled={disabled}
                     readOnly={readonly}
                     maxLength={maxLength}
@@ -135,7 +138,10 @@ const BaseInput: React.FunctionComponent<UpInputStyledProps & WithThemeProps & U
                     autoFocus={autoFocus}
                 />
                 {iconPosition === 'right' && props.floatingLabel && (
-                    <label htmlFor={id}>
+                    <label
+                        className={className}   
+                        htmlFor={id}
+                    >
                         {props.floatingLabel}
                         {props.isRequired ? (
                             <UpLigne
@@ -159,7 +165,7 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
 
     public static defaultProps: UpInputProps = {
         theme: defaultTheme,
-        width: "fill",
+        width: 'fill',
         iconPosition: 'right',
         hasClearOption: false,
         showValidationStatus: true,
