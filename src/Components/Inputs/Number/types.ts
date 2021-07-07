@@ -8,6 +8,7 @@ export interface UpNumberProps extends CommonProps<number | string> {
     value?: number | string;
     hideButtons?: boolean;
     className?: string;
+    seperatorForDecimalNumbers?: 'comma' | 'point';
 };
 
 export interface UpNumberStyledProps extends UpNumberProps {

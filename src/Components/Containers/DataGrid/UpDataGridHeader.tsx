@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { style } from 'typestyle';
+import {media, style} from 'typestyle';
 import classnames from 'classnames';
 import UpButtonGroup from '../ButtonGroup';
 import { WithThemeProps } from '../../../Common/theming/types';
 import defaultTheme from '../../../Common/theming';
+import {DeviceSmartphones} from '../../../Common/utils/device';
 
 export interface UpDataGridHeaderProps {
   title?: string | JSX.Element;
@@ -19,6 +20,7 @@ const getStyle = (props: WithThemeProps) => {
     marginBottom: '5px',
     width: '100%',
     position: 'relative',
+    flexDirection: 'row',
     $nest: {
       '&.up-data-grid-header .header-title': {
         lineHeight: '21px',
@@ -30,10 +32,16 @@ const getStyle = (props: WithThemeProps) => {
       },
       '&.up-data-grid-header .up-btn-wrapper': {
         marginLeft: '20px',
-        
-      }
-    }
-  });
+      },
+    },
+  }, media(DeviceSmartphones, {
+    flexDirection: 'column',
+    $nest: {
+      'div > .up-buttons-wrapper': {
+        justifyContent: 'center',
+      },
+    },
+  }));
 };
 
 const UpDataGridHeader = (
