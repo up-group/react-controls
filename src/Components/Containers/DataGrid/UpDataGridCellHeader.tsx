@@ -85,8 +85,8 @@ export default class UpDataGridCellHeader extends React.Component<
   }
 
   render() {
-    const sortAscIcon = "arrow-down";
-    const sortDescIcon = "arrow-up";
+    const sortDescIcon = "arrow-down";
+    const sortAscIcon = "arrow-up";
     const tooltipIcon = "info";
     const arrowColor = UpDefaultTheme.colorMap.primary;
 
@@ -133,18 +133,7 @@ export default class UpDataGridCellHeader extends React.Component<
               className={'up-data-grid-header-cell-icons'}
               flexDirection={'column'}
               style={{ width: 'auto' }}>
-              <UpSvgIcon
-                width={12}
-                height={12}
-                iconName={sortDescIcon}
-                color={
-                  this.state.isSorted &&
-                  this.state.sortDirection == 'DESC'
-                    ? arrowColor
-                    : '#D7D7D7'
-                }
-                onClick={() => this.onCellClick('DESC')}
-              />
+
               <UpSvgIcon
                 width={12}
                 height={12}
@@ -156,6 +145,19 @@ export default class UpDataGridCellHeader extends React.Component<
                     : '#D7D7D7'
                 }
                 onClick={() => this.onCellClick('ASC')}
+              />
+              
+              <UpSvgIcon
+                width={12}
+                height={12}
+                iconName={sortDescIcon}
+                color={
+                  this.state.isSorted &&
+                  this.state.sortDirection == 'DESC'
+                    ? arrowColor
+                    : '#D7D7D7'
+                }
+                onClick={() => this.onCellClick('DESC')}
               />
             </UpBox>
           )}
