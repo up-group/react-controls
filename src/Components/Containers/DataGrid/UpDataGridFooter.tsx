@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { style } from "typestyle"
+import {media, style} from "typestyle";
 import classnames from 'classnames'
 import UpButtonGroup from '../ButtonGroup'
 import UpButton from '../../Inputs/Button/UpButton'
@@ -9,6 +9,7 @@ import { WithThemeProps }  from '../../../Common/theming/withTheme'
 import {IntentType} from "../../../Common/theming/types"
 import { ActionType } from '../../Inputs/Button/types'
 import UpLoadingIndicator from '../../Display/LoadingIndicator'
+import {DeviceSmartphones} from '../../../Common/utils/device';
 
 interface ActionDataGrid {
     label : string;
@@ -39,6 +40,7 @@ const getStyle = (props : UpDataGridFooterProps & WithThemeProps) => {
         marginTop: '5px',
         width: '100%',
         minHeight: '40px',
+        flexDirection: 'row',
         $nest: {
             '&.up-data-grid-footer .up-buttons-wrapper': {
                 alignItems: 'normal',
@@ -54,7 +56,9 @@ const getStyle = (props : UpDataGridFooterProps & WithThemeProps) => {
                fill: props.actionsDataGrid && props.theme.colorMap.disabledFg
             },
         }
-    })
+    }, media(DeviceSmartphones, {
+        flexDirection: 'column',
+    }))
 }
 
 
@@ -89,7 +93,7 @@ const UpDataGridFooter = (props: UpDataGridFooterProps & WithThemeProps) => {
     }));
 
     const handleValidation = () => {
-        selectedAction.onClick(selectedData) 
+        selectedAction.onClick(selectedData)
     }
 
     return (
