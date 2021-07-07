@@ -146,6 +146,7 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
 
     renderControl() {
         const {
+            className,
             isRequired,
             theme,
             readonly,
@@ -159,6 +160,7 @@ class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {
         return (
             <div className={classnames(wrapperNumberStyles(this.props), 'up-number')}>
                 <UpInput
+                    className={className}
                     floatingLabel={floatingLabel}
                     placeholder={placeholder}
                     name={name}
