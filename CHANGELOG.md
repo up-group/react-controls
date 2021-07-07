@@ -1,3 +1,12 @@
+#  ReactControls (version: 0.2.157)
+## Main Changes
+
+- UpSelect : Make the label not clickable if readOnly is true
+- UpInput : Enable to pass a className
+- Improve responsivity of UpDataGrid and UpMenu
+- UpDataGrid : Fix arrow order
+- UpNumber : Enable to define the decimal separator
+
 #  ReactControls (version: 0.2.156)
 ## Main Changes
 - UpDate and UpSelect fix sizing
