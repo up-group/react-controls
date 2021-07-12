@@ -12,6 +12,7 @@ import UpLigne from '../Ligne';
 import colorMap from '../../../Common/theming/colorMap';
 
 import { style } from 'typestyle';
+import {isMobileDevice} from 'react-select/lib/utils';
 
 const logo = require('./sources/logo-up-square.svg');
 
@@ -91,6 +92,13 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState>{
         if (this.currentMinifiedValue && !isEmpty(menuitem.childMenuItems)) {
             this.setMinification(false);
         }
+
+        if (isMobileDevice()) {
+            if (!this.currentMinifiedValue && isEmpty(menuitem.childMenuItems)) {
+                this.setMinification(true);
+            }
+        }
+
         return this.props.onClick(menuitem.uri, menuitem);
     }
 
@@ -333,7 +341,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState>{
     }
 };
 
-const UpMenuDefaultHeader = (props : { title : string }, state : {minified : boolean}) => 
+const UpMenuDefaultHeader = (props : { title : string }, state : {minified : boolean}) =>
         <UpBox flexDirection={'row'} alignItems={'center'} justifyContent={'center'} style={{ height: '100%' }}>
             {!state.minified &&
                 <UpLigne color={colorMap.primary} className={style({ marginLeft: '8px' })}>
