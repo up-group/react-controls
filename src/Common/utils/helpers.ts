@@ -59,15 +59,15 @@ export function getFontSizeNumber(size: number | string): number {
         // 1in = 96px = 2.54cm = 72pt = 6pc
         case "px":
             return sizeParsed;
-        case "in": 
+        case "in":
             return sizeParsed * 96;
-        case "cm": 
+        case "cm":
             return sizeParsed * 96 / 2.54;
         case "mm":
             return sizeParsed * 96 / 0.254;
         case "pt":
             return sizeParsed * 96 / 72;
-        case "pc": 
+        case "pc":
             return sizeParsed * 96 / 6;
 
         // relative units
@@ -249,12 +249,12 @@ export function incrementJour(date: Date, increment: number): Date {
 
     return new Date(annee, mois, jour);
 }
-    
+
 export function ConvertToDate(date: string): Date {
     if (stringIsNullOrEmpty(date)) {
         return null;
     }
-    
+
     date = date.trim();
     var jourMoisAnnee: number[] = [];
     var nbPas: number = 0;
@@ -269,7 +269,7 @@ export function ConvertToDate(date: string): Date {
             } else {
                 jourMoisAnnee[jourMoisAnnee.length - 1] = jourMoisAnnee[jourMoisAnnee.length - 1] * 10 + nb;
             }
-        
+
             if (jourMoisAnnee.length < 3 && nbPas === 1) {
                 nbPas = 0;
             } else {
@@ -284,10 +284,10 @@ export function ConvertToDate(date: string): Date {
         }
     }
 
-    if (jourMoisAnnee.length !== 3 
+    if (jourMoisAnnee.length !== 3
             // || jourMoisAnnee[2] < 1000
             || (jourMoisAnnee[2] > 99 && jourMoisAnnee[2] < 1850)
-            || jourMoisAnnee[1] < 1 || jourMoisAnnee[1] > 12 
+            || jourMoisAnnee[1] < 1 || jourMoisAnnee[1] > 12
             || jourMoisAnnee[0] < 1 || jourMoisAnnee[0] > jourDuMois(jourMoisAnnee[1], jourMoisAnnee[2])) {
         return null;
     }
@@ -303,15 +303,15 @@ export function ConvertToDate(date: string): Date {
 
 export const  setTimeOutWithPause = function(callback, delay) {
     let timerId, start, remaining = delay;
-   
+
     this.pause = function() {
         window.clearTimeout(timerId); // stop the setTimout and waitb for the resume to create a new one
         remaining -= Date.now() - start; // update the remaing time depending on the starting time of the firt timer
     };
-    
+
     this.resume = function() {
         start = Date.now();
-        window.clearTimeout(timerId); // stop the previous setTimeOutId 
+        window.clearTimeout(timerId); // stop the previous setTimeOutId
         timerId = window.setTimeout(callback, remaining); // create a new one with the remaining time
     };
 
@@ -322,6 +322,17 @@ export const  setTimeOutWithPause = function(callback, delay) {
     // start the timer for the first time
     this.resume();
   };
-  
+
 // Check if a String is Numeric
 export const isNumeric = (data : string) : Boolean => /^\d+$/.test(data);
+
+export const isMobileDevice = (): Boolean => {
+    if (navigator.userAgent.match(/Android/i) ||
+      navigator.userAgent.match(/webOS/i) ||
+      navigator.userAgent.match(/iPhone/i) ||
+      navigator.userAgent.match(/iPod/i)) {
+        return true;
+    }
+
+    return  false;
+};
