@@ -23,6 +23,7 @@ import * as _ from 'lodash';
 import { UpDataGridProvider } from './UpDataGridContext'
 import { getTestableComponentProps, TestableComponentProps } from "../../../Common/utils/types";
 import {DeviceSmartphones} from "../../../Common/utils/device";
+import {IconName} from 'theming/icons';
 
 const WrapperDataGridStyle = style({
   position: "relative"
@@ -200,7 +201,8 @@ export interface Action {
 
 export interface ToolTip {
   title?: JSX.Element | string,
-  content: JSX.Element | string
+  content: JSX.Element | string,
+  icon?: IconName
 }
 
 export interface Column {

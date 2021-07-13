@@ -87,7 +87,6 @@ export default class UpDataGridCellHeader extends React.Component<
   render() {
     const sortDescIcon = "arrow-down";
     const sortAscIcon = "arrow-up";
-    const tooltipIcon = "help";
     const arrowColor = UpDefaultTheme.colorMap.primary;
 
     const Tooltip = this.props.column.tooltip && (
@@ -96,7 +95,7 @@ export default class UpDataGridCellHeader extends React.Component<
           <UpSvgIcon
             width={20}
             height={20}
-            iconName={tooltipIcon}
+            iconName={this.props.column.tooltip.icon || 'info'}
             className="tooltip-icon"
           />
         </UpLigne>
