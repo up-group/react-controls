@@ -12,12 +12,12 @@ import { style } from "typestyle";
 import { UpParagraph, UpBox, UpHeading, UpCodeViewer,UpButton ,UpToggle } from "../../../Components";
 import { ActionFactory } from './UpDataGridRow';
 
-export default { 
+export default {
   title: 'Components/Containers/UpDataGrid',
   decorators : [withKnobs, getRootContainer('UpDataGrid')]
 };
 
-const simpleDataGrid = 
+const simpleDataGrid =
   `const data = [];
   for (var i = 0; i < 50; i++) {
         data.push({
@@ -105,7 +105,7 @@ export const General =
         borderLeft: '4px solid #F59100',
         padding : '10px',
       })} textAlign={'left'} color={'#111'}>
-        Le composant <code>UpDataGrid</code> fournit un ensemble de fonctionnalités telles la pagination, le tri ou le filtre des données parmi tant d'autres. 
+        Le composant <code>UpDataGrid</code> fournit un ensemble de fonctionnalités telles la pagination, le tri ou le filtre des données parmi tant d'autres.
       </UpParagraph>
       <UpBox className={style({
         margin: '10px'
@@ -127,7 +127,7 @@ export const General =
               field: "c2",
               type: "boolean",
               isSortable: true,
-              tooltip: {title: 'title',content: 'content content content '}
+              tooltip: {title: 'title',content: 'content content content', icon: 'help'}
             },
             {
               label: "Col 3",
@@ -154,7 +154,7 @@ export const General =
       </>
     )
 
-export const WithSelection = 
+export const WithSelection =
     () => (
       <UpDataGrid
         onSelectionChange={(a, b) => {
@@ -193,7 +193,7 @@ export const WithSelection =
 
 export const WithActions =
     () => {
-    
+
     const [currentRow, setCurrentRow] = React.useState({}) ;
 
     const actionFactory : ActionFactory<any> = (rowValue : any) => {
@@ -234,11 +234,11 @@ export const WithActions =
           }
         }
       ];
-    
+
       if(currentRow && rowValue['c1'] == currentRow['c1'] ) {
         actions.shift();
       }
-    
+
       return actions;
     }
 
@@ -272,7 +272,7 @@ export const WithActions =
 
 export const WithSingleActionAndRowClickable =
   () => {
-  
+
   const [currentRow, setCurrentRow] = React.useState({}) ;
 
   const actionFactory : ActionFactory<any> = (rowValue : any) => {
@@ -287,7 +287,7 @@ export const WithSingleActionAndRowClickable =
         intent: 'secondary'
       }
     ];
-  
+
     return actions;
   }
 
@@ -646,7 +646,7 @@ export const WithCellFormatter =
         ]}
       />
     )
-  
+
   export const  WithRowInsertion =
     () => (
       <UpDataGrid
@@ -951,7 +951,7 @@ export const WithCustomStyle = () => {
   );
 }
 
-  export const onlyOneRowCanBeSelected = 
+  export const onlyOneRowCanBeSelected =
     () => (
       <UpDataGrid
         onlyOneRowCanBeSelected={true}

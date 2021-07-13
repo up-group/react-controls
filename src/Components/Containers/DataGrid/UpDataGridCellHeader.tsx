@@ -35,7 +35,7 @@ const headerCellStyles =  style({
     },
     "& .tooltip-icon": {
       marginLeft: '8px',
-      marginTop: '4px' 
+      marginTop: '4px'
     }
   }
 });
@@ -43,7 +43,7 @@ const headerCellStyles =  style({
 export default class UpDataGridCellHeader extends React.Component<
   UpDataGridCellHeaderProps,
   UpDataGridCellHeaderState
-  
+
 > {
   constructor(props: UpDataGridCellHeaderProps, context) {
     super(props, context);
@@ -87,16 +87,15 @@ export default class UpDataGridCellHeader extends React.Component<
   render() {
     const sortDescIcon = "arrow-down";
     const sortAscIcon = "arrow-up";
-    const tooltipIcon = "info";
     const arrowColor = UpDefaultTheme.colorMap.primary;
 
     const Tooltip = this.props.column.tooltip && (
-      <UpTooltip title={this.props.column.tooltip.title} content={this.props.column.tooltip.content}>
+      <UpTooltip title={this.props.column.tooltip.title} content={this.props.column.tooltip.content} delayHide={100} delayShow={100}>
         <UpLigne>
           <UpSvgIcon
-            width={16}
-            height={16}
-            iconName={tooltipIcon}
+            width={20}
+            height={20}
+            iconName={this.props.column.tooltip.icon || 'info'}
             className="tooltip-icon"
           />
         </UpLigne>
@@ -112,14 +111,14 @@ export default class UpDataGridCellHeader extends React.Component<
         className={classnames(
           headerCellStyles,
           'up-data-grid-header-cell',
-          this.props.column.isSortable ? 'up-data-grid-sortable' : '', 
+          this.props.column.isSortable ? 'up-data-grid-sortable' : '',
           this.props.className
         )}>
         <UpBox
           flexDirection={'row'}
           justifyContent={
-            this.props.textAlignCells === 'center' ? 'center' 
-            : this.props.textAlignCells === 'left' ? 'flex-start' 
+            this.props.textAlignCells === 'center' ? 'center'
+            : this.props.textAlignCells === 'left' ? 'flex-start'
             : this.props.textAlignCells === 'right' ? 'flex-end' : 'normal'
           }
           alignItems={'center'}>
@@ -146,7 +145,7 @@ export default class UpDataGridCellHeader extends React.Component<
                 }
                 onClick={() => this.onCellClick('ASC')}
               />
-              
+
               <UpSvgIcon
                 width={12}
                 height={12}
