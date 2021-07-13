@@ -16,8 +16,8 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps> {
         type: 'light',
         multiline: false,
         html: false,
-        delayHide: 100,
-        delayShow: 100,
+        delayHide: 500,
+        delayShow: 500,
         disable: false,
         theme: UpDefaultTheme,
     };

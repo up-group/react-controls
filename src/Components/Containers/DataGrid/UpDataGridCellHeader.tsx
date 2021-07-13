@@ -91,7 +91,7 @@ export default class UpDataGridCellHeader extends React.Component<
     const arrowColor = UpDefaultTheme.colorMap.primary;
 
     const Tooltip = this.props.column.tooltip && (
-      <UpTooltip title={this.props.column.tooltip.title} content={this.props.column.tooltip.content}>
+      <UpTooltip title={this.props.column.tooltip.title} content={this.props.column.tooltip.content} delayHide={100} delayShow={100}>
         <UpLigne>
           <UpSvgIcon
             width={20}
