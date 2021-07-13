@@ -16,8 +16,8 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps> {
         type: 'light',
         multiline: false,
         html: false,
-        delayHide: 500,
-        delayShow: 500,
+        delayHide: 100,
+        delayShow: 100,
         disable: false,
         theme: UpDefaultTheme,
     };
@@ -69,7 +69,7 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps> {
                     return React.cloneElement(child as React.ReactElement<any>, {
                         'dataFor': tooltipId
                         // ,'data-event': 'click',
-                        // 'data-event-off': 'dblclick' 
+                        // 'data-event-off': 'dblclick'
                     });
                 } else {
                     return child;
