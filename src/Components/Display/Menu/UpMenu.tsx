@@ -12,7 +12,7 @@ import UpLigne from '../Ligne';
 import colorMap from '../../../Common/theming/colorMap';
 
 import { style } from 'typestyle';
-import {isMobileDevice} from 'react-select/lib/utils';
+import { isMobileDevice } from '../../../Common/utils/helpers';
 
 const logo = require('./sources/logo-up-square.svg');
 
