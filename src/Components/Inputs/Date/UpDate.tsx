@@ -47,7 +47,7 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Moment> 
         super(p, c);
         this.state = { value: this.props.value };
         this.id = generateUniqueId();
-    }
+    };
 
     onChange = (startDate: Moment, endDate?: Moment) => {
         this.handleChangeEvent(eventFactory(this.props.name, startDate), startDate);
@@ -55,11 +55,11 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Moment> 
 
     showError() {
         return this.props.showError !== undefined ? this.props.showError === true : this.hasError;
-    }
+    };
 
     showSuccess() {
         return this.props.showSuccess;
-    }
+    };
 
     setInput = input => {
         // The ref function is called twice,
@@ -92,7 +92,7 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Moment> 
             //Two characters are acceptable : / and -
             if (unwantedCharacters) event.value = event.value.replace(/[a-zA-Z\u00C0-\u024F\u1E00-\u1EFF!''$%^&*()_+|~=`{}\[\]:\\;<>?,.@#§µ²°]/, '');
         }
-    }
+    };
 
     componentDidMount() {
         this.datePicker = document.getElementById(this.id) as HTMLInputElement;
@@ -105,11 +105,11 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Moment> 
             this.datePicker.setAttribute('data-tip', 'tooltip');
             this.datePicker.setAttribute('data-for', this.props['dataFor']);
         }
-    }
+    };
 
     componentWillUnmount() {
         if (this.datePicker) this.datePicker.removeEventListener('input', this.checkDate);
-    }
+    };
 
     returnYears = () => {
         let years = []
@@ -121,13 +121,21 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Moment> 
         }
         years = years.sort((a, b) => b.id - a.id);
         return years;
-    }
+    };
 
     formatMonth = (month) => (month + 1) < 10 ? `0${month + 1}` : `${month + 1}`;
 
     getValue(newDate: any) {
         return newDate;
-    }
+    };
+
+    onCloseCalendar = ({ date }) => {
+        // Manually clear date field when the date returned is not the correct one (manual entry). 
+        if (date == null) {
+            const dateInput = document.getElementById(this.id) as HTMLInputElement;
+            dateInput.value = '';
+        };
+    };
 
     renderMonthElement = ({ month, onMonthSelect, onYearSelect }) => (
         <div style={{ width: "100%", display: "flex", justifyContent: "center", flexShrink: 2 }}>
@@ -212,6 +220,7 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Moment> 
                     isOutsideRange={this.props.isOutsideRange || this.defaultIsOutsideRange}
                     // isDayHighlighted={(day: any) => day == new Date()}
                     daySize={this.props.daySize}
+                    onClose={this.onCloseCalendar}
                 />
             </div>
         );
