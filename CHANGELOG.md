@@ -1,3 +1,7 @@
+#  ReactControls (version: 0.2.158)
+## Main Changes
+- UpSelect : fix disable click on label if the component is disabled o readOnly
+
 #  ReactControls (version: 0.2.157)
 ## Main Changes
 - UpDataGrid : fix delay tooltip
