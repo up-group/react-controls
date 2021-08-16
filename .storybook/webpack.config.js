@@ -2,6 +2,10 @@ const path = require('path');
 const { resolve } = require('path');
 const ROOT_PATH = path.resolve(__dirname);
 
+var webpack = require('webpack');
+
+var WebpackWatchRunPlugin = require('../plugins/WebpackWatchRunPlugin')
+
 // Export a function. Accept the base config as the only param.
 module.exports = async ({ config }) => {
 
@@ -10,6 +14,12 @@ module.exports = async ({ config }) => {
    
     config.module.rules = config.module.rules.filter(r => r.test.toString() !== /\.css$/.toString());
     config.resolve.extensions.push('.ts', '.tsx', '.js', '.jsx');
+    
+    config.module.rules.push({
+        test: /\.cache\/storybook\/dev-server\/*?/,
+        include: [/node_modules/],
+        use: ['ignore-loader']
+    });
 
     config.module.rules.push({
         test: /\.jsx?/,
@@ -94,6 +104,13 @@ module.exports = async ({ config }) => {
         loader: 'file-loader?name=img/[hash].[ext]',
         include: path.resolve(__dirname, '../'),
     });
+
+    config.plugins.push(
+    new webpack.LoaderOptionsPlugin({
+        debug: true
+    }));
+
+    config.plugins.push(new WebpackWatchRunPlugin())
 
     return config;
 };

@@ -10,8 +10,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(ROOT_PATH, 'test/'),
-        filename: '[name].js',
-        publicPath: '/assets'
+        filename: '[name].js'
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
