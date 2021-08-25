@@ -272,6 +272,8 @@ export interface UpDataGridProps extends TestableComponentProps {
   headerProps?: Partial<UpDataGridHeaderProps>;
   displayRowActionsWithinCell?: boolean;
   onlyOneRowCanBeSelected?: boolean;
+  isDataInitialized?: boolean;
+  setIsDataInitializedToFalse?: () => void
 }
 
 export interface UpDataGridState {
@@ -601,12 +603,14 @@ class UpDataGrid extends React.Component<
   };
 
   componentWillReceiveProps(nextProps: UpDataGridProps) {
-    var data = this.state.data;
-    var curentState = data.map(v => {
+    let data = this.state.data;
+    const { isDataInitialized } = this.props;
+
+    const curentState = data.map(v => {
       return v.value;
     });
 
-    var hasSameData = _.isEqual(curentState, nextProps.data);
+    const hasSameData = _.isEqual(curentState, nextProps.data);
 
     if (this.props.dataSource == null && hasSameData === false) {
       data =
@@ -620,6 +624,15 @@ class UpDataGrid extends React.Component<
 
     let selectedData = [...this.state.selectedData, ...addedRows];
 
+    //Uncheck all checkboxes after a form reset. Restore the table to its initial state.
+    if( isDataInitialized ) {
+      data = data.map(v => ({
+          isSelected: false,
+          value: { ...v.value}
+      }));
+      selectedData = [];
+      this.props.setIsDataInitializedToFalse();
+    };
 
     const newState: UpDataGridState = {
       data: data,
