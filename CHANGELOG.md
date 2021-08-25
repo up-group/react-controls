@@ -1,3 +1,7 @@
+#  ReactControls (version: 0.2.159)
+## Main Changes
+- UpDatagrid : allow to clear the selection by the caller
+
 #  ReactControls (version: 0.2.158)
 ## Main Changes
 - UpSelect : fix disable click on label if the component is disabled o readOnly
