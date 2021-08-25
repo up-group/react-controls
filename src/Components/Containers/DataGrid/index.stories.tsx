@@ -4,13 +4,14 @@ import * as classnames from "classnames";
 import UpDefaultTheme, { UpThemeInterface } from "../../../Common/theming";
 import { WithThemeProps } from "../../../Common/theming/types";
 
-import UpDataGrid, { Action } from "./UpDataGrid";
+import UpDataGrid, { Action, mapDataToRow, Row } from "./UpDataGrid";
 import { getRootContainer } from "../../../Common/stories";
 
 import { withKnobs } from "@storybook/addon-knobs";
 import { style } from "typestyle";
-import { UpParagraph, UpBox, UpHeading, UpCodeViewer,UpButton ,UpToggle } from "../../../Components";
+import { UpParagraph, UpBox, UpHeading, UpCodeViewer,UpButton ,UpToggle, UpLoadingIndicator } from "../../../Components";
 import { ActionFactory } from './UpDataGridRow';
+import _ = require("lodash");
 
 export default {
   title: 'Components/Containers/UpDataGrid',
@@ -554,6 +555,7 @@ export const WithExternalSourceAndPaginationTopAndBottom =
         dataSource={{
           query: "https://jsonplaceholder.typicode.com/posts"
         }}
+        isSelectionEnabled={true}
         isPaginationEnabled={true}
         columns={[
           {
@@ -579,6 +581,139 @@ export const WithExternalSourceAndPaginationTopAndBottom =
         ]}
       />
     )
+
+    export const WithAutoClearSelectionOnDataChanged =
+    () => {
+
+      const [isFetching, setIsFetching] = React.useState(false) ;
+      const [currentPage, setPage] = React.useState(1) ;
+      const [state, setState] = React.useState({ data: [], total: 0, lastFetchedDataTime: null, previousFetchedPage: null}) ;
+      const [previousPage, setPreviousPage] = React.useState(null) ;
+      const [currentAllRowsSelected, setAllRowsSelected] = React.useState([]); 
+      const [isAllRowsSelected, setIsAllRowsSelected] = React.useState(null);
+
+      const fetchData = () => {
+        setIsFetching(true);
+        setState({...state, data:[]})
+        return fetch("https://jsonplaceholder.typicode.com/posts")
+        .then(response => response.json())
+        .then(data => {
+          setState({ 
+            data: data.slice((currentPage-1)*50, (currentPage-1)*50 + 50), 
+            total: data.length,
+            previousFetchedPage: previousPage,
+            lastFetchedDataTime: new Date()})
+          
+          if(isAllRowsSelected === true && currentPage != previousPage) {
+            let newSelectedData = dataSelectedToRows(data, currentAllRowsSelected, isAllRowsSelected);
+            setAllRowsSelected(newSelectedData) ;
+          }
+          
+          setPreviousPage(currentPage);
+          
+          return data;
+        })
+        .then(data => setIsFetching(false))
+      }
+
+      React.useEffect(() => {
+        fetchData() ;
+      }, [currentPage, setPage])
+
+      const dataSelectedToRows = (data: any[], allRowsSelected: Row[], isAllRowsSelected: boolean) => {
+        let newAllRowsSelected : Row[] = _.clone(allRowsSelected);
+        data.forEach(item => {
+          let matchedRow = newAllRowsSelected.find(row => row.value.id == item.id);
+          if(matchedRow == null) {
+            newAllRowsSelected.push({
+              isSelected : isAllRowsSelected,
+              value: item
+            }) ;
+          } else {
+            matchedRow.isSelected = isAllRowsSelected;
+          }
+        })
+
+        return newAllRowsSelected ;
+      }
+
+      const updateCurrentAllRowsSelected = (updatedRow: Row, currentAllRowsSelected: Row[]) => {
+        let newSelectedData : Row[] = _.clone(currentAllRowsSelected);
+        let matchedRow = newSelectedData.find(row => row.value.id == updatedRow.value.id);
+          if(matchedRow == null) {
+            newSelectedData.push({...updatedRow}) ;
+          } else {
+            matchedRow.isSelected = isAllRowsSelected;
+          }
+        return newSelectedData;
+      }
+
+      const onSelectionChange = (lastUpdatedRow: Row, dataSelected: any[], allRowsSelected?: Row[], isAllRowsSelected?: boolean) => {
+        let newSelectedData : Row[] = null ;
+        debugger;
+        if(lastUpdatedRow!=null) {
+          newSelectedData = updateCurrentAllRowsSelected(lastUpdatedRow, currentAllRowsSelected) ;
+        } else if(isAllRowsSelected!=null) {
+          newSelectedData = dataSelectedToRows(state.data, currentAllRowsSelected, isAllRowsSelected);
+        }
+        
+        if(newSelectedData != null)
+          setAllRowsSelected(newSelectedData.filter(row => row.isSelected)) ;
+        
+        setIsAllRowsSelected(isAllRowsSelected); 
+      };
+
+      return <>
+        <UpButton intent="secondary" onClick={(e) => {
+          setAllRowsSelected([]) ;
+          fetchData() ;
+        }}>
+          Rafraichir
+        </UpButton>
+        {isFetching && <UpLoadingIndicator isLoading={true} title={"Chargement en cours..."} />}
+        <UpDataGrid
+          paginationPosition="both"
+          data={state.data}
+          onSelectionChange={onSelectionChange}
+          lastFetchedDataTime={state.lastFetchedDataTime}
+          paginationProps={{
+            total: state.total, 
+            page: currentPage,
+            take : 50, 
+            skip:  (currentPage-1)*50,
+            onPageChange : (page: number, take: number, skip: number)  => {
+              setPreviousPage(currentPage) ;
+              setPage(page)
+            }
+          }}
+          isSelectionEnabled={true}
+          isPaginationEnabled={true}
+          columns={[
+            {
+              label: "Id",
+              field: "id",
+              isSortable: true
+            },
+            {
+              label: "Titre",
+              field: "title",
+              isSortable: true
+            },
+            {
+              label: "Texte",
+              field: "body",
+              isSortable: true
+            },
+            {
+              label: "Auteur",
+              field: "userId",
+              isSortable: true
+            }
+          ]}
+        />
+      </>
+    }
+
 
   export const WithCustomRowStyles = () => (
     <UpDataGrid
