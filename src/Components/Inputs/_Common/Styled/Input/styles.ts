@@ -4,7 +4,7 @@ import { style } from 'typestyle';
 
 import defaultTheme from '../../../../../Common/theming'
 
-import * as classnames from 'classnames'
+import classnames from 'classnames'
 import { WithThemeProps } from '../../../../../Common/theming/withTheme';
 import { UpInputProps } from 'Components/Inputs/Input/types';
 import { isEmpty } from "../../../../../Common/utils";

@@ -1,7 +1,7 @@
 // Imports
 import { UpNotificationProps } from './types';
 import { NestedCSSProperties } from 'typestyle/lib/types';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { style, keyframes } from 'typestyle';
 import { WithThemeProps } from '../../../Common/theming/withTheme';
 import { toRem } from '../../../Common/theming/utils';

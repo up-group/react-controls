@@ -1,6 +1,6 @@
 import remStringFromPX from '../../../Common/utils'
 import { NestedCSSProperties } from 'typestyle/lib/types';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { style, keyframes } from 'typestyle';
 import { WithThemeProps } from '../../../Common/theming/withTheme';
 import { UpButtonProps, fontSizeMap, buttonSizeMap, UpButtonStyledProps } from './types';

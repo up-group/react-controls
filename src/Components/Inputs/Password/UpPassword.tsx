@@ -5,7 +5,7 @@ import UpSvgIcon from '../../Display/SvgIcon';
 import { style } from 'typestyle';
 import withTheme from '../../../Common/theming/withTheme';
 import defaultTheme from '../../../Common/theming';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { isEmpty } from '../../../Common/utils';
 import { UpPasswordProps, UpPasswordState } from './types';
 import { getRulesStyle, getRuleStatus, getStyles, onSide } from './styles';

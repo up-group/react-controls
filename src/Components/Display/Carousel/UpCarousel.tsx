@@ -1,6 +1,6 @@
 // Imports
 import * as React from 'react';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import useHoverIntent from '../../../Common/hooks/useHoverIntent';
 import { motion } from "framer-motion";
 import { style } from 'typestyle';

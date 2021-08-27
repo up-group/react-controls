@@ -10,7 +10,7 @@ import '@fullcalendar/daygrid/main.css'
 import '@fullcalendar/timegrid/main.css'
 import './UpCalendar.css'
 import { style } from 'typestyle';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { usePopper } from "react-popper-2";
 
 export { EventInput }

@@ -12,7 +12,7 @@ if ("default" in Cropper) {
 }
 
 import "cropperjs/dist/cropper.css";
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import UpDefaultTheme, { WithThemeProps, withTheme } from '../../../Common/theming';
 import { ThemeInterface } from "../../../Common/theming/types";
 import { isFunction, openFileAsBase64, getMimeTypeFromBase64, isEmpty, on, off } from '../../../Common/utils';

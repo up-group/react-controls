@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { getStyles } from './styles';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import withTheme from '../../../Common/theming/withTheme';
 import { WithThemeProps } from '../../../Common/theming';
 import { UpLigneProps } from './types';

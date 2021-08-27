@@ -3,7 +3,7 @@ import { UpGridProps, UpRowProps } from './types'
 import defaultTheme from '../../../Common/theming'
 import { GridStyles } from './styles';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
-import * as classnames from 'classnames'
+import classnames from 'classnames'
 import { UpGridProvider } from './UpGridContext';
 
 const UpGrid: React.FunctionComponent<UpGridProps & WithThemeProps> = ({ gutter = 0, fullRowLayout = false, rowSpacing = 0, type = "flex", theme = defaultTheme, ...rest }) => {

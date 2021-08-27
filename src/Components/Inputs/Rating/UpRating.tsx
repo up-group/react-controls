@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as _ from 'lodash';
 import { style } from 'typestyle';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import UpDefaultTheme, { WithThemeProps, withTheme } from '../../../Common/theming';
 import UpSvgIcon from '../../Display/SvgIcon';
 import { eventFactory } from '../../../Common/utils/eventListener';

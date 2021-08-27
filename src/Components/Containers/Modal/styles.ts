@@ -1,5 +1,5 @@
 import { style, media } from 'typestyle';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { fullAnimationProp } from '../../../Common/theming/animations';
 import { WithThemeProps } from '../../../Common/theming';
 import { UpModalProps, DisplayMode } from './types';

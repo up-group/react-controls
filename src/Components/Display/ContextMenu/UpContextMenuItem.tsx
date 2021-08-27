@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as classNames from 'classnames';
+import classnames from 'classnames';
 import * as assign from 'object-assign';
 import { callIfExists } from '../../../Common/utils/helpers';
 import { MENU_HIDE, MENU_SHOW, hideMenu, showMenu } from './actions';

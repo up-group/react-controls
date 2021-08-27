@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { style } from "typestyle"
-import * as classnames from "classnames"
+import classnames from "classnames"
 
 import UpCheckbox from '../../Inputs/Checkbox/UpCheckBox'
 import UpButton from '../../Inputs/Button/UpButton'

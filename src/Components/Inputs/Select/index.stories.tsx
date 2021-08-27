@@ -10,6 +10,7 @@ import UpInput from '../Input';
 import UpPassword from '../Password';
 import UpDate from '../Date';
 import * as randomSentence from 'random-sentence';
+import UpButton from '../Button';
 
 export default {
     title: 'Components/Inputs/UpSelect',
@@ -358,33 +359,41 @@ export const FetchingDataWithFucntion =
 
 export const FetchingDataWithFunctionAndAutoload =
     () => {
-        let [selectedValue, setValue] = React.useState(null);
+        let [selectedValue, setValue] = React.useState(2);
 
         const onChange = (event, value) => {
             setValue(value);
         }
 
         return (
-            <UpSelect
-                isRequired={false}
-                allowClear={true}
-                default={null}
-                multiple={false}
-                tooltip="Votre ville de naissance"
-                minimumInputLength={3}
-                returnType="id"
-                labelKey={"title"}
-                dataSource={{
-                    fetchData: (input: string, defaultParameters) => {
-                        return Promise.resolve(data.filter(item => item.title.indexOf(input) != -1))
-                    },
-                    text: "title"
-                }}
-                autoload={true}
-                value={selectedValue}
-                floatingLabel={"Rechercher"}
-                onChange={onChange}
-            />
+            <>
+                <UpButton
+                    children="MAJ de la donnée"
+                    onClick={function() {
+                        setValue(3)
+                    }}
+                />
+                <UpSelect
+                    isRequired={false}
+                    allowClear={true}
+                    default={null}
+                    multiple={false}
+                    tooltip="Votre ville de naissance"
+                    minimumInputLength={3}
+                    returnType="id"
+                    labelKey={"title"}
+                    dataSource={{
+                        fetchData: (input: string, defaultParameters) => {
+                            return Promise.resolve(data.filter(item => item.title.indexOf(input) != -1))
+                        },
+                        text: "title"
+                    }}
+                    autoload={true}
+                    value={selectedValue}
+                    floatingLabel={"Rechercher"}
+                    onChange={onChange}
+                />
+            </>
         )
     };
 

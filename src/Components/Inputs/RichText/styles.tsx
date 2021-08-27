@@ -1,5 +1,5 @@
 // Imports
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { defaultStyles } from '../_Common/Styled/Input/styles'
 import { NestedCSSProperties } from 'typestyle/lib/types';
 import { UpRichTextProps } from './types';

@@ -1,6 +1,6 @@
 import defaultTheme from '../../../Common/theming';
 import { UpPanelProps } from './types';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { NestedCSSProperties } from 'typestyle/lib/types';
 import { style } from 'typestyle';
 import { WithThemeProps } from '../../../Common/theming/withTheme';

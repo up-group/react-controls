@@ -58,7 +58,7 @@ export class UpContextMenuTrigger extends React.PureComponent<UpContextMenuTrigg
     render() {
         const { renderTag, attributes, children } = this.props;
         const newAttrs = assign({}, attributes, {
-            //className: classNames(cssClasses.menuWrapper, attributes.className),
+            //className: classnames(cssClasses.menuWrapper, attributes.className),
             onContextMenu: this.handleContextClick,
             onMouseDown: this.handleMouseDown,
             onMouseUp: this.handleMouseUp,
@@ -141,7 +141,7 @@ export class UpTouchContextMenuTrigger extends React.PureComponent<UpContextMenu
         } = this.props;
 
         const newAttrs = assign({}, attributes, {
-            //className: classNames(cssClasses.menuWrapper, attributes.className),
+            //className: classnames(cssClasses.menuWrapper, attributes.className),
             onContextMenu: this.handleContextClick,
             onMouseDown: this.handleMouseDown,
             onMouseUp: this.handleMouseUp,

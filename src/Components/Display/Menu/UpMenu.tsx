@@ -6,7 +6,7 @@ import UpSvgIcon from '../SvgIcon';
 import UpBox from '../../Containers/Box';
 import { IconName } from '../../../Common/theming/icons';
 import { MenuStyles as getMenuStyles, UpMenuCustomStyles } from './styles';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { isEqual, isString } from 'lodash';
 import UpLigne from '../Ligne';
 import colorMap from '../../../Common/theming/colorMap';

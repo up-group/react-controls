@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Component } from 'react';
-import * as classNames from 'classnames';
+import classnames from 'classnames';
 import * as ReactTooltip from 'react-tooltip';
 import { generateId, isFunction, isEmpty } from '../../../Common/utils';
 import { getStyles, upToolTipWrapper } from './styles';
@@ -96,7 +96,7 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps> {
                 {renderChildren}
                 <ReactTooltip
                     offset={this.props.place === 'bottom' ? { right: 85, top: 5 } : {}}
-                    className={classNames('up-tooltip', getStyles(this.props))}
+                    className={classnames('up-tooltip', getStyles(this.props))}
                     id={tooltipId}
                     getContent={this.getContent}
                     eventOff='click'

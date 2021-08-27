@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { UpModalProps } from './types';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import UpSvgIcon from '../../Display/SvgIcon'
 import { withTheme } from '../../../Common/theming';
 import { getStyles } from './styles';

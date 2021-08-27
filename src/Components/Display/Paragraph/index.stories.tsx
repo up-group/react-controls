@@ -3,7 +3,7 @@ import UpParagraph from './UpParagraph';
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs } from '@storybook/addon-knobs';
 import { style } from 'typestyle';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 
 export default {
     title: 'Components/Display/UpParagraph',

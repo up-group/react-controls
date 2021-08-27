@@ -3,7 +3,7 @@ import { style, cssRaw } from 'typestyle';
 import Icons, { IconName } from '../../../Common/theming/icons';
 import Mentors, { MentorName } from "../../../Common/theming/mentors";
 import Illustrations, { IllustrationName } from "../../../Common/theming/illustrations";
-import * as classnames from 'classnames' ;
+import classnames from 'classnames' ;
 import { isString } from '../../../Common/utils';
 import { NestedCSSProperties } from 'typestyle/lib/types';
 import { WithThemeProps } from '../../../Common/theming';
