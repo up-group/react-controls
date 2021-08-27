@@ -574,11 +574,11 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             ref: (input) => this.input = input,
             styles: customStyles(this.props.theme, this.state.value),
         }
-        const { floatingLabel, readonly } = this.props;
+        const { floatingLabel, disabled, readonly } = this.props;
         const FloatingLabel = floatingLabel && (
             <label
                 onClick={() => {
-                    if(readonly) return;
+                    if(disabled || readonly) return;
                     this.input?.focus();
                     this.setState(
                         update(this.state, {

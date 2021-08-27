@@ -69,7 +69,7 @@ class UpTooltip extends Component<UpTooltipProps & WithThemeProps> {
                     return React.cloneElement(child as React.ReactElement<any>, {
                         'dataFor': tooltipId
                         // ,'data-event': 'click',
-                        // 'data-event-off': 'dblclick' 
+                        // 'data-event-off': 'dblclick'
                     });
                 } else {
                     return child;

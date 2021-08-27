@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { ThemeProvider as UpThemeProvider } from '../../../../Common/theming/ThemeProvider';
 import UpDefaultTheme from '../../../../Common/theming';
@@ -16,4 +16,12 @@ describe('Tests for UpDate', () => {
 
         expect(getByTestId('UpDate')).toHaveClass('up-date');
     });
+
+    it('should clear date value on close event if date input mannualy', () => {
+        const { getByTestId } = renderComponent(<General  />);
+        console.log(getByTestId('UpDate'));
+        //fireEvent.click() ;
+
+    });
+    
 });
