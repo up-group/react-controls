@@ -2,7 +2,7 @@ import * as React from "react";
 import { style } from "typestyle";
 import { Color } from "csstype";
 import { getIntegerValue, getDecimalValue } from "../../../Common/utils/currency";
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { useCountUp } from "react-countup";
 import UpBox from "../../Containers/Box";
 

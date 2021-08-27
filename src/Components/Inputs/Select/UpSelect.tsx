@@ -1,7 +1,7 @@
 // Imports
 import * as React from 'react';
 import * as update from 'react-addons-update';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import * as Select from 'react-select';
 import axios from 'axios';
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl';
@@ -510,9 +510,9 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
 
         if (this.props.returnType == 'id') {
             if (this.props.multiple && value && typeof value[0] !== 'object') {
-                value = data && data.filter(item => value.indexOf(item.id) >= 0)
+                value = data && data.filter(item => value.indexOf(item[this.keyId]) >= 0)
             } else if (typeof value !== 'object' && data) {
-                value = data.find(item => item.id == value);
+                value = data.find(item => item[this.keyId] == value);
             } else if (typeof value !== 'object' && this.state.extra.fullObject) {
                 value = this.state.extra.fullObject;
             }

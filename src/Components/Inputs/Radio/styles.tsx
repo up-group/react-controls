@@ -1,4 +1,4 @@
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { getCheckableStyles } from '../_Common/Styled';
 import { UpRadioStyledProps, RadioGroupProps } from './types';
 import { style } from 'typestyle';

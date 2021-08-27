@@ -1,6 +1,6 @@
 // Imports
 import * as React from 'react';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { UpButtonProps, Action, Separator, IconPosition, UpButtonStyledProps, UpButtonState } from './types';
 import UpTooltip, { Tooltip } from '../../Display/Tooltip';
 import defaultTheme from '../../../Common/theming';

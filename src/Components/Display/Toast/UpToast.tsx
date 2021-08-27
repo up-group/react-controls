@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import UpHeading from '../Heading';
 import { WithThemeProps } from '../../../Common/theming/types';
 import { setTimeOutWithPause } from '../../../Common/utils/helpers';

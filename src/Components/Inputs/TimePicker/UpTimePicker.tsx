@@ -4,7 +4,7 @@ import UpSvgIcon from "../../Display/SvgIcon";
 import UpBox from '../../Containers/Box';
 import { style } from "typestyle";
 
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { generateId } from "../../../Common/utils";
 import { eventFactory } from "../../../Common/utils/eventListener";
 

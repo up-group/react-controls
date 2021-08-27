@@ -1,6 +1,6 @@
 import * as $ from "jquery";
 import * as React from "react";
-import * as classnames from "classnames";
+import classnames from "classnames";
 import {media, style} from "typestyle";
 
 import axios from "axios";

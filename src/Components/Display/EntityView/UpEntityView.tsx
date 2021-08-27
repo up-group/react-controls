@@ -4,7 +4,7 @@ import { getStyles } from './styles';
 import { withTheme, WithThemeProps } from '../../../Common/theming';
 import SvgIcon from '../SvgIcon';
 import { UpBox } from '../../..';
-import * as classNames from 'classnames';
+import classnames from 'classnames';
 
 const UpEntityView = (props: UpEntityViewProps & WithThemeProps & UpEntityViewState) => {
 
@@ -15,8 +15,8 @@ const UpEntityView = (props: UpEntityViewProps & WithThemeProps & UpEntityViewSt
     } = props;
 
     return (
-        <div className={classNames('up-entity-view', getStyles())}>
-            <div className={classNames('up-entity-view-title')}>
+        <div className={classnames('up-entity-view', getStyles())}>
+            <div className={classnames('up-entity-view-title')}>
                 {title}
             </div>
             <UpBox flexDirection={'row'}>
@@ -28,7 +28,7 @@ const UpEntityView = (props: UpEntityViewProps & WithThemeProps & UpEntityViewSt
                 }
                 <div>
                     {informations.map((item) => (
-                        <div key={item.key} className={classNames('up-entity-view-content')}>
+                        <div key={item.key} className={classnames('up-entity-view-content')}>
                             <b>{`${item.key} : `}</b>{item.value}
                         </div>
                     )

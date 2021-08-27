@@ -1,6 +1,6 @@
 // Imports
 import * as React from 'react';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl';
 import { RadioGroupStyles, getStyles } from './styles';
 import { style } from 'typestyle';

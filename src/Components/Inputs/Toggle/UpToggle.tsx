@@ -1,6 +1,6 @@
 // Imports
 import * as React from 'react'
-import * as classNames from 'classnames'
+import classnames from 'classnames'
 
 import {style} from 'typestyle'
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
@@ -474,7 +474,7 @@ class UpToggle extends React.PureComponent<UpToggleProps & WithThemeProps, UpTog
   render () {
     const { className, onChange, size, icons: _icons, children, ...inputProps } = this.props
     
-    const classes = classNames('up-toggle', {
+    const classes = classnames('up-toggle', {
       'up-toggle--checked': this.state.checked,
       
       'up-toggle--disabled': this.props.disabled,
@@ -509,7 +509,7 @@ class UpToggle extends React.PureComponent<UpToggleProps & WithThemeProps, UpTog
 
     return (
       <div 
-        className={classNames(wrapperStyle(this.props), SizeStyle, 'up-toggle')}
+        className={classnames(wrapperStyle(this.props), SizeStyle, 'up-toggle')}
         {...getTestableComponentProps(this.props)}
         >
         {children && 

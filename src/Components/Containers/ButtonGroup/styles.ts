@@ -1,6 +1,6 @@
 import { NestedCSSProperties } from 'typestyle/lib/types';
 import { style } from 'typestyle';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { UpButtonGroupProps } from './types';
 import { toRem } from '../../../Common/theming/utils';
 

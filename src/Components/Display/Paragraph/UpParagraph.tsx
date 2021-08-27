@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { getStyles } from './styles';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { UpParagraphProps } from './types';
 
 const UpParagraph: React.FunctionComponent<UpParagraphProps> = props => {

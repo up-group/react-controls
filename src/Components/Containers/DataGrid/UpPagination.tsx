@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as classnames from "classnames";
+import classnames from "classnames";
 
 import { UpGrid, UpRow } from "../../Containers/Grid";
 import { UpSelectOption } from "../../Inputs/Select";
