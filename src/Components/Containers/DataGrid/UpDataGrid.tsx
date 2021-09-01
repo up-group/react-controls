@@ -361,7 +361,7 @@ class UpDataGrid extends React.Component<
     let rows: Array<Row> = [];
     data.map((value, index) => {
       rows.push({
-        isSelected: this.state && (this.state.allRowSelected || this.isSelectedRowData(value.id)),
+        isSelected: this.state && this.isSelectedRowData(value.id),
         value: value
       });
     });
@@ -525,12 +525,7 @@ class UpDataGrid extends React.Component<
     //Do not check if the "all rows checkbox" must be selected in the case of a single selectable field.
     if(this.props.onlyOneRowCanBeSelected) return;
 
-    const dataLength = this.state.data.length;
-    const selectedRowsLength = this.selectedRowsDataWithAlsoTheCurrentOne(currentRow).length;
-    // Check if all rows that are selected, belong to the same page (pagination)
-    const notCheckedRowsLength = this.state.data.filter(data => !data.isSelected).length;
-
-    return notCheckedRowsLength == 0 && (selectedRowsLength % dataLength) == 0;
+    return this.state.data.every(d => d.isSelected);
   }
 
   onRowSelectionChange = (rowKey: number, currentRow: Row) => {
@@ -672,7 +667,7 @@ class UpDataGrid extends React.Component<
       onPageChange,
       ...otherProps
     } = this.props.paginationProps;
-
+    
     const pagination = (
       <div className={classnames('pagination-container')}>
         <UpPagination
@@ -830,7 +825,7 @@ class UpDataGrid extends React.Component<
                   columns={columns}
                   displayRowActionsWithinCell={this.props.displayRowActionsWithinCell}
                   textAlignCells={this.props.textAlignCells}
-                  isAllDataChecked={this.state.allRowSelected}
+                  isAllDataChecked={this.state.data.every(d => d.isSelected)}
                   isSelectionAllEnabled= {!this.props.onlyOneRowCanBeSelected}
                 />
                 <tbody className={classnames("up-data-grid-body", oddEvenStyle)}>
