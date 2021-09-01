@@ -1,3 +1,7 @@
+#  ReactControls (version: 0.2.160)
+## Main Changes
+- UpDatagrid : unselect row during pagination if the checkbox "All rows" is unchecked
+
 #  ReactControls (version: 0.2.159)
 ## Main Changes
 - UpDatagrid : allow to clear the selection by the caller

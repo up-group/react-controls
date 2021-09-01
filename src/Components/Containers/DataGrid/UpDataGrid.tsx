@@ -361,7 +361,7 @@ class UpDataGrid extends React.Component<
     let rows: Array<Row> = [];
     data.map((value, index) => {
       rows.push({
-        isSelected: this.state && this.isSelectedRowData(value.id),
+        isSelected: this.state && this.state.allRowSelected, // || this.isSelectedRowData(value.id)),
         value: value
       });
     });
