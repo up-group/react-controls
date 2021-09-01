@@ -50,7 +50,8 @@ const BaseInput: React.FunctionComponent<UpInputStyledProps & WithThemeProps & U
     let icon: any = null;
     let RightIcon: any = null;
     let size = 20;
-    const showClearIcon = hasClearOption && !!value && (type === 'search' || props.focused)
+    
+    const showClearIcon = hasClearOption && !!value && (type === 'search' || props.focused) && !readonly
 
     if (props.hasError && props.showError && type !== 'search' && showValidationStatus) {
         iconName = "close";
@@ -82,7 +83,7 @@ const BaseInput: React.FunctionComponent<UpInputStyledProps & WithThemeProps & U
     }
 
     if (hasClearOption && !!value && isLoading) {
-        RightIcon = <UpLoadingIndicator isLoading={isLoading} loaderSize={30}  ></UpLoadingIndicator>;
+        RightIcon = <UpLoadingIndicator isLoading={isLoading} loaderSize={30}></UpLoadingIndicator>;
     }
 
     // Tooltip

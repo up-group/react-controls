@@ -1,3 +1,7 @@
+#  ReactControls (version: 0.2.161)
+## Main Changes
+- UpInput : fix hide clear icon idf input is readonly
+
 #  ReactControls (version: 0.2.160)
 ## Main Changes
 - UpDatagrid : unselect row during pagination if the checkbox "All rows" is unchecked
