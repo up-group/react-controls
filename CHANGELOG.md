@@ -1,3 +1,7 @@
+#  ReactControls (version: 0.2.162)
+## Bugs Fixes
+- UpSelect : fix option selection
+
 #  ReactControls (version: 0.2.161)
 ## Main Changes
 - UpInput : fix hide clear icon idf input is readonly
