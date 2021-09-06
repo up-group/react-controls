@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import Box from '../../Containers/Box';
 import { UpGrid, UpRow, UpCol } from '../../Containers/Grid';
 import { style } from 'typestyle';

@@ -11,7 +11,7 @@ import { Moment } from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import { generateUniqueId } from '../../../Common/utils/helpers';
 import defaultPhrases from './i18n/fr';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { isEmpty } from '../../../Common/utils';
 import * as moment from 'moment';
 import getStyles from './styles';

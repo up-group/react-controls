@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import './bootstrap-grid.css';
 import SvgIcon from '../../Display/SvgIcon/index';
 import { getStyles } from './styles';

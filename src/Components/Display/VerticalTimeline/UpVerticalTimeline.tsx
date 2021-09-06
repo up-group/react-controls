@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { withTheme, WithThemeProps } from '../../../Common/theming';
 import { UpBox } from '../../..';
-import * as classNames from 'classnames';
+import classnames from 'classnames';
 import { verticalAlignStyle } from './styles';
 import { getStyles } from './styles';
 import { UpVerticalTimelineProps } from './types';
@@ -10,7 +10,7 @@ export const dotOrderStep = (active?: boolean, first?: boolean) => (
     <>
         {!first && (
             <div
-                className={classNames(
+                className={classnames(
                     'up-vertical-align-line',
                     active ? 'up-checkmark' : 'up-vertical-align-inactive',
                     verticalAlignStyle
@@ -18,7 +18,7 @@ export const dotOrderStep = (active?: boolean, first?: boolean) => (
             />
         )}
         <div
-            className={classNames(
+            className={classnames(
                 'up-vertical-align-circle',
                 active ? 'up-checkmark' : 'up-vertical-align-inactive',
                 verticalAlignStyle
@@ -35,8 +35,8 @@ const UpVerticalTimeline: React.FunctionComponent<UpVerticalTimelineProps & With
     } = props;
 
     return (
-        <div className={classNames('up-vertical-align', getStyles())}>
-            <div className={classNames('up-vertical-align-title')}>
+        <div className={classnames('up-vertical-align', getStyles())}>
+            <div className={classnames('up-vertical-align-title')}>
                 {title}
             </div>
             <UpBox flexDirection={'row'}>
@@ -53,11 +53,11 @@ const UpVerticalTimeline: React.FunctionComponent<UpVerticalTimelineProps & With
                 <UpBox>
                     {timeline.map(
                         (item, iter) => (
-                            <div key={iter} className={classNames('up-vertical-align-content')}>
-                                <div className={classNames('up-vertical-align-content-title')}>
+                            <div key={iter} className={classnames('up-vertical-align-content')}>
+                                <div className={classnames('up-vertical-align-content-title')}>
                                     {item.status}
                                 </div>
-                                <div className={classNames('up-vertical-align-content-subtitle')}>
+                                <div className={classnames('up-vertical-align-content-subtitle')}>
                                     {item.date}
                                 </div>
                             </div>

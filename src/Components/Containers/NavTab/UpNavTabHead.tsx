@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { style } from 'typestyle';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { motion, AnimateSharedLayout } from 'framer-motion';
 import { tabItem, tabHeader, headTabArrow, headTabBorder } from './styles';
 import { TabHeadItemProps, TabHeadsProps } from './types';

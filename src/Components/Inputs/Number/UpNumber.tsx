@@ -8,7 +8,7 @@ import withTheme from '../../../Common/theming/withTheme';
 import defaultTheme from '../../../Common/theming';
 import UpButton from '../Button/UpButton';
 import { eventFactory } from '../../../Common/utils/eventListener';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { wrapperNumberButtonsStyles, wrapperNumberStyles } from './styles';
 
 class UpNumber extends BaseControlComponent<UpNumberProps, number | string> {

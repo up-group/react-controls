@@ -1,6 +1,6 @@
 // Imports
 import * as React from 'react';
-import * as classNames from 'classnames';
+import classnames from 'classnames';
 import { getCheckableStyles } from '../_Common/Styled';
 import { style } from 'typestyle';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
@@ -21,7 +21,7 @@ const BaseCheckBox: React.FunctionComponent<UpCheckboxStyledProps & Option> = (p
     } = props;
 
     return (
-        <label className={classNames("up-control", "up-checkbox", style(getCheckableStyles(props)), className)}>
+        <label className={classnames("up-control", "up-checkbox", style(getCheckableStyles(props)), className)}>
             <input
                 onClick={(e) => {
                     e.stopPropagation();

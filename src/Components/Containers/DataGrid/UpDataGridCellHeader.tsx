@@ -6,7 +6,7 @@ import UpDefaultTheme from "../../../Common/theming";
 import { SortDirection, Column } from "./UpDataGrid";
 import UpTooltip from '../../Display/Tooltip/UpTooltip'
 import UpLigne from '../../Display/Ligne/UpLigne'
-import * as classnames from "classnames";
+import classnames from "classnames";
 import UpBox from "../Box";
 import { style } from "typestyle";
 

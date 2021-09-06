@@ -1,7 +1,7 @@
 import { NestedCSSProperties } from "typestyle/lib/types";
 import { UpLabelProps } from "./types";
 import { style } from "typestyle";
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { toRem } from '../../../Common/theming/utils';
 
 export const sizeMap = {

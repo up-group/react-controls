@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl';
 import { UpInputProps, Validation, UpInputStyledProps } from './types';
 import TypeStringControl from '../_Common/Validation/TypeStringControl';

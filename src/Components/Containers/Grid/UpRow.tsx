@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as classNames from 'classnames';
+import classnames from 'classnames';
 import * as assign from 'object-assign';
 import { UpRowProps } from './types'
 import { UpGridConsumer } from './UpGridContext';
@@ -15,7 +15,7 @@ const RowRenderer: React.FunctionComponent<UpRowProps> = (props) => {
     }/*, [gutter, style]) ;*/
 
     const getClasses = /*React.useCallback(*/() => {
-        return classNames({
+        return classnames({
             [prefixCls]: type == 'float',
             [`${prefixCls}-flex`]: type == 'flex',
             [`${prefixCls}-flex-${justify}`]: type == 'flex' && justify,

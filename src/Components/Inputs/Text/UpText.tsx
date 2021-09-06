@@ -5,7 +5,7 @@ import defaultTheme from '../../../Common/theming'
 import Textarea from 'react-textarea-autosize'
 import { EventHandler, UpTextProps } from './types';
 import { getStyles } from './styles';
-import * as classnames from 'classnames';
+import classnames from 'classnames';
 
 class BaseTextArea extends React.Component<UpTextProps> {
 
