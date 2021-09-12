@@ -1,3 +1,7 @@
+#  ReactControls (version: 0.2.164)
+## Bugs Fixes
+- UpDate : fix reset input value in case of invalid date onBlur
+
 #  ReactControls (version: 0.2.162)
 ## Bugs Fixes
 - UpSelect : fix option selection

@@ -15,6 +15,7 @@ import HelpMessageDisplay from "../Validation/HelpMessageDisplay";
 import { string } from "prop-types";
 import { isFunction } from "util";
 import { TestableComponentProps } from "../../../../Common/utils/types";
+import moment = require("moment");
 
 // Exports
 const ONCHANGE_MUST_BE_SPECIFIED =
@@ -215,6 +216,7 @@ export abstract class BaseControlComponent<
       if (this.props["onBlur"]) this.props["onBlur"](event);
     };
     setTimeout(() => {
+      
       if (this.state.extra === undefined) {
         this.setState({ extra: { focused: false, touched: true }},
           handleOnBlur.bind(null, event)

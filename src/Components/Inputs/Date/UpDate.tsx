@@ -19,6 +19,7 @@ import { style } from 'typestyle';
 import UpSelect from '../Select';
 import { isNumeric } from '../../../Common/utils/helpers';
 import { getTestableComponentProps } from '../../../Common/utils/types';
+import * as update from 'react-addons-update';
 
 moment.locale('fr');
 
@@ -50,7 +51,17 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Moment> 
     };
 
     onChange = (startDate: Moment, endDate?: Moment) => {
-        this.handleChangeEvent(eventFactory(this.props.name, startDate), startDate);
+        let value = startDate ;
+        if(!(value instanceof moment) && moment(value, this.props.format, true).isValid()) {
+            value = moment(value);
+        }
+        if(moment(value, this.props.format, true).isValid()) {
+            let isOutsideRange = this.props.isOutsideRange || this.defaultIsOutsideRange ;
+            if(isOutsideRange(value)) {
+                value = null;
+            }
+            this.handleChangeEvent(eventFactory(this.props.name, value), value);
+        }
     };
 
     showError() {
@@ -78,6 +89,9 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Moment> 
             this.onFocus(eventFactory('focus', true));
         } else {
             this.onBlur(eventFactory('blur', true));
+            setTimeout(() => {
+                this.resetDateInputValue();
+            }, 100);
         }
     };
 
@@ -129,11 +143,20 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Moment> 
         return newDate;
     };
 
+    resetDateInputValue = () => {
+        if(!this.state.value) {
+            let newState = update(this.state, { extra: {  reset: { $set: true } } });
+            this.setState(newState, () => { 
+                newState = update(this.state, { extra: { reset: { $set: false } } });
+                this.setState(newState)
+            })
+        }
+    }
+
     onCloseCalendar = ({ date }) => {
         // Manually clear date field when the date returned is not the correct one (manual entry). 
         if (date == null) {
-            const dateInput = document.getElementById(this.id) as HTMLInputElement;
-            dateInput.value = '';
+            this.resetDateInputValue();
         };
     };
 
@@ -168,9 +191,28 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Moment> 
         </div>
     )
 
-    defaultIsOutsideRange = (day): boolean =>
-        (this.props.maxDate && day.toDate().setHours(0, 0, 0, 0) > this.props.maxDate.setHours(0, 0, 0, 0)) ||
-        (this.props.minDate && day.toDate().setHours(0, 0, 0, 0) < this.props.minDate.setHours(0, 0, 0, 0));
+    defaultIsOutsideRange = (day: Date | Moment): boolean => {
+        let _day : Moment = day as Moment ;
+        if(day instanceof Date) {
+            _day = moment(day)
+        }
+        
+        let maxDate : unknown = this.props.maxDate ; 
+        if(maxDate instanceof moment) {
+            maxDate = (maxDate as Moment).startOf('day')
+        } else if (maxDate instanceof Date) {
+            maxDate = (maxDate as Date).setHours(0, 0, 0, 0)
+        }
+        let minDate : unknown = this.props.minDate ; 
+        if(minDate instanceof moment) {
+            minDate = (minDate as Moment).startOf('day')
+        } else if (minDate instanceof Date) {
+            minDate = (minDate as Date).setHours(0, 0, 0, 0)
+        }
+
+        return (maxDate && _day.toDate().setHours(0, 0, 0, 0) > maxDate) ||
+            (minDate && _day.toDate().setHours(0, 0, 0, 0) < minDate);
+    }
 
     renderControl() {
         const {
@@ -181,6 +223,11 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Moment> 
             placeholder,
             iconPosition
         } = this.props;
+
+        if(this.state.extra && this.state.extra.reset) {
+            return null
+        }
+        
         return (
             <div
                 className={classnames(
