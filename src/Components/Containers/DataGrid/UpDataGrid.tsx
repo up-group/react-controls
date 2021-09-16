@@ -626,7 +626,6 @@ class UpDataGrid extends React.Component<
           value: { ...v.value}
       }));
       selectedData = [];
-      this.props.setIsDataInitializedToFalse();
     };
 
     const newState: UpDataGridState = {
