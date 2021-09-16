@@ -1,3 +1,7 @@
+#  ReactControls (version: 0.2.165)
+## Bugs Fixes
+- UpDataGrid : Fix strategy selection
+
 #  ReactControls (version: 0.2.164)
 ## Bugs Fixes
 - UpDate : fix reset input value in case of invalid date onBlur
