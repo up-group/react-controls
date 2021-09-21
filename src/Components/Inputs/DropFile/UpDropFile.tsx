@@ -64,7 +64,7 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
         separatorLabel: "ou",
         resizeImageLabel: "Redimensionner l'image",
         allowExtensionsLabel: "Formats autorisés",
-        allowedExtensionsErrorMessage: (allowedExtension:string[])=>'Les formats de fichier autorisés sont : '+ allowedExtension.join(', '),
+        allowedExtensionsErrorMessage: (allowedExtension:string[]) => `Les formats de fichier autorisés sont : ${allowedExtension.join(', ')}`,
         showOptions: true,
         displaySelectFile: false
     };
