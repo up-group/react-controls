@@ -64,8 +64,7 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
         separatorLabel: "ou",
         resizeImageLabel: "Redimensionner l'image",
         allowExtensionsLabel: "Formats autorisés",
-        allowedExtensionsErrorMessage: 'Les formats de fichier autorisés sont : ',
-        allowedExtensionsErrorMessageSeparator: ', ',
+        allowedExtensionsErrorMessage: (allowedExtension:string[])=>'Les formats de fichier autorisés sont : '+ allowedExtension.join(', '),
         showOptions: true,
         displaySelectFile: false
     };
@@ -240,11 +239,7 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
             const errors = [];
             errors.push({
                 message: 
-                    this.props.allowedExtensionsErrorMessage +
-                    (!isEmpty(this.props.allowedExtensionsErrorMessageSeparator)?
-                        this.props.allowedExtensions.join(
-                            this.props.allowedExtensionsErrorMessageSeparator
-                        ): ''),
+                    this.props.allowedExtensionsErrorMessage(this.props.allowedExtensions, this.props.value),
                 intent: "error"
             });
 

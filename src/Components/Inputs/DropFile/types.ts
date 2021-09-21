@@ -59,8 +59,10 @@ export interface UpDropFileProps extends WithThemeProps {
     dropLabel?: string;
     separatorLabel?: string;
     allowExtensionsLabel?: string;
-    allowedExtensionsErrorMessage?: string;
-    allowedExtensionsErrorMessageSeparator?: string;
+    allowedExtensionsErrorMessage?: (
+      allowedExtensions?: string[],
+      value?: IFile
+    ) => string;
     displaySelectFile?: boolean;
     tabIndex?: number;
     onChange?: (event: React.ChangeEvent<any>, value: IFile) => void;

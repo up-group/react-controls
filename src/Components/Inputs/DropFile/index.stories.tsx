@@ -100,7 +100,7 @@ export const AllowedExtensionsAndCustomizableErrorMessage =
                 label={"Add your file"}
                 name={"file"}
                 allowedExtensions={["pdf"]}
-                allowedExtensionsErrorMessage={"Le format n'est pas bon. Le fichier doit être un "}
+                allowedExtensionsErrorMessage={(extension:string[])=>`Le format n'est pas bon. Le fichier doit être un ${extension[0]}`}
             >
                 Add
             </UpDropFile>
