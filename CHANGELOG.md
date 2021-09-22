@@ -1,3 +1,7 @@
+#  ReactControls (version: 0.2.166)
+## Main Changes
+- UpDropfile : add customizable error message
+
 #  ReactControls (version: 0.2.165)
 ## Bugs Fixes
 - UpDataGrid : Fix strategy selection
