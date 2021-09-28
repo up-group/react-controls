@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.167)
+## Bug Fixes
+- UpDate : fix date clear
+- UpDataGrid : fix promise on row action handling
+
 #  ReactControls (version: 0.2.166)
 ## Main Changes
 - UpDropfile : add customizable error message

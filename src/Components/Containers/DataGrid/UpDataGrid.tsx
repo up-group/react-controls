@@ -770,14 +770,17 @@ class UpDataGrid extends React.Component<
           ...this.props.footerProps.actionsDataGrid,
           actions: this.props.footerProps.actionsDataGrid.actions.map(action => ({
             ...action,
-            onClick: rows => action.onClick(rows)
-              .then(data => {
-                //Empty the selectData and uncheck all checkboxes if the request is successful
-                this.setState({
-                  selectedData: [],
-                  data: this.state.data.map(row =>  ({...row, isSelected : false}))
+            onClick: rows => {
+              let promise = action.onClick(rows);
+              
+              return Promise.resolve(promise).then(data => {
+                  //Empty the selectData and uncheck all checkboxes if the request is successful
+                  this.setState({
+                    selectedData: [],
+                    data: this.state.data.map(row =>  ({...row, isSelected : false}))
+                  })
                 })
-              })
+            }
           }))
         }
       })
