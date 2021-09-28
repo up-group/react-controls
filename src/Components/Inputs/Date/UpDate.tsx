@@ -55,12 +55,15 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Moment> 
         if(!(value instanceof moment) && moment(value, this.props.format, true).isValid()) {
             value = moment(value);
         }
+        
         if(moment(value, this.props.format, true).isValid()) {
             let isOutsideRange = this.props.isOutsideRange || this.defaultIsOutsideRange ;
             if(isOutsideRange(value)) {
                 value = null;
             }
             this.handleChangeEvent(eventFactory(this.props.name, value), value);
+        } else {
+            this.handleChangeEvent(eventFactory(this.props.name, null), null);
         }
     };
 
