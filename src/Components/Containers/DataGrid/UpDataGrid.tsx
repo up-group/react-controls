@@ -902,7 +902,13 @@ class UpDataGrid extends React.Component<
           bytes[i] = csv.charCodeAt(i);
         }
         var blob = new Blob([new Uint8Array(bytes)], { type: "text/csv" });
-        window.navigator.msSaveBlob(blob, filename);
+        
+        if(typeof window.navigator["msSaveBlob"] !== "undefined") {
+          window.navigator.msSaveBlob(blob, filename);
+        }
+        else if(typeof window.navigator["msSaveOrOpenBlob"] !== "undefined") {
+          window.navigator.msSaveOrOpenBlob(blob, filename);
+        }
       }
     } else {
       var a = document.createElement("A") as HTMLAnchorElement;

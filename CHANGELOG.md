@@ -1,3 +1,8 @@
+#  ReactControls (version: 0.2.168)
+## Bug Fixes
+- UpDate : fix date clear when value is controlled
+- UpDataGrid : clean code
+
 #  ReactControls (version: 0.2.167)
 ## Bug Fixes
 - UpDate : fix date clear

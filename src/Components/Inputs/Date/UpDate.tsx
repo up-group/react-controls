@@ -82,7 +82,7 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Moment> 
         if (this.dateInput == undefined) {
             this.dateInput = input;
             if (this.props.tabIndex) {
-                this.dateInput.setAttribute('tavbindex', this.props.tabIndex);
+                this.dateInput.setAttribute('tabindex', this.props.tabIndex);
             }
         }
     };
@@ -146,8 +146,8 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Moment> 
         return newDate;
     };
 
-    resetDateInputValue = () => {
-        if(!this.state.value) {
+    resetDateInputValue = (force:boolean = false) => {
+        if(force === true || !this.currentValue) {
             let newState = update(this.state, { extra: {  reset: { $set: true } } });
             this.setState(newState, () => { 
                 newState = update(this.state, { extra: { reset: { $set: false } } });

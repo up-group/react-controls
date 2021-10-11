@@ -14,15 +14,16 @@ const UpGrid: React.FunctionComponent<UpGridProps & WithThemeProps> = ({ gutter 
     const _rowSpacing = rowSpacing != null ? rowSpacing : (theme.gridRowSpacing != null ? theme.gridRowSpacing : 0);
 
     if (_gutter > 0 || type != 'float') {
-        rows = React.Children.map(children, (row: React.ReactElement<UpRowProps>) => {
+        rows = React.Children.map(children, (row: React.ReactElement<UpRowProps>, index: number) => {
             if (!row) {
                 return null;
             }
             if (row.props) {
-                return React.cloneElement(row, {
+                return <React.Fragment key={index}>
+                    {React.cloneElement(row, {
                     gutter: row.props.gutter == 0 ? _gutter : row.props.gutter,
                     type:  row.props.type
-                });
+                    })}</React.Fragment>
             }
             return row;
         });
