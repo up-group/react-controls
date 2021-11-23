@@ -1,3 +1,7 @@
+#  ReactControls (version: 0.2.169)
+## Main Changes
+- UpIcon : Add new icon 'file-edit' | 'user-circle' | 'safe'
+
 #  ReactControls (version: 0.2.168)
 ## Bug Fixes
 - UpDate : fix date clear when value is controlled
