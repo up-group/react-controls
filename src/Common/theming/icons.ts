@@ -28,7 +28,7 @@ export type IconName =
 | 'weather-lightning' | 'weather-rain' | 'weather-snow' | 'weather-sunrise' | 'weather-sunset' | 'weather-sunshine' 
 | 'weather-wind' | 'weather-wind-force' | 'window' | 'world' | 'caret-left' | 'fullscreen' | 'justified-text' | 'eye-open' 
 | 'eye-close' | 'cancel' | 'enterprise' | 'card' | 'purchase' | 'notification' | 'stats' | 'acceptation' | 'check' 
-| 'billing' | 'page' | 'circle-plus' | 'circle-close' | 'circle-info' | 'file' | 'enter' | 'profile2' | 'burger-menu2' 
+| 'billing' | 'page' | 'circle-plus' | 'circle-close' | 'circle-info' | 'circle-check' | 'circle-play' |'file' | 'enter' | 'profile2' | 'burger-menu2' 
 | 'mobile-up' | 'delivery' | 'parcel' | 'store' | 'group' | 'colored-calendar' | 'colored-transaction' | 'colored-equalizer' 
 | 'colored-card' | 'colored-card-inclined' | 'colored-list' | 'colored-summary' | 'pen' | 'bill-sheet' | 'copy' | 'duplicate' 
 | 'file2' | 'home' | 'up-password' | 'condition' | 'on-off' | 'box' | 'box-birth' | 'box-christmas' | 'box-christmas2' 
@@ -55,7 +55,7 @@ export const IconNames: IconName[] = ['menu', 'previous', 'list', 'gift', 'attac
 'trash-can', 'tv', 'fax', 'video-camera', 'weather-cloud', 'weather-lightning', 'weather-rain', 'weather-snow', 'weather-sunrise', 
 'weather-sunset', 'weather-sunshine', 'weather-wind', 'weather-wind-force', 'window', 'world', 'caret-left', 'fullscreen', 'justified-text', 
 'eye-open', 'eye-close', 'cancel', 'enterprise', 'card', 'purchase', 'notification', 'stats', 'acceptation', 'check', 'billing', 'page', 
-'circle-plus', 'circle-close', 'circle-info', 'file', 'enter', 'profile2', 'burger-menu2', 'mobile-up', 'delivery', 'parcel', 'store', 'group',
+'circle-plus', 'circle-close', 'circle-info', 'circle-check', 'circle-play', 'file', 'enter', 'profile2', 'burger-menu2', 'mobile-up', 'delivery', 'parcel', 'store', 'group',
 'colored-calendar', 'colored-transaction', 'colored-equalizer', 'colored-card', 'colored-card-inclined', 'colored-list', 'colored-summary', 
 'pen', 'bill-sheet', 'copy', 'duplicate', 'file2', 'home', 'up-password', 'condition', 'on-off', 'box', 'box-birth', 'box-christmas', 'box-christmas2', 
 'box-cross', 'box-hat', 'box-heart', 'box-infinity', 'box-mustache', 'box-rings', 'box-school', 'box-smile', 'box-stars', 'box-trophy', 'price',
