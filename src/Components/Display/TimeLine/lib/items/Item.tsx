@@ -1,6 +1,6 @@
-import * as  React from 'react'
+import React from 'react'
 import * as interact from 'interact.js'
-import * as  moment from 'moment'
+import moment from 'moment'
 
 import { _get, deepObjectCompare } from '../utils'
 

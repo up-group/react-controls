@@ -15,6 +15,7 @@ Read on to get started!
 - Validation
 
 ## Getting Started
+
 1. Clone the Repo
 `git clone https://github.com/Up-Group/react-controls`
 
@@ -23,12 +24,25 @@ From the root of the project directory, run `yarn` if you have yarn installed gl
 --- or ---
 `npm install`.
 
+### windows
+
+- setup python 2.7 && add it to path
+- configure NODE_OPTIONS
+
+  ```powershell
+   # necessary to run storybook on windows
+   ## 
+   $Env:NODE_OPTIONS = "--openssl-legacy-provider"
+  ```
+
 ## Styled Components
+
 This project embraces [styled-components](https://github.com/styled-components/styled-components) as it's a fantastic way to style your React components.  
 
 Check the components directory for examples.
 
 ## File Tree Structure
+
 ```
 src/
 │   ├── Input

@@ -1,11 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 import UpDate, { UpDate as UpDateComponent } from './UpDate';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import { getRootContainer } from '../../../Common/stories';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import * as moment from 'moment';
-import { Moment } from 'moment';
+import moment  from 'moment';
 
 export default {
     title: 'Components/Inputs/UpDate',
@@ -134,7 +133,7 @@ export const OnlySomeDate =
                     console.log(value);
                     setDate(value)
                 }}
-                isOutsideRange={(day: Moment) => {
+                isOutsideRange={(day: moment.Moment) => {
                     return day.toDate().getDate() % 2 > 0
                 }}
                 value={value && moment(value)}

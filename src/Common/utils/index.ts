@@ -111,8 +111,9 @@ const open = (url : string, title : string, onClose : () => void, name? : string
   
     // IE doesn't allow using a blob object directly as link href
     // instead it is necessary to use msSaveOrOpenBlob
-    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-      window.navigator.msSaveOrOpenBlob(newBlob);
+    const nav = window.navigator as any;
+    if (nav && nav.msSaveOrOpenBlob) {
+      nav.msSaveOrOpenBlob(newBlob);
       return;
     }
   

@@ -1,5 +1,5 @@
 import { style } from "typestyle";
-import * as moment from "moment";
+import moment from "moment";
 
 
 export function callIfExists(func, ...args) {

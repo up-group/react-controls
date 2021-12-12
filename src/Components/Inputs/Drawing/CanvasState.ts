@@ -1,5 +1,5 @@
 import Shape from './Shape'
-import * as $ from 'jquery'
+import $ from 'jquery'
 
 export default class CanvasState {
     canvas: any;

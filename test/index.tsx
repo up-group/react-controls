@@ -1,4 +1,4 @@
-import * as React from "react";
+UpDefaultCellFormatterimport * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import {
@@ -38,7 +38,7 @@ import UpMenu from "../src/Components/Display/Menu/UpMenu"
 
 
 
-import * as moment from 'moment'
+import moment from 'moment'
 
 
 interface Item {

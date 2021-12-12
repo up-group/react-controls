@@ -1,5 +1,5 @@
-import * as $ from "jquery";
-import * as React from "react";
+import $ from "jquery";
+import React from "react";
 import classnames from "classnames";
 import {media, style} from "typestyle";
 
@@ -904,10 +904,10 @@ class UpDataGrid extends React.Component<
         var blob = new Blob([new Uint8Array(bytes)], { type: "text/csv" });
         
         if(typeof window.navigator["msSaveBlob"] !== "undefined") {
-          window.navigator.msSaveBlob(blob, filename);
+          (window.navigator as any).msSaveBlob(blob, filename);
         }
         else if(typeof window.navigator["msSaveOrOpenBlob"] !== "undefined") {
-          window.navigator.msSaveOrOpenBlob(blob, filename);
+          (window.navigator as any).msSaveOrOpenBlob(blob, filename);
         }
       }
     } else {

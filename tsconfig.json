@@ -12,6 +12,7 @@
     "allowJs": false,
     "declaration": true,
     "skipLibCheck": true,
+    "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
       "*": [

@@ -1,8 +1,8 @@
 import { BaseControlProps } from '../_Common/BaseControl/BaseControl';
-import { Moment } from 'moment';
+import moment from 'moment';
 
 // Exports
-export interface UpDateProps extends BaseControlProps<Moment> {
+export interface UpDateProps extends BaseControlProps<moment.Moment> {
     hasError?: boolean;
     format?: string;
     minDate?: Date;
@@ -13,6 +13,6 @@ export interface UpDateProps extends BaseControlProps<Moment> {
     numberOfMonths?: number;
     enableOutsideDays?: boolean;
     daySize?: number;
-    isOutsideRange?: (day: Moment) => boolean;
+    isOutsideRange?: (day: moment.Moment) => boolean;
     fullWidth?: boolean
 };

@@ -12,10 +12,8 @@ import { eventFactory } from "../../../../Common/utils/eventListener";
 
 import * as update from "react-addons-update";
 import HelpMessageDisplay from "../Validation/HelpMessageDisplay";
-import { string } from "prop-types";
 import { isFunction } from "util";
 import { TestableComponentProps } from "../../../../Common/utils/types";
-import moment = require("moment");
 
 // Exports
 const ONCHANGE_MUST_BE_SPECIFIED =

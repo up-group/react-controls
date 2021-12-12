@@ -1,5 +1,5 @@
-import * as React from 'react'
-import * as moment from 'moment'
+import React from 'react'
+import moment from 'moment'
 import * as  css from './Timeline.css'
 
 import Items from './items/Items'

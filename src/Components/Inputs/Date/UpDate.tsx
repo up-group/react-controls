@@ -1,19 +1,18 @@
 import 'normalize.css/normalize.css'
 import 'react-dates/initialize';
-import * as React from 'react'
+import React from 'react'
 import { UpDateProps } from './types';
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl'
 import defaultTheme from '../../../Common/theming';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import { eventFactory } from '../../../Common/utils/eventListener';
 import SvgIcon from '../../Display/SvgIcon'
-import { Moment } from 'moment';
+import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import { generateUniqueId } from '../../../Common/utils/helpers';
 import defaultPhrases from './i18n/fr';
 import classnames from 'classnames';
 import { isEmpty } from '../../../Common/utils';
-import * as moment from 'moment';
 import getStyles from './styles';
 import { style } from 'typestyle';
 import UpSelect from '../Select';
@@ -26,7 +25,7 @@ moment.locale('fr');
 const MIN_DATE = new Date(-8640000000000);
 const MAX_DATE = new Date(+8640000000000);
 
-class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Moment> {
+class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, moment.Moment> {
 
     public static defaultProps: UpDateProps = {
         format: 'DD/MM/YYYY',
@@ -50,7 +49,7 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Moment> 
         this.id = generateUniqueId();
     };
 
-    onChange = (startDate: Moment, endDate?: Moment) => {
+    onChange = (startDate: moment.Moment, endDate?: moment.Moment) => {
         let value = startDate ;
         if(!(value instanceof moment) && moment(value, this.props.format, true).isValid()) {
             value = moment(value);
@@ -194,21 +193,21 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Moment> 
         </div>
     )
 
-    defaultIsOutsideRange = (day: Date | Moment): boolean => {
-        let _day : Moment = day as Moment ;
+    defaultIsOutsideRange = (day: Date | moment.Moment): boolean => {
+        let _day : moment.Moment = day as moment.Moment ;
         if(day instanceof Date) {
             _day = moment(day)
         }
         
         let maxDate : unknown = this.props.maxDate ; 
         if(maxDate instanceof moment) {
-            maxDate = (maxDate as Moment).startOf('day')
+            maxDate = (maxDate as moment.Moment).startOf('day')
         } else if (maxDate instanceof Date) {
             maxDate = (maxDate as Date).setHours(0, 0, 0, 0)
         }
         let minDate : unknown = this.props.minDate ; 
         if(minDate instanceof moment) {
-            minDate = (minDate as Moment).startOf('day')
+            minDate = (minDate as moment.Moment).startOf('day')
         } else if (minDate instanceof Date) {
             minDate = (minDate as Date).setHours(0, 0, 0, 0)
         }

@@ -4,7 +4,7 @@ import UpButton from '../../Inputs/Button/UpButton';
 import UpSvgIcon from '../../Display/SvgIcon';
 import UpTooltip from '../../Display/Tooltip/UpTooltip';
 import UpLigne from '../../Display/Ligne/UpLigne';
-import _ = require('lodash');
+import * as _ from 'lodash';
 import { TitleFormatter, PanelItemProps } from './types';
 import { getStyles } from './styles';
 
