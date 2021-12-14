@@ -9,7 +9,7 @@ import { style } from 'typestyle';
 import UpInput from '../Input';
 import UpPassword from '../Password';
 import UpDate from '../Date';
-import * as randomSentence from 'random-sentence';
+import randomSentence from 'random-sentence';
 import UpButton from '../Button';
 
 export default {

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { General } from '../index.stories';
 import { ThemeProvider as UpThemeProvider } from '../../../../Common/theming/ThemeProvider';
 import UpDefaultTheme from '../../../../Common/theming';

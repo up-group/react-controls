@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": [ "node", "jest" ],
+    "types": ["node", "jest"],
     "target": "ES5",
     "sourceMap": true,
     "removeComments": true,
@@ -15,16 +15,10 @@
     "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
-      "*": [
-        "src/Common/*",
-        "src/Component/*",
-        "src/*"
-      ]
-    },
+      "*": ["src/Common/*", "src/Component/*", "src/*"]
+    }
   },
-  "include": [
-    "src/**/*"
-  ],
+  "include": ["src/**/*"],
   "exclude": [
     "node_modules",
     "./node_modules",
