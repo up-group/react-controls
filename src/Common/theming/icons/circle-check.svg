@@ -1,0 +1,14 @@
+<svg id="Circle_check" data-name="Circle check" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Circle_check_Tracé_815" data-name="Circle check Tracé 815" d="M26.106-25.106a15,15,0,0,1,0,21.213,15,15,0,0,1-21.213,0,15,15,0,0,1,0-21.213A15,15,0,0,1,26.106-25.106Zm-.731.731a13.964,13.964,0,0,0-19.75,0,13.964,13.964,0,0,0,0,19.75,13.964,13.964,0,0,0,19.75,0A13.964,13.964,0,0,0,25.375-24.375Z" transform="translate(-0.5 29.5)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Circle_check_Groupe_704" data-name="Circle check Groupe 704" clip-path="url(#clip-path)">
+    <path id="Circle_check_Tracé_814" data-name="Circle check Tracé 814" d="M-1-31H32.1V2.1H-1Z" transform="translate(-0.552 29.448)" fill="#04c491"/>
+  </g>
+  <g id="Circle_check_Groupe_705" data-name="Circle check Groupe 705" transform="translate(-1064 -221)">
+    <line id="Circle_check_Ligne_2" data-name="Circle check Ligne 2" x2="6" y2="7" transform="translate(1071.5 235.5)" fill="none" stroke="#04c491" stroke-linecap="round" stroke-width="1"/>
+    <line id="Circle_check_Ligne_3" data-name="Circle check Ligne 3" x1="9" y2="12" transform="translate(1077.5 230.5)" fill="none" stroke="#04c491" stroke-linecap="round" stroke-width="1"/>
+  </g>
+</svg>
