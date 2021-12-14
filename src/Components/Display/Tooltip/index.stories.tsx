@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as update from 'react-addons-update';
+import update from 'react-addons-update';
 import UpTooltip, { UpTooltip as UpTooltipComponent } from './UpTooltip';
 import UpLigne from '../Ligne';
 import UpPanel from '../../Containers/Panel';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { UpGridProps, UpRowProps } from './types'
 import defaultTheme from '../../../Common/theming'
 import { GridStyles } from './styles';

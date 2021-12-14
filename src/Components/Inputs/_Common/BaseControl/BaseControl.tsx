@@ -1,5 +1,5 @@
 // Imports
-import * as React from "react";
+import React from "react";
 import ValidationManager from "../Validation/ValidationManager";
 import ErrorDisplay, { ErrorDisplayMode } from "../Validation/ErrorDisplay";
 // Importation des règles CSS de bases -> à transformer en styled-components
@@ -10,7 +10,7 @@ import { WithThemeProps } from "../../../../Common/theming/withTheme";
 import defaultTheme from "../../../../Common/theming";
 import { eventFactory } from "../../../../Common/utils/eventListener";
 
-import * as update from "react-addons-update";
+import update from "react-addons-update";
 import HelpMessageDisplay from "../Validation/HelpMessageDisplay";
 import { isFunction } from "util";
 import { TestableComponentProps } from "../../../../Common/utils/types";

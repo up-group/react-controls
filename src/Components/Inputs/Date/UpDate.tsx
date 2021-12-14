@@ -18,7 +18,7 @@ import { style } from 'typestyle';
 import UpSelect from '../Select';
 import { isNumeric } from '../../../Common/utils/helpers';
 import { getTestableComponentProps } from '../../../Common/utils/types';
-import * as update from 'react-addons-update';
+import update from 'react-addons-update';
 
 moment.locale('fr');
 

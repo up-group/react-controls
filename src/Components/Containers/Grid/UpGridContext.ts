@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { LayoutMode } from './types';
 
 const UpGridContext = React.createContext<{ gutter: number, rowSpacing?: number, type: LayoutMode, fullRowLayout: boolean }>({

@@ -1,4 +1,10 @@
+#  ReactControls (version: 2.17.0)
+  - upgrading react 16 to 17
+## Main Changes
+- UpIcon : Add new icon 'file-edit' | 'user-circle' | 'safe'
+
 #  ReactControls (version: 0.2.169)
+
 ## Main Changes
 - UpIcon : Add new icon 'file-edit' | 'user-circle' | 'safe'
 

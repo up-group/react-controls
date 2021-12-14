@@ -1,13 +1,13 @@
 // Imports
-import * as React from 'react';
-import * as update from 'react-addons-update';
+import React from 'react';
+import update from 'react-addons-update';
 import classnames from 'classnames';
 import AsyncCreatableSelect from 'react-select/async-creatable';
 import axios from 'axios';
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl';
 import * as queryString from 'query-string';
 import { UpSelectProps } from './types';
-import SelectBase  , {
+import SelectBase, {
   Props,
   ActionMeta,
   OnChangeValue,
@@ -29,7 +29,6 @@ import { getTestableComponentProps } from '../../../Common/utils/types';
 import Creatable from 'react-select/creatable';
 import AsyncSelect from 'react-select/async';
 
-
 const CancelToken = axios.CancelToken;
 
 const formatGroupLabel = data => (
@@ -43,7 +42,10 @@ const formatMinimumInputLenghMessage = (minimumInputLength: number) =>
   `Veuillez renseigner au minimum ${minimumInputLength} caractères`;
 
 // Exports
-export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
+export default class UpSelect extends BaseControlComponent<
+  UpSelectProps,
+  any
+> {
   timeOutLoadOptions: any;
   axiosSource: any;
   input: HTMLInputElement;

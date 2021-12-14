@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import { style } from 'typestyle';
-import { Color } from 'csstype';
+import { Property } from 'csstype';
 import {
   getIntegerValue,
   getDecimalValue,
@@ -16,8 +16,8 @@ export interface UpCurrencyProps extends React.ClassAttributes<any> {
   integerLineHeight?: number;
   decimalLineHeight?: number;
   integerFontWeight?: number;
-  color?: Color;
-  secondColor?: Color;
+  color?: Property.Color;
+  secondColor?: Property.Color;
   unit?: string;
   animate?: boolean;
   delay?: number;

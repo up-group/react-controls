@@ -1,6 +1,6 @@
-﻿import * as React from "react"
+﻿import React from "react"
 import { style } from "typestyle"
-import { Scrollbars } from 'react-custom-scrollbars';
+import { Scrollbars } from 'react-custom-scrollbars-2';
 import { getFontClassName, stringIsNullOrEmpty, isNullOrUndef, addZeroBeforeNumber } from '../../../Common/utils/helpers';
 import UpHover from '../../Containers/Hover/UpHover';
 import { IconChevron, IconUtilisateur, IconDeconnexion, DirectionEnum, IconVerrou, IconAlertes } from '../Icons/Icons';

@@ -11,7 +11,7 @@ import '@fullcalendar/timegrid/main.css'
 import './UpCalendar.css'
 import { style } from 'typestyle';
 import classnames from 'classnames';
-import { usePopper } from "react-popper-2";
+import { usePopper } from "react-popper";
 
 export { EventInput }
 export interface UpCalendarProps extends CalendarOptions {
