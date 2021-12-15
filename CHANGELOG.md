@@ -2,6 +2,9 @@
   - upgrading react 16 to 17
 ## Main Changes
 - UpIcon : Add new icon 'file-edit' | 'user-circle' | 'safe'
+#  ReactControls (version: 0.2.171)
+## Main Changes
+- UpIcon : Add icons circle-check and circle-play
 
 #  ReactControls (version: 0.2.169)
 
