@@ -20,7 +20,12 @@ src/Others
 
 e2e/cypress/
 e2e/node_modules/
-**/.yarn/
-.yarn/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 **/*/yarn-error.log
 dist/
