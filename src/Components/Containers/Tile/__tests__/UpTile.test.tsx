@@ -1,20 +1,11 @@
 import React from 'react';
-import {
-  fireEvent,
-  render,
-  screen,
-  cleanup,
-} from '@testing-library/react';
+import { fireEvent, render, screen, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import UpTile from '../UpTile';
 import { ThemeProvider as UpThemeProvider } from '../../../../Common/theming/ThemeProvider';
 import UpDefaultTheme from '../../../../Common/theming';
 
-const whithTheme = component => (
-  <UpThemeProvider theme={UpDefaultTheme}>
-    {component}
-  </UpThemeProvider>
-);
+const whithTheme = component => <UpThemeProvider theme={UpDefaultTheme}>{component}</UpThemeProvider>;
 const renderComponent = component => render(whithTheme(component));
 
 afterEach(cleanup);
@@ -28,30 +19,20 @@ describe('Tests for UpTile', () => {
   });
 
   it('should render a footer in div tag', () => {
-    const { container } = renderComponent(
-      <UpTile footer="This is the footer"></UpTile>
-    );
+    const { container } = renderComponent(<UpTile footer="This is the footer"></UpTile>);
 
-    expect(container.querySelector('.box-footer')).toHaveTextContent(
-      'This is the footer'
-    );
-    expect(container.querySelector('.box-footer').nodeName).toBe(
-      'DIV'
-    );
+    expect(container.querySelector('.box-footer')).toHaveTextContent('This is the footer');
+    expect(container.querySelector('.box-footer').nodeName).toBe('DIV');
   });
 
   it('should collapse UpTile afer button collapse click', () => {
     const { container } = renderComponent(<UpTile />);
 
     expect(container.querySelector('.box-body')).toBeVisible();
-    expect(container.querySelector('.box-home')).not.toHaveClass(
-      'collapsed-box'
-    );
+    expect(container.querySelector('.box-home')).not.toHaveClass('collapsed-box');
 
     fireEvent.click(container.querySelector('button'));
-    expect(container.querySelector('.box-home')).toHaveClass(
-      'collapsed-box'
-    );
+    expect(container.querySelector('.box-home')).toHaveClass('collapsed-box');
   });
 
   it('should render content', () => {
@@ -61,9 +42,7 @@ describe('Tests for UpTile', () => {
       </UpTile>
     );
 
-    expect(container.querySelector('.box-body')).toContainHTML(
-      '<p>Content</p>'
-    );
+    expect(container.querySelector('.box-body')).toContainHTML('<p>Content</p>');
   });
 
   it('should apply a maxHeight property', () => {
@@ -73,11 +52,10 @@ describe('Tests for UpTile', () => {
       </UpTile>
     );
 
-    const bodyElement =
-      container.querySelector('.box-body').firstElementChild;
+    const bodyElement = container.querySelector('.box-body').firstElementChild;
     const cssbodyElement = window.getComputedStyle(bodyElement);
-   
- expect(cssbodyElement.maxHeight).toBe('200px');
+
+    expect(cssbodyElement.maxHeight).toBe('200px');
     expect(cssbodyElement.overflowY).toBe('auto');
   });
 });

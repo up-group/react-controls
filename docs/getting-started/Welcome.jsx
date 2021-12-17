@@ -1,20 +1,20 @@
 import React from 'react';
 
-import '../../src/Common/theming/style.css'
+import '../../src/Common/theming/style.css';
 
-import {style} from 'typestyle';
+import { style } from 'typestyle';
 
 const styles = {
   main: {
     lineHeight: 1.4,
     fontFamily: '"-apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Arial, freesans, sans-serif',
-    backgroundColor : 'rgb(245, 145, 0)',
+    backgroundColor: 'rgb(245, 145, 0)',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    width:'100%',
+    width: '100%',
     minHeight: '100vh',
-    color:'white',
+    color: 'white',
     paddingLeft: '60px',
     paddingRight: '60px',
     textShadow: '0 1px 2px rgba(0,0,0,0.25)',
@@ -51,17 +51,16 @@ const Heading = style({
   lineHeight: '64px',
   fontWeight: 700,
   color: 'white',
-})
+});
 
 export default class Welcome extends React.Component {
-  
   showApp(e) {
     e.preventDefault();
     if (this.props.showApp) this.props.showApp();
   }
 
   render() {
-    const { children } = this.props ;
+    const { children } = this.props;
     return (
       <div style={styles.main}>
         <h1 className={Heading}>Design System by Up</h1>
@@ -69,21 +68,22 @@ export default class Welcome extends React.Component {
           This is a UI component design book for the library <code>react-controls</code>.
         </p>
         <p>
-          We've added some basic stories inside the
-          {' '}
-          <code style={styles.code}>src/stories</code>
-          {' '}
-          directory.
-          <br />
-          A story is a single state of one or more UI components.
+          We've added some basic stories inside the <code style={styles.code}>src/stories</code> directory.
+          <br />A story is a single state of one or more UI components.
         </p>
 
         <p>
           Our component's hierarchy is based on 3 main categories :
           <ul>
-            <li><code>Containers</code> components</li>
-            <li><code>Display</code> components</li>
-            <li><code>Inputs</code> components</li>
+            <li>
+              <code>Containers</code> components
+            </li>
+            <li>
+              <code>Display</code> components
+            </li>
+            <li>
+              <code>Inputs</code> components
+            </li>
           </ul>
         </p>
         {children}

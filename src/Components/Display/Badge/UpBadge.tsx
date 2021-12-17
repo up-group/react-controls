@@ -6,36 +6,28 @@ import defaultTheme from '../../../Common/theming';
 import { getStyle } from './styles';
 
 const UpBadge: React.FunctionComponent<UpBadgeProps & WithThemeProps> = props => {
+  const { text, className, onClick, onMouseEnter, onMouseLeave, children } = props;
 
-    const {
-        text,
-        className,
-        onClick,
-        onMouseEnter,
-        onMouseLeave,
-        children
-    } = props
-
-    return (
-        <div
-            className={classnames(getStyle(props), 'up-badge', className)}
-            onClick={onClick}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-        >
-            {text}
-            {children}
-        </div>
-    );
+  return (
+    <div
+      className={classnames(getStyle(props), 'up-badge', className)}
+      onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      {text}
+      {children}
+    </div>
+  );
 };
 
 UpBadge.defaultProps = {
-    text: '',
-    color: '#FFF',
-    background: '#000',
-    theme: defaultTheme,
-    rounded: false,
-    intent: null
+  text: '',
+  color: '#FFF',
+  background: '#000',
+  theme: defaultTheme,
+  rounded: false,
+  intent: null,
 };
 
 export { UpBadge };

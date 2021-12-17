@@ -13,7 +13,7 @@ import * as IconsM from '../Icons/materialinear';
 import { getRootContainer } from '../../../Common/stories';
 import { DeviceSmartphones } from '../../../Common/utils/device';
 
-const logoSvg = require('./sources/logo-up-square.svg');
+import logoSvg from './sources/logo-up-square.svg';
 
 export default {
   title: 'Components/Display/UpMenu',
@@ -25,11 +25,17 @@ const resetMenuSelection = (menu: Array<MenuItemData>): Array<MenuItemData> => {
   if (isEmpty(menu)) {
     return [];
   }
-  return menu.map(m => ({ ...m, childMenuItems: resetMenuSelection(m.childMenuItems), isSelected: false }));
+  return menu.map(m => ({
+    ...m,
+    childMenuItems: resetMenuSelection(m.childMenuItems),
+    isSelected: false,
+  }));
 };
 
 const hasItemSelected = (uri: string, menu: Array<MenuItemData>): boolean => {
-  return !isEmpty(menu) && menu.find(i => (i.uri != null && uri === i.uri) || hasItemSelected(uri, i.childMenuItems)) != null;
+  return (
+    !isEmpty(menu) && menu.find(i => (i.uri != null && uri === i.uri) || hasItemSelected(uri, i.childMenuItems)) != null
+  );
 };
 
 const setMenuSelection = (uri: string, menu: Array<MenuItemData>, prev?: Array<MenuItemData>): Array<MenuItemData> => {
@@ -45,7 +51,7 @@ const setMenuSelection = (uri: string, menu: Array<MenuItemData>, prev?: Array<M
 const defaultMenu: Array<MenuItemData> = [
   {
     title: 'Stack',
-    icon: (propsIcon) => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+    icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
     isSelected: false,
     isVisible: true,
     uri: '/stack',
@@ -84,39 +90,40 @@ const defaultMenu: Array<MenuItemData> = [
     uri: '/smart',
     childMenuItems: [],
   },
-        { isSeparator: true }, {
-          title: 'Up',
-          icon: (propsIcon) => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
-          isSelected: false,
-          isVisible: true,
-          uri: '/Up',
-          childMenuItems: [
-            {
-              title: 'Up Option 1',
-              icon: 'weather-rain',
-              isSelected: false,
-              isVisible: true,
-              uri: '/Up/option1',
-              childMenuItems: [],
-            },
-            {
-              title: 'Up Option 2',
-              icon: 'weather-snow',
-              isSelected: false,
-              isVisible: true,
-              uri: '/Up/option2',
-              childMenuItems: [],
-            },
-            {
-              title: 'Up Option 3',
-              icon: 'weather-sunset',
-              isSelected: false,
-              isVisible: true,
-              uri: '/Up/option3',
-              childMenuItems: [],
-            },
-          ],
-        },
+  { isSeparator: true },
+  {
+    title: 'Up',
+    icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+    isSelected: false,
+    isVisible: true,
+    uri: '/Up',
+    childMenuItems: [
+      {
+        title: 'Up Option 1',
+        icon: 'weather-rain',
+        isSelected: false,
+        isVisible: true,
+        uri: '/Up/option1',
+        childMenuItems: [],
+      },
+      {
+        title: 'Up Option 2',
+        icon: 'weather-snow',
+        isSelected: false,
+        isVisible: true,
+        uri: '/Up/option2',
+        childMenuItems: [],
+      },
+      {
+        title: 'Up Option 3',
+        icon: 'weather-sunset',
+        isSelected: false,
+        isVisible: true,
+        uri: '/Up/option3',
+        childMenuItems: [],
+      },
+    ],
+  },
   {
     title: 'Settings',
     icon: 'settings',
@@ -125,31 +132,27 @@ const defaultMenu: Array<MenuItemData> = [
     uri: '/settings',
     childMenuItems: [],
   },
-        { isSeparator: true },
+  { isSeparator: true },
   {
-    render: (
-                item: MenuItemData,
-                propsMenu: UpMenuProps,
-                state: UpMenuState,
-            ) => {
+    render: (item: MenuItemData, propsMenu: UpMenuProps, state: UpMenuState) => {
       return (
-                    <UpButton
-                        intent={'primary'}
-                        onClick={e => {
-                          action('Command');
-                        }}
-                        width={state.minified ? 'icon' : 'full'}
-                        height={'large'}
-                        actionType={'briefcase'}>
-                        {'Commander'}
-                    </UpButton>
+        <UpButton
+          intent={'primary'}
+          onClick={e => {
+            action('Command');
+          }}
+          width={state.minified ? 'icon' : 'full'}
+          height={'large'}
+          actionType={'briefcase'}
+        >
+          {'Commander'}
+        </UpButton>
       );
     },
   },
 ];
 
 const _General = (props: UpMenuProps) => {
-
   const [uri, setUri] = React.useState(null);
   const [menu, setMenu] = React.useState(defaultMenu);
 
@@ -163,60 +166,71 @@ const _General = (props: UpMenuProps) => {
   });
 
   return (
-        <>
-            <span data-testid="uri" style={{ display: 'none' }}>{uri}</span>
-            <UpMenu
-                onMinifiedChange={(minified) => action(`Menu minified: ${minified}`)}
-                onClick={uri => {
-                  setMenu(previousMenu => setMenuSelection(uri, menu, previousMenu));
-                  setUri(uri);
-                  return false;
-                }}
-                minified={props.minified}
-                title={props.title}
-                blocked={props.blocked}
-                menuItems={menu}
-                width={props.width}
-                footer={(props: Partial<UpMenuProps>, state: UpMenuState) => {
-                  return (
-                        <>
-                            {!state.minified &&
-                                <UpBox alignItems={'center'} justifyContent={'center'} style={{ width: '100%', height: '100%' }}>
-                                    <div className={footerStyle}>
-                                        Copyright. Tous droits réservés @Up 2021
-                                    </div>
-                                    <a
-                                        className={footerStyle}
-                                        href="https://up.coop/donnees-personnelles"
-                                        target="_blank"
-                                    >
-                                        Conditions générales
-                                    </a>
-                                    <a
-                                        className={footerStyle}
-                                        href="https://up.coop/mentions-legales"
-                                        target="_blank"
-                                    >
-                                        Mentions légales
-                                    </a>
-                                </UpBox>
-                            }
-                            {state.minified &&
-                                <UpTooltip place={'top'} content={'Copyright.Tous droits réservés Up 2019'} >
-                                    <UpBox alignItems={'center'} justifyContent={'center'} style={{ width: '100%', height: '100%' }}>
-                                        <UpSvgIcon color={colorMap.disabledFg} iconName={'info-sign'} />
-                                    </UpBox>
-                                </UpTooltip>
-                            }
-                        </>
-                  );
-                }}
-            />
-        </>
+    <>
+      <span data-testid="uri" style={{ display: 'none' }}>
+        {uri}
+      </span>
+      <UpMenu
+        onMinifiedChange={minified => action(`Menu minified: ${minified}`)}
+        onClick={uri => {
+          setMenu(previousMenu => setMenuSelection(uri, menu, previousMenu));
+          setUri(uri);
+          return false;
+        }}
+        minified={props.minified}
+        title={props.title}
+        blocked={props.blocked}
+        menuItems={menu}
+        width={props.width}
+        footer={(props: Partial<UpMenuProps>, state: UpMenuState) => {
+          return (
+            <>
+              {!state.minified && (
+                <UpBox
+                  alignItems={'center'}
+                  justifyContent={'center'}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                  }}
+                >
+                  <div className={footerStyle}>Copyright. Tous droits réservés @Up 2021</div>
+                  <a
+                    className={footerStyle}
+                    href="https://up.coop/donnees-personnelles"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Conditions générales
+                  </a>
+                  <a className={footerStyle} href="https://up.coop/mentions-legales" target="_blank" rel="noreferrer">
+                    Mentions légales
+                  </a>
+                </UpBox>
+              )}
+              {state.minified && (
+                <UpTooltip place={'top'} content={'Copyright.Tous droits réservés Up 2019'}>
+                  <UpBox
+                    alignItems={'center'}
+                    justifyContent={'center'}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                    }}
+                  >
+                    <UpSvgIcon color={colorMap.disabledFg} iconName={'info-sign'} />
+                  </UpBox>
+                </UpTooltip>
+              )}
+            </>
+          );
+        }}
+      />
+    </>
   );
 };
 
-export const General = _General.bind({}) ;
+export const General = _General.bind({});
 
 General.args = {
   // 👇 This arg is for the story component
@@ -225,11 +239,10 @@ General.args = {
   minified: false,
   // 👇
   blocked: false,
-  width : 300,
+  width: 300,
 };
 
-export const GeneralWithCustomHeader = (props) => {
-
+export const GeneralWithCustomHeader = props => {
   const [uri, setUri] = React.useState(null);
   const [menu, setMenu] = React.useState(defaultMenu);
 
@@ -243,74 +256,88 @@ export const GeneralWithCustomHeader = (props) => {
   });
 
   return (
-        <>
-            <span data-testid="uri" style={{ display: 'none' }}>{uri}</span>
-            <UpMenu
-                onMinifiedChange={(minified) => action(`Menu minified: ${minified}`)}
-                onClick={uri => {
-                  setMenu(previousMenu => setMenuSelection(uri, menu, previousMenu));
-                  setUri(uri);
-                  return false;
-                }}
-                menuItems={menu}
-                footer={(props: Partial<UpMenuProps>, state: UpMenuState) => {
-                  return (
-                        <>
-                            {!state.minified &&
-                                <UpBox alignItems={'center'} justifyContent={'center'} style={{ width: '100%', height: '100%' }}>
-                                    <div className={footerStyle}>
-                                        Copyright. Tous droits réservés Up 2019
-                                    </div>
-                                    <a
-                                        className={footerStyle}
-                                        href="https://up.coop/donnees-personnelles"
-                                        target="_blank"
-                                    >
-                                        Conditions générales
-                                    </a>
-                                    <a
-                                        className={footerStyle}
-                                        href="https://up.coop/mentions-legales"
-                                        target="_blank"
-                                    >
-                                        Mentions légales
-                                    </a>
-                                </UpBox>
-                            }
-                            {state.minified &&
-                                <UpTooltip place={'top'} content={'Copyright.Tous droits réservés Up 2019'} >
-                                    <UpBox alignItems={'center'} justifyContent={'center'} style={{ width: '100%', height: '100%' }}>
-                                        <UpSvgIcon color={colorMap.disabledFg} iconName={'info-sign'} />
-                                    </UpBox>
-                                </UpTooltip>
-                            }
-                        </>
-                  );
-                }}
-                header={(props: Partial<UpMenuProps>, state: UpMenuState) => {
-                  return (
-                        <UpBox flexDirection={'row'} alignItems={'center'} justifyContent={'center'} style={{ height: '100%' }}>
-                            {!state.minified &&
-                                <UpSvgIcon color={colorMap.primary} iconName={'checkmark'} />
-                            }
-                            {!state.minified &&
-                                <UpLigne color={colorMap.primary} className={style({ marginLeft: '8px' })}>
-                                    Acceptation de titre
-                                </UpLigne>
-                            }
-                        </UpBox>
-                  );
-                }}
-            />
-        </>
+    <>
+      <span data-testid="uri" style={{ display: 'none' }}>
+        {uri}
+      </span>
+      <UpMenu
+        onMinifiedChange={minified => action(`Menu minified: ${minified}`)}
+        onClick={uri => {
+          setMenu(previousMenu => setMenuSelection(uri, menu, previousMenu));
+          setUri(uri);
+          return false;
+        }}
+        menuItems={menu}
+        footer={(props: Partial<UpMenuProps>, state: UpMenuState) => {
+          return (
+            <>
+              {!state.minified && (
+                <UpBox
+                  alignItems={'center'}
+                  justifyContent={'center'}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                  }}
+                >
+                  <div className={footerStyle}>Copyright. Tous droits réservés Up 2019</div>
+                  <a
+                    className={footerStyle}
+                    href="https://up.coop/donnees-personnelles"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Conditions générales
+                  </a>
+                  <a className={footerStyle} href="https://up.coop/mentions-legales" target="_blank" rel="noreferrer">
+                    Mentions légales
+                  </a>
+                </UpBox>
+              )}
+              {state.minified && (
+                <UpTooltip place={'top'} content={'Copyright.Tous droits réservés Up 2019'}>
+                  <UpBox
+                    alignItems={'center'}
+                    justifyContent={'center'}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                    }}
+                  >
+                    <UpSvgIcon color={colorMap.disabledFg} iconName={'info-sign'} />
+                  </UpBox>
+                </UpTooltip>
+              )}
+            </>
+          );
+        }}
+        header={(props: Partial<UpMenuProps>, state: UpMenuState) => {
+          return (
+            <UpBox flexDirection={'row'} alignItems={'center'} justifyContent={'center'} style={{ height: '100%' }}>
+              {!state.minified && <UpSvgIcon color={colorMap.primary} iconName={'checkmark'} />}
+              {!state.minified && (
+                <UpLigne
+                  color={colorMap.primary}
+                  className={style({
+                    marginLeft: '8px',
+                  })}
+                >
+                  Acceptation de titre
+                </UpLigne>
+              )}
+            </UpBox>
+          );
+        }}
+      />
+    </>
   );
 };
 
-export const Large = (props) => {
+export const Large = props => {
   const defaultMenu: Array<MenuItemData> = [
     {
       title: 'Stack',
-      icon: (propsIcon) => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
       isSelected: false,
       isVisible: true,
       uri: '/stack',
@@ -351,7 +378,7 @@ export const Large = (props) => {
     },
     {
       title: 'Up',
-      icon: (propsIcon) => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
       isSelected: false,
       isVisible: true,
       uri: '/Up',
@@ -382,7 +409,7 @@ export const Large = (props) => {
         },
       ],
     },
-        { isSeparator: true },
+    { isSeparator: true },
     {
       title: 'Settings',
       icon: 'settings',
@@ -391,61 +418,60 @@ export const Large = (props) => {
       uri: '/settings',
       childMenuItems: [],
     },
-        { isSeparator: true }, {
-          title: 'Stack',
-          icon: (propsIcon) => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+    { isSeparator: true },
+    {
+      title: 'Stack',
+      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+      isSelected: false,
+      isVisible: true,
+      uri: '/stack',
+      childMenuItems: [
+        {
+          title: 'Option 1',
+          icon: 'weather-rain',
           isSelected: false,
           isVisible: true,
-          uri: '/stack',
-          childMenuItems: [
-            {
-              title: 'Option 1',
-              icon: 'weather-rain',
-              isSelected: false,
-              isVisible: true,
-              uri: '/stack/option1',
-              childMenuItems: [],
-            },
-            {
-              title: 'Option 2',
-              icon: 'weather-snow',
-              isSelected: false,
-              isVisible: true,
-              uri: '/stack/option2',
-              childMenuItems: [],
-            },
-            {
-              title: 'Option 3',
-              icon: 'weather-sunset',
-              isSelected: false,
-              isVisible: true,
-              uri: '/stack/option3',
-              childMenuItems: [],
-            },
-          ],
+          uri: '/stack/option1',
+          childMenuItems: [],
         },
+        {
+          title: 'Option 2',
+          icon: 'weather-snow',
+          isSelected: false,
+          isVisible: true,
+          uri: '/stack/option2',
+          childMenuItems: [],
+        },
+        {
+          title: 'Option 3',
+          icon: 'weather-sunset',
+          isSelected: false,
+          isVisible: true,
+          uri: '/stack/option3',
+          childMenuItems: [],
+        },
+      ],
+    },
     {
-      render: (
-                item: MenuItemData,
-                propsMenu: UpMenuProps,
-                state: UpMenuState,
-            ) => {
+      render: (item: MenuItemData, propsMenu: UpMenuProps, state: UpMenuState) => {
         return (
-                    <UpButton
-                        intent={'primary'}
-                        onClick={e => {
-                          action('Command');
-                        }}
-                        width={state.minified ? 'icon' : 'full'}
-                        height={'large'}
-                        actionType={'briefcase'}>
-                        {'Commander'}
-                    </UpButton>
+          <UpButton
+            intent={'primary'}
+            onClick={e => {
+              action('Command');
+            }}
+            width={state.minified ? 'icon' : 'full'}
+            height={'large'}
+            actionType={'briefcase'}
+          >
+            {'Commander'}
+          </UpButton>
         );
       },
-    }, {
+    },
+    {
       title: 'Assignment Late',
-      icon: (propsIcon) => <IconsM.AssignmentLate color={colorMap.primary} />,
+      icon: propsIcon => <IconsM.AssignmentLate color={colorMap.primary} />,
       isSelected: false,
       isVisible: true,
       uri: '/AssignmentLate',
@@ -478,7 +504,7 @@ export const Large = (props) => {
     },
     {
       title: 'Other',
-      icon: (propsIcon) => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
       isSelected: false,
       isVisible: true,
       uri: '/Other',
@@ -508,9 +534,10 @@ export const Large = (props) => {
           childMenuItems: [],
         },
       ],
-    }, {
+    },
+    {
       title: 'Logo',
-      icon: (propsIcon) => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
       isSelected: false,
       isVisible: true,
       uri: '/Logo',
@@ -543,7 +570,7 @@ export const Large = (props) => {
     },
     {
       title: 'Rain',
-      icon: (propsIcon) => <IconsM.LcloudRain color={colorMap.primary} />,
+      icon: propsIcon => <IconsM.LcloudRain color={colorMap.primary} />,
       isSelected: false,
       isVisible: true,
       uri: '/Rain',
@@ -576,7 +603,7 @@ export const Large = (props) => {
     },
     {
       title: 'Accessible',
-      icon: (propsIcon) => <IconsM.Accessible color={colorMap.primary} />,
+      icon: propsIcon => <IconsM.Accessible color={colorMap.primary} />,
       isSelected: false,
       isVisible: true,
       uri: '/Accessible',
@@ -609,7 +636,7 @@ export const Large = (props) => {
     },
     {
       title: 'Account Balance',
-      icon: (propsIcon) => <IconsM.AccountBalance color={colorMap.primary} />,
+      icon: propsIcon => <IconsM.AccountBalance color={colorMap.primary} />,
       isSelected: false,
       isVisible: true,
       uri: '/AccountBalance',
@@ -642,7 +669,7 @@ export const Large = (props) => {
     },
     {
       title: 'Account Box',
-      icon: (propsIcon) => <IconsM.AccountBox color={colorMap.primary} />,
+      icon: propsIcon => <IconsM.AccountBox color={colorMap.primary} />,
       isSelected: false,
       isVisible: true,
       uri: '/AccountBox',
@@ -687,71 +714,78 @@ export const Large = (props) => {
   });
 
   return (
-        <UpMenu
-            onMinifiedChange={(minified) => action(`Menu minified: ${minified}`)}
-            onClick={uri => {
-              const newMenu = prev => setMenuSelection(uri, menu, prev);
-              setMenu(previousMenu => newMenu(previousMenu));
-              return false;
-            }}
-            menuItems={menu}
-            footer={(props: Partial<UpMenuProps>, state: UpMenuState) => {
-              return (
-                    <>
-                        {!state.minified &&
-                            <UpBox alignItems={'center'} justifyContent={'center'} style={{ width: '100%', height: '100%' }}>
-                                <div className={footerStyle}>
-                                    Copyright. Tous droits réservés Up 2019
-                                </div>
-                                <a
-                                    className={footerStyle}
-                                    href="https://up.coop/donnees-personnelles"
-                                    target="_blank"
-                                >
-                                    Conditions générales
-                                </a>
-                                <a
-                                    className={footerStyle}
-                                    href="https://up.coop/mentions-legales"
-                                    target="_blank"
-                                >
-                                    Mentions légales
-                                </a>
-                            </UpBox>
-                        }
-                        {state.minified &&
-                            <UpTooltip place={'top'} content={'Copyright.Tous droits réservés Up 2019'} >
-                                <UpBox alignItems={'center'} justifyContent={'center'} style={{ width: '100%', height: '100%' }}>
-                                    <UpSvgIcon color={colorMap.disabledFg} iconName={'info-sign'} />
-                                </UpBox>
-                            </UpTooltip>
-                        }
-                    </>
-              );
-            }}
-            header={(props: Partial<UpMenuProps>, state: UpMenuState) => {
-              return (
-                    <UpBox flexDirection={'row'} alignItems={'center'} justifyContent={'center'} style={{ height: '100%' }}>
-                        {!state.minified &&
-                            <UpSvgIcon color={colorMap.primary} iconName={'checkmark'} />
-                        }
-                        {!state.minified &&
-                            <UpLigne color={colorMap.primary} className={style({ marginLeft: '8px' })}>
-                                Acceptation de titre
-                        </UpLigne>
-                        }
-                    </UpBox>
-              );
-            }}
-        />
+    <UpMenu
+      onMinifiedChange={minified => action(`Menu minified: ${minified}`)}
+      onClick={uri => {
+        const newMenu = prev => setMenuSelection(uri, menu, prev);
+        setMenu(previousMenu => newMenu(previousMenu));
+        return false;
+      }}
+      menuItems={menu}
+      footer={(props: Partial<UpMenuProps>, state: UpMenuState) => {
+        return (
+          <>
+            {!state.minified && (
+              <UpBox
+                alignItems={'center'}
+                justifyContent={'center'}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                }}
+              >
+                <div className={footerStyle}>Copyright. Tous droits réservés Up 2019</div>
+                <a className={footerStyle} href="https://up.coop/donnees-personnelles" target="_blank" rel="noreferrer">
+                  Conditions générales
+                </a>
+                <a className={footerStyle} href="https://up.coop/mentions-legales" target="_blank" rel="noreferrer">
+                  Mentions légales
+                </a>
+              </UpBox>
+            )}
+            {state.minified && (
+              <UpTooltip place={'top'} content={'Copyright.Tous droits réservés Up 2019'}>
+                <UpBox
+                  alignItems={'center'}
+                  justifyContent={'center'}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                  }}
+                >
+                  <UpSvgIcon color={colorMap.disabledFg} iconName={'info-sign'} />
+                </UpBox>
+              </UpTooltip>
+            )}
+          </>
+        );
+      }}
+      header={(props: Partial<UpMenuProps>, state: UpMenuState) => {
+        return (
+          <UpBox flexDirection={'row'} alignItems={'center'} justifyContent={'center'} style={{ height: '100%' }}>
+            {!state.minified && <UpSvgIcon color={colorMap.primary} iconName={'checkmark'} />}
+            {!state.minified && (
+              <UpLigne
+                color={colorMap.primary}
+                className={style({
+                  marginLeft: '8px',
+                })}
+              >
+                Acceptation de titre
+              </UpLigne>
+            )}
+          </UpBox>
+        );
+      }}
+    />
   );
 };
 
-export const CustomStyles = (props) => {
+export const CustomStyles = props => {
   const defaultMenu: Array<MenuItemData> = [
     {
       title: 'Stack',
-      icon: (propsIcon) => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
       isSelected: false,
       isVisible: true,
       uri: '/stack',
@@ -790,7 +824,7 @@ export const CustomStyles = (props) => {
       uri: '/smart',
       childMenuItems: [],
     },
-        { isSeparator: true },
+    { isSeparator: true },
     {
       title: 'Settings',
       icon: 'settings',
@@ -799,24 +833,21 @@ export const CustomStyles = (props) => {
       uri: '/settings',
       childMenuItems: [],
     },
-        { isSeparator: true },
+    { isSeparator: true },
     {
-      render: (
-                item: MenuItemData,
-                propsMenu: UpMenuProps,
-                state: UpMenuState,
-            ) => {
+      render: (item: MenuItemData, propsMenu: UpMenuProps, state: UpMenuState) => {
         return (
-                    <UpButton
-                        intent={'primary'}
-                        onClick={e => {
-                          action('Command');
-                        }}
-                        width={state.minified ? 'icon' : 'full'}
-                        height={'large'}
-                        actionType={'briefcase'}>
-                        {'Commander'}
-                    </UpButton>
+          <UpButton
+            intent={'primary'}
+            onClick={e => {
+              action('Command');
+            }}
+            width={state.minified ? 'icon' : 'full'}
+            height={'large'}
+            actionType={'briefcase'}
+          >
+            {'Commander'}
+          </UpButton>
         );
       },
     },
@@ -834,106 +865,115 @@ export const CustomStyles = (props) => {
   });
 
   return (
-        <UpMenu
-            onMinifiedChange={(minified) => action(`Menu minified: ${minified}`)}
-            customStyles={{
-              menu: (props) => ({
-                $nest: {
-                  'li.active ul.up-sub-menu:not(:hover), li.active ul.up-sub-menu:hover': {
-                    backgroundColor: `${colorMap.primary} !important`,
-                    color: 'colorMap.white !important',
-                    borderRadius: '6px',
-                    padding: '16px !important',
-                    marginLeft: '32px !important',
-                    marginTop: '8px !important',
-                  },
-                  'li.active .up-sub-menu li:hover a span.up-menu-item-title': {
-                    color: colorMap.white3,
-                  },
-                  'li.active .up-sub-menu li.active a span.up-menu-item-title': {
-                    color: colorMap.white3,
-                  },
-                },
-              }),
-            }}
-            onClick={uri => {
-              const newMenu = prev => setMenuSelection(uri, menu, prev);
-              setMenu(previousMenu => newMenu(previousMenu));
-              return false;
-            }}
-            menuItems={menu}
-            footer={(props: Partial<UpMenuProps>, state: UpMenuState) => {
-              return (
-                    <>
-                        {!state.minified &&
-                            <UpBox alignItems={'center'} justifyContent={'center'} style={{ width: '100%', height: '100%' }}>
-                                <div className={footerStyle}>
-                                    Copyright. Tous droits réservés Up 2019
-                                </div>
-                                <a
-                                    className={footerStyle}
-                                    href="https://up.coop/donnees-personnelles"
-                                    target="_blank"
-                                >
-                                    Conditions générales
-                                </a>
-                                <a
-                                    className={footerStyle}
-                                    href="https://up.coop/mentions-legales"
-                                    target="_blank"
-                                >
-                                    Mentions légales
-                                </a>
-                            </UpBox>
-                        }
-                        {state.minified &&
-                            <UpTooltip place={'top'} content={'Copyright.Tous droits réservés Up 2019'} >
-                                <UpBox alignItems={'center'} justifyContent={'center'} style={{ width: '100%', height: '100%' }}>
-                                    <UpSvgIcon color={colorMap.disabledFg} iconName={'info-sign'} />
-                                </UpBox>
-                            </UpTooltip>
-                        }
-                    </>
-              );
-            }}
-            header={(props: Partial<UpMenuProps>, state: UpMenuState) => {
-              return (
-                    <UpBox flexDirection={'row'} alignItems={'center'} justifyContent={'center'} style={{ height: '100%' }}>
-                        {!state.minified &&
-                            <UpSvgIcon color={colorMap.primary} iconName={'checkmark'} />
-                        }
-                        {!state.minified &&
-                            <UpLigne color={colorMap.primary} className={style({ marginLeft: '8px' })}>
-                                Acceptation de titre
-                            </UpLigne>
-                        }
-                    </UpBox>
-              );
-            }}
-        />
+    <UpMenu
+      onMinifiedChange={minified => action(`Menu minified: ${minified}`)}
+      customStyles={{
+        menu: props => ({
+          $nest: {
+            'li.active ul.up-sub-menu:not(:hover), li.active ul.up-sub-menu:hover': {
+              backgroundColor: `${colorMap.primary} !important`,
+              color: 'colorMap.white !important',
+              borderRadius: '6px',
+              padding: '16px !important',
+              marginLeft: '32px !important',
+              marginTop: '8px !important',
+            },
+            'li.active .up-sub-menu li:hover a span.up-menu-item-title': {
+              color: colorMap.white3,
+            },
+            'li.active .up-sub-menu li.active a span.up-menu-item-title': {
+              color: colorMap.white3,
+            },
+          },
+        }),
+      }}
+      onClick={uri => {
+        const newMenu = prev => setMenuSelection(uri, menu, prev);
+        setMenu(previousMenu => newMenu(previousMenu));
+        return false;
+      }}
+      menuItems={menu}
+      footer={(props: Partial<UpMenuProps>, state: UpMenuState) => {
+        return (
+          <>
+            {!state.minified && (
+              <UpBox
+                alignItems={'center'}
+                justifyContent={'center'}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                }}
+              >
+                <div className={footerStyle}>Copyright. Tous droits réservés Up 2019</div>
+                <a className={footerStyle} href="https://up.coop/donnees-personnelles" target="_blank" rel="noreferrer">
+                  Conditions générales
+                </a>
+                <a className={footerStyle} href="https://up.coop/mentions-legales" target="_blank" rel="noreferrer">
+                  Mentions légales
+                </a>
+              </UpBox>
+            )}
+            {state.minified && (
+              <UpTooltip place={'top'} content={'Copyright.Tous droits réservés Up 2019'}>
+                <UpBox
+                  alignItems={'center'}
+                  justifyContent={'center'}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                  }}
+                >
+                  <UpSvgIcon color={colorMap.disabledFg} iconName={'info-sign'} />
+                </UpBox>
+              </UpTooltip>
+            )}
+          </>
+        );
+      }}
+      header={(props: Partial<UpMenuProps>, state: UpMenuState) => {
+        return (
+          <UpBox flexDirection={'row'} alignItems={'center'} justifyContent={'center'} style={{ height: '100%' }}>
+            {!state.minified && <UpSvgIcon color={colorMap.primary} iconName={'checkmark'} />}
+            {!state.minified && (
+              <UpLigne
+                color={colorMap.primary}
+                className={style({
+                  marginLeft: '8px',
+                })}
+              >
+                Acceptation de titre
+              </UpLigne>
+            )}
+          </UpBox>
+        );
+      }}
+    />
   );
 };
 
-export const Mobile = (props) => {
-  const buttonStyle = style({
-  }, media(DeviceSmartphones, {
-    $nest: {
-      '.up-btn-wrapper': {
-        width: '100%',
+export const Mobile = props => {
+  const buttonStyle = style(
+    {},
+    media(DeviceSmartphones, {
+      $nest: {
+        '.up-btn-wrapper': {
+          width: '100%',
 
-        $nest: {
-          '& > div': {
-            justifyContent: 'center',
+          $nest: {
+            '& > div': {
+              justifyContent: 'center',
+            },
           },
         },
       },
-    },
-  }));
+    })
+  );
 
   const defaultMenu: Array<MenuItemData> = [
     {
       title: 'Stack',
-      icon: (propsIcon) => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
       isSelected: false,
       isVisible: true,
       uri: '/stack',
@@ -972,39 +1012,40 @@ export const Mobile = (props) => {
       uri: '/smart',
       childMenuItems: [],
     },
-        { isSeparator: true }, {
-          title: 'Up',
-          icon: (propsIcon) => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+    { isSeparator: true },
+    {
+      title: 'Up',
+      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+      isSelected: false,
+      isVisible: true,
+      uri: '/Up',
+      childMenuItems: [
+        {
+          title: 'Option 1',
+          icon: 'weather-rain',
           isSelected: false,
           isVisible: true,
-          uri: '/Up',
-          childMenuItems: [
-            {
-              title: 'Option 1',
-              icon: 'weather-rain',
-              isSelected: false,
-              isVisible: true,
-              uri: '/Up/option1',
-              childMenuItems: [],
-            },
-            {
-              title: 'Option 2',
-              icon: 'weather-snow',
-              isSelected: false,
-              isVisible: true,
-              uri: '/Up/option2',
-              childMenuItems: [],
-            },
-            {
-              title: 'Option 3',
-              icon: 'weather-sunset',
-              isSelected: false,
-              isVisible: true,
-              uri: '/Up/option3',
-              childMenuItems: [],
-            },
-          ],
+          uri: '/Up/option1',
+          childMenuItems: [],
         },
+        {
+          title: 'Option 2',
+          icon: 'weather-snow',
+          isSelected: false,
+          isVisible: true,
+          uri: '/Up/option2',
+          childMenuItems: [],
+        },
+        {
+          title: 'Option 3',
+          icon: 'weather-sunset',
+          isSelected: false,
+          isVisible: true,
+          uri: '/Up/option3',
+          childMenuItems: [],
+        },
+      ],
+    },
     {
       title: 'Settings',
       icon: 'settings',
@@ -1013,26 +1054,23 @@ export const Mobile = (props) => {
       uri: '/settings',
       childMenuItems: [],
     },
-        { isSeparator: true },
+    { isSeparator: true },
     {
-      render: (
-                item: MenuItemData,
-                propsMenu: UpMenuProps,
-                state: UpMenuState,
-            ) => {
+      render: (item: MenuItemData, propsMenu: UpMenuProps, state: UpMenuState) => {
         return (
-                  <div className={buttonStyle}>
-                      <UpButton
-                        intent={'primary'}
-                        onClick={e => {
-                          action('Command');
-                        }}
-                        width={state.minified ? 'icon' : 'full'}
-                        height={'large'}
-                        actionType={'briefcase'}>
-                          {'Commander'}
-                      </UpButton>
-                  </div>
+          <div className={buttonStyle}>
+            <UpButton
+              intent={'primary'}
+              onClick={e => {
+                action('Command');
+              }}
+              width={state.minified ? 'icon' : 'full'}
+              height={'large'}
+              actionType={'briefcase'}
+            >
+              {'Commander'}
+            </UpButton>
+          </div>
         );
       },
     },
@@ -1051,63 +1089,70 @@ export const Mobile = (props) => {
   });
 
   return (
-        <UpMenu
-            onMinifiedChange={(minified) => setMinified(minified)}
-            onClick={uri => {
-              const newMenu = prev => setMenuSelection(uri, menu, prev);
-              setMenu(previousMenu => newMenu(previousMenu));
-              return false;
-            }}
-            menuItems={menu}
-            minified={minified}
-            footer={(props: Partial<UpMenuProps>, state: UpMenuState) => {
-              return (
-                    <>
-                        {!minified &&
-                            <UpBox alignItems={'center'} justifyContent={'center'} style={{ width: '100%', height: '100%' }}>
-                                <div className={footerStyle}>
-                                    Copyright. Tous droits réservés Up 2019
-                                </div>
-                                <a
-                                    className={footerStyle}
-                                    href="https://up.coop/donnees-personnelles"
-                                    target="_blank"
-                                >
-                                    Conditions générales
-                                </a>
-                                <a
-                                    className={footerStyle}
-                                    href="https://up.coop/mentions-legales"
-                                    target="_blank"
-                                >
-                                    Mentions légales
-                                </a>
-                            </UpBox>
-                        }
-                        {minified &&
-                            <UpTooltip place={'top'} content={'Copyright.Tous droits réservés Up 2019'} >
-                                <UpBox alignItems={'center'} justifyContent={'center'} style={{ width: '100%', height: '100%' }}>
-                                    <UpSvgIcon color={colorMap.disabledFg} iconName={'info-sign'} />
-                                </UpBox>
-                            </UpTooltip>
-                        }
-                    </>
-              );
-            }}
-            header={(props: Partial<UpMenuProps>, state: UpMenuState) => {
-              return (
-                    <UpBox flexDirection={'row'} alignItems={'center'} justifyContent={'center'} style={{ height: '100%' }}>
-                        {!minified &&
-                            <UpSvgIcon color={colorMap.primary} iconName={'checkmark'} />
-                        }
-                        {!minified &&
-                            <UpLigne color={colorMap.primary} className={style({ marginLeft: '8px' })}>
-                                Acceptation de titre
-                            </UpLigne>
-                        }
-                    </UpBox>
-              );
-            }}
-        />
+    <UpMenu
+      onMinifiedChange={minified => setMinified(minified)}
+      onClick={uri => {
+        const newMenu = prev => setMenuSelection(uri, menu, prev);
+        setMenu(previousMenu => newMenu(previousMenu));
+        return false;
+      }}
+      menuItems={menu}
+      minified={minified}
+      footer={(props: Partial<UpMenuProps>, state: UpMenuState) => {
+        return (
+          <>
+            {!minified && (
+              <UpBox
+                alignItems={'center'}
+                justifyContent={'center'}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                }}
+              >
+                <div className={footerStyle}>Copyright. Tous droits réservés Up 2019</div>
+                <a className={footerStyle} href="https://up.coop/donnees-personnelles" target="_blank" rel="noreferrer">
+                  Conditions générales
+                </a>
+                <a className={footerStyle} href="https://up.coop/mentions-legales" target="_blank" rel="noreferrer">
+                  Mentions légales
+                </a>
+              </UpBox>
+            )}
+            {minified && (
+              <UpTooltip place={'top'} content={'Copyright.Tous droits réservés Up 2019'}>
+                <UpBox
+                  alignItems={'center'}
+                  justifyContent={'center'}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                  }}
+                >
+                  <UpSvgIcon color={colorMap.disabledFg} iconName={'info-sign'} />
+                </UpBox>
+              </UpTooltip>
+            )}
+          </>
+        );
+      }}
+      header={(props: Partial<UpMenuProps>, state: UpMenuState) => {
+        return (
+          <UpBox flexDirection={'row'} alignItems={'center'} justifyContent={'center'} style={{ height: '100%' }}>
+            {!minified && <UpSvgIcon color={colorMap.primary} iconName={'checkmark'} />}
+            {!minified && (
+              <UpLigne
+                color={colorMap.primary}
+                className={style({
+                  marginLeft: '8px',
+                })}
+              >
+                Acceptation de titre
+              </UpLigne>
+            )}
+          </UpBox>
+        );
+      }}
+    />
   );
 };

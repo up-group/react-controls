@@ -9,9 +9,9 @@ export interface UpCookiesConsentProps {
   cookieKey: string;
   cookieValue: string;
   cookiesConsentMessage: string;
-  closeButtonLabel: string
+  closeButtonLabel: string;
   children?: Array<ReactNode> | ReactNode;
-  knowMoreLabel?: string
+  knowMoreLabel?: string;
   moreDetailsPage?: string;
 }
 
@@ -36,8 +36,9 @@ function getCookie(name) {
   return null;
 }
 
-const UpCookiesConsent: React.FunctionComponent<UpCookiesConsentProps> = (props) => {
-  const { children, cookieKey, cookieValue, moreDetailsPage, closeButtonLabel, cookiesConsentMessage, knowMoreLabel } = props;
+const UpCookiesConsent: React.FunctionComponent<UpCookiesConsentProps> = props => {
+  const { children, cookieKey, cookieValue, moreDetailsPage, closeButtonLabel, cookiesConsentMessage, knowMoreLabel } =
+    props;
   const [cookiesNotAllowed, setCookiesNotAllowed] = useState<boolean>(false);
 
   const updateCookies = () => {
@@ -57,52 +58,57 @@ const UpCookiesConsent: React.FunctionComponent<UpCookiesConsentProps> = (props)
         flexDirection: 'column',
         height: 'calc(100vh)',
         width: '100%',
-      }}>
+      }}
+    >
       <UpBox
-          flexDirection={'row'}
-          justifyContent={'center'}
-          alignItems={'center'}
+        flexDirection={'row'}
+        justifyContent={'center'}
+        alignItems={'center'}
+        style={{
+          height: cookiesNotAllowed ? 80 : 0,
+          transform: cookiesNotAllowed ? 'scaleY(1)' : 'scaleY(0)',
+          width: '100%',
+          backgroundColor: '#424C4A',
+          paddingRight: 50,
+          paddingLeft: 50,
+          transition: 'height 0.5s, transform 0.5s',
+        }}
+      >
+        <span
           style={{
-            height: cookiesNotAllowed ? 80 : 0,
-            transform: cookiesNotAllowed ? 'scaleY(1)' : 'scaleY(0)',
-            width: '100%',
-            backgroundColor: '#424C4A',
-            paddingRight: 50,
-            paddingLeft: 50,
-            transition: 'height 0.5s, transform 0.5s',
-          }}>
+            marginRight: 100,
+            color: colors.white,
+            fontFamily: 'Roboto',
+            fontSize: '14px',
+            lineHeight: '16px',
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <span>{cookiesConsentMessage}</span>
+          {moreDetailsPage && (
             <span
               style={{
-                marginRight: 100,
-                color: colors.white,
-                fontFamily: 'Roboto',
-                fontSize: '14px',
-                lineHeight: '16px',
-                display: 'flex',
-                flexDirection: 'column',
-              }}>
-              <span>{cookiesConsentMessage}</span>
-              {moreDetailsPage && (
-                <span
-                  style={{
-                    textDecoration: 'underline',
-                    cursor: 'pointer',
-                  }}
-                  onClick={() => window.open(moreDetailsPage, '_blank')}>
-                  {knowMoreLabel}
-                </span>
-              )}
+                textDecoration: 'underline',
+                cursor: 'pointer',
+              }}
+              onClick={() => window.open(moreDetailsPage, '_blank')}
+            >
+              {knowMoreLabel}
             </span>
-          <UpButton
-            width={'normal'}
-            intent={'primary'}
-            onClick={() => {
-              setCookiesNotAllowed(false);
-              setCookie(cookieKey, cookieValue);
-            }}>
-            {closeButtonLabel}
-          </UpButton>
-        </UpBox>
+          )}
+        </span>
+        <UpButton
+          width={'normal'}
+          intent={'primary'}
+          onClick={() => {
+            setCookiesNotAllowed(false);
+            setCookie(cookieKey, cookieValue);
+          }}
+        >
+          {closeButtonLabel}
+        </UpButton>
+      </UpBox>
       {children}
     </UpBox>
   );

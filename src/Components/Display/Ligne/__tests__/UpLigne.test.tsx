@@ -7,11 +7,7 @@ import UpDefaultTheme from '../../../../Common/theming';
 import { style } from 'typestyle';
 import UpTooltip from '../../../Display/Tooltip';
 
-const whithTheme = component => (
-  <UpThemeProvider theme={UpDefaultTheme}>
-    {component}
-  </UpThemeProvider>
-);
+const whithTheme = component => <UpThemeProvider theme={UpDefaultTheme}>{component}</UpThemeProvider>;
 const renderComponent = component => render(whithTheme(component));
 
 describe('Tests for UpLigne', () => {
@@ -32,7 +28,8 @@ describe('Tests for UpLigne', () => {
       <UpLigne
         className={style({
           color: '#000',
-        })}>
+        })}
+      >
         My message
       </UpLigne>
     );
@@ -42,32 +39,19 @@ describe('Tests for UpLigne', () => {
 
   it('should add ToolTip if dataFor property is provided', () => {
     renderComponent(
-      <UpTooltip
-        id={'Tooltip'}
-        title={'Détails'}
-        content={'Tooltip content'}>
+      <UpTooltip id={'Tooltip'} title={'Détails'} content={'Tooltip content'}>
         <UpLigne dataFor="Tooltip">Hover to display Tooltip</UpLigne>
       </UpTooltip>
     );
 
-    expect(
-      screen
-        .getByText('Hover to display Tooltip')
-        .getAttribute('data-for')
-    ).toBe('Tooltip');
-    expect(screen.getByText('Tooltip content')).toHaveClass(
-      'up-tooltip-body'
-    );
+    expect(screen.getByText('Hover to display Tooltip').getAttribute('data-for')).toBe('Tooltip');
+    expect(screen.getByText('Tooltip content')).toHaveClass('up-tooltip-body');
   });
 
   it('should not add ToolTip if dataFor property is not provided', () => {
-    const { container } = renderComponent(
-      <UpLigne>My message</UpLigne>
-    );
+    const { container } = renderComponent(<UpLigne>My message</UpLigne>);
 
-    expect(
-      screen.getByText('My message').getAttribute('data-for')
-    ).toBeNull();
+    expect(screen.getByText('My message').getAttribute('data-for')).toBeNull();
     expect(container.querySelector('.up-tooltip-body')).toBeNull();
   });
 });

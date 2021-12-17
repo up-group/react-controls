@@ -19,12 +19,9 @@ export const General = () => (
   <UpThemeProvider theme={UpDefaultTheme}>
     <UpBox style={{ margin: '40px 30px' }}>
       <UpParagraph>
-        <code>UpCalendar</code> est composant permettant différents
-        modes d'affichage de calendrier. Basé sur{' '}
+        <code>UpCalendar</code> est composant permettant différents modes d'affichage de calendrier. Basé sur{' '}
         <code>
-          <UpLink href={'https://fullcalendar.io'}>
-            FullCalendar
-          </UpLink>
+          <UpLink href={'https://fullcalendar.io'}>FullCalendar</UpLink>
         </code>
         .
       </UpParagraph>
@@ -40,15 +37,15 @@ export const General = () => (
             {
               title: 'event 2',
               start: moment().add({ days: 1 }).toDate(),
-              end: moment()
-                .add({ days: 1 })
-                .add({ hours: 1 })
-                .toDate(),
+              end: moment().add({ days: 1 }).add({ hours: 1 }).toDate(),
               description: 'Mon event 2',
             },
           ]}
           renderTooltipHeader={(
-            event: InputEvent & { title: string; description: string }
+            event: InputEvent & {
+              title: string;
+              description: string;
+            }
           ) => {
             return <div>{event.title}</div>;
           }}

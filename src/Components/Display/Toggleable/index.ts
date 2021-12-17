@@ -1,5 +1,5 @@
-import { ToggleableComponentProps, Toggleable } from './Toggleable'
+import { ToggleableComponentProps, Toggleable } from './Toggleable';
 
-export { ToggleableComponentProps} ;
+export { ToggleableComponentProps };
 
-export default Toggleable ;
+export default Toggleable;

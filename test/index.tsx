@@ -1,5 +1,5 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 import {
     UpGrid,
@@ -25,21 +25,18 @@ import {
     UpTreeView,
     UpNavTab,
     UpLoadingIndicator,
-    UpButtonGroupDropDown
-} from "../src/index";
+    UpButtonGroupDropDown,
+} from '../src/index';
 
-import Timeline from "../src/Components/Display/TimeLine/index"
-import UpModal from "../src/Components/Containers/Modal/UpModal"
-import UpDashboard from "../src/Components/Containers/Dashboard/UpDashboard"
-import UpTile from "../src/Components/Containers/Dashboard/UpTile"
-import UpLogoAlerte from "../src/Components/Display/LogoAlerte/UpLogoAlerte"
-import UpCalendarWeekDay from "../src/Components/Display/CalendarWeekDay/UpCalendarWeekDay"
-import UpMenu from "../src/Components/Display/Menu/UpMenu"
+import Timeline from '../src/Components/Display/TimeLine/index';
+import UpModal from '../src/Components/Containers/Modal/UpModal';
+import UpDashboard from '../src/Components/Containers/Dashboard/UpDashboard';
+import UpTile from '../src/Components/Containers/Dashboard/UpTile';
+import UpLogoAlerte from '../src/Components/Display/LogoAlerte/UpLogoAlerte';
+import UpCalendarWeekDay from '../src/Components/Display/CalendarWeekDay/UpCalendarWeekDay';
+import UpMenu from '../src/Components/Display/Menu/UpMenu';
 
-
-
-import moment from 'moment'
-
+import moment from 'moment';
 
 interface Item {
     id?: number;
@@ -59,46 +56,38 @@ interface DemoState {
     integer: number;
 }
 
-var theme: UpThemeInterface = UpDefaultTheme
-theme.colorMap.warning = "orange";
-
-
+const theme: UpThemeInterface = UpDefaultTheme;
+theme.colorMap.warning = 'orange';
 
 export interface TestProps {
-    t: string
+    t: string;
 }
 
-export interface TestState {
+export interface TestState {}
 
-}
-
-export class Test extends React.Component<TestProps, TestState>{
-
+export class Test extends React.Component<TestProps, TestState> {
     constructor(p, c) {
         super(p, c);
         this.state = {};
     }
 
     render() {
-        return <div>{this.props.t}</div>
+        return <div>{this.props.t}</div>;
     }
 }
 
-
-export class Test2 extends React.Component<TestProps, TestState>{
-
+export class Test2 extends React.Component<TestProps, TestState> {
     constructor(p, c) {
         super(p, c);
         this.state = {};
-        console.log("ctor", this.props.t);
+        console.log('ctor', this.props.t);
     }
 
     render() {
-        console.log("render", this.props.t);
-        return <div>{this.props.t}</div>
+        console.log('render', this.props.t);
+        return <div>{this.props.t}</div>;
     }
 }
-
 
 class Demo extends React.Component<undefined, DemoState> {
     constructor(props) {
@@ -107,99 +96,108 @@ class Demo extends React.Component<undefined, DemoState> {
         this.onTextChange = this.onTextChange.bind(this);
 
         this.state = {
-            date: "13/04/2017",
+            date: '13/04/2017',
             item: {
                 id: 1,
-                text: "Item 1"
+                text: 'Item 1',
             },
             user: {
                 id: 1,
-                name: "User 1"
+                name: 'User 1',
             },
             items: [
                 {
-                    text: "Item 1"
+                    text: 'Item 1',
                 },
                 {
-                    text: "Item 2"
+                    text: 'Item 2',
                 },
                 {
-                    text: "Item 3"
+                    text: 'Item 3',
                 },
                 {
-                    text: "Item 4"
+                    text: 'Item 4',
                 },
                 {
-                    text: "Item 5"
-                }
+                    text: 'Item 5',
+                },
             ],
-            description: "",
-            email: "",
-            search: "",
-            phone: "",
+            description: '',
+            email: '',
+            search: '',
+            phone: '',
             number: 0,
-            integer: 0
-        }
+            integer: 0,
+        };
     }
 
-    tttt = (a) => {
+    tttt = a => {
         console.log(a);
-    }
-
+    };
 
     public render() {
-
         if (1 == 1) {
-            let t = [
+            const t = [
                 {
-                    onClick: () => { console.log("test"); },
-                    name: "aaaa"
+                    onClick: () => {
+                        console.log('test');
+                    },
+                    name: 'aaaa',
                 },
                 {
-                    onClick: () => { console.log("bbb"); },
-                    name: "bbbb"
-                }
+                    onClick: () => {
+                        console.log('bbb');
+                    },
+                    name: 'bbbb',
+                },
             ];
-            return <UpButtonGroupDropDown onClick={null} text="aaaaa" buttons={t} />
+            return (
+                <UpButtonGroupDropDown
+                    onClick={null}
+                    text="aaaaa"
+                    buttons={t}
+                />
+            );
         }
 
-
         if (1 == 1) {
-
             var enti = {
-                id: "id",
-                name: "Inventaire",
-                text: "{name}",
-                query: "https://jsonplaceholder.typicode.com/users",//"http://localhost:9510/api/domain/Inventaire/IInventaireSearchQuery",
-                queryParameterName: "args"
+                id: 'id',
+                name: 'Inventaire',
+                text: '{name}',
+                query: 'https://jsonplaceholder.typicode.com/users', //"http://localhost:9510/api/domain/Inventaire/IInventaireSearchQuery",
+                queryParameterName: 'args',
             };
 
-            return <div> <UpSelect
-                default={null}
-                isRequired={false}
-                multiple={false}
-                value={this.state.user}
-                onChange={this.onChangeUser}
-                placeholder="Recherche"
-                allowClear={false}
-                dataSource={enti}
-                // disabled={true},
-                returnType="id"
-            />
-
-                <UpSelect
-                    default={null}
-                    isRequired={false}
-                    multiple={false}
-                    value={this.state.user}
-                    onChange={this.onChangeUser}
-                    placeholder="Recherche"
-                    allowClear={false}
-                    dataSource={enti}
-                    // disabled={true},
-                    returnType="full"
-                />
-            </div>
+            return (
+                <div>
+                    {' '}
+                    <UpSelect
+                        default={null}
+                        isRequired={false}
+                        multiple={false}
+                        value={this.state.user}
+                        onChange={this.onChangeUser}
+                        placeholder="Recherche"
+                        allowClear={false}
+                        dataSource={enti}
+                        // disabled={true},
+                        returnType="id"
+                    />
+                    <UpSelect
+                        default={null}
+                        isRequired={false}
+                        multiple={false}
+                        value={this.state.user}
+                        onChange={this.onChangeUser}
+                        placeholder="Recherche"
+                        allowClear={false}
+                        dataSource={enti}
+                        // disabled={true},
+                        returnType="full"
+                    />
+                </div>
+            );
         }
 
         //if (1 == 1) {
@@ -260,7 +258,6 @@ class Demo extends React.Component<undefined, DemoState> {
         //    </UpThemeProvider>
         //}
 
-
         //if (1 == 1) {
         //    var a = [
         //        {
@@ -275,8 +272,6 @@ class Demo extends React.Component<undefined, DemoState> {
 
         //    return <UpNavTab loadType="onLoad" tabs={a} />
         //}
-
-
 
         //if (1 == 1) {
         //    return <UpTreeView
@@ -305,178 +300,306 @@ class Demo extends React.Component<undefined, DemoState> {
         //}
 
         if (11 == 11) {
-
-            return <UpMenu onMenuClick={this.tttt}
-
-                topMenuItems={[
-                    { title: "tehtztst", icon: "up up-dossier", action: "https://www.google.fr" },
-                    { title: "tehtztst", icon: "up up-dossier", action: () => { alert(5); } }
-                ]}
-
-
-
-
-
-                menuItems={
-                    [
+            return (
+                <UpMenu
+                    onMenuClick={this.tttt}
+                    topMenuItems={[
                         {
-                            title: "test", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [
-                                {
-                                    title: "aaaaaa", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [
-
-                                        { title: "bbbbb", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                                        { title: "ccccc", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                                        { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] }
-                                    ]
-                                },
-                                { title: "ffffff sc", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                                { title: "ddddd", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] }
-                            ]
+                            title: 'tehtztst',
+                            icon: 'up up-dossier',
+                            action: 'https://www.google.fr',
                         },
-                        { title: "tehtztst", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                        { title: "t", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                        { title: "teshtztht", icon: "up up-dossier", isSelected: false, isVisible: true, uri: "https://www.google.fr", childMenuItems: [] },
-                    ]}></UpMenu>
+                        {
+                            title: 'tehtztst',
+                            icon: 'up up-dossier',
+                            action: () => {
+                                alert(5);
+                            },
+                        },
+                    ]}
+                    menuItems={[
+                        {
+                            title: 'test',
+                            icon: 'up up-dossier',
+                            isSelected: false,
+                            isVisible: true,
+                            uri: 'https://www.google.fr',
+                            childMenuItems: [
+                                {
+                                    title: 'aaaaaa',
+                                    icon: 'up up-dossier',
+                                    isSelected: false,
+                                    isVisible: true,
+                                    uri: 'https://www.google.fr',
+                                    childMenuItems: [
+                                        {
+                                            title: 'bbbbb',
+                                            icon: 'up up-dossier',
+                                            isSelected: false,
+                                            isVisible: true,
+                                            uri: 'https://www.google.fr',
+                                            childMenuItems: [],
+                                        },
+                                        {
+                                            title: 'ccccc',
+                                            icon: 'up up-dossier',
+                                            isSelected: false,
+                                            isVisible: true,
+                                            uri: 'https://www.google.fr',
+                                            childMenuItems: [],
+                                        },
+                                        {
+                                            title: 'ddddd',
+                                            icon: 'up up-dossier',
+                                            isSelected: false,
+                                            isVisible: true,
+                                            uri: 'https://www.google.fr',
+                                            childMenuItems: [],
+                                        },
+                                    ],
+                                },
+                                {
+                                    title: 'ffffff sc',
+                                    icon: 'up up-dossier',
+                                    isSelected: false,
+                                    isVisible: true,
+                                    uri: 'https://www.google.fr',
+                                    childMenuItems: [],
+                                },
+                                {
+                                    title: 'ddddd',
+                                    icon: 'up up-dossier',
+                                    isSelected: false,
+                                    isVisible: true,
+                                    uri: 'https://www.google.fr',
+                                    childMenuItems: [],
+                                },
+                            ],
+                        },
+                        {
+                            title: 'tehtztst',
+                            icon: 'up up-dossier',
+                            isSelected: false,
+                            isVisible: true,
+                            uri: 'https://www.google.fr',
+                            childMenuItems: [],
+                        },
+                        {
+                            title: 't',
+                            icon: 'up up-dossier',
+                            isSelected: false,
+                            isVisible: true,
+                            uri: 'https://www.google.fr',
+                            childMenuItems: [],
+                        },
+                        {
+                            title: 'teshtztht',
+                            icon: 'up up-dossier',
+                            isSelected: false,
+                            isVisible: true,
+                            uri: 'https://www.google.fr',
+                            childMenuItems: [],
+                        },
+                    ]}
+                ></UpMenu>
+            );
         }
 
         if (1 == 1) {
-            return <UpThemeProvider theme={theme}>
-                <UpDashboard>
-                    <UpTile>
-                        <UpCalendarWeekDay />
-                    </UpTile>
+            return (
+                <UpThemeProvider theme={theme}>
+                    <UpDashboard>
+                        <UpTile>
+                            <UpCalendarWeekDay />
+                        </UpTile>
 
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <UpLogoAlerte intenet="danger" icon="add" />
-                    <UpButton tooltip="test" onClick={() => { }} />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <UpLogoAlerte intenet="danger" icon="add" />
+                        <UpButton tooltip="test" onClick={() => {}} />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
 
-                    <UpTile Title="Test1">
-
-                        <ul className="products-list product-list-in-box">
-                            <li className="item">
-                                <div className="product-img">
-                                    <i className="pe pe-7s-attention text-red"></i>
-                                </div>
-                                <div className="product-info">
-                                    <a href="javascript:void(0)" className="product-title">Berthe Medinette
-                                <span className="label label-danger pull-right">Aujourd'hui</span></a>
-                                    <span className="product-description">
-                                        Décédée le 06/08/2017.
-                            </span>
-                                </div>
-                            </li>
-                            <li className="item">
-                                <div className="product-img">
-                                    <i className="pe pe-7s-info text-yellow"></i>
-                                </div>
-                                <div className="product-info">
-                                    <a href="javascript:void(0)" className="product-title">Jean Dupont
-                                <span className="label label-warning pull-right">hier</span></a>
-                                    <span className="product-description">
-                                        Hospitalisation.
-                            </span>
-                                </div>
-                            </li>
-                            <li className="item">
-                                <div className="product-img">
-                                    <i className="pe pe-7s-info text-success"></i>
-                                </div>
-                                <div className="product-info">
-                                    <a href="javascript:void(0)" className="product-title">Jean-Pierre MARTIN
-                                <span className="label label-success pull-right">05/08/2017</span></a>
-                                    <span className="product-description">
-                                        Retour d'hospitalisation.
-                            </span>
-                                </div>
-                            </li>
-                            <li className="item">
-                                <div className="product-img">
-                                    <i className="pe pe-7s-info text-yellow"></i>
-                                </div>
-                                <div className="product-info">
-                                    <a href="javascript:void(0)" className="product-title">Louise LE GAL
-                                <span className="label label-warning pull-right">04/08/2017</span></a>
-                                    <span className="product-description">
-                                        Hospitalisation.
-                            </span>
-                                </div>
-                            </li>
-                            <li className="item">
-                                <div className="product-img">
-                                    <i className="pe pe-7s-attention text-red"></i>
-                                </div>
-                                <div className="product-info">
-                                    <a href="javascript:void(0)" className="product-title">Berthe Medinette
-                                <span className="label label-danger pull-right">04/08/2017</span></a>
-                                    <span className="product-description">
-                                        Décédée le 03/08/2017.
-                            </span>
-                                </div>
-                            </li>
-                            <li className="item">
-                                <div className="product-img">
-                                    <i className="pe pe-7s-info text-yellow"></i>
-                                </div>
-                                <div className="product-info">
-                                    <a href="javascript:void(0)" className="product-title">Jean Dupont
-                                <span className="label label-warning pull-right">03/08/2017</span></a>
-                                    <span className="product-description">
-                                        Hospitalisation.
-                            </span>
-                                </div>
-                            </li>
-                            <li className="item">
-                                <div className="product-img">
-                                    <i className="pe pe-7s-info text-success"></i>
-                                </div>
-                                <div className="product-info">
-                                    <a href="javascript:void(0)" className="product-title">Jean-Pierre MARTIN
-                                <span className="label label-success pull-right">02/08/2017</span></a>
-                                    <span className="product-description">
-                                        Retour d'hospitalisation.
-                            </span>
-                                </div>
-                            </li>
-                            <li className="item">
-                                <div className="product-img">
-                                    <i className="pe pe-7s-info text-yellow"></i>
-                                </div>
-                                <div className="product-info">
-                                    <a href="javascript:void(0)" className="product-title">Louise LE GAL
-                                <span className="label label-warning pull-right">01/08/2017</span></a>
-                                    <span className="product-description">
-                                        Hospitalisation.
-                            </span>
-                                </div>
-                            </li>
-                        </ul>
-                    </UpTile>
-                    <UpTile Title="test 2.1 ">
-                        <UpNumber value={5} />
-                    </UpTile>
-                    <UpTile Title="test 2.2 ">
-                        <UpNumber value={5} />
-                    </UpTile>
-                    <UpTile Title="test 2.3 ">
-                        <UpNumber value={5} />
-                    </UpTile>
-                    <UpTile Title="test 2.4 ">
-                        <UpNumber value={5} />
-                    </UpTile>
-                    <UpTile Title="test 2.5 ">
-                        <UpNumber value={5} />
-                    </UpTile>
-                </UpDashboard>
-            </UpThemeProvider>
+                        <UpTile Title="Test1">
+                            <ul className="products-list product-list-in-box">
+                                <li className="item">
+                                    <div className="product-img">
+                                        <i className="pe pe-7s-attention text-red"></i>
+                                    </div>
+                                    <div className="product-info">
+                                        <a
+                                            href="javascript:void(0)"
+                                            className="product-title"
+                                        >
+                                            Berthe Medinette
+                                            <span className="label label-danger pull-right">
+                                                Aujourd'hui
+                                            </span>
+                                        </a>
+                                        <span className="product-description">
+                                            Décédée le 06/08/2017.
+                                        </span>
+                                    </div>
+                                </li>
+                                <li className="item">
+                                    <div className="product-img">
+                                        <i className="pe pe-7s-info text-yellow"></i>
+                                    </div>
+                                    <div className="product-info">
+                                        <a
+                                            href="javascript:void(0)"
+                                            className="product-title"
+                                        >
+                                            Jean Dupont
+                                            <span className="label label-warning pull-right">
+                                                hier
+                                            </span>
+                                        </a>
+                                        <span className="product-description">
+                                            Hospitalisation.
+                                        </span>
+                                    </div>
+                                </li>
+                                <li className="item">
+                                    <div className="product-img">
+                                        <i className="pe pe-7s-info text-success"></i>
+                                    </div>
+                                    <div className="product-info">
+                                        <a
+                                            href="javascript:void(0)"
+                                            className="product-title"
+                                        >
+                                            Jean-Pierre MARTIN
+                                            <span className="label label-success pull-right">
+                                                05/08/2017
+                                            </span>
+                                        </a>
+                                        <span className="product-description">
+                                            Retour d'hospitalisation.
+                                        </span>
+                                    </div>
+                                </li>
+                                <li className="item">
+                                    <div className="product-img">
+                                        <i className="pe pe-7s-info text-yellow"></i>
+                                    </div>
+                                    <div className="product-info">
+                                        <a
+                                            href="javascript:void(0)"
+                                            className="product-title"
+                                        >
+                                            Louise LE GAL
+                                            <span className="label label-warning pull-right">
+                                                04/08/2017
+                                            </span>
+                                        </a>
+                                        <span className="product-description">
+                                            Hospitalisation.
+                                        </span>
+                                    </div>
+                                </li>
+                                <li className="item">
+                                    <div className="product-img">
+                                        <i className="pe pe-7s-attention text-red"></i>
+                                    </div>
+                                    <div className="product-info">
+                                        <a
+                                            href="javascript:void(0)"
+                                            className="product-title"
+                                        >
+                                            Berthe Medinette
+                                            <span className="label label-danger pull-right">
+                                                04/08/2017
+                                            </span>
+                                        </a>
+                                        <span className="product-description">
+                                            Décédée le 03/08/2017.
+                                        </span>
+                                    </div>
+                                </li>
+                                <li className="item">
+                                    <div className="product-img">
+                                        <i className="pe pe-7s-info text-yellow"></i>
+                                    </div>
+                                    <div className="product-info">
+                                        <a
+                                            href="javascript:void(0)"
+                                            className="product-title"
+                                        >
+                                            Jean Dupont
+                                            <span className="label label-warning pull-right">
+                                                03/08/2017
+                                            </span>
+                                        </a>
+                                        <span className="product-description">
+                                            Hospitalisation.
+                                        </span>
+                                    </div>
+                                </li>
+                                <li className="item">
+                                    <div className="product-img">
+                                        <i className="pe pe-7s-info text-success"></i>
+                                    </div>
+                                    <div className="product-info">
+                                        <a
+                                            href="javascript:void(0)"
+                                            className="product-title"
+                                        >
+                                            Jean-Pierre MARTIN
+                                            <span className="label label-success pull-right">
+                                                02/08/2017
+                                            </span>
+                                        </a>
+                                        <span className="product-description">
+                                            Retour d'hospitalisation.
+                                        </span>
+                                    </div>
+                                </li>
+                                <li className="item">
+                                    <div className="product-img">
+                                        <i className="pe pe-7s-info text-yellow"></i>
+                                    </div>
+                                    <div className="product-info">
+                                        <a
+                                            href="javascript:void(0)"
+                                            className="product-title"
+                                        >
+                                            Louise LE GAL
+                                            <span className="label label-warning pull-right">
+                                                01/08/2017
+                                            </span>
+                                        </a>
+                                        <span className="product-description">
+                                            Hospitalisation.
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </UpTile>
+                        <UpTile Title="test 2.1 ">
+                            <UpNumber value={5} />
+                        </UpTile>
+                        <UpTile Title="test 2.2 ">
+                            <UpNumber value={5} />
+                        </UpTile>
+                        <UpTile Title="test 2.3 ">
+                            <UpNumber value={5} />
+                        </UpTile>
+                        <UpTile Title="test 2.4 ">
+                            <UpNumber value={5} />
+                        </UpTile>
+                        <UpTile Title="test 2.5 ">
+                            <UpNumber value={5} />
+                        </UpTile>
+                    </UpDashboard>
+                </UpThemeProvider>
+            );
         }
 
         //"enumNames": ["choix1", "choix2", "choix3"],
@@ -485,46 +608,80 @@ class Demo extends React.Component<undefined, DemoState> {
         //      "format": "enum",
         //      "enum": [2, 4, 6]
 
-        var aaa = [{ id: 1, text: "test" }, { id: 2, text: "test2" }];
+        const aaa = [
+            { id: 1, text: 'test' },
+            { id: 2, text: 'test2' },
+        ];
 
         const groups = [
             { id: 2, title: 'group 2' },
             { id: 1, title: 'group 1' },
-            { id: 3, title: 'group 3' }
-        ]
+            { id: 3, title: 'group 3' },
+        ];
 
         const items = [
-            { id: 1, group: 1, title: 'item 1', start_time: moment('1995-12-25'), end_time: moment('1995-12-25').add(1, 'hour') },
-            { id: 2, group: 2, title: 'item 2', start_time: moment('1995-12-25').add(-0.5, 'hour'), end_time: moment('1995-12-25').add(0.5, 'hour') },
-            { id: 3, group: 3, title: 'item 3', start_time: moment('1995-12-25').add(2, 'hour'), end_time: moment('1995-12-25').add(3, 'hour') }
-        ]
+            {
+                id: 1,
+                group: 1,
+                title: 'item 1',
+                start_time: moment('1995-12-25'),
+                end_time: moment('1995-12-25').add(1, 'hour'),
+            },
+            {
+                id: 2,
+                group: 2,
+                title: 'item 2',
+                start_time: moment('1995-12-25').add(-0.5, 'hour'),
+                end_time: moment('1995-12-25').add(0.5, 'hour'),
+            },
+            {
+                id: 3,
+                group: 3,
+                title: 'item 3',
+                start_time: moment('1995-12-25').add(2, 'hour'),
+                end_time: moment('1995-12-25').add(3, 'hour'),
+            },
+        ];
 
-        var time = <Timeline groups={groups}
-            items={items}
-            defaultTimeStart={moment('1995-12-25').add(-12, 'hour')}
-            defaultTimeEnd={moment('1995-12-25').add(12, 'hour')}
-        />;
+        const time = (
+            <Timeline
+                groups={groups}
+                items={items}
+                defaultTimeStart={moment('1995-12-25').add(
+                    -12,
+                    'hour'
+                )}
+                defaultTimeEnd={moment('1995-12-25').add(12, 'hour')}
+            />
+        );
 
-        var aa = `testy
+        const aa = `testy
 tesdddddddddddddddddddddt
 sfd`;
 
-
         return (
             <UpThemeProvider theme={theme}>
-                <UpBox flexDirection="row" alignItems="stretch" justifyContent="center" >
+                <UpBox
+                    flexDirection="row"
+                    alignItems="stretch"
+                    justifyContent="center"
+                >
                     <UpPanel title="Paramètres" type="warning">
                         <UpModal />
                         Mon message
-
-
-
                     </UpPanel>
 
-                    <UpBox margin="small" boxSize={{ horizontal: 'xxlarge' }}>
+                    <UpBox
+                        margin="small"
+                        boxSize={{ horizontal: 'xxlarge' }}
+                    >
                         Editor
-              <hr />
-                        <UpPanel title="Paramètres" type="info" disableAutoIntentIcon={true}>
+                        <hr />
+                        <UpPanel
+                            title="Paramètres"
+                            type="info"
+                            disableAutoIntentIcon={true}
+                        >
                             <UpSelect
                                 showError={true}
                                 default={null}
@@ -548,122 +705,175 @@ sfd`;
                                 data={[
                                     {
                                         id: 1,
-                                        text: "Item 1"
+                                        text: 'Item 1',
                                     },
                                     {
                                         id: 2,
-                                        text: "Item 2"
+                                        text: 'Item 2',
                                     },
                                     {
                                         id: 3,
-                                        text: "Item 3"
+                                        text: 'Item 3',
                                     },
                                     {
                                         id: 4,
-                                        text: "Item 4"
+                                        text: 'Item 4',
                                     },
                                     {
                                         id: 5,
-                                        text: "Item 5"
-                                    }
+                                        text: 'Item 5',
+                                    },
                                 ]}
                             />
-                            <UpBox margin="small" boxSize={{ horizontal: 'small' }}>
+                            <UpBox
+                                margin="small"
+                                boxSize={{ horizontal: 'small' }}
+                            >
                                 Component
-              <hr />
+                                <hr />
                             </UpBox>
 
-                            <UpNumber max={5} min={2} onChange={this.onNumberChange} />
+                            <UpNumber
+                                max={5}
+                                min={2}
+                                onChange={this.onNumberChange}
+                            />
                             {time}
                             <UpGrid>
-                                <UpRow gutter={10} >
+                                <UpRow gutter={10}>
                                     <UpCol span={12}>
-                                        <UpSwitch isNullable={true} onChange={this.onNumberChange} />
-
+                                        <UpSwitch
+                                            isNullable={true}
+                                            onChange={
+                                                this.onNumberChange
+                                            }
+                                        />
                                     </UpCol>
                                     <UpCol span={12}>
-
-                                        <UpSwitch isNullable={true} onChange={this.onNumberChange} />
+                                        <UpSwitch
+                                            isNullable={true}
+                                            onChange={
+                                                this.onNumberChange
+                                            }
+                                        />
                                     </UpCol>
                                 </UpRow>
-                                <UpRow gutter={10} >
+                                <UpRow gutter={10}>
                                     <UpCol span={12}>
-                                        <UpSwitch isNullable={true} onChange={this.onNumberChange} />
-
+                                        <UpSwitch
+                                            isNullable={true}
+                                            onChange={
+                                                this.onNumberChange
+                                            }
+                                        />
                                     </UpCol>
                                     <UpCol span={12}>
-                                        <UpSwitch value={true} isNullable={true} onChange={this.onNumberChange} />
-                                        <UpSwitch value={false} isNullable={true} onChange={this.onNumberChange} />
-                                        <UpSwitch value={null} isNullable={true} onChange={this.onNumberChange} />
-                                        <UpSwitch value={true} isNullable={false} onChange={this.onNumberChange} />
-                                        <UpSwitch value={false} isNullable={false} onChange={this.onNumberChange} />
-                                        <UpSwitch value={null} isNullable={false} onChange={this.onNumberChange} />
+                                        <UpSwitch
+                                            value={true}
+                                            isNullable={true}
+                                            onChange={
+                                                this.onNumberChange
+                                            }
+                                        />
+                                        <UpSwitch
+                                            value={false}
+                                            isNullable={true}
+                                            onChange={
+                                                this.onNumberChange
+                                            }
+                                        />
+                                        <UpSwitch
+                                            value={null}
+                                            isNullable={true}
+                                            onChange={
+                                                this.onNumberChange
+                                            }
+                                        />
+                                        <UpSwitch
+                                            value={true}
+                                            isNullable={false}
+                                            onChange={
+                                                this.onNumberChange
+                                            }
+                                        />
+                                        <UpSwitch
+                                            value={false}
+                                            isNullable={false}
+                                            onChange={
+                                                this.onNumberChange
+                                            }
+                                        />
+                                        <UpSwitch
+                                            value={null}
+                                            isNullable={false}
+                                            onChange={
+                                                this.onNumberChange
+                                            }
+                                        />
                                     </UpCol>
                                 </UpRow>
                             </UpGrid>
 
-
                             {this.state.number}
                         </UpPanel>
-
                         <UpPanel title="Paramètres" type="primary">
                             Mon message
-              </UpPanel>
+                        </UpPanel>
                         <UpPanel title="Paramètres" type="danger">
                             Mon message
-              </UpPanel>
+                        </UpPanel>
                         <UpPanel title="Paramètres" type="success">
                             Mon message
-              </UpPanel>
+                        </UpPanel>
                         <UpPanel title="Paramètres" type="warning">
                             Mon message
-              </UpPanel>
+                        </UpPanel>
                     </UpBox>
                 </UpBox>
             </UpThemeProvider>
         );
     }
-    onChangeItem = (newValue) => {
+    onChangeItem = newValue => {
         this.setState({
-            item: newValue
+            item: newValue,
         });
-    }
-    onChangeUser = (newValue) => {
+    };
+    onChangeUser = newValue => {
         console.log(newValue);
         this.setState({
-            user: newValue
+            user: newValue,
         });
-    }
-    onDateChange = (newDate) => {
+    };
+    onDateChange = newDate => {
         this.setState({
-            date: newDate
+            date: newDate,
         });
-    }
-    onTextChange = (data) => {
+    };
+    onTextChange = data => {
         this.setState({
-            description: data
+            description: data,
         });
-    }
-    onPhoneChange = (data) => {
+    };
+    onPhoneChange = data => {
         this.setState({
-            phone: data
+            phone: data,
         });
-    }
-    onEmailChange = (data) => {
+    };
+    onEmailChange = data => {
         this.setState({
-            email: data
+            email: data,
         });
-    }
-    onNumberChange = (data) => {
+    };
+    onNumberChange = data => {
         this.setState({
-            number: data
+            number: data,
         });
-    }
-    onIntegerChange = (data) => {
+    };
+    onIntegerChange = data => {
         this.setState({
-            integer: data
+            integer: data,
         });
-    }
+    };
 }
 
 ReactDOM.render(<Demo />, document.getElementById('root'));

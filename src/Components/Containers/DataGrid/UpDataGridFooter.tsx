@@ -34,9 +34,7 @@ export interface UpDataGridFooterProps {
 }
 
 const getStyle = (props: UpDataGridFooterProps & WithThemeProps) => {
-  const position: NestedCSSProperties = props.actionsDataGrid
-    ? {}
-    : { position: 'absolute', right: 0 };
+  const position: NestedCSSProperties = props.actionsDataGrid ? {} : { position: 'absolute', right: 0 };
   return style(
     {
       display: 'flex',
@@ -56,8 +54,7 @@ const getStyle = (props: UpDataGridFooterProps & WithThemeProps) => {
           ...position,
         },
         '&.up-data-grid-footer .up-icon-wrapper svg path': {
-          fill:
-            props.actionsDataGrid && props.theme.colorMap.disabledFg,
+          fill: props.actionsDataGrid && props.theme.colorMap.disabledFg,
         },
       },
     },
@@ -68,16 +65,9 @@ const getStyle = (props: UpDataGridFooterProps & WithThemeProps) => {
 };
 
 const UpDataGridFooter: React.FC<UpDataGridFooterProps & WithThemeProps> = props => {
-  const {
-    pagination,
-    actionsDataGrid,
-    isPaginationEnabled,
-    data,
-    isDataFetching,
-  } = props;
+  const { pagination, actionsDataGrid, isPaginationEnabled, data, isDataFetching } = props;
 
-  const { actions, validationLabel, groupLabel, intent } =
-    actionsDataGrid || {};
+  const { actions, validationLabel, groupLabel, intent } = actionsDataGrid || {};
 
   const [selectedAction, selectAction] = useState(null);
   const selectedData = data.filter(element => element.isSelected);
@@ -104,16 +94,12 @@ const UpDataGridFooter: React.FC<UpDataGridFooterProps & WithThemeProps> = props
   };
 
   return (
-    <div
-      className={classnames('up-data-grid-footer', getStyle(props))}>
+    <div className={classnames('up-data-grid-footer', getStyle(props))}>
       {actions && (
         <UpButtonGroup isAddOn="right" gutter={1} align={'h'}>
           {actions.length === 1 ? (
             <>
-              <UpButton
-                intent="primary"
-                disabled={!(selectedData.length >= 1)}
-                onClick={handleValidation}>
+              <UpButton intent="primary" disabled={!(selectedData.length >= 1)} onClick={handleValidation}>
                 {actions[0].label}
               </UpButton>
             </>
@@ -123,14 +109,11 @@ const UpDataGridFooter: React.FC<UpDataGridFooterProps & WithThemeProps> = props
                 dropDown="down"
                 intent="primary"
                 extraActions={buttonAction || []}
-                disabled={!(selectedData.length >= 1)}>
-                {(selectedAction && selectedAction.label) ||
-                  groupLabel}
+                disabled={!(selectedData.length >= 1)}
+              >
+                {(selectedAction && selectedAction.label) || groupLabel}
               </UpButton>
-              <UpButton
-                onClick={handleValidation}
-                intent={intent}
-                disabled={!selectedAction}>
+              <UpButton onClick={handleValidation} intent={intent} disabled={!selectedAction}>
                 {validationLabel}
               </UpButton>
             </>

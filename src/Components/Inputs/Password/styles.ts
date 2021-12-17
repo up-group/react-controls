@@ -4,41 +4,44 @@ import { ruleIsValid } from '../../../Common/utils';
 import { toRem } from '../../../Common/theming/utils';
 
 const fillColor = (props: UpInputProps) => {
-    let color: string
-    if (!props.touched) color = props.theme.colorMap.default;
-    if (!!props.value) color = props.theme.colorMap.success;
-    if (props.showError && props.hasError) color = props.theme.colorMap.error;
+  let color: string;
+  if (!props.touched) color = props.theme.colorMap.default;
+  if (props.value) color = props.theme.colorMap.success;
+  if (props.showError && props.hasError) color = props.theme.colorMap.error;
 
-    return color;
+  return color;
 };
 
 export const onSide = style({
-    display: 'flex'
+  display: 'flex',
 });
 
-export const getStyles = (props: UpInputProps) => style({
+export const getStyles = (props: UpInputProps) =>
+  style({
     $nest: {
-        "&.up-password": {
-            position: "relative",
+      '&.up-password': {
+        position: 'relative',
+      },
+      '&.up-password .up-icon-wrapper': {
+        position: 'absolute',
+        top: props.floatingLabel ? 18 : 4,
+        right: 0,
+        cursor: 'pointer',
+        zIndex: 10,
+      },
+      '&.up-password .up-icon-wrapper svg, &.up-password .up-icon-wrapper svg polygon, &.up-password .up-icon-wrapper svg path, &.up-password .up-icon-wrapper svg polyline':
+        {
+          fill: `${fillColor(props)} !important`,
         },
-        "&.up-password .up-icon-wrapper": {
-            position: 'absolute',
-            top: props.floatingLabel ? 18 : 4,
-            right: 0,
-            cursor: "pointer",
-            zIndex: 10,
-        },
-        "&.up-password .up-icon-wrapper svg, &.up-password .up-icon-wrapper svg polygon, &.up-password .up-icon-wrapper svg path, &.up-password .up-icon-wrapper svg polyline": {
-            fill: `${fillColor(props)} !important`,
-        },
-        "&.up-password .up-wrapper-error-tooltip": {
-            display: 'none',
-            background: 'transparent'
-        }
-    }
-});
+      '&.up-password .up-wrapper-error-tooltip': {
+        display: 'none',
+        background: 'transparent',
+      },
+    },
+  });
 
-export const getRulesStyle = (props: UpInputProps) => style({
+export const getRulesStyle = (props: UpInputProps) =>
+  style({
     display: 'block',
     zIndex: 1000,
     width: '100%',
@@ -49,17 +52,17 @@ export const getRulesStyle = (props: UpInputProps) => style({
     color: '#4E5B59',
     lineHeight: 1.5,
     fontWeight: 400,
-    marginTop: toRem(0.5)
-})
+    marginTop: toRem(0.5),
+  });
 
-export const getRuleStatus = (props: UpInputProps, regex: RegExp) => style({
+export const getRuleStatus = (props: UpInputProps, regex: RegExp) =>
+  style({
     height: '8px',
     width: '8px',
-    backgroundColor: `${ruleIsValid(props.value, regex) ?
-        props.theme.colorMap.success :
-        props.theme.colorMap.lightGrey1
-        }`,
+    backgroundColor: `${
+      ruleIsValid(props.value, regex) ? props.theme.colorMap.success : props.theme.colorMap.lightGrey1
+    }`,
     borderRadius: '50%',
     display: 'inline-block',
     margin: `${toRem(0)} ${toRem(10)}`,
-});
+  });

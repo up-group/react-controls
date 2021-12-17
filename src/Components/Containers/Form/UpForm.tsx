@@ -35,15 +35,10 @@ const UpForm = ({
       validateOnBlur={validateOnBlur}
       validationSchema={validationSchema}
       onReset={onReset}
-      {...rest}>
+      {...rest}
+    >
       {({ handleSubmit, ...restFormikBag }) => (
-        <form
-          onSubmit={handleSubmit}
-          className={classnames(
-            'up-form',
-            getStyles(style),
-            className
-          )}>
+        <form onSubmit={handleSubmit} className={classnames('up-form', getStyles(style), className)}>
           {children(restFormikBag)}
         </form>
       )}

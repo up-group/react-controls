@@ -5,28 +5,22 @@ import withTheme from '../../../Common/theming/withTheme';
 import { WithThemeProps } from '../../../Common/theming';
 import { UpLigneProps } from './types';
 
-const UpLigne: React.FunctionComponent<UpLigneProps & WithThemeProps> = (props) => {
-    const {
-        dataFor,
-        className,
-        children,
-        theme,
-        ...others
-    } = props;
-    let tooltipProps = {};
+const UpLigne: React.FunctionComponent<UpLigneProps & WithThemeProps> = props => {
+  const { dataFor, className, children, theme, ...others } = props;
+  let tooltipProps = {};
 
-    if (dataFor) {
-        tooltipProps = {
-            'data-tip': 'tooltip',
-            'data-for': dataFor
-        }
-    }
+  if (dataFor) {
+    tooltipProps = {
+      'data-tip': 'tooltip',
+      'data-for': dataFor,
+    };
+  }
 
-    return (
-        <span className={classnames(className, getStyles(props))} {...tooltipProps} {...others}>
-            {children}
-        </span>
-    )
+  return (
+    <span className={classnames(className, getStyles(props))} {...tooltipProps} {...others}>
+      {children}
+    </span>
+  );
 };
 
 export { UpLigne };

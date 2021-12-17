@@ -5,11 +5,7 @@ import UpEntityView from '../UpEntityView';
 import { ThemeProvider as UpThemeProvider } from '../../../../Common/theming/ThemeProvider';
 import UpDefaultTheme from '../../../../Common/theming';
 
-const whithTheme = component => (
-  <UpThemeProvider theme={UpDefaultTheme}>
-    {component}
-  </UpThemeProvider>
-);
+const whithTheme = component => <UpThemeProvider theme={UpDefaultTheme}>{component}</UpThemeProvider>;
 const renderComponent = component => render(whithTheme(component));
 
 const informations = [
@@ -26,63 +22,35 @@ afterEach(cleanup);
 describe('Tests for UpEntityView', () => {
   it('should render title in div tag', () => {
     const { container } = renderComponent(
-      <UpEntityView
-        title={'Informations'}
-        icon={'cadhoc-check'}
-        informations={informations}
-      />
+      <UpEntityView title={'Informations'} icon={'cadhoc-check'} informations={informations} />
     );
 
-    expect(
-      container.querySelector('.up-entity-view-title')
-    ).toHaveTextContent('Informations');
-    expect(
-      container.querySelector('.up-entity-view-title').nodeName
-    ).toBe('DIV');
+    expect(container.querySelector('.up-entity-view-title')).toHaveTextContent('Informations');
+    expect(container.querySelector('.up-entity-view-title').nodeName).toBe('DIV');
   });
 
   it('should render icon', () => {
     const { container } = renderComponent(
-      <UpEntityView
-        title={'Informations'}
-        icon={'cadhoc-check'}
-        informations={informations}
-      />
+      <UpEntityView title={'Informations'} icon={'cadhoc-check'} informations={informations} />
     );
 
-    expect(
-      container.querySelector('.up-icon-wrapper')
-    ).toBeInTheDocument();
+    expect(container.querySelector('.up-icon-wrapper')).toBeInTheDocument();
   });
 
   it('should render expected informations', () => {
     const { container } = renderComponent(
-      <UpEntityView
-        title={'Informations'}
-        icon={'cadhoc-check'}
-        informations={informations}
-      />
+      <UpEntityView title={'Informations'} icon={'cadhoc-check'} informations={informations} />
     );
 
-    expect(
-      container.querySelectorAll('.up-entity-view-content')
-    ).toHaveLength(6);
+    expect(container.querySelectorAll('.up-entity-view-content')).toHaveLength(6);
   });
 
   it('should render key informations in bold', () => {
-    renderComponent(
-      <UpEntityView
-        title={'Informations'}
-        icon={'cadhoc-check'}
-        informations={informations}
-      />
-    );
+    renderComponent(<UpEntityView title={'Informations'} icon={'cadhoc-check'} informations={informations} />);
 
     expect(screen.getByText('Code Client :').nodeName).toBe('B');
     expect(screen.getByText('CLT23232323').nodeName).toBe('DIV');
-    expect(
-      screen.getByText('Code Client :').parentNode
-    ).toContainHTML(
+    expect(screen.getByText('Code Client :').parentNode).toContainHTML(
       '<div class="up-entity-view-content"><b>Code Client : </b>CLT23232323</div>'
     );
   });

@@ -27,7 +27,6 @@ e2e/
 yarn.lock
 **/yarn-error.log
 **/.yarnrc.yml
-**/cypress.json
 **/.babelrc
 **/.babelrc.json
 **/.editorconfig

@@ -13,78 +13,85 @@ declare global {
 
 export interface TranslationModalType {
   [key: string]: {
-    acceptAll: string,
-    acceptSelected: string
-    decline: string
+    acceptAll: string;
+    acceptSelected: string;
+    decline: string;
     consentNotice: {
-      description: string
-      learnMore: string,
-    },
+      description: string;
+      learnMore: string;
+    };
     consentModal: {
-      title: string
-      description: string,
-    },
-    ok: string
+      title: string;
+      description: string;
+    };
+    ok: string;
     service: {
       disableAll: {
-        description: string,
-      },
-    },
+        description: string;
+      };
+    };
     purposes: {
       [key: string]: {
-        title: string,
-        description: string,
-      },
-    },
-  },
+        title: string;
+        description: string;
+      };
+    };
+  };
 }
 
 export interface TranslationServiceType {
   [key: string]: {
     [key: string]: {
-      title: string,
-      description: string,
-    },
-  }
+      title: string;
+      description: string;
+    };
+  };
 }
 
 export type TranslationsProps = TranslationModalType | TranslationServiceType;
 
 export interface AppProps {
-  name: string
-  title?: string
-  description?: string
-  purposes: string[],
-  cookies?: [RegExp, string, string][]
+  name: string;
+  title?: string;
+  description?: string;
+  purposes: string[];
+  cookies?: [RegExp, string, string][];
   onAccept?: () => void;
   onInit?: () => void;
   onDecline?: () => void;
-  default?: boolean
-  optOut?: boolean
-  required?: boolean
+  default?: boolean;
+  optOut?: boolean;
+  required?: boolean;
 }
 
 export interface UpCookieConsentProps {
-  apps: AppProps[]
-  privacyPolicyUrl: string
-  translations?: TranslationsProps
-  cookieName?: string,
-  cookieExpiresAfterDays?: number,
-  editButtonStyle?: CSSProperties
+  apps: AppProps[];
+  privacyPolicyUrl: string;
+  translations?: TranslationsProps;
+  cookieName?: string;
+  cookieExpiresAfterDays?: number;
+  editButtonStyle?: CSSProperties;
 }
 
-const UpCookiesConsentManager : React.FunctionComponent<UpCookieConsentProps> = function ({ apps, privacyPolicyUrl, translations, cookieExpiresAfterDays = 120, cookieName = 'gdprConsent', editButtonStyle = {
-  position: 'fixed',
-  bottom: 0,
-  right: 0,
-  border: 'none',
-  background: 'none',
-  padding: 14,
-  borderRadius: '4px 0 0 0',
-  boxShadow: '0 2px 4px 0 rgba(0,0,0,0.15)',
-  cursor: 'pointer',
-  outline: 'none',
-} })  {
+const UpCookiesConsentManager: React.FunctionComponent<UpCookieConsentProps> = function ({
+  apps,
+  privacyPolicyUrl,
+  translations,
+  cookieExpiresAfterDays = 120,
+  cookieName = 'gdprConsent',
+  editButtonStyle = {
+    position: 'fixed',
+    bottom: 0,
+    right: 0,
+    border: 'none',
+    background: 'none',
+    padding: 14,
+    borderRadius: '4px 0 0 0',
+    boxShadow: '0 2px 4px 0 rgba(0,0,0,0.15)',
+    cursor: 'pointer',
+    outline: 'none',
+  },
+}) {
   const [displayEditButton, setDisplayEditButton] = useState(false);
 
   const defaultTranslations = {
@@ -98,7 +105,8 @@ const UpCookiesConsentManager : React.FunctionComponent<UpCookieConsentProps> = 
       },
       consentModal: {
         title: 'Panneau de gestion des cookies',
-        description: 'En autorisant ces services tiers, vous acceptez le dépôt et la lecture de cookies et l’utilisation de technologies de suivi nécéssaires à leur bon fonctionnement.',
+        description:
+          'En autorisant ces services tiers, vous acceptez le dépôt et la lecture de cookies et l’utilisation de technologies de suivi nécéssaires à leur bon fonctionnement.',
       },
       ok: 'Accepter',
       googleAnalytics: {
@@ -107,8 +115,9 @@ const UpCookiesConsentManager : React.FunctionComponent<UpCookieConsentProps> = 
       },
       purposes: {
         analytics: {
-          title: 'Mesure d\'audience',
-          description: 'Les services de mesure d\'audience permettent de générer des statistiques de fréquentation utiles à l\'amélioration du site.',
+          title: "Mesure d'audience",
+          description:
+            "Les services de mesure d'audience permettent de générer des statistiques de fréquentation utiles à l'amélioration du site.",
         },
       },
       service: {
@@ -150,12 +159,7 @@ const UpCookiesConsentManager : React.FunctionComponent<UpCookieConsentProps> = 
       }}
       onClick={() => Klaro.show()}
     >
-      <UpSvgIcon
-        iconName="settings"
-        color="#F39219"
-        width={20}
-        height={20}
-      />
+      <UpSvgIcon iconName="settings" color="#F39219" width={20} height={20} />
     </button>
   );
 };

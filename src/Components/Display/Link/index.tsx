@@ -1,4 +1,4 @@
 // Imports
-import UpLink from './UpLink'
+import UpLink from './UpLink';
 
 export default UpLink;

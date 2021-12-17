@@ -13,12 +13,11 @@ test/*
 !test/index.html
 !test/index.tsx
 
-coverage/*
+coverage/
 *.snap
 
 src/Others
 
-e2e/cypress/
 e2e/node_modules/
 .pnp.*
 .yarn/*
@@ -29,3 +28,4 @@ e2e/node_modules/
 !.yarn/versions
 **/*/yarn-error.log
 dist/
+

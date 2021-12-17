@@ -8,17 +8,13 @@ describe('Tests for UpPanel', () => {
   it('should render Text in p tag', () => {
     render(<UpParagraph>UpParagraph Content</UpParagraph>);
 
-    expect(screen.getByText('UpParagraph Content').nodeName).toBe(
-      'P'
-    );
+    expect(screen.getByText('UpParagraph Content').nodeName).toBe('P');
   });
 
   it('should add default className', () => {
     render(<UpParagraph>UpParagraph Content</UpParagraph>);
 
-    expect(
-      screen.getByText('UpParagraph Content').classList.length
-    ).toBe(1);
+    expect(screen.getByText('UpParagraph Content').classList.length).toBe(1);
   });
 
   it('should pass className through props', () => {
@@ -26,13 +22,12 @@ describe('Tests for UpPanel', () => {
       <UpParagraph
         className={style({
           borderWidth: '10px',
-        })}>
+        })}
+      >
         UpParagraph Content
       </UpParagraph>
     );
 
-    expect(
-      screen.getByText('UpParagraph Content').classList.length
-    ).toBe(2);
+    expect(screen.getByText('UpParagraph Content').classList.length).toBe(2);
   });
 });

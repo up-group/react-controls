@@ -1,3 +1,3 @@
-import UpEntityView from './UpEntityView'
+import UpEntityView from './UpEntityView';
 
-export default UpEntityView
+export default UpEntityView;

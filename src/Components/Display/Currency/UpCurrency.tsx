@@ -1,10 +1,7 @@
 import React from 'react';
 import { style } from 'typestyle';
 import { Property } from 'csstype';
-import {
-  getIntegerValue,
-  getDecimalValue,
-} from '../../../Common/utils/currency';
+import { getIntegerValue, getDecimalValue } from '../../../Common/utils/currency';
 import classnames from 'classnames';
 import { useCountUp } from 'react-countup';
 import UpBox from '../../Containers/Box';
@@ -27,18 +24,13 @@ const UpCurrency = (props: UpCurrencyProps) => {
   const bigNumber = style({
     $nest: {
       '&.up-number-integer': {
-        fontSize:
-          (props.integerFontSize ? props.integerFontSize : 40) + 'px',
+        fontSize: (props.integerFontSize ? props.integerFontSize : 40) + 'px',
         lineHeight:
           (props.integerLineHeight
             ? props.integerLineHeight
-            : (props.integerFontSize ? props.integerFontSize : 40) +
-              8) + 'px',
-        fontWeight: props.integerFontWeight
-          ? props.integerFontWeight
-          : 'normal',
-        color:
-          props.color && props.value > 0 ? props.color : '#D7D7D7',
+            : (props.integerFontSize ? props.integerFontSize : 40) + 8) + 'px',
+        fontWeight: props.integerFontWeight ? props.integerFontWeight : 'normal',
+        color: props.color && props.value > 0 ? props.color : '#D7D7D7',
       },
     },
   });
@@ -47,18 +39,13 @@ const UpCurrency = (props: UpCurrencyProps) => {
     $nest: {
       '&.up-number-decimal': {
         marginTop: '8px',
-        fontSize:
-          (props.decimalFontSize ? props.decimalFontSize : 14) + 'px',
+        fontSize: (props.decimalFontSize ? props.decimalFontSize : 14) + 'px',
         fontWeight: 500,
         lineHeight:
           (props.decimalLineHeight
             ? props.decimalLineHeight
-            : (props.decimalFontSize ? props.decimalFontSize : 14) +
-              2) + 'px',
-        color:
-          props.value > 0
-            ? props.secondColor || '#9B9B9B'
-            : '#D7D7D7',
+            : (props.decimalFontSize ? props.decimalFontSize : 14) + 2) + 'px',
+        color: props.value > 0 ? props.secondColor || '#9B9B9B' : '#D7D7D7',
       },
     },
   });
@@ -76,17 +63,10 @@ const UpCurrency = (props: UpCurrencyProps) => {
     <UpBox justifyContent={'center'} style={{ height: '100%' }}>
       <UpBox flexDirection={'row'} justifyContent={'center'}>
         <span className={classnames('up-number-integer', bigNumber)}>
-          {getIntegerValue(
-            (props.animate ? countUp : props.value) as number,
-            ' '
-          )}
+          {getIntegerValue((props.animate ? countUp : props.value) as number, ' ')}
         </span>
-        <span
-          className={classnames('up-number-decimal', smallNumber)}>
-          {getDecimalValue(
-            (props.animate ? countUp : props.value) as number,
-            2
-          )}
+        <span className={classnames('up-number-decimal', smallNumber)}>
+          {getDecimalValue((props.animate ? countUp : props.value) as number, 2)}
           {props.unit ? props.unit : ''}
         </span>
       </UpBox>

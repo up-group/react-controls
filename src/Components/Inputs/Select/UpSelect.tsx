@@ -7,21 +7,12 @@ import axios from 'axios';
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl';
 import * as queryString from 'query-string';
 import { UpSelectProps } from './types';
-import SelectBase, {
-  Props,
-  ActionMeta,
-  OnChangeValue,
-} from 'react-select';
+import SelectBase, { Props, ActionMeta, OnChangeValue } from 'react-select';
 import { eventFactory } from '../../../Common/utils/eventListener';
 import { isEmpty } from '../../../Common/utils';
 import defaultTheme from '../../../Common/theming/';
 import UpLigne from '../../Display/Ligne/UpLigne';
-import {
-  customStyles,
-  getLabelStyle,
-  groupBadgeStyles,
-  groupStyles,
-} from './styles';
+import { customStyles, getLabelStyle, groupBadgeStyles, groupStyles } from './styles';
 
 import * as _ from 'lodash';
 
@@ -42,10 +33,7 @@ const formatMinimumInputLenghMessage = (minimumInputLength: number) =>
   `Veuillez renseigner au minimum ${minimumInputLength} caractères`;
 
 // Exports
-export default class UpSelect extends BaseControlComponent<
-  UpSelectProps,
-  any
-> {
+export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
   timeOutLoadOptions: any;
   axiosSource: any;
   input: HTMLInputElement;
@@ -110,15 +98,8 @@ export default class UpSelect extends BaseControlComponent<
               },
             }),
             () => {
-              if (
-                !_.isEmpty(this.state.extra.loadedData) &&
-                this.state.extra.loadedData.length == 1
-              ) {
-                this.onChange(
-                  this.props.name,
-                  this.state.extra.loadedData[0],
-                  null
-                );
+              if (!_.isEmpty(this.state.extra.loadedData) && this.state.extra.loadedData.length == 1) {
+                this.onChange(this.props.name, this.state.extra.loadedData[0], null);
               }
             }
           );
@@ -126,7 +107,9 @@ export default class UpSelect extends BaseControlComponent<
         .catch(e =>
           this.setState(
             update(this.state, {
-              extra: { isDataFetching: { $set: false } },
+              extra: {
+                isDataFetching: { $set: false },
+              },
             })
           )
         );
@@ -163,29 +146,17 @@ export default class UpSelect extends BaseControlComponent<
   }
 
   setValue = (receiveValue: any) => {
-    let valueToParse = Array.isArray(receiveValue)
-      ? [...receiveValue]
-      : { ...receiveValue };
+    let valueToParse = Array.isArray(receiveValue) ? [...receiveValue] : { ...receiveValue };
     if (this.props.multiple === true) {
-      let isPairArray = this.isPairArray(receiveValue);
+      const isPairArray = this.isPairArray(receiveValue);
       let newState = null;
       if (isPairArray === true) {
-        const extra =
-          this.state.extra === undefined || this.state.extra === null
-            ? {}
-            : { ...this.state.extra };
+        const extra = this.state.extra === undefined || this.state.extra === null ? {} : { ...this.state.extra };
         extra.fullObject = receiveValue;
         newState = { ...this.state, extra };
-      } else if (
-        isPairArray == false &&
-        Array.isArray(receiveValue) === true &&
-        this.props.data != null
-      ) {
-        const extra =
-          this.state.extra === undefined || this.state.extra === null
-            ? {}
-            : { ...this.state.extra };
-        let data = this.makePairFromIds(receiveValue);
+      } else if (isPairArray == false && Array.isArray(receiveValue) === true && this.props.data != null) {
+        const extra = this.state.extra === undefined || this.state.extra === null ? {} : { ...this.state.extra };
+        const data = this.makePairFromIds(receiveValue);
         extra.fullObject = data;
         newState = { ...this.state, extra };
         return this.parseValue(data);
@@ -201,21 +172,15 @@ export default class UpSelect extends BaseControlComponent<
 
       this.setState(newState);
     } else {
-      let isPair = this.isPair(receiveValue);
+      const isPair = this.isPair(receiveValue);
       let newState = null;
       if (isPair === true) {
-        const extra =
-          this.state.extra === undefined || this.state.extra === null
-            ? {}
-            : { ...this.state.extra };
+        const extra = this.state.extra === undefined || this.state.extra === null ? {} : { ...this.state.extra };
         extra.fullObject = receiveValue;
         newState = { extra: extra };
       } else if (isPair === false && this.props.data != null) {
-        let data = this.makePairFromId(receiveValue);
-        const extra =
-          this.state.extra === undefined || this.state.extra === null
-            ? {}
-            : { ...this.state.extra };
+        const data = this.makePairFromId(receiveValue);
+        const extra = this.state.extra === undefined || this.state.extra === null ? {} : { ...this.state.extra };
         extra.fullObject = data;
         newState = { extra: extra };
         valueToParse = data;
@@ -265,8 +230,7 @@ export default class UpSelect extends BaseControlComponent<
     }
 
     if (
-      (obj.hasOwnProperty(this.keyId) &&
-        obj.hasOwnProperty(this.keyText)) ||
+      (obj.hasOwnProperty(this.keyId) && obj.hasOwnProperty(this.keyText)) ||
       (obj.hasOwnProperty('id') && obj.hasOwnProperty('text'))
     ) {
       return true;
@@ -275,12 +239,9 @@ export default class UpSelect extends BaseControlComponent<
     const regexp = /{-?[\w]+}/gi;
     const arr = this.keyText.match(regexp);
     if (arr === null) {
-      return (
-        obj.hasOwnProperty(this.keyId) &&
-        obj.hasOwnProperty(this.keyText)
-      );
+      return obj.hasOwnProperty(this.keyId) && obj.hasOwnProperty(this.keyText);
     } else {
-      for (let text in arr) {
+      for (const text in arr) {
         const sourceText = text.replace('{', '').replace('}', '');
         if (obj.hasOwnProperty(sourceText) == false) {
           return false;
@@ -291,19 +252,11 @@ export default class UpSelect extends BaseControlComponent<
   };
 
   private defaultIsOptionIsSelected = (option, selectedOptions) =>
-    selectedOptions.find(o => o[this.keyId] === option[this.keyId]) !=
-    null;
+    selectedOptions.find(o => o[this.keyId] === option[this.keyId]) != null;
 
   parseValue = (receiveValue: any) => {
-    if (
-      this.props.returnType === 'id' &&
-      typeof receiveValue === 'object' &&
-      receiveValue != null
-    ) {
-      if (
-        this.props.multiple === true &&
-        Array.isArray(receiveValue)
-      ) {
+    if (this.props.returnType === 'id' && typeof receiveValue === 'object' && receiveValue != null) {
+      if (this.props.multiple === true && Array.isArray(receiveValue)) {
         return receiveValue.map(v => {
           return v != null ? v[this.keyId] || v['id'] || v : null;
         });
@@ -326,7 +279,8 @@ export default class UpSelect extends BaseControlComponent<
           display: 'flex',
           alignItems: 'center',
           cursor: 'pointer',
-        }}>
+        }}
+      >
         {color && (
           <div
             style={{
@@ -353,26 +307,16 @@ export default class UpSelect extends BaseControlComponent<
       if (this.props.multiple && fullobject != null) {
         return fullobject
           .map(v => {
-            if (v != null && v.hasOwnProperty(this.keyId))
-              return v[this.keyId] != null ? v[this.keyId] : null;
-            else if (v != null && v.hasOwnProperty('id'))
-              return v['id'] != null ? v['id'] : null;
+            if (v != null && v.hasOwnProperty(this.keyId)) return v[this.keyId] != null ? v[this.keyId] : null;
+            else if (v != null && v.hasOwnProperty('id')) return v['id'] != null ? v['id'] : null;
             else return null;
           })
           .filter(v => {
             return v !== null;
           });
       } else {
-        if (
-          fullobject != null &&
-          fullobject.hasOwnProperty(this.keyId)
-        )
-          return fullobject[this.keyId];
-        else if (
-          fullobject != null &&
-          fullobject.hasOwnProperty('id')
-        )
-          return fullobject['id'];
+        if (fullobject != null && fullobject.hasOwnProperty(this.keyId)) return fullobject[this.keyId];
+        else if (fullobject != null && fullobject.hasOwnProperty('id')) return fullobject['id'];
       }
     } else {
       return data;
@@ -385,17 +329,8 @@ export default class UpSelect extends BaseControlComponent<
       return <OptionRenderer {...option}></OptionRenderer>;
     } else {
       if (option[this.keyId])
-        return (
-          <span key={`option_${option[this.keyId]}`}>
-            {this.format(option, this.keyText)}
-          </span>
-        );
-      else
-        return (
-          <span key={`option_${option['id']}`}>
-            {this.format(option, option['text'])}
-          </span>
-        );
+        return <span key={`option_${option[this.keyId]}`}>{this.format(option, this.keyText)}</span>;
+      else return <span key={`option_${option['id']}`}>{this.format(option, option['text'])}</span>;
     }
   };
 
@@ -404,18 +339,8 @@ export default class UpSelect extends BaseControlComponent<
       const ValueRenderer = this.props.valueRenderer;
       return <ValueRenderer {...value}></ValueRenderer>;
     } else {
-      if (value[this.keyId])
-        return (
-          <span key={`option_${value[this.keyId]}`}>
-            {this.format(value, this.keyText)}
-          </span>
-        );
-      else
-        return (
-          <span key={`option_${value['id']}`}>
-            {this.format(value, value['text'])}
-          </span>
-        );
+      if (value[this.keyId]) return <span key={`option_${value[this.keyId]}`}>{this.format(value, this.keyText)}</span>;
+      else return <span key={`option_${value['id']}`}>{this.format(value, value['text'])}</span>;
     }
   };
 
@@ -428,10 +353,7 @@ export default class UpSelect extends BaseControlComponent<
 
     for (let i = 0; i < arr.length; i++) {
       const sourceText = arr[i].replace('{', '').replace('}', '');
-      strFormat = strFormat.replace(
-        arr[i],
-        this.findInObject(object, sourceText.split('.'))
-      );
+      strFormat = strFormat.replace(arr[i], this.findInObject(object, sourceText.split('.')));
     }
 
     return strFormat;
@@ -441,10 +363,7 @@ export default class UpSelect extends BaseControlComponent<
     const filterMatched =
       !filter ||
       (option.label != null &&
-        (typeof option.label == 'object' ||
-          `${option.label}`
-            .toLowerCase()
-            .includes(filter.toLowerCase())));
+        (typeof option.label == 'object' || `${option.label}`.toLowerCase().includes(filter.toLowerCase())));
     return filterMatched;
   };
 
@@ -466,45 +385,27 @@ export default class UpSelect extends BaseControlComponent<
     return <p>{`Créer "${inputValue}"`}</p>;
   };
 
-  private inputDoesntMatchSelectValue = (
-    inputValue: string,
-    selectValue: any[]
-  ): boolean =>
+  private inputDoesntMatchSelectValue = (inputValue: string, selectValue: any[]): boolean =>
     selectValue == null ||
-    selectValue.filter(
-      option =>
-        option[this.keyText] &&
-        option[this.keyText].toLowerCase() == inputValue.toLowerCase()
-    ).length == 0;
+    selectValue.filter(option => option[this.keyText] && option[this.keyText].toLowerCase() == inputValue.toLowerCase())
+      .length == 0;
 
-  private inputDoesntMatchOneOfSelectOptions = (
-    inputValue: string,
-    selectOptions: any[]
-  ): boolean =>
+  private inputDoesntMatchOneOfSelectOptions = (inputValue: string, selectOptions: any[]): boolean =>
     selectOptions == null ||
     selectOptions.filter(
-      option =>
-        option[this.keyText] &&
-        option[this.keyText].toLowerCase() == inputValue.toLowerCase()
+      option => option[this.keyText] && option[this.keyText].toLowerCase() == inputValue.toLowerCase()
     ).length == 0;
 
   /** Retourne si l'option  "Créer ..." doit être affichée */
   isValidNewOption = (inputValue, selectValue, selectOptions) => {
     if (this.props.isValidNewOption != null) {
-      return this.props.isValidNewOption(
-        inputValue,
-        selectValue,
-        selectOptions
-      );
+      return this.props.isValidNewOption(inputValue, selectValue, selectOptions);
     }
 
     const isValidNewOption =
       !isEmpty(inputValue) &&
       this.inputDoesntMatchSelectValue(inputValue, selectValue) &&
-      this.inputDoesntMatchOneOfSelectOptions(
-        inputValue,
-        selectOptions
-      );
+      this.inputDoesntMatchOneOfSelectOptions(inputValue, selectOptions);
 
     return isValidNewOption;
   };
@@ -522,9 +423,7 @@ export default class UpSelect extends BaseControlComponent<
   };
 
   showError() {
-    return this.props.showError !== undefined
-      ? this.props.showError === true
-      : this.hasError;
+    return this.props.showError !== undefined ? this.props.showError === true : this.hasError;
   }
 
   showSuccess() {
@@ -535,20 +434,15 @@ export default class UpSelect extends BaseControlComponent<
     let loadOptions = null;
     if (this.props.dataSource !== undefined) {
       const dataSource = this.props.dataSource;
-      const queryParam =
-        this.props.dataSource.queryParameterName || 'search';
-      const minimumInputLength = this.props.autoload
-        ? 0
-        : this.props.minimumInputLength;
+      const queryParam = this.props.dataSource.queryParameterName || 'search';
+      const minimumInputLength = this.props.autoload ? 0 : this.props.minimumInputLength;
       loadOptions = (input: string) => {
         if (minimumInputLength && input.length < minimumInputLength) {
           if (input.length !== 0) {
             const newState = update(this.state, {
               extra: {
                 loadingPlaceholder: {
-                  $set: this.props.formatMinimumInputLenghMessage(
-                    minimumInputLength
-                  ),
+                  $set: this.props.formatMinimumInputLenghMessage(minimumInputLength),
                 },
               },
             });
@@ -638,7 +532,7 @@ export default class UpSelect extends BaseControlComponent<
 
   renderControl() {
     let dataSource = this.props.dataSource;
-    let loadOptions: any = this.getLoadOptions();
+    const loadOptions: any = this.getLoadOptions();
 
     const data = this.props.data || this.state.extra.loadedData;
 
@@ -670,46 +564,29 @@ export default class UpSelect extends BaseControlComponent<
     }
 
     if (this.props.isSearchable) {
-      specProps.allowCreateWhileLoading =
-        this.props.allowCreateWhileLoading;
-      specProps.formatCreateLabel =
-        formatCreateLabel || this.formatCreateLabel;
-      specProps.isValidNewOption =
-        isValidNewOption || this.isValidNewOption;
+      specProps.allowCreateWhileLoading = this.props.allowCreateWhileLoading;
+      specProps.formatCreateLabel = formatCreateLabel || this.formatCreateLabel;
+      specProps.isValidNewOption = isValidNewOption || this.isValidNewOption;
       specProps.getNewOptionData = this.getNewOptionData;
       specProps.onCreateOption = this.props.onCreateOption;
-      specProps.createOptionPosition =
-        this.props.createOptionPosition;
+      specProps.createOptionPosition = this.props.createOptionPosition;
     } else if (this.props.allowCreate) {
-      specProps.allowCreateWhileLoading =
-        this.props.allowCreateWhileLoading;
+      specProps.allowCreateWhileLoading = this.props.allowCreateWhileLoading;
       specProps.formatCreateLabel = this.formatCreateLabel;
       specProps.isValidNewOption = this.isValidNewOption;
       specProps.getNewOptionData = this.getNewOptionData;
       specProps.onCreateOption = this.props.onCreateOption;
-      specProps.createOptionPosition =
-        this.props.createOptionPosition;
+      specProps.createOptionPosition = this.props.createOptionPosition;
     }
 
-    let value = this.isControlled
-      ? this.props.value
-      : this.state.extra.fullObject;
+    let value = this.isControlled ? this.props.value : this.state.extra.fullObject;
 
     if (this.props.returnType == 'id') {
-      if (
-        this.props.multiple &&
-        value &&
-        typeof value[0] !== 'object'
-      ) {
-        value =
-          data &&
-          data.filter(item => value.indexOf(item[this.keyId]) >= 0);
+      if (this.props.multiple && value && typeof value[0] !== 'object') {
+        value = data && data.filter(item => value.indexOf(item[this.keyId]) >= 0);
       } else if (typeof value !== 'object' && data) {
         value = data.find(item => item[this.keyId] == value);
-      } else if (
-        typeof value !== 'object' &&
-        this.state.extra.fullObject
-      ) {
+      } else if (typeof value !== 'object' && this.state.extra.fullObject) {
         value = this.state.extra.fullObject;
       }
     }
@@ -719,21 +596,16 @@ export default class UpSelect extends BaseControlComponent<
       value,
       color: '#354052',
       name: this.props.name,
-      placeholder: this.props.floatingLabel
-        ? ''
-        : this.props.placeholder,
+      placeholder: this.props.floatingLabel ? '' : this.props.placeholder,
       filterOption: (option, filter) => {
-        const filterHandler =
-          this.props.filterOptions || this.filterOptions;
+        const filterHandler = this.props.filterOptions || this.filterOptions;
         return filterHandler(option, filter);
       },
       allowCreate: allowCreate,
       promptTextCreator: this.props.promptTextCreator,
       autoBlur: false,
-      isLoading:
-        this.state.extra.isDataFetching || this.props.isLoading,
-      loadingMessage: (input: string) =>
-        this.state.extra.loadingPlaceholder,
+      isLoading: this.state.extra.isDataFetching || this.props.isLoading,
+      loadingMessage: (input: string) => this.state.extra.loadingPlaceholder,
       isMulti: this.props.multiple,
       isClearable: this.props.allowClear,
       isDisabled: this.props.disabled,
@@ -774,8 +646,7 @@ export default class UpSelect extends BaseControlComponent<
       formatGroupLabel: this.props.formatGroupLabel,
       formatOptionLabel: this.props.formatOptionLabel,
       isOptionDisabled: this.props.isOptionDisabled,
-      isOptionSelected:
-        this.props.isOptionSelected || this.defaultIsOptionIsSelected,
+      isOptionSelected: this.props.isOptionSelected || this.defaultIsOptionIsSelected,
       isRtl: this.props.isRtl,
       isSearchable: this.props.isSearchable,
       minMenuHeight: this.props.minMenuHeight,
@@ -810,30 +681,22 @@ export default class UpSelect extends BaseControlComponent<
         className={classnames('up-select-label', {
           'up-select-label-focused': !!this.state.extra.menuIsOpen,
           'up-select-label-valued': !!value,
-        })}>
+        })}
+      >
         {floatingLabel}
-        {this.props.isRequired ? (
-          <UpLigne className="up-select-label-star">*</UpLigne>
-        ) : (
-          ''
-        )}
+        {this.props.isRequired ? <UpLigne className="up-select-label-star">*</UpLigne> : ''}
       </label>
     );
 
     return (
       <div
-        className={classnames(
-          this.props.className,
-          getLabelStyle(this.props),
-          'up-select-wrapper'
-        )}
-        {...getTestableComponentProps(this.props)}>
+        className={classnames(this.props.className, getLabelStyle(this.props), 'up-select-wrapper')}
+        {...getTestableComponentProps(this.props)}
+      >
         {dataSource != null && allowCreate === true && (
           <>
             {FloatingLabel}
-            <AsyncCreatableSelect
-              {...(selectComponentProps as any)}
-            />
+            <AsyncCreatableSelect {...(selectComponentProps as any)} />
           </>
         )}
         {dataSource != null && allowCreate === false && (
@@ -858,15 +721,8 @@ export default class UpSelect extends BaseControlComponent<
     );
   }
 
-  onChange = (
-    name: string,
-    value: OnChangeValue<object, boolean>,
-    action: ActionMeta<object>
-  ) => {
+  onChange = (name: string, value: OnChangeValue<object, boolean>, action: ActionMeta<object>) => {
     this.setValue(value);
-    this.handleChangeEvent(
-      eventFactory(name || this.props.name, value),
-      value
-    );
+    this.handleChangeEvent(eventFactory(name || this.props.name, value), value);
   };
 }

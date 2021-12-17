@@ -12,16 +12,10 @@ module.exports = {
     reactDocgen: 'react-docgen-typescript',
     reactDocgenTypescriptOptions: {
       shouldExtractLiteralValuesFromEnum: true,
-      propFilter: prop =>
-        prop.parent
-          ? !/node_modules/.test(prop.parent.fileName)
-          : true,
+      propFilter: prop => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
     },
   },
-  stories: [
-    '../docs/**/*.story.@(ts|md)x',
-    '../src/**/*.stories.tsx',
-  ],
+  stories: ['../docs/**/*.story.@(ts|md)x', '../src/**/*.stories.tsx'],
   addons: [
     {
       name: '@storybook/addon-docs',
@@ -36,14 +30,9 @@ module.exports = {
   ],
   webpackFinal: async config => {
     config.resolve.alias.ui = path.resolve(ROOT_PATH, 'src/');
-    config.resolve.alias.icons = path.resolve(
-      ROOT_PATH,
-      'src/theming/icons'
-    );
+    config.resolve.alias.icons = path.resolve(ROOT_PATH, 'src/theming/icons');
 
-    config.module.rules = config.module.rules.filter(
-      r => r.test.toString() !== /\.css$/.toString()
-    );
+    config.module.rules = config.module.rules.filter(r => r.test.toString() !== /\.css$/.toString());
     config.resolve.extensions.push('.ts', '.tsx', '.js', '.jsx');
 
     config.module.rules.push({
@@ -78,13 +67,8 @@ module.exports = {
     });
 
     config.module.rules = config.module.rules.map(data => {
-      if (
-        /svg\|/.test(
-          String(data.test) || data.toString().includes('ttf')
-        )
-      )
-        data.test =
-          /\.(ico|jpg|jpeg|png|gif|webp|cur|ani|pdf)(\?.*)?$/;
+      if (/svg\|/.test(String(data.test) || data.toString().includes('ttf')))
+        data.test = /\.(ico|jpg|jpeg|png|gif|webp|cur|ani|pdf)(\?.*)?$/;
 
       return data;
     });
@@ -97,22 +81,19 @@ module.exports = {
 
     config.module.rules.push({
       test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-      loader:
-        'url-loader?name=fonts/[hash].[ext]&limit=10000&mimetype=application/font-woff',
+      loader: 'url-loader?name=fonts/[hash].[ext]&limit=10000&mimetype=application/font-woff',
       include: path.resolve(__dirname, '../'),
     });
 
     config.module.rules.push({
       test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-      loader:
-        'url-loader?name=fonts/[hash].[ext]&limit=10000&mimetype=application/font-woff',
+      loader: 'url-loader?name=fonts/[hash].[ext]&limit=10000&mimetype=application/font-woff',
       include: path.resolve(__dirname, '../'),
     });
 
     config.module.rules.push({
       test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-      loader:
-        'url-loader?name=fonts/[hash].[ext]&limit=10000&mimetype=application/octet-stream',
+      loader: 'url-loader?name=fonts/[hash].[ext]&limit=10000&mimetype=application/octet-stream',
       include: path.resolve(__dirname, '../'),
     });
 

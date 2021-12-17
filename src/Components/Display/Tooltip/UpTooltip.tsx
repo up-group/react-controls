@@ -8,106 +8,93 @@ import UpDefaultTheme, { withTheme, WithThemeProps } from '../../../Common/themi
 import { UpTooltipProps } from './types';
 
 class UpTooltip extends Component<UpTooltipProps & WithThemeProps> {
+  public static defaultProps: UpTooltipProps & WithThemeProps = {
+    content: '',
+    place: 'right',
+    effect: 'float',
+    type: 'light',
+    multiline: false,
+    html: false,
+    delayHide: 500,
+    delayShow: 500,
+    disable: false,
+    theme: UpDefaultTheme,
+  };
 
-    public static defaultProps: UpTooltipProps & WithThemeProps = {
-        content: '',
-        place: 'right',
-        effect: 'float',
-        type: 'light',
-        multiline: false,
-        html: false,
-        delayHide: 500,
-        delayShow: 500,
-        disable: false,
-        theme: UpDefaultTheme,
-    };
+  constructor(props: UpTooltipProps) {
+    super(props);
+  }
 
-    constructor(props: UpTooltipProps) {
-        super(props);
-    };
+  componentDidUpdate() {
+    ReactTooltip.rebuild();
+  }
 
-    componentDidUpdate(){
-        ReactTooltip.rebuild();
-    };
+  getContent = () => {
+    return (
+      <div className="up-tooltip-content">
+        {this.props.title != null && <div className="up-tooltip-header">{this.props.title}</div>}
+        <div className="up-tooltip-body">{this.props.content}</div>
+      </div>
+    );
+  };
 
-    getContent = () => {
-        return (
-            <div className='up-tooltip-content'>
-                {this.props.title != null &&
-                    <div className='up-tooltip-header'>
-                        {this.props.title}
-                    </div>
-                }
-                <div className='up-tooltip-body'>
-                    {this.props.content}
-                </div>
-            </div>
-        )
-    };
+  render() {
+    const { id, children, content, type, ...others } = this.props;
 
-    render() {
-        const {
-            id,
-            children,
-            content,
-            type,
-            ...others
-        } = this.props;
+    let tooltipId = id;
+    if (!tooltipId) {
+      tooltipId = generateId();
+    }
 
-        let tooltipId = id;
-        if (!tooltipId) {
-            tooltipId = generateId();
-        };
+    let childrenWithProps = null;
+    let childrenAsFunction = null;
 
-        let childrenWithProps = null;
-        let childrenAsFunction = null;
-
-        if (children != null && isFunction(children)) {
-            childrenAsFunction = children as (value: UpTooltipProps) => JSX.Element;
+    if (children != null && isFunction(children)) {
+      childrenAsFunction = children as (value: UpTooltipProps) => JSX.Element;
+    } else {
+      childrenWithProps = React.Children.map(children, function (child) {
+        if (React.isValidElement(child)) {
+          return React.cloneElement(child as React.ReactElement<any>, {
+            dataFor: tooltipId,
+            // ,'data-event': 'click',
+            // 'data-event-off': 'dblclick'
+          });
         } else {
-            childrenWithProps = React.Children.map(children, function (child) {
-                if (React.isValidElement(child)) {
-                    return React.cloneElement(child as React.ReactElement<any>, {
-                        'dataFor': tooltipId
-                        // ,'data-event': 'click',
-                        // 'data-event-off': 'dblclick'
-                    });
-                } else {
-                    return child;
-                }
-            });
-        };
+          return child;
+        }
+      });
+    }
 
-        const renderChildren = (
-            <>
-                {childrenWithProps && childrenWithProps}
-                {childrenAsFunction &&
-                    childrenAsFunction({
-                        id: tooltipId,
-                    })}
-            </>
-        );
+    const renderChildren = (
+      <>
+        {childrenWithProps && childrenWithProps}
+        {childrenAsFunction &&
+          childrenAsFunction({
+            id: tooltipId,
+          })}
+      </>
+    );
 
-        if (isEmpty(content)) {
-            return renderChildren;
-        };
+    if (isEmpty(content)) {
+      return renderChildren;
+    }
 
-        return (
-            <div className={upToolTipWrapper}>
-                {renderChildren}
-                <ReactTooltip
-                    offset={this.props.place === 'bottom' ? { right: 85, top: 5 } : {}}
-                    className={classnames('up-tooltip', getStyles(this.props))}
-                    id={tooltipId}
-                    getContent={this.getContent}
-                    eventOff='click'
-                    globalEventOff='click'
-                    {...others}
-                />
-            </div>
-        );
-    };
-};
+    return (
+      <div className={upToolTipWrapper}>
+        {renderChildren}
+        <ReactTooltip
+          offset={this.props.place === 'bottom' ? { right: 85, top: 5 } : {}}
+          className={classnames('up-tooltip', getStyles(this.props))}
+          id={tooltipId}
+          getContent={this.getContent}
+          eventOff="click"
+          globalEventOff="click"
+          {...others}
+        />
+      </div>
+    );
+  }
+}
 
 export { UpTooltip };
 export default withTheme<UpTooltipProps>(UpTooltip);

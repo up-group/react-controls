@@ -1,22 +1,12 @@
 import React from 'react';
-import {
-  act,
-  cleanup,
-  fireEvent,
-  render,
-  screen,
-} from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import UpToast from '../UpToast';
 import { ThemeProvider as UpThemeProvider } from '../../../../Common/theming/ThemeProvider';
 import UpDefaultTheme from '../../../../Common/theming';
 import UpLigne from '../../../Display/Ligne';
 
-const whithTheme = component => (
-  <UpThemeProvider theme={UpDefaultTheme}>
-    {component}
-  </UpThemeProvider>
-);
+const whithTheme = component => <UpThemeProvider theme={UpDefaultTheme}>{component}</UpThemeProvider>;
 const renderComponent = component => render(whithTheme(component));
 
 afterEach(cleanup);
@@ -37,9 +27,7 @@ describe('Tests for UpToast', () => {
   });
 
   it('should render icon close if title is provided', () => {
-    const { container } = renderComponent(
-      <UpToast title={'Notice of operation'} />
-    );
+    const { container } = renderComponent(<UpToast title={'Notice of operation'} />);
 
     expect(container.querySelector('.up-toast-close')).not.toBeNull();
   });
@@ -53,19 +41,13 @@ describe('Tests for UpToast', () => {
   it('should not render content if message or children are not provided', () => {
     const { container } = renderComponent(<UpToast />);
 
-    expect(
-      container.querySelector('.up-toast-body').childElementCount
-    ).toBe(0);
+    expect(container.querySelector('.up-toast-body').childElementCount).toBe(0);
   });
 
   it('should render message if it is provided', () => {
-    renderComponent(
-      <UpToast message={'operation is executed successfully'} />
-    );
+    renderComponent(<UpToast message={'operation is executed successfully'} />);
 
-    const element = screen.getByText(
-      'operation is executed successfully'
-    );
+    const element = screen.getByText('operation is executed successfully');
     expect(element).toBeInTheDocument();
     expect(element).toHaveClass('up-notification-message');
   });
@@ -77,13 +59,8 @@ describe('Tests for UpToast', () => {
       </UpToast>
     );
 
-    const element = container.querySelector(
-      '.up-notification-message'
-    );
-    expect(element).toContainHTML(
-      '<p>operation is executed successfully</p>'
-    );
+    const element = container.querySelector('.up-notification-message');
+    expect(element).toContainHTML('<p>operation is executed successfully</p>');
     expect(element).toHaveClass('up-notification-message');
   });
 });
-

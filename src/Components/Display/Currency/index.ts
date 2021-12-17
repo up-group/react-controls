@@ -1,3 +1,3 @@
-import UpCurrency from './UpCurrency'
+import UpCurrency from './UpCurrency';
 
-export default UpCurrency
+export default UpCurrency;

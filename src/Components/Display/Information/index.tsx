@@ -1,4 +1,4 @@
-// Imports 
-import UpInformation from './UpInformation'
+// Imports
+import UpInformation from './UpInformation';
 
-export default UpInformation
+export default UpInformation;

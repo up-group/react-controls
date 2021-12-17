@@ -5,54 +5,34 @@ import UpInformation from '../UpInformation';
 
 describe('Tests for UpInformation', () => {
   it('should render expected title in span tag', () => {
-    render(
-      <UpInformation title={'Informations'} iconName={'wink-grey'} />
-    );
+    render(<UpInformation title={'Informations'} iconName={'wink-grey'} />);
 
     expect(screen.getByText('Informations').nodeName).toBe('SPAN');
-    expect(screen.getByText('Informations')).toHaveClass(
-      'up-information-title'
-    );
+    expect(screen.getByText('Informations')).toHaveClass('up-information-title');
   });
 
   it('should not render title if iconName is not provided', () => {
-    const { container } = render(
-      <UpInformation title={'Informations'} />
-    );
+    const { container } = render(<UpInformation title={'Informations'} />);
 
-    expect(
-      container.querySelector('.up-information-title')
-    ).toBeNull();
+    expect(container.querySelector('.up-information-title')).toBeNull();
   });
 
   it('should not render title if title is not provided', () => {
-    const { container } = render(
-      <UpInformation iconName={'warning'} />
-    );
+    const { container } = render(<UpInformation iconName={'warning'} />);
 
-    expect(
-      container.querySelector('.up-information-title')
-    ).toBeNull();
+    expect(container.querySelector('.up-information-title')).toBeNull();
   });
 
   it('should render expected content', () => {
     const { container } = render(
-      <UpInformation
-        title={'Informations'}
-        iconName={'wink-grey'}
-        content={'UpInformation content'}
-      />
+      <UpInformation title={'Informations'} iconName={'wink-grey'} content={'UpInformation content'} />
     );
 
-    expect(
-      container.querySelector('.up-box-content')
-    ).toHaveTextContent('UpInformation content');
+    expect(container.querySelector('.up-box-content')).toHaveTextContent('UpInformation content');
   });
 
   it('should not render action button if action is not provided', () => {
-    const { container } = render(
-      <UpInformation title={'Informations'} iconName={'wink-grey'} />
-    );
+    const { container } = render(<UpInformation title={'Informations'} iconName={'wink-grey'} />);
 
     expect(container.querySelector('button')).toBeNull();
   });
@@ -68,8 +48,6 @@ describe('Tests for UpInformation', () => {
     );
 
     expect(container.querySelector('button')).toBeTruthy();
-    expect(container.querySelector('button').textContent).toBe(
-      'Continuer'
-    );
+    expect(container.querySelector('button').textContent).toBe('Continuer');
   });
 });

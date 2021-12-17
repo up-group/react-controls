@@ -1,5 +1,5 @@
-import * as React from "react";
-import UpDefaultTheme from "./defaultTheme";
+import * as React from 'react';
+import UpDefaultTheme from './defaultTheme';
 
 /**
  * `createContext` contient 2 propriétés :

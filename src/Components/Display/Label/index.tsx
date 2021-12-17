@@ -1,3 +1,3 @@
-﻿import UpLabel from './UpLabel'
+﻿import UpLabel from './UpLabel';
 
-export default UpLabel
+export default UpLabel;

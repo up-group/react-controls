@@ -47,25 +47,14 @@ const getStyle = (props: WithThemeProps) => {
   );
 };
 
-const UpDataGridHeader = (
-  props: UpDataGridHeaderProps & WithThemeProps
-) => {
+const UpDataGridHeader = (props: UpDataGridHeaderProps & WithThemeProps) => {
   const { title, theme, buttons, buttonExport } = props;
 
   const renderTitle = () =>
-    title &&
-    (typeof title === 'string' ? (
-      <p className={classnames('header-title')}>{title}</p>
-    ) : (
-      title
-    ));
+    title && (typeof title === 'string' ? <p className={classnames('header-title')}>{title}</p> : title);
 
   return (
-    <div
-      className={classnames(
-        'up-data-grid-header',
-        getStyle({ theme })
-      )}>
+    <div className={classnames('up-data-grid-header', getStyle({ theme }))}>
       {renderTitle()}
       {(buttons || buttonExport) && (
         <div>

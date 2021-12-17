@@ -4,34 +4,31 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { getRootContainer } from '../../../Common/stories';
 
 export default {
-    title: 'Components/Inputs/UpRating',
-    decorators: [withKnobs, getRootContainer('UpRating')],
-    component: UpRatingComponent
+  title: 'Components/Inputs/UpRating',
+  decorators: [withKnobs, getRootContainer('UpRating')],
+  component: UpRatingComponent,
 };
 
-export const General =
-    () => (
-        <UpRating
-            data-testid="UpRating"
-            onChange={console.log}
-            name={"rating"}
-            numberOfStars={5}
-            max={5}
-        />
-    );
+export const General = () => (
+  <UpRating data-testid="UpRating" onChange={console.log} name={'rating'} numberOfStars={5} max={5} />
+);
 
-General.decorators = [(General) => <div style={{ padding: "30px" }}><General /></div>];
+General.decorators = [
+  General => (
+    <div style={{ padding: '30px' }}>
+      <General />
+    </div>
+  ),
+];
 
-export const DisabledStars =
-    () => (
-        <UpRating
-            onChange={console.log}
-            name={"rating"}
-            numberOfStars={5}
-            max={5}
-            value={2}
-            disabled
-        />
-    );
+export const DisabledStars = () => (
+  <UpRating onChange={console.log} name={'rating'} numberOfStars={5} max={5} value={2} disabled />
+);
 
-DisabledStars.decorators = [(DisabledStars) => <div style={{ padding: "30px" }}><DisabledStars /></div>];
+DisabledStars.decorators = [
+  DisabledStars => (
+    <div style={{ padding: '30px' }}>
+      <DisabledStars />
+    </div>
+  ),
+];

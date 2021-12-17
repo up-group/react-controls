@@ -1,21 +1,12 @@
 import React from 'react';
-import {
-  cleanup,
-  fireEvent,
-  render,
-  screen,
-} from '@testing-library/react';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import UpBadge from '../UpBadge';
 import { ThemeProvider as UpThemeProvider } from '../../../../Common/theming/ThemeProvider';
 import UpDefaultTheme from '../../../../Common/theming';
 import { style } from 'typestyle';
 
-const whithTheme = component => (
-  <UpThemeProvider theme={UpDefaultTheme}>
-    {component}
-  </UpThemeProvider>
-);
+const whithTheme = component => <UpThemeProvider theme={UpDefaultTheme}>{component}</UpThemeProvider>;
 const renderComponent = component => render(whithTheme(component));
 
 afterEach(cleanup);
@@ -31,15 +22,11 @@ describe('Tests for UpBadge', () => {
     renderComponent(<UpBadge text="1" />);
 
     const badgeClasses = screen.getByText('1').className;
-    expect(
-      badgeClasses.replace('up-badge', '').length
-    ).toBeGreaterThan(0);
+    expect(badgeClasses.replace('up-badge', '').length).toBeGreaterThan(0);
   });
 
   it('should pass class as props', () => {
-    renderComponent(
-      <UpBadge text="1" className={style({ margin: 10 })} />
-    );
+    renderComponent(<UpBadge text="1" className={style({ margin: 10 })} />);
 
     const badgeClasses = screen.getByText('1').className.split(' ');
     expect(badgeClasses.length).toBe(3);

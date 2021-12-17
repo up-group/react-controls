@@ -5,11 +5,7 @@ import { ThemeProvider as UpThemeProvider } from '../../../../Common/theming/The
 import UpDefaultTheme from '../../../../Common/theming';
 import { General } from '../index.stories';
 
-const whithTheme = component => (
-  <UpThemeProvider theme={UpDefaultTheme}>
-    {component}
-  </UpThemeProvider>
-);
+const whithTheme = component => <UpThemeProvider theme={UpDefaultTheme}>{component}</UpThemeProvider>;
 
 const renderComponent = component => render(whithTheme(component));
 

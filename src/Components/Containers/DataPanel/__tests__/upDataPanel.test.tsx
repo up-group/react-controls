@@ -1,21 +1,12 @@
 import React from 'react';
-import {
-  render,
-  fireEvent,
-  screen,
-  cleanup,
-} from '@testing-library/react';
+import { render, fireEvent, screen, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import UpDataPanel from '../UpDataPanel';
 import { ThemeProvider as UpThemeProvider } from '../../../../Common/theming/ThemeProvider';
 import UpDefaultTheme from '../../../../Common/theming';
 import { style } from 'typestyle';
 
-const whithTheme = component => (
-  <UpThemeProvider theme={UpDefaultTheme}>
-    {component}
-  </UpThemeProvider>
-);
+const whithTheme = component => <UpThemeProvider theme={UpDefaultTheme}>{component}</UpThemeProvider>;
 const renderComponent = component => render(whithTheme(component));
 
 afterEach(cleanup);
@@ -40,8 +31,7 @@ const columns = [
     field: 'second_label',
     label: 'Second Label',
     tooltip: {
-      content:
-        'Explication status activation monétique quand on clique sur le picto',
+      content: 'Explication status activation monétique quand on clique sur le picto',
     },
   },
   {
@@ -68,33 +58,21 @@ const columns = [
 
 describe('Tests for UpPanel', () => {
   it('should show the expected number of columns', () => {
-    const { container } = renderComponent(
-      <UpDataPanel data={data} columns={columns} />
-    );
+    const { container } = renderComponent(<UpDataPanel data={data} columns={columns} />);
 
     expect(container.querySelectorAll('.panel-col')).toHaveLength(7);
   });
 
   it('should not display empty columns', () => {
-    const { container } = renderComponent(
-      <UpDataPanel
-        data={data}
-        columns={columns}
-        showOnlyNotEmptyValue={true}
-      />
-    );
+    const { container } = renderComponent(<UpDataPanel data={data} columns={columns} showOnlyNotEmptyValue={true} />);
 
     expect(container.querySelectorAll('.panel-col')).toHaveLength(6);
   });
 
   it('should not show title by default', () => {
-    const { container } = renderComponent(
-      <UpDataPanel data={data} columns={columns} />
-    );
+    const { container } = renderComponent(<UpDataPanel data={data} columns={columns} />);
 
-    expect(
-      container.querySelector('.panel-title')
-    ).not.toBeInTheDocument();
+    expect(container.querySelector('.panel-title')).not.toBeInTheDocument();
   });
 
   it('should show a customized title', () => {
@@ -102,11 +80,11 @@ describe('Tests for UpPanel', () => {
       format: data => (
         <span
           style={{
-            color:
-              data['first_label'] == 'value 1' ? 'orange' : 'red',
+            color: data['first_label'] == 'value 1' ? 'orange' : 'red',
             fontWeight: 'bold',
             marginLeft: '4px',
-          }}>
+          }}
+        >
           {data['first_label']}
         </span>
       ),
@@ -123,15 +101,9 @@ describe('Tests for UpPanel', () => {
       />
     );
 
-    expect(
-      container.querySelector('.panel-title')
-    ).toBeInTheDocument();
-    expect(
-      container.querySelector('.panel-title-general')
-    ).toHaveTextContent('Gestion technique');
-    expect(
-      container.querySelector('.panel-title-specific')
-    ).toContainHTML(
+    expect(container.querySelector('.panel-title')).toBeInTheDocument();
+    expect(container.querySelector('.panel-title-general')).toHaveTextContent('Gestion technique');
+    expect(container.querySelector('.panel-title-specific')).toContainHTML(
       '<span style="color: orange; font-weight: bold; margin-left: 4px;">value 1</span>'
     );
   });
@@ -142,14 +114,12 @@ describe('Tests for UpPanel', () => {
         data={data}
         columns={columns}
         getColumnCustomClassName={field => {
-          if (field === 'first_label')
-            return style({ display: 'none' });
+          if (field === 'first_label') return style({ display: 'none' });
         }}
       />
     );
 
-    const element =
-      screen.getByText('value 1').parentElement.className;
+    const element = screen.getByText('value 1').parentElement.className;
     const lengthOfClassName = element.split(' ').length;
     expect(lengthOfClassName).toBe(2);
   });
@@ -205,23 +175,18 @@ describe('Tests for UpPanel', () => {
         <span
           className={style({
             color: 'orange',
-          })}>
+          })}
+        >
           {item[column.field]}
         </span>
       ),
     };
 
     renderComponent(
-      <UpDataPanel
-        data={data}
-        columns={columns.map((e, i) =>
-          i === 0 ? { ...e, formatter } : { ...e }
-        )}
-      />
+      <UpDataPanel data={data} columns={columns.map((e, i) => (i === 0 ? { ...e, formatter } : { ...e }))} />
     );
 
-   
- const element = screen.getByText('value 1');
+    const element = screen.getByText('value 1');
     expect(element.className).not.toBe('panel-col-value');
   });
 

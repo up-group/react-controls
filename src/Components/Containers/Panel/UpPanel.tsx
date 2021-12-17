@@ -3,48 +3,26 @@ import { UpPanelProps } from './types';
 import UpSvgIcon from '../../Display/SvgIcon';
 import classnames from 'classnames';
 import { getStyles } from './styles';
-import withTheme, {
-  WithThemeProps,
-} from '../../../Common/theming/withTheme';
+import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import { UpGrid, UpCol, UpRow } from '../Grid';
 
-const UpPanel: React.FunctionComponent<
-  UpPanelProps & WithThemeProps
-> = props => {
-  const {
-    type,
-    children,
-    message,
-    iconName,
-    iconSize,
-    title,
-    footer,
-    disableAutoIntentIcon,
-    theme,
-    className,
-  } = props;
+const UpPanel: React.FunctionComponent<UpPanelProps & WithThemeProps> = props => {
+  const { type, children, message, iconName, iconSize, title, footer, disableAutoIntentIcon, theme, className } = props;
 
   const resolvedIconName =
-    !iconName && !disableAutoIntentIcon && theme.intentTypeIcons
-      ? theme.intentTypeIcons[type]
-      : iconName;
+    !iconName && !disableAutoIntentIcon && theme.intentTypeIcons ? theme.intentTypeIcons[type] : iconName;
 
   const icon = (
     <UpSvgIcon
       iconName={resolvedIconName}
       width={iconSize}
       height={iconSize}
-      color={
-        theme && theme.colorMap
-          ? theme.colorMap[type]
-          : theme.colorMap.defaultDark
-      }
+      color={theme && theme.colorMap ? theme.colorMap[type] : theme.colorMap.defaultDark}
     />
   );
 
   return (
-    <div
-      className={classnames('up-panel', className, getStyles(props))}>
+    <div className={classnames('up-panel', className, getStyles(props))}>
       {title && <div className="up-panel_header">{title}</div>}
       <UpGrid className="up-panel_body">
         <UpRow justify={'center'} align={'middle'}>
@@ -57,9 +35,7 @@ const UpPanel: React.FunctionComponent<
           </UpCol>
         </UpRow>
       </UpGrid>
-      {props.footer && (
-        <div className="up-panel_footer">{footer}</div>
-      )}
+      {props.footer && <div className="up-panel_footer">{footer}</div>}
     </div>
   );
 };

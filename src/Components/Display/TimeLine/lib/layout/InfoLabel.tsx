@@ -1,19 +1,14 @@
-import * as React from 'react'
+import * as React from 'react';
 //import shouldPureComponentUpdate from 'react-pure-render/function'
 
 export default class InfoLabel extends React.Component<any, any> {
+  static defaultProps = {
+    label: '',
+  };
 
-    static defaultProps = {
-        label: ''
-    }
+  // shouldComponentUpdate = shouldPureComponentUpdate;
 
-   // shouldComponentUpdate = shouldPureComponentUpdate;
-
-    render() {
-        return (
-            <div className='rct-infolabel'>
-                {this.props.label}
-            </div>
-        )
-    }
+  render() {
+    return <div className="rct-infolabel">{this.props.label}</div>;
+  }
 }
