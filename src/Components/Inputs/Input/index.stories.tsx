@@ -1,7 +1,7 @@
 import * as React from 'react';
 import UpInput, { UpInput as UpInputContainer } from './UpInput';
 import { getRootContainer } from '../../../Common/stories';
-import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+import { withKnobs, text, boolean } from '@storybook/addon-knobs';
 import UpLabel from '../../Display/Label';
 import { UpGrid, UpRow, UpCol } from '../../Containers/Grid';
 import UpForm from '../../Containers/Form/UpForm';
@@ -37,7 +37,7 @@ const EmailForm = props => {
       },
     });
 
-  const { values, touched, errors, dirty, isSubmitting, handleChange, handleBlur, handleSubmit, handleReset } = props;
+  const { values, errors, dirty, handleChange, handleBlur, handleSubmit } = props;
 
   return (
     <form onSubmit={handleSubmit}>

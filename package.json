@@ -42,7 +42,7 @@
       "\\.(css|less)$": "<rootDir>/config/testing/__mocks__/styleMock.js"
     },
     "testPathIgnorePatterns": [
-      "<rootDir>/(build|docs|node_modules|e2e|dist|generators)/",
+      "<rootDir>/(build|docs|node_modules|dist|generators)/",
       "/__mocks__/"
     ],
     "transform": {
@@ -71,8 +71,9 @@
     "build-test-watch": "npm run clean && webpack --watch",
     "publishLocalToSchemaForm": "copyfiles dist/*.* dist/**/* package.json src/*.* src/**/* src/theming/icons/* ../react-schemaform/node_modules/@up-group/react-controls/",
     "publishLocalToApp": "copyfiles dist/src/*.* dist/src/**/* src/theming/icons/* ../../loopback/revolution-digitale/client/node_modules/@up-group/react-controls/dist",
-    "test": "jest --notify --coverage --detectOpenHandles",
-    "test:watch": "jest --notify --coverage --detectOpenHandles --watch",
+    "test": "jest --notify --detectOpenHandles",
+    "test:coverage": "npm run test -- --coverage",
+    "test:watch": "npm run test -- --watch",
     "start": "cross-env NODE_OPTIONS='--openssl-legacy-provider' start-storybook -p 6006",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -o ./public",
@@ -160,7 +161,6 @@
     "svg-inline-loader": "^0.8.0",
     "ts-jest": "^26.2.0",
     "ts-loader": "8.2.0",
-    "tslint": "^6.1.0",
     "tslint-config-airbnb": "^5.11.0",
     "tslint-eslint-rules": "^5.4.0",
     "tslint-react-hooks": "^2.2.2",

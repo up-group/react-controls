@@ -1,5 +1,7 @@
 # React-Controls
 
+[![CI](https://github.com/up-group/react-controls/actions/workflows/main.yml/badge.svg?branch=v2.17.0)](https://github.com/up-group/react-controls/actions/workflows/main.yml)
+
 ## Background Info
 
 We know that there are a ton of react UI library projects to choose from. Our hope with this one is to provide the next generation of react components that you can use to bootstrap your next project, or as a reference for building a UIKit.
