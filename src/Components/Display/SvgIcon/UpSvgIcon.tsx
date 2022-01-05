@@ -45,11 +45,8 @@ const getStyles = (props: SvgIconWrapperProps): string => {
     width: `${props.width}`,
     height: `${props.height}`,
     margin: '1px',
-    $nest: {
-      '& svg': {
-        pointerEvents: 'none',
-      },
-    },
+    pointerEvents: 'none',
+    $nest: {},
   };
   if (props.color) {
     styles['$nest'] = {
