@@ -38,7 +38,6 @@ export interface CommonProps<VT> extends CommonInputTextProps<VT> {
     width?: WidthSize;
     readonly?: boolean;
     tooltip?: string | Tooltip;
-    showError?: boolean;
     showSuccess?: boolean;
     iconName?: IconName;
     iconPosition?: InputIconPosition;
