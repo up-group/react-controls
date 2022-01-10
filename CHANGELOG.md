@@ -1,3 +1,7 @@
+#  ReactControls (version: 0.2.172)
+## Main Changes
+- Form fields : improve error handling
+
 #  ReactControls (version: 0.2.171)
 ## Main Changes
 - UpIcon : Add icons circle-check and circle-play
