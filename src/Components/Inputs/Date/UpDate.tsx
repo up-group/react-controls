@@ -68,7 +68,8 @@ class UpDate extends BaseControlComponent<UpDateProps & WithThemeProps, Moment> 
     };
 
     showError() {
-        return this.props.showError !== undefined ? this.props.showError === true : this.hasError;
+        return this.props.showError !== undefined ? typeof this.props.showError === "function" ? this.props.showError(this.state) : this.props.showError === true 
+            : this.hasError;
     };
 
     showSuccess() {
