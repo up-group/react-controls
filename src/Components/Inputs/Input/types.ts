@@ -1,6 +1,5 @@
 import { Tooltip } from '../../Display/Tooltip';
 import { IconName } from '../../../Common/theming/icons';
-import { WithThemeProps } from '../../../Common/theming/withTheme';
 import { CommonInputTextProps } from '../_Common/BaseControl/BaseInput';
 import { InputIconPosition } from '../_Common/Styled/Input/types';
 
@@ -32,20 +31,20 @@ export interface UpInputStyledProps extends CommonProps<string> {
 }
 
 export interface CommonProps<VT> extends CommonInputTextProps<VT> {
-    disabled?: boolean;
-    placeholder?: string;
-    height?: HeightSize;
-    width?: WidthSize;
-    readonly?: boolean;
-    tooltip?: string | Tooltip;
-    showSuccess?: boolean;
-    iconName?: IconName;
-    iconPosition?: InputIconPosition;
-    rounded?: boolean;
-    autocomplete?: string;
-    id?: string;
-    autoFocus?: boolean;
-};
+  disabled?: boolean;
+  placeholder?: string;
+  height?: HeightSize;
+  width?: WidthSize;
+  readonly?: boolean;
+  tooltip?: string | Tooltip;
+  showSuccess?: boolean;
+  iconName?: IconName;
+  iconPosition?: InputIconPosition;
+  rounded?: boolean;
+  autocomplete?: string;
+  id?: string;
+  autoFocus?: boolean;
+}
 
 export interface UpInputProps extends CommonProps<string> {
   type?: InputType;

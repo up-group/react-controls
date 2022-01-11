@@ -169,8 +169,10 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
 
   public showError() {
     return this.props.showError !== undefined
-            ? typeof this.props.showError === "function" ? (this.props.showError as Function)(this.state) : this.props.showError
-            : this.hasError && !this.isFocused && this.isTouched;
+      ? typeof this.props.showError === 'function'
+        ? (this.props.showError as Function)(this.state)
+        : this.props.showError
+      : this.hasError && !this.isFocused && this.isTouched;
   }
 
   showSuccess() {

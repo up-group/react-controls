@@ -107,8 +107,10 @@ export default class UpText extends BaseControlComponent<UpTextProps, string> {
 
   showError() {
     return this.props.showError !== undefined
-         ? typeof this.props.showError === "function" ? (this.props.showError as Function)(this.state) : this.props.showError === true
-         : this.hasError;
+      ? typeof this.props.showError === 'function'
+        ? (this.props.showError as Function)(this.state)
+        : this.props.showError === true
+      : this.hasError;
   }
 
   showSuccess() {

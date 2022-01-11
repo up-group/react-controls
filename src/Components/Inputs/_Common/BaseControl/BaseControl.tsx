@@ -21,7 +21,7 @@ const ONCHANGE_MUST_BE_SPECIFIED =
 
 type RenderHelp = (children: React.ReactNode) => JSX.Element;
 
-type HandlerShowError = (state: any) => boolean ;
+type HandlerShowError = (state: any) => boolean;
 export interface BaseControlProps<_BaseType> extends TestableComponentProps, WithThemeProps {
   name?: string;
   onChange?: (event: React.ChangeEvent<any>, arg: _BaseType, error: string) => void;
@@ -57,7 +57,7 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
 
   public static defaultProps: BaseControlProps<any> = {
     theme: defaultTheme,
-    errorDisplayMode: "inline"
+    errorDisplayMode: 'inline',
   };
 
   constructor(props?: BaseControlProps<_BaseType> & _Props, context?) {
@@ -117,11 +117,7 @@ export abstract class BaseControlComponent<_Props, _BaseType> extends React.Comp
 
     if (this.isControlled) {
       this.setState({ error: result != null && result.hasError ? result.errorMessage : null });
-      this.dispatchOnChange(
-        cleanData,
-        cloneEvent,
-        result ? result.errorMessage : null
-      );
+      this.dispatchOnChange(cleanData, cloneEvent, result ? result.errorMessage : null);
     } else {
       this.setState(
         {

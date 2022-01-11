@@ -1,5 +1,4 @@
 // Imports
-import React from 'react';
 import update from 'react-addons-update';
 import classnames from 'classnames';
 import AsyncCreatableSelect from 'react-select/async-creatable';
@@ -424,8 +423,10 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
 
   showError() {
     return this.props.showError !== undefined
-        ? typeof this.props.showError === "function" ? (this.props.showError as Function)(this.state) : this.props.showError === true
-        : this.hasError;
+      ? typeof this.props.showError === 'function'
+        ? (this.props.showError as Function)(this.state)
+        : this.props.showError === true
+      : this.hasError;
   }
 
   showSuccess() {
