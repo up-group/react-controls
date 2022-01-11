@@ -1,3 +1,7 @@
+#  ReactControls (version: 0.2.172)
+## Main Changes
+- Form fields : improve error handling
+
 # ReactControls (version: 2.17.0)
 
 - upgrading react 16 to 17

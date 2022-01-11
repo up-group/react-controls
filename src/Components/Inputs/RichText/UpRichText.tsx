@@ -46,7 +46,9 @@ export default class UpRichText extends BaseControlComponent<UpRichTextProps, st
   }
 
   showError() {
-    return this.props.showError !== undefined ? this.props.showError === true : this.hasError;
+    return this.props.showError !== undefined
+         ? typeof this.props.showError === "function" ? (this.props.showError as Function)(this.state) : this.props.showError === true
+         : this.hasError;
   }
 
   showSuccess() {
