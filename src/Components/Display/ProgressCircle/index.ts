@@ -1,3 +1,3 @@
-import UpProgessCircle from './UpProgressCircle' ;
+import UpProgessCircle from './UpProgressCircle';
 
-export default UpProgessCircle ;
+export default UpProgessCircle;

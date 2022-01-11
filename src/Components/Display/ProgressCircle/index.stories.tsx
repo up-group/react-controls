@@ -8,43 +8,47 @@ import { getRootContainer } from '../../../Common/stories';
 import UpProgessCircle from './UpProgressCircle';
 
 export default {
-    title: 'Components/Display/UpProgessCircle',
-    decorators: [withKnobs, getRootContainer('UpProgessCircle')],
-    component: UpProgessCircle
+  title: 'Components/Display/UpProgessCircle',
+  decorators: [withKnobs, getRootContainer('UpProgessCircle')],
+  component: UpProgessCircle,
 };
 
-export const General =
-    () => {
-        const color = text('color', '#369');
-        const value = number('value', 32);
-        const size = number('size', 120);
-        const clockWise = boolean('clockWise', true);
-        const shadow = boolean('shadow', true);
-        const thickness = number('thickness', 8);
-        
-        return (
-            <UpThemeProvider theme={UpDefaultTheme}>
-                <UpBox style={{ margin: "40px 30px" }}>
-                    <UpParagraph>
-                        <UpBox
-                            flexDirection={'row'}
-                            flexWrap={true}>
-                            <dl style={{ margin: '10px' }}>
-                                <dt style={{ color: color, marginBottom: '10px' }}>{ }</dt>
-                                <dd>
-                                    <UpProgessCircle
-                                        value={value}
-                                        clockWise={clockWise}
-                                        shadow={shadow}
-                                        size={size}
-                                        thickness={thickness}
-                                        completedColor={color}
-                                    />
-                                </dd>
-                            </dl>
-                        </UpBox>
-                    </UpParagraph>
-                </UpBox>
-            </UpThemeProvider>
-        )
-    };
+export const General = () => {
+  const color = text('color', '#369');
+  const value = number('value', 32);
+  const size = number('size', 120);
+  const clockWise = boolean('clockWise', true);
+  const shadow = boolean('shadow', true);
+  const thickness = number('thickness', 8);
+
+  return (
+    <UpThemeProvider theme={UpDefaultTheme}>
+      <UpBox style={{ margin: '40px 30px' }}>
+        <UpParagraph>
+          <UpBox flexDirection={'row'} flexWrap={true}>
+            <dl style={{ margin: '10px' }}>
+              <dt
+                style={{
+                  color: color,
+                  marginBottom: '10px',
+                }}
+              >
+                {}
+              </dt>
+              <dd>
+                <UpProgessCircle
+                  value={value}
+                  clockWise={clockWise}
+                  shadow={shadow}
+                  size={size}
+                  thickness={thickness}
+                  completedColor={color}
+                />
+              </dd>
+            </dl>
+          </UpBox>
+        </UpParagraph>
+      </UpBox>
+    </UpThemeProvider>
+  );
+};

@@ -4,17 +4,17 @@ import { UpImageProps } from './UpImage';
 import { style } from 'typestyle';
 
 const imageSizeMap = {
- thumb: 50,
- xxsmall: 100,
- xsmall: 200,
- small: 300,
- medium: 400,
- large: 500,
- xlarge: 600,
- full: 1200,
+  thumb: 50,
+  xxsmall: 100,
+  xsmall: 200,
+  small: 300,
+  medium: 400,
+  large: 500,
+  xlarge: 600,
+  full: 1200,
 };
 
-export const imageStyle = ({ imageSize } : UpImageProps) : NestedCSSProperties => {
+export const imageStyle = ({ imageSize }: UpImageProps): NestedCSSProperties => {
   const sizeWithDefault = imageSize || 'small';
   const px = imageSizeMap[sizeWithDefault];
   const rem = remStringFromPx(px);
@@ -41,6 +41,4 @@ export const imageStyle = ({ imageSize } : UpImageProps) : NestedCSSProperties =
   };
 };
 
-export const getStyles = (props:UpImageProps) : string => (
-  style(imageStyle(props))
-)
+export const getStyles = (props: UpImageProps): string => style(imageStyle(props));

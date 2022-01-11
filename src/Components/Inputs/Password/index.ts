@@ -1,3 +1,3 @@
 ﻿// Imports
-import UpPassword from './UpPassword'
-export default UpPassword
+import UpPassword from './UpPassword';
+export default UpPassword;

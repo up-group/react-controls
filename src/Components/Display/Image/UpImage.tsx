@@ -11,9 +11,8 @@ export interface UpImageProps {
 }
 
 export default class UpImage extends React.Component<UpImageProps> {
-  
   public render() {
     const { src, alt } = this.props;
-    return <img src={src} alt={alt} className={getStyles(this.props)} />
+    return <img src={src} alt={alt} className={getStyles(this.props)} />;
   }
 }

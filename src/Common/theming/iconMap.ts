@@ -1,21 +1,21 @@
-import { IconName } from "./icons";
+import { IconName } from './icons';
 
 export interface IconMap {
-  success:IconName,
-  danger:IconName,
-  error:IconName,
-  warning:IconName,
-  info:IconName,
-  none:IconName
+  success: IconName;
+  danger: IconName;
+  error: IconName;
+  warning: IconName;
+  info: IconName;
+  none: IconName;
 }
 
-const iconMap : IconMap = {
+const iconMap: IconMap = {
   success: 'ok-sign',
   danger: 'close',
   error: 'close',
   warning: 'warning-sign',
-  info:'info-sign',
-  none: 'none'
+  info: 'info-sign',
+  none: 'none',
 };
 
 export default iconMap;

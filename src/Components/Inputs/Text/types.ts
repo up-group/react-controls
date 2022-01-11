@@ -1,27 +1,27 @@
-import { WithThemeProps } from "../../../Common/theming/withTheme";
+import { WithThemeProps } from '../../../Common/theming/withTheme';
 
 // Exports
 export type WidthSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'fill';
 
-export type EventHandler<T, D> =  (event: React.ChangeEvent<T>, data: D) => void;
+export type EventHandler<T, D> = (event: React.ChangeEvent<T>, data: D) => void;
 
 export interface UpTextProps extends WithThemeProps {
-    width?: WidthSize;
-    defaultValue?: string;
-    placeholder?: string;
-    disabled?: boolean;
-    showError?: boolean;
-    value?: string;
-    hasError?: boolean;
-    isRequired?: boolean;
-    name?: string;
-    className?: string;
-    dataFor?: string; // For tooltip
-    tabIndex?: number;
-    onChange?: (event: React.ChangeEvent<any>, data: string) => void;
-    readonly?: boolean;
-    maxChar?: number;
-    maxCharMsg?: string;
-    maxCharMsgShowNumber?: number;
-    forceMaxChar?: boolean;
+  width?: WidthSize;
+  defaultValue?: string;
+  placeholder?: string;
+  disabled?: boolean;
+  showError?: boolean;
+  value?: string;
+  hasError?: boolean;
+  isRequired?: boolean;
+  name?: string;
+  className?: string;
+  dataFor?: string; // For tooltip
+  tabIndex?: number;
+  onChange?: (event: React.ChangeEvent<any>, data: string) => void;
+  readonly?: boolean;
+  maxChar?: number;
+  maxCharMsg?: string;
+  maxCharMsgShowNumber?: number;
+  forceMaxChar?: boolean;
 }

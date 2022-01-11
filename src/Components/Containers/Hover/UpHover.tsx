@@ -1,36 +1,37 @@
 import * as React from 'react';
 
 export interface UpHoverProps {
-    onHoverChange: (hover: boolean) => void;
-};
+  onHoverChange: (hover: boolean) => void;
+}
 
 export interface UpHoverState {
-    hover: boolean;
-};
+  hover: boolean;
+}
 
-export default class UpHover extends React.Component<UpHoverProps, UpHoverState>{
+export default class UpHover extends React.Component<UpHoverProps, UpHoverState> {
+  state = {
+    hover: false,
+  };
 
-    state = {
-        hover: false
-    }
+  onMouseEnterHandler = () => {
+    this.setState({ hover: true }, this.onStateChange);
+  };
 
-    onMouseEnterHandler = () => {
-        this.setState({ hover: true }, this.onStateChange);
-    }
+  onMouseLeaveHandler = () => {
+    this.setState({ hover: false }, this.onStateChange);
+  };
 
-    onMouseLeaveHandler = () => {
-        this.setState({ hover: false }, this.onStateChange);
-    }
+  onStateChange = () => {
+    this.props.onHoverChange(this.state.hover);
+  };
 
-    onStateChange = () => {
-        this.props.onHoverChange(this.state.hover);
-    }
+  render() {
+    const { children } = this.props;
 
-    render() {
-        const { children } = this.props;
-
-        return <div onMouseEnter={this.onMouseEnterHandler} onMouseLeave={this.onMouseLeaveHandler}>
-            {children}
-        </div>
-    }
-};
+    return (
+      <div onMouseEnter={this.onMouseEnterHandler} onMouseLeave={this.onMouseLeaveHandler}>
+        {children}
+      </div>
+    );
+  }
+}

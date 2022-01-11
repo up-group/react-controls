@@ -1,31 +1,31 @@
-################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
 .cache/
 .vs/
 .idea/
 node_modules/
-dist/
 
 test/index.js
 test/index.js.map
 
-npm-debug.log
-dist/
+**/*/npm-debug.log
 public/
-
 
 test/*
 !test/index.html
 !test/index.tsx
 
-coverage/*
+coverage/
 *.snap
-*.snap
-*.snap
-package-lock.json
 
 src/Others
 
-e2e/cypress/
 e2e/node_modules/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+**/*/yarn-error.log
+dist/
+

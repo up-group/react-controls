@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef } from 'react';
 
 export default function useHoverIntent(onHover, onHoverOut, defer) {
   const timeout = useRef<ReturnType<typeof setTimeout>>();
@@ -16,6 +16,6 @@ export default function useHoverIntent(onHover, onHoverOut, defer) {
     onMouseLeave: () => {
       clearTimeout(timeout.current);
       onHoverOut();
-    }
+    },
   };
 }

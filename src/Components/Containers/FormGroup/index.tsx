@@ -1,3 +1,3 @@
-import UpFormGroup  from './UpFormGroup';
+import UpFormGroup from './UpFormGroup';
 
 export default UpFormGroup;

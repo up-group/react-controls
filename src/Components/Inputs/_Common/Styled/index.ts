@@ -1,42 +1,42 @@
-import { NestedCSSProperties } from "typestyle/lib/types";
-import { WithThemeProps } from "theming/withTheme";
+import { NestedCSSProperties } from 'typestyle/lib/types';
+import { WithThemeProps } from 'theming/withTheme';
 
 export const sizeMap = {
-  xxsmall: "30px",
-  xsmall: "60px",
-  small: "150px",
-  normal: "300px",
-  medium: "250px",
-  large: "350px",
-  xlarge: "400px",
-  xxlarge: "500px",
-  fill: "100%",
+  xxsmall: '30px',
+  xsmall: '60px',
+  small: '150px',
+  normal: '300px',
+  medium: '250px',
+  large: '350px',
+  xlarge: '400px',
+  xxlarge: '500px',
+  fill: '100%',
 };
 
 const boxShadow = {
   boxShadow: 'inset 0 0 0 2px rgba(245, 145, 0, 0.4), inset 0 -1px 0 rgba(245, 145, 0, 0.2)',
-}
+};
 
-export const getCheckableStyles = (props: WithThemeProps | any) : NestedCSSProperties => {
+export const getCheckableStyles = (props: WithThemeProps | any): NestedCSSProperties => {
   return {
-    position:'relative',
+    position: 'relative',
     display: 'block',
     cursor: !props.readonly && 'pointer',
     minHeight: '20px',
     paddingLeft: '26px',
     textTransform: 'none',
-    lineHeight: '16px',  
-    $nest : {
-      '& svg' : {
-        margin:'4px 4px 4px 0px',
-        display:'inline-block',
-        float:'left',
+    lineHeight: '16px',
+    $nest: {
+      '& svg': {
+        margin: '4px 4px 4px 0px',
+        display: 'inline-block',
+        float: 'left',
       },
-      '& .up-control-label' : {
+      '& .up-control-label': {
         color: '#7f8fa4',
-        fontSize:'14px',
+        fontSize: '14px',
       },
-      '& .up-control-indicator' : { 
+      '& .up-control-indicator': {
         background: '#fff',
         fontFamily: '"Icons16", sans-serif',
         fontSize: '16px',
@@ -53,128 +53,144 @@ export const getCheckableStyles = (props: WithThemeProps | any) : NestedCSSPrope
         height: '16px',
         lineHeight: '16px',
         '-webkit-user-select': 'none',
-          '-moz-user-select': 'none',
-            '-ms-user-select': 'none',
-                userSelect: 'none', 
+        '-moz-user-select': 'none',
+        '-ms-user-select': 'none',
+        userSelect: 'none',
       },
-      '&.up-checkbox .up-control-indicator' : {
-        height:'20px',
-        width:'20px' ,
+      '&.up-checkbox .up-control-indicator': {
+        height: '20px',
+        width: '20px',
         border: `2px solid ${props.theme.colorMap.disabledFg}`,
         borderRadius: '3px',
       },
-      '&.up-radio .up-control-indicator' : {
+      '&.up-radio .up-control-indicator': {
         ...boxShadow,
       },
-      '& .up-control-indicator::before' : {
+      '& .up-control-indicator::before': {
         position: 'relative',
-        content: '""', 
-        top:'2px',
+        content: '""',
+        top: '2px',
         left: '2px',
       },
-      '& input' : {
+      '& input': {
         position: 'absolute',
         top: 0,
         left: 0,
         margin: 0,
-        zIndex:0,
-        visibility:'hidden',
+        zIndex: 0,
+        visibility: 'hidden',
       },
-      '& input:checked ~ .up-control-indicator, & input:checked ~ .up-control-wrapper .up-control-indicator' : {
-        backgroundColor:  props.theme.colorMap.primary,
+      '& input:checked ~ .up-control-indicator, & input:checked ~ .up-control-wrapper .up-control-indicator': {
+        backgroundColor: props.theme.colorMap.primary,
         color: props.theme.colorMap.primaryFg,
         border: 'none',
       },
-      '&:hover input:not(:disabled) ~ .up-control-indicator' : {
-        borderColor: props.theme.colorMap.primary
+      '&:hover input:not(:disabled) ~ .up-control-indicator': {
+        borderColor: props.theme.colorMap.primary,
       },
-      '&:hover input:checked ~ .up-control-indicator, &:hover input:indeterminate ~ .up-control-indicator,&:hover input:checked ~ .up-control-wrapper .up-control-indicator, &:hover input:indeterminate ~ .up-control-wrapper .up-control-indicator' : {
-        background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ${props.theme.colorMap.primaryDark}`,
-        ...boxShadow,
-      },
-      '&.up-intent-danger input:checked ~ .up-control-indicator, &.up-intent-danger input:checked ~ .up-control-wrapper .up-control-indicator' : {
-        background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat  ${props.theme.colorMap.danger}`,
-        color: props.theme.colorMap.dangerFg,
-        ...boxShadow,
-      },
-      '&.up-intent-danger:hover .up-control-indicator' : {
-        background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ${props.theme.colorMap.dangerDark}`, 
-        color: props.theme.colorMap.dangerFg,
-      },
-      '&.up-intent-danger:hover ~ .up-control-indicator, &.up-intent-danger:hover ~ .up-control-wrapper .up-control-indicator' : {
-        background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ${props.theme.colorMap.dangerDark}` ,
-        ...boxShadow,
+      '&:hover input:checked ~ .up-control-indicator, &:hover input:indeterminate ~ .up-control-indicator,&:hover input:checked ~ .up-control-wrapper .up-control-indicator, &:hover input:indeterminate ~ .up-control-wrapper .up-control-indicator':
+        {
+          background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ${props.theme.colorMap.primaryDark}`,
+          ...boxShadow,
+        },
+      '&.up-intent-danger input:checked ~ .up-control-indicator, &.up-intent-danger input:checked ~ .up-control-wrapper .up-control-indicator':
+        {
+          background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat  ${props.theme.colorMap.danger}`,
+          color: props.theme.colorMap.dangerFg,
+          ...boxShadow,
+        },
+      '&.up-intent-danger:hover .up-control-indicator': {
+        background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ${props.theme.colorMap.dangerDark}`,
         color: props.theme.colorMap.dangerFg,
       },
-      '&.up-intent-success input:checked ~ .up-control-indicator, &.up-intent-success input:checked ~ .up-control-wrapper .up-control-indicator' : {
-        background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat  ${props.theme.colorMap.success}`,
-        ...boxShadow,
-      },
-      '&.up-intent-success:hover ~ .up-control-indicator, &.up-intent-success:hover ~ .up-control-wrapper .up-control-indicator' : {
-        background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ${props.theme.colorMap.successDark}`, 
-        color: props.theme.colorMap.successFg,
-        ...boxShadow,
-      },
-      '&.up-intent-success input:not(:disabled):active ~ .up-control-indicator, &.up-intent-success input:not(:disabled):active ~ .up-control-wrapper .up-control-indicator' : {
-        ...boxShadow,
-        background: props.theme.colorMap.success,
-        color: props.theme.colorMap.successFg,
-      },
-      '&.up-intent-success input:not(:disabled):active:checked ~ .up-control-indicator, &.up-intent-success input:not(:disabled):active:checked ~ .up-control-wrapper .up-control-indicator' : {
-        ...boxShadow,
-        background: props.theme.colorMap.success, 
-        color:   props.theme.colorMap.successFg,
-      },
-      '&.up-intent-danger input:not(:disabled):active ~ .up-control-indicator, &.up-intent-danger input:not(:disabled):active ~ .up-control-wrapper .up-control-indicator' : {
-        ...boxShadow,
-        background: props.theme.colorMap.danger,
-        color:  props.theme.colorMap.dangerFg,
-      },
-      '&.up-intent-danger input:not(:disabled):active:checked ~ .up-control-indicator, &.up-intent-danger input:not(:disabled):active:checked ~ .up-control-wrapper .up-control-indicator' : {
-        ...boxShadow,
-        background: props.theme.colorMap.danger, 
-        color: props.theme.colorMap.dangerFg,
-      },
-      '&:hover ~ .up-control-indicator ~ *, &:hover ~ .up-control-wrapper .up-control-indicator ~ *' : {
+      '&.up-intent-danger:hover ~ .up-control-indicator, &.up-intent-danger:hover ~ .up-control-wrapper .up-control-indicator':
+        {
+          background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ${props.theme.colorMap.dangerDark}`,
+          ...boxShadow,
+          color: props.theme.colorMap.dangerFg,
+        },
+      '&.up-intent-success input:checked ~ .up-control-indicator, &.up-intent-success input:checked ~ .up-control-wrapper .up-control-indicator':
+        {
+          background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat  ${props.theme.colorMap.success}`,
+          ...boxShadow,
+        },
+      '&.up-intent-success:hover ~ .up-control-indicator, &.up-intent-success:hover ~ .up-control-wrapper .up-control-indicator':
+        {
+          background: `linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)) left no-repeat, center no-repeat ${props.theme.colorMap.successDark}`,
+          color: props.theme.colorMap.successFg,
+          ...boxShadow,
+        },
+      '&.up-intent-success input:not(:disabled):active ~ .up-control-indicator, &.up-intent-success input:not(:disabled):active ~ .up-control-wrapper .up-control-indicator':
+        {
+          ...boxShadow,
+          background: props.theme.colorMap.success,
+          color: props.theme.colorMap.successFg,
+        },
+      '&.up-intent-success input:not(:disabled):active:checked ~ .up-control-indicator, &.up-intent-success input:not(:disabled):active:checked ~ .up-control-wrapper .up-control-indicator':
+        {
+          ...boxShadow,
+          background: props.theme.colorMap.success,
+          color: props.theme.colorMap.successFg,
+        },
+      '&.up-intent-danger input:not(:disabled):active ~ .up-control-indicator, &.up-intent-danger input:not(:disabled):active ~ .up-control-wrapper .up-control-indicator':
+        {
+          ...boxShadow,
+          background: props.theme.colorMap.danger,
+          color: props.theme.colorMap.dangerFg,
+        },
+      '&.up-intent-danger input:not(:disabled):active:checked ~ .up-control-indicator, &.up-intent-danger input:not(:disabled):active:checked ~ .up-control-wrapper .up-control-indicator':
+        {
+          ...boxShadow,
+          background: props.theme.colorMap.danger,
+          color: props.theme.colorMap.dangerFg,
+        },
+      '&:hover ~ .up-control-indicator ~ *, &:hover ~ .up-control-wrapper .up-control-indicator ~ *': {
         color: props.theme.colorMap.primaryFg,
       },
-      '&.up-intent-success:hover  ~ .up-control-indicator ~ *, &.up-intent-success:hover  ~ .up-control-wrapper .up-control-indicator ~ *' : {
-        color: props.theme.colorMap.successFg,
-      },
-      '&.up-intent-danger:hover ~ .up-control-indicator ~ *, &.up-intent-danger:hover ~ .up-control-wrapper .up-control-indicator ~ *' : {
-        color: props.theme.colorMap.successFg,
-      },
-      '& input:not(:disabled):active ~ .up-control-indicator, & input:not(:disabled):active ~ .up-control-wrapper .up-control-indicator' : {
-        ...boxShadow,
-        background: !props.readonly &&   props.theme.colorMap.primary,
-        color: !props.readonly && props.theme.colorMap.successFg,
-        boxShadow: !props.readonly && 'none'
-      },
-      '& input:not(:disabled):active:checked ~ .up-control-indicator,& input:not(:disabled):active:checked ~ .up-control-wrapper .up-control-indicator' : {
-        ...boxShadow,
-        background: props.theme.colorMap.primary, 
-        color:  props.theme.colorMap.primaryFg,
-      },
-      '& input:focus ~ .up-control-indicator, & input:focus ~ .up-control-wrapper .up-control-indicator' : {
+      '&.up-intent-success:hover  ~ .up-control-indicator ~ *, &.up-intent-success:hover  ~ .up-control-wrapper .up-control-indicator ~ *':
+        {
+          color: props.theme.colorMap.successFg,
+        },
+      '&.up-intent-danger:hover ~ .up-control-indicator ~ *, &.up-intent-danger:hover ~ .up-control-wrapper .up-control-indicator ~ *':
+        {
+          color: props.theme.colorMap.successFg,
+        },
+      '& input:not(:disabled):active ~ .up-control-indicator, & input:not(:disabled):active ~ .up-control-wrapper .up-control-indicator':
+        {
+          ...boxShadow,
+          background: !props.readonly && props.theme.colorMap.primary,
+          color: !props.readonly && props.theme.colorMap.successFg,
+          boxShadow: !props.readonly && 'none',
+        },
+      '& input:not(:disabled):active:checked ~ .up-control-indicator,& input:not(:disabled):active:checked ~ .up-control-wrapper .up-control-indicator':
+        {
+          ...boxShadow,
+          background: props.theme.colorMap.primary,
+          color: props.theme.colorMap.primaryFg,
+        },
+      '& input:focus ~ .up-control-indicator, & input:focus ~ .up-control-wrapper .up-control-indicator': {
         outline: 'rgba(19, 124, 189, 0.5) auto 2px',
         outlineOffset: '2px',
-        '-moz-outline-radius': '6px', 
+        '-moz-outline-radius': '6px',
       },
-      '& input:disabled ~ .up-control-indicator, & input:disabled ~ .up-control-wrapper .up-control-indicator' : {
+      '& input:disabled ~ .up-control-indicator, & input:disabled ~ .up-control-wrapper .up-control-indicator': {
         boxShadow: 'none',
         background: 'rgba(206, 217, 224, 0.5)',
-        cursor: 'not-allowed', 
+        cursor: 'not-allowed',
       },
-      '& input:disabled:checked ~ .up-control-indicator, & input:disabled:checked ~ .up-control-wrapper .up-control-indicator' : {
-        boxShadow: 'none',
-        background: 'rgba(19, 124, 189, 0.5)', 
-      },
-      '& input[type="checkbox"]:checked ~ .up-control-indicator::before, & input[type="checkbox"]:checked ~ .up-control-wrapper .up-control-indicator::before' : {
-        content: '""', 
-      },
-      '& input[type="checkbox"]:indeterminate ~ .up-control-indicator::before, & input[type="checkbox"]:indeterminate ~ .up-control-wrapper .up-control-indicator::before' : {
-        content: '""', 
-      },
-    }
-  }
-}
+      '& input:disabled:checked ~ .up-control-indicator, & input:disabled:checked ~ .up-control-wrapper .up-control-indicator':
+        {
+          boxShadow: 'none',
+          background: 'rgba(19, 124, 189, 0.5)',
+        },
+      '& input[type="checkbox"]:checked ~ .up-control-indicator::before, & input[type="checkbox"]:checked ~ .up-control-wrapper .up-control-indicator::before':
+        {
+          content: '""',
+        },
+      '& input[type="checkbox"]:indeterminate ~ .up-control-indicator::before, & input[type="checkbox"]:indeterminate ~ .up-control-wrapper .up-control-indicator::before':
+        {
+          content: '""',
+        },
+    },
+  };
+};

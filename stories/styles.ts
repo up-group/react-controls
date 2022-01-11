@@ -1,3 +1,3 @@
 export const storybookMainBodyStyles = {
-    padding : '30px'
-}
+    padding: '30px',
+};

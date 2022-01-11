@@ -4,7 +4,9 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   -webkit-box-sizing: inherit;
   -moz-box-sizing: inherit;
   box-sizing: inherit;
@@ -27,14 +29,20 @@ html {
   visibility: hidden;
 }
 
-p, em, li, dt, dd, ul,ol {
+p,
+em,
+li,
+dt,
+dd,
+ul,
+ol {
   margin: 0;
   padding: 0;
 }
 
 /** TODO : Move specific storybook styles in separate file */
 .sbdocs.sbdocs-wrapper {
-  background-color: #FAFAFA;
+  background-color: #fafafa;
 }
 
 .sbdocs.sbdocs-content {

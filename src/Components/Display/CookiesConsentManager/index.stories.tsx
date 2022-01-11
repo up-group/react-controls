@@ -8,7 +8,7 @@ import { TranslationsProps } from 'Components/Display/CookiesConsentManager/UpCo
 
 export default {
   title: 'Components/Display/UpCookiesConsentManager',
-  decorators : [withKnobs, getRootContainer('UpCookiesConsentManager')],
+  decorators: [withKnobs, getRootContainer('UpCookiesConsentManager')],
 };
 
 const translations: TranslationsProps = {
@@ -22,7 +22,8 @@ const translations: TranslationsProps = {
     },
     consentModal: {
       title: 'Panneau de gestion des cookies',
-      description: 'En autorisant ces services tiers, vous acceptez le dépôt et la lecture de cookies et l’utilisation de technologies de suivi nécéssaires à leur bon fonctionnement.',
+      description:
+        'En autorisant ces services tiers, vous acceptez le dépôt et la lecture de cookies et l’utilisation de technologies de suivi nécéssaires à leur bon fonctionnement.',
     },
     ok: 'Accepter',
     googleAnalytics: {
@@ -31,8 +32,9 @@ const translations: TranslationsProps = {
     },
     purposes: {
       analytics: {
-        title: 'Mesure d\'audience',
-        description: 'Les services de mesure d\'audience permettent de générer des statistiques de fréquentation utiles à l\'amélioration du site.',
+        title: "Mesure d'audience",
+        description:
+          "Les services de mesure d'audience permettent de générer des statistiques de fréquentation utiles à l'amélioration du site.",
       },
     },
     service: {
@@ -68,9 +70,13 @@ const multipleApps = [
   },
 ];
 export const Default = () => (
-      <UpCookiesConsentManager apps={apps} privacyPolicyUrl="https://groupe.up.coop/fr/donnees-personnelles" translations={translations} />
-  );
+  <UpCookiesConsentManager
+    apps={apps}
+    privacyPolicyUrl="https://groupe.up.coop/fr/donnees-personnelles"
+    translations={translations}
+  />
+);
 
 export const MultipleServices = () => (
-    <UpCookiesConsentManager apps={multipleApps} privacyPolicyUrl="https://groupe.up.coop/fr/donnees-personnelles" />
-  );
+  <UpCookiesConsentManager apps={multipleApps} privacyPolicyUrl="https://groupe.up.coop/fr/donnees-personnelles" />
+);

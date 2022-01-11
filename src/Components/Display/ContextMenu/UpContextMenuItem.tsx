@@ -6,47 +6,37 @@ import { MENU_HIDE, MENU_SHOW, hideMenu, showMenu } from './actions';
 import { UpContextMenuItemProps } from './types';
 
 export default class UpContextMenuItem extends React.PureComponent<UpContextMenuItemProps> {
+  public static defaultProps = {
+    disabled: false,
+    data: {},
+    attributes: {},
+  };
 
-    public static defaultProps = {
-        disabled: false,
-        data: {},
-        attributes: {}
-    };
+  handleClick = event => {
+    event.preventDefault();
 
-    handleClick = (event) => {
-        event.preventDefault();
+    if (this.props.disabled) return;
 
-        if (this.props.disabled) return;
+    hideMenu();
 
-        hideMenu();
+    callIfExists(this.props.onClick, event, assign({}, this.props.data, {}), null);
 
-        callIfExists(
-            this.props.onClick,
-            event,
-            assign({}, this.props.data, {}),
-            null
-        );
+    if (this.props.preventClose) return;
+  };
 
-        if (this.props.preventClose) return;
-    }
+  render() {
+    const { disabled, children, attributes } = this.props;
+    const classNameLink = 'up-contextmenu-link';
 
-    render() {
-        const { disabled, children, attributes } = this.props;
-        let classNameLink = 'up-contextmenu-link'
+    let classNameLinkMenuItem = 'up-contextmenu-item';
+    if (disabled) classNameLinkMenuItem = 'up-contextmenu-item up-contextmenu-item--disabled';
 
-        let classNameLinkMenuItem = 'up-contextmenu-item'
-        if (disabled) classNameLinkMenuItem = 'up-contextmenu-item up-contextmenu-item--disabled'
-
-        return (
-            <div {...attributes} className={classNameLinkMenuItem}>
-                <a
-                    href='#'
-                    className={classNameLink}
-                    onClick={this.handleClick}
-                >
-                    {children}
-                </a>
-            </div>
-        );
-    }
-};
+    return (
+      <div {...attributes} className={classNameLinkMenuItem}>
+        <a href="#" className={classNameLink} onClick={this.handleClick}>
+          {children}
+        </a>
+      </div>
+    );
+  }
+}

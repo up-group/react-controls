@@ -2,65 +2,99 @@
 ## Main Changes
 - Form fields : improve error handling
 
-#  ReactControls (version: 0.2.171)
-## Main Changes
-- UpIcon : Add icons circle-check and circle-play
+# ReactControls (version: 2.17.0)
 
-#  ReactControls (version: 0.2.169)
+- upgrading react 16 to 17
 
 ## Main Changes
+
 - UpIcon : Add new icon 'file-edit' | 'user-circle' | 'safe'
 
-#  ReactControls (version: 0.2.168)
+# ReactControls (version: 0.2.171)
+
+## Main Changes
+
+- UpIcon : Add icons circle-check and circle-play
+
+# ReactControls (version: 0.2.169)
+
+## Main Changes
+
+- UpIcon : Add new icon 'file-edit' | 'user-circle' | 'safe'
+
+# ReactControls (version: 0.2.168)
+
 ## Bug Fixes
+
 - UpDate : fix date clear when value is controlled
 - UpDataGrid : clean code
 
-#  ReactControls (version: 0.2.167)
+# ReactControls (version: 0.2.167)
+
 ## Bug Fixes
+
 - UpDate : fix date clear
 - UpDataGrid : fix promise on row action handling
 
-#  ReactControls (version: 0.2.166)
+# ReactControls (version: 0.2.166)
+
 ## Main Changes
+
 - UpDropfile : add customizable error message
 
-#  ReactControls (version: 0.2.165)
+# ReactControls (version: 0.2.165)
+
 ## Bugs Fixes
+
 - UpDataGrid : Fix strategy selection
 
-#  ReactControls (version: 0.2.164)
+# ReactControls (version: 0.2.164)
+
 ## Bugs Fixes
+
 - UpDate : fix reset input value in case of invalid date onBlur
 
-#  ReactControls (version: 0.2.162)
+# ReactControls (version: 0.2.162)
+
 ## Bugs Fixes
+
 - UpSelect : fix option selection
 
-#  ReactControls (version: 0.2.161)
+# ReactControls (version: 0.2.161)
+
 ## Main Changes
+
 - UpInput : fix hide clear icon idf input is readonly
 
-#  ReactControls (version: 0.2.160)
+# ReactControls (version: 0.2.160)
+
 ## Main Changes
+
 - UpDatagrid : unselect row during pagination if the checkbox "All rows" is unchecked
 
-#  ReactControls (version: 0.2.159)
+# ReactControls (version: 0.2.159)
+
 ## Main Changes
+
 - UpDatagrid : allow to clear the selection by the caller
 
-#  ReactControls (version: 0.2.158)
+# ReactControls (version: 0.2.158)
+
 ## Main Changes
+
 - UpSelect : fix disable click on label if the component is disabled o readOnly
 
-#  ReactControls (version: 0.2.157)
+# ReactControls (version: 0.2.157)
+
 ## Main Changes
+
 - UpDataGrid : fix delay tooltip
 - Improve responsivity
 
+# ReactControls (version: 0.2.156)
 
-#  ReactControls (version: 0.2.156)
 ## Main Changes
+
 - UpDate and UpSelect fix sizing
 - UpSelect : Make the label not clickable if readOnly is true
 - UpInput : Enable to pass a className
@@ -68,395 +102,495 @@
 - UpDataGrid : Fix arrow order
 - UpNumber : Enable to define the decimal separator
 
-#  ReactControls (version: 0.2.155)
+# ReactControls (version: 0.2.155)
+
 ## Main Changes
+
 - Update cookies consent manager
 
-#  ReactControls (version: 0.2.151)
+# ReactControls (version: 0.2.151)
+
 ## Bugs Fixes
+
 - UpTooltip : fix re-render
 - UpInput : fix clear action
 
-#  ReactControls (version: 0.2.148)
+# ReactControls (version: 0.2.148)
+
 ## Main Changes
+
 - UpCurrency : update behaviour adding animation and style props
 
-  #  ReactControls (version: 0.2.147)
+  # ReactControls (version: 0.2.147)
+
 ## Bug Fixes
+
 - UpDate : Fix uncontrolled value
 
-#  ReactControls (version: 0.2.145)
+# ReactControls (version: 0.2.145)
+
 ## Main Changes
+
 - UpSvgIcon : Add profile3 | group2 | padlock icons
 
-#  ReactControls (version: 0.2.140)
+# ReactControls (version: 0.2.140)
+
 ## Main Changes
+
 - UpSvgIcon : Add nfc icon
 
-#  ReactControls (version: 0.2.137)
+# ReactControls (version: 0.2.137)
+
 ## Bug Fixes
+
 - UpSelect : Remove the transparent background when hovering selected option, to prevent a text below from appearing
 
-#  ReactControls (version: 0.2.136)
+# ReactControls (version: 0.2.136)
+
 ## Main Changes
+
 - Add new component UpCookiesConsent
+
 ## Bug Fixes
+
 - UpDataGrid : Fix auto-hide menu af action if none checkbox selected
 
-#  ReactControls (version: 0.2.135)
+# ReactControls (version: 0.2.135)
+
 ## Main Changes
-  - UpSvgIcon : Add new illustrations :
+
+- UpSvgIcon : Add new illustrations :
   "search-glass",
   "card-orange-add",
   "card-orange-trans"
 
-  - UpSvgIcon : Add new mentors :
-   "sorry-orange"
+- UpSvgIcon : Add new mentors :
+  "sorry-orange"
 
-#  ReactControls (version: 0.2.134)
-## Main Changes
-  - UpDataPanel : Add props to define custom class on column
-#  ReactControls (version: 0.2.133)
-## Bug Fixes
-  - UpDataGrid : Fix selected row after fetching data
-#  ReactControls (version: 0.2.132)
-## Main Changes
-  - UpModal : Fix testable component props
-
-#  ReactControls (version: 0.2.131)
-## Main Changes
-  - UpSvgIcon : Add warning icon
-
-#  ReactControls (version: 0.2.130)
+# ReactControls (version: 0.2.134)
 
 ## Main Changes
-  - UpDataGrid : Change status of select all in case only one row can be selected
 
+- UpDataPanel : Add props to define custom class on column
 
-#  ReactControls (version: 0.2.129)
-## Main Changes
-  - UpDataGrid : Change the behaviour for the mode only one row selectable
-  - Storybook : Upgrade to 6.1.17 
-#  ReactControls (version: 0.2.127)
+# ReactControls (version: 0.2.133)
 
 ## Bug Fixes
-  - UpSelect : Fix No text message
 
-#  ReactControls (version: 0.2.126)
+- UpDataGrid : Fix selected row after fetching data
+
+# ReactControls (version: 0.2.132)
 
 ## Main Changes
-  - UpText : Add max xharacters handling.
 
-#  ReactControls (version: 0.2.125)
+- UpModal : Fix testable component props
 
-## Bug Fixes
-  - UpMenu : onClick on sub menu items
-
-#  ReactControls (version: 0.2.124)
-
-## Bug Fixes
-  - UpMenu : onClick throws error if no children
-
-#  ReactControls (version: 0.2.123)
-
-## Bug Fixes
-  - UpToast : Fix IntentType import
-
-#  ReactControls (version: 0.2.122)
+# ReactControls (version: 0.2.131)
 
 ## Main Changes
-  - UpNavTab : Reduce selected item sizing
 
-#  ReactControls (version: 0.2.121)
+- UpSvgIcon : Add warning icon
+
+# ReactControls (version: 0.2.130)
+
+## Main Changes
+
+- UpDataGrid : Change status of select all in case only one row can be selected
+
+# ReactControls (version: 0.2.129)
+
+## Main Changes
+
+- UpDataGrid : Change the behaviour for the mode only one row selectable
+- Storybook : Upgrade to 6.1.17
+
+# ReactControls (version: 0.2.127)
 
 ## Bug Fixes
-  - UpSelect : Fix returnType id in multiple case
 
-#  ReactControls (version: 0.2.120)
+- UpSelect : Fix No text message
+
+# ReactControls (version: 0.2.126)
+
+## Main Changes
+
+- UpText : Add max xharacters handling.
+
+# ReactControls (version: 0.2.125)
 
 ## Bug Fixes
-- UpVerticalTimeLine : Fix checkmark alignment 
 
-#  ReactControls (version: 0.2.119)
+- UpMenu : onClick on sub menu items
+
+# ReactControls (version: 0.2.124)
 
 ## Bug Fixes
+
+- UpMenu : onClick throws error if no children
+
+# ReactControls (version: 0.2.123)
+
+## Bug Fixes
+
+- UpToast : Fix IntentType import
+
+# ReactControls (version: 0.2.122)
+
+## Main Changes
+
+- UpNavTab : Reduce selected item sizing
+
+# ReactControls (version: 0.2.121)
+
+## Bug Fixes
+
+- UpSelect : Fix returnType id in multiple case
+
+# ReactControls (version: 0.2.120)
+
+## Bug Fixes
+
+- UpVerticalTimeLine : Fix checkmark alignment
+
+# ReactControls (version: 0.2.119)
+
+## Bug Fixes
+
 - UpDate : Fix height
 
-#  ReactControls (version: 0.2.118)
+# ReactControls (version: 0.2.118)
+
 ## Main Changes
+
 - UpDataGrid : allow to select only one row
 
-#  ReactControls (version: 0.2.116)
+# ReactControls (version: 0.2.116)
 
 ## Bug Fixes
+
 - UpDataGrid : Fix row clickable
 
-#  ReactControls (version: 0.2.113)
+# ReactControls (version: 0.2.113)
 
 ## Main Changes
-- UpEntityView : Add new component for displaying data 
-- UpVerticalTimeLine : Add new component for displaying vertical timeline 
 
-#  ReactControls (version: 0.2.112)
+- UpEntityView : Add new component for displaying data
+- UpVerticalTimeLine : Add new component for displaying vertical timeline
+
+# ReactControls (version: 0.2.112)
 
 ## Main Changes
+
 - UpDataGrid : Allow select text even if row clickable
 
-#  ReactControls (version: 0.2.111)
+# ReactControls (version: 0.2.111)
 
 ## Main Changes
+
 - UpMenu : display menu if minified and have children
 
-#  ReactControls (version: 0.2.110)
+# ReactControls (version: 0.2.110)
 
 ## Main Changes
+
 - UpDataGrid : onSelection change now return also all selected data
 
-#  ReactControls (version: 0.2.109)
+# ReactControls (version: 0.2.109)
 
 ## Bug Fixes
+
 - UpDataGrid : Fix enabling group action
 
-#  ReactControls (version: 0.2.108)
+# ReactControls (version: 0.2.108)
 
 ## Main Changes
+
 - UpDataGrid : Fix UpRow enable full width layout
 
-#  ReactControls (version: 0.2.107)
+# ReactControls (version: 0.2.107)
 
 ## Bug Fixes
+
 - UpDataGrid : Fix selected data on group action
 
-#  ReactControls (version: 0.2.106)
+# ReactControls (version: 0.2.106)
 
 ## Main Changes
+
 - UpDate : add more denied characters
+
 ## Bug Fixes
+
 - UpDropFile : Fix reset error notification on change
 
-#  ReactControls (version: 0.2.105)
+# ReactControls (version: 0.2.105)
 
 ## Bug Fixes
+
 - UpDropFile : Reset error notification on change
 
-#  ReactControls (version: 0.2.104)
+# ReactControls (version: 0.2.104)
 
 ## Main Changes
+
 - UpDate : only allow valid characters
 
-#  ReactControls (version: 0.2.103)
+# ReactControls (version: 0.2.103)
 
 ## Bug Fixes
+
 - SvgIcon : add icons eye-open2 file3 and invoice
 
-#  ReactControls (version: 0.2.102)
+# ReactControls (version: 0.2.102)
 
 ## Bug Fixes
+
 - UpDataGrid : Fix Select all through pages
 
-#  ReactControls (version: 0.2.101)
+# ReactControls (version: 0.2.101)
 
 ## Bug Fixes
+
 - UpDataGrid : Fix selection through pages and align checkbox
 
-#  ReactControls (version: 0.2.100)
+# ReactControls (version: 0.2.100)
 
 ## Main Changes
+
 - UpDataPanelItem : Not show column if field is null or undefined
 
-#  ReactControls (version: 0.2.98)
+# ReactControls (version: 0.2.98)
 
 ## Main Changes
+
 - UpModal : Add prop to center the modal
 
-#  ReactControls (version: 0.2.94)
+# ReactControls (version: 0.2.94)
 
 ## Bug Fixes
+
 - UpDataGrid : Fix handling action cells
 
-#  ReactControls (version: 0.2.93)
+# ReactControls (version: 0.2.93)
 
 ## Main Changes
+
 - UpDataGrid : Manage selection multi-page
 
-#  ReactControls (version: 0.2.92)
+# ReactControls (version: 0.2.92)
 
 ## Main Changes
+
 - UpDate : Allow to set full width
 
 ## Bug Fixes
+
 - UpDate : Compare only date without time
 
-#  ReactControls (version: 0.2.91)
+# ReactControls (version: 0.2.91)
 
 ## Main Changes
+
 - UpNumber : fix min and max handling
 
-#  ReactControls (version: 0.2.90)
+# ReactControls (version: 0.2.90)
 
 ## Main Changes
+
 - UpNavTab : Add selected tab props
 
 ## Bug Fixes
+
 - UpTooltip : fix hover behaviour
 
-#  ReactControls (version: 0.2.89)
+# ReactControls (version: 0.2.89)
 
 ## Main Changes
+
 - UpDate : Add date outside range check props
 
-#  ReactControls (version: 0.2.88)
+# ReactControls (version: 0.2.88)
 
 ## Main Changes
+
 - Input : Increase floating label size
 
-#  ReactControls (version: 0.2.87)
+# ReactControls (version: 0.2.87)
 
 ## Bug Fixes
+
 - UpNumber : fix button design to increase/decrease value
 
-#  ReactControls (version: 0.2.86)
+# ReactControls (version: 0.2.86)
 
 ## Bug Fixes
+
 - UpDate : isOutsideRange
 
-#  ReactControls (version: 0.2.85)
+# ReactControls (version: 0.2.85)
 
 ## Main Changes
+
 - UpMenu : Add CustomStyles props
 
-#  ReactControls (version: 0.2.84)
+# ReactControls (version: 0.2.84)
 
 ## Bug Fixes
-- UpDataGrid : Fix getRowAction 
 
-#  ReactControls (version: 0.2.83)
+- UpDataGrid : Fix getRowAction
+
+# ReactControls (version: 0.2.83)
 
 ## Main Changes
+
 - UpSvgIcon : Add new SVG icon
 
-#  ReactControls (version: 0.2.82)
+# ReactControls (version: 0.2.82)
 
 ## Main Changes
+
 - UpSvgIcon : Add new SVG icon
 
-#  ReactControls (version: 0.2.81)
+# ReactControls (version: 0.2.81)
 
 ## Main Changes
+
 - UpDataGrid : Add text-align left props
 
-#  ReactControls (version: 0.2.80)
+# ReactControls (version: 0.2.80)
 
 ## Main Changes
+
 - Add auto read action bound to the row if none onClick specified and only one action defined
 
-#  ReactControls (version: 0.2.79)
+# ReactControls (version: 0.2.79)
 
 ## Main Changes
+
 - Add new props to UpRadio in order to provide better rendering of options
 
-#  ReactControls (version: 0.2.78)
+# ReactControls (version: 0.2.78)
 
 ## Bugs Fixes
+
 - Fix default props for UpBox
 
-#  ReactControls (version: 0.2.77)
+# ReactControls (version: 0.2.77)
 
 ## Bugs Fixes
+
 - Fix removed prop className on UpPanel
 
-#  ReactControls (version: 0.2.76)
+# ReactControls (version: 0.2.76)
 
 ## Bugs Fixes
+
 - Fix alignement UpDate in form
 
-#  ReactControls (version: 0.2.75)
+# ReactControls (version: 0.2.75)
 
 ## Main Changes
+
 - Upgrade to storybook 6
 
-#  ReactControls (version: 0.2.74)
+# ReactControls (version: 0.2.74)
 
 ## Main Changes
+
 - UpCalendar : upgrade to FullCalendar 5.3.x
 
-#  ReactControls (version: 0.2.73)
+# ReactControls (version: 0.2.73)
 
 ## Main Changes
+
 - UpCalendar : clean code and exports
 
-#  ReactControls (version: 0.2.72)
+# ReactControls (version: 0.2.72)
 
 ## Main Changes
+
 - UpCalendar : improve design and add tooltip props
 
-#  ReactControls (version: 0.2.71)
+# ReactControls (version: 0.2.71)
 
 ## Bug Fixes
+
 - UpDataGrid : fix error when action null
 
-#  ReactControls (version: 0.2.70)
+# ReactControls (version: 0.2.70)
 
 ## Main Changes
+
 - Improve UpContextMenu closing behaviour
 - Add className props to UpCalendar mapped to the viewClassName property of Fullcalendar
 
-#  ReactControls (version: 0.2.69)
+# ReactControls (version: 0.2.69)
 
 ## Main Changes
+
 - Add isVisble and getProps on row action of an UpDataGrid
 
-#  ReactControls (version: 0.2.68)
+# ReactControls (version: 0.2.68)
 
 ## Bug Fixes
+
 - Fix null action in a UpDataGridRow
 
-#  ReactControls (version: 0.2.67)
+# ReactControls (version: 0.2.67)
 
 ## Main changes
+
 - Clean UpToast and UpNotification
 - Add readonly on UpCheckbox
 - Add documentation on UpToast
 - Add arrow back icon
 
-#  ReactControls (version: 0.2.66)
+# ReactControls (version: 0.2.66)
 
 ## Main changes
+
 - Enable to pass JSX element as title of an UpDataGrid
 
-#  ReactControls (version: 0.2.65)
+# ReactControls (version: 0.2.65)
 
 ## Bug Fixes
+
 - Fix values for UpDataPanel
 
-#  ReactControls (version: 0.2.64)
+# ReactControls (version: 0.2.64)
 
 ## Main changes
+
 - Change Header and CloseIcon position for UpModal
 
 # ReactControls (version: 0.2.64)
 
 ## Bug Fixes
+
 - Fix null theme in UpLigne
 
 # ReactControls (version: 0.2.63)
 
 ## Bug Fixes
+
 - Fix UpModal showing
 
 # ReactControls (version: 0.2.62)
 
 ## Main Changes
+
 - Improve UpTooltip closing behaviour
 
 # ReactControls (version: 0.2.61)
 
 ## Main Changes
+
 - Enable action factory on UpDataGrid
 
 # ReactControls (version: 0.2.60)
 
 ## Main Changes
+
 - Enable to render icon in UpMenu
 
 # ReactControls (version: 0.2.59)
@@ -465,7 +599,7 @@
 
 - Avoid UpModal to appear during mount
 - Allow to close modal on outside click
-- Fix readonly on UpRadio, UpDate and UpText 
+- Fix readonly on UpRadio, UpDate and UpText
 
 # ReactControls (version: 0.2.58)
 
@@ -473,13 +607,11 @@
 
 - Fix title handling for UpDataPanel
 
-
 # ReactControls (version: 0.2.57)
 
 ## Main Changes
 
 - Add get formatter pros on UpDataPanel
-
 
 # ReactControls (version: 0.2.56)
 
@@ -487,13 +619,11 @@
 
 - Fix close button on UpModal
 
-
 # ReactControls (version: 0.2.55)
 
 ## Main Changes
 
 - Add new UpModal display mode
-
 
 # ReactControls (version: 0.2.54)
 
@@ -521,7 +651,7 @@
 ## Bug Fixes
 
 - Fix tabindex on RadioButton
-  
+
 # ReactControls (version: 0.2.50)
 
 ## Main Changes
@@ -551,6 +681,7 @@
 ## Main Changes
 
 UpDataGrid CellFormatter
+
 - Add getter props for cell formatter
 
 # ReactControls (version: 0.2.44)
@@ -558,34 +689,39 @@ UpDataGrid CellFormatter
 ## Main Changes
 
 UpDataGrid
+
 - Add props for tooltip for Header
 
 # ReactControls (version: 0.2.43)
 
 ## Bug Fixes
 
-UpSelect 
+UpSelect
+
 - fix min height in multiselect mode
 
 # ReactControls (version: 0.2.42)
 
 ## Bug Fixes
 
-UpText 
+UpText
+
 - fix style conflict with UpInput
 
 # ReactControls (version: 0.2.41)
 
 ## Main changes
 
-UpText 
+UpText
+
 - set full border
 
 # ReactControls (version: 0.2.40)
 
 ## Main changes
 
-UpNavTab 
+UpNavTab
+
 - add onSelectedTabChanged handler
 
 # ReactControls (version: 0.2.37)
@@ -593,6 +729,7 @@ UpNavTab
 ## Main changes
 
 Improve UpIcon stories
+
 - enable to change color and size
 
 # ReactControls (version: 0.2.36)
@@ -630,12 +767,13 @@ Fix UpRadio layout in display mode button
 ## Bug Fixes
 
 Fix ok-sign icon
-  
+
 # ReactControls (version: 0.2.29)
 
 ## Main changes
 
 Export custom hooks :
+
 - useMountedRef : keep mount and unmount reference
 - useSafeState : avoid setState after unmount
 - useHoverIntent : enable mouse enter and leave logic
@@ -649,47 +787,57 @@ Add props onClick, onMouseEnter and onMouseLeave for UpBadge
 # React-Controls (version: 0.2.26)
 
 ## Bug Fixes
+
 Clean UpBadge
 
 # React-Controls (version: 0.2.25)
 
 ## Bug Fixes
+
 Fix svg icon notification
 
 # React-Controls (version: 0.2.24)
 
 ## Bug Fixes
+
 Fix icon color when UpButon is disabled
 
 # React-Controls (version: 0.2.23)
 
 ## Main changes
+
 - Add new component UpPicture
 
 # React-Controls (version: 0.2.22)
 
 ## Bug Fixes
+
 - Fix floating label prop on UpNumber
 
 ## Main changes
+
 - Add new prop to UpDataGrid in order to customize the style of a row
 
 # React-Controls (version: 0.2.21)
 
 ## Main changes
+
 - Add new prop to UpDataGrid in order to customize the style of a row
 
 # React-Controls (version: 0.2.20)
 
 ## Main changes
+
 - Add new prop to UpNotification to define the duration of the animation
 
 # React-Controls (version: 0.2.19)
 
 ## Main changes
+
 - Add new props disabled to UpCheckbox
 
 ## Bug Fixes
+
 - Fix icon position for UpPaswword with floating label
 - In case of using the floating label, the select get now the focus when click on the label
 
@@ -709,13 +857,14 @@ Fix icon color when UpButon is disabled
 ## Main changes
 
 - UpCarousel
-- Add new props className to UpButton 
+- Add new props className to UpButton
 
 ## UpCarousel
 
 Add new component built with framer in order to dipslay a carousel layout
 
 ### General usage
+
 ```
  <div className={wrapperBoxesStyle}>
         <UpCarousel items={["#22cc88", "#ffcc00", "#0099ff", "#ff0055"].map(color => ({key: color, title: 'Title', color}))} />
@@ -723,12 +872,13 @@ Add new component built with framer in order to dipslay a carousel layout
 ```
 
 ### With render item
+
 ```
    <div className={wrapperBoxesStyle}>
      <UpCarousel renderItem={(isOpen, item) => {
-       return <div style={{display: 'flex', height : '100%', 
-        flexDirection: 'column', 
-        alignItems: 'center', 
+       return <div style={{display: 'flex', height : '100%',
+        flexDirection: 'column',
+        alignItems: 'center',
         justifyContent: 'space-between'}}>
           <em style={{ fontWeight : isOpen ? 700 : 500}}>{item.title}</em>
           <UpButton intent={'secondary'} className={style({$nest : {'& .up-btn' : {
@@ -738,7 +888,7 @@ Add new component built with framer in order to dipslay a carousel layout
          </div>
      }} items={["#22cc88", "#ffcc00", "#0099ff", "#ff0055"].map(color => (
         { key: color,
-          action: (item) => new Promise((resolve, reject) => resolve(console.log(item))), 
+          action: (item) => new Promise((resolve, reject) => resolve(console.log(item))),
           title: 'Title',
           color}))
         } />
@@ -749,12 +899,12 @@ Add new component built with framer in order to dipslay a carousel layout
 
 ## Background Info
 
-We are working on a new version of react-controls 
+We are working on a new version of react-controls
 
 ## Main changes
 
 - UpPassword
-- UpInput 
+- UpInput
 - UpNotification
 - UpButton (style update when dropDown === 'down')
 - UpTogglen (style update)
@@ -763,10 +913,11 @@ We are working on a new version of react-controls
 - UpCheckbox (style update)
 - UpLoadingIndicator (style update)
 
-
 ## Components
- - UpPassword new props : 
-    - ``rules?:array`` array of objects with the text and and a regex expression
+
+- UpPassword new props :
+  - `rules?:array` array of objects with the text and and a regex expression
+
 ```
 const rules = [
     { text: 'Au moins 8 caractères', regex: /^.{8,}$/ },
@@ -792,45 +943,45 @@ const rules = [
       touched={touched}
     />
 ```
- - UpInput new props :
-    - ``hasClearOption ?:boolean`` a bolean to show a an icon to clear the input value
-    - ``onClear?:function``  fuction to clear the input value if you use the input as a controlledInput
 
- ```
- const ControlledSeacrhInput = props => {
-  const [value,setValue] = React.useState('')
-  const [isLoading,setIsLoading] = React.useState(false);
-  
-  return (
-    <UpInput
-      type='search' 
-      value={value} 
-      onChange={(event,value)=>{
-        setIsLoading(true)
-        setValue(value)
-        setTimeout(() => {
-          setIsLoading(false)
-        }, 2000);
-      }} 
-      onClear={()=>setValue('')} 
-      placeholder='placeholder ...'   
-      iconPosition={'left'} 
-      hasClearOption
-      isLoading={isLoading}
-     />
-  )
+- UpInput new props :
+  - `hasClearOption ?:boolean` a bolean to show a an icon to clear the input value
+  - `onClear?:function` fuction to clear the input value if you use the input as a controlledInput
+
+```
+const ControlledSeacrhInput = props => {
+ const [value,setValue] = React.useState('')
+ const [isLoading,setIsLoading] = React.useState(false);
+
+ return (
+   <UpInput
+     type='search'
+     value={value}
+     onChange={(event,value)=>{
+       setIsLoading(true)
+       setValue(value)
+       setTimeout(() => {
+         setIsLoading(false)
+       }, 2000);
+     }}
+     onClear={()=>setValue('')}
+     placeholder='placeholder ...'
+     iconPosition={'left'}
+     hasClearOption
+     isLoading={isLoading}
+    />
+ )
 }
 ```
 
-- UpNotification new props : 
-    - ``duration?:number ``the duration in seconds of the notification before it disappear 
-    - ``withCancelIcon?:boolean`` a boolean to add the possibility to cancel a notification
-
+- UpNotification new props :
+  - `duration?:number `the duration in seconds of the notification before it disappear
+  - `withCancelIcon?:boolean` a boolean to add the possibility to cancel a notification
 
 ```
-<UpNotification 
-    intent="success" 
-    duration={6} 
+<UpNotification
+    intent="success"
+    duration={6}
     withCancelIcon={boolean('showCancelIcon',true)}
 >
     <p>Votre opération a été enregistré avec succès !</p>
@@ -838,23 +989,23 @@ const rules = [
 
 ```
 
- - UpDataGrid new props : 
-    - ``displayRowActionsWithinCell?:boolean`` a bolean to diplay the actions in the first cell  
-    - ``rowActions?:array`` array of actions (it replaces the  `actions` props in the previous version)
-    - ``footerProps?:objectOf`` : 
-        - `isPaginationEnabled?:boolean` a props to display the pagination in the footer
-        - `actionsButtonText?:string` the text of the button that group all the actions
-        - `actionsDataGrid?:objectOf`:
-          - `label:string`: label of the validation button
-          - `intent?:string`: intent of the validation button
-          - `actions?:ArrayOf`:
-            - `action:ObjectOf`: 
-              - `label:string`: label of the selected action
-              - `actionType:string`: the actionType of the selected action
-              - `onClick:function`: a function that takes an array of the selected rows and return a promise
-    - ``headerProps?:objectOf``: 
-        - `title:?string` : title of the DataGrid
-        - `buttons:?ReactElement`: it could be anything you want to diplay on the right of the header
+- UpDataGrid new props :
+  - `displayRowActionsWithinCell?:boolean` a bolean to diplay the actions in the first cell
+  - `rowActions?:array` array of actions (it replaces the `actions` props in the previous version)
+  - `footerProps?:objectOf` :
+    - `isPaginationEnabled?:boolean` a props to display the pagination in the footer
+    - `actionsButtonText?:string` the text of the button that group all the actions
+    - `actionsDataGrid?:objectOf`:
+      - `label:string`: label of the validation button
+      - `intent?:string`: intent of the validation button
+      - `actions?:ArrayOf`:
+        - `action:ObjectOf`:
+          - `label:string`: label of the selected action
+          - `actionType:string`: the actionType of the selected action
+          - `onClick:function`: a function that takes an array of the selected rows and return a promise
+  - `headerProps?:objectOf`:
+    - `title:?string` : title of the DataGrid
+    - `buttons:?ReactElement`: it could be anything you want to diplay on the right of the header
 
 ```
  <UpDataGrid
@@ -866,7 +1017,7 @@ const rules = [
         onSelectionChange={(a, b) => {
           console.log(a, b);
         }}
-        
+
         className={style({
           $nest: {
             "&.up-data-grid-container .up-pagination-nav li a": {
@@ -956,7 +1107,7 @@ const rules = [
             description: "Supprimer"
           }
         ]}
-       
+
         paginationPosition="bottom"
         isPaginationEnabled={true}
         columns={[
@@ -1016,6 +1167,3 @@ const rules = [
         }}
       />
 ```
-
-
-

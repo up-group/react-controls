@@ -5,17 +5,13 @@ import UpBox from '../../Containers/Box';
 import { getRootContainer } from '../../../Common/stories';
 
 export default {
-    title: 'Components/Inputs/UpPicture',
-    decorators: [withKnobs, getRootContainer('UpPicture')],
-    component: UpPicture
+  title: 'Components/Inputs/UpPicture',
+  decorators: [withKnobs, getRootContainer('UpPicture')],
+  component: UpPicture,
 };
 
-export const General =
-    () => (
-        <UpBox style={{ margin: "40px 30px" }}>
-            <UpPicture
-                width={300}
-                height={300}
-            />
-        </UpBox>
-    );
+export const General = () => (
+  <UpBox style={{ margin: '40px 30px' }}>
+    <UpPicture width={300} height={300} />
+  </UpBox>
+);
