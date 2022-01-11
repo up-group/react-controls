@@ -1,3 +1,7 @@
+#  ReactControls (version: 0.2.174)
+## Bug Fixes
+- Fix pattern construction of RegExp
+
 #  ReactControls (version: 0.2.172)
 ## Main Changes
 - Form fields : improve error handling
