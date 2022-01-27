@@ -354,22 +354,24 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
     this.state = _state;
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     if (this.props.dataSource != undefined) {
       this.fetchData();
     }
   }
 
-  isSelectedRowData = id => {
-    const selectedData = this.state.selectedData;
-    return selectedData.some(data => data.value.id === id);
-  };
+  isSelectedRowData = (id): boolean => this.state.selectedData.some(data => data.value.id === id);
+
+  static isRow = (obj: any): obj is Row => 'value' in obj && 'isSelected' in obj;
+
+  static isRowArray = (arg: any): arg is Row[] => Array.isArray(arg) && arg.every(item => UpDataGrid.isRow(item));
 
   mapDataToRow = (data: Array<any>): Array<Row> => {
+    if (UpDataGrid.isRowArray(data)) return data;
     const rows: Array<Row> = [];
-    data.map((value, index) => {
+    data.map(value => {
       rows.push({
-        isSelected: this.state && this.state.allRowSelected, // || this.isSelectedRowData(value.id)),
+        isSelected: this.state && this.state.allRowSelected,
         value: value,
       });
     });
@@ -379,7 +381,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
 
   handleData = data => {
     let sortedColumn: Column = null;
-    this.state.columns.map((value, index) => {
+    this.state.columns.map(value => {
       if (value.isSorted) {
         sortedColumn = value;
       }

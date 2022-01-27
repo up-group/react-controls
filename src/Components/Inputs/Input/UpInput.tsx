@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-this-alias */
-import * as React from 'react';
 import classnames from 'classnames';
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl';
 import { UpInputProps, Validation, UpInputStyledProps } from './types';
@@ -142,11 +141,11 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
     showValidationStatus: true,
   };
 
-  constructor(p, c) {
-    super(p, c);
+  constructor(p) {
+    super(p);
     const _self = this;
     if (this.props.validation && this.props.validation.length > 0) {
-      this.props.validation.map(function (value: Validation, index: number) {
+      this.props.validation.map(function (value: Validation) {
         if (value && value.pattern) {
           _self._validationManager.addControl(new TypeStringControl(value.pattern, value.errorMessage));
         }
@@ -218,11 +217,6 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
       touched,
       hasClearOption,
       type,
-      onChange,
-      value,
-      validation,
-      errorDisplayMode,
-      hasError,
       iconName,
       iconPosition,
       width,
@@ -233,7 +227,6 @@ class UpInput extends BaseControlComponent<UpInputProps, any> {
       placeholder,
       floatingLabel,
       theme,
-      ...others
     } = this.props;
 
     let realIconName = iconName;

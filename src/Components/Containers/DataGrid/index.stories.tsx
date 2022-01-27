@@ -58,8 +58,9 @@ columns = {
 
 const data = [];
 const data2 = [];
+const data3 = [];
 
-for (const i = 0; i < 5; i++) {
+for (let i = 0; i < 5; i++) {
   data.push({
     c1: 'Value ' + i,
     c2: false,
@@ -67,12 +68,25 @@ for (const i = 0; i < 5; i++) {
     c4: { Libelle: 'Suivi', Couleur: '#369' },
   });
 }
-for (const i = 0; i < 20; i++) {
+
+for (let i = 0; i < 20; i++) {
   data2.push({
     c1: 'Value 2 ' + i,
     c2: false,
     c3: 'Value 3',
     c4: { Libelle: 'Suivi', Couleur: '#369' },
+  });
+}
+
+for (let i = 0; i < 20; i++) {
+  data3.push({
+    isSelected: i % 2 == 0,
+    value: {
+      c1: 'Value 2 ' + i,
+      c2: false,
+      c3: 'Value 3',
+      c4: { Libelle: 'Suivi', Couleur: '#369' },
+    },
   });
 }
 
@@ -333,6 +347,41 @@ export const WithSingleActionAndRowClickable = () => {
     />
   );
 };
+
+export const WithPreSelection = () => (
+  <UpDataGrid
+    isPaginationEnabled={false}
+    isSelectionEnabled={true}
+    textAlignCells={'center'}
+    columns={[
+      {
+        label: 'Col 1',
+        field: 'c1',
+        isSortable: true,
+      },
+      {
+        label: 'Col 2',
+        field: 'c2',
+        isSortable: true,
+        tooltip: {
+          title: 'title',
+          content: 'content content content ',
+        },
+      },
+      {
+        label: 'Col 3',
+        field: 'c3',
+        isSortable: true,
+      },
+      {
+        label: 'Col 4',
+        field: 'c4',
+        isSortable: true,
+      },
+    ]}
+    data={data3}
+  />
+);
 
 export const WithExternalSource = () => (
   <UpDataGrid
