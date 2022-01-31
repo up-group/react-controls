@@ -1,8 +1,17 @@
+# ReactControls (version: 2.17.5)
+
+## Main Changes
+
+- UpDataGrid: add preslection feature for UpDataGrid component
+  the data model must match the following pattern **Array<{isSelected: boolean, value: any}>**
+
 #  ReactControls (version: 0.2.172)
 ## Main Changes
 - Form fields : improve error handling
 
 # ReactControls (version: 2.17.0)
+
+## Main Changes
 
 - upgrading react 16 to 17
 
