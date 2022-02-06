@@ -205,7 +205,7 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
     ),
   };
 
-  constructor(props, context) {
+  constructor(props) {
     super(props);
     this.state = {
       page: this.getPage(this.props.take || 50, this.props.skip || 0, this.props.total || 0),
@@ -298,14 +298,11 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
   }
 
   render() {
-    const currentPage = 1;
     const maxPage = this.getMaxPage();
 
     const from = this.state.skip + 1;
     let to = from + this.state.take - 1;
     if (to > this.props.total) to = this.props.total;
-
-    const takes = this.props.takes;
 
     let pageNumberNavigation = <span />;
 

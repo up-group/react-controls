@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import * as assign from 'object-assign';
 import { UpRowProps } from './types';
 import { UpGridConsumer } from './UpGridContext';
+import UpCol from './UpCol';
 
 const RowRenderer: React.FunctionComponent<UpRowProps> = props => {
   const { prefixCls, justify, align, className, style, children, type, gutter, rowSpacing, fullRowLayout, ...others } =
@@ -40,7 +41,7 @@ const RowRenderer: React.FunctionComponent<UpRowProps> = props => {
       if (!row) {
         return null;
       }
-      if (row.props) {
+      if (row.props && row.type == UpCol) {
         return (
           <React.Fragment key={index}>
             {React.cloneElement(row, {
