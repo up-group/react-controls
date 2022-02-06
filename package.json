@@ -1,6 +1,6 @@
 {
   "name": "@up-group-ui/react-controls",
-  "version": "2.17.4",
+  "version": "2.17.6",
   "description": "Up shared react controls",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -74,7 +74,7 @@
     "test": "jest --notify --detectOpenHandles",
     "test:coverage": "npm run test -- --coverage",
     "test:watch": "npm run test -- --watch",
-    "start": "cross-env NODE_OPTIONS='--openssl-legacy-provider' start-storybook -p 6006",
+    "start": "start-storybook -p 6006",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -o ./public",
     "build-storybook-docs": "start-storybook --docs --no-manager-cache",
