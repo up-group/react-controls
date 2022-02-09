@@ -569,13 +569,11 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
     );
   };
 
-  onSelectionAllChange = (isSelected: boolean) => {
-    const rows: Array<Row> = this.state.data.map((row, index) => {
-      return {
-        isSelected: !this.state.allRowSelected,
-        value: row.value,
-      };
-    });
+  onSelectionAllChange = (): void => {
+    const rows: Array<Row> = this.state.data.map(row => ({
+      isSelected: !this.state.allRowSelected,
+      value: row.value,
+    }));
 
     const addedRows = rows
       .filter(r => r.isSelected)
@@ -599,13 +597,13 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
     );
   };
 
-  onSortChange = (c: Column, dir: SortDirection) => {
+  onSortChange = (c: Column, dir: SortDirection): void => {
     if (this.props.onSortChange) {
       this.props.onSortChange(c, dir);
     }
     // Update the column state
     const columns: Array<Column> = [];
-    this.state.columns.map((value, index) => {
+    this.state.columns.map(value => {
       if (c.field == value.field) {
         columns.push(c);
       } else {
@@ -621,7 +619,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
     });
   };
 
-  componentWillReceiveProps(nextProps: UpDataGridProps) {
+  componentWillReceiveProps(nextProps: UpDataGridProps): void {
     let data = this.state.data;
     const { isDataInitialized } = this.props;
 
@@ -656,6 +654,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
       total: nextProps.paginationProps.total,
       isDataFetching: nextProps.isDataFetching,
       selectedData: selectedData,
+      allRowSelected: data.every(d => d.isSelected),
     };
 
     if (nextProps.paginationProps.skip != null) {

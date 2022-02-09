@@ -348,40 +348,53 @@ export const WithSingleActionAndRowClickable = () => {
   );
 };
 
-export const WithPreSelection = () => (
-  <UpDataGrid
-    isPaginationEnabled={false}
-    isSelectionEnabled={true}
-    textAlignCells={'center'}
-    columns={[
-      {
-        label: 'Col 1',
-        field: 'c1',
-        isSortable: true,
-      },
-      {
-        label: 'Col 2',
-        field: 'c2',
-        isSortable: true,
-        tooltip: {
-          title: 'title',
-          content: 'content content content ',
+export const WithPreSelection = () => {
+  const [dtsource, setDtsource] = React.useState(data3);
+  return (
+    <UpDataGrid
+      isPaginationEnabled
+      paginationProps={{
+        take: 10,
+        total: data3.length,
+        onPageChange: (page, take, skip) => {
+          setDtsource(data3.slice(skip, skip + take));
         },
-      },
-      {
-        label: 'Col 3',
-        field: 'c3',
-        isSortable: true,
-      },
-      {
-        label: 'Col 4',
-        field: 'c4',
-        isSortable: true,
-      },
-    ]}
-    data={data3}
-  />
-);
+      }}
+      isSelectionEnabled
+      textAlignCells={'center'}
+      columns={[
+        {
+          label: 'Col 1',
+          field: 'c1',
+          isSortable: true,
+        },
+        {
+          label: 'Col 2',
+          field: 'c2',
+          isSortable: true,
+          tooltip: {
+            title: 'title',
+            content: 'content content content ',
+          },
+        },
+        {
+          label: 'Col 3',
+          field: 'c3',
+          isSortable: true,
+        },
+        {
+          label: 'Col 4',
+          field: 'c4',
+          isSortable: true,
+        },
+      ]}
+      data={dtsource}
+      footerProps={{
+        isPaginationEnabled: true,
+      }}
+    />
+  );
+};
 
 export const WithExternalSource = () => (
   <UpDataGrid
@@ -605,7 +618,7 @@ export const WithExternalSourceAndPaginationTopAndBottom = () => (
     dataSource={{
       query: 'https://jsonplaceholder.typicode.com/posts',
     }}
-    isPaginationEnabled={true}
+    isPaginationEnabled
     columns={[
       {
         label: 'Id',
@@ -637,7 +650,7 @@ export const WithCustomRowStyles = () => (
     dataSource={{
       query: 'https://jsonplaceholder.typicode.com/posts',
     }}
-    isPaginationEnabled={true}
+    isPaginationEnabled
     columns={[
       {
         label: 'Titre',

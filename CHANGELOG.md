@@ -1,9 +1,16 @@
+# ReactControls (version: 2.17.7)
+
+## Main Changes
+
+- UpDataGrid: fix reset allRowSelected when changing page
+
 # ReactControls (version: 2.17.6)
 
 ## Main Changes
 
 - UpGrid: fix Warning: React does not recognize the `rowSpacing` prop on a DOM element
 - useSafeState: memoise the new safeSetState returned function
+
 # ReactControls (version: 2.17.5)
 
 ## Main Changes
