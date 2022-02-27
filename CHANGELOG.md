@@ -1,10 +1,16 @@
-# ReactControls (version: 2.17.7)
+# ReactControls (version: 2.17.9)
+
+## Main Changes
+
+- UpDataGrid: add for onSelectionChange allRows (data) as parameter
+
+# ReactControls (version: 2.17.8)
 
 ## Main Changes
 
 - UpDataGrid: fix reset allRowSelected when changing page
 
-# ReactControls (version: 2.17.6)
+# ReactControls (version: 2.17.7)
 
 ## Main Changes
 
