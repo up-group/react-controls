@@ -1,4 +1,11 @@
-# ReactControls (version: 2.17.9)
+
+# ReactControls (version: 2.17.11)
+
+## Main Changes
+
+- UpDataGrid: isFromProps parameter for onSelectionChange event
+
+# ReactControls (version: 2.17.10)
 
 ## Main Changes
 

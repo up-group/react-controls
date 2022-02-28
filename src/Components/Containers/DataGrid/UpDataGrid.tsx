@@ -275,7 +275,13 @@ export interface UpDataGridProps extends TestableComponentProps {
   injectRow?: (previous: any, next: any, colum: Column[]) => JSX.Element;
   // Event Handler
   onSortChange?: (c: Column, dir: SortDirection) => void;
-  onSelectionChange?: (lastChangeRow: Row, seletectedRow: Row[], allSelectedRows?: Row[], allRows?: Row[]) => void;
+  onSelectionChange?: (
+    lastChangeRow: Row,
+    seletectedRow: Row[],
+    allSelectedRows?: Row[],
+    allRows?: Row[],
+    isFromProps?: boolean
+  ) => void;
   onRowClick?: (rowIndex: number, row: any) => void;
   isRowClickable?: boolean;
   getRowCustomClassName?: (rowIndex: number, row: any) => string;
@@ -563,7 +569,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
       },
       () => {
         if (this.props.onSelectionChange) {
-          this.props.onSelectionChange(currentRow, this.seletectedRow, this.state.selectedData, rows);
+          this.props.onSelectionChange(currentRow, this.seletectedRow, this.state.selectedData, rows, false);
         }
       }
     );
@@ -591,7 +597,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
       },
       () => {
         if (this.props.onSelectionChange) {
-          this.props.onSelectionChange(null, this.seletectedRow, this.state.selectedData, rows);
+          this.props.onSelectionChange(null, this.seletectedRow, this.state.selectedData, rows, false);
         }
       }
     );
@@ -623,11 +629,11 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
     let data = this.state.data;
     const { isDataInitialized } = this.props;
 
-    const curentState = data.map(v => {
+    const currentState = data.map(v => {
       return v.value;
     });
 
-    const hasSameData = _.isEqual(curentState, nextProps.data);
+    const hasSameData = _.isEqual(currentState, nextProps.data);
 
     if (this.props.dataSource == null && hasSameData === false) {
       data = nextProps.data != null ? this.mapDataToRow(nextProps.data) : nextProps.data;
@@ -670,7 +676,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
     this.setState(newState, () => {
       if (hasSameData === false) {
         if (this.props.onSelectionChange) {
-          this.props.onSelectionChange(null, [], this.state.selectedData, data);
+          this.props.onSelectionChange(null, [], this.state.selectedData, data, true);
         }
       }
     });
