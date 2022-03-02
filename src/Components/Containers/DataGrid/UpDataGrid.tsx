@@ -23,7 +23,7 @@ import * as _ from 'lodash';
 import { UpDataGridProvider } from './UpDataGridContext'
 import { getTestableComponentProps, TestableComponentProps } from "../../../Common/utils/types";
 import {DeviceSmartphones} from "../../../Common/utils/device";
-import {IconName} from 'theming/icons';
+import {IconName} from '../../../Common/theming/icons';
 
 const WrapperDataGridStyle = style({
   position: "relative"
@@ -361,7 +361,7 @@ class UpDataGrid extends React.Component<
     let rows: Array<Row> = [];
     data.map((value, index) => {
       rows.push({
-        isSelected: this.state && (this.state.allRowSelected || this.isSelectedRowData(value.id)),
+        isSelected: this.state && this.state.allRowSelected, // || this.isSelectedRowData(value.id)),
         value: value
       });
     });
@@ -525,12 +525,7 @@ class UpDataGrid extends React.Component<
     //Do not check if the "all rows checkbox" must be selected in the case of a single selectable field.
     if(this.props.onlyOneRowCanBeSelected) return;
 
-    const dataLength = this.state.data.length;
-    const selectedRowsLength = this.selectedRowsDataWithAlsoTheCurrentOne(currentRow).length;
-    // Check if all rows that are selected, belong to the same page (pagination)
-    const notCheckedRowsLength = this.state.data.filter(data => !data.isSelected).length;
-
-    return notCheckedRowsLength == 0 && (selectedRowsLength % dataLength) == 0;
+    return this.state.data.every(d => d.isSelected);
   }
 
   onRowSelectionChange = (rowKey: number, currentRow: Row) => {
@@ -631,7 +626,6 @@ class UpDataGrid extends React.Component<
           value: { ...v.value}
       }));
       selectedData = [];
-      this.props.setIsDataInitializedToFalse();
     };
 
     const newState: UpDataGridState = {
@@ -672,7 +666,7 @@ class UpDataGrid extends React.Component<
       onPageChange,
       ...otherProps
     } = this.props.paginationProps;
-
+    
     const pagination = (
       <div className={classnames('pagination-container')}>
         <UpPagination
@@ -776,14 +770,17 @@ class UpDataGrid extends React.Component<
           ...this.props.footerProps.actionsDataGrid,
           actions: this.props.footerProps.actionsDataGrid.actions.map(action => ({
             ...action,
-            onClick: rows => action.onClick(rows)
-              .then(data => {
-                //Empty the selectData and uncheck all checkboxes if the request is successful
-                this.setState({
-                  selectedData: [],
-                  data: this.state.data.map(row =>  ({...row, isSelected : false}))
+            onClick: rows => {
+              let promise = action.onClick(rows);
+              
+              return Promise.resolve(promise).then(data => {
+                  //Empty the selectData and uncheck all checkboxes if the request is successful
+                  this.setState({
+                    selectedData: [],
+                    data: this.state.data.map(row =>  ({...row, isSelected : false}))
+                  })
                 })
-              })
+            }
           }))
         }
       })
@@ -830,7 +827,7 @@ class UpDataGrid extends React.Component<
                   columns={columns}
                   displayRowActionsWithinCell={this.props.displayRowActionsWithinCell}
                   textAlignCells={this.props.textAlignCells}
-                  isAllDataChecked={this.state.allRowSelected}
+                  isAllDataChecked={this.state.data.every(d => d.isSelected)}
                   isSelectionAllEnabled= {!this.props.onlyOneRowCanBeSelected}
                 />
                 <tbody className={classnames("up-data-grid-body", oddEvenStyle)}>
@@ -905,7 +902,13 @@ class UpDataGrid extends React.Component<
           bytes[i] = csv.charCodeAt(i);
         }
         var blob = new Blob([new Uint8Array(bytes)], { type: "text/csv" });
-        window.navigator.msSaveBlob(blob, filename);
+        
+        if(typeof window.navigator["msSaveBlob"] !== "undefined") {
+          window.navigator.msSaveBlob(blob, filename);
+        }
+        else if(typeof window.navigator["msSaveOrOpenBlob"] !== "undefined") {
+          window.navigator.msSaveOrOpenBlob(blob, filename);
+        }
       }
     } else {
       var a = document.createElement("A") as HTMLAnchorElement;

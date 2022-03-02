@@ -135,7 +135,7 @@ export const OnlySomeDate =
                     setDate(value)
                 }}
                 isOutsideRange={(day: Moment) => {
-                    return day.day() % 2 > 0
+                    return day.toDate().getDate() % 2 > 0
                 }}
                 value={value && moment(value)}
             />

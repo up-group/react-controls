@@ -372,7 +372,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
 
     showError() {
         return this.props.showError !== undefined
-            ? this.props.showError === true
+            ? typeof this.props.showError === "function" ? (this.props.showError as Function)(this.state) : this.props.showError === true
             : this.hasError;
     }
 

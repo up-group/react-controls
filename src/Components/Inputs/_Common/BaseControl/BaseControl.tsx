@@ -15,6 +15,7 @@ import HelpMessageDisplay from "../Validation/HelpMessageDisplay";
 import { string } from "prop-types";
 import { isFunction } from "util";
 import { TestableComponentProps } from "../../../../Common/utils/types";
+import moment = require("moment");
 
 // Exports
 const ONCHANGE_MUST_BE_SPECIFIED =
@@ -22,6 +23,7 @@ const ONCHANGE_MUST_BE_SPECIFIED =
 
 type RenderHelp = (children: React.ReactNode) => JSX.Element;
 
+type HandlerShowError = (state: any) => boolean ;
 export interface BaseControlProps<_BaseType> extends TestableComponentProps, WithThemeProps {
   name?: string;
   onChange?: (
@@ -35,7 +37,7 @@ export interface BaseControlProps<_BaseType> extends TestableComponentProps, Wit
   readonly?: boolean;
   tooltip?: string | Tooltip;
   isRequired?: boolean;
-  showError?: boolean;
+  showError?: boolean | HandlerShowError;
   hasError?: boolean;
   showSuccess?: boolean;
   errorDisplayMode?: ErrorDisplayMode;
@@ -64,7 +66,7 @@ export abstract class BaseControlComponent<
 
   public static defaultProps: BaseControlProps<any> = {
     theme: defaultTheme,
-    errorDisplayMode: "tooltip"
+    errorDisplayMode: "inline"
   };
 
   constructor(props?: BaseControlProps<_BaseType> & _Props, context?) {
@@ -132,6 +134,7 @@ export abstract class BaseControlComponent<
     }
 
     if (this.isControlled) {
+      this.setState({ error: result != null && result.hasError ? result.errorMessage : null });
       this.dispatchOnChange(
         cleanData,
         cloneEvent,
@@ -215,6 +218,7 @@ export abstract class BaseControlComponent<
       if (this.props["onBlur"]) this.props["onBlur"](event);
     };
     setTimeout(() => {
+      
       if (this.state.extra === undefined) {
         this.setState({ extra: { focused: false, touched: true }},
           handleOnBlur.bind(null, event)

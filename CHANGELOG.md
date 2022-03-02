@@ -1,3 +1,54 @@
+#  ReactControls (version: 0.2.174)
+## Bug Fixes
+- Fix pattern construction of RegExp
+
+#  ReactControls (version: 0.2.172)
+## Main Changes
+- Form fields : improve error handling
+
+#  ReactControls (version: 0.2.171)
+## Main Changes
+- UpIcon : Add icons circle-check and circle-play
+
+#  ReactControls (version: 0.2.169)
+
+## Main Changes
+- UpIcon : Add new icon 'file-edit' | 'user-circle' | 'safe'
+
+#  ReactControls (version: 0.2.168)
+## Bug Fixes
+- UpDate : fix date clear when value is controlled
+- UpDataGrid : clean code
+
+#  ReactControls (version: 0.2.167)
+## Bug Fixes
+- UpDate : fix date clear
+- UpDataGrid : fix promise on row action handling
+
+#  ReactControls (version: 0.2.166)
+## Main Changes
+- UpDropfile : add customizable error message
+
+#  ReactControls (version: 0.2.165)
+## Bugs Fixes
+- UpDataGrid : Fix strategy selection
+
+#  ReactControls (version: 0.2.164)
+## Bugs Fixes
+- UpDate : fix reset input value in case of invalid date onBlur
+
+#  ReactControls (version: 0.2.162)
+## Bugs Fixes
+- UpSelect : fix option selection
+
+#  ReactControls (version: 0.2.161)
+## Main Changes
+- UpInput : fix hide clear icon idf input is readonly
+
+#  ReactControls (version: 0.2.160)
+## Main Changes
+- UpDatagrid : unselect row during pagination if the checkbox "All rows" is unchecked
+
 #  ReactControls (version: 0.2.159)
 ## Main Changes
 - UpDatagrid : allow to clear the selection by the caller

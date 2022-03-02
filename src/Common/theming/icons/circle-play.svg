@@ -1,0 +1,12 @@
+<svg id="Circle_play" data-name="Circle play" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Circle_play_Tracé_815" data-name="Circle play Tracé 815" d="M26.106-25.106a15,15,0,0,1,0,21.213,15,15,0,0,1-21.213,0,15,15,0,0,1,0-21.213A15,15,0,0,1,26.106-25.106Zm-.731.731a13.964,13.964,0,0,0-19.75,0,13.964,13.964,0,0,0,0,19.75,13.964,13.964,0,0,0,19.75,0A13.964,13.964,0,0,0,25.375-24.375Z" transform="translate(-0.5 29.5)" fill="#4e5a58" stroke="#4e5a58" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Circle_play_Groupe_704" data-name="Circle play Groupe 704" clip-path="url(#clip-path)">
+    <path id="Circle_play_Tracé_814" data-name="Circle play Tracé 814" d="M-1-31H32.1V2.1H-1Z" transform="translate(-0.552 29.448)" fill="#4e5a58" stroke="#4e5a58" stroke-width="1"/>
+  </g>
+  <circle id="Circle_play_Ellipse_1" data-name="Circle play Ellipse 1" cx="15" cy="15" r="15" fill="#f49126"/>
+  <path id="Circle_play_Polygone_2" data-name="Circle play Polygone 2" d="M6.5,0,13,11H0Z" transform="translate(22 9) rotate(90)" fill="#fff"/>
+</svg>

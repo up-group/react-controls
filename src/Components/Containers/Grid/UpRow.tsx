@@ -26,15 +26,17 @@ const RowRenderer: React.FunctionComponent<UpRowProps> = (props) => {
 
     let cols = children;
     if (rowSpacing > 0 || type != 'float') {
-        cols = React.Children.map(children, (row: React.ReactElement<UpRowProps>) => {
+        cols = React.Children.map(children, (row: React.ReactElement<UpRowProps>, index: number) => {
             if (!row) {
                 return null;
             }
             if (row.props) {
-                return React.cloneElement(row, {
-                    rowSpacing: row.props.rowSpacing == 0 ? rowSpacing : row.props.gutter,
-                    type: row.props.type ? row.props.type : row.props.type
-                });
+                return <React.Fragment key={index}>
+                    {React.cloneElement(row, {
+                        rowSpacing: row.props.rowSpacing == 0 ? rowSpacing : row.props.gutter,
+                        type: row.props.type ? row.props.type : row.props.type
+                    })}
+                </React.Fragment>
             }
             return row;
         });

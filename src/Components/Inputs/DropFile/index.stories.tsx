@@ -92,6 +92,22 @@ export const AllowedExtensionsAndCustomizableLabel =
         </UpThemeProvider>
     );
 
+export const AllowedExtensionsAndCustomizableErrorMessage =
+    () => (
+    <UpThemeProvider theme={UpDefaultTheme}>
+        <UpBox className={style({ width: "300px !important" })}>
+            <UpDropFile
+                label={"Add your file"}
+                name={"file"}
+                allowedExtensions={["pdf"]}
+                allowedExtensionsErrorMessage={(extension:string[])=>`Le format n'est pas bon. Le fichier doit être un ${extension[0]}`}
+            >
+                Add
+            </UpDropFile>
+        </UpBox>
+    </UpThemeProvider>
+    );
+
 export const CustomisableSelectFileButtonLabel =
     () => (
         <UpThemeProvider theme={UpDefaultTheme}>

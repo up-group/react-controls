@@ -160,6 +160,6 @@ try {
     document.createEvent('TouchStart');
     hasTouch = true;
 }
-catch (e) { console.log(e); }
+catch (e) { }
 
 export default !hasTouch ? UpContextMenuTrigger : UpTouchContextMenuTrigger;
