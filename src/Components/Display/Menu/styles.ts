@@ -9,12 +9,16 @@ export type UpMenuCustomStylesKeys = 'menu' | 'nav' | 'content' | 'header' | 'fo
 
 export type UpMenuCustomStyles = CustomStyles<UpMenuCustomStylesKeys, Partial<UpMenuProps>, UpMenuState>;
 
-export const getMenuCustomStyle = (key: UpMenuCustomStylesKeys, customStyles: UpMenuCustomStyles, props: Partial<UpMenuProps>, state?: UpMenuState) => {
+export const getMenuCustomStyle = (
+  key: UpMenuCustomStylesKeys,
+  customStyles: UpMenuCustomStyles,
+  props: Partial<UpMenuProps>,
+  state?: UpMenuState
+) => {
   return getCustomStyles<UpMenuCustomStylesKeys, Partial<UpMenuProps>, UpMenuState>(key, customStyles, props, state);
 };
 
 export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): string => {
-
   let defaultMenuStyles: NestedCSSProperties = {
     width: props.minified ? toRem(76) : toRem(props.width),
     minWidth: toRem(76),
@@ -44,15 +48,29 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
     height: props.minified ? '79vh' : '84vh',
   };
 
-  let defaultContentStyles: NestedCSSProperties = {
-  };
+  let defaultContentStyles: NestedCSSProperties = {};
 
   if (props.customStyles) {
-    defaultMenuStyles = { ...defaultMenuStyles, ...getMenuCustomStyle('menu', props.customStyles, props) };
-    defaultHeaderStyles = { ...defaultHeaderStyles, ...getMenuCustomStyle('header', props.customStyles, props) };
-    defaultFooterStyles = { ...defaultFooterStyles, ...getMenuCustomStyle('footer', props.customStyles, props) };
-    defaultNavStyles = { ...defaultNavStyles, ...getMenuCustomStyle('nav', props.customStyles, props) };
-    defaultContentStyles = { ...defaultContentStyles, ...getMenuCustomStyle('content', props.customStyles, props) };
+    defaultMenuStyles = {
+      ...defaultMenuStyles,
+      ...getMenuCustomStyle('menu', props.customStyles, props),
+    };
+    defaultHeaderStyles = {
+      ...defaultHeaderStyles,
+      ...getMenuCustomStyle('header', props.customStyles, props),
+    };
+    defaultFooterStyles = {
+      ...defaultFooterStyles,
+      ...getMenuCustomStyle('footer', props.customStyles, props),
+    };
+    defaultNavStyles = {
+      ...defaultNavStyles,
+      ...getMenuCustomStyle('nav', props.customStyles, props),
+    };
+    defaultContentStyles = {
+      ...defaultContentStyles,
+      ...getMenuCustomStyle('content', props.customStyles, props),
+    };
   }
 
   return style(
@@ -78,20 +96,21 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           width: 'auto',
           lineHeight: '3px',
         },
-        '&.up-menu ul li .up-icon-wrapper.colored svg, .up-menu ul li .up-icon-wrapper.colored svg path, .up-menu ul li .up-icon-wrapper.colored svg polygon, .up-menu ul li .up-icon-wrapper.colored svg polyline': {
-          fill: '#ffffff',
-          cursor: 'pointer',
-        },
-        '&.up-menu ul li.active .up-icon-wrapper.colored:first-of-type svg, .up-menu ul li.active .up-icon-wrapper.colored:first-of-type svg path, .up-menu ul li.active .up-icon-wrapper.colored:first-of-type svg polygon, .up-menu ul li.active .up-icon-wrapper.colored:first-of-type svg polyline': {
-          fill: props.theme.colorMap.primary,
-        },
+        '&.up-menu ul li .up-icon-wrapper.colored svg, .up-menu ul li .up-icon-wrapper.colored svg path, .up-menu ul li .up-icon-wrapper.colored svg polygon, .up-menu ul li .up-icon-wrapper.colored svg polyline':
+          {
+            fill: '#ffffff',
+            cursor: 'pointer',
+          },
+        '&.up-menu ul li.active .up-icon-wrapper.colored:first-of-type svg, .up-menu ul li.active .up-icon-wrapper.colored:first-of-type svg path, .up-menu ul li.active .up-icon-wrapper.colored:first-of-type svg polygon, .up-menu ul li.active .up-icon-wrapper.colored:first-of-type svg polyline':
+          {
+            fill: props.theme.colorMap.primary,
+          },
         '&.up-menu ul li .up-icon-wrapper.colored:not(:first-of-type)': {
           '-webkit-transition-property': 'transform',
           '-webkit-transition-duration': '.3s',
           transitionProperty: 'transform',
           transitionDuration: '.3s',
           display: props.minified ? 'none' : 'initial',
-
         },
         '&.up-menu ul li:hover .up-icon-wrapper.colored:not(:first-of-type)': {
           transform: 'rotate(90deg)',
@@ -99,9 +118,10 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
         '&.up-menu ul li.active .up-icon-wrapper.colored:not(:first-of-type)': {
           transform: 'rotate(90deg)',
         },
-        '&.up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg, .up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg path, .up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg polygon, .up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg polyline': {
-          fill: props.theme.colorMap.primary,
-        },
+        '&.up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg, .up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg path, .up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg polygon, .up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg polyline':
+          {
+            fill: props.theme.colorMap.primary,
+          },
         '&.up-menu nav > ul > li .up-menu-item-title': {
           display: props.minified ? 'none' : 'inherit',
           fontSize: toRem(14),
@@ -109,9 +129,10 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           textAlign: 'left',
           marginLeft: toRem(14),
         },
-        '&.up-menu ul li.active .up-menu-item-title, &.up-menu ul li:hover ul li.active .up-menu-item-title, &.up-menu ul li.active ul li.active .up-menu-item-title': {
-          color: props.theme.colorMap.primary,
-        },
+        '&.up-menu ul li.active .up-menu-item-title, &.up-menu ul li:hover ul li.active .up-menu-item-title, &.up-menu ul li.active ul li.active .up-menu-item-title':
+          {
+            color: props.theme.colorMap.primary,
+          },
         '&.up-menu ul li:hover ul li .up-menu-item-title, &.up-menu ul li.active ul li .up-menu-item-title': {
           color: '#fff',
         },
@@ -220,28 +241,30 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
         '&.up-menu .up-menu-toggle': {
           cursor: 'pointer',
         },
-        '&.up-menu .up-menu-toggle.colored svg, .up-menu .up-menu-toggle.colored svg path, .up-menu .up-menu-toggle.colored svg polygon, .up-menu .up-menu-toggle.colored svg polyline': {
-          fill: '#ffffff',
-          cursor: 'pointer',
-        },
-        '&.up-menu .up-menu-toggle.colored:hover svg, .up-menu .up-menu-toggle.colored:hover svg path, .up-menu .up-menu-toggle.colored:hover svg polygon, .up-menu .up-menu-toggle.colored:hover svg polyline': {
-          fill: props.theme.colorMap.primary,
-        },
+        '&.up-menu .up-menu-toggle.colored svg, .up-menu .up-menu-toggle.colored svg path, .up-menu .up-menu-toggle.colored svg polygon, .up-menu .up-menu-toggle.colored svg polyline':
+          {
+            fill: '#ffffff',
+            cursor: 'pointer',
+          },
+        '&.up-menu .up-menu-toggle.colored:hover svg, .up-menu .up-menu-toggle.colored:hover svg path, .up-menu .up-menu-toggle.colored:hover svg polygon, .up-menu .up-menu-toggle.colored:hover svg polyline':
+          {
+            fill: props.theme.colorMap.primary,
+          },
       },
     },
-        media(DeviceLRTablets, {
-          $nest: {
-            '.skin-up.main-header.navbar.dropdown-menu li.divider': {
-              backgroundColor: 'rgba(255, 255, 255, 0.1)',
-            },
-            '.skin-up.main-header.navbar.dropdown-menu li a': {
-              color: '#fff',
-            },
-            '.skin-up.main-header.navbar.dropdown-menu li a: hover': {
-              background: 'rgb(0, 170, 212)',
-            },
-          },
-        }),
+    media(DeviceLRTablets, {
+      $nest: {
+        '.skin-up.main-header.navbar.dropdown-menu li.divider': {
+          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+        },
+        '.skin-up.main-header.navbar.dropdown-menu li a': {
+          color: '#fff',
+        },
+        '.skin-up.main-header.navbar.dropdown-menu li a: hover': {
+          background: 'rgb(0, 170, 212)',
+        },
+      },
+    }),
     media(DeviceSmartphones, {
       $nest: {
         '&.up-menu': {
@@ -291,14 +314,14 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           overflow: 'hidden',
         },
       },
-    }),
-    );
+    })
+  );
 };
 
 // Styles UpMenuOH
-export const heightTopBar: number = 60;
-export const widthLeftMenuStandard: number = 300;
-export const widthLeftMenuCollapse: number = 64;
+export const heightTopBar = 60;
+export const widthLeftMenuStandard = 300;
+export const widthLeftMenuCollapse = 64;
 
 export const styleMenuOh = style({
   backgroundColor: '#f5f5f5',

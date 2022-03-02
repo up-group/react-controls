@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [ v2.17.0 ]
+  pull_request:
+    branches: [ v2.17.0 ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+    - name: Install
+      run: yarn install --immutable
+    - name: Lint
+      run: yarn run lint
+    - name: Build
+      run: yarn run build --if-present
+    - name: Test
+      run: yarn run test:coverage
+    # - name: Upload coverage to Codecov
+    #   uses: codecov/codecov-action@v1
+

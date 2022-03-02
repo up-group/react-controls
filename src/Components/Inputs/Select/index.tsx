@@ -1,4 +1,4 @@
-import UpSelect from './UpSelect'
+import UpSelect from './UpSelect';
 import { UpSelectOption } from './types';
 
 export { UpSelectOption };

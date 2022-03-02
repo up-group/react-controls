@@ -1,25 +1,17 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-export interface UpDataGridToolbarState {
+export interface UpDataGridToolbarState {}
 
-}
-
-export interface UpDataGridToolbarProps {
-
-}
+export interface UpDataGridToolbarProps {}
 
 export default class UpDataGridToolbar extends React.Component<UpDataGridToolbarProps, UpDataGridToolbarState> {
+  constructor(props, context) {
+    super(props);
+    this.state = {};
+  }
 
-    constructor(props, context) {
-        super(props);
-        this.state = {
-        }
-    }
-
-    render() {
-        return (
-            <div></div>
-        )
-    }
+  render() {
+    return <div></div>;
+  }
 }

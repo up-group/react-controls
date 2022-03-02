@@ -1,36 +1,30 @@
 // Imports
-import * as React from "react";
-import ValidationManager from "../Validation/ValidationManager";
-import ErrorDisplay, { ErrorDisplayMode } from "../Validation/ErrorDisplay";
+import React from 'react';
+import ValidationManager from '../Validation/ValidationManager';
+import ErrorDisplay, { ErrorDisplayMode } from '../Validation/ErrorDisplay';
 // Importation des règles CSS de bases -> à transformer en styled-components
-import UpTooltip, { Tooltip } from "../../../Display/Tooltip";
-import TypeNullControl from "../Validation/TypeNullControl";
-import { isString } from "../../../../Common/utils";
-import { WithThemeProps } from "../../../../Common/theming/withTheme";
-import defaultTheme from "../../../../Common/theming";
-import { eventFactory } from "../../../../Common/utils/eventListener";
+import UpTooltip, { Tooltip } from '../../../Display/Tooltip';
+import TypeNullControl from '../Validation/TypeNullControl';
+import { isString } from '../../../../Common/utils';
+import { WithThemeProps } from '../../../../Common/theming/withTheme';
+import defaultTheme from '../../../../Common/theming';
+import { eventFactory } from '../../../../Common/utils/eventListener';
 
-import * as update from "react-addons-update";
-import HelpMessageDisplay from "../Validation/HelpMessageDisplay";
-import { string } from "prop-types";
-import { isFunction } from "util";
-import { TestableComponentProps } from "../../../../Common/utils/types";
-import moment = require("moment");
+import update from 'react-addons-update';
+import HelpMessageDisplay from '../Validation/HelpMessageDisplay';
+import { isFunction } from 'util';
+import { TestableComponentProps } from '../../../../Common/utils/types';
 
 // Exports
 const ONCHANGE_MUST_BE_SPECIFIED =
-  "La méthode onChange doit être spécifié dans le cas où la valeur du composant est défini dans les props";
+  'La méthode onChange doit être spécifié dans le cas où la valeur du composant est défini dans les props';
 
 type RenderHelp = (children: React.ReactNode) => JSX.Element;
 
-type HandlerShowError = (state: any) => boolean ;
+type HandlerShowError = (state: any) => boolean;
 export interface BaseControlProps<_BaseType> extends TestableComponentProps, WithThemeProps {
   name?: string;
-  onChange?: (
-    event: React.ChangeEvent<any>,
-    arg: _BaseType,
-    error: string
-  ) => void;
+  onChange?: (event: React.ChangeEvent<any>, arg: _BaseType, error: string) => void;
   value?: _BaseType;
   defaultValue?: _BaseType;
   disabled?: boolean;
@@ -55,10 +49,7 @@ export interface BaseControlState<_BaseType> {
   value?: _BaseType;
   extra?: any;
 }
-export abstract class BaseControlComponent<
-  _Props,
-  _BaseType
-> extends React.Component<
+export abstract class BaseControlComponent<_Props, _BaseType> extends React.Component<
   BaseControlProps<_BaseType> & _Props,
   BaseControlState<_BaseType>
 > {
@@ -66,7 +57,7 @@ export abstract class BaseControlComponent<
 
   public static defaultProps: BaseControlProps<any> = {
     theme: defaultTheme,
-    errorDisplayMode: "inline"
+    errorDisplayMode: 'inline',
   };
 
   constructor(props?: BaseControlProps<_BaseType> & _Props, context?) {
@@ -78,7 +69,7 @@ export abstract class BaseControlComponent<
           ? (this.props.value as any)
           : this.props.defaultValue !== undefined
           ? (this.props.defaultValue as any)
-          : null
+          : null,
     };
 
     this.initWithProps();
@@ -86,8 +77,7 @@ export abstract class BaseControlComponent<
   }
 
   private initWithProps() {
-    if (this.props.value !== undefined)
-      this.state = { value: this.props.value as any };
+    if (this.props.value !== undefined) this.setState({ value: this.props.value as any });
   }
 
   protected registerValidations() {
@@ -113,16 +103,8 @@ export abstract class BaseControlComponent<
 
   abstract renderControl(): JSX.Element;
 
-  private checkAndDispatch = (
-    event?: React.ChangeEvent<any>,
-    value?: _BaseType
-  ) => {
-    const _value =
-      value !== undefined
-        ? value
-        : event !== undefined
-        ? event
-        : this.state.value;
+  private checkAndDispatch = (event?: React.ChangeEvent<any>, value?: _BaseType) => {
+    const _value = value !== undefined ? value : event !== undefined ? event : this.state.value;
     const cleanData: _BaseType = this.getValue(_value);
     let cloneEvent = event;
     if (event) {
@@ -135,19 +117,15 @@ export abstract class BaseControlComponent<
 
     if (this.isControlled) {
       this.setState({ error: result != null && result.hasError ? result.errorMessage : null });
-      this.dispatchOnChange(
-        cleanData,
-        cloneEvent,
-        result ? result.errorMessage : null
-      );
+      this.dispatchOnChange(cleanData, cloneEvent, result ? result.errorMessage : null);
     } else {
-      this.setState({ value: cleanData, error: result != null && result.hasError ? result.errorMessage : null },
+      this.setState(
+        {
+          value: cleanData,
+          error: result != null && result.hasError ? result.errorMessage : null,
+        },
         () => {
-          this.dispatchOnChange(
-            cleanData,
-            cloneEvent,
-            result != null && result.errorMessage
-          );
+          this.dispatchOnChange(cleanData, cloneEvent, result != null && result.errorMessage);
         }
       );
     }
@@ -159,30 +137,25 @@ export abstract class BaseControlComponent<
     }
   }
 
-  public handleChangeEvent = (
-    event: React.ChangeEvent<any>,
-    value?: _BaseType
-  ) => {
+  public handleChangeEvent = (event: React.ChangeEvent<any>, value?: _BaseType) => {
     this.checkAndDispatch(event, value);
   };
 
   public handleClearEvent = (value: _BaseType) => {
     if (this.isControlled) {
-      this.dispatchOnChange(value, eventFactory(this.props.name, ""), null)
-      this.props.onClear && this.props.onClear()
+      this.dispatchOnChange(value, eventFactory(this.props.name, ''), null);
+      this.props.onClear && this.props.onClear();
     } else {
-      this.setState({value})
+      this.setState({ value });
     }
-  }
+  };
 
   private checkData = (value?: any) => {
     return this._validationManager.isValidValue(value);
   };
 
   get hasError() {
-    return this.props.hasError !== undefined
-      ? this.props.hasError === true
-      : this.error != null;
+    return this.props.hasError !== undefined ? this.props.hasError === true : this.error != null;
   }
 
   abstract showError();
@@ -196,17 +169,16 @@ export abstract class BaseControlComponent<
   onFocus = event => {
     event.persist();
     const handleOnFocus = event => {
-      if (this.props["onFocus"]) this.props["onFocus"](event);
+      if (this.props['onFocus']) this.props['onFocus'](event);
     };
 
     if (this.state.extra === undefined) {
-      this.setState(
-        { extra: { focused: true } },
-        handleOnFocus.bind(null, event)
-      );
+      this.setState({ extra: { focused: true } }, handleOnFocus.bind(null, event));
     } else {
       this.setState(
-        update(this.state, { extra: { focused: { $set: true } } }),
+        update(this.state, {
+          extra: { focused: { $set: true } },
+        }),
         handleOnFocus.bind(null, event)
       );
     }
@@ -215,21 +187,18 @@ export abstract class BaseControlComponent<
   onBlur = event => {
     event.persist();
     const handleOnBlur = event => {
-      if (this.props["onBlur"]) this.props["onBlur"](event);
+      if (this.props['onBlur']) this.props['onBlur'](event);
     };
     setTimeout(() => {
-      
       if (this.state.extra === undefined) {
-        this.setState({ extra: { focused: false, touched: true }},
-          handleOnBlur.bind(null, event)
-        );
+        this.setState({ extra: { focused: false, touched: true } }, handleOnBlur.bind(null, event));
       } else {
         this.setState(
           update(this.state, {
             extra: {
               focused: { $set: false },
-              touched: { $set: true }
-            }
+              touched: { $set: true },
+            },
           }),
           handleOnBlur.bind(null, event)
         );
@@ -246,11 +215,11 @@ export abstract class BaseControlComponent<
   }
 
   public render() {
-    var _tooltip: Tooltip = null;
+    let _tooltip: Tooltip = null;
     if (this.props.tooltip) {
       if (isString(this.props.tooltip)) {
         _tooltip = {
-          content: this.props.tooltip as string
+          content: this.props.tooltip as string,
         };
       } else {
         _tooltip = this.props.tooltip as Tooltip;
@@ -258,7 +227,7 @@ export abstract class BaseControlComponent<
     }
     const RenderControl = this.renderControl();
 
-    var content = null;
+    let content = null;
     if (this.props.helpMessage == null) {
       content = (
         <ErrorDisplay
@@ -268,30 +237,17 @@ export abstract class BaseControlComponent<
           hasError={this.hasError}
           error={this.error}
         >
-          {_tooltip === null ? (
-            RenderControl
-          ) : (
-            <UpTooltip {..._tooltip}>{RenderControl}</UpTooltip>
-          )}
+          {_tooltip === null ? RenderControl : <UpTooltip {..._tooltip}>{RenderControl}</UpTooltip>}
         </ErrorDisplay>
       );
-    } else if (
-      this.props.helpMessage != null &&
-      typeof this.props.helpMessage === "string"
-    ) {
+    } else if (this.props.helpMessage != null && typeof this.props.helpMessage === 'string') {
       content = (
-        <HelpMessageDisplay
-          theme={this.props.theme}
-          helpMessageText={this.props.helpMessage}
-        >
+        <HelpMessageDisplay theme={this.props.theme} helpMessageText={this.props.helpMessage}>
           {RenderControl}
         </HelpMessageDisplay>
       );
-    } else if (
-      this.props.helpMessage != null &&
-      isFunction(this.props.helpMessage)
-    ) {
-      var temp = (this.props.helpMessage as RenderHelp)(RenderControl);
+    } else if (this.props.helpMessage != null && isFunction(this.props.helpMessage)) {
+      const temp = (this.props.helpMessage as RenderHelp)(RenderControl);
       if (React.isValidElement(temp)) {
         content = temp;
       }
@@ -300,13 +256,9 @@ export abstract class BaseControlComponent<
     return content;
   }
 
-  public dispatchOnChange = (
-    data: _BaseType,
-    event: React.ChangeEvent<any>,
-    error: string
-  ) => {
+  public dispatchOnChange = (data: _BaseType, event: React.ChangeEvent<any>, error: string) => {
     if (this.props.onChange !== undefined && event != null) {
       this.props.onChange(event, data, error);
     }
-  };  
+  };
 }

@@ -1,4 +1,4 @@
 // Impprts
-import UpRichText from './UpRichText'
+import UpRichText from './UpRichText';
 
-export default UpRichText ;
+export default UpRichText;

@@ -1,33 +1,33 @@
 {
   "compilerOptions": {
-    "types": [ "node", "jest" ],
+    "types": ["node", "jest"],
     "target": "ES5",
     "sourceMap": true,
     "removeComments": true,
     "importHelpers": true,
     "module": "commonjs",
     "outDir": "dist/",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "lib": ["es7", "dom"],
     "allowJs": false,
     "declaration": true,
     "skipLibCheck": true,
+    "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
-      "*": [
-        "src/Common/*",
-        "src/Component/*",
-        "src/*"
-      ]
+      "*": ["src/Common/*", "src/Component/*", "src/*"]
     }
   },
-  "include": [
-    "src/**/*"
-  ],
+  "include": ["src/**/*"],
   "exclude": [
     "node_modules",
+    "./node_modules",
+    "./node_modules/*",
+    "./node_modules/@types/node/index.d.ts",
     "**/*.test.*",
     "**/*.spec.*",
-    "**/*.mock.*"
+    "**/*.mock.*",
+    "**/*.stories.*",
+    "jest_cache"
   ]
 }

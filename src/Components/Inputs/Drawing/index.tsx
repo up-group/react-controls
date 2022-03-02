@@ -1,4 +1,4 @@
 // Imports
 import UpDrawing from './UpDrawing';
 
-export default UpDrawing ;
+export default UpDrawing;

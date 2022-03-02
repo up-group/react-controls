@@ -1,4 +1,4 @@
 // Imports
-import UpImage from './UpImage'
+import UpImage from './UpImage';
 
-export default UpImage
+export default UpImage;

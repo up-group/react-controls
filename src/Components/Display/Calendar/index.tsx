@@ -1,8 +1,5 @@
-
 import UpCalendar, { UpCalendarProps } from './UpCalendar';
 
-export {
-    UpCalendarProps
-};
+export { UpCalendarProps };
 
-export default UpCalendar ;
+export default UpCalendar;

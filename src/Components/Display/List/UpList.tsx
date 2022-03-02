@@ -17,4 +17,4 @@ const style = `ol {
     color: deeppink;
     font-family: 'Pacifico', cursive;
     width: 32px;
-  }`
+  }`;

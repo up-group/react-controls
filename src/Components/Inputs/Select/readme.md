@@ -1,3 +1,3 @@
 Breaking changes
 
-filterOption 
+filterOption

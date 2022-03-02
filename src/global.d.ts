@@ -6,11 +6,21 @@ declare module '*.css' {
   export = styles;
 }
 
-declare module "*.ttf" {
-    const content: string;
-    export = content;
+declare module '*.svg' {
+  const content: any;
+  export default content;
 }
 
-declare type Omit<T, K> = Pick<T, Exclude<keyof T, K>>
+declare module '*.png' {
+  const value: any;
+  export default value;
+}
 
-declare type Constructor<T = {}> = new (...args: any[]) => T
+declare module '*.ttf' {
+  const content: string;
+  export = content;
+}
+
+declare type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
+
+declare type Constructor<T = {}> = new (...args: any[]) => T;

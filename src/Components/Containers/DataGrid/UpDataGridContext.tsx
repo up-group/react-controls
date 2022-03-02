@@ -1,15 +1,15 @@
-import * as React from "react";
-import { Action } from "./UpDataGrid"  
+import React from 'react';
+import { Action } from './UpDataGrid';
 import { ActionFactory } from './UpDataGridRow';
 
 const UpDataGridContext = React.createContext<{
-    displayRowActionsWithinCell: boolean;
-    rowActions: ActionFactory<any> | Array<Action>,
-    labelToDisplayRowActionsInCell: string
+  displayRowActionsWithinCell: boolean;
+  rowActions: ActionFactory<any> | Array<Action>;
+  labelToDisplayRowActionsInCell: string;
 }>({
-    displayRowActionsWithinCell : false,
-    rowActions: [],
-    labelToDisplayRowActionsInCell : undefined 
+  displayRowActionsWithinCell: false,
+  rowActions: [],
+  labelToDisplayRowActionsInCell: undefined,
 });
 
 export const UpDataGridProvider = UpDataGridContext.Provider;

@@ -1,4 +1,4 @@
 // Imports
 import UpPhone from './UpPhone';
 
-export default UpPhone ;
+export default UpPhone;

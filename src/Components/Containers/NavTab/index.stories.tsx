@@ -5,93 +5,88 @@ import { getRootContainer } from '../../../Common/stories';
 import { withKnobs } from '@storybook/addon-knobs';
 
 export default {
-    title: 'Components/Containers/UpNavTab',
-    decorators: [withKnobs, getRootContainer('UpNavTab')],
-    component: UpNavTab
+  title: 'Components/Containers/UpNavTab',
+  decorators: [withKnobs, getRootContainer('UpNavTab')],
+  component: UpNavTab,
 };
 
-export const GeneralUse =
-    () => (
-        <UpNavTab tabs={
-            [
-                {
-                    content: <UpPanel type='info' disableAutoIntentIcon={false} message='Information sur ...' />,
-                    head: 'Tab 1'
-                },
-                {
-                    content: <UpPanel type='warning' disableAutoIntentIcon={false} message='Attention sur ...' />,
-                    head: 'Tab 2'
-                }, {
-                    content: <UpPanel type='danger' disableAutoIntentIcon={false} message='Erreur sur ...' />,
-                    head: 'Tab 3'
-                }
-            ]
-        }
-        />
-    );
+export const GeneralUse = () => (
+  <UpNavTab
+    tabs={[
+      {
+        content: <UpPanel type="info" disableAutoIntentIcon={false} message="Information sur ..." />,
+        head: 'Tab 1',
+      },
+      {
+        content: <UpPanel type="warning" disableAutoIntentIcon={false} message="Attention sur ..." />,
+        head: 'Tab 2',
+      },
+      {
+        content: <UpPanel type="danger" disableAutoIntentIcon={false} message="Erreur sur ..." />,
+        head: 'Tab 3',
+      },
+    ]}
+  />
+);
 
-export const SelectedTabOnLoad =
-    () => (
-        <UpNavTab tabs={
-            [
-                {
-                    content: <UpPanel type='info' disableAutoIntentIcon={false} message='Information sur ...' />,
-                    head: 'Tab 1'
-                },
-                {
-                    content: <UpPanel type='warning' disableAutoIntentIcon={false} message='Attention sur ...' />,
-                    head: 'Tab 2'
-                }, {
-                    content: <UpPanel type='danger' disableAutoIntentIcon={false} message='Erreur sur ...' />,
-                    head: 'Tab 3'
-                }
-            ]
-        }
-            selectedTabOnLoad={2}
-        />
-    );
+export const SelectedTabOnLoad = () => (
+  <UpNavTab
+    tabs={[
+      {
+        content: <UpPanel type="info" disableAutoIntentIcon={false} message="Information sur ..." />,
+        head: 'Tab 1',
+      },
+      {
+        content: <UpPanel type="warning" disableAutoIntentIcon={false} message="Attention sur ..." />,
+        head: 'Tab 2',
+      },
+      {
+        content: <UpPanel type="danger" disableAutoIntentIcon={false} message="Erreur sur ..." />,
+        head: 'Tab 3',
+      },
+    ]}
+    selectedTabOnLoad={2}
+  />
+);
 
+export const OnShowLoadType = () => (
+  <UpNavTab
+    tabs={[
+      {
+        content: <UpPanel type="info" disableAutoIntentIcon={false} message="Information sur ..." />,
+        head: 'Tab 1',
+      },
+      {
+        content: <UpPanel type="warning" disableAutoIntentIcon={false} message="Attention sur ..." />,
+        head: 'Tab 2',
+      },
+      {
+        content: <UpPanel type="danger" disableAutoIntentIcon={false} message="Erreur sur ..." />,
+        head: 'Tab 3',
+      },
+    ]}
+    loadType={'onShow'}
+  />
+);
 
-export const OnShowLoadType =
-    () => (
-        <UpNavTab tabs={
-            [
-                {
-                    content: <UpPanel type='info' disableAutoIntentIcon={false} message='Information sur ...' />,
-                    head: 'Tab 1'
-                },
-                {
-                    content: <UpPanel type='warning' disableAutoIntentIcon={false} message='Attention sur ...' />,
-                    head: 'Tab 2'
-                }, {
-                    content: <UpPanel type='danger' disableAutoIntentIcon={false} message='Erreur sur ...' />,
-                    head: 'Tab 3'
-                }
-            ]
-        }
-            loadType={'onShow'}
-        />
-    );
-
-export const CallBackUpNavTab =
-    () => (
-        <UpNavTab tabs={
-            [
-                {
-                    content: <UpPanel type='info' disableAutoIntentIcon={false} message='Information sur ...' />,
-                    head: 'Tab 1'
-                },
-                {
-                    content: <UpPanel type='warning' disableAutoIntentIcon={false} message='Attention sur ...' />,
-                    head: 'Tab 2'
-                }, {
-                    content: <UpPanel type='danger' disableAutoIntentIcon={false} message='Erreur sur ...' />,
-                    head: 'Tab 3'
-                }
-            ]
-        }
-            onSelectedTabChanged={(selectTabKey, tab) => console.log(`You are in tab ${selectTabKey}`)}
-        />
-    );
+export const CallBackUpNavTab = () => (
+  <UpNavTab
+    tabs={[
+      {
+        content: <UpPanel type="info" disableAutoIntentIcon={false} message="Information sur ..." />,
+        head: 'Tab 1',
+      },
+      {
+        content: <UpPanel type="warning" disableAutoIntentIcon={false} message="Attention sur ..." />,
+        head: 'Tab 2',
+      },
+      {
+        content: <UpPanel type="danger" disableAutoIntentIcon={false} message="Erreur sur ..." />,
+        head: 'Tab 3',
+      },
+    ]}
+    onSelectedTabChanged={(selectTabKey, tab) => console.log(`You are in tab ${selectTabKey}`)}
+  />
+);
 
 CallBackUpNavTab.storyName = 'Callback To Execute On Tab Changing';

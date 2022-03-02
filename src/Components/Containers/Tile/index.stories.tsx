@@ -4,52 +4,37 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { getRootContainer } from '../../../Common/stories';
 
 export default {
-    title: 'Components/Containers/UpTile',
-    decorators: [withKnobs, getRootContainer('UpTile')],
-    component: UpTile
+  title: 'Components/Containers/UpTile',
+  decorators: [withKnobs, getRootContainer('UpTile')],
+  component: UpTile,
 };
 
-export const GeneralUse =
-    () => (
-        <UpTile
-            title='UpTile title'
-        >
-            Content
-        </UpTile>
-    );
+export const GeneralUse = () => <UpTile title="UpTile title">Content</UpTile>;
 
-export const WithFooter =
-    () => (
-        <UpTile
-            title='UpTile title'
-            footer='This is the footer'
-        >
-            Content
-        </UpTile>
-    );
+export const WithFooter = () => (
+  <UpTile title="UpTile title" footer="This is the footer">
+    Content
+  </UpTile>
+);
 
 WithFooter.storyName = 'Show UpTile With Footer';
 
-export const MaxHeightContent =
-    () => (
-        <UpTile
-            title='UpTile title'
-            maxHeight='200'
-        >
-            <p>Content</p>
-            <p>Content</p>
-            <p>Content</p>
-            <p>Content</p>
-            <p>Content</p>
-            <p>Content</p>
-            <p>Content</p>
-            <p>Content</p>
-            <p>Content</p>
-            <p>Content</p>
-            <p>Content</p>
-            <p>Content</p>
-            <p>Content</p>
-        </UpTile>
-    );
+export const MaxHeightContent = () => (
+  <UpTile title="UpTile title" maxHeight="200">
+    <p>Content</p>
+    <p>Content</p>
+    <p>Content</p>
+    <p>Content</p>
+    <p>Content</p>
+    <p>Content</p>
+    <p>Content</p>
+    <p>Content</p>
+    <p>Content</p>
+    <p>Content</p>
+    <p>Content</p>
+    <p>Content</p>
+    <p>Content</p>
+  </UpTile>
+);
 
 MaxHeightContent.storyName = 'Add MaxHeight Property To UpTile Body';

@@ -3,9 +3,4 @@ import UpContextMenuItem from './UpContextMenuItem';
 import UpContextMenuTrigger from './UpContextMenuTrigger';
 import UpContextMenuItemDivider from './UpContextMenuItemDivider';
 
-export {
-    UpContextMenu,
-    UpContextMenuItem,
-    UpContextMenuTrigger,
-    UpContextMenuItemDivider
-};
+export { UpContextMenu, UpContextMenuItem, UpContextMenuTrigger, UpContextMenuItemDivider };

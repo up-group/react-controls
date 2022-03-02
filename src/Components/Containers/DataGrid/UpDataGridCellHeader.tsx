@@ -1,15 +1,14 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import UpSvgIcon from "../../Display/SvgIcon";
-import UpDefaultTheme from "../../../Common/theming";
-import { SortDirection, Column } from "./UpDataGrid";
-import UpTooltip from '../../Display/Tooltip/UpTooltip'
-import UpLigne from '../../Display/Ligne/UpLigne'
-import classnames from "classnames";
-import UpBox from "../Box";
-import { style } from "typestyle";
-
+import UpSvgIcon from '../../Display/SvgIcon';
+import UpDefaultTheme from '../../../Common/theming';
+import { SortDirection, Column } from './UpDataGrid';
+import UpTooltip from '../../Display/Tooltip/UpTooltip';
+import UpLigne from '../../Display/Ligne/UpLigne';
+import classnames from 'classnames';
+import UpBox from '../Box';
+import { style } from 'typestyle';
 
 export interface UpDataGridCellHeaderState {
   isSorted: boolean;
@@ -22,46 +21,42 @@ export interface UpDataGridCellHeaderProps {
   column?: Column;
   width?: string;
   textAlignCells?: 'center' | 'left' | 'right' | 'initial';
-  className? : string;
+  className?: string;
 }
 
-const headerCellStyles =  style({
+const headerCellStyles = style({
   $nest: {
-    "& .up-data-grid-header-cell-icons .up-icon-wrapper": {
-      height: "8px"
+    '& .up-data-grid-header-cell-icons .up-icon-wrapper': {
+      height: '8px',
     },
-    "& .up-data-grid-header-cell-icons": {
-      marginLeft: "8px"
-    },
-    "& .tooltip-icon": {
+    '& .up-data-grid-header-cell-icons': {
       marginLeft: '8px',
-      marginTop: '4px'
-    }
-  }
+    },
+    '& .tooltip-icon': {
+      marginLeft: '8px',
+      marginTop: '4px',
+    },
+  },
 });
 
 export default class UpDataGridCellHeader extends React.Component<
   UpDataGridCellHeaderProps,
   UpDataGridCellHeaderState
-
 > {
   constructor(props: UpDataGridCellHeaderProps, context) {
     super(props, context);
     this.state = {
       isSorted: props.column ? props.column.isSorted : false,
-      sortDirection: props.column ? props.column.sortDir : null
+      sortDirection: props.column ? props.column.sortDir : null,
     };
   }
 
   onCellClick = (sortDirection?: SortDirection) => {
     if (!sortDirection) {
-      sortDirection = this.state.sortDirection === "ASC" ? "DESC" : "ASC";
+      sortDirection = this.state.sortDirection === 'ASC' ? 'DESC' : 'ASC';
     }
 
-    if (
-      this.props.column.isSortable === true &&
-      this.state.sortDirection != sortDirection
-    ) {
+    if (this.props.column.isSortable === true && this.state.sortDirection != sortDirection) {
       this.setState({ isSorted: true, sortDirection: sortDirection }, () => {
         this.props.onSortChange(this.props.column, this.state.sortDirection);
       });
@@ -69,28 +64,26 @@ export default class UpDataGridCellHeader extends React.Component<
   };
 
   componentWillReceiveProps(newProps: UpDataGridCellHeaderProps) {
-    if (
-      newProps.column.isSorted != null &&
-      newProps.column.isSorted !== this.state.isSorted
-    ) {
+    if (newProps.column.isSorted != null && newProps.column.isSorted !== this.state.isSorted) {
       this.setState({
         isSorted: newProps.column.isSorted,
-        sortDirection: newProps.column.isSorted
-          ? this.state.sortDirection == null
-            ? "DESC"
-            : "ASC"
-          : null
+        sortDirection: newProps.column.isSorted ? (this.state.sortDirection == null ? 'DESC' : 'ASC') : null,
       });
     }
   }
 
   render() {
-    const sortDescIcon = "arrow-down";
-    const sortAscIcon = "arrow-up";
+    const sortDescIcon = 'arrow-down';
+    const sortAscIcon = 'arrow-up';
     const arrowColor = UpDefaultTheme.colorMap.primary;
 
     const Tooltip = this.props.column.tooltip && (
-      <UpTooltip title={this.props.column.tooltip.title} content={this.props.column.tooltip.content} delayHide={100} delayShow={100}>
+      <UpTooltip
+        title={this.props.column.tooltip.title}
+        content={this.props.column.tooltip.content}
+        delayHide={100}
+        delayShow={100}
+      >
         <UpLigne>
           <UpSvgIcon
             width={20}
@@ -101,7 +94,7 @@ export default class UpDataGridCellHeader extends React.Component<
         </UpLigne>
       </UpTooltip>
     );
-    var width = "auto";
+    let width = 'auto';
     if (this.props.width != null) {
       width = this.props.width;
     }
@@ -113,36 +106,31 @@ export default class UpDataGridCellHeader extends React.Component<
           'up-data-grid-header-cell',
           this.props.column.isSortable ? 'up-data-grid-sortable' : '',
           this.props.className
-        )}>
+        )}
+      >
         <UpBox
           flexDirection={'row'}
           justifyContent={
-            this.props.textAlignCells === 'center' ? 'center'
-            : this.props.textAlignCells === 'left' ? 'flex-start'
-            : this.props.textAlignCells === 'right' ? 'flex-end' : 'normal'
+            this.props.textAlignCells === 'center'
+              ? 'center'
+              : this.props.textAlignCells === 'left'
+              ? 'flex-start'
+              : this.props.textAlignCells === 'right'
+              ? 'flex-end'
+              : 'normal'
           }
-          alignItems={'center'}>
-          <span
-            onClick={() => this.onCellClick()}
-            className={'up-data-grid-header-cell-label'}>
+          alignItems={'center'}
+        >
+          <span onClick={() => this.onCellClick()} className={'up-data-grid-header-cell-label'}>
             {this.props.column.label}
           </span>
           {this.props.column.isSortable && (
-            <UpBox
-              className={'up-data-grid-header-cell-icons'}
-              flexDirection={'column'}
-              style={{ width: 'auto' }}>
-
+            <UpBox className={'up-data-grid-header-cell-icons'} flexDirection={'column'} style={{ width: 'auto' }}>
               <UpSvgIcon
                 width={12}
                 height={12}
                 iconName={sortAscIcon}
-                color={
-                  this.state.isSorted &&
-                  this.state.sortDirection == 'ASC'
-                    ? arrowColor
-                    : '#D7D7D7'
-                }
+                color={this.state.isSorted && this.state.sortDirection == 'ASC' ? arrowColor : '#D7D7D7'}
                 onClick={() => this.onCellClick('ASC')}
               />
 
@@ -150,12 +138,7 @@ export default class UpDataGridCellHeader extends React.Component<
                 width={12}
                 height={12}
                 iconName={sortDescIcon}
-                color={
-                  this.state.isSorted &&
-                  this.state.sortDirection == 'DESC'
-                    ? arrowColor
-                    : '#D7D7D7'
-                }
+                color={this.state.isSorted && this.state.sortDirection == 'DESC' ? arrowColor : '#D7D7D7'}
                 onClick={() => this.onCellClick('DESC')}
               />
             </UpBox>

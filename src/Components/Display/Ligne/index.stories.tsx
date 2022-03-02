@@ -6,43 +6,32 @@ import UpTooltip from '../../Display/Tooltip';
 import { style } from 'typestyle';
 
 export default {
-    title: 'Components/Display/UpLigne',
-    decorators: [withKnobs, getRootContainer('UpLigne')],
-    component: UpLigneComponent
+  title: 'Components/Display/UpLigne',
+  decorators: [withKnobs, getRootContainer('UpLigne')],
+  component: UpLigneComponent,
 };
 
-export const General =
-    () => (
-        <UpLigne>
-            My message
-        </UpLigne>
-    );
+export const General = () => <UpLigne>My message</UpLigne>;
 
-export const WithTooltip =
-    () => (
-        <UpTooltip
-            id={'Tooltip'}
-            title={'Détails'}
-            content={'Pour plus d\'info, veuillez consulter le site de notre produit...'}
-        >
-            <UpLigne
-                dataFor='Tooltip'
-            >
-                Hover to display Tooltip
-            </UpLigne>
-        </UpTooltip>
-    );
+export const WithTooltip = () => (
+  <UpTooltip
+    id={'Tooltip'}
+    title={'Détails'}
+    content={"Pour plus d'info, veuillez consulter le site de notre produit..."}
+  >
+    <UpLigne dataFor="Tooltip">Hover to display Tooltip</UpLigne>
+  </UpTooltip>
+);
 
-export const WithCustomization =
-    () => (
-        <UpLigne
-            className={style({
-                fontWeight: 'bold',
-                color: '#000 !important',
-                backgroundColor: '#F59100',
-                padding: '10px'
-            })}
-        >
-            My message
-        </UpLigne>
-    );
+export const WithCustomization = () => (
+  <UpLigne
+    className={style({
+      fontWeight: 'bold',
+      color: '#000 !important',
+      backgroundColor: '#F59100',
+      padding: '10px',
+    })}
+  >
+    My message
+  </UpLigne>
+);

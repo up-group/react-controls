@@ -1,43 +1,54 @@
-import * as React from 'react'
-import useMountedRef from './useMountedRef'
+import useMountedRef from './useMountedRef';
+import { Dispatch, SetStateAction, useCallback, useReducer, useState } from 'react';
 
-const useSafeState = (initialValue) => {
+type SetStateFn<T> = Dispatch<SetStateAction<T | undefined>>;
+type SafeSetState<T> = [T | undefined, SetStateFn<T>];
 
-    let [state, setState] = React.useState(initialValue) ;
-    const mountedRef = useMountedRef() ;
+export function useSafeState<T = undefined>(initialState?: T | (() => T | undefined)): SafeSetState<T> {
+  const [state, setState] = useState(initialState);
+  const mountedRef = useMountedRef();
 
-    return [state, (value) => {
-        mountedRef.current && setState(value)
-    }]
+  const safeSetState = useCallback<SetStateFn<T>>(
+    args => {
+      // Only set the state when the component is mounted
+      if (mountedRef.current) {
+        setState(args);
+      }
+    },
+    [setState, mountedRef]
+  );
+
+  return [state, safeSetState];
 }
 
-export const useSafeStateWithReducer = (initialValue) => {
+export const useSafeStateWithReducer = initialValue => {
+  const [state, setState] = useReducer((state, newState) => ({ ...state, ...newState }), initialValue);
+  const mountedRef = useMountedRef();
 
-    let [state, setState] = React.useReducer((state, newState) => ({...state, ...newState}), initialValue)
-    const mountedRef = useMountedRef() ;
+  return [
+    state,
+    useCallback(
+      args => {
+        mountedRef.current && setState(args);
+      },
+      [setState, mountedRef]
+    ),
+  ];
+};
 
-    return [state, (value) => {
-        mountedRef.current && setState(value)
-    }]
-}
+export const useSafeStateWithReducerGeneric = <T>(initialValue: T) => {
+  const [state, setState] = useReducer((state: T, newState: T) => ({ ...state, ...newState }), initialValue);
+  const mountedRef = useMountedRef();
 
-export const useSafeStateWithReducerGeneric = <T>(initialValue:T) => {
-
-    let [state, setState] = React.useReducer((state:T, newState:T) => ({...state, ...newState}), initialValue)
-    const mountedRef = useMountedRef() ;
-
-    return [state, (value:T) => {
-        mountedRef.current && setState(value)
-    }]
-}
-
-export const useSafeStateGeneric = <T>(initialValue:T) => {
-    const [state, setState] = React.useState(initialValue) ;
-    const mountedRef = useMountedRef() ;
-
-    return [state, (value:T) => {
-        mountedRef.current && setState(value)
-    }]
-}
+  return [
+    state,
+    useCallback(
+      (args: T) => {
+        mountedRef.current && setState(args);
+      },
+      [setState, mountedRef]
+    ),
+  ];
+};
 
 export default useSafeState;

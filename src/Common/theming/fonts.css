@@ -1,18 +1,18 @@
 @font-face {
-    font-family: 'Pe-icon-7-stroke';
-    src: url('./fonts/Pe-icon-7-stroke.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'Pe-icon-7-stroke';
+  src: url('./fonts/Pe-icon-7-stroke.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 @font-face {
-    font-family: 'upfont';
-    font-weight: normal;
-    font-style: normal;
-    src: url('./fonts/upfont.ttf');
+  font-family: 'upfont';
+  font-weight: normal;
+  font-style: normal;
+  src: url('./fonts/upfont.ttf');
 }
 @font-face {
-    font-family: 'Icons16';
-    font-weight: normal;
-    font-style: normal;
-    src: url('./fonts/icons-16.ttf');
+  font-family: 'Icons16';
+  font-weight: normal;
+  font-style: normal;
+  src: url('./fonts/icons-16.ttf');
 }

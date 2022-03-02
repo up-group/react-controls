@@ -1,4 +1,4 @@
 // Imports
-import UpHeading from './UpHeading'
+import UpHeading from './UpHeading';
 
 export default UpHeading;
