@@ -1,3 +1,7 @@
+# ReactControls (version: 0.2.175)
+## Main Changes
+
+- UpIcon: add NFC off icon
 # ReactControls (version: 2.17.12)
 
 ## Main Changes
