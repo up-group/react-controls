@@ -1,6 +1,6 @@
 {
   "name": "@up-group-ui/react-controls",
-  "version": "2.17.10",
+  "version": "0.2.174",
   "description": "Up shared react controls",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

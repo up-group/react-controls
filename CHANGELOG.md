@@ -1,3 +1,12 @@
+# ReactControls (version: 0.2.175)
+## Main Changes
+
+- UpIcon: add NFC off icon
+# ReactControls (version: 2.17.12)
+
+## Main Changes
+
+- UpIcon: add NFC off icon
 
 # ReactControls (version: 2.17.11)
 
@@ -30,10 +39,6 @@
 
 - UpDataGrid: add preslection feature for UpDataGrid component
   the data model must match the following pattern **Array<{isSelected: boolean, value: any}>**
-
-#  ReactControls (version: 0.2.172)
-## Main Changes
-- Form fields : improve error handling
 
 # ReactControls (version: 2.17.0)
 
@@ -662,7 +667,7 @@
 
 # ReactControls (version: 0.2.54)
 
-## Main Changes
+## Main Cha
 
 - Fix form fields alignment
 - Add stories for complex form layout
