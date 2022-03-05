@@ -4,8 +4,8 @@ export default class TypeStringControl implements ErrorControl<any> {
   private _pattern: RegExp;
   private _patternErrorMessage: string;
 
-  constructor(patern: RegExp, patternErrorMessage: string) {
-    this._pattern = patern;
+  constructor(patern: RegExp | string, patternErrorMessage: string) {
+    this._pattern = patern instanceof RegExp ? patern : new RegExp(patern);
     this._patternErrorMessage = patternErrorMessage;
     this.isValidValue = this.isValidValue.bind(this);
   }
