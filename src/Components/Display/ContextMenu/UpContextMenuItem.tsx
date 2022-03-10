@@ -1,6 +1,6 @@
 import * as React from 'react';
 import classnames from 'classnames';
-import * as assign from 'object-assign';
+import assign from 'object-assign';
 import { callIfExists } from '../../../Common/utils/helpers';
 import { MENU_HIDE, MENU_SHOW, hideMenu, showMenu } from './actions';
 import { UpContextMenuItemProps } from './types';

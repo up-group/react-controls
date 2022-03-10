@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as assign from 'object-assign';
+import assign from 'object-assign';
 import { callIfExists } from '../../../Common/utils/helpers';
 import { hideMenu, showMenu } from './actions';
 import { UpContextMenuTriggerProps } from './types';

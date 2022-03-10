@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { callIfExists } from '../../../Common/utils/helpers';
 import GlobalEventListener from '../../../Common/utils/eventListener';
-import * as assign from 'object-assign';
+import assign from 'object-assign';
 import { MENU_HIDE, MENU_SHOW } from './actions';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import defaultTheme from '../../../Common/theming';
