@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import * as assign from 'object-assign';
+import assign from 'object-assign';
 import { UpRowProps } from './types';
 import { UpGridConsumer } from './UpGridContext';
 import UpCol from './UpCol';

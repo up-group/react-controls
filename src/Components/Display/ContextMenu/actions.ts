@@ -1,4 +1,4 @@
-import * as assign from 'object-assign';
+import assign from 'object-assign';
 import GlobalEventListener from '../../../Common/utils/eventListener';
 
 export const MENU_SHOW = 'UP_CONTEXTMENU_SHOW';
