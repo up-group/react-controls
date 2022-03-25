@@ -1,7 +1,12 @@
+# ReactControls (version: 2.17.14)
+## Main Changes
+
+- add some icons
+
 # ReactControls (version: 0.2.176)
 ## Main Changes
 
-- Objzdct-assign: fix import module
+- Object-assign: fix import module
 
 # ReactControls (version: 0.2.175)
 ## Main Changes
