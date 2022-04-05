@@ -1,3 +1,9 @@
+# ReactControls (version: 2.17.16)
+## Main Changes
+
+- UpSvgIcon : Fix ugly default tooltip
+- UpSvgIcon : Allow to set title on svg to enjoy tooltip
+
 # ReactControls (version: 2.17.14)
 ## Main Changes
 
