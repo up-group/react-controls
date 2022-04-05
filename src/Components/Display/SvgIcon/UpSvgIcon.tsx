@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { style, cssRaw } from 'typestyle';
+import { style } from 'typestyle';
 import Icons, { IconName } from '../../../Common/theming/icons';
 import Mentors, { MentorName } from '../../../Common/theming/mentors';
 import Illustrations, { IllustrationName } from '../../../Common/theming/illustrations';
@@ -9,6 +9,7 @@ import { NestedCSSProperties } from 'typestyle/lib/types';
 import { WithThemeProps } from '../../../Common/theming';
 
 export interface SvgProps extends React.SVGProps<{}> {
+  iconTitle?: string;
   iconName?: IconName | MentorName | IllustrationName;
   iconHtml?: string;
   dataFor?: string; // For tooltip management
@@ -34,6 +35,17 @@ const getIconData = (iconName: string): string => {
     return Mentors[iconName];
   }
   return null;
+};
+
+const setTitle = (iconData: string, iconTitle?: string): string => {
+  const iconAsHtml = new DOMParser().parseFromString(iconData, 'text/html').querySelector('svg');
+  if (iconAsHtml) {
+    if (iconAsHtml.querySelector('title')) {
+      iconAsHtml.querySelector('title').innerHTML = iconTitle ?? '';
+      return iconAsHtml.outerHTML;
+    }
+  }
+  return iconData;
 };
 
 const isColorMustNotBeOverrided = (iconName: string): boolean =>
@@ -74,6 +86,7 @@ const SvgIconWrapper: React.StatelessComponent<SvgIconWrapperProps> = (props: Sv
 export type UpSvgIconProps = SvgProps & React.HTMLProps<SVGSVGElement>;
 
 const UpSvgIcon: React.StatelessComponent<UpSvgIconProps & WithThemeProps> = ({
+  iconTitle,
   children,
   viewBox,
   iconName,
@@ -88,8 +101,7 @@ const UpSvgIcon: React.StatelessComponent<UpSvgIconProps & WithThemeProps> = ({
 }) => {
   const finalHeight = height && !isString(height) ? `${height}px` : height || '20px';
   const finalWidth = width && !isString(width) ? `${width}px` : width || '20px';
-
-  const iconData = iconName ? getIconData(iconName) : iconHtml ? iconHtml : null;
+  const iconData = iconName ? setTitle(getIconData(iconName), iconTitle) : iconHtml ? iconHtml : null;
   let mentorOrIllustrationStyles = null;
   if (iconName && !isColorMustNotBeOverrided(iconName)) {
     mentorOrIllustrationStyles = 'colored';
