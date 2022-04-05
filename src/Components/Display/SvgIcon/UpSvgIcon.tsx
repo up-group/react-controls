@@ -39,9 +39,11 @@ const getIconData = (iconName: string): string => {
 
 const setTitle = (iconData: string, iconTitle?: string): string => {
   const iconAsHtml = new DOMParser().parseFromString(iconData, 'text/html').querySelector('svg');
-  if (iconAsHtml.querySelector('title')) {
-    iconAsHtml.querySelector('title').innerHTML = iconTitle ?? '';
-    return iconAsHtml.outerHTML;
+  if (iconAsHtml) {
+    if (iconAsHtml.querySelector('title')) {
+      iconAsHtml.querySelector('title').innerHTML = iconTitle ?? '';
+      return iconAsHtml.outerHTML;
+    }
   }
   return iconData;
 };
