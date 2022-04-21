@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { media, style } from 'typestyle';
 import classnames from 'classnames';
 import UpButtonGroup from '../ButtonGroup';

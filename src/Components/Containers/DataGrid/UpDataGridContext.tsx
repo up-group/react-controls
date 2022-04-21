@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Action } from './UpDataGrid';
 import { ActionFactory } from './UpDataGridRow';
 

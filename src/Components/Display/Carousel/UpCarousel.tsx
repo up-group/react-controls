@@ -1,5 +1,5 @@
 // Imports
-import React from 'react';
+import * as React from 'react';
 import classnames from 'classnames';
 import useHoverIntent from '../../../Common/hooks/useHoverIntent';
 import { motion } from 'framer-motion';

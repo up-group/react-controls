@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import UpToast from '../UpToast';

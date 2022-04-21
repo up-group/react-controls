@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, render, screen, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import UpTile from '../UpTile';

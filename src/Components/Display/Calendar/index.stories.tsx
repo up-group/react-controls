@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import UpCalendar from './';
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs } from '@storybook/addon-knobs';

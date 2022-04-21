@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Column, Row } from './UpDataGrid';
 import UpBadge from '../../Display/Badge/index';
 import { isEmpty } from '../../../Common/utils/index';

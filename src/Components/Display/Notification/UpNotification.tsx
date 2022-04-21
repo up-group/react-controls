@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import classnames from 'classnames';
 import { UpGrid, UpRow, UpCol } from '../../Containers/Grid';
 import UpModal from '../../Containers/Modal/UpModal';

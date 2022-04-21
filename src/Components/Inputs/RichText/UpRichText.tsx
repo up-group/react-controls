@@ -1,5 +1,5 @@
 // Imports
-import React from 'react';
+import * as React from 'react';
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl';
 import defaultTheme from '../../../Common/theming';
 
