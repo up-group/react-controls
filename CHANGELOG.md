@@ -1,7 +1,11 @@
+# ReactControls (version: 0.2.177)
+## Bug Fixes
+
+- UpDataGrid : Fix all selected rows handling
 # ReactControls (version: 0.2.176)
 ## Main Changes
 
-- Objzdct-assign: fix import module
+- Object-assign: fix import module
 
 # ReactControls (version: 0.2.175)
 ## Main Changes
