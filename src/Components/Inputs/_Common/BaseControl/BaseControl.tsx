@@ -1,5 +1,5 @@
 // Imports
-import React from 'react';
+import * as React from 'react';
 import ValidationManager from '../Validation/ValidationManager';
 import ErrorDisplay, { ErrorDisplayMode } from '../Validation/ErrorDisplay';
 // Importation des règles CSS de bases -> à transformer en styled-components

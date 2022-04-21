@@ -1,6 +1,6 @@
 import 'normalize.css/normalize.css';
 import 'react-dates/initialize';
-import React from 'react';
+import * as React from 'react';
 import { UpDateProps } from './types';
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl';
 import defaultTheme from '../../../Common/theming';

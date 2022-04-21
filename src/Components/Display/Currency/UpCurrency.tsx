@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { style } from 'typestyle';
 import { Property } from 'csstype';
 import { getIntegerValue, getDecimalValue } from '../../../Common/utils/currency';

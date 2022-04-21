@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { UpBoxProps } from './types';
 import classnames from 'classnames';
 import { getBoxStyles, getSize } from './styles';

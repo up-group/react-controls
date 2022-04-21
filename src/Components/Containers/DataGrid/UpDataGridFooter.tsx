@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
 import { media, style } from 'typestyle';
 import classnames from 'classnames';
 import UpButtonGroup from '../ButtonGroup';
@@ -69,10 +69,10 @@ const UpDataGridFooter: React.FC<UpDataGridFooterProps & WithThemeProps> = props
 
   const { actions, validationLabel, groupLabel, intent } = actionsDataGrid || {};
 
-  const [selectedAction, selectAction] = useState(null);
+  const [selectedAction, selectAction] = React.useState(null);
   const selectedData = data.filter(element => element.isSelected);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (actions && actions.length === 1) {
       selectAction(actions[0]);
     } else if (selectedData.length < 1) {

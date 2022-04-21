@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import update from 'react-addons-update';
 import { CropedShape } from './types';
 import UpDrawing from './';

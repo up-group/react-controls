@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import UpDate, { UpDate as UpDateComponent } from './UpDate';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import { getRootContainer } from '../../../Common/stories';

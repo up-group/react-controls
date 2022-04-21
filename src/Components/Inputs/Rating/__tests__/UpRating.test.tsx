@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { ThemeProvider as UpThemeProvider } from '../../../../Common/theming/ThemeProvider';

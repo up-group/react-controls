@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿import * as React from 'react';
 import { style } from 'typestyle';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import {

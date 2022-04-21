@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { UpPanelProps } from './types';
 import UpSvgIcon from '../../Display/SvgIcon';
 import classnames from 'classnames';
