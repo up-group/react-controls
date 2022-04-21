@@ -456,6 +456,7 @@ class UpDataGrid extends React.Component<UpDataGridProps, UpDataGridState> {
         sortedColumn = value;
       }
     });
+
     const dataKey = this.props.dataKey;
 
     const orderParamName = this.props.dataSource.orderParamName || 'Order';
@@ -556,6 +557,10 @@ class UpDataGrid extends React.Component<UpDataGridProps, UpDataGridState> {
 
     return this.isAllRowSelected;
   };
+
+  get isAllRowSelected() {
+    return !isEmpty(this.state.data) && this.state.data.every(d => d.isSelected);
+  }
 
   onRowSelectionChange = (rowKey: number, currentRow: Row) => {
     const rows = this.state.data;
