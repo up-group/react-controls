@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Component } from 'react';
 import classnames from 'classnames';
-import * as ReactTooltip from 'react-tooltip';
+import ReactTooltip from 'react-tooltip';
 import { generateId, isFunction, isEmpty } from '../../../Common/utils';
 import { getStyles, upToolTipWrapper } from './styles';
 import UpDefaultTheme, { withTheme, WithThemeProps } from '../../../Common/theming';
