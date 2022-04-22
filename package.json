@@ -154,7 +154,6 @@
     "react-test-renderer": "^17.0.2",
     "remark-codesandbox": "^0.5.2",
     "rimraf": "^2.6.1",
-    "sass-loader": "^7.1.0",
     "storybook-addon-react-docgen": "^1.2.42",
     "style-loader": "^2.0.0",
     "svg-inline-loader": "^0.8.0",
