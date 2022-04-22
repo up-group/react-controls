@@ -144,7 +144,6 @@
     "json-loader": "^0.5.7",
     "loader-utils": "^3.2.0",
     "markdown-loader": "^5.1.0",
-    "node-sass": "^4.14.1",
     "path": "^0.12.7",
     "pinst": "^2.1.1",
     "plop": "^2.4.0",

@@ -6,7 +6,6 @@ import { setTimeOutWithPause } from '../../../Common/utils/helpers';
 import defaultTheme, { withTheme } from '../../../Common/theming';
 import UpNotification from '../Notification';
 import UpSvgIcon from '../SvgIcon';
-import { setTimeout, clearTimeout } from 'timers';
 import { UpToastProps } from './types';
 import {
   convertDurationFromMsToSecond,
