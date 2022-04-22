@@ -20,10 +20,12 @@ import UpDataGridFooter, { UpDataGridFooterProps } from './UpDataGridFooter';
 import UpDataGridHeader, { UpDataGridHeaderProps } from './UpDataGridHeader';
 
 import * as _ from 'lodash';
+
 import { UpDataGridProvider } from './UpDataGridContext';
 import { getTestableComponentProps, TestableComponentProps } from '../../../Common/utils/types';
 import { DeviceSmartphones } from '../../../Common/utils/device';
 import { IconName } from '../../../Common/theming/icons';
+import { isEmpty } from '../../../Common/utils';
 
 const WrapperDataGridStyle = style(
   {
@@ -368,6 +370,10 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
 
   isSelectedRowData = (id): boolean => this.state.selectedData.some(data => data.value.id === id);
 
+  get isAllRowSelected(): boolean {
+    return !isEmpty(this.state.data) && this.state.data.every(d => d.isSelected);
+  }
+
   static isRow = (obj: any): obj is Row => 'value' in obj && 'isSelected' in obj;
 
   static isRowArray = (arg: any): arg is Row[] => Array.isArray(arg) && arg.every(item => UpDataGrid.isRow(item));
@@ -548,7 +554,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
     //Do not check if the "all rows checkbox" must be selected in the case of a single selectable field.
     if (this.props.onlyOneRowCanBeSelected) return;
 
-    return this.state.data.every(d => d.isSelected);
+    return this.isAllRowSelected;
   };
 
   onRowSelectionChange = (rowKey: number, currentRow: Row) => {
@@ -660,7 +666,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
       total: nextProps.paginationProps.total,
       isDataFetching: nextProps.isDataFetching,
       selectedData: selectedData,
-      allRowSelected: data.every(d => d.isSelected),
+      allRowSelected: !isEmpty(data) && data.every(d => d.isSelected),
     };
 
     if (nextProps.paginationProps.skip != null) {
@@ -837,7 +843,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
                   columns={columns}
                   displayRowActionsWithinCell={this.props.displayRowActionsWithinCell}
                   textAlignCells={this.props.textAlignCells}
-                  isAllDataChecked={this.state.data.every(d => d.isSelected)}
+                  isAllDataChecked={this.isAllRowSelected}
                   isSelectionAllEnabled={!this.props.onlyOneRowCanBeSelected}
                 />
                 <tbody className={classnames('up-data-grid-body', oddEvenStyle)}>{rows}</tbody>
