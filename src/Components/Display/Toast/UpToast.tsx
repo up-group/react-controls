@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import UpHeading from '../Heading';
 import { WithThemeProps } from '../../../Common/theming/types';
@@ -15,7 +15,9 @@ import {
   wrapperToastStyle,
 } from './styles';
 
-const UpToast = (props: UpToastProps & WithThemeProps) => {
+const UpToast: React.FC<UpToastProps & WithThemeProps> = (
+  props: React.PropsWithChildren<UpToastProps & WithThemeProps>
+) => {
   let manualClosingTimeout;
   let autoClosingTimeout;
   const { message, children, intent, title, duration, theme, autoDismissable } = props;

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { isFunction } from 'utils';
 
 type DefaultProps<P extends object = object> = { props: P };

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import './bootstrap-grid.css';
 import SvgIcon from '../../Display/SvgIcon/index';

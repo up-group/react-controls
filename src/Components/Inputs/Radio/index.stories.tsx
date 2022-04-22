@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import UpRadio, { UpRadio as UpRadioComponent } from './UpRadio';
 import UpHeading from '../../Display/Heading';
 import { withKnobs, text, boolean, number, array } from '@storybook/addon-knobs';

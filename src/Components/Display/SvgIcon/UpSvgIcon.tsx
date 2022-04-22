@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { style } from 'typestyle';
 import Icons, { IconName } from '../../../Common/theming/icons';
 import Mentors, { MentorName } from '../../../Common/theming/mentors';

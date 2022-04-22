@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import Box from '../../Containers/Box';
 import { UpGrid, UpRow, UpCol } from '../../Containers/Grid';
@@ -10,8 +10,8 @@ import defaultTheme from '../../../Common/theming';
 import UpBox from '../../Containers/Box';
 import { toRem } from '../../../Common/theming/utils';
 
-const SvgIcon: React.FunctionComponent<SVGProps & WithThemeProps & LoadingIndicatorProps> = (
-  props: SVGProps & WithThemeProps & LoadingIndicatorProps
+const SvgIcon: React.FunctionComponent<SVGProps & LoadingIndicatorProps> = (
+  props: SVGProps & LoadingIndicatorProps
 ) => {
   const { children, className, loaderSize, theme, ...others } = props;
   return (
@@ -21,8 +21,8 @@ const SvgIcon: React.FunctionComponent<SVGProps & WithThemeProps & LoadingIndica
   );
 };
 
-class LoadingIndicator extends React.Component<LoadingIndicatorProps & WithThemeProps> {
-  public static defaultProps: Partial<LoadingIndicatorProps> & WithThemeProps = {
+class LoadingIndicator extends React.Component<LoadingIndicatorProps> {
+  public static defaultProps: Partial<LoadingIndicatorProps> = {
     theme: defaultTheme,
     width: 84,
   };

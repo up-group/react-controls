@@ -1,3 +1,5 @@
+import { WithThemeProps } from '../../../Common/theming/';
+
 export const SIZE_MAP = {
   none: 0,
   small: 12,
@@ -49,7 +51,7 @@ export interface SizeStyle {
   width: string;
 }
 
-export interface UpBoxProps {
+export interface UpBoxProps extends WithThemeProps {
   /** Direction of the items flow */
   flexDirection?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
   /** Alignment of the items flow inside the box on the main axe */

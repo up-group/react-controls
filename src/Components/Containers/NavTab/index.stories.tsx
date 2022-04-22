@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import UpNavTab from './UpNavTab';
 import UpPanel from '../../Containers/Panel';
 import { getRootContainer } from '../../../Common/stories';

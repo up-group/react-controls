@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 const useSateInLocalStorage: (key: string, defaultValue: string) => Array<any> = (key, defaultValue = '') => {
   const [state, setState] = React.useState(() => {

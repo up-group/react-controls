@@ -1,5 +1,5 @@
 // Imports
-import * as React from 'react';
+import React from 'react';
 import { getStyles } from './styles';
 
 export type ImageSize = 'thumb' | 'xxsmall' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge' | 'full';

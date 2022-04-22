@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import UpPassword, { UpPassword as UpPasswordComponent } from './UpPassword';
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs } from '@storybook/addon-knobs';

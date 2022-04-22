@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { UpModalProps } from './types';
 import classnames from 'classnames';
 import UpSvgIcon from '../../Display/SvgIcon';

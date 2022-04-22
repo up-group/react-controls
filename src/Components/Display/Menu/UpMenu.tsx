@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import { WithThemeProps, withTheme } from '../../../Common/theming';
 import defaultTheme from '../../../Common/theming';
 import { isFunction, isEmpty } from '../../../Common/utils';

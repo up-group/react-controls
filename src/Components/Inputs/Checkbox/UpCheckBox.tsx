@@ -1,14 +1,14 @@
 // Imports
-import * as React from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import { getCheckableStyles } from '../_Common/Styled';
 import { style } from 'typestyle';
-import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
+import withTheme from '../../../Common/theming/withTheme';
 import defaultTheme from '../../../Common/theming';
 import { UpCheckboxStyledProps, Option, UpCheckboxProps, UpCheckboxState } from './types';
 
 const BaseCheckBox: React.FunctionComponent<UpCheckboxStyledProps & Option> = (
-  props: UpCheckboxStyledProps & Option & WithThemeProps
+  props: UpCheckboxStyledProps & Option
 ) => {
   const { checked, disabled, className, text, name, value, onChange, tabIndex, readonly } = props;
 
@@ -33,8 +33,8 @@ const BaseCheckBox: React.FunctionComponent<UpCheckboxStyledProps & Option> = (
   );
 };
 
-class UpCheckbox extends React.Component<UpCheckboxProps & WithThemeProps, UpCheckboxState> {
-  static defaultProps: Partial<UpCheckboxProps> & WithThemeProps = {
+class UpCheckbox extends React.Component<UpCheckboxProps, UpCheckboxState> {
+  static defaultProps: Partial<UpCheckboxProps> = {
     theme: defaultTheme,
   };
 

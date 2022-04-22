@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import SvgIcon from '../SvgIcon/index';
 import { IntentType } from '../../../Common/theming/types';
 import UpTooltip from '../../Display/Tooltip/index';

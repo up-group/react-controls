@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import update from 'react-addons-update';
 import UpTooltip, { UpTooltip as UpTooltipComponent } from './UpTooltip';
 import UpLigne from '../Ligne';

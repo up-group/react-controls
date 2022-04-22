@@ -1,6 +1,7 @@
+import { WithThemeProps } from '../../../Common/theming';
 import { IconName } from '../../../Common/theming/icons';
 
-export interface UpBulleProps {
+export interface UpBulleProps extends WithThemeProps {
   /** To set Background effects for UpBulle */
   backgroundImage: string;
   /** To provide content */

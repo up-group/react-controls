@@ -1,10 +1,10 @@
-import { IntentType } from '../../../Common/theming/types';
+import { IntentType, WithThemeProps } from '../../../Common/theming/types';
 
 export type WidthSize = 'auto' | 'small' | 'medium' | 'large' | 'xlarge';
 
 export type Align = 'left' | 'right';
 
-export interface UpBadgeProps {
+export interface UpBadgeProps extends WithThemeProps {
   /** Text content*/
   text: string;
   /** To set color*/

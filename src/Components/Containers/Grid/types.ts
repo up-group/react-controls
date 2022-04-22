@@ -1,8 +1,10 @@
+import { WithThemeProps } from '../../../Common/theming/types';
+
 export type LayoutMode = 'flex' | 'float';
 export type Alignment = 'top' | 'middle' | 'bottom';
 export type Justification = 'start' | 'end' | 'center' | 'space-around' | 'space-between';
 
-export interface UpGridProps {
+export interface UpGridProps extends WithThemeProps {
   /** To add className for grid customization style */
   className?: string;
   /** To add space between Columns */

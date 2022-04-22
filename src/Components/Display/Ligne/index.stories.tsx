@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import UpLigne, { UpLigne as UpLigneComponent } from './UpLigne';
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs } from '@storybook/addon-knobs';

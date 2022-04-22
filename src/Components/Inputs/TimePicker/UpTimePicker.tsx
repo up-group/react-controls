@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import { UpContextMenu, UpContextMenuItem, UpContextMenuTrigger } from '../../Display/ContextMenu';
 import UpSvgIcon from '../../Display/SvgIcon';
 import UpBox from '../../Containers/Box';

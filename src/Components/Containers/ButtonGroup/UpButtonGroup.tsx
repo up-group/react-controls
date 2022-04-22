@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { getStyles } from './styles';
 import { UpButtonGroupProps } from './types';
 

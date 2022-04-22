@@ -1,4 +1,6 @@
-export interface RatingProps {
+import { WithThemeProps } from '../../../Common/theming';
+
+export interface RatingProps extends WithThemeProps {
   name: string;
   numberOfStars: number;
   max: number;

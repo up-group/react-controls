@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { style } from 'typestyle';
 import { Document, Page } from 'react-pdf';
 import { WithThemeProps, withTheme } from '../../../Common/theming';

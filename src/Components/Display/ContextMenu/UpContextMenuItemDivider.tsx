@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { UpContextMenuItemDividerProps, UpContextMenuItemDividerState } from './types';
 
 export default class UpContextMenuItemDivider extends React.PureComponent<

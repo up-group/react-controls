@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 import UpFormGroup, { UpFormGroup as FormGroupComponent } from './UpFormGroup';
 import { getRootContainer } from '../../../Common/stories';

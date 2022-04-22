@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { ReactNode, useEffect, useState } from 'react';
 import withTheme from '../../../Common/theming/withTheme';
 import { colors } from '../../../Common/theming/colorMap';

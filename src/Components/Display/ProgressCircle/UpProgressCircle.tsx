@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { style } from 'typestyle';
 import defaultTheme, { UpThemeColorMap as colorMap } from '../../../Common/theming/';
 import Currency from '../Currency';

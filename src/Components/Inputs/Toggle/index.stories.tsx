@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import * as React from 'react';
+import React from 'react';
 
 import UpToggle from './';
 import { Size } from './UpToggle';

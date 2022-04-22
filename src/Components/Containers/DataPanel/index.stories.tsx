@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 import UpDataPanel, { UpDataPanel as UpDataPanelComponent } from './UpDataPanel';
 import { getRootContainer } from '../../../Common/stories';

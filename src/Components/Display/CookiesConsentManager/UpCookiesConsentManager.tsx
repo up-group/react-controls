@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import * as Klaro from 'klaro/dist/klaro-no-css';
 import './style.css';
 import UpSvgIcon from '../SvgIcon';

@@ -1,4 +1,6 @@
-export interface UpLigneProps {
+import { WithThemeProps } from '../../../Common/theming';
+
+export interface UpLigneProps extends WithThemeProps {
   /** To specify color of the text */
   color?: string;
   /** To set the horizontal alignment of the text */

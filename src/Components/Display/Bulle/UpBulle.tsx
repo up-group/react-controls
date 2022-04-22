@@ -1,13 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import SvgIcon from '../SvgIcon/index';
 import { BulleStyle, IconStyle, ValueStyle, MessageStyle, ChildrenStyle } from './styles';
 import UpBox from '../../Containers/Box';
-import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
+import withTheme from '../../../Common/theming/withTheme';
 import defaultTheme from '../../../Common/theming';
 import { UpBulleProps } from './types';
 
-const UpBulle: React.FunctionComponent<UpBulleProps & WithThemeProps> = props => {
+const UpBulle: React.FunctionComponent<UpBulleProps> = props => {
   const { className, backgroundImage, icon, value, message, children } = props;
 
   return (

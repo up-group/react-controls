@@ -18,7 +18,7 @@ export interface UpCheckboxStyledProps extends WithThemeProps {
   readonly?: boolean;
 }
 
-export interface UpCheckboxProps {
+export interface UpCheckboxProps extends WithThemeProps {
   /** you can pass name, value, text, iconNmae, onOptionChange, checked, disabled, readonly*/
   options: Array<Option>;
   tabIndex?: number;

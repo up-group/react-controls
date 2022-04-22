@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import * as React from 'react';
+import React from 'react';
 
 // Temp fix
 let Dropzone = require('react-dropzone');

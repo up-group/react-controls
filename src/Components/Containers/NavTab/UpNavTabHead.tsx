@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { style } from 'typestyle';
 import classnames from 'classnames';
 import { motion, AnimateSharedLayout } from 'framer-motion';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import * as Icons from './Icons';
 import * as IconsM from './materialinear';
 import { style } from 'typestyle';

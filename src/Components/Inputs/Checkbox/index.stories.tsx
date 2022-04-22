@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import UpCheckbox, { UpCheckbox as UpCheckboxComponent } from './UpCheckBox';
 import UpLabel from '../../Display/Label';
 import { getRootContainer } from '../../../Common/stories';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import UpBadge, { UpBadge as UpBadgeComponent } from './UpBadge';
 import UpBox from '../../Containers/Box';
 import UpLigne from '../../Display/Ligne';

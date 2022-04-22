@@ -1,5 +1,5 @@
 // Imports
-import * as React from 'react';
+import React from 'react';
 import classnames from 'classnames';
 
 import { style } from 'typestyle';
@@ -12,7 +12,7 @@ export type Size = 'small' | 'normal' | 'large';
 
 import { getTestableComponentProps, TestableComponentProps } from '../../../Common/utils/types';
 
-export interface UpToggleProps extends TestableComponentProps {
+export interface UpToggleProps extends TestableComponentProps, WithThemeProps {
   value: any;
   checked?: boolean;
   defaultChecked?: boolean;
@@ -26,7 +26,7 @@ export interface UpToggleProps extends TestableComponentProps {
   onBlur?: (event) => void;
 }
 
-const wrapperStyle = (props: UpToggleProps & WithThemeProps) =>
+const wrapperStyle = (props: UpToggleProps) =>
   style({
     display: 'flex',
     flexDirection: 'row',

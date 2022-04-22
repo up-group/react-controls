@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { UpFormGroupProps } from './types';
 import defaultTheme from '../../../Common/theming';
 import { getStyles } from './styles';

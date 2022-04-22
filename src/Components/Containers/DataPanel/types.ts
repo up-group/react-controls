@@ -1,4 +1,4 @@
-import { IntentType } from '../../../Common/theming/types';
+import { IntentType, WithThemeProps } from '../../../Common/theming/types';
 import { ActionType } from '../../../Common/actions';
 import { ICellFormatter } from '../DataGrid/UpDefaultCellFormatter';
 
@@ -24,10 +24,10 @@ export interface Action {
 }
 
 export interface TitleFormatter {
-  format: (row: {}, additionalProps?: any) => React.ReactElement<any>;
+  format: (row: object, additionalProps?: any) => React.ReactElement<any>;
 }
 
-export interface UpDataPanelProps {
+export interface UpDataPanelProps extends WithThemeProps {
   /** Columns Panel */
   columns: Array<Column>;
   /** Data Columns Panel */
@@ -57,7 +57,7 @@ export interface PanelItemProps {
   };
   displayMode?: DisplayType;
   actions?: Array<Action>;
-  panelData: {};
+  panelData: object;
   columns: Array<Column>;
   showOnlyNotEmptyValue: boolean;
   getColumnCustomClassName?: (label: string) => string;

@@ -1,12 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 import { UpEntityViewProps, UpEntityViewState } from './types';
 import { getStyles } from './styles';
-import { withTheme, WithThemeProps } from '../../../Common/theming';
+import { withTheme } from '../../../Common/theming';
 import SvgIcon from '../SvgIcon';
 import { UpBox } from '../../..';
 import classnames from 'classnames';
 
-const UpEntityView = (props: UpEntityViewProps & WithThemeProps & UpEntityViewState) => {
+const UpEntityView = (props: UpEntityViewProps & UpEntityViewState): JSX.Element => {
   const { title, icon, informations } = props;
 
   return (

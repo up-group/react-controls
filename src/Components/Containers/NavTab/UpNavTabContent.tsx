@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { style } from 'typestyle';
 import { tabContent } from './styles';
 import { TabContentsProps, TabContentProps } from './types';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 
 import { getHocComponentName } from 'utils';

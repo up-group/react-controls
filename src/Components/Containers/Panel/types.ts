@@ -1,7 +1,7 @@
-import { IntentType } from '../../../Common/theming/types';
+import { IntentType, WithThemeProps } from '../../../Common/theming/types';
 import { IconName } from '../../../Common/theming/icons';
 
-export interface UpPanelProps {
+export interface UpPanelProps extends WithThemeProps {
   /** To provide title */
   title?: string | JSX.Element;
   /** To add footer */

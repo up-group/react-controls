@@ -1,4 +1,4 @@
-import { IntentType } from '../../../Common/theming/types';
+import { IntentType, WithThemeProps } from '../../../Common/theming/types';
 
 export type Placement = 'top' | 'right' | 'bottom' | 'left';
 
@@ -27,7 +27,7 @@ export interface Tooltip {
   disable?: boolean;
 }
 
-export interface UpTooltipProps extends Tooltip {
+export interface UpTooltipProps extends Tooltip, WithThemeProps {
   /** To give a unique identifier, otherwise it will be generated automatically */
   id?: string;
 }

@@ -1,18 +1,18 @@
-import * as React from 'react';
+import React from 'react';
 import { callIfExists } from '../../../Common/utils/helpers';
 import GlobalEventListener from '../../../Common/utils/eventListener';
 import assign from 'object-assign';
 import { MENU_HIDE, MENU_SHOW } from './actions';
-import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
+import withTheme from '../../../Common/theming/withTheme';
 import defaultTheme from '../../../Common/theming';
 import { UpContextMenuProps, UpContextMenuState } from './types';
 import { MenuStyle } from './styles';
 
-class UpContextMenu extends React.PureComponent<UpContextMenuProps & WithThemeProps, UpContextMenuState> {
+class UpContextMenu extends React.PureComponent<UpContextMenuProps, UpContextMenuState> {
   menu: HTMLElement;
   listenerId: string;
 
-  public static defaultProps: Partial<UpContextMenuProps> & WithThemeProps = {
+  public static defaultProps: Partial<UpContextMenuProps> = {
     theme: defaultTheme,
   };
 

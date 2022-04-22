@@ -1,5 +1,5 @@
 ﻿// Imports
-import * as React from 'react';
+import React from 'react';
 import { BaseControlState } from '../_Common/BaseControl/BaseControl';
 import UpInput from '../Input';
 import * as _ from 'lodash';

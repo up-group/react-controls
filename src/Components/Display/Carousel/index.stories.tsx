@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import UpCarousel from '../Carousel';

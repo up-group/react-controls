@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { UpLabelProps } from './types';
 import { getStyles } from './styles';
 import { RequiredMark } from '../../Inputs/Input/UpInput';

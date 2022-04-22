@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import assign from 'object-assign';
 import { callIfExists } from '../../../Common/utils/helpers';
 import { hideMenu, showMenu } from './actions';

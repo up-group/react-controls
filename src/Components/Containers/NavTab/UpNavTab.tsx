@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { TabHeads } from './UpNavTabHead';
 import { TabContentWrapper } from './UpNavTabContent';
 import { UpNavTabProps } from './types';

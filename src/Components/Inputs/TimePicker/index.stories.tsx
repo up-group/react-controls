@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import UpTimePicker from './';
 import UpLabel from '../../Display/Label';

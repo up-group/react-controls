@@ -1,4 +1,6 @@
-export interface UpContextMenuProps {
+import { WithThemeProps } from '../../../Common/theming';
+
+export interface UpContextMenuProps extends WithThemeProps {
   id: string;
   onHide?: () => void;
   onShow?: () => void;

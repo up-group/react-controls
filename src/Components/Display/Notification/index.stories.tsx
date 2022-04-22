@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import UpNotification, { UpNotification as UpNotificationComponent } from './UpNotification';
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';

@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import UpInput from '../Input';
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl';
 import TypeNumberControl from '../_Common/Validation/TypeNumberControl';

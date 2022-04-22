@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 const usePreviousGeneric: <T>(value: T) => T = value => {
   const ref = React.useRef<typeof value>();

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import UpInput, { UpInput as UpInputContainer } from './UpInput';
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs, text, boolean } from '@storybook/addon-knobs';

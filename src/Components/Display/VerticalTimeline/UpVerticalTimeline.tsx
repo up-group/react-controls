@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { withTheme, WithThemeProps } from '../../../Common/theming';
 import { UpBox } from '../../..';
 import classnames from 'classnames';
@@ -27,7 +27,7 @@ export const dotOrderStep = (active?: boolean, first?: boolean) => (
   </>
 );
 
-const UpVerticalTimeline: React.FunctionComponent<UpVerticalTimelineProps & WithThemeProps> = props => {
+const UpVerticalTimeline: React.FunctionComponent<UpVerticalTimelineProps> = props => {
   const { title, timeline } = props;
 
   return (

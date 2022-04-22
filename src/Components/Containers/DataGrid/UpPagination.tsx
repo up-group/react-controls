@@ -66,7 +66,7 @@ export interface UpPaginationState {
   take: number; // Nombre d'élément à prendre
 }
 
-export interface UpPaginationProps {
+export interface UpPaginationProps extends WithThemeProps {
   /** Nombre total d'éléments paginés */
   total: number;
   /** Valeur du nombre d'éléments à ignorer */
@@ -104,30 +104,30 @@ const paginationStyle = style({
   paddingLeft: '0',
 });
 
-const firstChild = (props: WithThemeProps) => ({
+const firstChild = (props: UpPaginationProps) => ({
   textDecoration: 'underline',
   fontSize: '15px',
 });
 
-const lastChild = (props: WithThemeProps) => ({
+const lastChild = (props: UpPaginationProps) => ({
   textDecoration: 'underline',
   fontSize: '15px',
 });
 
-const itemHover = (props: WithThemeProps) => ({
+const itemHover = (props: UpPaginationProps) => ({
   color: props.theme.colorMap.primary,
 });
 
-const itemActive = (props: WithThemeProps) => ({
+const itemActive = (props: UpPaginationProps) => ({
   color: props.theme.colorMap.primary,
 });
 
-const itemDisabled = (props: WithThemeProps) => ({
+const itemDisabled = (props: UpPaginationProps) => ({
   color: '#777',
   cursor: 'not-allowed',
 });
 
-const paginationItemStyle = (props: WithThemeProps) => {
+const paginationItemStyle = (props: UpPaginationProps) => {
   const itemHoverStyle = itemHover(props);
   const itemActiveStyle = itemActive(props);
   const itemDisabledStyle = itemDisabled(props);
@@ -175,8 +175,8 @@ const paginationItemStyle = (props: WithThemeProps) => {
   });
 };
 
-class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, UpPaginationState> {
-  static defaultProps: UpPaginationProps & WithThemeProps = {
+class UpPagination extends React.Component<UpPaginationProps, UpPaginationState> {
+  static defaultProps: UpPaginationProps = {
     nbByPageMessage: 'Par page',
     isTakeChangeEnable: true,
     isExtraInfoDisplay: true,

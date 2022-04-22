@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 const useMountedRef = () => {
   const mountedRef = React.useRef(false);

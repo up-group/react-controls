@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import UpDataPanelItem from './UpDataPanelItem';
 import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
 import { UpDataPanelProps } from './types';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import UpPagination from './UpPagination';
 import { getRootContainer } from '../../../Common/stories';
 import { withKnobs } from '@storybook/addon-knobs';

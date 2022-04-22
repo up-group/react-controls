@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import UpPicture from './UpPicture';
 import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
 import UpBox from '../../Containers/Box';

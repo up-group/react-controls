@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import { BaseControlState } from '../_Common/BaseControl/BaseControl';
 import { UpInputProps } from '../Input/types';
 import UpInput from '../Input';

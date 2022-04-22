@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import UpButton from '../../Inputs/Button/UpButton';
 import UpSvgIcon from '../../Display/SvgIcon';

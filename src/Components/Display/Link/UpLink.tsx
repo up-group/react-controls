@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 import { getStyles } from './styles';
-import UpDefaultTheme, { WithThemeProps, withTheme } from '../../../Common/theming';
+import UpDefaultTheme, { withTheme } from '../../../Common/theming';
 import { UpLinkProps } from './types';
 
 export const MethodTypePush = 'push';
 
-const UpLink: React.FunctionComponent<UpLinkProps & WithThemeProps> = props => {
+const UpLink: React.FunctionComponent<UpLinkProps> = props => {
   const { children, href, onClick, target, dataFor, label } = props;
 
   let tooltipProps = {};

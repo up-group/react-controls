@@ -1,7 +1,9 @@
+import { WithThemeProps } from '../../../Common/theming';
+
 export type Method = 'push' | 'replace';
 export type Target = '_blank' | '_self' | '_parent' | '_top' | 'framename';
 
-export interface UpLinkProps {
+export interface UpLinkProps extends WithThemeProps {
   /** ??? */
   path?: string;
   /** If provided, the underline of the link will be removed  */

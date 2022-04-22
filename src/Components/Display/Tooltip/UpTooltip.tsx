@@ -1,14 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 import { Component } from 'react';
 import classnames from 'classnames';
 import ReactTooltip from 'react-tooltip';
 import { generateId, isFunction, isEmpty } from '../../../Common/utils';
 import { getStyles, upToolTipWrapper } from './styles';
-import UpDefaultTheme, { withTheme, WithThemeProps } from '../../../Common/theming';
+import UpDefaultTheme, { withTheme } from '../../../Common/theming';
 import { UpTooltipProps } from './types';
 
-class UpTooltip extends Component<UpTooltipProps & WithThemeProps> {
-  public static defaultProps: UpTooltipProps & WithThemeProps = {
+class UpTooltip extends Component<UpTooltipProps> {
+  public static defaultProps: UpTooltipProps = {
     content: '',
     place: 'right',
     effect: 'float',

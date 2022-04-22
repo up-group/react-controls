@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 import * as _ from 'lodash';
 import { style } from 'typestyle';
 import classnames from 'classnames';
-import UpDefaultTheme, { WithThemeProps, withTheme } from '../../../Common/theming';
+import UpDefaultTheme, { withTheme } from '../../../Common/theming';
 import UpSvgIcon from '../../Display/SvgIcon';
 import { eventFactory } from '../../../Common/utils/eventListener';
 import { RatingProps, RatingState, STAR_FILL_TYPE } from './types';
@@ -23,7 +23,7 @@ export const getStarFill = (current, number, rating, max): STAR_FILL_TYPE => {
   return 'empty';
 };
 
-class UpRating extends React.PureComponent<RatingProps & WithThemeProps, RatingState> {
+class UpRating extends React.PureComponent<RatingProps, RatingState> {
   static defaultProps = {
     theme: UpDefaultTheme,
   };

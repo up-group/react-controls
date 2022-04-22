@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import UpDefaultTheme from '../../../Common/theming';
 import { ThemeProvider as UpThemeProvider } from '../../../Common/theming/ThemeProvider';
 import UpNumber, { UpNumber as UpNumberComponent } from './UpNumber';

@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import SvgIcon from '../SvgIcon/index';
 import { style } from 'typestyle';
 import Text from '../../Inputs/Input/index';

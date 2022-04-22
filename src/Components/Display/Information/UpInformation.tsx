@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import * as React from 'react';
+import React from 'react';
 import { style } from 'typestyle';
 import UpBox from '../../Containers/Box';
 import UpSvgIcon from '../SvgIcon';

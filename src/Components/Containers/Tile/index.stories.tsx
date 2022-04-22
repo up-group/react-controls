@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import UpTile from './UpTile';
 import { withKnobs } from '@storybook/addon-knobs';
 import { getRootContainer } from '../../../Common/stories';

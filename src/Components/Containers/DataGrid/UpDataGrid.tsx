@@ -244,7 +244,7 @@ export interface exportCsv {
   textButton?: string;
 }
 
-export interface UpDataGridProps extends TestableComponentProps {
+export interface UpDataGridProps extends TestableComponentProps, WithThemeProps {
   className?: string;
   columns: Array<Column>;
   rowActions?: ActionFactory<any> | Array<Action>;
@@ -309,8 +309,8 @@ export interface UpDataGridState {
 
 export type SortDirection = 'ASC' | 'DESC';
 
-class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDataGridState> {
-  static defaultProps: UpDataGridProps & WithThemeProps = {
+class UpDataGrid extends React.Component<UpDataGridProps, UpDataGridState> {
+  static defaultProps: UpDataGridProps = {
     columns: [],
     rowActions: null,
     dataKey: 'Entity',

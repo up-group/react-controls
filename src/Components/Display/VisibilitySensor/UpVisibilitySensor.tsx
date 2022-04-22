@@ -2,8 +2,8 @@
 /* eslint-disable react/no-find-dom-node */
 /* eslint-disable prefer-rest-params */
 /* eslint-disable @typescript-eslint/no-this-alias */
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 import { UpVisibilitySensorProps, UpVisibilitySensorState, Offset, VisibilityRect } from './';
 

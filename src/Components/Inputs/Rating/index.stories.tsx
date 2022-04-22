@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import UpRating, { UpRating as UpRatingComponent } from './UpRating';
 import { withKnobs } from '@storybook/addon-knobs';
 import { getRootContainer } from '../../../Common/stories';

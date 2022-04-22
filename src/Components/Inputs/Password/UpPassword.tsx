@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import UpInput from '../Input';
 import { IconName } from '../../../Common/theming/icons';
 import UpSvgIcon from '../../Display/SvgIcon';

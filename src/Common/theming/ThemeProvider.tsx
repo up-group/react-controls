@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { ThemeInterface } from './types';
 import UpDefaultTheme from './';
 import * as PropTypes from 'prop-types';
@@ -6,8 +6,7 @@ import * as PropTypes from 'prop-types';
 export interface ThemeProviderProps {
   theme?: ThemeInterface;
 }
-
-export class ThemeProvider extends React.Component<ThemeProviderProps> {
+export class ThemeProvider extends React.Component<React.PropsWithChildren<ThemeProviderProps>> {
   static childContextTypes = {
     theme: PropTypes.object,
   };

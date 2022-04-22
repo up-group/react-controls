@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import UpContextMenuTrigger from './UpContextMenuTrigger';
 import UpContextMenu, { UpContextMenu as UpContextMenuComponent } from './UpContextMenu';
 import UpContextMenuItem from './UpContextMenuItem';
