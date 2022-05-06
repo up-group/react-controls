@@ -1,3 +1,14 @@
+# ReactControls (version: 2.17.18)
+## Main Changes
+
+- UpSvgIcon: update illustrations (click-select-item.svg & click-sheet-file.svg)
+
+# ReactControls (version: 2.17.17)
+## Main Changes
+
+- Fix Updatagrid selection all
+- code refactoring && cleaning code
+
 # ReactControls (version: 2.17.16)
 ## Main Changes
 
