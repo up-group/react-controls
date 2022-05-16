@@ -1,3 +1,7 @@
+# ReactControls (version: 0.2.181)
+## Bug Fixes
+
+- UpDataGrid : Add iconName property in Action defintion
 # ReactControls (version: 0.2.177)
 ## Bug Fixes
 
