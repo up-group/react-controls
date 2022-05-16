@@ -202,6 +202,7 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps) =>
 
 export interface Action {
   type: ActionType;
+  iconName?: IconName;
   intent?: IntentType;
   description: string;
   action: (row: Row) => void;
