@@ -316,10 +316,10 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
 					<RenderButton />
 				) : 
 				(
-					//<div className={tooltipElement} onMouseEnter={() => this.hoverIn(tooltip['content'])} onMouseLeave={() => this.hoverOut()}>
+					<div className={tooltipElement} onMouseEnter={() => this.hoverIn(tooltip['content'])} onMouseLeave={() => this.hoverOut()}>
 						<RenderButton />
-						//<span className={tooltipTextElement}>{tooltip['content']}</span>
-					//</div>
+						<span className={tooltipTextElement}>{tooltip['content']}</span>
+					</div>
 				)}
 				{!this.props.disabled && this.props.dropDown != 'none' && this.getValue('isToggled') && (
 					<ul tabIndex={0} className={style(this.getDropDownStyles())}>
