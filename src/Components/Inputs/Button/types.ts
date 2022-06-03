@@ -113,4 +113,5 @@ export interface UpButtonState {
   isToggled?: boolean;
   isProcessing?: boolean;
   prevProps?: UpButtonProps;
+  isElementHover?: boolean;
 }
