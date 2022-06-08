@@ -8,6 +8,7 @@ export type MentorName =
   | 'sparkles'
   | 'cry'
   | 'mentor-surprised'
+  | 'mentor-happy'
   | 'sorry-orange'
   | 'confused-grey'
   | 'confused-with-sweat';
@@ -22,6 +23,7 @@ export const MentorNames: MentorName[] = [
   'sparkles',
   'cry',
   'mentor-surprised',
+  'mentor-happy',
   'sorry-orange',
   'confused-grey',
   'confused-with-sweat',

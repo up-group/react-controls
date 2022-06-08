@@ -1,3 +1,8 @@
+# ReactControls (version: 2.17.19)
+## Main Changes
+
+- UpSvgIcon: Add Mentor-happy svgIcon
+
 # ReactControls (version: 2.17.18)
 ## Main Changes
 
