@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.182)
+## Bug Fixes
+
+- UpButton : Quick fix for tooltip
+- UpNavTab : refacto code
 # ReactControls (version: 0.2.181)
 ## Bug Fixes
 

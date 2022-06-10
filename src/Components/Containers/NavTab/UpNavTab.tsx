@@ -3,12 +3,12 @@ import { TabHeads } from './UpNavTabHead';
 import { TabContentWrapper } from './UpNavTabContent';
 import { UpNavTabProps } from './types';
 
-const UpNavTab = ({
+const UpNavTab: React.FunctionComponent<UpNavTabProps> = ({
   loadType = 'onLoad',
   tabs = [],
   onSelectedTabChanged,
   selectedTabOnLoad = null,
-}: UpNavTabProps) => {
+}) => {
   const [selectedTabKey, selectTabKey] = React.useState<number>(tabs.length !== 0 ? selectedTabOnLoad || 0 : -1);
 
   React.useEffect(() => {
