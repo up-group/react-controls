@@ -1,3 +1,8 @@
+# ReactControls (version: 2.17.20)
+## Main Changes
+
+- add autocomplete attribute UpNumber
+
 # ReactControls (version: 2.17.19)
 ## Main Changes
 
