@@ -34,9 +34,9 @@ export type IconNameOld =
 | 'colored-card' | 'colored-card-inclined' | 'colored-list' | 'colored-summary' | 'pen' | 'bill-sheet' | 'copy' | 'duplicate' 
 | 'file2' | 'home' | 'up-password' | 'condition' | 'on-off' | 'box' | 'box-birth' | 'box-christmas' | 'box-christmas2' 
 | 'box-cross' | 'box-hat' | 'box-heart' | 'box-infinity' | 'box-mustache' | 'box-rings' | 'box-school' | 'box-smile' 
-| 'box-stars' | 'box-trophy' | 'price' | 'letter' | 'post' | 'clear' | 'info' | 'back-arrow' | 'stacking' | 'zendesk' 
-| 'faq' | 'conecs' | 'moveup' | 'eye-open2' | 'file3' | 'invoice' | 'warning' | 'nfc' | 'nfc-off' | 'profile3' | 'group2' | 'padlock'
-| 'file-edit' | 'user-circle' | 'safe';
+| 'box-stars' | 'box-trophy' | 'price' | 'letter' | 'post' | 'clear' | 'info' | 'back-arrow' | 'stacking' | 'zendesk' | 'd365'
+| 'letter-s' | 'letter-d' | 'letter-g' | 'letter-o' | 'letter-w' | 'faq' | 'conecs' | 'moveup' | 'eye-open2' | 'file3' | 'invoice' 
+| 'warning' | 'nfc' | 'nfc-off' | 'profile3' | 'group2' | 'padlock' | 'file-edit' | 'user-circle' | 'safe';
 
 export const IconNamesOld: IconName[] = ['menu', 'previous', 'list', 'gift', 'attachment', 'add', 'asterisk', 'calendar', 'caret-down',
 'caret-right', 'caret-up', 'close', 'comment', 'confirm', 'cross', 'delete', 'download', 'edit', 'email', 'error-sign', 'export', 
@@ -60,8 +60,8 @@ export const IconNamesOld: IconName[] = ['menu', 'previous', 'list', 'gift', 'at
 'colored-calendar', 'colored-transaction', 'colored-equalizer', 'colored-card', 'colored-card-inclined', 'colored-list', 'colored-summary', 
 'pen', 'bill-sheet', 'copy', 'duplicate', 'file2', 'home', 'up-password', 'condition', 'on-off', 'box', 'box-birth', 'box-christmas', 'box-christmas2', 
 'box-cross', 'box-hat', 'box-heart', 'box-infinity', 'box-mustache', 'box-rings', 'box-school', 'box-smile', 'box-stars', 'box-trophy', 'price',
-'letter', 'post', 'clear','info','back-arrow','stacking', 'zendesk', 'faq', 'conecs', 'moveup', 'eye-open2', 'file3', 'invoice', 'warning', 'nfc', 'nfc-off',
-'profile3', 'group2', 'padlock', 'file-edit', 'user-circle', 'safe'] ;
+'letter', 'post', 'clear','info','back-arrow','stacking', 'zendesk', 'd365', 'letter-s', 'letter-d', 'letter-g', 'letter-o', 'letter-w', 'faq', 'conecs',
+'moveup', 'eye-open2', 'file3', 'invoice', 'warning', 'nfc', 'nfc-off', 'profile3', 'group2', 'padlock', 'file-edit', 'user-circle', 'safe'] ;
 
 export type IconName =
   | 'menu'
@@ -70,6 +70,11 @@ export type IconName =
   | 'gift'
   | 'attachment'
   | 'add'
+  | 'letter-s'
+  | 'letter-d'
+  | 'letter-g'
+  | 'letter-o'
+  | 'letter-w'
   | 'asterisk'
   | 'calendar'
   | 'caret-down'
@@ -317,6 +322,7 @@ export type IconName =
   | 'back-arrow'
   | 'stacking'
   | 'zendesk'
+  | 'd365'
   | 'faq'
   | 'conecs'
   | 'moveup'
@@ -340,6 +346,11 @@ export const IconNames: IconName[] = [
   'gift',
   'attachment',
   'add',
+  'letter-s',
+  'letter-d',
+  'letter-g',
+  'letter-o',
+  'letter-w',
   'asterisk',
   'calendar',
   'caret-down',
@@ -586,6 +597,7 @@ export const IconNames: IconName[] = [
   'back-arrow',
   'stacking',
   'zendesk',
+  'd365',
   'faq',
   'conecs',
   'moveup',
