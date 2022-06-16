@@ -553,6 +553,11 @@ export type IconName =
   | 'gift'
   | 'attachment'
   | 'add'
+  | 'letter-s'
+  | 'letter-d'
+  | 'letter-g'
+  | 'letter-o'
+  | 'letter-w'
   | 'asterisk'
   | 'calendar'
   | 'caret-down'
@@ -800,6 +805,7 @@ export type IconName =
   | 'back-arrow'
   | 'stacking'
   | 'zendesk'
+  | 'd365'
   | 'faq'
   | 'conecs'
   | 'moveup'
@@ -823,6 +829,11 @@ export const IconNames: IconName[] = [
   'gift',
   'attachment',
   'add',
+  'letter-s',
+  'letter-d',
+  'letter-g',
+  'letter-o',
+  'letter-w',
   'asterisk',
   'calendar',
   'caret-down',
@@ -1069,6 +1080,7 @@ export const IconNames: IconName[] = [
   'back-arrow',
   'stacking',
   'zendesk',
+  'd365',
   'faq',
   'conecs',
   'moveup',
