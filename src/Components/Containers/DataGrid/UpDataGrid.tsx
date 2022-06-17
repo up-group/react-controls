@@ -549,7 +549,9 @@ class UpDataGrid extends React.Component<UpDataGridProps, UpDataGridState> {
 
     return isRowSelected
       ? [...this.state.selectedData, currentRow]
-      : this.state.selectedData.filter(data => data.value.id !== idRow);
+      : this.state.selectedData.filter(data =>
+          idRow !== undefined ? data.value.id !== idRow : !_.isEqual(currentRow.value, data.value)
+        );
   };
 
   isAllRowsSelectedWithAlsoTheCurrentOne = (currentRow: Row) => {
