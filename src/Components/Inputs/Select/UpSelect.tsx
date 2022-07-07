@@ -75,6 +75,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
       extra: {
         loadingPlaceholder: p.loadingPlaceholder,
         fullObject: p.value ? p.value : p.default,
+        inputValue: '',
       },
     };
   }
@@ -442,33 +443,36 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
       loadOptions = (input: string) => {
         if (minimumInputLength && input.length < minimumInputLength) {
           if (input.length !== 0) {
-            const newState = update(this.state, {
+            const newState = {
+              ...this.state,
               extra: {
-                loadingPlaceholder: {
-                  $set: this.props.formatMinimumInputLenghMessage(minimumInputLength),
-                },
+                ...this.state.extra,
+                inputValue: input,
+                loadingPlaceholder: this.props.formatMinimumInputLenghMessage(minimumInputLength),
               },
-            });
+            };
             this.setState(newState);
           } else {
-            const newState = update(this.state, {
+            const newState = {
+              ...this.state,
               extra: {
-                loadingPlaceholder: {
-                  $set: this.props.loadingPlaceholder,
-                },
+                ...this.state.extra,
+                inputValue: input,
+                loadingPlaceholder: this.props.loadingPlaceholder,
               },
-            });
+            };
             this.setState(newState);
           }
           return false;
         } else {
-          const newState = update(this.state, {
+          const newState = {
+            ...this.state,
             extra: {
-              loadingPlaceholder: {
-                $set: this.props.loadingPlaceholder,
-              },
+              ...this.state.extra,
+              inputValue: input,
+              loadingPlaceholder: this.props.loadingPlaceholder,
             },
-          });
+          };
           this.setState(newState);
         }
         if (this.timeOutLoadOptions) {
@@ -625,23 +629,33 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
       onChange: this.onChange.bind(this, this.props.name),
       menuIsOpen: this.state.extra.menuIsOpen,
       onMenuOpen: () =>
-        this.setState(
-          update(this.state, {
-            extra: { menuIsOpen: { $set: true } },
-          })
-        ),
+        this.setState({
+          ...this.state,
+          extra: {
+            ...this.state.extra,
+            menuIsOpen: true,
+          },
+        }),
       onMenuClose: () =>
-        this.setState(
-          update(this.state, {
-            extra: { menuIsOpen: { $set: false } },
-          })
-        ),
-      onInputChange: (inputValue: string) =>
-        this.setState(
-          update(this.state, {
-            extra: { inputValue: { $set: inputValue } },
-          })
-        ),
+        this.setState({
+          ...this.state,
+          extra: {
+            ...this.state.extra,
+            menuIsOpen: false,
+          },
+        }),
+      onInputChange: (value: string) => {
+        console.log(`Value ${value}`);
+        const newState = {
+          ...this.state,
+          extra: {
+            ...this.state.extra,
+            inputValue: value,
+          },
+        };
+        console.log(newState);
+        return this.setState(newState, () => console.log(this.state));
+      },
       getOptionLabel: this.getOptionLabel,
       getOptionValue: (option: object) => this.parseValue(option),
       inputValue: this.state.extra.inputValue,
@@ -674,11 +688,13 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         onClick={() => {
           if (disabled || readonly) return;
           this.input?.focus();
-          this.setState(
-            update(this.state, {
-              extra: { menuIsOpen: { $set: true } },
-            })
-          );
+          this.setState({
+            ...this.state,
+            extra: {
+              ...this.state.extra,
+              menuIsOpen: true,
+            },
+          });
         }}
         style={{ cursor: 'pointer' }}
         className={classnames('up-select-label', {
