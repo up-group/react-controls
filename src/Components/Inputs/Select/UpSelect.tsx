@@ -170,6 +170,10 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         newState.extra.menuIsOpen = false;
       }
 
+      newState = update(newState, {
+        extra: { inputValue: { $set: '' } },
+      });
+
       this.setState(newState);
     } else {
       const isPair = this.isPair(receiveValue);
@@ -193,6 +197,10 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
       if (newState != null && this.props.closeMenuOnSelect) {
         newState.extra.menuIsOpen = false;
       }
+
+      newState = update(newState, {
+        extra: { inputValue: { $set: '' } },
+      });
 
       this.setState(newState);
     }
