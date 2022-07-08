@@ -50,10 +50,16 @@
 
 - add some icons
 # ReactControls (version: 0.2.182)
+# ReactControls (version: 0.2.185)
+## Bug Fixes
+- UpSelect : Fix select value to reset inputValue
+
 # ReactControls (version: 0.2.184)
 ## Bug Fixes
 - UpSelect : Fix input when clearing the value
   
+
+
 # ReactControls (version: 0.2.183)
 ## Bug Fixes
 
