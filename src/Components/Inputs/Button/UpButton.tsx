@@ -3,7 +3,7 @@ import * as React from 'react';
 import classnames from 'classnames';
 import { UpButtonProps, Action, Separator, IconPosition, UpButtonStyledProps, UpButtonState } from './types';
 import defaultTheme from '../../../Common/theming';
-import { style } from 'typestyle';
+import { cssRaw, style } from 'typestyle';
 import UpLoadingIndicator from '../../Display/LoadingIndicator';
 import { Dictionary } from '../../../Common/utils/types';
 import { ActionType } from '../../../Common/actions';
@@ -213,17 +213,14 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
     return styles;
   };
 
-  hoverIn(text: string) {
-    this.setState({ isElementHover: true });
-  }
-
-  hoverOut() {
-    this.setState({ isElementHover: false });
-  }
-
   render() {
     const { name, children, tooltip, onClick, iconName, iconPosition, disabled, isProcessing, ...others } = this.props;
 
+    cssRaw(`
+    .up-btn-wrapper:hover > div  > .isHovered {
+      visibility: visible;
+    }
+    `);
     const buttonElement = style({
       cursor: 'pointer',
       padding: '8px',
@@ -290,7 +287,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
     });
 
     const tooltipTextElement = style({
-      visibility: this.state.isElementHover ? 'visible' : 'hidden',
+      visibility: 'hidden',
       backgroundColor: '#111',
       color: '#fff',
       textAlign: 'center',
@@ -313,13 +310,9 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
         {tooltip === null ? (
           <RenderButton />
         ) : (
-          <div
-            className={tooltipElement}
-            onMouseEnter={() => this.hoverIn(tooltip['content'] || tooltip)}
-            onMouseLeave={() => this.hoverOut()}
-          >
+          <div className={tooltipElement}>
             <RenderButton />
-            <span className={tooltipTextElement}>{tooltip['content'] || tooltip}</span>
+            <span className={classnames('isHovered', tooltipTextElement)}>{tooltip['content'] || tooltip}</span>
           </div>
         )}
         {!this.props.disabled && this.props.dropDown != 'none' && this.getValue('isToggled') && (
