@@ -50,6 +50,10 @@
 
 - add some icons
 # ReactControls (version: 0.2.182)
+# ReactControls (version: 0.2.186)
+## Bug Fixes
+- UpButon: Tooltip based on css
+
 # ReactControls (version: 0.2.185)
 ## Bug Fixes
 - UpSelect : Fix select value to reset inputValue
