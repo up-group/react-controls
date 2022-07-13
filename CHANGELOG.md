@@ -1,3 +1,6 @@
+# ReactControls (version: 0.2.187)
+## Bug Fixes
+- UpPagination: Remove focus color on steps
 # ReactControls (version: 0.2.186)
 ## Bug Fixes
 - UpButon: Tooltip based on css
