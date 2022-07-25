@@ -1,10 +1,10 @@
-export const getIntegerValue = (number: number, separator?: string) => {
+export const getIntegerValue = (number: number, separator?: string, displaySign?: boolean) => {
   if (number == null || number == 0) return '- -';
   const numberString = Math.trunc(number) + '';
   if (separator && separator.length > 0) {
     return addSeparatorToNumber(numberString, separator);
   } else {
-    return numberString;
+    return `${displaySign ? (number < 0 ? `-${Math.trunc(Math.abs(number))}` : numberString) : numberString}`;
   }
 };
 
