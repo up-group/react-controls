@@ -51,48 +51,73 @@
 - add some icons
 # ReactControls (version: 0.2.182)
 # ReactControls (version: 0.2.187)
+# ReactControls (version: 0.2.188)
+
 ## Bug Fixes
+
 - UpPagination: Remove focus color on steps
-# ReactControls (version: 0.2.186)
+
+# ReactControls (version: 0.2.187)
+
 ## Bug Fixes
+
+- UpPagination: Remove focus color on steps
+
+# ReactControls (version: 0.2.186)
+
+## Bug Fixes
+
 - UpButon: Tooltip based on css
 
 # ReactControls (version: 0.2.185)
+
 ## Bug Fixes
+
 - UpSelect : Fix select value to reset inputValue
 
 # ReactControls (version: 0.2.184)
-## Bug Fixes
-- UpSelect : Fix input when clearing the value
-  
 
+## Bug Fixes
+
+- UpSelect : Fix input when clearing the value
 
 # ReactControls (version: 0.2.183)
+
 ## Bug Fixes
 
 - UpDataGrid : Fix selected data
-  
+
 # ReactControls (version: 0.2.182)
+
 ## Bug Fixes
 
 - UpButton : Quick fix for tooltip
 - UpNavTab : refacto code
+
 # ReactControls (version: 0.2.181)
+
 ## Bug Fixes
 
 - UpDataGrid : Add iconName property in Action defintion
+
 # ReactControls (version: 0.2.177)
+
 ## Bug Fixes
 
+- UpDataGrid : Fix all selected rows handling
+
 # ReactControls (version: 0.2.176)
+
 ## Main Changes
 
 - Object-assign: fix import module
 
 # ReactControls (version: 0.2.175)
+
 ## Main Changes
 
 - UpIcon: add NFC off icon
+
 # ReactControls (version: 2.17.12)
 
 ## Main Changes
