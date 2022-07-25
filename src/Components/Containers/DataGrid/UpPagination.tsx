@@ -159,8 +159,6 @@ const paginationItemStyle = (props: WithThemeProps) => {
       '&.active > span': itemActiveStyle,
       '&.active > a:hover': itemActiveStyle,
       '&.active > span:hover': itemActiveStyle,
-      '&.active > a:focus': itemActiveStyle,
-      '&.active > span:focus': itemActiveStyle,
       '&.active > a > span': itemActiveStyle,
       '&.disabled > a': itemDisabledStyle,
       '&.disabled > span': itemDisabledStyle,
