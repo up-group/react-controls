@@ -30,7 +30,7 @@ const UpCurrency = (props: UpCurrencyProps) => {
             ? props.integerLineHeight
             : (props.integerFontSize ? props.integerFontSize : 40) + 8) + 'px',
         fontWeight: props.integerFontWeight ? props.integerFontWeight : 'normal',
-        color: props.color && props.value > 0 ? props.color : '#D7D7D7',
+        color: props.color && props.value >= 0 ? props.color : props.value < 0 ? 'red' : '#D7D7D7',
       },
     },
   });
@@ -45,7 +45,7 @@ const UpCurrency = (props: UpCurrencyProps) => {
           (props.decimalLineHeight
             ? props.decimalLineHeight
             : (props.decimalFontSize ? props.decimalFontSize : 14) + 2) + 'px',
-        color: props.value > 0 ? props.secondColor || '#9B9B9B' : '#D7D7D7',
+        color: props.value >= 0 ? props.secondColor || '#9B9B9B' : 'red',
       },
     },
   });
@@ -63,7 +63,7 @@ const UpCurrency = (props: UpCurrencyProps) => {
     <UpBox justifyContent={'center'} style={{ height: '100%' }}>
       <UpBox flexDirection={'row'} justifyContent={'center'}>
         <span className={classnames('up-number-integer', bigNumber)}>
-          {getIntegerValue((props.animate ? countUp : props.value) as number, ' ')}
+          {props.value < 0 ? '-' : ''}{getIntegerValue((props.animate ? countUp : props.value) as number, ' ')}
         </span>
         <span className={classnames('up-number-decimal', smallNumber)}>
           {getDecimalValue((props.animate ? countUp : props.value) as number, 2)}
