@@ -62,7 +62,16 @@ const defaultMenu: Array<MenuItemData> = [
         isSelected: false,
         isVisible: true,
         uri: '/stack/option1',
-        childMenuItems: [],
+        childMenuItems: [
+          {
+            title: 'Stack Option 1 child',
+            icon: 'weather-rain',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option1/child',
+            childMenuItems: [],
+          }
+        ],
       },
       {
         title: 'Stack Option 2',
@@ -984,7 +993,16 @@ export const Mobile = props => {
           isSelected: false,
           isVisible: true,
           uri: '/stack/option1',
-          childMenuItems: [],
+          childMenuItems: [
+            {
+              title: 'Option 1 child',
+              icon: 'weather-rain',
+              isSelected: false,
+              isVisible: true,
+              uri: '/stack/option1/child',
+              childMenuItems: [],
+            }
+          ],
         },
         {
           title: 'Option 2',
