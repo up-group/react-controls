@@ -120,7 +120,7 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
         },
         '&.up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg, .up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg path, .up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg polygon, .up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg polyline':
           {
-            fill: '#ffffff',
+            fill: props.theme.colorMap.white,
           },
         '&.up-menu nav > ul > li .up-menu-item-title': {
           display: props.minified ? 'none' : 'inherit',
@@ -132,14 +132,12 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
         '&.up-menu ul li.active > a > .up-menu-item-title':
           {
             color: props.theme.colorMap.primary,
-            // color: 'red'
           },
         '&.up-menu ul li ul li > a > .up-menu-item-title': {
-          color: '#fff',
+          color: props.theme.colorMap.white,
         },
         '&.up-menu ul li ul li:hover > a > .up-menu-item-title': {
           color: props.theme.colorMap.primary,
-          // color: 'blue'
         },
         '&.up-menu nav > ul > li': {
           position: 'relative',
@@ -173,7 +171,7 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
         },
         '&.up-menu nav > ul > li .up-sub-menu-title': {
           display: 'none',
-          color: '#FFF',
+          color: props.theme.colorMap.white,
           fontSize: toRem(14),
           fontWeight: 500,
         },
@@ -241,7 +239,7 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           backgroundColor: 'rgba(255, 255, 255, 0.1)',
         },
         '.skin-up.main-header.navbar.dropdown-menu li a': {
-          color: '#fff',
+          color: props.theme.colorMap.white,
         },
         '.skin-up.main-header.navbar.dropdown-menu li a: hover': {
           background: 'rgb(0, 170, 212)',
