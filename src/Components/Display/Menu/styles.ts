@@ -98,12 +98,12 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
         },
         '&.up-menu ul li .up-icon-wrapper.colored svg, .up-menu ul li .up-icon-wrapper.colored svg path, .up-menu ul li .up-icon-wrapper.colored svg polygon, .up-menu ul li .up-icon-wrapper.colored svg polyline':
           {
-            fill: '#ffffff',
+            fill: props.theme.colorMap.white,
             cursor: 'pointer',
           },
         '&.up-menu ul li.active .up-icon-wrapper.colored:first-of-type svg, .up-menu ul li.active .up-icon-wrapper.colored:first-of-type svg path, .up-menu ul li.active .up-icon-wrapper.colored:first-of-type svg polygon, .up-menu ul li.active .up-icon-wrapper.colored:first-of-type svg polyline':
           {
-            fill: '#ffffff',
+            fill: props.theme.colorMap.white,
           },
         '&.up-menu ul li .up-icon-wrapper.colored': {
           '-webkit-transition-property': 'transform',
