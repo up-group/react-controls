@@ -98,29 +98,29 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
         },
         '&.up-menu ul li .up-icon-wrapper.colored svg, .up-menu ul li .up-icon-wrapper.colored svg path, .up-menu ul li .up-icon-wrapper.colored svg polygon, .up-menu ul li .up-icon-wrapper.colored svg polyline':
           {
-            fill: '#ffffff',
+            fill: props.theme.colorMap.white,
             cursor: 'pointer',
           },
         '&.up-menu ul li.active .up-icon-wrapper.colored:first-of-type svg, .up-menu ul li.active .up-icon-wrapper.colored:first-of-type svg path, .up-menu ul li.active .up-icon-wrapper.colored:first-of-type svg polygon, .up-menu ul li.active .up-icon-wrapper.colored:first-of-type svg polyline':
           {
-            fill: props.theme.colorMap.primary,
+            fill: props.theme.colorMap.white,
           },
-        '&.up-menu ul li .up-icon-wrapper.colored:not(:first-of-type)': {
+        '&.up-menu ul li .up-icon-wrapper.colored': {
           '-webkit-transition-property': 'transform',
           '-webkit-transition-duration': '.3s',
           transitionProperty: 'transform',
           transitionDuration: '.3s',
           display: props.minified ? 'none' : 'initial',
         },
-        '&.up-menu ul li:hover .up-icon-wrapper.colored:not(:first-of-type)': {
+        '&.up-menu ul li:hover > a > .up-icon-wrapper.colored': {
           transform: 'rotate(90deg)',
         },
-        '&.up-menu ul li.active .up-icon-wrapper.colored:not(:first-of-type)': {
+        '&.up-menu ul li.active > a > .up-icon-wrapper.colored': {
           transform: 'rotate(90deg)',
         },
         '&.up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg, .up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg path, .up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg polygon, .up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg polyline':
           {
-            fill: props.theme.colorMap.primary,
+            fill: props.theme.colorMap.white,
           },
         '&.up-menu nav > ul > li .up-menu-item-title': {
           display: props.minified ? 'none' : 'inherit',
@@ -129,14 +129,14 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           textAlign: 'left',
           marginLeft: toRem(14),
         },
-        '&.up-menu ul li.active .up-menu-item-title, &.up-menu ul li:hover ul li.active .up-menu-item-title, &.up-menu ul li.active ul li.active .up-menu-item-title':
+        '&.up-menu ul li.active > a > .up-menu-item-title':
           {
             color: props.theme.colorMap.primary,
           },
-        '&.up-menu ul li:hover ul li .up-menu-item-title, &.up-menu ul li.active ul li .up-menu-item-title': {
-          color: '#fff',
+        '&.up-menu ul li ul li > a > .up-menu-item-title': {
+          color: props.theme.colorMap.white,
         },
-        '&.up-menu ul li ul li:hover .up-menu-item-title': {
+        '&.up-menu ul li ul li:hover > a > .up-menu-item-title': {
           color: props.theme.colorMap.primary,
         },
         '&.up-menu nav > ul > li': {
@@ -171,37 +171,22 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
         },
         '&.up-menu nav > ul > li .up-sub-menu-title': {
           display: 'none',
-          color: '#FFF',
+          color: props.theme.colorMap.white,
           fontSize: toRem(14),
           fontWeight: 500,
-        },
-        '&.up-menu nav > ul > li:hover .up-sub-menu-title': {
-          display: props.minified ? 'inline-block' : 'none',
-          marginBottom: toRem(20),
         },
         '&.up-menu nav > ul > li:not(:last-child)': {
           marginBottom: toRem(6),
         },
-        '&.up-menu nav > ul > li > ul': {
+        '&.up-menu nav  ul li > ul': {
           display: 'none',
           transform: 'scaleY(0)',
           minWidth: toRem(180),
         },
-        '&.up-menu nav > ul > li > ul > li': {
-          display: 'block',
-        },
         '&.up-menu nav > ul li.active > ul': {
           display: props.minified ? 'block' : 'inherit',
         },
-        '&.up-menu nav > ul > li:hover .up-menu-item-title': {
-          zIndex: 1001,
-          display: props.minified ? 'none' : 'inline-block',
-        },
-        '&.up-menu nav > ul > li:hover ul li .up-menu-item-title': {
-          display: 'inline-block',
-        },
-        '&.up-menu nav > ul > li:hover > ul': {
-          display: props.minified ? 'block' : 'none',
+        '&.up-menu nav > ul > li:hover ul': {
           backgroundColor: '#4E5B59',
           top: props.minified ? 0 : 'inherit',
           left: props.minified ? toRem(48) : 'inherit',
@@ -216,8 +201,7 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           borderBottomRightRadius: props.theme.borderRadius,
           borderTopRightRadius: props.theme.borderRadius,
         },
-        '&.up-menu nav > ul > li.active:not(:hover) > ul': {
-          display: props.minified ? 'none' : 'block',
+        '&.up-menu nav > ul > li.active:not(:hover) ul': {
           padding: `${toRem(16)} ${toRem(5)} ${toRem(30)} ${toRem(35)}`,
           width: 'auto',
           opacity: 1,
@@ -225,11 +209,8 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           transformOrigin: '50% 0',
           transition: 'transform 0.5s ease',
         },
-        '&.up-menu nav > ul > li.active:hover > ul': {
-          display: 'block',
-        },
-        '&.up-menu nav > ul > li > ul.active:hover': {
-          display: 'block',
+        '&.up-menu nav > ul ul ul:last-child': {
+          paddingBottom: '0 !important'
         },
         '&.up-menu nav > ul > li ul li:not(:last-child)': {
           marginBottom: toRem(25),
@@ -258,7 +239,7 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           backgroundColor: 'rgba(255, 255, 255, 0.1)',
         },
         '.skin-up.main-header.navbar.dropdown-menu li a': {
-          color: '#fff',
+          color: props.theme.colorMap.white,
         },
         '.skin-up.main-header.navbar.dropdown-menu li a: hover': {
           background: 'rgb(0, 170, 212)',

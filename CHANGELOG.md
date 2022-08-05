@@ -1,3 +1,8 @@
+# ReactControls (version: 2.17.22)
+## Main Changes
+
+- UpMenu: Fix depth 2 submenu
+
 # ReactControls (version: 2.17.21)
 ## Main Changes
 

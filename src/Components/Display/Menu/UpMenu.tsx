@@ -358,10 +358,10 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
     return (
       <li className={active + hide}>
         <a onClick={this.onClickA} href={this.props.uri}>
-          {this.anyChild && (
-            <i onClick={this.onClick} className={this.state.active ? 'pe-7s-angle-down' : 'pe-7s-angle-right'}></i>
-          )}
           <span className={'up-menu-item-title'}>{this.props.title}</span>
+          {this.anyChild && (
+            <UpSvgIcon width={15} height={15} style={{ marginLeft: 'auto' }} iconName={'arrow-right'}></UpSvgIcon>
+          )}
         </a>
         {this.anyChild ? <SubMenu onClick={this.props.onClick} childMenuItems={this.props.childMenuItems} /> : null}
       </li>
