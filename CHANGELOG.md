@@ -1,4 +1,9 @@
-# ReactControls (version: 2.17.22)
+# ReactControls (version: 2.17.24)
+## Main Changes
+
+- UpMenu: Fix hover effect
+
+# ReactControls (version: 2.17.23)
 ## Main Changes
 
 - UpMenu: Fix depth 2 submenu

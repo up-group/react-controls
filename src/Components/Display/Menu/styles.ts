@@ -112,10 +112,10 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           transitionDuration: '.3s',
           display: props.minified ? 'none' : 'initial',
         },
-        '&.up-menu ul li:hover > a > .up-icon-wrapper.colored': {
+        '&.up-menu ul li:hover > a > .up-icon-wrapper.chevron': {
           transform: 'rotate(90deg)',
         },
-        '&.up-menu ul li.active > a > .up-icon-wrapper.colored': {
+        '&.up-menu ul li.active > a > .up-icon-wrapper.chevron': {
           transform: 'rotate(90deg)',
         },
         '&.up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg, .up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg path, .up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg polygon, .up-menu ul li:hover .up-icon-wrapper.colored:first-of-type svg polyline':
