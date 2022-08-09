@@ -251,7 +251,7 @@ export class MenuItem extends React.Component<MenuItemProps> {
             {isFunction(this.props.icon) && this.props.icon(this.props)}
             <span className={'up-menu-item-title'}>{this.props.title}</span>
             {!isEmpty(this.props.childMenuItems) && (
-              <UpSvgIcon width={15} height={15} style={{ marginLeft: 'auto' }} iconName={'arrow-right'}></UpSvgIcon>
+              <UpSvgIcon className="chevron" width={15} height={15} style={{ marginLeft: 'auto' }} iconName={'arrow-right'}></UpSvgIcon>
             )}
           </a>
         )}
@@ -360,7 +360,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
         <a onClick={this.onClickA} href={this.props.uri}>
           <span className={'up-menu-item-title'}>{this.props.title}</span>
           {this.anyChild && (
-            <UpSvgIcon width={15} height={15} style={{ marginLeft: 'auto' }} iconName={'arrow-right'}></UpSvgIcon>
+            <UpSvgIcon className="chevron" width={15} height={15} style={{ marginLeft: 'auto' }} iconName={'arrow-right'}></UpSvgIcon>
           )}
         </a>
         {this.anyChild ? <SubMenu onClick={this.props.onClick} childMenuItems={this.props.childMenuItems} /> : null}
