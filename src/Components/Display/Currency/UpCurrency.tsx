@@ -18,6 +18,7 @@ export interface UpCurrencyProps extends React.ClassAttributes<any> {
   unit?: string;
   animate?: boolean;
   delay?: number;
+  displaySign?: boolean;
 }
 
 const UpCurrency = (props: UpCurrencyProps) => {
@@ -63,7 +64,7 @@ const UpCurrency = (props: UpCurrencyProps) => {
     <UpBox justifyContent={'center'} style={{ height: '100%' }}>
       <UpBox flexDirection={'row'} justifyContent={'center'}>
         <span className={classnames('up-number-integer', bigNumber)}>
-          {props.value < 0 ? '-' : ''}{getIntegerValue((props.animate ? countUp : props.value) as number, ' ')}
+          {getIntegerValue((props.animate ? countUp : props.value) as number, '', props.displaySign)}
         </span>
         <span className={classnames('up-number-decimal', smallNumber)}>
           {getDecimalValue((props.animate ? countUp : props.value) as number, 2)}

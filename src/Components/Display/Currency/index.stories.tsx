@@ -43,5 +43,9 @@ export const WithAnimation = () => (
     <UpCurrency value={250.99} integerFontSize={50} decimalFontSize={20} unit={'€'} animate delay={2} />
     <label>{'With 4 seconds delay :'}</label>
     <UpCurrency value={250.99} integerFontSize={50} decimalFontSize={20} unit={'€'} animate delay={4} />
+    <label>{'With negative decimal value and sign set to true'}</label>
+    <UpCurrency value={-250.99} integerFontSize={50} decimalFontSize={20} unit={'€'}  displaySign delay={4} />
+    <label>{'With negative decimal value and sign set to true'}</label>
+    <UpCurrency value={-0.99} integerFontSize={50} decimalFontSize={20} unit={'€'}  displaySign delay={4} />
   </div>
 );
