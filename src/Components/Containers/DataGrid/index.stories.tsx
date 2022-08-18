@@ -603,7 +603,7 @@ export const WithExternalSourceAndPaginationTopAndBottom =
             total: data.length,
             previousFetchedPage: previousPage,
             lastFetchedDataTime: new Date()})
-          
+            
           if(isAllRowsSelected === true && currentPage != previousPage) {
             let newSelectedData = dataSelectedToRows(data, currentAllRowsSelected, isAllRowsSelected);
             setAllRowsSelected(newSelectedData) ;
@@ -640,17 +640,17 @@ export const WithExternalSourceAndPaginationTopAndBottom =
       const updateCurrentAllRowsSelected = (updatedRow: Row, currentAllRowsSelected: Row[]) => {
         let newSelectedData : Row[] = _.clone(currentAllRowsSelected);
         let matchedRow = newSelectedData.find(row => row.value.id == updatedRow.value.id);
-          if(matchedRow == null) {
-            newSelectedData.push({...updatedRow}) ;
-          } else {
-            matchedRow.isSelected = isAllRowsSelected;
-          }
+        if(matchedRow == null) {
+          newSelectedData.push({...updatedRow}) ;
+        } else {
+          matchedRow.isSelected = isAllRowsSelected;
+        }
         return newSelectedData;
       }
 
       const onSelectionChange = (lastUpdatedRow: Row, dataSelected: any[], allRowsSelected?: Row[], isAllRowsSelected?: boolean) => {
         let newSelectedData : Row[] = null ;
-        debugger;
+        
         if(lastUpdatedRow!=null) {
           newSelectedData = updateCurrentAllRowsSelected(lastUpdatedRow, currentAllRowsSelected) ;
         } else if(isAllRowsSelected!=null) {
@@ -675,6 +675,7 @@ export const WithExternalSourceAndPaginationTopAndBottom =
           paginationPosition="both"
           data={state.data}
           onSelectionChange={onSelectionChange}
+          rowsSelected={currentAllRowsSelected}
           lastFetchedDataTime={state.lastFetchedDataTime}
           paginationProps={{
             total: state.total, 

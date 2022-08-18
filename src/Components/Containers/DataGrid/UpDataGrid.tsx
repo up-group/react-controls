@@ -571,7 +571,7 @@ class UpDataGrid extends React.Component<
     let isAllRowsSelected = this.isAllRowsSelectedWithAlsoTheCurrentOne(currentRow) ;
 
     if(this.isSelectionControlled) {
-      this.props.onSelectionChange(currentRow, this.dataSelectedFromCurrentRows, allRowsSelected, null);
+      this.props.onSelectionChange(currentRow, this.dataSelectedFromCurrentRows, allRowsSelected, isAllRowsSelected);
     } else {
       const rows = this.state.rows;
       // Disable all items before choosing another
