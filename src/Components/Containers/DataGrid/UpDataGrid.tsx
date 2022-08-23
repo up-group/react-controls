@@ -302,6 +302,7 @@ export interface UpDataGridState {
   skip?: number;
   take?: number;
   total?: number;
+  data?: Array<any>;
   isDataFetching?: boolean;
   allRowsSelected?: boolean;
   rowsSelected?: Array<Row>;
@@ -387,7 +388,7 @@ class UpDataGrid extends React.Component<
 
     const data = this.props.data as Array<any>;
     const columns: Array<Column> = this.props.columns;
-    
+
     const _state : Partial<UpDataGridState> = {
       rows: [],
       rowsSelected: [],
@@ -602,7 +603,7 @@ class UpDataGrid extends React.Component<
       this.setState({
         rows,
         rowsSelected: allRowsSelected,
-        allRowsSelected: isAllRowsSelected ,
+        allRowsSelected: isAllRowsSelected,
       });
     }
   };
