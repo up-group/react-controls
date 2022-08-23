@@ -1,5 +1,11 @@
 # ReactControls (version: 0.2.188)
 
+## Feature
+
+- UpDataGrid: Add posibility to keep selection while changing pages.
+
+# ReactControls (version: 0.2.188)
+
 ## Bug Fixes
 
 - UpPagination: Remove focus color on steps
