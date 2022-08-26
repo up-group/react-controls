@@ -1,3 +1,9 @@
+# ReactControls (version: 0.2.189)
+
+## Bug Fixes
+
+- UpButton: Add flex 1 to button
+
 # ReactControls (version: 0.2.188)
 
 ## Bug Fixes
