@@ -40,6 +40,7 @@ const base = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
     $nest: {
       '&.up-btn': {
         textAlign: 'center',
+        flex: 1,
         fontSize: remStringFromPX(fontSizeMap[props.fontSize]),
         borderColor: props.borderColor || props.theme.colorMap[`${props.intent}Border`],
         borderWidth: '1px',
