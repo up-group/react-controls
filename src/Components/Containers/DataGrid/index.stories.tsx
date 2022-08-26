@@ -369,15 +369,15 @@ export const WithAutoClearSelectionOnDataChanged = () => {
   const [previousPage, setPreviousPage] = React.useState(null);
   const [currentAllRowsSelected, setAllRowsSelected] = React.useState([]);
   const [isAllRowsSelected, setIsAllRowsSelected] = React.useState(null);
-
-  const fetchData = () => {
+  const limit = 20
+  const fetchData = (page, limit) => {
     setIsFetching(true);
     setState({ ...state, data: [] });
     return fetch('https://jsonplaceholder.typicode.com/posts')
       .then(response => response.json())
       .then(data => {
         setState({
-          data: data.slice((currentPage - 1) * 50, (currentPage - 1) * 50 + 50),
+          data: data.slice((currentPage - 1) * limit, (currentPage - 1) * limit + limit),
           total: data.length,
           previousFetchedPage: previousPage,
           lastFetchedDataTime: new Date(),
@@ -466,8 +466,8 @@ export const WithAutoClearSelectionOnDataChanged = () => {
         paginationProps={{
           total: state.total,
           page: currentPage,
-          take: 50,
-          skip: (currentPage - 1) * 50,
+          take: limit,
+          skip: (currentPage - 1) * limit,
           onPageChange: (page: number, take: number, skip: number) => {
             setPreviousPage(currentPage);
             setPage(page);
