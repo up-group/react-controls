@@ -1,3 +1,8 @@
+# ReactControls (version: 2.17.25)
+## Main Changes
+
+- UpMenu: Fix minified icons
+
 # ReactControls (version: 2.17.24)
 ## Main Changes
 
