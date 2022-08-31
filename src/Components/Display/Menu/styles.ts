@@ -105,7 +105,7 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           {
             fill: props.theme.colorMap.white,
           },
-        '&.up-menu ul li .up-icon-wrapper.colored': {
+        '&.up-menu ul li .up-icon-wrapper.colored.chevron': {
           '-webkit-transition-property': 'transform',
           '-webkit-transition-duration': '.3s',
           transitionProperty: 'transform',
@@ -184,7 +184,7 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           minWidth: toRem(180),
         },
         '&.up-menu nav > ul li.active > ul': {
-          display: props.minified ? 'block' : 'inherit',
+          display: props.minified ? 'none' : 'inherit',
         },
         '&.up-menu nav > ul > li:hover ul': {
           backgroundColor: '#4E5B59',
