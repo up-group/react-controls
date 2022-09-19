@@ -56,6 +56,7 @@ import UpRadio from './Inputs/Radio';
 import UpPicture from './Inputs/Picture';
 import UpPassword from './Inputs/Password';
 import UpProgressCircle from './Display/ProgressCircle';
+import UpProgressBar from './Display/ProgressBar';
 import UpDropFile from './Inputs/DropFile/UpDropFile';
 import UpPDFViewer from './Display/PDFViewer/UpPDFViewer';
 import UpRating from './Inputs/Rating/UpRating';
@@ -119,6 +120,7 @@ export {
   UpNavTab,
   UpBulle,
   UpIcons,
+  UpProgressBar,
   UpProgressCircle,
   UpPDFViewer,
   UpDropFile,
