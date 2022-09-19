@@ -1,3 +1,9 @@
+# ReactControls (version: 0.2.189)
+
+## Main Changes
+
+- UpProgress : Add new componenet
+
 # ReactControls (version: 0.2.188)
 
 ## Bug Fixes
