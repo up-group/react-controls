@@ -1,4 +1,4 @@
-# ReactControls (version: 0.2.188)
+# ReactControls (version: 0.2.192)
 
 ## Main Changes
 
