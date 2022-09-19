@@ -312,6 +312,7 @@ export interface UpDataGridState {
   allRowsSelected?: boolean;
   rowsSelected?: Array<Row>;
   lastFetchedDataTime?: Date;
+  data?: any;
 }
 
 export type SortDirection = 'ASC' | 'DESC';

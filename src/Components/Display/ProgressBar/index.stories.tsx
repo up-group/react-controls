@@ -11,7 +11,7 @@ const mockData = (data = {}) => {
     campaignType: 'STEP OR BASKET OR PERCENT OR STANDARD',
     visible: false,
     cType: '0', // 0 Standard 1 Panier 2 Cash
-    values: [
+    cStepValue: [
       {
         step: 40,
         success: true,
