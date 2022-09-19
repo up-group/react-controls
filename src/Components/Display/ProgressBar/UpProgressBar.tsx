@@ -15,9 +15,7 @@ const Tile = (props: UpTyleType): React.ReactElement => {
     backgroundColor: success ? '#44cf69' : '#F59100',
   });
 
-  return (
-      <div className={tileStyle} />
-  );
+  return <div className={tileStyle} />;
 };
 
 const Step = (props: UpStepValues): React.ReactElement => {
@@ -45,7 +43,6 @@ const Step = (props: UpStepValues): React.ReactElement => {
 const UpProgressBar = (props: UpProgressBarTypes): React.ReactElement => {
   const { values = [], visible = true, unit = '' } = props;
 
-  const ValuesArray = 
   const containerStyle = style({
     maxWidth: '300px',
     width: '100%',

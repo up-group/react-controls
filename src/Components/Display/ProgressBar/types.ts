@@ -3,8 +3,13 @@ export interface UpStepValues {
   value: string;
   unit: string;
 }
+
+interface UpValues {
+  step: string;
+  success: boolean;
+}
 export interface UpProgressBarTypes {
-  step: Array<UpStepValues>;
+  values: Array<UpValues>;
   visible: boolean;
   unit: string;
 }
