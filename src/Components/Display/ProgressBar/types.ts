@@ -1,10 +1,10 @@
 export interface UpStepValues {
   success: boolean;
-  value: string;
   unit: string;
+  value: string;
 }
 export interface UpProgressBarTypes {
-  step: Array<UpStepValues>;
+  values: Array<UpStepValues>;
   visible: boolean;
   unit: string;
 }
