@@ -1,5 +1,11 @@
 # ReactControls (version: 0.2.188)
 
+## Main Changes
+
+- UpProgress: add new component
+
+# ReactControls (version: 0.2.188)
+
 ## Bug Fixes
 
 - UpPagination: Remove focus color on steps
