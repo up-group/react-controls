@@ -7,7 +7,7 @@ const Tile = (props: UpTyleType): React.ReactElement => {
 
   const tileStyle = style({
     height: 4,
-    width: 150,
+    width: 75,
     justifyContent: 'flex-end',
     display: 'flex',
     alignContent: 'center',
@@ -28,7 +28,7 @@ const Step = (props: UpStepValues): React.ReactElement => {
     <div
       className={style({
         backgroundColor: success ? '#22bd4b' : 'lightGrey',
-        width: 60,
+        width: 40,
         height: 40,
         borderRadius: 100,
         display: 'flex',
@@ -50,6 +50,7 @@ const UpProgressBar = (props: UpProgressBarTypes): React.ReactElement => {
     maxWidth: '300px',
     width: '100%',
     display: 'flex',
+    marginTop: 20,
     alignContent: 'center',
     height: 30,
     alignItems: 'center',
