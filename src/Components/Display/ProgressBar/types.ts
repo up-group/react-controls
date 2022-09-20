@@ -7,6 +7,7 @@ export interface UpStepValues {
 interface UpValues {
   step: string;
   success: boolean;
+  isFirstStep: boolean;
 }
 export interface UpProgressBarTypes {
   values: Array<UpValues>;
