@@ -12,7 +12,7 @@ const Tile = (props: UpTyleType): React.ReactElement => {
     display: 'flex',
     alignContent: 'center',
     alignItems: 'center',
-    backgroundColor: success ? '#44cf69' : '#F59100',
+    backgroundColor: success ? '#44cf69' : 'lightGrey',
   });
 
   return (
@@ -59,10 +59,11 @@ const UpProgressBar = (props: UpProgressBarTypes): React.ReactElement => {
   return (
     <div className={containerStyle}>
       {visible &&
-        values.map(({ step, success }, index) => (
+        values.map(({ step, success, isFirstStep }, index) => (
           <>
-            <Step value={step} key={index} success={success} unit={unit} />
-            {index < values.length - 1 && <Tile success={success} />}
+            {isFirstStep && <Step value={step} success={success} unit={unit} />}
+            {index < values.length && !isFirstStep && <Tile success={success} />}
+            {!isFirstStep && <Step value={step} key={index} success={success} unit={unit} />}
           </>
         ))}
     </div>
