@@ -1,73 +1,71 @@
 import * as React from 'react';
-import { style } from 'typestyle';
-import { UpProgressBarTypes, UpStepValues, UpTyleType } from './types';
-
-const Tile = (props: UpTyleType): React.ReactElement => {
-  const { success } = props;
-
-  const tileStyle = style({
-    height: 4,
-    width: 75,
-    justifyContent: 'flex-end',
-    display: 'flex',
-    alignContent: 'center',
-    alignItems: 'center',
-    backgroundColor: success ? '#44cf69' : 'lightGrey',
-  });
-
-  return (
-      <div className={tileStyle} />
-  );
-};
-
-const Step = (props: UpStepValues): React.ReactElement => {
-  const { value, success, unit } = props;
-
-  const valueWithUnit = `${value}${unit}`;
-  return (
-    <div
-      className={style({
-        backgroundColor: success ? '#22bd4b' : 'lightGrey',
-        width: 40,
-        height: 40,
-        borderRadius: 100,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontWeight: 'bold',
-      })}
-    >
-      {valueWithUnit}
-    </div>
-  );
-};
+import { UpProgressBarTypes } from './types';
+import Tile from './Tile';
+import Step from './Step';
+import PercentTile from './PercentTile';
+import { containerStyle } from './style';
 
 const UpProgressBar = (props: UpProgressBarTypes): React.ReactElement => {
-  const { values = [], visible = true, unit = '' } = props;
+  const { values = [], type = '0', maxValue = 10, value = 10 } = props;
 
-  const ValuesArray = 
-  const containerStyle = style({
-    maxWidth: '300px',
-    width: '100%',
-    display: 'flex',
-    marginTop: 20,
-    alignContent: 'center',
-    height: 30,
-    alignItems: 'center',
-  });
+  switch (type) {
+    case '0': {
+      return (
+        <div className={containerStyle}>
+          {values.map(({ step, success, isFirstStep }, index) => (
+            <>
+              {isFirstStep && <Step value={step} success={success} />}
+              {index < values.length && !isFirstStep && <Tile success={success} />}
+              {!isFirstStep && <Step value={step} key={index} success={success} />}
+            </>
+          ))}
+        </div>
+      );
+    }
+    case '1': {
+      const startSize = (value / maxValue) * 100;
+      const endSize = 100 - startSize;
+      return (
+        <div className={containerStyle}>
+          <PercentTile success={true} size={startSize} />
+          <Step value={value} success={true} />
+          {maxValue !== value && (
+            <>
+              <PercentTile success={false} size={endSize} />
+              <Step value={maxValue} success={false} />
+            </>
+          )}
+        </div>
+      );
+    }
+    case '2': {
+      return (
+        <div className={containerStyle}>
+          {values.map(({ step, success, isFirstStep }, index) => (
+            <>
+              {isFirstStep && <Step value={step} success={success} />}
+              {index < values.length && !isFirstStep && <Tile success={success} />}
+              {!isFirstStep && <Step value={step} key={index} success={success} />}
+            </>
+          ))}
+        </div>
+      );
+    }
 
-  return (
-    <div className={containerStyle}>
-      {visible &&
-        values.map(({ step, success, isFirstStep }, index) => (
-          <>
-            {isFirstStep && <Step value={step} success={success} unit={unit} />}
-            {index < values.length && !isFirstStep && <Tile success={success} />}
-            {!isFirstStep && <Step value={step} key={index} success={success} unit={unit} />}
-          </>
-        ))}
-    </div>
-  );
+    default: {
+      return (
+        <div className={containerStyle}>
+          {values.map(({ step, success, isFirstStep }, index) => (
+            <>
+              {isFirstStep && <Step value={step} success={success} />}
+              {index < values.length && !isFirstStep && <Tile success={success} />}
+              {!isFirstStep && <Step value={step} key={index} success={success} />}
+            </>
+          ))}
+        </div>
+      );
+    }
+  }
 };
 
 export default UpProgressBar;
