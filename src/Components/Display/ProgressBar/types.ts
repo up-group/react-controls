@@ -20,6 +20,7 @@ export interface UpProgressBarTypes {
   value?: number;
   type: string;
   unit?: string;
+  valueToDisplay?: string;
 }
 
 export interface UpTyleType {
