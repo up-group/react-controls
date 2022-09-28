@@ -56,10 +56,13 @@ export const General = () => {
 export const WithPercentOnTile = () => {
   const props = mockData({
     stepOnTile: true,
-    size: 40,
+    size: 0,
+    type: '1',
+    value: 100,
+    maxValue: 100,
     values: [
       {
-        step: '40',
+        step: '3',
         success: true,
       },
       {
