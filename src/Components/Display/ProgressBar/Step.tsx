@@ -2,10 +2,13 @@ import { UpStepValues } from './types';
 import { stepStyle } from './style';
 
 const Step = (props: UpStepValues): React.ReactElement => {
-  const { value, valueToDisplay, success, unit = '' } = props;
+  const { value, firstValueToDisplay, secondValueToDisplay, success, unit = '' } = props;
 
-  if (valueToDisplay) {
-    return <div className={stepStyle(success)}>{valueToDisplay}</div>;
+  if (firstValueToDisplay) {
+    return <div className={stepStyle(success)}>{firstValueToDisplay}</div>;
+  }
+  if (secondValueToDisplay) {
+    return <div className={stepStyle(success)}>{secondValueToDisplay}</div>;
   }
   return (
     <div className={stepStyle(success)}>

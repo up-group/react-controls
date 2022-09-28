@@ -1,10 +1,9 @@
-import { string } from 'yup';
-
 export interface UpStepValues {
   success: boolean;
   value: string | number;
   unit?: string;
-  valueToDisplay?: string;
+  secondValueToDisplay?: string;
+  firstValueToDisplay?: string;
 }
 
 interface UpValues {
@@ -20,7 +19,8 @@ export interface UpProgressBarTypes {
   value?: number;
   type: string;
   unit?: string;
-  valueToDisplay?: string;
+  secondValueToDisplay?: string;
+  firstValueToDisplay?: string;
 }
 
 export interface UpTyleType {
