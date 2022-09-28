@@ -6,7 +6,7 @@ import PercentTile from './PercentTile';
 import { containerStyle } from './style';
 
 const UpProgressBar = (props: UpProgressBarTypes): React.ReactElement => {
-  const { values = [], type = '0', maxValue = 10, value = 10 } = props;
+  const { values = [], type = '0', maxValue = 10, value = 10, unit = '' } = props;
 
   switch (type) {
     case '0': {
@@ -23,16 +23,16 @@ const UpProgressBar = (props: UpProgressBarTypes): React.ReactElement => {
       );
     }
     case '1': {
-      const startSize = (value / maxValue) * 100;
-      const endSize = 100 - startSize;
+      const startSize = value === 0 ? 0 : (value / maxValue) * 100;
+      const endSize = value === 0 ? 300 : 100 - startSize;
       return (
         <div className={containerStyle}>
           <PercentTile success={true} size={startSize} />
-          <Step value={value} success={true} />
+          <Step value={value} success={true} unit={unit} />
           {maxValue !== value && (
             <>
               <PercentTile success={false} size={endSize} />
-              <Step value={maxValue} success={false} />
+              <Step value={maxValue} success={false} unit={unit} />
             </>
           )}
         </div>

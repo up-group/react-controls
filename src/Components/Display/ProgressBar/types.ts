@@ -1,21 +1,25 @@
+import { string } from 'yup';
+
 export interface UpStepValues {
   success: boolean;
   value: string | number;
+  unit?: string;
+  valueToDisplay?: string;
 }
 
 interface UpValues {
   step: string;
   success: boolean;
-  isFirstStep: boolean;
+  isFirstStep?: boolean;
 }
 
 export interface UpProgressBarTypes {
-  step: Array<UpStepValues>;
+  values?: Array<UpValues>;
   visible: boolean;
-  unit: string;
-  maxValue: number;
-  value: number;
+  maxValue?: number;
+  value?: number;
   type: string;
+  unit?: string;
 }
 
 export interface UpTyleType {
