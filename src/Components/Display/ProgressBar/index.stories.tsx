@@ -58,8 +58,9 @@ export const WithPercentOnTile = () => {
     stepOnTile: true,
     size: 0,
     type: '1',
-    value: 100,
+    value: 20,
     maxValue: 100,
+    valueToDisplay: 2,
     values: [
       {
         step: '3',
