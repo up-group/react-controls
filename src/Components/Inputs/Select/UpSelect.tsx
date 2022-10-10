@@ -182,13 +182,15 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         const extra = this.state.extra === undefined || this.state.extra === null ? {} : { ...this.state.extra };
         extra.fullObject = receiveValue;
         newState = { extra: extra };
-      } else if (isPair === false && this.props.data != null) {
+      } 
+      else if (isPair === false && this.props.data != null) {
         const data = this.makePairFromId(receiveValue);
         const extra = this.state.extra === undefined || this.state.extra === null ? {} : { ...this.state.extra };
         extra.fullObject = data;
         newState = { extra: extra };
         valueToParse = data;
-      } else if (receiveValue == null) {
+      } 
+      else if (receiveValue == null) {
         newState = update(this.state, {
           extra: { fullObject: { $set: null } },
         });
@@ -196,6 +198,12 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
 
       if (newState != null && this.props.closeMenuOnSelect) {
         newState.extra.menuIsOpen = false;
+      }
+
+      if (newState == null && this.state.extra !== null) {
+        const extra = this.state.extra === undefined || this.state.extra === null ? {} : { ...this.state.extra };
+        extra.fullObject = undefined;
+        newState = { extra: extra };
       }
 
       newState = update(newState, {
