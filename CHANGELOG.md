@@ -51,6 +51,12 @@
 - add some icons
 # ReactControls (version: 0.2.182)
 # ReactControls (version: 0.2.187)
+# ReactControls (version: 0.2.215)
+
+## Bug Fixes
+
+- UpSelect: Clean code and remove verification on { ...this.state.extra }
+
 # ReactControls (version: 0.2.214)
 
 ## Bug Fixes
