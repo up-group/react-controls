@@ -26,7 +26,7 @@ export default {
   component: UpSelect,
 };
 
-const data = [];
+const data : Array<{id: number, title: string}>= [];
 for (let i = 1; i < 1000; i++) {
   data.push({
     id: i,
