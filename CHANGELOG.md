@@ -1,3 +1,9 @@
+# ReactControls (version: 0.2.214)
+
+## Bug Fixes
+
+- UpSelect: Clean code
+
 # ReactControls (version: 0.2.188)
 
 ## Bug Fixes
