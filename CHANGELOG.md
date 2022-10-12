@@ -51,6 +51,12 @@
 - add some icons
 # ReactControls (version: 0.2.182)
 # ReactControls (version: 0.2.187)
+# ReactControls (version: 0.2.214)
+
+## Bug Fixes
+
+- UpSelect: Clean code
+
 # ReactControls (version: 0.2.188)
 
 ## Bug Fixes
