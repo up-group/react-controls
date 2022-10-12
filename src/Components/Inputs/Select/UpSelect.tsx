@@ -200,6 +200,12 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         });
       }
 
+      if (newState == null && this.state.extra !== null) {
+        const extra = { ...this.state.extra };
+        extra.fullObject = undefined;
+        newState = { extra: extra };
+      }
+
       if (newState != null && this.props.closeMenuOnSelect) {
         newState.extra.menuIsOpen = false;
       }
