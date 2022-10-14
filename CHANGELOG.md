@@ -53,11 +53,17 @@
 # ReactControls (version: 0.2.187)
 # ReactControls (version: 0.2.215)
 
+## Refacto
+
+- DataGrid: Add check on action.rows to see if it's a function or a promise.
+
+# ReactControls (version: 0.2.214)
+
 ## Bug Fixes
 
 - UpSelect: Clean code and remove verification on { ...this.state.extra }
 
-# ReactControls (version: 0.2.214)
+# ReactControls (version: 0.2.213)
 
 ## Bug Fixes
 
