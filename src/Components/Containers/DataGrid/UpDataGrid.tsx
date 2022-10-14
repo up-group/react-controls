@@ -808,14 +808,20 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
             ...this.props.footerProps.actionsDataGrid,
             actions: this.props.footerProps.actionsDataGrid.actions.map(action => ({
               ...action,
-              onClick: rows =>
-                action.onClick(rows).then(data => {
-                  //Empty the selectData and uncheck all checkboxes if the request is successful
-                  this.setState({
-                    rowsSelected: [],
-                    rows: this.state.rows.map(row => ({ ...row, isSelected: false })),
+              onClick: rows => {
+                const promised = action.onClick(rows);
+                if (promised)
+                  return promised.then(data => {
+                    //Empty the selectData and uncheck all checkboxes if the request is successful
+                    this.setState({
+                      rowsSelected: [],
+                      rows: this.state.rows.map(row => ({ ...row, isSelected: false })),
+                    });
                   });
-                }),
+                return new Promise<void>((resolve, reject) => {
+                  resolve(null);
+                });
+              },
             })),
           },
         }),
