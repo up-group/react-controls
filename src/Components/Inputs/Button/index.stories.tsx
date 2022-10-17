@@ -299,7 +299,7 @@ export const DropDownWithText = () => (
   </UpThemeProvider>
 );
 
-export const DropDownWithTextAndIconToLeft = () => (
+export const DropDownWithLongTextAndIconToLeft = () => (
   <UpThemeProvider theme={UpDefaultTheme}>
     <UpBox flexDirection={'column'} alignItems={'flex-start'} style={{ margin: '40px 30px' }}>
       <UpHeading tag={'h1'}>
@@ -319,7 +319,7 @@ export const DropDownWithTextAndIconToLeft = () => (
           dropDown={'down'}
           extraActions={[
             {
-              libelle: 'Option 1',
+              libelle: 'Option 1 qui montre un long texte',
               onClick: action('Option 1'),
             },
             {

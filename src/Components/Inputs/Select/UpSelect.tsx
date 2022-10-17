@@ -4,7 +4,9 @@ import classnames from 'classnames';
 import AsyncCreatableSelect from 'react-select/async-creatable';
 import axios from 'axios';
 import { BaseControlComponent } from '../_Common/BaseControl/BaseControl';
+
 import * as queryString from 'query-string';
+
 import { UpSelectProps } from './types';
 import SelectBase, { Props, ActionMeta, OnChangeValue } from 'react-select';
 import { eventFactory } from '../../../Common/utils/eventListener';
@@ -148,15 +150,19 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
   setValue = (receiveValue: any) => {
     let valueToParse = Array.isArray(receiveValue) ? [...receiveValue] : { ...receiveValue };
     if (this.props.multiple === true) {
-      const isPairArray = this.isPairArray(receiveValue);
+      const isArrayWithElementofIdAndText = this.isArrayWithElementofIdAndText(receiveValue);
       let newState = null;
-      if (isPairArray === true) {
+      if (isArrayWithElementofIdAndText === true) {
         const extra = this.state.extra === undefined || this.state.extra === null ? {} : { ...this.state.extra };
         extra.fullObject = receiveValue;
         newState = { ...this.state, extra };
-      } else if (isPairArray == false && Array.isArray(receiveValue) === true && this.props.data != null) {
+      } else if (
+        isArrayWithElementofIdAndText == false &&
+        Array.isArray(receiveValue) === true &&
+        this.props.data != null
+      ) {
         const extra = this.state.extra === undefined || this.state.extra === null ? {} : { ...this.state.extra };
-        const data = this.makePairFromIds(receiveValue);
+        const data = this.makeElementofIdAndTextFromIds(receiveValue);
         extra.fullObject = data;
         newState = { ...this.state, extra };
         return this.parseValue(data);
@@ -176,14 +182,14 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
 
       this.setState(newState);
     } else {
-      const isPair = this.isPair(receiveValue);
+      const isPair = this.isElementofIdAndText(receiveValue);
       let newState = null;
       if (isPair === true) {
         const extra = this.state.extra === undefined || this.state.extra === null ? {} : { ...this.state.extra };
         extra.fullObject = receiveValue;
         newState = { extra: extra };
       } else if (isPair === false && this.props.data != null) {
-        const data = this.makePairFromId(receiveValue);
+        const data = this.makeElementofIdAndTextFromId(receiveValue);
         const extra = this.state.extra === undefined || this.state.extra === null ? {} : { ...this.state.extra };
         extra.fullObject = data;
         newState = { extra: extra };
@@ -192,6 +198,12 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         newState = update(this.state, {
           extra: { fullObject: { $set: null } },
         });
+      }
+
+      if (newState == null && this.state.extra !== null) {
+        const extra = { ...this.state.extra };
+        extra.fullObject = undefined;
+        newState = { extra: extra };
       }
 
       if (newState != null && this.props.closeMenuOnSelect) {
@@ -207,13 +219,13 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     return this.parseValue(valueToParse);
   };
 
-  private makePairFromIds = (ids: any[]) => {
-    return ids.map(this.makePairFromId).filter(v => {
+  private makeElementofIdAndTextFromIds = (ids: any[]) => {
+    return ids.map(this.makeElementofIdAndTextFromId).filter(v => {
       return v !== null;
     });
   };
 
-  private makePairFromId = id => {
+  private makeElementofIdAndTextFromId = id => {
     for (let i = 0; i < this.props.data.length; i++) {
       if (this.props.data[i][this.keyId] === id) {
         return {
@@ -225,14 +237,14 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     return null;
   };
 
-  private isPairArray = (obj: any[]) => {
+  private isArrayWithElementofIdAndText = (obj: any[]) => {
     if (obj == null || Array.isArray(obj) == false) {
       return false;
     }
-    return obj.every(this.isPair);
+    return obj.every(this.isElementofIdAndText);
   };
 
-  private isPair = obj => {
+  private isElementofIdAndText = obj => {
     if (obj == null) {
       return false;
     }
