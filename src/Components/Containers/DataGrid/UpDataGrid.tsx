@@ -622,9 +622,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
   };
 
   onSelectionAllChange = (isSelected: boolean) => {
-    if (this.isSelectionControlled) {
-      this.props.onSelectionChange(null, this.dataSelectedFromCurrentRows, this.currentRowsSelected, isSelected);
-    } else {
+    if (!this.isSelectionControlled) {
       const rows: Array<Row> = getRowsFromData(this.state.rows, isSelected);
       const addedRows = getNewSelectedRows(rows, this.currentRowsSelected);
 
@@ -641,6 +639,9 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
         rows: rows,
         allRowsSelected: isSelected,
       });
+    }
+    if (this.props.onSelectionChange) {
+      this.props.onSelectionChange(null, this.dataSelectedFromCurrentRows, this.currentRowsSelected, isSelected);
     }
   };
 
