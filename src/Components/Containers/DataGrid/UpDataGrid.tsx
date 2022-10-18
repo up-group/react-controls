@@ -601,9 +601,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
     const allRowsSelected = this.getSelectedRowsWithAlsoTheCurrentOne(currentRow);
     const isAllRowsSelected = this.isAllRowsSelectedWithAlsoTheCurrentOne(currentRow);
 
-    if (this.isSelectionControlled) {
-      this.props.onSelectionChange(currentRow, this.dataSelectedFromCurrentRows, allRowsSelected, null);
-    } else {
+    if (!this.isSelectionControlled) {
       const rows = this.state.rows;
       // Disable all items before choosing another
       if (this.props.onlyOneRowCanBeSelected) {
@@ -616,6 +614,10 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
         rowsSelected: allRowsSelected,
         allRowsSelected: isAllRowsSelected,
       });
+    }
+
+    if (this.props.onSelectionChange) {
+      this.props.onSelectionChange(currentRow, this.dataSelectedFromCurrentRows, allRowsSelected, null);
     }
   };
 
