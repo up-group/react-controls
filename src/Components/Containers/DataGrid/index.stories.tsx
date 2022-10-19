@@ -357,7 +357,7 @@ export const WithSingleActionAndRowClickable = () => {
   );
 };
 
-export const WithAutoClearSelectionOnDataChanged = () => {
+/*export const WithAutoClearSelectionOnDataChanged = () => {
   const [isFetching, setIsFetching] = React.useState(false);
   const [currentPage, setPage] = React.useState(1);
   const [state, setState] = React.useState({
@@ -500,7 +500,7 @@ export const WithAutoClearSelectionOnDataChanged = () => {
       />
     </>
   );
-};
+};*/
 
 export const WithExternalSource = () => (
   <UpDataGrid
