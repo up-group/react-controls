@@ -1,3 +1,9 @@
+# ReactControls (version: 0.2.216)
+
+## Bug Fixes
+
+- DataGrid: Notify when the row change.
+
 # ReactControls (version: 0.2.215)
 
 ## Refacto
