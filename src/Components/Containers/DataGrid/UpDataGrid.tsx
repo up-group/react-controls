@@ -218,7 +218,7 @@ export interface ToolTip {
   icon?: IconName;
 }
 
-export type RenderValue = { value: any; col: Column };
+export type RenderValue = { value: any; column: Column };
 
 export interface Column {
   label: string | JSX.Element;
