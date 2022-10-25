@@ -32,8 +32,8 @@ export interface UpCurrencyProps extends React.ClassAttributes<any> {
 }
 
 const UpCurrency = (props: UpCurrencyProps) => {
-  let positiveIntegerColor = "#D7D7D7";
-  let positiveDecimalColor = "#9B9B9B";
+  let positiveIntegerColor = "#ff8c1a";
+  let positiveDecimalColor = "#994d00";
 
   let negativeIntegerColor = "#D7D7D7";
   let negativeDecimalColor = "#9B9B9B";
