@@ -24,7 +24,7 @@ export const SimpleUsage = () => (
 
 export const CustomStyling = () => (
   <UpCurrency
-    value={50.99}
+    value={-0.99}
     integerFontSize={80}
     decimalFontSize={30}
     integerLineHeight={100}

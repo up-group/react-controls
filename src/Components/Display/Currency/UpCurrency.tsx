@@ -31,7 +31,7 @@ const UpCurrency = (props: UpCurrencyProps) => {
             ? props.integerLineHeight
             : (props.integerFontSize ? props.integerFontSize : 40) + 8) + 'px',
         fontWeight: props.integerFontWeight ? props.integerFontWeight : 'normal',
-        color: props.color && props.value > 0 ? props.color : '#D7D7D7',
+        color: props.color && props.value >= 0 ? props.color : props.value < 0 ? 'red' : '#D7D7D7',
       },
     },
   });
@@ -46,7 +46,7 @@ const UpCurrency = (props: UpCurrencyProps) => {
           (props.decimalLineHeight
             ? props.decimalLineHeight
             : (props.decimalFontSize ? props.decimalFontSize : 14) + 2) + 'px',
-        color: props.value > 0 ? props.secondColor || '#9B9B9B' : '#D7D7D7',
+        color: props.value >= 0 ? props.secondColor || '#9B9B9B' : 'red',
       },
     },
   });
