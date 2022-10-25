@@ -64,7 +64,7 @@ const UpCurrency = (props: UpCurrencyProps) => {
     <UpBox justifyContent={'center'} style={{ height: '100%' }}>
       <UpBox flexDirection={'row'} justifyContent={'center'}>
         <span className={classnames('up-number-integer', bigNumber)}>
-          {getIntegerValue((props.animate ? countUp : props.value) as number, '', props.displaySign)}
+          {getIntegerValue((props.animate ? countUp : props.value) as number, '')}
         </span>
         <span className={classnames('up-number-decimal', smallNumber)}>
           {getDecimalValue((props.animate ? countUp : props.value) as number, 2)}
