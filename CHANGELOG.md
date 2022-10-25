@@ -51,6 +51,14 @@
 - add some icons
 # ReactControls (version: 0.2.182)
 # ReactControls (version: 0.2.187)
+# ReactControls (version: 0.2.220)
+
+## Bug Fixes
+- Uppcurrency : Fix nefative value display and colors props
+
+## Main Changes
+- UpDataGrid : Change the way to handle selection on multi pages
+
 # ReactControls (version: 0.2.216)
 
 ## Bug Fixes
