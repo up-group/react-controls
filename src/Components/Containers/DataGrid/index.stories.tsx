@@ -65,13 +65,23 @@ columns = {
   ]}
   data = { data } />`;
 
-const data = [];
-const data2 = [];
-const data3 = [];
+type Value = {
+  c1: string;
+  c2: boolean;
+  c3: string;
+  c4: {
+    Libelle: string;
+    Couleur: string;
+  };
+};
+
+const data: Array<Value> = [];
+const data2: Array<Value> = [];
+const data3: Array<{ isSelected: boolean; value: Value }> = [];
 
 for (let i = 0; i < 5; i++) {
   data.push({
-    c1: 'Value ' + i,
+    c1: `Value ${i}`,
     c2: false,
     c3: 'Value 3',
     c4: { Libelle: 'Suivi', Couleur: '#369' },
@@ -119,7 +129,7 @@ const paginationCounterStyle = (props: WithThemeProps) =>
     cursor: 'pointer',
   });
 
-export const General = () => (
+export const General = (): JSX.Element => (
   <>
     <UpParagraph
       className={style({
@@ -190,7 +200,7 @@ export const General = () => (
   </>
 );
 
-export const WithSelection = () => (
+export const WithSelection = (): JSX.Element => (
   <UpDataGrid
     onSelectionChange={(a, b) => {
       console.log(a, b);
@@ -228,7 +238,7 @@ export const WithSelection = () => (
   />
 );
 
-export const WithActions = () => {
+export const WithActions = (): JSX.Element => {
   const [currentRow, setCurrentRow] = React.useState({});
 
   const actionFactory: ActionFactory<any> = (rowValue: any) => {
@@ -307,7 +317,7 @@ export const WithActions = () => {
   );
 };
 
-export const WithSingleActionAndRowClickable = () => {
+export const WithSingleActionAndRowClickable = (): JSX.Element => {
   const [currentRow, setCurrentRow] = React.useState({});
 
   const actionFactory: ActionFactory<any> = (rowValue: any) => {
@@ -357,20 +367,26 @@ export const WithSingleActionAndRowClickable = () => {
   );
 };
 
-/*export const WithAutoClearSelectionOnDataChanged = () => {
+export const WithAutoClearSelectionOnDataChanged = (): JSX.Element => {
   const [isFetching, setIsFetching] = React.useState(false);
   const [currentPage, setPage] = React.useState(1);
-  const [state, setState] = React.useState({
+  const [state, setState] = React.useState<{
+    data: Array<any>;
+    total: number;
+    lastFetchedDataTime: Date | undefined;
+    previousFetchedPage: number;
+  }>({
     data: [],
     total: 0,
-    lastFetchedDataTime: null,
-    previousFetchedPage: null,
+    lastFetchedDataTime: undefined,
+    previousFetchedPage: 0,
   });
-  const [previousPage, setPreviousPage] = React.useState(null);
-  const [currentAllRowsSelected, setAllRowsSelected] = React.useState([]);
-  const [isAllRowsSelected, setIsAllRowsSelected] = React.useState(null);
 
-  const fetchData = () => {
+  const [previousPage, setPreviousPage] = React.useState<number>(0);
+  const [currentAllRowsSelected, setAllRowsSelected] = React.useState<Array<Row>>([]);
+  const [isAllRowsSelected, setIsAllRowsSelected] = React.useState<boolean>(false);
+
+  const fetchData = (): Promise<Response> => {
     setIsFetching(true);
     setState({ ...state, data: [] });
     return fetch('https://jsonplaceholder.typicode.com/posts')
@@ -384,7 +400,7 @@ export const WithSingleActionAndRowClickable = () => {
         });
 
         if (isAllRowsSelected === true && currentPage != previousPage) {
-          let newSelectedData = dataSelectedToRows(data, currentAllRowsSelected, isAllRowsSelected);
+          const newSelectedData = dataSelectedToRows(data, currentAllRowsSelected, isAllRowsSelected);
           setAllRowsSelected(newSelectedData);
         }
 
@@ -392,17 +408,20 @@ export const WithSingleActionAndRowClickable = () => {
 
         return data;
       })
-      .then(data => setIsFetching(false));
+      .then(data => {
+        setIsFetching(false);
+        return data;
+      });
   };
 
   React.useEffect(() => {
     fetchData();
   }, [currentPage, setPage]);
 
-  const dataSelectedToRows = (data: any[], allRowsSelected: Row[], isAllRowsSelected: boolean) => {
-    let newAllRowsSelected: Row[] = _.clone(allRowsSelected);
+  const dataSelectedToRows = (data: any[], allRowsSelected: Row[], isAllRowsSelected: boolean): Array<Row> => {
+    const newAllRowsSelected: Row[] = _.clone(allRowsSelected);
     data.forEach(item => {
-      let matchedRow = newAllRowsSelected.find(row => row.value.id == item.id);
+      const matchedRow = newAllRowsSelected.find(row => row.value.id == item.id);
       if (matchedRow == null) {
         newAllRowsSelected.push({
           isSelected: isAllRowsSelected,
@@ -416,9 +435,9 @@ export const WithSingleActionAndRowClickable = () => {
     return newAllRowsSelected;
   };
 
-  const updateCurrentAllRowsSelected = (updatedRow: Row, currentAllRowsSelected: Row[]) => {
-    let newSelectedData: Row[] = _.clone(currentAllRowsSelected);
-    let matchedRow = newSelectedData.find(row => row.value.id == updatedRow.value.id);
+  const updateCurrentAllRowsSelected = (updatedRow: Row, currentAllRowsSelected: Row[]): Array<Row> => {
+    const newSelectedData: Row[] = _.clone(currentAllRowsSelected);
+    const matchedRow = newSelectedData.find(row => row.value.id == updatedRow.value.id);
     if (matchedRow == null) {
       newSelectedData.push({ ...updatedRow });
     } else {
@@ -432,8 +451,8 @@ export const WithSingleActionAndRowClickable = () => {
     dataSelected: any[],
     allRowsSelected?: Row[],
     isAllRowsSelected?: boolean
-  ) => {
-    let newSelectedData: Row[] = null;
+  ): void => {
+    let newSelectedData: Row[] = [];
 
     if (lastUpdatedRow != null) {
       newSelectedData = updateCurrentAllRowsSelected(lastUpdatedRow, currentAllRowsSelected);
@@ -443,7 +462,7 @@ export const WithSingleActionAndRowClickable = () => {
 
     if (newSelectedData != null) setAllRowsSelected(newSelectedData.filter(row => row.isSelected));
 
-    setIsAllRowsSelected(isAllRowsSelected);
+    setIsAllRowsSelected(isAllRowsSelected === true);
   };
 
   return (
@@ -468,7 +487,7 @@ export const WithSingleActionAndRowClickable = () => {
           page: currentPage,
           take: 50,
           skip: (currentPage - 1) * 50,
-          onPageChange: (page: number, take: number, skip: number) => {
+          onPageChange: (page: number, take: number, skip: number): void => {
             setPreviousPage(currentPage);
             setPage(page);
           },
@@ -500,9 +519,9 @@ export const WithSingleActionAndRowClickable = () => {
       />
     </>
   );
-};*/
+};
 
-export const WithExternalSource = () => (
+export const WithExternalSource = (): JSX.Element => (
   <UpDataGrid
     dataSource={{
       query: 'https://jsonplaceholder.typicode.com/posts',
@@ -532,7 +551,7 @@ export const WithExternalSource = () => (
   />
 );
 
-export const WithExternalSourceAndPaginationTop = () => (
+export const WithExternalSourceAndPaginationTop = (): JSX.Element => (
   <UpDataGrid
     dataSource={{
       query: 'https://jsonplaceholder.typicode.com/posts',
@@ -563,7 +582,7 @@ export const WithExternalSourceAndPaginationTop = () => (
   />
 );
 
-export const WithExternalSourceAndPaginationBottom = () => (
+export const WithExternalSourceAndPaginationBottom = (): JSX.Element => (
   <UpDataGrid
     dataSource={{
       query: 'https://jsonplaceholder.typicode.com/posts',
@@ -718,7 +737,7 @@ export const WithExternalSourceAndPaginationBottom = () => (
   />
 );
 
-export const WithExternalSourceAndPaginationTopAndBottom = () => (
+export const WithExternalSourceAndPaginationTopAndBottom = (): JSX.Element => (
   <UpDataGrid
     paginationPosition="both"
     dataSource={{
@@ -750,7 +769,7 @@ export const WithExternalSourceAndPaginationTopAndBottom = () => (
   />
 );
 
-export const WithCustomRowStyles = () => (
+export const WithCustomRowStyles = (): JSX.Element => (
   <UpDataGrid
     paginationPosition="bottom"
     dataSource={{
@@ -774,14 +793,15 @@ export const WithCustomRowStyles = () => (
         isSortable: true,
       },
     ]}
-    getRowCustomClassName={(index, row) => {
+    getRowCustomClassName={(index, row): string => {
       if (index === 1) return style({ background: 'red !important' });
       if (index === 4) return style({ background: 'green !important' });
+      return '';
     }}
   />
 );
 
-export const WithCellFormatter = () => (
+export const WithCellFormatter = (): JSX.Element => (
   <UpDataGrid
     paginationPosition="both"
     dataSource={{
@@ -814,13 +834,13 @@ export const WithCellFormatter = () => (
   />
 );
 
-export const WithRowInsertion = () => (
+export const WithRowInsertion = (): JSX.Element => (
   <UpDataGrid
-    injectRow={(previous, next, col) => {
+    injectRow={(previous, next, col): JSX.Element => {
       if (next == null || (previous && previous.value && previous.value.c1 && previous.value.c1.indexOf('2') != -1)) {
         return <div style={{ color: 'red' }}>Injected row</div>;
       }
-      return null;
+      return <></>;
     }}
     isPaginationEnabled={false}
     isSelectionEnabled={false}
@@ -875,7 +895,7 @@ class Test extends React.Component<TestProps, TestState> {
     };
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <div>
         <button
@@ -930,7 +950,7 @@ class Test extends React.Component<TestProps, TestState> {
     );
   }
 }
-export const WithCustomStyle = () => {
+export const WithCustomStyle = (): JSX.Element => {
   const [isCustomStyle, toggleStyle] = React.useState(true);
 
   const customTitle = (
@@ -1102,7 +1122,7 @@ export const WithCustomStyle = () => {
   );
 };
 
-export const onlyOneRowCanBeSelected = () => (
+export const onlyOneRowCanBeSelected = (): JSX.Element => (
   <UpDataGrid
     onlyOneRowCanBeSelected={true}
     onSelectionChange={(a, b) => {

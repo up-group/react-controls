@@ -2,7 +2,7 @@ import React from 'react';
 import * as Klaro from 'klaro/dist/klaro-no-css';
 import './style.css';
 import UpSvgIcon from '../SvgIcon';
-import { CSSProperties, useEffect, useState } from 'react';
+import { CSSProperties, useState } from 'react';
 
 declare global {
   interface Window {
