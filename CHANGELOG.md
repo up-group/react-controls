@@ -51,10 +51,16 @@
 - add some icons
 # ReactControls (version: 0.2.182)
 # ReactControls (version: 0.2.187)
+# ReactControls (version: 0.2.221
+
+## Main Changes
+- UpCurrency : Change the default colors
+
+
 # ReactControls (version: 0.2.220)
 
 ## Bug Fixes
-- Uppcurrency : Fix nefative value display and colors props
+- UpCurrency : Fix nefative value display and colors props
 
 ## Main Changes
 - UpDataGrid : Change the way to handle selection on multi pages
