@@ -6,6 +6,17 @@ import classnames from 'classnames';
 import { useCountUp } from 'react-countup';
 import UpBox from '../../Containers/Box';
 
+interface IColorProps {
+  negative? : {
+    float: string,
+    integer: string,
+  },
+  default? : {
+    float: string,
+    integer: string,
+  }
+}
+
 export interface UpCurrencyProps extends React.ClassAttributes<any> {
   value: number;
   integerFontSize?: number;
@@ -13,8 +24,7 @@ export interface UpCurrencyProps extends React.ClassAttributes<any> {
   integerLineHeight?: number;
   decimalLineHeight?: number;
   integerFontWeight?: number;
-  color?: Property.Color;
-  secondColor?: Property.Color;
+  colors?: IColorProps;
   unit?: string;
   animate?: boolean;
   delay?: number;
@@ -22,6 +32,22 @@ export interface UpCurrencyProps extends React.ClassAttributes<any> {
 }
 
 const UpCurrency = (props: UpCurrencyProps) => {
+  let positiveIntegerColor = "#D7D7D7";
+  let positiveDecimalColor = "#9B9B9B";
+
+  let negativeIntegerColor = "#D7D7D7";
+  let negativeDecimalColor = "#9B9B9B";
+
+  if (props.colors?.default) {
+    positiveIntegerColor = props.colors.default.integer;
+    positiveDecimalColor = props.colors.default.float;
+  }
+
+  if (props.colors?.negative) {
+    negativeIntegerColor = props.colors.negative.integer;
+    negativeDecimalColor = props.colors.negative.float;
+  }
+
   const bigNumber = style({
     $nest: {
       '&.up-number-integer': {
@@ -31,7 +57,7 @@ const UpCurrency = (props: UpCurrencyProps) => {
             ? props.integerLineHeight
             : (props.integerFontSize ? props.integerFontSize : 40) + 8) + 'px',
         fontWeight: props.integerFontWeight ? props.integerFontWeight : 'normal',
-        color: props.color && props.value > 0 ? props.color : '#D7D7D7',
+        color: props.value >= 0 ? positiveIntegerColor : negativeIntegerColor
       },
     },
   });
@@ -46,7 +72,7 @@ const UpCurrency = (props: UpCurrencyProps) => {
           (props.decimalLineHeight
             ? props.decimalLineHeight
             : (props.decimalFontSize ? props.decimalFontSize : 14) + 2) + 'px',
-        color: props.value > 0 ? props.secondColor || '#9B9B9B' : '#D7D7D7',
+        color: props.value >= 0 ? positiveDecimalColor : negativeDecimalColor
       },
     },
   });
