@@ -665,7 +665,6 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
           },
         }),
       onInputChange: (value: string) => {
-        console.log(`Value ${value}`);
         const newState = {
           ...this.state,
           extra: {
@@ -673,8 +672,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
             inputValue: value,
           },
         };
-        console.log(newState);
-        return this.setState(newState, () => console.log(this.state));
+        return this.setState(newState);
       },
       getOptionLabel: this.getOptionLabel,
       getOptionValue: (option: object) => this.parseValue(option),
