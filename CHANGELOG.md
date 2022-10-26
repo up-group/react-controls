@@ -51,6 +51,10 @@
 - add some icons
 # ReactControls (version: 0.2.182)
 # ReactControls (version: 0.2.187)
+# ReactControls (version: 0.2.222
+
+## Main Changes
+- UpSelect : clean code (remove console.log)
 # ReactControls (version: 0.2.221
 
 ## Main Changes
