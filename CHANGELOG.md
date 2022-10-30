@@ -51,6 +51,10 @@
 - add some icons
 # ReactControls (version: 0.2.182)
 # ReactControls (version: 0.2.187)
+# ReactControls (version: 0.2.223
+
+## Main Changes
+- UpButton : remove border-bottom dotted
 # ReactControls (version: 0.2.222
 
 ## Main Changes
