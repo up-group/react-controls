@@ -13,13 +13,14 @@ import { eventFactory } from '../../../Common/utils/eventListener';
 import { isEmpty } from '../../../Common/utils';
 import defaultTheme from '../../../Common/theming/';
 import UpLigne from '../../Display/Ligne/UpLigne';
-import { customStyles, getLabelStyle, groupBadgeStyles, groupStyles } from './styles';
+import { customStyles, getInlineStyle, getLabelStyle, groupBadgeStyles, groupStyles } from './styles';
 
 import * as _ from 'lodash';
 
 import { getTestableComponentProps } from '../../../Common/utils/types';
 import Creatable from 'react-select/creatable';
 import AsyncSelect from 'react-select/async';
+import { ThemeInterface } from 'theming/types';
 
 const CancelToken = axios.CancelToken;
 
@@ -47,6 +48,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     searchPromptText: '-- Rechercher',
     placeholder: '-- Sélectionner',
     loadingPlaceholder: 'Chargement en cours...',
+    displayMode: 'classic',
     default: null,
     autoload: false,
     showError: true,
@@ -162,7 +164,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         this.props.data != null
       ) {
         const extra = this.state.extra === undefined || this.state.extra === null ? {} : { ...this.state.extra };
-        const data = this.makeElementofIdAndTextFromIds(receiveValue);
+        const data = this.makeElementOfIdAndTextFromIds(receiveValue);
         extra.fullObject = data;
         newState = { ...this.state, extra };
         return this.parseValue(data);
@@ -189,7 +191,7 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
         extra.fullObject = receiveValue;
         newState = { extra: extra };
       } else if (isPair === false && this.props.data != null) {
-        const data = this.makeElementofIdAndTextFromId(receiveValue);
+        const data = this.makeElementOfIdAndTextFromId(receiveValue);
         const extra = this.state.extra === undefined || this.state.extra === null ? {} : { ...this.state.extra };
         extra.fullObject = data;
         newState = { extra: extra };
@@ -219,13 +221,13 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
     return this.parseValue(valueToParse);
   };
 
-  private makeElementofIdAndTextFromIds = (ids: any[]) => {
-    return ids.map(this.makeElementofIdAndTextFromId).filter(v => {
+  private makeElementOfIdAndTextFromIds = (ids: any[]) => {
+    return ids.map(this.makeElementOfIdAndTextFromId).filter(v => {
       return v !== null;
     });
   };
 
-  private makeElementofIdAndTextFromId = id => {
+  private makeElementOfIdAndTextFromId = id => {
     for (let i = 0; i < this.props.data.length; i++) {
       if (this.props.data[i][this.keyId] === id) {
         return {
@@ -700,7 +702,9 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
       ref: input => (this.input = input),
       styles: customStyles(this.props.theme, this.state.value),
     };
-    const { floatingLabel, disabled, readonly } = this.props;
+
+    const { floatingLabel, disabled, readonly, displayMode } = this.props;
+
     const FloatingLabel = floatingLabel && (
       <label
         onClick={() => {
@@ -725,30 +729,91 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
       </label>
     );
 
+    const filterOption = (option, filter) => {
+      const filterHandler = this.props.filterOptions || this.filterOptions;
+      return filterHandler(option, filter);
+    };
+
     return (
       <div
         className={classnames(this.props.className, getLabelStyle(this.props), 'up-select-wrapper')}
         {...getTestableComponentProps(this.props)}
       >
-        {dataSource != null && allowCreate === true && (
+        {displayMode === 'tags' && (
+          <>
+            {FloatingLabel}
+            {data.map((option, index) => {
+              if (filterOption(option, null)) {
+                const isSelected =
+                  this.props.value != null &&
+                  (this.props.multiple
+                    ? this.props.value.some(v => option[this.keyId] == v[this.keyId])
+                    : option[this.keyId] == this.props.value[this.keyId]);
+
+                let nextValue: any = option;
+                if (this.props.multiple) {
+                  if (isSelected) {
+                    nextValue = this.props.value
+                      ? this.props.value.filter(v => option[this.keyId] !== v[this.keyId])
+                      : [];
+                  } else {
+                    nextValue = [...(this.props.value || []), option];
+                  }
+                } else {
+                  if (isSelected) {
+                    nextValue = null;
+                  } else {
+                    nextValue = option;
+                  }
+                }
+                if (this.props.optionRenderer) {
+                  const OptionRenderer = this.props.optionRenderer;
+                  return <OptionRenderer key={index} {...option}></OptionRenderer>;
+                } else {
+                  if (option[this.keyId])
+                    return (
+                      <span
+                        key={`option_${option[this.keyId]}`}
+                        className={getInlineStyle(this.props.theme, isSelected)}
+                        onClick={e => this.onChange(this.props.name, nextValue, null)}
+                      >
+                        {this.format(option, this.keyText)}
+                      </span>
+                    );
+                  else
+                    return (
+                      <span
+                        key={`option_${option['id']}`}
+                        className={getInlineStyle(this.props.theme, isSelected)}
+                        onClick={e => this.onChange(this.props.name, nextValue, null)}
+                      >
+                        {this.format(option, option['text'])}
+                      </span>
+                    );
+                }
+              }
+            })}
+          </>
+        )}
+        {displayMode === 'classic' && dataSource != null && allowCreate === true && (
           <>
             {FloatingLabel}
             <AsyncCreatableSelect {...(selectComponentProps as any)} />
           </>
         )}
-        {dataSource != null && allowCreate === false && (
+        {displayMode === 'classic' && dataSource != null && allowCreate === false && (
           <>
             {FloatingLabel}
             <AsyncSelect {...(selectComponentProps as any)} />
           </>
         )}
-        {dataSource == null && allowCreate === true && (
+        {displayMode === 'classic' && dataSource == null && allowCreate === true && (
           <>
             {FloatingLabel}
             <Creatable {...(selectComponentProps as any)} />
           </>
         )}
-        {dataSource == null && allowCreate === false && (
+        {displayMode === 'classic' && dataSource == null && allowCreate === false && (
           <>
             {FloatingLabel}
             <SelectBase {...(selectComponentProps as any)} />

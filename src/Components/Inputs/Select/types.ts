@@ -3,6 +3,7 @@ import { BaseControlProps } from '../_Common/BaseControl/BaseControl';
 
 export type ReturnType = 'id' | 'full';
 
+export type DisplayMode = 'classic' | 'tags';
 export interface UpSelectOption {
   id: number;
   text: string;
@@ -30,6 +31,7 @@ export interface UpSelectProps extends BaseControlProps<any> {
   isLoading?: boolean;
   placeholder?: string;
   loadingPlaceholder?: string;
+  displayMode?: DisplayMode;
   allowClear?: boolean;
   allowCreate?: boolean;
   minimumInputLength?: number;

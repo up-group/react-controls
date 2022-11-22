@@ -26,7 +26,7 @@ export default {
   component: UpSelect,
 };
 
-const data : Array<{id: number, title: string}>= [];
+const data: Array<{ id: number; title: string }> = [];
 for (let i = 1; i < 1000; i++) {
   data.push({
     id: i,
@@ -625,3 +625,39 @@ export const IntegrationInForm = () => (
     </UpRow>
   </UpGrid>
 );
+
+export const DisplayInline = () => {
+  const [selectedValue, setValue] = React.useState([
+    {
+      id: 1,
+      text: 'M.',
+    },
+  ]);
+
+  const onChange = (event, value) => {
+    setValue(value);
+  };
+
+  return (
+    <div style={{ margin: '30px' }}>
+      <UpSelect
+        autoload={false}
+        isRequired={false}
+        allowClear={true}
+        allowCreate={true}
+        default={null}
+        multiple={true}
+        value={selectedValue}
+        tooltip="Vos couleurs préférées"
+        data={[
+          { id: 1, text: 'Rouge' },
+          { id: 2, text: 'Bleu' },
+          { id: 3, text: 'Vert' },
+          { id: 4, text: 'Orange' },
+        ]}
+        onChange={onChange}
+        displayMode={'tags'}
+      />
+    </div>
+  );
+};
