@@ -33,7 +33,8 @@ export type IllustrationName =
   | 'card-orange-trans'
   | 'user-fail'
   | 'click-select-item'
-  | 'click-sheet-file';
+  | 'click-sheet-file'
+  | 'click-sheet-file-mcc';
 
 export const IllustrationNames: IllustrationName[] = [
   'logo-up',
@@ -71,6 +72,7 @@ export const IllustrationNames: IllustrationName[] = [
   'user-fail',
   'click-select-item',
   'click-sheet-file',
+  'click-sheet-file-mcc',
 ];
 
 const dictionary = {};
