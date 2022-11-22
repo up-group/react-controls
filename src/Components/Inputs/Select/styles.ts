@@ -164,3 +164,19 @@ export const customStyles = (theme: ThemeInterface, value) => ({
     };
   },
 });
+
+export const getInlineStyle = (theme: ThemeInterface, isSelected: boolean): string => {
+  return style({
+    borderRadius: '25px',
+    border: '1px solid #555',
+    padding: '8px 16px',
+    marginRight: '8px',
+    backgroundColor: isSelected ? theme.colorMap.primary : 'white',
+    color: isSelected ? 'white' : '#555',
+    $nest: {
+      '&:hover': {
+        cursor: 'pointer',
+      },
+    },
+  });
+};
