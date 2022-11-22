@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.224
+
+## Main Changes
+- UpSelect : Add tags display style
+
 # ReactControls (version: 0.2.223
 
 ## Main Changes
