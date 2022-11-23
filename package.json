@@ -4,7 +4,6 @@
   "description": "Up shared react controls",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "packageManager": "yarn@3.1.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Up-Group/react-controls.git"
@@ -165,8 +164,7 @@
     "typescript": "4.4.2",
     "url-loader": "^1.1.2",
     "webpack": "^4.46.0",
-    "webpack-cli": "^4.9.1",
-    "yarn": "^1.12.1"
+    "webpack-cli": "^4.9.1"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^11.2.0",
