@@ -654,6 +654,7 @@ export const DisplayInline = () => {
           { id: 2, text: 'Bleu' },
           { id: 3, text: 'Vert' },
           { id: 4, text: 'Orange' },
+          { id: 5, text: 'Violet' },
         ]}
         onChange={onChange}
         displayMode={'tags'}
