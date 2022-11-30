@@ -239,6 +239,7 @@ export interface ThemeColorMap {
   sepia3: string;
   sepia4: string;
   sepia5: string;
+  darkSilver: string;
 }
 
 export type IntentType =
