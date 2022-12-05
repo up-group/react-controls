@@ -26,6 +26,8 @@ export const colors = {
 };
 
 const colorMap: ThemeColorMap = {
+  darkSilver: '#707070',
+
   dark1: '#293953',
   dark2: '#6B4E71',
   dark3: '#829399',

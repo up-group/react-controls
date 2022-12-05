@@ -13,3 +13,11 @@ const ThemeContext = React.createContext(UpDefaultTheme);
 
 export const ThemeProvider = ThemeContext.Provider;
 export const ThemeConsumer = ThemeContext.Consumer;
+
+export const useTheme = () =>{
+    const context = React.useContext(ThemeContext);
+    if (context === undefined) {
+        throw new Error("useTheme must be used within a ThemeContext");
+    }
+    return context;
+}
