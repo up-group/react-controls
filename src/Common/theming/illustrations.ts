@@ -34,6 +34,10 @@ export type IllustrationName =
   | 'user-fail'
   | 'click-select-item'
   | 'click-sheet-file'
+  | 'icon-up-money'
+  | 'location'
+  | 'mentor-joyeux-petillant'
+  | 'transfer'
   | 'click-sheet-file-mcc';
 
 export const IllustrationNames: IllustrationName[] = [
@@ -72,7 +76,11 @@ export const IllustrationNames: IllustrationName[] = [
   'user-fail',
   'click-select-item',
   'click-sheet-file',
-  'click-sheet-file-mcc',
+  'icon-up-money',
+  'location',
+  'mentor-joyeux-petillant',
+  'transfer',
+  'click-sheet-file-mcc'
 ];
 
 const dictionary = {};
