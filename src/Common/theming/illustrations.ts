@@ -37,7 +37,8 @@ export type IllustrationName =
   | 'icon-up-money'
   | 'location'
   | 'mentor-joyeux-petillant'
-  | 'transfer';
+  | 'transfer'
+  | 'click-sheet-file-mcc';
 
 export const IllustrationNames: IllustrationName[] = [
   'logo-up',
@@ -78,7 +79,8 @@ export const IllustrationNames: IllustrationName[] = [
   'icon-up-money',
   'location',
   'mentor-joyeux-petillant',
-  'transfer'
+  'transfer',
+  'click-sheet-file-mcc'
 ];
 
 const dictionary = {};
