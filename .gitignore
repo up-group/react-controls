@@ -28,4 +28,5 @@ e2e/node_modules/
 !.yarn/versions
 **/*/yarn-error.log
 dist/
-
+.env
+.npmrc
