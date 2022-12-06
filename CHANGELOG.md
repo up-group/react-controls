@@ -1,3 +1,9 @@
+# ReactControls (version: 0.2.226)
+
+## Main Changes
+- Collapsable : Add the collapsable component
+- TagsSelect : Allow default selection of the component
+
 # ReactControls (version: 0.2.225)
 
 ## Main Changes
