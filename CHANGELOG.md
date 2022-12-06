@@ -1,17 +1,22 @@
-# ReactControls (version: 0.2.224
+# ReactControls (version: 0.2.225)
+
+## Main Changes
+- UpTagsSelect : Add tags select component
+
+# ReactControls (version: 0.2.224)
 
 ## Main Changes
 - UpSelect : Add tags display style
 
-# ReactControls (version: 0.2.223
+# ReactControls (version: 0.2.223)
 
 ## Main Changes
 - UpButton : remove border-bottom dotted
-# ReactControls (version: 0.2.222
+# ReactControls (version: 0.2.222)
 
 ## Main Changes
 - UpSelect : clean code (remove console.log)
-# ReactControls (version: 0.2.221
+# ReactControls (version: 0.2.221)
 
 ## Main Changes
 - UpCurrency : Change the default colors
