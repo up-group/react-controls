@@ -1,18 +1,12 @@
-import { SelectedTagData } from "../../Display/Tag";
-import {TagData} from "../TagsSelect/UpTagsSelect";
+import { TagData } from '../../Display/Tag';
 
-export const findAndUpdateSelectedTag = (tags: SelectedTagData[], updatedTag: SelectedTagData) => {
-    return tags
-        .reduce((acc, curr) => {
-            if (curr.id === updatedTag.id){
-                acc.push(updatedTag);
-            }
-            else {
-                acc.push(curr);
-            }
-            return acc;
-        }, []);
-}
-
-export const initSelectedTags = (tags: TagData[]) => tags.map((tag) => ({...tag, selected: false}));
-
+export const findAndUpdateSelectedTag = (tags: TagData[], updatedTag: TagData): TagData[] => {
+  return tags.reduce((acc, curr) => {
+    if (curr.id === updatedTag.id) {
+      acc.push(updatedTag);
+    } else {
+      acc.push(curr);
+    }
+    return acc;
+  }, []);
+};
