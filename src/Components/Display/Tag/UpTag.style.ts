@@ -5,7 +5,7 @@ export const getTagStyle = (theme: ThemeInterface, isSelected: boolean): string 
   return style({
     backgroundColor: isSelected ? theme.colorMap.primary : 'white',
     color: isSelected ? theme.colorMap.white : 'black',
-    border: isSelected ? 'none' : `1px solid ${theme.colorMap.darkSilver}`,
+    outline: isSelected ? 'none' : `1px solid ${theme.colorMap.darkSilver}`,
     borderRadius: '19px',
     fontWeight: isSelected ? 'bold' : 'normal',
     fontSize: '14px',
