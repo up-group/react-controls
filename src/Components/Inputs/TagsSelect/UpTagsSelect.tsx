@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
-import { useTheme } from '../../../Common/theming/ThemeContext';
+import { useTheme } from '../../../Common/hooks/useTheme';
 import { UpTag, TagData } from '../../Display/Tag';
 import { getLabelStyles, getLabelWrapperStyles, getTagsWrapperStyles } from './UpTagsSelect.style';
 import { findAndUpdateSelectedTag } from './UpTagsSelect.helper';
