@@ -9,15 +9,7 @@ import UpDefaultTheme from './defaultTheme';
  * On exporte ce contexte afin qu'il soit exploitable par
  * d'autres composants par la suite via le `Consumer`
  */
-const ThemeContext = React.createContext(UpDefaultTheme);
+export const ThemeContext = React.createContext(UpDefaultTheme);
 
 export const ThemeProvider = ThemeContext.Provider;
 export const ThemeConsumer = ThemeContext.Consumer;
-
-export const useTheme = () =>{
-    const context = React.useContext(ThemeContext);
-    if (context === undefined) {
-        throw new Error("useTheme must be used within a ThemeContext");
-    }
-    return context;
-}
