@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useTheme } from '../../../Common/theming/ThemeContext';
+import { useTheme } from '../../../Common/hooks/useTheme';
 import {
   getWrapperStyles,
   getTitleStyles,
