@@ -1,12 +1,12 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 
-import UpCheckbox from '../../Inputs/Checkbox/UpCheckBox';
+import UpCheckbox from '../../../Inputs/Checkbox/UpCheckBox';
 
-import UpDataGridCellHeader from './UpDataGridCellHeader';
-import { Column, Action, SortDirection, isActionEnabled } from './UpDataGrid';
-import { isEmpty } from '../../../Common/utils';
-import { ActionFactory } from './UpDataGridRow';
+import UpDataGridCellHeader from '../UpDataGridCellHeader/UpDataGridCellHeader';
+import { Column, Action, SortDirection } from '../UpDataGrid/UpDataGrid.types';
+import { isEmpty } from '../../../../Common/utils';
+import { ActionFactory } from '../UpDataGridRow/UpDataGridRow';
+import { isActionEnabled } from '../helper';
 
 export interface UpDataGridRowHeaderState {
   isSelected: boolean;

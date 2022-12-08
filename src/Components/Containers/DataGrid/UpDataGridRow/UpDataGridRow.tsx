@@ -1,20 +1,19 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import { style } from 'typestyle';
 import classnames from 'classnames';
 
-import UpCheckbox from '../../Inputs/Checkbox/UpCheckBox';
-import UpButton from '../../Inputs/Button/UpButton';
+import UpCheckbox from '../../../Inputs/Checkbox/UpCheckBox';
+import UpButton from '../../../Inputs/Button/UpButton';
 
-import UpDataGridCell from './UpDataGridCell';
-import { Column, Row, Action, isActionEnabled } from './UpDataGrid';
-import UpDefaultCellFormatter from './UpDefaultCellFormatter';
+import UpDataGridCell from '../UpDataGridCell/UpDataGridCell';
+import { Column, Row, Action } from '../UpDataGrid/UpDataGrid.types';
+import UpDefaultCellFormatter from '../UpDefaultCellFormatter';
 
-import shallowEqual from '../../../Common/utils/shallowEqual';
-import { isEmpty } from '../../../Common/utils';
-import UpButtonGroup from '../../Containers/ButtonGroup';
-import { UpDataGridConsumer } from './UpDataGridContext';
-import { WithThemeProps } from '../../../Common/theming/types';
+import shallowEqual from '../../../../Common/utils/shallowEqual';
+import UpButtonGroup from '../../ButtonGroup';
+import { UpDataGridConsumer } from '../UpDataGridContext/UpDataGridContext';
+import { WithThemeProps } from '../../../../Common/theming/types';
+import { isActionEnabled } from '../helper';
 
 export interface UpDataGridRowState {}
 

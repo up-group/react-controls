@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { media, style } from 'typestyle';
 import classnames from 'classnames';
-import UpButtonGroup from '../ButtonGroup';
-import { WithThemeProps } from '../../../Common/theming/types';
-import defaultTheme from '../../../Common/theming';
-import { DeviceSmartphones } from '../../../Common/utils/device';
+
+import UpButtonGroup from '../../ButtonGroup';
+import { WithThemeProps } from '../../../../Common/theming/types';
+import defaultTheme from '../../../../Common/theming';
+import { DeviceSmartphones } from '../../../../Common/utils/device';
 
 export interface UpDataGridHeaderProps {
   title?: string | JSX.Element;

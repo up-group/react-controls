@@ -2,249 +2,34 @@ import * as React from 'react';
 
 import $ from 'jquery';
 import classnames from 'classnames';
-import { media, style } from 'typestyle';
+import { style } from 'typestyle';
 
 import axios from 'axios';
 
-import UpPagination, { UpPaginationProps } from './UpPagination';
-import UpDataGridRowHeader from './UpDataGridRowHeader';
-import UpDataGridRow, { ActionFactory } from './UpDataGridRow';
-import { ICellFormatter } from './UpDefaultCellFormatter';
+import UpPagination, { UpPaginationProps } from '../UpDataGridPagination/UpDataGridPagination';
+import UpDataGridRowHeader from '../UpDataGridRowHeader/UpDataGridRowHeader';
+import UpDataGridRow, { ActionFactory } from '../UpDataGridRow/UpDataGridRow';
 
-import UpLoadingIndicator from '../../Display/LoadingIndicator';
-import UpButton from '../../Inputs/Button/UpButton';
+import UpLoadingIndicator from '../../../Display/LoadingIndicator';
+import UpButton from '../../../Inputs/Button/UpButton';
 
-import { IntentType, WithThemeProps } from '../../../Common/theming/types';
-import { ActionType } from '../../../Common/actions';
-import UpDefaultTheme, { withTheme } from '../../../Common/theming';
-import UpDataGridFooter, { UpDataGridFooterProps } from './UpDataGridFooter';
-import UpDataGridHeader, { UpDataGridHeaderProps } from './UpDataGridHeader';
+import { WithThemeProps } from '../../../../Common/theming/types';
+import UpDefaultTheme, { withTheme } from '../../../../Common/theming';
+import UpDataGridFooter, { UpDataGridFooterProps } from '../UpDataGridFooter/UpDataGridFooter';
+import UpDataGridHeader, { UpDataGridHeaderProps } from '../UpDataGridHeader/UpDataGridHeader';
 
-import { UpDataGridProvider } from './UpDataGridContext';
-import { getTestableComponentProps, TestableComponentProps } from '../../../Common/utils/types';
-import { DeviceSmartphones } from '../../../Common/utils/device';
-import { IconName } from '../../../Common/theming/icons';
-import { isEmpty } from '../../../Common/utils';
-
-const WrapperDataGridStyle = style(
-  {
-    position: 'relative',
-  },
-  media(DeviceSmartphones, {
-    $nest: {
-      '& .up-loading-indicator': {
-        overflowX: 'auto',
-      },
-    },
-  })
-);
-
-const CellInnerElementStyle = {
-  marginTop: '0.3em',
-};
-
-export function isActionEnabled(props: {
-  actions?: ActionFactory<any> | Array<Action>;
-  displayRowActionsWithinCell?: boolean;
-}): boolean {
-  return !props.displayRowActionsWithinCell && props.actions != null;
-}
-
-const DataGridStyle = (props: UpDataGridProps & WithThemeProps): string =>
-  style(
-    {
-      width: '100%',
-      borderRadius: props.theme.borderRadius,
-      borderSpacing: 0,
-      borderStyle: 'solid',
-      borderWidth: '1px',
-      borderColor: props.theme.colorMap.defaultBorder,
-      color: props.theme.colorMap.darkGray5,
-      fontSize: '14px',
-      $nest: {
-        '& .up-data-grid-header': {
-          backgroundColor: 'white',
-          backgroundRepeat: 'repeat-x',
-          fontWeight: 700,
-          fontSize: '12px',
-        },
-        '& .up-data-grid-header .up-checkbox': {
-          marginTop: '8px',
-          marginBottom: '8px',
-          marginLeft: '7px',
-        },
-        '& .up-data-grid-body': {
-          background: 'white',
-        },
-        '& .up-selection': {
-          width: '0.2em',
-        },
-        '& .up-display-label, & .up-display-value': CellInnerElementStyle,
-        '& .up-data-grid-header-cell': {
-          textAlign: 'left',
-          padding: '8px',
-          paddingLeft: '14px',
-          borderCollapse: 'collapse',
-          borderColor: 'transparent',
-          borderRadius: props.theme.borderRadius,
-        },
-        '& .up-data-grid-header-cell-label': {
-          fontSize: '14px',
-          color: props.theme.colorMap.grey1,
-        },
-        '& .up-data-grid-header-cell.up-data-grid-header-cell-selection': {
-          width: '32px',
-          paddingLeft: '8px',
-        },
-        '& .up-data-grid-header-cell.up-data-grid-header-cell-selection .up-checkbox': {
-          marginLeft: '1px',
-        },
-        '& .up-data-grid-cell': {
-          padding: '16px',
-          position: 'relative',
-          verticalAlign: props.alignCells,
-          textAlign: props.textAlignCells,
-          $nest: {
-            '& .up-buttons-wrapper': {
-              justifyContent:
-                props.textAlignCells === 'center'
-                  ? 'center'
-                  : props.textAlignCells === 'left'
-                  ? 'flex-start'
-                  : props.textAlignCells === 'right'
-                  ? 'flex-end'
-                  : 'normal',
-            },
-            '& .up-badge': {
-              padding: '4px 6px',
-            },
-          },
-          //width:'100%'
-        },
-        '& .up-data-grid-cell .up-checkbox .up-control-indicator::before': {
-          left: '0px',
-        },
-        '& .up-data-grid-cell .up-checkbox': {
-          marginTop: '0 !important',
-          display: 'inline-block',
-        },
-        '& .up-data-grid-cell .row-actions': {
-          position: 'absolute',
-          display: 'none',
-          width: '300px',
-          bottom: '3px',
-          justifyContent: 'space-between',
-          zIndex: 1,
-        },
-        '& .up-data-grid-cell .row-action': {
-          color: props.theme.colorMap.primary,
-          cursor: 'pointer',
-        },
-        '& .up-data-grid-cell .row-action:hover, & .up-data-grid-cell .row-action-delete:hover': {
-          textDecoration: 'underline',
-        },
-        '& .up-data-grid-cell .row-action-delete': {
-          color: props.theme.colorMap.errorActive,
-          cursor: 'pointer',
-        },
-        '& .up-data-grid-row': {
-          verticalAlign: 'top',
-        },
-        '& .up-data-grid-row:hover .row-actions': {
-          display: 'flex',
-        },
-        '& .up-data-grid-row-bordered': {
-          $nest: {
-            '.up-data-grid-cell': {
-              borderTop: `1px solid ${props.theme.colorMap.defaultBorder}`,
-              borderCollapse: 'collapse',
-            },
-          },
-        },
-        '& .up-data-grid-row-bordered:last-child': {
-          $nest: {
-            '.up-data-grid-cell': {
-              border: '0',
-              borderRadius: props.theme.borderRadius,
-            },
-          },
-        },
-        '& .up-data-grid-row-borderless': {
-          $nest: {
-            '.up-data-grid-cell': {
-              border: '0',
-            },
-          },
-        },
-        '& .up-data-grid-row-selected': {
-          $nest: {
-            '& .up-data-grid-cell': {
-              borderTop: `0.1em solid ${props.theme.colorMap.primaryDark}`,
-              borderBottom: `0.1em solid ${props.theme.colorMap.primaryDark}`,
-              backgroundColor: props.theme.colorMap.primary,
-              color: props.theme.colorMap.primaryFg,
-            },
-          },
-        },
-        '& .up-data-grid-sortable': {
-          cursor: 'pointer',
-        },
-      },
-    },
-    media(DeviceSmartphones, {
-      $nest: {
-        '& .up-data-grid-header-cell-label': {
-          whiteSpace: 'nowrap',
-        },
-      },
-    })
-  );
-
-export interface Action {
-  type: ActionType;
-  iconName?: IconName;
-  intent?: IntentType;
-  description: string;
-  action: (row: Row) => void;
-  libelle?: string;
-  borderless?: boolean;
-  isVisible?: (value: any) => boolean;
-  getProps?: (value: any) => any;
-}
-
-export interface ToolTip {
-  title?: JSX.Element | string;
-  content: JSX.Element | string;
-  icon?: IconName;
-}
-
-export type RenderValue = { value: any; column: Column };
-
-export interface Column {
-  label: string | JSX.Element;
-  field?: string;
-  formatter?: ICellFormatter;
-  getFormatterProps?: (value: string) => any;
-  render?: (value: RenderValue) => JSX.Element;
-  type?: any;
-  isSortable?: boolean;
-  isSorted?: boolean;
-  sortDir?: SortDirection;
-  tooltip?: ToolTip;
-}
-
-export interface Row {
-  isSelected?: boolean;
-  value?: any;
-}
-
-export type Method = 'GET' | 'POST';
-export type PaginationPosition = 'top' | 'bottom' | 'both';
-
-export interface exportCsv {
-  fileName: string;
-  textButton?: string;
-}
+import { UpDataGridProvider } from '../UpDataGridContext/UpDataGridContext';
+import { getTestableComponentProps, TestableComponentProps } from '../../../../Common/utils/types';
+import { isEmpty } from '../../../../Common/utils';
+import {
+  getNewSelectedRows,
+  isSelectedRowData,
+  removeRowsFromData,
+  getRowsFromData,
+  mapDataToRow,
+} from './UpDataGrid.helper';
+import { DataGridStyle, WrapperDataGridStyle } from './UpDataGrid.style';
+import { Action, Column, PaginationPosition, Row, Method, exportCsv, SortDirection } from './UpDataGrid.types';
 
 export interface UpDataGridProps extends TestableComponentProps {
   className?: string;
@@ -315,41 +100,6 @@ export interface UpDataGridState {
   lastFetchedDataTime?: Date;
   data?: any;
 }
-
-export type SortDirection = 'ASC' | 'DESC';
-
-export const mapDataToRow = (data: Array<any>, allRowsSelected: boolean, rowsSelected: Array<any>): Array<Row> => {
-  const rows: Array<Row> = [];
-  data.map((value, index) => {
-    rows.push({
-      isSelected: allRowsSelected !== null ? allRowsSelected : isSelectedRowData(value.id, rowsSelected),
-      value: value,
-    });
-  });
-
-  return rows;
-};
-
-const isSelectedRowData = (id: string, rowsSelected: Array<Row>): boolean => {
-  return rowsSelected?.some(data => data.value.id === id);
-};
-
-const getRowsFromData = (data: Array<any>, isAllRowsSelected: boolean): Array<Row> => {
-  return data.map((row, index) => {
-    return {
-      isSelected: isAllRowsSelected,
-      value: row.value,
-    };
-  });
-};
-
-const getNewSelectedRows = (rows: Array<Row>, currentSelection: Array<Row>): Array<Row> => {
-  return rows.filter(r => r.isSelected).filter(r => !currentSelection.map(d => d.value.id).includes(r.value.id));
-};
-
-const removeRowsFromData = (rows: Array<Row>, currentData: Array<Row>): Array<Row> => {
-  return rows.filter(s => !currentData.some(d => d.value.id === s.value.id));
-};
 
 class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDataGridState> {
   static defaultProps: UpDataGridProps & WithThemeProps = {

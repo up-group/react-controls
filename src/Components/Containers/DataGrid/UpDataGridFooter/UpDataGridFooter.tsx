@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { media, style } from 'typestyle';
 import classnames from 'classnames';
-import UpButtonGroup from '../ButtonGroup';
-import UpButton from '../../Inputs/Button/UpButton';
+
+import UpButtonGroup from '../../ButtonGroup';
+import UpButton from '../../../Inputs/Button/UpButton';
 import { NestedCSSProperties } from 'typestyle/lib/types';
-import { isEmpty } from '../../../Common/utils';
-import { WithThemeProps } from '../../../Common/theming/withTheme';
-import { IntentType } from '../../../Common/theming/types';
-import { ActionType } from '../../Inputs/Button/types';
-import UpLoadingIndicator from '../../Display/LoadingIndicator';
-import { DeviceSmartphones } from '../../../Common/utils/device';
+import { isEmpty } from '../../../../Common/utils';
+import { WithThemeProps } from '../../../../Common/theming/withTheme';
+import { IntentType } from '../../../../Common/theming/types';
+import { ActionType } from '../../../Inputs/Button/types';
+import UpLoadingIndicator from '../../../Display/LoadingIndicator';
+import { DeviceSmartphones } from '../../../../Common/utils/device';
 
 interface ActionDataGrid {
   label: string;

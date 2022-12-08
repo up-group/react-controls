@@ -1,14 +1,16 @@
 import * as React from 'react';
 import classnames from 'classnames';
+import { style } from 'typestyle';
+import { withKnobs } from '@storybook/addon-knobs';
+import * as _ from 'lodash';
 
 import UpDefaultTheme, { UpThemeInterface } from '../../../Common/theming';
 import { WithThemeProps } from '../../../Common/theming/types';
 
-import UpDataGrid, { Action, Row } from './UpDataGrid';
+import { Action, Row } from './UpDataGrid/UpDataGrid.types';
+import UpDataGrid from './UpDataGrid/UpDataGrid';
 import { getRootContainer } from '../../../Common/stories';
 
-import { withKnobs } from '@storybook/addon-knobs';
-import { style } from 'typestyle';
 import {
   UpParagraph,
   UpBox,
@@ -18,8 +20,7 @@ import {
   UpToggle,
   UpLoadingIndicator,
 } from '../../../Components';
-import { ActionFactory } from './UpDataGridRow';
-import * as _ from 'lodash';
+import { ActionFactory } from './UpDataGridRow/UpDataGridRow';
 
 export default {
   title: 'Components/Containers/UpDataGrid',

@@ -1,10 +1,8 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { isFunction } from '../../../../Common/utils';
 
-import { Column } from './UpDataGrid';
-import { ICellFormatter, UpCellFormatter } from './UpDefaultCellFormatter';
-import { isFunction } from '../../../Common/utils';
-import { Action } from './UpDataGrid';
+import { Column, Action } from '../UpDataGrid/UpDataGrid.types';
+import { ICellFormatter, UpCellFormatter } from '../UpDefaultCellFormatter';
 
 export interface UpDataGridCellState {
   isSelected: boolean;
@@ -14,16 +12,16 @@ export type UpDataGridCellRenderProps<P extends object = object> = ReturnType<Up
 
 type RenderCallback = (args: UpDataGridCellRenderProps) => JSX.Element;
 
-export interface UpDataGridCellProps {
+export interface Props {
   value?: any;
   column?: Column;
   children?: RenderCallback | React.ReactNode;
   render?: RenderCallback;
-  component?: React.ComponentType<UpDataGridCellProps>;
+  component?: React.ComponentType<Props>;
   actions?: Array<Action>;
 }
 
-export default class UpDataGridCell extends React.Component<UpDataGridCellProps, UpDataGridCellState> {
+export default class UpDataGridCell extends React.Component<Props, UpDataGridCellState> {
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -47,7 +45,7 @@ export default class UpDataGridCell extends React.Component<UpDataGridCellProps,
     } else if (render) {
       renderInnercell = render(renderProps);
     } else if (children != null && isFunction(children)) {
-      const childrenAsFunction = children as (value: UpDataGridCellProps) => JSX.Element;
+      const childrenAsFunction = children as (value: Props) => JSX.Element;
       renderInnercell = childrenAsFunction(renderProps);
     } else {
       renderInnercell = (

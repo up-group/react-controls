@@ -1,13 +1,12 @@
 import * as React from 'react';
 import classnames from 'classnames';
-
-import { UpGrid, UpRow } from '../../Containers/Grid';
-import { UpSelectOption } from '../../Inputs/Select';
-
 import { style } from 'typestyle';
-import withTheme, { WithThemeProps } from '../../../Common/theming/withTheme';
-import defaultTheme, { UpThemeInterface } from '../../../Common/theming';
-import { isEmpty } from '../../../Common/utils';
+
+import { UpGrid, UpRow } from '../../Grid';
+import { UpSelectOption } from '../../../Inputs/Select';
+import withTheme, { WithThemeProps } from '../../../../Common/theming/withTheme';
+import defaultTheme, { UpThemeInterface } from '../../../../Common/theming';
+import { isEmpty } from '../../../../Common/utils';
 
 const getMaxPage = (take, total): number => {
   if (isEmpty(take)) {
@@ -171,7 +170,7 @@ const paginationItemStyle = (props: WithThemeProps) => {
   });
 };
 
-class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, UpPaginationState> {
+class UpDataGridPagination extends React.Component<UpPaginationProps & WithThemeProps, UpPaginationState> {
   static defaultProps: UpPaginationProps & WithThemeProps = {
     nbByPageMessage: 'Par page',
     isTakeChangeEnable: true,
@@ -313,7 +312,7 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
         if (value === 0) {
           return (
             <li key={`page-${index}`} className={classnames(paginationItemClass, 'disabled')}>
-              <a onClick={e => e.preventDefault()} href="#">
+              <a onClick={e => e.preventDefault()} href="src/Components/Containers/DataGrid#">
                 {this.props.paginationNavigationSeparator ? this.props.paginationNavigationSeparator : '..'}
               </a>
             </li>
@@ -326,7 +325,7 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
             className={classnames(this.state.page == value ? 'active' : '', paginationItemClass)}
             onClick={this.goTo.bind(this, value)}
           >
-            <a onClick={e => e.preventDefault()} href="#">
+            <a onClick={e => e.preventDefault()} href="src/Components/Containers/DataGrid#">
               {value}
             </a>
           </li>
@@ -345,7 +344,7 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
               )}
               onClick={this.goToPreviousPage}
             >
-              <a onClick={e => e.preventDefault()} href="#" aria-label="Previous">
+              <a onClick={e => e.preventDefault()} href="src/Components/Containers/DataGrid#" aria-label="Previous">
                 <span
                   aria-hidden="true"
                   dangerouslySetInnerHTML={{
@@ -364,7 +363,7 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
               )}
               onClick={this.goToNextPage}
             >
-              <a href="#" aria-label="Next" onClick={e => e.preventDefault()}>
+              <a href="src/Components/Containers/DataGrid#" aria-label="Next" onClick={e => e.preventDefault()}>
                 <span
                   aria-hidden="true"
                   dangerouslySetInnerHTML={{
@@ -396,4 +395,4 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
   }
 }
 
-export default withTheme<UpPaginationProps>(UpPagination);
+export default withTheme<UpPaginationProps>(UpDataGridPagination);

@@ -5,7 +5,7 @@ import UpBox from './Containers/Box';
 import { UpGrid, UpRow, UpCol } from './Containers/Grid';
 import UpFormGroup from './Containers/FormGroup';
 import UpButtonGroup from './Containers/ButtonGroup';
-import UpDataGrid from './Containers/DataGrid/UpDataGrid';
+import UpDataGrid from './Containers/DataGrid/UpDataGrid/UpDataGrid';
 import UpModal from './Containers/Modal/UpModal';
 import UpTile from './Containers/Tile/UpTile';
 import UpNavTab from './Containers/NavTab/UpNavTab';
@@ -137,5 +137,5 @@ export {
   UpCookiesConsentManager,
   UpCookiesConsent,
   UpCurrency,
-  UpTagsSelect
+  UpTagsSelect,
 };

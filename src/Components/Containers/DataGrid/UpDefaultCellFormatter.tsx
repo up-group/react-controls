@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { Column, Row } from './UpDataGrid';
+import moment from 'moment';
+
+import { Column, Row } from './UpDataGrid/UpDataGrid.types';
 import UpBadge from '../../Display/Badge/index';
 import { isEmpty } from '../../../Common/utils/index';
 
 import UpLink from '../../Display/Link/index';
 import UpSvgIcon from '../../Display/SvgIcon/index';
-import moment from 'moment';
+
 import { IconName } from '../../../Common/theming/icons';
 
 export interface ICellFormatter {

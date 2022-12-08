@@ -1,7 +1,8 @@
 import * as React from 'react';
-import UpPagination from './UpPagination';
-import { getRootContainer } from '../../../Common/stories';
 import { withKnobs } from '@storybook/addon-knobs';
+
+import UpPagination from './UpDataGridPagination/UpDataGridPagination';
+import { getRootContainer } from '../../../Common/stories';
 
 export default {
   title: 'Components/Containers/UpPagination',

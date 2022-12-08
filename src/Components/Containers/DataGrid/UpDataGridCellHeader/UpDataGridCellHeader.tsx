@@ -1,14 +1,13 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-
-import UpSvgIcon from '../../Display/SvgIcon';
-import UpDefaultTheme from '../../../Common/theming';
-import { SortDirection, Column } from './UpDataGrid';
-import UpTooltip from '../../Display/Tooltip/UpTooltip';
-import UpLigne from '../../Display/Ligne/UpLigne';
 import classnames from 'classnames';
-import UpBox from '../Box';
 import { style } from 'typestyle';
+
+import UpSvgIcon from '../../../Display/SvgIcon';
+import UpDefaultTheme from '../../../../Common/theming';
+import { Column, SortDirection } from '../UpDataGrid/UpDataGrid.types';
+import UpTooltip from '../../../Display/Tooltip/UpTooltip';
+import UpLigne from '../../../Display/Ligne/UpLigne';
+import UpBox from '../../Box';
 
 export interface UpDataGridCellHeaderState {
   isSorted: boolean;

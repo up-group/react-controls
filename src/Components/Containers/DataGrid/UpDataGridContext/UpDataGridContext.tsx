@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Action } from './UpDataGrid';
-import { ActionFactory } from './UpDataGridRow';
+
+import { Action } from '../UpDataGrid/UpDataGrid.types';
+import { ActionFactory } from '../UpDataGridRow/UpDataGridRow';
 
 const UpDataGridContext = React.createContext<{
   displayRowActionsWithinCell: boolean;
