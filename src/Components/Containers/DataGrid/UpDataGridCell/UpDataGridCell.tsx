@@ -2,7 +2,7 @@ import * as React from 'react';
 import { isFunction } from '../../../../Common/utils';
 
 import { Column, Action } from '../UpDataGrid/UpDataGrid.types';
-import { UpCellFormatter } from '../UpDefaultCellFormatter';
+import { UpCellFormatter } from '../UpDefaultCellFormatter/UpDefaultCellFormatter';
 
 export interface ApiType {
   value?: Props['value'];

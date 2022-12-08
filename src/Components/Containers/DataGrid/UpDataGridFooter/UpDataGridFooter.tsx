@@ -1,30 +1,13 @@
 import * as React from 'react';
-import { media, style } from 'typestyle';
 import classnames from 'classnames';
 
 import UpButtonGroup from '../../ButtonGroup';
 import UpButton from '../../../Inputs/Button/UpButton';
-import { NestedCSSProperties } from 'typestyle/lib/types';
 import { isEmpty } from '../../../../Common/utils';
 import { WithThemeProps } from '../../../../Common/theming/withTheme';
-import { IntentType } from '../../../../Common/theming/types';
-import { ActionType } from '../../../Inputs/Button/types';
 import UpLoadingIndicator from '../../../Display/LoadingIndicator';
-import { DeviceSmartphones } from '../../../../Common/utils/device';
-
-interface ActionDataGrid {
-  label: string;
-  actionType?: ActionType;
-  onClick?: (rows: []) => Promise<any>;
-}
-
-interface ActionsDataGrid {
-  groupLabel: string;
-  validationLabel: string;
-  intent?: IntentType;
-  actions?: ActionDataGrid[];
-  confirmationMessage?: string;
-}
+import { ActionsDataGrid } from './UpDataGridFooter.types';
+import { getStyle } from './UpDataGridFooter.style';
 
 export interface UpDataGridFooterProps {
   pagination?: React.ReactElement;
@@ -33,37 +16,6 @@ export interface UpDataGridFooterProps {
   data?: Array<any>;
   isDataFetching?: boolean;
 }
-
-const getStyle = (props: UpDataGridFooterProps & WithThemeProps) => {
-  const position: NestedCSSProperties = props.actionsDataGrid ? {} : { position: 'absolute', right: 0 };
-  return style(
-    {
-      display: 'flex',
-      marginTop: '5px',
-      width: '100%',
-      minHeight: '40px',
-      flexDirection: 'row',
-      $nest: {
-        '&.up-data-grid-footer .up-buttons-wrapper': {
-          alignItems: 'normal',
-          flexGrow: 1,
-        },
-        '&.up-data-grid-footer .up-btn-wrapper': {
-          marginRight: '6px',
-        },
-        '&.up-data-grid-footer .pagination-container': {
-          ...position,
-        },
-        '&.up-data-grid-footer .up-icon-wrapper svg path': {
-          fill: props.actionsDataGrid && props.theme.colorMap.disabledFg,
-        },
-      },
-    },
-    media(DeviceSmartphones, {
-      flexDirection: 'column',
-    })
-  );
-};
 
 const UpDataGridFooter: React.FC<UpDataGridFooterProps & WithThemeProps> = props => {
   const { pagination, actionsDataGrid, isPaginationEnabled, data, isDataFetching } = props;

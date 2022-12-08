@@ -1,19 +1,18 @@
 import * as React from 'react';
-import { style } from 'typestyle';
 import classnames from 'classnames';
 
 import UpCheckbox from '../../../Inputs/Checkbox/UpCheckBox';
 import UpButton from '../../../Inputs/Button/UpButton';
 
 import UpDataGridCell from '../UpDataGridCell/UpDataGridCell';
-import { Column, Row, Action } from '../UpDataGrid/UpDataGrid.types';
-import UpDefaultCellFormatter from '../UpDefaultCellFormatter';
+import { Column, Action } from '../UpDataGrid/UpDataGrid.types';
+import UpDefaultCellFormatter from '../UpDefaultCellFormatter/UpDefaultCellFormatter';
 
 import shallowEqual from '../../../../Common/utils/shallowEqual';
 import UpButtonGroup from '../../ButtonGroup';
 import { UpDataGridConsumer } from '../UpDataGridContext/UpDataGridContext';
-import { WithThemeProps } from '../../../../Common/theming/types';
 import { isActionEnabled } from '../helper';
+import { DataGridRowStyle } from './UpDataGridRow.style';
 
 export interface UpDataGridRowState {}
 
@@ -32,21 +31,6 @@ export interface UpDataGridRowProps {
   isRowClickable?: boolean;
   isOneRowSelected?: boolean;
 }
-
-const DataGridRowStyle = (props: UpDataGridRowProps & WithThemeProps, finalActionsLength: number) =>
-  style({
-    ...(props.onClick ? { cursor: 'pointer' } : {}),
-    ...(props.isRowClickable && finalActionsLength === 1
-      ? {
-          cursor: 'pointer',
-          $nest: {
-            '&:hover': {
-              background: '#d4d4d4 !important',
-            },
-          },
-        }
-      : {}),
-  });
 
 export default class UpDataGridRow extends React.Component<UpDataGridRowProps, UpDataGridRowState> {
   static defaultProps: UpDataGridRowProps = {

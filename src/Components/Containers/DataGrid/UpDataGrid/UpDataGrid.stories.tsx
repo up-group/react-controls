@@ -4,23 +4,15 @@ import { style } from 'typestyle';
 import { withKnobs } from '@storybook/addon-knobs';
 import * as _ from 'lodash';
 
-import UpDefaultTheme, { UpThemeInterface } from '../../../Common/theming';
-import { WithThemeProps } from '../../../Common/theming/types';
+import UpDefaultTheme, { UpThemeInterface } from '../../../../Common/theming';
+import { WithThemeProps } from '../../../../Common/theming/types';
 
-import { Action, Row } from './UpDataGrid/UpDataGrid.types';
-import UpDataGrid from './UpDataGrid/UpDataGrid';
-import { getRootContainer } from '../../../Common/stories';
+import { Action, Row } from './UpDataGrid.types';
+import UpDataGrid from './UpDataGrid';
+import { getRootContainer } from '../../../../Common/stories';
 
-import {
-  UpParagraph,
-  UpBox,
-  UpHeading,
-  UpCodeViewer,
-  UpButton,
-  UpToggle,
-  UpLoadingIndicator,
-} from '../../../Components';
-import { ActionFactory } from './UpDataGridRow/UpDataGridRow';
+import { UpParagraph, UpBox, UpHeading, UpCodeViewer, UpButton, UpToggle, UpLoadingIndicator } from '../../../index';
+import { ActionFactory } from '../UpDataGridRow/UpDataGridRow';
 
 export default {
   title: 'Components/Containers/UpDataGrid',

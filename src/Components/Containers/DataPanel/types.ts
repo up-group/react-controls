@@ -1,6 +1,6 @@
 import { IntentType } from '../../../Common/theming/types';
 import { ActionType } from '../../../Common/actions';
-import { ICellFormatter } from '../DataGrid/UpDefaultCellFormatter';
+import { ICellFormatter } from '../DataGrid/UpDefaultCellFormatter/UpDefaultCellFormatter';
 
 export type DisplayType = 'row' | 'column';
 

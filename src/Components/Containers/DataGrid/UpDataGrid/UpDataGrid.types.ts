@@ -1,7 +1,7 @@
 import { ActionType } from 'actions';
 import { IconName } from '../../../../Common/theming/icons';
 import { IntentType } from '../../../../Common/theming/types';
-import { ICellFormatter } from '../UpDefaultCellFormatter';
+import { ICellFormatter } from '../UpDefaultCellFormatter/UpDefaultCellFormatter';
 
 export interface Action {
   type: ActionType;

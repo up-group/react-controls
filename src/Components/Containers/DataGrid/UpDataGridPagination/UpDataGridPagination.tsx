@@ -1,63 +1,13 @@
 import * as React from 'react';
 import classnames from 'classnames';
-import { style } from 'typestyle';
 
 import { UpGrid, UpRow } from '../../Grid';
 import { UpSelectOption } from '../../../Inputs/Select';
 import withTheme, { WithThemeProps } from '../../../../Common/theming/withTheme';
 import defaultTheme, { UpThemeInterface } from '../../../../Common/theming';
 import { isEmpty } from '../../../../Common/utils';
-
-const getMaxPage = (take, total): number => {
-  if (isEmpty(take)) {
-    return 0;
-  }
-  return Math.ceil(total / take);
-};
-
-const generatePagesNavigation = (page, total, take): Array<number> => {
-  {
-    // Get the max page
-    let maxPage = 0;
-    maxPage = Math.ceil(total / take);
-    let pages: Array<number> = [];
-    if (maxPage >= 1) {
-      if (maxPage <= 8) {
-        pages = Array.from({ length: maxPage }, (_, i) => i + 1);
-      } else {
-        [1, 2].map(v => pages.push(v));
-        if (page - 3 > 1 && !pages.includes(page - 3)) {
-          pages.push(0);
-        }
-        if (page - 2 > 1 && !pages.includes(page - 2)) {
-          pages.push(page - 2);
-        }
-        if (page - 1 > 1 && !pages.includes(page - 1)) {
-          pages.push(page - 1);
-        }
-        if (page < maxPage - 1 && !pages.includes(page)) {
-          pages.push(page);
-        }
-        if (page + 1 < maxPage - 1 && !pages.includes(page + 1)) {
-          pages.push(page + 1);
-        }
-        if (page + 2 < maxPage - 1 && !pages.includes(page + 2)) {
-          pages.push(page + 2);
-        }
-        if (page + 3 < maxPage - 1) {
-          pages.push(0);
-        }
-        if (!pages.includes(maxPage - 1)) {
-          pages.push(maxPage - 1);
-        }
-        if (!pages.includes(maxPage)) {
-          pages.push(maxPage);
-        }
-      }
-    }
-    return pages;
-  }
-};
+import { generatePagesNavigation, getMaxPage } from './UpDataGridPagination.helper';
+import { paginationItemStyle, paginationStyle } from './UpDataGridPagination.style';
 
 export interface UpPaginationState {
   page: number; // Donnée calculée à partir de Skip et Take mais conservé dans l'état
@@ -95,80 +45,6 @@ export interface UpPaginationProps {
   /** Notification de du changement de l'état de la pagination */
   onPageChange: (page: number, take: number, skip: number) => void;
 }
-
-const paginationStyle = style({
-  margin: '0px 4px',
-  listStyle: 'none',
-  display: 'inline-block',
-  paddingLeft: '0',
-});
-
-const firstChild = (props: WithThemeProps) => ({
-  textDecoration: 'underline',
-  fontSize: '15px',
-});
-
-const lastChild = (props: WithThemeProps) => ({
-  textDecoration: 'underline',
-  fontSize: '15px',
-});
-
-const itemHover = (props: WithThemeProps) => ({
-  color: props.theme.colorMap.primary,
-});
-
-const itemActive = (props: WithThemeProps) => ({
-  color: props.theme.colorMap.primary,
-});
-
-const itemDisabled = (props: WithThemeProps) => ({
-  color: '#777',
-  cursor: 'not-allowed',
-});
-
-const paginationItemStyle = (props: WithThemeProps) => {
-  const itemHoverStyle = itemHover(props);
-  const itemActiveStyle = itemActive(props);
-  const itemDisabledStyle = itemDisabled(props);
-  const firstChildStyle = firstChild(props);
-  const lastChildStyle = lastChild(props);
-
-  return style({
-    display: 'inline',
-    color: '#4E5B59',
-    $nest: {
-      '& > a': {
-        minWidth: '1rem',
-        textAlign: 'center',
-        position: 'relative',
-        float: 'left',
-        padding: '6px 3px',
-        marginLeft: '-1px',
-        lineHeight: '1.43',
-        color: '#4E5B59',
-        textDecoration: 'none',
-      },
-      '&:first-child a': firstChildStyle,
-      '&:first-child span': firstChildStyle,
-      '&:last-child a': lastChildStyle,
-      '&:last-child span': lastChildStyle,
-      '& a:hover': itemHoverStyle,
-      '& span:hover': itemHoverStyle,
-      '&.active > a': itemActiveStyle,
-      '&.active > span': itemActiveStyle,
-      '&.active > a:hover': itemActiveStyle,
-      '&.active > span:hover': itemActiveStyle,
-      '&.active > a > span': itemActiveStyle,
-      '&.disabled > a': itemDisabledStyle,
-      '&.disabled > span': itemDisabledStyle,
-      '&.disabled > a:hover': itemDisabledStyle,
-      '&.disabled > span:hover': itemDisabledStyle,
-      '&.disabled > a:focus': itemDisabledStyle,
-      '&.disabled > span:focus': itemDisabledStyle,
-      '&.disabled > a > span': itemDisabledStyle,
-    },
-  });
-};
 
 class UpDataGridPagination extends React.Component<UpPaginationProps & WithThemeProps, UpPaginationState> {
   static defaultProps: UpPaginationProps & WithThemeProps = {

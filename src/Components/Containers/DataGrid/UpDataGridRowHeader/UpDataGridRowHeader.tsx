@@ -4,7 +4,6 @@ import UpCheckbox from '../../../Inputs/Checkbox/UpCheckBox';
 
 import UpDataGridCellHeader from '../UpDataGridCellHeader/UpDataGridCellHeader';
 import { Column, Action, SortDirection } from '../UpDataGrid/UpDataGrid.types';
-import { isEmpty } from '../../../../Common/utils';
 import { ActionFactory } from '../UpDataGridRow/UpDataGridRow';
 import { isActionEnabled } from '../helper';
 

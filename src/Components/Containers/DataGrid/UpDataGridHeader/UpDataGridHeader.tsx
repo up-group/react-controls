@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { media, style } from 'typestyle';
 import classnames from 'classnames';
 
 import UpButtonGroup from '../../ButtonGroup';
 import { WithThemeProps } from '../../../../Common/theming/types';
 import defaultTheme from '../../../../Common/theming';
-import { DeviceSmartphones } from '../../../../Common/utils/device';
+import { getStyle } from './UpDataGridHeader.style';
 
 export interface UpDataGridHeaderProps {
   title?: string | JSX.Element;
@@ -13,40 +12,6 @@ export interface UpDataGridHeaderProps {
   buttonExport?: any;
   isDataFetching?: boolean;
 }
-
-const getStyle = (props: WithThemeProps) => {
-  return style(
-    {
-      display: 'flex',
-      marginTop: '5px',
-      marginBottom: '5px',
-      width: '100%',
-      position: 'relative',
-      flexDirection: 'row',
-      $nest: {
-        '&.up-data-grid-header .header-title': {
-          lineHeight: '21px',
-          fontWeight: 'bold',
-          fontSize: '18px',
-          flexGrow: 1,
-          alignSelf: 'center',
-          color: props.theme.colorMap.grey1,
-        },
-        '&.up-data-grid-header .up-btn-wrapper': {
-          marginLeft: '20px',
-        },
-      },
-    },
-    media(DeviceSmartphones, {
-      flexDirection: 'column',
-      $nest: {
-        'div > .up-buttons-wrapper': {
-          justifyContent: 'center',
-        },
-      },
-    })
-  );
-};
 
 const UpDataGridHeader = (props: UpDataGridHeaderProps & WithThemeProps) => {
   const { title, theme, buttons, buttonExport } = props;
