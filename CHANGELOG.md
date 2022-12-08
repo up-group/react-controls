@@ -52,6 +52,12 @@
 # ReactControls (version: 0.2.182)
 # ReactControls (version: 0.2.187)
 # ReactControls (version: 0.2.224
+# ReactControls (version: 0.2.227)
+
+## Main Changes
+- Hooks : moves the useTheme hook to its right folder 
+- Tags : Fixes the styles of the tags with an outline instead of a border
+- 
 # ReactControls (version: 0.2.226)
 
 ## Main Changes
