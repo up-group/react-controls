@@ -21,13 +21,7 @@ import UpDataGridHeader, { UpDataGridHeaderProps } from '../UpDataGridHeader/UpD
 import { UpDataGridProvider } from '../UpDataGridContext/UpDataGridContext';
 import { getTestableComponentProps, TestableComponentProps } from '../../../../Common/utils/types';
 import { isEmpty } from '../../../../Common/utils';
-import {
-  getNewSelectedRows,
-  isSelectedRowData,
-  removeRowsFromData,
-  getRowsFromData,
-  mapDataToRow,
-} from './UpDataGrid.helper';
+import { getNewSelectedRows, removeRowsFromData, getRowsFromData, mapDataToRow } from './UpDataGrid.helper';
 import { DataGridStyle, WrapperDataGridStyle } from './UpDataGrid.style';
 import { Action, Column, PaginationPosition, Row, Method, exportCsv, SortDirection } from './UpDataGrid.types';
 
@@ -226,7 +220,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
   fetchData = () => {
     this.setState({ isDataFetching: true });
     let sortedColumn: Column = null;
-    this.state.columns.map((value, index) => {
+    this.state.columns.map(value => {
       if (value.isSorted) {
         sortedColumn = value;
       }
@@ -256,7 +250,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
           const data = response.data;
           self.handleData(data);
         })
-        .catch(reason => {
+        .catch(() => {
           //TODO : handle error message
           this.setState({ isDataFetching: false });
         });
@@ -271,7 +265,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
           const data = response.data;
           self.handleData(data);
         })
-        .catch(reason => {
+        .catch(() => {
           //TODO : handle error message
           this.setState({ isDataFetching: false });
         });
@@ -561,7 +555,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
               onClick: (rows): Promise<void> => {
                 const promised = action.onClick(rows);
                 if (promised)
-                  return promised.then(data => {
+                  return promised.then(() => {
                     //Empty the selectData and uncheck all checkboxes if the request is successful
                     this.setState({
                       rowsSelected: [],
@@ -650,7 +644,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
     return <UpButton onClick={this.onExport}> {this.props.exportCsv.textButton}</UpButton>;
   }
 
-  onExport = (a): void => {
+  onExport = (): void => {
     this.exportTableToCSV(this.refTable, this.props.exportCsv.fileName, true);
   };
 

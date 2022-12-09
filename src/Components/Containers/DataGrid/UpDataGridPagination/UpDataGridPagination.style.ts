@@ -8,12 +8,12 @@ export const paginationStyle = style({
   paddingLeft: '0',
 });
 
-export const firstChild = (props: WithThemeProps) => ({
+export const firstChild = () => ({
   textDecoration: 'underline',
   fontSize: '15px',
 });
 
-export const lastChild = (props: WithThemeProps) => ({
+export const lastChild = () => ({
   textDecoration: 'underline',
   fontSize: '15px',
 });
@@ -26,7 +26,7 @@ export const itemActive = (props: WithThemeProps) => ({
   color: props.theme.colorMap.primary,
 });
 
-export const itemDisabled = (props: WithThemeProps) => ({
+export const itemDisabled = () => ({
   color: '#777',
   cursor: 'not-allowed',
 });
@@ -34,9 +34,9 @@ export const itemDisabled = (props: WithThemeProps) => ({
 export const paginationItemStyle = (props: WithThemeProps) => {
   const itemHoverStyle = itemHover(props);
   const itemActiveStyle = itemActive(props);
-  const itemDisabledStyle = itemDisabled(props);
-  const firstChildStyle = firstChild(props);
-  const lastChildStyle = lastChild(props);
+  const itemDisabledStyle = itemDisabled();
+  const firstChildStyle = firstChild();
+  const lastChildStyle = lastChild();
 
   return style({
     display: 'inline',

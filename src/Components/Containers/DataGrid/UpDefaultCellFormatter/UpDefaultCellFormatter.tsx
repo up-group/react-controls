@@ -9,7 +9,7 @@ import { IconName } from '../../../../Common/theming/icons';
 import { isEmpty } from '../../../../Common/utils';
 
 export interface ICellFormatter {
-  format: (item: any, column: Column, additionalProps?: any) => React.ReactElement<any>;
+  format: (item: any, column: Column, additionalProps?: any) => React.ReactElement;
 }
 
 export default class UpDefaultCellFormatter implements ICellFormatter {
@@ -36,7 +36,6 @@ export default class UpDefaultCellFormatter implements ICellFormatter {
       switch (type) {
         case 'link':
           if (!isEmpty(valueExtracted)) {
-            const href = valueExtracted;
             if (valueExtracted.href !== undefined) {
               valueExtracted = valueExtracted.href;
             }
@@ -47,7 +46,7 @@ export default class UpDefaultCellFormatter implements ICellFormatter {
             result = (
               <UpLink
                 href={valueExtracted}
-                onClick={e => {
+                onClick={() => {
                   window.open(valueExtracted);
                 }}
               >
@@ -112,8 +111,6 @@ export interface UpCellFormatterProps {
   value: any;
 }
 
-interface UpCellFormatterState {}
-
 export class UpCellFormatter extends React.Component<UpCellFormatterProps, {}> {
   constructor(p, c) {
     super(p, c);
@@ -140,7 +137,6 @@ export class UpCellFormatter extends React.Component<UpCellFormatterProps, {}> {
     switch (this.props.column.type) {
       case 'link':
         if (!isEmpty(valueExtracted)) {
-          const href = valueExtracted;
           if (valueExtracted.href !== undefined) {
             valueExtracted = valueExtracted.href;
           }
@@ -151,7 +147,7 @@ export class UpCellFormatter extends React.Component<UpCellFormatterProps, {}> {
           return (
             <UpLink
               href={valueExtracted}
-              onClick={e => {
+              onClick={() => {
                 window.open(valueExtracted);
               }}
             >

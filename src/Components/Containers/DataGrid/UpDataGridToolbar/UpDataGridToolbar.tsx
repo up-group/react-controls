@@ -5,7 +5,7 @@ export interface UpDataGridToolbarState {}
 export interface UpDataGridToolbarProps {}
 
 export default class UpDataGridToolbar extends React.Component<UpDataGridToolbarProps, UpDataGridToolbarState> {
-  constructor(props, context) {
+  constructor(props) {
     super(props);
     this.state = {};
   }

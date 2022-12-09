@@ -462,9 +462,9 @@ export const WithAutoClearSelectionOnDataChanged = (): JSX.Element => {
     <>
       <UpButton
         intent="secondary"
-        onClick={e => {
+        onClick={async () => {
           setAllRowsSelected([]);
-          fetchData();
+          await fetchData();
         }}
       >
         Rafraichir
@@ -480,7 +480,7 @@ export const WithAutoClearSelectionOnDataChanged = (): JSX.Element => {
           page: currentPage,
           take: 50,
           skip: (currentPage - 1) * 50,
-          onPageChange: (page: number, take: number, skip: number): void => {
+          onPageChange: (page: number): void => {
             setPreviousPage(currentPage);
             setPage(page);
           },
@@ -712,7 +712,7 @@ export const WithExternalSourceAndPaginationBottom = (): JSX.Element => (
             label: 'Supprimer',
             onClick: rows => {
               console.log('delete', rows);
-              return new Promise((resolve, reject) => resolve({}));
+              return new Promise(resolve => resolve({}));
             },
           },
         ],
@@ -786,7 +786,7 @@ export const WithCustomRowStyles = (): JSX.Element => (
         isSortable: true,
       },
     ]}
-    getRowCustomClassName={(index, row): string => {
+    getRowCustomClassName={(index): string => {
       if (index === 1) return style({ background: 'red !important' });
       if (index === 4) return style({ background: 'green !important' });
       return '';
@@ -829,7 +829,7 @@ export const WithCellFormatter = (): JSX.Element => (
 
 export const WithRowInsertion = (): JSX.Element => (
   <UpDataGrid
-    injectRow={(previous, next, col): JSX.Element => {
+    injectRow={(previous, next): JSX.Element => {
       if (next == null || (previous && previous.value && previous.value.c1 && previous.value.c1.indexOf('2') != -1)) {
         return <div style={{ color: 'red' }}>Injected row</div>;
       }

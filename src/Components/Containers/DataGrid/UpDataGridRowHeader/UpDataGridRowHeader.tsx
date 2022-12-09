@@ -50,7 +50,7 @@ export default class UpDataGridRowHeader extends React.Component<UpDataGridRowHe
     const sortedColumn = c;
     sortedColumn.sortDir = dir;
 
-    this.state.columns.map((value, index) => {
+    this.state.columns.map(value => {
       value.isSorted = c.field == value.field;
       if (value.isSorted) value.sortDir = dir;
       else value.sortDir = null;

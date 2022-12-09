@@ -5,7 +5,7 @@ export const isSelectedRowData = (id: string, rowsSelected: Array<Row>): boolean
 };
 
 export const getRowsFromData = (data: Array<any>, isAllRowsSelected: boolean): Array<Row> => {
-  return data.map((row, index) => {
+  return data.map(row => {
     return {
       isSelected: isAllRowsSelected,
       value: row.value,
@@ -23,7 +23,7 @@ export const removeRowsFromData = (rows: Array<Row>, currentData: Array<Row>): A
 
 export const mapDataToRow = (data: Array<any>, allRowsSelected: boolean, rowsSelected: Array<any>): Array<Row> => {
   const rows: Array<Row> = [];
-  data.map((value, index) => {
+  data.map(value => {
     rows.push({
       isSelected: allRowsSelected !== null ? allRowsSelected : isSelectedRowData(value.id, rowsSelected),
       value: value,
