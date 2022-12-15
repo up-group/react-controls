@@ -14,7 +14,7 @@ describe('UpTagsSelect.helper', () => {
         text: 'Multi',
         selected: true,
       };
-      const result = findAndUpdateSelectedTag(tags, selectedTag);
+      const result = findAndUpdateSelectedTag(tags, selectedTag, false);
       const expected = [
         { id: '1', text: 'Mono', selected: false },
         { id: '2', text: 'Multi', selected: true },
@@ -29,7 +29,7 @@ describe('UpTagsSelect.helper', () => {
         text: 'Multi',
         selected: false,
       };
-      const result = findAndUpdateSelectedTag(tags, selectedTag);
+      const result = findAndUpdateSelectedTag(tags, selectedTag, false);
       const expected = [
         { id: '1', text: 'Mono', selected: false },
         { id: '2', text: 'Multi', selected: false },
@@ -45,7 +45,7 @@ describe('UpTagsSelect.helper', () => {
         text: 'Multi',
         selected: false,
       };
-      const result = findAndUpdateSelectedTag(tags, selectedTag);
+      const result = findAndUpdateSelectedTag(tags, selectedTag, false);
       const expected = [
         { id: '1', text: 'Mono', selected: false },
         { id: '2', text: 'Multi', selected: false },

@@ -14,15 +14,13 @@ export interface Props extends TagData {
 }
 
 export const UpTag: React.VFC<Props> = ({ id, text, selected, onChange }) => {
-  const [isSelected, setIsSelected] = useState(selected);
   const theme = useTheme();
 
   const handleClick = (e: React.MouseEvent<HTMLSpanElement>): void => {
-    setIsSelected(!isSelected);
-    onChange?.(e, { id, text, selected: !isSelected });
+    onChange?.(e, { id, text, selected: !selected });
   };
 
-  const styles = getTagStyle(theme, isSelected);
+  const styles = getTagStyle(theme, selected);
   const className = classnames(styles, `tag-${id}`);
 
   return (
