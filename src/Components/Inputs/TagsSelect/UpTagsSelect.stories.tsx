@@ -12,19 +12,23 @@ const tags = [
   {
     id: '1',
     text: 'Mono',
+    selected: false,
   },
   {
     id: '2',
     text: 'Multi',
+    selected: false,
   },
   {
     id: '3',
     text: 'Tag 3',
+    selected: false,
   },
 ];
 
-const args = {
+const args: Props = {
   tags,
+  multipleSelection: true,
 };
 
 const Template: Story<Props> = args => <UpTagsSelect {...args} />;
@@ -43,4 +47,10 @@ WithDefaultSelected.args = {
     { id: '2', text: 'Multi', selected: true },
     { id: '3', text: 'Tag 3', selected: false },
   ],
+};
+
+export const SingleTagSelection = Template.bind({});
+SingleTagSelection.args = {
+  ...args,
+  multipleSelection: false,
 };
