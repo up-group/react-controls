@@ -9,16 +9,17 @@ interface Props {
   tags: TagData[];
   label?: string;
   onChange?: (e: React.MouseEvent, tags: TagData[]) => void;
+  multipleSelection?: boolean;
 }
 
-const UpTagsSelect: React.VFC<Props> = ({ tags, onChange, label }) => {
+const UpTagsSelect: React.VFC<Props> = ({ tags, onChange, label, multipleSelection = true }) => {
   const theme = useTheme();
   const [selectedTags, setSelectedTags] = useState(tags);
 
   const handleTagSelected = (e: React.MouseEvent, data: TagData): void => {
     //TODO: to remove on react/testing library update
     e.persist();
-    const updatedSelectedTags = findAndUpdateSelectedTag(selectedTags, data);
+    const updatedSelectedTags = findAndUpdateSelectedTag(selectedTags, data, multipleSelection);
 
     setSelectedTags(updatedSelectedTags);
     onChange?.(e, updatedSelectedTags);
@@ -36,7 +37,7 @@ const UpTagsSelect: React.VFC<Props> = ({ tags, onChange, label }) => {
         </p>
       )}
       <div className={classnames(tagsWrapperStyles)}>
-        {tags.map(tag => (
+        {selectedTags.map(tag => (
           <UpTag id={tag.id} text={tag.text} selected={tag.selected} onChange={handleTagSelected} key={tag.id} />
         ))}
       </div>
