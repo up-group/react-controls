@@ -257,6 +257,22 @@ export const WithActions = (): JSX.Element => {
       },
       {
         action: () => {
+          alert('Ajouter un lien');
+          setCurrentRow(rowValue);
+        },
+        type: 'add',
+        description: 'Lien avec couleur de fond',
+        intent: 'secondary',
+        additionalStyles: {
+          backgroundColor: 'red',
+          hoverBackgroundColor: 'blue',
+        },
+        isVisible: row => {
+          return row['c1'] == 'Value 2';
+        },
+      },
+      {
+        action: () => {
           alert('Modifier');
         },
         type: 'arrow-right',
