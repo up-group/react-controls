@@ -93,6 +93,10 @@ export interface CommonProps extends WithThemeProps {
   /** Tye type of the button  */
   type?: 'button' | 'submit' | 'reset';
   borderless?: boolean;
+  additionalStyles?: {
+    backgroundColor?: string;
+    hoverBackgroundColor?: string;
+  };
 }
 
 // This is so that the onClick handler is accepted without type interferance

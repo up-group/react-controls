@@ -36,13 +36,21 @@ const positions = (props: UpButtonProps): NestedCSSProperties => {
 };
 
 const base = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
+  const borderColor = props?.additionalStyles?.backgroundColor
+    ? props?.additionalStyles?.backgroundColor
+    : props.borderColor || props.theme.colorMap[`${props.intent}Border`];
+
+  const hoverBackgroundColor = props?.additionalStyles?.hoverBackgroundColor
+    ? props?.additionalStyles?.hoverBackgroundColor
+    : 'initial';
+
   return {
     $nest: {
       '&.up-btn': {
         textAlign: 'center',
         flex: 1,
         fontSize: remStringFromPX(fontSizeMap[props.fontSize]),
-        borderColor: props.borderColor || props.theme.colorMap[`${props.intent}Border`],
+        borderColor: borderColor,
         borderWidth: '1px',
         borderStyle: 'solid',
         paddingBottom: 0,
@@ -120,6 +128,10 @@ const base = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
         width: '100%',
         height: calc('100%'),
       },
+      '&:hover': {
+        backgroundColor: hoverBackgroundColor,
+        borderColor: hoverBackgroundColor,
+      },
     },
   };
 };
@@ -176,7 +188,11 @@ const active = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
     $nest: {
       '&:hover': {
         color: props.color || props.theme.colorMap[`${props.intent}HoverFg`] || 'black',
-        backgroundColor: props.color || props.theme.colorMap[`${props.intent}Hover`] || 'white',
+        backgroundColor:
+          props?.additionalStyles?.hoverBackgroundColor ||
+          props.color ||
+          props.theme.colorMap[`${props.intent}Hover`] ||
+          'white',
       },
       '&.up-btn:hover .colored svg, &.up-btn:hover .colored svg path, &.up-btn:hover .colored svg polygon, &.up-btn:hover .colored svg polyline':
         {
@@ -186,7 +202,11 @@ const active = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
         },
       '&:hover:active': {
         color: props.color || props.theme.colorMap[`${props.intent}HoverFg`] || 'black',
-        backgroundColor: props.color || props.theme.colorMap[`${props.intent}HoverActive`] || 'white',
+        backgroundColor:
+          props?.additionalStyles?.hoverBackgroundColor ||
+          props.color ||
+          props.theme.colorMap[`${props.intent}HoverActive`] ||
+          'white',
       },
       '&:hover:active .colored svg, &:hover:active .colored svg path, &:hover:active .colored svg polygon, &:hover:active .colored svg polyline':
         {
@@ -517,7 +537,8 @@ export const getStyles = (props: UpButtonStyledProps): string => {
     props.disabled ? style(disabled(props)) : style(active(props)),
     props.rotate ? style(rotate(props)) : null,
     props.isToggled ? style(toggle(props)) : null,
-    props.borderless && props.width === 'icon' ? style(borderless(props)) : null
+    props.borderless && props.width === 'icon' ? style(borderless(props)) : null,
+    props.additionalStyles ? style(props.additionalStyles) : null
   );
 };
 

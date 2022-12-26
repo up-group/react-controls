@@ -222,6 +222,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
                             });
                           }
                         }}
+                        additionalStyles={value.additionalStyles}
                         {...extraProps}
                       />
                     );
