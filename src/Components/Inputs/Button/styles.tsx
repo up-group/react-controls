@@ -128,7 +128,7 @@ const base = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
         width: '100%',
         height: calc('100%'),
       },
-      '&:hover': {
+      '&.up-btn:hover': {
         backgroundColor: hoverBackgroundColor,
         borderColor: hoverBackgroundColor,
       },
