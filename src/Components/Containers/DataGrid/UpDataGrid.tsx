@@ -210,6 +210,10 @@ export interface Action {
   borderless?: boolean;
   isVisible?: (value: any) => boolean;
   getProps?: (value: any) => any;
+  additionalStyles?: {
+    backgroundColor?: string;
+    hoverBackgroundColor?: string;
+  };
 }
 
 export interface ToolTip {
