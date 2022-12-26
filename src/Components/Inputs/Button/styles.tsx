@@ -181,8 +181,10 @@ const toggle = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
 const active = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
   return {
     color: props.color || props.theme.colorMap[`${props.intent}Fg`] || 'black',
-    backgroundColor: props.backgroundColor || props.theme.colorMap[props.intent],
-    borderColor: props.borderColor || props.theme.colorMap[`${props.intent}Border`],
+    backgroundColor:
+      props?.additionalStyles?.backgroundColor || props.backgroundColor || props.theme.colorMap[props.intent],
+    borderColor:
+      props?.additionalStyles?.backgroundColor || props.borderColor || props.theme.colorMap[`${props.intent}Border`],
     borderWidth: '1px',
     borderStyle: 'solid',
     $nest: {
