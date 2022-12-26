@@ -52,6 +52,11 @@
 # ReactControls (version: 0.2.182)
 # ReactControls (version: 0.2.187)
 # ReactControls (version: 0.2.224
+# ReactControls (version: 0.2.230)
+
+## Main Changes
+- UpDataGrid : Fixes nested style of button for background color prop
+
 # ReactControls (version: 0.2.229)
 
 ## Main Changes
