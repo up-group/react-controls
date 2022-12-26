@@ -52,6 +52,11 @@
 # ReactControls (version: 0.2.182)
 # ReactControls (version: 0.2.187)
 # ReactControls (version: 0.2.224
+# ReactControls (version: 0.2.231)
+
+## Main Changes
+- UpDataGrid : Fixes hovered button styles
+
 # ReactControls (version: 0.2.230)
 
 ## Main Changes
