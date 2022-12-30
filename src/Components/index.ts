@@ -68,6 +68,7 @@ import UpEntityView from './Display/EntityView';
 import UpVerticalTimeline from './Display/VerticalTimeline';
 import UpCurrency from './Display/Currency';
 import { UpTagsSelect } from './Inputs/TagsSelect';
+import Collapsable from './Containers/Collapsable';
 
 export {
   UpBaseControlComponent,
@@ -137,5 +138,6 @@ export {
   UpCookiesConsentManager,
   UpCookiesConsent,
   UpCurrency,
-  UpTagsSelect
+  UpTagsSelect,
+  Collapsable as UpCollapsable,
 };
