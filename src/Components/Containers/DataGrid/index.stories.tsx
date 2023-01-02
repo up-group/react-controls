@@ -118,13 +118,13 @@ class SpecifiqueCellFormatter {
 const paginationCounterStyle = (props: WithThemeProps) =>
   style({
     margin: '0px 0px',
-    color: props.theme.colorMap.primary,
-    backgroundColor: props.theme.colorMap.primaryFg,
+    color: props.theme?.colorMap.primary,
+    backgroundColor: props.theme?.colorMap.primaryFg,
     borderRadius: '4px',
     padding: '6px 12px',
     lineHeight: '1.43',
     textDecoration: 'none',
-    border: `1px solid ${props.theme.colorMap.primary}`,
+    border: `1px solid ${props.theme?.colorMap.primary}`,
     float: 'right',
     cursor: 'pointer',
   });
@@ -263,10 +263,9 @@ export const WithActions = (): JSX.Element => {
         type: 'add',
         description: 'Lien avec couleur de fond',
         intent: 'secondary',
-        additionalStyles: {
-          backgroundColor: 'red',
-          hoverBackgroundColor: 'blue',
-        },
+        borderColor: 'red',
+        backgroundColor: 'red',
+        hoverBackgroundColor: 'blue',
         isVisible: row => {
           return row['c1'] == 'Value 2';
         },

@@ -282,7 +282,7 @@ class UpButton extends React.Component<UpButtonProps, UpButtonState> {
 
     const tooltipElement = style({
       position: 'relative',
-      display: 'inline-block'
+      display: 'inline-block',
     });
 
     const tooltipTextElement = style({

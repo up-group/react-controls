@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  render,
-  screen,
-  fireEvent,
-  cleanup,
-  RenderResult,
-  waitForElementToBeRemoved,
-  queryByText,
-} from '@testing-library/react';
+import { render, screen, fireEvent, cleanup, RenderResult } from '@testing-library/react';
 
 import { Collapsable, Props } from './Collapsable';
 
