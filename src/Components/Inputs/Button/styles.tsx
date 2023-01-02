@@ -40,10 +40,6 @@ const base = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
     ? props?.additionalStyles?.backgroundColor
     : props.borderColor || props.theme.colorMap[`${props.intent}Border`];
 
-  const hoverBackgroundColor = props?.additionalStyles?.hoverBackgroundColor
-    ? props?.additionalStyles?.hoverBackgroundColor
-    : 'initial';
-
   return {
     $nest: {
       '&.up-btn': {
@@ -127,11 +123,7 @@ const base = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
       '&.up-btn .up-loading-indicator-wrapper > div': {
         width: '100%',
         height: calc('100%'),
-      },
-      '&.up-btn:hover': {
-        backgroundColor: hoverBackgroundColor,
-        borderColor: hoverBackgroundColor,
-      },
+      }
     },
   };
 };
