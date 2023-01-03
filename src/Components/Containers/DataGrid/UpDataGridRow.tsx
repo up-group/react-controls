@@ -1,17 +1,12 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import { style } from 'typestyle';
 import classnames from 'classnames';
-
 import UpCheckbox from '../../Inputs/Checkbox/UpCheckBox';
 import UpButton from '../../Inputs/Button/UpButton';
-
 import UpDataGridCell from './UpDataGridCell';
-import { Column, Row, Action, isActionEnabled } from './UpDataGrid';
+import { Column, Action, isActionEnabled } from './UpDataGrid';
 import UpDefaultCellFormatter from './UpDefaultCellFormatter';
-
 import shallowEqual from '../../../Common/utils/shallowEqual';
-import { isEmpty } from '../../../Common/utils';
 import UpButtonGroup from '../../Containers/ButtonGroup';
 import { UpDataGridConsumer } from './UpDataGridContext';
 import { WithThemeProps } from '../../../Common/theming/types';
@@ -145,6 +140,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
         return rowActions;
       }
     };
+
     const customClassName =
       (this.props.getRowCustomClassName && this.props.getRowCustomClassName(this.props.rowIndex, this.props.value)) ||
       '';
@@ -196,33 +192,36 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
                 }}
               >
                 <UpButtonGroup gutter={4}>
-                  {finalActions.map((value, index) => {
+                  {finalActions.map((rowAction, index) => {
                     const extraProps =
-                      (value.getProps != null &&
-                        typeof value.getProps === 'function' &&
-                        value.getProps(this.props.value)) ||
+                      (rowAction.getProps != null &&
+                        typeof rowAction.getProps === 'function' &&
+                        rowAction.getProps(this.props.value)) ||
                       {};
+
                     return (
                       <UpButton
                         key={`action-${index}`}
                         tooltip={{
-                          content: value.description,
+                          content: rowAction.description,
                           title: null,
                         }}
-                        actionType={value.type}
-                        iconName={value.iconName}
+                        actionType={rowAction.type}
+                        iconName={rowAction.iconName}
                         width="icon"
-                        intent={value.intent}
-                        borderless={value.borderless}
+                        intent={rowAction.intent}
+                        borderless={rowAction.borderless}
                         onClick={() => {
-                          if (value.action != null) {
-                            return value.action({
+                          if (rowAction.action != null) {
+                            return rowAction.action({
                               isSelected: this.props.isSelected,
                               value: this.props.value,
                             });
                           }
                         }}
-                        additionalStyles={value.additionalStyles}
+                        borderColor={rowAction.borderColor}
+                        backgroundColor={rowAction.backgroundColor}
+                        hoverBackgroundColor={rowAction.hoverBackgroundColor}
                         {...extraProps}
                       />
                     );

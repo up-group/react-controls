@@ -58,6 +58,8 @@ export interface CommonProps extends WithThemeProps {
   backgroundColor?: string;
   /** Surcharge la couleur du bord définit par le type d'intent */
   borderColor?: string;
+  // Overrides the hovers background color defined by the intent
+  hoverBackgroundColor?: string;
   /** Définit la taille de la police */
   fontSize?: FontSize;
   /** Etat de désactivation du bouton */
@@ -92,11 +94,8 @@ export interface CommonProps extends WithThemeProps {
   isToggled?: boolean;
   /** Tye type of the button  */
   type?: 'button' | 'submit' | 'reset';
+  // Defines if the button borders must be displayed
   borderless?: boolean;
-  additionalStyles?: {
-    backgroundColor?: string;
-    hoverBackgroundColor?: string;
-  };
 }
 
 // This is so that the onClick handler is accepted without type interferance
