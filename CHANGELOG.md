@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.234)
+
+## Bug Fixes
+- UpButton : Fix hover styles
+- 
 # ReactControls (version: 0.2.233)
 
 ## Bug Fixes
