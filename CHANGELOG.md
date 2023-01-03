@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.236
+
+## Features
+- TagsSelect : Change the output data to single value when in single selection
+
 # ReactControls (version: 0.2.235)
 
 ## Features
