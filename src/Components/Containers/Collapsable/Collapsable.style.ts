@@ -1,9 +1,9 @@
 import { style } from 'typestyle';
 import { ThemeInterface } from '../../../Common/theming/types';
 
-export const getWrapperStyles = (theme: ThemeInterface): string =>
+export const getWrapperStyles = (theme: ThemeInterface, withBorders: boolean): string =>
   style({
-    border: `1px solid ${theme.colorMap.darkSilver}`,
+    border: withBorders ? `1px solid ${theme.colorMap.darkSilver}` : 'none',
     display: 'flex',
     flexDirection: 'column',
     opacity: 1,
