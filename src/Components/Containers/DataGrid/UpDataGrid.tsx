@@ -259,7 +259,8 @@ export interface UpDataGridProps extends TestableComponentProps {
   paginationPosition?: PaginationPosition;
   isOddEvenEnabled?: boolean;
   isSortEnabled?: boolean;
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  isRowSelectable?: (data: any) => boolean;
   rowsSelected?: Array<Row>;
   lastFetchedDataTime?: Date;
 
@@ -765,7 +766,9 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
           <UpDataGridRow
             key={`row-${index}`}
             rowIndex={index}
-            isSelectionEnabled={this.props.isSelectionEnabled}
+            isSelectionEnabled={
+              this.props.isSelectionEnabled && (!this.props.isRowSelectable || this.props.isRowSelectable(value.value))
+            }
             actions={this.props.rowActions}
             columns={columns}
             value={value.value}
