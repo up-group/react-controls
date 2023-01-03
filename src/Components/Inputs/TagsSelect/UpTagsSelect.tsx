@@ -5,10 +5,12 @@ import { UpTag, TagData } from '../../Display/Tag';
 import { getLabelStyles, getLabelWrapperStyles, getTagsWrapperStyles } from './UpTagsSelect.style';
 import { findAndUpdateSelectedTag } from './UpTagsSelect.helper';
 
+type DataOutput = TagData[] | TagData;
+
 interface Props {
   tags: TagData[];
   label?: string;
-  onChange?: (e: React.MouseEvent, tags: TagData[]) => void;
+  onChange?: (e: React.MouseEvent, data: DataOutput) => void;
   multipleSelection?: boolean;
 }
 
@@ -22,7 +24,11 @@ const UpTagsSelect: React.VFC<Props> = ({ tags, onChange, label, multipleSelecti
     const updatedSelectedTags = findAndUpdateSelectedTag(selectedTags, data, multipleSelection);
 
     setSelectedTags(updatedSelectedTags);
-    onChange?.(e, updatedSelectedTags);
+    if (multipleSelection) {
+      onChange?.(e, updatedSelectedTags);
+    } else {
+      onChange?.(e, data);
+    }
   };
 
   const tagsWrapperStyles = getTagsWrapperStyles();
