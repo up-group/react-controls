@@ -1,4 +1,4 @@
-# ReactControls (version: 0.2.237
+# ReactControls (version: 0.2.239
 
 ## Features
 - UpDataGrid : enable to define an custom handler in order to determine whether or not a row is selectable
