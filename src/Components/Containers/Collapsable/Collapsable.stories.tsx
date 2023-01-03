@@ -12,6 +12,7 @@ const args: Props = {
   title: 'Informations du commercant',
   defaultOpened: false,
   statusIndicator: true,
+  withBorders: true,
 };
 
 const Template: Story<Props> = args => (
@@ -34,3 +35,6 @@ WithoutStatusIndicator.args = { ...args, statusIndicator: false };
 
 export const DefaultOpened = Template.bind({});
 DefaultOpened.args = { ...args, defaultOpened: true };
+
+export const WithoutBorders = Template.bind({});
+WithoutBorders.args = { ...args, withBorders: false };

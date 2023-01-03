@@ -13,9 +13,17 @@ interface Props {
   defaultOpened?: boolean;
   statusIndicator?: boolean;
   onClick?: (isOpened: boolean) => void;
+  withBorders?: boolean;
 }
 
-const Collapsable: React.FC<Props> = ({ title, defaultOpened = false, statusIndicator = true, onClick, children }) => {
+const Collapsable: React.FC<Props> = ({
+  title,
+  defaultOpened = false,
+  statusIndicator = true,
+  onClick,
+  withBorders = true,
+  children,
+}) => {
   const theme = useTheme();
   const [isOpened, setIsOpened] = useState(defaultOpened);
 
@@ -25,7 +33,7 @@ const Collapsable: React.FC<Props> = ({ title, defaultOpened = false, statusIndi
     onClick?.(isOpened);
   };
 
-  const wrapperStyles = getWrapperStyles(theme);
+  const wrapperStyles = getWrapperStyles(theme, withBorders);
   const headerStyles = getHeaderStyles(theme);
   const titleStyles = getTitleStyles(theme);
   const statusIndicatorStyles = getStatusIndicatorStyles(theme, isOpened);
