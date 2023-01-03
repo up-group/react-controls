@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.235)
+
+## Features
+- Collapse : Adds borderless prop to Collapse component
+
 # ReactControls (version: 0.2.234)
 
 ## Bug Fixes
