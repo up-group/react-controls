@@ -766,9 +766,8 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
           <UpDataGridRow
             key={`row-${index}`}
             rowIndex={index}
-            isSelectionEnabled={
-              this.props.isSelectionEnabled && (!this.props.isRowSelectable || this.props.isRowSelectable(value.value))
-            }
+            isRowSelectable={!this.props.isRowSelectable || this.props.isRowSelectable(value.value)}
+            isSelectionEnabled={this.props.isSelectionEnabled}
             actions={this.props.rowActions}
             columns={columns}
             value={value.value}
