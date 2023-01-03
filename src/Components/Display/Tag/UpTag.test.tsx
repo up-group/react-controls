@@ -4,22 +4,23 @@ import { UpTag, Props } from './UpTag';
 
 const onChange = jest.fn();
 
-let props: Props = {
-    id: '1',
-    text: 'Mono',
-    onChange
+const props: Props = {
+  id: '1',
+  text: 'Mono',
+  selected: true,
+  onChange,
 };
 
 const create = () => render(<UpTag {...props} />);
 
-describe("Tag", () => {
-    it("should test if component render content correctly", () => {
-        create();
+describe('Tag', () => {
+  it('should test if component render content correctly', () => {
+    create();
 
-        const text = screen.getByText('Mono');
-        const id = screen.getByTestId(`tag-${props.id}`);
+    const text = screen.getByText('Mono');
+    const id = screen.getByTestId(`tag-${props.id}`);
 
-        expect(text).toBeDefined();
-        expect(id).toBeDefined();
-    });
+    expect(text).toBeDefined();
+    expect(id).toBeDefined();
+  });
 });
