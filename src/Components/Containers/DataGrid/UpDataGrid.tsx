@@ -338,10 +338,14 @@ const isSelectedRowData = (id: string, rowsSelected: Array<Row>): boolean => {
   return rowsSelected?.some(data => data.value.id === id);
 };
 
-const getRowsFromData = (data: Array<any>, isAllRowsSelected: boolean): Array<Row> => {
+const getRowsFromData = (
+  data: Array<any>,
+  isAllRowsSelected: boolean,
+  isRowSelectable: (value: any) => boolean
+): Array<Row> => {
   return data.map((row, index) => {
     return {
-      isSelected: isAllRowsSelected,
+      isSelected: isAllRowsSelected && (!isRowSelectable || isRowSelectable(row.value)),
       value: row.value,
     };
   });
@@ -623,7 +627,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
 
   onSelectionAllChange = (isSelected: boolean): void => {
     if (!this.isSelectionControlled) {
-      const rows: Array<Row> = getRowsFromData(this.state.rows, isSelected);
+      const rows: Array<Row> = getRowsFromData(this.state.rows, isSelected, this.props.isRowSelectable);
       const addedRows = getNewSelectedRows(rows, this.currentRowsSelected);
 
       const isCurrentlyAllRowSelected: boolean = this.state.allRowsSelected;
