@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.242
+
+## Features
+- UpDataGrid : Adds images display on data grid row
+
 # ReactControls (version: 0.2.239
 
 ## Features
