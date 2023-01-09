@@ -1215,7 +1215,7 @@ export const WithImages = (): React.ReactNode => {
         action: (): void => {
           alert('Details');
         },
-        type: 'image-details',
+        type: 'details',
         description: 'Details',
         intent: 'primary',
         details: {

@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.244
+
+## Features
+- UpDataGrid : Change "images-details" type to "details"
+
 # ReactControls (version: 0.2.242
 
 ## Features

@@ -281,7 +281,7 @@ export type IconNameOld =
   | 'file-edit'
   | 'user-circle'
   | 'safe'
-  | 'image-details'
+  | 'details'
   | 'stepper-control-left'
   | 'stepper-control-right';
 
@@ -559,7 +559,7 @@ export const IconNamesOld: IconName[] = [
   'file-edit',
   'user-circle',
   'safe',
-  'image-details',
+  'details',
   'stepper-control-left',
   'stepper-control-right',
 ];
@@ -839,7 +839,7 @@ export type IconName =
   | 'file-edit'
   | 'user-circle'
   | 'safe'
-  | 'image-details'
+  | 'details'
   | 'stepper-control-left'
   | 'stepper-control-right';
 
@@ -1117,7 +1117,7 @@ export const IconNames: IconName[] = [
   'file-edit',
   'user-circle',
   'safe',
-  'image-details',
+  'details',
   'stepper-control-left',
   'stepper-control-right',
 ];

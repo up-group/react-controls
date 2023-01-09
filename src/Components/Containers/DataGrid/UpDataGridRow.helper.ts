@@ -1,6 +1,6 @@
 import { Action, ActionDetails } from './UpDataGrid';
 
-export const isDetailAction = (action): boolean => action.type === 'image-details' && !!action.details;
+export const isDetailAction = (action): boolean => action.type === 'details' && !!action.details;
 
 export const hasDetailAction = (actions: Action[]): boolean => actions?.some(isDetailAction);
 
