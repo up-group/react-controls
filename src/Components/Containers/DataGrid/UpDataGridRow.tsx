@@ -1,17 +1,15 @@
-import * as React from 'react';
-import { style } from 'typestyle';
+import React, { useState } from 'react';
 import classnames from 'classnames';
 import UpCheckbox from '../../Inputs/Checkbox/UpCheckBox';
 import UpButton from '../../Inputs/Button/UpButton';
 import UpDataGridCell from './UpDataGridCell';
 import { Column, Action, isActionEnabled } from './UpDataGrid';
 import UpDefaultCellFormatter from './UpDefaultCellFormatter';
-import shallowEqual from '../../../Common/utils/shallowEqual';
 import UpButtonGroup from '../../Containers/ButtonGroup';
 import { UpDataGridConsumer } from './UpDataGridContext';
-import { WithThemeProps } from '../../../Common/theming/types';
-
-export interface UpDataGridRowState {}
+import { getDataGridRowStyle } from './UpDataGridRow.style';
+import { findDetailAction, hasDetailAction, isDetailAction } from './UpDataGridRow.helper';
+import { UpDataGridDetails } from './UpDataGridDetails';
 
 export type ActionFactory<T> = (value: T) => Array<Action>;
 
@@ -30,62 +28,45 @@ export interface UpDataGridRowProps {
   isOneRowSelected?: boolean;
 }
 
-const DataGridRowStyle = (props: UpDataGridRowProps & WithThemeProps, finalActionsLength: number) =>
-  style({
-    ...(props.onClick ? { cursor: 'pointer' } : {}),
-    ...(props.isRowClickable && finalActionsLength === 1
-      ? {
-          cursor: 'pointer',
-          $nest: {
-            '&:hover': {
-              background: '#d4d4d4 !important',
-            },
-          },
-        }
-      : {}),
-  });
+const UpDataGridRow: React.VFC<UpDataGridRowProps> = props => {
+  const {
+    columns = [],
+    isSelected = false,
+    isSelectionEnabled = true,
+    isRowSelectable,
+    onSelectionChange,
+    rowIndex = -1,
+    value = {},
+    actions = null,
+    onClick,
+    isRowClickable = false,
+    getRowCustomClassName,
+  } = props;
 
-export default class UpDataGridRow extends React.Component<UpDataGridRowProps, UpDataGridRowState> {
-  static defaultProps: UpDataGridRowProps = {
-    rowIndex: -1,
-    isSelectionEnabled: true,
-    value: {},
-    isSelected: false,
-    columns: [],
-    actions: null,
-    isRowClickable: false,
+  const [detailsOpened, setDetailsOpened] = useState(false);
+
+  const formatter = new UpDefaultCellFormatter();
+
+  const handleSelectionChange = (event, isSelected): void => {
+    onSelectionChange?.(rowIndex, {
+      isSelected,
+      value,
+    });
   };
 
-  constructor(props, context) {
-    super(props, context);
-  }
-
-  onSelectionChange = (event, isSelected) => {
-    if (this.props.onSelectionChange) {
-      this.props.onSelectionChange(this.props.rowIndex, {
-        isSelected: isSelected,
-        value: this.props.value,
-      });
-    }
-  };
-
-  shouldComponentUpdate(nextProps: UpDataGridRowProps, nextState) {
-    return !shallowEqual(this.props, nextProps) || !shallowEqual(this.state, nextState);
-  }
-
-  getRowClickAction = finalActions => {
-    if (this.props.onClick) {
+  const getRowClickAction = finalActions => {
+    if (onClick) {
       return () =>
-        this.props.onClick &&
-        this.props.onClick(this.props.rowIndex, {
-          value: this.props.value,
+        onClick &&
+        onClick(rowIndex, {
+          value,
         });
     }
 
-    const actions = (finalActions && finalActions.filter(a => a != null)) || [];
-    const actionsLength = actions.length;
+    const filteredActions = (finalActions && finalActions.filter(a => a != null)) || [];
+    const actionsLength = filteredActions.length;
 
-    if (actionsLength === 1 && this.props.isRowClickable) {
+    if (actionsLength === 1 && isRowClickable) {
       return () => {
         let selectedText = '';
         if (window.getSelection) {
@@ -94,74 +75,70 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
         }
         return selectedText.length
           ? false
-          : actions[0].action({
-              isSelected: this.props.isSelected,
-              value: this.props.value,
+          : filteredActions[0].action({
+              isSelected,
+              value,
             });
       };
     }
   };
 
-  render() {
-    const formatter = new UpDefaultCellFormatter();
-    const selection = (
-      <UpCheckbox
-        options={[
-          {
-            name: 'up-selection',
-            checked: this.props.isSelected === true,
-            disabled: this.props.isRowSelectable !== undefined && !this.props.isRowSelectable,
-            value: true,
-            onOptionChange: this.onSelectionChange,
-            // ...(this.props.isOneRowSelected && !this.props.isSelected && { disabled: true })
-          },
-        ]}
-      />
-    );
+  const selection = (
+    <UpCheckbox
+      options={[
+        {
+          name: 'up-selection',
+          checked: isSelected === true,
+          disabled: isRowSelectable !== undefined && !isRowSelectable,
+          value: true,
+          onOptionChange: handleSelectionChange,
+        },
+      ]}
+    />
+  );
 
-    let finalActions: Array<Action> = null;
+  let finalActions: Array<Action> = null;
 
-    if (this.props.actions && !Array.isArray(this.props.actions)) {
-      finalActions = this.props.actions(this.props.value);
-    } else if (this.props.actions != null) {
-      finalActions = this.props.actions as Array<Action>;
+  if (actions && !Array.isArray(actions)) {
+    finalActions = actions(value);
+  } else if (actions != null) {
+    finalActions = actions as Array<Action>;
+  }
+
+  finalActions = finalActions?.filter(
+    action =>
+      action !== null && (action.isVisible == null || typeof action.isVisible !== 'function' || action.isVisible(value))
+  );
+
+  // render action in the first element of the array
+  const renderActions = ({ rowActions, labelToDisplayRowActionsInCell, index, column }) => {
+    if (labelToDisplayRowActionsInCell && column.label === labelToDisplayRowActionsInCell) {
+      return rowActions;
     }
+    if (!labelToDisplayRowActionsInCell && index === 0) {
+      return rowActions;
+    }
+  };
 
-    finalActions = finalActions?.filter(
-      action =>
-        action !== null &&
-        (action.isVisible == null || typeof action.isVisible !== 'function' || action.isVisible(this.props.value))
-    );
+  const customClassName = (getRowCustomClassName && getRowCustomClassName(rowIndex, value)) || '';
 
-    // render action in the first element of the array
-    const renderActions = ({ rowActions, labelToDisplayRowActionsInCell, index, value }) => {
-      if (labelToDisplayRowActionsInCell && value.label === labelToDisplayRowActionsInCell) {
-        return rowActions;
-      }
-      if (!labelToDisplayRowActionsInCell && index === 0) {
-        return rowActions;
-      }
-    };
+  const hasDetails = hasDetailAction(finalActions);
 
-    const customClassName =
-      (this.props.getRowCustomClassName && this.props.getRowCustomClassName(this.props.rowIndex, this.props.value)) ||
-      '';
+  const finalRowStyles = classnames(
+    `up-data-grid-row up-data-grid-row-bordered ${customClassName}`,
+    getDataGridRowStyle(props, finalActions && finalActions.length)
+  );
 
-    return (
-      <UpDataGridConsumer>
-        {({ displayRowActionsWithinCell, rowActions, labelToDisplayRowActionsInCell }) => (
-          <tr
-            className={classnames(
-              `up-data-grid-row up-data-grid-row-bordered ${customClassName}`,
-              DataGridRowStyle(this.props, finalActions && finalActions.length)
-            )}
-            onClick={this.getRowClickAction(finalActions)}
-          >
-            {this.props.isSelectionEnabled && (
+  return (
+    <UpDataGridConsumer>
+      {({ displayRowActionsWithinCell, rowActions, labelToDisplayRowActionsInCell }) => (
+        <>
+          <tr className={finalRowStyles} onClick={getRowClickAction(finalActions)}>
+            {isSelectionEnabled && (
               <UpDataGridCell key={'cell-selection'} value={selection} column={{ formatter, label: '' }} />
             )}
 
-            {this.props.columns.map((value, index) => {
+            {columns.map((column, index) => {
               return (
                 <UpDataGridCell
                   actions={
@@ -170,13 +147,13 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
                       rowActions,
                       labelToDisplayRowActionsInCell,
                       index,
-                      value,
+                      column,
                     })
                   }
                   key={`cell-${index}`}
-                  value={this.props.value}
-                  column={value}
-                  render={value.render}
+                  value={value}
+                  column={column}
+                  render={column.render}
                 />
               );
             })}
@@ -187,7 +164,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
             }) && (
               <UpDataGridCell
                 key={'cell-actions'}
-                value={this.props.value}
+                value={value}
                 column={{
                   label: '',
                   isSortable: false,
@@ -198,7 +175,7 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
                     const extraProps =
                       (rowAction.getProps != null &&
                         typeof rowAction.getProps === 'function' &&
-                        rowAction.getProps(this.props.value)) ||
+                        rowAction.getProps(value)) ||
                       {};
 
                     return (
@@ -213,11 +190,14 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
                         width="icon"
                         intent={rowAction.intent}
                         borderless={rowAction.borderless}
-                        onClick={() => {
+                        onClick={(): void => {
                           if (rowAction.action != null) {
+                            if (isDetailAction(rowAction)) {
+                              return setDetailsOpened(!detailsOpened);
+                            }
                             return rowAction.action({
-                              isSelected: this.props.isSelected,
-                              value: this.props.value,
+                              isSelected,
+                              value,
                             });
                           }
                         }}
@@ -232,8 +212,17 @@ export default class UpDataGridRow extends React.Component<UpDataGridRowProps, U
               </UpDataGridCell>
             )}
           </tr>
-        )}
-      </UpDataGridConsumer>
-    );
-  }
-}
+          {hasDetails && detailsOpened && (
+            <tr className={finalRowStyles}>
+              <td colSpan={100}>
+                <UpDataGridDetails details={findDetailAction(finalActions)} />
+              </td>
+            </tr>
+          )}
+        </>
+      )}
+    </UpDataGridConsumer>
+  );
+};
+
+export default UpDataGridRow;

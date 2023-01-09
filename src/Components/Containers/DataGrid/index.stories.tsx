@@ -20,6 +20,7 @@ import {
 } from '../../../Components';
 import { ActionFactory } from './UpDataGridRow';
 import * as _ from 'lodash';
+import { UpDataGridImagesDetails } from './UpDataGridDetails/UpDataGridImagesDetails';
 
 export default {
   title: 'Components/Containers/UpDataGrid',
@@ -1201,3 +1202,58 @@ export const onlyOneRowCanBeSelected = (): JSX.Element => (
     }}
   />
 );
+
+export const WithImages = (): React.ReactNode => {
+  const imagesDetails = [
+    { src: './cheque-1.png', alt: '' },
+    { src: './cheque-1.png', alt: '' },
+  ];
+
+  const actionFactory: ActionFactory<any> = (rowValue: any) => {
+    const actions: Array<Action> = [
+      {
+        action: (): void => {
+          alert('Details');
+        },
+        type: 'image-details',
+        description: 'Details',
+        intent: 'primary',
+        details: {
+          type: 'images',
+          fetchData: async () => imagesDetails,
+        },
+      },
+    ];
+
+    return actions;
+  };
+
+  return (
+    <UpDataGrid
+      rowActions={actionFactory}
+      columns={[
+        {
+          label: 'Col 1',
+          field: 'c1',
+          isSortable: true,
+        },
+        {
+          label: 'Col 2',
+          field: 'c2',
+          isSortable: true,
+        },
+        {
+          label: 'Col 3',
+          field: 'c3',
+          isSortable: true,
+        },
+        {
+          label: 'Col 4',
+          field: 'c4',
+          isSortable: true,
+        },
+      ]}
+      data={data}
+    />
+  );
+};

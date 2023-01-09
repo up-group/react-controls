@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
-import { useTheme } from '../../../Common/hooks/useTheme';
+import { useTheme } from '../../../Common/hooks';
 import { getTagStyle } from './UpTag.style';
 
 export interface TagData {
