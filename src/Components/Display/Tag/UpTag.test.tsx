@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react';
 import { render, RenderResult, screen } from '@testing-library/react';
 import { UpTag, Props } from './UpTag';
@@ -14,7 +13,7 @@ const props: Props = {
 
 const create = (): RenderResult => render(<UpTag {...props} />);
 
-describe('Tag', () => {
+describe('UpTag', () => {
   it('should test if component render content correctly', () => {
     create();
 

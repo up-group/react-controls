@@ -28,6 +28,7 @@ module.exports = {
     '@storybook/addon-storysource',
     '@storybook/addon-controls',
   ],
+  staticDirs: ['../public'],
   webpackFinal: async config => {
     config.resolve.alias.ui = path.resolve(ROOT_PATH, 'src/');
     config.resolve.alias.icons = path.resolve(ROOT_PATH, 'src/theming/icons');

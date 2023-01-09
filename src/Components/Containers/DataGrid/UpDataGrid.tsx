@@ -25,6 +25,7 @@ import { getTestableComponentProps, TestableComponentProps } from '../../../Comm
 import { DeviceSmartphones } from '../../../Common/utils/device';
 import { IconName } from '../../../Common/theming/icons';
 import { isEmpty } from '../../../Common/utils';
+import { DetailsData, DetailsType } from './UpDataGridDetails';
 
 const WrapperDataGridStyle = style(
   {
@@ -200,6 +201,11 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps): string =>
     })
   );
 
+export interface ActionDetails {
+  type: DetailsType;
+  fetchData: () => Promise<DetailsData[]>;
+}
+
 export interface Action {
   type: ActionType;
   iconName?: IconName;
@@ -213,6 +219,7 @@ export interface Action {
   borderColor?: string;
   backgroundColor?: string;
   hoverBackgroundColor?: string;
+  details?: ActionDetails;
 }
 
 export interface ToolTip {

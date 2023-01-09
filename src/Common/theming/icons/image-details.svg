@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="24" viewBox="0 0 50 24">
+  <g id="Groupe_719" transform="translate(12174.725 15220.563)">
+    <g id="PICTO_REMISES" transform="translate(-12174.725 -15220.563)">
+      <g id="Rectangle_81" transform="translate(0 0)" fill="rgba(255,255,255,0)" stroke="#FFF" stroke-width="2">
+        <rect width="50" height="24" rx="2" stroke="none"/>
+        <rect x="1" y="1" width="48" height="22" rx="1" fill="none"/>
+      </g>
+      <g id="Rectangle_82"  transform="translate(5 0)" fill="#FFF" stroke="#FFF" stroke-width="2">
+        <rect width="2" height="24" stroke="none"/>
+        <rect x="1" y="1" height="22" fill="none"/>
+      </g>
+      <g id="Rectangle_83" transform="translate(9 4)" fill="#FFF" stroke="#FFF" stroke-width="1">
+        <rect width="6" height="5" rx="1" stroke="none"/>
+        <rect x="0.5" y="0.5" width="5" height="4" rx="0.5" fill="none"/>
+      </g>
+      <g id="Rectangle_84" transform="translate(24 13)" fill="#FFF" stroke="#FFF" stroke-width="2">
+        <rect width="21" height="2" rx="1" stroke="none"/>
+        <rect x="1" y="1" width="19" fill="none"/>
+      </g>
+      <g id="Rectangle_85" transform="translate(24 17)" fill="#FFF" stroke="#FFF" stroke-width="2">
+        <rect width="21" height="2" rx="1" stroke="none"/>
+        <rect x="1" y="1" width="19" fill="none"/>
+      </g>
+    </g>
+  </g>
+</svg>
