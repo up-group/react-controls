@@ -25,3 +25,8 @@ export const getLabelStyles = (theme: ThemeInterface): string =>
     letterSpacing: '0px',
     paddingBottom: '6px',
   });
+
+export const getWrapperStyles = (theme: ThemeInterface): string =>
+  style({
+    marginTop: '14px',
+  });

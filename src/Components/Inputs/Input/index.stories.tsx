@@ -13,6 +13,7 @@ import UpSelect from '../../Inputs/Select';
 import UpText from '../../Inputs/Text';
 import UpNumber from '../../Inputs/Number/UpNumber';
 import UpDate from '../../Inputs/Date/UpDate';
+import { UpTagsSelect } from '../TagsSelect';
 
 export default {
   title: 'Components/Inputs/UpInput',
@@ -317,13 +318,69 @@ const ComplexForImpl = props => {
             />
           </UpCol>
         </UpRow>
+        <UpRow>
+          <UpCol xs={24} sm={24} md={24} lg={24}>
+            <UpTagsSelect
+              label={'Type'}
+              tags={[
+                {
+                  id: '1',
+                  text: 'Mono',
+                  selected: false,
+                },
+                {
+                  id: '2',
+                  text: 'Multi',
+                  selected: false,
+                },
+                {
+                  id: '3',
+                  text: 'Tag 3',
+                  selected: false,
+                },
+              ]}
+              multipleSelection={false}
+            />
+            <UpTagsSelect
+              label={'Catégories'}
+              multipleSelection={true}
+              tags={[
+                {
+                  id: '1',
+                  text: 'Cat 1',
+                  selected: false,
+                },
+                {
+                  id: '2',
+                  text: 'Cat 2',
+                  selected: false,
+                },
+                {
+                  id: '3',
+                  text: 'Cat 3',
+                  selected: false,
+                },
+                {
+                  id: '4',
+                  text: 'Cat 4',
+                  selected: false,
+                },
+                {
+                  id: '5',
+                  text: 'Cat 5',
+                  selected: false,
+                },
+              ]}
+            />
+          </UpCol>
+        </UpRow>
       </UpGrid>
     </form>
   );
 };
 
 export const General = () => {
-  const [selectedValue, setValue] = React.useState(null);
+  const [selectedValue, setValue] = React.useState('');
 
   const onChange = (event, value) => {
     setValue(value);

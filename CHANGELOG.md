@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.245
+
+## Features
+- TagsSelect : Set the margin top
+
 # ReactControls (version: 0.2.244
 
 ## Features

@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import classnames from 'classnames';
 import { useTheme } from '../../../Common/hooks';
 import { UpTag, TagData } from '../../Display/Tag';
-import { getLabelStyles, getLabelWrapperStyles, getTagsWrapperStyles } from './UpTagsSelect.style';
+import { getLabelStyles, getLabelWrapperStyles, getTagsWrapperStyles, getWrapperStyles } from './UpTagsSelect.style';
 import { findAndUpdateSelectedTag } from './UpTagsSelect.helper';
+import { getWrapperStyle } from 'Components/Display/StepperControl/StepperControl.style';
 
 type DataOutput = TagData[] | TagData;
 
@@ -34,9 +35,10 @@ const UpTagsSelect: React.VFC<Props> = ({ tags, onChange, label, multipleSelecti
   const tagsWrapperStyles = getTagsWrapperStyles();
   const labelWrapperStyles = getLabelWrapperStyles(theme);
   const labelStyles = getLabelStyles(theme);
+  const wrapperStyles = getWrapperStyles(theme);
 
   return (
-    <div>
+    <div className={classnames(wrapperStyles)}>
       {label && (
         <p className={classnames(labelWrapperStyles)}>
           <label className={classnames(labelStyles)}>{label}</label>
