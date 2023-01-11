@@ -3,6 +3,11 @@
 ## Features
 - TagsSelect : Set the margin top
 
+# ReactControls (version: 0.2.245
+
+## Features
+- UpDataGrid : Updates the width of the details icon
+- 
 # ReactControls (version: 0.2.244
 
 ## Features

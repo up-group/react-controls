@@ -96,6 +96,7 @@ export interface CommonProps extends WithThemeProps {
   type?: 'button' | 'submit' | 'reset';
   // Defines if the button borders must be displayed
   borderless?: boolean;
+  isDetails?: boolean;
 }
 
 // This is so that the onClick handler is accepted without type interferance

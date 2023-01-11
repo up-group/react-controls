@@ -68,6 +68,7 @@ const base = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
         flexDirection: 'row',
         position: 'relative',
         minWidth: props.dropDown && props.width != 'icon' ? toRem(44) : 'inherit',
+        width: props.isDetails ? toRem(33) : 'initial',
       },
       '&.up-btn.up-btn-drop-down': {
         paddingLeft: 0,
@@ -298,6 +299,13 @@ const defaultIcon = (props: UpButtonProps): NestedCSSProperties => {
 };
 
 const icon = (props: UpButtonProps): NestedCSSProperties => {
+  let svgWidth;
+  if (props.isDetails) {
+    svgWidth = toRem(33);
+  } else {
+    svgWidth = props.iconSize ? props.iconSize : toRem(15);
+  }
+
   const styles = {
     padding: 0,
     height: toRem(24),
@@ -310,7 +318,7 @@ const icon = (props: UpButtonProps): NestedCSSProperties => {
     $nest: {
       '&.up-btn svg': {
         margin: '0px !important',
-        width: props.iconSize ? props.iconSize : toRem(15),
+        width: svgWidth,
         height: props.iconSize ? props.iconSize : toRem(15),
         padding: toRem(3),
       },
