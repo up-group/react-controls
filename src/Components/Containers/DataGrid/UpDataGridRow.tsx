@@ -204,6 +204,7 @@ const UpDataGridRow: React.VFC<UpDataGridRowProps> = props => {
                         borderColor={rowAction.borderColor}
                         backgroundColor={rowAction.backgroundColor}
                         hoverBackgroundColor={rowAction.hoverBackgroundColor}
+                        isDetails={isDetailAction(rowAction)}
                         {...extraProps}
                       />
                     );
