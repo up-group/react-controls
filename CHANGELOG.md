@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.248)
+
+## Features
+- UpDataGrid : Updates the width of the details icon
+
 # ReactControls (version: 0.2.247
 
 ## Features
