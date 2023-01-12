@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.249
+
+## Bug Fixes
+- TagsSelect : Removing inner state, component controled by props
+  
 # ReactControls (version: 0.2.248)
 
 ## Features
