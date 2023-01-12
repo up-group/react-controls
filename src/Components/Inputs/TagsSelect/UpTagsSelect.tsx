@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import { useTheme } from '../../../Common/hooks';
 import { UpTag, TagData } from '../../Display/Tag';
 import { getLabelStyles, getLabelWrapperStyles, getTagsWrapperStyles, getWrapperStyles } from './UpTagsSelect.style';
 import { findAndUpdateSelectedTag } from './UpTagsSelect.helper';
-import { getWrapperStyle } from 'Components/Display/StepperControl/StepperControl.style';
 
 type DataOutput = TagData[] | TagData;
 
@@ -17,14 +16,12 @@ interface Props {
 
 const UpTagsSelect: React.VFC<Props> = ({ tags, onChange, label, multipleSelection = true }) => {
   const theme = useTheme();
-  const [selectedTags, setSelectedTags] = useState(tags);
 
   const handleTagSelected = (e: React.MouseEvent, data: TagData): void => {
     //TODO: to remove on react/testing library update
     e.persist();
-    const updatedSelectedTags = findAndUpdateSelectedTag(selectedTags, data, multipleSelection);
+    const updatedSelectedTags = findAndUpdateSelectedTag([...tags], data, multipleSelection);
 
-    setSelectedTags(updatedSelectedTags);
     if (multipleSelection) {
       onChange?.(e, updatedSelectedTags);
     } else {
@@ -45,7 +42,7 @@ const UpTagsSelect: React.VFC<Props> = ({ tags, onChange, label, multipleSelecti
         </p>
       )}
       <div className={classnames(tagsWrapperStyles)}>
-        {selectedTags.map(tag => (
+        {tags.map(tag => (
           <UpTag id={tag.id} text={tag.text} selected={tag.selected} onChange={handleTagSelected} key={tag.id} />
         ))}
       </div>
