@@ -1,6 +1,7 @@
 import React from 'react';
 import { Story } from '@storybook/react';
 import { UpTagsSelect, Props } from './UpTagsSelect';
+import _ from 'lodash';
 
 export default {
   component: UpTagsSelect,
@@ -31,7 +32,29 @@ const args: Props = {
   multipleSelection: true,
 };
 
-const Template: Story<Props> = args => <UpTagsSelect {...args} />;
+const Template: Story<Props> = (args: Props) => {
+  const [tags, setTags] = React.useState(args.tags);
+  return (
+    <UpTagsSelect
+      {...args}
+      tags={tags}
+      onChange={(e, value) =>
+        setTags(
+          _.isArray(value)
+            ? value
+            : tags.map(tag => {
+                if (value.id == tag.id) {
+                  tag.selected = value.selected;
+                } else {
+                  tag.selected = false;
+                }
+                return tag;
+              })
+        )
+      }
+    />
+  );
+};
 
 export const WithLabel = Template.bind({});
 WithLabel.args = { ...args, label: "Nombre d'anomalies par titre" };
