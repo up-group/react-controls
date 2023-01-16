@@ -20,7 +20,7 @@ import {
 } from '../../../Components';
 import { ActionFactory } from './UpDataGridRow';
 import * as _ from 'lodash';
-import { UpDataGridImagesDetails } from './UpDataGridDetails/UpDataGridImagesDetails';
+import { ImageDetailsData } from './UpDataGridDetails/UpDataGridImagesDetails';
 
 export default {
   title: 'Components/Containers/UpDataGrid',
@@ -1220,7 +1220,13 @@ export const WithImages = (): React.ReactNode => {
         intent: 'primary',
         details: {
           type: 'images',
-          fetchData: async () => imagesDetails,
+          fetchData: (): Promise<ImageDetailsData[]> => {
+            return new Promise(resolve => {
+              setTimeout(() => {
+                resolve(imagesDetails);
+              }, 1000);
+            });
+          },
         },
       },
     ];

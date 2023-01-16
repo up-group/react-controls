@@ -19,6 +19,16 @@ export const getContentStyle = (): string => {
   });
 };
 
+export const getLoadingStyle = (): string => {
+  return style({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '0 16px',
+    width: '100%',
+  });
+};
+
 export const getContentItemStyle = (): string => {
   return style({
     padding: '0 9px',
