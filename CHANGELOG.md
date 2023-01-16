@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.251)
+
+## Feature
+- StepperControl : Exports the component to the root
+
 # ReactControls (version: 0.2.250)
 
 ## Feature

@@ -68,7 +68,8 @@ import {
   UpVerticalTimeline,
   UpCurrency,
   UpCookiesConsentManager,
-  UpTagsSelect
+  UpTagsSelect,
+  UpStepperControl,
 } from './Components/';
 
 import * as UpIcons from './Components/Display/Icons/materialinear';
@@ -168,5 +169,6 @@ export {
   UpVerticalTimeline,
   UpCurrency,
   UpCookiesConsentManager,
-  UpTagsSelect
+  UpTagsSelect,
+  UpStepperControl,
 };
