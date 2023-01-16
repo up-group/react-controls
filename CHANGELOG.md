@@ -1,3 +1,9 @@
+# ReactControls (version: 0.2.250)
+
+## Feature
+- StepperControl : Exports the component
+- Adds a loader in UpDataGridImageDetails when loading the images
+
 # ReactControls (version: 0.2.249
 
 ## Bug Fixes
