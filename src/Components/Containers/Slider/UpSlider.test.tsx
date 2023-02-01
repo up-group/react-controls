@@ -29,8 +29,8 @@ describe('UpSlider', () => {
     const item1 = screen.getByText('Child 1');
     const item2 = screen.queryByText('Child 2');
 
-    const nextButton = screen.getByTestId('stepper-control-right');
-    const leftButton = screen.queryByText('stepper-control-left');
+    const nextButton = screen.getByTestId('stepper-next');
+    const leftButton = screen.queryByText('stepper-previous');
 
     expect(item1).toBeDefined();
     expect(item2).toBeNull();
@@ -54,7 +54,7 @@ describe('UpSlider', () => {
 
     let item1 = screen.getByText('Child 1');
     let item2 = screen.queryByText('Child 2');
-    const nextButton = screen.getByTestId('stepper-control-right');
+    const nextButton = screen.getByTestId('stepper-next');
 
     expect(item1).toBeDefined();
     expect(item2).toBeNull();

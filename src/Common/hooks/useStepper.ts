@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-export interface UseStepperParams {
-  steps: React.ReactNode[];
+export interface UseStepperParams<T = React.ReactNode> {
+  steps: T[];
   defaultStep?: number;
   displayedItemsCount?: number;
   onChange?: (newStep: number) => void;
@@ -15,15 +15,15 @@ export interface UseStepperUtils {
   stepForward: () => void;
 }
 
-export type UseStepper = [React.ReactNode[], UseStepperUtils];
+export type UseStepper<T = React.ReactNode> = [T[], UseStepperUtils];
 
-export const useStepper = ({
+export const useStepper = <T>({
   steps,
   defaultStep = 0,
   displayedItemsCount = 1,
   withNavigation = true,
   onChange,
-}: UseStepperParams): UseStepper => {
+}: UseStepperParams<T>): UseStepper<T> => {
   const [currentStep, setCurrentStep] = useState(defaultStep);
   const hasEnoughItems = steps.length > displayedItemsCount;
   const hasPreviousStep = withNavigation && hasEnoughItems && currentStep > 0;
