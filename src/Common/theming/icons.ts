@@ -282,8 +282,15 @@ export type IconNameOld =
   | 'user-circle'
   | 'safe'
   | 'details'
-  | 'stepper-control-left'
-  | 'stepper-control-right';
+  | 'stepper-previous'
+  | 'stepper-next'
+  | 'comment-arrow-left'
+  | 'comment-arrow-right'
+  | 'comment-arrow-up'
+  | 'comment-arrow-down'
+  | 'comment-cancel'
+  | 'comment-validate'
+  | 'comment-plus';
 
 export const IconNamesOld: IconName[] = [
   'menu',
@@ -560,8 +567,15 @@ export const IconNamesOld: IconName[] = [
   'user-circle',
   'safe',
   'details',
-  'stepper-control-left',
-  'stepper-control-right',
+  'stepper-previous',
+  'stepper-next',
+  'comment-arrow-left',
+  'comment-arrow-right',
+  'comment-arrow-up',
+  'comment-arrow-down',
+  'comment-cancel',
+  'comment-validate',
+  'comment-plus',
 ];
 
 export type IconName =
@@ -840,8 +854,15 @@ export type IconName =
   | 'user-circle'
   | 'safe'
   | 'details'
-  | 'stepper-control-left'
-  | 'stepper-control-right';
+  | 'stepper-previous'
+  | 'stepper-next'
+  | 'comment-arrow-left'
+  | 'comment-arrow-right'
+  | 'comment-arrow-up'
+  | 'comment-arrow-down'
+  | 'comment-cancel'
+  | 'comment-validate'
+  | 'comment-plus';
 
 export const IconNames: IconName[] = [
   'menu',
@@ -1118,8 +1139,15 @@ export const IconNames: IconName[] = [
   'user-circle',
   'safe',
   'details',
-  'stepper-control-left',
-  'stepper-control-right',
+  'stepper-previous',
+  'stepper-next',
+  'comment-arrow-left',
+  'comment-arrow-right',
+  'comment-arrow-up',
+  'comment-arrow-down',
+  'comment-cancel',
+  'comment-validate',
+  'comment-plus',
 ];
 
 const dictionary = {};

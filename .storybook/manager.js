@@ -3,11 +3,9 @@ import UpTheme from './theme';
 
 addons.setConfig({
   theme: UpTheme,
-  showPanel: true,
-  panelPosition: 'right',
   isFullscreen: false,
   showNav: true,
-  showPanel: true,
+  showPanel: false,
   panelPosition: 'bottom',
   sidebarAnimations: true,
   enableShortcuts: true,

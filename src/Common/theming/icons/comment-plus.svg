@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="Groupe_20944" data-name="Groupe 20944" width="30" height="30" viewBox="0 0 30 30">
+  <g id="Groupe_20942">
+    <g id="Groupe_20941" transform="translate(4 4)">
+      <circle id="Ellipse_11" cx="11" cy="11" r="11" fill="#f59100"/>
+    </g>
+    <g id="Ellipse_13" fill="none" stroke="#f59100" stroke-width="1">
+      <circle cx="15" cy="15" r="15" stroke="none"/>
+      <circle cx="15" cy="15" r="14.5" fill="none"/>
+    </g>
+  </g>
+  <text id="_" transform="translate(11 5)" fill="#fff" font-size="16" font-family="Roboto-Regular, Roboto"><tspan x="0" y="15">+</tspan></text>
+</svg>

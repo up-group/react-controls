@@ -27,6 +27,7 @@ module.exports = {
     },
     '@storybook/addon-storysource',
     '@storybook/addon-controls',
+    '@storybook/addon-actions',
   ],
   staticDirs: ['../public'],
   webpackFinal: async config => {

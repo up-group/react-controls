@@ -1,11 +1,12 @@
 import * as React from 'react';
-
+import StepperImageLeft from '../../../Common/theming/icons/stepper-previous.svg';
+import StepperImageRight from '../../../Common/theming/icons/stepper-next.svg';
 import { getWrapperStyle } from './StepperControl.style';
-import StepperLeftControl from '../../../Common/theming/icons/stepper-control-left.svg';
-import StepperRightControl from '../../../Common/theming/icons/stepper-control-right.svg';
+
+type StepperDirection = 'right' | 'left';
 
 export interface Props {
-  direction: 'right' | 'left';
+  direction: StepperDirection;
   onClick: () => void;
 }
 
@@ -14,8 +15,8 @@ export const StepperControl: React.VFC<Props> = ({ direction, onClick }) => {
 
   return (
     <div className={wrapperStyle} onClick={onClick} data-testid={`stepper-control-${direction}`}>
-      {direction === 'left' && <span dangerouslySetInnerHTML={{ __html: StepperLeftControl }} />}
-      {direction === 'right' && <span dangerouslySetInnerHTML={{ __html: StepperRightControl }} />}
+      {direction === 'left' && <span dangerouslySetInnerHTML={{ __html: StepperImageLeft }} />}
+      {direction === 'right' && <span dangerouslySetInnerHTML={{ __html: StepperImageRight }} />}
     </div>
   );
 };
