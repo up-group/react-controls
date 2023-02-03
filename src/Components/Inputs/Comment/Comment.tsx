@@ -1,7 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
 import { useTheme } from '../../../Common/hooks';
-import CommentPlusIcon from '../../../Common/theming/icons/comment-plus.svg';
 import {
   getAuthorWrapperStyles,
   getDateWrapperStyles,
@@ -12,6 +11,7 @@ import {
 } from './Comment.style';
 import { CommentTextEdition } from './CommentEdition';
 import { CommentTextLocked } from './CommentLocked';
+import UpSvgIcon from '../../Display/SvgIcon';
 
 export type CommentMode = 'edition' | 'locked';
 
@@ -63,7 +63,7 @@ export const Comment: React.VFC<Props> = ({ author, date, text, mode = 'locked',
   return (
     <div className={classnames(wrapperStyles)}>
       <div className={plusIconStyles}>
-        <span dangerouslySetInnerHTML={{ __html: CommentPlusIcon }} />
+        <UpSvgIcon width={30} iconName={'comment-plus'} />
       </div>
       <div className={contentWrapperStyles}>
         <div className={infoWrapperStyles}>

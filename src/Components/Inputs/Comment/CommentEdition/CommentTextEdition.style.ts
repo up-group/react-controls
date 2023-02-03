@@ -7,8 +7,7 @@ export const getWrapperStyles = (theme: ThemeInterface): string =>
     borderRadius: '18px',
     opacity: 1,
     padding: '13px',
-    width: '240px',
-    minHeight: '127px',
+    minHeight: '256px',
     display: 'flex',
     flexFlow: 'column nowrap',
   });
@@ -19,7 +18,6 @@ export const getActionsStyles = (): string =>
     flexFlow: 'row nowrap',
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
-    flex: 1,
   });
 
 export const getInputStyles = (theme: ThemeInterface): string =>
@@ -31,7 +29,6 @@ export const getInputStyles = (theme: ThemeInterface): string =>
     outline: 'none',
     border: 'none',
     width: '100%',
-    height: '66px',
     resize: 'none',
     flex: 1,
   });
