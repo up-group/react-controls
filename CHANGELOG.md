@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.252)
+
+## Feature
+- UpCommentTimeline : Adds the timeline component
+
 # ReactControls (version: 0.2.251)
 
 ## Feature
