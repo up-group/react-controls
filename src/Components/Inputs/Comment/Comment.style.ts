@@ -16,6 +16,8 @@ export const getWrapperStyles = (theme: ThemeInterface): string =>
 export const getContentWrapperStyles = (): string =>
   style({
     paddingTop: '24px',
+    minWidth: '200px',
+    maxWidth: '240px',
   });
 
 export const getAuthorWrapperStyles = (theme: ThemeInterface): string =>

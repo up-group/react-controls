@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
 export interface UseStepperParams<T = React.ReactNode> {
-  steps: T[];
+  items: T[];
   defaultStep?: number;
-  displayedItemsCount?: number;
+  itemsPerPage?: number;
   onChange?: (newStep: number) => void;
   withNavigation?: boolean;
 }
@@ -18,17 +18,17 @@ export interface UseStepperUtils {
 export type UseStepper<T = React.ReactNode> = [T[], UseStepperUtils];
 
 export const useStepper = <T>({
-  steps,
+  items,
   defaultStep = 0,
-  displayedItemsCount = 1,
+  itemsPerPage = 1,
   withNavigation = true,
   onChange,
 }: UseStepperParams<T>): UseStepper<T> => {
   const [currentStep, setCurrentStep] = useState(defaultStep);
-  const hasEnoughItems = steps.length > displayedItemsCount;
+  const hasEnoughItems = items.length > itemsPerPage;
   const hasPreviousStep = withNavigation && hasEnoughItems && currentStep > 0;
-  const hasNextStep = withNavigation && hasEnoughItems && currentStep < steps.length - 1;
-  const displayedItems = steps.slice(currentStep, currentStep + displayedItemsCount);
+  const hasNextStep = withNavigation && hasEnoughItems && currentStep < items.length - 1;
+  const displayedItems = items.slice(currentStep, currentStep + itemsPerPage);
 
   const stepForward = (): void => {
     if (hasNextStep) {

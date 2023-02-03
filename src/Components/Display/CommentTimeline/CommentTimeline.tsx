@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
 import moment from 'moment/moment';
-import { useStepper, useTheme } from '../../../Common/hooks';
+import { usePager, useTheme } from '../../../Common/hooks';
 import {
   getCommentsWrapperStyles,
   getContentWrapperStyles,
@@ -36,9 +36,16 @@ export const CommentTimeline: React.VFC<Props> = ({
   const [isCommenting, setIsCommenting] = useState(false);
   const [date, setDate] = useState(null);
 
-  const [displayedItems, { hasNextStep, hasPreviousStep, stepForward, stepBack }] = useStepper<CommentData>({
-    steps: comments,
-    displayedItemsCount: 3,
+  const handlePageChange = (): void => {
+    if (isCommenting) {
+      setIsCommenting(false);
+    }
+  };
+
+  const [displayedItems, { hasPreviousPage, hasNextPage, previousPage, nextPage }] = usePager<CommentData>({
+    items: comments,
+    itemsPerPage: 3,
+    onChange: handlePageChange,
   });
 
   const wrapperStyles = getWrapperStyles(theme);
@@ -70,10 +77,10 @@ export const CommentTimeline: React.VFC<Props> = ({
 
   return (
     <div className={classnames(wrapperStyles)}>
-      {(hasNextStep || hasPreviousStep) && (
+      {(hasPreviousPage || hasNextPage) && (
         <div className={controlsWrapperStyle}>
-          <div>{hasPreviousStep && <CommentArrow direction="left" onClick={stepBack} />}</div>
-          <div>{hasNextStep && <CommentArrow direction="right" onClick={stepForward} />}</div>
+          <div>{hasPreviousPage && <CommentArrow direction="left" onClick={previousPage} />}</div>
+          <div>{hasNextPage && <CommentArrow direction="right" onClick={nextPage} />}</div>
         </div>
       )}
       <div className={contentWrapperStyles}>

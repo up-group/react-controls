@@ -11,9 +11,9 @@ export interface Props {
 
 export const UpSlider: React.FC<Props> = ({ steps, onChange, displayedItemsCount = 2 }) => {
   const [displayedItems, { hasNextStep, hasPreviousStep, stepForward, stepBack }] = useStepper({
-    steps,
+    items: steps,
     onChange,
-    displayedItemsCount,
+    itemsPerPage: displayedItemsCount,
   });
 
   const wrapperStyle = getWrapperStyle();

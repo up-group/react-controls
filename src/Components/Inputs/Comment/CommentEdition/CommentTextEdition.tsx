@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classnames from 'classnames';
 import { useTheme } from '../../../../Common/hooks';
-import CommentCancelIcon from '../../../../Common/theming/icons/comment-cancel.svg';
-import CommentValidateIcon from '../../../../Common/theming/icons/comment-validate.svg';
 import { getWrapperStyles, getActionsStyles, getActionsIconStyles, getInputStyles } from './CommentTextEdition.style';
+import UpSvgIcon from '../../../Display/SvgIcon';
 
 export interface Props {
   onChange?: (text) => void;
@@ -53,16 +52,8 @@ export const CommentTextEdition: React.VFC<Props> = ({ onSubmit, onCancel, onCha
       ></textarea>
       <div className={actionsStyles}>
         <>
-          <span
-            onClick={handleCancel}
-            className={actionIconStyles}
-            dangerouslySetInnerHTML={{ __html: CommentCancelIcon }}
-          />
-          <span
-            onClick={handleSubmit}
-            className={actionIconStyles}
-            dangerouslySetInnerHTML={{ __html: CommentValidateIcon }}
-          />
+          <UpSvgIcon width={28} iconName={'comment-cancel'} className={actionIconStyles} onClick={handleCancel} />
+          <UpSvgIcon width={28} iconName={'comment-validate'} className={actionIconStyles} onClick={handleSubmit} />
         </>
       </div>
     </div>

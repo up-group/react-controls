@@ -7,6 +7,5 @@ export const getWrapperStyles = (theme: ThemeInterface): string =>
     borderRadius: '18px',
     opacity: 1,
     padding: '16px',
-    width: '240px',
     minHeight: '138px',
   });
