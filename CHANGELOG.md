@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.253)
+
+## Feature
+- UpCommentTimeline : Exposes the comments timeline component
+- 
 # ReactControls (version: 0.2.252)
 
 ## Feature

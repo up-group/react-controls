@@ -70,6 +70,7 @@ import {
   UpCookiesConsentManager,
   UpTagsSelect,
   UpStepperControl,
+  UpCommentTimeline,
 } from './Components/';
 
 import * as UpIcons from './Components/Display/Icons/materialinear';
@@ -171,4 +172,5 @@ export {
   UpCookiesConsentManager,
   UpTagsSelect,
   UpStepperControl,
+  UpCommentTimeline,
 };

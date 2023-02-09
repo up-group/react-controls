@@ -70,6 +70,7 @@ import UpCurrency from './Display/Currency';
 import { UpTagsSelect } from './Inputs/TagsSelect';
 import { Collapsable } from './Containers/Collapsable';
 import { StepperControl } from './Display/StepperControl';
+import { CommentTimeline } from './Display/CommentTimeline';
 
 export {
   UpBaseControlComponent,
@@ -142,4 +143,5 @@ export {
   UpTagsSelect,
   Collapsable as UpCollapsable,
   StepperControl as UpStepperControl,
+  CommentTimeline as UpCommentTimeline,
 };
