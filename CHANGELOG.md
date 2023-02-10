@@ -1,5 +1,8 @@
-# ReactControls (version: 0.2.253)
+# ReactControls (version: 0.2.254)
 
+## Bufgs Fixes
+- UpLabel : Fix default color
+# ReactControls (version: 0.2.253)
 ## Feature
 - UpCommentTimeline : Exposes the comments timeline component
 - 

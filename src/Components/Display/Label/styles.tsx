@@ -36,7 +36,7 @@ const base = (props: UpLabelProps): NestedCSSProperties => ({
       textAlign: props.textAlign,
       marginRight: props.inline ? '24px' : '8px',
       display: 'inline-block',
-      color: props.color,
+      color: props.color || '#5c7080',
       fontSize: toRem(12),
       width: '100%',
     },
