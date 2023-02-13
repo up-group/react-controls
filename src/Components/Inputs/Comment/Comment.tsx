@@ -63,7 +63,7 @@ export const Comment: React.VFC<Props> = ({ author, date, text, mode = 'locked',
   return (
     <div className={classnames(wrapperStyles)}>
       <div className={plusIconStyles}>
-        <UpSvgIcon width={30} iconName={'comment-plus'} />
+        <UpSvgIcon width={30} height={30} iconName={'comment-plus'} />
       </div>
       <div className={contentWrapperStyles}>
         <div className={infoWrapperStyles}>

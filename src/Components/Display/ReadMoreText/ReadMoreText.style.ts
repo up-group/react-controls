@@ -1,7 +1,11 @@
 import { style } from 'typestyle';
 import { ThemeInterface } from '../../../Common/theming/types';
 
-export const getWrapperStyles = (): string => style({});
+export const getWrapperStyles = (): string =>
+  style({
+    display: 'flex',
+    flexFlow: 'column nowrap',
+  });
 
 export const getActionsStyles = (): string =>
   style({
@@ -19,4 +23,5 @@ export const getTextStyles = (theme: ThemeInterface): string =>
     color: `${theme.colorMap.grey1}`,
     lineHeight: '16px',
     fontSize: '14px',
+    paddingBottom: '5px',
   });

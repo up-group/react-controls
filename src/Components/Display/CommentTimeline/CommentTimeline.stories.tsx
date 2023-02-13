@@ -41,7 +41,23 @@ const args = {
   dateFormat: 'DD/MM/YYYY',
 };
 
-const Template: Story<Props> = (args: Props) => <CommentTimeline {...args} />;
+const Template: Story<Props> = (args: Props) => (
+  <div>
+    <CommentTimeline {...args} />
+    <div>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec risus tincidunt, mattis felis in, scelerisque
+      est. Vivamus interdum lorem rhoncus, placerat dui et, rutrum elit. Aenean rutrum eleifend turpis nec placerat.
+      Etiam gravida elit ex, a efficitur neque maximus ut. Suspendisse potenti. Pellentesque egestas cursus nibh, id
+      faucibus nisi egestas at. Donec blandit odio ut volutpat viverra. Pellentesque imperdiet dui eu turpis sodales
+      fermentum. Ut ornare tortor et ornare dictum. Cras mauris velit, mollis vitae justo eget, tincidunt consectetur
+      quam. Donec augue quam, finibus a urna vel, auctor viverra dolor. Pellentesque vehicula eu urna et iaculis. Cras
+      nunc quam, pretium vitae odio feugiat, imperdiet dapibus mauris. In non tortor sollicitudin mi suscipit viverra
+      quis tempor mauris. Aliquam bibendum varius ante. Pellentesque nec congue ligula, sed malesuada ligula. Duis ipsum
+      sapien, elementum et augue in, porta placerat magna. Nullam eget lectus sit amet tortor venenatis tempus dignissim
+      in quam. Fusce a tellus lorem.
+    </div>
+  </div>
+);
 
 export const Default = Template.bind({});
 Default.args = { ...args, comments };

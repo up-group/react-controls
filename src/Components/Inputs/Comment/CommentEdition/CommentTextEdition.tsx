@@ -15,20 +15,28 @@ const COMMENT_MAX_LENGTH_LIMIT = 350;
 export const CommentTextEdition: React.VFC<Props> = ({ onSubmit, onCancel, onChange }) => {
   const theme = useTheme();
   const [text, setText] = useState('');
+  const [hasReachedLimit, setHasReachedLimit] = useState(false);
   const inputRef = useRef(null);
 
-  const wrapperStyles = getWrapperStyles(theme);
+  const wrapperStyles = getWrapperStyles(theme, hasReachedLimit);
   const actionsStyles = getActionsStyles();
   const actionIconStyles = getActionsIconStyles();
   const inputStyles = getInputStyles(theme);
 
   useEffect(() => {
     inputRef.current.focus();
-  });
+  }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
-    setText(event.target.value);
-    onChange?.(event.target.value);
+    if (event.target.value?.length < COMMENT_MAX_LENGTH_LIMIT) {
+      if (hasReachedLimit) {
+        setHasReachedLimit(false);
+      }
+      setText(event.target.value);
+      onChange?.(event.target.value);
+    } else {
+      setHasReachedLimit(true);
+    }
   };
 
   const handleCancel = (): void => {
@@ -37,8 +45,8 @@ export const CommentTextEdition: React.VFC<Props> = ({ onSubmit, onCancel, onCha
   };
 
   const handleSubmit = (): void => {
-    onSubmit?.(text);
     setText('');
+    onSubmit?.(text);
   };
 
   return (
@@ -49,12 +57,22 @@ export const CommentTextEdition: React.VFC<Props> = ({ onSubmit, onCancel, onCha
         ref={inputRef}
         maxLength={COMMENT_MAX_LENGTH_LIMIT}
         value={text}
-      ></textarea>
+      />
       <div className={actionsStyles}>
-        <>
-          <UpSvgIcon width={28} iconName={'comment-cancel'} className={actionIconStyles} onClick={handleCancel} />
-          <UpSvgIcon width={28} iconName={'comment-validate'} className={actionIconStyles} onClick={handleSubmit} />
-        </>
+        <UpSvgIcon
+          width={28}
+          height={28}
+          iconName={'comment-cancel'}
+          className={actionIconStyles}
+          onClick={handleCancel}
+        />
+        <UpSvgIcon
+          width={28}
+          height={28}
+          iconName={'comment-validate'}
+          className={actionIconStyles}
+          onClick={handleSubmit}
+        />
       </div>
     </div>
   );

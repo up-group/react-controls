@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.256)
+
+## Bugs Fixes
+- CommentTimeline : Fixes styles
+
 # ReactControls (version: 0.2.254)
 
 ## Bufgs Fixes

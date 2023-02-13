@@ -18,6 +18,8 @@ export const getContentWrapperStyles = (): string =>
     paddingTop: '24px',
     minWidth: '200px',
     maxWidth: '240px',
+    display: 'flex',
+    flexFlow: 'column nowrap',
   });
 
 export const getAuthorWrapperStyles = (theme: ThemeInterface): string =>

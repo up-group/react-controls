@@ -6,6 +6,6 @@ export const getWrapperStyles = (theme: ThemeInterface): string =>
     border: `1px solid ${theme.colorMap.darkSilver}`,
     borderRadius: '18px',
     opacity: 1,
-    padding: '16px',
-    minHeight: '138px',
+    padding: '10px',
+    minHeight: '90px',
   });

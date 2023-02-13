@@ -51,7 +51,7 @@ export const CommentTimeline: React.VFC<Props> = ({
   const wrapperStyles = getWrapperStyles(theme);
   const controlsWrapperStyle = getControlsWrapperStyle(theme);
   const commentsWrapperStyles = getCommentsWrapperStyles(theme);
-  const contentWrapperStyles = getContentWrapperStyles(theme);
+  const contentWrapperStyles = getContentWrapperStyles(theme, isCommenting || (comments && comments.length > 0));
   const itemsWrapperStyle = getItemsWrapperStyle(theme);
 
   const handleAddNewCommentClick = (): void => {
