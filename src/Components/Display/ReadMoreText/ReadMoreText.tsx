@@ -17,7 +17,7 @@ export const ReadMoreText: React.FC<Props> = ({ text, max }) => {
   const textStyles = getTextStyles(theme);
   const actionsStyles = getActionsStyles();
 
-  const handleArrowClick = () => {
+  const handleArrowClick = (): void => {
     setIsMoreTextDisplayed(!isMoreTextDisplayed);
   };
 

@@ -1,15 +1,17 @@
 import { style } from 'typestyle';
 import { ThemeInterface } from '../../../../Common/theming/types';
 
-export const getWrapperStyles = (theme: ThemeInterface): string =>
+export const getWrapperStyles = (theme: ThemeInterface, hasReachedLimit: boolean): string =>
   style({
-    border: `1px solid ${theme.colorMap.primary}`,
+    border: `1px solid ${hasReachedLimit ? theme.colorMap.error : theme.colorMap.primary}`,
     borderRadius: '18px',
     opacity: 1,
     padding: '13px',
-    minHeight: '256px',
+    minHeight: '127px',
+    maxHeight: '323px',
     display: 'flex',
     flexFlow: 'column nowrap',
+    width: '240px',
   });
 
 export const getActionsStyles = (): string =>
@@ -17,7 +19,7 @@ export const getActionsStyles = (): string =>
     display: 'flex',
     flexFlow: 'row nowrap',
     justifyContent: 'flex-end',
-    alignItems: 'flex-end',
+    alignItems: 'center',
   });
 
 export const getInputStyles = (theme: ThemeInterface): string =>
@@ -35,7 +37,5 @@ export const getInputStyles = (theme: ThemeInterface): string =>
 
 export const getActionsIconStyles = (): string =>
   style({
-    width: '28px',
-    marginLeft: '8px',
     cursor: 'pointer',
   });

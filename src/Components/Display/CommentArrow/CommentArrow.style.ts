@@ -11,13 +11,3 @@ export const getWrapperStyles = (theme: ThemeInterface): string =>
       },
     },
   });
-
-export const getRightAndLeftArrowStyles = (): string =>
-  style({
-    width: '32px',
-  });
-
-export const getUpAndDownArrowStyles = (): string =>
-  style({
-    width: '17px',
-  });
