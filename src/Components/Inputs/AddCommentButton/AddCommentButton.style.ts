@@ -26,6 +26,7 @@ export const getButtonStyles = (theme: ThemeInterface): string =>
         opacity: 1,
       },
     },
+    background: `${theme.colorMap.white}`,
   });
 
 export const getPlusIconStyles = (): string =>

@@ -21,6 +21,7 @@ export interface Props {
   onChange?: (text: string) => void;
   onCancel?: () => void;
   addCommentLabel?: string;
+  itemsPerPage?: number;
 }
 
 export const CommentTimeline: React.VFC<Props> = ({
@@ -31,6 +32,7 @@ export const CommentTimeline: React.VFC<Props> = ({
   onSubmit,
   onChange,
   onCancel,
+  itemsPerPage = 3,
 }) => {
   const theme = useTheme();
   const [isCommenting, setIsCommenting] = useState(false);
@@ -43,8 +45,8 @@ export const CommentTimeline: React.VFC<Props> = ({
   };
 
   const [displayedItems, { hasPreviousPage, hasNextPage, previousPage, nextPage }] = usePager<CommentData>({
+    itemsPerPage,
     items: comments,
-    itemsPerPage: 3,
     onChange: handlePageChange,
   });
 
