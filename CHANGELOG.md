@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.258)
+
+## Bugs Fixes
+- CommentTimeline : Makes comment item fill empty space
+
 # ReactControls (version: 0.2.257)
 
 ## Bugs Fixes
