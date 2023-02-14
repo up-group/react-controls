@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.259)
+
+## Feature Fixes
+- CommentTimeline : Adds a loader to comments timeline
+
 # ReactControls (version: 0.2.258)
 
 ## Bugs Fixes
