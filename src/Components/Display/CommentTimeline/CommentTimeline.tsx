@@ -32,7 +32,7 @@ export const CommentTimeline: React.VFC<Props> = ({
   onSubmit,
   onChange,
   onCancel,
-  itemsPerPage = 3,
+  itemsPerPage = 4,
 }) => {
   const theme = useTheme();
   const [isCommenting, setIsCommenting] = useState(false);

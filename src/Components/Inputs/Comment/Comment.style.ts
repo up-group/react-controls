@@ -11,6 +11,7 @@ export const getWrapperStyles = (theme: ThemeInterface): string =>
     paddingBottom: '6px',
     position: 'relative',
     top: '-14px',
+    flex: 1,
   });
 
 export const getContentWrapperStyles = (): string =>
