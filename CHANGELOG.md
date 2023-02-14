@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.257)
+
+## Bugs Fixes
+- CommentTimeline : Background color of add comment button
+- 
 # ReactControls (version: 0.2.256)
 
 ## Bugs Fixes
