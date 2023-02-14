@@ -8,10 +8,12 @@ import {
   getControlsWrapperStyle,
   getItemsWrapperStyle,
   getWrapperStyles,
+  getLoadingStyle,
 } from './CommentTimeline.style';
 import { AddCommentButton } from '../../Inputs/AddCommentButton';
 import { Comment, CommentData } from '../../Inputs/Comment';
 import { CommentArrow } from '../CommentArrow';
+import UpLoadingIndicator from '../../Display/LoadingIndicator';
 
 export interface Props {
   author: string;
@@ -22,6 +24,7 @@ export interface Props {
   onCancel?: () => void;
   addCommentLabel?: string;
   itemsPerPage?: number;
+  isLoading?: boolean;
 }
 
 export const CommentTimeline: React.VFC<Props> = ({
@@ -33,6 +36,7 @@ export const CommentTimeline: React.VFC<Props> = ({
   onChange,
   onCancel,
   itemsPerPage = 4,
+  isLoading = false,
 }) => {
   const theme = useTheme();
   const [isCommenting, setIsCommenting] = useState(false);
@@ -51,6 +55,7 @@ export const CommentTimeline: React.VFC<Props> = ({
   });
 
   const wrapperStyles = getWrapperStyles(theme);
+  const loadingStyle = getLoadingStyle();
   const controlsWrapperStyle = getControlsWrapperStyle(theme);
   const commentsWrapperStyles = getCommentsWrapperStyles(theme);
   const contentWrapperStyles = getContentWrapperStyles(theme, isCommenting || (comments && comments.length > 0));
@@ -78,33 +83,43 @@ export const CommentTimeline: React.VFC<Props> = ({
   };
 
   return (
-    <div className={classnames(wrapperStyles)}>
-      {(hasPreviousPage || hasNextPage) && (
-        <div className={controlsWrapperStyle}>
-          <div>{hasPreviousPage && <CommentArrow direction="left" onClick={previousPage} />}</div>
-          <div>{hasNextPage && <CommentArrow direction="right" onClick={nextPage} />}</div>
+    <>
+      {isLoading ? (
+        <div className={loadingStyle}>
+          <UpLoadingIndicator displayMode={'inline'} isLoading={isLoading} width={320} height={240} />
+        </div>
+      ) : (
+        <div className={classnames(wrapperStyles)}>
+          <>
+            {(hasPreviousPage || hasNextPage) && (
+              <div className={controlsWrapperStyle}>
+                <div>{hasPreviousPage && <CommentArrow direction="left" onClick={previousPage} />}</div>
+                <div>{hasNextPage && <CommentArrow direction="right" onClick={nextPage} />}</div>
+              </div>
+            )}
+            <div className={contentWrapperStyles}>
+              <AddCommentButton disabled={isCommenting} onClick={handleAddNewCommentClick} label={addCommentLabel} />
+              <div className={itemsWrapperStyle}>
+                <div className={classnames(commentsWrapperStyles)}>
+                  {isCommenting && (
+                    <Comment
+                      author={author}
+                      date={date}
+                      mode="edition"
+                      onSubmit={handleSubmitNewComment}
+                      onCancel={handleCancelNewComment}
+                      onChange={handleChangeCommentText}
+                    />
+                  )}
+                  {displayedItems.map(({ id, text, author, date }) => (
+                    <Comment text={text} author={author} date={date} key={id} mode="locked" />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </>
         </div>
       )}
-      <div className={contentWrapperStyles}>
-        <AddCommentButton disabled={isCommenting} onClick={handleAddNewCommentClick} label={addCommentLabel} />
-        <div className={itemsWrapperStyle}>
-          <div className={classnames(commentsWrapperStyles)}>
-            {isCommenting && (
-              <Comment
-                author={author}
-                date={date}
-                mode="edition"
-                onSubmit={handleSubmitNewComment}
-                onCancel={handleCancelNewComment}
-                onChange={handleChangeCommentText}
-              />
-            )}
-            {displayedItems.map(({ id, text, author, date }) => (
-              <Comment text={text} author={author} date={date} key={id} mode="locked" />
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
+    </>
   );
 };

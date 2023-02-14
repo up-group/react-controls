@@ -29,3 +29,13 @@ export const getItemsWrapperStyle = (theme: ThemeInterface): string =>
     borderTop: `solid 1px ${theme.colorMap.darkSilver}`,
     flex: 1,
   });
+
+export const getLoadingStyle = (): string => {
+  return style({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '16px',
+    width: '100%',
+  });
+};
