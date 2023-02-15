@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import { WithThemeProps, withTheme } from '../../../Common/theming';
 import defaultTheme from '../../../Common/theming';
 import { isFunction, isEmpty } from '../../../Common/utils';
@@ -163,18 +163,30 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState> 
         <section className="up-menu-header">
           {renderIcon && <section className="up-app-icon-wrapper">{renderIcon}</section>}
           {renderHeader}
+          {!this.props.blocked && isMobileDevice() && (
+            <UpSvgIcon
+              width={15}
+              height={15}
+              iconName={'burger-menu2'}
+              className="up-menu-toggle"
+              onClick={this.toggleMinification}
+              style={{ marginLeft: 'auto', marginRight: 10 }}
+            ></UpSvgIcon>
+          )}
+        </section>
+        {!isMobileDevice() && (
           <div className="up-menu-actions">
             {!this.props.blocked && (
               <UpSvgIcon
-                width={18}
-                height={18}
+                width={15}
+                height={15}
                 iconName={'burger-menu2'}
                 className="up-menu-toggle"
                 onClick={this.toggleMinification}
               ></UpSvgIcon>
             )}
           </div>
-        </section>
+        )}
         <section className="up-menu-nav">
           <nav>
             <ul>{menu}</ul>
@@ -243,15 +255,21 @@ export class MenuItem extends React.Component<MenuItemProps> {
             {isString(this.props.icon) && (
               <UpSvgIcon
                 title={this.props.title}
-                width={22}
-                height={22}
+                width={24}
+                height={24}
                 iconName={this.props.icon as IconName}
               ></UpSvgIcon>
             )}
             {isFunction(this.props.icon) && this.props.icon(this.props)}
             <span className={'up-menu-item-title'}>{this.props.title}</span>
             {!isEmpty(this.props.childMenuItems) && (
-              <UpSvgIcon width={15} height={15} style={{ marginLeft: 'auto' }} iconName={'arrow-right'}></UpSvgIcon>
+              <UpSvgIcon
+                className="chevron"
+                width={15}
+                height={15}
+                style={{ marginLeft: 'auto' }}
+                iconName={'arrow-right'}
+              ></UpSvgIcon>
             )}
           </a>
         )}
@@ -354,14 +372,21 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
   render() {
     const hide = this.props.isVisible === false ? ' hide' : '';
     const active = this.state.active || this.props.isSelected ? 'active' : '';
+    const hasChildren = this.anyChild ? ' hasChildren' : '';
 
     return (
-      <li className={active + hide}>
+      <li className={active + hide + hasChildren}>
         <a onClick={this.onClickA} href={this.props.uri}>
-          {this.anyChild && (
-            <i onClick={this.onClick} className={this.state.active ? 'pe-7s-angle-down' : 'pe-7s-angle-right'}></i>
-          )}
           <span className={'up-menu-item-title'}>{this.props.title}</span>
+          {this.anyChild && (
+            <UpSvgIcon
+              className="chevron"
+              width={15}
+              height={15}
+              style={{ marginLeft: 'auto' }}
+              iconName={'arrow-right'}
+            ></UpSvgIcon>
+          )}
         </a>
         {this.anyChild ? <SubMenu onClick={this.props.onClick} childMenuItems={this.props.childMenuItems} /> : null}
       </li>
@@ -372,7 +397,7 @@ export class SubItems extends React.Component<SubItemsProps, SubItemsState> {
 const UpMenuDefaultHeader = (props: { title: string }, state: { minified: boolean }) => (
   <UpBox flexDirection={'row'} alignItems={'center'} justifyContent={'center'} style={{ height: '100%' }}>
     {!state.minified && (
-      <UpLigne color={colorMap.primary} className={style({ marginLeft: '8px' })}>
+      <UpLigne color={colorMap.white} className={style({ marginLeft: '8px' })}>
         {props.title}
       </UpLigne>
     )}
