@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { action } from '@storybook/addon-actions';
 import UpMenu, { UpMenuState, UpMenuProps, UpMenu as UpMenuComponent, MenuItemData } from './UpMenu';
 import { isEmpty } from '../../../Common/utils';
@@ -14,6 +14,7 @@ import { getRootContainer } from '../../../Common/stories';
 import { DeviceSmartphones } from '../../../Common/utils/device';
 
 import logoSvg from './sources/logo-up-square.svg';
+import { toRem } from '../../../Common/theming/utils';
 
 export default {
   title: 'Components/Display/UpMenu',
@@ -51,7 +52,7 @@ const setMenuSelection = (uri: string, menu: Array<MenuItemData>, prev?: Array<M
 const defaultMenu: Array<MenuItemData> = [
   {
     title: 'Stack',
-    icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+    icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={24} height={24} />,
     isSelected: false,
     isVisible: true,
     uri: '/stack',
@@ -62,7 +63,16 @@ const defaultMenu: Array<MenuItemData> = [
         isSelected: false,
         isVisible: true,
         uri: '/stack/option1',
-        childMenuItems: [],
+        childMenuItems: [
+          {
+            title: 'Stack Option 1 child',
+            icon: 'weather-rain',
+            isSelected: false,
+            isVisible: true,
+            uri: '/stack/option1/child',
+            childMenuItems: [],
+          },
+        ],
       },
       {
         title: 'Stack Option 2',
@@ -93,7 +103,7 @@ const defaultMenu: Array<MenuItemData> = [
   { isSeparator: true },
   {
     title: 'Up',
-    icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+    icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={24} height={24} />,
     isSelected: false,
     isVisible: true,
     uri: '/Up',
@@ -136,17 +146,19 @@ const defaultMenu: Array<MenuItemData> = [
   {
     render: (item: MenuItemData, propsMenu: UpMenuProps, state: UpMenuState) => {
       return (
-        <UpButton
-          intent={'primary'}
-          onClick={e => {
-            action('Command');
-          }}
-          width={state.minified ? 'icon' : 'full'}
-          height={'large'}
-          actionType={'briefcase'}
-        >
-          {'Commander'}
-        </UpButton>
+        <div style={{ paddingRight: toRem(14) }}>
+          <UpButton
+            intent={'primary'}
+            onClick={e => {
+              action('Command');
+            }}
+            width={state.minified ? 'icon' : 'full'}
+            height={'large'}
+            actionType={'briefcase'}
+          >
+            {'Commander'}
+          </UpButton>
+        </div>
       );
     },
   },
@@ -313,7 +325,12 @@ export const GeneralWithCustomHeader = props => {
         }}
         header={(props: Partial<UpMenuProps>, state: UpMenuState) => {
           return (
-            <UpBox flexDirection={'row'} alignItems={'center'} justifyContent={'center'} style={{ height: '100%' }}>
+            <UpBox
+              flexDirection={'row'}
+              alignItems={'center'}
+              justifyContent={'center'}
+              style={{ height: '100%', marginLeft: 10 }}
+            >
               {!state.minified && <UpSvgIcon color={colorMap.primary} iconName={'checkmark'} />}
               {!state.minified && (
                 <UpLigne
@@ -337,7 +354,7 @@ export const Large = props => {
   const defaultMenu: Array<MenuItemData> = [
     {
       title: 'Stack',
-      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={24} height={24} />,
       isSelected: false,
       isVisible: true,
       uri: '/stack',
@@ -378,7 +395,7 @@ export const Large = props => {
     },
     {
       title: 'Up',
-      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={24} height={24} />,
       isSelected: false,
       isVisible: true,
       uri: '/Up',
@@ -421,7 +438,7 @@ export const Large = props => {
     { isSeparator: true },
     {
       title: 'Stack',
-      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={24} height={24} />,
       isSelected: false,
       isVisible: true,
       uri: '/stack',
@@ -455,17 +472,19 @@ export const Large = props => {
     {
       render: (item: MenuItemData, propsMenu: UpMenuProps, state: UpMenuState) => {
         return (
-          <UpButton
-            intent={'primary'}
-            onClick={e => {
-              action('Command');
-            }}
-            width={state.minified ? 'icon' : 'full'}
-            height={'large'}
-            actionType={'briefcase'}
-          >
-            {'Commander'}
-          </UpButton>
+          <div style={{ paddingRight: toRem(14) }}>
+            <UpButton
+              intent={'primary'}
+              onClick={e => {
+                action('Command');
+              }}
+              width={state.minified ? 'icon' : 'full'}
+              height={'large'}
+              actionType={'briefcase'}
+            >
+              {'Commander'}
+            </UpButton>
+          </div>
         );
       },
     },
@@ -504,7 +523,7 @@ export const Large = props => {
     },
     {
       title: 'Other',
-      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={24} height={24} />,
       isSelected: false,
       isVisible: true,
       uri: '/Other',
@@ -537,7 +556,7 @@ export const Large = props => {
     },
     {
       title: 'Logo',
-      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={24} height={24} />,
       isSelected: false,
       isVisible: true,
       uri: '/Logo',
@@ -762,7 +781,12 @@ export const Large = props => {
       }}
       header={(props: Partial<UpMenuProps>, state: UpMenuState) => {
         return (
-          <UpBox flexDirection={'row'} alignItems={'center'} justifyContent={'center'} style={{ height: '100%' }}>
+          <UpBox
+            flexDirection={'row'}
+            alignItems={'center'}
+            justifyContent={'center'}
+            style={{ height: '100%', marginLeft: 10 }}
+          >
             {!state.minified && <UpSvgIcon color={colorMap.primary} iconName={'checkmark'} />}
             {!state.minified && (
               <UpLigne
@@ -785,7 +809,7 @@ export const CustomStyles = props => {
   const defaultMenu: Array<MenuItemData> = [
     {
       title: 'Stack',
-      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={24} height={24} />,
       isSelected: false,
       isVisible: true,
       uri: '/stack',
@@ -837,17 +861,19 @@ export const CustomStyles = props => {
     {
       render: (item: MenuItemData, propsMenu: UpMenuProps, state: UpMenuState) => {
         return (
-          <UpButton
-            intent={'primary'}
-            onClick={e => {
-              action('Command');
-            }}
-            width={state.minified ? 'icon' : 'full'}
-            height={'large'}
-            actionType={'briefcase'}
-          >
-            {'Commander'}
-          </UpButton>
+          <div style={{ paddingRight: toRem(14) }}>
+            <UpButton
+              intent={'primary'}
+              onClick={e => {
+                action('Command');
+              }}
+              width={state.minified ? 'icon' : 'full'}
+              height={'large'}
+              actionType={'briefcase'}
+            >
+              {'Commander'}
+            </UpButton>
+          </div>
         );
       },
     },
@@ -933,7 +959,12 @@ export const CustomStyles = props => {
       }}
       header={(props: Partial<UpMenuProps>, state: UpMenuState) => {
         return (
-          <UpBox flexDirection={'row'} alignItems={'center'} justifyContent={'center'} style={{ height: '100%' }}>
+          <UpBox
+            flexDirection={'row'}
+            alignItems={'center'}
+            justifyContent={'center'}
+            style={{ height: '100%', marginLeft: 10 }}
+          >
             {!state.minified && <UpSvgIcon color={colorMap.primary} iconName={'checkmark'} />}
             {!state.minified && (
               <UpLigne
@@ -973,7 +1004,7 @@ export const Mobile = props => {
   const defaultMenu: Array<MenuItemData> = [
     {
       title: 'Stack',
-      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={24} height={24} />,
       isSelected: false,
       isVisible: true,
       uri: '/stack',
@@ -984,7 +1015,16 @@ export const Mobile = props => {
           isSelected: false,
           isVisible: true,
           uri: '/stack/option1',
-          childMenuItems: [],
+          childMenuItems: [
+            {
+              title: 'Option 1 child',
+              icon: 'weather-rain',
+              isSelected: false,
+              isVisible: true,
+              uri: '/stack/option1/child',
+              childMenuItems: [],
+            },
+          ],
         },
         {
           title: 'Option 2',
@@ -1015,7 +1055,7 @@ export const Mobile = props => {
     { isSeparator: true },
     {
       title: 'Up',
-      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={22} height={22} />,
+      icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={24} height={24} />,
       isSelected: false,
       isVisible: true,
       uri: '/Up',
