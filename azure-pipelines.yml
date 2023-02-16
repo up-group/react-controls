@@ -7,6 +7,12 @@ pool:
   vmImage: 'Ubuntu 20.04'
 
 steps:
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'Sonar Cloud IO'
+    organization: 'upfrance'
+    scannerMode: 'CLI'
+    configMode: 'file'
 - task: NodeTool@0
   inputs:
     versionSpec: '14.x'
@@ -17,6 +23,10 @@ steps:
     npm test
     npm run build-storybook
   displayName: 'npm install and publish static site'
+- task: SonarCloudAnalyze@1
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
 - task: CopyFiles@2
   inputs:
     sourceFolder: public
