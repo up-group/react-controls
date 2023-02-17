@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.260)
+
+## Feature
+- UpMenu : New Design
+
 # ReactControls (version: 0.2.259)
 
 ## Feature Fixes
