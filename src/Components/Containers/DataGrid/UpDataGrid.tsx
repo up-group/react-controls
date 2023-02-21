@@ -1,31 +1,32 @@
 import * as React from 'react';
 
-import $ from 'jquery';
 import classnames from 'classnames';
+import $ from 'jquery';
 import { media, style } from 'typestyle';
 
 import axios from 'axios';
 
-import UpPagination, { UpPaginationProps } from './UpPagination';
-import UpDataGridRowHeader from './UpDataGridRowHeader';
 import UpDataGridRow, { ActionFactory } from './UpDataGridRow';
+import UpDataGridRowHeader from './UpDataGridRowHeader';
 import { ICellFormatter } from './UpDefaultCellFormatter';
+import UpPagination, { UpPaginationProps } from './UpPagination';
 
 import UpLoadingIndicator from '../../Display/LoadingIndicator';
 import UpButton from '../../Inputs/Button/UpButton';
 
-import { IntentType, WithThemeProps } from '../../../Common/theming/types';
 import { ActionType } from '../../../Common/actions';
 import UpDefaultTheme, { withTheme } from '../../../Common/theming';
+import { IntentType, WithThemeProps } from '../../../Common/theming/types';
 import UpDataGridFooter, { UpDataGridFooterProps } from './UpDataGridFooter';
 import UpDataGridHeader, { UpDataGridHeaderProps } from './UpDataGridHeader';
 
-import { UpDataGridProvider } from './UpDataGridContext';
-import { getTestableComponentProps, TestableComponentProps } from '../../../Common/utils/types';
-import { DeviceSmartphones } from '../../../Common/utils/device';
 import { IconName } from '../../../Common/theming/icons';
 import { isEmpty } from '../../../Common/utils';
+import { DeviceSmartphones } from '../../../Common/utils/device';
+import { getTestableComponentProps, TestableComponentProps } from '../../../Common/utils/types';
+import { UpDataGridProvider } from './UpDataGridContext';
 import { DetailsData, DetailsType } from './UpDataGridDetails';
+import { InfiniteScrollObserver } from './InfiniteScrollObserver';
 
 const WrapperDataGridStyle = style(
   {
@@ -201,6 +202,36 @@ const DataGridStyle = (props: UpDataGridProps & WithThemeProps): string =>
     })
   );
 
+const scrollableDataGridStyle = (props: UpDataGridProps & WithThemeProps): string =>
+  style({
+    border: 'solid 1px',
+    borderColor: props.theme.colorMap.defaultBorder,
+    width: '100%',
+    borderRadius: props.theme.borderRadius,
+    overflowY: 'auto',
+    maxHeight: props.upDatagridHeight ? props.upDatagridHeight : '700px',
+    position: 'sticky',
+    top: 0,
+    $nest: {
+      table: {
+        borderCollapse: 'collapse',
+      },
+      thead: {
+        position: 'sticky',
+        top: 0,
+        zIndex: 1000,
+      },
+      tbody: {
+        position: 'sticky',
+        top: 0,
+      },
+      th: {
+        position: 'sticky',
+        top: 0,
+      },
+    },
+  });
+
 export interface ActionDetails {
   type: DetailsType;
   fetchData: () => Promise<DetailsData[]>;
@@ -296,6 +327,9 @@ export interface UpDataGridProps extends TestableComponentProps {
   injectRow?: (previous: any, next: any, colum: Column[]) => JSX.Element;
   // Event Handler
   onSortChange?: (c: Column, dir: SortDirection) => void;
+  onScrollStop?: (page: number, take: number, skip: number) => void;
+  upDatagridHeight?: string;
+  loadOnScroll?: boolean;
   onSelectionChange?: (
     lastUpdatedRow: Row,
     dataSelected: any[],
@@ -325,6 +359,8 @@ export interface UpDataGridState {
   rowsSelected?: Array<Row>;
   lastFetchedDataTime?: Date;
   data?: any;
+  currentPage?: number;
+  refershData?: boolean;
 }
 
 export type SortDirection = 'ASC' | 'DESC';
@@ -412,6 +448,8 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
       page: this.props.paginationProps.page || 1,
       total: this.props.paginationProps.total,
       allRowsSelected: false,
+      currentPage: 1,
+      refershData: false,
     };
 
     if (this.props.data != null) {
@@ -470,7 +508,9 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
           });
         }
         // Internal pagination
-        rows = rows.slice(this.state.skip, this.state.skip + this.state.take);
+        rows = !this.state.refershData
+          ? [...this.state.rows, ...rows.slice(this.state.skip, this.state.skip + this.state.take)]
+          : rows.slice(this.state.skip, this.state.skip + this.state.take);
       }
     }
 
@@ -540,6 +580,21 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
           //TODO : handle error message
           this.setState({ isDataFetching: false });
         });
+    }
+  };
+
+  onScrollStop = (page: number, take: number, skip: number): void => {
+    const totalPages = Math.ceil(this.state.total / this.state.take);
+    if (this.state.currentPage < totalPages) {
+      if (this.props.onScrollStop) this.props.onScrollStop(page, take, skip);
+      this.setState(
+        { currentPage: this.state.currentPage + 1, take, skip, isDataFetching: true, refershData: false },
+        () => {
+          if (this.props.dataSource !== undefined) {
+            this.fetchData();
+          }
+        }
+      );
     }
   };
 
@@ -673,7 +728,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
       }
     });
 
-    this.setState({ columns: columns }, () => {
+    this.setState({ columns: columns, currentPage: 1, refershData: true }, () => {
       if (this.props.dataSource != undefined) {
         this.fetchData();
       }
@@ -727,6 +782,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
           take={this.state.take}
           total={this.state.total}
           onPageChange={this.onPageChange.bind(this)}
+          loadOnScroll={this.props.loadOnScroll}
           {...otherProps}
         />
       </div>
@@ -861,7 +917,11 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
             width={320}
             height={240}
           >
-            <>
+            <InfiniteScrollObserver
+              onScrollStop={this.onScrollStop.bind(this)}
+              scrollableDataGridStyle={scrollableDataGridStyle(this.props)}
+              loadOnScroll={this.props.loadOnScroll}
+            >
               <table
                 ref={r => {
                   this.refTable = r;
@@ -881,7 +941,7 @@ class UpDataGrid extends React.Component<UpDataGridProps & WithThemeProps, UpDat
                 />
                 <tbody className={classnames('up-data-grid-body', oddEvenStyle)}>{rows}</tbody>
               </table>
-            </>
+            </InfiniteScrollObserver>
           </UpLoadingIndicator>
           <UpDataGridFooter
             {...newFooterProps}
