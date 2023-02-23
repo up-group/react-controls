@@ -42,7 +42,7 @@
       "\\.(css|less)$": "<rootDir>/config/testing/__mocks__/styleMock.js"
     },
     "testPathIgnorePatterns": [
-      "<rootDir>/(build|docs|node_modules|dist|generators)/",
+      "<rootDir>/(build|docs|node_modules|dist)/",
       "/__mocks__/"
     ],
     "transform": {
@@ -79,7 +79,6 @@
     "build-storybook": "build-storybook -o ./public",
     "build-storybook-docs": "start-storybook --docs --no-manager-cache",
     "upgrade": "npx npm-check-updates '/storybook/' -u && npm install",
-    "plop": "plop --plopfile ./generators/plopfile.js",
     "lint": "eslint ./src",
     "lint:fix": "cross-env-shell TIMING=1 npm run lint -- --fix",
     "format": "prettier --write './src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
@@ -146,7 +145,6 @@
     "markdown-loader": "^5.1.0",
     "path": "^0.12.7",
     "pinst": "^2.1.1",
-    "plop": "^2.4.0",
     "prettier": "^2.5.1",
     "random-sentence": "^1.0.4",
     "react-docgen-typescript-loader": "^3.7.1",

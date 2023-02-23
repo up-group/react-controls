@@ -62,10 +62,6 @@ src/
 ├── index.ts
 ```
 
-## Generators
-
-Next to come
-
 ## Testing
 
 Included is a test framework for all of your React testing needs. We are using Jest to run the test suite and generate snapshots, plus Enzyme for component introspection.
