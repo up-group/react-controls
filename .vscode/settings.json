@@ -1,7 +1,0 @@
-// Place your settings in this file to overwrite default and user settings.
-{
-  "editor.formatOnSave": false,
-  "typescript.tsserver.log": "verbose",
-  "typescript.tsdk": "./node_modules/typescript/lib",
-  "workbench.colorCustomizations": {}
-}
