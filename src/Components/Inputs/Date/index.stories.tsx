@@ -21,7 +21,7 @@ export default {
 };
 
 const DateForm = props => {
-  const { values, touched, errors, dirty, isSubmitting, handleChange, handleBlur, handleSubmit, handleReset } = props;
+  const { values, handleChange, handleSubmit } = props;
 
   return (
     <form onSubmit={handleSubmit}>

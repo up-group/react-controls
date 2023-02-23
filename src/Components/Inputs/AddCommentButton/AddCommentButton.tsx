@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTheme } from '../../../Common/hooks';
 import { getButtonStyles, getLabelStyles, getPlusIconStyles, getWrapperStyles } from './AddCommentButton.style';
-import CommentPlusIcon from '../../../Common/theming/icons/comment-plus.svg';
+import UpSvgIcon from '../../Display/SvgIcon';
 
 export interface Props {
   label?: string;
@@ -25,7 +25,7 @@ export const AddCommentButton: React.VFC<Props> = ({ disabled = false, label = '
   return (
     <div className={wrapperStyles}>
       <button className={buttonStyles} onClick={handleClick}>
-        <span className={plusIconStyles} dangerouslySetInnerHTML={{ __html: CommentPlusIcon }} />
+        <UpSvgIcon className={plusIconStyles} width={30} height={30} iconName="comment-plus" />
         <label className={labelStyles}>{label}</label>
       </button>
     </div>

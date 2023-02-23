@@ -18,9 +18,8 @@ export interface SvgIconWrapperProps {
   color: string;
   height: any;
   width: any;
-  dangerouslySetInnerHTML: any;
   dataFor?: string;
-  children?: Array<React.ReactNode>;
+  children?: Array<React.ReactNode> | React.ReactNode;
 }
 
 const getIconData = (iconName: string): string => {
@@ -62,7 +61,7 @@ const getStyles = (props: SvgIconWrapperProps): string => {
   return style(styles);
 };
 
-const SvgIconWrapper: React.StatelessComponent<SvgIconWrapperProps> = (props: SvgIconWrapperProps) => {
+const SvgIconWrapper: React.FC<SvgIconWrapperProps> = (props: SvgIconWrapperProps) => {
   const { children, className, height, width, color, ...othersProps } = props;
   return (
     <div {...othersProps} className={classnames('up-icon-wrapper', className, getStyles(props))}>
@@ -83,7 +82,6 @@ const UpSvgIcon: React.StatelessComponent<UpSvgIconProps & WithThemeProps> = ({
   dataFor,
   width,
   height,
-  theme,
   ...others
 }) => {
   const finalHeight = height && !isString(height) ? `${height}px` : height || '20px';
@@ -96,14 +94,17 @@ const UpSvgIcon: React.StatelessComponent<UpSvgIconProps & WithThemeProps> = ({
   }
   if (iconData) {
     const SvgIconElement = () => (
-      <SvgIconWrapper
-        className={classnames(className, mentorOrIllustrationStyles)}
-        color={color}
-        height={finalHeight}
-        width={finalWidth}
-        dangerouslySetInnerHTML={{ __html: iconData }}
-        {...others}
-      ></SvgIconWrapper>
+      <>
+        <SvgIconWrapper
+          className={classnames(className, mentorOrIllustrationStyles)}
+          color={color}
+          height={finalHeight}
+          width={finalWidth}
+          {...others}
+        >
+          <img src={iconData} alt="" />
+        </SvgIconWrapper>
+      </>
     );
 
     if (dataFor != null) {

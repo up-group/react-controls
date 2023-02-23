@@ -4,7 +4,7 @@ import { getActionsStyles, getTextStyles, getWrapperStyles } from './ReadMoreTex
 import { useTheme } from '../../../Common/hooks';
 import { CommentArrow } from '../CommentArrow';
 
-interface Props {
+export interface Props {
   text: string;
   max: number;
 }
