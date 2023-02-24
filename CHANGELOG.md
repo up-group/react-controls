@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.261)
+
+## Bugs Fixes
+- UpDataGrid : Fix footer validation action behaviour
+
 # ReactControls (version: 0.2.260)
 
 ## Feature

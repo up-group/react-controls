@@ -90,7 +90,7 @@ const UpDataGridFooter: React.FC<UpDataGridFooterProps & WithThemeProps> = props
     }));
 
   const handleValidation = () => {
-    selectedAction.onClick(selectedData);
+    return selectedAction.onClick(selectedData);
   };
 
   return (
