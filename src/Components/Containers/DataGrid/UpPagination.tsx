@@ -89,6 +89,8 @@ export interface UpPaginationProps {
   previousLabel?: string;
   /** chaine de caractères utilisées comme séparateur dans la pagination*/
   paginationNavigationSeparator?: string;
+  /** if load on scroll enabled use pagination as indicator */
+  loadOnScroll?: boolean;
   /** generate the pages navigation */
   generatePagesNavigation?: (page, total, take) => Array<number>;
   /** Affihage du nombre de résultats */
@@ -320,7 +322,7 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
           );
         }
 
-        return (
+        const paginationNumbers = !this.props.loadOnScroll ? (
           <li
             key={`page-${index}`}
             className={classnames(this.state.page == value ? 'active' : '', paginationItemClass)}
@@ -330,49 +332,64 @@ class UpPagination extends React.Component<UpPaginationProps & WithThemeProps, U
               {value}
             </a>
           </li>
+        ) : (
+          <li
+            key={`page-${index}`}
+            className={classnames(this.state.page == value ? 'active' : '', paginationItemClass)}
+          >
+            <a onClick={e => e.preventDefault()} href="#">
+              {value}
+            </a>
+          </li>
         );
+
+        return paginationNumbers;
       });
 
       pageNumberNavigation = (
         <nav className={'up-pagination-nav'}>
           <ul className={paginationStyle}>
-            <li
-              key={`page-prev`}
-              className={classnames(
-                'up-pagination-page-prev',
-                this.state.page == 1 ? 'disabled' : 'active',
-                paginationItemClass
-              )}
-              onClick={this.goToPreviousPage}
-            >
-              <a onClick={e => e.preventDefault()} href="#" aria-label="Previous">
-                <span
-                  aria-hidden="true"
-                  dangerouslySetInnerHTML={{
-                    __html: this.props.previousLabel,
-                  }}
-                />
-              </a>
-            </li>
+            {!this.props.loadOnScroll && (
+              <li
+                key={`page-prev`}
+                className={classnames(
+                  'up-pagination-page-prev',
+                  this.state.page == 1 ? 'disabled' : 'active',
+                  paginationItemClass
+                )}
+                onClick={this.goToPreviousPage}
+              >
+                <a onClick={e => e.preventDefault()} href="#" aria-label="Previous">
+                  <span
+                    aria-hidden="true"
+                    dangerouslySetInnerHTML={{
+                      __html: this.props.previousLabel,
+                    }}
+                  />
+                </a>
+              </li>
+            )}
             {PageNumber}
-            <li
-              key={`page-next`}
-              className={classnames(
-                'up-pagination-page-next',
-                this.state.page == maxPage ? 'disabled' : 'active',
-                paginationItemClass
-              )}
-              onClick={this.goToNextPage}
-            >
-              <a href="#" aria-label="Next" onClick={e => e.preventDefault()}>
-                <span
-                  aria-hidden="true"
-                  dangerouslySetInnerHTML={{
-                    __html: this.props.nextLabel,
-                  }}
-                />
-              </a>
-            </li>
+            {!this.props.loadOnScroll && (
+              <li
+                key={`page-next`}
+                className={classnames(
+                  'up-pagination-page-next',
+                  this.state.page == maxPage ? 'disabled' : 'active',
+                  paginationItemClass
+                )}
+                onClick={this.goToNextPage}
+              >
+                <a href="#" aria-label="Next" onClick={e => e.preventDefault()}>
+                  <span
+                    aria-hidden="true"
+                    dangerouslySetInnerHTML={{
+                      __html: this.props.nextLabel,
+                    }}
+                  />
+                </a>
+              </li>
+            )}
           </ul>
         </nav>
       );
