@@ -1,12 +1,7 @@
 import * as React from 'react';
 import { fontFace, style } from 'typestyle';
 import materialinearTtfUrl from '../../../Common/theming/materialinear/fonts/materialinear.ttf';
-import {
-  getFontClassName,
-  isNullOrUndef,
-  AttributPolice,
-  getFontSizeNumber,
-} from '../../../Common/utils/helpers';
+import { getFontClassName, isNullOrUndef, AttributPolice, getFontSizeNumber } from '../../../Common/utils/helpers';
 
 fontFace({
   fontFamily: 'materialinear',

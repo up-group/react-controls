@@ -274,7 +274,8 @@ export type IconNameOld =
   | 'padlock'
   | 'file-edit'
   | 'user-circle'
-  | 'safe';
+  | 'safe'
+  | 'download-full';
 
 export const IconNamesOld: IconName[] = [
   'menu',
@@ -544,6 +545,7 @@ export const IconNamesOld: IconName[] = [
   'file-edit',
   'user-circle',
   'safe',
+  'download-full',
 ];
 
 export type IconName =
@@ -820,7 +822,8 @@ export type IconName =
   | 'padlock'
   | 'file-edit'
   | 'user-circle'
-  | 'safe';
+  | 'safe'
+  | 'download-full';
 
 export const IconNames: IconName[] = [
   'menu',
@@ -1096,6 +1099,7 @@ export const IconNames: IconName[] = [
   'file-edit',
   'user-circle',
   'safe',
+  'download-full',
 ];
 
 const dictionary = {};

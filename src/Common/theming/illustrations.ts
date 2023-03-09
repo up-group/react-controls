@@ -80,7 +80,7 @@ export const IllustrationNames: IllustrationName[] = [
   'location',
   'mentor-joyeux-petillant',
   'transfer',
-  'click-sheet-file-mcc'
+  'click-sheet-file-mcc',
 ];
 
 const dictionary = {};
