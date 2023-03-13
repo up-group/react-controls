@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.262)
+
+## Bugs Fixes
+- UpMenu : Fixes selected menu item style
+
 # ReactControls (version: 0.2.261)
 
 ## Bugs Fixes

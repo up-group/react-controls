@@ -170,7 +170,7 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           paddingLeft: `${toRem(70)} !important`,
         },
         '&.up-menu nav ul > li.active:not(.hasChildren) a': {
-          backgroundColor: 'white',
+          backgroundColor: '#424C4A',
           borderTopLeftRadius: toRem(24),
           borderBottomLeftRadius: toRem(24),
           display: 'flex',
