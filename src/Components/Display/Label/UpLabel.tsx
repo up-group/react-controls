@@ -3,17 +3,16 @@ import { UpLabelProps } from './types';
 import { getStyles } from './styles';
 import { RequiredMark } from '../../Inputs/Input/UpInput';
 
-const UpLabel: React.FC<UpLabelProps> = (props) => {
-
+const UpLabel: React.FC<UpLabelProps> = props => {
   const {
     inline,
     children,
-    text= '',
-    disabled= false,
-    required= false,
-    textAlign= 'left',
-    color= '#7f8fa4',
-  ...others
+    text = '',
+    disabled = false,
+    required = false,
+    textAlign = 'left',
+    color = '#7f8fa4',
+    ...others
   } = props;
 
   // Fix double focus with the blueprint datepicker.
@@ -29,22 +28,22 @@ const UpLabel: React.FC<UpLabelProps> = (props) => {
   // End Fix
 
   return (
-      <label className={getStyles(props)} onFocus={onFocus} onClick={onClick} {...others}>
-        <span className="up-label-text">
-          {text}
-          {required && (
-              <RequiredMark
-                  markStyle={{
-                    position: 'absolute',
-                    top: '4px',
-                    marginLeft: '4px',
-                  }}
-              />
-          )}
-        </span>
-        {children}
-      </label>
+    <label className={getStyles(props)} onFocus={onFocus} onClick={onClick} {...others}>
+      <span className="up-label-text">
+        {text}
+        {required && (
+          <RequiredMark
+            markStyle={{
+              position: 'absolute',
+              top: '4px',
+              marginLeft: '4px',
+            }}
+          />
+        )}
+      </span>
+      {children}
+    </label>
   );
-}
+};
 
 export default UpLabel;

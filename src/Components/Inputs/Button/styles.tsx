@@ -123,7 +123,7 @@ const base = (props: UpButtonProps & WithThemeProps): NestedCSSProperties => {
       '&.up-btn .up-loading-indicator-wrapper > div': {
         width: '100%',
         height: calc('100%'),
-      }
+      },
     },
   };
 };

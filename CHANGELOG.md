@@ -2,6 +2,7 @@
 ## Main Changes
 
 - UpMenu: Fix minified icons
+- Icons: Adds download icon
 
 # ReactControls (version: 2.17.24)
 ## Main Changes

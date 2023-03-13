@@ -70,7 +70,7 @@ const defaultMenu: Array<MenuItemData> = [
             isVisible: true,
             uri: '/stack/option1/child',
             childMenuItems: [],
-          }
+          },
         ],
       },
       {
@@ -1001,7 +1001,7 @@ export const Mobile = props => {
               isVisible: true,
               uri: '/stack/option1/child',
               childMenuItems: [],
-            }
+            },
           ],
         },
         {

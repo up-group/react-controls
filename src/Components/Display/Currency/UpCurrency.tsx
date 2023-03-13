@@ -1,20 +1,19 @@
 import * as React from 'react';
 import { style } from 'typestyle';
-import { Property } from 'csstype';
 import { getIntegerValue, getDecimalValue } from '../../../Common/utils/currency';
 import classnames from 'classnames';
 import { useCountUp } from 'react-countup';
 import UpBox from '../../Containers/Box';
 
 interface IColorProps {
-  negative? : {
-    float: string,
-    integer: string,
-  },
-  default? : {
-    float: string,
-    integer: string,
-  }
+  negative?: {
+    float: string;
+    integer: string;
+  };
+  default?: {
+    float: string;
+    integer: string;
+  };
 }
 
 export interface UpCurrencyProps extends React.ClassAttributes<any> {
@@ -32,11 +31,11 @@ export interface UpCurrencyProps extends React.ClassAttributes<any> {
 }
 
 const UpCurrency = (props: UpCurrencyProps) => {
-  let positiveIntegerColor = "#ff8c1a";
-  let positiveDecimalColor = "#994d00";
+  let positiveIntegerColor = '#ff8c1a';
+  let positiveDecimalColor = '#994d00';
 
-  let negativeIntegerColor = "#D7D7D7";
-  let negativeDecimalColor = "#9B9B9B";
+  let negativeIntegerColor = '#D7D7D7';
+  let negativeDecimalColor = '#9B9B9B';
 
   if (props.colors?.default) {
     positiveIntegerColor = props.colors.default.integer;
@@ -57,7 +56,7 @@ const UpCurrency = (props: UpCurrencyProps) => {
             ? props.integerLineHeight
             : (props.integerFontSize ? props.integerFontSize : 40) + 8) + 'px',
         fontWeight: props.integerFontWeight ? props.integerFontWeight : 'normal',
-        color: props.value >= 0 ? positiveIntegerColor : negativeIntegerColor
+        color: props.value >= 0 ? positiveIntegerColor : negativeIntegerColor,
       },
     },
   });
@@ -72,7 +71,7 @@ const UpCurrency = (props: UpCurrencyProps) => {
           (props.decimalLineHeight
             ? props.decimalLineHeight
             : (props.decimalFontSize ? props.decimalFontSize : 14) + 2) + 'px',
-        color: props.value >= 0 ? positiveDecimalColor : negativeDecimalColor
+        color: props.value >= 0 ? positiveDecimalColor : negativeDecimalColor,
       },
     },
   });

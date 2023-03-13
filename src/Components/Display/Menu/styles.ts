@@ -129,10 +129,9 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           textAlign: 'left',
           marginLeft: toRem(14),
         },
-        '&.up-menu ul li.active > a > .up-menu-item-title':
-          {
-            color: props.theme.colorMap.primary,
-          },
+        '&.up-menu ul li.active > a > .up-menu-item-title': {
+          color: props.theme.colorMap.primary,
+        },
         '&.up-menu ul li ul li > a > .up-menu-item-title': {
           color: props.theme.colorMap.white,
         },
@@ -210,7 +209,7 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           transition: 'transform 0.5s ease',
         },
         '&.up-menu nav > ul ul ul:last-child': {
-          paddingBottom: '0 !important'
+          paddingBottom: '0 !important',
         },
         '&.up-menu nav > ul > li ul li:not(:last-child)': {
           marginBottom: toRem(25),
