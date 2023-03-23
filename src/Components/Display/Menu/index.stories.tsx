@@ -52,7 +52,7 @@ const setMenuSelection = (uri: string, menu: Array<MenuItemData>, prev?: Array<M
 const defaultMenu: Array<MenuItemData> = [
   {
     title: 'Stack',
-    icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={24} height={24} />,
+    icon: 'stats',
     isSelected: false,
     isVisible: true,
     uri: '/stack',
@@ -94,7 +94,7 @@ const defaultMenu: Array<MenuItemData> = [
   },
   {
     title: 'Smart',
-    icon: 'smartphone',
+    icon: 'handshake',
     isSelected: false,
     isVisible: true,
     uri: '/smart',
@@ -103,7 +103,7 @@ const defaultMenu: Array<MenuItemData> = [
   { isSeparator: true },
   {
     title: 'Up',
-    icon: propsIcon => <UpSvgIcon iconHtml={logoSvg} width={24} height={24} />,
+    icon: 'ok',
     isSelected: false,
     isVisible: true,
     uri: '/Up',
@@ -136,7 +136,7 @@ const defaultMenu: Array<MenuItemData> = [
   },
   {
     title: 'Settings',
-    icon: 'settings',
+    icon: 'check-card',
     isSelected: false,
     isVisible: true,
     uri: '/settings',

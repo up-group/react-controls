@@ -31,7 +31,7 @@ const UpLabel: React.FC<UpLabelProps> = props => {
     <label className={getStyles(props)} onFocus={onFocus} onClick={onClick} {...others}>
       {text && (
         <span className="up-label-text">
-        {text}
+          {text}
           {required && (
             <RequiredMark
               markStyle={{
@@ -41,7 +41,7 @@ const UpLabel: React.FC<UpLabelProps> = props => {
               }}
             />
           )}
-      </span>
+        </span>
       )}
       {children}
     </label>

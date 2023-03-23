@@ -129,6 +129,7 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           fontWeight: 500,
           textAlign: 'left',
           marginLeft: toRem(14),
+          padding: `${toRem(6)} 0`,
         },
         '&.up-menu ul li.active > a > .up-menu-item-title': {
           color: props.theme.colorMap.primary,
@@ -163,7 +164,7 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           flexDirection: 'row',
           justifyContent: 'flex-start',
           alignItems: 'center',
-          padding: toRem(12),
+          padding: `${toRem(6)} ${toRem(12)}`,
         },
         '&.up-menu nav > ul > li > ul > li a': {
           padding: 0,
@@ -181,7 +182,7 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           flexDirection: 'row',
           justifyContent: 'flex-start',
           alignItems: 'center',
-          padding: toRem(12),
+          padding: `${toRem(6)} ${toRem(12)}`,
         },
         '&.up-menu  nav > ul > li.active.hasChildren > a': {
           backgroundColor: props.minified ? 'white' : 'transparent',
@@ -191,7 +192,7 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           flexDirection: 'row',
           justifyContent: 'flex-start',
           alignItems: 'center',
-          padding: toRem(12),
+          padding: `${toRem(6)} ${toRem(12)}`,
         },
         '&.up-menu nav > ul > li > a': {
           width: '100%',
@@ -203,7 +204,7 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           fontWeight: 500,
         },
         '&.up-menu nav > ul > li:not(:last-child)': {
-          marginBottom: toRem(6),
+          marginBottom: toRem(20),
         },
         '&.up-menu nav  ul li > ul': {
           display: 'none',
@@ -240,7 +241,7 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           paddingBottom: '0 !important',
         },
         '&.up-menu nav > ul > li ul li:not(:last-child)': {
-          marginBottom: toRem(25),
+          marginBottom: toRem(10),
         },
         '&.up-menu .up-menu-actions': {
           marginTop: toRem(28),
