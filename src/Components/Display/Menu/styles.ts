@@ -28,6 +28,7 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
     backgroundColor: '#4E5B59',
     transition: 'width 0.5s',
     padding: toRem(14),
+    paddingRight: 0,
   };
 
   let defaultFooterStyles: NestedCSSProperties = {
@@ -39,8 +40,8 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
   let defaultHeaderStyles: NestedCSSProperties = {
     display: 'flex',
     flexDirection: props.minified ? 'column' : 'row',
-    justifyContent: 'space-between',
     alignItems: props.minified ? 'flex-start' : 'center',
+    paddingRight: toRem(14),
   };
 
   let defaultNavStyles: NestedCSSProperties = {
@@ -132,6 +133,10 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
         '&.up-menu ul li.active > a > .up-menu-item-title': {
           color: props.theme.colorMap.primary,
         },
+        '&.up-menu ul li.active > a > .up-icon-wrapper.colored *': {
+          color: `${props.theme.colorMap.primary} !important`,
+          fill: `${props.theme.colorMap.primary} !important`,
+        },
         '&.up-menu ul li ul li > a > .up-menu-item-title': {
           color: props.theme.colorMap.white,
         },
@@ -140,15 +145,18 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
         },
         '&.up-menu nav > ul > li': {
           position: 'relative',
-          maxWidth: props.width - 28,
           overflow: 'hidden',
         },
         '&.up-menu nav > ul > li:hover': {
           overflow: 'visible',
         },
-        '&.up-menu nav > ul > li.active > a, &.up-menu nav > ul > li:hover > a': {
+        '&.up-menu nav > ul > li:hover > a': {
           backgroundColor: '#424C4A',
-          borderRadius: toRem(24),
+          borderTopLeftRadius: toRem(24),
+          borderBottomLeftRadius: toRem(24),
+        },
+        '&.up-menu nav .up-sub-menu li.hasChildren > a > .up-icon-wrapper': {
+          marginRight: toRem(14),
         },
         '&.up-menu nav > ul > li a': {
           display: 'flex',
@@ -159,14 +167,34 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
         },
         '&.up-menu nav > ul > li > ul > li a': {
           padding: 0,
-          paddingLeft: toRem(12),
-          width: toRem(213),
+          paddingLeft: `${toRem(50)} !important`,
+        },
+        '&.up-menu nav > ul > li > ul > li > ul > li a': {
+          padding: 0,
+          paddingLeft: `${toRem(70)} !important`,
+        },
+        '&.up-menu nav ul > li.active:not(.hasChildren) a': {
+          backgroundColor: 'white',
+          borderTopLeftRadius: toRem(24),
+          borderBottomLeftRadius: toRem(24),
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          padding: toRem(12),
+        },
+        '&.up-menu  nav > ul > li.active.hasChildren > a': {
+          backgroundColor: props.minified ? 'white' : 'transparent',
+          borderTopLeftRadius: toRem(24),
+          borderBottomLeftRadius: toRem(24),
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          padding: toRem(12),
         },
         '&.up-menu nav > ul > li > a': {
-          width: props.minified ? 48 : props.width - 28,
-        },
-        '&.up-menu nav > ul > li:first-child': {
-          marginTop: props.minified ? 0 : 83,
+          width: '100%',
         },
         '&.up-menu nav > ul > li .up-sub-menu-title': {
           display: 'none',
@@ -190,7 +218,7 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           top: props.minified ? 0 : 'inherit',
           left: props.minified ? toRem(48) : 'inherit',
           position: props.minified ? 'absolute' : 'inherit',
-          padding: `${toRem(16)} ${toRem(5)} ${toRem(30)} ${toRem(35)}`,
+          padding: `${toRem(16)} 0 ${toRem(30)} 0`,
           width: 'auto',
           opacity: 1,
           transform: 'scaleY(1)',
@@ -201,7 +229,7 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           borderTopRightRadius: props.theme.borderRadius,
         },
         '&.up-menu nav > ul > li.active:not(:hover) ul': {
-          padding: `${toRem(16)} ${toRem(5)} ${toRem(30)} ${toRem(35)}`,
+          padding: `${toRem(16)} 0 ${toRem(30)} 0`,
           width: 'auto',
           opacity: 1,
           transform: 'scaleY(1)',
@@ -215,8 +243,10 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           marginBottom: toRem(25),
         },
         '&.up-menu .up-menu-actions': {
-          minHeight: toRem(23),
-          margin: props.minified ? `${toRem(30)} ${toRem(15)}` : 0,
+          marginTop: toRem(28),
+          marginBottom: toRem(28),
+          paddingLeft: toRem(12),
+          paddingRight: toRem(12),
         },
         '&.up-menu .up-menu-toggle': {
           cursor: 'pointer',
@@ -230,6 +260,14 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           {
             fill: props.theme.colorMap.primary,
           },
+        '&.up-menu nav ul.up-sub-menu': {
+          paddingRight: '0 !important',
+        },
+        '&.up-menu nav ul.up-sub-menu > li > a.active': {
+          paddingRight: '0 !important',
+          paddingTop: `${toRem(16)} !important`,
+          paddingBottom: `${toRem(16)} !important`,
+        },
       },
     },
     media(DeviceLRTablets, {
@@ -257,7 +295,7 @@ export const MenuStyles = (props: UpMenuProps & WithThemeProps & UpMenuState): s
           flexDirection: 'row',
           height: '100%',
           padding: 5,
-          alignItems: 'flex-start',
+          alignItems: 'center',
         },
         '&.up-menu .up-menu-actions': {
           margin: '13px 5px',
