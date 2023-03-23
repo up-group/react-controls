@@ -29,18 +29,20 @@ const UpLabel: React.FC<UpLabelProps> = props => {
 
   return (
     <label className={getStyles(props)} onFocus={onFocus} onClick={onClick} {...others}>
-      <span className="up-label-text">
+      {text && (
+        <span className="up-label-text">
         {text}
-        {required && (
-          <RequiredMark
-            markStyle={{
-              position: 'absolute',
-              top: '4px',
-              marginLeft: '4px',
-            }}
-          />
-        )}
+          {required && (
+            <RequiredMark
+              markStyle={{
+                position: 'absolute',
+                top: '4px',
+                marginLeft: '4px',
+              }}
+            />
+          )}
       </span>
+      )}
       {children}
     </label>
   );
