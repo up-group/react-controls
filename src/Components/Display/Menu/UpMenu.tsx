@@ -255,8 +255,8 @@ export class MenuItem extends React.Component<MenuItemProps> {
             {isString(this.props.icon) && (
               <UpSvgIcon
                 title={this.props.title}
-                width={24}
-                height={24}
+                width={30}
+                height={30}
                 iconName={this.props.icon as IconName}
                 color="#000"
               ></UpSvgIcon>

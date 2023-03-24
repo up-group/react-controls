@@ -53,13 +53,17 @@ const isColorMustNotBeOverrided = (iconName: string): boolean =>
 
 const getStyles = (props: SvgIconWrapperProps): string => {
   const styles: NestedCSSProperties = {
-    display: 'inline-block',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     width: `${props.width}`,
     height: `${props.height}`,
     margin: '1px',
     $nest: {
       '& svg': {
         pointerEvents: 'none',
+        width: '100%',
+        height: '100%',
       },
     },
   };
@@ -68,6 +72,8 @@ const getStyles = (props: SvgIconWrapperProps): string => {
       '&.colored svg:not(.uncolored), &.colored svg path:not(.uncolored), &.colored svg polygon:not(.uncolored), &.colored svg polyline:not(.uncolored)':
         {
           fill: props.color,
+          width: '100%',
+          height: '100%',
         },
     };
   }

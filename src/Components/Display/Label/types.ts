@@ -12,5 +12,5 @@ export interface CommonProps {
 }
 
 export interface UpLabelProps extends CommonProps {
-  text: string;
+  text?: string;
 }

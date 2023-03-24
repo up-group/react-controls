@@ -30,3 +30,5 @@ e2e/node_modules/
 dist/
 .env
 .npmrc
+
+.DS_Store

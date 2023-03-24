@@ -823,7 +823,10 @@ export type IconName =
   | 'file-edit'
   | 'user-circle'
   | 'safe'
-  | 'download-full';
+  | 'download-full'
+  | 'handshake'
+  | 'check-card'
+  | 'ok';
 
 export const IconNames: IconName[] = [
   'menu',
@@ -1100,6 +1103,9 @@ export const IconNames: IconName[] = [
   'user-circle',
   'safe',
   'download-full',
+  'check-card',
+  'handshake',
+  'ok',
 ];
 
 const dictionary = {};
