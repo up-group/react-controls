@@ -90,3 +90,23 @@ export const CallBackUpNavTab = () => (
 );
 
 CallBackUpNavTab.storyName = 'Callback To Execute On Tab Changing';
+
+export const WithLingTitle = () => (
+  <UpNavTab
+    tabs={[
+      {
+        content: <UpPanel type="info" disableAutoIntentIcon={false} message="Information sur ..." />,
+        head: 'Contrôle et ajustement des titres en anomalies par remises ',
+      },
+      {
+        content: <UpPanel type="warning" disableAutoIntentIcon={false} message="Attention sur ..." />,
+        head: "Contrôle et ajustement des titres en anomalies par type d'anomalie",
+      },
+      {
+        content: <UpPanel type="danger" disableAutoIntentIcon={false} message="Erreur sur ..." />,
+        head: 'Contrôle et ajustement des remises',
+      },
+    ]}
+    onSelectedTabChanged={(selectTabKey, tab) => console.log(`You are in tab ${selectTabKey}`)}
+  />
+);
