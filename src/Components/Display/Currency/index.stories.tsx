@@ -30,16 +30,20 @@ export const CustomStyling = () => (
     integerLineHeight={100}
     decimalLineHeight={50}
     integerFontWeight={300}
-    color={'#ff8c1a'}
-    secondColor={'#994d00'}
     unit={'$'}
   />
 );
-
 export const WithAnimation = () => (
   <div>
     <label>{'With no delay :'}</label>
-    <UpCurrency value={250.99} integerFontSize={50} decimalFontSize={20} unit={'€'} animate colors={{default:{float: "red", integer:"green"}}} />
+    <UpCurrency
+      value={250.99}
+      integerFontSize={50}
+      decimalFontSize={20}
+      unit={'€'}
+      animate
+      colors={{ default: { float: 'red', integer: 'green' } }}
+    />
     <label>{'With 2 seconds delay :'}</label>
     <UpCurrency value={250.99} integerFontSize={50} decimalFontSize={20} unit={'€'} animate delay={2} />
     <label>{'With 4 seconds delay :'}</label>
@@ -47,6 +51,25 @@ export const WithAnimation = () => (
     <label>{'With negative decimal value'}</label>
     <UpCurrency value={-250.99} integerFontSize={50} decimalFontSize={20} unit={'€'} delay={4} />
     <label>{'With negative decimal value > -1'}</label>
-    <UpCurrency value={-0.99} integerFontSize={50} decimalFontSize={20} unit={'€'} delay={4} colors={{negative:{float: "#c791c7", integer:"#ff852b"}}} />
+    <UpCurrency
+      value={-0.99}
+      integerFontSize={50}
+      decimalFontSize={20}
+      unit={'€'}
+      delay={4}
+      colors={{ negative: { float: '#c791c7', integer: '#ff852b' } }}
+    />
   </div>
+);
+
+export const WithLongValue = () => (
+  <UpCurrency
+    value={9532.2}
+    integerFontSize={80}
+    decimalFontSize={30}
+    integerLineHeight={100}
+    decimalLineHeight={50}
+    integerFontWeight={300}
+    unit={'$'}
+  />
 );
