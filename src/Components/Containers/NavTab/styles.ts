@@ -51,7 +51,7 @@ export const tabItem = (props: TabHeadItemProps): NestedCSSProperties => ({
   borderRadius: '4px 4px 0 0',
   backgroundColor: '#fff',
   width: '100%',
-  height: toRem(45),
+  alignSelf: 'stretch',
   fontWeight: props.tabKey === props.selectedTabKey ? 700 : 500,
   color: props.tabKey === props.selectedTabKey ? '#F59100' : '#4E5B59',
   $nest: {
