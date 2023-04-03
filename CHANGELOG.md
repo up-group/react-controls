@@ -1,3 +1,9 @@
+# ReactControls (version: 0.2.263)
+
+## Bugs Fixes
+- UpNavTabs : Fixes style
+- UpCurrency : Fixes separators
+
 # ReactControls (version: 0.2.262)
 
 ## Bugs Fixes
