@@ -67,6 +67,7 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
     showPreview: true,
     previewDisabledMessage: 'La présvisualisation est désactivée.',
     noPreviewMessage: 'Aucune prévisualisation disponible pour ce type de fichier.',
+    maxFileSizeExceededMessage: 'La taille maximale autoriséé est de {{maxFileSize}}Mo.',
     openFileLabel: 'Ouvrir le fichier',
     deleteFileLabel: 'Supprimer le fichier',
     selectFileLabel: 'Choisir un fichier',
@@ -220,6 +221,21 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
     return false;
   };
 
+  /**
+   * File size check
+   * @param file : IFile
+   * @returns {boolean}
+   */
+  isSizeAllowed = (file: IFile): boolean => {
+    if (!this.props.maxFileSize) {
+      return true;
+    }
+
+    if (file.size > this.props.maxFileSize * 1000 * 1000) return false;
+
+    return true;
+  };
+
   selectFile = (filesToUpload, e) => {
     const file = filesToUpload[0];
 
@@ -241,6 +257,18 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
       const errors = [];
       errors.push({
         message: this.props.allowedExtensionsErrorMessage(this.props.allowedExtensions, this.props.value),
+        intent: 'error',
+      });
+
+      return this.setState({ errors });
+    } else {
+      this.setState({ errors: null });
+    }
+
+    if (!this.isSizeAllowed(file)) {
+      const errors = [];
+      errors.push({
+        message: this.props.maxFileSizeExceededMessage.replace('{{maxFileSize}}', `${this.props.maxFileSize}`),
         intent: 'error',
       });
 

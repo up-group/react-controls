@@ -6,7 +6,7 @@ export interface IFile {
   name?: string;
   value?: string;
   mime_type?: string;
-  size_kb?: number;
+  size?: number; // file size in bytes
   import_date?: Date;
   comment?: string;
   value_base64?: string | ArrayBuffer;
@@ -48,6 +48,8 @@ export interface UpDropFileProps extends WithThemeProps {
   value?: IFile;
   disabled?: boolean;
   maxImgWidth?: number;
+  maxFileSize?: number;
+  maxFileSizeExceededMessage?: string;
   autoResizeContainer?: boolean;
   showPreview?: boolean;
   noPreviewMessage?: string;

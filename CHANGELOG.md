@@ -1,3 +1,9 @@
+
+# ReactControls (version: 0.2.264)
+
+## Feature
+- UpDropFile : Add size limitation handling
+
 # ReactControls (version: 0.2.263)
 
 ## Bugs Fixes
@@ -8,7 +14,6 @@
 
 ## Bugs Fixes
 - UpMenu : Fixes selected menu item style
-
 # ReactControls (version: 0.2.261)
 
 ## Bugs Fixes

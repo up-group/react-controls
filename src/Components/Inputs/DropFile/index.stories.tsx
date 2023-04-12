@@ -9,6 +9,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { style } from 'typestyle';
 import { getRootContainer } from '../../../Common/stories';
+import { IFile } from './types';
 
 export default {
   title: 'Components/Inputs/UpDropFile',
@@ -79,8 +80,8 @@ export const AllowedExtensionsAndCustomizableErrorMessage = () => (
         label={'Add your file'}
         name={'file'}
         allowedExtensions={['pdf']}
-        allowedExtensionsErrorMessage={(extension: string[]) =>
-          `Le format n'est pas bon. Le fichier doit être un ${extension[0]}`
+        allowedExtensionsErrorMessage={(extensions?: string[], value?: IFile) =>
+          `Le format n'est pas bon. Le fichier doit être un ${extensions ? extensions[0] : ''}`
         }
       >
         Add
@@ -93,6 +94,16 @@ export const CustomisableSelectFileButtonLabel = () => (
   <UpThemeProvider theme={UpDefaultTheme}>
     <UpBox className={style({ width: '300px !important' })}>
       <UpDropFile name={'file'} selectFileLabel={'Choisir'} displaySelectFile={true}>
+        Add
+      </UpDropFile>
+    </UpBox>
+  </UpThemeProvider>
+);
+
+export const MaxFileSize = () => (
+  <UpThemeProvider theme={UpDefaultTheme}>
+    <UpBox className={style({ width: '300px !important' })}>
+      <UpDropFile name={'file'} selectFileLabel={'Choisir'} displaySelectFile={true} maxFileSize={1}>
         Add
       </UpDropFile>
     </UpBox>
