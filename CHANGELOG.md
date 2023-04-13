@@ -1,4 +1,9 @@
 
+# ReactControls (version: 0.2.265)
+
+## Bugs Fixes
+- UpInput : fix input padding
+
 # ReactControls (version: 0.2.264)
 
 ## Feature
