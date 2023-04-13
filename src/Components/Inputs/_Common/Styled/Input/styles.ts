@@ -315,12 +315,6 @@ export const inputStyles = (props: UpInputProps & WithThemeProps): NestedCSSProp
       '.up-input-group .up-input': {
         position: 'relative',
       },
-      '.up-input-group .up-input:not(:first-child)': {
-        paddingLeft: '34px',
-      },
-      '.up-input-group .up-input:not(:last-child)': {
-        paddingRight: '15px',
-      },
       '.up-input-group .up-input-action, .up-input-group > .up-button, .up-input-group > .up-icon-wrapper': {
         position: 'absolute',
         top: 0,
