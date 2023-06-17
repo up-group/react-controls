@@ -1,3 +1,7 @@
+# ReactControls (version: 0.2.266)
+
+## Bugs Fixes
+- UpDataGrid : hide image when page data changes
 
 # ReactControls (version: 0.2.265)
 

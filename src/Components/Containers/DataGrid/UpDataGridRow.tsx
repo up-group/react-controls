@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classnames from 'classnames';
 import UpCheckbox from '../../Inputs/Checkbox/UpCheckBox';
 import UpButton from '../../Inputs/Button/UpButton';
@@ -44,6 +44,10 @@ const UpDataGridRow: React.VFC<UpDataGridRowProps> = props => {
   } = props;
 
   const [detailsOpened, setDetailsOpened] = useState(false);
+
+  React.useEffect(() => {
+    setDetailsOpened(false);
+  }, [value]);
 
   const formatter = new UpDefaultCellFormatter();
 

@@ -1208,7 +1208,8 @@ export const WithImages = (): React.ReactNode => {
     { src: './cheque-1.png', alt: '' },
     { src: './cheque-1.png', alt: '' },
   ];
-
+  const [currentPage, setPage] = React.useState(1);
+  const [previousPage, setPreviousPage] = React.useState<number>(0);
   const actionFactory: ActionFactory<any> = (rowValue: any) => {
     const actions: Array<Action> = [
       {
@@ -1234,9 +1235,14 @@ export const WithImages = (): React.ReactNode => {
     return actions;
   };
 
+  const allDataImages = [...data2];
+  const TAKE = 10;
+  const currentData = allDataImages.slice((currentPage - 1) * TAKE, (currentPage - 1) * TAKE + TAKE);
+
   return (
     <UpDataGrid
       rowActions={actionFactory}
+      isPaginationEnabled={true}
       columns={[
         {
           label: 'Col 1',
@@ -1259,7 +1265,17 @@ export const WithImages = (): React.ReactNode => {
           isSortable: true,
         },
       ]}
-      data={data}
+      data={currentData}
+      paginationProps={{
+        total: data2.length,
+        page: currentPage,
+        take: TAKE,
+        skip: (currentPage - 1) * TAKE,
+        onPageChange: (page: number, take: number, skip: number): void => {
+          setPreviousPage(currentPage);
+          setPage(page);
+        },
+      }}
     />
   );
 };
