@@ -618,6 +618,8 @@ export default class UpSelect extends BaseControlComponent<UpSelectProps, any> {
       } else if (typeof value !== 'object' && this.state.extra.fullObject) {
         value = this.state.extra.fullObject;
       }
+    } else if (typeof value !== 'object' && data) {
+      value = data.find(item => item[this.keyId] == value);
     }
 
     const selectComponentProps: Props = {

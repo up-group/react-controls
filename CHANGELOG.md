@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.267)
+
+## Bugs Fixes
+- UpSelect : fix mode full
+
 # ReactControls (version: 0.2.266)
 
 ## Bugs Fixes
