@@ -11,7 +11,7 @@ import { isEqual, isString } from 'lodash';
 import UpLigne from '../Ligne';
 import colorMap from '../../../Common/theming/colorMap';
 
-import { style } from 'typestyle';
+import { classes, style } from 'typestyle';
 import { isMobileDevice } from '../../../Common/utils/helpers';
 
 import logo from './sources/logo-up-square.svg';
@@ -33,6 +33,7 @@ export interface UpMenuProps {
   blocked?: boolean;
   onClick?: (uri: string, menuItem?: MenuItemData) => boolean | void;
   onMinifiedChange?: (minified?: boolean) => void;
+  toggleIconName?: IconName
   customStyles?: UpMenuCustomStyles;
 }
 
@@ -150,6 +151,8 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState> 
       renderIcon = (icon as RenderCallback)(this.props, this.state);
     }
 
+    const toggleIconName = others.toggleIconName || "burger-menu2"
+
     return (
       <aside
         className={classnames(
@@ -167,7 +170,7 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState> 
             <UpSvgIcon
               width={15}
               height={15}
-              iconName={'burger-menu2'}
+              iconName={toggleIconName}
               className="up-menu-toggle"
               onClick={this.toggleMinification}
               style={{ marginLeft: 'auto', marginRight: 10 }}
@@ -180,14 +183,14 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState> 
               <UpSvgIcon
                 width={15}
                 height={15}
-                iconName={'burger-menu2'}
+                iconName={toggleIconName}
                 className="up-menu-toggle"
                 onClick={this.toggleMinification}
               ></UpSvgIcon>
             )}
           </div>
         )}
-        <section className="up-menu-nav">
+        <section className={classes("up-menu-nav", this.currentMinifiedValue ? "minified" : "")}>
           <nav>
             <ul>{menu}</ul>
           </nav>
