@@ -156,6 +156,8 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState> 
 
     const upMenuNavClassName = classes('up-menu-nav', this.currentMinifiedValue ? 'minified' : '');
 
+    const showToggler = !this.props.blocked && isMobileDevice() || this.props.showToggler;
+
     return (
       <aside
         className={classnames(
@@ -169,7 +171,7 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState> 
         <section className="up-menu-header">
           {renderIcon && <section className="up-app-icon-wrapper">{renderIcon}</section>}
           {renderHeader}
-          {(!this.props.blocked && isMobileDevice() || this.props.showToggler) && (
+          {showToggler && (
             <UpSvgIcon
               width={15}
               height={15}
