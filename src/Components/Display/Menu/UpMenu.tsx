@@ -151,7 +151,9 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState> 
       renderIcon = (icon as RenderCallback)(this.props, this.state);
     }
 
-    const toggleIconName = others.toggleIconName || "burger-menu2";
+    const toggleIconName = others.toggleIconName || 'burger-menu2';
+
+    const upMenuNavClassName = classes('up-menu-nav', this.currentMinifiedValue ? 'minified' : '');
 
     return (
       <aside
@@ -190,7 +192,7 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState> 
             )}
           </div>
         )}
-        <section className={classes('up-menu-nav', this.currentMinifiedValue ? 'minified' :'')}>
+        <section className={upMenuNavClassName}>
           <nav>
             <ul>{menu}</ul>
           </nav>
