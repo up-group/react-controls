@@ -34,6 +34,7 @@ export interface UpMenuProps {
   onClick?: (uri: string, menuItem?: MenuItemData) => boolean | void;
   onMinifiedChange?: (minified?: boolean) => void;
   toggleIconName?: IconName;
+  showToggler?: boolean;
   customStyles?: UpMenuCustomStyles;
 }
 
@@ -168,7 +169,7 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState> 
         <section className="up-menu-header">
           {renderIcon && <section className="up-app-icon-wrapper">{renderIcon}</section>}
           {renderHeader}
-          {!this.props.blocked && isMobileDevice() && (
+          {(!this.props.blocked && isMobileDevice() || this.props.showToggler) && (
             <UpSvgIcon
               width={15}
               height={15}
