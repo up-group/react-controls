@@ -33,7 +33,7 @@ export interface UpMenuProps {
   blocked?: boolean;
   onClick?: (uri: string, menuItem?: MenuItemData) => boolean | void;
   onMinifiedChange?: (minified?: boolean) => void;
-  toggleIconName?: IconName
+  toggleIconName?: IconName;
   customStyles?: UpMenuCustomStyles;
 }
 
@@ -151,7 +151,7 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState> 
       renderIcon = (icon as RenderCallback)(this.props, this.state);
     }
 
-    const toggleIconName = others.toggleIconName || "burger-menu2"
+    const toggleIconName = others.toggleIconName || "burger-menu2";
 
     return (
       <aside
@@ -190,7 +190,7 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState> 
             )}
           </div>
         )}
-        <section className={classes("up-menu-nav", this.currentMinifiedValue ? "minified" : "")}>
+        <section className={classes('up-menu-nav', this.currentMinifiedValue ? 'minified' :'')}>
           <nav>
             <ul>{menu}</ul>
           </nav>
