@@ -156,7 +156,7 @@ class UpMenu extends React.Component<UpMenuProps & WithThemeProps, UpMenuState> 
 
     const upMenuNavClassName = classes('up-menu-nav', this.currentMinifiedValue ? 'minified' : '');
 
-    const showToggler = !this.props.blocked && isMobileDevice() || this.props.showToggler;
+    const showToggler = (!this.props.blocked && isMobileDevice()) || this.props.showToggler;
 
     return (
       <aside
