@@ -1,3 +1,8 @@
+# ReactControls (version: 2.17.29)
+## Main Changes
+
+- UpMenu: enablme to change menu icon
+
 # ReactControls (version: 2.17.25)
 ## Main Changes
 
