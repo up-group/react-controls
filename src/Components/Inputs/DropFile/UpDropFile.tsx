@@ -286,7 +286,7 @@ class UpDropFile extends React.Component<UpDropFileProps & WithThemeProps, UpDro
       if (isFileImage(file.name) && this.props.maxImgWidth) {
         const handleResize = function (data: string) {
           const tmpUpload: IFile = {
-            name: `${file.name}.png`,
+            name: `${file.name}`,
             value_base64: data,
             originalFile: file,
           };
