@@ -1,3 +1,8 @@
+# ReactControls (version: 0.2.268)
+## Features
+- Add the hole line to cell formatter dataGrid
+- Fix image name after upload
+
 # ReactControls (version: 0.2.267)
 
 ## Bugs Fixes
