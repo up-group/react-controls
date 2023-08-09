@@ -31,7 +31,9 @@ export type IllustrationName =
   | 'search-glass'
   | 'card-orange-add'
   | 'card-orange-trans'
-  | 'user-fail';
+  | 'user-fail'
+  | 'aides'
+  | 'repas';
 
 export const IllustrationNames: IllustrationName[] = [
   'logo-up',
@@ -67,6 +69,8 @@ export const IllustrationNames: IllustrationName[] = [
   'card-orange-add',
   'card-orange-trans',
   'user-fail',
+  'aides',
+  'repas',
 ];
 
 const dictionary = {};

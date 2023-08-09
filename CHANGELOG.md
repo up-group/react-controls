@@ -1,3 +1,7 @@
+# ReactControls (version: 0.2.269)
+## Features
+- UpIcon: add CDS/Repas icons
+
 # ReactControls (version: 0.2.268)
 ## Features
 - Add the hole line to cell formatter dataGrid
