@@ -3,6 +3,7 @@ import { TestableComponentProps } from '../../../Common/utils/types';
 export type DisplayMode = 'fromTop' | 'fromBottom' | 'fromRight' | 'fromLeft';
 export type ModalWidth = 'half' | 'full' | 'default';
 export type ScreenPosition = 'top' | 'center';
+export type Widths = { minWidth; maxWidth };
 
 export interface UpModalWrapperProps extends TestableComponentProps {
   /** Modal content */
@@ -25,6 +26,8 @@ export interface UpModalWrapperProps extends TestableComponentProps {
   header?: string | JSX.Element;
   /** To position the modal on the height of the viewport */
   screenPosition?: ScreenPosition;
+  /** If true set custom width and height to modal */
+  customWidth?: Widths;
 }
 
 export interface UpModalProps extends UpModalWrapperProps {
