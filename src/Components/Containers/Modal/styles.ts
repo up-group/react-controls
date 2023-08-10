@@ -5,7 +5,7 @@ import { WithThemeProps } from '../../../Common/theming';
 import { UpModalProps, DisplayMode } from './types';
 import { toRem } from '../../../Common/theming/utils';
 
-const cssModal = ({ modalWidth, displayMode, showModal, theme, screenPosition }: UpModalProps & WithThemeProps) =>
+const cssModal = ({ modalWidth, displayMode, showModal, theme, screenPosition, customWidth = null }: UpModalProps & WithThemeProps) =>
   style({
     $nest: {
       '& .up-modal': {
@@ -35,8 +35,8 @@ const cssModal = ({ modalWidth, displayMode, showModal, theme, screenPosition }:
                       ? modalWidth === 'full'
                         ? '0'
                         : modalWidth === 'half'
-                        ? '50%'
-                        : 'unset'
+                          ? '50%'
+                          : 'unset'
                       : '0',
                   transition: 'unset',
                   transform: 'unset',
@@ -62,16 +62,16 @@ const cssModal = ({ modalWidth, displayMode, showModal, theme, screenPosition }:
                       ? modalWidth === 'full'
                         ? '0'
                         : modalWidth === 'half'
-                        ? '50%'
-                        : 'unset'
+                          ? '50%'
+                          : 'unset'
                       : 'auto',
                   marginRight:
                     displayMode === 'fromLeft'
                       ? modalWidth === 'full'
                         ? '0'
                         : modalWidth === 'half'
-                        ? '50%'
-                        : 'unset'
+                          ? '50%'
+                          : 'unset'
                       : 'auto',
                   overflowY: 'hidden',
                 }),
@@ -86,13 +86,19 @@ const cssModal = ({ modalWidth, displayMode, showModal, theme, screenPosition }:
           top: '40%',
           transform: 'translateY(-100%) !important',
         }),
-        ...(modalWidth === 'default'
-          ? {
+        ...(customWidth !== null ? {
+          minWidth: customWidth.minWidth,
+          maxWidth: customWidth.maxWidth,
+          margin: `${toRem(30)} auto`,
+        }
+          :
+          modalWidth === 'default'
+            ? {
               minWidth: '600px',
               maxWidth: '70%',
               margin: `${toRem(30)} auto`,
             }
-          : {
+            : {
               maxWidth: `${modalWidth === 'half' ? 50 : 100}%`,
             }),
       },
