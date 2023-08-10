@@ -1,3 +1,7 @@
+# ReactControls (version: 0.2.270)
+## Features
+
+- UpModal : Add optional parameter customWidth
 # ReactControls (version: 0.2.269)
 ## Features
 - UpIcon: add CDS/Repas icons
