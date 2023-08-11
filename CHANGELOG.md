@@ -1,8 +1,13 @@
+# ReactControls (version: 2.17.32)
+## Main Changes
+
+- UpSvgIcon: fix - moving svg to illustrations (click-transfer-item.svg)
+- 
 # ReactControls (version: 2.17.31)
 ## Main Changes
 
 - UpSvgIcon: adding new illustrations (click-transfer-item.svg)
-- 
+  
 # ReactControls (version: 2.17.29)
 ## Main Changes
 
