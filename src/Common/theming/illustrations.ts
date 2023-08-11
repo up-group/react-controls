@@ -34,6 +34,7 @@ export type IllustrationName =
   | 'user-fail'
   | 'click-select-item'
   | 'click-sheet-file'
+  | 'click-transfer-file'
   | 'icon-up-money'
   | 'location'
   | 'mentor-joyeux-petillant'
@@ -76,6 +77,7 @@ export const IllustrationNames: IllustrationName[] = [
   'user-fail',
   'click-select-item',
   'click-sheet-file',
+  'click-transfer-file',
   'icon-up-money',
   'location',
   'mentor-joyeux-petillant',
