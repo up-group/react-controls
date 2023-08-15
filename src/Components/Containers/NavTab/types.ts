@@ -14,6 +14,7 @@ export interface UpNavTabProps {
   onSelectedTabChanged?: (selectTabKey: number, tab: Tab) => void;
   /** Tab to display when first displaying */
   selectedTabOnLoad?: number;
+  colorOnFocus?: string;
 }
 
 export interface TabContentProps {
@@ -32,11 +33,13 @@ export interface TabContentsProps {
 export interface TabHeadsProps {
   heads: Tab[];
   selectedTabKey: number;
+  colorOnFocus: string;
   selectTabKey: (tabkey: number) => void;
 }
 
 export interface TabHeadItemProps {
   tab: Tab;
+  colorOnFocus: string; 
   tabKey: number;
   selectedTabKey: number;
   selectTabKey: (tabkey: number) => void;

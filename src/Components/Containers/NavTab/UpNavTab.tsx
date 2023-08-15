@@ -8,6 +8,7 @@ const UpNavTab: React.FunctionComponent<UpNavTabProps> = ({
   tabs = [],
   onSelectedTabChanged,
   selectedTabOnLoad = null,
+  colorOnFocus = '#F59100',
 }) => {
   const [selectedTabKey, selectTabKey] = React.useState<number>(tabs.length !== 0 ? selectedTabOnLoad || 0 : -1);
 
@@ -30,7 +31,7 @@ const UpNavTab: React.FunctionComponent<UpNavTabProps> = ({
 
   return (
     <div>
-      <TabHeads selectTabKey={selectTabKey} heads={tabs} selectedTabKey={selectedTabKey} />
+      <TabHeads selectTabKey={selectTabKey} heads={tabs} selectedTabKey={selectedTabKey} colorOnFocus={colorOnFocus} />
       <TabContentWrapper loadType={loadType} selectedTabKey={tabKeyToDisplay} contents={tabsToDisplay} />
     </div>
   );
