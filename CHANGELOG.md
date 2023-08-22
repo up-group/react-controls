@@ -1,3 +1,7 @@
+# ReactControls (version: 0.2.271)
+## Features
+- UpNavTab: Change onFocus color according to props
+- UpDataPanel : Add an alternative display
 # ReactControls (version: 0.2.270)
 ## Features
 
