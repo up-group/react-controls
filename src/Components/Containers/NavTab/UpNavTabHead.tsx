@@ -8,7 +8,7 @@ import { TabHeadItemProps, TabHeadsProps } from './types';
 export const TabHeads = (props: TabHeadsProps) => {
   const heads = props.heads.map((v, i) => {
     return (
-      <TabHeadItem selectTabKey={props.selectTabKey} tab={v} key={i} tabKey={i} selectedTabKey={props.selectedTabKey} />
+      <TabHeadItem selectTabKey={props.selectTabKey} tab={v} key={i} tabKey={i} selectedTabKey={props.selectedTabKey} colorOnFocus={props.colorOnFocus} />
     );
   });
 
@@ -34,8 +34,8 @@ const TabHeadItem = (props: TabHeadItemProps) => {
     >
       {props.selectedTabKey == props.tabKey && (
         <>
-          <motion.div animate layoutId={headTabBorder} className={headTabBorder} />
-          <motion.div animate layoutId={headTabArrow} className={headTabArrow} />
+          <motion.div animate layoutId={headTabBorder(props.colorOnFocus)} className={headTabBorder(props.colorOnFocus)} />
+          <motion.div animate layoutId={headTabArrow(props.colorOnFocus)} className={headTabArrow(props.colorOnFocus)} />
         </>
       )}
       {props.tab.head}
