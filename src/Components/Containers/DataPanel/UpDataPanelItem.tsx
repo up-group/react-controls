@@ -4,6 +4,7 @@ import UpButton from '../../Inputs/Button/UpButton';
 import UpSvgIcon from '../../Display/SvgIcon';
 import UpTooltip from '../../Display/Tooltip/UpTooltip';
 import UpLigne from '../../Display/Ligne/UpLigne';
+import { toRem } from '../../../Common/theming/utils';
 import * as _ from 'lodash';
 import { TitleFormatter, PanelItemProps } from './types';
 import { getStyles } from './styles';
@@ -20,7 +21,7 @@ const UpDataPanelItem = (props: PanelItemProps) => {
   );
 
   return (
-    <div className={classnames('panel-container', className, getStyles(props))}>
+    <div className={classnames('panel-container', className, getStyles(props, columns, panelData))}>
       {title && (
         <div className="panel-title">
           <span className="panel-title-general">
@@ -40,11 +41,34 @@ const UpDataPanelItem = (props: PanelItemProps) => {
       <div className="panel-body">
         {columns.map((element, index) => {
           const customClassName = (getColumnCustomClassName && getColumnCustomClassName(element.field)) || '';
+          const getFormatterPropsStyle = element.getFormatterProps
+          ? element.getFormatterProps(panelData ? panelData[element.field] : null)
+          : {};
+          const colAlternativeStyle = getFormatterPropsStyle && getFormatterPropsStyle.backgroundColor 
+          ? { 
+            color: 'white',
+            fontWeight: 'bold',
+            paddingLeft: toRem(20),
+            paddingRight: toRem(28),
+            paddingBottom: toRem(8),
+            paddingTop: toRem(14),
+            backgroundColor: getFormatterPropsStyle.backgroundColor,
+            backgroundClip: 'padding-box',
+            borderRadius: '3px'
+          }
+          : {
+            paddingLeft: toRem(20),
+            paddingRight: toRem(28),
+            paddingBottom: toRem(8),
+            paddingTop: toRem(14)
+          }; 
+          const labelAltrnativeStyle = colAlternativeStyle.backgroundColor ? {} : {color: '#979797'}
+          const valueAlternativeStyle = colAlternativeStyle.backgroundColor ? {} : {color: 'black'}
           return (panelData && panelData[element.field] && showOnlyNotEmptyValue) ||
             (element.field && !showOnlyNotEmptyValue) ? (
             <React.Fragment key={index}>
-              <div className={classnames(`panel-col ${customClassName}`)}>
-                <span className="panel-col-label">
+              <div className={classnames(`panel-col ${customClassName}`)} style={colAlternativeStyle}>
+                <span className="panel-col-label" style={labelAltrnativeStyle}>
                   {element.label}
                   {displayMode === 'row' ? ': ' : null}
                 </span>
@@ -52,12 +76,10 @@ const UpDataPanelItem = (props: PanelItemProps) => {
                   element.formatter.format(
                     panelData,
                     element,
-                    element.getFormatterProps
-                      ? element.getFormatterProps(panelData ? panelData[element.field] : null)
-                      : {}
+                    getFormatterPropsStyle
                   )
                 ) : (
-                  <span className="panel-col-value">{panelData && panelData[element.field]}</span>
+                  <span className="panel-col-value" style={valueAlternativeStyle}>{panelData && panelData[element.field]}</span>
                 )}
                 {element.tooltip && <Tooltip tooltip={element.tooltip} />}
               </div>
