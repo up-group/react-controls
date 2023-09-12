@@ -333,6 +333,172 @@ export const WithActions = (): JSX.Element => {
   );
 };
 
+export const WithLoadOnScrollEnabled = (): JSX.Element => {
+  const [isFetching, setIsFetching] = React.useState(false);
+  const [currentPage, setPage] = React.useState(1);
+  const [state, setState] = React.useState<{
+    data: Array<any>;
+    total: number;
+    lastFetchedDataTime: Date | undefined;
+    previousFetchedPage: number;
+  }>({
+    data: [],
+    total: 0,
+    lastFetchedDataTime: undefined,
+    previousFetchedPage: 0,
+  });
+
+  const [previousPage, setPreviousPage] = React.useState<number>(0);
+  const [currentAllRowsSelected, setAllRowsSelected] = React.useState<Array<Row>>([]);
+  const [isAllRowsSelected, setIsAllRowsSelected] = React.useState<boolean>(false);
+
+  const fetchData = (): Promise<Response> => {
+    setIsFetching(true);
+    setState({ ...state, data: [] });
+    return fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(response => response.json())
+      .then(data => {
+        setState({
+          data: data.slice((currentPage - 1) * 50, (currentPage - 1) * 50 + 50),
+          total: data.length,
+          previousFetchedPage: previousPage,
+          lastFetchedDataTime: new Date(),
+        });
+
+        if (isAllRowsSelected === true && currentPage != previousPage) {
+          const newSelectedData = dataSelectedToRows(data, currentAllRowsSelected, isAllRowsSelected);
+          setAllRowsSelected(newSelectedData);
+        }
+
+        setPreviousPage(currentPage);
+
+        return data;
+      })
+      .then(data => {
+        setIsFetching(false);
+        return data;
+      });
+  };
+
+  React.useEffect(() => {
+    fetchData();
+  }, [currentPage, setPage]);
+
+  const dataSelectedToRows = (data: any[], allRowsSelected: Row[], isAllRowsSelected: boolean): Array<Row> => {
+    const newAllRowsSelected: Row[] = _.clone(allRowsSelected);
+    data.forEach(item => {
+      const matchedRow = newAllRowsSelected.find(row => row.value.id == item.id);
+      if (matchedRow == null) {
+        newAllRowsSelected.push({
+          isSelected: isAllRowsSelected,
+          value: item,
+        });
+      } else {
+        matchedRow.isSelected = isAllRowsSelected;
+      }
+    });
+
+    return newAllRowsSelected;
+  };
+
+  const updateCurrentAllRowsSelected = (updatedRow: Row, currentAllRowsSelected: Row[]): Array<Row> => {
+    const newSelectedData: Row[] = _.clone(currentAllRowsSelected);
+    const matchedRow = newSelectedData.find(row => row.value.id == updatedRow.value.id);
+    if (matchedRow == null) {
+      newSelectedData.push({ ...updatedRow });
+    } else {
+      matchedRow.isSelected = isAllRowsSelected;
+    }
+    return newSelectedData;
+  };
+
+  const onSelectionChange = (
+    lastUpdatedRow: Row,
+    dataSelected: any[],
+    allRowsSelected?: Row[],
+    isAllRowsSelected?: boolean
+  ): void => {
+    let newSelectedData: Row[] = [];
+
+    if (lastUpdatedRow != null) {
+      newSelectedData = updateCurrentAllRowsSelected(lastUpdatedRow, currentAllRowsSelected);
+    } else if (isAllRowsSelected != null) {
+      newSelectedData = dataSelectedToRows(state.data, currentAllRowsSelected, isAllRowsSelected);
+    }
+
+    if (newSelectedData != null) setAllRowsSelected(newSelectedData.filter(row => row.isSelected));
+
+    setIsAllRowsSelected(isAllRowsSelected === true);
+  };
+
+  return (
+    <>
+      <UpButton
+        intent="secondary"
+        onClick={e => {
+          setAllRowsSelected([]);
+          fetchData();
+        }}
+      >
+        Rafraichir
+      </UpButton>
+      {isFetching && <UpLoadingIndicator isLoading={true} title={'Chargement en cours...'} />}
+      <UpDataGrid
+        upDatagridHeight="500px"
+        paginationPosition="both"
+        dataSource={{
+          query: 'https://jsonplaceholder.typicode.com/posts',
+        }}
+        onSelectionChange={onSelectionChange}
+        lastFetchedDataTime={state.lastFetchedDataTime}
+        paginationProps={{
+          total: state.total,
+          page: currentPage,
+          take: 10,
+          skip: (currentPage - 1) * 10,
+          onPageChange: (page: number, take: number, skip: number): void => {
+            setPreviousPage(currentPage);
+            setPage(page);
+          },
+        }}
+        onScrollStop={(page: number, take: number, skip: number): void => {
+          setPreviousPage(currentPage);
+          setPage(currentPage + 1);
+        }}
+        onSortChange={(c: Column, dir: SortDirection): void => {
+          setPreviousPage(1);
+          setPage(1);
+        }}
+        isSelectionEnabled={true}
+        isPaginationEnabled={true}
+        loadOnScroll={true}
+        columns={[
+          {
+            label: 'Id',
+            field: 'id',
+            isSortable: true,
+          },
+          {
+            label: 'Titre',
+            field: 'title',
+            isSortable: true,
+          },
+          {
+            label: 'Texte',
+            field: 'body',
+            isSortable: true,
+          },
+          {
+            label: 'Auteur',
+            field: 'userId',
+            isSortable: true,
+          },
+        ]}
+      />
+    </>
+  );
+};
+
 export const WithSingleActionAndRowClickable = (): JSX.Element => {
   const [currentRow, setCurrentRow] = React.useState({});
 
